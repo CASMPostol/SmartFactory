@@ -54,7 +54,7 @@
   </xs:complexType>
   <xs:complexType name="JSOContent">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="JSOXCustomsSummaryContentList" type="tns:JSOXCustomsSummaryContentList" />
+      <xs:element minOccurs="0" maxOccurs="1" name="JSOXCustomsSummaryList" type="tns:JSOXCustomsSummaryContentList" />
       <xs:element minOccurs="1" maxOccurs="1" name="PreviousMonthDate" type="xs:date" />
       <xs:element minOccurs="1" maxOccurs="1" name="PreviousMonthQuantity" type="xs:double" />
       <xs:element minOccurs="1" maxOccurs="1" name="IntroducingDateStart" type="xs:date" />
@@ -72,24 +72,24 @@
   </xs:complexType>
   <xs:complexType name="JSOXCustomsSummaryContentList">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="JSOXCustomsSummaryContentOGLGroup" type="tns:ArrayOfJSOXCustomsSummaryContentOGLGroup" />
+      <xs:element minOccurs="0" maxOccurs="1" name="JSOXCustomsSummaryOGLGroupArray" type="tns:ArrayOfJSOXCustomsSummaryContentOGLGroup" />
       <xs:element minOccurs="1" maxOccurs="1" name="SubtotalQuantity" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfJSOXCustomsSummaryContentOGLGroup">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="JSOXCustomsSummaryContentOGLGroup" nillable="false" type="tns:JSOXCustomsSummaryContentOGLGroup" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="JSOXCustomsSummaryOGLGroup" nillable="false" type="tns:JSOXCustomsSummaryContentOGLGroup" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="JSOXCustomsSummaryContentOGLGroup">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="JSOXCustomsSummaryContent" type="tns:ArrayOfJSOXCustomsSummaryContent" />
+      <xs:element minOccurs="0" maxOccurs="1" name="JSOXCustomsSummaryArray" type="tns:ArrayOfJSOXCustomsSummaryContent" />
       <xs:element minOccurs="1" maxOccurs="1" name="SubtotalQuantity" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfJSOXCustomsSummaryContent">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="JSOXCustomsSummaryContent" nillable="false" type="tns:JSOXCustomsSummaryContent" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="JSOXCustomsSummary" nillable="false" type="tns:JSOXCustomsSummaryContent" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="JSOXCustomsSummaryContent">

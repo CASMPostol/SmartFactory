@@ -511,18 +511,18 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
     public partial class JSOXCustomsSummaryContentOGLGroup {
         
-        private JSOXCustomsSummaryContent[] jSOXCustomsSummaryContentField;
+        private JSOXCustomsSummaryContent[] jSOXCustomsSummaryArrayField;
         
         private double subtotalQuantityField;
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
-        public JSOXCustomsSummaryContent[] JSOXCustomsSummaryContent {
+        [System.Xml.Serialization.XmlArrayItemAttribute("JSOXCustomsSummary", IsNullable=false)]
+        public JSOXCustomsSummaryContent[] JSOXCustomsSummaryArray {
             get {
-                return this.jSOXCustomsSummaryContentField;
+                return this.jSOXCustomsSummaryArrayField;
             }
             set {
-                this.jSOXCustomsSummaryContentField = value;
+                this.jSOXCustomsSummaryArrayField = value;
             }
         }
         
@@ -545,18 +545,18 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
     public partial class JSOXCustomsSummaryContentList {
         
-        private JSOXCustomsSummaryContentOGLGroup[] jSOXCustomsSummaryContentOGLGroupField;
+        private JSOXCustomsSummaryContentOGLGroup[] jSOXCustomsSummaryOGLGroupArrayField;
         
         private double subtotalQuantityField;
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
-        public JSOXCustomsSummaryContentOGLGroup[] JSOXCustomsSummaryContentOGLGroup {
+        [System.Xml.Serialization.XmlArrayItemAttribute("JSOXCustomsSummaryOGLGroup", IsNullable=false)]
+        public JSOXCustomsSummaryContentOGLGroup[] JSOXCustomsSummaryOGLGroupArray {
             get {
-                return this.jSOXCustomsSummaryContentOGLGroupField;
+                return this.jSOXCustomsSummaryOGLGroupArrayField;
             }
             set {
-                this.jSOXCustomsSummaryContentOGLGroupField = value;
+                this.jSOXCustomsSummaryOGLGroupArrayField = value;
             }
         }
         
@@ -579,7 +579,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
     public partial class JSOContent {
         
-        private JSOXCustomsSummaryContentList jSOXCustomsSummaryContentListField;
+        private JSOXCustomsSummaryContentList jSOXCustomsSummaryListField;
         
         private System.DateTime previousMonthDateField;
         
@@ -608,12 +608,12 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         private double reassumeQuantityField;
         
         /// <uwagi/>
-        public JSOXCustomsSummaryContentList JSOXCustomsSummaryContentList {
+        public JSOXCustomsSummaryContentList JSOXCustomsSummaryList {
             get {
-                return this.jSOXCustomsSummaryContentListField;
+                return this.jSOXCustomsSummaryListField;
             }
             set {
-                this.jSOXCustomsSummaryContentListField = value;
+                this.jSOXCustomsSummaryListField = value;
             }
         }
         
