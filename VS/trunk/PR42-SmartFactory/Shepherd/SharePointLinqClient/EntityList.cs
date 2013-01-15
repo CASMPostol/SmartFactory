@@ -215,7 +215,8 @@ namespace Microsoft.SharePoint.Linq
         return null;
       int _dumyKey = -1;
       Dictionary<int, KeyValuePair<ITrackEntityState, ListItem>> _idDictionary = m_EntitieAssociations.ToDictionary( key => key.Value == null ? _dumyKey-- : key.Value.Id );
-      Debug.Assert( _idDictionary.ContainsKey( fieldLookupValue.LookupId ), "Cannot find lookup" );
+      if ( !_idDictionary.ContainsKey( fieldLookupValue.LookupId ) )
+        return null;
       return (TEntity)_idDictionary[ fieldLookupValue.LookupId ].Key;
     }
     #endregion
