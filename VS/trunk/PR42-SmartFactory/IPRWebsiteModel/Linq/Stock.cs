@@ -20,7 +20,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       foreach ( StockEntry _sex in StockEntry )
         _sex.GetInventory( balanceStock );
     }
-    internal void Validate( Entities edc, Dictionary<string, System.Linq.IGrouping<string, IPR>> _accountGroups )
+    internal void Validate( Entities edc, Dictionary<string, IGrouping<string, IPR>> _accountGroups )
     {
       int _problems = 0;
       List<Batch> _batches = new List<Batch>();
@@ -75,18 +75,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       get
       {
         return from _sex in this.StockEntry
-               where _sex.ProductType.Value == ProductType.Cigarette
-               && _sex.IPRType.Value
+               where ( ( _sex.ProductType.Value == ProductType.Cigarette ) || ( _sex.ProductType.Value == ProductType.Cutfiller ) ) && _sex.IPRType.Value
                select _sex;
       }
     }
-    public IEnumerable<StockEntry> AllIPRTobacco
+    private IEnumerable<StockEntry> AllIPRTobacco
     {
       get
       {
         return from _sex in this.StockEntry
-               where ( _sex.ProductType.Value == ProductType.Tobacco )
-               && _sex.IPRType.Value
+               where _sex.ProductType.Value == ProductType.IPRTobacco
                select _sex;
       }
     }
@@ -95,7 +93,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       List<Batch> _list = ( from _btx in edc.Batch
                             where _btx.FGQuantityAvailable.Value > 0
                             select _btx ).ToList<Batch>();
-      return from _btx in _list where _btx.StockEntry.Any() select _btx;
+      return from _btx in _list where !_btx.StockEntry.Any() select _btx;
     }
     #endregion
 
