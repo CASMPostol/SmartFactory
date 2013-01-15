@@ -5,6 +5,7 @@ using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
+using CAS.SharePoint;
 
 namespace CAS.SmartFactory.IPR.DocumentsFactory
 {
@@ -26,9 +27,9 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         _newFile = SPDocumentFactory.Prepare( web, _content, _documentName );
         _newFile.DocumentLibrary.Update();
         JSOXLib _current = Element.GetAtIndex<JSOXLib>( _edc.JSOXLibrary, _newFile.Item.ID );
-        _current.CreateJSOXReport( _edc, _old );
+        bool _validated = _current.CreateJSOXReport( _edc, _old );
         _edc.SubmitChanges();
-        _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent( _current, _documentName );
+        _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent( _current, _documentName, !_validated );
       }
       _content.UpdateDocument( _newFile );
       _newFile.DocumentLibrary.Update();
@@ -39,11 +40,11 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       using ( Entities edc = new Entities( WebUrl ) )
       {
         JSOXLib _current = Element.GetAtIndex<JSOXLib>( edc.JSOXLibrary, jsoxLibItemId );
-        if (_current.JSOXLibraryReadOnly.Value)
+        if ( _current.JSOXLibraryReadOnly.Value )
           throw new ApplicationException( "The record is read only and the report must not be updated." );
-        _current.UpdateBalanceReport( edc );
+        bool _validated = _current.UpdateBalanceReport( edc );
         string _documentName = xml.XMLResources.RequestForBalanceSheetDocumentName( _current.Identyfikator.Value );
-        _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent( _current, _documentName );
+        _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent( _current, _documentName, !_validated );
         edc.SubmitChanges();
       }
       _content.UpdateDocument( listItem.File );
@@ -67,8 +68,10 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       };
       return _ret;
     }
-    private static BalanceSheetContent CreateContent( JSOXLib list, string documentName )
+    private static BalanceSheetContent CreateContent( JSOXLib list, string documentName, bool preliminary )
     {
+      if ( preliminary )
+        documentName += " " + "PRELIMINARY".GetLocalizedString();
       BalanceSheetContent _ret = new BalanceSheetContent()
       {
         DocumentDate = DateTime.Today.Date,
@@ -170,7 +173,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         {
           BalanceBatchContent _new = new BalanceBatchContent()
             {
-              BalanceIPR = GetBalanceIPRContent( _bsx.BalanceIPR ), 
+              BalanceIPR = GetBalanceIPRContent( _bsx.BalanceIPR ),
               TotalBalance = _bsx.Balance.GetValueOrDefault(),
               TotalDustCSNotStarted = _bsx.DustCSNotStarted.GetValueOrDefault(),
               TotalIPRBook = _bsx.IPRBook.GetValueOrDefault(),

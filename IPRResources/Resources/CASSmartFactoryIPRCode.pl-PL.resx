@@ -165,4 +165,7 @@
 	<data name="Units" xml:space="preserve">
 		<value>szt.</value>
 	</data>
+	<data name="PRELIMINARY" xml:space="preserve">
+		<value>Wstępny - niezgodne magazyny.</value>
+	</data>
 </root>

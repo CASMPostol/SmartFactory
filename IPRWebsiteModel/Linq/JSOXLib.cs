@@ -17,19 +17,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="edc">The edc.</param>
     /// <param name="previous">The previous report.</param>
-    public void CreateJSOXReport( Entities edc, JSOXLib previous )
+    public bool CreateJSOXReport( Entities edc, JSOXLib previous )
     {
       PreviousMonthDate = previous.SituationDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
       PreviousMonthQuantity = previous.SituationQuantity.GetValueOrDefault( -1 );
       this.JSOXLibraryReadOnly = false;
-      UpdateBalanceReport( edc );
+      return UpdateBalanceReport( edc );
     }
     /// <summary>
     /// Updates the balance report.
     /// </summary>
     /// <param name="edc">The edc.</param>
-    public void UpdateBalanceReport( Entities edc )
+    public bool UpdateBalanceReport( Entities edc )
     {
+      bool _validated = false;
       StockDictionary _balanceStock = new StockDictionary();
       Linq.StockLib _stock = this.StockLib.FirstOrDefault<Linq.StockLib>();
       if ( _stock == null )
@@ -37,9 +38,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Dictionary<string, IGrouping<string, IPR>> _accountGroups = Linq.IPR.GetAllOpen4JSOXGroups( edc ).ToDictionary( x => x.Key );
       if ( _stock != null )
       {
-        _stock.Validate( edc, _accountGroups );
+        _validated = _stock.Validate( edc, _accountGroups );
         _stock.GetInventory( edc, _balanceStock );
       }
+      else
+        ActivityLogCT.WriteEntry( edc, "Balance report", "Cannot find stock report - only preliminary report will be created" );
       List<string> _processed = new List<string>();
       foreach ( BalanceBatch _bbx in BalanceBatch )
       {
@@ -83,7 +86,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 
       //Reassume
       this.ReassumeQuantity = ( _thisBalanceQuantity - _thisSituationQuantity ).Convert2Double2Decimals();
-
+      return _validated;
     }
     #endregion
 
