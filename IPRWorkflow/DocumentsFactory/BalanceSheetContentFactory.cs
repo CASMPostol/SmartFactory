@@ -87,7 +87,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       {
         BalanceDate = list.BalanceDate.GetValueOrDefault(),
         BalanceQuantity = list.BalanceQuantity.GetValueOrDefault(),
-        JSOXCustomsSummaryContentList = GetDisposalsList( list.JSOXCustomsSummary ),
+        JSOXCustomsSummaryList = GetDisposalsList( list.JSOXCustomsSummary ),
         IntroducingDateEnd = list.IntroducingDateEnd.GetValueOrDefault(),
         IntroducingDateStart = list.IntroducingDateStart.GetValueOrDefault(),
         IntroducingQuantity = list.IntroducingQuantity.GetValueOrDefault(),
@@ -108,7 +108,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       JSOXCustomsSummaryContentOGLGroup[] _arrayOfDisposalRows = GetJSOXCustomsSummaryContentOGLGroupArray( entitySet, out _total );
       JSOXCustomsSummaryContentList _ret = new JSOXCustomsSummaryContentList()
       {
-        JSOXCustomsSummaryContentOGLGroup = _arrayOfDisposalRows,
+        JSOXCustomsSummaryOGLGroupArray = _arrayOfDisposalRows,
         SubtotalQuantity = Convert.ToDouble( _total )
       };
       return _ret;
@@ -135,7 +135,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       JSOXCustomsSummaryContent[] _rows = GetDisposalRowArray( collection, out total );
       JSOXCustomsSummaryContentOGLGroup _ret = new JSOXCustomsSummaryContentOGLGroup()
       {
-        JSOXCustomsSummaryContent = _rows,
+        JSOXCustomsSummaryArray = _rows,
         SubtotalQuantity = Convert.ToDouble( total )
       };
       return _ret;
