@@ -242,7 +242,7 @@
         <th>Quantity - change procedures (kg)</th>
         <th>Balance (Introducing –Disposals) (kg)</th>
       </tr>
-      <xsl:apply-templates select="cas:JSOXCustomsSummaryContentList"/>
+      <xsl:apply-templates select="cas:JSOXCustomsSummaryList"/>
     </table>
       <h3>JSOX summary</h3>
       <table border="0">
@@ -319,8 +319,8 @@
         </tr>
       </table>
   </xsl:template>
-  <xsl:template match="cas:JSOXCustomsSummaryContentList">
-    <xsl:apply-templates select="cas:JSOXCustomsSummaryContentOGLGroup" />
+  <xsl:template match="cas:JSOXCustomsSummaryList">
+    <xsl:apply-templates select="cas:JSOXCustomsSummaryOGLGroupArray" />
     <tr>
       <td colspan="2">
         Total
@@ -345,7 +345,64 @@
       </td>
     </tr>
   </xsl:template>
-  <xsl:template match="cas:JSOXCustomsSummaryContentOGLGroup">
-
+  <xsl:template match="cas:JSOXCustomsSummaryOGLGroupArray">
+    <xsl:apply-templates select="cas:JSOXCustomsSummaryOGLGroup" />
+  </xsl:template>
+  <xsl:template match="cas:JSOXCustomsSummaryOGLGroup">
+    <xsl:apply-templates select="cas:JSOXCustomsSummaryArray" />
+    <tr>
+      <td colspan="2">
+        Subtotal
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td align="center">
+        <xsl:value-of select="format-number(cas:SubtotalQuantity, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td>
+        &#160;
+      </td>
+    </tr>
+  </xsl:template>
+  <xsl:template match="cas:JSOXCustomsSummaryArray">
+    <xsl:apply-templates select="cas:JSOXCustomsSummary" />
+  </xsl:template>
+  <xsl:template match="cas:JSOXCustomsSummary">
+    <tr>
+      <td>
+        <xsl:value-of select="cas:ExportOrFreeCirculationSAD"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:EntryDocumentNo"/>
+      </td>
+      <td>
+        <xsl:value-of select="ms:format-date(cas:SADDate, $FoarmatOfdate)"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:InvoiceNo"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:CompensationGood"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:Procedure"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="format-number(cas:Quantity, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="format-number(cas:Balance, $FoarmatOfFloat, 'pl')"/>
+      </td>
+    </tr>
   </xsl:template>
 </xsl:stylesheet>

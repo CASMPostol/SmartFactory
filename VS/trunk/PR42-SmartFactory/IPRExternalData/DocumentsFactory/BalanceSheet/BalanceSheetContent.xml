@@ -106,15 +106,15 @@
           <Balance>-1.7976931348623157E+308</Balance>
         </BalanceIPRContent>
       </BalanceIPR>
-      <TotalIPRBook>2</TotalIPRBook>
-      <TotalSHWasteOveruseCSNotStarted>2</TotalSHWasteOveruseCSNotStarted>
-      <TotalDustCSNotStarted>2</TotalDustCSNotStarted>
-      <TotalTobaccoAvailable>2</TotalTobaccoAvailable>
-      <TotalTobaccoInWarehouse>2</TotalTobaccoInWarehouse>
-      <TotalTobaccoInCigarettesWarehouse>2</TotalTobaccoInCigarettesWarehouse>
-      <TotalTobaccoInCigarettesProduction>2</TotalTobaccoInCigarettesProduction>
-      <TotalTobaccoInCutfillerWarehouse>2</TotalTobaccoInCutfillerWarehouse>
-      <TotalBalance>2</TotalBalance>
+      <TotalIPRBook>-1.7976931348623157E+308</TotalIPRBook>
+      <TotalSHWasteOveruseCSNotStarted>-1.7976931348623157E+308</TotalSHWasteOveruseCSNotStarted>
+      <TotalDustCSNotStarted>-1.7976931348623157E+308</TotalDustCSNotStarted>
+      <TotalTobaccoAvailable>-1.7976931348623157E+308</TotalTobaccoAvailable>
+      <TotalTobaccoInWarehouse>-1.7976931348623157E+308</TotalTobaccoInWarehouse>
+      <TotalTobaccoInCigarettesWarehouse>-1.7976931348623157E+308</TotalTobaccoInCigarettesWarehouse>
+      <TotalTobaccoInCigarettesProduction>-1.7976931348623157E+308</TotalTobaccoInCigarettesProduction>
+      <TotalTobaccoInCutfillerWarehouse>-1.7976931348623157E+308</TotalTobaccoInCutfillerWarehouse>
+      <TotalBalance>-1.7976931348623157E+308</TotalBalance>
     </BalanceBatchContent>
     <BalanceBatchContent>
       <BalanceIPR>
@@ -161,23 +161,23 @@
           <Balance>3.2000000476837158</Balance>
         </BalanceIPRContent>
       </BalanceIPR>
-      <TotalIPRBook>3</TotalIPRBook>
-      <TotalSHWasteOveruseCSNotStarted>4</TotalSHWasteOveruseCSNotStarted>
-      <TotalDustCSNotStarted>5</TotalDustCSNotStarted>
-      <TotalTobaccoAvailable>6</TotalTobaccoAvailable>
-      <TotalTobaccoInWarehouse>7</TotalTobaccoInWarehouse>
-      <TotalTobaccoInCigarettesWarehouse>8</TotalTobaccoInCigarettesWarehouse>
-      <TotalTobaccoInCigarettesProduction>9</TotalTobaccoInCigarettesProduction>
-      <TotalTobaccoInCutfillerWarehouse>10</TotalTobaccoInCutfillerWarehouse>
-      <TotalBalance>11</TotalBalance>
+      <TotalIPRBook>1.7976931348623157E+308</TotalIPRBook>
+      <TotalSHWasteOveruseCSNotStarted>1.7976931348623157E+308</TotalSHWasteOveruseCSNotStarted>
+      <TotalDustCSNotStarted>1.7976931348623157E+308</TotalDustCSNotStarted>
+      <TotalTobaccoAvailable>1.7976931348623157E+308</TotalTobaccoAvailable>
+      <TotalTobaccoInWarehouse>1.7976931348623157E+308</TotalTobaccoInWarehouse>
+      <TotalTobaccoInCigarettesWarehouse>1.7976931348623157E+308</TotalTobaccoInCigarettesWarehouse>
+      <TotalTobaccoInCigarettesProduction>1.7976931348623157E+308</TotalTobaccoInCigarettesProduction>
+      <TotalTobaccoInCutfillerWarehouse>1.7976931348623157E+308</TotalTobaccoInCutfillerWarehouse>
+      <TotalBalance>1.7976931348623157E+308</TotalBalance>
     </BalanceBatchContent>
   </BalanceBatch>
   <JSOX>
-    <JSOXCustomsSummaryContentList>
-      <JSOXCustomsSummaryContentOGLGroup>
-        <JSOXCustomsSummaryContentOGLGroup>
-          <JSOXCustomsSummaryContent>
-            <JSOXCustomsSummaryContent>
+    <JSOXCustomsSummaryList>
+      <JSOXCustomsSummaryOGLGroupArray>
+        <JSOXCustomsSummaryOGLGroup>
+          <JSOXCustomsSummaryArray>
+            <JSOXCustomsSummary>
               <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD1</ExportOrFreeCirculationSAD>
               <EntryDocumentNo>EntryDocumentNo1</EntryDocumentNo>
               <SADDate>1900-01-01</SADDate>
@@ -186,8 +186,8 @@
               <Procedure>Procedure1</Procedure>
               <Quantity>1</Quantity>
               <Balance>1</Balance>
-            </JSOXCustomsSummaryContent>
-            <JSOXCustomsSummaryContent>
+            </JSOXCustomsSummary>
+            <JSOXCustomsSummary>
               <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD2</ExportOrFreeCirculationSAD>
               <EntryDocumentNo>EntryDocumentNo2</EntryDocumentNo>
               <SADDate>0001-01-01</SADDate>
@@ -196,8 +196,8 @@
               <Procedure>Procedure2</Procedure>
               <Quantity>-1.7976931348623157E+308</Quantity>
               <Balance>-1.7976931348623157E+308</Balance>
-            </JSOXCustomsSummaryContent>
-            <JSOXCustomsSummaryContent>
+            </JSOXCustomsSummary>
+            <JSOXCustomsSummary>
               <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD3</ExportOrFreeCirculationSAD>
               <EntryDocumentNo>EntryDocumentNo3</EntryDocumentNo>
               <SADDate>9999-12-31</SADDate>
@@ -206,13 +206,13 @@
               <Procedure>Procedure3</Procedure>
               <Quantity>1.7976931348623157E+308</Quantity>
               <Balance>1.7976931348623157E+308</Balance>
-            </JSOXCustomsSummaryContent>
-          </JSOXCustomsSummaryContent>
-          <SubtotalQuantity>100</SubtotalQuantity>
-        </JSOXCustomsSummaryContentOGLGroup>
-        <JSOXCustomsSummaryContentOGLGroup>
-          <JSOXCustomsSummaryContent>
-            <JSOXCustomsSummaryContent>
+            </JSOXCustomsSummary>
+          </JSOXCustomsSummaryArray>
+          <SubtotalQuantity>1</SubtotalQuantity>
+        </JSOXCustomsSummaryOGLGroup>
+        <JSOXCustomsSummaryOGLGroup>
+          <JSOXCustomsSummaryArray>
+            <JSOXCustomsSummary>
               <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD4</ExportOrFreeCirculationSAD>
               <EntryDocumentNo>EntryDocumentNo4</EntryDocumentNo>
               <SADDate>1899-11-30</SADDate>
@@ -221,8 +221,8 @@
               <Procedure>Procedure4</Procedure>
               <Quantity>-0.10000002384185791</Quantity>
               <Balance>-0.10000002384185791</Balance>
-            </JSOXCustomsSummaryContent>
-            <JSOXCustomsSummaryContent>
+            </JSOXCustomsSummary>
+            <JSOXCustomsSummary>
               <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD5</ExportOrFreeCirculationSAD>
               <EntryDocumentNo>EntryDocumentNo5</EntryDocumentNo>
               <SADDate>1900-02-02</SADDate>
@@ -231,8 +231,8 @@
               <Procedure>Procedure5</Procedure>
               <Quantity>2.1000000238418579</Quantity>
               <Balance>2.1000000238418579</Balance>
-            </JSOXCustomsSummaryContent>
-            <JSOXCustomsSummaryContent>
+            </JSOXCustomsSummary>
+            <JSOXCustomsSummary>
               <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD6</ExportOrFreeCirculationSAD>
               <EntryDocumentNo>EntryDocumentNo6</EntryDocumentNo>
               <SADDate>0001-02-02</SADDate>
@@ -241,13 +241,13 @@
               <Procedure>Procedure6</Procedure>
               <Quantity>-1.7976931348623157E+308</Quantity>
               <Balance>-1.7976931348623157E+308</Balance>
-            </JSOXCustomsSummaryContent>
-          </JSOXCustomsSummaryContent>
-          <SubtotalQuantity>200</SubtotalQuantity>
-        </JSOXCustomsSummaryContentOGLGroup>
-        <JSOXCustomsSummaryContentOGLGroup>
-          <JSOXCustomsSummaryContent>
-            <JSOXCustomsSummaryContent>
+            </JSOXCustomsSummary>
+          </JSOXCustomsSummaryArray>
+          <SubtotalQuantity>2</SubtotalQuantity>
+        </JSOXCustomsSummaryOGLGroup>
+        <JSOXCustomsSummaryOGLGroup>
+          <JSOXCustomsSummaryArray>
+            <JSOXCustomsSummary>
               <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD7</ExportOrFreeCirculationSAD>
               <EntryDocumentNo>EntryDocumentNo7</EntryDocumentNo>
               <SADDate>9999-11-29</SADDate>
@@ -256,8 +256,8 @@
               <Procedure>Procedure7</Procedure>
               <Quantity>1.7976931348623157E+308</Quantity>
               <Balance>1.7976931348623157E+308</Balance>
-            </JSOXCustomsSummaryContent>
-            <JSOXCustomsSummaryContent>
+            </JSOXCustomsSummary>
+            <JSOXCustomsSummary>
               <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD8</ExportOrFreeCirculationSAD>
               <EntryDocumentNo>EntryDocumentNo8</EntryDocumentNo>
               <SADDate>1899-10-29</SADDate>
@@ -266,8 +266,8 @@
               <Procedure>Procedure8</Procedure>
               <Quantity>-1.2000000476837158</Quantity>
               <Balance>-1.2000000476837158</Balance>
-            </JSOXCustomsSummaryContent>
-            <JSOXCustomsSummaryContent>
+            </JSOXCustomsSummary>
+            <JSOXCustomsSummary>
               <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD9</ExportOrFreeCirculationSAD>
               <EntryDocumentNo>EntryDocumentNo9</EntryDocumentNo>
               <SADDate>1900-03-06</SADDate>
@@ -276,13 +276,13 @@
               <Procedure>Procedure9</Procedure>
               <Quantity>3.2000000476837158</Quantity>
               <Balance>3.2000000476837158</Balance>
-            </JSOXCustomsSummaryContent>
-          </JSOXCustomsSummaryContent>
-          <SubtotalQuantity>300</SubtotalQuantity>
-        </JSOXCustomsSummaryContentOGLGroup>
-      </JSOXCustomsSummaryContentOGLGroup>
-      <SubtotalQuantity>111</SubtotalQuantity>
-    </JSOXCustomsSummaryContentList>
+            </JSOXCustomsSummary>
+          </JSOXCustomsSummaryArray>
+          <SubtotalQuantity>3</SubtotalQuantity>
+        </JSOXCustomsSummaryOGLGroup>
+      </JSOXCustomsSummaryOGLGroupArray>
+      <SubtotalQuantity>1</SubtotalQuantity>
+    </JSOXCustomsSummaryList>
     <PreviousMonthDate>1900-01-01</PreviousMonthDate>
     <PreviousMonthQuantity>1</PreviousMonthQuantity>
     <IntroducingDateStart>1900-01-01</IntroducingDateStart>
