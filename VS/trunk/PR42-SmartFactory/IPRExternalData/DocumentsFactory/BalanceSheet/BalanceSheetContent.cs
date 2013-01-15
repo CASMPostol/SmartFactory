@@ -34,7 +34,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         
         private System.DateTime endDateField;
         
-        private IPRStockContent[] iPRStockField;
+        private BalanceBatchContent[] balanceBatchField;
         
         private JSOContent jSOXField;
         
@@ -94,12 +94,12 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
-        public IPRStockContent[] IPRStock {
+        public BalanceBatchContent[] BalanceBatch {
             get {
-                return this.iPRStockField;
+                return this.balanceBatchField;
             }
             set {
-                this.iPRStockField = value;
+                this.balanceBatchField = value;
             }
         }
         
@@ -120,125 +120,17 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
-    public partial class IPRStockContent {
+    public partial class BalanceBatchContent {
         
-        private ArrayOfIPRRow iPRListField;
-        
-        private double totalIPRBookField;
-        
-        private double totalSHWasteOveruseCSNotStartedField;
-        
-        private double totalDustCSNotStartedField;
-        
-        private double totalTobaccoAvailableField;
-        
-        private double totalTobaccoInWarehouseField;
-        
-        private double totalTobaccoInCigarettesWarehouseField;
-        
-        private double totalTobaccoInCigarettesProductionField;
-        
-        private double totalTobaccoInCutfillerWarehouseField;
-        
-        private double totalBalanceField;
+        private BalanceIPRContent[] balanceIPRContentField;
         
         /// <uwagi/>
-        public ArrayOfIPRRow IPRList {
+        public BalanceIPRContent[] BalanceIPRContent {
             get {
-                return this.iPRListField;
+                return this.balanceIPRContentField;
             }
             set {
-                this.iPRListField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double TotalIPRBook {
-            get {
-                return this.totalIPRBookField;
-            }
-            set {
-                this.totalIPRBookField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double TotalSHWasteOveruseCSNotStarted {
-            get {
-                return this.totalSHWasteOveruseCSNotStartedField;
-            }
-            set {
-                this.totalSHWasteOveruseCSNotStartedField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double TotalDustCSNotStarted {
-            get {
-                return this.totalDustCSNotStartedField;
-            }
-            set {
-                this.totalDustCSNotStartedField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double TotalTobaccoAvailable {
-            get {
-                return this.totalTobaccoAvailableField;
-            }
-            set {
-                this.totalTobaccoAvailableField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double TotalTobaccoInWarehouse {
-            get {
-                return this.totalTobaccoInWarehouseField;
-            }
-            set {
-                this.totalTobaccoInWarehouseField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double TotalTobaccoInCigarettesWarehouse {
-            get {
-                return this.totalTobaccoInCigarettesWarehouseField;
-            }
-            set {
-                this.totalTobaccoInCigarettesWarehouseField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double TotalTobaccoInCigarettesProduction {
-            get {
-                return this.totalTobaccoInCigarettesProductionField;
-            }
-            set {
-                this.totalTobaccoInCigarettesProductionField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double TotalTobaccoInCutfillerWarehouse {
-            get {
-                return this.totalTobaccoInCutfillerWarehouseField;
-            }
-            set {
-                this.totalTobaccoInCutfillerWarehouseField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double TotalBalance {
-            get {
-                return this.totalBalanceField;
-            }
-            set {
-                this.totalBalanceField = value;
+                this.balanceIPRContentField = value;
             }
         }
     }
@@ -249,137 +141,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
-    public partial class ArrayOfIPRRow {
-        
-        private IPRRow[] iPRRowField;
-        
-        private double subtotalIPRBookField;
-        
-        private double subtotalSHWasteOveruseCSNotStartedField;
-        
-        private double subtotalDustCSNotStartedField;
-        
-        private double subtotalTobaccoAvailableField;
-        
-        private double subtotalTobaccoInWarehouseField;
-        
-        private double subtotalTobaccoInCigarettesWarehouseField;
-        
-        private double subtotalTobaccoInCigarettesProductionField;
-        
-        private double subtotalTobaccoInCutfillerWarehouseField;
-        
-        private double subtotalBalanceField;
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute("IPRRow")]
-        public IPRRow[] IPRRow {
-            get {
-                return this.iPRRowField;
-            }
-            set {
-                this.iPRRowField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double SubtotalIPRBook {
-            get {
-                return this.subtotalIPRBookField;
-            }
-            set {
-                this.subtotalIPRBookField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double SubtotalSHWasteOveruseCSNotStarted {
-            get {
-                return this.subtotalSHWasteOveruseCSNotStartedField;
-            }
-            set {
-                this.subtotalSHWasteOveruseCSNotStartedField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double SubtotalDustCSNotStarted {
-            get {
-                return this.subtotalDustCSNotStartedField;
-            }
-            set {
-                this.subtotalDustCSNotStartedField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double SubtotalTobaccoAvailable {
-            get {
-                return this.subtotalTobaccoAvailableField;
-            }
-            set {
-                this.subtotalTobaccoAvailableField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double SubtotalTobaccoInWarehouse {
-            get {
-                return this.subtotalTobaccoInWarehouseField;
-            }
-            set {
-                this.subtotalTobaccoInWarehouseField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double SubtotalTobaccoInCigarettesWarehouse {
-            get {
-                return this.subtotalTobaccoInCigarettesWarehouseField;
-            }
-            set {
-                this.subtotalTobaccoInCigarettesWarehouseField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double SubtotalTobaccoInCigarettesProduction {
-            get {
-                return this.subtotalTobaccoInCigarettesProductionField;
-            }
-            set {
-                this.subtotalTobaccoInCigarettesProductionField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double SubtotalTobaccoInCutfillerWarehouse {
-            get {
-                return this.subtotalTobaccoInCutfillerWarehouseField;
-            }
-            set {
-                this.subtotalTobaccoInCutfillerWarehouseField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double SubtotalBalance {
-            get {
-                return this.subtotalBalanceField;
-            }
-            set {
-                this.subtotalBalanceField = value;
-            }
-        }
-    }
-    
-    /// <uwagi/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
-    public partial class IPRRow {
+    public partial class BalanceIPRContent {
         
         private string entryDocumentNoField;
         
@@ -532,7 +294,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
-    public partial class DisposalRow {
+    public partial class JSOXCustomsSummaryContent {
         
         private string exportOrFreeCirculationSADField;
         
@@ -638,20 +400,19 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
-    public partial class ArrayOfDisposalRows {
+    public partial class JSOXCustomsSummaryContentOGLGroup {
         
-        private DisposalRow[] disposalRowField;
+        private JSOXCustomsSummaryContent[] jSOXCustomsSummaryContentField;
         
         private double subtotalQuantityField;
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute("DisposalRow")]
-        public DisposalRow[] DisposalRow {
+        public JSOXCustomsSummaryContent[] JSOXCustomsSummaryContent {
             get {
-                return this.disposalRowField;
+                return this.jSOXCustomsSummaryContentField;
             }
             set {
-                this.disposalRowField = value;
+                this.jSOXCustomsSummaryContentField = value;
             }
         }
         
@@ -672,30 +433,29 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
-    public partial class ArrayOfDisposalList {
+    public partial class JSOXCustomsSummaryContentList {
         
-        private ArrayOfDisposalRows[] disposalRowsField;
+        private JSOXCustomsSummaryContentOGLGroup[] jSOXCustomsSummaryContentOGLGroupField;
         
-        private double totalAmountField;
+        private double subtotalQuantityField;
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute("DisposalRows")]
-        public ArrayOfDisposalRows[] DisposalRows {
+        public JSOXCustomsSummaryContentOGLGroup[] JSOXCustomsSummaryContentOGLGroup {
             get {
-                return this.disposalRowsField;
+                return this.jSOXCustomsSummaryContentOGLGroupField;
             }
             set {
-                this.disposalRowsField = value;
+                this.jSOXCustomsSummaryContentOGLGroupField = value;
             }
         }
         
         /// <uwagi/>
-        public double TotalAmount {
+        public double SubtotalQuantity {
             get {
-                return this.totalAmountField;
+                return this.subtotalQuantityField;
             }
             set {
-                this.totalAmountField = value;
+                this.subtotalQuantityField = value;
             }
         }
     }
@@ -708,7 +468,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
     public partial class JSOContent {
         
-        private ArrayOfDisposalList disposalsField;
+        private JSOXCustomsSummaryContentList jSOXCustomsSummaryContentListField;
         
         private System.DateTime previousMonthDateField;
         
@@ -737,12 +497,12 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         private double reassumeQuantityField;
         
         /// <uwagi/>
-        public ArrayOfDisposalList Disposals {
+        public JSOXCustomsSummaryContentList JSOXCustomsSummaryContentList {
             get {
-                return this.disposalsField;
+                return this.jSOXCustomsSummaryContentListField;
             }
             set {
-                this.disposalsField = value;
+                this.jSOXCustomsSummaryContentListField = value;
             }
         }
         

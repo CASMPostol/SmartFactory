@@ -60,7 +60,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         DocumentDate = _default,
         DocumentNo = "Temporal report.",
         EndDate = _default,
-        IPRStock = null,
+        BalanceBatch = null,
         JSOX = null,
         SituationAtDate = _default,
         StartDate = _default
@@ -74,7 +74,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         DocumentDate = DateTime.Today.Date,
         DocumentNo = documentName,
         EndDate = list.SituationDate.GetValueOrDefault(),
-        IPRStock = GetIPRStock( list.BalanceBatch ),
+        BalanceBatch = GetBalanceBatchContent( list.BalanceBatch ),
         JSOX = GetJSOX( list ),
         SituationAtDate = list.SituationDate.GetValueOrDefault(),
         StartDate = list.PreviousMonthDate.GetValueOrDefault()
@@ -87,7 +87,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       {
         BalanceDate = list.BalanceDate.GetValueOrDefault(),
         BalanceQuantity = list.BalanceQuantity.GetValueOrDefault(),
-        Disposals = GetDisposalsList( list.JSOXCustomsSummary ),
+        JSOXCustomsSummaryContentList = GetDisposalsList( list.JSOXCustomsSummary ),
         IntroducingDateEnd = list.IntroducingDateEnd.GetValueOrDefault(),
         IntroducingDateStart = list.IntroducingDateStart.GetValueOrDefault(),
         IntroducingQuantity = list.IntroducingQuantity.GetValueOrDefault(),
@@ -102,51 +102,51 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       };
       return _ret;
     }
-    private static ArrayOfDisposalList GetDisposalsList( EntitySet<JSOXCustomsSummary> entitySet )
+    private static JSOXCustomsSummaryContentList GetDisposalsList( EntitySet<JSOXCustomsSummary> entitySet )
     {
       decimal _total = 0;
-      ArrayOfDisposalRows[] _arrayOfDisposalRows = GetArrayOfDisposalRows( entitySet, out _total );
-      ArrayOfDisposalList _ret = new ArrayOfDisposalList()
+      JSOXCustomsSummaryContentOGLGroup[] _arrayOfDisposalRows = GetJSOXCustomsSummaryContentOGLGroupArray( entitySet, out _total );
+      JSOXCustomsSummaryContentList _ret = new JSOXCustomsSummaryContentList()
       {
-        DisposalRows = _arrayOfDisposalRows,
-        TotalAmount = Convert.ToDouble( _total )
+        JSOXCustomsSummaryContentOGLGroup = _arrayOfDisposalRows,
+        SubtotalQuantity = Convert.ToDouble( _total )
       };
       return _ret;
     }
-    private static ArrayOfDisposalRows[] GetArrayOfDisposalRows( EntitySet<JSOXCustomsSummary> collection, out decimal total )
+    private static JSOXCustomsSummaryContentOGLGroup[] GetJSOXCustomsSummaryContentOGLGroupArray( EntitySet<JSOXCustomsSummary> collection, out decimal total )
     {
       IQueryable<IGrouping<string, JSOXCustomsSummary>> _customsGroup = from _grpx in collection group _grpx by _grpx.ExportOrFreeCirculationSAD;
-      List<ArrayOfDisposalRows> _ret = new List<ArrayOfDisposalRows>();
+      List<JSOXCustomsSummaryContentOGLGroup> _ret = new List<JSOXCustomsSummaryContentOGLGroup>();
       decimal _total = 0;
       foreach ( IGrouping<string, JSOXCustomsSummary> _grpx in _customsGroup )
       {
         decimal _subTotal = 0;
-        _ret.Add( GetDisposals( _grpx, out _subTotal ) );
+        _ret.Add( GetJSOXCustomsSummaryContentOGLGroup( _grpx, out _subTotal ) );
         _total += _subTotal;
       }
       total = _total;
       return _ret.ToArray();
     }
-    private static ArrayOfDisposalRows GetDisposals( IGrouping<string, JSOXCustomsSummary> collection, out decimal total )
+    private static JSOXCustomsSummaryContentOGLGroup GetJSOXCustomsSummaryContentOGLGroup( IGrouping<string, JSOXCustomsSummary> collection, out decimal total )
     {
       if ( collection == null )
         throw new ArgumentNullException( "collection", "GetDisposals cannot have collection null" );
       total = 0;
-      DisposalRow[] _rows = GetDisposalRowArray( collection, out total );
-      ArrayOfDisposalRows _ret = new ArrayOfDisposalRows()
+      JSOXCustomsSummaryContent[] _rows = GetDisposalRowArray( collection, out total );
+      JSOXCustomsSummaryContentOGLGroup _ret = new JSOXCustomsSummaryContentOGLGroup()
       {
-        DisposalRow = _rows,
+        JSOXCustomsSummaryContent = _rows,
         SubtotalQuantity = Convert.ToDouble( total )
       };
       return _ret;
     }
-    private static DisposalRow[] GetDisposalRowArray( IGrouping<string, JSOXCustomsSummary> collection, out decimal _total )
+    private static JSOXCustomsSummaryContent[] GetDisposalRowArray( IGrouping<string, JSOXCustomsSummary> collection, out decimal _total )
     {
       _total = 0;
-      List<DisposalRow> _ret = new List<DisposalRow>();
+      List<JSOXCustomsSummaryContent> _ret = new List<JSOXCustomsSummaryContent>();
       foreach ( JSOXCustomsSummary _jx in collection )
       {
-        DisposalRow _new = new DisposalRow()
+        JSOXCustomsSummaryContent _new = new JSOXCustomsSummaryContent()
         {
           CompensationGood = _jx.CompensationGood,
           EntryDocumentNo = _jx.IntroducingSADNo,
@@ -160,38 +160,28 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         _ret.Add( _new );
         _total += Convert.ToDecimal( _new.Quantity );
       }
-      return _ret.ToArray<DisposalRow>();
+      return _ret.ToArray<JSOXCustomsSummaryContent>();
     }
-    private static IPRStockContent[] GetIPRStock( IQueryable<BalanceBatch> collection )
+    private static BalanceBatchContent[] GetBalanceBatchContent( IQueryable<BalanceBatch> collection )
     {
-      List<IPRStockContent> _ret = new List<IPRStockContent>();
+      List<BalanceBatchContent> _ret = new List<BalanceBatchContent>();
       if ( collection != null )
         foreach ( BalanceBatch _bsx in collection )
         {
-          IPRStockContent _new = new IPRStockContent()
+          BalanceBatchContent _new = new BalanceBatchContent()
             {
-              IPRList = GetIPRList( _bsx.BalanceIPR ),
-              TotalBalance = _bsx.Balance.GetValueOrDefault(),
-              TotalDustCSNotStarted = _bsx.DustCSNotStarted.GetValueOrDefault(),
-              TotalIPRBook = _bsx.IPRBook.GetValueOrDefault(),
-              TotalSHWasteOveruseCSNotStarted = _bsx.SHWasteOveruseCSNotStarted.GetValueOrDefault(),
-              TotalTobaccoAvailable = _bsx.TobaccoAvailable.GetValueOrDefault(),
-              TotalTobaccoInCigarettesProduction = _bsx.TobaccoInCigarettesProduction.GetValueOrDefault(),
-              TotalTobaccoInCigarettesWarehouse = _bsx.TobaccoInCigarettesWarehouse.GetValueOrDefault(),
-              TotalTobaccoInCutfillerWarehouse = _bsx.TobaccoInCutfillerWarehouse.GetValueOrDefault(),
-              TotalTobaccoInWarehouse = _bsx.TobaccoInWarehouse.GetValueOrDefault()
+              BalanceIPRContent = GetBalanceIPRContent( _bsx.BalanceIPR ),
             };
           _ret.Add( _new );
         }
-      return _ret.ToArray<IPRStockContent>();
+      return _ret.ToArray<BalanceBatchContent>();
     }
-    private static ArrayOfIPRRow GetIPRList( IQueryable<BalanceIPR> collection )
+    private static BalanceIPRContent[] GetBalanceIPRContent( IQueryable<BalanceIPR> collection )
     {
-      ArrayOfIPRRow _ArrayOfIPRRow = new ArrayOfIPRRow();
-      List<IPRRow> _iprRows = new List<IPRRow>();
+      List<BalanceIPRContent> _iprRows = new List<BalanceIPRContent>();
       foreach ( BalanceIPR _item in collection )
       {
-        IPRRow _new = new IPRRow()
+        BalanceIPRContent _new = new BalanceIPRContent()
         {
           Balance = _item.Balance.GetValueOrDefault(),
           Batch = _item.Batch,
@@ -207,18 +197,8 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           TobaccoInWarehouse = _item.TobaccoAvailable.GetValueOrDefault()
         };
         _iprRows.Add( _new );
-        _ArrayOfIPRRow.SubtotalBalance += _new.Balance;
-        _ArrayOfIPRRow.SubtotalDustCSNotStarted += _new.DustCSNotStarted;
-        _ArrayOfIPRRow.SubtotalIPRBook += _new.IPRBook;
-        _ArrayOfIPRRow.SubtotalSHWasteOveruseCSNotStarted += _new.SHWasteOveruseCSNotStarted;
-        _ArrayOfIPRRow.SubtotalTobaccoAvailable += _new.TobaccoAvailable;
-        _ArrayOfIPRRow.SubtotalTobaccoInCigarettesProduction += _new.TobaccoInCigarettesProduction;
-        _ArrayOfIPRRow.SubtotalTobaccoInCigarettesWarehouse += _new.TobaccoInCutfillerWarehouse;
-        _ArrayOfIPRRow.SubtotalTobaccoInCutfillerWarehouse += _new.TobaccoInCutfillerWarehouse;
-        _ArrayOfIPRRow.SubtotalTobaccoInWarehouse += _new.TobaccoInWarehouse;
       }
-      _ArrayOfIPRRow.IPRRow = _iprRows.ToArray<IPRRow>();
-      return _ArrayOfIPRRow;
+      return _iprRows.ToArray<BalanceIPRContent>();
     }
     #endregion
 
