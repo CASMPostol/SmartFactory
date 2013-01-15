@@ -137,13 +137,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       foreach ( Material _materialX in this.Material )
         _materialX.UpdateDisposals( edc, parent, progressChanged );
     }
-    internal void GetInventory( StockDictionary balanceStock, StockDictionary.StockValueKey key )
+    internal void GetInventory( StockDictionary balanceStock, StockDictionary.StockValueKey key, double quantityOnStock )
     {
       switch ( this.BatchStatus.Value )
       {
         case Linq.BatchStatus.Progress:
           foreach ( Material _mtx in Material )
-            _mtx.GetInventory( balanceStock, key );
+            _mtx.GetInventory( balanceStock, key, quantityOnStock / this.FGQuantity.Value );
           break;
         case Linq.BatchStatus.Intermediate:
         case Linq.BatchStatus.Final:

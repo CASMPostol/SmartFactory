@@ -41,11 +41,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         case Linq.ProductType.Cutfiller:
           if ( IPRType.Value && BatchIndex != null )
-            BatchIndex.GetInventory( balanceStock, Balance.StockDictionary.StockValueKey.TobaccoInCutfillerWarehouse );
+            BatchIndex.GetInventory( balanceStock, Balance.StockDictionary.StockValueKey.TobaccoInCutfillerWarehouse, this.Quantity.Value );
           break;
         case Linq.ProductType.Cigarette:
           if ( IPRType.Value && BatchIndex != null )
-            BatchIndex.GetInventory( balanceStock, Balance.StockDictionary.StockValueKey.TobaccoInCigarettesProduction );
+            BatchIndex.GetInventory( balanceStock, Balance.StockDictionary.StockValueKey.TobaccoInCigarettesProduction, this.Quantity.Value );
           break;
         case Linq.ProductType.IPRTobacco:
           balanceStock.Sum( this.Quantity.Value, this.Batch, Balance.StockDictionary.StockValueKey.TobaccoInWarehouse );

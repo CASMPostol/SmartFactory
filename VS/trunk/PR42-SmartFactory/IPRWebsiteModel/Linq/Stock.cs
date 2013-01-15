@@ -75,7 +75,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       get
       {
         return from _sex in this.StockEntry
-               where ( ( _sex.ProductType.Value == ProductType.Cigarette ) || ( _sex.ProductType.Value == ProductType.Cutfiller ) )
+               where _sex.ProductType.Value == ProductType.Cigarette
                && _sex.IPRType.Value
                select _sex;
       }
@@ -90,20 +90,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                select _sex;
       }
     }
-    /// <summary>
-    /// List of all IPR finished goods not balanced with the batch.
-    /// </summary>
-    /// <param name="edc">The <see cref="Entities"/>.</param>
-    /// <returns></returns>
-    private IQueryable<StockEntry> FinishedGoodsNotBalanced( Entities edc )
-    {
-      return from _sex in this.StockEntry
-             where ( ( _sex.ProductType.Value == ProductType.Cigarette ) || ( _sex.ProductType.Value == ProductType.Cutfiller ) ) &&
-                   _sex.IPRType.Value &&
-                   _sex.BatchIndex != null &&
-                   _sex.Quantity.Value != _sex.BatchIndex.FGQuantityAvailable.Value
-             select _sex;
-    }
     private IEnumerable<Batch> DanglingBatches( Entities edc )
     {
       List<Batch> _list = ( from _btx in edc.Batch
@@ -112,7 +98,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return from _btx in _list where _btx.StockEntry.Any() select _btx;
     }
     #endregion
-
 
   }
 }

@@ -296,7 +296,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           break;
       }
     }
-    internal void GetInventory( Balance.StockDictionary balanceStock, Balance.StockDictionary.StockValueKey key )
+    internal void GetInventory( Balance.StockDictionary balanceStock, Balance.StockDictionary.StockValueKey key, double portion )
     {
       switch ( this.ProductType.Value )
       {
@@ -306,7 +306,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         case Linq.ProductType.Other:
           break;
         case Linq.ProductType.IPRTobacco:
-          balanceStock.Sum( this.TobaccoQuantityDec, this.Batch, key );
+          balanceStock.Sum( Convert.ToDecimal( this.TobaccoQuantity * portion ), this.Batch, key );
           break;
       }
     }
