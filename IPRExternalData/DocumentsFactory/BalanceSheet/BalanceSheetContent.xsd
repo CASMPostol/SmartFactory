@@ -14,17 +14,26 @@
   </xs:complexType>
   <xs:complexType name="ArrayOfBalanceBatchContent">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="BalanceBatchContent" type="tns:BalanceBatchContent" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BalanceBatchContent" nillable="false" type="tns:BalanceBatchContent" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="BalanceBatchContent">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="BalanceIPRContent" type="tns:ArrayOfBalanceIPRContent" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BalanceIPR" type="tns:ArrayOfBalanceIPRContent" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalIPRBook" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalSHWasteOveruseCSNotStarted" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalDustCSNotStarted" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoAvailable" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInWarehouse" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInCigarettesWarehouse" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInCigarettesProduction" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInCutfillerWarehouse" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalBalance" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfBalanceIPRContent">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="BalanceIPRContent" nillable="true" type="tns:BalanceIPRContent" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BalanceIPRContent" nillable="false" type="tns:BalanceIPRContent" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="BalanceIPRContent">
@@ -69,7 +78,7 @@
   </xs:complexType>
   <xs:complexType name="ArrayOfJSOXCustomsSummaryContentOGLGroup">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="JSOXCustomsSummaryContentOGLGroup" nillable="true" type="tns:JSOXCustomsSummaryContentOGLGroup" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="JSOXCustomsSummaryContentOGLGroup" nillable="false" type="tns:JSOXCustomsSummaryContentOGLGroup" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="JSOXCustomsSummaryContentOGLGroup">
@@ -80,7 +89,7 @@
   </xs:complexType>
   <xs:complexType name="ArrayOfJSOXCustomsSummaryContent">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="JSOXCustomsSummaryContent" nillable="true" type="tns:JSOXCustomsSummaryContent" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="JSOXCustomsSummaryContent" nillable="false" type="tns:JSOXCustomsSummaryContent" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="JSOXCustomsSummaryContent">

@@ -170,7 +170,16 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         {
           BalanceBatchContent _new = new BalanceBatchContent()
             {
-              BalanceIPRContent = GetBalanceIPRContent( _bsx.BalanceIPR ),
+              BalanceIPR = GetBalanceIPRContent( _bsx.BalanceIPR ), 
+              TotalBalance = _bsx.Balance.GetValueOrDefault(),
+              TotalDustCSNotStarted = _bsx.DustCSNotStarted.GetValueOrDefault(),
+              TotalIPRBook = _bsx.IPRBook.GetValueOrDefault(),
+              TotalSHWasteOveruseCSNotStarted = _bsx.SHWasteOveruseCSNotStarted.GetValueOrDefault(),
+              TotalTobaccoAvailable = _bsx.TobaccoAvailable.GetValueOrDefault(),
+              TotalTobaccoInCigarettesProduction = _bsx.TobaccoInCigarettesProduction.GetValueOrDefault(),
+              TotalTobaccoInCigarettesWarehouse = _bsx.TobaccoInCigarettesWarehouse.GetValueOrDefault(),
+              TotalTobaccoInCutfillerWarehouse = _bsx.TobaccoInCutfillerWarehouse.GetValueOrDefault(),
+              TotalTobaccoInWarehouse = _bsx.TobaccoInWarehouse.GetValueOrDefault()
             };
           _ret.Add( _new );
         }
