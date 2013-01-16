@@ -220,6 +220,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal decimal TobaccoQuantityDec { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
     internal Material ReplaceByExistingOne( List<Material> _oldMaterials, List<Material> _newMaterials, Linq.Batch parent )
     {
+      //TODO Batch import - missing material
       Material _old = ( from _mx in parent.Material where _mx.Batch.Contains( this.Batch ) select _mx ).FirstOrDefault<Material>();
       if ( _old == null )
       {
