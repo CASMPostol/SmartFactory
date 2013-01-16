@@ -28,6 +28,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
         return;
       }
       this.EventFiringEnabled = false;
+      properties.List.Update();
       //if (properties.ListItem.File == null)
       //{
       //  Anons.WriteEntry(edc, m_Title, "Import of a stock xml message failed because the file is empty.");
@@ -63,9 +64,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
           String _message = String.Format( "Import of the stock message {0} starting.", fileName );
           ActivityLogCT.WriteEntry( _edc, m_Source, _message );
           StockXml document = StockXml.ImportDocument( stream );
-          StockLib entry = Element.GetAtIndex<StockLib>( _edc.StockLibrary, listIndex );
+          StockLib _entry = Element.GetAtIndex<StockLib>( _edc.StockLibrary, listIndex );
+          _entry.Stock2JSOXLibraryIndex = null;
           ErrorsList _warnings = new ErrorsList();
-          IportXml( document, _edc, entry, _warnings, progressChanged );
+          IportXml( document, _edc, _entry, _warnings, progressChanged );
           InputDataValidationException _exc = new InputDataValidationException( "there are errors in the stockm XML message.", "GetBatchLookup", _warnings );
           switch ( _exc.Valid )
           {
