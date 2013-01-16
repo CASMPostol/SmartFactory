@@ -135,7 +135,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
         Unrestricted = xml.Unrestricted,
         BatchIndex = null,
         ProductType = ProductType.Invalid,
-        Quantity = xml.Blocked.GetValueOrDefault( 0 ) + xml.InQualityInsp.GetValueOrDefault( 0 ) + xml.RestrictedUse.GetValueOrDefault( 0 ) + xml.Unrestricted.GetValueOrDefault( 0 ),
+        Quantity = xml.Blocked + xml.InQualityInsp + xml.RestrictedUse + xml.Unrestricted,
       };
     }
     private const string m_Source = "Stock processing";
