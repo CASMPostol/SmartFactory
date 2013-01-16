@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// <summary>
   /// Material 
   /// </summary>
-  public partial class Material
+  public partial class Material: IComparable<Material>
   {
     #region ctor
     public Material( Entities edc, Entities.ProductDescription product, string batch, string sku, string storLoc, string skuDescription, string units, decimal fgQuantity, decimal tobaccoQuantity, string productID )
@@ -179,7 +179,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Gets the key.
     /// </summary>
     /// <returns></returns>
-    public string GetKey()
+    private string GetKey()
     {
       return String.Format( m_keyForam, SKU, Batch, this.StorLoc );
     }
@@ -208,6 +208,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _quantity, this.Batch, this.Identyfikator, invoiceContent.InvoiceIndex.BillDoc, invoiceContent.Identyfikator.Value );
       throw new CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException( "internal error: it is imposible to mark as exported the material", "Material export`", _error, false );
     }
+    public override string ToString()
+    {
+      return GetKey();
+    }
     #endregion
 
     #region internal
@@ -218,11 +222,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The tobacco total.
     /// </value>
     internal decimal TobaccoQuantityDec { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
-    internal Material ReplaceByExistingOne( List<Material> _oldMaterials, List<Material> _newMaterials, Linq.Batch parent )
+    internal Material ReplaceByExistingOne( List<Material> _oldMaterials, List<Material> _newMaterials, Dictionary<Material, Material> parentsMaterials, Batch parent )
     {
-      //TODO Batch import - missing material
-      Material _old = ( from _mx in parent.Material where _mx.Batch.Contains( this.Batch ) select _mx ).FirstOrDefault<Material>();
-      if ( _old == null )
+      Material _old = null;
+      if ( !parentsMaterials.TryGetValue( this, out _old ) )
       {
         this.Material2BatchIndex = parent;
         _newMaterials.Add( this );
@@ -317,5 +320,19 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private const string m_keyForam = "{0}:{1}:{2}";
     #endregion
 
+
+    #region IComparable<Material> Members
+
+    /// <summary>
+    /// Compares to.
+    /// </summary>
+    /// <param name="other">The other.</param>
+    /// <returns></returns>
+    public int CompareTo( Material other )
+    {
+      return GetKey().CompareTo( other.GetKey() );
+    }
+
+    #endregion
   }
 }

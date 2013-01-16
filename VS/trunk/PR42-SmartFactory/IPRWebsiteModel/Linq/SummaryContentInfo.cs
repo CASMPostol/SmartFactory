@@ -9,7 +9,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// <summary>
   /// Summary Content Info
   /// </summary>
-  public abstract class SummaryContentInfo: SortedList<string, Material>
+  public abstract class SummaryContentInfo: SortedList<Material, Material>
   {
     #region ctor
     /// <summary>
@@ -73,10 +73,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         Material.Ratios _mr = new Material.Ratios { dustRatio = dustRatio, shMentholRatio = shMentholRatio, wasteRatio = wasteRatio };
         List<Material> _copyThis = new List<Material>();
         _copyThis.AddRange( this.Values );
+        Dictionary<Material, Material> _parentsMaterials = parent.Material.ToDictionary<Material, Material>( x => x );
         foreach ( Material _materialX in _copyThis )
         {
           progressChanged( this, new ProgressChangedEventArgs( 1, "DisposalsAnalisis" ) );
-          Material _material = _materialX.ReplaceByExistingOne( _oldMaterialList, _newMaterialList, parent );
+          Material _material = _materialX.ReplaceByExistingOne( _oldMaterialList, _newMaterialList, _parentsMaterials, parent );
           progressChanged( this, new ProgressChangedEventArgs( 1, "CalculateCompensationComponents" ) );
           _material.CalculateCompensationComponents( edc, _mr, overusageCoefficient );
           if ( _material.ProductType.Value == ProductType.IPRTobacco )
@@ -84,16 +85,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
             AccumulatedDisposalsAnalisis.Accumutate( _material );
           }
-          if ( _newMaterialList.Count > 0 )
-          {
-            progressChanged( this, new ProgressChangedEventArgs( 1, "InsertAllOnSubmit" ) );
-            edc.Material.InsertAllOnSubmit( _newMaterialList );
-          }
+        }
+        if ( _newMaterialList.Count > 0 )
+        {
+          progressChanged( this, new ProgressChangedEventArgs( 1, "InsertAllOnSubmit" ) );
+          edc.Material.InsertAllOnSubmit( _newMaterialList );
         }
         foreach ( Material _omx in _oldMaterialList )
         {
-          this.Remove( _omx.GetKey() );
-          this.Add( _omx.GetKey(), _omx );
+          this.Remove( _omx );
+          this.Add( _omx, _omx );
         }
       }
       catch ( Exception _ex )
@@ -138,7 +139,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         if ( _diff < -1 )  //TODO add common cheking point and get data from settings.
         {
           string _mssg = "Cannot find any IPR account to dispose the quantity {3}: Tobacco batch: {0}, fg batch: {1}, quantity to dispose: {2} kg";
-          _validationErrors.Add( String.Format( _mssg, _qutty.Key, Product.Batch, _qutty.Value, - _diff ) );
+          _validationErrors.Add( String.Format( _mssg, _qutty.Key, Product.Batch, _qutty.Value, -_diff ) );
         }
       }
       if ( _validationErrors.Count > 0 )
@@ -159,7 +160,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Material ce = null;
       if ( value.ProductType == ProductType.IPRTobacco || value.ProductType == ProductType.Tobacco )
         TotalTobacco += value.TobaccoQuantityDec;
-      if ( this.TryGetValue( value.GetKey(), out ce ) )
+      if ( this.TryGetValue( value, out ce ) )
       {
         ce.FGQuantity += value.FGQuantity;
         ce.TobaccoQuantity += value.TobaccoQuantity;
@@ -170,20 +171,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           Product = value;
         else if ( Product == null && value.ProductType == ProductType.Cutfiller )
           Product = value;
-        base.Add( value.GetKey(), value );
+        base.Add( value, value );
       }
     }
     private void Subtract( Material value, List<string> _warnings )
     {
       if ( value.ProductType == ProductType.IPRTobacco || value.ProductType == ProductType.Tobacco )
         TotalTobacco -= value.TobaccoQuantityDec;
-      if ( this.TryGetValue( value.GetKey(), out value ) )
+      if ( this.TryGetValue( value, out value ) )
       {
         value.FGQuantity -= value.FGQuantity;
         value.TobaccoQuantity -= value.TobaccoQuantity;
       }
       else
-        _warnings.Add( String.Format( "Cannot find material {0} to subtract", value.GetKey() ) );
+        _warnings.Add( String.Format( "Cannot find material {0} to subtract", value.ToString() ) );
     }
     private void InsertAllOnSubmit( Entities edc, Batch parent )
     {
