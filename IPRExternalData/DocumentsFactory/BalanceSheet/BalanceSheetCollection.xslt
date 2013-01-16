@@ -214,19 +214,19 @@
         <xsl:value-of select="format-number(cas:TobaccoAvailable, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:TobaccoInWarehouse, $FoarmatOfFloat, 'pl')"/>
+        &#160;
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:TobaccoInCigarettesWarehouse, $FoarmatOfFloat, 'pl')"/>
+        &#160;
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:TobaccoInCigarettesProduction, $FoarmatOfFloat, 'pl')"/>
+        &#160;
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:TobaccoInCutfillerWarehouse, $FoarmatOfFloat, 'pl')"/>
+        &#160;
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:Balance, $FoarmatOfFloat, 'pl')"/>
+        &#160;
       </td>
     </tr>
   </xsl:template>
