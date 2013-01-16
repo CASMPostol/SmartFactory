@@ -41,15 +41,10 @@
       <xs:element minOccurs="0" maxOccurs="1" name="EntryDocumentNo" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="SKU" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="IPRBook" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="SHWasteOveruseCSNotStarted" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="DustCSNotStarted" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoAvailable" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoInWarehouse" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoInCigarettesWarehouse" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoInCigarettesProduction" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoInCutfillerWarehouse" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Balance" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="IPRBook" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="SHWasteOveruseCSNotStarted" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="DustCSNotStarted" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="TobaccoAvailable" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="JSOContent">

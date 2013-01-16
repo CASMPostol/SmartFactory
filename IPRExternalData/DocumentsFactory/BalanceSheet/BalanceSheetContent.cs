@@ -266,16 +266,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         
         private double tobaccoAvailableField;
         
-        private double tobaccoInWarehouseField;
-        
-        private double tobaccoInCigarettesWarehouseField;
-        
-        private double tobaccoInCigarettesProductionField;
-        
-        private double tobaccoInCutfillerWarehouseField;
-        
-        private double balanceField;
-        
         /// <uwagi/>
         public string EntryDocumentNo {
             get {
@@ -343,56 +333,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
             }
             set {
                 this.tobaccoAvailableField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double TobaccoInWarehouse {
-            get {
-                return this.tobaccoInWarehouseField;
-            }
-            set {
-                this.tobaccoInWarehouseField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double TobaccoInCigarettesWarehouse {
-            get {
-                return this.tobaccoInCigarettesWarehouseField;
-            }
-            set {
-                this.tobaccoInCigarettesWarehouseField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double TobaccoInCigarettesProduction {
-            get {
-                return this.tobaccoInCigarettesProductionField;
-            }
-            set {
-                this.tobaccoInCigarettesProductionField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double TobaccoInCutfillerWarehouse {
-            get {
-                return this.tobaccoInCutfillerWarehouseField;
-            }
-            set {
-                this.tobaccoInCutfillerWarehouseField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double Balance {
-            get {
-                return this.balanceField;
-            }
-            set {
-                this.balanceField = value;
             }
         }
     }
