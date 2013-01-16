@@ -6,7 +6,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   {
     public static Warehouse Find( Entities edc, string index )
     {
-      return (from Warehouse item in edc.Warehouse where item.Title.Contains(index) select item).FirstOrDefault<Warehouse>();
+      if ( index == null )
+        index = string.Empty;
+      return ( from Warehouse item in edc.Warehouse where item.Title.Contains( index ) select item ).FirstOrDefault<Warehouse>();
     }
   }
 }
