@@ -7,6 +7,7 @@ using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using StockXml = CAS.SmartFactory.xml.erp.Stock;
 using StockXmlRow = CAS.SmartFactory.xml.erp.StockRow;
+using CAS.SharePoint;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
 {
@@ -123,15 +124,15 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       return new StockEntry()
       {
         StockLibraryIndex = parent,
-        Batch = xml.Batch,
+        Batch = xml.Batch.NotAvailable(),
         Blocked = xml.Blocked,
         InQualityInsp = xml.InQualityInsp,
         IPRType = false,
-        StorLoc = xml.SLoc,
+        StorLoc = xml.SLoc.NotAvailable(),
         RestrictedUse = xml.RestrictedUse,
-        SKU = xml.Material,
-        Title = xml.MaterialDescription,
-        Units = xml.BUn,
+        SKU = xml.Material.NotAvailable(),
+        Title = xml.MaterialDescription.NotAvailable(),
+        Units = xml.BUn.NotAvailable(),
         Unrestricted = xml.Unrestricted,
         BatchIndex = null,
         ProductType = ProductType.Invalid,
