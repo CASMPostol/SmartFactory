@@ -138,9 +138,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         if ( this.ConsentLookup == null )
           CreateDefaultConsent( edc, _nr );
       }
-      ValidToDate = customsDebtDate + TimeSpan.FromDays( ConsentLookup.ConsentPeriod.Value ); //TODO different for CW !!!
+      ValidToDate = customsDebtDate + TimeSpan.FromDays( ConsentLookup.ConsentPeriod.Value * m_DaysPerMath ); //TODO different for CW !!!
     }
-
+    private static int m_DaysPerMath = 30;
     private void CreateDefaultConsent( Entities edc, string _nr )
     {
       this.ConsentLookup = Consent.DefaultConsent( edc, Process, _nr );
