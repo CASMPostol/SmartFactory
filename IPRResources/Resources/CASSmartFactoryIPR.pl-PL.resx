@@ -505,7 +505,7 @@
     <value>Tytoń w trakcie odprawy [kg]</value>
   </data>
 	<data name="CAS_Quantity" xml:space="preserve">
-    <value>Ilość [kg]</value>
+    <value>Ilość [KU/kg]</value>
   </data>
 	<data name="CAS_ReadOnly" xml:space="preserve">
     <value>Do odczytu</value>
@@ -562,7 +562,7 @@
     <value>Wskaźnik SH Menthol</value>
   </data>
 	<data name="CAS_SHWasteOveruseCSNotStarted" xml:space="preserve">
-    <value>SH, odpady, przepał (CS - not started) [kg]</value>
+    <value>SH, odpady, przepał, tytoń (CS - not started) [kg]</value>
   </data>
 	<data name="CAS_SituationDate" xml:space="preserve">
     <value>Stan na dzień</value>
@@ -598,7 +598,7 @@
     <value>Tytoń [kg]</value>
   </data>
 	<data name="CAS_Tobacco_InCigarettesWarehouse" xml:space="preserve">
-    <value>Tytoń w magazynie papierosów [kg]</value>
+    <value>Tytoń w papierosach [kg]</value>
   </data>
 	<data name="CAS_TobaccoAvailable" xml:space="preserve">
     <value>Tytoń dostępny [kg]</value>
@@ -613,7 +613,7 @@
     <value>Produkcja w toku [kg]</value>
   </data>
 	<data name="CAS_TobaccoInCutfillerWarehouse" xml:space="preserve">
-    <value>Tytoń w magazynie krajanki [kg]</value>
+    <value>Tytoń w krajance [kg]</value>
   </data>
 	<data name="CAS_TobaccoInFGCSNotStarted" xml:space="preserve">
     <value>Tytoń w PG (CS - not started) [kg]</value>
@@ -643,7 +643,7 @@
     <value>Wartość tytoni</value>
   </data>
 	<data name="CAS_TotalAmmount" xml:space="preserve">
-    <value>Ilość [kg]</value>
+    <value>Ilość [KU/kg]</value>
   </data>
 	<data name="CAS_TotalAmountInvoiced" xml:space="preserve">
     <value>Wartość</value>
@@ -703,7 +703,7 @@
     <value>Odpad w trakcie odprawy [kg]</value>
   </data>
 	<data name="CAS_WasteRatio" xml:space="preserve">
-    <value>Wskaźnik odpadów</value>
+    <value>Wskaźnik odpadu</value>
   </data>
 	<data name="CAS_InvoiceNo" xml:space="preserve">
     <value>Faktura nr</value>

@@ -505,7 +505,7 @@
     <value>Tobacco (CS - started) [kg]</value>
   </data>
 	<data name="CAS_Quantity" xml:space="preserve">
-    <value>Quantity [kg]</value>
+    <value>Quantity [KU/kg]</value>
   </data>
 	<data name="CAS_ReadOnly" xml:space="preserve">
     <value>Read only</value>
@@ -562,7 +562,7 @@
     <value>SH Menthol ratio</value>
   </data>
 	<data name="CAS_SHWasteOveruseCSNotStarted" xml:space="preserve">
-    <value>SH, Waste, Overuse (CS - not started) [kg]</value>
+    <value>SH, Waste, Overuse, Tobacco (CS - not started) [kg]</value>
   </data>
 	<data name="CAS_SituationDate" xml:space="preserve">
     <value>Situation date</value>
@@ -598,7 +598,7 @@
     <value>Tobacco [kg]</value>
   </data>
 	<data name="CAS_Tobacco_InCigarettesWarehouse" xml:space="preserve">
-    <value>Tobacco in cigarettes warehouse [kg]</value>
+    <value>Tobacco in cigarettes [kg]</value>
   </data>
 	<data name="CAS_TobaccoAvailable" xml:space="preserve">
     <value>Tobacco available [kg]</value>
@@ -613,7 +613,7 @@
     <value>Tobacco in cigarettes production [kg]</value>
   </data>
 	<data name="CAS_TobaccoInCutfillerWarehouse" xml:space="preserve">
-    <value>Tobacco in cutfiller warehouse [kg]</value>
+    <value>Tobacco in cutfiller [kg]</value>
   </data>
 	<data name="CAS_TobaccoInFGCSNotStarted" xml:space="preserve">
     <value>Tobacco in FG (CS - not started) [kg]</value>
@@ -643,7 +643,7 @@
     <value>Tobacco value</value>
   </data>
 	<data name="CAS_TotalAmmount" xml:space="preserve">
-    <value>Quantity [kg]</value>
+    <value>Quantity [KU/kg]</value>
   </data>
 	<data name="CAS_TotalAmountInvoiced" xml:space="preserve">
     <value>Wartość</value>
