@@ -195,7 +195,6 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       {
         BalanceIPRContent _new = new BalanceIPRContent()
         {
-          Balance = _item.Balance.GetValueOrDefault(),
           Batch = _item.Batch,
           DustCSNotStarted = _item.DustCSNotStarted.GetValueOrDefault(),
           EntryDocumentNo = _item.DocumentNo,
@@ -203,10 +202,6 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           SHWasteOveruseCSNotStarted = _item.SHWasteOveruseCSNotStarted.GetValueOrDefault(),
           SKU = _item.SKU,
           TobaccoAvailable = _item.TobaccoAvailable.GetValueOrDefault(),
-          TobaccoInCigarettesProduction = _item.TobaccoUsedInTheProduction.GetValueOrDefault(),
-          TobaccoInCigarettesWarehouse = _item.TobaccoInFGCSNotStarted.GetValueOrDefault(),
-          TobaccoInCutfillerWarehouse = -1,
-          TobaccoInWarehouse = _item.TobaccoAvailable.GetValueOrDefault()
         };
         _iprRows.Add( _new );
       }

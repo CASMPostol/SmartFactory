@@ -48,6 +48,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       WasteCSNotStarted = _balnce[ IPR.ValueKey.WasteCSNotStarted ];
       WasteCSStarted = _balnce[ IPR.ValueKey.WasteCSStarted ];
       Balance = this.IPRIndex.TobaccoNotAllocated - _balnce[ IPR.ValueKey.TobaccoToBeUsedInTheProduction ];
+      Title = String.Format( "{0}/{1}", this.Batch, this.DocumentNo );
       return _balnce;
     }
   }
