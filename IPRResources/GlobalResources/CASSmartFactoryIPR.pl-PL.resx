@@ -312,4 +312,7 @@
 	<data name="CAS_ASPX_StocksDashboard" xml:space="preserve">
 		<value>Kokpit - zasoby</value>
 	</data>
+	<data name="CAS_ASPX_BatchDashboard" xml:space="preserve">
+		<value>Kokpit - Batch i materiał</value>
+	</data>
 </root>

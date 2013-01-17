@@ -113,6 +113,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CommonDefinitions.cs</LastGenOutput>
     </None>
+    <None Include="Dashboards\BatchDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{35ae1f04-6f72-4b91-8088-5745e6b9d46f}</SharePointProjectItemId>
+    </None>
     <None Include="Dashboards\ClearenceDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{75625fce-5892-4642-9661-7915e074051a}</SharePointProjectItemId>
     </None>
@@ -188,6 +191,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dashboards\BatchDashboard\Elements.xml" />
     <Content Include="Dashboards\ClearenceDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -217,6 +221,7 @@
     <Content Include="WebPartPages\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="WebPartPages\WebPageTemplate_Batch.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_Clearence.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_Export.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_IPRBook.aspx" />

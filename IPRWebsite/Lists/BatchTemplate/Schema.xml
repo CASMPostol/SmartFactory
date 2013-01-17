@@ -199,9 +199,12 @@
             </Neq>
           </Where>
           <OrderBy>
-            <FieldRef Name="ID">
+            <FieldRef Name="ID" Ascending="FALSE">
             </FieldRef>
           </OrderBy>
+          <GroupBy Collapse="FALSE">
+            <FieldRef Name="BatchStatus" />
+          </GroupBy>
         </Query>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
