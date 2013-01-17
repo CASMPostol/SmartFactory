@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IPR", "IPR", "{828726FE-375E-4E46-B21C-F87F65F3332D}"
+	ProjectSection(SolutionItems) = preProject
+		Model.t4 = Model.t4
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shepherd", "Shepherd", "{16EA8490-6C69-4026-B6B2-5C9D481BD31F}"
 EndProject
