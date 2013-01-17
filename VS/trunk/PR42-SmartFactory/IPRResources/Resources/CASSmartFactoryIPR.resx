@@ -753,4 +753,7 @@
 	<data name="CAS_ASPX_StockEntry" xml:space="preserve">
 		<value>Stock entry</value>
 	</data>
+	<data name="CAS_ASPX_MaterialList" xml:space="preserve">
+		<value>Material</value>
+	</data>
 </root>

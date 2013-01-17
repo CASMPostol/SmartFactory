@@ -312,4 +312,7 @@
 	<data name="CAS_ASPX_StocksDashboard" xml:space="preserve">
 		<value>Stocks dashboard</value>
 	</data>
+	<data name="CAS_ASPX_BatchDashboard" xml:space="preserve">
+		<value>Batch and material dashboard</value>
+	</data>
 </root>
