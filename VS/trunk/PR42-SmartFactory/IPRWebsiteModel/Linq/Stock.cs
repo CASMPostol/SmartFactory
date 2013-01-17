@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal bool Validate( Entities edc, Dictionary<string, IGrouping<string, IPR>> _accountGroups )
     {
       int _problems = 0;
-      List<Batch> _batches = new List<Batch>();
+      HashSet<Batch> _batches = new HashSet<Batch>();
       foreach ( StockEntry _sex in this.AllIPRFinishedGoods )
       {
         Batch _batchLookup = Batch.FindStockToBatchLookup( edc, _sex.Batch );
@@ -58,7 +58,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       string _mtmplt = "Stock inventory validation passed successfully.";
       if ( _problems > 0 )
-        _mtmplt = "Stock inventory validation failed. There are problems reported that must be resolved to start calculation procedure. Details you can find on the application log.";
+        _mtmplt = "Stock inventory validation failed. There are problems reported that must be resolved to start calculation procedure.";
       ActivityLogCT.WriteEntry( m_ActivityLogEntryName, _mtmplt );
       return _problems == 0;
     }

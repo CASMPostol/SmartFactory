@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
@@ -150,8 +151,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           break;
       }
     }
-    internal void CheckQuantity( System.Collections.Generic.List<string> _warnings )
+    internal void CheckQuantity( List<string> _warnings )
     {
+      if ( this.ProductType.Value != Linq.ProductType.Cigarette )
+        return;
       decimal _onStock = 0;
       foreach ( var _stock in this.StockEntry )
         _onStock += Convert.ToDecimal( _stock.Quantity );
