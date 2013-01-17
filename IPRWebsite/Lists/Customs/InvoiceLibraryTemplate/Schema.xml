@@ -201,7 +201,7 @@
         </Query>
       </View>
       <View BaseViewID="10" Type="HTML" WebPartZoneID="Main" DisplayName="Export - invoices" DefaultView="FALSE" MobileView="True" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/Export_Invoices.aspx">
-        <Toolbar Type="None" />
+        <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">15</RowLimit>
         <ViewFields>
