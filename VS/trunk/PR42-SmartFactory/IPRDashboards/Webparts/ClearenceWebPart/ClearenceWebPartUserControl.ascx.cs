@@ -425,7 +425,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         ListItem _cs = m_SelectGroupRadioButtonList.Items.FindByValue( CurrentClearence.ProcedureCode );
         if ( _cs == null )
         {
-            this.ShowActionResult(GenericStateMachineEngine.ActionResult.NotValidated("ThisClearanceCannotBeEditedItIsNotCompensationGoodClearance".GetLocalizedString()));
+          this.ShowActionResult( GenericStateMachineEngine.ActionResult.NotValidated( "ThisClearanceCannotBeEditedItIsNotCompensationGoodClearance".GetLocalizedString() ) );
           m_ControlState.ReadOnly = true;
           m_ControlState.ClearanceID = String.Empty;
           m_ControlState.ClearanceTitle = String.Empty;
@@ -502,6 +502,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       CurrentClearence = Clearence.CreataClearence( m_DataContextManagement.DataContext, m_SelectGroupRadioButtonList.SelectedValue, SelectedClearenceProcedure );
       Update();
+      Response.Redirect( Request.RawUrl );
     }
     private void Delete()
     {
@@ -587,6 +588,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
         CurrentClearence.ClearThroughCustom( _sadConsignment );
         m_DataContextManagement.DataContext.SubmitChanges();
+        Response.Redirect( Request.RawUrl );
         return GenericStateMachineEngine.ActionResult.Success;
       }
       catch ( GenericStateMachineEngine.ActionResult _ar )
@@ -696,7 +698,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       get
       {
         if ( m_ProcedureRadioButtonList.SelectedIndex < 0 )
-            throw GenericStateMachineEngine.ActionResult.NotValidated("CustomsProcedureMustBeSelected".GetLocalizedString());
+          throw GenericStateMachineEngine.ActionResult.NotValidated( "CustomsProcedureMustBeSelected".GetLocalizedString() );
         switch ( m_ProcedureRadioButtonList.SelectedValue )
         {
           case "4051":
@@ -704,7 +706,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           case "3151":
             return ClearenceProcedure._3151;
           default:
-            throw GenericStateMachineEngine.ActionResult.Exception(null, "InternalErrorWrongCustomsProcedureIsSelected".GetLocalizedString());
+            throw GenericStateMachineEngine.ActionResult.Exception( null, "InternalErrorWrongCustomsProcedureIsSelected".GetLocalizedString() );
         }
       }
     }
