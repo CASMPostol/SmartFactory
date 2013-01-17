@@ -116,7 +116,7 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
-                            <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Status%>" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                            <asp:BoundField DataField="Status" HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Status%>" SortExpression="Status" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                             <asp:BoundField DataField="Created" HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Created%>" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                             <asp:TemplateField HeaderText="ID" SortExpression="ID" Visible="False">
                                 <EditItemTemplate>
