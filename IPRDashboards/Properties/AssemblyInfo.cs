@@ -11,7 +11,7 @@ using System.Security;
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("Smart Factory")]
-[assembly: AssemblyCopyright("Copyright (c) CAS 2012")]
+[assembly: AssemblyCopyright("Copyright (c) CAS 2013")]
 [assembly: AssemblyTrademark("Smart Factory")]
 [assembly: AssemblyCulture("")]
 
@@ -33,8 +33,8 @@ using System.Security;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.60.21.*")]
-[assembly: AssemblyFileVersion("1.60.21")]
+[assembly: AssemblyVersion("1.60.40.*")]
+[assembly: AssemblyFileVersion("1.60.40")]
 
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo( "IPRDashboardsTest, PublicKey=002400000480000094000000060200000024000052534131000400000100010015c024c9d0c88f" +
