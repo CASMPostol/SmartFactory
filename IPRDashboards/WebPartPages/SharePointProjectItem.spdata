@@ -6,6 +6,7 @@
     <ProjectItemFile Source="WebPageTemplate_IPRBookCustomsOffice.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_IPRBook_Closed.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_IPRBook.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_Stocks.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_Clearence.aspx" Target="WebPartPages\" Type="ElementFile" />
   </Files>
 </ProjectItem>

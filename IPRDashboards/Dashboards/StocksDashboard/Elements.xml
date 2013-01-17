@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="StocksDashboard">
+    <File Path="WebPartPages\WebPageTemplate_Stocks.aspx" Url="WebPartPages/StocksDashboard.aspx">
+      <View List="Lists/StockLibrary" BaseViewID="10" WebPartZoneID="StockLibrary" WebPartOrder="0" >
+        <![CDATA[
+         <webParts>
+         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+         <metaData>
+         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+         </metaData>
+         <data>
+         <properties>
+         <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_StockLibrary;</property>
+         <property name="TitleUrl" type="string">StocksDashboard.aspx</property>
+         <property name="AllowConnect" type="bool">True</property>
+         </properties>
+         </data>
+         </webPart>
+         </webParts>
+         ]]>
+      </View>
+      <View List="Lists/StockEntryList" BaseViewID="2" WebPartZoneID="StockEntry" WebPartOrder="0" >
+        <![CDATA[
+         <webParts>
+         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+         <metaData>
+         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+         </metaData>
+         <data>
+         <properties>
+         <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_StockEntry;</property>
+         <property name="TitleUrl" type="string">StocksDashboard.aspx</property>
+         <property name="AllowConnect" type="bool">True</property>
+         </properties>
+         </data>
+         </webPart>
+         </webParts>
+         ]]>
+      </View>
+    </File>
+  </Module>
+</Elements>
