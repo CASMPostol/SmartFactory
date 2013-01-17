@@ -750,4 +750,10 @@
 	<data name="CAS_ASPX_IPRList" xml:space="preserve">
 		<value>Księga uszlachetniania czynnego</value>
 	</data>
+	<data name="CAS_ASPX_StockLibrary" xml:space="preserve">
+		<value>Stock library</value>
+	</data>
+	<data name="CAS_ASPX_StockEntry" xml:space="preserve">
+		<value>Stock entry</value>
+	</data>
 </root>

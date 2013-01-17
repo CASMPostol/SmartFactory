@@ -82,6 +82,37 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Stocks Dashboard" DefaultView="FASLE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="StocksDashboard.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef Name="SKU" />
+          <FieldRef Name="StorLoc" />
+          <FieldRef Name="Units" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="Unrestricted" />
+          <FieldRef Name="InQualityInsp" />
+          <FieldRef Name="RestrictedUse" />
+          <FieldRef Name="Blocked" />
+          <FieldRef Name="Quantity" />
+          <FieldRef Name="IPRType" />
+          <FieldRef Name="ProductType" />
+          <FieldRef Name="BatchIndex" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
     </Views>
     <Forms>
       <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />

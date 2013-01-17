@@ -309,4 +309,7 @@
 	<data name="CAS_ASPX_HomePage" xml:space="preserve">
 		<value>IPR Home Page</value>
 	</data>
+	<data name="CAS_ASPX_StocksDashboard" xml:space="preserve">
+		<value>Stocks dashboard</value>
+	</data>
 </root>

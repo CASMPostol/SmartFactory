@@ -309,4 +309,7 @@
 	<data name="CAS_ASPX_HomePage" xml:space="preserve">
 		<value>IPR Strona Główna</value>
 	</data>
+	<data name="CAS_ASPX_StocksDashboard" xml:space="preserve">
+		<value>Kokpit - zasoby</value>
+	</data>
 </root>
