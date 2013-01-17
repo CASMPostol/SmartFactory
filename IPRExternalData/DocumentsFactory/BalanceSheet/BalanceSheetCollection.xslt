@@ -14,11 +14,11 @@
       </head>
       <style type="text/css">
         td, li { font-size:9pt; }
-        p  { font-size:11pt; }
-        h3 { font-size:11pt; }
+        p  { font-size:10pt; }
+        h3 { font-size:10pt; }
         th { font-size:11pt; }
-        h2 { font-size:12pt; text-align:center;}
-        h1 { font-size:14pt; text-align:center; }
+        h2 { font-size:11pt; text-align:center; }
+        h1 { font-size:12pt; text-align:center; }
       </style>
       <body>
         <xsl:apply-templates select="cas:BalanceSheetContent" />
@@ -29,7 +29,7 @@
     <table width="100%" border="0">
           <tr>
             <td align="left">
-              Dokument: <xsl:value-of select="cas:DocumentNo"/>
+              <b>Dokument: <xsl:value-of select="cas:DocumentNo"/> <font color="red">Wstępny - niezgodne magazyny.</font></b>
             </td>
             <td align="right">
                 Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FoarmatOfdate)"/>
@@ -57,7 +57,7 @@
     <table width="100%" border="0">
       <tr>
         <td align="left">
-          Dokument: <xsl:value-of select="cas:DocumentNo"/>
+          <b>Dokument: <xsl:value-of select="cas:DocumentNo"/> <font color="red">Wstępny - niezgodne magazyny.</font></b>
         </td>
         <td align="right">
           Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FoarmatOfdate)"/>
@@ -97,7 +97,7 @@
               ZAPISY SYSTEMU IPR – ilości nierozliczone
             </td>
             <td colspan="4">
-              STANY MAGAZYNOWE TYTONIU
+              STANY MAGAZYNOWE TYTONI
             </td>
             <td>
               &#160;
@@ -306,7 +306,7 @@
             <b>F</b>
           </td>
           <td>
-            <b>Readdume (D-E)</b>
+            <b>Reassume (D-E)</b>
           </td>
           <td>
             &#160;
