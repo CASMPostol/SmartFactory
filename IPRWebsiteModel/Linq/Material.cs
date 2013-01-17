@@ -176,14 +176,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         ).ToList();
     }
     /// <summary>
-    /// Gets the key.
-    /// </summary>
-    /// <returns></returns>
-    private string GetKey()
-    {
-      return String.Format( m_keyForam, SKU, Batch, this.StorLoc );
-    }
-    /// <summary>
     /// Exports the specified entities.
     /// </summary>
     /// <param name="entities">The entities.</param>
@@ -317,12 +309,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
+    /// <summary>
+    /// Gets the key.
+    /// </summary>
+    /// <returns></returns>
+    private string GetKey()
+    {
+      return String.Format( m_keyForam, SKU, Batch, this.StorLoc );
+    }
     private const string m_keyForam = "{0}:{1}:{2}";
     #endregion
 
-
     #region IComparable<Material> Members
-
     /// <summary>
     /// Compares to.
     /// </summary>
@@ -332,7 +330,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return GetKey().CompareTo( other.GetKey() );
     }
-
     #endregion
   }
 }
