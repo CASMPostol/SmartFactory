@@ -111,7 +111,7 @@
                                 <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Cancel%>" ID="m_CancelButton" />
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Export%>" ID="m_ExportButton" ToolTip="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_ExportToolTip%>"  />
+                                <asp:Button runat="server" CssClass="ButtonAlert" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Export%>" ID="m_ExportButton" ToolTip="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_ExportToolTip%>"  />
                             </asp:TableCell>
                         </asp:TableRow>
                     </asp:Table>
