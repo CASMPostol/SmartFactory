@@ -109,7 +109,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     protected override void OnPropertyChanged( string propertyName )
     {
-      Title = String.Format( "Procedure {0}/{1} Ref: {1}", this.ProcedureCode, Entities.ToString( ClearenceProcedure.GetValueOrDefault( Linq.ClearenceProcedure.Invalid ) ), ReferenceNumber.NotAvailable() );
+      double _quantity = this.Disposal.Sum<Disposal>( x => x.SettledQuantity.Value );
+      string _ClearanceTitleFormat = "No: {4:D5} {0}/{1} Ref: {2} quantity: {3:F2}";
+      Title = String.Format( _ClearanceTitleFormat, this.ProcedureCode, Entities.ToString( ClearenceProcedure.GetValueOrDefault( Linq.ClearenceProcedure.Invalid ) ), ReferenceNumber.NotAvailable(),
+                             _quantity, Identyfikator.Value );
       base.OnPropertyChanged( propertyName );
     }
     #endregion
