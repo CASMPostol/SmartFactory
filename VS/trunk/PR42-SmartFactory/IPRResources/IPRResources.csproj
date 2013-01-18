@@ -7,8 +7,8 @@
     <ProjectGuid>{E5A0F0A1-DB5F-4DEC-83C2-19107F11D597}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IPRResources</RootNamespace>
-    <AssemblyName>IPRResources</AssemblyName>
+    <RootNamespace>CAS.SmartFactory.IPR.Resources</RootNamespace>
+    <AssemblyName>CAS.IPRResources</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -49,6 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\CASSmartFactoryIPRCode.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CASSmartFactoryIPRCode.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\IPRResources\IPRResources.Template.xml">
