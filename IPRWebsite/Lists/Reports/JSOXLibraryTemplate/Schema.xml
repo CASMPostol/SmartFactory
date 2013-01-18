@@ -56,8 +56,7 @@
         <ViewFields>
           <FieldRef Name="DocIcon"></FieldRef>
           <FieldRef Name="LinkFilename"></FieldRef>
-          <FieldRef Name="Modified"></FieldRef>
-          <FieldRef Name="Editor"></FieldRef>
+          <FieldRef Name="Created" />
           <FieldRef Name="PreviousMonthDate" />
           <FieldRef Name="PreviousMonthQuantity" />
           <FieldRef Name="IntroducingDateStart" />
@@ -71,7 +70,9 @@
           <FieldRef Name="SituationDate" />
           <FieldRef Name="SituationQuantity" />
           <FieldRef Name="ReassumeQuantity" />
-          <FieldRef Name="JSOXLibraryReadOnly" />
+          <FieldRef Name="JSOXLibraryReadOnly" />      
+          <FieldRef Name="Modified"></FieldRef>
+          <FieldRef Name="Editor"></FieldRef>
         </ViewFields>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />
