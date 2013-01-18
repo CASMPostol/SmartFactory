@@ -7,11 +7,11 @@ using System.Security;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("IPRResources")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription( "IPR Resources" )]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("IPRResources")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2012")]
+[assembly: AssemblyCompany( "CAS" )]
+[assembly: AssemblyProduct( "Smart Factory" )]
+[assembly: AssemblyCopyright( "Copyright © CAS 2012" )]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,6 +33,6 @@ using System.Security;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion( "1.60.40.*" )]
-[assembly: AssemblyFileVersion( "1.60.40" )]
+[assembly: AssemblyVersion( "1.60.41.*" )]
+[assembly: AssemblyFileVersion( "1.60.41" )]
 
