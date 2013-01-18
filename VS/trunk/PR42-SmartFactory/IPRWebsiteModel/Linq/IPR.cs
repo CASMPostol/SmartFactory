@@ -177,15 +177,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="edc">The edc.</param>
     /// <param name="dateEnd">The date end.</param>
     /// <returns></returns>
-    public static decimal GetCurrentSituationData( Entities edc, out DateTime dateEnd )
+    public static decimal GetCurrentSituationData( Entities edc )
     {
       decimal _ret = 0;
-      dateEnd = LinqIPRExtensions.DateTimeMinValue;
       foreach ( IPR _iprx in IPR.GetAllOpen4JSOX( edc ) )
-      {
         _ret += _iprx.AccountBalanceDec;
-        dateEnd = LinqIPRExtensions.Max( _iprx.CustomsDebtDate.Value.Date, dateEnd );
-      }
       return _ret;
     }
     #endregion
