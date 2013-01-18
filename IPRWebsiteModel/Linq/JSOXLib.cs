@@ -19,8 +19,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="previous">The previous report.</param>
     public bool CreateJSOXReport( Entities edc, JSOXLib previous )
     {
-      PreviousMonthDate = previous.SituationDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
+      PreviousMonthDate = previous.BalanceDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
       PreviousMonthQuantity = previous.SituationQuantity.GetValueOrDefault( -1 );
+      this.BalanceDate = DateTime.Today.Date;
+      this.SituationDate = this.BalanceDate;
       this.JSOXLibraryReadOnly = false;
       return UpdateBalanceReport( edc );
     }
@@ -76,13 +78,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 
       //Balance
       decimal _thisBalanceQuantity = Convert.ToDecimal( this.PreviousMonthQuantity ) + _introducingQuantity - _outQuantity;
-      this.BalanceDate = DateTime.Today.Date;
       this.BalanceQuantity = _thisBalanceQuantity.Convert2Double2Decimals();
 
       //Situation at
-      DateTime _thisSituationDate;
-      decimal _thisSituationQuantity = Linq.IPR.GetCurrentSituationData( edc, out _thisSituationDate );
-      this.SituationDate = DateTime.Today.Date;
+      decimal _thisSituationQuantity = Linq.IPR.GetCurrentSituationData( edc );
       this.SituationQuantity = _thisSituationQuantity.Convert2Double2Decimals();
 
       //Reassume
