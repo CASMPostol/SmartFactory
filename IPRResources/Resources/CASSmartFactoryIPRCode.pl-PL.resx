@@ -141,14 +141,8 @@
 	<data name="QuantityFormat" xml:space="preserve">
 		<value>Ilość {0:F2}</value>
 	</data>
-	<data name="XMLResources_FinishedGoodsExportFormFileName" xml:space="preserve">
-		<value>Proces technologiczny {0:D7}</value>
-	</data>
 	<data name="XMLResources_RequestForAccountClearence" xml:space="preserve">
 		<value>Wniosek o zamknięcie {0:D7}</value>
-	</data>
-	<data name="XMLResources_JsoxBalanceReport" xml:space="preserve">
-		<value>Bilans {0:D7}</value>
 	</data>
 	<data name="NegativeValueNotAllowedMessage" xml:space="preserve">
 		<value>Ujemna wartość {0} nie jest dozwolona</value>
