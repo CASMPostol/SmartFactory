@@ -108,6 +108,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="ListsEventsHandlers\Customs\SADImportXML\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{32323fbc-d26b-4398-b3d0-963410cce328}</SharePointProjectItemId>
     </None>
