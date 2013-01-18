@@ -40,15 +40,7 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
-          <FieldRef Name="Attachments"></FieldRef>
           <FieldRef Name="LinkTitle"></FieldRef>
-          <FieldRef Name="TobaccoInWarehouse" />
-          <FieldRef Name="TobaccoInCigarettesWarehouse" />
-          <FieldRef Name="TobaccoInCigarettesProduction" />
-          <FieldRef Name="TobaccoInCutfillerWarehouse" />
-          <FieldRef Name="Balance" />
-          <FieldRef Name="Balance2JSOXLibraryIndex" />
-          <FieldRef Name="DocumentNo" />
           <FieldRef Name="SKU" />
           <FieldRef Name="Batch" />
           <FieldRef Name="TobaccoEnteredIntoIPR" />
@@ -63,13 +55,20 @@
           <FieldRef Name="WasteCSNotStarted" />
           <FieldRef Name="SHMentholCSNotStarted" />
           <FieldRef Name="OveruseCSNotStarted" />
+          <FieldRef Name="PureTobaccoCSNotStarted" />
           <FieldRef Name="SHWasteOveruseCSNotStarted" />
           <FieldRef Name="DustCSNotStarted" />
           <FieldRef Name="TobaccoAvailable" />
           <FieldRef Name="TobaccoInFGCSNotStarted" />
-          <FieldRef Name="PureTobaccoCSNotStarted" />
           <FieldRef Name="TobaccoUsedInTheProduction" />
           <FieldRef Name="TobaccoToBeUsedInTheProduction" />
+          <FieldRef Name="TobaccoInWarehouse" />
+          <FieldRef Name="TobaccoInCigarettesWarehouse" />
+          <FieldRef Name="TobaccoInCigarettesProduction" />
+          <FieldRef Name="TobaccoInCutfillerWarehouse" />
+          <FieldRef Name="Balance" />
+          <FieldRef Name="Balance2JSOXLibraryIndex" />
+          <FieldRef Name="DocumentNo" />
         </ViewFields>
         <Query>
           <OrderBy>
