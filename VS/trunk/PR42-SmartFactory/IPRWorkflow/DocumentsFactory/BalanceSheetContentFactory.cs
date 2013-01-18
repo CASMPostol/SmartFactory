@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
-using CAS.SharePoint;
 
 namespace CAS.SmartFactory.IPR.DocumentsFactory
 {
@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           throw new ApplicationException( "The record is read only and new report must not be created." );
         _old.JSOXLibraryReadOnly = true;
         _content = DocumentsFactory.BalanceSheetContentFactory.CreateEmptyContent();
-        string _documentName = xml.XMLResources.RequestForBalanceSheetDocumentName( jsoxLibItemId + 1 );
+        string _documentName = Settings.RequestForBalanceSheetDocumentName( _edc, jsoxLibItemId + 1 );
         _newFile = SPDocumentFactory.Prepare( web, _content, _documentName );
         _newFile.DocumentLibrary.Update();
         JSOXLib _current = Element.GetAtIndex<JSOXLib>( _edc.JSOXLibrary, _newFile.Item.ID );
@@ -37,15 +37,15 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     internal static void UpdateReport( SPListItem listItem, string WebUrl, int jsoxLibItemId )
     {
       BalanceSheetContent _content = null;
-      using ( Entities edc = new Entities( WebUrl ) )
+      using ( Entities _edc = new Entities( WebUrl ) )
       {
-        JSOXLib _current = Element.GetAtIndex<JSOXLib>( edc.JSOXLibrary, jsoxLibItemId );
+        JSOXLib _current = Element.GetAtIndex<JSOXLib>( _edc.JSOXLibrary, jsoxLibItemId );
         if ( _current.JSOXLibraryReadOnly.Value )
           throw new ApplicationException( "The record is read only and the report must not be updated." );
-        bool _validated = _current.UpdateBalanceReport( edc );
-        string _documentName = xml.XMLResources.RequestForBalanceSheetDocumentName( _current.Identyfikator.Value );
+        bool _validated = _current.UpdateBalanceReport( _edc );
+        string _documentName = Settings.RequestForBalanceSheetDocumentName( _edc, _current.Identyfikator.Value );
         _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent( _current, _documentName, !_validated );
-        edc.SubmitChanges();
+        _edc.SubmitChanges();
       }
       _content.UpdateDocument( listItem.File );
       listItem.ParentList.Update();

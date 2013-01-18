@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -33,7 +32,19 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Batch Number Pattern
     /// </summary>
-    BatchNumberPattern
+    BatchNumberPattern,
+    /// <summary>
+    /// The finished goods export form file name
+    /// </summary>
+    FinishedGoodsExportFormFileName,
+    /// <summary>
+    /// The request for account clearence form file name
+    /// </summary>
+    RequestForAccountClearenceFormFileName,
+    /// <summary>
+    /// The jsox balance report form file name
+    /// </summary>
+    JsoxBalanceReportFormFileName
   }
   public partial class Settings
   {
@@ -58,6 +69,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       return _ret.Title;
     }
+    /// <summary>
+    /// Finisheds the name of the goods export form file.
+    /// </summary>
+    /// <param name="number">The number.</param>
+    /// <returns></returns>
+    public static string FinishedGoodsExportFormFileName( Entities edc, int number )
+    {
+      return String.Format( GetParameter( edc, SettingsEntry.FinishedGoodsExportFormFileName ), number );
+    }
+    public static string RequestForAccountClearenceDocumentName( Entities edc, int number )
+    {
+      return String.Format( GetParameter( edc, SettingsEntry.RequestForAccountClearenceFormFileName ), number );
+    }
+    public static string RequestForBalanceSheetDocumentName( Entities edc, int number )
+    {
+      return String.Format( GetParameter( edc, SettingsEntry.JsoxBalanceReportFormFileName ), number );
+    }
     private static Dictionary<SettingsEntry, string> m_DefaultSettings = new Dictionary<SettingsEntry, string>()
     {
        {SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern,  @"(?<=P\w*\b\st\w*\b\s)(\d{7})"},
@@ -65,7 +93,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
        {SettingsEntry.GoodsDescriptionWGRADEPattern,  @"(?<=\WGRADE:)\W*\b(\w*)"},
        {SettingsEntry.GoodsDescriptionSKUPattern,  @"(?<=\WSKU:)\W*\b(\d*)"}, 
        {SettingsEntry.GoodsDescriptionBatchPattern,  @"(?<=\WBatch:)\W*\b(\d*)"},
-       {SettingsEntry.BatchNumberPattern,   @"\b(000\d{7})"}
-    };
+       {SettingsEntry.BatchNumberPattern,   @"\b(000\d{7})"},
+       {SettingsEntry.FinishedGoodsExportFormFileName,   "Proces technologiczny {0:D7}"},
+       {SettingsEntry.RequestForAccountClearenceFormFileName,   "Bilans {0:D7}"},
+       {SettingsEntry.JsoxBalanceReportFormFileName,   "Wniosek o zamknięcie {0:D7}"}
+   };
   }
 }

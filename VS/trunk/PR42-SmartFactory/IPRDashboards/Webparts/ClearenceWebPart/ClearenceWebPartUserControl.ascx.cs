@@ -564,7 +564,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       try
       {
-        string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName( CurrentClearence.Identyfikator.Value );
+        Entities _edc = m_DataContextManagement.DataContext;
+        string _masterDocumentName = Settings.FinishedGoodsExportFormFileName( _edc, CurrentClearence.Identyfikator.Value );
         int _sadConsignmentIdentifier = default( int );
         switch ( ToSelectedGroup( CurrentClearence.ProcedureCode ) )
         {
@@ -585,9 +586,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
             _sadConsignmentIdentifier = SPDocumentFactory.Prepare( SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, CompensatiionGood.Cartons );
             break;
         }
-        SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
+        SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( _edc.SADConsignment, _sadConsignmentIdentifier );
         CurrentClearence.ClearThroughCustom( _sadConsignment );
-        m_DataContextManagement.DataContext.SubmitChanges();
+        _edc.SubmitChanges();
         Response.Redirect( Request.RawUrl );
         return GenericStateMachineEngine.ActionResult.Success;
       }

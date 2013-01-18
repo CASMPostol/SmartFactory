@@ -69,7 +69,7 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
         using ( Entities _edc = new Entities( workflowProperties.WebUrl ) )
         {
           IPRClass _record = Element.GetAtIndex<WebsiteModel.Linq.IPR>( _edc.IPR, workflowProperties.ItemId );
-          string _documentName = xml.XMLResources.RequestForAccountClearenceDocumentName( _record.Identyfikator.Value );
+          string _documentName = Settings.RequestForAccountClearenceDocumentName( _edc, _record.Identyfikator.Value );
           RequestContent _content = DocumentsFactory.AccountClearanceFactory.CreateRequestContent( _record, _record.Identyfikator.Value, _documentName );
           int _id = SPDocumentFactory.Prepare( this.workflowProperties.Web, _content, _documentName );
           WebsiteModel.Linq.IPRLib _document = Element.GetAtIndex<WebsiteModel.Linq.IPRLib>( _edc.IPRLibrary, _id );

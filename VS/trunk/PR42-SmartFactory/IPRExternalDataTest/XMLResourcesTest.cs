@@ -67,7 +67,7 @@ namespace IPRExternalDataTest
     public void FinishedGoodsExportFormFileNameTest()
     {
       int number = new Random().Next( 1, 9999999 ); 
-      string documentName = XMLResources.FinishedGoodsExportFormFileName( number );
+      string documentName = "Proces technologiczny {0:D7}"; // Settings.FinishedGoodsExportFormFileName( number );
       Nullable<int> actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( documentName, m_Pattern );
       Assert.AreEqual( number, actual );
       actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( "sasa sasasa sasasa", m_Pattern );
