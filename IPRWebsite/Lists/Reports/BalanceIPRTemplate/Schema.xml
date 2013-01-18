@@ -41,37 +41,36 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
-          <FieldRef Name="Attachments"></FieldRef>
           <FieldRef Name="LinkTitle"></FieldRef>
-          <FieldRef Name="CustomsProcedure" />
-          <FieldRef Name="InvoiceNo" />
-          <FieldRef Name="OGLIntroduction" />
-          <FieldRef Name="Balance" />
-          <FieldRef Name="BalanceBatchIndex" />
-          <FieldRef Name="BalanceIPR2JSOXIndex" />
-          <FieldRef Name="IPRIndex" />
-          <FieldRef Name="DocumentNo" />
           <FieldRef Name="SKU" />
           <FieldRef Name="Batch" />
+          <FieldRef Name="OGLIntroduction" />
           <FieldRef Name="TobaccoEnteredIntoIPR" />
           <FieldRef Name="TobaccoCSFinished" />
-          <FieldRef Name="TobaccoInFGCSStarted" />
+          <FieldRef Name="TobaccoInFGCSStarted" />          
           <FieldRef Name="DustCSStarted" />
           <FieldRef Name="WasteCSStarted" />
           <FieldRef Name="SHMentholCSStarted" />
           <FieldRef Name="OveruseCSStarted" />
           <FieldRef Name="PureTobaccoCSStarted" />
-          <FieldRef Name="IPRBook" />
+          <FieldRef Name="IPRBook" />          
           <FieldRef Name="WasteCSNotStarted" />
           <FieldRef Name="SHMentholCSNotStarted" />
           <FieldRef Name="OveruseCSNotStarted" />
+          <FieldRef Name="TobaccoInFGCSNotStarted" />          
           <FieldRef Name="SHWasteOveruseCSNotStarted" />
-          <FieldRef Name="DustCSNotStarted" />
+          <FieldRef Name="DustCSNotStarted" />          
           <FieldRef Name="TobaccoAvailable" />
-          <FieldRef Name="TobaccoInFGCSNotStarted" />
           <FieldRef Name="PureTobaccoCSNotStarted" />
           <FieldRef Name="TobaccoUsedInTheProduction" />
           <FieldRef Name="TobaccoToBeUsedInTheProduction" />
+          <FieldRef Name="Balance" />          
+          <FieldRef Name="BalanceBatchIndex" />
+          <FieldRef Name="BalanceIPR2JSOXIndex" />
+          <FieldRef Name="IPRIndex" />         
+          <FieldRef Name="CustomsProcedure" />
+          <FieldRef Name="InvoiceNo" />
+          <FieldRef Name="DocumentNo" />
         </ViewFields>
         <Query>
           <OrderBy>
