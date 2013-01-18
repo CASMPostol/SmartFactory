@@ -47,6 +47,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
               properties.ListItem.File.Name,
               ( object obj, ProgressChangedEventArgs progres ) => { return; }
             );
+        properties.List.Update();
       }
       catch ( Exception ex )
       {
