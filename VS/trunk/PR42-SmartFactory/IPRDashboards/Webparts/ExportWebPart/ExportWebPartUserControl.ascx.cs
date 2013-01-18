@@ -8,7 +8,6 @@ using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.IPR.Dashboards.Clearance;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
-using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using Microsoft.SharePoint;
 
@@ -438,20 +437,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     #region SetInterconnectionData
     private void SetInterconnectionData( BatchInterconnectionData e )
     {
-      if ( m_EditBatchCheckBox.Checked && m_ControlState.BatchID.CompareTo( e.ID ) != 0 )
-      {
-        m_ControlState.IsModified = true;
-        m_ControlState.BatchID = e.ID;
-        m_ControlState.BatchTitle = e.Title;
-        m_BatchTextBox.Text = e.Title;
-      }
+      m_ControlState.IsModified = true;
+      m_ControlState.BatchID = e.ID;
+      m_ControlState.BatchTitle = e.Title;
+      m_BatchTextBox.Text = e.Title;
     }
     private void SetInterconnectionData( InvoiceInterconnectionData e )
     {
       try
       {
-        if ( m_ControlState.InvoiceID.CompareTo( e.ID ) == 0 )
-          return;
         m_ControlState.InvoiceID = e.ID;
         m_ControlState.InvoiceTitle = e.Title;
         m_ControlState.ReadOnly = e.ReadOnly;
@@ -468,8 +462,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     {
       try
       {
-        if ( m_ControlState.InvoiceContentID.CompareTo( e.ID ) == 0 || m_ControlState.InvoiceChanged )
-          return;
         InvoiceContent _ic = Element.FindAtIndex<InvoiceContent>( m_DataContextManagement.DataContext.InvoiceContent, e.ID );
         if ( _ic == null )
         {
