@@ -514,13 +514,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       try
       {
         if ( m_ExportProcedureRadioButtonList.SelectedIndex < 0 )
-            return GenericStateMachineEngine.ActionResult.NotValidated("CustomsProcedureMustBeSelected".GetLocalizedString());
+          return GenericStateMachineEngine.ActionResult.NotValidated( "CustomsProcedureMustBeSelected".GetLocalizedString() );
         switch ( m_ExportProcedureRadioButtonList.SelectedValue )
         {
           case "Export":
             return Export();
           case "Revert":
-            return GenericStateMachineEngine.ActionResult.Exception(new NotImplementedException("RevertFGTofreeCirculationIsNotImplementedYet".GetLocalizedString()), "ClearThroughCustom");
+            return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException( "RevertFGTofreeCirculationIsNotImplementedYet".GetLocalizedString() ), "ClearThroughCustom" );
         }
       }
       catch ( Exception ex )
@@ -544,7 +544,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       _invoice.InvoiceLibraryStatus = true;
       Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, "FinischedGoodsExport", ClearenceProcedure._3151 );
-      string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName( _newClearance.Identyfikator.Value );
+      string _masterDocumentName = Settings.FinishedGoodsExportFormFileName( m_DataContextManagement.DataContext, _newClearance.Identyfikator.Value );
       CigaretteExportFormCollection _cefc = FinishedGoodsFormFactory.GetFormContent( m_DataContextManagement.DataContext, _invoice, _newClearance, _masterDocumentName );
       int _sadConsignmentIdentifier = SPDocumentFactory.Prepare( SPContext.Current.Web, _cefc, _masterDocumentName );
       SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );

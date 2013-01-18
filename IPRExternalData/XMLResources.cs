@@ -1,10 +1,7 @@
-﻿using System;
-using CAS.SharePoint;
-using CAS.SharePoint.Web;
+﻿using CAS.SharePoint;
 
 namespace CAS.SmartFactory.xml
 {
-  //TODO  [pr4-3550] Add localization to the application http://itrserver/Bugs/BugDetail.aspx?bid=3550
   /// <summary>
   /// A collection of key used ro select strings from resources 
   /// </summary>
@@ -16,15 +13,6 @@ namespace CAS.SmartFactory.xml
     /// </summary>
     public const string RequiredDocumentConsignmentCode = "9DK8";
     /// <summary>
-    /// Finisheds the name of the goods export form file.
-    /// </summary>
-    /// <param name="number">The number.</param>
-    /// <returns></returns>
-    public static string FinishedGoodsExportFormFileName( int number )
-    {
-      return String.Format( m_FinishedGoodsExportFormFileName.GetLocalizedString(), number );
-    }
-    /// <summary>
     /// Gets the required document finished good export consignment number.
     /// </summary>
     /// <param name="documentName">Name of the document.</param>
@@ -34,16 +22,5 @@ namespace CAS.SmartFactory.xml
       string _cleranceString = documentName.SPValidSubstring().GetFirstCapture( pattern, "NA" );
       return _cleranceString.String2Int();
     }
-    public static string RequestForAccountClearenceDocumentName( int number )
-    {
-      return String.Format( m_RequestForAccountClearenceDocumentName.GetLocalizedString(), number );
-    }
-    public static string RequestForBalanceSheetDocumentName( int number )
-    {
-      return String.Format( m_JsoxBalanceReport.GetLocalizedString(), number );
-    }
-    private const string m_FinishedGoodsExportFormFileName = "XMLResources_FinishedGoodsExportFormFileName";
-    private const string m_RequestForAccountClearenceDocumentName = "XMLResources_RequestForAccountClearence";
-    private const string m_JsoxBalanceReport = "XMLResources_JsoxBalanceReport";
   }
 }
