@@ -414,13 +414,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         return;
       try
       {
-      }
-      catch ( Exception ex )
-      {
-        return;
-      }
-      try
-      {
         m_ControlState.ClearanceID = e.ID;
         ListItem _cs = m_SelectGroupRadioButtonList.Items.FindByValue( CurrentClearence.ProcedureCode );
         if ( _cs == null )
