@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXCreateReport
     /// <summary>
     /// The completed log to history_ history outcome
     /// </summary>
-    public String CompletedLogToHistory_HistoryOutcome = default( System.String );
+    public String CompletedLogToHistory_HistoryOutcome = "Finished";
     /// <summary>
     /// The completed log to history_ history description
     /// </summary>
