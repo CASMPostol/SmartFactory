@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXUpdateReport
     /// <summary>
     /// The end log to history outcome
     /// </summary>
-    public String EndLogToHistory_HistoryOutcome = "Finisched";
+    public String EndLogToHistory_HistoryOutcome = "Finished";
     /// <summary>
     /// The end log to history description
     /// </summary>

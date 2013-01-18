@@ -7,7 +7,7 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Workflow
      Name="JSOX Create Report"
-     Description="My SharePoint Workflow"
+     Description="Creates JSOX Report"
      Id="99a798c0-ff9f-4495-8e16-d7d12aaac1d9"
      CodeBesideClass="CAS.SmartFactory.IPR.Workflows.JSOXCreateReport.JSOXCreateReport"
      CodeBesideAssembly="$assemblyname$">
