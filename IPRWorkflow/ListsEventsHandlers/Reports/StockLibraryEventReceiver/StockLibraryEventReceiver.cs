@@ -29,22 +29,29 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
         return;
       }
       this.EventFiringEnabled = false;
-      properties.List.Update();
-      //if (properties.ListItem.File == null)
-      //{
-      //  Anons.WriteEntry(edc, m_Title, "Import of a stock xml message failed because the file is empty.");
-      //  edc.SubmitChanges();
-      //  return;
-      //}
-      using ( Stream _str = properties.ListItem.File.OpenBinaryStream() )
-        IportStockFromXML
-          (
-            _str,
-            properties.WebUrl,
-            properties.ListItem.ID,
-            properties.ListItem.File.Name,
-            ( object obj, ProgressChangedEventArgs progres ) => { return; }
-          );
+      try
+      {
+        properties.List.Update();
+        //if (properties.ListItem.File == null)
+        //{
+        //  Anons.WriteEntry(edc, m_Title, "Import of a stock xml message failed because the file is empty.");
+        //  edc.SubmitChanges();
+        //  return;
+        //}
+        using ( Stream _str = properties.ListItem.File.OpenBinaryStream() )
+          IportStockFromXML
+            (
+              _str,
+              properties.WebUrl,
+              properties.ListItem.ID,
+              properties.ListItem.File.Name,
+              ( object obj, ProgressChangedEventArgs progres ) => { return; }
+            );
+      }
+      catch ( Exception ex )
+      {
+        ActivityLogCT.WriteEntry( "Stock xml message SPItemEventReceiver fatal error.", ex.Message, properties.WebUrl );
+      }
       this.EventFiringEnabled = true;
       base.ItemAdded( properties );
     }
@@ -93,7 +100,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       }
       catch ( Exception ex )
       {
-        ActivityLogCT.WriteEntry( "Stock message import fatal error", ex.Message, url );
+        ActivityLogCT.WriteEntry( "Stock xml message import fatal error", ex.Message, url );
       }
     }
     #endregion
