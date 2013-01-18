@@ -543,7 +543,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Title ) );
       }
       _invoice.InvoiceLibraryStatus = true;
-      Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, "FinischedGoodsExport", ClearenceProcedure._3151 );
+      Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, "FinishedGoodsExport", ClearenceProcedure._3151 );
       string _masterDocumentName = Settings.FinishedGoodsExportFormFileName( m_DataContextManagement.DataContext, _newClearance.Identyfikator.Value );
       CigaretteExportFormCollection _cefc = FinishedGoodsFormFactory.GetFormContent( m_DataContextManagement.DataContext, _invoice, _newClearance, _masterDocumentName );
       int _sadConsignmentIdentifier = SPDocumentFactory.Prepare( SPContext.Current.Web, _cefc, _masterDocumentName );
