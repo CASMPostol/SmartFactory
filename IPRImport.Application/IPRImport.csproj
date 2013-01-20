@@ -122,6 +122,10 @@
       <Project>{c4d9bbc4-c123-4aab-b1e6-9906b7b51bc6}</Project>
       <Name>IPRWorkflows</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IPR\Iteroperability\Iteroperability.csproj">
+      <Project>{bbc177df-cd0c-4fdf-9e78-41f2ce4faf52}</Project>
+      <Name>Iteroperability</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
