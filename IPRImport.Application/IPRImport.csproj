@@ -114,10 +114,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IPRExternalData\IPRExternalData.csproj">
-      <Project>{54AF26B7-F75F-4025-8F30-89C0BE05DEE5}</Project>
-      <Name>IPRExternalData</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IPRWebsiteModel\IPRWebsiteModel.csproj">
       <Project>{8920f657-54a3-4376-99a5-c2d823f94038}</Project>
       <Name>IPRWebsiteModel</Name>
