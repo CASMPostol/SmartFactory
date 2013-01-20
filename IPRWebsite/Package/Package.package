@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="ba9dd6bf-0f86-469d-9821-2290a484169f" solutionId="f5f511a8-0434-452a-8543-cc3a397ee40e" resetWebServer="false" title="CAS SmartFactory IPR Website" description="IPR Website supports management of the inward process relief." name="CASSmartFactoryIPRWebsite" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="ba9dd6bf-0f86-469d-9821-2290a484169f" solutionId="f5f511a8-0434-452a-8543-cc3a397ee40e" resetWebServer="true" title="CAS SmartFactory IPR Website" description="IPR Website supports management of the inward process relief." name="CAS SmartFactory IPR Data Solution" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
     <featureReference itemId="f7642b3b-52e4-47c6-89f9-b0eb3120a5a2" />
   </features>
