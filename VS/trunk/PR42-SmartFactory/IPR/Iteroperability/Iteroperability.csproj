@@ -40,6 +40,10 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CAS.SharePoint, Version=1.60.40.20185, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\PR44-SharePoint\SharePoint\bin\Debug\CAS.SharePoint.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -48,6 +52,259 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Customs\CELINA\CLNBw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\CLNDw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\CLNEw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\CLNNw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\CLNRw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\CLNTw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\CLNWw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\CLNZw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\DSw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\IPTw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\PODw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\PWDw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\PZCw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\SADw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\WOUw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\CELINA\xmldsig-core-schema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\DTI.AcceptDocumentResult_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\DTI.AcceptDocument_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\DTI.GetAcceptDocumentStatusResult_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\DTI.GetAcceptDocumentStatus_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\DTI.GetDocumentsResult_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\DTI.GetDocuments_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\DTI.GetLostDocumentsResult_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\DTI.GetLostDocuments_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\DTI.SendDocumentResult_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\DTI.SendDocument_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE504_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE505_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE507_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE508_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE509_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE513B_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE513C_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE513_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE514_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE515B_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE515C_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE515XY_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE515_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE516_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE521_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE522_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE525_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE528_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE529_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE547_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE548_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE551_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE560_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE561_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE582_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE583_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE590_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE591_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE599_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE5PU_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE604_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE605_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE613_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE615_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE616_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IE628_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IEST1_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\IEST2_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\PWK1_v2-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\PWK2_v2-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\PWK3_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\ECS\xmldsig-core-schema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Customs\Scripts\CreateBatchSchema.ps1" />
+    <None Include="Customs\Scripts\CreateInvoiceSchema.ps1" />
+    <None Include="Customs\Scripts\goxsd.ps1" />
+    <None Include="Dictionaries\Configuration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dictionaries\GoXSD.ps1" />
+    <None Include="Dictionaries\JTIConfigurationData.xlsx" />
+    <None Include="DocumentsFactory\AccountClearance\GoCS.ps1" />
+    <None Include="DocumentsFactory\AccountClearance\GoXSD.ps1" />
+    <None Include="DocumentsFactory\AccountClearance\RequestContent.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DocumentsFactory\BalanceSheet\BalanceSheetContent.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DocumentsFactory\BalanceSheet\GoCS.ps1" />
+    <None Include="DocumentsFactory\BalanceSheet\GoXSD.ps1" />
+    <None Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DocumentsFactory\CigaretteExportForm\GoCS.ps1" />
+    <None Include="DocumentsFactory\CigaretteExportForm\GoXSD.ps1" />
+    <None Include="DocumentsFactory\Disposals\DocumentContent.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DocumentsFactory\Disposals\GoCS.ps1" />
+    <None Include="DocumentsFactory\Disposals\GoXSD.ps1" />
+    <None Include="ERP\Batch.xltx" />
+    <None Include="ERP\Batch.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ERP\GoXSD.ps1" />
+    <None Include="ERP\Invoice.xltx" />
+    <None Include="ERP\Invoice.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ERP\SKUCigarettes.xltx" />
+    <None Include="ERP\SKUCigarettesSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ERP\SKUCutfiller.xltx" />
+    <None Include="ERP\SKUCutfillerSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ERP\Stock.xltx" />
+    <None Include="ERP\Stock.XSD">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Features\Interoperability\Interoperability.feature">
       <FeatureId>{bdd31d98-b40e-46d9-a58a-555715330d81}</FeatureId>
     </None>
@@ -68,13 +325,121 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customs\CELINA\CLNE.ext.cs" />
+    <Compile Include="Customs\CELINA\CLNEw2r0_xmldsig-core-schema.cs" />
+    <Compile Include="Customs\CELINA\PZC.ext.cs" />
+    <Compile Include="Customs\CELINA\PZCw2r0_xmldsig-core-schema.cs" />
+    <Compile Include="Customs\CELINA\PZCZwolnienieDoProceduryTowar.cs" />
+    <Compile Include="Customs\CELINA\PZCZwolnienieDoProceduryTowarDokumentWymagany.cs" />
+    <Compile Include="Customs\CELINA\PZCZwolnienieDoProceduryTowarIloscTowaru.cs" />
+    <Compile Include="Customs\CELINA\PZCZwolnienieDoProceduryTowarOpakowanie.cs" />
+    <Compile Include="Customs\CELINA\PZCZwolnienieDoProceduryTowarOplata.cs" />
+    <Compile Include="Customs\CELINA\SAD.ext..cs" />
+    <Compile Include="Customs\CELINA\SADw2r0_xmldsig-core-schema.cs" />
+    <Compile Include="Customs\CELINA\SADZgloszenieTowar.cs" />
+    <Compile Include="Customs\CELINA\SADZgloszenieTowarDokumentWymagany.cs" />
+    <Compile Include="Customs\CELINA\SADZgloszenieTowarIloscTowaru.cs" />
+    <Compile Include="Customs\CELINA\SADZgloszenieTowarOpakowanie.cs" />
+    <Compile Include="Customs\CELINA\SADZgloszenieTowarOplata.cs" />
+    <Compile Include="Customs\CustomsDataException.cs" />
+    <Compile Include="Customs\CustomsDocument.cs" />
+    <Compile Include="Customs\CustomsProcedureCodes.cs" />
+    <Compile Include="Customs\DutiesDescription.cs" />
+    <Compile Include="Customs\ECS\IE529.ext.cs" />
+    <Compile Include="Customs\ECS\IE529ZwolnienieTowar.cs" />
+    <Compile Include="Customs\ECS\IE529ZwolnienieTowarDokumentWymagany.cs" />
+    <Compile Include="Customs\ECS\IE529ZwolnienieTowarIloscTowaru.cs" />
+    <Compile Include="Customs\ECS\IE529ZwolnienieTowarOpakowanie.cs" />
+    <Compile Include="Customs\ECS\IE529ZwolnienieTowarOplata.cs" />
+    <Compile Include="Customs\ECS\IE529_v1-0_xmldsig-core-schema.cs" />
+    <Compile Include="Customs\GoodDescription.cs" />
+    <Compile Include="Customs\PackageDescription.cs" />
+    <Compile Include="Customs\QuantityDescription.cs" />
+    <Compile Include="Customs\RequiredDocumentsDescription.cs" />
+    <Compile Include="Dictionaries\Configuration.cs">
+      <DependentUpon>Configuration.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionaries\Configuration.partial.cs" />
+    <Compile Include="DocumentsFactory\AccountClearance\RequestContent.cs">
+      <DependentUpon>RequestContent.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsFactory\AccountClearance\RequestContent.xsd.cs">
+      <DependentUpon>RequestContent.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsFactory\BalanceSheet\BalanceSheetContent.cs">
+      <DependentUpon>BalanceSheetContent.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsFactory\BalanceSheet\BalanceSheetContent.xsd.cs">
+      <DependentUpon>BalanceSheetContent.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.cs">
+      <DependentUpon>CigaretteExportFormCollection.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xsd.cs">
+      <DependentUpon>CigaretteExportFormCollection.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsFactory\CigaretteExportForm\Ingredient.cs" />
+    <Compile Include="DocumentsFactory\CigaretteExportForm\IPRIngredient.cs" />
+    <Compile Include="DocumentsFactory\CigaretteExportForm\RegularIngredient.cs" />
+    <Compile Include="DocumentsFactory\Disposals\DocumentContent.cs">
+      <DependentUpon>DocumentContent.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsFactory\Disposals\DocumentContent.xsd.cs">
+      <DependentUpon>DocumentContent.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsFactory\DocumentNames.cs" />
+    <Compile Include="ERP\batch.cs">
+      <DependentUpon>Batch.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ERP\Batch.partial.cs" />
+    <Compile Include="ERP\BatchMaterial.cs" />
+    <Compile Include="ERP\CigarettesMaterial.cs" />
+    <Compile Include="ERP\CutfillerMaterial.cs" />
+    <Compile Include="ERP\Invoice.cs">
+      <DependentUpon>Invoice.XSD</DependentUpon>
+    </Compile>
+    <Compile Include="ERP\Invoice.partial.cs" />
+    <Compile Include="ERP\Material.cs" />
+    <Compile Include="ERP\SKU.cs" />
+    <Compile Include="ERP\SKUCigarettesSchema.cs">
+      <DependentUpon>SKUCigarettesSchema.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ERP\SKUCigarettesSchema.partial.cs" />
+    <Compile Include="ERP\SKUCutfillerSchema.cs">
+      <DependentUpon>SKUCutfillerSchema.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ERP\SKUCutfillerSchema.partial.cs" />
+    <Compile Include="ERP\stock.cs">
+      <DependentUpon>Stock.XSD</DependentUpon>
+    </Compile>
+    <Compile Include="ERP\Stock.partial.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="ImputDataError.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
+    <Compile Include="XMLResources.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DocumentsFactory\AccountClearance\RequestContent.xml" />
+    <Content Include="DocumentsFactory\AccountClearance\RequestForAccountClearence.xslt" />
+    <Content Include="DocumentsFactory\BalanceSheet\BalanceSheetCollection.xslt" />
+    <Content Include="DocumentsFactory\BalanceSheet\BalanceSheetContent.xml" />
+    <Content Include="DocumentsFactory\BalanceSheet\Bilans 0000002.xml" />
+    <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.htm" />
+    <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xml" />
+    <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xslt" />
+    <Content Include="DocumentsFactory\CutfillerExportForm\CutfillerExportFormCollection.xslt" />
+    <Content Include="DocumentsFactory\Disposals\CartonsFormStylesheet.xslt" />
+    <Content Include="DocumentsFactory\Disposals\DocumentContent.xml" />
+    <Content Include="DocumentsFactory\Disposals\DustFormStylesheet.xslt" />
+    <Content Include="DocumentsFactory\Disposals\TestData\Proces technologiczny 0000688.xml" />
+    <Content Include="DocumentsFactory\Disposals\TestData\Proces technologiczny 0000696.xml" />
+    <Content Include="DocumentsFactory\Disposals\TobaccoFormStylesheet.xslt" />
+    <Content Include="DocumentsFactory\Disposals\WasteFormStylesheet.xslt" />
+    <Content Include="DocumentsFactory\JSOXReport\JSOXReportCollection.xslt" />
     <Content Include="Features\Interoperability\Interoperability.Template.xml">
       <DependentUpon>Interoperability.feature</DependentUpon>
     </Content>
