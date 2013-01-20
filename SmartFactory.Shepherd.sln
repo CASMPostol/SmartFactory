@@ -22,6 +22,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointLinqClient", "She
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShepherdRoutesEditor", "Shepherd\ShepherdRoutesEditor\ShepherdRoutesEditor.csproj", "{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{6B01941B-5931-439D-BAF5-DA8578B02A49}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{DDD167EB-143B-4808-BB4D-447795B35402}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,5 +97,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{70DD8ABC-B012-427A-8163-64E63304BD42} = {6B01941B-5931-439D-BAF5-DA8578B02A49}
+		{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254} = {6B01941B-5931-439D-BAF5-DA8578B02A49}
+		{29FF7394-7CFF-4184-8551-7D62B515FE6C} = {DDD167EB-143B-4808-BB4D-447795B35402}
 	EndGlobalSection
 EndGlobal
