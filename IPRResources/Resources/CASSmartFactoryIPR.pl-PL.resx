@@ -753,4 +753,7 @@
 	<data name="CAS_ASPX_StockLibrary" xml:space="preserve">
 		<value>Zasoby - biblioteka</value>
 	</data>
+	<data name="CAS_ASPX_MaterialList" xml:space="preserve">
+		<value>Materiał</value>
+	</data>
 </root>

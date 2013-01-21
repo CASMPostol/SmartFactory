@@ -315,4 +315,7 @@
 	<data name="CAS_ASPX_BatchDashboard" xml:space="preserve">
 		<value>Kokpit - Batch i materiał</value>
 	</data>
+	<data name="CAS_ASPX_ClearenceViewDashboard" xml:space="preserve">
+		<value>Kokpit - likwidacja - podgląd</value>
+	</data>
 </root>
