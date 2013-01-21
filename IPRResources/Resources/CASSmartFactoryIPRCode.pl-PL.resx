@@ -151,7 +151,7 @@
 		<value>The requested quantity is unavailable. There is only {0} on the stock.</value>
 	</data>
 	<data name="NotApplicable" xml:space="preserve">
-		<value>Nie dotyczy</value>
+		<value> Brak </value>
 	</data>
 	<data name="NeBatchQuantityIsUnavailableMessage" xml:space="preserve">
 		<value>The requested quantity is unavailable on the selected new batch. There is only {0} on the stock.</value>
@@ -161,5 +161,8 @@
 	</data>
 	<data name="PRELIMINARY" xml:space="preserve">
 		<value>Wstępny - niezgodne magazyny.</value>
+	</data>
+	<data name="ClearanceTitleFormat" xml:space="preserve">
+		<value>"Nr: {4:D5} {0}/{1} SAD: {2} ilość: {3:F2}"</value>
 	</data>
 </root>

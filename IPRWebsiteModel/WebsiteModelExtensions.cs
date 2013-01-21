@@ -56,6 +56,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     {
       return Math.Round( value, 3 );
     }
+
     //The number of fractional digits in the return value.
     private const int m_MassFractionalDigits = 2;
   }

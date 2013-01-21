@@ -12,7 +12,7 @@ using System.Security;
 [assembly: AssemblyCompany( "CAS" )]
 [assembly: AssemblyProduct( "Smart Factory" )]
 [assembly: AssemblyCopyright( "Copyright © CAS 2012" )]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark( "Smart Factory" )]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
