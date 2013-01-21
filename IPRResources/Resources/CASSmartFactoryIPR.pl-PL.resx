@@ -756,4 +756,7 @@
 	<data name="CAS_ASPX_MaterialList" xml:space="preserve">
 		<value>Materiał</value>
 	</data>
+	<data name="CAS_ASPX_SADConsignmentLibrary" xml:space="preserve">
+		<value>SAD Consignment - biblioteka</value>
+	</data>
 </root>
