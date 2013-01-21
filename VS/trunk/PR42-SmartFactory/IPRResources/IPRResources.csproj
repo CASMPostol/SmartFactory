@@ -56,7 +56,6 @@
       <DependentUpon>IPRResources.feature</DependentUpon>
     </Content>
     <Content Include="Resources\CASSmartFactoryIPRCode.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CASSmartFactoryIPRCode.Designer.cs</LastGenOutput>
     </Content>
     <None Include="Features\IPRResources\IPRResources.feature">

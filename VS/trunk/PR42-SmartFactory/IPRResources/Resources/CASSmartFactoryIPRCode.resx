@@ -154,12 +154,15 @@
 		<value>The requested quantity is unavailable. There is only {0} on the stock.</value>
 	</data>
 	<data name="NotApplicable" xml:space="preserve">
-		<value>Not Applicable</value>
+		<value> Not Available </value>
 	</data>
 	<data name="Units" xml:space="preserve">
 		<value>units</value>
 	</data>
 	<data name="PRELIMINARY" xml:space="preserve">
 		<value>Wstępny - niezgodne magazyny.</value>
+	</data>
+	<data name="ClearanceTitleFormat" xml:space="preserve">
+		<value>"No: {4:D5} {0}/{1} Ref: {2} quantity: {3:F2}"</value>
 	</data>
 </root>
