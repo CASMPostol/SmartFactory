@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="4cdcf677-35f2-41fe-86c6-dcbaaf001b75" creator="CAS" description="SmartFactory IPR Data Model: columns, contenttypes, lists." featureId="4cdcf677-35f2-41fe-86c6-dcbaaf001b75" imageUrl="" imageAltText="IPR Data" scope="Site" solutionId="00000000-0000-0000-0000-000000000000" title="CAS SmartFactory IPR Data Feature" version="AAEAAAD/////AQAAAAAAAAAEAQAAAA5TeXN0ZW0uVmVyc2lvbgQAAAAGX01ham9yBl9NaW5vcgZfQnVpbGQJX1JldmlzaW9uAAAAAAgICAgBAAAAPAAAACgAAAAAAAAACw==" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
-  <activationDependencies>
-    <referencedFeatureActivationDependency minimumVersion="" itemId="536545bb-aaa2-4f08-a050-274a3de9e39e" projectPath="..\IPRResources\IPRResources.csproj" />
-  </activationDependencies>
   <projectItems>
     <projectItemReference itemId="53656ba7-5af2-433e-899c-e756a404c50d" />
     <projectItemReference itemId="baeb8126-42ea-432c-84e1-4c59bfa5f4d1" />
