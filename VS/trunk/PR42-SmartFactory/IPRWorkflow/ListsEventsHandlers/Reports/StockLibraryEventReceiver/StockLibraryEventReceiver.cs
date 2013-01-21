@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using StockXml = CAS.SmartFactory.xml.erp.Stock;
 using StockXmlRow = CAS.SmartFactory.xml.erp.StockRow;
-using CAS.SharePoint;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
 {
@@ -48,6 +48,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
               ( object obj, ProgressChangedEventArgs progres ) => { return; }
             );
         properties.List.Update();
+        properties.Cancel = true;
+        properties.Status = SPEventReceiverStatus.CancelNoError;
       }
       catch ( Exception ex )
       {
