@@ -44,8 +44,6 @@ namespace CAS.SmartFactory.xml.Dictionaries {
         
         private ConfigurationCustomsUnionItem[] customsUnionField;
         
-        private ConfigurationSettingsItem[] settingsField;
-        
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [System.Xml.Serialization.XmlArrayItemAttribute("FormatItem")]
@@ -163,18 +161,6 @@ namespace CAS.SmartFactory.xml.Dictionaries {
             }
             set {
                 this.customsUnionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("SettingsItem")]
-        public ConfigurationSettingsItem[] Settings {
-            get {
-                return this.settingsField;
-            }
-            set {
-                this.settingsField = value;
             }
         }
     }
@@ -758,41 +744,6 @@ namespace CAS.SmartFactory.xml.Dictionaries {
             }
             set {
                 this.eUPrimeMarketField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.17929")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/jti/ipr/Batch.xsd")]
-    public partial class ConfigurationSettingsItem {
-        
-        private string titleField;
-        
-        private string keyValueField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Title {
-            get {
-                return this.titleField;
-            }
-            set {
-                this.titleField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string KeyValue {
-            get {
-                return this.keyValueField;
-            }
-            set {
-                this.keyValueField = value;
             }
         }
     }

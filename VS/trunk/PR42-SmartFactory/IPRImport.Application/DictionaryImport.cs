@@ -60,9 +60,6 @@ namespace CAS.SmartFactory.Management
           progressChanged( null, new ProgressChangedEventArgs( progress++, "Waste" ) );
           edc.SubmitChanges();
           ImportData( data.Waste, edc );
-          progressChanged( null, new ProgressChangedEventArgs( progress++, "Settings" ) );
-          edc.SubmitChanges();
-          ImportData( data.Settings, edc );
           progressChanged( null, new ProgressChangedEventArgs( progress++, "Submiting Changes" ) );
           edc.SubmitChanges();
           //edc.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
@@ -233,20 +230,6 @@ namespace CAS.SmartFactory.Management
         list.Add( frmt );
       };
       edc.Format.InsertAllOnSubmit( list );
-    }
-    private static void ImportData(ConfigurationSettingsItem[] configuraion, Entities edc)
-    {
-        List<Settings> list = new List<Settings>();
-        foreach ( ConfigurationSettingsItem item in configuraion )
-        {
-            Settings stg = new Settings
-            {
-                Title = item.Title,
-                KeyValue = item.KeyValue
-            };
-            list.Add( stg );
-        };
-        edc.Settings.InsertAllOnSubmit( list ) ;
     }
     private static ProductType ParseProductType( this string entry )
     {
