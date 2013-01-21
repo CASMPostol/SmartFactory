@@ -92,8 +92,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
           }
           progressChanged( null, new ProgressChangedEventArgs( 1, "Submiting Changes - Warnings" ) );
           _edc.SubmitChanges();
-          _message = String.Format( "Import of the stock message {0} finished.", fileName );
-          ActivityLogCT.WriteEntry( _edc, m_Source, _message );
         }
       }
       catch ( WebsiteModel.InputDataValidationException _iove )
@@ -105,6 +103,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       {
         ActivityLogCT.WriteEntry( "Stock xml message import fatal error", ex.Message, url );
       }
+      ActivityLogCT.WriteEntry( m_Source, String.Format( "Import of the stock message {0} finished.", fileName ), url );
     }
     #endregion
 
