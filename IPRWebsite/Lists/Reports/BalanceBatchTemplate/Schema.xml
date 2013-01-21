@@ -68,7 +68,6 @@
           <FieldRef Name="TobaccoInCutfillerWarehouse" />
           <FieldRef Name="Balance" />
           <FieldRef Name="Balance2JSOXLibraryIndex" />
-          <FieldRef Name="DocumentNo" />
         </ViewFields>
         <Query>
           <OrderBy>
