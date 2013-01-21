@@ -154,8 +154,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       public GenericStateMachineEngine.InterfaceState InterfaceState = GenericStateMachineEngine.InterfaceState.ViewState;
       public GenericStateMachineEngine.ControlsSet SetEnabled = 0;
       public bool IsModified { get; set; }
-      [NonSerialized()]
-      internal bool InvoiceChanged = false;
       #endregion
 
       #region public
@@ -449,8 +447,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         m_ControlState.InvoiceID = e.ID;
         m_ControlState.InvoiceTitle = e.Title;
         m_ControlState.ReadOnly = e.ReadOnly;
-        m_ControlState.ClearInvoiceContent();
-        m_ControlState.InvoiceChanged = true;
       }
       catch ( Exception _ex )
       {
