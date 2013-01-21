@@ -7,6 +7,7 @@
   <xsl:decimal-format name="pl" decimal-separator=',' grouping-separator='.' />
   <xsl:variable name="FoarmatOfFloat" >###.##0,00</xsl:variable>
   <xsl:variable name="FoarmatOfdate" >dd-MM-yyyy</xsl:variable>
+  <xsl:variable name="FoarmatOfdateMonthAndYear" >MM/yyyy</xsl:variable>
   <xsl:template match="/" >
     <html>
       <head>
@@ -66,7 +67,7 @@
     </table>
     <h1>Control JSOX TAXID-2180-10 JTI Polska Sp. z o.o.</h1>
     <h1>Export and Free Circulation in the IPR warehouse - information from IPR book</h1>
-    <h2>Situation in [month] /2011 (from <xsl:value-of select="ms:format-date(cas:StartDate, $FoarmatOfdate)"/> to <xsl:value-of select="ms:format-date(cas:EndDate, $FoarmatOfdate)"/>)</h2>
+    <h2>Situation in <xsl:value-of select="ms:format-date(cas:StartDate, $FoarmatOfdateMonthAndYear)"/> (from <xsl:value-of select="ms:format-date(cas:StartDate, $FoarmatOfdate)"/> to <xsl:value-of select="ms:format-date(cas:EndDate, $FoarmatOfdate)"/>)</h2>
     <xsl:apply-templates select="cas:JSOX" />
     <table width="100%" border="0">
       <tr>
@@ -265,7 +266,7 @@
           <td>B</td>
           <td>Introducing</td>
           <td>
-            [<xsl:value-of select="ms:format-date(cas:IntroducingDateStart, $FoarmatOfdate)"/> - <xsl:value-of select="ms:format-date(cas:IntroducingDateEnd, $FoarmatOfdate)"/>]
+            [<xsl:value-of select="ms:format-date(cas:PreviousMonthDate, $FoarmatOfdate)"/> - <xsl:value-of select="ms:format-date(cas:BalanceDate, $FoarmatOfdate)"/>]
           </td>
           <td>
             <xsl:value-of select="format-number(cas:IntroducingQuantity, $FoarmatOfFloat, 'pl')"/>
