@@ -164,20 +164,6 @@
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
-        <xsd:element nillable="true" minOccurs="0" name="Settings">
-          <xsd:complexType>
-            <xsd:sequence minOccurs="0">
-              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="SettingsItem">
-                <xsd:complexType>
-                  <xsd:sequence minOccurs="0">
-                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title"/>
-                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="KeyValue"/>
-                  </xsd:sequence>
-                </xsd:complexType>
-              </xsd:element>
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
       </xsd:sequence>
     </xsd:complexType>
   </xsd:element>

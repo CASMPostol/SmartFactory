@@ -1,4 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Settings" OnQuickLaunch="TRUE" TemplateType="10057" Url="Lists/SettingsList" Description="Settings List Instance"></ListInstance>
+  <ListInstance Title="Settings" OnQuickLaunch="TRUE" TemplateType="10057" Url="Lists/SettingsList" Description="Settings List Instance">
+    <Data>
+      <Rows>
+        <Row>
+          <Field Name="Title">\b(.*)(?=\sGRADE:)</Field>
+          <Field Name="KeyValue">GoodsDescriptionTobaccoNamePattern</Field>
+        </Row>
+        <Row>
+          <Field Name="Title">(?&lt;=\WGRADE:)\W*\b(\w*)</Field>
+          <Field Name="KeyValue">GoodsDescriptionWGRADEPattern</Field>
+        </Row>
+        <Row>
+          <Field Name="Title">(?&lt;=\WSKU:)\W*\b(\d*)</Field>
+          <Field Name="KeyValue">GoodsDescriptionSKUPattern</Field>
+        </Row>
+        <Row>
+          <Field Name="Title">(?&lt;=\WBatch:)\W*\b(\d*)</Field>
+          <Field Name="KeyValue">GoodsDescriptionBatchPattern</Field>
+        </Row>
+        <Row>
+          <Field Name="Title">\b(000\d{7})</Field>
+          <Field Name="KeyValue">BatchNumberPattern</Field>
+        </Row>
+        <Row>
+          <Field Name="Title">\bP\w+\s+t\w+\s+(\d{7})</Field>
+          <Field Name="KeyValue">RequiredDocumentFinishedGoodExportConsignmentPattern</Field>
+        </Row>
+        <Row>
+          <Field Name="Title">Proces technologiczny {0:D7}</Field>
+          <Field Name="KeyValue">FinishedGoodsExportFormFileName</Field>
+        </Row>
+        <Row>
+          <Field Name="Title">Bilans {0:D7}</Field>
+          <Field Name="KeyValue">JsoxBalanceReportFormFileName</Field>
+        </Row>
+        <Row>
+          <Field Name="Title">Wniosek o zamknięcie {0:D7}</Field>
+          <Field Name="KeyValue">RequestForAccountClearenceFormFileName</Field>
+        </Row>
+      </Rows>
+    </Data>
+  </ListInstance>
 </Elements>
