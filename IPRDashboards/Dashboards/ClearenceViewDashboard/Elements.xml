@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="ClearenceDashboard">
+    <File Path="WebPartPages\WebPageTemplate_ClearenceView.aspx" Url="WebPartPages/ClearenceViewDashboard.aspx">
+      <View List="Lists/ClearenceList" BaseViewID="3" WebPartZoneID="Clearence" WebPartOrder="0" >
+        <![CDATA[
+         <webParts>
+         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+         <metaData>
+         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+         </metaData>
+         <data>
+         <properties>
+         <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_ClearenceList;</property>
+         <property name="TitleUrl" type="string">ClearenceViewDashboard.aspx</property>
+         <property name="AllowConnect" type="bool">True</property>
+         </properties>
+         </data>
+         </webPart>
+         </webParts>
+         ]]>
+      </View>
+      <View List="Lists/SADConsignmentLibrary" BaseViewID="1" WebPartZoneID="SADConsignment" WebPartOrder="0" >
+        <![CDATA[
+         <webParts>
+         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+         <metaData>
+         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+         </metaData>
+         <data>
+         <properties>
+         <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_SADConsignmentLibrary;</property>
+         <property name="TitleUrl" type="string">ClearenceViewDashboard.aspx</property>
+         <property name="AllowConnect" type="bool">True</property>
+         </properties>
+         </data>
+         </webPart>
+         </webParts>
+         ]]>
+      </View>
+    </File>
+  </Module>
+</Elements>
