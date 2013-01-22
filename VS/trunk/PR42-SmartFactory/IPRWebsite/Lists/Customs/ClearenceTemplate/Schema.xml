@@ -86,27 +86,6 @@
             <FieldRef Name="ID" Ascending="FALSE">
             </FieldRef>
           </OrderBy>
-        </Query>
-        <ParameterBindings>
-          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
-          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
-        </ParameterBindings>
-      </View>
-      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="Clearence View" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="ClearenceView.aspx">
-        <Toolbar Type="None" />
-        <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">20</RowLimit>
-        <ViewFields>
-          <FieldRef Name="LinkTitle">
-          </FieldRef>
-          <FieldRef Name="ClearenceProcedure" />
-          <FieldRef Name="Created" />
-        </ViewFields>
-        <Query>
-          <OrderBy>
-            <FieldRef Name="ID" Ascending="FALSE">
-            </FieldRef>
-          </OrderBy>
           <Where>
             <And>
               <And>
@@ -144,6 +123,27 @@
               </IsNull>
             </And>
           </Where>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="Clearence View" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="ClearenceView.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">20</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef Name="ClearenceProcedure" />
+          <FieldRef Name="Created" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
         </Query>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
