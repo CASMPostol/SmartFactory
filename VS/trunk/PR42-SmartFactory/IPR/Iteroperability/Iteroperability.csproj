@@ -438,7 +438,9 @@
     <Content Include="DocumentsFactory\Disposals\TestData\Proces technologiczny 0000688.xml" />
     <Content Include="DocumentsFactory\Disposals\TestData\Proces technologiczny 0000696.xml" />
     <Content Include="DocumentsFactory\Disposals\TobaccoFormStylesheet.xslt" />
-    <Content Include="DocumentsFactory\Disposals\WasteFormStylesheet.xslt" />
+    <Content Include="DocumentsFactory\Disposals\WasteFormStylesheet.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DocumentsFactory\JSOXReport\JSOXReportCollection.xslt" />
     <Content Include="Features\Interoperability\Interoperability.Template.xml">
       <DependentUpon>Interoperability.feature</DependentUpon>
