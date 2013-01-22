@@ -34,7 +34,7 @@
         <table border="0" width="100%">
         <tr>
           <td>
-            <p align="right" height="50px" valign="bottom">
+            <p align="right" height="100px" valign="bottom">
               .............................................
             </p>
           </td>
@@ -147,7 +147,7 @@
           <td colspan="6" align="left">
             Ilość liści tytoniowych - Suma
           </td>
-          <td align="right">
+          <td align="center">
             <xsl:value-of select="format-number(cas:IPTMaterialQuantityTotal, $FoarmatOfFloat, 'pl')"/>
           </td>
           <td align="center" bgcolor="gray"> --- </td>
@@ -165,16 +165,16 @@
           <th >Suma (kg)</th>
         </tr>
         <tr align="right" >
-          <td >
+          <td align="center">
             <xsl:value-of select="format-number(cas:DustKg, $FoarmatOfFloat, 'pl')"/>
           </td>
-          <td >
+          <td align="center">
             <xsl:value-of select="format-number(cas:WasteKg, $FoarmatOfFloat, 'pl')"/>
           </td>
-          <td >
+          <td align="center">
             <xsl:value-of select="format-number(cas:SHMentholKg, $FoarmatOfFloat, 'pl')"/>
           </td>
-          <td >
+          <td align="center">
             <xsl:value-of select="format-number(cas:IPRRestMaterialQantityTotal, $FoarmatOfFloat, 'pl')"/>
           </td>
         </tr>
@@ -191,7 +191,7 @@
           <td colspan="2" align="left" >
             Suma
           </td>
-          <td align="right">
+          <td align="center">
             <xsl:value-of select="format-number(cas:RegularMaterialQuantityTotal, $FoarmatOfFloat, 'pl')"/>
           </td>
         </tr>
@@ -271,37 +271,37 @@
       <td>
         <xsl:value-of select="cas:DocumentNoumber"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="ms:format-date(cas:Date, $FoarmatOfdate)"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:TobaccoSKU"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:TobaccoBatch"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="format-number(cas:TobaccoUnitPrice, $FoarmatOfFloatPrices, 'pl')"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="format-number(cas:TobaccoQuantity, $FoarmatOfFloat, 'pl')"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:choose>
           <xsl:when test="cas:ItemClearingType='PartialWindingUp'">L. częściowa</xsl:when>
           <xsl:when test="cas:ItemClearingType='TotalWindingUp'">L. całkowita</xsl:when>
         </xsl:choose>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="format-number(cas:TobaccoValue, $FoarmatOfFloat, 'pl')"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:Currency"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="format-number(cas:Duty, $FoarmatOfFloat, 'pl')"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="format-number(cas:VAT, $FoarmatOfFloat, 'pl')"/>
       </td>
     </tr>
@@ -314,7 +314,7 @@
       <td>
         <xsl:value-of select="cas:TobaccoBatch"/>
       </td>
-      <td align="right">
+      <td align="center">
         <xsl:value-of select="format-number(cas:TobaccoQuantity, $FoarmatOfFloat, 'pl')" />
       </td>
     </tr>
