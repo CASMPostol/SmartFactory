@@ -117,6 +117,10 @@
                     <Value Type="Text">Cartons</Value>
                   </Eq>
                 </Or>
+                <Eq>
+                  <FieldRef Name="Status" />
+                  <Value Type="Boolean">No</Value>
+                </Eq>
               </And>
               <IsNull>
                 <FieldRef Name="SADConsignmentLibraryIndex" />
