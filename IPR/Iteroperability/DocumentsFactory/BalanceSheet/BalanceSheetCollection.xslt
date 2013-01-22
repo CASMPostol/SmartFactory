@@ -282,7 +282,7 @@
           <td>C</td>
           <td>Outbound</td>
           <td>
-            [<xsl:value-of select="ms:format-date(cas:OutboundDateStart, $FoarmatOfdate)"/> - <xsl:value-of select="ms:format-date(cas:OutboundDateEnd, $FoarmatOfdate)"/>]
+            [<xsl:value-of select="ms:format-date(cas:PreviousMonthDate, $FoarmatOfdate)"/> - <xsl:value-of select="ms:format-date(cas:BalanceDate, $FoarmatOfdate)"/>]
           </td>
           <td>
             <xsl:value-of select="format-number(cas:OutboundQuantity, $FoarmatOfFloat, 'pl')"/>
