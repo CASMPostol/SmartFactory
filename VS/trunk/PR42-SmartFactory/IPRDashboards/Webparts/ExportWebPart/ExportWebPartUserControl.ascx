@@ -105,7 +105,7 @@
                                 <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Save%>" ID="m_SaveButton" />
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Delete%>" ID="m_DeleteButton" />
+                                <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Delete%>" ID="m_DeleteButton"  OnClientClick="return confirm('Czy na pewno chcesz usunąć?');" />
                             </asp:TableCell>
                             <asp:TableCell>
                                 <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Cancel%>" ID="m_CancelButton" />
