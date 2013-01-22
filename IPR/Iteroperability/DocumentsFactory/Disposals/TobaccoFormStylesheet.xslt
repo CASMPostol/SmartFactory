@@ -44,7 +44,6 @@
     <h2>
       Zestawienie zbiorcze - dopuszczenie do obrotu tytoni z systemu zawieszeń
     </h2>
-    <p>Z uwagi na zmiany planu produkcyjnego jesteśmy zmuszeni zmienić status celny niżej wymienionych tytoni.</p>
     <p>Procedura: <xsl:value-of select="cas:CustomProcedureCode"/>
   </p>
     <table border="1" width="100%" cellspacing="0" cellpadding="0">
@@ -53,8 +52,8 @@
         <th>Data</th>
         <th>SKU tytoniu</th>
         <th>Batch tytoniu</th>
-        <th>Cena</th>
-        <th>Ilość</th>
+        <th>Cena (waluta/kg)</th>
+        <th>Ilość (jg)</th>
         <th>Wartość</th>
         <th>Waluta</th>
         <th>&#160;</th>
@@ -62,10 +61,10 @@
       <xsl:apply-templates select="cas:AccountDescription" />
       <tr>
         <td colspan="5">Suma</td>
-        <td align="right">
+        <td align="center">
           <xsl:value-of select="format-number(cas:TotalQuantity, $FormatOfFloat, 'pl')"/>
         </td>
-        <td align="right">
+        <td align="center">
           <xsl:value-of select="format-number(cas:TotalValue, $FormatOfFloat, 'pl')"/>
         </td>
         <td>
@@ -78,7 +77,7 @@
     </table>
     <table width="100%" border="0">
       <tr>
-        <td align="right" height="50px" valign="bottom">
+        <td align="right" height="100px" valign="bottom">
             .............................................
         </td>
       </tr>
@@ -101,18 +100,18 @@
       <td>
         &#160;
       </td>
-      <td align="right">
+      <td align="center">
         <b>
           <xsl:value-of select="format-number(cas:TotalQuantity, $FormatOfFloat, 'pl')"/>
         </b>
       </td>
-      <td align="right">
+      <td align="center">
         <b>
           <xsl:value-of select="format-number(cas:TotalValue, $FormatOfFloat, 'pl')" />
         </b>
       </td>
-      <td>
-        &#160;
+      <td align="center">
+        <b><xsl:value-of select="cas:MaterialRecords/cas:MaterialRecord/cas:Currency"/></b>
       </td>
       <td>
         &#160;
@@ -124,28 +123,28 @@
   </xsl:template>
   <xsl:template match="cas:MaterialRecord">
     <tr>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:CustomDocumentNo"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="ms:format-date(cas:Date, $FormatOfdate)"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:MaterialSKU"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:MaterialBatch"/>
       </td>
-      <td align="right">
+      <td align="center">
         <xsl:value-of select="format-number(cas:UnitPrice, $FormatOfFloatPrices, 'pl')"/>
       </td>
-      <td align="right">
+      <td align="center">
         <xsl:value-of select="format-number(cas:Qantity, $FormatOfFloat, 'pl')"/>
       </td>
-      <td align="right">
+      <td align="center">
         <xsl:value-of select="format-number(cas:TobaccoValue, $FormatOfFloat, 'pl')"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:Currency"/>
       </td>
       <td>

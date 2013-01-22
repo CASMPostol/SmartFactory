@@ -60,7 +60,7 @@
            <b>Suma końcowa</b>
          </p>
        </td>
-       <td align="right">
+       <td align="center">
          <p>
            <b>
              <xsl:value-of select="format-number(cas:TotalQuantity, $FoarmatOfFloat, 'pl')" />
@@ -71,7 +71,7 @@
    </table>
    <table width="100%" border="0">
      <tr>
-       <td align="right" height="50px" valign="bottom">
+       <td align="right" height="100px" valign="bottom">
          .............................................
        </td>
      </tr>
@@ -96,10 +96,10 @@
      <td>
        <xsl:value-of select="cas:CustomDocumentNo"/>
      </td>
-     <td>
+     <td align="center">
        <xsl:value-of select="ms:format-date(cas:Date, $FoarmatOfdate)"/>
      </td>
-     <td align="right">
+     <td align="center">
        <xsl:value-of select="format-number(cas:Qantity, $FoarmatOfFloat, 'pl')"/>
      </td>
    </tr>

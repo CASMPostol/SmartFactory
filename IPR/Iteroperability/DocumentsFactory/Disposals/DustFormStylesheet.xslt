@@ -62,12 +62,12 @@
       </tr>
       <xsl:apply-templates select="cas:AccountDescription" />
       <tr>
-        <td colspan="3">
+        <td colspan="5">
           <p>
             <b>Suma końcowa</b>
           </p>
         </td>
-        <td align="right" colspan="3">
+        <td align="center">
           <p>
             <b>
               <xsl:value-of select="format-number(cas:TotalQuantity, $FoarmatOfFloat, 'pl')" />
@@ -78,7 +78,7 @@
     </table>
     <table width="100%" border="0">
       <tr>
-        <td align="right" height="50px" valign="bottom">
+        <td align="right" height="100px" valign="bottom">
             .............................................
         </td>
       </tr>
@@ -95,10 +95,10 @@
   <xsl:template match="cas:MaterialsOnOneAccount">
       <xsl:apply-templates select="cas:MaterialRecords" />
     <tr>
-      <td>
+      <td colspan="5">
         Suma częściowa
       </td>
-      <td colspan="5" align="right">
+      <td align="center">
         <xsl:value-of select="format-number(cas:TotalQuantity, $FoarmatOfFloat, 'pl')"/>
       </td>
     </tr>
@@ -111,19 +111,19 @@
     <td>
       <xsl:value-of select="cas:CustomDocumentNo"/>
     </td>
-    <td>
+    <td align="center">
       <xsl:value-of select="ms:format-date(cas:Date, $FoarmatOfdate)"/>
     </td>
-    <td>
+      <td align="center">
       <xsl:value-of select="cas:MaterialSKU"/>
     </td>
-    <td>
-      <xsl:value-of select="cas:MaterialBatch"/>
-    </td>
-    <td>
+      <td align="center">
+        <xsl:value-of select="cas:MaterialBatch"/>
+      </td>
+      <td align="center">
       <xsl:value-of select="cas:FinishedGoodBatch"/>
     </td>
-    <td align="right">
+    <td align="center">
       <xsl:value-of select="format-number(cas:Qantity, $FoarmatOfFloat, 'pl')"/>
     </td>
     </tr>
