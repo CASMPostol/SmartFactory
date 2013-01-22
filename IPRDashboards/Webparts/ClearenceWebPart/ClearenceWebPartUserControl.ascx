@@ -45,13 +45,13 @@
                 <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Save%>" ID="m_SaveButton" />
             </asp:TableCell>
             <asp:TableCell>
-                <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Delete%>" ID="m_DeleteButton" OnClientClick="return confirm('<%$Resources:CASSmartFactoryIPR,CAS_ASPX_DeleteToolTip%>?');" />
+                <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Delete%>" ID="m_DeleteButton" OnClientClick="return confirm('Czy na pewno chcesz usunąć?');" />
             </asp:TableCell>
             <asp:TableCell>
                 <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Cancel%>" ID="m_CancelButton" />
             </asp:TableCell>
             <asp:TableCell>
-                <asp:Button runat="server" CssClass="ButtonAlert" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Clearence%>" ID="m_ClearButton" OnClientClick="return confirm('<%$Resources:CASSmartFactoryIPR,CAS_ASPX_ClearenceToolTip%>');" />
+                <asp:Button runat="server" CssClass="ButtonAlert" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Clearence%>" ID="m_ClearButton" OnClientClick="return confirm('Na pewno? Późniejsza edycja nie będzie już możliwa.');" />
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
