@@ -114,8 +114,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     protected override void OnPropertyChanged( string propertyName )
     {
-      string _template = "SKU: {0}/Batch: {1} No: {2:D7}.";
-      Title = String.Format(_template, this.SKU, this.Batch, this.Identyfikator.Value);
+      string _template = "SKU: {0}/Batch: {1}.";
+      Title = String.Format( _template, this.SKU, this.Batch );
       base.OnPropertyChanged( propertyName );
     }
   }
