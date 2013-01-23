@@ -155,17 +155,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       #endregion
 
       #region public
-      internal void UpdateControlState( InvoiceContent _ic, bool updateBatch )
-      {
-        InvoiceContentID = _ic.Identyfikator.IntToString();
-        InvoiceQuantity = _ic.Quantity.Value;
-      }
-      internal void Clear()
-      {
-        InvoiceID = String.Empty;
-        ReadOnly = false;
-        ClearInvoiceContent();
-      }
       internal void ClearInvoiceContent()
       {
         InvoiceContentID = String.Empty;
@@ -313,16 +302,16 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           if ( _nq.HasValue && _nq.Value < 0 )
             return ActionResult.NotValidated
               ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString(), Parent.m_InvoiceQuantityLabel.Text ) );
-          Batch _batch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
+          Batch _batch = Parent.Batch;
           if ( !_batch.Available( _nq.Value ) )
           {
             string _tmplt = Resources.NeBatchQuantityIsUnavailable.GetLocalizedString();
             return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, _batch.AvailableQuantity() ) );
           }
-          InvoiceContent _ic = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
+          InvoiceContent _ic = Parent.m_ControlState.InvoiceContent;
           _ic.Quantity = _nq;
           _ic.InvoiceContentStatus = InvoiceContentStatus.OK;
-          if ( _ic.InvoiceContent2BatchIndex.Identyfikator != _batch.Identyfikator )
+          if ( _ic.InvoiceContent2BatchIndex != _batch )
           {
             _ic.InvoiceContent2BatchIndex = _batch;
             _ic.ProductType = _ic.InvoiceContent2BatchIndex.ProductType;
@@ -350,7 +339,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           if ( _nq.HasValue && _nq.Value < 0 )
             return ActionResult.NotValidated
               ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString(), Parent.m_InvoiceQuantityLabel.Text ) );
-          Batch _batch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
+          Batch _batch = Parent.m_ControlState.Batch;
           InvoiceLib _invc = Parent.m_ControlState.Invoice;
           if ( !_batch.Available( _nq.Value ) )
           {
@@ -527,9 +516,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     private void SetEnabled( GenericStateMachineEngine.ControlsSet _set )
     {
       GenericStateMachineEngine.ControlsSet _allowed = m_ControlState.ReadOnly ? 0 : (GenericStateMachineEngine.ControlsSet)0xff;
-      if ( m_ControlState.InvoiceID.IsNullOrEmpty() )
+      if ( m_ControlState.Invoice == null )
         _allowed ^= GenericStateMachineEngine.ControlsSet.NewOn;
-      if ( m_ControlState.InvoiceContentID.IsNullOrEmpty() )
+      if ( m_ControlState.InvoiceContent == null )
         _allowed ^= GenericStateMachineEngine.ControlsSet.EditOn | GenericStateMachineEngine.ControlsSet.DeleteOn;
       _set &= _allowed;
       //Buttons
@@ -541,7 +530,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       //Lodcal controls
       m_EditBatchCheckBox.Enabled = m_CancelButton.Enabled;
       m_InvoiceQuantityTextBox.Enabled = m_CancelButton.Enabled;
-      m_ExportButton.Enabled = m_NewButton.Enabled && !m_ControlState.InvoiceID.IsNullOrEmpty() && !m_ControlState.ReadOnly;
+      m_ExportButton.Enabled = m_NewButton.Enabled && ( m_ControlState.Invoice != null ) && !m_ControlState.ReadOnly;
     }
     private GenericStateMachineEngine.ActionResult ClearThroughCustom()
     {
@@ -592,16 +581,20 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       {
         m_InvoiceContentTextBox.Text = m_ControlState.InvoiceContent.Title;
         m_InvoiceQuantityTextBox.Text = m_ControlState.InvoiceQuantity.ToString( CultureInfo.CurrentCulture );
-        if ( m_EditBatchCheckBox.Checked )
-          m_BatchTextBox.Text = m_ControlState.Batch == null ? String.Empty.NotAvailable().GetLocalizedString() : m_ControlState.Batch.Title;
-        else
-          m_BatchTextBox.Text = m_ControlState.InvoiceContent.InvoiceContent2BatchIndex == null ? String.Empty.NotAvailable().GetLocalizedString() : m_ControlState.InvoiceContent.InvoiceContent2BatchIndex.Title;
+        m_BatchTextBox.Text = Batch == null ? String.Empty.NotAvailable().GetLocalizedString() : m_ControlState.Batch.Title;
       }
       else
       {
         m_InvoiceContentTextBox.Text = String.Empty.NotAvailable().GetLocalizedString();
         m_InvoiceQuantityTextBox.Text = String.Empty.NotAvailable().GetLocalizedString();
         m_BatchTextBox.Text = String.Empty.NotAvailable().GetLocalizedString();
+      }
+    }
+    private Batch Batch
+    {
+      get
+      {
+        return m_EditBatchCheckBox.Checked ? m_ControlState.Batch : m_ControlState.InvoiceContent.InvoiceContent2BatchIndex;
       }
     }
     #endregion
