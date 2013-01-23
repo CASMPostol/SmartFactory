@@ -66,8 +66,6 @@
         <ViewFields>
           <FieldRef Name="LinkTitle"></FieldRef>
           <FieldRef Name="Body"></FieldRef>
-          <FieldRef Name="ActivityPriority" />
-          <FieldRef Name="ActivitySource" />
           <FieldRef Name="Modified"></FieldRef>
         </ViewFields>
         <Query>
