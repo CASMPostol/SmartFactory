@@ -21,7 +21,7 @@
          </webParts>
          ]]>
       </View>
-      <View List="Lists/SADConsignmentLibrary" BaseViewID="1" WebPartZoneID="SADConsignment" WebPartOrder="0" >
+      <View List="Lists/SADConsignmentLibrary" BaseViewID="10" WebPartZoneID="SADConsignment" WebPartOrder="0" >
         <![CDATA[
          <webParts>
          <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
