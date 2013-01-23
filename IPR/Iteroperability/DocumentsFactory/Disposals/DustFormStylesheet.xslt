@@ -78,7 +78,8 @@
     </table>
     <table width="100%" border="0">
       <tr>
-        <td align="right" height="100px" valign="bottom">
+        <td align="right" valign="bottom">
+          <br/><br/><br/>
             .............................................
         </td>
       </tr>
