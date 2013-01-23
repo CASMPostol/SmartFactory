@@ -33,11 +33,9 @@
         <xsl:apply-templates select="cas:CigaretteExportFormCollection"> </xsl:apply-templates>
         <table border="0" width="100%">
         <tr>
-          <td>
             <td align="right" valign="bottom">
               <br/><br/><br/>
               .............................................
-            </p>
           </td>
         </tr>
         <tr>
