@@ -57,6 +57,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       _ret.Portion = _portion;
       _ret.CustomsProcedure = Entities.ToString( procedure );
       _ret.FinishedGoodBatch = batch.Batch0;
+      //TODO Must be calculated depending on commodity or uint.
       _ret.FinishedGoodQantity = invoice.Quantity.GetValueOrDefault( 0 );
       _ret.FinishedGoodUnit = invoice.Units.GetLocalizedString();
       _ret.FinishedGoodSKU = batch.SKUIndex.SKU;
