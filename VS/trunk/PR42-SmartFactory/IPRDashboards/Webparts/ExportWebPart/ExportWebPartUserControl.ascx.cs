@@ -157,12 +157,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       #endregion
 
       #region public
-      internal void UpdateControlState( InvoiceContent _ic )
+      internal void UpdateControlState( InvoiceContent _ic, bool updateBatch )
       {
         InvoiceContentID = _ic.Identyfikator.IntToString();
         InvoiceContentTitle = _ic.Title;
-        BatchID = _ic.InvoiceContent2BatchIndex != null ? _ic.InvoiceContent2BatchIndex.Identyfikator.IntToString() : String.Empty;
-        BatchTitle = _ic.InvoiceContent2BatchIndex != null ? _ic.InvoiceContent2BatchIndex.Title : "N/A";
+        if ( updateBatch )
+        {
+          BatchID = _ic.InvoiceContent2BatchIndex != null ? _ic.InvoiceContent2BatchIndex.Identyfikator.IntToString() : String.Empty;
+          BatchTitle = _ic.InvoiceContent2BatchIndex != null ? _ic.InvoiceContent2BatchIndex.Title : "N/A";
+        }
         InvoiceQuantity = _ic.Quantity.Value;
       }
       internal void Clear()
@@ -435,6 +438,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     #region SetInterconnectionData
     private void SetInterconnectionData( BatchInterconnectionData e )
     {
+      if ( !m_EditBatchCheckBox.Checked )
+        return;
       m_ControlState.IsModified = true;
       m_ControlState.BatchID = e.ID;
       m_ControlState.BatchTitle = e.Title;
@@ -464,7 +469,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           m_ControlState.ClearInvoiceContent();
           return;
         }
-        m_ControlState.UpdateControlState( _ic );
+        m_ControlState.UpdateControlState( _ic, m_EditBatchCheckBox.Checked );
       }
       catch ( Exception _ex )
       {
@@ -526,7 +531,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         if ( _checkResult.IsNullOrEmpty() )
           continue;
         Controls.Add( ControlExtensions.CreateMessage( _checkResult ) );
-        m_ControlState.UpdateControlState( item );
+        m_ControlState.UpdateControlState( item, true );
         string _frmt = "CannotProceedWithExportBecauseTheInvoiceItemContainsErrors".GetLocalizedString();
         return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Title ) );
       }
