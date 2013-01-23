@@ -121,48 +121,54 @@
     <value>Customs procedure must  be selected</value>
   </data>
 	<data name="ThisClearanceCannotBeEditedItIsNotCompensationGoodClearance" xml:space="preserve">
-    <value>This clearance cannot be edited - it is not compensation good clearance.</value>
+    <value>This clearance cannot be edited - it is not compensation good clearance</value>
   </data>
 	<data name="InternalErrorWrongCustomsProcedureIsSelected" xml:space="preserve">
 		<value>Internal error - wrong Customs procedure is selected</value>
 	</data>
 	<data name="SplittingEntryIsNotSupportedWhenFiltering" xml:space="preserve">
-		<value>Splitting entry is not supported when filtering. Use \"Period \" filter instead.</value>
+		<value>Splitting entry is not supported when filtering. Use \"Period \" filter instead</value>
 	</data>
 	<data name="SplittingTheItemForTheSelectedGoodsGroupIsNotAllowed" xml:space="preserve">
-		<value>Splitting the item for the selected goods group is not allowed.</value>
+		<value>Splitting the item for the selected goods group is not allowed</value>
 	</data>
 	<data name="RevertFGTofreeCirculationIsNotImplementedYet" xml:space="preserve">
 		<value>Revert FG to free circulation is not implemented yet</value>
 	</data>
 	<data name="CannotProceedWithExportBecauseTheInvoiceItemContainsErrors" xml:space="preserve">
-		<value>Cannot proceed with export because the invoice item contains errors {0}.</value>
+		<value>Cannot proceed with export because the invoice item contains errors {0}</value>
 	</data>
 	<data name="QuantityFormat" xml:space="preserve">
 		<value>Quantity {0:F2}</value>
 	</data>
 	<data name="XMLResources_RequestForAccountClearence" xml:space="preserve">
-		<value>Wniosek o zamknięcie {0:D7}</value>
+		<value>Wniosek o zamknięcie {0:D7} </value>
 	</data>
 	<data name="NegativeValueNotAllowedMessage" xml:space="preserve">
 		<value>Negative value of {0} is not allowed</value>
 	</data>
 	<data name="NeBatchQuantityIsUnavailableMessage" xml:space="preserve">
-		<value>The requested quantity is unavailable on the selected new batch. There is only {0} on the stock.</value>
+		<value>The requested quantity is unavailable on the selected batch. There is only {0} on the stock</value>
 	</data>
 	<data name="QuantityIsUnavailableMessage" xml:space="preserve">
-		<value>The requested quantity is unavailable. There is only {0} on the stock.</value>
+		<value>The requested quantity is unavailable. There is only {0} on the stock</value>
 	</data>
 	<data name="NotApplicable" xml:space="preserve">
-		<value> Not Available </value>
+		<value> Not Available</value>
 	</data>
 	<data name="Units" xml:space="preserve">
 		<value>units</value>
 	</data>
 	<data name="PRELIMINARY" xml:space="preserve">
-		<value>Wstępny - niezgodne magazyny.</value>
+		<value>Wstępny - niezgodne stany magazynowe</value>
 	</data>
 	<data name="ClearanceTitleFormat" xml:space="preserve">
 		<value>"No: {4:D5} {0}/{1} Ref: {2} quantity: {3:F2}"</value>
+	</data>
+	<data name="KU" xml:space="preserve">
+		<value>KU</value>
+	</data>
+	<data name="kg" xml:space="preserve">
+		<value>kg</value>
 	</data>
 </root>

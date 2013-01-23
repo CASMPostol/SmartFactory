@@ -166,7 +166,7 @@
     <value>Blend purpose</value>
   </data>
 	<data name="CAS_Blocked" xml:space="preserve">
-    <value>Blocked</value>
+    <value>Blocked [KU/kg]</value>
   </data>
 	<data name="CAS_Brand" xml:space="preserve">
     <value>Brand</value>
@@ -340,7 +340,7 @@
     <value>Gross mass [kg]</value>
   </data>
 	<data name="CAS_InQualityInsp" xml:space="preserve">
-    <value>In quality insp.</value>
+    <value>In quality insp. [KU/kg]</value>
   </data>
 	<data name="CAS_IntroDateEnd" xml:space="preserve">
     <value>Introducing date end</value>
@@ -484,7 +484,7 @@
     <value>Customs procedure</value>
   </data>
 	<data name="CAS_ProcedureCode" xml:space="preserve">
-    <value>Procedure code</value>
+    <value>Procedure</value>
   </data>
 	<data name="CAS_ProdRateMax" xml:space="preserve">
     <value>Productivity rate (max) [%]</value>
@@ -517,7 +517,7 @@
     <value>Remaining quantity [kg]</value>
   </data>
 	<data name="CAS_RestrictedUSe" xml:space="preserve">
-    <value>Restricted use</value>
+    <value>Restricted use [KU/kg]</value>
   </data>
 	<data name="CAS_SADConsignmentLibLink" xml:space="preserve">
     <value>SAD Consignment Library ID</value>
@@ -655,7 +655,7 @@
     <value>Units</value>
   </data>
 	<data name="CAS_Unrestricted" xml:space="preserve">
-    <value>Unrestricted</value>
+    <value>Unrestricted [KU/kg]</value>
   </data>
 	<data name="CAS_UsageMax" xml:space="preserve">
     <value>Usage (max) [kg]</value>
