@@ -127,7 +127,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     protected override void OnPreRender( EventArgs e )
     {
       SetEnabled( m_ControlState.SetEnabled );
-      Show();
+      Show( m_ControlState.Invoice, m_ControlState.InvoiceContent, Batch );
       base.OnPreRender( e );
     }
     /// <summary>
@@ -149,7 +149,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       public bool ReadOnly;
       public string InvoiceContentID = String.Empty;
       public string BatchID = String.Empty;
-      public double InvoiceQuantity = 0;
       public GenericStateMachineEngine.InterfaceState InterfaceState = GenericStateMachineEngine.InterfaceState.ViewState;
       public GenericStateMachineEngine.ControlsSet SetEnabled = 0;
       #endregion
@@ -159,7 +158,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       {
         InvoiceContentID = String.Empty;
         BatchID = String.Empty;
-        InvoiceQuantity = 0;
       }
       internal GetEntitiesDelegate EntityHolder { set { _edc = value; } }
       internal InvoiceContent InvoiceContent
@@ -168,8 +166,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         {
           if ( p_InvoiceContent == null )
             p_InvoiceContent = Element.FindAtIndex<InvoiceContent>( _edc().InvoiceContent, InvoiceContentID );
-          if ( p_InvoiceContent.InvoiceIndex != Invoice )
-            p_InvoiceContent = Invoice.InvoiceContent.FirstOrDefault();
+          if ( ( p_InvoiceContent != null ) && ( p_InvoiceContent.InvoiceIndex != Invoice ) )
+            p_InvoiceContent = Invoice == null ? null : Invoice.InvoiceContent.FirstOrDefault();
           return p_InvoiceContent;
         }
         set
@@ -206,6 +204,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           BatchID = value == null ? String.Empty : value.Identyfikator.ToString();
         }
       }
+      internal WebsiteModel.Linq.Batch InvoiceBatch
+      {
+        get
+        {
+          return InvoiceContent == null ? null : InvoiceContent.InvoiceContent2BatchIndex;
+        }
+      }
       internal ControlState( ControlState _old, GetEntitiesDelegate edc )
       {
         _edc = edc;
@@ -226,6 +231,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       private Batch p_Batch = null;
       #endregion
 
+
     } //ControlState
     private class LocalStateMachineEngine: WEB.WebpartStateMachineEngine
     {
@@ -243,7 +249,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       internal void InitMahine()
       {
-        Parent.m_ControlState.InterfaceState = InterfaceState.ViewState;
+        Parent.InitControlState();
         EnterState();
       }
       #endregion
@@ -300,8 +306,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           if ( _errors.Count > 0 )
             return ActionResult.NotValidated( _errors[ 0 ] );
           if ( _nq.HasValue && _nq.Value < 0 )
-            return ActionResult.NotValidated
-              ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString(), Parent.m_InvoiceQuantityLabel.Text ) );
+            return ActionResult.NotValidated( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString(), Parent.m_InvoiceQuantityLabel.Text ) );
           Batch _batch = Parent.Batch;
           if ( !_batch.Available( _nq.Value ) )
           {
@@ -319,7 +324,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
             _ic.Quantity = _nq;
             _ic.CreateTitle();
           }
-          Parent.m_ControlState.InvoiceQuantity = _ic.Quantity.Value;
           Parent.m_DataContextManagement.DataContext.SubmitChanges();
         }
         catch ( Exception ex )
@@ -357,7 +361,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
             Title = _batch.SKUIndex.Title,
             Units = _batch.ProductType.Value.Units()
           };
-          Parent.m_ControlState.InvoiceQuantity = _nq.Value;
           Parent.m_DataContextManagement.DataContext.InvoiceContent.InsertOnSubmit( _nic );
           Parent.m_DataContextManagement.DataContext.SubmitChanges();
           _nic.CreateTitle();
@@ -505,14 +508,14 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     #endregion
 
     #region private
+    private delegate Entities GetEntitiesDelegate();
+    private DataContextManagement<Entities> m_DataContextManagement = null;
     private LocalStateMachineEngine m_StateMachineEngine = null;
-    delegate Entities GetEntitiesDelegate();
+    private ControlState m_ControlState = null;
     private Entities GetEntities()
     {
       return m_DataContextManagement.DataContext;
     }
-    private ControlState m_ControlState = null;
-    private DataContextManagement<Entities> m_DataContextManagement = null;
     private void SetEnabled( GenericStateMachineEngine.ControlsSet _set )
     {
       GenericStateMachineEngine.ControlsSet _allowed = m_ControlState.ReadOnly ? 0 : (GenericStateMachineEngine.ControlsSet)0xff;
@@ -574,28 +577,32 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       m_DataContextManagement.DataContext.SubmitChanges();
       return GenericStateMachineEngine.ActionResult.Success;
     }
-    private void Show()
+    private void Show( InvoiceLib invoice, InvoiceContent invoiceContent, Batch batch )
     {
-      m_InvoiceTextBox.Text = m_ControlState.Invoice == null ? String.Empty.NotAvailable().GetLocalizedString() : m_ControlState.Invoice.Title;
-      if ( m_ControlState.InvoiceContent != null )
+      m_InvoiceTextBox.Text = invoice == null ? String.Empty.NotAvailable() : invoice.Title;
+      if ( invoiceContent != null )
       {
-        m_InvoiceContentTextBox.Text = m_ControlState.InvoiceContent.Title;
-        m_InvoiceQuantityTextBox.Text = m_ControlState.InvoiceQuantity.ToString( CultureInfo.CurrentCulture );
-        m_BatchTextBox.Text = Batch == null ? String.Empty.NotAvailable().GetLocalizedString() : m_ControlState.Batch.Title;
+        m_InvoiceContentTextBox.Text = invoiceContent.Title;
+        m_InvoiceQuantityTextBox.Text = m_ControlState.InvoiceContent.Quantity.Value.ToString( CultureInfo.CurrentCulture );
       }
       else
       {
-        m_InvoiceContentTextBox.Text = String.Empty.NotAvailable().GetLocalizedString();
-        m_InvoiceQuantityTextBox.Text = String.Empty.NotAvailable().GetLocalizedString();
-        m_BatchTextBox.Text = String.Empty.NotAvailable().GetLocalizedString();
+        m_InvoiceContentTextBox.Text = String.Empty.NotAvailable();
+        m_InvoiceQuantityTextBox.Text = String.Empty;
       }
+      m_BatchTextBox.Text = batch == null ? String.Empty.NotAvailable() : batch.Title;
     }
     private Batch Batch
     {
       get
       {
-        return m_EditBatchCheckBox.Checked ? m_ControlState.Batch : m_ControlState.InvoiceContent.InvoiceContent2BatchIndex;
+        return m_EditBatchCheckBox.Checked ? m_ControlState.Batch : m_ControlState.InvoiceBatch;
       }
+    }
+    private void InitControlState()
+    {
+      m_ControlState = new ControlState( null, GetEntities );
+      m_ControlState.InterfaceState = GenericStateMachineEngine.InterfaceState.ViewState;
     }
     #endregion
 
