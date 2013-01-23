@@ -123,7 +123,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     {
       SADRequiredDocuments _rd = ( from _dx in sadRequiredDocumentsEntitySet
                                    let CustomsProcedureCode = _dx.Code.ToUpper()
-                                   where CustomsProcedureCode.Contains( "1PG1" ) || CustomsProcedureCode.Contains( "C601" )
+                                   where CustomsProcedureCode.Contains( GlobalDefinitions.CustomsProcedureCodeC600 ) || CustomsProcedureCode.Contains( GlobalDefinitions.CustomsProcedureCodeC601 )
                                    select _dx
                                   ).FirstOrDefault();
       if ( _rd == null )
