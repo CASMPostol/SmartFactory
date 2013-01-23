@@ -53,14 +53,14 @@
         <th>SKU tytoniu</th>
         <th>Batch tytoniu</th>
         <th>Cena (waluta/kg)</th>
-        <th>Ilość (jg)</th>
+        <th>Ilość (kg)</th>
         <th>Wartość</th>
         <th>Waluta</th>
         <th>&#160;</th>
       </tr>
       <xsl:apply-templates select="cas:AccountDescription" />
       <tr>
-        <td colspan="5">Suma</td>
+        <td colspan="5">Suma końcowa</td>
         <td align="center">
           <xsl:value-of select="format-number(cas:TotalQuantity, $FormatOfFloat, 'pl')"/>
         </td>
@@ -77,7 +77,8 @@
     </table>
     <table width="100%" border="0">
       <tr>
-        <td align="right" height="100px" valign="bottom">
+        <td align="right" valign="bottom">
+          <br/><br/><br/>
             .............................................
         </td>
       </tr>
@@ -124,7 +125,7 @@
   </xsl:template>
   <xsl:template match="cas:MaterialRecord">
     <tr>
-      <td align="center">
+      <td>
         <xsl:value-of select="cas:CustomDocumentNo"/>
       </td>
       <td align="center">
