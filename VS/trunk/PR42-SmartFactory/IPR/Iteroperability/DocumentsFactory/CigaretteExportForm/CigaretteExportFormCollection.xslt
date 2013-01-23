@@ -252,7 +252,7 @@
   <xsl:template match="cas:ArrayOfTotals" >
     <tr align="right" >
       <td align="right">
-        <xsl:value-of select="format-number(cas:IPRMaterialValueTotal, $FoarmatOfFloatPrices, 'pl')"/>
+        <xsl:value-of select="format-number(cas:IPRMaterialValueTotal, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td align="right">
         <xsl:value-of select="cas:Currency"/>
