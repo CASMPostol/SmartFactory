@@ -113,10 +113,7 @@
         <tr>
           <td>Ilość: </td>
           <td align="right" colspan="2">
-            <xsl:value-of select="format-number(cas:FinishedGoodQantity, $FoarmatOfFloat, 'pl')"/>
-          </td>
-          <td align="left" colspan="2">
-            <xsl:value-of select="cas:FinishedGoodUnit"/>
+            <xsl:value-of select="format-number((cas:FinishedGoodQantity)*1000, $FoarmatOfFloat, 'pl')"/>&#160;sztuk
           </td>
         </tr>
       </table>
