@@ -250,13 +250,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         default:
           break;
       }
-      this.SADDocumentNo = sadGood.SADDocumentIndex.DocumentNumber;
       this.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
+      this.SADDocumentNo = sadGood.SADDocumentIndex.DocumentNumber;
       this.CustomsProcedure = sadGood.Procedure;
       if ( this.JSOXCustomsSummaryIndex == null )
         return;
       this.JSOXCustomsSummaryIndex.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
       this.JSOXCustomsSummaryIndex.ExportOrFreeCirculationSAD = sadGood.SADDocumentIndex.DocumentNumber;
+      this.JSOXCustomsSummaryIndex.CustomsProcedure = sadGood.Procedure;
       this.JSOXCustomsSummaryIndex.CompensationGood = this.Disposal2PCNID.CompensationGood;
       this.JSOXCustomsSummaryIndex.RemainingQuantity = this.RemainingQuantity;
     }

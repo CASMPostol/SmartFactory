@@ -441,7 +441,6 @@
     <Content Include="DocumentsFactory\Disposals\WasteFormStylesheet.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentsFactory\JSOXReport\JSOXReportCollection.xslt" />
     <Content Include="Features\Interoperability\Interoperability.Template.xml">
       <DependentUpon>Interoperability.feature</DependentUpon>
     </Content>
