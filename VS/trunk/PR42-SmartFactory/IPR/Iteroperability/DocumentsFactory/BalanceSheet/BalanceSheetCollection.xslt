@@ -30,7 +30,11 @@
     <table width="100%" border="0">
           <tr>
             <td align="left">
-              <b>Dokument: <xsl:value-of select="cas:DocumentNo"/></b>
+              <font size="+1">
+                Dokument: <b>
+                  <xsl:value-of select="cas:DocumentNo"/>
+                </b>
+              </font>
             </td>
             <td align="right">
                 Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FoarmatOfdate)"/>
@@ -359,7 +363,7 @@
     <xsl:apply-templates select="cas:JSOXCustomsSummaryArray" />
     <tr>
       <td colspan="2">
-        Subtotal
+        Subtotal - <xsl:value-of select="cas:JSOXCustomsSummaryArray/cas:JSOXCustomsSummary/cas:ExportOrFreeCirculationSAD"/>
       </td>
       <td>
         &#160;
@@ -392,16 +396,16 @@
       <td>
         <xsl:value-of select="cas:EntryDocumentNo"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="ms:format-date(cas:SADDate, $FoarmatOfdate)"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:InvoiceNo"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:CompensationGood"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:Procedure"/>
       </td>
       <td align="center">
