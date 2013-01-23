@@ -95,7 +95,8 @@
     <xsl:apply-templates select="cas:MaterialRecords" />
     <tr>
       <td colspan="4">
-        <b>Suma częściowa</b>
+        <b>Suma częściowa - <xsl:value-of select="cas:MaterialRecords/cas:MaterialRecord/cas:CustomDocumentNo"/>
+      </b>
       </td>
       <td>
         &#160;

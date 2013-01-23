@@ -96,7 +96,7 @@
     <xsl:apply-templates select="cas:MaterialRecords" />
     <tr>
       <td colspan="5">
-        Suma częściowa
+        Suma częściowa - <xsl:value-of select="cas:MaterialRecords/cas:MaterialRecord/cas:CustomDocumentNo"/>
       </td>
       <td align="center">
         <xsl:value-of select="format-number(cas:TotalQuantity, $FoarmatOfFloat, 'pl')"/>
