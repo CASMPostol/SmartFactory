@@ -45,6 +45,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         bool _validated = _current.UpdateBalanceReport( _edc );
         string _documentName = Settings.RequestForBalanceSheetDocumentName( _edc, _current.Identyfikator.Value );
         _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent( _current, _documentName, !_validated );
+        _current.JSOXLibraryReadOnly = true;
         _edc.SubmitChanges();
       }
       _content.UpdateDocument( listItem.File );
