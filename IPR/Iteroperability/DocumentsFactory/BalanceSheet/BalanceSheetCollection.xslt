@@ -30,7 +30,7 @@
     <table width="100%" border="0">
           <tr>
             <td align="left">
-              <font size="+1">
+              <font size="+0,25">
                 Dokument: <b>
                   <xsl:value-of select="cas:DocumentNo"/>
                 </b>
@@ -62,7 +62,11 @@
     <table width="100%" border="0">
       <tr>
         <td align="left">
-          <b>Dokument: <xsl:value-of select="cas:DocumentNo"/></b>
+          <font size="+0,25">
+            Dokument: <b>
+              <xsl:value-of select="cas:DocumentNo"/>
+            </b>
+          </font>
         </td>
         <td align="right">
           Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FoarmatOfdate)"/>
