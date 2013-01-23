@@ -150,9 +150,7 @@
       </tr>
       <tr>
         <td colspan="5">
-          <b>
-            <xsl:value-of select="cas:EntryDocumentNo"/>
-          </b>
+          <b><xsl:value-of select="cas:EntryDocumentNo"/></b>
         </td>
         <td colspan="5">
           <xsl:value-of select="ms:format-date(cas:CustomsDebtDate, $FoarmatOfdate)"/>
