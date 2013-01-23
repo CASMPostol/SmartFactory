@@ -60,7 +60,7 @@
       </tr>
       <tr>
         <td>
-          <xsl:value-of select="cas:EntryDocumentNo"/> z dnia <xsl:value-of select="ms:format-date(cas:CustomsDebtDate, $FoarmatOfdate)"/>
+          <b><xsl:value-of select="cas:EntryDocumentNo"/></b> z dnia <xsl:value-of select="ms:format-date(cas:CustomsDebtDate, $FoarmatOfdate)"/>
         </td>
         <td>
           <xsl:value-of select="cas:SKU"/>
@@ -150,7 +150,9 @@
       </tr>
       <tr>
         <td colspan="5">
-          <xsl:value-of select="cas:EntryDocumentNo"/>
+          <b>
+            <xsl:value-of select="cas:EntryDocumentNo"/>
+          </b>
         </td>
         <td colspan="5">
           <xsl:value-of select="ms:format-date(cas:CustomsDebtDate, $FoarmatOfdate)"/>
