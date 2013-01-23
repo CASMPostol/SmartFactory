@@ -1,166 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="CigaretteExportFormCollection.xslt"?>
 <CigaretteExportFormCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd">
-  <DocumentNo>CigaretteExportFormCollection</DocumentNo>
-  <DocumentDate>2012-09-20</DocumentDate>
-  <InvoiceNo>INV987654</InvoiceNo>
-  <NumberOfDocuments>2</NumberOfDocuments>
+  <DocumentNo>Proces technologiczny 0000003</DocumentNo>
+  <DocumentDate>2013-01-18</DocumentDate>
+  <InvoiceNo>90093276</InvoiceNo>
+  <NumberOfDocuments>1</NumberOfDocuments>
   <CigaretteExportForms>
     <CigaretteExportForm>
-      <FinishedGoodSKU>12419574 </FinishedGoodSKU>
-      <FinishedGoodBatch>99999999</FinishedGoodBatch>
-      <FinishedGoodQantity>500</FinishedGoodQantity>
-      <FinishedGoodUnit>kU</FinishedGoodUnit>
-      <FamilyDescription>Salem</FamilyDescription>
-      <BrandDescription>Slims Menthol </BrandDescription>
-      <MaterialTotal>2498.21</MaterialTotal>
-      <FinishedGoodSKUDescription>SKU SA MXSR  99 CPB 20  5000 05  N PL1</FinishedGoodSKUDescription>
-      <TobaccoTotal>1254.66</TobaccoTotal>
-      <IPTMaterialQuantityTotal>18.24</IPTMaterialQuantityTotal>
+      <FinishedGoodSKU>12650149</FinishedGoodSKU>
+      <FinishedGoodBatch>0007593233</FinishedGoodBatch>
+      <FinishedGoodQantity>200</FinishedGoodQantity>
+      <FinishedGoodUnit>KU</FinishedGoodUnit>
+      <FamilyDescription>Ronson</FamilyDescription>
+      <BrandDescription>. .</BrandDescription>
+      <MaterialTotal>96.74</MaterialTotal>
+      <FinishedGoodSKUDescription>SKU RS FLXX  84 CPB 20 10000 07  N GN1</FinishedGoodSKUDescription>
+      <TobaccoTotal>151.8</TobaccoTotal>
+      <IPTMaterialQuantityTotal>96.74</IPTMaterialQuantityTotal>
       <IPTDutyVatTotals>
         <AmountOfMoney>
           <ArrayOfTotals>
-            <IPRMaterialValueTotal>34.567</IPRMaterialValueTotal>
-            <IPRMaterialDutyTotal>345.6789</IPRMaterialDutyTotal>
-            <IPRMaterialVATTotal>78.901</IPRMaterialVATTotal>
+            <IPRMaterialValueTotal>1648.19</IPRMaterialValueTotal>
+            <IPRMaterialDutyTotal>89.97</IPRMaterialDutyTotal>
+            <IPRMaterialVATTotal>138.82</IPRMaterialVATTotal>
             <Currency>PLN</Currency>
-          </ArrayOfTotals>
-          <ArrayOfTotals>
-            <IPRMaterialValueTotal>34.56789012</IPRMaterialValueTotal>
-            <IPRMaterialDutyTotal>345.67891234</IPRMaterialDutyTotal>
-            <IPRMaterialVATTotal>78.9012345</IPRMaterialVATTotal>
-            <Currency>USD</Currency>
           </ArrayOfTotals>
         </AmountOfMoney>
       </IPTDutyVatTotals>
-      <RegularMaterialQuantityTotal>1234.57</RegularMaterialQuantityTotal>
-      <CTFUsageMin>985</CTFUsageMin>
-      <CTFUsageMax>995</CTFUsageMax>
+      <RegularMaterialQuantityTotal>50.6</RegularMaterialQuantityTotal>
+      <CTFUsageMin>98.5</CTFUsageMin>
+      <CTFUsageMax>99.5</CTFUsageMax>
       <CTFUsagePerUnitMin>0.985</CTFUsagePerUnitMin>
       <CTFUsagePerUnitMax>0.995</CTFUsagePerUnitMax>
-      <CTFUsagePer1MFinishedGoodsMin>0.9876</CTFUsagePer1MFinishedGoodsMin>
-      <CTFUsagePer1MFinishedGoodsMax>1.23</CTFUsagePer1MFinishedGoodsMax>
-      <WasteCoefficient>1.012345678</WasteCoefficient>
-      <CustomsProcedure>3951</CustomsProcedure>
-      <DocumentNo>CigaretteExportFormCollection-01</DocumentNo>
-      <ProductFormat>Format title</ProductFormat>
-      <DustKg>0.55</DustKg>
-      <SHMentholKg>0.65</SHMentholKg>
-      <WasteKg>0.65</WasteKg>
-      <Portion>0.5</Portion>
+      <CTFUsagePer1MFinishedGoodsMin>635</CTFUsagePer1MFinishedGoodsMin>
+      <CTFUsagePer1MFinishedGoodsMax>710</CTFUsagePer1MFinishedGoodsMax>
+      <WasteCoefficient>0.0441</WasteCoefficient>
+      <CustomsProcedure>3151</CustomsProcedure>
+      <DocumentNo>Proces technologiczny 0000003-01</DocumentNo>
+      <ProductFormat>King Size 84/21</ProductFormat>
+      <DustKg>4.31</DustKg>
+      <SHMentholKg>0</SHMentholKg>
+      <WasteKg>0.15</WasteKg>
+      <Portion>0.7407407407407407</Portion>
       <Product>Cigarette</Product>
       <Ingredients>
+        <RegularIngredient>
+          <TobaccoSKU>12838225</TobaccoSKU>
+          <TobaccoBatch>0003626744</TobaccoBatch>
+          <TobaccoQuantity>50.6</TobaccoQuantity>
+        </RegularIngredient>
         <IPRIngredient>
-          <TobaccoSKU>IPR Tobacco SKU</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch</TobaccoBatch>
-          <TobaccoQuantity>9.12</TobaccoQuantity>
-          <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
-          <Date>2012-09-20T00:00:00+02:00</Date>
-          <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
-          <TobaccoValue>34.567</TobaccoValue>
+          <TobaccoSKU>12838225</TobaccoSKU>
+          <TobaccoBatch>0003626744</TobaccoBatch>
+          <TobaccoQuantity>96.74</TobaccoQuantity>
+          <DocumentNoumber>OGL/362010/00/000431/2013</DocumentNoumber>
+          <Date>2013-01-10T10:26:13</Date>
+          <TobaccoUnitPrice>17.0373</TobaccoUnitPrice>
+          <TobaccoValue>1648.19</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
           <Currency>PLN</Currency>
-          <Duty>345.6789</Duty>
-          <VAT>78.901</VAT>
+          <Duty>89.97</Duty>
+          <VAT>138.82</VAT>
         </IPRIngredient>
-        <IPRIngredient>
-          <TobaccoSKU>IPR Tobacco SKU</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch</TobaccoBatch>
-          <TobaccoQuantity>9.12345678</TobaccoQuantity>
-          <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
-          <Date>2012-09-20T00:00:00+02:00</Date>
-          <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
-          <TobaccoValue>34.56789012</TobaccoValue>
-          <ItemClearingType>PartialWindingUp</ItemClearingType>
-          <Currency>USD</Currency>
-          <Duty>345.67891234</Duty>
-          <VAT>78.9012345</VAT>
-        </IPRIngredient>
-        <RegularIngredient>
-          <TobaccoSKU>Reg SKU 12345</TobaccoSKU>
-          <TobaccoBatch>Reg Batch 54321</TobaccoBatch>
-          <TobaccoQuantity>1234.56789</TobaccoQuantity>
-        </RegularIngredient>
       </Ingredients>
-      <IPRRestMaterialQantityTotal>1.85</IPRRestMaterialQantityTotal>
-    </CigaretteExportForm>
-    <CigaretteExportForm>
-      <FinishedGoodSKU>12419574 </FinishedGoodSKU>
-      <FinishedGoodBatch>99999999</FinishedGoodBatch>
-      <FinishedGoodQantity>500</FinishedGoodQantity>
-      <FinishedGoodUnit>kU</FinishedGoodUnit>
-      <FamilyDescription>Salem</FamilyDescription>
-      <BrandDescription>Slims Menthol </BrandDescription>
-      <MaterialTotal>2498.21</MaterialTotal>
-      <FinishedGoodSKUDescription>SKU SA MXSR  99 CPB 20  5000 05  N PL1</FinishedGoodSKUDescription>
-      <TobaccoTotal>1254.66</TobaccoTotal>
-      <IPTMaterialQuantityTotal>18.24</IPTMaterialQuantityTotal>
-      <IPTDutyVatTotals>
-        <AmountOfMoney>
-          <ArrayOfTotals>
-            <IPRMaterialValueTotal>34.567</IPRMaterialValueTotal>
-            <IPRMaterialDutyTotal>345.6789</IPRMaterialDutyTotal>
-            <IPRMaterialVATTotal>78.901</IPRMaterialVATTotal>
-            <Currency>PLN</Currency>
-          </ArrayOfTotals>
-          <ArrayOfTotals>
-            <IPRMaterialValueTotal>34.56789012</IPRMaterialValueTotal>
-            <IPRMaterialDutyTotal>345.67891234</IPRMaterialDutyTotal>
-            <IPRMaterialVATTotal>78.9012345</IPRMaterialVATTotal>
-            <Currency>USD</Currency>
-          </ArrayOfTotals>
-        </AmountOfMoney>
-      </IPTDutyVatTotals>
-      <RegularMaterialQuantityTotal>1234.57</RegularMaterialQuantityTotal>
-      <CTFUsageMin>985</CTFUsageMin>
-      <CTFUsageMax>995</CTFUsageMax>
-      <CTFUsagePerUnitMin>0.985</CTFUsagePerUnitMin>
-      <CTFUsagePerUnitMax>0.995</CTFUsagePerUnitMax>
-      <CTFUsagePer1MFinishedGoodsMin>0.9876</CTFUsagePer1MFinishedGoodsMin>
-      <CTFUsagePer1MFinishedGoodsMax>1.23</CTFUsagePer1MFinishedGoodsMax>
-      <WasteCoefficient>1.012345678</WasteCoefficient>
-      <CustomsProcedure>3951</CustomsProcedure>
-      <DocumentNo>CigaretteExportFormCollection-02</DocumentNo>
-      <ProductFormat>Format title</ProductFormat>
-      <DustKg>0.55</DustKg>
-      <SHMentholKg>0.65</SHMentholKg>
-      <WasteKg>0.65</WasteKg>
-      <Portion>0.5</Portion>
-      <Product>Cigarette</Product>
-      <Ingredients>
-        <IPRIngredient>
-          <TobaccoSKU>IPR Tobacco SKU</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch</TobaccoBatch>
-          <TobaccoQuantity>9.12</TobaccoQuantity>
-          <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
-          <Date>2012-09-20T00:00:00+02:00</Date>
-          <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
-          <TobaccoValue>34.567</TobaccoValue>
-          <ItemClearingType>PartialWindingUp</ItemClearingType>
-          <Currency>PLN</Currency>
-          <Duty>345.6789</Duty>
-          <VAT>78.901</VAT>
-        </IPRIngredient>
-        <IPRIngredient>
-          <TobaccoSKU>IPR Tobacco SKU</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch</TobaccoBatch>
-          <TobaccoQuantity>9.12345678</TobaccoQuantity>
-          <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
-          <Date>2012-09-20T00:00:00+02:00</Date>
-          <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
-          <TobaccoValue>34.56789012</TobaccoValue>
-          <ItemClearingType>PartialWindingUp</ItemClearingType>
-          <Currency>USD</Currency>
-          <Duty>345.67891234</Duty>
-          <VAT>78.9012345</VAT>
-        </IPRIngredient>
-        <RegularIngredient>
-          <TobaccoSKU>Reg SKU 12345</TobaccoSKU>
-          <TobaccoBatch>Reg Batch 54321</TobaccoBatch>
-          <TobaccoQuantity>1234.56789</TobaccoQuantity>
-        </RegularIngredient>
-      </Ingredients>
-      <IPRRestMaterialQantityTotal>1.85</IPRRestMaterialQantityTotal>
+      <IPRRestMaterialQantityTotal>4.46</IPRRestMaterialQantityTotal>
     </CigaretteExportForm>
   </CigaretteExportForms>
 </CigaretteExportFormCollection>
