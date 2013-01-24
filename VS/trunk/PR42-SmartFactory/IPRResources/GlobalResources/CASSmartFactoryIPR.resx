@@ -318,4 +318,7 @@
 	<data name="CAS_ASPX_ClearenceViewDashboard" xml:space="preserve">
 		<value>Clearence View dashboard</value>
 	</data>
+	<data name="CAS_ASPX_FooterText" xml:space="preserve">
+		<value>Designed and created by CAS</value>
+	</data>
 </root>

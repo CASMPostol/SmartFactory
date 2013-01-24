@@ -109,6 +109,10 @@
     <Compile Include="Webparts\WEB\WebpartStateMachineEngine.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cas\cas.master" />
+    <None Include="cas\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{46a2aba0-dde8-4488-84d3-d2c9c64d634a}</SharePointProjectItemId>
+    </None>
     <None Include="CommonDefinitions.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CommonDefinitions.cs</LastGenOutput>
@@ -194,6 +198,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="cas\Elements.xml" />
     <Content Include="Dashboards\BatchDashboard\Elements.xml" />
     <Content Include="Dashboards\ClearenceDashboard\Elements.xml">
       <SubType>Designer</SubType>
