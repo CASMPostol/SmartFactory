@@ -559,6 +559,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     {
       foreach ( InvoiceContent item in m_ControlState.Invoice.InvoiceContent )
       {
+        //TODO ExportIsPossible - improve for many invoice content with the same FG batch groups by batch must be checked agains posible export
         string _checkResult = item.ExportIsPossible( m_DataContextManagement.DataContext, item.Quantity );
         if ( _checkResult.IsNullOrEmpty() )
           continue;
