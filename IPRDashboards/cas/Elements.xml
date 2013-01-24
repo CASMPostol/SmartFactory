@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="cas" Url="_catalogs/masterpage">
+    <File Path="cas\cas.master" Url="cas.master" Type="GhostableInLibrary" IgnoreIfAlreadyExists="TRUE" >
+      <Property Name="UIVersion" Value="4" />
+      <Property Name="ContentTypeId" Value="0x010105" />
+    </File>
+  </Module>
+</Elements>
