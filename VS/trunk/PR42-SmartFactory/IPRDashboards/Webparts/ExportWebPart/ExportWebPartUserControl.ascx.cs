@@ -156,8 +156,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       #region public
       internal void ClearInvoiceContent()
       {
-        InvoiceContentID = String.Empty;
-        BatchID = String.Empty;
+        Batch = null;
+        InvoiceContent = null;
       }
       internal GetEntitiesDelegate EntityHolder { set { _edc = value; } }
       internal InvoiceContent InvoiceContent
@@ -166,7 +166,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         {
           if ( p_InvoiceContent == null )
             p_InvoiceContent = Element.FindAtIndex<InvoiceContent>( _edc().InvoiceContent, InvoiceContentID );
-          if ( ( p_InvoiceContent != null ) && ( p_InvoiceContent.InvoiceIndex != Invoice ) )
+          if (  ( p_InvoiceContent != null ) && ( p_InvoiceContent.InvoiceIndex != Invoice ) )
             p_InvoiceContent = Invoice == null ? null : Invoice.InvoiceContent.FirstOrDefault();
           return p_InvoiceContent;
         }
