@@ -79,6 +79,7 @@
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef Name="ClearenceProcedure" />
+          <FieldRef Name="ProcedureCode" />
           <FieldRef Name="Created" />
         </ViewFields>
         <Query>
@@ -141,6 +142,7 @@
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef Name="ClearenceProcedure" />
+          <FieldRef Name="ProcedureCode" />
           <FieldRef Name="Created" />
         </ViewFields>
         <Query>
