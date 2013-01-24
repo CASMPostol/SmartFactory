@@ -139,7 +139,7 @@
 		<value>Cannot proceed with export because the invoice item contains errors {0}</value>
 	</data>
 	<data name="QuantityFormat" xml:space="preserve">
-		<value>Quantity {0:F2}</value>
+		<value>Quantity {0:F2} kg</value>
 	</data>
 	<data name="XMLResources_RequestForAccountClearence" xml:space="preserve">
 		<value>Wniosek o zamknięcie {0:D7} </value>
@@ -163,7 +163,7 @@
 		<value>Wstępny - niezgodne stany magazynowe</value>
 	</data>
 	<data name="ClearanceTitleFormat" xml:space="preserve">
-		<value>"No: {4:D5} {0}/{1} Ref: {2} quantity: {3:F2}"</value>
+		<value>"No: {4:D5} {0}/{1} Ref: {2} quantity: {3:F2} kg"</value>
 	</data>
 	<data name="KU" xml:space="preserve">
 		<value>KU</value>
