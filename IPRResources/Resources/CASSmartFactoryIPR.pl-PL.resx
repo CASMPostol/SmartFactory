@@ -511,7 +511,7 @@
     <value>Do odczytu</value>
   </data>
 	<data name="CAS_ReassumeQuantity" xml:space="preserve">
-    <value>Rozbieżnośći [kg]</value>
+    <value>Rozbieżność [kg]</value>
   </data>
 	<data name="CAS_RemainingQuantity" xml:space="preserve">
     <value>Ilość do rozliczenia z OGL [kg]</value>
