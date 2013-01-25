@@ -117,6 +117,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal void FinishClearingThroughCustoms( Entities edc, SADGood sadGood )
     {
       string _at = "starting";
+      if ( this.CustomsStatus.Value == Linq.CustomsStatus.Finished )
+        return;
       try
       {
         _at = "Disposal _lastOne";
