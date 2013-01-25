@@ -55,41 +55,47 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-    <asp:Panel runat="server" ID="m_FiltersPanel" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Filters%>">
-        <asp:Table runat="server" ID="m_FilterTable" CssClass="Table">
+        <asp:Table runat="server" ID="m_FilterOutsideTable" CssClass="Table">
             <asp:TableRow>
-                <asp:TableCell VerticalAlign="Top">
-                    <asp:Panel runat="server" ID="m_GroupPanel" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Group%>">
-                        <asp:RadioButtonList RepeatDirection="Horizontal" ID="m_SelectGroupRadioButtonList" runat="server">
-                            <asp:ListItem Enabled="true" Selected="false" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Tobacco%>" Value="Tobacco"></asp:ListItem>
-                            <asp:ListItem Enabled="true" Selected="false" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_TobaccoNotAllocated%>" Value="TobaccoNotAllocated"></asp:ListItem>
-                            <asp:ListItem Enabled="true" Selected="false" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Dust%>" Value="Dust"></asp:ListItem>
-                            <asp:ListItem Enabled="true" Selected="false" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Waste%>" Value="Waste"></asp:ListItem>
-                            <asp:ListItem Enabled="true" Selected="True" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Cartons%>" Value="Cartons"></asp:ListItem>
-                        </asp:RadioButtonList>
-                    </asp:Panel>
-                    <br />
-                    <asp:Panel runat="server" ID="m_CurrencyPanel" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Currency%>" HorizontalAlign="Left">
-                        <asp:RadioButtonList RepeatDirection="Horizontal" ID="m_SelectCurrencyRadioButtonList" runat="server">
-                            <asp:ListItem Enabled="true" Selected="False" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_All%>" Value="All"></asp:ListItem>
-                            <asp:ListItem Enabled="true" Selected="True" Text="PLN" Value="PLN"></asp:ListItem>
-                            <asp:ListItem Enabled="true" Selected="False" Text="USD" Value="USD"></asp:ListItem>
-                        </asp:RadioButtonList>
-                    </asp:Panel>
-                </asp:TableCell>
-                <asp:TableCell VerticalAlign="Top">
-                    <asp:Panel runat="server" ID="m_PeriodPanel" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Period%>">
-                        <asp:Label ID="m_AllDateLabel" runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_All%>" CssClass="Label" />
-                        <asp:CheckBox ID="m_AllDate" Checked="true" runat="server" /><br />
-                        <asp:Label ID="m_StartDateLabel" runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_StartDate%>" CssClass="Label" />
-                        <SharePoint:DateTimeControl ID="m_StartDateTimeControl" DateOnly="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" />
-                        <asp:Label ID="m_EndDateLabel" runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_EndDate%>" CssClass="Label" />
-                        <SharePoint:DateTimeControl ID="m_EndTimeControl1" DateOnly="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" />
+                <asp:TableCell>
+                    <asp:Panel runat="server" ID="m_FiltersPanel" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Filters%>">
+                        <asp:Table runat="server" ID="m_FilterTable" CssClass="Table">
+                            <asp:TableRow>
+                                <asp:TableCell VerticalAlign="Top">
+                                    <asp:Panel runat="server" ID="m_GroupPanel" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Group%>">
+                                        <asp:RadioButtonList RepeatDirection="Horizontal" ID="m_SelectGroupRadioButtonList" runat="server">
+                                            <asp:ListItem Enabled="true" Selected="false" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Tobacco%>" Value="Tobacco"></asp:ListItem>
+                                            <asp:ListItem Enabled="true" Selected="false" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_TobaccoNotAllocated%>" Value="TobaccoNotAllocated"></asp:ListItem>
+                                            <asp:ListItem Enabled="true" Selected="false" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Dust%>" Value="Dust"></asp:ListItem>
+                                            <asp:ListItem Enabled="true" Selected="false" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Waste%>" Value="Waste"></asp:ListItem>
+                                            <asp:ListItem Enabled="true" Selected="True" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Cartons%>" Value="Cartons"></asp:ListItem>
+                                        </asp:RadioButtonList>
+                                    </asp:Panel>
+                                    <br />
+                                    <asp:Panel runat="server" ID="m_CurrencyPanel" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Currency%>" HorizontalAlign="Left">
+                                        <asp:RadioButtonList RepeatDirection="Horizontal" ID="m_SelectCurrencyRadioButtonList" runat="server">
+                                            <asp:ListItem Enabled="true" Selected="False" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_All%>" Value="All"></asp:ListItem>
+                                            <asp:ListItem Enabled="true" Selected="True" Text="PLN" Value="PLN"></asp:ListItem>
+                                            <asp:ListItem Enabled="true" Selected="False" Text="USD" Value="USD"></asp:ListItem>
+                                        </asp:RadioButtonList>
+                                    </asp:Panel>
+                                </asp:TableCell>
+                                <asp:TableCell VerticalAlign="Top">
+                                    <asp:Panel runat="server" ID="m_PeriodPanel" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Period%>">
+                                        <asp:Label ID="m_AllDateLabel" runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_All%>" CssClass="Label" />
+                                        <asp:CheckBox ID="m_AllDate" Checked="true" runat="server" /><br />
+                                        <asp:Label ID="m_StartDateLabel" runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_StartDate%>" CssClass="Label" />
+                                        <SharePoint:DateTimeControl ID="m_StartDateTimeControl" DateOnly="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" />
+                                        <asp:Label ID="m_EndDateLabel" runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_EndDate%>" CssClass="Label" />
+                                        <SharePoint:DateTimeControl ID="m_EndTimeControl1" DateOnly="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" />
+                                    </asp:Panel>
+                                </asp:TableCell>
+                            </asp:TableRow>
+                        </asp:Table>
                     </asp:Panel>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
-    </asp:Panel>
     <asp:Table ID="m_GridViewTable" runat="server" CssClass="Table">
         <asp:TableRow>
             <asp:TableCell>
