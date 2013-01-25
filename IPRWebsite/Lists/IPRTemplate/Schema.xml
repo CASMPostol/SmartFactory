@@ -204,6 +204,7 @@
           <FieldRef Name="NetMass" />
           <FieldRef Name="AccountBalance" />
           <FieldRef Name="Cartons" />
+          <FieldRef Name="OGLValidTo" />
           <FieldRef Name="AccountClosed" />
         </ViewFields>
         <Query>
@@ -277,6 +278,7 @@
           <FieldRef Name="NetMass" />
           <FieldRef Name="AccountBalance" />
           <FieldRef Name="Cartons" />
+          <FieldRef Name="OGLValidTo" />
         </ViewFields>
         <Query>
           <Where>
