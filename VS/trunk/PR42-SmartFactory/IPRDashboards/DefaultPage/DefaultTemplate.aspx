@@ -16,26 +16,15 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderId="PlaceHolderMain" runat="server">
   <div id="Body" >
+      <h1><asp:Literal runat="server" ID="m_Header" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_DefaultHeader%>"/></h1>
     <table style="Width:940px">
       <tr>
         <td style="Width:940px;vertical-align:top" colspan="2" >
+            <asp:Literal runat="server" ID="m_MainText" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_DefaultMainText%>"/>
             <WebPartPages:WebpartZone
             ID="Top" runat="server"
             Title="1st Main Web Part Zone"
-            FrameType="TitleBarOnly">
-                <ZoneTemplate >
-                     <TextDisplayWebPart 
-                        runat="server"   
-                        id="textwebpart" 
-                        title = "Welcome to IPR!" 
-                        Description="A text content WebPart control."
-                        ChromeType="BorderOnly">
-                            <p>IPR is designed to simplify the procedures of managing goods under IPR (Inward Processing Relief), whilst taking advantage of the maximum benefits available.</p>
-                            <p>Inward Processing Relief (IPR) is a method of obtaining relief from customs duties and VAT charges. The relief applies to goods imported from outside the EU, processed and exported to countries outside the EU. IPR provides relief to promote exports from the EU and assist EU companies to compete on an equal footing in the world market.</p>
-                            <p>The processing allowed under IPR can be anything from repacking or sorting goods to the most complicated manufacturing. Hence a company that manufactures, processes or repairs goods obtained outside the EU and exports the finished product can save the customs duty and VAT normally payable on import.</p>
-                    </TextDisplayWebPart>
-                </ZoneTemplate>
-            </WebPartPages:WebpartZone>
+            FrameType="TitleBarOnly"/>
         </td>
       </tr>
       <tr>
