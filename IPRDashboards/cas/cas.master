@@ -626,7 +626,7 @@
                      <asp:ContentPlaceHolder id="CASFooter" runat="server">
                         <hr />
                         <center>
-                        <asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryIPR,FooterText%>" /> - <a href="http://www.cas.eu" target="_blank">www.CAS.eu</a>
+                        <asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_FooterText%>" /> - <a href="http://www.cas.eu" target="_blank">www.CAS.eu</a>
                         </center>
 	                </asp:ContentPlaceHolder>
 				</div>
