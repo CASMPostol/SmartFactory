@@ -29,10 +29,10 @@
   </xsl:template>
   <xsl:template match="cas:RequestContent">
     <!--RequestForAccountClearence-->
-    <table border="0" width="100%">
-          <tr>
-            <td align="left">
-              <p>
+      <table border="0" width="100%">
+        <tr>
+          <td align="left">
+            <p>
                 Dokument: 
                  <b><xsl:value-of select="cas:DocumentName" /></b>
               </p>
