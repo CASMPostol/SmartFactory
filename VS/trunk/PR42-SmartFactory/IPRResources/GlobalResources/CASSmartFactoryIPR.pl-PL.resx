@@ -329,4 +329,7 @@
 	<data name="CAS_ASPX_DefaultHeader" xml:space="preserve">
 		<value>Witamy w systemie IPR</value>
 	</data>
+	<data name="CAS_ASPX_ClearanceManager" xml:space="preserve">
+		<value>Menadżer odpraw</value>
+	</data>
 </root>

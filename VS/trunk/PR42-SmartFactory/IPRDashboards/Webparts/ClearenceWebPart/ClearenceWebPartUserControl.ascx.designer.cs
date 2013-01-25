@@ -31,6 +31,24 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::System.Web.UI.WebControls.Panel m_Panel;
         
         /// <summary>
+        /// m_MainWebPartTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table m_MainWebPartTable;
+        
+        /// <summary>
+        /// m_PainPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel m_PainPanel;
+        
+        /// <summary>
         /// m_ClearenceTable control.
         /// </summary>
         /// <remarks>
@@ -146,15 +164,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button m_ClearButton;
-        
-        /// <summary>
-        /// m_FilterOutsideTable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table m_FilterOutsideTable;
         
         /// <summary>
         /// m_FiltersPanel control.
