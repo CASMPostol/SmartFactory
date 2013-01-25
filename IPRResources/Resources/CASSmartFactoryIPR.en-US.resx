@@ -202,7 +202,7 @@
     <value>Cigarette lenght</value>
   </data>
 	<data name="CAS_ClearenceLink" xml:space="preserve">
-    <value>Clearence List ID</value>
+    <value>Clearance List ID</value>
   </data>
 	<data name="CAS_ClearingType" xml:space="preserve">
     <value>Clearing type</value>
@@ -721,10 +721,10 @@
 		<value>CFT usage (min) [kg]</value>
 	</data>
 	<data name="CAS_ASPX_ClearenceList" xml:space="preserve">
-		<value>Clearence</value>
+		<value>Clearance</value>
 	</data>
 	<data name="CAS_ASPX_ClearenceManager" xml:space="preserve">
-		<value>Clearence manager</value>
+		<value>Clearance manager</value>
 	</data>
 	<data name="CAS_ASPX_InvoiceLibrary" xml:space="preserve">
 		<value>Invoices</value>
