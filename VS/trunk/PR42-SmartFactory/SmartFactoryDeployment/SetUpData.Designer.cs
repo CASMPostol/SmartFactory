@@ -379,10 +379,10 @@
       // m_ManualSelectionPanel
       // 
       this.m_ManualSelectionPanel.Controls.Add(m_tableLayoutPanel4);
-      this.m_ManualSelectionPanel.Location = new System.Drawing.Point(4, 25);
+      this.m_ManualSelectionPanel.Location = new System.Drawing.Point(4, 22);
       this.m_ManualSelectionPanel.Name = "m_ManualSelectionPanel";
       this.m_ManualSelectionPanel.Padding = new System.Windows.Forms.Padding(3);
-      this.m_ManualSelectionPanel.Size = new System.Drawing.Size(770, 491);
+      this.m_ManualSelectionPanel.Size = new System.Drawing.Size(770, 494);
       this.m_ManualSelectionPanel.TabIndex = 3;
       this.m_ManualSelectionPanel.Text = "Manual Installation";
       this.m_ManualSelectionPanel.UseVisualStyleBackColor = true;
@@ -390,10 +390,10 @@
       // m_FinischedPanel
       // 
       this.m_FinischedPanel.Controls.Add(this.tableLayoutPanel2);
-      this.m_FinischedPanel.Location = new System.Drawing.Point(4, 25);
+      this.m_FinischedPanel.Location = new System.Drawing.Point(4, 22);
       this.m_FinischedPanel.Name = "m_FinischedPanel";
       this.m_FinischedPanel.Padding = new System.Windows.Forms.Padding(3);
-      this.m_FinischedPanel.Size = new System.Drawing.Size(770, 491);
+      this.m_FinischedPanel.Size = new System.Drawing.Size(770, 494);
       this.m_FinischedPanel.TabIndex = 4;
       this.m_FinischedPanel.Text = "Completed";
       this.m_FinischedPanel.UseVisualStyleBackColor = true;
@@ -410,7 +410,7 @@
       this.tableLayoutPanel2.RowCount = 2;
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel2.Size = new System.Drawing.Size(764, 485);
+      this.tableLayoutPanel2.Size = new System.Drawing.Size(764, 488);
       this.tableLayoutPanel2.TabIndex = 8;
       // 
       // m_FinishedLabel
@@ -427,16 +427,16 @@
       this.m_InstallationFinischedPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
       this.m_InstallationFinischedPropertyGrid.Location = new System.Drawing.Point(3, 19);
       this.m_InstallationFinischedPropertyGrid.Name = "m_InstallationFinischedPropertyGrid";
-      this.m_InstallationFinischedPropertyGrid.Size = new System.Drawing.Size(758, 463);
+      this.m_InstallationFinischedPropertyGrid.Size = new System.Drawing.Size(758, 466);
       this.m_InstallationFinischedPropertyGrid.TabIndex = 1;
       // 
       // m_UninstallPanel
       // 
       this.m_UninstallPanel.Controls.Add(this.m_UninstallUserControl);
-      this.m_UninstallPanel.Location = new System.Drawing.Point(4, 25);
+      this.m_UninstallPanel.Location = new System.Drawing.Point(4, 22);
       this.m_UninstallPanel.Name = "m_UninstallPanel";
       this.m_UninstallPanel.Padding = new System.Windows.Forms.Padding(3);
-      this.m_UninstallPanel.Size = new System.Drawing.Size(770, 491);
+      this.m_UninstallPanel.Size = new System.Drawing.Size(770, 494);
       this.m_UninstallPanel.TabIndex = 5;
       this.m_UninstallPanel.Text = "Uninstall";
       this.m_UninstallPanel.UseVisualStyleBackColor = true;
@@ -449,7 +449,7 @@
       this.m_UninstallUserControl.Location = new System.Drawing.Point(3, 3);
       this.m_UninstallUserControl.Margin = new System.Windows.Forms.Padding(4);
       this.m_UninstallUserControl.Name = "m_UninstallUserControl";
-      this.m_UninstallUserControl.Size = new System.Drawing.Size(597, 562);
+      this.m_UninstallUserControl.Size = new System.Drawing.Size(764, 488);
       this.m_UninstallUserControl.TabIndex = 0;
       // 
       // m_PreviousButton
