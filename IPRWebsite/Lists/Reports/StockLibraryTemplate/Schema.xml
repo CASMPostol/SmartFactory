@@ -49,7 +49,7 @@
         </ParameterBindings>
         <Query>
           <OrderBy>
-            <FieldRef Name="FileLeafRef" />
+            <FieldRef Name="ID" Ascending="FALSE" />
           </OrderBy>
         </Query>
       </View>
