@@ -42,23 +42,15 @@
                         FrameType="TitleBarOnly" />
             </td>
         </tr>
-        <tr>
-            <td valign="top">
-                        <WebPartPages:WebpartZone
-                        ID="IPRLibrary" runat="server"
-                        Title="IPR Library Web Part Zone"
-                        FrameType="TitleBarOnly" />
-            </td>
-        </tr>
     </table>
   </div>
 
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-    <asp:Literal ID="m_PageTitle" runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_IPRClosedDashboard%>" />
+    <asp:Literal ID="m_PageTitle" runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_IPRClosedCustomsOfficeDashboard%>" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
-    <asp:Literal ID="m_PageTitleInTitleArea" runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_IPRClosedDashboard%>" />
+    <asp:Literal ID="m_PageTitleInTitleArea" runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_IPRClosedCustomsOfficeDashboard%>" />
 </asp:Content>

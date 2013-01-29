@@ -130,6 +130,9 @@
     <None Include="Dashboards\ExportDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d926c02c-50db-49dd-b790-563ff8388cad}</SharePointProjectItemId>
     </None>
+    <None Include="Dashboards\IPRBookClosedCustomsOfficeDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d379a4ee-8d0c-4b84-b890-d5f840dd0da3}</SharePointProjectItemId>
+    </None>
     <None Include="Dashboards\IPRBookClosedDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a5cd600d-d0ad-4a29-925c-36f593d1c0bd}</SharePointProjectItemId>
     </None>
@@ -212,6 +215,7 @@
     <Content Include="Dashboards\ExportDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Dashboards\IPRBookClosedCustomsOfficeDashboard\Elements.xml" />
     <Content Include="Dashboards\IPRBookClosedDashboard\Elements.xml" />
     <Content Include="Dashboards\IPRBookCustomsOfficeDashboard\Elements.xml">
       <SubType>Designer</SubType>
@@ -246,6 +250,7 @@
     <Content Include="WebPartPages\WebPageTemplate_IPRBook.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_IPRBookCustomsOffice.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_IPRBook_Closed.aspx" />
+    <Content Include="WebPartPages\WebPageTemplate_IPRBook_Closed_CustomsOffice.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_Stocks.aspx" />
     <Content Include="Webparts\ClearenceWebPart\ClearenceWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>

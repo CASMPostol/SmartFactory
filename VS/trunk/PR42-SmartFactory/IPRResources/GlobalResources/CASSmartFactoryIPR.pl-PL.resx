@@ -332,4 +332,7 @@
 	<data name="CAS_ASPX_ClearanceManager" xml:space="preserve">
 		<value>Menadżer odpraw</value>
 	</data>
+	<data name="CAS_ASPX_IPRClosedCustomsOfficeDashboard" xml:space="preserve">
+		<value>Księga IPR - konta zamknięte - Urząd Celny</value>
+	</data>
 </root>

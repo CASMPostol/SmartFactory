@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <Module Name="IPRBookClosedDashboard">
-    <File Path="WebPartPages\WebPageTemplate_IPRBook_Closed.aspx" Url="WebPartPages/IPRBookClosedDashboard.aspx">
+  <Module Name="IPRBookClosedCustomsOfficeDashboard">
+    <File Path="WebPartPages\WebPageTemplate_IPRBook_Closed_CustomsOffice.aspx" Url="WebPartPages/IPRBookClosedCustomsOfficeDashboard.aspx">
       <View List="Lists/IPRList" BaseViewID="6" WebPartZoneID="IPR" WebPartOrder="0">
         <![CDATA[
          <webParts>
@@ -49,24 +49,6 @@
          <data>
          <properties>
          <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_IPRExport;</property>
-         <property name="AllowConnect" type="bool">True</property>
-         </properties>
-         </data>
-         </webPart>
-         </webParts>
-         ]]>
-      </View>
-      <View List="Lists/IPRLibrary" BaseViewID="10" WebPartZoneID="IPRLibrary" WebPartOrder="0">
-        <![CDATA[
-         <webParts>
-         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-         <metaData>
-         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
-         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
-         </metaData>
-         <data>
-         <properties>
-         <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_IPRLibrary;</property>
          <property name="AllowConnect" type="bool">True</property>
          </properties>
          </data>
