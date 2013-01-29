@@ -162,9 +162,6 @@
 	<data name="PRELIMINARY" xml:space="preserve">
 		<value>Wstępny - niezgodne stany magazynowe</value>
 	</data>
-	<data name="ClearanceTitleFormat" xml:space="preserve">
-		<value>"No: {4:D5} {0}/{1} Ref: {2} quantity: {3:F2} kg"</value>
-	</data>
 	<data name="KU" xml:space="preserve">
 		<value>KU</value>
 	</data>
