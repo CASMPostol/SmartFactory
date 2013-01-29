@@ -332,4 +332,7 @@
 	<data name="CAS_ASPX_ClearanceManager" xml:space="preserve">
 		<value>Clearance manager</value>
 	</data>
+	<data name="CAS_ASPX_IPRClosedCustomsOfficeDashboard" xml:space="preserve">
+		<value>IPR Book - closed accounts - Customs Office</value>
+	</data>
 </root>

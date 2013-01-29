@@ -759,4 +759,7 @@
 	<data name="CAS_ASPX_SADConsignmentLibrary" xml:space="preserve">
 		<value>SAD Consignment - biblioteka </value>
 	</data>
+	<data name="CAS_ASPX_IPRLibrary" xml:space="preserve">
+		<value>Księga uszlachetniania czynnego - biblioteka</value>
+	</data>
 </root>
