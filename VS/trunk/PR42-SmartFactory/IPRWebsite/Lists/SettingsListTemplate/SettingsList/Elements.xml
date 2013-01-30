@@ -40,7 +40,7 @@
           <Field Name="KeyValue">RequestForAccountClearenceFormFileName</Field>
         </Row>
         <Row>
-          <Field Name="Title">Nr: {4:D5} {0}/{1} SAD: {2} ilość: {3:F2} kg</Field>
+          <Field Name="Title">Nr: {4:D5} {0}/{1} SAD: {2} ilość: {3} kg</Field>
           <Field Name="KeyValue">ClearanceTitleFormat</Field>
         </Row>
       </Rows>
