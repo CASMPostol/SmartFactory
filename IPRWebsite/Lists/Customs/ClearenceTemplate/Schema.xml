@@ -91,6 +91,7 @@
             <And>
               <And>
                 <Or>
+                <Or>
                   <Or>
                     <Or>
                       <Eq>
@@ -116,6 +117,11 @@
                   <Eq>
                     <FieldRef Name="ProcedureCode" />
                     <Value Type="Text">Cartons</Value>
+                  </Eq>
+                </Or>
+                  <Eq>
+                    <FieldRef Name="ProcedureCode" />
+                    <Value Type="Text">FinishedGoodsExport</Value>
                   </Eq>
                 </Or>
                 <Eq>
