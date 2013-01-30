@@ -488,7 +488,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           _ipr.AddDisposal( _edc, Convert.ToDecimal( _row.Quantity ), CurrentClearence );
         }
       }
-      CurrentClearence.UpdateT( _edc );
+      CurrentClearence.UpdateTitle( _edc );
       m_DataContextManagement.DataContext.SubmitChanges();
     }
     private void Create()
