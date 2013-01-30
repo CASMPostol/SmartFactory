@@ -32,6 +32,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Status = true;
       foreach ( Disposal _disposal in Disposal )
         _disposal.FinishClearingThroughCustoms( entities, Clearence2SadGoodID );
+      UpdateTitle( entities );
     }
     /// <summary>
     /// Clears through customs.
@@ -61,7 +62,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       Clearence _newClearence = CreateClearance( procedure, procedureCode );
       entities.Clearence.InsertOnSubmit( _newClearence );
+      _newClearence.UpdateTitle( entities );
       entities.SubmitChanges();
+      _newClearence.UpdateTitle( entities );
       return _newClearence;
     }
     /// <summary>
@@ -78,19 +81,35 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       _newClearence.Clearence2SadGoodID = good;
       _newClearence.DocumentNo = good.SADDocumentIndex.DocumentNumber;
       _newClearence.ReferenceNumber = good.SADDocumentIndex.ReferenceNumber;
+      _newClearence.UpdateTitle( entities );
       entities.Clearence.InsertOnSubmit( _newClearence );
       entities.SubmitChanges();
+      _newClearence.UpdateTitle( entities );
       return _newClearence;
     }
     /// <summary>
     /// Clears the through custom.
     /// </summary>
+    /// <param name="entities">The entities.</param>
     /// <param name="sadConsignment">The _sad consignment.</param>
-    public void ClearThroughCustom( SADConsignment sadConsignment )
+    public void ClearThroughCustom( Entities entities, SADConsignment sadConsignment )
     {
       SADConsignmentLibraryIndex = sadConsignment;
       foreach ( Disposal _dspsl in Disposal )
         _dspsl.ClearThroughCustom( this.ClearenceProcedure.Value );
+      UpdateTitle( entities );
+    }
+    /// <summary>
+    /// Updates the clerance.
+    /// </summary>
+    /// <param name="entities">The entities.</param>
+    /// <param name="procedureDescription">The procedure description.</param>
+    /// <param name="clearenceProcedure">The clearence procedure.</param>
+    public void UpdateClerance( Entities entities, string procedureDescription, ClearenceProcedure clearenceProcedure )
+    {
+      ProcedureCode = procedureDescription;
+      ClearenceProcedure = clearenceProcedure;
+      UpdateTitle( entities );
     }
     #endregion
 
@@ -107,14 +126,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       };
       return _newClearence;
     }
-    protected override void OnPropertyChanged( string propertyName )
+    private void UpdateTitle( Entities entities )
     {
       double _quantity = this.Disposal.Sum<Disposal>( x => x.SettledQuantity.Value );
-      string _ClearanceTitleFormat = "ClearanceTitleFormat".GetLocalizedString();
+      string _ClearanceTitleFormat = Settings.GetParameter( entities, SettingsEntry.ClearanceTitleFormat );
       Title = String.Format( _ClearanceTitleFormat, this.ProcedureCode, Entities.ToString( ClearenceProcedure.GetValueOrDefault( Linq.ClearenceProcedure.Invalid ) ),
                              ReferenceNumber.NotAvailable(), _quantity, Identyfikator.GetValueOrDefault( -999 ) );
-      base.OnPropertyChanged( propertyName );
     }
     #endregion
+
   }
 }

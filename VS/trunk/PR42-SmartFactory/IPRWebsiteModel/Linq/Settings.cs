@@ -44,7 +44,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// The jsox balance report form file name
     /// </summary>
-    JsoxBalanceReportFormFileName
+    JsoxBalanceReportFormFileName,
+    /// <summary>
+    /// The clearance title format
+    /// </summary>
+    ClearanceTitleFormat
   }
   public partial class Settings
   {
@@ -96,7 +100,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
        {SettingsEntry.BatchNumberPattern,   @"\b(000\d{7})"},
        {SettingsEntry.FinishedGoodsExportFormFileName,   "Proces technologiczny {0:D7}"},
        {SettingsEntry.RequestForAccountClearenceFormFileName,   "Bilans {0:D7}"},
-       {SettingsEntry.JsoxBalanceReportFormFileName,   "Wniosek o zamknięcie {0:D7}"}
+       {SettingsEntry.JsoxBalanceReportFormFileName,   "Wniosek o zamknięcie {0:D7}"},
+       {SettingsEntry.ClearanceTitleFormat,   "Nr: {4:D5} {0}/{1} SAD: {2} ilość: {3:F2} kg"}
    };
   }
 }

@@ -466,9 +466,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       if ( CurrentClearence == null )
         throw GenericStateMachineEngine.ActionResult.Exception( null, "Internal error - ClearanceID is null or empty at Update" );
-      CurrentClearence.ProcedureCode = m_SelectGroupRadioButtonList.SelectedValue;
-      CurrentClearence.ClearenceProcedure = SelectedClearenceProcedure;
       Entities _edc = m_DataContextManagement.DataContext;
+      CurrentClearence.UpdateClerance( _edc, m_SelectGroupRadioButtonList.SelectedValue, SelectedClearenceProcedure );
       //remove from clearance
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyAdded )
       {
@@ -580,7 +579,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
             break;
         }
         SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( _edc.SADConsignment, _sadConsignmentIdentifier );
-        CurrentClearence.ClearThroughCustom( _sadConsignment );
+        CurrentClearence.ClearThroughCustom( _edc, _sadConsignment );
         _edc.SubmitChanges();
         Response.Redirect( Request.RawUrl );
         return GenericStateMachineEngine.ActionResult.Success;
