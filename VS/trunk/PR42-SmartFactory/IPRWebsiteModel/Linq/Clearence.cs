@@ -111,6 +111,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       ClearenceProcedure = clearenceProcedure;
       UpdateTitle( entities );
     }
+    public void UpdateTitle( Entities entities )
+    {
+      string _quantity = String.Empty;
+      if ( this.Disposal.Any() )
+        _quantity = this.Disposal.Sum<Disposal>( x => x.SettledQuantity.Value ).ToString( "F2" );
+      else
+        _quantity = " --- ";
+      string _ClearanceTitleFormat = Settings.GetParameter( entities, SettingsEntry.ClearanceTitleFormat );
+      Title = String.Format( _ClearanceTitleFormat, this.ProcedureCode, Entities.ToString( ClearenceProcedure.GetValueOrDefault( Linq.ClearenceProcedure.Invalid ) ),
+                             ReferenceNumber.NotAvailable(), _quantity, Identyfikator.GetValueOrDefault( -999 ) );
+    }
     #endregion
 
     #region private
@@ -125,13 +136,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         ClearenceProcedure = procedure
       };
       return _newClearence;
-    }
-    private void UpdateTitle( Entities entities )
-    {
-      double _quantity = this.Disposal.Sum<Disposal>( x => x.SettledQuantity.Value );
-      string _ClearanceTitleFormat = Settings.GetParameter( entities, SettingsEntry.ClearanceTitleFormat );
-      Title = String.Format( _ClearanceTitleFormat, this.ProcedureCode, Entities.ToString( ClearenceProcedure.GetValueOrDefault( Linq.ClearenceProcedure.Invalid ) ),
-                             ReferenceNumber.NotAvailable(), _quantity, Identyfikator.GetValueOrDefault( -999 ) );
     }
     #endregion
 
