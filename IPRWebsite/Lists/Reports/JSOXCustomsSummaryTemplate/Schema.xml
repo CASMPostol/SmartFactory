@@ -77,6 +77,34 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Reports" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Reports.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef Name="ExportOrFreeCirculationSAD" />
+          <FieldRef Name="SADDate" />
+          <FieldRef Name="InvoiceNo" />
+          <FieldRef Name="IntroducingSADNo" />
+          <FieldRef Name="IntroducingSADDate" />
+          <FieldRef Name="CompensationGood" />
+          <FieldRef Name="TotalAmount" />
+          <FieldRef Name="RemainingQuantity" />
+          <FieldRef Name="CustomsProcedure" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
     </Views>
     <Forms>
       <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />

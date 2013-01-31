@@ -7,9 +7,10 @@
     <ProjectItemFile Source="WebPageTemplate_IPRBook.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_Batch.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_Stocks.aspx" Target="WebPartPages\" Type="ElementFile" />
-    <ProjectItemFile Source="WebPageTemplate_ClearenceView.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_Clearence.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_IPRBook_Closed_CustomsOffice.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_IPRBook_Closed.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_Reports.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_ClearenceView.aspx" Target="WebPartPages\" Type="ElementFile" />
   </Files>
 </ProjectItem>

@@ -335,4 +335,7 @@
 	<data name="CAS_ASPX_IPRClosedCustomsOfficeDashboard" xml:space="preserve">
 		<value>IPR Book - closed accounts - Customs Office</value>
 	</data>
+	<data name="CAS_ASPX_ReportsDashboard" xml:space="preserve">
+		<value>Reports dashboard</value>
+	</data>
 </root>

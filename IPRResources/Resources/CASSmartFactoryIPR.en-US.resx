@@ -765,4 +765,16 @@
 	<data name="CAS_ASPX_IPRLibrary" xml:space="preserve">
 		<value>Księga uszlachetniania czynnego - biblioteka</value>
 	</data>
+	<data name="CAS_ASPX_BalanceIPR" xml:space="preserve">
+		<value>Balance IPR</value>
+	</data>
+	<data name="CAS_ASPX_BalanceBatch" xml:space="preserve">
+		<value>Balance Batch</value>
+	</data>
+	<data name="CAS_ASPX_JSOXSummary" xml:space="preserve">
+		<value>JSOX Summary</value>
+	</data>
+	<data name="CAS_ASPX_JSOXLibrary" xml:space="preserve">
+		<value>JSOX Library</value>
+	</data>
 </root>
