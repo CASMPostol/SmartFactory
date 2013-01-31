@@ -274,7 +274,7 @@
     <value>Wskaźnik pyłu</value>
   </data>
 	<data name="CAS_Duty" xml:space="preserve">
-    <value>Cło [PLN]</value>
+    <value>Wartość cła [PLN]</value>
   </data>
 	<data name="CAS_DutyName" xml:space="preserve">
     <value>Cło [PLN]</value>
@@ -484,7 +484,7 @@
     <value>Procedura celna</value>
   </data>
 	<data name="CAS_ProcedureCode" xml:space="preserve">
-    <value>Procedura</value>
+    <value>Grupa</value>
   </data>
 	<data name="CAS_ProdRateMax" xml:space="preserve">
     <value>Wskaźnik produktywności (max) [%]</value>
@@ -661,7 +661,7 @@
     <value>Zużycie (max) [kg]</value>
   </data>
 	<data name="CAS_UsageMin" xml:space="preserve">
-    <value>Zużynie (min) [kg]</value>
+    <value>Zużycie (min) [kg]</value>
   </data>
 	<data name="CAS_UsageVer" xml:space="preserve">
     <value>Zużycie (wer.)</value>

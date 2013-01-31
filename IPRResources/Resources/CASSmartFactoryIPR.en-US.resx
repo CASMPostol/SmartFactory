@@ -274,7 +274,7 @@
     <value>Dust ratio</value>
   </data>
 	<data name="CAS_Duty" xml:space="preserve">
-    <value>Duty [PLN]</value>
+    <value>Duty value [PLN]</value>
   </data>
 	<data name="CAS_DutyName" xml:space="preserve">
     <value>Duty [PLN]</value>
@@ -484,7 +484,7 @@
     <value>Customs procedure</value>
   </data>
 	<data name="CAS_ProcedureCode" xml:space="preserve">
-    <value>Procedure</value>
+    <value>Group</value>
   </data>
 	<data name="CAS_ProdRateMax" xml:space="preserve">
     <value>Productivity rate (max) [%]</value>
