@@ -128,7 +128,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
                                   ).FirstOrDefault();
       if ( _rd == null )
       {
-        m_Warnings.Add( "There is not attached any consent document with code = 1PG1/C601" );
+        m_Warnings.Add( "There is not attached any consent document with code = C600/C601" );
         CreateDefaultConsent( edc, String.Empty.NotAvailable() );
       }
       else
