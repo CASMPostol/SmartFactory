@@ -12,8 +12,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="CollaborationServer" content="SharePoint Team Web Site" />
 <link href="/_layouts/IPRDashboards/CAS_IPRDashboards.css" rel="stylesheet" type="text/css" />
+<link href="/_layouts/IPRDashboards/CAS_IPRLayouts.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 
+<asp:Content ContentPlaceHolderId="PlaceHolderLeftNavBar" runat="server"></asp:Content>
 <asp:Content ContentPlaceHolderId="PlaceHolderMain" runat="server">
 
   <div id="Body" >
