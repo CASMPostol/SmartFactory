@@ -80,11 +80,12 @@
           </FieldRef>
           <FieldRef Name="ClearenceProcedure" />
           <FieldRef Name="ProcedureCode" />
+          <FieldRef Name="Modified" />
           <FieldRef Name="Created" />
         </ViewFields>
         <Query>
           <OrderBy>
-            <FieldRef Name="ID" Ascending="FALSE">
+            <FieldRef Name="Modified" Ascending="FALSE">
             </FieldRef>
           </OrderBy>
           <Where>
@@ -143,11 +144,11 @@
           </FieldRef>
           <FieldRef Name="ClearenceProcedure" />
           <FieldRef Name="ProcedureCode" />
-          <FieldRef Name="Created" />
+          <FieldRef Name="Modified" />
         </ViewFields>
         <Query>
           <OrderBy>
-            <FieldRef Name="ID" Ascending="FALSE">
+            <FieldRef Name="Modified" Ascending="FALSE">
             </FieldRef>
           </OrderBy>
           <Where>
