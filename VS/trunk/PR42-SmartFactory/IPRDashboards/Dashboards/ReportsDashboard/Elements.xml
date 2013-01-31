@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="ReportsDashboard">
+    <File Path="WebPartPages\WebPageTemplate_Reports.aspx" Url="WebPartPages/ReportsDashboard.aspx">
+      <View List="Lists/JSOXLibrary" BaseViewID="10" WebPartZoneID="JSOXLibrary" WebPartOrder="0" >
+        <![CDATA[
+         <webParts>
+         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+         <metaData>
+         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+         </metaData>
+         <data>
+         <properties>
+         <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_JSOXLibrary;</property>
+         <property name="TitleUrl" type="string">ReportsDashboard.aspx</property>
+         <property name="AllowConnect" type="bool">True</property>
+         </properties>
+         </data>
+         </webPart>
+         </webParts>
+         ]]>
+      </View>
+      <View List="Lists/BalanceBatchList" BaseViewID="2" WebPartZoneID="BalanceBatch" WebPartOrder="0" >
+        <![CDATA[
+         <webParts>
+         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+         <metaData>
+         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+         </metaData>
+         <data>
+         <properties>
+         <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_BalanceBatch;</property>
+         <property name="TitleUrl" type="string">ReportsDashboard.aspx</property>
+         <property name="AllowConnect" type="bool">True</property>
+         </properties>
+         </data>
+         </webPart>
+         </webParts>
+         ]]>
+      </View>
+      <View List="Lists/BalanceIPRList" BaseViewID="2" WebPartZoneID="BalanceIPR" WebPartOrder="0" >
+        <![CDATA[
+         <webParts>
+         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+         <metaData>
+         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+         </metaData>
+         <data>
+         <properties>
+         <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_BalanceIPR;</property>
+         <property name="TitleUrl" type="string">ReportsDashboard.aspx</property>
+         <property name="AllowConnect" type="bool">True</property>
+         </properties>
+         </data>
+         </webPart>
+         </webParts>
+         ]]>
+      </View>
+      <View List="Lists/JSOXCustomsSummaryList" BaseViewID="2" WebPartZoneID="JSOXSummary" WebPartOrder="0" >
+        <![CDATA[
+         <webParts>
+         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+         <metaData>
+         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+         </metaData>
+         <data>
+         <properties>
+         <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_JSOXSummary;</property>
+         <property name="TitleUrl" type="string">ReportsDashboard.aspx</property>
+         <property name="AllowConnect" type="bool">True</property>
+         </properties>
+         </data>
+         </webPart>
+         </webParts>
+         ]]>
+      </View>
+    </File>
+  </Module>
+</Elements>

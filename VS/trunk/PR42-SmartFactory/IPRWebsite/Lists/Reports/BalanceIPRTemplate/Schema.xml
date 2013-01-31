@@ -79,6 +79,46 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Reports" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Reports.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle"></FieldRef>
+          <FieldRef Name="SKU" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="OGLIntroduction" />
+          <FieldRef Name="TobaccoEnteredIntoIPR" />
+          <FieldRef Name="TobaccoCSFinished" />
+          <FieldRef Name="TobaccoInFGCSStarted" />
+          <FieldRef Name="DustCSStarted" />
+          <FieldRef Name="WasteCSStarted" />
+          <FieldRef Name="SHMentholCSStarted" />
+          <FieldRef Name="OveruseCSStarted" />
+          <FieldRef Name="PureTobaccoCSStarted" />
+          <FieldRef Name="IPRBook" />
+          <FieldRef Name="WasteCSNotStarted" />
+          <FieldRef Name="SHMentholCSNotStarted" />
+          <FieldRef Name="OveruseCSNotStarted" />
+          <FieldRef Name="SHWasteOveruseCSNotStarted" />
+          <FieldRef Name="DustCSNotStarted" />
+          <FieldRef Name="PureTobaccoCSNotStarted" />
+          <FieldRef Name="TobaccoAvailable" />
+          <FieldRef Name="TobaccoInFGCSNotStarted" />
+          <FieldRef Name="TobaccoUsedInTheProduction" />
+          <FieldRef Name="TobaccoToBeUsedInTheProduction" />
+          <FieldRef Name="Balance" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID" Ascending="FALSE"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
     </Views>
     <Forms>
       <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />

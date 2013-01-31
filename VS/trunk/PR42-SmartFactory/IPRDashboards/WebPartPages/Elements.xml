@@ -6,9 +6,10 @@
 <File Path="WebPartPages\WebPageTemplate_IPRBook.aspx" Url="WebPartPages/WebPageTemplate_IPRBook.aspx" />
 <File Path="WebPartPages\WebPageTemplate_Batch.aspx" Url="WebPartPages/WebPageTemplate_Batch.aspx" />
 <File Path="WebPartPages\WebPageTemplate_Stocks.aspx" Url="WebPartPages/WebPageTemplate_Stocks.aspx" />
-<File Path="WebPartPages\WebPageTemplate_ClearenceView.aspx" Url="WebPartPages/WebPageTemplate_ClearenceView.aspx" />
 <File Path="WebPartPages\WebPageTemplate_Clearence.aspx" Url="WebPartPages/WebPageTemplate_Clearence.aspx" />
 <File Path="WebPartPages\WebPageTemplate_IPRBook_Closed_CustomsOffice.aspx" Url="WebPartPages/WebPageTemplate_IPRBook_Closed_CustomsOffice.aspx" />
 <File Path="WebPartPages\WebPageTemplate_IPRBook_Closed.aspx" Url="WebPartPages/WebPageTemplate_IPRBook_Closed.aspx" />
+<File Path="WebPartPages\WebPageTemplate_Reports.aspx" Url="WebPartPages/WebPageTemplate_Reports.aspx" />
+<File Path="WebPartPages\WebPageTemplate_ClearenceView.aspx" Url="WebPartPages/WebPageTemplate_ClearenceView.aspx" />
 </Module>
 </Elements>
