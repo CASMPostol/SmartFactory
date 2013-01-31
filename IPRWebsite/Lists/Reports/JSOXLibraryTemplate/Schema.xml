@@ -178,7 +178,7 @@
         </Query>
       </View>
       <View BaseViewID="10" Type="HTML" WebPartZoneID="Main" DisplayName="Reports" DefaultView="FALSE" MobileView="True" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/Reports.aspx">
-        <Toolbar Type="Standard" />
+        <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">6</RowLimit>
         <ViewFields>
