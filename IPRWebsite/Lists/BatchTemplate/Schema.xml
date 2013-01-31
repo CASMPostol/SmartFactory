@@ -137,10 +137,28 @@
         </ViewFields>
         <Query>
           <Where>
-            <Neq>
-              <FieldRef Name="FGQuantityAvailable" />
-              <Value Type="Number">0</Value>
-            </Neq>
+            <And>
+              <Or>
+                <And>
+                  <Neq>
+                    <FieldRef Name="FGQuantity"/>
+                    <Value Type="Number">0</Value>
+                  </Neq>
+                  <Eq>
+                    <FieldRef Name="BatchStatus"/>
+                    <Value Type="Text">Final</Value>
+                  </Eq>
+                </And>
+                <Eq>
+                  <FieldRef Name="BatchStatus"/>
+                  <Value Type="Text">Intermediate</Value>
+                </Eq>
+              </Or>
+              <Neq>
+                <FieldRef Name="FGQuantity"/>
+                <Value Type="Number">0</Value>
+              </Neq>
+            </And>
           </Where>
           <OrderBy>
             <FieldRef Name="ID">
