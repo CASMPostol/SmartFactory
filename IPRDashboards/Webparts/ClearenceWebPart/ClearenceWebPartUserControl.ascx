@@ -18,7 +18,7 @@
                         <asp:TableRow>
                             <asp:TableCell VerticalAlign="Top">
                                 <asp:Panel runat="server" ID="m_ClearencePanel" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Clearence%>">
-                                    <asp:TextBox ID="m_ClearenceTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox>
+                                    <asp:TextBox ID="m_ClearenceTextBox" runat="server" CssClass="TextBoxLong" Enabled="false"></asp:TextBox>
                                 </asp:Panel>
                             </asp:TableCell>
                             <asp:TableCell>
