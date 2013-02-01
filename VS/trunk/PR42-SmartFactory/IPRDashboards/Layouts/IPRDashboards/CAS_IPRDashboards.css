@@ -7,6 +7,15 @@
     font-size:10pt;
     width:350px;
 }
+.TextBoxLong 
+{
+    border-width:1px 1px 1px 1px;
+    border-color:#91cdf2;
+    border-style:solid;
+    font-family:Verdana;
+    font-size:10pt;
+    width:420px;
+}
 .TextBoxLD 
 {
     border-width:1px 1px 1px 1px;
