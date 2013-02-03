@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="4ba0bd5e-4850-46f7-9d29-9adf251a568c" solutionId="4ba0bd5e-4850-46f7-9d29-9adf251a568c" resetWebServer="true" name="CAS SmartFactory IPR Dashboards Solution" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="4ba0bd5e-4850-46f7-9d29-9adf251a568c" solutionId="4ba0bd5e-4850-46f7-9d29-9adf251a568c" resetWebServer="true" title="CAS SmartFactory IPR Dashboards Solution" description="Package containing CAS.SmartFactory IPR dashboards solution " name="CASSmartFactoryIPRDashboards" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
     <featureReference itemId="f8e968e3-19d1-4bc3-97fb-0ad9398b5d58" />
   </features>
