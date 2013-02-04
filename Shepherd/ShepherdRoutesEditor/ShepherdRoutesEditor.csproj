@@ -27,7 +27,7 @@
     <InstallUrl>http://www.commsvr.com/COInstal/ShepherdClient/</InstallUrl>
     <SupportUrl>http://jti.cas.eu/</SupportUrl>
     <ErrorReportUrl>http://jti.cas.eu/</ErrorReportUrl>
-    <ProductName>SmartFactory</ProductName>
+    <ProductName>CAS SmartFactory Shepherd Client</ProductName>
     <PublisherName>CAS</PublisherName>
     <SuiteName>Shepherd</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
