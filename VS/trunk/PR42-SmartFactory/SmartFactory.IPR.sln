@@ -47,7 +47,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{8EC6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packaging", "..\PR44-SharePoint\Tools\Packaging\Packaging.csproj", "{28DC8C24-C4A0-47D8-A114-DD4E2D42B1EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFactoryDeployment", "..\PR44-SharePoint\Tools\SmartFactoryDeployment\SmartFactoryDeployment.csproj", "{2C246131-39C1-44E1-AAA4-768EE30F4E0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointSetup", "..\PR44-SharePoint\Tools\SharePointSetup\SharePointSetup.csproj", "{2C246131-39C1-44E1-AAA4-768EE30F4E0D}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
