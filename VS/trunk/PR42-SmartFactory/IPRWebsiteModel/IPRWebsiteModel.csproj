@@ -65,6 +65,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CAS.SharePoint, Version=1.60.40.35497, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonBinaries\PR42-SmartFactory\CAS.SharePoint.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -141,12 +145,6 @@
     <Content Include="Linq\Scripts\Parameters.xml">
       <SubType>Designer</SubType>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
-      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
-      <Name>SharePoint</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

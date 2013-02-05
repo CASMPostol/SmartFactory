@@ -62,6 +62,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CAS.SharePoint, Version=1.60.40.35497, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonBinaries\PR42-SmartFactory\CAS.SharePoint.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -337,12 +341,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
-      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
-      <Name>SharePoint</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
