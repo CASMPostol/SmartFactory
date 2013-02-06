@@ -15,12 +15,38 @@
     <globalSetting name="AddNewFileGroupForm.baseFolderTextEdit.Text">
     </globalSetting>
     <globalSetting name="AddNewFileGroupForm.baseFileNameTextEdit.Text">CASSmartFactoryIPR</globalSetting>
+    <globalSetting name="sendFileToTranslator.destinationFilePathTextEdit.Text">C:\Users\akubiak\Desktop\info2.xls</globalSetting>
+    <globalSetting name="sendFileToTranslator.fileGroupsListBox">GlobalResources\CASSmartFactoryIPR###{{{}}}###Resources\CASSmartFactoryIPR###{{{}}}###Resources\CASSmartFactoryIPRCode</globalSetting>
+    <globalSetting name="sendFileToTranslator.languagesToExportCheckListBox">English (United States) (en-us)</globalSetting>
+    <globalSetting name="sendFileToTranslator.referenceLanguageComboBoxEdit.SelectedIndex">1</globalSetting>
+    <globalSetting name="sendFileToTranslator.openFileAfterGeneratingCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.openAfterGeneratingCheckEdit.Checked">False</globalSetting>
+    <globalSetting name="sendFileToTranslator.eliminateDuplicateRowsCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportWithoutDestinationTranslationOnlyCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportCompletelyEmptyRowsCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportGroupsAsOneWorkSheetCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportNameColumnCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportCommentColumnCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportReferenceLanguageColumnCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportFileGroupColumnCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportGroupsAsWorkSheetsCheckEdit.Checked">False</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportGroupsAsExcelFilesCheckEdit.Checked">False</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportEachLanguageIntoSeparateExcelFileCheckEdit.Checked">False</globalSetting>
+    <globalSetting name="sendFileToTranslator.useCrypticExcelExportSheetNamesCheckEdit.Checked">False</globalSetting>
+    <globalSetting name="sendFileToTranslator.sendFilesToEMailReceivers2CheckEdit.Checked">False</globalSetting>
+    <globalSetting name="sendFileToTranslator.zulReceiversTextEdit.Text">
+    </globalSetting>
+    <globalSetting name="sendFileToTranslator.zulSubjectTextEdit.Text">[ZRE] Excel files for translating project "{ProjectName}"</globalSetting>
+    <globalSetting name="sendFileToTranslator.zulBodyTextEdit.Text">Please download the Excel documents in the link to translate the project "{ProjectName}".
+
+To send me the translated files back, simply use https://www.zeta-uploader.com
+
+Kind regards</globalSetting>
     <userSetting name="bwojciechowski@HQ.filesInitialDir">C:\Users\bwojciechowski\Repozytorium\PR42-SmartFactory\IPRResources\Resources</userSetting>
     <userSetting name="bwojciechowski@HQ.FindText">
     </userSetting>
     <userSetting name="bwojciechowski@HQ.RecentFiles">D:\CAS\Repo\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPR.resx;D:\CAS\Repo\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPR.en-US.resx;D:\CAS\Repo\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPR.pl-PL.resx###***###D:\CAS\Repo\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPRCode.resx;D:\CAS\Repo\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPRCode.en-US.resx;D:\CAS\Repo\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPRCode.pl-PL.resx###***###D:\CAS\Repo\PR42-SmartFactory\IPRResources\GlobalResources\CASSmartFactoryIPR.resx;D:\CAS\Repo\PR42-SmartFactory\IPRResources\GlobalResources\CASSmartFactoryIPR.en-US.resx;D:\CAS\Repo\PR42-SmartFactory\IPRResources\GlobalResources\CASSmartFactoryIPR.pl-PL.resx</userSetting>
-    <userSetting name="akubiak@HQ.FindText">
-    </userSetting>
+    <userSetting name="akubiak@HQ.FindText">wartoś</userSetting>
     <userSetting name="akubiak@HQ.RecentFiles">C:\IPRResources\Resources\CASSmartFactoryIPR.resx;C:\IPRResources\Resources\CASSmartFactoryIPR.en-US.resx;C:\IPRResources\Resources\CASSmartFactoryIPR.pl-PL.resx###***###C:\IPRResources\Resources\CASSmartFactoryIPRCode.resx;C:\IPRResources\Resources\CASSmartFactoryIPRCode.en-US.resx;C:\IPRResources\Resources\CASSmartFactoryIPRCode.pl-PL.resx###***###C:\IPRResources\GlobalResources\CASSmartFactoryIPR.resx;C:\IPRResources\GlobalResources\CASSmartFactoryIPR.en-US.resx;C:\IPRResources\GlobalResources\CASSmartFactoryIPR.pl-PL.resx</userSetting>
     <userSetting name="mpostol@HQ.FindText">Select</userSetting>
     <userSetting name="mpostol@HQ.RecentFiles">C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPR.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPR.en-US.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPR.pl-PL.resx###***###C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPRCode.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPRCode.en-US.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPRCode.pl-PL.resx###***###C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\GlobalResources\CASSmartFactoryIPR.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\GlobalResources\CASSmartFactoryIPR.en-US.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\GlobalResources\CASSmartFactoryIPR.pl-PL.resx###***###C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPR.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\GlobalResources\CASSmartFactoryIPR.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPR.en-US.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\GlobalResources\CASSmartFactoryIPR.en-US.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPR.pl-PL.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\GlobalResources\CASSmartFactoryIPR.pl-PL.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPRCode.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPRCode.en-US.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRResources\Resources\CASSmartFactoryIPRCode.pl-PL.resx</userSetting>

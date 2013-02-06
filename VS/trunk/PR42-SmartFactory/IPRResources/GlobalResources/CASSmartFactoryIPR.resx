@@ -160,7 +160,7 @@
     <value>Change batch</value>
   </data>
 	<data name="CAS_ASPX_Clearence" xml:space="preserve">
-    <value>Clearence</value>
+    <value>Clearance</value>
   </data>
 	<data name="CAS_ASPX_Created" xml:space="preserve">
     <value>Created</value>
@@ -277,7 +277,7 @@
     <value>Waste</value>
   </data>
 	<data name="CAS_ASPX_ClearenceDB" xml:space="preserve">
-    <value>Clearence</value>
+    <value>Clearance</value>
   </data>
 	<data name="CAS_ASPX_ExportDB" xml:space="preserve">
     <value>Export</value>
@@ -292,7 +292,7 @@
 		<value>Split</value>
 	</data>
 	<data name="CAS_ASPX_ClearenceDashboard" xml:space="preserve">
-		<value>Clearence dashboard</value>
+		<value>Clearance dashboard</value>
 	</data>
 	<data name="CAS_ASPX_ExportDashboard" xml:space="preserve">
 		<value>Export dashboard</value>
@@ -316,7 +316,7 @@
 		<value>Batch and material dashboard</value>
 	</data>
 	<data name="CAS_ASPX_ClearenceViewDashboard" xml:space="preserve">
-		<value>Clearence View dashboard</value>
+		<value>Clearance View dashboard</value>
 	</data>
 	<data name="CAS_ASPX_FooterText" xml:space="preserve">
 		<value>Designed and created by CAS</value>
@@ -326,8 +326,7 @@
 	</data>
 	<data name="CAS_ASPX_DefaultMainText" xml:space="preserve">
 		<value>&lt;p&gt;IPR is designed to simplify the procedures of managing goods under IPR (Inward Processing Relief), whilst taking advantage of the maximum benefits available.&lt;/p&gt;
-&lt;p&gt;Inward Processing Relief (IPR) is a method of obtaining relief from customs duties and VAT charges. The relief applies to goods imported from outside the EU, processed and exported to countries outside the EU. IPR provides relief to promote exports from the EU and assist EU companies to compete on an equal footing in the world market.&lt;/p&gt;
-&lt;p&gt;The processing allowed under IPR can be anything from repacking or sorting goods to the most complicated manufacturing. Hence a company that manufactures, processes or repairs goods obtained outside the EU and exports the finished product can save the customs duty and VAT normally payable on import.&lt;/p&gt;</value>
+&lt;p&gt;IPR is a method of obtaining relief from customs duties and VAT charges normally payable on import. It applies to goods imported from outside the EU, processed and exported to countries outside the EU. The processing allowed under IPR can be anything from repacking or sorting goods to the most complicated manufacturing. IPR provides relief to promote exports from the EU and assist EU companies to compete on an equal footing in the world market.&lt;/p&gt;</value>
 	</data>
 	<data name="CAS_ASPX_ClearanceManager" xml:space="preserve">
 		<value>Clearance manager</value>
