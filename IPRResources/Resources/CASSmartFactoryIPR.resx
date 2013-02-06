@@ -211,7 +211,7 @@
     <value>Closing date</value>
   </data>
 	<data name="CAS_Code" xml:space="preserve">
-    <value>CN Code</value>
+    <value>PCN Code</value>
   </data>
 	<data name="CAS_Comments" xml:space="preserve">
     <value>Comments</value>
@@ -646,7 +646,7 @@
     <value>Quantity [KU/kg]</value>
   </data>
 	<data name="CAS_TotalAmountInvoiced" xml:space="preserve">
-    <value>Wartość</value>
+    <value>Value</value>
   </data>
 	<data name="CAS_UnitPrice" xml:space="preserve">
     <value>Unit price</value>

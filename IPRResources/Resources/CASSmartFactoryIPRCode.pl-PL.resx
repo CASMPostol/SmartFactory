@@ -151,7 +151,7 @@
 		<value>Wybrana ilość niedostępna . Tylko {0} dostępne</value>
 	</data>
 	<data name="NotApplicable" xml:space="preserve">
-		<value> Niedostępne</value>
+		<value>Niedostępne</value>
 	</data>
 	<data name="NeBatchQuantityIsUnavailableMessage" xml:space="preserve">
 		<value>Wybrana ilość niedostępna w wybranym batch'u. Tylko {0} dostępne</value>

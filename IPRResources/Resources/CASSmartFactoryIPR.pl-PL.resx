@@ -211,7 +211,7 @@
     <value>Data zamknięcia</value>
   </data>
 	<data name="CAS_Code" xml:space="preserve">
-    <value>Kod CN </value>
+    <value>Kod PCN </value>
   </data>
 	<data name="CAS_Comments" xml:space="preserve">
     <value>Komentarz</value>
