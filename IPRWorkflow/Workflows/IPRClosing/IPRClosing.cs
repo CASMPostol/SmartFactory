@@ -75,6 +75,7 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
           WebsiteModel.Linq.IPRLib _document = Element.GetAtIndex<WebsiteModel.Linq.IPRLib>( _edc.IPRLibrary, _id );
           _record.IPRLibraryIndex = _document;
           _record.AccountClosed = true;
+          _record.ClosingDate = DateTime.Today.Date;
           _document.DocumentNo = _record.Title;
           _edc.SubmitChanges();
         }

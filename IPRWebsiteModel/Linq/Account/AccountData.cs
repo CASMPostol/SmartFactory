@@ -123,12 +123,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     {
       SADRequiredDocuments _rd = ( from _dx in sadRequiredDocumentsEntitySet
                                    let CustomsProcedureCode = _dx.Code.ToUpper()
-                                   where CustomsProcedureCode.Contains( GlobalDefinitions.CustomsProcedureCodeC600 ) || CustomsProcedureCode.Contains( GlobalDefinitions.CustomsProcedureCodeC601 )
+                                   where CustomsProcedureCode.Contains( GlobalDefinitions.CustomsProcedureCodeC600 ) || 
+                                         CustomsProcedureCode.Contains( GlobalDefinitions.CustomsProcedureCodeC601 ) ||
+                                         CustomsProcedureCode.Contains( GlobalDefinitions.CustomsProcedureCode1PG1 )
                                    select _dx
                                   ).FirstOrDefault();
       if ( _rd == null )
       {
-        m_Warnings.Add( "There is not attached any consent document with code = C600/C601" );
+        m_Warnings.Add( "There is not attached any consent document with code = C600/C601/1PG1" );
         CreateDefaultConsent( edc, String.Empty.NotAvailable() );
       }
       else
