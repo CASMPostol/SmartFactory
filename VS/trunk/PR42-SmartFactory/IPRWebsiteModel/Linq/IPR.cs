@@ -286,7 +286,24 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
               }
               break;
             case CustomsStatus.Finished:
-              base[ ValueKey.TobaccoCSFinished ] += _dspx.SettledQuantityDec;
+              switch ( _dspx.DisposalStatus.Value )
+              {
+                case DisposalStatus.Cartons:
+                  break;
+                case DisposalStatus.Dust:
+                case DisposalStatus.SHMenthol:
+                case DisposalStatus.Waste:
+                case DisposalStatus.Overuse:
+                case DisposalStatus.Tobacco:
+                case DisposalStatus.TobaccoInCigaretes:
+                case DisposalStatus.TobaccoInCigaretesDestinationEU:
+                case DisposalStatus.TobaccoInCigaretesProduction:
+                case DisposalStatus.TobaccoInCutfiller:
+                case DisposalStatus.TobaccoInCutfillerDestinationEU:
+                case DisposalStatus.TobaccoInCutfillerProduction:
+                  base[ ValueKey.TobaccoCSFinished ] += _dspx.SettledQuantityDec;
+                  break;
+              }
               break;
           }
         }
