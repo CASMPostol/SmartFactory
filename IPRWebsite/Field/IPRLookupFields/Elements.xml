@@ -112,6 +112,19 @@
     Overwrite="TRUE"
   />
   <Field
+    Type="Lookup"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SKU"
+    List="Lists/IPRList"
+    ShowField="SKU"
+    FieldRef="C0A4DD0E-A06E-40D4-BFE1-682D3C071AC1"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory IPR"
+    ID="{07D2B4D8-59D2-43DC-AC2E-A45EBCCFC805}"
+    Name="Disposal2IPRSKU_sec"
+    Overwrite="TRUE"
+  />
+  <Field
     Name="Disposal2IPRIndex"
     ID="{C0A4DD0E-A06E-40D4-BFE1-682D3C071AC1}"
     Type="Lookup"
