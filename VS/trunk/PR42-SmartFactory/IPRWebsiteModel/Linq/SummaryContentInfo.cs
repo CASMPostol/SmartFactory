@@ -91,6 +91,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           progressChanged( this, new ProgressChangedEventArgs( 1, "InsertAllOnSubmit" ) );
           edc.Material.InsertAllOnSubmit( _newMaterialList );
         }
+        edc.SubmitChanges();
         foreach ( Material _omx in _oldMaterialList )
         {
           this.Remove( _omx );
