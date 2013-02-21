@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// <summary>
   /// Material 
   /// </summary>
-  public partial class Material: IComparable<Material>
+  public partial class Material: IComparable<Material>, IEquatable<Material>
   {
     #region ctor
     public Material( Entities edc, Entities.ProductDescription product, string batch, string sku, string storLoc, string skuDescription, string units, decimal fgQuantity, decimal tobaccoQuantity, string productID )
@@ -329,6 +329,41 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public int CompareTo( Material other )
     {
       return GetKey().CompareTo( other.GetKey() );
+    }
+    #endregion
+
+    #region IEquatable<Material> Members
+    /// <summary>
+    /// Indicates whether the current object is equal to another object of the same type.
+    /// </summary>
+    /// <param name="other">An object to compare with this object.</param>
+    /// <returns>
+    /// true if the current object is equal to the other parameter; otherwise, false.
+    /// </returns>
+    public bool Equals( Material other )
+    {
+      return GetKey().CompareTo( other.GetKey() ) == 0;
+    }
+    /// <summary>
+    /// Returns a hash code for this instance.
+    /// </summary>
+    /// <returns>
+    /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+    /// </returns>
+    public override int GetHashCode()
+    {
+      return GetKey().GetHashCode();
+    }
+    /// <summary>
+    /// Determines whether the specified <see cref="System.Object" /> is equal to this instance.
+    /// </summary>
+    /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+    /// <returns>
+    ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+    /// </returns>
+    public override bool Equals( object obj )
+    {
+      return Equals( (Material)obj );
     }
     #endregion
   }
