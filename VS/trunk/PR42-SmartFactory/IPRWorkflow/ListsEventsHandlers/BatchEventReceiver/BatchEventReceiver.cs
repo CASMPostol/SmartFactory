@@ -156,7 +156,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       _contentInfo.Validate( edc, _batch.Disposal );
       if ( _newBatch )
         edc.Batch.InsertOnSubmit( _batch );
+      progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: BatchProcessing" ) );
       _batch.BatchProcessing( edc, _newBtachStatus, _contentInfo, parent, progressChanged, _newBatch );
+      progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: SubmitChanges" ) );
+      edc.SubmitChanges();
     }
     private static BatchStatus GetBatchStatus( xml.erp.BatchStatus batchStatus )
     {
