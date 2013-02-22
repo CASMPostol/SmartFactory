@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
@@ -219,10 +220,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Material _old = null;
       if ( !parentsMaterials.TryGetValue( this, out _old ) )
       {
+        Debug.Assert( this.Material2BatchIndex == null, "Material2BatchIndex must be equl null for new materials" );
         this.Material2BatchIndex = parent;
         _newMaterials.Add( this );
         return this;
       }
+      Debug.Assert( this != _old, "this cannot be the same as old" );
+      Debug.Assert( _old.Material2BatchIndex == parent, "Material2BatchIndex must be equl parent for old materials" );
+      Material _newOld = ( from _idx in parent.Material where _old.Identyfikator == _idx.Identyfikator select _idx ).First();
+      Debug.Assert( _old == _newOld, "Material2BatchIndex must be equl parent for old materials" );
+      _old = _newOld;
       _oldMaterials.Add( _old );
       _old.FGQuantity = this.FGQuantity;
       _old.TobaccoQuantity = this.TobaccoQuantity;

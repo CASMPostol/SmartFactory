@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.SharePoint.Linq;
 
@@ -80,6 +81,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           Material _material = _materialX.ReplaceByExistingOne( _oldMaterialList, _newMaterialList, _parentsMaterials, parent );
           progressChanged( this, new ProgressChangedEventArgs( 1, "CalculateCompensationComponents" ) );
           _material.CalculateCompensationComponents( edc, _mr, overusageCoefficient );
+          Debug.Assert( ( (Microsoft.SharePoint.Linq.ITrackEntityState)_material ).EntityState != Microsoft.SharePoint.Linq.EntityState.Unchanged, "EntityState is in wrong state: Unchanged" );
           if ( _material.ProductType.Value == ProductType.IPRTobacco )
           {
             progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
