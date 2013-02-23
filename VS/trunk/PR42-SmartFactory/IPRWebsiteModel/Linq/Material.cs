@@ -70,24 +70,24 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           TobaccoQuantity = _accounts[ 0 ].TobaccoNotAllocated;
       }
       decimal material = TobaccoQuantityDec;
-      decimal _overuseInKg = 0;
+      decimal overuseInKg = 0;
       if ( overusage > 0 )
       {
-        _overuseInKg = this[ DisposalEnum.OverusageInKg ] = ( TobaccoQuantityDec * Convert.ToDecimal( overusage ) ).Rount2Decimals();
-        material -= _overuseInKg;
+        overuseInKg = this[ DisposalEnum.OverusageInKg ] = ( TobaccoQuantityDec * Convert.ToDecimal( overusage ) ).Rount2Decimals();
+        material -= overuseInKg;
       }
       else
         this[ DisposalEnum.OverusageInKg ] = 0;
-      decimal _dust = this[ DisposalEnum.Dust ] = 0;
-      decimal _shMenthol = this[ DisposalEnum.SHMenthol ] = 0;
-      decimal _waste = this[ DisposalEnum.Waste ] = 0;
+      decimal dust = this[ DisposalEnum.Dust ] = 0;
+      decimal shMenthol = this[ DisposalEnum.SHMenthol ] = 0;
+      decimal waste = this[ DisposalEnum.Waste ] = 0;
       if ( this.ProductType.Value == Linq.ProductType.IPRTobacco )
       {
-        _dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).Rount2Decimals();
-        _shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).Rount2Decimals();
-        _waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).Rount2Decimals();
+        dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).Rount2Decimals();
+        shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).Rount2Decimals();
+        waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).Rount2Decimals();
       }
-      this[ DisposalEnum.TobaccoInCigaretess ] = material - _shMenthol - _waste - _dust;
+      this[ DisposalEnum.TobaccoInCigaretess ] = material - shMenthol - waste - dust;
     }
     /// <summary>
     /// Gets the <see cref="System.Decimal" /> at the specified index.
@@ -120,7 +120,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             _ret = this.Tobacco.Value;
             break;
           default:
-            break;
+            throw new ArgumentException( "Index out of range at Material.Indexer", "index" );
         }
         return Convert.ToDecimal( _ret );
       }
@@ -145,7 +145,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             this.Tobacco = _val;
             break;
           default:
-            break;
+            throw new ArgumentException( "Index out of range at Material.Indexer", "index" );
         }
       }
     }

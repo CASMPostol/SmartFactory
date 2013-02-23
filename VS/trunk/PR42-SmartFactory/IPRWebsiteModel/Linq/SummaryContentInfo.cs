@@ -36,7 +36,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       internal void Accumutate( Material material )
       {
         foreach ( Linq.DisposalEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
+        {
+          if ( _item == DisposalEnum.Tobacco || _item == DisposalEnum.Cartons )
+            continue;
           this[ _item ] += material[ _item ];
+        }
       }
     } //DisposalsAnalisis
     /// <summary>
