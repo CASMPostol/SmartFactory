@@ -9,7 +9,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// <summary>
   /// Material 
   /// </summary>
-  public partial class Material: IComparable<Material>, IEquatable<Material>
+  public partial class Material//: IComparable<Material>, IEquatable<Material>
   {
     #region ctor
     public Material( Entities edc, Entities.ProductDescription product, string batch, string sku, string storLoc, string skuDescription, string units, decimal fgQuantity, decimal tobaccoQuantity, string productID )
@@ -215,10 +215,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The tobacco total.
     /// </value>
     internal decimal TobaccoQuantityDec { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
-    internal Material ReplaceByExistingOne( List<Material> _oldMaterials, List<Material> _newMaterials, Dictionary<Material, Material> parentsMaterials, Batch parent )
+    internal Material ReplaceByExistingOne( List<Material> _oldMaterials, List<Material> _newMaterials, Dictionary<string, Material> parentsMaterials, Batch parent )
     {
       Material _old = null;
-      if ( !parentsMaterials.TryGetValue( this, out _old ) )
+      if ( !parentsMaterials.TryGetValue( this.GetKey(), out _old ) )
       {
         Debug.Assert( this.Material2BatchIndex == null, "Material2BatchIndex must be equl null for new materials" );
         this.Material2BatchIndex = parent;
@@ -229,10 +229,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Debug.Assert( _old.Material2BatchIndex == parent, "Material2BatchIndex must be equl parent for old materials" );
       Material _newOld = ( from _idx in parent.Material where _old.Identyfikator == _idx.Identyfikator select _idx ).First();
       Debug.Assert( _old == _newOld, "Material2BatchIndex must be equl parent for old materials" );
+      Debug.Assert( ( (Microsoft.SharePoint.Linq.ITrackEntityState)_old ).EntityState != Microsoft.SharePoint.Linq.EntityState.ToBeInserted, "EntityState is in wrong state: ToBeInserted" );
       _old = _newOld;
       _oldMaterials.Add( _old );
+      _old.FGQuantity = 0;
       _old.FGQuantity = this.FGQuantity;
       _old.TobaccoQuantity = this.TobaccoQuantity;
+      Debug.Assert( ( (Microsoft.SharePoint.Linq.ITrackEntityState)_old ).EntityState == Microsoft.SharePoint.Linq.EntityState.ToBeUpdated, "EntityState is in wrong state: must be ToBeInserted" );
       return _old;
     }
     internal void UpdateDisposals( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged )
@@ -320,7 +323,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Gets the key.
     /// </summary>
     /// <returns></returns>
-    private string GetKey()
+    internal string GetKey()
     {
       return String.Format( m_keyForam, SKU, Batch, this.StorLoc );
     }
