@@ -85,7 +85,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           Material _material = _materialX.ReplaceByExistingOne( _oldMaterialList, _newMaterialList, _parentsMaterials, parent );
           progressChanged( this, new ProgressChangedEventArgs( 1, "CalculateCompensationComponents" ) );
           _material.CalculateCompensationComponents( edc, _mr, overusageCoefficient );
-          Debug.Assert( ( (Microsoft.SharePoint.Linq.ITrackEntityState)_material ).EntityState != Microsoft.SharePoint.Linq.EntityState.Unchanged, "EntityState is in wrong state: Unchanged" );
+          progressChanged( this, new ProgressChangedEventArgs( 1, "if ( _material.ProductType.Value" ) );
           if ( _material.ProductType.Value == ProductType.IPRTobacco )
           {
             progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
@@ -97,7 +97,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           progressChanged( this, new ProgressChangedEventArgs( 1, "InsertAllOnSubmit" ) );
           edc.Material.InsertAllOnSubmit( _newMaterialList );
         }
-        edc.SubmitChanges();
         foreach ( Material _omx in _oldMaterialList )
         {
           this.Remove( _omx.GetKey() );
