@@ -10,7 +10,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// <summary>
   /// Summary Content Info
   /// </summary>
-  public abstract class SummaryContentInfo: SortedList<Material, Material>
+  public abstract class SummaryContentInfo: SortedList<string, Material>
   {
     #region ctor
     /// <summary>
@@ -78,7 +78,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         Material.Ratios _mr = new Material.Ratios { dustRatio = dustRatio, shMentholRatio = shMentholRatio, wasteRatio = wasteRatio };
         List<Material> _copyThis = new List<Material>();
         _copyThis.AddRange( this.Values );
-        Dictionary<Material, Material> _parentsMaterials = parent.Material.ToDictionary<Material, Material>( x => x );
+        Dictionary<string, Material> _parentsMaterials = parent.Material.ToDictionary<Material, string>( x => x.GetKey() );
         foreach ( Material _materialX in _copyThis )
         {
           progressChanged( this, new ProgressChangedEventArgs( 1, "DisposalsAnalisis" ) );
@@ -100,8 +100,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         edc.SubmitChanges();
         foreach ( Material _omx in _oldMaterialList )
         {
-          this.Remove( _omx );
-          this.Add( _omx, _omx );
+          this.Remove( _omx.GetKey() );
+          this.Add( _omx.GetKey(), _omx );
         }
       }
       catch ( Exception _ex )
@@ -167,7 +167,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Material ce = null;
       if ( value.ProductType == ProductType.IPRTobacco || value.ProductType == ProductType.Tobacco )
         TotalTobacco += value.TobaccoQuantityDec;
-      if ( this.TryGetValue( value, out ce ) )
+      if ( this.TryGetValue( value.GetKey(), out ce ) )
       {
         ce.FGQuantity += value.FGQuantity;
         ce.TobaccoQuantity += value.TobaccoQuantity;
@@ -178,14 +178,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           Product = value;
         else if ( Product == null && value.ProductType == ProductType.Cutfiller )
           Product = value;
-        base.Add( value, value );
+        base.Add( value.GetKey(), value );
       }
     }
     private void Subtract( Material value, List<string> _warnings )
     {
       if ( value.ProductType == ProductType.IPRTobacco || value.ProductType == ProductType.Tobacco )
         TotalTobacco -= value.TobaccoQuantityDec;
-      if ( this.TryGetValue( value, out value ) )
+      if ( this.TryGetValue( value.GetKey(), out value ) )
       {
         value.FGQuantity -= value.FGQuantity;
         value.TobaccoQuantity -= value.TobaccoQuantity;
