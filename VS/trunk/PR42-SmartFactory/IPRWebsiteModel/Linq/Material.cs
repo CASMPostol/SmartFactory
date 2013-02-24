@@ -221,7 +221,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( !parentsMaterials.TryGetValue( this.GetKey(), out _old ) )
       {
         Debug.Assert( this.Material2BatchIndex == null, "Material2BatchIndex must be equl null for new materials" );
-        Debug.Assert( ( (Microsoft.SharePoint.Linq.ITrackEntityState)_old ).EntityState == Microsoft.SharePoint.Linq.EntityState.ToBeInserted, "EntityState is in wrong state: must be ToBeInserted" );
         this.Material2BatchIndex = parent;
         _newMaterials.Add( this );
         return this;
