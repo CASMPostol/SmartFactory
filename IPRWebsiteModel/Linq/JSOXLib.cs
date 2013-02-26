@@ -40,7 +40,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Dictionary<string, IGrouping<string, IPR>> _accountGroups = Linq.IPR.GetAllOpen4JSOXGroups( edc ).ToDictionary( x => x.Key );
       if ( _stock != null )
       {
-        _validated = _stock.Validate( edc, _accountGroups );
+        _validated = _stock.Validate( edc, _accountGroups, _stock );
         _stock.GetInventory( edc, _balanceStock );
         _stock.Stock2JSOXLibraryIndex = this;
       }
