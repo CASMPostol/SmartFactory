@@ -20,7 +20,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       foreach ( StockEntry _sex in StockEntry )
         _sex.GetInventory( balanceStock );
     }
-    internal bool Validate( Entities edc, Dictionary<string, IGrouping<string, IPR>> _accountGroups )
+    internal bool Validate( Entities edc, Dictionary<string, IGrouping<string, IPR>> _accountGroups, StockLib library )
     {
       int _problems = 0;
       HashSet<Batch> _batches = new HashSet<Batch>();
@@ -45,13 +45,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       List<string> _warnings = new List<string>();
       foreach ( Batch _senbx in _batches )
-        _senbx.CheckQuantity( _warnings );
+        _senbx.CheckQuantity( _warnings, library );
       foreach ( string _msg in _warnings )
       {
         ActivityLogCT.WriteEntry( edc, m_ActivityLogEntryName, _msg );
         _problems++;
       }
-      foreach ( Batch _btx in DanglingBatches( edc ) )
+      foreach ( Batch _btx in DanglingBatches( edc, library ) )
       {
         ActivityLogCT.WriteEntry( edc, m_ActivityLogEntryName, _btx.DanglingBatchWarningMessage );
         _problems++;
@@ -89,12 +89,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                select _sex;
       }
     }
-    private IEnumerable<Batch> DanglingBatches( Entities edc )
+    private IEnumerable<Batch> DanglingBatches( Entities edc, StockLib library )
     {
       List<Batch> _list = ( from _btx in edc.Batch
                             where _btx.FGQuantityAvailable.Value > 0
                             select _btx ).ToList<Batch>();
-      return from _btx in _list where !_btx.StockEntry.Any() select _btx;
+      return from _btx in _list where !_btx.StockEntry.Any(x => x.StockLibraryIndex == library) select _btx;
     }
     #endregion
 

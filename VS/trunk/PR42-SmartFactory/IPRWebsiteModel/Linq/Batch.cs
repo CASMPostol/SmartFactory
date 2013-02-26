@@ -151,13 +151,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           break;
       }
     }
-    internal void CheckQuantity( List<string> _warnings )
+    internal void CheckQuantity( List<string> _warnings, StockLib lib )
     {
       if ( this.ProductType.Value != Linq.ProductType.Cigarette )
         return;
       decimal _onStock = 0;
-      foreach ( var _stock in this.StockEntry )
+      foreach ( StockEntry _stock in this.StockEntry )
+      {
+        if ( _stock.StockLibraryIndex != lib )
+          continue;
         _onStock += Convert.ToDecimal( _stock.Quantity );
+      }
       if ( Convert.ToDecimal( this.FGQuantityAvailable ) != _onStock )
       {
         string _msg = string.Format( m_noMachingQuantityWarningMessage, Convert.ToDecimal( this.FGQuantityAvailable ), _onStock, this.ProductType, this.Batch0, this.SKU );
