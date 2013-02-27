@@ -22,14 +22,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal bool Validate( Entities edc, Dictionary<string, IGrouping<string, IPR>> _accountGroups, StockLib library )
     {
+      ActivityLogCT.WriteEntry( m_ActivityLogEntryName, "Starting stock inventory validation." );
       int _problems = 0;
-      HashSet<Batch> _batches = new HashSet<Batch>();
+      Dictionary<string, Batch> _batches = new Dictionary<string, Batch>();
       foreach ( StockEntry _sex in this.AllIPRFinishedGoods )
       {
         Batch _batchLookup = Batch.FindStockToBatchLookup( edc, _sex.Batch );
         if ( _batchLookup != null )
         {
-          _batches.Add( _batchLookup );
+          if ( !_batches.ContainsKey( _batchLookup.Batch0 ) )
+            _batches.Add( _batchLookup.Batch0, _batchLookup );
           _sex.BatchIndex = _batchLookup;
           continue;
         }
@@ -44,14 +46,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _problems++;
       }
       List<string> _warnings = new List<string>();
-      foreach ( Batch _senbx in _batches )
+      foreach ( Batch _senbx in _batches.Values )
         _senbx.CheckQuantity( _warnings, library );
       foreach ( string _msg in _warnings )
       {
         ActivityLogCT.WriteEntry( edc, m_ActivityLogEntryName, _msg );
         _problems++;
       }
-      foreach ( Batch _btx in DanglingBatches( edc, library ) )
+      foreach ( Batch _btx in DanglingBatches( edc, _batches, library ) )
       {
         ActivityLogCT.WriteEntry( edc, m_ActivityLogEntryName, _btx.DanglingBatchWarningMessage );
         _problems++;
@@ -89,12 +91,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                select _sex;
       }
     }
-    private IEnumerable<Batch> DanglingBatches( Entities edc, StockLib library )
+    private IEnumerable<Batch> DanglingBatches( Entities edc, Dictionary<string, Batch> _batches, StockLib library )
     {
+      Dictionary<string, Batch> _ret = new Dictionary<string, Batch>();
       List<Batch> _list = ( from _btx in edc.Batch
                             where _btx.FGQuantityAvailable.Value > 0
+                            orderby _btx.Identyfikator.Value descending
                             select _btx ).ToList<Batch>();
-      return from _btx in _list where !_btx.StockEntry.Any(x => x.StockLibraryIndex == library) select _btx;
+      foreach ( Batch _bidx in from _btx in _list where !_btx.StockEntry.Any( x => x.StockLibraryIndex == library ) select _btx )
+      {
+        if ( _batches.ContainsKey( _bidx.Batch0 ) )
+          continue;
+        if ( !_ret.ContainsKey( _bidx.Batch0 ) )
+          _ret.Add( _bidx.Batch0, _bidx );
+      }
+      return _ret.Values;
     }
     #endregion
 
