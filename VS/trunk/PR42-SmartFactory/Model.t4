@@ -1,6 +1,6 @@
 <#+
-string IPRAssemblyVersion = "1.60.40.*";
-string IPRAssemblyFileVersion = "1.60.40";
+string IPRAssemblyVersion = "1.60.41.*";
+string IPRAssemblyFileVersion = "1.60.41";
 string SHRAssemblyVersion = "1.70.00.*";
 string SHRAssemblyFileVersion = "1.70.00";
 string AssemblyTrademark = "Smart Factory";
