@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ListInstance FeatureId="{4cdcf677-35f2-41fe-86c6-dcbaaf001b75}" TemplateType="10001" Title="SAD Document" Description="SADDocument - collection of all customs declaration." Url="Lists/SADDocument" CustomSchema="Files\Lists\SADDocument\Schema.xml" HyperlinkBaseUrl="http://casmp/sites/IPR" RootWebOnly="FALSE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-</Elements>

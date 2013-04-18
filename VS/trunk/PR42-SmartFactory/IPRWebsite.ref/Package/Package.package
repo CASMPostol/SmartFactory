@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="a18fa789-5fa7-4cd6-b163-54f71a4c596f" solutionId="a18fa789-5fa7-4cd6-b163-54f71a4c596f" resetWebServer="false" name="WspImportProject1" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
-  <features>
-    <featureReference itemId="c69a7dc3-b006-440a-a838-bb58b72d9562" />
-    <featureReference itemId="f3b5680f-72fb-4546-9081-12760bb56f94" />
-    <featureReference itemId="b3087ce2-bae7-4265-bd23-7c73cef8fa5a" />
-    <featureReference itemId="2d843829-ff47-463a-9f41-1833ffd95f8f" />
-  </features>
-</package>

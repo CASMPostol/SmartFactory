@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<Module Name="_SiteTemplates\STS" Url="" SetupPath="SiteTemplates\STS" RootWebOnly="FALSE" Path="Files" xmlns="http://schemas.microsoft.com/sharepoint/">
-		<File Url="default.aspx" Type="Ghostable" Path="default.aspx" />
-	</Module>
-</Elements>

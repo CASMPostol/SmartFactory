@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feature deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" title="WspImportProject1 Feature4" dslVersion="1.0.0.0" Id="64952002-6a2d-4e86-accf-3058f5c97812" featureId="64952002-6a2d-4e86-accf-3058f5c97812" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
-</feature>

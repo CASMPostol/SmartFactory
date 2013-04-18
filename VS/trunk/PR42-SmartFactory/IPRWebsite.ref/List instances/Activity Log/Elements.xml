@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ListInstance FeatureId="{00bfea71-d1ce-42de-9c63-a44004ce0104}" TemplateType="104" Title="Activity Log" Description="It contains logged messages." Url="Lists/ActivityLog" CustomSchema="Files\Lists\ActivityLog\Schema.xml" HyperlinkBaseUrl="http://casmp/sites/IPR" RootWebOnly="FALSE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-</Elements>

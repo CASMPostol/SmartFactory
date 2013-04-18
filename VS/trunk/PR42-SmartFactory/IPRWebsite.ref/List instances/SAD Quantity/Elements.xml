@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ListInstance FeatureId="{4cdcf677-35f2-41fe-86c6-dcbaaf001b75}" TemplateType="10004" Title="SAD Quantity" Description="The SAD Quantity List" Url="Lists/SADQuantityList" CustomSchema="Files\Lists\SADQuantityList\Schema.xml" HyperlinkBaseUrl="http://casmp/sites/IPR" RootWebOnly="FALSE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-</Elements>
