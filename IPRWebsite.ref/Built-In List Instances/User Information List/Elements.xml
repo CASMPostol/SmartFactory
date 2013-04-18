@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ListInstance FeatureId="{00000000-0000-0000-0000-000000000000}" TemplateType="112" Title="User Information List" Description="All people." Url="_catalogs/users" CustomSchema="Files\_catalogs\users\Schema.xml" HyperlinkBaseUrl="http://casmp/sites/IPR" RootWebOnly="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-</Elements>

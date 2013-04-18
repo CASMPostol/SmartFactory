@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ListInstance FeatureId="{00000000-0000-0000-0000-000000000000}" TemplateType="113" Title="Web Part Gallery" Description="Use this Web Part Gallery to store and retrieve Web Parts. The Web Parts in this gallery are available to this site and all sites under it. To preview a Web Part, click its title." Url="_catalogs/wp" CustomSchema="Files\_catalogs\wp\Schema.xml" HyperlinkBaseUrl="http://casmp/sites/IPR" RootWebOnly="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-</Elements>

@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
-  <Files>
-    <ProjectItemFile Source="Files\Lists\SADDocument\Forms\Upload.aspx" Target="Files\Lists\SADDocument\Forms\" Type="ElementFile" />
-    <ProjectItemFile Source="Elements.xml" Target="ListsSADDocumentForms_\" Type="ElementManifest" />
-  </Files>
-</ProjectItem>

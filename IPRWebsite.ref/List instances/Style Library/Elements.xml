@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ListInstance FeatureId="{00bfea71-e717-4e80-aa17-d0c71b360101}" TemplateType="101" Title="Style Library" Description="Use the style library to store style sheets, such as CSS or XSL files. The style sheets in this gallery can be used by this site or any of its subsites." Url="Style Library" CustomSchema="Files\Style Library\Schema.xml" HyperlinkBaseUrl="http://casmp/sites/IPR" RootWebOnly="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-</Elements>

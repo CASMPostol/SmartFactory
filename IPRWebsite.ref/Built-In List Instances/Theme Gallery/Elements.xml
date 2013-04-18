@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ListInstance FeatureId="{00000000-0000-0000-0000-000000000000}" TemplateType="123" Title="Theme Gallery" Description="Use the theme gallery to store themes. The themes in this gallery can be used by this site or any of its subsites." Url="_catalogs/theme" CustomSchema="Files\_catalogs\theme\Schema.xml" HyperlinkBaseUrl="http://casmp/sites/IPR" RootWebOnly="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-</Elements>
