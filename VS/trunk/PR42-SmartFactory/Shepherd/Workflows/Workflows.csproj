@@ -154,6 +154,11 @@
       <DependentUpon>ImportDictionaries.cs</DependentUpon>
     </Compile>
     <Compile Include="OpenXMLHelpers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
     <Compile Include="ShippingStateMachine\MailData.cs" />
     <Compile Include="WorkflowData\CanceledShippingVendorTemplate.cs">
       <AutoGen>True</AutoGen>
@@ -195,7 +200,6 @@
       <DependentUpon>TimeSlotsInitiationData.xsd</DependentUpon>
     </Compile>
     <Compile Include="WorkflowDescription.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SendEmail\SendEmail.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -254,6 +258,10 @@
     </None>
     <None Include="key.snk" />
     <None Include="Model.T4" />
+    <None Include="Properties\AssemblyInfo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
+    </None>
     <None Include="SendEmail\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1783f2bc-07c6-4fa0-a343-7eb67ed5f587}</SharePointProjectItemId>
     </None>

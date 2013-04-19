@@ -50,7 +50,7 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Features\Feature1\Feature1.feature">
+    <None Include="Features\DataModel\DataModel.feature">
       <FeatureId>{8af5cff2-7428-4024-be44-a00e09558644}</FeatureId>
     </None>
     <None Include="key.snk" />
@@ -77,8 +77,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Features\Feature1\Feature1.Template.xml">
-      <DependentUpon>Feature1.feature</DependentUpon>
+    <Content Include="Features\DataModel\DataModel.Template.xml">
+      <DependentUpon>DataModel.feature</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

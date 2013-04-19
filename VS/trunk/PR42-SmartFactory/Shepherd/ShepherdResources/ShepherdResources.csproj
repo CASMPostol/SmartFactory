@@ -57,9 +57,6 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Features\ShepherdResources\ShepherdResources.feature">
       <FeatureId>{2318b8be-6ea4-4f02-bae4-24233c4a39e0}</FeatureId>
     </None>
@@ -72,6 +69,10 @@
     </None>
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
+    </None>
+    <None Include="Properties\AssemblyInfo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </None>
     <None Include="Resources\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{177fcce8-b946-46d9-96d5-88e3de0b93b1}</SharePointProjectItemId>
@@ -109,6 +110,16 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Resources\CASSmartFactoryShepherdCode.en-US.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
