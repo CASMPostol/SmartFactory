@@ -12,9 +12,9 @@ using System.Security;
 [assembly: AssemblyDescription( "IPR Dashboards" )]
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany("<#=AssemblyCompany#>")]
-[assembly: AssemblyProduct("<#=AssemblyProduct#>")]
+[assembly: AssemblyProduct("<#=SFAssemblyProduct#>")]
 [assembly: AssemblyCopyright("<#=AssemblyCopyright#>")]
-[assembly: AssemblyTrademark("<#=AssemblyTrademark#>")]
+[assembly: AssemblyTrademark("<#=SFAssemblyTrademark#>")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -45,4 +45,4 @@ using System.Security;
                                                                                             "261eb3342916d6e2593b1946b703ff2829e34e25fdc4182f409616db70cd97ef87fd3083c6e5dd" +
                                                                                             "fc3089b1" )]
 
-<#@ include file = "..\..\Model.T4" #>
+<#@ include file = "..\..\..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4" #>
