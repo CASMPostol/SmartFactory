@@ -1,14 +1,16 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
 using System.Reflection;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Windows;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("IPR Workflows")]
-[assembly: AssemblyDescription("Smart Factory IPR workflows collection.")]
+[assembly: AssemblyTitle( "RouteEditor of Shepherd" )]
+[assembly: AssemblyDescription( "CAS SmartFactory Shepherd RouteEditor" )]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("<#=AssemblyCompany#>")]
 [assembly: AssemblyProduct("<#=SFAssemblyProduct#>")]
@@ -21,9 +23,18 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c4d9bbc4-c123-4aab-b1e6-9906b7b51bc6")]
+//In order to begin building localizable applications, set 
+//<UICulture>CultureYouAreCodingWith</UICulture> in your .csproj file
+//inside a <PropertyGroup>.  For example, if you are using US english
+//in your source files, set the <UICulture> to en-US.  Then uncomment
+//the NeutralResourceLanguage attribute below.  Update the "en-US" in
+//the line below to match the UICulture setting in the project file.
 
+
+[assembly: ThemeInfo(
+    ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
+    ResourceDictionaryLocation.SourceAssembly //where the generic resource dictionary is located
+)]
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version
@@ -37,4 +48,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("<#=IPRAssemblyVersion#>")]
 [assembly: AssemblyFileVersion("<#=IPRAssemblyFileVersion#>")]
 
-<#@ include file = "..\..\..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4" #>
+<#@ include file = "..\..\..\..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4" #>

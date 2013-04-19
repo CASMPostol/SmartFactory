@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CAS.SmartFactory.IPRWebsite")]
-[assembly: AssemblyDescription("Data MOdel for teh IPR Website")]
+[assembly: AssemblyTitle("IPR Website")]
+[assembly: AssemblyDescription("IPR Website Collection Definitions")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("Smart Factory")]
-[assembly: AssemblyCopyright("Copyright (c) CAS 2013")]
+[assembly: AssemblyCopyright("Copyright (c) 2000-2013 CAS LODZ POLAND")]
 [assembly: AssemblyTrademark("Smart Factory")]
 [assembly: AssemblyCulture("")]
 
@@ -33,6 +33,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.60.41.*")]
-[assembly: AssemblyFileVersion("1.60.41")]
+[assembly: AssemblyVersion("1.61.00.*")]
+[assembly: AssemblyFileVersion("1.61.00")]
 

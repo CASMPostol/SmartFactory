@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E5A0F0A1-DB5F-4DEC-83C2-19107F11D597}</ProjectGuid>
+    <ProjectGuid>{7799A380-8B13-4BEC-BDEC-5C399993C40D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CAS.SmartFactory.IPR.Resources</RootNamespace>
-    <AssemblyName>CAS.IPRResources</AssemblyName>
+    <RootNamespace>CAS.SmartFactory.Shepherd.DataModel</RootNamespace>
+    <AssemblyName>CAS.ShepherdDataModel</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SandboxedSolution>False</SandboxedSolution>
-    <IncludeAssemblyInPackage>False</IncludeAssemblyInPackage>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DocumentationFile>bin\Debug\CAS.ShepherdDataModel.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,34 +33,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DocumentationFile>bin\Release\CAS.ShepherdDataModel.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -71,22 +50,12 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Features\IPRResources\IPRResources.Template.xml">
-      <DependentUpon>IPRResources.feature</DependentUpon>
-    </Content>
-    <Content Include="Resources\CASSmartFactoryIPRCode.resx">
-      <LastGenOutput>CASSmartFactoryIPRCode.Designer.cs</LastGenOutput>
-    </Content>
-    <None Include="Features\IPRResources\IPRResources.feature">
-      <FeatureId>{536545bb-aaa2-4f08-a050-274a3de9e39e}</FeatureId>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{8af5cff2-7428-4024-be44-a00e09558644}</FeatureId>
     </None>
-    <None Include="GlobalResources\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{27aa2165-8967-4b11-a735-7ae3e5885124}</SharePointProjectItemId>
-    </None>
-    <None Include="IPRResources.zreproj" />
     <None Include="key.snk" />
     <None Include="Package\Package.package">
-      <PackageId>{dd2238df-7284-43e5-80b3-4b66fe1a363e}</PackageId>
+      <PackageId>{149819b5-8acd-4d63-a848-631d426176d0}</PackageId>
     </None>
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
@@ -95,22 +64,8 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </None>
-    <None Include="Resources\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{1d1e4ecd-9bbf-4ec9-8ecc-dc6a2acfbfaa}</SharePointProjectItemId>
-    </None>
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="GlobalResources\CASSmartFactoryIPR.en-US.resx" />
-    <EmbeddedResource Include="GlobalResources\CASSmartFactoryIPR.pl-PL.resx" />
-    <EmbeddedResource Include="GlobalResources\CASSmartFactoryIPR.resx" />
-    <Content Include="Resources\CASSmartFactoryIPRCode.pl-PL.resx" />
-    <Content Include="Resources\CASSmartFactoryIPRCode.en-US.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\CASSmartFactoryIPR.en-US.resx" />
-    <Content Include="Resources\CASSmartFactoryIPR.pl-PL.resx" />
-    <Content Include="Resources\CASSmartFactoryIPR.resx" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
@@ -120,6 +75,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
