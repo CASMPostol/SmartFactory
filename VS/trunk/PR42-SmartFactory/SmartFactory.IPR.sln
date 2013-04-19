@@ -45,8 +45,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointSetup", "..\PR44-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F6BF3B41-D310-49FD-B761-EB30E2D0BB44}"
 	ProjectSection(SolutionItems) = preProject
-		..\take_recent_binaries.cmd = ..\take_recent_binaries.cmd
-		..\take_recent_packages.cmd = ..\take_recent_packages.cmd
+		..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4 = ..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4
 	EndProjectSection
 EndProject
 Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "SharePointSetupInstaller", "..\PR44-SharePoint\Tools\SharePointSetupInstaller\SharePointSetupInstaller\SharePointSetupInstaller.isproj", "{10D55FB3-1876-4D7D-8135-0E8CD5C6204D}"
