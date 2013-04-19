@@ -131,6 +131,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         string _msg = "Cannot find finished good SKU={0} in the SKU dictionary - dictionary update is required";
         _validationErrors.Add( String.Format( _msg, Product.SKU ) );
       }
+      if ( Product.ProductType != ProductType.Cigarette )
+        return;
       Dictionary<string, decimal> _materials = ( from _mx in this.Values
                                                  where _mx.ProductType.Value == Linq.ProductType.IPRTobacco
                                                  select new { batchId = _mx.Batch, quantity = _mx.TobaccoQuantityDec } ).ToDictionary( k => k.batchId, v => v.quantity );
