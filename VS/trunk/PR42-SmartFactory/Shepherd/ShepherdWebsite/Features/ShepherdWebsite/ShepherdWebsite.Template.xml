@@ -1,3 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Feature xmlns="http://schemas.microsoft.com/sharepoint/">
+<UpgradeActions>
+    <VersionRange BeginVersion="1.50.0.0" EndVersion="1.70.10.00">
+      <ApplyElementManifests>
+        <ElementManifest Location="ShippingFields_1_70_10\Elements.xml" />
+      </ApplyElementManifests>
+      <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{16030E9E-8BAE-4FD2-AF38-4CDDDBEAD187}" PushDown="TRUE" />
+      <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{3D302AD2-1AE7-4B57-9FEC-8998D3D482DB}" PushDown="TRUE" />
+      <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{7AEF910C-E6C4-4BC8-AD74-EBE8E5AB4686}" PushDown="TRUE" />
+      <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{E27EFB64-C8F7-4BCD-BE60-241BAB15771F}" PushDown="TRUE" />
+      <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{22CB7207-3299-4D85-A06B-9DEB74B320E6}" PushDown="TRUE" />
+    </VersionRange>
+  </UpgradeActions>
 </Feature>

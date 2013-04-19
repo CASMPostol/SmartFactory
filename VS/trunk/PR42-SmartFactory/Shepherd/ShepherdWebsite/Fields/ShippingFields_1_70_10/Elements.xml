@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    Name="TSStartTime"
+    ID="{16030E9E-8BAE-4FD2-AF38-4CDDDBEAD187}"
+    Type="DateTime"
+    Format="DateTime"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_TSStartTime">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    Name="TSEndTime"
+    ID="{3D302AD2-1AE7-4B57-9FEC-8998D3D482DB}"
+    Type="DateTime"
+    Format="DateTime"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_TSEndTime">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    Name="WarehouseStartTime"
+    ID="{7AEF910C-E6C4-4BC8-AD74-EBE8E5AB4686}"
+    Type="DateTime"
+    Format="DateTime"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_WarehouseStartTime">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    Name="WarehouseEndTime"
+    ID="{E27EFB64-C8F7-4BCD-BE60-241BAB15771F}"
+    Type="DateTime"
+    Format="DateTime"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_WarehouseEndTime">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    Name="ArrivalTime"
+    ID="{22CB7207-3299-4D85-A06B-9DEB74B320E6}"
+    Type="DateTime"
+    Format="DateTime"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_ArrivalTime">
+    <Default>[today]</Default>
+  </Field>
+</Elements>

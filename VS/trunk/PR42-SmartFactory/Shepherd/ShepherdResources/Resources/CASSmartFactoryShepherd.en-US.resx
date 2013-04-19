@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,740 +59,755 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<data name="CAS_EndMinute" xml:space="preserve">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CAS_EndMinute" xml:space="preserve">
     <value>End minute</value>
   </data>
-	<data name="CAS_AlarmsAndEventsListCT" xml:space="preserve">
+  <data name="CAS_AlarmsAndEventsListCT" xml:space="preserve">
     <value>Alarms &amp; Events List Content Type</value>
   </data>
-	<data name="CAS_BusinessDescriptionListCT" xml:space="preserve">
+  <data name="CAS_BusinessDescriptionListCT" xml:space="preserve">
     <value>Business Description List Content Type</value>
   </data>
-	<data name="CAS_CarrierPerformanceReportListCT" xml:space="preserve">
+  <data name="CAS_CarrierPerformanceReportListCT" xml:space="preserve">
     <value>Carrier Performance Report List Content Type</value>
   </data>
-	<data name="CAS_CarriersListCT" xml:space="preserve">
+  <data name="CAS_CarriersListCT" xml:space="preserve">
     <value>Carriers List Content Type</value>
   </data>
-	<data name="CAS_CityListCT" xml:space="preserve">
+  <data name="CAS_CityListCT" xml:space="preserve">
     <value>City List Content Type</value>
   </data>
-	<data name="CAS_CommodityListCT" xml:space="preserve">
+  <data name="CAS_CommodityListCT" xml:space="preserve">
     <value>Commodity List Content Type</value>
   </data>
-	<data name="CAS_CountryListCT" xml:space="preserve">
+  <data name="CAS_CountryListCT" xml:space="preserve">
     <value>Country List Content Type</value>
   </data>
-	<data name="CAS_CurrencyListCT" xml:space="preserve">
+  <data name="CAS_CurrencyListCT" xml:space="preserve">
     <value>Currency List Content Type</value>
   </data>
-	<data name="CAS_DestinationMarketListCT" xml:space="preserve">
+  <data name="CAS_DestinationMarketListCT" xml:space="preserve">
     <value>Destination Market List Content Type</value>
   </data>
-	<data name="CAS_DistributionListCT" xml:space="preserve">
+  <data name="CAS_DistributionListCT" xml:space="preserve">
     <value>Distribution List Content Type</value>
   </data>
-	<data name="CAS_DriversListCT" xml:space="preserve">
+  <data name="CAS_DriversListCT" xml:space="preserve">
     <value>Drivers List Content Type</value>
   </data>
-	<data name="CAS_DriversTeamListCT" xml:space="preserve">
+  <data name="CAS_DriversTeamListCT" xml:space="preserve">
     <value>Drivers Team List Content Type</value>
   </data>
-	<data name="CAS_EscortPOLibraryCT" xml:space="preserve">
+  <data name="CAS_EscortPOLibraryCT" xml:space="preserve">
     <value>Escort PO Library Content Type</value>
   </data>
-	<data name="CAS_ExchangeRateListCT" xml:space="preserve">
+  <data name="CAS_ExchangeRateListCT" xml:space="preserve">
     <value>Exchange Rate List Content Type</value>
   </data>
-	<data name="CAS_FreightPOLibraryCT" xml:space="preserve">
+  <data name="CAS_FreightPOLibraryCT" xml:space="preserve">
     <value>Freight PO Library Content Type</value>
   </data>
-	<data name="CAS_LoadDescriptionListCT" xml:space="preserve">
+  <data name="CAS_LoadDescriptionListCT" xml:space="preserve">
     <value>Load Description List Content Type</value>
   </data>
-	<data name="CAS_PartnersListCT" xml:space="preserve">
+  <data name="CAS_PartnersListCT" xml:space="preserve">
     <value>Partners List Content Type</value>
   </data>
-	<data name="CAS_PO_No" xml:space="preserve">
+  <data name="CAS_PO_No" xml:space="preserve">
     <value>Numer PO</value>
   </data>
-	<data name="CAS_RoutesListCT" xml:space="preserve">
+  <data name="CAS_RoutesListCT" xml:space="preserve">
     <value>Routes List Content Type</value>
   </data>
-	<data name="CAS_SAPDestinationPlantsListCT" xml:space="preserve">
+  <data name="CAS_SAPDestinationPlantsListCT" xml:space="preserve">
     <value>SAP Destination Plant Content Type</value>
   </data>
-	<data name="CAS_ScheduleTemplateListCT" xml:space="preserve">
+  <data name="CAS_ScheduleTemplateListCT" xml:space="preserve">
     <value>Schedule Template List Content Type</value>
   </data>
-	<data name="CAS_SecurityEscortCatalogListCT" xml:space="preserve">
+  <data name="CAS_SecurityEscortCatalogListCT" xml:space="preserve">
     <value>Escort Catalog List Content Type</value>
   </data>
-	<data name="CAS_SecuritySealProtocolLibraryCT" xml:space="preserve">
+  <data name="CAS_SecuritySealProtocolLibraryCT" xml:space="preserve">
     <value>Security Seal Protocol Library Content Type</value>
   </data>
-	<data name="CAS_ShepherdWebsiteFeature" xml:space="preserve">
+  <data name="CAS_ShepherdWebsiteFeature" xml:space="preserve">
     <value>CAS Shepherd Website </value>
   </data>
-	<data name="CAS_ShepherdWebsiteFeatureDes" xml:space="preserve">
+  <data name="CAS_ShepherdWebsiteFeatureDes" xml:space="preserve">
     <value>Contains information model for Shepherd web application.</value>
   </data>
-	<data name="CAS_ShipmentTypeListCT" xml:space="preserve">
+  <data name="CAS_ShipmentTypeListCT" xml:space="preserve">
     <value>Shipment Type List Content Type</value>
   </data>
-	<data name="CAS_ShippingPointListCT" xml:space="preserve">
+  <data name="CAS_ShippingPointListCT" xml:space="preserve">
     <value>Shipping Point List Content Type</value>
   </data>
-	<data name="CAS_ShippingsListCT" xml:space="preserve">
+  <data name="CAS_ShippingsListCT" xml:space="preserve">
     <value>Shippings List Content Type</value>
   </data>
-	<data name="CAS_TimeSlotListCT" xml:space="preserve">
+  <data name="CAS_TimeSlotListCT" xml:space="preserve">
     <value>Time Slot List Content Type</value>
   </data>
-	<data name="CAS_TimeSlotTemplateListCT" xml:space="preserve">
+  <data name="CAS_TimeSlotTemplateListCT" xml:space="preserve">
     <value>Time Slot Template List Content Type</value>
   </data>
-	<data name="CAS_TrailersListCT" xml:space="preserve">
+  <data name="CAS_TrailersListCT" xml:space="preserve">
     <value>Trailer List Content Type</value>
   </data>
-	<data name="CAS_TranspotUnitTypeListCT" xml:space="preserve">
+  <data name="CAS_TranspotUnitTypeListCT" xml:space="preserve">
     <value>Transpot Unit Type List Content Type</value>
   </data>
-	<data name="CAS_TrucksListCT" xml:space="preserve">
+  <data name="CAS_TrucksListCT" xml:space="preserve">
     <value>Truck List Content Type</value>
   </data>
-	<data name="CAS_WarehousesListCT" xml:space="preserve">
+  <data name="CAS_WarehousesListCT" xml:space="preserve">
     <value>Warehouses List Content Type</value>
   </data>
-	<data name="CAS_ActualDispatchDate" xml:space="preserve">
+  <data name="CAS_ActualDispatchDate" xml:space="preserve">
     <value>Actual dispatch date</value>
   </data>
-	<data name="CAS_Address" xml:space="preserve">
+  <data name="CAS_Address" xml:space="preserve">
     <value>Address</value>
   </data>
-	<data name="CAS_Awaiting" xml:space="preserve">
+  <data name="CAS_Awaiting" xml:space="preserve">
     <value>Awaiting (yes/no)</value>
   </data>
-	<data name="CAS_BusinessDescription" xml:space="preserve">
+  <data name="CAS_BusinessDescription" xml:space="preserve">
     <value>Business description</value>
   </data>
-	<data name="CAS_Carrier" xml:space="preserve">
+  <data name="CAS_Carrier" xml:space="preserve">
     <value>Carrier</value>
   </data>
-	<data name="CAS_City" xml:space="preserve">
+  <data name="CAS_City" xml:space="preserve">
     <value>City</value>
   </data>
-	<data name="CAS_CityOfDeparture" xml:space="preserve">
+  <data name="CAS_CityOfDeparture" xml:space="preserve">
     <value>City of departure</value>
   </data>
-	<data name="CAS_Comments" xml:space="preserve">
+  <data name="CAS_Comments" xml:space="preserve">
     <value>Comments</value>
   </data>
-	<data name="CAS_Commodity" xml:space="preserve">
+  <data name="CAS_Commodity" xml:space="preserve">
     <value>Commodity</value>
   </data>
-	<data name="CAS_Company" xml:space="preserve">
+  <data name="CAS_Company" xml:space="preserve">
     <value>Company</value>
   </data>
-	<data name="CAS_ContainersNo" xml:space="preserve">
+  <data name="CAS_ContainersNo" xml:space="preserve">
     <value>Container No.</value>
   </data>
-	<data name="CAS_Consignee" xml:space="preserve">
+  <data name="CAS_Consignee" xml:space="preserve">
     <value>Consignee</value>
   </data>
-	<data name="CAS_Country" xml:space="preserve">
+  <data name="CAS_Country" xml:space="preserve">
     <value>Country</value>
   </data>
-	<data name="CAS_Currency" xml:space="preserve">
+  <data name="CAS_Currency" xml:space="preserve">
     <value>Currency</value>
   </data>
-	<data name="CAS_Date" xml:space="preserve">
+  <data name="CAS_Date" xml:space="preserve">
     <value>Date</value>
   </data>
-	<data name="CAS_Day" xml:space="preserve">
+  <data name="CAS_Day" xml:space="preserve">
     <value>Day</value>
   </data>
-	<data name="CAS_DeliveryToCountry" xml:space="preserve">
+  <data name="CAS_DeliveryToCountry" xml:space="preserve">
     <value>Delivery to country</value>
   </data>
-	<data name="CAS_DepartureCity" xml:space="preserve">
+  <data name="CAS_DepartureCity" xml:space="preserve">
     <value>City of Departure</value>
   </data>
-	<data name="CAS_Description" xml:space="preserve">
+  <data name="CAS_Description" xml:space="preserve">
     <value>Description</value>
   </data>
-	<data name="CAS_Direction" xml:space="preserve">
+  <data name="CAS_Direction" xml:space="preserve">
     <value>Direction</value>
   </data>
-	<data name="CAS_DispatchDate" xml:space="preserve">
+  <data name="CAS_DispatchDate" xml:space="preserve">
     <value>Dispatch date</value>
   </data>
-	<data name="CAS_Driver" xml:space="preserve">
+  <data name="CAS_Driver" xml:space="preserve">
     <value>Driver name</value>
   </data>
-	<data name="CAS_DriversPhone" xml:space="preserve">
+  <data name="CAS_DriversPhone" xml:space="preserve">
     <value>Driver's phone</value>
   </data>
-	<data name="CAS_Email" xml:space="preserve">
+  <data name="CAS_Email" xml:space="preserve">
     <value>E-mail</value>
   </data>
-	<data name="CAS_EndHour" xml:space="preserve">
+  <data name="CAS_EndHour" xml:space="preserve">
     <value>End hour</value>
   </data>
-	<data name="CAS_EscortCosts" xml:space="preserve">
+  <data name="CAS_EscortCosts" xml:space="preserve">
     <value>Escort cost</value>
   </data>
-	<data name="CAS_EscortDestination" xml:space="preserve">
+  <data name="CAS_EscortDestination" xml:space="preserve">
     <value>Escort destination</value>
   </data>
-	<data name="CAS_EscortPhone" xml:space="preserve">
+  <data name="CAS_EscortPhone" xml:space="preserve">
     <value>Escort phone No.</value>
   </data>
-	<data name="CAS_EscortPlateNo" xml:space="preserve">
+  <data name="CAS_EscortPlateNo" xml:space="preserve">
     <value>Escort car plate No.</value>
   </data>
-	<data name="CAS_EuroPalletsQuantity" xml:space="preserve">
+  <data name="CAS_EuroPalletsQuantity" xml:space="preserve">
     <value>Euro Pallets Qty.</value>
   </data>
-	<data name="CAS_ExchangeRate" xml:space="preserve">
+  <data name="CAS_ExchangeRate" xml:space="preserve">
     <value>Exchange rate (to USD)</value>
   </data>
-	<data name="CAS_FirstDriver" xml:space="preserve">
+  <data name="CAS_FirstDriver" xml:space="preserve">
     <value>1st driver</value>
   </data>
-	<data name="CAS_FirstEscort" xml:space="preserve">
+  <data name="CAS_FirstEscort" xml:space="preserve">
     <value>1st escort</value>
   </data>
-	<data name="CAS_Forwarder" xml:space="preserve">
+  <data name="CAS_Forwarder" xml:space="preserve">
     <value>Forwarder</value>
   </data>
-	<data name="CAS_ForwarderOceanAir" xml:space="preserve">
+  <data name="CAS_ForwarderOceanAir" xml:space="preserve">
     <value>Forwarder ocean/air</value>
   </data>
-	<data name="CAS_FreightCost" xml:space="preserve">
+  <data name="CAS_FreightCost" xml:space="preserve">
     <value>Freight cost</value>
   </data>
-	<data name="CAS_FreightPayer" xml:space="preserve">
+  <data name="CAS_FreightPayer" xml:space="preserve">
     <value>Payer</value>
   </data>
-	<data name="CAS_FreightPO" xml:space="preserve">
+  <data name="CAS_FreightPO" xml:space="preserve">
     <value>Freight PO</value>
   </data>
-	<data name="CAS_Group" xml:space="preserve">
+  <data name="CAS_Group" xml:space="preserve">
     <value>Area</value>
   </data>
-	<data name="CAS_IDNumber" xml:space="preserve">
+  <data name="CAS_IDNumber" xml:space="preserve">
     <value>ID number</value>
   </data>
-	<data name="CAS_Incoterm" xml:space="preserve">
+  <data name="CAS_Incoterm" xml:space="preserve">
     <value>Incoterms</value>
   </data>
-	<data name="CAS_InduPalletsQuantity" xml:space="preserve">
+  <data name="CAS_InduPalletsQuantity" xml:space="preserve">
     <value>Indu Pallets Qty.</value>
   </data>
-	<data name="CAS_LoadingDate" xml:space="preserve">
+  <data name="CAS_LoadingDate" xml:space="preserve">
     <value>Loading date</value>
   </data>
-	<data name="CAS_LoadingType" xml:space="preserve">
+  <data name="CAS_LoadingType" xml:space="preserve">
     <value>Loading type</value>
   </data>
-	<data name="CAS_Market" xml:space="preserve">
+  <data name="CAS_Market" xml:space="preserve">
     <value>Market</value>
   </data>
-	<data name="CAS_MaterialMaster" xml:space="preserve">
+  <data name="CAS_MaterialMaster" xml:space="preserve">
     <value>Material master</value>
   </data>
-	<data name="CAS_NIPVATNo" xml:space="preserve">
+  <data name="CAS_NIPVATNo" xml:space="preserve">
     <value>VAT No.</value>
   </data>
-	<data name="CAS_NumberTUDelayed" xml:space="preserve">
+  <data name="CAS_NumberTUDelayed" xml:space="preserve">
     <value>Number TU delayed</value>
   </data>
-	<data name="CAS_NumberTUDelayed1h" xml:space="preserve">
+  <data name="CAS_NumberTUDelayed1h" xml:space="preserve">
     <value>Number TU delayed &gt;1 hour</value>
   </data>
-	<data name="CAS_NumberTUNotDelivered" xml:space="preserve">
+  <data name="CAS_NumberTUNotDelivered" xml:space="preserve">
     <value>Number TU not delivered / not showing up</value>
   </data>
-	<data name="CAS_NumberTUOrdered" xml:space="preserve">
+  <data name="CAS_NumberTUOrdered" xml:space="preserve">
     <value>Number TU ordered</value>
   </data>
-	<data name="CAS_NumberTURejected" xml:space="preserve">
+  <data name="CAS_NumberTURejected" xml:space="preserve">
     <value>Number TU rejected / bad quality</value>
   </data>
-	<data name="CAS_PalletSize" xml:space="preserve">
+  <data name="CAS_PalletSize" xml:space="preserve">
     <value>Pallet size</value>
   </data>
-	<data name="CAS_PalletType" xml:space="preserve">
+  <data name="CAS_PalletType" xml:space="preserve">
     <value>Pallet type</value>
   </data>
-	<data name="CAS_PayerAddress" xml:space="preserve">
+  <data name="CAS_PayerAddress" xml:space="preserve">
     <value>Payer Address</value>
   </data>
-	<data name="CAS_PayerCity" xml:space="preserve">
+  <data name="CAS_PayerCity" xml:space="preserve">
     <value>Payer city</value>
   </data>
-	<data name="CAS_PayerName" xml:space="preserve">
+  <data name="CAS_PayerName" xml:space="preserve">
     <value>Payer name</value>
   </data>
-	<data name="CAS_PayerNIP" xml:space="preserve">
+  <data name="CAS_PayerNIP" xml:space="preserve">
     <value>Payer NIP</value>
   </data>
-	<data name="CAS_PayerZipCode" xml:space="preserve">
+  <data name="CAS_PayerZipCode" xml:space="preserve">
     <value>Payer zip code</value>
   </data>
-	<data name="CAS_PortOfDeparture" xml:space="preserve">
+  <data name="CAS_PortOfDeparture" xml:space="preserve">
     <value>Port of departure</value>
   </data>
-	<data name="CAS_Remark" xml:space="preserve">
+  <data name="CAS_Remark" xml:space="preserve">
     <value>Remark</value>
   </data>
-	<data name="CAS_ReportPeriod" xml:space="preserve">
+  <data name="CAS_ReportPeriod" xml:space="preserve">
     <value>Report period</value>
   </data>
-	<data name="CAS_Route" xml:space="preserve">
+  <data name="CAS_Route" xml:space="preserve">
     <value>Route</value>
   </data>
-	<data name="CAS_SAPDestPlant" xml:space="preserve">
+  <data name="CAS_SAPDestPlant" xml:space="preserve">
     <value>SAP dest plant</value>
   </data>
-	<data name="CAS_ScheduleTemplate" xml:space="preserve">
+  <data name="CAS_ScheduleTemplate" xml:space="preserve">
     <value>Schedule template</value>
   </data>
-	<data name="CAS_SecondDriver" xml:space="preserve">
+  <data name="CAS_SecondDriver" xml:space="preserve">
     <value>2nd driver</value>
   </data>
-	<data name="CAS_SecondEscort" xml:space="preserve">
+  <data name="CAS_SecondEscort" xml:space="preserve">
     <value>2nd escort</value>
   </data>
-	<data name="CAS_SecurityCost" xml:space="preserve">
+  <data name="CAS_SecurityCost" xml:space="preserve">
     <value>Escort cost</value>
   </data>
-	<data name="CAS_SecurityEscort" xml:space="preserve">
+  <data name="CAS_SecurityEscort" xml:space="preserve">
     <value>Escort</value>
   </data>
-	<data name="CAS_SecurityEscortPO" xml:space="preserve">
+  <data name="CAS_SecurityEscortPO" xml:space="preserve">
     <value>Escort PO</value>
   </data>
-	<data name="CAS_SecurityEscortProvider" xml:space="preserve">
+  <data name="CAS_SecurityEscortProvider" xml:space="preserve">
     <value>Escort provider</value>
   </data>
-	<data name="CAS_SecuritySealProtocol" xml:space="preserve">
+  <data name="CAS_SecuritySealProtocol" xml:space="preserve">
     <value>Security seal protocol</value>
   </data>
-	<data name="CAS_SendInvoiceTo" xml:space="preserve">
+  <data name="CAS_SendInvoiceTo" xml:space="preserve">
     <value>Send invoice to</value>
   </data>
-	<data name="CAS_ServiceType" xml:space="preserve">
+  <data name="CAS_ServiceType" xml:space="preserve">
     <value>Partner type</value>
   </data>
-	<data name="CAS_ShepherdRole" xml:space="preserve">
+  <data name="CAS_ShepherdRole" xml:space="preserve">
     <value>Shepherd role</value>
   </data>
-	<data name="CAS_ShepherdUser" xml:space="preserve">
+  <data name="CAS_ShepherdUser" xml:space="preserve">
     <value>Shepherd user</value>
   </data>
-	<data name="CAS_ShipmentType" xml:space="preserve">
+  <data name="CAS_ShipmentType" xml:space="preserve">
     <value>Shipment type</value>
   </data>
-	<data name="CAS_ShippingPoint" xml:space="preserve">
+  <data name="CAS_ShippingPoint" xml:space="preserve">
     <value>Shipping Point</value>
   </data>
-	<data name="CAS_StartHour" xml:space="preserve">
+  <data name="CAS_StartHour" xml:space="preserve">
     <value>Start hour</value>
   </data>
-	<data name="CAS_StartMinute" xml:space="preserve">
+  <data name="CAS_StartMinute" xml:space="preserve">
     <value>Start minute</value>
   </data>
-	<data name="CAS_TotalCostsPerKU" xml:space="preserve">
+  <data name="CAS_TotalCostsPerKU" xml:space="preserve">
     <value>Total costs per KU</value>
   </data>
-	<data name="CAS_TotalQuantityKU" xml:space="preserve">
+  <data name="CAS_TotalQuantityKU" xml:space="preserve">
     <value>Total quantity in KU</value>
   </data>
-	<data name="CAS_TrailerPlateNo" xml:space="preserve">
+  <data name="CAS_TrailerPlateNo" xml:space="preserve">
     <value>Trailer plate No.</value>
   </data>
-	<data name="CAS_TransportCost" xml:space="preserve">
+  <data name="CAS_TransportCost" xml:space="preserve">
     <value>Transport cost</value>
   </data>
-	<data name="CAS_TransportUnitType" xml:space="preserve">
+  <data name="CAS_TransportUnitType" xml:space="preserve">
     <value>Transport unit</value>
   </data>
-	<data name="CAS_TruckPlateNo" xml:space="preserve">
+  <data name="CAS_TruckPlateNo" xml:space="preserve">
     <value>Truck plate No.</value>
   </data>
-	<data name="CAS_VehicleType" xml:space="preserve">
+  <data name="CAS_VehicleType" xml:space="preserve">
     <value>Vehicle type</value>
   </data>
-	<data name="CAS_VendorNumber" xml:space="preserve">
+  <data name="CAS_VendorNumber" xml:space="preserve">
     <value>Partner SAP No.</value>
   </data>
-	<data name="CAS_Warehouse" xml:space="preserve">
+  <data name="CAS_Warehouse" xml:space="preserve">
     <value>Warehouse</value>
   </data>
-	<data name="CAS_WarehouseAddress" xml:space="preserve">
+  <data name="CAS_WarehouseAddress" xml:space="preserve">
     <value>Warehouse address</value>
   </data>
-	<data name="CAS_ActualTimeSpan" xml:space="preserve">
+  <data name="CAS_ActualTimeSpan" xml:space="preserve">
     <value>Actual time span</value>
   </data>
-	<data name="CAS_AdditionalCosts" xml:space="preserve">
+  <data name="CAS_AdditionalCosts" xml:space="preserve">
     <value>Additional costs</value>
   </data>
-	<data name="CAS_AdditionalCostsCurrency" xml:space="preserve">
+  <data name="CAS_AdditionalCostsCurrency" xml:space="preserve">
     <value>Additional costs currency</value>
   </data>
-	<data name="CAS_BusinessDescriptionList" xml:space="preserve">
+  <data name="CAS_BusinessDescriptionList" xml:space="preserve">
     <value>Business description list</value>
   </data>
-	<data name="CAS_CancelationReason" xml:space="preserve">
+  <data name="CAS_CancelationReason" xml:space="preserve">
     <value>Comments</value>
   </data>
-	<data name="CAS_CarrierList" xml:space="preserve">
+  <data name="CAS_CarrierList" xml:space="preserve">
     <value>Carrier list</value>
   </data>
-	<data name="CAS_CityList" xml:space="preserve">
+  <data name="CAS_CityList" xml:space="preserve">
     <value>City list</value>
   </data>
-	<data name="CAS_CMRNo" xml:space="preserve">
+  <data name="CAS_CMRNo" xml:space="preserve">
     <value>CMR No.</value>
   </data>
-	<data name="CAS_CommodityList" xml:space="preserve">
+  <data name="CAS_CommodityList" xml:space="preserve">
     <value>Commodity list</value>
   </data>
-	<data name="CAS_CountryList" xml:space="preserve">
+  <data name="CAS_CountryList" xml:space="preserve">
     <value>Country list</value>
   </data>
-	<data name="CAS_CurrencyList" xml:space="preserve">
+  <data name="CAS_CurrencyList" xml:space="preserve">
     <value>Currency list</value>
   </data>
-	<data name="CAS_DeliveryNumber" xml:space="preserve">
+  <data name="CAS_DeliveryNumber" xml:space="preserve">
     <value>Delivery No.</value>
   </data>
-	<data name="CAS_DestinationMarket" xml:space="preserve">
+  <data name="CAS_DestinationMarket" xml:space="preserve">
     <value>Destination market</value>
   </data>
-	<data name="CAS_DestinationMarketList" xml:space="preserve">
+  <data name="CAS_DestinationMarketList" xml:space="preserve">
     <value>Destination market list</value>
   </data>
-	<data name="CAS_Details" xml:space="preserve">
+  <data name="CAS_Details" xml:space="preserve">
     <value>Details</value>
   </data>
-	<data name="CAS_DockNo" xml:space="preserve">
+  <data name="CAS_DockNo" xml:space="preserve">
     <value>Dock No.</value>
   </data>
-	<data name="CAS_Drivers" xml:space="preserve">
+  <data name="CAS_Drivers" xml:space="preserve">
     <value>Drivers</value>
   </data>
-	<data name="CAS_DriversList" xml:space="preserve">
+  <data name="CAS_DriversList" xml:space="preserve">
     <value>Drivers list</value>
   </data>
-	<data name="CAS_DriversTeam" xml:space="preserve">
+  <data name="CAS_DriversTeam" xml:space="preserve">
     <value>Drivers team</value>
   </data>
-	<data name="CAS_Duration" xml:space="preserve">
+  <data name="CAS_Duration" xml:space="preserve">
     <value>Duration</value>
   </data>
-	<data name="CAS_EndTime" xml:space="preserve">
+  <data name="CAS_EndTime" xml:space="preserve">
     <value>End time</value>
   </data>
-	<data name="CAS_EntryTime" xml:space="preserve">
+  <data name="CAS_EntryTime" xml:space="preserve">
     <value>Entry time</value>
   </data>
-	<data name="CAS_EscortCostsCurrency" xml:space="preserve">
+  <data name="CAS_EscortCostsCurrency" xml:space="preserve">
     <value>Escort cost currency</value>
   </data>
-	<data name="CAS_EscortID" xml:space="preserve">
+  <data name="CAS_EscortID" xml:space="preserve">
     <value>Escort route ID</value>
   </data>
-	<data name="CAS_ETA" xml:space="preserve">
+  <data name="CAS_ETA" xml:space="preserve">
     <value>ETA</value>
   </data>
-	<data name="CAS_ExitTime" xml:space="preserve">
+  <data name="CAS_ExitTime" xml:space="preserve">
     <value>Exit time</value>
   </data>
-	<data name="CAS_FreightCostsCurrency" xml:space="preserve">
+  <data name="CAS_FreightCostsCurrency" xml:space="preserve">
     <value>Freight costs currency</value>
   </data>
-	<data name="CAS_FreightPayerList" xml:space="preserve">
+  <data name="CAS_FreightPayerList" xml:space="preserve">
     <value>Payer list</value>
   </data>
-	<data name="CAS_FreightPayerNo" xml:space="preserve">
+  <data name="CAS_FreightPayerNo" xml:space="preserve">
     <value>SAP Payer No.</value>
   </data>
-	<data name="CAS_GoodsQuantity" xml:space="preserve">
+  <data name="CAS_GoodsQuantity" xml:space="preserve">
     <value>Goods Qty.</value>
   </data>
-	<data name="CAS_InvoiceNo" xml:space="preserve">
+  <data name="CAS_InvoiceNo" xml:space="preserve">
     <value>Invoice No.</value>
   </data>
-	<data name="CAS_IsDouble" xml:space="preserve">
+  <data name="CAS_IsDouble" xml:space="preserve">
     <value>Double (yes/no)</value>
   </data>
-	<data name="CAS_IsOutbound" xml:space="preserve">
+  <data name="CAS_IsOutbound" xml:space="preserve">
     <value>Outbound (yes/no)</value>
   </data>
-	<data name="CAS_MarketList" xml:space="preserve">
+  <data name="CAS_MarketList" xml:space="preserve">
     <value>Market list</value>
   </data>
-	<data name="CAS_Mobile" xml:space="preserve">
+  <data name="CAS_Mobile" xml:space="preserve">
     <value>Mobile</value>
   </data>
-	<data name="CAS_NumberOfPallets" xml:space="preserve">
+  <data name="CAS_NumberOfPallets" xml:space="preserve">
     <value>Pallet Qty.</value>
   </data>
-	<data name="CAS_Occupied" xml:space="preserve">
+  <data name="CAS_Occupied" xml:space="preserve">
     <value>Occupied</value>
   </data>
-	<data name="CAS_Owner" xml:space="preserve">
+  <data name="CAS_Owner" xml:space="preserve">
     <value>Owner</value>
   </data>
-	<data name="CAS_Partner" xml:space="preserve">
+  <data name="CAS_Partner" xml:space="preserve">
     <value>Partner</value>
   </data>
-	<data name="CAS_PartnerList" xml:space="preserve">
+  <data name="CAS_PartnerList" xml:space="preserve">
     <value>Partner list</value>
   </data>
-	<data name="CAS_Priority" xml:space="preserve">
+  <data name="CAS_Priority" xml:space="preserve">
     <value>Priority</value>
   </data>
-	<data name="CAS_RouteID" xml:space="preserve">
+  <data name="CAS_RouteID" xml:space="preserve">
     <value>Route ID</value>
   </data>
-	<data name="CAS_RouteList" xml:space="preserve">
+  <data name="CAS_RouteList" xml:space="preserve">
     <value>Route list</value>
   </data>
-	<data name="CAS_SAPDestPlantList" xml:space="preserve">
+  <data name="CAS_SAPDestPlantList" xml:space="preserve">
     <value>SAP dest plant list</value>
   </data>
-	<data name="CAS_ScheduleTemplateList" xml:space="preserve">
+  <data name="CAS_ScheduleTemplateList" xml:space="preserve">
     <value>Schedule template list</value>
   </data>
-	<data name="CAS_SecurityEscortRoute" xml:space="preserve">
+  <data name="CAS_SecurityEscortRoute" xml:space="preserve">
     <value>Escort route</value>
   </data>
-	<data name="CAS_SecurityEscortRouteList" xml:space="preserve">
+  <data name="CAS_SecurityEscortRouteList" xml:space="preserve">
     <value>Escort route list</value>
   </data>
-	<data name="CAS_ShipmentTypeList" xml:space="preserve">
+  <data name="CAS_ShipmentTypeList" xml:space="preserve">
     <value>Shipment type list</value>
   </data>
-	<data name="CAS_Shipping" xml:space="preserve">
+  <data name="CAS_Shipping" xml:space="preserve">
     <value>Shipment</value>
   </data>
-	<data name="CAS_ShippingID" xml:space="preserve">
+  <data name="CAS_ShippingID" xml:space="preserve">
     <value>Shipment ID</value>
   </data>
-	<data name="CAS_ShippingPointList" xml:space="preserve">
+  <data name="CAS_ShippingPointList" xml:space="preserve">
     <value>Shipping point list</value>
   </data>
-	<data name="CAS_StartTime" xml:space="preserve">
+  <data name="CAS_StartTime" xml:space="preserve">
     <value>Start time</value>
   </data>
-	<data name="CAS_State" xml:space="preserve">
+  <data name="CAS_State" xml:space="preserve">
     <value>Status</value>
   </data>
-	<data name="CAS_TimeSlotTemplate" xml:space="preserve">
+  <data name="CAS_TimeSlotTemplate" xml:space="preserve">
     <value>Time Slot template</value>
   </data>
-	<data name="CAS_TimeSlotTemplateList" xml:space="preserve">
+  <data name="CAS_TimeSlotTemplateList" xml:space="preserve">
     <value>Time Slot template list</value>
   </data>
-	<data name="CAS_TotalCostsPerKUCurrency" xml:space="preserve">
+  <data name="CAS_TotalCostsPerKUCurrency" xml:space="preserve">
     <value>Total costs per KU currency</value>
   </data>
-	<data name="CAS_TrailerComments" xml:space="preserve">
+  <data name="CAS_TrailerComments" xml:space="preserve">
     <value>Trailer comments</value>
   </data>
-	<data name="CAS_TrailerCondition" xml:space="preserve">
+  <data name="CAS_TrailerCondition" xml:space="preserve">
     <value>Trailer condition</value>
   </data>
-	<data name="CAS_Trailers" xml:space="preserve">
+  <data name="CAS_Trailers" xml:space="preserve">
     <value>Trailer</value>
   </data>
-	<data name="CAS_TrailersList" xml:space="preserve">
+  <data name="CAS_TrailersList" xml:space="preserve">
     <value>Trailer list</value>
   </data>
-	<data name="CAS_TransportUnitTypeList" xml:space="preserve">
+  <data name="CAS_TransportUnitTypeList" xml:space="preserve">
     <value>Transport unit type list</value>
   </data>
-	<data name="CAS_Trucks" xml:space="preserve">
+  <data name="CAS_Trucks" xml:space="preserve">
     <value>Truck</value>
   </data>
-	<data name="CAS_TrucksList" xml:space="preserve">
+  <data name="CAS_TrucksList" xml:space="preserve">
     <value>Truck list</value>
   </data>
-	<data name="CAS_Vendor" xml:space="preserve">
+  <data name="CAS_Vendor" xml:space="preserve">
     <value>Partner</value>
   </data>
-	<data name="CAS_WarehouseList" xml:space="preserve">
+  <data name="CAS_WarehouseList" xml:space="preserve">
     <value>Warehouse list</value>
   </data>
-	<data name="CAS_AlarmsAndEvents" xml:space="preserve">
+  <data name="CAS_AlarmsAndEvents" xml:space="preserve">
     <value>Alarms &amp; Events</value>
   </data>
-	<data name="CAS_AlarmsAndEventsList" xml:space="preserve">
+  <data name="CAS_AlarmsAndEventsList" xml:space="preserve">
     <value>Alarms &amp; Events list</value>
   </data>
-	<data name="CAS_CarrierPerformanceReport" xml:space="preserve">
+  <data name="CAS_CarrierPerformanceReport" xml:space="preserve">
     <value>Carrier performance report</value>
   </data>
-	<data name="CAS_CarrierPerformanceReportList" xml:space="preserve">
+  <data name="CAS_CarrierPerformanceReportList" xml:space="preserve">
     <value>Carrier performance report list</value>
   </data>
-	<data name="CAS_DataImportLibrary" xml:space="preserve">
+  <data name="CAS_DataImportLibrary" xml:space="preserve">
     <value>Data import library</value>
   </data>
-	<data name="CAS_DriversTeamList" xml:space="preserve">
+  <data name="CAS_DriversTeamList" xml:space="preserve">
     <value>Drivers team list</value>
   </data>
-	<data name="CAS_EventLog" xml:space="preserve">
+  <data name="CAS_EventLog" xml:space="preserve">
     <value>Event Log List</value>
   </data>
-	<data name="CAS_EventLogList" xml:space="preserve">
+  <data name="CAS_EventLogList" xml:space="preserve">
     <value>Event log list</value>
   </data>
-	<data name="CAS_FreightPOLibrary" xml:space="preserve">
+  <data name="CAS_FreightPOLibrary" xml:space="preserve">
     <value>Freight PO library</value>
   </data>
-	<data name="CAS_LoadDescription" xml:space="preserve">
+  <data name="CAS_LoadDescription" xml:space="preserve">
     <value>Load description</value>
   </data>
-	<data name="CAS_LoadDescriptionList" xml:space="preserve">
+  <data name="CAS_LoadDescriptionList" xml:space="preserve">
     <value>Load description list</value>
   </data>
-	<data name="CAS_SecurityEscortPOLibrary" xml:space="preserve">
+  <data name="CAS_SecurityEscortPOLibrary" xml:space="preserve">
     <value>Escort PO library</value>
   </data>
-	<data name="CAS_SecuritySealProtocolLibrary" xml:space="preserve">
+  <data name="CAS_SecuritySealProtocolLibrary" xml:space="preserve">
     <value>Security seal protocol library</value>
   </data>
-	<data name="CAS_Shippings" xml:space="preserve">
+  <data name="CAS_Shippings" xml:space="preserve">
     <value>Shipments</value>
   </data>
-	<data name="CAS_ShippingsList" xml:space="preserve">
+  <data name="CAS_ShippingsList" xml:space="preserve">
     <value>Shpments list</value>
   </data>
-	<data name="CAS_ShippingNumber" xml:space="preserve">
+  <data name="CAS_ShippingNumber" xml:space="preserve">
     <value>Shipment No.</value>
   </data>
-	<data name="CAS_SmartFactoryShepherdGroup" xml:space="preserve">
+  <data name="CAS_SmartFactoryShepherdGroup" xml:space="preserve">
     <value>CAS Smart Factory Shepherd-group</value>
   </data>
-	<data name="CAS_AvailableEscort" xml:space="preserve">
+  <data name="CAS_AvailableEscort" xml:space="preserve">
     <value>Available escort</value>
   </data>
-	<data name="CAS_AvailableRoutes" xml:space="preserve">
+  <data name="CAS_AvailableRoutes" xml:space="preserve">
     <value>Available routes</value>
   </data>
-	<data name="CAS_DestinationCity" xml:space="preserve">
+  <data name="CAS_DestinationCity" xml:space="preserve">
     <value>Destination city</value>
   </data>
-	<data name="CAS_DriversAndEscort" xml:space="preserve">
+  <data name="CAS_DriversAndEscort" xml:space="preserve">
     <value>Drivers and escort</value>
   </data>
-	<data name="CAS_DriversManager" xml:space="preserve">
+  <data name="CAS_DriversManager" xml:space="preserve">
     <value>Drivers manager</value>
   </data>
-	<data name="CAS_ERM" xml:space="preserve">
+  <data name="CAS_ERM" xml:space="preserve">
     <value>Escort resources manager</value>
   </data>
-	<data name="CAS_GuardManager" xml:space="preserve">
+  <data name="CAS_GuardManager" xml:space="preserve">
     <value>Guard manager</value>
   </data>
-	<data name="CAS_LoadDescriptionInbound" xml:space="preserve">
+  <data name="CAS_LoadDescriptionInbound" xml:space="preserve">
     <value>Load Description - Inbound</value>
   </data>
-	<data name="CAS_LoadDescriptionOutbound" xml:space="preserve">
+  <data name="CAS_LoadDescriptionOutbound" xml:space="preserve">
     <value>Load Description - Outbound</value>
   </data>
-	<data name="CAS_LoadManager" xml:space="preserve">
+  <data name="CAS_LoadManager" xml:space="preserve">
     <value>Load manager</value>
   </data>
-	<data name="CAS_RouteDetails" xml:space="preserve">
+  <data name="CAS_RouteDetails" xml:space="preserve">
     <value>Route details</value>
   </data>
-	<data name="CAS_SecurityEscortRouteDetails" xml:space="preserve">
+  <data name="CAS_SecurityEscortRouteDetails" xml:space="preserve">
     <value>Escort details</value>
   </data>
-	<data name="CAS_ShipmentManager" xml:space="preserve">
+  <data name="CAS_ShipmentManager" xml:space="preserve">
     <value>Shipment manager</value>
   </data>
-	<data name="CAS_TimeSlots" xml:space="preserve">
+  <data name="CAS_TimeSlots" xml:space="preserve">
     <value>Time slots</value>
   </data>
-	<data name="CAS_TrailerManager" xml:space="preserve">
+  <data name="CAS_TrailerManager" xml:space="preserve">
     <value>Trailer manager</value>
   </data>
-	<data name="CAS_TRM" xml:space="preserve">
+  <data name="CAS_TRM" xml:space="preserve">
     <value>Transport resources manager</value>
   </data>
-	<data name="CAS_TruckManager" xml:space="preserve">
+  <data name="CAS_TruckManager" xml:space="preserve">
     <value>Truck manager</value>
   </data>
-	<data name="CAS_Vendors" xml:space="preserve">
+  <data name="CAS_Vendors" xml:space="preserve">
     <value>Vendors</value>
   </data>
-	<data name="CAS_FreightPayerCT" xml:space="preserve">
+  <data name="CAS_FreightPayerCT" xml:space="preserve">
     <value>Freight payer List Content Type</value>
+  </data>
+  <data name="CAS_ArrivalTime" xml:space="preserve">
+    <value>Arrival time</value>
+  </data>
+  <data name="CAS_TSEndTime" xml:space="preserve">
+    <value>Time Slot end time</value>
+  </data>
+  <data name="CAS_TSStartTime" xml:space="preserve">
+    <value>Time Slot start time</value>
+  </data>
+  <data name="CAS_WarehouseEndTime" xml:space="preserve">
+    <value>Loading/unloading end time</value>
+  </data>
+  <data name="CAS_WarehouseStartTime" xml:space="preserve">
+    <value>Loading/unloading start time</value>
   </data>
 </root>
