@@ -178,6 +178,9 @@
     <None Include="Fields\ShippingFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{16083ee4-aeaf-4172-abd8-e16e62b409b6}</SharePointProjectItemId>
     </None>
+    <None Include="Fields\ShippingFields_1_70_10\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{273b3817-7698-4ad4-94e4-ceb8b69dcd8a}</SharePointProjectItemId>
+    </None>
     <None Include="Fields\ShippingLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4c6353ca-6c58-4663-bccb-db9a06d80fcb}</SharePointProjectItemId>
     </None>
@@ -466,6 +469,7 @@
     </Content>
     <Content Include="Features\ShepherdWebsite\ShepherdWebsite.Template.xml">
       <DependentUpon>ShepherdWebsite.feature</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Fields\DictionariesFields\Elements.xml">
       <SubType>Designer</SubType>
@@ -482,6 +486,7 @@
     <Content Include="Fields\ShippingFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Fields\ShippingFields_1_70_10\Elements.xml" />
     <Content Include="Fields\ShippingLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
