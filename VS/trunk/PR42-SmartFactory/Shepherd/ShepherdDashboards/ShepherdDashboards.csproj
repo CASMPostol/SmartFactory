@@ -381,6 +381,7 @@
     <Content Include="Images\ShepherdImages\DefaultBanner2.jpg" />
     <Content Include="Images\ShepherdImages\DefaultBanner2_truck.jpg" />
     <Content Include="Images\ShepherdImages\DefaultBanner_truck.jpg" />
+    <Content Include="Layouts\CAS_iframe.aspx" />
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdLayouts.css" />
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDashboards.css" />
     <Content Include="DefaultPage\DefaultTemplate.aspx" />

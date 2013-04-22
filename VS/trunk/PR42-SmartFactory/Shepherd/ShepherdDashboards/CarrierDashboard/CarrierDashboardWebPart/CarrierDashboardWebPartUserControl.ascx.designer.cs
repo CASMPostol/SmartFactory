@@ -139,6 +139,51 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::Microsoft.SharePoint.WebControls.DateTimeControl m_EstimateDeliveryTimeDateTimeControl;
         
         /// <summary>
+        /// m_LoadingUnloadingTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel m_LoadingUnloadingTime;
+        
+        /// <summary>
+        /// m_WarehouseStartTimeLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_WarehouseStartTimeLabel;
+        
+        /// <summary>
+        /// m_WarehouseStartTimeControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.SharePoint.WebControls.DateTimeControl m_WarehouseStartTimeControl;
+        
+        /// <summary>
+        /// m_WarehouseEndTimeLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_WarehouseEndTimeLabel;
+        
+        /// <summary>
+        /// m_WarehouseEndTimeControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.SharePoint.WebControls.DateTimeControl m_WarehouseEndTimeControl;
+        
+        /// <summary>
         /// m_CityHeaderLabel control.
         /// </summary>
         /// <remarks>

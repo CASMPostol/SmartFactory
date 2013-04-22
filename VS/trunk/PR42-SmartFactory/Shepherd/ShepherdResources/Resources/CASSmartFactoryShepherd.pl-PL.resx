@@ -805,9 +805,9 @@
     <value>Time Slot - czas rozpoczęcia</value>
   </data>
   <data name="CAS_WarehouseEndTime" xml:space="preserve">
-    <value>Załądunek/wyładunek -  zakończenie</value>
+    <value>Załadunek/wyładunek -  zakończenie</value>
   </data>
   <data name="CAS_WarehouseStartTime" xml:space="preserve">
-    <value>Załądunek/wyładunek -  rozpoczęcie</value>
+    <value>Załadunek/wyładunek -  rozpoczęcie</value>
   </data>
 </root>
