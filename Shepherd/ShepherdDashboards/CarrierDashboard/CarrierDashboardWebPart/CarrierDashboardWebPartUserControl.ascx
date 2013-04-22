@@ -48,8 +48,33 @@
         <asp:Label ID="m_EstimateDeliveryTimeLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,ETA%>" CssClass="Label"
           ToolTip="<%$Resources:CASSmartFactoryShepherd,ETAToolTip%>"></asp:Label>
       </asp:TableCell><asp:TableCell>
-        <SharePoint:DateTimeControl ID="m_EstimateDeliveryTimeDateTimeControl" runat="server" />
-      </asp:TableCell></asp:TableRow>
+        <SharePoint:DateTimeControl ID="m_EstimateDeliveryTimeDateTimeControl" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" />
+      </asp:TableCell>
+    </asp:TableRow>
+    <asp:TableRow>
+          <asp:TableCell ColumnSpan="2">
+              <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryShepherd,LoadingUnloadingTime%>" ID="m_LoadingUnloadingTime">
+                  <asp:Table runat="server">
+                      <asp:TableRow>  
+                          <asp:TableCell>
+                            <asp:Label ID="m_WarehouseStartTimeLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,WarehouseStartTime%>" CssClass="Label"></asp:Label>
+                          </asp:TableCell>
+                          <asp:TableCell>
+                            <SharePoint:DateTimeControl ID="m_WarehouseStartTimeControl" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" />
+                          </asp:TableCell>
+                      </asp:TableRow>
+                      <asp:TableRow>  
+                          <asp:TableCell>
+                            <asp:Label ID="m_WarehouseEndTimeLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,WarehouseEndTime%>" CssClass="Label"></asp:Label>
+                          </asp:TableCell>
+                          <asp:TableCell>
+                            <SharePoint:DateTimeControl ID="m_WarehouseEndTimeControl" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" />
+                          </asp:TableCell>
+                      </asp:TableRow>
+                  </asp:Table>
+                  </asp:Panel>
+          </asp:TableCell>
+      </asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
         <asp:Label ID="m_CityHeaderLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Destination%>" CssClass="Label">

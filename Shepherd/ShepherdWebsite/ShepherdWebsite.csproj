@@ -486,7 +486,9 @@
     <Content Include="Fields\ShippingFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Fields\ShippingFields_1_70_10\Elements.xml" />
+    <Content Include="Fields\ShippingFields_1_70_10\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Fields\ShippingLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
