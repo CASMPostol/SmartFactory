@@ -20,15 +20,15 @@
   <xs:complexType name="BalanceBatchContent">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="BalanceIPR" type="tns:ArrayOfBalanceIPRContent" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TotalIPRBook" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TotalSHWasteOveruseCSNotStarted" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TotalDustCSNotStarted" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoAvailable" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInWarehouse" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInCigarettesWarehouse" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInCigarettesProduction" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInCutfillerWarehouse" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TotalBalance" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalIPRBook" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalSHWasteOveruseCSNotStarted" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalDustCSNotStarted" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoAvailable" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInWarehouse" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInCigarettesWarehouse" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInCigarettesProduction" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInCutfillerWarehouse" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalBalance" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfBalanceIPRContent">
@@ -41,34 +41,34 @@
       <xs:element minOccurs="0" maxOccurs="1" name="EntryDocumentNo" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="SKU" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="IPRBook" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="SHWasteOveruseCSNotStarted" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="DustCSNotStarted" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="TobaccoAvailable" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="IPRBook" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="SHWasteOveruseCSNotStarted" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="DustCSNotStarted" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="TobaccoAvailable" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="JSOContent">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="JSOXCustomsSummaryList" type="tns:JSOXCustomsSummaryContentList" />
       <xs:element minOccurs="1" maxOccurs="1" name="PreviousMonthDate" type="xs:date" />
-      <xs:element minOccurs="1" maxOccurs="1" name="PreviousMonthQuantity" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PreviousMonthQuantity" type="xs:decimal" />
       <xs:element minOccurs="1" maxOccurs="1" name="IntroducingDateStart" type="xs:date" />
       <xs:element minOccurs="1" maxOccurs="1" name="IntroducingDateEnd" type="xs:date" />
-      <xs:element minOccurs="1" maxOccurs="1" name="IntroducingQuantity" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IntroducingQuantity" type="xs:decimal" />
       <xs:element minOccurs="1" maxOccurs="1" name="OutboundDateStart" type="xs:date" />
       <xs:element minOccurs="1" maxOccurs="1" name="OutboundDateEnd" type="xs:date" />
-      <xs:element minOccurs="1" maxOccurs="1" name="OutboundQuantity" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OutboundQuantity" type="xs:decimal" />
       <xs:element minOccurs="1" maxOccurs="1" name="BalanceDate" type="xs:date" />
-      <xs:element minOccurs="1" maxOccurs="1" name="BalanceQuantity" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BalanceQuantity" type="xs:decimal" />
       <xs:element minOccurs="1" maxOccurs="1" name="SituationDate" type="xs:date" />
-      <xs:element minOccurs="1" maxOccurs="1" name="SituationQuantity" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="ReassumeQuantity" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SituationQuantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReassumeQuantity" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="JSOXCustomsSummaryContentList">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="JSOXCustomsSummaryOGLGroupArray" type="tns:ArrayOfJSOXCustomsSummaryContentOGLGroup" />
-      <xs:element minOccurs="1" maxOccurs="1" name="SubtotalQuantity" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubtotalQuantity" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfJSOXCustomsSummaryContentOGLGroup">
@@ -79,7 +79,7 @@
   <xs:complexType name="JSOXCustomsSummaryContentOGLGroup">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="JSOXCustomsSummaryArray" type="tns:ArrayOfJSOXCustomsSummaryContent" />
-      <xs:element minOccurs="1" maxOccurs="1" name="SubtotalQuantity" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubtotalQuantity" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfJSOXCustomsSummaryContent">
@@ -95,8 +95,8 @@
       <xs:element minOccurs="0" maxOccurs="1" name="InvoiceNo" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="CompensationGood" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Procedure" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Quantity" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Balance" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Quantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Balance" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

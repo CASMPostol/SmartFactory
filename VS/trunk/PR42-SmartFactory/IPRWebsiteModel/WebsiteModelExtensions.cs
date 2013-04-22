@@ -10,6 +10,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
   /// </summary>
   public static class WebsiteModelExtensions
   {
+    public static decimal Rount2DecimalOrDefault( this double? value )
+    {
+      return Convert.ToDecimal( Math.Round( value.GetValueOrDefault(), 2 ));
+    }
     /// <summary>
     /// Rounts the mass.
     /// </summary>

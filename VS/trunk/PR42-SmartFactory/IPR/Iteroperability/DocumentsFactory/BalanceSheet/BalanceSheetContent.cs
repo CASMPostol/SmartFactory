@@ -124,23 +124,23 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         
         private BalanceIPRContent[] balanceIPRField;
         
-        private double totalIPRBookField;
+        private decimal totalIPRBookField;
         
-        private double totalSHWasteOveruseCSNotStartedField;
+        private decimal totalSHWasteOveruseCSNotStartedField;
         
-        private double totalDustCSNotStartedField;
+        private decimal totalDustCSNotStartedField;
         
-        private double totalTobaccoAvailableField;
+        private decimal totalTobaccoAvailableField;
         
-        private double totalTobaccoInWarehouseField;
+        private decimal totalTobaccoInWarehouseField;
         
-        private double totalTobaccoInCigarettesWarehouseField;
+        private decimal totalTobaccoInCigarettesWarehouseField;
         
-        private double totalTobaccoInCigarettesProductionField;
+        private decimal totalTobaccoInCigarettesProductionField;
         
-        private double totalTobaccoInCutfillerWarehouseField;
+        private decimal totalTobaccoInCutfillerWarehouseField;
         
-        private double totalBalanceField;
+        private decimal totalBalanceField;
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
@@ -154,7 +154,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double TotalIPRBook {
+        public decimal TotalIPRBook {
             get {
                 return this.totalIPRBookField;
             }
@@ -164,7 +164,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double TotalSHWasteOveruseCSNotStarted {
+        public decimal TotalSHWasteOveruseCSNotStarted {
             get {
                 return this.totalSHWasteOveruseCSNotStartedField;
             }
@@ -174,7 +174,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double TotalDustCSNotStarted {
+        public decimal TotalDustCSNotStarted {
             get {
                 return this.totalDustCSNotStartedField;
             }
@@ -184,7 +184,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double TotalTobaccoAvailable {
+        public decimal TotalTobaccoAvailable {
             get {
                 return this.totalTobaccoAvailableField;
             }
@@ -194,7 +194,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double TotalTobaccoInWarehouse {
+        public decimal TotalTobaccoInWarehouse {
             get {
                 return this.totalTobaccoInWarehouseField;
             }
@@ -204,7 +204,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double TotalTobaccoInCigarettesWarehouse {
+        public decimal TotalTobaccoInCigarettesWarehouse {
             get {
                 return this.totalTobaccoInCigarettesWarehouseField;
             }
@@ -214,7 +214,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double TotalTobaccoInCigarettesProduction {
+        public decimal TotalTobaccoInCigarettesProduction {
             get {
                 return this.totalTobaccoInCigarettesProductionField;
             }
@@ -224,7 +224,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double TotalTobaccoInCutfillerWarehouse {
+        public decimal TotalTobaccoInCutfillerWarehouse {
             get {
                 return this.totalTobaccoInCutfillerWarehouseField;
             }
@@ -234,7 +234,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double TotalBalance {
+        public decimal TotalBalance {
             get {
                 return this.totalBalanceField;
             }
@@ -258,13 +258,13 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         
         private string batchField;
         
-        private double iPRBookField;
+        private decimal iPRBookField;
         
-        private double sHWasteOveruseCSNotStartedField;
+        private decimal sHWasteOveruseCSNotStartedField;
         
-        private double dustCSNotStartedField;
+        private decimal dustCSNotStartedField;
         
-        private double tobaccoAvailableField;
+        private decimal tobaccoAvailableField;
         
         /// <uwagi/>
         public string EntryDocumentNo {
@@ -297,7 +297,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double IPRBook {
+        public decimal IPRBook {
             get {
                 return this.iPRBookField;
             }
@@ -307,7 +307,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double SHWasteOveruseCSNotStarted {
+        public decimal SHWasteOveruseCSNotStarted {
             get {
                 return this.sHWasteOveruseCSNotStartedField;
             }
@@ -317,7 +317,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double DustCSNotStarted {
+        public decimal DustCSNotStarted {
             get {
                 return this.dustCSNotStartedField;
             }
@@ -327,7 +327,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double TobaccoAvailable {
+        public decimal TobaccoAvailable {
             get {
                 return this.tobaccoAvailableField;
             }
@@ -357,9 +357,9 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         
         private string procedureField;
         
-        private double quantityField;
+        private decimal quantityField;
         
-        private double balanceField;
+        private decimal balanceField;
         
         /// <uwagi/>
         public string ExportOrFreeCirculationSAD {
@@ -423,7 +423,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double Quantity {
+        public decimal Quantity {
             get {
                 return this.quantityField;
             }
@@ -433,7 +433,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double Balance {
+        public decimal Balance {
             get {
                 return this.balanceField;
             }
@@ -453,7 +453,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         
         private JSOXCustomsSummaryContent[] jSOXCustomsSummaryArrayField;
         
-        private double subtotalQuantityField;
+        private decimal subtotalQuantityField;
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlArrayItemAttribute("JSOXCustomsSummary", IsNullable=false)]
@@ -467,7 +467,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double SubtotalQuantity {
+        public decimal SubtotalQuantity {
             get {
                 return this.subtotalQuantityField;
             }
@@ -487,7 +487,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         
         private JSOXCustomsSummaryContentOGLGroup[] jSOXCustomsSummaryOGLGroupArrayField;
         
-        private double subtotalQuantityField;
+        private decimal subtotalQuantityField;
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlArrayItemAttribute("JSOXCustomsSummaryOGLGroup", IsNullable=false)]
@@ -501,7 +501,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double SubtotalQuantity {
+        public decimal SubtotalQuantity {
             get {
                 return this.subtotalQuantityField;
             }
@@ -523,29 +523,29 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         
         private System.DateTime previousMonthDateField;
         
-        private double previousMonthQuantityField;
+        private decimal previousMonthQuantityField;
         
         private System.DateTime introducingDateStartField;
         
         private System.DateTime introducingDateEndField;
         
-        private double introducingQuantityField;
+        private decimal introducingQuantityField;
         
         private System.DateTime outboundDateStartField;
         
         private System.DateTime outboundDateEndField;
         
-        private double outboundQuantityField;
+        private decimal outboundQuantityField;
         
         private System.DateTime balanceDateField;
         
-        private double balanceQuantityField;
+        private decimal balanceQuantityField;
         
         private System.DateTime situationDateField;
         
-        private double situationQuantityField;
+        private decimal situationQuantityField;
         
-        private double reassumeQuantityField;
+        private decimal reassumeQuantityField;
         
         /// <uwagi/>
         public JSOXCustomsSummaryContentList JSOXCustomsSummaryList {
@@ -569,7 +569,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double PreviousMonthQuantity {
+        public decimal PreviousMonthQuantity {
             get {
                 return this.previousMonthQuantityField;
             }
@@ -601,7 +601,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double IntroducingQuantity {
+        public decimal IntroducingQuantity {
             get {
                 return this.introducingQuantityField;
             }
@@ -633,7 +633,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double OutboundQuantity {
+        public decimal OutboundQuantity {
             get {
                 return this.outboundQuantityField;
             }
@@ -654,7 +654,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double BalanceQuantity {
+        public decimal BalanceQuantity {
             get {
                 return this.balanceQuantityField;
             }
@@ -675,7 +675,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double SituationQuantity {
+        public decimal SituationQuantity {
             get {
                 return this.situationQuantityField;
             }
@@ -685,7 +685,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public double ReassumeQuantity {
+        public decimal ReassumeQuantity {
             get {
                 return this.reassumeQuantityField;
             }
