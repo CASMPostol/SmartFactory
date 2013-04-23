@@ -81,12 +81,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       decimal dust = this[ DisposalEnum.Dust ] = 0;
       decimal shMenthol = this[ DisposalEnum.SHMenthol ] = 0;
       decimal waste = this[ DisposalEnum.Waste ] = 0;
-      if ( this.ProductType.Value == Linq.ProductType.IPRTobacco )
-      {
-        dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).Rount2Decimals();
-        shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).Rount2Decimals();
-        waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).Rount2Decimals();
-      }
+      dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).Rount2Decimals();
+      shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).Rount2Decimals();
+      waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).Rount2Decimals();
       this[ DisposalEnum.TobaccoInCigaretess ] = material - shMenthol - waste - dust;
     }
     /// <summary>
