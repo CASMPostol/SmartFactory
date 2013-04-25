@@ -168,7 +168,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       get { return Convert.ToDecimal( this.SettledQuantity ); }
       set
       {
-        this.SettledQuantity = Convert.ToDouble( value );
+        this.SettledQuantity = Convert.ToDouble( value ).Rount2Decimals();
         CalculateDutyAndVat();
       }
     }
