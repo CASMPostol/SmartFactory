@@ -128,7 +128,7 @@
           <th>Batch tytoniu</th>
           <th>Cena</th>
           <th>Ilość–tytoń (kg)</th>
-          <th>Likwidacja</th>
+          <th>Likw.</th>
           <th>Wartość</th>
           <th>Waluta</th>
           <th>
@@ -284,8 +284,8 @@
       </td>
       <td align="center">
         <xsl:choose>
-          <xsl:when test="cas:ItemClearingType='PartialWindingUp'">L. częściowa</xsl:when>
-          <xsl:when test="cas:ItemClearingType='TotalWindingUp'">L. całkowita</xsl:when>
+          <xsl:when test="cas:ItemClearingType='PartialWindingUp'">l. część</xsl:when>
+          <xsl:when test="cas:ItemClearingType='TotalWindingUp'">l. całk</xsl:when>
         </xsl:choose>
       </td>
       <td align="center">
