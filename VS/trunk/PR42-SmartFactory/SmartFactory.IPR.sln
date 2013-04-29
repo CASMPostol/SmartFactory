@@ -53,6 +53,8 @@ Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "SharePointSetupInstaller", 
 		{2C246131-39C1-44E1-AAA4-768EE30F4E0D} = {2C246131-39C1-44E1-AAA4-768EE30F4E0D}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scripts", "Scripts\Scripts.csproj", "{A46DAE36-02EA-4302-A476-7AF770CB20C0}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = SmartFactory.vsmdi
@@ -686,6 +688,36 @@ Global
 		{10D55FB3-1876-4D7D-8135-0E8CD5C6204D}.SingleImage|x64.Build.0 = SingleImage
 		{10D55FB3-1876-4D7D-8135-0E8CD5C6204D}.SingleImage|x86.ActiveCfg = SingleImage
 		{10D55FB3-1876-4D7D-8135-0E8CD5C6204D}.SingleImage|x86.Build.0 = SingleImage
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.CD_ROM|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.CD_ROM|Mixed Platforms.Build.0 = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.CD_ROM|x64.ActiveCfg = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.CD_ROM|x86.ActiveCfg = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.DVD-5|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.DVD-5|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.DVD-5|x64.ActiveCfg = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.DVD-5|x86.ActiveCfg = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Release|x64.ActiveCfg = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Release|x86.ActiveCfg = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.SingleImage|x64.ActiveCfg = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.SingleImage|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
