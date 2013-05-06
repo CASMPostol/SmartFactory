@@ -42,6 +42,7 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -50,6 +51,7 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="Features\DataModel\DataModel.feature">
       <FeatureId>{8af5cff2-7428-4024-be44-a00e09558644}</FeatureId>
     </None>
@@ -70,6 +72,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Entities.cs" />
+    <Compile Include="Entities\Entities.partial.cs" />
+    <Compile Include="Entities\EntitiesDataDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -77,6 +82,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Entities\Scripts\Parameters.xml" />
     <Content Include="Features\DataModel\DataModel.Template.xml">
       <DependentUpon>DataModel.feature</DependentUpon>
     </Content>
