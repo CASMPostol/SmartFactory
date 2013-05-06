@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Workflow.Activities;
-using CAS.SmartFactory.Shepherd.Entities;
+using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
 

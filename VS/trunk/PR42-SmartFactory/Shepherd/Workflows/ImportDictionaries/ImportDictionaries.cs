@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Workflow.Activities;
 using System.Workflow.ComponentModel;
-using CAS.SmartFactory.Shepherd.Entities;
-using CAS.SmartFactory.Shepherd.ImportDataModel;
+using CAS.SmartFactory.Shepherd.DataModel.Entities;
+using CAS.SmartFactory.Shepherd.DataModel.ImportDataModel;
 using Microsoft.SharePoint.Workflow;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries

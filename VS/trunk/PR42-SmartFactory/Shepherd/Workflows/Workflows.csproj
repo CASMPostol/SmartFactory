@@ -81,21 +81,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SPMetalHelper\Entities\Entities.cs">
-      <Link>Includes\Entities.cs</Link>
-    </Compile>
-    <Compile Include="..\SPMetalHelper\Entities\Entities.partial.cs">
-      <Link>Includes\Entities.partial.cs</Link>
-    </Compile>
-    <Compile Include="..\SPMetalHelper\Entities\EntitiesDataDictionary.cs">
-      <Link>Includes\EntitiesDataDictionary.cs</Link>
-    </Compile>
-    <Compile Include="..\SPMetalHelper\ImportDataModel\ImportDataModelShepherd.cs">
-      <Link>Includes\ImportDataModelShepherd.cs</Link>
-    </Compile>
-    <Compile Include="..\SPMetalHelper\ImportDataModel\ImportDataModelShepherd.xsd.cs">
-      <Link>Includes\ImportDataModelShepherd.xsd.cs</Link>
-    </Compile>
     <Compile Include="ActionResult.cs" />
     <Compile Include="AddTimeSlots\AddTimeSlots.cs">
       <SubType>Component</SubType>
@@ -363,6 +348,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Includes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataModel\DataModel.csproj">
+      <Project>{7799a380-8b13-4bec-bdec-5c399993c40d}</Project>
+      <Name>DataModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Workflow.Activities;
 using System.Workflow.ComponentModel;
-using CAS.SmartFactory.Shepherd.Entities;
+using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
 using Microsoft.SharePoint.Linq;
 using Microsoft.SharePoint.Workflow;
@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         default:
           break;
       }
-      Entities.AlarmsAndEvents _ae = new AlarmsAndEvents()
+      AlarmsAndEvents _ae = new AlarmsAndEvents()
       {
         AlarmAndEventDetails = _mssg,
         AlarmAndEventOwner = _principal.ShepherdUserTitle,

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Workflow.Activities;
-using CAS.SmartFactory.Shepherd.Entities;
+using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
 using Microsoft.SharePoint.Workflow;
 
