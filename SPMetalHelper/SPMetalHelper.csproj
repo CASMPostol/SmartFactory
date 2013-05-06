@@ -74,12 +74,6 @@
     <Compile Include="Entities\Entities.partial.cs" />
     <Compile Include="Entities\EntitiesDataDictionary.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="ImportDataModel\ImportDataModelShepherd.cs">
-      <DependentUpon>ImportDataModelShepherd.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="ImportDataModel\ImportDataModelShepherd.xsd.cs">
-      <DependentUpon>ImportDataModelShepherd.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -100,14 +94,10 @@
     <None Include="app.config" />
     <None Include="Entities\Entities.cd" />
     <None Include="Entities\Scripts\GetEntities.ps1" />
-    <None Include="ImportDataModel\ImportDataModelShepherd.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="ImportDataModel\Scripts\CreateCS.ps1" />
     <None Include="SPMetalParameters\Scripts\CreateCs.ps1" />
   </ItemGroup>
   <ItemGroup>

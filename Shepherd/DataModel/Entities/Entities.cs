@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CAS.SmartFactory.Shepherd.Entities {
+namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	using System;
 	
 	

@@ -4,7 +4,7 @@ $env:path += "; C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\x64\"
 #$cpath = get-location
 
 Write-host XSD processing
-xsd.exe ..\ImportDataModelShepherd.xsd /N:CAS.SmartFactory.Shepherd.ImportDataModel /c /o:.. |write-host
+xsd.exe ..\ImportDataModelShepherd.xsd /N:CAS.SmartFactory.Shepherd.DataModel.ImportDataModel /c /o:.. |write-host
 
 #set-location $cpath
 Write-host Done...

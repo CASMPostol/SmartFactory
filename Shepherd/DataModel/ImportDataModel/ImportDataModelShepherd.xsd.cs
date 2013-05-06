@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
-using CAS.SmartFactory.Shepherd.Entities;
+using CAS.SmartFactory.Shepherd.DataModel.Entities;
 
-namespace CAS.SmartFactory.Shepherd.ImportDataModel
+namespace CAS.SmartFactory.Shepherd.DataModel.ImportDataModel
 {
   public partial class PreliminaryDataRoute
   {

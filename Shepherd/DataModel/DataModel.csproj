@@ -55,6 +55,10 @@
     <None Include="Features\DataModel\DataModel.feature">
       <FeatureId>{8af5cff2-7428-4024-be44-a00e09558644}</FeatureId>
     </None>
+    <None Include="ImportDataModel\ImportDataModelShepherd.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ImportDataModel\Scripts\CreateCS.ps1" />
     <None Include="key.snk" />
     <None Include="Package\Package.package">
       <PackageId>{149819b5-8acd-4d63-a848-631d426176d0}</PackageId>
@@ -72,9 +76,16 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Class1.cs" />
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Entities\Entities.partial.cs" />
     <Compile Include="Entities\EntitiesDataDictionary.cs" />
+    <Compile Include="ImportDataModel\ImportDataModelShepherd.cs">
+      <DependentUpon>ImportDataModelShepherd.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportDataModel\ImportDataModelShepherd.xsd.cs">
+      <DependentUpon>ImportDataModelShepherd.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -86,6 +97,7 @@
     <Content Include="Features\DataModel\DataModel.Template.xml">
       <DependentUpon>DataModel.feature</DependentUpon>
     </Content>
+    <Content Include="ImportDataModel\ImportDataModelShepherd.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

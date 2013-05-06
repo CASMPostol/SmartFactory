@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CAS.SmartFactory.Shepherd.ImportDataModel;
+using CAS.SmartFactory.Shepherd.DataModel.ImportDataModel;
 using Microsoft.SharePoint.Linq;
 
-namespace CAS.SmartFactory.Shepherd.Entities
+namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 {
 
+  /// <summary>
+  /// Entities Data Dictionary
+  /// </summary>
   public class EntitiesDataDictionary : IDisposable
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EntitiesDataDictionary"/> class.
+    /// </summary>
+    /// <param name="_url">The _url.</param>
     public EntitiesDataDictionary(string _url)
     {
       m_EDC = new EntitiesDataContext(_url);

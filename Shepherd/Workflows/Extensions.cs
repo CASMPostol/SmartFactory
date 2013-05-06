@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Web.UI.WebControls;
-using CAS.SmartFactory.Shepherd.Entities;
+using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint.Utilities;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification
