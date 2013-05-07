@@ -20,6 +20,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     {
       m_EDC = new EntitiesDataContext(_url);
     }
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
     public void Dispose()
     {
       m_EDC.SubmitChanges();
