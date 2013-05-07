@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard;
-using CAS.SmartFactory.Shepherd.Entities;
+using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart

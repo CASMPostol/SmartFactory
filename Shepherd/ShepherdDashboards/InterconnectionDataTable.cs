@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SmartFactory.Shepherd.Entities;
+using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
