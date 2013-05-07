@@ -267,7 +267,7 @@
       <td>
         <xsl:value-of select="cas:DocumentNoumber"/>
       </td>
-      <td align="center">
+      <td align="center" nowrap="true">
         <xsl:value-of select="ms:format-date(cas:Date, $FoarmatOfdate)"/>
       </td>
       <td align="center">

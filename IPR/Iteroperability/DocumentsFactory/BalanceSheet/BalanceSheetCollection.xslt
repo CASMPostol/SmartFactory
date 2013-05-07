@@ -164,40 +164,40 @@
   <xsl:template match="cas:BalanceBatchContent">
     <xsl:apply-templates select="cas:BalanceIPR"/>
           <tr>
-            <td nowrap="true">
+            <td nowrap="true" bgcolor="#CDCDCD">
               <b>SUMA CZĘŚCIOWA</b>
             </td>
-            <td align="center">
+            <td align="center" bgcolor="#CDCDCD">
               <b><xsl:value-of select="cas:BalanceIPR/cas:BalanceIPRContent/cas:SKU"/></b>
             </td>
-            <td align="center">
+            <td align="center" bgcolor="#CDCDCD">
               <b><xsl:value-of select="cas:BalanceIPR/cas:BalanceIPRContent/cas:Batch"/></b>
             </td>
-            <td align="center">
+            <td align="center" bgcolor="#CDCDCD">
               <b><xsl:value-of select="format-number(cas:TotalIPRBook, $FoarmatOfFloat, 'pl')"/></b>
             </td>
-            <td align="center">
+            <td align="center" bgcolor="#CDCDCD">
               <b><xsl:value-of select="format-number(cas:TotalSHWasteOveruseCSNotStarted, $FoarmatOfFloat, 'pl')"/></b>
             </td>
-            <td align="center">
+            <td align="center" bgcolor="#CDCDCD">
               <b><xsl:value-of select="format-number(cas:TotalDustCSNotStarted, $FoarmatOfFloat, 'pl')"/></b>
             </td>
-            <td align="center">
+            <td align="center" bgcolor="#CDCDCD">
               <b><xsl:value-of select="format-number(cas:TotalTobaccoAvailable, $FoarmatOfFloat, 'pl')"/></b>
             </td>
-            <td align="center">
+            <td align="center" bgcolor="#CDCDCD">
               <b><xsl:value-of select="format-number(cas:TotalTobaccoInWarehouse, $FoarmatOfFloat, 'pl')"/></b>
             </td>
-            <td align="center">
+            <td align="center" bgcolor="#CDCDCD">
               <b><xsl:value-of select="format-number(cas:TotalTobaccoInCigarettesWarehouse, $FoarmatOfFloat, 'pl')"/></b>
             </td>
-            <td align="center">
+            <td align="center" bgcolor="#CDCDCD">
               <b><xsl:value-of select="format-number(cas:TotalTobaccoInCigarettesProduction, $FoarmatOfFloat, 'pl')"/></b>
             </td>
-            <td align="center">
+            <td align="center" bgcolor="#CDCDCD">
               <b><xsl:value-of select="format-number(cas:TotalTobaccoInCutfillerWarehouse, $FoarmatOfFloat, 'pl')"/></b>
             </td>
-            <td align="center">
+            <td align="center" bgcolor="#CDCDCD">
               <b><xsl:value-of select="format-number(cas:TotalBalance, $FoarmatOfFloat, 'pl')"/></b>
             </td>
           </tr>
@@ -366,25 +366,25 @@
   <xsl:template match="cas:JSOXCustomsSummaryOGLGroup">
     <xsl:apply-templates select="cas:JSOXCustomsSummaryArray" />
     <tr>
-      <td colspan="2">
+      <td colspan="2" bgcolor="#CDCDCD">
         Subtotal - <xsl:value-of select="cas:JSOXCustomsSummaryArray/cas:JSOXCustomsSummary/cas:ExportOrFreeCirculationSAD"/>
       </td>
-      <td>
+      <td bgcolor="#CDCDCD">
         &#160;
       </td>
-      <td>
+      <td bgcolor="#CDCDCD">
         &#160;
       </td>
-      <td>
+      <td bgcolor="#CDCDCD">
         &#160;
       </td>
-      <td>
+      <td bgcolor="#CDCDCD">
         &#160;
       </td>
-      <td align="center">
+      <td align="center" bgcolor="#CDCDCD">
         <xsl:value-of select="format-number(cas:SubtotalQuantity, $FoarmatOfFloat, 'pl')"/>
       </td>
-      <td>
+      <td bgcolor="#CDCDCD">
         &#160;
       </td>
     </tr>
