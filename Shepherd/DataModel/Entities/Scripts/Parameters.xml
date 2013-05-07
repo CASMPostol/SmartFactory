@@ -31,7 +31,7 @@
   <List Name="Shipping" />
   <List Name="Shipping Point" />
   <!--<List Name="Galeria rozwiązań" />-->
-  <List Name="Biblioteka stylów" />
+  <!--<List Name="Biblioteka stylów" />-->
   <!--<List Name="Galeria motywów" />-->
   <List Name="Time Slot" />
   <List Name="TimeSlots Template" />
@@ -201,25 +201,20 @@
     <Column Name="ShippingDuration" Member="ShippingDuration" />
     <Column Name="TruckTitle" Member="TruckTitle" />
     <Column Name="TrailerTitle" Member="TrailerTitle" />
+    <Column Name="Shipping2RouteTitle" Member="Shipping2RouteTitle" />
+    <Column Name="Shipping2RouteID" Member="Shipping2RouteID" />
     <Column Name="CancelationReason" Member="CancelationReason" />
     <Column Name="BusinessDescription" Member="BusinessDescription" />
     <Column Name="Shipping2PartnerTitle" Member="Shipping2PartnerTitle" />
-    <Column Name="SecuritySealProtocolIndex" Member="SecuritySealProtocolIndex" />
     <Column Name="SecurityEscortCatalogTitle" Member="SecurityEscortCatalogTitle" />
     <Column Name="Shipping2EscortID" Member="Shipping2EscortID" />
     <Column Name="Shipping2TruckTitle" Member="Shipping2TruckTitle" />
     <Column Name="EstimateDeliveryTime" Member="EstimateDeliveryTime" />
-    <Column Name="Shipping2RouteTitle" Member="Shipping2RouteTitle" />
-    <Column Name="Shipping2RouteID" Member="Shipping2RouteID" />
     <Column Name="Shipping2City" Member="Shipping2City" />
     <Column Name="Shipping2TransportUnitType" Member="Shipping2TransportUnitType" />
     <Column Name="LoadingType" Member="LoadingType" />
-    <Column Name="AdditionalCosts" Member="AdditionalCosts" />
-    <Column Name="Shipping2Currency4AddCosts" Member="Shipping2Currency4AddCosts" />
     <Column Name="IsOutbound" Member="IsOutbound" />
     <Column Name="TruckAwaiting" Member="TruckAwaiting" />
-    <Column Name="Shipping2FreightPOIndex" Member="Shipping2FreightPOIndex" />
-    <Column Name="Shipping2EscortPOIndex" Member="Shipping2EscortPOIndex" />
     <Column Name="TrailerCondition" Member="TrailerCondition" />
     <Column Name="TrailerConditionComments" Member="TrailerConditionComments" />
     <Column Name="ContainerNo" Member="ContainerNo" />
@@ -231,12 +226,17 @@
     <Column Name="ShippingCarrierTitle" Member="ShippingCarrierTitle" />
     <Column Name="ShippingCommodityTitle" Member="ShippingCommodityTitle" />
     <Column Name="TotalQuantityKU" Member="TotalQuantityKU" />
+    <Column Name="AdditionalCosts" Member="AdditionalCosts" />
+    <Column Name="Shipping2Currency4AddCosts" Member="Shipping2Currency4AddCosts" />
     <Column Name="ShippingFreightCost" Member="ShippingFreightCost" />
     <Column Name="Shipping2CurrencyForFreight" Member="Shipping2CurrencyForFreight" />
     <Column Name="ShippingSecurityCost" Member="ShippingSecurityCost" />
     <Column Name="Shipping2CurrencyForEscort" Member="Shipping2CurrencyForEscort" />
     <Column Name="TotalCostsPerKU" Member="TotalCostsPerKU" />
     <Column Name="Shipping2Currency4CostsPerKU" Member="Shipping2Currency4CostsPerKU" />
+    <Column Name="Shipping2FreightPOIndex" Member="Shipping2FreightPOIndex" />
+    <Column Name="Shipping2EscortPOIndex" Member="Shipping2EscortPOIndex" />
+    <Column Name="SecuritySealProtocolIndex" Member="SecuritySealProtocolIndex" />
     <Column Name="Modified" Member="Modified" />
     <Column Name="Editor" Member="Editor" />
   </ContentType>
