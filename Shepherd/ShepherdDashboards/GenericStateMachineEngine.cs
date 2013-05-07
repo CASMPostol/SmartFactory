@@ -194,7 +194,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     {
       if (_rslt.LastActionResult != ActionResult.Result.Exception)
         return;
-      Anons _entry = new Anons(_rslt.ActionException.Source, _rslt.ActionException.Message);
+      Anons _entry = Anons.CreateAnons(_rslt.ActionException.Source, _rslt.ActionException.Message);
       using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
       {
         _EDC.EventLogList.InsertOnSubmit(_entry);

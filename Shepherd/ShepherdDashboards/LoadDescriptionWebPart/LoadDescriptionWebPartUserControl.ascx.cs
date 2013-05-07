@@ -253,7 +253,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       }
       protected override void ExceptionCatched(string _source, string _message)
       {
-        Anons _entry = new Anons(_source, _message);
+        Anons _entry = Anons.CreateAnons(_source, _message);
         Parent.m_EDC.EventLogList.InsertOnSubmit(_entry);
         Parent.m_EDC.SubmitChanges();
       }

@@ -10,7 +10,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// Entities Data Dictionary
   /// </summary>
-  public class EntitiesDataDictionary : IDisposable
+  sealed public class EntitiesDataDictionary : IDisposable
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="EntitiesDataDictionary"/> class.
