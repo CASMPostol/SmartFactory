@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using CAS.SmartFactory.Shepherd.Dashboards.WebPartPages;
-using CAS.SmartFactory.Shepherd.Entities;
+using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Navigation;
 

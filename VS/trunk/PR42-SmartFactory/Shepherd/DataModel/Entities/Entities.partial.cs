@@ -111,9 +111,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// </summary>
   public partial class Element
   {
-    internal const string IDColunmName = "ID";
-    internal const string TitleColunmName = "Title";
-    internal const string IDPropertyName = "Identyfikator";
+    public const string IDColunmName = "ID";
+    public const string TitleColunmName = "Title";
+    public const string IDPropertyName = "Identyfikator";
     internal const string TitlePropertyName = "Tytuł";
     /// <summary>
     /// Try to get at index. 
@@ -123,7 +123,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <param name="_ID">The _ ID.</param>
     /// <exception cref="ApplicationException">Element cannot be found.</exception>
     /// <returns>An instance of the <see cref="t"/> for the selected index or null if <paramref name="_ID"/> is null or empty.</returns>
-    internal static t TryGetAtIndex<t>(EntityList<t> _list, string _ID)
+    public static t TryGetAtIndex<t>( EntityList<t> _list, string _ID )
       where t : Element
     {
       if (_ID.IsNullOrEmpty())
@@ -156,7 +156,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         throw new ApplicationException(String.Format("{0} cannot be found at specified index{1}", typeof(t).Name, _index.Value));
       }
     }
-    internal static t FindAtIndex<t>(EntityList<t> _list, string _ID)
+    public static t FindAtIndex<t>( EntityList<t> _list, string _ID )
       where t : Element
     {
       int? _index = _ID.String2Int();
@@ -235,7 +235,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// the lists and document libraries of a Windows SharePoint Services "14" Web site.</param>
     /// <param name="source">The source denominator of the message.</param>
     /// <param name="message">The string to write to the event log.</param>
-    internal static void WriteEntry(EntitiesDataContext edc, string source, string message)
+    public static void WriteEntry( EntitiesDataContext edc, string source, string message )
     {
       if (edc == null)
       {
@@ -284,7 +284,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// </summary>
   public partial class Partner
   {
-    internal static Partner FindForUser(EntitiesDataContext edc, SPUser _user)
+    public static Partner FindForUser( EntitiesDataContext edc, SPUser _user )
     {
       if (edc.Partner == null)
         return null;
@@ -321,7 +321,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     }
     #endregion
 
-    internal void ChangeRout(Route _nr, EntitiesDataContext _EDC)
+    public void ChangeRout( Route _nr, EntitiesDataContext _EDC )
     {
       if (this.Shipping2RouteTitle == _nr)
         return;
@@ -339,7 +339,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.BusinessDescription = Shipping2RouteTitle.Route2BusinessDescriptionTitle == null ? String.Empty : Shipping2RouteTitle.Route2BusinessDescriptionTitle.Tytuł;
       this.PartnerTitle = Shipping2RouteTitle.PartnerTitle;
     }
-    internal void ChangeEscort(SecurityEscortCatalog _nr, EntitiesDataContext _EDC)
+    public void ChangeEscort( SecurityEscortCatalog _nr, EntitiesDataContext _EDC )
     {
       if (this.SecurityEscortCatalogTitle == _nr)
         return;
@@ -355,7 +355,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.SecurityEscortCatalogTitle = _nr;
       this.Shipping2PartnerTitle = _nr == null ? null : _nr.PartnerTitle;
     }
-    internal bool IsEditable()
+    public bool IsEditable()
     {
       switch (this.ShippingState.Value)
       {
@@ -376,11 +376,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
           throw new ApplicationException("Wrong Shipping state");
       }
     }
-    internal bool Fixed()
+    public bool Fixed()
     {
       return this.StartTime.Value - _12h < DateTime.Now;
     }
-    internal bool ReleaseBooking(int? _newTimeSlot)
+    public bool ReleaseBooking( int? _newTimeSlot )
     {
       if (this.TimeSlot == null || this.TimeSlot.Count == 0)
         return true;
@@ -414,7 +414,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       return true;
     }
-    internal void SetupTiming(TimeSlotTimeSlot _ts, bool _isDouble)
+    public void SetupTiming( TimeSlotTimeSlot _ts, bool _isDouble )
     {
       this.StartTime = _ts.StartTime;
       this.EndTime = _ts.EndTime;
@@ -422,12 +422,12 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.Shipping2WarehouseTitle = _ts.GetWarehouse();
       this.LoadingType = _isDouble ? Entities.LoadingType.Manual : Entities.LoadingType.Pallet;
     }
-    internal void UpdateTitle()
+    public void UpdateTitle()
     {
       string _tf = "{0}{1:D6}";
       Tytuł = String.Format(_tf, IsOutbound.Value ? "O" : "I", Identyfikator.Value);
     }
-    internal void CalculateState()
+    public void CalculateState()
     {
       switch (this.ShippingState.Value)
       {
@@ -551,9 +551,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// </summary>
   public partial class TimeSlotTimeSlot
   {
-    internal const string NameOfIsDouble = "IsDouble";
-    internal static TimeSpan Span15min = new TimeSpan(0, 15, 0);
-    internal Warehouse GetWarehouse()
+    public const string NameOfIsDouble = "IsDouble";
+    public static TimeSpan Span15min = new TimeSpan( 0, 15, 0 );
+    public Warehouse GetWarehouse()
     {
       if (this.TimeSlot2ShippingPointLookup == null)
         throw new ApplicationException(m_ShippingNotFpundMessage);
@@ -571,7 +571,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       throw new ApplicationException("Cannot find the time slot to make the couple.");
     }
     private const string m_ShippingNotFpundMessage = "Shipping slot is not selected";
-    internal List<TimeSlotTimeSlot> MakeBooking(Shipping _sp, bool _isDouble)
+    public List<TimeSlotTimeSlot> MakeBooking( Shipping _sp, bool _isDouble )
     {
       if (this.Occupied.Value == Entities.Occupied.Occupied0)
         throw new ApplicationException("Time slot has been aleady reserved");
@@ -603,7 +603,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       //this.Duration = Convert.ToDouble((_ts.EndTime.Value - _ts.EndTime.Value).TotalMinutes);
       return _ret;
     }
-    internal double? Duration()
+    public double? Duration()
     {
       if (!EndTime.HasValue || !StartTime.HasValue)
         return null;

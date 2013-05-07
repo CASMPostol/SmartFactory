@@ -1,6 +1,6 @@
 ﻿using System;
 using CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard;
-using CAS.SmartFactory.Shepherd.Entities;
+using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
