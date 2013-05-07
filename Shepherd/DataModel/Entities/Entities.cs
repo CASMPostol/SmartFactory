@@ -3823,6 +3823,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 		
 		private System.Nullable<System.DateTime> _modified;
 		
+		private System.Nullable<System.DateTime> _tSStartTime;
+		
+		private System.Nullable<System.DateTime> _tSEndTime;
+		
+		private System.Nullable<System.DateTime> _warehouseStartTime;
+		
+		private System.Nullable<System.DateTime> _warehouseEndTime;
+		
+		private System.Nullable<System.DateTime> _arrivalTime;
+		
 		private System.Nullable<ShippingState> _shippingState;
 		
 		private System.Nullable<LoadingType> _loadingType;
@@ -4315,6 +4325,76 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 					this.OnPropertyChanging("Modified", this._modified);
 					this._modified = value;
 					this.OnPropertyChanged("Modified");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TSStartTime", Storage="_tSStartTime", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> TSStartTime {
+			get {
+				return this._tSStartTime;
+			}
+			set {
+				if ((value != this._tSStartTime)) {
+					this.OnPropertyChanging("TSStartTime", this._tSStartTime);
+					this._tSStartTime = value;
+					this.OnPropertyChanged("TSStartTime");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TSEndTime", Storage="_tSEndTime", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> TSEndTime {
+			get {
+				return this._tSEndTime;
+			}
+			set {
+				if ((value != this._tSEndTime)) {
+					this.OnPropertyChanging("TSEndTime", this._tSEndTime);
+					this._tSEndTime = value;
+					this.OnPropertyChanged("TSEndTime");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="WarehouseStartTime", Storage="_warehouseStartTime", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> WarehouseStartTime {
+			get {
+				return this._warehouseStartTime;
+			}
+			set {
+				if ((value != this._warehouseStartTime)) {
+					this.OnPropertyChanging("WarehouseStartTime", this._warehouseStartTime);
+					this._warehouseStartTime = value;
+					this.OnPropertyChanged("WarehouseStartTime");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="WarehouseEndTime", Storage="_warehouseEndTime", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> WarehouseEndTime {
+			get {
+				return this._warehouseEndTime;
+			}
+			set {
+				if ((value != this._warehouseEndTime)) {
+					this.OnPropertyChanging("WarehouseEndTime", this._warehouseEndTime);
+					this._warehouseEndTime = value;
+					this.OnPropertyChanged("WarehouseEndTime");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ArrivalTime", Storage="_arrivalTime", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> ArrivalTime {
+			get {
+				return this._arrivalTime;
+			}
+			set {
+				if ((value != this._arrivalTime)) {
+					this.OnPropertyChanging("ArrivalTime", this._arrivalTime);
+					this._arrivalTime = value;
+					this.OnPropertyChanged("ArrivalTime");
 				}
 			}
 		}

@@ -239,6 +239,11 @@
     <Column Name="SecuritySealProtocolIndex" Member="SecuritySealProtocolIndex" />
     <Column Name="Modified" Member="Modified" />
     <Column Name="Editor" Member="Editor" />
+    <Column Name="TSStartTime" Member="TSStartTime" />
+    <Column Name="TSEndTime" Member="TSEndTime" />
+    <Column Name="WarehouseStartTime" Member="WarehouseStartTime" />
+    <Column Name="WarehouseEndTime" Member="WarehouseEndTime" />
+    <Column Name="ArrivalTime" Member="ArrivalTime" />
   </ContentType>
   <ContentType Name="ShippingPoint" Class="ShippingPoint">
     <Column Name="Title" Member="Title" />
