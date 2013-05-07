@@ -144,7 +144,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     private void ReportException(string _source, Exception _ex)
     {
       string _tmplt = "ReportExceptionTemplate".GetLocalizedString();
-      Anons _entry = new Anons(_source, String.Format(_tmplt, _ex.Message));
+      Anons _entry = Anons.CreateAnons(_source, String.Format(_tmplt, _ex.Message));
       EDC.EventLogList.InsertOnSubmit(_entry);
       EDC.SubmitChanges();
     }
