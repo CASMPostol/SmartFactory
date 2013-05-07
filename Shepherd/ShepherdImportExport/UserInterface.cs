@@ -5,8 +5,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using CAS.SmartFactory.Shepherd.Entities;
-using CAS.SmartFactory.Shepherd.ImportDataModel;
+using CAS.SmartFactory.Shepherd.DataModel.Entities;
+using CAS.SmartFactory.Shepherd.DataModel.ImportDataModel;
 
 namespace CAS.SmartFactory.Shepherd.ImportExport
 {

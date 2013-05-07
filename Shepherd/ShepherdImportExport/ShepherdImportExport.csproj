@@ -86,21 +86,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SPMetalHelper\Entities\Entities.cs">
-      <Link>Includes\Entities.cs</Link>
-    </Compile>
-    <Compile Include="..\SPMetalHelper\Entities\Entities.partial.cs">
-      <Link>Includes\Entities.partial.cs</Link>
-    </Compile>
-    <Compile Include="..\SPMetalHelper\Entities\EntitiesDataDictionary.cs">
-      <Link>Includes\EntitiesDataDictionary.cs</Link>
-    </Compile>
-    <Compile Include="..\SPMetalHelper\ImportDataModel\ImportDataModelShepherd.cs">
-      <Link>Includes\ImportDataModelShepherd.cs</Link>
-    </Compile>
-    <Compile Include="..\SPMetalHelper\ImportDataModel\ImportDataModelShepherd.xsd.cs">
-      <Link>Includes\ImportDataModelShepherd.xsd.cs</Link>
-    </Compile>
     <Compile Include="FileDialog.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -173,6 +158,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataModel\DataModel.csproj">
+      <Project>{7799a380-8b13-4bec-bdec-5c399993c40d}</Project>
+      <Name>DataModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
