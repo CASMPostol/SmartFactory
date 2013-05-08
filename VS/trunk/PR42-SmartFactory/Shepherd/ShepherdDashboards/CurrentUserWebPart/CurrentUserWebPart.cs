@@ -49,9 +49,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     private CurrentUserWebPartUserControl m_Control;
     private UserDescriptor GetUserDescriptor()
     {
-      //!!!the using does not work in this context.
-      //using (SPWeb _sw = SPContext.Current.Web)
-      //{ }
       return new UserDescriptor(SPContext.Current.Web.CurrentUser);
     }
     #endregion

@@ -39,7 +39,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
     {
       try
       {
-        using (EntitiesDataContext _EDC = new EntitiesDataContext(workflowProperties.Site.Url))
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(workflowProperties.SiteUrl))
         {
           TimeSlotsInitiationData _data = TimeSlotsInitiationData.Deserialize(workflowProperties.InitiationData);
           StartLogToHistory_HistoryDescription = String.Format("Starting applayin the template. From: {0}, Weeks: {1}", _data.StartDate, _data.Duration);

@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries
     }
     private void CreateTemplates_ExecuteCode(object sender, EventArgs e)
     {
-      using (EntitiesDataContext _EDC = new EntitiesDataContext(workflowProperties.WebUrl))
+      using (EntitiesDataContext _EDC = new EntitiesDataContext(workflowProperties.SiteUrl))
         foreach (ShippingPoint _sp in from _ei in _EDC.ShippingPoint select _ei)
           CreateTimeSlotTemplates(_EDC, _sp);
     }

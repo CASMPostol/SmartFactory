@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
       {
         POLibraryWorkflowAssociationData _activationData = POLibraryWorkflowAssociationData.Deserialize(m_WorkflowProperties.InitiationData);
         IPurchaseOrderTemplate _emailBodyObject = null;
-        using (EntitiesDataContext _EDC = new EntitiesDataContext(m_WorkflowProperties.Site.Url))
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(m_WorkflowProperties.SiteUrl))
         {
           if (_activationData.Carrier)
             _emailBodyObject = FreightPurchaseOrderTemplate.CreateEmailMessage(m_WorkflowProperties.Item, _EDC);

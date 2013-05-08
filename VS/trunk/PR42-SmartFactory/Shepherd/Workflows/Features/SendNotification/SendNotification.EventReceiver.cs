@@ -15,147 +15,150 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
   /// <remarks>
   /// The GUID attached to this class may be used during packaging and should not be modified.
   /// </remarks>
-  [Guid("e10c5c4a-3464-4ade-861e-f91f23955dea")]
-  public class SendNotificationEventReceiver : SPFeatureReceiver
+  [Guid( "e10c5c4a-3464-4ade-861e-f91f23955dea" )]
+  public class SendNotificationEventReceiver: SPFeatureReceiver
   {
     /// <summary>
     /// Occurs after a Feature is activated.
     /// </summary>
     /// <param name="properties">An <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties"/> object that represents the properties of the event.</param>
-    public override void FeatureActivated(SPFeatureReceiverProperties properties)
+    public override void FeatureActivated( SPFeatureReceiverProperties properties )
     {
-      string _state = default(string);
+      string _state = default( string );
       try
       {
         SPSite _siteCollection = (SPSite)properties.Feature.Parent;
         _state = "Feature.Parent";
-        using (SPWeb _web = _siteCollection.RootWeb)
+        //This best practice addresses the issue identified by the SharePoint Dispose Checker Tool as SPDisposeCheckID_140.
         {
+          SPWeb _web = _siteCollection.RootWeb;
           // obtain referecnes to lists
-          SPList _taskList = _web.Lists[CommonDefinition.SendNotificationWorkflowTasks];
-          SPList _historyList = _web.Lists[CommonDefinition.SendNotificationWorkflowHistory];
+          SPList _taskList = _web.Lists[ CommonDefinition.SendNotificationWorkflowTasks ];
+          SPList _historyList = _web.Lists[ CommonDefinition.SendNotificationWorkflowHistory ];
           _taskList.UseFormsForDisplay = false;
           _taskList.Update();
           _state = "_taskList.Update";
-          NewSendEmailAssociation(CommonDefinition.FreightPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.FreightPOAssociationData());
+          NewSendEmailAssociation( CommonDefinition.FreightPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.FreightPOAssociationData() );
           _state = "FreightPOLibraryName";
-          NewSendEmailAssociation(CommonDefinition.EscortPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.SecurityPOAssociationData());
+          NewSendEmailAssociation( CommonDefinition.EscortPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.SecurityPOAssociationData() );
           _state = "EscortPOLibraryTitle";
-          NewCreatePOAssociation(CreatePO.CreatePO.WorkflowDescription, _web, _taskList, _historyList, false);
+          NewCreatePOAssociation( CreatePO.CreatePO.WorkflowDescription, _web, _taskList, _historyList, false );
           _state = "AddCreateFPOAssociation";
-          NewCreatePOAssociation(CreateSecurityPO1.CreateSecurityPO1.WorkflowDescription, _web, _taskList, _historyList, false);
+          NewCreatePOAssociation( CreateSecurityPO1.CreateSecurityPO1.WorkflowDescription, _web, _taskList, _historyList, false );
           _state = "AddCreateFPOAssociation";
-          NewCreatePOAssociation(CreateSealProtocol.CreateSealProtocol.WorkflowDescription, _web, _taskList, _historyList, false);
+          NewCreatePOAssociation( CreateSealProtocol.CreateSealProtocol.WorkflowDescription, _web, _taskList, _historyList, false );
           _state = "AddCreateFPOAssociation";
-          NewCreatePOAssociation(ShippingStateMachine.ShippingStateMachine.WorkflowDescription, _web, _taskList, _historyList, true);
+          NewCreatePOAssociation( ShippingStateMachine.ShippingStateMachine.WorkflowDescription, _web, _taskList, _historyList, true );
           _state = "ShippingStateMachine";
-          NewWorkflowAssociation(CommonDefinition.ScheduleTemplateListTitle, AddTimeSlots.Definitions.WorkflowDescription, _web, _taskList, _historyList);
+          NewWorkflowAssociation( CommonDefinition.ScheduleTemplateListTitle, AddTimeSlots.Definitions.WorkflowDescription, _web, _taskList, _historyList );
           _state = "ScheduleTemplateListTitle";
-          NewWorkflowAssociation(CommonDefinition.DataImportLibraryTitle, ImportDictionaries.Definitions.WorkflowDescription, _web, _taskList, _historyList);
+          NewWorkflowAssociation( CommonDefinition.DataImportLibraryTitle, ImportDictionaries.Definitions.WorkflowDescription, _web, _taskList, _historyList );
           _state = "DataImportLibraryTitle";
         }
       }
-      catch (Exception _ex)
+      catch ( Exception _ex )
       {
         string _frmt = "ActivationContext failed in the {0} state because of the error {1}";
-        throw new ApplicationException(String.Format(_frmt, _state, _ex.Message));
+        throw new ApplicationException( String.Format( _frmt, _state, _ex.Message ) );
       }
     }
     /// <summary>
     /// Occurs when a Feature is deactivated.
     /// </summary>
     /// <param name="properties">An <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties"/> object that represents the properties of the event.</param>
-    public override void FeatureDeactivating(SPFeatureReceiverProperties properties)
+    public override void FeatureDeactivating( SPFeatureReceiverProperties properties )
     {
-      string _state = default(string);
+      string _state = default( string );
       try
       {
-        using (SPSite siteCollection = (SPSite)properties.Feature.Parent)
         {
-          using (SPWeb site = siteCollection.RootWeb)
+          SPSite _site = (SPSite)properties.Feature.Parent;
+          //This best practice addresses the issue identified by the SharePoint Dispose Checker Tool as SPDisposeCheckID_140.
           {
-            RemoveWorkflowAssociation(site.Lists[CommonDefinition.DataImportLibraryTitle], ImportDictionaries.Definitions.IDGuid);
-            RemoveWorkflowAssociation(site.Lists[CommonDefinition.ScheduleTemplateListTitle], AddTimeSlots.Definitions.IDGuid);
-            RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], ShippingStateMachine.ShippingStateMachine.WorkflowId);
-            RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CreateSealProtocol.CreateSealProtocol.WorkflowId);
-            RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CreateSecurityPO1.CreateSecurityPO1.WorkflowId);
-            RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CreatePO.CreatePO.WorkflowId);
-            RemoveWorkflowAssociation(site.Lists[CommonDefinition.EscortPOLibraryTitle], SendEmail.SendEmail.WorkflowId);
-            RemoveWorkflowAssociation(site.Lists[CommonDefinition.FreightPOLibraryTitle], SendEmail.SendEmail.WorkflowId);
+            //More Information: http://blogs.msdn.com/rogerla/archive/2008/02/12/sharepoint-2007-and-wss-3-0-dispose-patterns-by-example.aspx#SPDisposeCheckID_140
+            SPWeb _web = _site.RootWeb;
+            RemoveWorkflowAssociation( _web.Lists[ CommonDefinition.DataImportLibraryTitle ], ImportDictionaries.Definitions.IDGuid );
+            RemoveWorkflowAssociation( _web.Lists[ CommonDefinition.ScheduleTemplateListTitle ], AddTimeSlots.Definitions.IDGuid );
+            RemoveWorkflowAssociation( _web.Lists[ CommonDefinition.ShippingListTitle ], ShippingStateMachine.ShippingStateMachine.WorkflowId );
+            RemoveWorkflowAssociation( _web.Lists[ CommonDefinition.ShippingListTitle ], CreateSealProtocol.CreateSealProtocol.WorkflowId );
+            RemoveWorkflowAssociation( _web.Lists[ CommonDefinition.ShippingListTitle ], CreateSecurityPO1.CreateSecurityPO1.WorkflowId );
+            RemoveWorkflowAssociation( _web.Lists[ CommonDefinition.ShippingListTitle ], CreatePO.CreatePO.WorkflowId );
+            RemoveWorkflowAssociation( _web.Lists[ CommonDefinition.EscortPOLibraryTitle ], SendEmail.SendEmail.WorkflowId );
+            RemoveWorkflowAssociation( _web.Lists[ CommonDefinition.FreightPOLibraryTitle ], SendEmail.SendEmail.WorkflowId );
           }
         }
       }
-      catch (Exception _ex)
+      catch ( Exception _ex )
       {
         string _frmt = "FeatureDeactivating failed in the {0} state because of the error {1}";
-        throw new ApplicationException(String.Format(_frmt, _state, _ex.Message));
+        throw new ApplicationException( String.Format( _frmt, _state, _ex.Message ) );
       }
     }
-    private static void NewSendEmailAssociation(string _targetList, SPWeb _web, SPList _taskList, SPList _historyList, POLibraryWorkflowAssociationData _wfData)
+    private static void NewSendEmailAssociation( string _targetList, SPWeb _web, SPList _taskList, SPList _historyList, POLibraryWorkflowAssociationData _wfData )
     {
-      SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[SendEmail.SendEmail.WorkflowId];
+      SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[ SendEmail.SendEmail.WorkflowId ];
       // create workflow association
       SPWorkflowAssociation _wa = SPWorkflowAssociation.CreateListAssociation(
         _workflowTemplate,
         _wfData.Name,
        _taskList,
-        _historyList);
+        _historyList );
       // configure workflow association and add to WorkflowAssociations collection
       _wa.Description = "Send PO by email";
       _wa.AllowManual = true;
       _wa.AutoStartCreate = true;
       _wa.AutoStartChange = false;
       // add workflow association data
-      _wa.AssociationData = _wfData.Serialize(_wa);
-      _web.Lists[_targetList].WorkflowAssociations.Add(_wa);
+      _wa.AssociationData = _wfData.Serialize( _wa );
+      _web.Lists[ _targetList ].WorkflowAssociations.Add( _wa );
     }
-    private static void NewCreatePOAssociation(WorkflowDescription _dsc, SPWeb _web, SPList _taskList, SPList _historyList, bool _autoStartCreate)
+    private static void NewCreatePOAssociation( WorkflowDescription _dsc, SPWeb _web, SPList _taskList, SPList _historyList, bool _autoStartCreate )
     {
-      SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[_dsc.WorkflowId];
+      SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[ _dsc.WorkflowId ];
       // create workflow association
       SPWorkflowAssociation _freightPOLibraryWorkflowAssociation =
         SPWorkflowAssociation.CreateListAssociation(
         _workflowTemplate,
         _dsc.Name,
         _taskList,
-        _historyList);
+        _historyList );
       // configure workflow association and add to WorkflowAssociations collection
       _freightPOLibraryWorkflowAssociation.Description = _dsc.Description;
       _freightPOLibraryWorkflowAssociation.AllowManual = true;
       _freightPOLibraryWorkflowAssociation.AutoStartCreate = _autoStartCreate;
       _freightPOLibraryWorkflowAssociation.AutoStartChange = false;
       _freightPOLibraryWorkflowAssociation.AssociationData = _dsc.Name;
-      _web.Lists[CommonDefinition.ShippingListTitle].WorkflowAssociations.Add(_freightPOLibraryWorkflowAssociation);
+      _web.Lists[ CommonDefinition.ShippingListTitle ].WorkflowAssociations.Add( _freightPOLibraryWorkflowAssociation );
     }
-    private static void NewWorkflowAssociation(string _targetList, WorkflowDescription _dsc, SPWeb _web, SPList _taskList, SPList _historyList)
+    private static void NewWorkflowAssociation( string _targetList, WorkflowDescription _dsc, SPWeb _web, SPList _taskList, SPList _historyList )
     {
-      if (string.IsNullOrEmpty(_targetList))
-        throw new ApplicationException("The parameter _targetList of the NewWorkflowAssociation cannot be null or empty");
-      SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[_dsc.WorkflowId];
+      if ( string.IsNullOrEmpty( _targetList ) )
+        throw new ApplicationException( "The parameter _targetList of the NewWorkflowAssociation cannot be null or empty" );
+      SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[ _dsc.WorkflowId ];
       // create workflow association
       SPWorkflowAssociation _workflowAssociation =
         SPWorkflowAssociation.CreateListAssociation(
         _workflowTemplate,
         _dsc.Name,
         _taskList,
-        _historyList);
+        _historyList );
       // configure workflow association and add to WorkflowAssociations collection
       _workflowAssociation.Description = _dsc.Description;
       _workflowAssociation.AllowManual = true;
       _workflowAssociation.AutoStartCreate = false;
       _workflowAssociation.AutoStartChange = false;
       _workflowAssociation.AssociationData = _dsc.Name;
-      _web.Lists[_targetList].WorkflowAssociations.Add(_workflowAssociation);
+      _web.Lists[ _targetList ].WorkflowAssociations.Add( _workflowAssociation );
     }
     /// <summary>
     /// Removes the workflow association.
     /// </summary>
     /// <param name="_list">The _product proposals list.</param>
     /// <param name="_workflowTemplateId">The _workflow template id.</param>
-    private static void RemoveWorkflowAssociation(SPList _list, Guid _workflowTemplateId)
+    private static void RemoveWorkflowAssociation( SPList _list, Guid _workflowTemplateId )
     {
-      SPWorkflowAssociation _wfa = _list.WorkflowAssociations.GetAssociationByBaseID(_workflowTemplateId);
-      _list.WorkflowAssociations.Remove(_wfa.Id);
+      SPWorkflowAssociation _wfa = _list.WorkflowAssociations.GetAssociationByBaseID( _workflowTemplateId );
+      _list.WorkflowAssociations.Remove( _wfa.Id );
     }
   }
 }
