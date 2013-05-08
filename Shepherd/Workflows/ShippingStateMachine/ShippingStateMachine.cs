@@ -19,7 +19,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       try
       {
-        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
+        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.SiteUrl))
         {
           Anons _entry = new Anons() { Tytuł = _source, Treść = String.Format("ReportExceptionTemplate".GetLocalizedString(), ex.Message), Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
           EDC.EventLogList.InsertOnSubmit(_entry);
@@ -80,7 +80,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       try
       {
-        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url) { ObjectTrackingEnabled = false })
+        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.SiteUrl) { ObjectTrackingEnabled = false })
         {
           Shipping _sp = Element.GetAtIndex<Shipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId.ToString());
           e.Result = !(_sp.ShippingState.HasValue && (_sp.ShippingState.Value == ShippingState.Completed || _sp.ShippingState.Value == ShippingState.Canceled));
@@ -99,7 +99,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       try
       {
         ActionResult _ar = new ActionResult();
-        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
+        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.SiteUrl))
         {
           Shipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID.ToString());
           m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format("ShipmentModified".GetLocalizedString(), _sp.ShippingState, _sp.Editor);
@@ -301,7 +301,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       try
       {
         this.SendingEmailsReplicator_InitialChildData = null;
-        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
+        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.SiteUrl))
         {
           Shipping _sp = Element.GetAtIndex<Shipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId.ToString());
           TimeSpan _timeDistance;

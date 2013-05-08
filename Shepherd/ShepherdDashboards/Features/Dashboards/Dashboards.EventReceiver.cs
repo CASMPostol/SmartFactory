@@ -20,6 +20,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
   {
 
     #region public
+    /// <summary>
+    /// Occurs after a Feature is activated.
+    /// </summary>
+    /// <param name="properties">An <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties" /> object that represents the properties of the event.</param>
+    /// <exception cref="System.ApplicationException">
+    /// In FeatureActivated the Site is null
+    /// or
+    /// </exception>
     public override void FeatureActivated(SPFeatureReceiverProperties properties)
     {
       string _cp = "Starting";
@@ -28,15 +36,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         SPSite site = (SPSite)properties.Feature.Parent;
         if (site == null)
           throw new ApplicationException("In FeatureActivated the Site is null");
-        SPWeb _root = site.RootWeb;
-        using (EntitiesDataContext _edc = new EntitiesDataContext(_root.Url))
+        using (EntitiesDataContext _edc = new EntitiesDataContext(site.RootWeb.Url))
         {
           Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated strating");
           _cp = "ReplaceMasterMage";
           ReplaceMasterMage(site);
           Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting");
           _cp = "SPNavigationNodeCollection";
-          SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
+          SPNavigationNodeCollection _topNav = site.RootWeb.Navigation.TopNavigationBar;
           _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuVendorTitle, ProjectElementManagement.URLVendorDashboard));
           _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuInboundOwnerTitle, ProjectElementManagement.URLInboundOwner));
           _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuViewInboundsTitle, ProjectElementManagement.URLViewInbounds));
@@ -70,18 +77,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
     public override void FeatureDeactivating(SPFeatureReceiverProperties properties)
     {
       SPSite _site = properties.Feature.Parent as SPSite;
-      SPWeb _root = _site.RootWeb;
-      if (_site == null)
-        throw new ApplicationException("FeatureDeactivating cannot get access to the Web");
-      using (EntitiesDataContext _edc = new EntitiesDataContext(_root.Url))
+      if ( _site == null )
+        throw new ApplicationException( "FeatureDeactivating cannot get access to the Web" );
+      using ( EntitiesDataContext _edc = new EntitiesDataContext( _site.RootWeb.Url ) )
       {
         Anons.WriteEntry(_edc, "FeatureDeactivating", "Feature Deactivation starting.");
         Anons.WriteEntry(_edc, "FeatureDeactivating", "Removing pages.");
-        WebPartPages.ProjectElementManagement.RemovePages(_edc, _root);
+        WebPartPages.ProjectElementManagement.RemovePages( _edc, _site.RootWeb );
         Anons.WriteEntry(_edc, "FeatureDeactivating", "Removing Navigation Entries.");
-        RemoveNavigationEntries(_root);
+        RemoveNavigationEntries( _site.RootWeb );
         Anons.WriteEntry(_edc, "FeatureDeactivating", "Starting deletion of web parts.");
-        DeleteWebParts(_edc, _root);
+        DeleteWebParts( _edc, _site.RootWeb );
         Anons.WriteEntry(_edc, "FeatureDeactivating", "Reverting to default master page.");
         RevertMasterPage(_site);
         Anons.WriteEntry(_edc, "FeatureDeactivating", "Feature Deactivation finished.");
@@ -94,23 +100,31 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
     {
       try
       {
-        SPWeb _rootWeb = _siteCollection.RootWeb;
         //_root.Update();
         // calculate relative path to site from Web Application root
-        string _webAppRelativePath = _rootWeb.ServerRelativeUrl;
+        string _webAppRelativePath = _siteCollection.RootWeb.ServerRelativeUrl;
         if (!_webAppRelativePath.EndsWith("/"))
           _webAppRelativePath += "/";
         // enumerate through each site and apply branding
         foreach (SPWeb _webx in _siteCollection.AllWebs)
         {
-          _webx.MasterUrl = _webAppRelativePath + "_catalogs/masterpage/" + GlobalDefinitions.MasterPage;
-          _webx.CustomMasterUrl = _webAppRelativePath + "_catalogs/masterpage/" + GlobalDefinitions.MasterPage;
-          //site.AlternateCssUrl = WebAppRelativePath + "Style%20Library/Branding101/Styles.css";
-          //site.SiteLogoUrl = WebAppRelativePath + "Style%20Library/Branding101/Images/Logo.gif";
-          _webx.Title = "Shepherd Home";
-          _webx.SiteLogoUrl = @"_layouts/images/ShepherdDashboards/Shepherd_50x50.png";
-          _webx.UIVersion = 4;
-          _webx.Update();
+          //This best practice addresses the issue identified by the SharePoint Dispose Checker Tool as SPDisposeCheckID_130.
+          try
+          {
+            _webx.MasterUrl = _webAppRelativePath + "_catalogs/masterpage/" + GlobalDefinitions.MasterPage;
+            _webx.CustomMasterUrl = _webAppRelativePath + "_catalogs/masterpage/" + GlobalDefinitions.MasterPage;
+            //site.AlternateCssUrl = WebAppRelativePath + "Style%20Library/Branding101/Styles.css";
+            //site.SiteLogoUrl = WebAppRelativePath + "Style%20Library/Branding101/Images/Logo.gif";
+            _webx.Title = "Shepherd Home";
+            _webx.SiteLogoUrl = @"_layouts/images/ShepherdDashboards/Shepherd_50x50.png";
+            _webx.UIVersion = 4;
+            _webx.Update();
+          }
+          finally
+          {
+            if ( _webx != null )
+              _webx.Dispose();
+          }
         }
       }
       catch (Exception ex)
@@ -122,9 +136,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
     {
       try
       {
-        SPWeb topLevelSite = siteCollection.RootWeb;
         // calculate relative path of site from Web Application root
-        string WebAppRelativePath = topLevelSite.ServerRelativeUrl;
+        string WebAppRelativePath = siteCollection.RootWeb.ServerRelativeUrl;
         if (!WebAppRelativePath.EndsWith("/"))
         {
           WebAppRelativePath += "/";
@@ -132,11 +145,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         // enumerate through each site and remove custom branding
         foreach (SPWeb site in siteCollection.AllWebs)
         {
-          site.MasterUrl = WebAppRelativePath + "_catalogs/masterpage/v4.master";
-          site.CustomMasterUrl = WebAppRelativePath + "_catalogs/masterpage/v4.master";
-          //site.AlternateCssUrl = "";
-          //site.SiteLogoUrl = "";
-          site.Update();
+          //This best practice addresses the issue identified by the SharePoint Dispose Checker Tool as SPDisposeCheckID_130.
+          try
+          {
+            site.MasterUrl = WebAppRelativePath + "_catalogs/masterpage/v4.master";
+            site.CustomMasterUrl = WebAppRelativePath + "_catalogs/masterpage/v4.master";
+            //site.AlternateCssUrl = "";
+            //site.SiteLogoUrl = "";
+            site.Update();
+          }
+          finally
+          {
+            if ( site != null )
+              site.Dispose();
+          }
         }
       }
       catch (Exception ex)
