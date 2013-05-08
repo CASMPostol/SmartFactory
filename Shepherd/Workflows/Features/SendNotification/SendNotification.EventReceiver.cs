@@ -31,6 +31,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
         _state = "Feature.Parent";
         //This best practice addresses the issue identified by the SharePoint Dispose Checker Tool as SPDisposeCheckID_140.
         {
+          //More Information: http://blogs.msdn.com/rogerla/archive/2008/02/12/sharepoint-2007-and-wss-3-0-dispose-patterns-by-example.aspx#SPDisposeCheckID_140
           SPWeb _web = _siteCollection.RootWeb;
           // obtain referecnes to lists
           SPList _taskList = _web.Lists[ CommonDefinition.SendNotificationWorkflowTasks ];
