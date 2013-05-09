@@ -156,8 +156,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         {
           List<Disposal> _dspsls = new List<Disposal>();
           material.Export( entities, closingBatch, invoiceContent, _dspsls );
-          _at = "SubmitChanges";
-          entities.SubmitChanges();
           foreach ( Disposal _dx in _dspsls )
             formsList.Add( GetIPRIngredient( _dx ) );
         }
