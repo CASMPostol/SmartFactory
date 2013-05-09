@@ -188,7 +188,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries
 
     #endregion
 
-    private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated OnWorkflowActivated;
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity FaultHandlerLog;
     private FaultHandlerActivity FaultHandlerActivity;
     private FaultHandlersActivity faultHandlersActivity1;
