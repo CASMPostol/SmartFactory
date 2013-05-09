@@ -74,10 +74,15 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
       {
         {
           SPSite _site = (SPSite)properties.Feature.Parent;
-          //This best practice addresses the issue identified by the SharePoint Dispose Checker Tool as SPDisposeCheckID_140.
           {
+            //This best practice addresses the issue identified by the SharePoint Dispose Checker Tool as SPDisposeCheckID_140.
             //More Information: http://blogs.msdn.com/rogerla/archive/2008/02/12/sharepoint-2007-and-wss-3-0-dispose-patterns-by-example.aspx#SPDisposeCheckID_140
             SPWeb _web = _site.RootWeb;
+            SPList _taskList = _web.Lists[ CommonDefinition.SendNotificationWorkflowTasks ];
+            _taskList.Delete();
+            SPList _historyList = _web.Lists[ CommonDefinition.SendNotificationWorkflowHistory ];
+            _historyList.Delete();
+            _web.Update();
             RemoveWorkflowAssociation( _web.Lists[ CommonDefinition.DataImportLibraryTitle ], ImportDictionaries.Definitions.IDGuid );
             RemoveWorkflowAssociation( _web.Lists[ CommonDefinition.ScheduleTemplateListTitle ], AddTimeSlots.Definitions.IDGuid );
             RemoveWorkflowAssociation( _web.Lists[ CommonDefinition.ShippingListTitle ], ShippingStateMachine.ShippingStateMachine.WorkflowId );
