@@ -21,7 +21,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
       string At = "SKU Library";
       try
       {
-        if ( !properties.List.Title.Contains( "SKU Library" ) )
+        if ( !properties.ListTitle.Contains( "SKU Library" ) )
         {
           //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
           base.ItemAdded( properties );
