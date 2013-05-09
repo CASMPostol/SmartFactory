@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Entities\Scripts\GetEntities.ps1" />
-    <None Include="Features\DataModel\DataModel.feature">
+    <None Include="Features\SHRDataModel\SHRDataModel.feature">
       <FeatureId>{8af5cff2-7428-4024-be44-a00e09558644}</FeatureId>
     </None>
     <None Include="ImportDataModel\ImportDataModelShepherd.xsd">
@@ -94,8 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entities\Scripts\Parameters.xml" />
-    <Content Include="Features\DataModel\DataModel.Template.xml">
-      <DependentUpon>DataModel.feature</DependentUpon>
+    <Content Include="Features\SHRDataModel\SHRDataModel.Template.xml">
+      <DependentUpon>SHRDataModel.feature</DependentUpon>
     </Content>
     <Content Include="ImportDataModel\ImportDataModelShepherd.xml" />
   </ItemGroup>
