@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       base.ItemAdded( _properties );
       try
       {
-        if ( !_properties.List.Title.Contains( "Batch Library" ) )
+        if ( !_properties.ListTitle.Contains( "Batch Library" ) )
         {
           //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
           base.ItemAdded( _properties );

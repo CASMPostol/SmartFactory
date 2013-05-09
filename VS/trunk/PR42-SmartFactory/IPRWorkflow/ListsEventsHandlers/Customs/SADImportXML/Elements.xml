@@ -2,13 +2,6 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Receivers ListUrl="Lists/SADDocumentLibrary">
     <Receiver>
-      <Name>SADImportXMLItemAdding</Name>
-      <Type>ItemAdding</Type>
-      <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
-      <Class>CAS.SmartFactory.IPR.Customs.SADImportXML</Class>
-      <SequenceNumber>1000</SequenceNumber>
-    </Receiver>
-    <Receiver>
       <Name>SADImportXMLItemAdded</Name>
       <Type>ItemAdded</Type>
       <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
