@@ -32,6 +32,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     internal const string MasterPage = "cas.master";
     internal const string RootResourceFileName = "CASSmartFactoryShepherd";
     public delegate void UpdateToolStripEvent(object obj, ProgressChangedEventArgs progres);
+	internal const string CarrierDashboardWebPart = "CarrierDashboardWebPart";
+	internal const string DriversManager = "DriversManager";
+	internal const string TrailerManager = "TrailerManager";
+	internal const string TransportResources = "TransportResources";
+	internal const string TruckManager = "TruckManager";
+	internal const string CurrentUserWebPart = "CurrentUserWebPart";
+	internal const string GuardWebPart = "GuardWebPart";
+	internal const string LoadDescriptionWebPart = "LoadDescriptionWebPart";
+	internal const string TimeSlotWebPart = "TimeSlotWebPart"; 
   }
 }
 

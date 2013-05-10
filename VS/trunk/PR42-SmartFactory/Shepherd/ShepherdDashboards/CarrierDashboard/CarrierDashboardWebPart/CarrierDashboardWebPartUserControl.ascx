@@ -69,6 +69,7 @@
                           </asp:TableCell>
                           <asp:TableCell>
                             <SharePoint:DateTimeControl ID="m_WarehouseEndTimeControl" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" />
+                              <asp:Button ID="m_WarehouseEndTimeButton" runat="server" CssClass="Button" Text="END" />
                           </asp:TableCell>
                       </asp:TableRow>
                   </asp:Table>
