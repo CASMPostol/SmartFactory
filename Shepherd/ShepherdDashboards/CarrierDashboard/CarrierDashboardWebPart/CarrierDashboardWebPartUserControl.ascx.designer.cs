@@ -184,6 +184,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::Microsoft.SharePoint.WebControls.DateTimeControl m_WarehouseEndTimeControl;
         
         /// <summary>
+        /// m_WarehouseEndTimeButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button m_WarehouseEndTimeButton;
+        
+        /// <summary>
         /// m_CityHeaderLabel control.
         /// </summary>
         /// <remarks>
