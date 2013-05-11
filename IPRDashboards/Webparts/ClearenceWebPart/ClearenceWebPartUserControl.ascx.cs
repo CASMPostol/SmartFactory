@@ -189,6 +189,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains event data.</param>
     protected override void OnUnload( EventArgs e )
     {
+      m_DataContextManagement.Dispose();
       base.OnUnload( e );
     }
     #endregion
