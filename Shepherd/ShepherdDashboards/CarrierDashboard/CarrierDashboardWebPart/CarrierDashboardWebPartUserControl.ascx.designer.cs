@@ -148,6 +148,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.Panel m_LoadingUnloadingTime;
         
         /// <summary>
+        /// m_WarehouseStartTimeControlRow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow m_WarehouseStartTimeControlRow;
+        
+        /// <summary>
         /// m_WarehouseStartTimeLabel control.
         /// </summary>
         /// <remarks>
@@ -164,6 +173,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Microsoft.SharePoint.WebControls.DateTimeControl m_WarehouseStartTimeControl;
+        
+        /// <summary>
+        /// m_WarehouseEndTimeRow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow m_WarehouseEndTimeRow;
         
         /// <summary>
         /// m_WarehouseEndTimeLabel control.

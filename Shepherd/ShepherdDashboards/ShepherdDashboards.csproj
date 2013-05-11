@@ -48,6 +48,10 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CAS.SharePoint, Version=1.60.40.23943, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\CASTrunk\CommonBinaries\PR42-SmartFactory\CAS.SharePoint.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
