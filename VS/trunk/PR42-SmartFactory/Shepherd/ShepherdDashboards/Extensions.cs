@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint.Linq;
 using Microsoft.SharePoint.Utilities;
+using Microsoft.SharePoint.WebControls;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
 {
@@ -227,6 +228,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       }
       else
         _ddl.Items.Add(new ListItem(_Partner.Tytuł, _Partner.Identyfikator.Value.ToString()));
+    }
+    #endregion
+
+    #region DateTimeControl
+    /// <summary>
+    /// Sets the time picker.
+    /// </summary>
+    /// <param name="control">The control to be setup.</param>
+    /// <param name="date">The date.</param>
+    internal static void SetTimePicker( this DateTimeControl control, DateTime? date )
+    {
+      if ( date.HasValue )
+        control.SelectedDate = date.Value;
     }
     #endregion
 

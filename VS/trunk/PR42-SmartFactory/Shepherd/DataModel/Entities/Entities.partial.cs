@@ -79,6 +79,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// </summary>
   public partial class EntitiesDataContext
   {
+    public EntitiesDataContext()
+      : this( SPContext.Current.Web.Url )
+    { }
     /// <summary>
     /// Persists to the content database changes made by the current user to one or more lists using the specified failure mode;
     /// or, if a concurrency conflict is found, populates the <see cref="P:Microsoft.SharePoint.Linq.DataContext.ChangeConflicts"/> property.

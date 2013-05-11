@@ -5,13 +5,14 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
+using CAS.SharePoint.Linq;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
+using System.Globalization;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart
 {
-  using System.Globalization;
   using ButtonsSet = StateMachineEngine.ControlsSet;
   using InterfaceState = StateMachineEngine.InterfaceState;
 
@@ -27,6 +28,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     public CarrierDashboardWebPartUserControl()
     {
       m_StateMachineEngine = new LocalStateMachineEngine( this );
+      m_DataContextManagement = new DataContextManagement<EntitiesDataContext>( this );
     }
     internal void SetInterconnectionData( Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary )
     {
@@ -74,13 +76,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       set
       {
         m_DashboardType = value;
-        ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTime ^
+        ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTimeOn ^
           ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.PartnerOn;
         switch ( value )
         {
           case GlobalDefinitions.Roles.OutboundOwner:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.OperatorControlsOn ^ ButtonsSet.ContainerNoOn ^ ButtonsSet.PartnerOn;
-            m_EditbilityACL = m_VisibilityACL ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.PartnerOn;
+            m_EditbilityACL = m_VisibilityACL ^ ButtonsSet.EstimatedDeliveryTimeOn ^ ButtonsSet.PartnerOn;
             m_DocumentLabel.Text = m_LabetTextLike_DeliveryNo;
             m_ShowDocumentLabel = ShowDocumentLabelOutbound;
             m_ShowDocumentLabel( null );
@@ -94,7 +96,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           case GlobalDefinitions.Roles.Supervisor:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^
               ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.PartnerOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTimeOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^
               ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.CommentsOn;
             m_ShowDocumentLabel = ShowDocumentLabelDefault;
             m_ShowDocumentLabel( null );
@@ -225,6 +227,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_TransportUnitTypeDropDownList.SelectedIndex = 0;
       }
       m_EstimateDeliveryTimeDateTimeControl.LocaleId = CultureInfo.CurrentUICulture.LCID;
+      m_WarehouseEndTimeControl.LocaleId = CultureInfo.CurrentUICulture.LCID;
+      m_WarehouseStartTimeControl.LocaleId = CultureInfo.CurrentUICulture.LCID;
       m_SaveButton.Click += new EventHandler( m_StateMachineEngine.SaveButton_Click );
       m_NewShippingButton.Click += new EventHandler( m_StateMachineEngine.NewShippingButton_Click );
       m_CancelButton.Click += new EventHandler( m_StateMachineEngine.CancelButton_Click );
@@ -299,6 +303,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains event data.</param>
     protected override void OnUnload( EventArgs e )
     {
+      m_DataContextManagement.Dispose();
       base.OnUnload( e );
     }
     #endregion
@@ -569,6 +574,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           m_ContainerNoTextBox.TextBoxTextProperty( _sppng.ContainerNo, false );
           m_ShowDocumentLabel( _sppng );
           ShowOperatorStuff( _sppng );
+          m_WarehouseStartTimeControl.SetTimePicker( _sppng.WarehouseStartTime );
+          m_WarehouseEndTimeControl.SetTimePicker( _sppng.WarehouseEndTime );
           if ( _sppng.IsOutbound.Value )
           {
             m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _sppng.EstimateDeliveryTime.HasValue ? _sppng.EstimateDeliveryTime.Value : DateTime.Now;
@@ -955,9 +962,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_TransportUnitTypeDropDownList.Visible = ( _set & ButtonsSet.TransportUnitOn ) != 0;
       m_TransportUnitTypeLabel.Visible = ( _set & ButtonsSet.TransportUnitOn ) != 0;
       //EstimateDeliveryTime
-      m_EstimateDeliveryTimeLabel.Visible = ( _set & ButtonsSet.EstimatedDeliveryTime ) != 0;
-      m_EstimateDeliveryTimeDateTimeControl.Visible = ( _set & ButtonsSet.EstimatedDeliveryTime ) != 0;
+      m_EstimateDeliveryTimeLabel.Visible = ( _set & ButtonsSet.EstimatedDeliveryTimeOn ) != 0;
+      m_EstimateDeliveryTimeDateTimeControl.Visible = ( _set & ButtonsSet.EstimatedDeliveryTimeOn ) != 0;
       m_CoordinatorPanel.Visible = ( _set & ButtonsSet.CoordinatorPanelOn ) != 0;
+      m_WarehouseStartTimeControlRow.Visible = ( _set & ButtonsSet.WarehouseStartTimeControlOn ) != 0;
+      m_WarehouseEndTimeRow.Visible = ( _set & ButtonsSet.WarehouseEndTimeControlOn ) != 0;
       //Operator
       m_DockNumberTextBox.Visible = ( _set & ButtonsSet.OperatorControlsOn ) != 0;
       m_DocNumberLabel.Visible = ( _set & ButtonsSet.OperatorControlsOn ) != 0;
@@ -978,7 +987,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       _set &= m_EditbilityACL;
       m_CommentsTextBox.Enabled = ( _set & ButtonsSet.CommentsOn ) != 0;
       m_DocumentTextBox.Enabled = ( _set & ButtonsSet.DocumentOn ) != 0;
-      m_EstimateDeliveryTimeDateTimeControl.Enabled = ( _set & ButtonsSet.EstimatedDeliveryTime ) != 0;
+      m_EstimateDeliveryTimeDateTimeControl.Enabled = ( _set & ButtonsSet.EstimatedDeliveryTimeOn ) != 0;
+      m_WarehouseStartTimeControl.Enabled = ( _set & ButtonsSet.WarehouseStartTimeControlOn ) != 0;
+      m_WarehouseEndTimeControl.Enabled = ( _set & ButtonsSet.WarehouseEndTimeControlOn ) != 0;
+      m_WarehouseEndTimeButton.Enabled = ( _set & ButtonsSet.WarehouseEndTimeButtonOn ) != 0;
       m_TimeSlotTextBox.Enabled = false;
       m_TransportUnitTypeDropDownList.Enabled = ( _set & ButtonsSet.TransportUnitOn ) != 0;
       //Buttons
@@ -1168,6 +1180,45 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private GlobalDefinitions.Roles m_DashboardType = GlobalDefinitions.Roles.None;
     private const StateMachineEngine.ControlsSet m_AllButtons = (StateMachineEngine.ControlsSet)int.MaxValue;
     private event InterconnectionDataTable<Shipping>.SetDataEventArg m_ShippintInterconnectionEvent;
+    private DataContextManagement<EntitiesDataContext> m_DataContextManagement;
+    #endregion
+
+    #region EventHandlers
+    protected void m_WarehouseEndTimeButton_DateChanged( object sender, EventArgs e )
+    {
+      if ( !m_WarehouseEndTimeControl.IsValid || m_WarehouseEndTimeControl.IsDateEmpty )
+      {
+        CurrentShipping.WarehouseEndTime = null;
+        return;
+      }
+      CurrentShipping.WarehouseEndTime = m_WarehouseEndTimeControl.SelectedDate;
+    }
+    protected void m_WarehouseStartTimeControl_DateChanged( object sender, EventArgs e )
+    {
+      if ( !m_WarehouseStartTimeControl.IsValid || m_WarehouseStartTimeControl.IsDateEmpty )
+      {
+        CurrentShipping.WarehouseEndTime = null;
+        return;
+      }
+      CurrentShipping.WarehouseEndTime = m_WarehouseStartTimeControl.SelectedDate;
+    }
+    #endregion
+
+    #region Entities management
+    private Shipping myShipping;
+    private Shipping CurrentShipping
+    {
+      get
+      {
+        if ( myShipping == null )
+          myShipping = GetCurrentShipping();
+        return myShipping;
+      }
+    }
+    private Shipping GetCurrentShipping()
+    {
+      return Element.GetAtIndex<Shipping>( m_DataContextManagement.DataContext.Shipping, m_ControlState.ShippingID );
+    }
     #endregion
 
     #endregion
