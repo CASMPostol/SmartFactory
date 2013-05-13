@@ -73,7 +73,7 @@
                             <SharePoint:DateTimeControl ID="m_WarehouseEndTimeControl" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" 
                                 OnDateChanged="m_WarehouseEndTimeButton_DateChanged" 
                                 ToolTip="End of loading/unloading time." />
-                              <asp:Button ID="m_WarehouseEndTimeButton" runat="server" CssClass="Button" Text="END"  
+                              <asp:Button ID="m_WarehouseEndTimeButton" runat="server" CssClass="Button" Text="END"  OnClick="m_WarehouseEndTimeButton_Click"
                                   ToolTip="Click to assign end of loading/unloading time." />
                           </asp:TableCell>
                       </asp:TableRow>

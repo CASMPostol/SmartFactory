@@ -1178,6 +1178,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       else
         CurrentShipping.WarehouseEndTime = m_WarehouseStartTimeControl.SelectedDate;
     }
+    protected void m_WarehouseEndTimeButton_Click( object sender, EventArgs e )
+    {
+      m_WarehouseEndTimeControl.SelectedDate = DateTime.Now;
+    }
     #endregion
 
     #region Entities management
@@ -1204,6 +1208,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
     }
     #endregion
+
 
     #endregion
   }
