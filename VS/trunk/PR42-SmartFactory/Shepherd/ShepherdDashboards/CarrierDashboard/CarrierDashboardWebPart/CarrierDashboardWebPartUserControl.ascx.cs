@@ -28,7 +28,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     public CarrierDashboardWebPartUserControl()
     {
       m_StateMachineEngine = new LocalStateMachineEngine( this );
-      m_DataContextManagement = new DataContextManagement<EntitiesDataContext>( this );
     }
     internal void SetInterconnectionData( Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary )
     {
@@ -76,47 +75,45 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       set
       {
         m_DashboardType = value;
-        ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTimeOn ^
-          ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.PartnerOn;
+        ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTimeOn ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.PartnerOn;
         switch ( value )
         {
           case GlobalDefinitions.Roles.OutboundOwner:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.OperatorControlsOn ^ ButtonsSet.ContainerNoOn ^ ButtonsSet.PartnerOn;
-            m_EditbilityACL = m_VisibilityACL ^ ButtonsSet.EstimatedDeliveryTimeOn ^ ButtonsSet.PartnerOn;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.OperatorControlsOn ^ ButtonsSet.ContainerNoOn ^ ButtonsSet.PartnerOn ^
+              ButtonsSet.WarehouseEndTimeControlOn ^ ButtonsSet.WarehouseStartTimeControlOn;
+            m_EditbilityACL = m_VisibilityACL ^ ButtonsSet.PartnerOn;
             m_DocumentLabel.Text = m_LabetTextLike_DeliveryNo;
             m_ShowDocumentLabel = ShowDocumentLabelOutbound;
             m_ShowDocumentLabel( null );
             break;
           case GlobalDefinitions.Roles.Coordinator:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.OperatorControlsOn ^ ButtonsSet.PartnerOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.OperatorControlsOn;
+            m_EditbilityACL = m_VisibilityACL;
             m_ShowDocumentLabel = ShowDocumentLabelDefault;
             m_ShowDocumentLabel( null );
             break;
           case GlobalDefinitions.Roles.Supervisor:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^
-              ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.PartnerOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTimeOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^
-              ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.CommentsOn;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.PartnerOn;
+            m_EditbilityACL = m_VisibilityACL;
             m_ShowDocumentLabel = ShowDocumentLabelDefault;
             m_ShowDocumentLabel( null );
             break;
           case GlobalDefinitions.Roles.InboundOwner:
             m_VisibilityACL = ( _inbound ^ ButtonsSet.OperatorControlsOn ) | ButtonsSet.PartnerOn;
-            m_EditbilityACL = _inbound;
+            m_EditbilityACL = m_VisibilityACL;
             m_ShowDocumentLabel = ShowDocumentLabelInboundVendor;
             m_ShowDocumentLabel( null );
             break;
           case GlobalDefinitions.Roles.Operator:
-            m_VisibilityACL = ( _inbound ^ ButtonsSet.AbortOn ^ ButtonsSet.NewOn ) | ButtonsSet.OperatorControlsOn;
-            m_EditbilityACL = ( _inbound | ButtonsSet.OperatorControlsOn ) ^ ButtonsSet.CommentsOn;
+            m_VisibilityACL = ( _inbound ^ ButtonsSet.AbortOn ^ ButtonsSet.NewOn ) | ButtonsSet.OperatorControlsOn | ButtonsSet.WarehouseStartTimeControlOn | ButtonsSet.WarehouseEndTimeControlOn;
+            m_EditbilityACL = m_VisibilityACL ^ ButtonsSet.CommentsOn;
             m_ShowDocumentLabel = ShowDocumentLabelDefault;
             m_ShowDocumentLabel( null );
             break;
           case GlobalDefinitions.Roles.Vendor:
             m_SecurityEscortHeaderLabel.Text = m_LabetTextLike_Vendor;
             m_VisibilityACL = _inbound ^ ButtonsSet.OperatorControlsOn;
-            m_EditbilityACL = _inbound;
+            m_EditbilityACL = m_VisibilityACL;
             m_ShowDocumentLabel = ShowDocumentLabelInboundVendor;
             m_ShowDocumentLabel( null );
             break;
@@ -128,14 +125,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             break;
           case GlobalDefinitions.Roles.Forwarder:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.OperatorControlsOn ^
-              ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.PartnerOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.OperatorControlsOn;
+              ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.PartnerOn ^ ButtonsSet.WarehouseEndTimeControlOn ^ ButtonsSet.WarehouseStartTimeControlOn;
+            m_EditbilityACL = m_VisibilityACL;
             m_ShowDocumentLabel = ShowDocumentLabelForwarder;
             m_ShowDocumentLabel( null );
             break;
           case GlobalDefinitions.Roles.Escort:
             m_VisibilityACL = ButtonsSet.TimeSlotOn | ButtonsSet.CoordinatorPanelOn | ButtonsSet.DocumentOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.CoordinatorPanelOn;
+            m_EditbilityACL = m_VisibilityACL;
             m_ShowDocumentLabel = ShowDocumentLabelEscort;
             m_ShowDocumentLabel( null );
             break;
@@ -215,12 +212,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownPoor".GetLocalizedString(), ( (int)TrailerCondition._3 ).ToString() ) );
         m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownGood".GetLocalizedString(), ( (int)TrailerCondition._4 ).ToString() ) );
         m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownExcellent".GetLocalizedString(), ( (int)TrailerCondition._5Excellent ).ToString() ) );
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) { ObjectTrackingEnabled = false } )
-        {
-          m_TransportUnitTypeDropDownList.DataSource = from _idx in _EDC.TransportUnitType
-                                                       orderby _idx.Tytuł ascending
-                                                       select new { Title = _idx.Tytuł, Index = _idx.Identyfikator };
-        }
+        m_TransportUnitTypeDropDownList.DataSource = from _idx in EDC.TransportUnitType
+                                                     orderby _idx.Tytuł ascending
+                                                     select new { Title = _idx.Tytuł, Index = _idx.Identyfikator };
         m_TransportUnitTypeDropDownList.DataTextField = "Title";
         m_TransportUnitTypeDropDownList.DataValueField = "Index";
         m_TransportUnitTypeDropDownList.DataBind();
@@ -279,19 +273,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       else
       {
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) )
+        if ( VendorFixed( CurrentShipping ) )
+          m_AbortButton.Enabled = false;
+        if ( !CurrentShipping.IsEditable() )
         {
-          Shipping _currentShipping = Element.GetAtIndex<Shipping>( _EDC.Shipping, m_ControlState.ShippingID );
-          if ( VendorFixed( _currentShipping ) )
-            m_AbortButton.Enabled = false;
-          if ( !_currentShipping.IsEditable() )
-          {
-            m_EditButton.Enabled = false;
-            m_AbortButton.Enabled = false;
-            m_CoordinatorPanel.Enabled = false;
-            m_CoordinatorEditCheckBox.Checked = false;
-
-          }
+          m_EditButton.Enabled = false;
+          m_AbortButton.Enabled = false;
+          m_CoordinatorPanel.Enabled = false;
+          m_CoordinatorEditCheckBox.Checked = false;
         }
       }
       m_SecurityRequiredChecbox.Enabled = m_CoordinatorEditCheckBox.Checked;
@@ -303,7 +292,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains event data.</param>
     protected override void OnUnload( EventArgs e )
     {
-      m_DataContextManagement.Dispose();
+      if ( myDataContextManagement != null )
+        myDataContextManagement.Dispose();
+      myDataContextManagement = null;
       base.OnUnload( e );
     }
     #endregion
@@ -311,6 +302,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #region State machine
     private class LocalStateMachineEngine: StateMachineEngine
     {
+
       #region ctor
       public LocalStateMachineEngine( CarrierDashboardWebPartUserControl _Parent )
         : base()
@@ -417,6 +409,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         EnterState();
       }
       #endregion
+
     }//LocalStateMachineEngine
     private LocalStateMachineEngine m_StateMachineEngine;
     #endregion
@@ -439,23 +432,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         return;
       try
       {
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) { ObjectTrackingEnabled = false } )
+        if ( VendorFixed( CurrentShipping ) )
         {
-          Shipping _CurrentShipping = Element.FindAtIndex<Shipping>( _EDC.Shipping, m_ControlState.ShippingID );
-          if ( VendorFixed( _CurrentShipping ) )
-          {
-            ActionResult _rst = new ActionResult();
-            _rst.AddMessage( "SetInterconnectionDataItIsTooLate".GetLocalizedString() );
-            ShowActionResult( _rst );
-            return;
-          }
-          TimeSlotTimeSlot _cts = Element.GetAtIndex( _EDC.TimeSlot, _interconnectionData.ID );
-          Debug.Assert( _cts.Occupied.Value == Occupied.Free, "SetInterconnectionDataTimeSlotInUse".GetLocalizedString() );
-          m_ControlState.TimeSlotID = _interconnectionData.ID;
-          m_ControlState.TimeSlotIsDouble = _interconnectionData.IsDouble;
-          m_ControlState.TimeSlotChanged = true;
-          Show( _cts, true, _interconnectionData.IsDouble );
+          ActionResult _rst = new ActionResult();
+          _rst.AddMessage( "SetInterconnectionDataItIsTooLate".GetLocalizedString() );
+          ShowActionResult( _rst );
+          return;
         }
+        TimeSlotTimeSlot _cts = Element.GetAtIndex( EDC.TimeSlot, _interconnectionData.ID );
+        Debug.Assert( _cts.Occupied.Value == Occupied.Free, "SetInterconnectionDataTimeSlotInUse".GetLocalizedString() );
+        m_ControlState.TimeSlotID = _interconnectionData.ID;
+        m_ControlState.TimeSlotIsDouble = _interconnectionData.IsDouble;
+        m_ControlState.TimeSlotChanged = true;
+        Show( _cts, true, _interconnectionData.IsDouble );
       }
       catch ( Exception ex )
       {
@@ -557,38 +546,33 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         if ( m_ControlState.ShippingID.IsNullOrEmpty() )
           return _rsult;
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) )
+        SendShippingData( CurrentShipping );
+        TimeSlotTimeSlot _timeSlot = null;
+        try
         {
-          Shipping _sppng = Element.GetAtIndex<Shipping>( _EDC.Shipping, m_ControlState.ShippingID );
-          SendShippingData( _sppng );
-          TimeSlotTimeSlot _timeSlot = null;
-          try
-          {
-            _timeSlot = (TimeSlotTimeSlot)( from _ts in _sppng.TimeSlot where _ts.Occupied.GetValueOrDefault( Occupied.Free ) == Occupied.Occupied0 orderby _ts.StartTime ascending select _ts ).First();
-            m_ControlState.TimeSlotID = _timeSlot.Identyfikator.IntToString();
-            m_ControlState.TimeSlotChanged = false;
-          }
-          catch ( Exception ) { }
-          Show( _timeSlot, _sppng.IsEditable(), _timeSlot.IsDouble.GetValueOrDefault( false ) );
-          m_CommentsTextBox.TextBoxTextProperty( _sppng.CancelationReason, false );
-          m_ContainerNoTextBox.TextBoxTextProperty( _sppng.ContainerNo, false );
-          m_ShowDocumentLabel( _sppng );
-          ShowOperatorStuff( _sppng );
-          m_WarehouseStartTimeControl.SetTimePicker( _sppng.WarehouseStartTime );
-          m_WarehouseEndTimeControl.SetTimePicker( _sppng.WarehouseEndTime );
-          if ( _sppng.IsOutbound.Value )
-          {
-            m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _sppng.EstimateDeliveryTime.HasValue ? _sppng.EstimateDeliveryTime.Value : DateTime.Now;
-            Show( _sppng.Shipping2RouteTitle );
-            Show( _sppng.SecurityEscortCatalogTitle );
-            Show( _sppng.Shipping2TransportUnitType );
-            Show( _sppng.Shipping2City );
-          }
-          else
-          {
-            Show( _sppng.PartnerTitle );
-          }
-
+          _timeSlot = (TimeSlotTimeSlot)( from _ts in CurrentShipping.TimeSlot where _ts.Occupied.GetValueOrDefault( Occupied.Free ) == Occupied.Occupied0 orderby _ts.StartTime ascending select _ts ).First();
+          m_ControlState.TimeSlotID = _timeSlot.Identyfikator.IntToString();
+          m_ControlState.TimeSlotChanged = false;
+        }
+        catch ( Exception ) { }
+        Show( _timeSlot, CurrentShipping.IsEditable(), _timeSlot.IsDouble.GetValueOrDefault( false ) );
+        m_CommentsTextBox.TextBoxTextProperty( CurrentShipping.CancelationReason, false );
+        m_ContainerNoTextBox.TextBoxTextProperty( CurrentShipping.ContainerNo, false );
+        m_ShowDocumentLabel( CurrentShipping );
+        ShowOperatorStuff( CurrentShipping );
+        m_WarehouseStartTimeControl.SetTimePicker( CurrentShipping.WarehouseStartTime );
+        m_WarehouseEndTimeControl.SetTimePicker( CurrentShipping.WarehouseEndTime );
+        if ( CurrentShipping.IsOutbound.Value )
+        {
+          m_EstimateDeliveryTimeDateTimeControl.SelectedDate = CurrentShipping.EstimateDeliveryTime.HasValue ? CurrentShipping.EstimateDeliveryTime.Value : DateTime.Now;
+          Show( CurrentShipping.Shipping2RouteTitle );
+          Show( CurrentShipping.SecurityEscortCatalogTitle );
+          Show( CurrentShipping.Shipping2TransportUnitType );
+          Show( CurrentShipping.Shipping2City );
+        }
+        else
+        {
+          Show( CurrentShipping.PartnerTitle );
         }
       }
       catch ( Exception ex )
@@ -682,9 +666,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           _rsult.AddLabel( m_TimeSlotLabel.Text );
         if ( !_rsult.Valid )
           return _rsult;
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) )
         {
-          TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>( _EDC.TimeSlot, m_ControlState.TimeSlotID );
+          TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>( EDC.TimeSlot, m_ControlState.TimeSlotID );
           _checkPoint = "Element GetAtIndex";
           Shipping _sppng = new Shipping()
           {
@@ -694,15 +677,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           };
           _sppng.SetupTiming( _newts, m_ControlState.TimeSlotIsDouble );
           _checkPoint = "SetupTiming";
-          UpdateShipping( _sppng, _rsult, _EDC );
+          UpdateShipping( _sppng, _rsult, EDC );
           if ( !_rsult.Valid )
             return _rsult;
           List<TimeSlotTimeSlot> _Tss = _newts.MakeBooking( null, m_ControlState.TimeSlotIsDouble );
-          _EDC.SubmitChanges();
+          EDC.SubmitChanges();
           _checkPoint = "SubmitChanges";
-          _EDC.Shipping.InsertOnSubmit( _sppng );
+          EDC.Shipping.InsertOnSubmit( _sppng );
           _checkPoint = "Shipping.InsertOnSubmit";
-          _EDC.SubmitChanges();
+          EDC.SubmitChanges();
           foreach ( TimeSlotTimeSlot _tsx in _Tss )
             _tsx.TimeSlot2ShippingIndex = _sppng;
           _sppng.UpdateTitle();
@@ -714,30 +697,30 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             LoadDescription2ShippingIndex = _sppng,
             LoadDescription2PartnerTitle = _sppng.PartnerTitle
           };
-          _EDC.LoadDescription.InsertOnSubmit( _ld );
+          EDC.LoadDescription.InsertOnSubmit( _ld );
           _checkPoint = "_EDC.LoadDescription";
           try
           {
-            _EDC.SubmitChanges( ConflictMode.ContinueOnConflict );
+            EDC.SubmitChanges( ConflictMode.ContinueOnConflict );
           }
           catch ( ChangeConflictException )
           {
             _checkPoint = "ChangeConflictException";
-            _EDC.ResolveChangeConflicts( _rsult );
+            EDC.ResolveChangeConflicts( _rsult );
             _checkPoint = "ResolveChangeConflicts";
-            _EDC.SubmitChanges();
+            EDC.SubmitChanges();
           }
           _sppng.CalculateState();
           try
           {
-            _EDC.SubmitChanges( ConflictMode.ContinueOnConflict );
+            EDC.SubmitChanges( ConflictMode.ContinueOnConflict );
           }
           catch ( ChangeConflictException )
           {
             _checkPoint = "ChangeConflictException";
-            _EDC.ResolveChangeConflicts( _rsult );
+            EDC.ResolveChangeConflicts( _rsult );
             _checkPoint = "ResolveChangeConflicts";
-            _EDC.SubmitChanges();
+            EDC.SubmitChanges();
           }
           SendShippingData( _sppng );
         }
@@ -755,24 +738,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       string _checkPoint = "Starting";
       try
       {
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) )
+        UpdateShipping( CurrentShipping, _rst, EDC );
+        UpdateTimeSlot( CurrentShipping, _rst, EDC.TimeSlot );
+        CurrentShipping.CalculateState();
+        _checkPoint = "UpdateTimeSlot";
+        try
         {
-          Shipping _sppng = Element.GetAtIndex<Shipping>( _EDC.Shipping, m_ControlState.ShippingID );
-          UpdateShipping( _sppng, _rst, _EDC );
-          UpdateTimeSlot( _sppng, _rst, _EDC.TimeSlot );
-          _sppng.CalculateState();
-          _checkPoint = "UpdateTimeSlot";
-          try
-          {
-            _EDC.SubmitChanges();
-          }
-          catch ( ChangeConflictException )
-          {
-            _checkPoint = "ChangeConflictException";
-            _EDC.ResolveChangeConflicts( _rst );
-            _checkPoint = "ResolveChangeConflicts";
-            _EDC.SubmitChanges();
-          }
+          EDC.SubmitChanges();
+        }
+        catch ( ChangeConflictException )
+        {
+          _checkPoint = "ChangeConflictException";
+          EDC.ResolveChangeConflicts( _rst );
+          _checkPoint = "ResolveChangeConflicts";
+          EDC.SubmitChanges();
         }
         m_ControlState.TimeSlotChanged = false;
       }
@@ -891,34 +870,31 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       try
       {
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) )
+        Shipping _sppng = Element.GetAtIndex<Shipping>( EDC.Shipping, m_ControlState.ShippingID );
+        switch ( _sppng.ShippingState.Value )
         {
-          Shipping _sppng = Element.GetAtIndex<Shipping>( _EDC.Shipping, m_ControlState.ShippingID );
-          switch ( _sppng.ShippingState.Value )
-          {
-            case ShippingState.Confirmed:
-            case ShippingState.None:
-            case ShippingState.Invalid:
-            case ShippingState.Creation:
-            case ShippingState.Delayed:
-            case ShippingState.WaitingForCarrierData:
-            case ShippingState.WaitingForConfirmation:
-            case ShippingState.Underway:
-              _sppng.ReleaseBooking( null );
-              _sppng.ShippingState = ShippingState.Cancelation;
-              break;
-            case ShippingState.Completed:
-            case ShippingState.Cancelation:
-            case ShippingState.Canceled:
-            default:
-              break;
-          }
-          try
-          {
-            _EDC.SubmitChanges();
-          }
-          catch ( ChangeConflictException ) { } // end catch
+          case ShippingState.Confirmed:
+          case ShippingState.None:
+          case ShippingState.Invalid:
+          case ShippingState.Creation:
+          case ShippingState.Delayed:
+          case ShippingState.WaitingForCarrierData:
+          case ShippingState.WaitingForConfirmation:
+          case ShippingState.Underway:
+            _sppng.ReleaseBooking( null );
+            _sppng.ShippingState = ShippingState.Cancelation;
+            break;
+          case ShippingState.Completed:
+          case ShippingState.Cancelation:
+          case ShippingState.Canceled:
+          default:
+            break;
         }
+        try
+        {
+          EDC.SubmitChanges();
+        }
+        catch ( ChangeConflictException ) { }
       }
       catch ( Exception ex )
       {
@@ -965,7 +941,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_EstimateDeliveryTimeLabel.Visible = ( _set & ButtonsSet.EstimatedDeliveryTimeOn ) != 0;
       m_EstimateDeliveryTimeDateTimeControl.Visible = ( _set & ButtonsSet.EstimatedDeliveryTimeOn ) != 0;
       m_CoordinatorPanel.Visible = ( _set & ButtonsSet.CoordinatorPanelOn ) != 0;
-      m_WarehouseStartTimeControlRow.Visible = ( _set & ButtonsSet.WarehouseStartTimeControlOn ) != 0;
+      m_WarehouseStartTimeRow.Visible = ( _set & ButtonsSet.WarehouseStartTimeControlOn ) != 0;
       m_WarehouseEndTimeRow.Visible = ( _set & ButtonsSet.WarehouseEndTimeControlOn ) != 0;
       //Operator
       m_DockNumberTextBox.Visible = ( _set & ButtonsSet.OperatorControlsOn ) != 0;
@@ -990,7 +966,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_EstimateDeliveryTimeDateTimeControl.Enabled = ( _set & ButtonsSet.EstimatedDeliveryTimeOn ) != 0;
       m_WarehouseStartTimeControl.Enabled = ( _set & ButtonsSet.WarehouseStartTimeControlOn ) != 0;
       m_WarehouseEndTimeControl.Enabled = ( _set & ButtonsSet.WarehouseEndTimeControlOn ) != 0;
-      m_WarehouseEndTimeButton.Enabled = ( _set & ButtonsSet.WarehouseEndTimeButtonOn ) != 0;
+      m_WarehouseEndTimeButton.Enabled = ( _set & ButtonsSet.WarehouseEndTimeControlOn ) != 0;
       m_TimeSlotTextBox.Enabled = false;
       m_TransportUnitTypeDropDownList.Enabled = ( _set & ButtonsSet.TransportUnitOn ) != 0;
       //Buttons
@@ -1015,13 +991,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       try
       {
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) )
-        {
-          string _tmplt = "ReportExceptionTemplate".GetLocalizedString();
-          Anons _entry = Anons.CreateAnons( _source, String.Format( _tmplt, ex.Message ) );
-          _EDC.EventLogList.InsertOnSubmit( _entry );
-          _EDC.SubmitChanges();
-        }
+        string _tmplt = "ReportExceptionTemplate".GetLocalizedString();
+        Anons _entry = Anons.CreateAnons( _source, String.Format( _tmplt, ex.Message ) );
+        EDC.EventLogList.InsertOnSubmit( _entry );
+        EDC.SubmitChanges();
       }
       catch ( Exception ) { }
     }
@@ -1180,7 +1153,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private GlobalDefinitions.Roles m_DashboardType = GlobalDefinitions.Roles.None;
     private const StateMachineEngine.ControlsSet m_AllButtons = (StateMachineEngine.ControlsSet)int.MaxValue;
     private event InterconnectionDataTable<Shipping>.SetDataEventArg m_ShippintInterconnectionEvent;
-    private DataContextManagement<EntitiesDataContext> m_DataContextManagement;
     #endregion
 
     #region EventHandlers
@@ -1205,6 +1177,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region Entities management
+    private DataContextManagement<EntitiesDataContext> myDataContextManagement = null;
+    public EntitiesDataContext EDC
+    {
+      get
+      {
+        if ( myDataContextManagement == null )
+          myDataContextManagement = new DataContextManagement<EntitiesDataContext>( this );
+        return myDataContextManagement.DataContext;
+      }
+    }
     private Shipping myShipping;
     private Shipping CurrentShipping
     {
@@ -1217,7 +1199,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private Shipping GetCurrentShipping()
     {
-      return Element.GetAtIndex<Shipping>( m_DataContextManagement.DataContext.Shipping, m_ControlState.ShippingID );
+      return Element.GetAtIndex<Shipping>( EDC.Shipping, m_ControlState.ShippingID );
     }
     #endregion
 

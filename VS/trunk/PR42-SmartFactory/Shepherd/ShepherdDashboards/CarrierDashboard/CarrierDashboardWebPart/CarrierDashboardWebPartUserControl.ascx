@@ -55,7 +55,7 @@
           <asp:TableCell ColumnSpan="2">
               <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryShepherd,LoadingUnloadingTime%>" ID="m_LoadingUnloadingTime">
                   <asp:Table runat="server" >
-                      <asp:TableRow ID="m_WarehouseStartTimeControlRow">  
+                      <asp:TableRow ID="m_WarehouseStartTimeRow">  
                           <asp:TableCell>
                             <asp:Label ID="m_WarehouseStartTimeLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,WarehouseStartTime%>" CssClass="Label"></asp:Label>
                           </asp:TableCell>
@@ -71,7 +71,7 @@
                           </asp:TableCell>
                           <asp:TableCell>
                             <SharePoint:DateTimeControl ID="m_WarehouseEndTimeControl" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" 
-                                OnDateChanged="m_WarehouseEndTimeButton_Click" 
+                                OnDateChanged="m_WarehouseEndTimeButton_DateChanged" 
                                 ToolTip="End of loading/unloading time." />
                               <asp:Button ID="m_WarehouseEndTimeButton" runat="server" CssClass="Button" Text="END"  
                                   ToolTip="Click to assign end of loading/unloading time." />

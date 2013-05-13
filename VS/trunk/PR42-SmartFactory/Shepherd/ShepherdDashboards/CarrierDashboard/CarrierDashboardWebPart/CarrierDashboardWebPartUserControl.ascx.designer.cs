@@ -148,13 +148,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.Panel m_LoadingUnloadingTime;
         
         /// <summary>
-        /// m_WarehouseStartTimeControlRow control.
+        /// m_WarehouseStartTimeRow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow m_WarehouseStartTimeControlRow;
+        protected global::System.Web.UI.WebControls.TableRow m_WarehouseStartTimeRow;
         
         /// <summary>
         /// m_WarehouseStartTimeLabel control.
