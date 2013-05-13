@@ -75,7 +75,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       set
       {
         m_DashboardType = value;
-        ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTimeOn ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.PartnerOn;
+        ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTimeOn ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.PartnerOn ^
+          ButtonsSet.WarehouseEndTimeControlOn ^ ButtonsSet.WarehouseStartTimeControlOn;
         switch ( value )
         {
           case GlobalDefinitions.Roles.OutboundOwner:
@@ -111,9 +112,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             m_ShowDocumentLabel( null );
             break;
           case GlobalDefinitions.Roles.Vendor:
-            m_SecurityEscortHeaderLabel.Text = m_LabetTextLike_Vendor;
             m_VisibilityACL = _inbound ^ ButtonsSet.OperatorControlsOn;
             m_EditbilityACL = m_VisibilityACL;
+            m_SecurityEscortHeaderLabel.Text = m_LabetTextLike_Vendor;
             m_ShowDocumentLabel = ShowDocumentLabelInboundVendor;
             m_ShowDocumentLabel( null );
             break;
@@ -545,7 +546,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       try
       {
         if ( m_ControlState.ShippingID.IsNullOrEmpty() )
+        {
+          _rsult.AddLabel( "Interconnection error; ShippingID" );
           return _rsult;
+        }
         SendShippingData( CurrentShipping );
         TimeSlotTimeSlot _timeSlot = null;
         try
@@ -941,8 +945,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_EstimateDeliveryTimeLabel.Visible = ( _set & ButtonsSet.EstimatedDeliveryTimeOn ) != 0;
       m_EstimateDeliveryTimeDateTimeControl.Visible = ( _set & ButtonsSet.EstimatedDeliveryTimeOn ) != 0;
       m_CoordinatorPanel.Visible = ( _set & ButtonsSet.CoordinatorPanelOn ) != 0;
-      m_WarehouseStartTimeRow.Visible = ( _set & ButtonsSet.WarehouseStartTimeControlOn ) != 0;
-      m_WarehouseEndTimeRow.Visible = ( _set & ButtonsSet.WarehouseEndTimeControlOn ) != 0;
+      m_LoadingUnloadingTime.Visible = ( _set & ButtonsSet.WarehouseStartTimeControlOn ) != 0;
       //Operator
       m_DockNumberTextBox.Visible = ( _set & ButtonsSet.OperatorControlsOn ) != 0;
       m_DocNumberLabel.Visible = ( _set & ButtonsSet.OperatorControlsOn ) != 0;
@@ -1158,21 +1161,21 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #region EventHandlers
     protected void m_WarehouseEndTimeButton_DateChanged( object sender, EventArgs e )
     {
-      if ( !m_WarehouseEndTimeControl.IsValid || m_WarehouseEndTimeControl.IsDateEmpty )
-      {
-        CurrentShipping.WarehouseEndTime = null;
+      if ( CurrentShipping == null )
         return;
-      }
-      CurrentShipping.WarehouseEndTime = m_WarehouseEndTimeControl.SelectedDate;
+      if ( !m_WarehouseEndTimeControl.IsValid || m_WarehouseEndTimeControl.IsDateEmpty )
+        CurrentShipping.WarehouseEndTime = null;
+      else
+        CurrentShipping.WarehouseEndTime = m_WarehouseEndTimeControl.SelectedDate;
     }
     protected void m_WarehouseStartTimeControl_DateChanged( object sender, EventArgs e )
     {
-      if ( !m_WarehouseStartTimeControl.IsValid || m_WarehouseStartTimeControl.IsDateEmpty )
-      {
-        CurrentShipping.WarehouseEndTime = null;
+      if ( CurrentShipping == null )
         return;
-      }
-      CurrentShipping.WarehouseEndTime = m_WarehouseStartTimeControl.SelectedDate;
+      if ( !m_WarehouseStartTimeControl.IsValid || m_WarehouseStartTimeControl.IsDateEmpty )
+        CurrentShipping.WarehouseEndTime = null;
+      else
+        CurrentShipping.WarehouseEndTime = m_WarehouseStartTimeControl.SelectedDate;
     }
     #endregion
 
@@ -1192,14 +1195,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       get
       {
+        if ( m_ControlState.ShippingID.IsNullOrEmpty() )
+          return null;
         if ( myShipping == null )
-          myShipping = GetCurrentShipping();
+          myShipping = Element.GetAtIndex<Shipping>( EDC.Shipping, m_ControlState.ShippingID );
         return myShipping;
       }
-    }
-    private Shipping GetCurrentShipping()
-    {
-      return Element.GetAtIndex<Shipping>( EDC.Shipping, m_ControlState.ShippingID );
     }
     #endregion
 
