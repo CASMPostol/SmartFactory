@@ -271,6 +271,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_AbortButton.Enabled = false;
         m_CoordinatorPanel.Enabled = false;
         m_CoordinatorEditCheckBox.Checked = false;
+        m_LoadingUnloadingTime.Enabled = false;
       }
       else
       {
