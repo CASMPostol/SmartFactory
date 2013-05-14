@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     internal const string EscortPOLibraryTitle = "Escort PO Library";
     internal const string SealProtocolLibraryTitle = "Seal Protocol Library";
     internal const string MasterPage = "cas.master";
-    internal const string RootResourceFileName = "CASSmartFactoryShepherd";
+    internal const string RootResourceFileName = "CASSmartFactoryShepherdCode";
     public delegate void UpdateToolStripEvent(object obj, ProgressChangedEventArgs progres);
 	internal const string CarrierDashboardWebPart = "CarrierDashboardWebPart";
 	internal const string DriversManager = "DriversManager";
