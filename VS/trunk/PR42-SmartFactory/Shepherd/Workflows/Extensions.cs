@@ -18,7 +18,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     }
     public static string ToMonthString(this DateTime _dateTime)
     {
-      return new DateTime(_dateTime.Year, _dateTime.Month, 1).ToShortDateString();
+      return new DateTime(_dateTime.Year, _dateTime.Month, 1).ToString("yyyy-MM");
     }
     public static int String2IntOrDefault(this string _val, int _default)
     {
