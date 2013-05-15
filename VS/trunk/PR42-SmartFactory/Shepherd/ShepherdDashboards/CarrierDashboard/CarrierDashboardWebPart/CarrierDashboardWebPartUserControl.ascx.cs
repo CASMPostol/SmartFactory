@@ -75,13 +75,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       set
       {
         m_DashboardType = value;
-        ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTimeOn ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.PartnerOn ^
-          ButtonsSet.WarehouseEndTimeControlOn ^ ButtonsSet.WarehouseStartTimeControlOn;
+        ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTimeOn ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.PartnerOn ^ ButtonsSet.LoadingUnloadingTimeOn;
         switch ( value )
         {
           case GlobalDefinitions.Roles.OutboundOwner:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.OperatorControlsOn ^ ButtonsSet.ContainerNoOn ^ ButtonsSet.PartnerOn ^
-              ButtonsSet.WarehouseEndTimeControlOn ^ ButtonsSet.WarehouseStartTimeControlOn;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.OperatorControlsOn ^ ButtonsSet.ContainerNoOn ^ ButtonsSet.PartnerOn ^ ButtonsSet.LoadingUnloadingTimeOn;
             m_EditbilityACL = m_VisibilityACL ^ ButtonsSet.PartnerOn;
             m_DocumentLabel.Text = m_LabetTextLike_DeliveryNo;
             m_ShowDocumentLabel = ShowDocumentLabelOutbound;
@@ -106,7 +104,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             m_ShowDocumentLabel( null );
             break;
           case GlobalDefinitions.Roles.Operator:
-            m_VisibilityACL = ( _inbound ^ ButtonsSet.AbortOn ^ ButtonsSet.NewOn ) | ButtonsSet.OperatorControlsOn | ButtonsSet.WarehouseStartTimeControlOn | ButtonsSet.WarehouseEndTimeControlOn;
+            m_VisibilityACL = ( _inbound ^ ButtonsSet.AbortOn ^ ButtonsSet.NewOn ) | ButtonsSet.OperatorControlsOn | ButtonsSet.LoadingUnloadingTimeOn;
             m_EditbilityACL = m_VisibilityACL ^ ButtonsSet.CommentsOn;
             m_ShowDocumentLabel = ShowDocumentLabelDefault;
             m_ShowDocumentLabel( null );
@@ -126,7 +124,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             break;
           case GlobalDefinitions.Roles.Forwarder:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.OperatorControlsOn ^
-              ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.PartnerOn ^ ButtonsSet.WarehouseEndTimeControlOn ^ ButtonsSet.WarehouseStartTimeControlOn;
+              ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.PartnerOn ^ ButtonsSet.LoadingUnloadingTimeOn;
             m_EditbilityACL = m_VisibilityACL;
             m_ShowDocumentLabel = ShowDocumentLabelForwarder;
             m_ShowDocumentLabel( null );
@@ -947,7 +945,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_EstimateDeliveryTimeLabel.Visible = ( _set & ButtonsSet.EstimatedDeliveryTimeOn ) != 0;
       m_EstimateDeliveryTimeDateTimeControl.Visible = ( _set & ButtonsSet.EstimatedDeliveryTimeOn ) != 0;
       m_CoordinatorPanel.Visible = ( _set & ButtonsSet.CoordinatorPanelOn ) != 0;
-      m_LoadingUnloadingTime.Visible = ( _set & ButtonsSet.WarehouseStartTimeControlOn ) != 0;
+      m_LoadingUnloadingTime.Visible = ( _set & ButtonsSet.LoadingUnloadingTimeOn ) != 0;
       //Operator
       m_DockNumberTextBox.Visible = ( _set & ButtonsSet.OperatorControlsOn ) != 0;
       m_DocNumberLabel.Visible = ( _set & ButtonsSet.OperatorControlsOn ) != 0;
@@ -969,9 +967,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_CommentsTextBox.Enabled = ( _set & ButtonsSet.CommentsOn ) != 0;
       m_DocumentTextBox.Enabled = ( _set & ButtonsSet.DocumentOn ) != 0;
       m_EstimateDeliveryTimeDateTimeControl.Enabled = ( _set & ButtonsSet.EstimatedDeliveryTimeOn ) != 0;
-      m_WarehouseStartTimeControl.Enabled = ( _set & ButtonsSet.WarehouseStartTimeControlOn ) != 0;
-      m_WarehouseEndTimeControl.Enabled = ( _set & ButtonsSet.WarehouseEndTimeControlOn ) != 0;
-      m_WarehouseEndTimeButton.Enabled = ( _set & ButtonsSet.WarehouseEndTimeControlOn ) != 0;
+      m_LoadingUnloadingTime.Enabled = ( _set & ButtonsSet.LoadingUnloadingTimeOn ) != 0;
       m_TimeSlotTextBox.Enabled = false;
       m_TransportUnitTypeDropDownList.Enabled = ( _set & ButtonsSet.TransportUnitOn ) != 0;
       //Buttons
