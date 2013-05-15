@@ -281,7 +281,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           m_AbortButton.Enabled = false;
           m_CoordinatorPanel.Enabled = false;
           m_CoordinatorEditCheckBox.Checked = false;
-          m_LoadingUnloadingTime.Enabled = false;
         }
       }
       m_SecurityRequiredChecbox.Enabled = m_CoordinatorEditCheckBox.Checked;
@@ -679,7 +678,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             ShippingState = ShippingState.Invalid,
             Tytuł = "Creating new shippment"
           };
-          _sppng.SetupTiming( _newts, m_ControlState.TimeSlotIsDouble );
           _checkPoint = "SetupTiming";
           UpdateShipping( _sppng, _rsult, EDC );
           if ( !_rsult.Valid )
@@ -838,14 +836,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _rslt.AddLabel( m_TimeSlotLabel.Text );
         return;
       }
-      if ( _shipping.ReleaseBooking( m_ControlState.TimeSlotID.String2Int() ) )
-      {
-        TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>( _tsel, m_ControlState.TimeSlotID );
-        _shipping.SetupTiming( _newts, m_ControlState.TimeSlotIsDouble );
-        _newts.MakeBooking( _shipping, m_ControlState.TimeSlotIsDouble );
-      }
-      else
-        _rslt.AddMessage( "UpdateTimeSlotreleaseBookinProblem".GetLocalizedString() );
+      _shipping.ReleaseBooking();
+      TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>( _tsel, m_ControlState.TimeSlotID );
+      _newts.MakeBooking( _shipping, m_ControlState.TimeSlotIsDouble );
     }
     private void UpdateSecurityEscort( Shipping _sipping, EntitiesDataContext _EDC )
     {
@@ -885,7 +878,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           case ShippingState.WaitingForCarrierData:
           case ShippingState.WaitingForConfirmation:
           case ShippingState.Underway:
-            _sppng.ReleaseBooking( null );
+            _sppng.ReleaseBooking();
             _sppng.ShippingState = ShippingState.Cancelation;
             break;
           case ShippingState.Completed:

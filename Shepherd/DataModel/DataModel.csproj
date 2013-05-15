@@ -79,6 +79,7 @@
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Entities\Entities.partial.cs" />
     <Compile Include="Entities\EntitiesDataDictionary.cs" />
+    <Compile Include="Entities\Shipping.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ImportDataModel\ImportDataModelShepherd.cs">
       <DependentUpon>ImportDataModelShepherd.xsd</DependentUpon>
