@@ -29,8 +29,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       PartnerOn = 0x8000,
       //
       OperatorControlsOn = 0x10000,
-      WarehouseStartTimeControlOn = 0x20000,
-      WarehouseEndTimeControlOn = 0x40000,
+      LoadingUnloadingTimeOn = 0x20000,
     }
     internal enum InterfaceEvent { SaveClick, EditClick, CancelClick, NewClick, EnterState, AbortClick }
     internal enum InterfaceState { ViewState, EditState, NewState }
