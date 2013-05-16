@@ -12,10 +12,10 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.DataModel.Entities
@@ -48,56 +48,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         throw new ApplicationException( "Warehouse not found" );
       return this.TimeSlot2ShippingPointLookup.WarehouseTitle;
     }
-    internal TimeSlotTimeSlot FindAdjacent( List<TimeSlotTimeSlot> _avlblTmslts )
-    {
-      for ( int _i = 0; _i < _avlblTmslts.Count; _i++ )
-      {
-        if ( ( _avlblTmslts[ _i ].StartTime.Value - this.EndTime.Value ).Duration() <= Span15min )
-          return _avlblTmslts[ _i ];
-      }
-      throw new ApplicationException( "Cannot find the time slot to make the couple." );
-    }
-    /// <summary>
-    /// Makes the booking.
-    /// </summary>
-    /// <param name="shipping">The _SP.</param>
-    /// <param name="isDouble">if set to <c>true</c> [_is double].</param>
-    /// <returns></returns>
-    /// <exception cref="System.ApplicationException">Time slot has been aleady reserved</exception>
-    public List<TimeSlotTimeSlot> MakeBooking( Shipping shipping, bool isDouble )
-    {
-      if ( this.Occupied.Value == Entities.Occupied.Occupied0 )
-        throw new ApplicationException( "Time slot has been aleady reserved" );
-      List<TimeSlotTimeSlot> _ret = new List<TimeSlotTimeSlot>();
-      _ret.Add( this );
-      this.Occupied = Entities.Occupied.Occupied0;
-      this.TimeSlot2ShippingIndex = shipping;
-      shipping.StartTime = this.StartTime;
-      shipping.TSStartTime = this.StartTime;
-      shipping.Shipping2WarehouseTitle = this.GetWarehouse();
-      TimeSlotTimeSlot _next = this;
-      this.IsDouble = isDouble;
-      if ( isDouble )
-      {
-        EntitySet<TimeSlot> _tslots = this.TimeSlot2ShippingPointLookup.TimeSlot;
-        DateTime _tdy = this.StartTime.Value.Date;
-        List<TimeSlotTimeSlot> _avlblTmslts = ( from _tsidx in _tslots
-                                                let _idx = _tsidx.StartTime.Value.Date
-                                                where _tsidx.Occupied.Value == Entities.Occupied.Free && _idx >= _tdy && _idx <= _tdy.AddDays( 1 )
-                                                orderby _tsidx.StartTime ascending
-                                                select _tsidx ).Cast<TimeSlotTimeSlot>().ToList<TimeSlotTimeSlot>();
-        _next = this.FindAdjacent( _avlblTmslts );
-        _ret.Add( _next );
-        _next.Occupied = Entities.Occupied.Occupied0;
-        _next.TimeSlot2ShippingIndex = shipping;
-        _next.IsDouble = true;
-      }
-      shipping.EndTime = _next.EndTime;
-      shipping.TSEndTime = _next.EndTime;
-      shipping.ShippingDuration = Convert.ToDouble( ( _next.EndTime.Value - this.StartTime.Value ).TotalMinutes );
-      shipping.LoadingType = isDouble ? Entities.LoadingType.Manual : Entities.LoadingType.Pallet;
-      return _ret;
-    }
     /// <summary>
     /// Durations this instance.
     /// </summary>
@@ -107,6 +57,47 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       if ( !EndTime.HasValue || !StartTime.HasValue )
         return null;
       return ( EndTime.Value - StartTime.Value ).TotalMinutes;
+    }
+    /// <summary>
+    /// Books the time slots.
+    /// </summary>
+    /// <param name="EDC">The EDC.</param>
+    /// <param name="timeSlot">The time slot.</param>
+    /// <param name="isDouble">if set to <c>true</c> [is double].</param>
+    /// <returns></returns>
+    /// <exception cref="System.ApplicationException">Time slot has been aleady reserved</exception>
+    public static List<TimeSlotTimeSlot> BookTimeSlots( EntitiesDataContext EDC, string timeSlot, bool isDouble )
+    {
+      TimeSlotTimeSlot _timeSlot = Element.GetAtIndex<TimeSlotTimeSlot>( EDC.TimeSlot, timeSlot );
+      if ( _timeSlot.Occupied.Value == Entities.Occupied.Occupied0 )
+        throw new ApplicationException( "Time slot has been aleady reserved" );
+      List<TimeSlotTimeSlot> _ret = new List<TimeSlotTimeSlot>();
+      _ret.Add( _timeSlot );
+      _timeSlot.Occupied = Entities.Occupied.Occupied0;
+      if ( isDouble )
+      {
+
+        EntitySet<TimeSlot> _tslots = _timeSlot.TimeSlot2ShippingPointLookup.TimeSlot;
+        DateTime _tdy = _timeSlot.StartTime.Value.Date;
+        List<TimeSlotTimeSlot> _avlblTmslts = ( from _tsidx in _tslots
+                                                let _idx = _tsidx.StartTime.Value.Date
+                                                where _tsidx.Occupied.Value == Entities.Occupied.Free && _idx >= _tdy && _idx <= _tdy.AddDays( 1 )
+                                                orderby _tsidx.StartTime ascending
+                                                select _tsidx ).Cast<TimeSlotTimeSlot>().ToList<TimeSlotTimeSlot>();
+        TimeSlotTimeSlot _next = FindAdjacent( _avlblTmslts, _timeSlot );
+        _ret.Add( _next );
+        _next.Occupied = Entities.Occupied.Occupied0;
+      }
+      return _ret;
+    }
+    private static TimeSlotTimeSlot FindAdjacent( List<TimeSlotTimeSlot> _avlblTmslts, TimeSlotTimeSlot timeSlot )
+    {
+      for ( int _i = 0; _i < _avlblTmslts.Count; _i++ )
+      {
+        if ( ( _avlblTmslts[ _i ].StartTime.Value - timeSlot.EndTime.Value ).Duration() <= TimeSlotTimeSlot.Span15min )
+          return _avlblTmslts[ _i ];
+      }
+      throw new ApplicationException( "Cannot find the time slot to make the couple." );
     }
     /// <summary>
     /// The m_ shipping not fpund message
