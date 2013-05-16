@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 {
@@ -25,30 +26,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// </summary>
   public partial class Shipping
   {
-    #region private
-    private TimeSpan _12h = new TimeSpan( 12, 0, 0 );
-    private void RemoveDrivers( EntitiesDataContext _EDC, Partner _prtne )
-    {
-      if ( _prtne == null )
-        return;
-      List<ShippingDriversTeam> _2Delete = new List<ShippingDriversTeam>();
-      foreach ( ShippingDriversTeam _drv in this.ShippingDriversTeam )
-      {
-        if ( _prtne == _drv.DriverTitle.Driver2PartnerTitle )
-        {
-          //TODO clenup the code
-          //_drv.ShippingIndex = null;
-          //_drv.Driver = null;
-          //_2Delete.Add(_drv);
-          //_EDC.SubmitChanges();
-          _2Delete.Add( _drv );
-        }
-      }
-      _EDC.DriversTeam.DeleteAllOnSubmit( _2Delete );
-      _EDC.SubmitChanges();
-    }
-    #endregion
-
     /// <summary>
     /// Changes the rout.
     /// </summary>
@@ -352,5 +329,45 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// The watch tolerance
     /// </summary>
     public static TimeSpan WatchTolerance = new TimeSpan( 0, 15, 0 );
+    /// <summary>
+    /// Makes the booking.
+    /// </summary>
+    /// <param name="timeSlot">The time slot.</param>
+    /// <param name="isDouble">if set to <c>true</c> [_is double].</param>
+    /// <returns></returns>
+    /// <exception cref="System.ApplicationException">Time slot has been aleady reserved</exception>
+    public List<TimeSlotTimeSlot> MakeBooking( List<TimeSlotTimeSlot> timeSlotsCollection, bool isDouble )
+    {
+      StartTime = timeSlotsCollection[0].StartTime;
+      TSStartTime = timeSlotsCollection[ 0 ].StartTime;
+      Shipping2WarehouseTitle = timeSlotsCollection[ 0 ].GetWarehouse();
+      TimeSlotTimeSlot _next = timeSlotsCollection[ 0 ];
+      foreach ( TimeSlotTimeSlot _tsx in timeSlotsCollection )
+      {
+        _tsx.TimeSlot2ShippingIndex = this;
+        _next = _tsx;
+      }
+      EndTime = _next.EndTime;
+      TSEndTime = _next.EndTime;
+      ShippingDuration = Convert.ToDouble( ( _next.EndTime.Value - this.StartTime.Value ).TotalMinutes );
+      LoadingType = isDouble ? Entities.LoadingType.Manual : Entities.LoadingType.Pallet;
+      return timeSlotsCollection;
+    }
+
+    #region private
+    private TimeSpan _12h = new TimeSpan( 12, 0, 0 );
+    private void RemoveDrivers( EntitiesDataContext EDC, Partner partner )
+    {
+      if ( partner == null )
+        return;
+      List<ShippingDriversTeam> _2Delete = new List<ShippingDriversTeam>();
+      foreach ( ShippingDriversTeam _drv in this.ShippingDriversTeam )
+        if ( partner == _drv.DriverTitle.Driver2PartnerTitle )
+          _2Delete.Add( _drv );
+      EDC.DriversTeam.DeleteAllOnSubmit( _2Delete );
+      EDC.SubmitChanges();
+    }
+    #endregion
+
   }
 }

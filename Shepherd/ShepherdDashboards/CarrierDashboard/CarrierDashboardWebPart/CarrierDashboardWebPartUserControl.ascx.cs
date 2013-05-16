@@ -670,7 +670,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         if ( !_rsult.Valid )
           return _rsult;
         {
-          TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>( EDC.TimeSlot, m_ControlState.TimeSlotID );
           _checkPoint = "Element GetAtIndex";
           Shipping _sppng = new Shipping()
           {
@@ -682,14 +681,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           UpdateShipping( _sppng, _rsult, EDC );
           if ( !_rsult.Valid )
             return _rsult;
-          List<TimeSlotTimeSlot> _Tss = _newts.MakeBooking( null, m_ControlState.TimeSlotIsDouble );
+          List<TimeSlotTimeSlot> _Tss = TimeSlotTimeSlot.BookTimeSlots(EDC, m_ControlState.TimeSlotID, m_ControlState.TimeSlotIsDouble );
           EDC.SubmitChanges();
           _checkPoint = "SubmitChanges";
           EDC.Shipping.InsertOnSubmit( _sppng );
-          _checkPoint = "Shipping.InsertOnSubmit";
-          EDC.SubmitChanges();
-          foreach ( TimeSlotTimeSlot _tsx in _Tss )
-            _tsx.TimeSlot2ShippingIndex = _sppng;
+          _checkPoint = "Shipping.MakeBooking";
+          _sppng.MakeBooking( _Tss, m_ControlState.TimeSlotIsDouble );
           _sppng.UpdateTitle();
           m_ControlState.ShippingID = _sppng.Identyfikator.Value.ToString();
           LoadDescription _ld = new LoadDescription()
@@ -837,8 +834,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         return;
       }
       _shipping.ReleaseBooking();
-      TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>( _tsel, m_ControlState.TimeSlotID );
-      _newts.MakeBooking( _shipping, m_ControlState.TimeSlotIsDouble );
+      List<TimeSlotTimeSlot> timeSlots = TimeSlotTimeSlot.BookTimeSlots( EDC, m_ControlState.TimeSlotID, m_ControlState.TimeSlotIsDouble );
+      _shipping.MakeBooking( timeSlots, m_ControlState.TimeSlotIsDouble );
     }
     private void UpdateSecurityEscort( Shipping _sipping, EntitiesDataContext _EDC )
     {
