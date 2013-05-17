@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class ShippingStateMachine
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -105,9 +120,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format("ShipmentModified".GetLocalizedString(), _sp.ShippingState, _sp.Editor);
           //ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, AlarmPriority.Normal, ServiceType.None, EDC, _sp);
           if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.ShippingState.Value == ShippingState.Completed))
-            MakeShippingReport(_sp, EDC, _ar);
+            MakeOutboundReport(_sp, EDC, _ar);
           if (_sp.ShippingState.Value == ShippingState.Completed || _sp.ShippingState.Value == ShippingState.Cancelation)
-            MakePerformanceReport(_sp, EDC, _ar);
+            MakePerformanceReport( EDC, _sp, _ar );
           try
           {
             EDC.SubmitChanges(ConflictMode.ContinueOnConflict);
@@ -150,50 +165,60 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       //  }
       //}
     }
-    private void MakePerformanceReport(Shipping _sp, EntitiesDataContext EDC, ActionResult _result)
+    /// <summary>
+    /// Makes the performance report - creates a new entry on the <see cref="CarrierPerformanceReport"/> for each shipping
+    /// </summary>
+    /// <param name="EDC">The EDC.</param>
+    /// <param name="sp">The <see cref="Shipping"/>.</param>
+    /// <param name="result">The result.</param>
+    /// <exception cref="System.ApplicationException">
+    /// <see cref="ApplicationException"/>: ShippingAssociatedPartner
+    /// <see cref="ApplicationException"/>: MakePerformanceReportDataInconsistent
+    /// </exception>
+    private void MakePerformanceReport( EntitiesDataContext EDC, Shipping sp, ActionResult result )
     {
       try
       {
-        DateTime _sDate = _sp.StartTime.Value.Date;
-        if (_sp.PartnerTitle == null)
+        DateTime _sDate = sp.StartTime.Value.Date;
+        if (sp.PartnerTitle == null)
           throw new ApplicationException("ShippingAssociatedPartner".GetLocalizedString());
-        CarrierPerformanceReport _rprt = (from _rx in _sp.PartnerTitle.CarrierPerformanceReport
+        CarrierPerformanceReport _rprt = (from _rx in sp.PartnerTitle.CarrierPerformanceReport
                                           where _rx.CPRDate.Value == _sDate
                                           select _rx).FirstOrDefault();
         if (_rprt == null)
         {
           _rprt = new CarrierPerformanceReport()
           {
-            CPRDate = _sp.StartTime.Value.Date,
-            CPR2PartnerTitle = _sp.PartnerTitle,
-            Tytuł = _sp.PartnerTitle.Title(),
+            CPRDate = sp.StartTime.Value.Date,
+            CPR2PartnerTitle = sp.PartnerTitle,
+            Tytuł = sp.PartnerTitle.Title(),
             CPRNumberDelayed = 0,
             CPRNumberDelayed1h = 0,
             CPRNumberNotShowingUp = 0,
             CPRNumberOnTime = 0,
             CPRNumberOrdered = 0,
             CPRNumberRejectedBadQuality = 0,
-            ReportPeriod = _sp.StartTime.Value.ToMonthString()
+            ReportPeriod = sp.StartTime.Value.ToMonthString()
           };
           EDC.CarrierPerformanceReport.InsertOnSubmit(_rprt);
         }
         _rprt.CPRNumberOrdered++;
-        _rprt.CPRNumberNotShowingUp += (from _ts in _sp.TimeSlot
+        _rprt.CPRNumberNotShowingUp += (from _ts in sp.TimeSlot
                                         where _ts.Occupied.Value == Occupied.Delayed
                                         select new { }).Count();
-        if (_sp.ShippingState.Value == ShippingState.Cancelation)
+        if (sp.ShippingState.Value == ShippingState.Cancelation)
           _rprt.CPRNumberNotShowingUp++;
         else
         {
-          if (_sp.TrailerCondition.GetValueOrDefault(TrailerCondition.None) == TrailerCondition._1Unexceptable)
+          if (sp.TrailerCondition.GetValueOrDefault(TrailerCondition.None) == TrailerCondition._1Unexceptable)
             _rprt.CPRNumberRejectedBadQuality++;
-          var _Start = (from _tsx in _sp.TimeSlot
+          var _Start = (from _tsx in sp.TimeSlot
                         where _tsx.Occupied.Value == Occupied.Occupied0
                         orderby _tsx.StartTime ascending
                         select new { Start = _tsx.StartTime.Value }).FirstOrDefault();
           if (_Start == null)
             throw new ApplicationException("MakePerformanceReportDataInconsistent".GetLocalizedString());
-          switch (CalculateDelay(_sp.StartTime.Value - _Start.Start))
+          switch (CalculateDelay(sp.StartTime.Value - _Start.Start))
           {
             case Delay.JustInTime:
               _rprt.CPRNumberOnTime++;
@@ -212,13 +237,13 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         }
         catch (ChangeConflictException)
         {
-          EDC.ResolveChangeConflicts(_result);
+          EDC.ResolveChangeConflicts(result);
           EDC.SubmitChanges();
         }
       }
       catch (Exception ex)
       {
-        _result.AddException("MakePerformanceReport", ex);
+        result.AddException("MakePerformanceReport", ex);
       }
     }
     private enum Delay { JustInTime, Delayed, VeryLate }
@@ -231,7 +256,13 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       else
         return Delay.VeryLate;
     }
-    private void MakeShippingReport(Shipping _sp, EntitiesDataContext EDC, ActionResult _result)
+    /// <summary>
+    /// Makes the shipping report.
+    /// </summary>
+    /// <param name="_sp">The _SP.</param>
+    /// <param name="EDC">The EDC.</param>
+    /// <param name="_result">The _result.</param>
+    private void MakeOutboundReport( Shipping _sp, EntitiesDataContext EDC, ActionResult _result )
     {
       try
       {
