@@ -671,17 +671,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           return _rsult;
         {
           _checkPoint = "Element GetAtIndex";
-          Shipping _sppng = new Shipping()
-          {
-            IsOutbound = m_DashboardType == GlobalDefinitions.Roles.OutboundOwner,
-            ShippingState = ShippingState.Invalid,
-            Tytuł = "Creating new shippment"
-          };
+          Shipping _sppng = Shipping.CreateShipping( m_DashboardType == GlobalDefinitions.Roles.OutboundOwner );
           _checkPoint = "SetupTiming";
           UpdateShipping( _sppng, _rsult, EDC );
           if ( !_rsult.Valid )
             return _rsult;
-          List<TimeSlotTimeSlot> _Tss = TimeSlotTimeSlot.BookTimeSlots(EDC, m_ControlState.TimeSlotID, m_ControlState.TimeSlotIsDouble );
+          List<TimeSlotTimeSlot> _Tss = TimeSlotTimeSlot.BookTimeSlots( EDC, m_ControlState.TimeSlotID, m_ControlState.TimeSlotIsDouble );
           EDC.SubmitChanges();
           _checkPoint = "SubmitChanges";
           EDC.Shipping.InsertOnSubmit( _sppng );

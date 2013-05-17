@@ -114,26 +114,26 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       try
       {
         ActionResult _ar = new ActionResult();
-        using ( EntitiesDataContext EDC = new EntitiesDataContext( m_OnWorkflowActivated_WorkflowProperties.SiteUrl ) )
+        using ( EntitiesDataContext _EDC = new EntitiesDataContext( m_OnWorkflowActivated_WorkflowProperties.SiteUrl ) )
         {
-          Shipping _sp = Element.GetAtIndex( EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID.ToString() );
+          Shipping _sp = Element.GetAtIndex( _EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID.ToString() );
           m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format( "ShipmentModified".GetLocalizedString(), _sp.ShippingState, _sp.Editor );
           //ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, AlarmPriority.Normal, ServiceType.None, EDC, _sp);
           if ( _sp.IsOutbound.GetValueOrDefault( false ) && ( _sp.ShippingState.Value == ShippingState.Completed ) )
-            MakeOutboundReport( _sp, EDC, _ar );
+            MakeOutboundReport( _sp, _EDC, _ar );
           if ( _sp.ShippingState.Value == ShippingState.Completed || _sp.ShippingState.Value == ShippingState.Cancelation )
-            MakePerformanceReport( EDC, _sp, _ar );
+            MakePerformanceReport( _EDC, _sp, _ar );
           try
           {
-            EDC.SubmitChanges( ConflictMode.ContinueOnConflict );
+            _EDC.SubmitChanges( ConflictMode.ContinueOnConflict );
           }
           catch ( ChangeConflictException )
           {
-            EDC.ResolveChangeConflicts( _ar );
-            EDC.SubmitChanges();
+            _EDC.ResolveChangeConflicts( _ar );
+            _EDC.SubmitChanges();
           }
+          _ar.ReportActionResult( _EDC);
         }
-        _ar.ReportActionResult( m_OnWorkflowActivated_WorkflowProperties.Site.Url );
       }
       catch ( Exception ex )
       {
@@ -384,7 +384,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
             ActionResult _ar = new ActionResult();
             EDC.ResolveChangeConflicts( _ar );
             EDC.SubmitChanges();
-            _ar.ReportActionResult( m_OnWorkflowActivated_WorkflowProperties.Site.Url );
+            _ar.ReportActionResult( EDC );
           }
           finally { m_TimeOutReached = false; }
         } //using (EntitiesDataContext EDC

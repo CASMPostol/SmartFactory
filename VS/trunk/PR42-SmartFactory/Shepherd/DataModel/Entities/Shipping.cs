@@ -26,6 +26,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// </summary>
   public partial class Shipping
   {
+
+    #region public
     /// <summary>
     /// Changes the rout.
     /// </summary>
@@ -338,7 +340,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <exception cref="System.ApplicationException">Time slot has been aleady reserved</exception>
     public List<TimeSlotTimeSlot> MakeBooking( List<TimeSlotTimeSlot> timeSlotsCollection, bool isDouble )
     {
-      StartTime = timeSlotsCollection[0].StartTime;
+      StartTime = timeSlotsCollection[ 0 ].StartTime;
       TSStartTime = timeSlotsCollection[ 0 ].StartTime;
       Shipping2WarehouseTitle = timeSlotsCollection[ 0 ].GetWarehouse();
       TimeSlotTimeSlot _next = timeSlotsCollection[ 0 ];
@@ -353,6 +355,30 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       LoadingType = isDouble ? Entities.LoadingType.Manual : Entities.LoadingType.Pallet;
       return timeSlotsCollection;
     }
+    /// <summary>
+    /// Creates the shipping.
+    /// </summary>
+    /// <param name="outbound">if set to <c>true</c> [outbound].</param>
+    /// <returns></returns>
+    public static Shipping CreateShipping( bool outbound )
+    {
+      return new Shipping()
+      {
+        AdditionalCosts = 0,
+        EditorIdentyfikator = 0,
+        TotalCostsPerKU = 0,
+        TotalQuantityKU = 0,
+        TrailerCondition = Entities.TrailerCondition._5Excellent,
+        InduPalletsQuantity = 0,
+        ShippingSecurityCost = 0,
+        EuroPalletsQuantity = 0,
+        ShippingDuration = 0,
+        ShippingState = Entities.ShippingState.Invalid,
+        TruckAwaiting = false,
+        Tytuł = "Creating new shippment"
+      };
+    }
+    #endregion
 
     #region private
     private TimeSpan _12h = new TimeSpan( 12, 0, 0 );
