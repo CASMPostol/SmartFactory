@@ -207,13 +207,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
                                          where _ts.Occupied.Value == Occupied.Delayed
                                          select new { } ).Count();
         EDC.TimeSlot.DeleteAllOnSubmit( sp.TimeSlot.Cast<TimeSlotTimeSlot>() );
-        //TODO - it causes problem and must be fixed.
-        if ( sp.ShippingState.Value == ShippingState.Cancelation )
-          _rprt.CPRNumberNotShowingUp++;
-        else
+        if ( sp.TrailerCondition.GetValueOrDefault( TrailerCondition.None ) == TrailerCondition._1Unexceptable )
+          _rprt.CPRNumberRejectedBadQuality++;
+        if ( sp.ShippingState.Value == ShippingState.Completed )
         {
-          if ( sp.TrailerCondition.GetValueOrDefault( TrailerCondition.None ) == TrailerCondition._1Unexceptable )
-            _rprt.CPRNumberRejectedBadQuality++;
           switch ( CalculateDelay( sp.StartTime.Value - sp.TSStartTime.Value ) )
           {
             case Delay.JustInTime:
