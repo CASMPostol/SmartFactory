@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class CarrierDashboardWebPartUserControl
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -420,7 +435,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       if ( m_ControlState.ShippingID == _interconnectionData.ID )
         return;
       m_ControlState.ShippingID = _interconnectionData.ID;
-      ShowShipping();
+      ActionResult _rslt = ShowShipping();
+      if ( !_rslt.Valid )
+        ShowActionResult( _rslt );
     }
     private bool VendorFixed( Shipping CurrentShipping )
     {
