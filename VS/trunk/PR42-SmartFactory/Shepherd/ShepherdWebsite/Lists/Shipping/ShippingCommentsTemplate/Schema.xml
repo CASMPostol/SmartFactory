@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="ShippingCommentsTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShippingCommentsTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/" EnableContentTypes="TRUE">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x0100EA883657E6BE40E0991BD77667B1D2FD" Name="ShippingComments" Group="CAS Smart Factory Shepherd" Description="Shipping Comments" Overwrite="TRUE" Inherits="FALSE">
+        <Folder TargetName="_cts/ShippingComments" />
+        <FieldRefs>
+          <FieldRef ID="{7662cd2c-f069-4dba-9e35-082cf976e170}" Name="Body" />
+          <FieldRef ID="{61580C27-EBBA-46CA-A1B0-D17528EC171D}" Name="ExternalComment" />
+          <FieldRef ID="{B1CFA235-A842-48B3-A71E-531336A9982B}" Name="ShippingComments2PartnerTitle" />
+          <FieldRef ID="{F4ADD1B5-A064-4E1A-A343-2CDC571CB166}" Name="ShippingComments2ShippingID" />
+        </FieldRefs>
+      </ContentType>
+    </ContentTypes>
+    <Fields>
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu"></FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Body" />
+          <FieldRef Name="ExternalComment" />
+          <FieldRef Name="ShippingComments2PartnerTitle" />
+          <FieldRef Name="ShippingComments2ShippingID" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

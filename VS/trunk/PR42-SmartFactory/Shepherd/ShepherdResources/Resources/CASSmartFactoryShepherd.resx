@@ -810,4 +810,7 @@
   <data name="CAS_WarehouseStartTime" xml:space="preserve">
     <value>Loading/unloading start time</value>
   </data>
+  <data name="CAS_ExternalComment" xml:space="preserve">
+    <value>External</value>
+  </data>
 </root>

@@ -810,4 +810,7 @@
   <data name="CAS_WarehouseStartTime" xml:space="preserve">
     <value>Załadunek/wyładunek -  rozpoczęcie</value>
   </data>
+  <data name="CAS_ExternalComment" xml:space="preserve">
+    <value>Zewnętrzny</value>
+  </data>
 </root>

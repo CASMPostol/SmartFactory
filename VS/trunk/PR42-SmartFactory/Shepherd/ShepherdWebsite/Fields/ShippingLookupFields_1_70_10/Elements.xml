@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    Name="ShippingComments2PartnerTitle"
+    ID="{B1CFA235-A842-48B3-A71E-531336A9982B}"
+    Type="Lookup"
+    List="Lists/JTIPartnerList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Partner"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    Name="ShippingComments2ShippingID"
+    ID="{F4ADD1B5-A064-4E1A-A343-2CDC571CB166}"
+    Type="Lookup"
+    List="Lists/ShippingList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_ShippingID"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+</Elements>
