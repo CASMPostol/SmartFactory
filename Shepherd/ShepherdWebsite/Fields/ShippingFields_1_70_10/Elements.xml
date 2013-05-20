@@ -45,4 +45,11 @@
     DisplayName="$Resources:CASSmartFactoryShepherd,CAS_ArrivalTime">
     <Default>[today]</Default>
   </Field>
+  <Field
+    DisplayName="ExternalComment"
+    Name="$Resources:CASSmartFactoryShepherd,CAS_ExternalComment"
+    Type="Boolean"
+    ID="{61580C27-EBBA-46CA-A1B0-D17528EC171D}"
+    Group="CAS Smart Factory Shepherd"
+    />
 </Elements>

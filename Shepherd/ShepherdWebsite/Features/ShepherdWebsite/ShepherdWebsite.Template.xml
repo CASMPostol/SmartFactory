@@ -4,6 +4,7 @@
     <VersionRange BeginVersion="1.50.0.0" EndVersion="1.70.10.00">
       <ApplyElementManifests>
         <ElementManifest Location="ShippingFields_1_70_10\Elements.xml" />
+        <ElementManifest Location="ShippingLookupFields_1_70_10\Elements.xml" />
       </ApplyElementManifests>
       <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{16030E9E-8BAE-4FD2-AF38-4CDDDBEAD187}" PushDown="TRUE" />
       <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{3D302AD2-1AE7-4B57-9FEC-8998D3D482DB}" PushDown="TRUE" />

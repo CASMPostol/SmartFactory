@@ -151,6 +151,9 @@
     <None Include="Content types\Shipping\SealProtocol\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{08eceb7a-7567-4f35-a13d-73c48a8c3eaf}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Shipping\ShippingComments\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{655177de-5c0a-4e6c-b6fa-8c45bb12a4eb}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Shipping\ShippingDriversTeam\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fcc0da24-3072-46fa-863f-adf611c20ef0}</SharePointProjectItemId>
     </None>
@@ -159,6 +162,9 @@
     </None>
     <None Include="Content types\Shipping\TimeSlot\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1e873fc0-7de0-4176-87df-13ac359c1dd5}</SharePointProjectItemId>
+    </None>
+    <None Include="Features\ShepherdWebsite17010\ShepherdWebsite17010.feature">
+      <FeatureId>{215afb23-ba42-402e-a2ec-41e2c06fc9be}</FeatureId>
     </None>
     <None Include="Features\ShepherdWebsite\ShepherdWebsite.feature">
       <FeatureId>{4cb45461-1db0-4082-a052-d91586eac38e}</FeatureId>
@@ -183,6 +189,9 @@
     </None>
     <None Include="Fields\ShippingLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4c6353ca-6c58-4663-bccb-db9a06d80fcb}</SharePointProjectItemId>
+    </None>
+    <None Include="Fields\ShippingLookupFields_1_70_10\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{1165e71a-ac27-48aa-9748-5d1162bcc724}</SharePointProjectItemId>
     </None>
     <None Include="key.snk" />
     <None Include="Lists\Dictionaries\BusinessDescriptionTemplate\BusinessDescriptionList\SharePointProjectItem.spdata">
@@ -286,6 +295,12 @@
     </None>
     <None Include="Lists\Dictionaries\ShipmentTypeTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{80e3ab06-4da4-48f7-9793-4647891f6630}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Shipping\ShippingCommentsTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0a182f33-49fe-4428-b7d6-ab075d6286de}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Shipping\ShippingCommentsTemplate\ShippingCommentsList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7b694647-c3a4-4825-8a2f-598436260e33}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\ShippingPointTemplate\ShippingPointList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{af0f1b32-bfea-491d-9238-c1479fcc672b}</SharePointProjectItemId>
@@ -459,6 +474,7 @@
     <Content Include="Content types\Shipping\SealProtocol\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content types\Shipping\ShippingComments\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -467,6 +483,9 @@
     </Content>
     <Content Include="Content types\Shipping\TimeSlot\Elements.xml">
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Features\ShepherdWebsite17010\ShepherdWebsite17010.Template.xml">
+      <DependentUpon>ShepherdWebsite17010.feature</DependentUpon>
     </Content>
     <Content Include="Features\ShepherdWebsite\ShepherdWebsite.Template.xml">
       <DependentUpon>ShepherdWebsite.feature</DependentUpon>
@@ -493,6 +512,7 @@
     <Content Include="Fields\ShippingLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Fields\ShippingLookupFields_1_70_10\Elements.xml" />
     <Content Include="Lists\Dictionaries\BusinessDescriptionTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\BusinessDescriptionTemplate\BusinessDescriptionList\Elements.xml">
       <SubType>Designer</SubType>
@@ -564,6 +584,9 @@
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Schema.xml" />
+    <Content Include="Lists\Shipping\ShippingCommentsTemplate\Elements.xml" />
+    <Content Include="Lists\Shipping\ShippingCommentsTemplate\Schema.xml" />
+    <Content Include="Lists\Shipping\ShippingCommentsTemplate\ShippingCommentsList\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShippingPointTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShippingPointTemplate\ShippingPointList\Elements.xml">
       <SubType>Designer</SubType>
