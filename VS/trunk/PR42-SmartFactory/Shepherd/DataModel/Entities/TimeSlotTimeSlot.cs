@@ -90,6 +90,20 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       return _ret;
     }
+    /// <summary>
+    /// Deletes all not used time slots.
+    /// </summary>
+    /// <param name="EDC">The <see cref="EntitiesDataContext "/> object representing Linq entities.</param>
+    internal static void Cleanup( EntitiesDataContext EDC )
+    {
+      foreach ( Warehouse _wrhx in EDC.Warehouse )
+        foreach ( ShippingPoint _shpx in _wrhx.ShippingPoint )
+        {
+          IEnumerable<TimeSlotTimeSlot> _2Delete = ( from _tsx in _shpx.TimeSlot where ( _tsx.StartTime > DateTime.Now ) && _tsx.Occupied.Value == Entities.Occupied.Free select _tsx ).Cast<TimeSlotTimeSlot>();
+          EDC.TimeSlot.DeleteAllOnSubmit( _2Delete );
+        }
+    }
+    #region private
     private static TimeSlotTimeSlot FindAdjacent( List<TimeSlotTimeSlot> _avlblTmslts, TimeSlotTimeSlot timeSlot )
     {
       for ( int _i = 0; _i < _avlblTmslts.Count; _i++ )
@@ -103,5 +117,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// The m_ shipping not fpund message
     /// </summary>
     private const string m_ShippingNotFpundMessage = "Shipping slot is not selected";
+    #endregion
+
   }//TimeSlotTimeSlot
 }
