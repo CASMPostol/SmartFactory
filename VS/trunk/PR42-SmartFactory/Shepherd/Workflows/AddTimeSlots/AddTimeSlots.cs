@@ -41,8 +41,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
       {
         using (EntitiesDataContext _EDC = new EntitiesDataContext(workflowProperties.SiteUrl))
         {
+          TimeSlotTimeSlot.DeleteExpired( _EDC );
           TimeSlotsInitiationData _data = TimeSlotsInitiationData.Deserialize(workflowProperties.InitiationData);
-          StartLogToHistory_HistoryDescription = String.Format("Starting applayin the template. From: {0}, Weeks: {1}", _data.StartDate, _data.Duration);
           ScheduleTemplate _tmpl = Element.GetAtIndex<ScheduleTemplate>(_EDC.ScheduleTemplate, workflowProperties.ItemId.ToString());
           if (_tmpl.ShippingPointLookupTitle == null)
             throw new ApplicationException("Template does not have Shipingpoint assigned");

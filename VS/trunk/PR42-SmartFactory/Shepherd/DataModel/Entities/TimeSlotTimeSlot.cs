@@ -93,8 +93,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <summary>
     /// Deletes all not used time slots.
     /// </summary>
-    /// <param name="EDC">The <see cref="EntitiesDataContext "/> object representing Linq entities.</param>
-    internal static void Cleanup( EntitiesDataContext EDC )
+    /// <param name="EDC">The <see cref="EntitiesDataContext "/> object representing Linq entities.</param> DeletesExpired
+    public static void DeleteExpired( EntitiesDataContext EDC )
     {
       foreach ( Warehouse _wrhx in EDC.Warehouse )
         foreach ( ShippingPoint _shpx in _wrhx.ShippingPoint )
