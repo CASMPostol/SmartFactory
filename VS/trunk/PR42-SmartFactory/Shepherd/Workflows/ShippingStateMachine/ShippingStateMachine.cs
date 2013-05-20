@@ -111,33 +111,47 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region OnWorkflowItemChanged
     private void m_OnWorkflowItemChanged_Invoked( object sender, ExternalDataEventArgs e )
     {
+      string _at = "Starting";
       try
       {
         ActionResult _ar = new ActionResult();
+        _at = "using ( EntitiesDataContext ";
         using ( EntitiesDataContext _EDC = new EntitiesDataContext( m_OnWorkflowActivated_WorkflowProperties.SiteUrl ) )
         {
+          _at = "Shipping _sp = ";
           Shipping _sp = Element.GetAtIndex( _EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID.ToString() );
-          m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format( "ShipmentModified".GetLocalizedString(), _sp.ShippingState, _sp.Editor );
-          //ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, AlarmPriority.Normal, ServiceType.None, EDC, _sp);
-          if ( _sp.IsOutbound.GetValueOrDefault( false ) && ( _sp.ShippingState.Value == ShippingState.Completed ) )
+          m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format( "ShipmentModified".GetLocalizedString(), _sp.ShippingState.GetValueOrDefault( ShippingState.Invalid ), _sp.Editor.NotAvailable() );
+          _at = "if ( _sp.IsOutbound";
+          if ( _sp.IsOutbound.GetValueOrDefault( false ) && ( _sp.ShippingState.GetValueOrDefault( ShippingState.None ) == ShippingState.Completed ) )
+          {
+            _at = "MakeOutboundReport";
             MakeOutboundReport( _sp, _EDC, _ar );
+          }
           if ( _sp.ShippingState.Value == ShippingState.Completed || _sp.ShippingState.Value == ShippingState.Cancelation )
+          {
+            _at = "MakePerformanceReport";
             MakePerformanceReport( _EDC, _sp, _ar );
+          }
           try
           {
+            _at = "_EDC.SubmitChanges";
             _EDC.SubmitChanges( ConflictMode.ContinueOnConflict );
           }
           catch ( ChangeConflictException )
           {
+            _at = "_EDC.ResolveChangeConflicts";
             _EDC.ResolveChangeConflicts( _ar );
+            _at = "_EDC.SubmitChanges #2";
             _EDC.SubmitChanges();
           }
-          _ar.ReportActionResult( _EDC);
+          _at = "_ar.ReportActionResult";
+          _ar.ReportActionResult( _EDC );
         }
       }
       catch ( Exception ex )
       {
-        ReportException( "m_OnWorkflowItemChanged_Invoked", ex );
+        string _msg = String.Format( "ShippingStateMachine.m_OnWorkflowItemChanged_Invoked at: {0}", _at );
+        ReportException( _msg, ex );
       }
       //if (m_OnWorkflowItemChanged_BeforeProperties1.Count == 0)
       //{
