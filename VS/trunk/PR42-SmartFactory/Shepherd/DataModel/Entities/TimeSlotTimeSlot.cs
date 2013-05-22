@@ -99,7 +99,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       foreach ( Warehouse _wrhx in EDC.Warehouse )
         foreach ( ShippingPoint _shpx in _wrhx.ShippingPoint )
         {
-          IEnumerable<TimeSlotTimeSlot> _2Delete = ( from _tsx in _shpx.TimeSlot where ( _tsx.StartTime > DateTime.Now ) && _tsx.Occupied.Value == Entities.Occupied.Free select _tsx ).Cast<TimeSlotTimeSlot>();
+          IEnumerable<TimeSlotTimeSlot> _2Delete = (
+              from _tsx in _shpx.TimeSlot
+              where ( _tsx.StartTime < DateTime.Now - new TimeSpan( 72, 0, 0 ) ) && _tsx.Occupied.Value == Entities.Occupied.Free
+              select _tsx
+            ).Cast<TimeSlotTimeSlot>();
           EDC.TimeSlot.DeleteAllOnSubmit( _2Delete );
         }
     }
