@@ -59,5 +59,19 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       edc.EventLogList.InsertOnSubmit( log );
       edc.SubmitChangesSilently( Microsoft.SharePoint.Linq.RefreshMode.OverwriteCurrentValues );
     }
+    /// <summary>
+    /// Reports the exception.
+    /// </summary>
+    /// <param name="edc">The <see cref="EntitiesDataContext"/> object containing Linq Entities</param>
+    /// <param name="source">The source location of the exception.</param>
+    /// <param name="ex">The <see cref="Exception "/> to log.</param>
+    public static void ReportException(EntitiesDataContext edc, string source, Exception ex )
+    {
+      try
+      {
+        Anons.WriteEntry( edc, source, ex.Message );
+      }
+      catch ( Exception ) { }
+    }
   }
 }
