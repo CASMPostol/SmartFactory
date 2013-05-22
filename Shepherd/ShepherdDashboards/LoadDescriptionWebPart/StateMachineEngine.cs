@@ -87,7 +87,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
             case ActionResult.Result.NotValidated:
               break;
             case ActionResult.Result.Exception:
-              ExceptionCatched("Update action", _ur.ActionException.Message);
+              ExceptionCatched( "LoadDescriptionWebPart Update exception", _ur.ActionException.Message );
               break;
           }
           break;
@@ -103,7 +103,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
             case ActionResult.Result.Exception:
               ClearUserInterface();
               CurrentMachineState = InterfaceState.ViewState;
-              ExceptionCatched("Create action", _cr.ActionException.Message);
+              ExceptionCatched( "LoadDescriptionWebPart Create exception", _cr.ActionException.Message );
               break;
             default:
               break;
