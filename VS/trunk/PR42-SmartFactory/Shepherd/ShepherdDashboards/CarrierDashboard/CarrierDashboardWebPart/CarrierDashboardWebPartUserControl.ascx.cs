@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -75,7 +75,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         }
         catch ( Exception ex )
         {
-          ReportException( "SetInterconnectionData at: " + item.Key.ToString(), ex );
+          Anons.ReportException( EDC, "SetInterconnectionData at: " + item.Key.ToString(), ex );
         }
     }
     internal InterconnectionDataTable<Shipping> GetSelectedShippingOperationInboundInterconnectionData()
@@ -465,7 +465,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       catch ( Exception ex )
       {
-        ReportException( "SetInterconnectionData-TimeSlotInterconnectionData", ex );
+        Anons.ReportException( EDC, "SetInterconnectionData-TimeSlotInterconnectionData", ex );
       }
     }
     private void SetInterconnectionData( CityInterconnectionData _city )
@@ -557,6 +557,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private ActionResult ShowShipping()
     {
+      string _at = "ClearUserInterface";
       ClearUserInterface();
       ActionResult _rsult = new ActionResult();
       try
@@ -566,38 +567,46 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           _rsult.AddLabel( "Interconnection error; ShippingID" );
           return _rsult;
         }
+        _at = "SendShippingData";
         SendShippingData( CurrentShipping );
         TimeSlotTimeSlot _timeSlot = null;
         try
         {
+          _at = "_timeSlot = (TimeSlotTimeSlot)( from";
           _timeSlot = (TimeSlotTimeSlot)( from _ts in CurrentShipping.TimeSlot where _ts.Occupied.GetValueOrDefault( Occupied.Free ) == Occupied.Occupied0 orderby _ts.StartTime ascending select _ts ).First();
           m_ControlState.TimeSlotID = _timeSlot.Identyfikator.IntToString();
           m_ControlState.TimeSlotChanged = false;
         }
         catch ( Exception ) { }
+        _at = "Show( _timeSlot, CurrentShipping";
         Show( _timeSlot, CurrentShipping.IsEditable(), _timeSlot.IsDouble.GetValueOrDefault( false ) );
         m_CommentsTextBox.TextBoxTextProperty( CurrentShipping.CancelationReason, false );
         m_ContainerNoTextBox.TextBoxTextProperty( CurrentShipping.ContainerNo, false );
         m_ShowDocumentLabel( CurrentShipping );
+        _at = "ShowOperatorStuff";
         ShowOperatorStuff( CurrentShipping );
         m_WarehouseStartTimeControl.SetTimePicker( CurrentShipping.WarehouseStartTime );
         m_WarehouseEndTimeControl.SetTimePicker( CurrentShipping.WarehouseEndTime );
         if ( CurrentShipping.IsOutbound.Value )
         {
-          m_EstimateDeliveryTimeDateTimeControl.SelectedDate = CurrentShipping.EstimateDeliveryTime.HasValue ? CurrentShipping.EstimateDeliveryTime.Value : DateTime.Now;
+          _at = "m_EstimateDeliveryTimeDateTimeControl";
+          m_EstimateDeliveryTimeDateTimeControl.SetTimePicker( CurrentShipping.EstimateDeliveryTime );
+          _at = "Shipping2RouteTitle";
           Show( CurrentShipping.Shipping2RouteTitle );
+          _at = "Show( CurrentShipping.SecurityEscortCatalogTitle";
           Show( CurrentShipping.SecurityEscortCatalogTitle );
+          _at = "Show( CurrentShipping.Shipping2TransportUnitType";
           Show( CurrentShipping.Shipping2TransportUnitType );
+          _at = "Show( CurrentShipping.Shipping2City";
           Show( CurrentShipping.Shipping2City );
         }
         else
-        {
           Show( CurrentShipping.PartnerTitle );
-        }
       }
       catch ( Exception ex )
       {
-        ReportException( "ShowShipping", ex );
+        string _src = String.Format( "ShowShipping at {0}", _at );
+        Anons.ReportException( EDC, _src, ex );
         _rsult.AddException( ex );
       }
       return _rsult;
@@ -739,7 +748,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       catch ( Exception ex )
       {
         _rsult.AddException( ex );
-        this.ReportException( "CreateShipping at: " + _checkPoint, ex );
+        Anons.ReportException( EDC, "CreateShipping at: " + _checkPoint, ex );
       }
       return _rsult;
     }
@@ -769,7 +778,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       catch ( Exception ex )
       {
         _rst.AddException( ex );
-        this.ReportException( "UpdateShipping at " + _checkPoint, ex );
+        Anons.ReportException( EDC, "UpdateShipping at " + _checkPoint, ex );
       }
       return _rst;
     }
@@ -904,7 +913,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       catch ( Exception ex )
       {
-        ReportException( "ChangeShippingState", ex );
+        Anons.ReportException( EDC, "ChangeShippingState", ex );
       }
     }
     private void SendShippingData( Shipping _sppng )
@@ -917,7 +926,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       catch ( Exception ex )
       {
-        ReportException( "SendShippingData", ex );
+        Anons.ReportException( EDC, "SendShippingData", ex );
       }
     }
     #endregion
@@ -990,17 +999,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region Reports
-    private void ReportException( string _source, Exception ex )
-    {
-      try
-      {
-        string _tmplt = "ReportExceptionTemplate".GetLocalizedString();
-        Anons _entry = Anons.CreateAnons( _source, String.Format( _tmplt, ex.Message ) );
-        EDC.EventLogList.InsertOnSubmit( _entry );
-        EDC.SubmitChanges();
-      }
-      catch ( Exception ) { }
-    }
     private void ShowActionResult( ActionResult _rslt )
     {
       foreach ( var item in _rslt )
