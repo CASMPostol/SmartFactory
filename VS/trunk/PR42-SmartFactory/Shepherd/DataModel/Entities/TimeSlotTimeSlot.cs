@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.SharePoint.Linq;
 
@@ -43,7 +44,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public Warehouse GetWarehouse()
     {
       if ( this.TimeSlot2ShippingPointLookup == null )
-        throw new ApplicationException( m_ShippingNotFpundMessage );
+        throw new ApplicationException( m_ShippingNotFoundMessage );
       if ( this.TimeSlot2ShippingPointLookup.WarehouseTitle == null )
         throw new ApplicationException( "Warehouse not found" );
       return this.TimeSlot2ShippingPointLookup.WarehouseTitle;
@@ -69,19 +70,19 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public static List<TimeSlotTimeSlot> BookTimeSlots( EntitiesDataContext EDC, string timeSlot, bool isDouble )
     {
       TimeSlotTimeSlot _timeSlot = Element.GetAtIndex<TimeSlotTimeSlot>( EDC.TimeSlot, timeSlot );
-      if ( _timeSlot.Occupied.Value == Entities.Occupied.Occupied0 )
-        throw new ApplicationException( "Time slot has been aleady reserved" );
+      if ( _timeSlot.Occupied.GetValueOrDefault( Entities.Occupied.None ) == Entities.Occupied.Occupied0 )
+        throw new TimeSlotException( "Time slot has been aleady reserved" );
       List<TimeSlotTimeSlot> _ret = new List<TimeSlotTimeSlot>();
       _ret.Add( _timeSlot );
       _timeSlot.Occupied = Entities.Occupied.Occupied0;
       if ( isDouble )
       {
-
         EntitySet<TimeSlot> _tslots = _timeSlot.TimeSlot2ShippingPointLookup.TimeSlot;
+        Debug.Assert( _timeSlot.StartTime.HasValue, "TimeSlot StartTime has to have Value" );
         DateTime _tdy = _timeSlot.StartTime.Value.Date;
         List<TimeSlotTimeSlot> _avlblTmslts = ( from _tsidx in _tslots
                                                 let _idx = _tsidx.StartTime.Value.Date
-                                                where _tsidx.Occupied.Value == Entities.Occupied.Free && _idx >= _tdy && _idx <= _tdy.AddDays( 1 )
+                                                where _tsidx.Occupied.GetValueOrDefault( Entities.Occupied.None ) == Entities.Occupied.Free && _idx >= _tdy && _idx <= _tdy.AddDays( 1 )
                                                 orderby _tsidx.StartTime ascending
                                                 select _tsidx ).Cast<TimeSlotTimeSlot>().ToList<TimeSlotTimeSlot>();
         TimeSlotTimeSlot _next = FindAdjacent( _avlblTmslts, _timeSlot );
@@ -108,6 +109,13 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         }
     }
     #region private
+    [Serializable]
+    public class TimeSlotException: Exception
+    {
+      public TimeSlotException( string message ) : base( message, null ) { }
+      protected TimeSlotException( System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context )
+        : base( info, context ) { }
+    }
     private static TimeSlotTimeSlot FindAdjacent( List<TimeSlotTimeSlot> _avlblTmslts, TimeSlotTimeSlot timeSlot )
     {
       for ( int _i = 0; _i < _avlblTmslts.Count; _i++ )
@@ -115,12 +123,12 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         if ( ( _avlblTmslts[ _i ].StartTime.Value - timeSlot.EndTime.Value ).Duration() <= TimeSlotTimeSlot.Span15min )
           return _avlblTmslts[ _i ];
       }
-      throw new ApplicationException( "Cannot find the time slot to make the couple." );
+      throw new TimeSlotException( "Cannot find the time slot to make the couple." );
     }
     /// <summary>
     /// The m_ shipping not fpund message
     /// </summary>
-    private const string m_ShippingNotFpundMessage = "Shipping slot is not selected";
+    private const string m_ShippingNotFoundMessage = "Shipping slot is not selected";
     #endregion
 
   }//TimeSlotTimeSlot
