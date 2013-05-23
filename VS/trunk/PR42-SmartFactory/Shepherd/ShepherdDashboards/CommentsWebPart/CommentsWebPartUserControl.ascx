@@ -7,7 +7,7 @@
 <%@ Import Namespace="Microsoft.SharePoint" %>
 <%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CommentsWebPart.ascx.cs"
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CommentsWebPartUserControl.ascx.cs"
     Inherits="CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart.CommentsWebPartUserControl" %>
 <SharePoint:CssRegistration runat="server" ID="cssreg" Name="/_layouts/ShepherdDashboards/CAS_ShepherdDashboards.css" />
 <asp:Panel ID="m_PanelAddEdit" runat="server" BorderColor="ActiveCaptionText" GroupingText="Add/Edit task">
@@ -32,7 +32,8 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
-                            <SharePoint:InputFormTextBox ID="m_TaskCommentsTextBox" runat="server" RichText="true" RichTextMode="FullHtml" TextMode="MultiLine" Width="600" Rows="10"/>
+                            <SharePoint:InputFormTextBox ID="m_TaskCommentsTextBox" runat="server" RichText="true" RichTextMode="FullHtml" TextMode="MultiLine" Width="600" Rows="10"
+                                OnTextChanged="m_TaskCommentsTextBox_TextChanged" />
                       </asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>

@@ -112,13 +112,14 @@
     <Compile Include="CarrierDashboard\TruckManager\TruckManagerUserControl.ascx.designer.cs">
       <DependentUpon>TruckManagerUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommentsWebPart\CommentsInterconnectionData.cs" />
     <Compile Include="CommentsWebPart\CommentsWebPart.cs" />
-    <Compile Include="CommentsWebPart\CommentsWebPart.ascx.cs">
-      <DependentUpon>CommentsWebPart.ascx</DependentUpon>
+    <Compile Include="CommentsWebPart\CommentsWebPartUserControl.ascx.cs">
+      <DependentUpon>CommentsWebPartUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CommentsWebPart\CommentsWebPart.ascx.designer.cs">
-      <DependentUpon>CommentsWebPart.ascx.cs</DependentUpon>
+    <Compile Include="CommentsWebPart\CommentsWebPartUserControl.ascx.designer.cs">
+      <DependentUpon>CommentsWebPartUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="CurrentUserWebPart\CurrentUserWebPart.cs" />
     <Compile Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx.cs">
@@ -335,8 +336,8 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="cas\cas.master" />
+    <Content Include="CommentsWebPart\CommentsWebPartUserControl.ascx" />
     <Content Include="CommentsWebPart\Elements.xml" />
-    <Content Include="CommentsWebPart\CommentsWebPart.ascx" />
     <Content Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
