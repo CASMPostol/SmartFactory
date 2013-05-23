@@ -27,11 +27,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
   /// <summary>
   /// Task Management User Control
   /// </summary>
-  [CLSCompliant(false)]
+  [CLSCompliant( false )]
   public partial class CommentsWebPartUserControl: UserControl
   {
     #region creator
-      public CommentsWebPartUserControl()
+    public CommentsWebPartUserControl()
     {
       try
       {
@@ -196,7 +196,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
     private class LocalStateMachine: GenericStateMachineEngine
     {
       #region public
-      internal LocalStateMachine( TaskManagementUserControl _parent )
+      internal LocalStateMachine( CommentsWebPartUserControl _parent )
       {
         m_Parent = _parent;
       }
