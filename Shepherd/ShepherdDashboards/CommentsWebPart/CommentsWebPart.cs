@@ -1,29 +1,38 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+//<summary>
+//  Title   : CommentsWebPart
+//  System  : Microsoft Visual C# .NET
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
 using System.Web.UI.WebControls.WebParts;
-using Microsoft.SharePoint;
-using Microsoft.SharePoint.WebControls;
-using System.Collections.Generic;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
 {
   [ToolboxItemAttribute( false )]
-    public class CommentsWebPart : WebPart
+  public class CommentsWebPart: WebPart
   {
     // Visual Studio might automatically update this path when you change the Visual Web Part project item.
-      private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS.SmartFactory.Shepherd.Dashboards/CommentsWebPart/CommentsWebPart.ascx";
-    private TaskManagementUserControl m_Control;
+    private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS.SmartFactory.Shepherd.Dashboards/CommentsWebPart/CommentsWebPartUserControl.ascx";
+    private CommentsWebPartUserControl m_Control;
     protected override void CreateChildControls()
     {
-      m_Control = Page.LoadControl( _ascxPath ) as TaskManagementUserControl;
+      m_Control = Page.LoadControl( _ascxPath ) as CommentsWebPartUserControl;
       Controls.Add( m_Control );
     }
     protected override void OnPreRender( EventArgs e )
     {
-      m_Control.SetInterconnectionData( m_ProvidersDictionary );
       base.OnPreRender( e );
     }
     #region Interconnections Providers
@@ -31,21 +40,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
     /// Sets the BatchInterconnection provider.
     /// </summary>
     /// <param name="_provider">The provider interface.</param>
-    [ConnectionConsumer( "Project list interconnection", "ProjectInterconnection", AllowsMultipleConnections = false )]
+    [ConnectionConsumer( "Shipping list interconnection", "ShippingInterconnectionData", AllowsMultipleConnections = false )]
     public void SetProjectProvider( IWebPartRow _provider )
     {
-      m_ProvidersDictionary.Add( ConnectionSelector.ProjectInterconnection, _provider );
+      m_Control.SetInterconnectionData( _provider );
     }
-    /// <summary>
-    /// Sets the InvoiceContentInterconnection provider.
-    /// </summary>
-    /// <param name="_provider">The provider interface.</param>
-    [ConnectionConsumer( "Task list interconnection", "TaskInterconnection", AllowsMultipleConnections = false )]
-    public void SetInvoiceContentProvider( IWebPartRow _provider )
-    {
-      m_ProvidersDictionary.Add( ConnectionSelector.TaskInterconnection, _provider );
-    }
-    private Dictionary<ConnectionSelector, IWebPartRow> m_ProvidersDictionary = new Dictionary<ConnectionSelector, IWebPartRow>();
     #endregion
   }
 }
