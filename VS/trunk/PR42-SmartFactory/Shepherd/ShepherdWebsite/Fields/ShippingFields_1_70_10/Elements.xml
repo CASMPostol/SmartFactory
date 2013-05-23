@@ -52,4 +52,20 @@
     ID="{61580C27-EBBA-46CA-A1B0-D17528EC171D}"
     Group="CAS Smart Factory Shepherd"
     />
+  <Field
+    Name="PoLastModification"
+    ID="{661E61C7-EC20-4B26-A346-6E7B1B83D1CC}"
+    Type="DateTime"
+    Format="DateTime"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_PoLastModification">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    Name="PoNumberMultiline"
+    ID="{C094D1E5-CFF5-4A48-993C-BA0F1A8DF93E}"
+    Type="Note"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_DeliveryNumber"
+    Group="CAS Smart Factory Shepherd"
+    />
 </Elements>

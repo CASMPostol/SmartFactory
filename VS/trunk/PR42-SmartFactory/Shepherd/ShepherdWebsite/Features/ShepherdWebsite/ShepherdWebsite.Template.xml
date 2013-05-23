@@ -11,6 +11,8 @@
       <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{7AEF910C-E6C4-4BC8-AD74-EBE8E5AB4686}" PushDown="TRUE" />
       <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{E27EFB64-C8F7-4BCD-BE60-241BAB15771F}" PushDown="TRUE" />
       <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{22CB7207-3299-4D85-A06B-9DEB74B320E6}" PushDown="TRUE" />
+      <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{661E61C7-EC20-4B26-A346-6E7B1B83D1CC}" PushDown="TRUE" />
+      <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{C094D1E5-CFF5-4A48-993C-BA0F1A8DF93E}" PushDown="TRUE" />
     </VersionRange>
   </UpgradeActions>
 </Feature>
