@@ -16,22 +16,30 @@
             <asp:TableCell Width="600px" VerticalAlign="Top">
                 <asp:Table ID="m_TableLeft" runat="server" CssClass="TableInside">
                     <asp:TableRow>
-                        <asp:TableCell>
+                        <asp:TableCell ColumnSpan="2">
                             <asp:Label ID="m_TaskLabel" runat="server" CssClass="Label" Text="Operation:" />
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
-                        <asp:TableCell>
+                        <asp:TableCell ColumnSpan="2">
                             <asp:TextBox ID="m_TaskTitleTextBox" runat="server" CssClass="TextBoxLong" />
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
+                            <asp:Label ID="m_ExternalLabel" runat="server" CssClass="Label" Text="Is external" />
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:CheckBox ID="m_ExternalCheckBox" runat="server" />
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell ColumnSpan="2">
                             <asp:Label ID="m_TaskCommentsLabel" runat="server" CssClass="Label" Text="Comment:" />
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
-                        <asp:TableCell>
+                        <asp:TableCell ColumnSpan="2">
                             <SharePoint:InputFormTextBox ID="m_TaskCommentsTextBox" runat="server" RichText="true" RichTextMode="FullHtml" TextMode="MultiLine" Width="600" Rows="10"
                                 OnTextChanged="m_TaskCommentsTextBox_TextChanged" />
                       </asp:TableCell>
@@ -40,7 +48,7 @@
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell ColumnSpan="2">
+            <asp:TableCell>
                 <asp:Table ID="m_Actions" runat="server" CssClass="Table">
                     <asp:TableRow>
                         <asp:TableCell>
