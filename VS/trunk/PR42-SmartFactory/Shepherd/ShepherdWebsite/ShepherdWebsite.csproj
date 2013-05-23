@@ -512,7 +512,9 @@
     <Content Include="Fields\ShippingLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Fields\ShippingLookupFields_1_70_10\Elements.xml" />
+    <Content Include="Fields\ShippingLookupFields_1_70_10\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\BusinessDescriptionTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\BusinessDescriptionTemplate\BusinessDescriptionList\Elements.xml">
       <SubType>Designer</SubType>
