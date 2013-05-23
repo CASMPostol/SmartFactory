@@ -112,6 +112,14 @@
     <Compile Include="CarrierDashboard\TruckManager\TruckManagerUserControl.ascx.designer.cs">
       <DependentUpon>TruckManagerUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommentsWebPart\CommentsWebPart.cs" />
+    <Compile Include="CommentsWebPart\CommentsWebPart.ascx.cs">
+      <DependentUpon>CommentsWebPart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CommentsWebPart\CommentsWebPart.ascx.designer.cs">
+      <DependentUpon>CommentsWebPart.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="CurrentUserWebPart\CurrentUserWebPart.cs" />
     <Compile Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx.cs">
       <DependentUpon>CurrentUserWebPartUserControl.ascx</DependentUpon>
@@ -140,6 +148,10 @@
       <SharePointProjectItemId>{9ff9bfec-b1ae-4237-ad27-01a9d741aa91}</SharePointProjectItemId>
     </None>
     <None Include="CarrierDashboard\TruckManager\TruckManager.webpart" />
+    <None Include="CommentsWebPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2eea01ed-ec4d-4c6d-acbe-87e479028c13}</SharePointProjectItemId>
+    </None>
+    <None Include="CommentsWebPart\CommentsWebPart.webpart" />
     <None Include="GlobalDefinitions.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GlobalDefinitions.cs</LastGenOutput>
@@ -323,6 +335,8 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="cas\cas.master" />
+    <Content Include="CommentsWebPart\Elements.xml" />
+    <Content Include="CommentsWebPart\CommentsWebPart.ascx" />
     <Content Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
