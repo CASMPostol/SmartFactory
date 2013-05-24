@@ -33,15 +33,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
     /// </summary>
     public CommentsWebPartUserControl()
     {
-      try
-      {
-        At = "DataContextManagement";
-        m_ControlState = new ControlState();
-      }
-      catch ( Exception _ex )
-      {
-        ShowActionResult( GenericStateMachineEngine.ActionResult.Exception( _ex, "WorkloadManagementUserControl" ) );
-      }
+      m_ControlState = new ControlState();
     }
     #endregion
 
@@ -101,7 +93,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
     protected override void OnPreRender( EventArgs e )
     {
       if ( m_ControlState.ShippingID.IsNullOrEmpty() )
+      {
         m_ButtonAddNew.Enabled = false;
+        m_TaskLabel.Text = "Not connected";
+      }
+      else
+        m_TaskLabel.Text = m_ControlState.Title;
       base.OnPreRender( e );
     }
     #endregion
@@ -116,6 +113,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
       if ( e.ID.IsNullOrEmpty() || m_ControlState.ShippingID.Contains( e.ID ) )
         return;
       m_ControlState.ShippingID = e.ID;
+      m_ControlState.Title = e.Title;
     }
     #endregion
 
@@ -127,6 +125,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
 
       #region state fields
       public string ShippingID = String.Empty;
+      public string Title = String.Empty;
       #endregion
 
     }
@@ -163,22 +162,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
       {
 #if DEBUG
         string _format = CommonDefinitions.Convert2ErrorMessageFormat( "Exception at: {0}/{1} of : {2}." );
-        this.Controls.Add( new Literal() { Text = String.Format( _format, _rslt.ActionException.Source, At, _rslt.ActionException.Message ) } );
+        this.Controls.Add( GlobalDefinitions.ErrorLiteralControl( String.Format( _format, _rslt.ActionException.Source, At, _rslt.ActionException.Message ) ) );
 #endif
         Anons.WriteEntry( EDC, _rslt.ActionException.Source, _rslt.ActionException.Message );
       }
       else
       {
         string _format = CommonDefinitions.Convert2ErrorMessageFormat( "Validation error at: {0}/{1} of : {2}." );
-        this.Controls.Add( new Literal() { Text = String.Format( _format, _rslt.ActionException.Source, At, _rslt.ActionException.Message ) } );
+        this.Controls.Add( GlobalDefinitions.ErrorLiteralControl( String.Format( _format, _rslt.ActionException.Source, At, _rslt.ActionException.Message ) ) );
       }
     }
-
     #region events handling
-    private void m_ButtonAddNew_Click( object sender, EventArgs e )
-    {
-      // Do nothing
-    }
     protected void m_ShippingCommentsTextBox_TextChanged( object sender, EventArgs e )
     {
       try
