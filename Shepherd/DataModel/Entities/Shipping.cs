@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.SharePoint.Linq;
+using Microsoft.SharePoint.Utilities;
 
 namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 {
@@ -377,6 +378,17 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         TruckAwaiting = false,
         Tytuł = "Creating new shippment"
       };
+    }
+    /// <summary>
+    /// Updates the purchase order info.
+    /// </summary>
+    public void UpdatePOInfo()
+    {
+      this.PoLastModification = DateTime.Now;
+      StringBuilder _po = new StringBuilder();
+      foreach ( LoadDescription _ldx in LoadDescription )
+        _po.AppendLine( SPEncode.HtmlEncode( _ldx.Tytuł ) );
+      this.PoNumberMultiline = _po.ToString();
     }
     #endregion
 

@@ -37,7 +37,7 @@
               <asp:Label ID="m_LoadDescriptionNumberLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,PODelNo%>" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-              <asp:TextBox ID="m_LoadDescriptionNumberTextBox" runat="server" CssClass="TextBoxLD"></asp:TextBox>
+              <asp:TextBox ID="m_LoadDescriptionNumberTextBox" runat="server" CssClass="TextBoxLD" OnTextChanged="m_LoadDescriptionNumberTextBox_TextChanged"></asp:TextBox>
             </asp:TableCell>
           </asp:TableRow>
           <asp:TableRow>

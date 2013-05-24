@@ -1,18 +1,36 @@
-﻿using System;
+﻿//<summary>
+//  Title   : Load Description Web Part User Control
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
+using CAS.SharePoint.Linq;
 using CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
-using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
 {
-  using CAS.SharePoint.Linq;
+  using System.Text;
   using InterfaceState = StateMachineEngine.InterfaceState;
 
+  /// <summary>
+  /// Load Description Web Part User Control
+  /// </summary>
   public partial class LoadDescriptionWebPartUserControl: UserControl
   {
     #region public
@@ -191,15 +209,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     {
       base.OnUnload( e );
     }
-    public override void Dispose()
-    {
-      if ( myDataContextManagement != null )
-      {
-        myDataContextManagement.Dispose();
-        myDataContextManagement = null;
-      }
-      base.Dispose();
-    }
     #endregion
 
     #region State machine
@@ -214,15 +223,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       #endregion
 
       #region abstract implementation
-      protected override StateMachineEngine.ActionResult ShowShipping( ShippingInterconnectionData _shipping )
+      protected override ActionResult ShowShipping( ShippingInterconnectionData _shipping )
       {
         return Parent.ShowShipping( _shipping );
       }
-      protected override StateMachineEngine.ActionResult ShowShipping()
+      protected override ActionResult ShowShipping()
       {
         return Parent.ShowShipping();
       }
-      protected override StateMachineEngine.ActionResult ShowLoadDescription( DataKey dataKey )
+      protected override ActionResult ShowLoadDescription( DataKey dataKey )
       {
         try
         {
@@ -242,7 +251,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       {
         return Parent.Create();
       }
-      protected override StateMachineEngine.ActionResult Delete()
+      protected override ActionResult Delete()
       {
         return Parent.Delete();
       }
@@ -256,14 +265,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       }
       protected override void SMError( StateMachineEngine.InterfaceEvent _interfaceEvent )
       {
-        Parent.Controls.Add( new LiteralControl
-          ( String.Format( "State machine error, in {0} the event {1} occured", Parent.m_ControlState.InterfaceState.ToString(), _interfaceEvent.ToString() ) ) );
+        Parent.Controls.Add( GlobalDefinitions.ErrorLiteralControl( String.Format( "State machine error, in {0} the event {1} occured", Parent.m_ControlState.InterfaceState.ToString(), _interfaceEvent.ToString() ) ) );
       }
       protected override void ExceptionCatched( string _source, string _message )
       {
-        Anons _entry = Anons.CreateAnons( _source, _message );
-        Parent.EDC.EventLogList.InsertOnSubmit( _entry );
-        Parent.EDC.SubmitChanges();
+        Parent.ExceptionCatched( _source, _message );
       }
       protected override InterfaceState CurrentMachineState
       {
@@ -300,13 +306,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     #region Variables
     private ControlState m_ControlState = new ControlState( null );
     private LocalStateMachineEngine m_StateMachineEngine = null;
-    private DataContextManagement<EntitiesDataContext> myDataContextManagement = null;
+    private DataContextManagementAutoDispose<EntitiesDataContext> myDataContextManagement = null;
     public EntitiesDataContext EDC
     {
       get
       {
         if ( myDataContextManagement == null )
-          myDataContextManagement = new DataContextManagement<EntitiesDataContext>( this );
+          myDataContextManagement = new DataContextManagementAutoDispose<EntitiesDataContext>( this );
         return myDataContextManagement.DataContext;
       }
     }
@@ -319,13 +325,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         if ( m_Shipping != null )
           return m_Shipping;
         if ( m_ControlState.ShippingID.IsNullOrEmpty() )
-          return null;
+          throw new ApplicationException("Not connected - no shipping associated.");
         m_Shipping = Element.GetAtIndex<Shipping>( EDC.Shipping, m_ControlState.ShippingID );
         return m_Shipping;
       }
     }
     private BoundField m_DeliveryNumberBoundField = new BoundField() { DataField = "DeliveryNumber", Visible = true, HeaderText = "DeliveryNumberBoundFieldHeaderText".GetLocalizedString() };
     private BoundField m_MarketTitleBoundField = new BoundField() { DataField = "MarketTitle", Visible = false, HeaderText = "MarketTitleBoundFieldHeaderText".GetLocalizedString() };
+    private bool m_POModified = false;
     #endregion
 
     #region private methods
@@ -384,6 +391,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           //ReportAlert("LoadDescription created");
           _ld.LoadDescription2PartnerTitle = CurrentShipping.PartnerTitle;
           EDC.LoadDescription.InsertOnSubmit( _ld );
+          if ( m_POModified )
+            CurrentShipping.UpdatePOInfo();
           EDC.SubmitChanges();
           m_ControlState.LoadDescriptionID = _ld.Identyfikator.Value.ToString();
           InitLoadDescriptionGridView( CurrentShipping );
@@ -404,6 +413,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         LoadDescription _ld = Element.GetAtIndex<LoadDescription>( EDC.LoadDescription, m_ControlState.LoadDescriptionID );
         //string _msg = String.Format("The {0} load description deleted.", _ld.Tytuł);
         EDC.LoadDescription.RecycleOnSubmit( _ld );
+        CurrentShipping.UpdatePOInfo();
         //ReportAlert(_msg);
         EDC.SubmitChanges();
         InitLoadDescriptionGridView( CurrentShipping );
@@ -426,6 +436,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         if ( _res.ActionSucceeded )
         {
           //ReportAlert("LoadDescription updated");
+          if ( m_POModified )
+            CurrentShipping.UpdatePOInfo();
           EDC.SubmitChanges();
           InitLoadDescriptionGridView( CurrentShipping );
         }
@@ -546,6 +558,21 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         this.Controls.Add( GlobalDefinitions.ErrorLiteralControl( item ) );
       return StateMachineEngine.ActionResult.NotValidated;
     }
+    private void ExceptionCatched( string source, string message )
+    {
+      Anons.WriteEntry( EDC, source, message );
+      this.Controls.Add( GlobalDefinitions.ErrorLiteralControl( message ) );
+    }
+
+    #region events hanlers
+    protected void m_LoadDescriptionNumberTextBox_TextChanged( object sender, EventArgs e )
+    {
+      m_POModified = true;
+    }
     #endregion
+
+    #endregion
+
   }
+
 }
