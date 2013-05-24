@@ -6,6 +6,7 @@
   <List Name="Carrier" />
   <List Name="Carrier Performance Report" />
   <List Name="City" />
+  <List Name="Comments" />
   <List Name="Commodity" />
   <List Name="Country" />
   <List Name="Currency" />
@@ -244,6 +245,8 @@
     <Column Name="WarehouseStartTime" Member="WarehouseStartTime" />
     <Column Name="WarehouseEndTime" Member="WarehouseEndTime" />
     <Column Name="ArrivalTime" Member="ArrivalTime" />
+    <Column Name="PoLastModification" Member="PoLastModification" />
+    <Column Name="PoNumberMultiline" Member="PoNumberMultiline" />
   </ContentType>
   <ContentType Name="ShippingPoint" Class="ShippingPoint">
     <Column Name="Title" Member="Title" />
@@ -263,6 +266,12 @@
     <Column Name="TimeSlotsTemplateStartMinute" Member="TimeSlotsTemplateStartMinute" />
     <Column Name="TimeSlotsTemplateEndHour" Member="TimeSlotsTemplateEndHour" />
     <Column Name="TimeSlotsTemplateEndMinute" Member="TimeSlotsTemplateEndMinute" />
+  </ContentType>
+  <ContentType Name="ShippingComments" Class="ShippingComments">
+    <Column Name="Body" Member="Body" />
+    <Column Name="ExternalComment" Member="ExternalComment" />
+    <Column Name="ShippingComments2PartnerTitle" Member="ShippingComments2PartnerTitle" />
+    <Column Name="ShippingComments2ShippingID" Member="ShippingComments2ShippingID" />
   </ContentType>
   <ContentType Name="LoadDescription" Class="LoadDescription">
     <!--<Column Name="ContentType" Member="ContentType" />-->
