@@ -307,10 +307,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains event data.</param>
     protected override void OnUnload( EventArgs e )
     {
+      base.OnUnload( e );
+    }
+    public override void Dispose()
+    {
       if ( myDataContextManagement != null )
         myDataContextManagement.Dispose();
       myDataContextManagement = null;
-      base.OnUnload( e );
+      base.Dispose();
     }
     #endregion
 

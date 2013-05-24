@@ -133,6 +133,7 @@
     <Compile Include="CurrentUserWebPart\UserDescriptor.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DataContextManagementAutoDispose.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Features\Dashboards\Dashboards.EventReceiver.cs">
       <DependentUpon>Dashboards.feature</DependentUpon>
