@@ -14,24 +14,23 @@
 //</summary>
 
 using System;
-using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SharePoint;
-using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
 {
   /// <summary>
-  /// Task Management User Control
+  /// Comments Web Part User Control
   /// </summary>
-  [CLSCompliant( false )]
   public partial class CommentsWebPartUserControl: UserControl
   {
     #region creator
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CommentsWebPartUserControl"/> class.
+    /// </summary>
     public CommentsWebPartUserControl()
     {
       try
@@ -58,11 +57,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
         ShowActionResult( GenericStateMachineEngine.ActionResult.Exception( _ex, "SetInterconnectionData" ) );
       }
     }
-    private void NewDataEventHandler( object sender, CommentsInterconnectionData e )
-    {
-      SetInterconnectionData( e );
-    }
-
     #endregion
 
     #region UserControl override
@@ -80,30 +74,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void Page_Load( object sender, EventArgs e )
-    {
-      try
-      {
-        if ( !this.IsPostBack )
-        {
-          At = "InitMahine";
-        }
-        At = "Events handlers";
-        m_ButtonAddNew.Click += m_ButtonAddNew_Click;
-      }
-      catch ( ApplicationError _ax )
-      {
-        this.Controls.Add( _ax.CreateMessage( At, true ) );
-      }
-      catch ( Exception _ex )
-      {
-        ShowActionResult( GenericStateMachineEngine.ActionResult.Exception( _ex, "Page_Load" ) );
-      }
-    }
-    private void m_ButtonAddNew_Click( object sender, EventArgs e )
-    {
-      throw new NotImplementedException();
-    }
+    protected void Page_Load( object sender, EventArgs e ) { }
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
@@ -136,6 +107,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
     #endregion
 
     #region SetInterconnectionData
+    private void NewDataEventHandler( object sender, CommentsInterconnectionData e )
+    {
+      SetInterconnectionData( e );
+    }
     private void SetInterconnectionData( CommentsInterconnectionData e )
     {
       if ( e.ID.IsNullOrEmpty() || m_ControlState.ShippingID.Contains( e.ID ) )
@@ -146,37 +121,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
 
     #region private
 
-    #region State machine
-    private GenericStateMachineEngine.ActionResult CreateTask()
-    {
-      if ( !Page.IsValid )
-        return GenericStateMachineEngine.ActionResult.NotValidated( "Required information must be provided." );
-      try
-      {
-        if ( m_ControlState.ShippingID.IsNullOrEmpty() )
-          return GenericStateMachineEngine.ActionResult.NotValidated( "Project is not selected." );
-        At = "InsertOnSubmit";
-        //TODO EDC.Comme.InsertOnSubmit( _newTask );
-        At = "SubmitChanges #1";
-        EDC.SubmitChanges();
-      }
-      catch ( GenericStateMachineEngine.ActionResult _ar )
-      {
-        return _ar;
-      }
-      catch ( ApplicationError _ax )
-      {
-        return GenericStateMachineEngine.ActionResult.Exception( _ax, "CreateNewWokload at: " + At );
-      }
-      catch ( Exception _ex )
-      {
-        return GenericStateMachineEngine.ActionResult.Exception( _ex, "CreateNewWokload at: " + At );
-      }
-      return GenericStateMachineEngine.ActionResult.Success;
-    }
-    #endregion
-
-    #region vars
     [Serializable]
     private class ControlState
     {
@@ -200,20 +144,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
         return m_Shipping;
       }
     }
-    private DataContextManagement<EntitiesDataContext> myDataContextManagement = null;
-    public EntitiesDataContext EDC
+    private DataContextManagementAutoDispose<EntitiesDataContext> myDataContextManagement = null;
+    private EntitiesDataContext EDC
     {
       get
       {
         if ( myDataContextManagement == null )
-          myDataContextManagement = new DataContextManagement<EntitiesDataContext>( this );
+          myDataContextManagement = new DataContextManagementAutoDispose<EntitiesDataContext>( this );
         return myDataContextManagement.DataContext;
       }
     }
     private ControlState m_ControlState = null;
-    #endregion
-
-    #region events handling
     private void ShowActionResult( GenericStateMachineEngine.ActionResult _rslt )
     {
       if ( _rslt.LastActionResult == GenericStateMachineEngine.ActionResult.Result.Success )
@@ -232,9 +173,34 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
         this.Controls.Add( new Literal() { Text = String.Format( _format, _rslt.ActionException.Source, At, _rslt.ActionException.Message ) } );
       }
     }
-    protected void m_TaskCommentsTextBox_TextChanged( object sender, EventArgs e )
-    {
 
+    #region events handling
+    private void m_ButtonAddNew_Click( object sender, EventArgs e )
+    {
+      // Do nothing
+    }
+    protected void m_ShippingCommentsTextBox_TextChanged( object sender, EventArgs e )
+    {
+      try
+      {
+        Shipping _shpppng = CurrentShipping;
+        string _to = CurrentShipping.PartnerTitle == null ? "All internal" : CurrentShipping.PartnerTitle.Tytuł;
+        ShippingComments _new = new ShippingComments()
+        {
+          Body = m_ShippingCommentsTextBox.Text,
+          ExternalComment = m_ExternalCheckBox.Checked && CurrentShipping.PartnerTitle != null,
+          ShippingComments2PartnerTitle = CurrentShipping.PartnerTitle,
+          ShippingComments2ShippingID = CurrentShipping,
+          Tytuł = String.Format( "{0} => {1}", this.Context.User.Identity.Name, _to )
+        };
+        EDC.Comments.InsertOnSubmit( _new );
+        EDC.SubmitChanges();
+      }
+      catch ( Exception ex )
+      {
+        Parent.Controls.Add( GlobalDefinitions.ErrorLiteralControl( ex.Message ) );
+        Anons.WriteEntry( EDC, "m_ShippingCommentsTextBox_TextChanged", ex.Message );
+      }
     }
     #endregion
 

@@ -30,18 +30,18 @@
                             <asp:Label ID="m_ExternalLabel" runat="server" CssClass="Label" Text="Is external" />
                         </asp:TableCell>
                         <asp:TableCell>
-                            <asp:CheckBox ID="m_ExternalCheckBox" runat="server" />
+                            <asp:CheckBox ID="m_ExternalCheckBox" runat="server" Checked="false" />
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell ColumnSpan="2">
-                            <asp:Label ID="m_TaskCommentsLabel" runat="server" CssClass="Label" Text="Comment:" />
+                            <asp:Label runat="server" CssClass="Label" Text="Comment:" />
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell ColumnSpan="2">
-                            <SharePoint:InputFormTextBox ID="m_TaskCommentsTextBox" runat="server" RichText="true" RichTextMode="FullHtml" TextMode="MultiLine" Width="600" Rows="10"
-                                OnTextChanged="m_TaskCommentsTextBox_TextChanged" />
+                            <SharePoint:InputFormTextBox ID="m_ShippingCommentsTextBox" runat="server" RichText="true" RichTextMode="FullHtml" TextMode="MultiLine" Width="600" Rows="10"
+                                OnTextChanged="m_ShippingCommentsTextBox_TextChanged" />
                       </asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>

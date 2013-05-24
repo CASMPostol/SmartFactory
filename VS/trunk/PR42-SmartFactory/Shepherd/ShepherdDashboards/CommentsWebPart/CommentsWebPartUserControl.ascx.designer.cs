@@ -85,22 +85,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart {
         protected global::System.Web.UI.WebControls.CheckBox m_ExternalCheckBox;
         
         /// <summary>
-        /// m_TaskCommentsLabel control.
+        /// m_ShippingCommentsTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_TaskCommentsLabel;
-        
-        /// <summary>
-        /// m_TaskCommentsTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.InputFormTextBox m_TaskCommentsTextBox;
+        protected global::Microsoft.SharePoint.WebControls.InputFormTextBox m_ShippingCommentsTextBox;
         
         /// <summary>
         /// m_Actions control.
