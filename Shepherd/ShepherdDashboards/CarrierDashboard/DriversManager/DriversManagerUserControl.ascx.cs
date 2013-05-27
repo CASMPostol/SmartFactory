@@ -118,7 +118,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
     #endregion
 
     #region State machine
-    private class LocalStateMachineEngine: StateMachine
+    private class LocalStateMachineEngine: GenericStateMachineEngine<DriverInterconnectionData>
     {
       #region ctor
       internal LocalStateMachineEngine( DriversManagerUserControl _parent )
@@ -129,11 +129,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
       #endregion
 
       #region abstract implementation
-      protected override StateMachine.ActionResult Show( DriverInterconnectionData _id )
+      protected override ActionResult Show( DriverInterconnectionData _id )
       {
         return Parent.Show( _id );
       }
-      protected override StateMachine.ActionResult Show()
+      protected override ActionResult Show()
       {
         return Parent.Show();
       }
@@ -145,7 +145,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
       {
         return Parent.Create();
       }
-      protected override StateMachine.ActionResult Delete()
+      protected override ActionResult Delete()
       {
         return Parent.Delete();
       }
@@ -157,7 +157,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
       {
         Parent.m_ControlState.SetEnabled = _buttons;
       }
-      protected override void SMError( StateMachine.InterfaceEvent _interfaceEvent )
+      protected override void SMError( InterfaceEvent _interfaceEvent )
       {
         Parent.Controls.Add( new LiteralControl
           ( String.Format( "State machine error, in {0} the event {1} occured", Parent.m_ControlState.InterfaceState.ToString(), _interfaceEvent.ToString() ) ) );
@@ -205,6 +205,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
     #region Variables
     private ControlState m_ControlState = new ControlState( null );
     private LocalStateMachineEngine m_StateMachineEngine = null;
+    private DataContextManagementAutoDispose<EntitiesDataContext> myDataContextManagement = null;
+    public EntitiesDataContext EDC
+    {
+      get
+      {
+        if ( myDataContextManagement == null )
+          myDataContextManagement = new DataContextManagementAutoDispose<EntitiesDataContext>( this );
+        return myDataContextManagement.DataContext;
+      }
+    }
     #endregion
 
     #region state machine actions
@@ -214,11 +224,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
         return LocalStateMachineEngine.ActionResult.Success;
       try
       {
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) )
-        {
-          Driver _drv = Element.GetAtIndex<Driver>( _EDC.Driver, m_ControlState.ItemID );
-          Show( _drv );
-        }
+        Driver _drv = Element.GetAtIndex<Driver>( EDC.Driver, m_ControlState.ItemID );
+        Show( _drv );
       }
       catch ( Exception ex )
       {
@@ -243,16 +250,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
     {
       try
       {
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) )
-        {
-          if ( m_ControlState.ItemID.IsNullOrEmpty() )
-            return new LocalStateMachineEngine.ActionResult( new ApplicationException( "UpdateDriverNotSelected".GetLocalizedString() ), "Update" );
-          Driver _drv = Element.GetAtIndex<Driver>( _EDC.Driver, m_ControlState.ItemID );
-          LocalStateMachineEngine.ActionResult _rr = Update( _drv );
-          if ( !_rr.ActionSucceeded )
-            return _rr;
-          _EDC.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
-        }
+        if ( m_ControlState.ItemID.IsNullOrEmpty() )
+          return new LocalStateMachineEngine.ActionResult( new ApplicationException( "UpdateDriverNotSelected".GetLocalizedString() ), "Update" );
+        Driver _drv = Element.GetAtIndex<Driver>( EDC.Driver, m_ControlState.ItemID );
+        LocalStateMachineEngine.ActionResult _rr = Update( _drv );
+        if ( !_rr.ActionSucceeded )
+          return _rr;
+        EDC.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
       }
       catch ( Exception ex )
       {
@@ -275,18 +279,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
         return new LocalStateMachineEngine.ActionResult( new ApplicationException( "Create error: a driver is selected" ), "Create" );
       try
       {
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) )
-        {
-          Partner _Partner = Partner.FindForUser( _EDC, SPContext.Current.Web.CurrentUser );
-          if ( _Partner == null )
-            return LocalStateMachineEngine.ActionResult.NotValidated( "CreateuserMustBeExternalPartner".GetLocalizedString() );
-          Driver _drv = new Driver() { Driver2PartnerTitle = _Partner };
-          LocalStateMachineEngine.ActionResult _rr = Update( _drv );
-          if ( !_rr.ActionSucceeded )
-            return _rr;
-          _EDC.Driver.InsertOnSubmit( _drv );
-          _EDC.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
-        }
+        Partner _Partner = Partner.FindForUser( EDC, SPContext.Current.Web.CurrentUser );
+        if ( _Partner == null )
+          return LocalStateMachineEngine.ActionResult.NotValidated( "CreateuserMustBeExternalPartner".GetLocalizedString() );
+        Driver _drv = new Driver() { Driver2PartnerTitle = _Partner };
+        LocalStateMachineEngine.ActionResult _rr = Update( _drv );
+        if ( !_rr.ActionSucceeded )
+          return _rr;
+        EDC.Driver.InsertOnSubmit( _drv );
+        EDC.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
       }
       catch ( Exception ex )
       {
@@ -294,18 +295,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
       }
       return LocalStateMachineEngine.ActionResult.Success;
     }
-    private GenericStateMachineEngine<DriverInterconnectionData>.ActionResult Delete()
+    private LocalStateMachineEngine.ActionResult Delete()
     {
       if ( m_ControlState.ItemID.IsNullOrEmpty() )
         return new LocalStateMachineEngine.ActionResult( new ApplicationException( "DeleteDriverNotSelected".GetLocalizedString() ), "Delete" );
       try
       {
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) )
-        {
-          Driver _drv = Element.GetAtIndex<Driver>( _EDC.Driver, m_ControlState.ItemID );
-          _EDC.Driver.RecycleOnSubmit( _drv );
-          _EDC.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
-        }
+        Driver _drv = Element.GetAtIndex<Driver>( EDC.Driver, m_ControlState.ItemID );
+        EDC.Driver.RecycleOnSubmit( _drv );
+        EDC.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
       }
       catch ( Exception ex )
       {
