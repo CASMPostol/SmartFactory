@@ -40,24 +40,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <summary>
     /// Reports the action result.
     /// </summary>
-    /// <param name="url">The url of the site.</param>
-    public void ReportActionResult( string url )
-    {
-      if ( this.Count == 0 )
-        return;
-      try
-      {
-        using ( EntitiesDataContext EDC = new EntitiesDataContext( url ) )
-        {
-          CreateAnonsEntry( EDC );
-          EDC.SubmitChanges();
-        }
-      }
-      catch ( Exception ) { }
-    }
-    /// <summary>
-    /// Reports the action result.
-    /// </summary>
     /// <param name="EDC">The <see cref="EntitiesDataContext"/> object.</param>
     public void ReportActionResult( EntitiesDataContext EDC )
     {

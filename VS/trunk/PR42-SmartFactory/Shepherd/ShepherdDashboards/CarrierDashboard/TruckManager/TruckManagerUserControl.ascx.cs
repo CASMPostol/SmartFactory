@@ -124,7 +124,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
     #endregion
 
     #region State machine
-    private class LocalStateMachineEngine: StateMachine
+    private class LocalStateMachineEngine: GenericStateMachineEngine<TruckInterconnectionData>
     {
       #region ctor
       internal LocalStateMachineEngine( TruckManagerUserControl _parent )
@@ -135,11 +135,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
       #endregion
 
       #region abstract implementation
-      protected override StateMachine.ActionResult Show( TruckInterconnectionData _id )
+      protected override ActionResult Show( TruckInterconnectionData _id )
       {
         return Parent.Show( _id );
       }
-      protected override StateMachine.ActionResult Show()
+      protected override ActionResult Show()
       {
         return Parent.Show();
       }
@@ -151,7 +151,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
       {
         return Parent.Create();
       }
-      protected override StateMachine.ActionResult Delete()
+      protected override ActionResult Delete()
       {
         return Parent.Delete();
       }
@@ -163,7 +163,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
       {
         Parent.m_ControlState.SetEnabled = _buttons;
       }
-      protected override void SMError( StateMachine.InterfaceEvent _interfaceEvent )
+      protected override void SMError( InterfaceEvent _interfaceEvent )
       {
         Parent.Controls.Add( new LiteralControl
           ( String.Format( "State machine error, in {0} the event {1} occured", Parent.m_ControlState.InterfaceState.ToString(), _interfaceEvent.ToString() ) ) );
@@ -210,6 +210,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
     #region Variables
     private ControlState m_ControlState = new ControlState( null );
     private LocalStateMachineEngine m_StateMachineEngine = null;
+    private DataContextManagementAutoDispose<EntitiesDataContext> myDataContextManagement = null;
+    public EntitiesDataContext EDC
+    {
+      get
+      {
+        if ( myDataContextManagement == null )
+          myDataContextManagement = new DataContextManagementAutoDispose<EntitiesDataContext>( this );
+        return myDataContextManagement.DataContext;
+      }
+    }
     #endregion
 
     #region state machine actions
@@ -219,11 +229,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
         return LocalStateMachineEngine.ActionResult.Success;
       try
       {
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) )
-        {
-          Truck _drv = Element.GetAtIndex<Truck>( _EDC.Truck, m_ControlState.ItemID );
-          Show( _drv );
-        }
+        Truck _drv = Element.GetAtIndex<Truck>( EDC.Truck, m_ControlState.ItemID );
+        Show( _drv );
       }
       catch ( Exception ex )
       {
@@ -250,16 +257,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
 
       try
       {
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) )
-        {
-          if ( m_ControlState.ItemID.IsNullOrEmpty() )
-            return new LocalStateMachineEngine.ActionResult( new ApplicationException( "UpdateTruckNotSelected".GetLocalizedString() ), "Update" );
-          Truck _drv = Element.GetAtIndex<Truck>( _EDC.Truck, m_ControlState.ItemID );
-          LocalStateMachineEngine.ActionResult _rr = Update( _drv );
-          if ( !_rr.ActionSucceeded )
-            return _rr;
-          _EDC.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
-        }
+        if ( m_ControlState.ItemID.IsNullOrEmpty() )
+          return new LocalStateMachineEngine.ActionResult( new ApplicationException( "UpdateTruckNotSelected".GetLocalizedString() ), "Update" );
+        Truck _drv = Element.GetAtIndex<Truck>( EDC.Truck, m_ControlState.ItemID );
+        LocalStateMachineEngine.ActionResult _rr = Update( _drv );
+        if ( !_rr.ActionSucceeded )
+          return _rr;
+        EDC.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
       }
       catch ( Exception ex )
       {
@@ -284,18 +288,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
         return new LocalStateMachineEngine.ActionResult( new ApplicationException( "Create error: a truck is selected" ), "Create" );
       try
       {
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) )
-        {
-          Partner _Partner = Partner.FindForUser( _EDC, SPContext.Current.Web.CurrentUser );
-          if ( _Partner == null )
-            return LocalStateMachineEngine.ActionResult.NotValidated( "CreateuserMustBeExternalPartner".GetLocalizedString() );
-          Truck _drv = new Truck() { Truck2PartnerTitle = _Partner };
-          LocalStateMachineEngine.ActionResult _rr = Update( _drv );
-          if ( !_rr.ActionSucceeded )
-            return _rr;
-          _EDC.Truck.InsertOnSubmit( _drv );
-          _EDC.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
-        }
+        Partner _Partner = Partner.FindForUser( EDC, SPContext.Current.Web.CurrentUser );
+        if ( _Partner == null )
+          return LocalStateMachineEngine.ActionResult.NotValidated( "CreateuserMustBeExternalPartner".GetLocalizedString() );
+        Truck _drv = new Truck() { Truck2PartnerTitle = _Partner };
+        LocalStateMachineEngine.ActionResult _rr = Update( _drv );
+        if ( !_rr.ActionSucceeded )
+          return _rr;
+        EDC.Truck.InsertOnSubmit( _drv );
+        EDC.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
       }
       catch ( Exception ex )
       {
@@ -309,12 +310,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
         return new LocalStateMachineEngine.ActionResult( new ApplicationException( "DeleteTruckNotSelected".GetLocalizedString() ), "Delete" );
       try
       {
-        using ( EntitiesDataContext _EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) )
-        {
-          Truck _itm = Element.GetAtIndex<Truck>( _EDC.Truck, m_ControlState.ItemID );
-          _EDC.Truck.RecycleOnSubmit( _itm );
-          _EDC.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
-        }
+        Truck _itm = Element.GetAtIndex<Truck>( EDC.Truck, m_ControlState.ItemID );
+        EDC.Truck.RecycleOnSubmit( _itm );
+        EDC.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
       }
       catch ( Exception ex )
       {

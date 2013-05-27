@@ -309,13 +309,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       base.OnUnload( e );
     }
-    public override void Dispose()
-    {
-      if ( myDataContextManagement != null )
-        myDataContextManagement.Dispose();
-      myDataContextManagement = null;
-      base.Dispose();
-    }
     #endregion
 
     #region State machine
@@ -1198,13 +1191,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region Entities management
-    private DataContextManagement<EntitiesDataContext> myDataContextManagement = null;
+    private DataContextManagementAutoDispose<EntitiesDataContext> myDataContextManagement = null;
     public EntitiesDataContext EDC
     {
       get
       {
         if ( myDataContextManagement == null )
-          myDataContextManagement = new DataContextManagement<EntitiesDataContext>( this );
+          myDataContextManagement = new DataContextManagementAutoDispose<EntitiesDataContext>( this );
         return myDataContextManagement.DataContext;
       }
     }

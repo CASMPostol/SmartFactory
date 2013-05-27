@@ -307,7 +307,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     private ControlState m_ControlState = new ControlState( null );
     private LocalStateMachineEngine m_StateMachineEngine = null;
     private DataContextManagementAutoDispose<EntitiesDataContext> myDataContextManagement = null;
-    public EntitiesDataContext EDC
+    private EntitiesDataContext EDC
     {
       get
       {
