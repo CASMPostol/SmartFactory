@@ -46,23 +46,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     #endregion
 
     #region UserControl override
-    protected override void OnInit( EventArgs e )
-    {
-      m_EDC = new EntitiesDataContext( SPContext.Current.Web.Url ) { ObjectTrackingEnabled = false };
-      base.OnInit( e );
-    }
-    protected override void OnUnload( EventArgs e )
-    {
-      m_EDC.Dispose();
-      base.OnUnload( e );
-    }
     protected void Page_Load( object sender, EventArgs e )
     {
       try
       {
         if ( !IsPostBack )
         {
-          m_WarehouseDropDownList.DataSource = from _idx in m_EDC.Warehouse
+          m_WarehouseDropDownList.DataSource = from _idx in EDC.Warehouse
                                                orderby _idx.Tytuł ascending
                                                select new { Title = _idx.Tytuł, ID = _idx.Identyfikator.Value };
           m_WarehouseDropDownList.DataTextField = "Title";
@@ -70,7 +60,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
           m_WarehouseDropDownList.DataBind();
           //This best practice addresses the issue identified by the SharePoint Dispose Checker Tool as SPDisposeCheckID_210
           SPWeb _currentWeb = SPControl.GetContextWeb( this.Context );
-          Partner _Partner = Partner.FindForUser( m_EDC, _currentWeb.CurrentUser );
+          Partner _Partner = Partner.FindForUser( EDC, _currentWeb.CurrentUser );
           if ( _Partner != null )
             m_WarehouseDropDownList.Select( _Partner.Partner2WarehouseTitle );
           else
@@ -104,14 +94,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         return;
       try
       {
-        TimeSlotTimeSlot _slctdTmslt = Element.GetAtIndex( m_EDC.TimeSlot, m_TimeSlotList.SelectedValue );
+        TimeSlotTimeSlot _slctdTmslt = Element.GetAtIndex( EDC.TimeSlot, m_TimeSlotList.SelectedValue );
         _slctdTmslt.IsDouble = m_ShowDoubleTimeSlots.Checked;
         m_InterconnectionDataTable_TimeSlotTimeSlot.SetData
           ( this, new InterconnectionDataTable<TimeSlotTimeSlot>.InterconnectionEventArgs( _slctdTmslt ) );
       }
       catch ( Exception ex )
       {
-        Anons.WriteEntry( m_EDC, "TimeSlotList_SelectedIndexChanged", ex.Message );
+        Anons.WriteEntry( EDC, "TimeSlotList_SelectedIndexChanged", ex.Message );
       }
     }
     private void m_Calendar_VisibleMonthChanged( object sender, MonthChangedEventArgs e ) { }
@@ -144,7 +134,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         DateTime _end = _strt.AddMonths( 1 );
         if ( m_WarehouseDropDownList.SelectedValue.IsNullOrEmpty() )
           return;
-        Warehouse _warehouse = Element.GetAtIndex( m_EDC.Warehouse, m_WarehouseDropDownList.SelectedValue );
+        Warehouse _warehouse = Element.GetAtIndex( EDC.Warehouse, m_WarehouseDropDownList.SelectedValue );
         List<TimeSlot> _2Expose = new List<TimeSlot>();
         foreach ( var _spoint in ( from _sp in _warehouse.ShippingPoint select _sp ) )
         {
@@ -208,7 +198,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       }
     }
     private bool m_TimeSlotSelection = false;
-    private EntitiesDataContext m_EDC = null;
+    private DataContextManagementAutoDispose<EntitiesDataContext> myDataContextManagement = null;
+    private EntitiesDataContext EDC
+    {
+      get
+      {
+        if ( myDataContextManagement == null )
+          myDataContextManagement = new DataContextManagementAutoDispose<EntitiesDataContext>( this );
+        return myDataContextManagement.DataContext;
+      }
+    }
     private SortedDictionary<DateTime, int> m_AvailableDays = new SortedDictionary<DateTime, int>();
     private InterconnectionDataTable<TimeSlotTimeSlot> m_InterconnectionDataTable_TimeSlotTimeSlot;
     private Direction m_RoleDirection = Direction.Inbound;
