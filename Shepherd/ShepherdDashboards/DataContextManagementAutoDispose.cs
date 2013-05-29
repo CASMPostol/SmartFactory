@@ -1,7 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿//<summary>
+//  Title   : DataContextManagementAutoDispose class
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
 using System.Web.UI;
 using Microsoft.SharePoint.Linq;
 
@@ -11,13 +23,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     where type: DataContext, new()
   {
     /// <summary>
-    /// Initializes a new instance of the <see cref="DataContextManagementAutoDispose{type}"/> class.
+    /// Gets the data context management.
     /// </summary>
     /// <param name="parent">The parent.</param>
-    public DataContextManagementAutoDispose( UserControl parent )
+    /// <returns></returns>
+    public static DataContextManagementAutoDispose<type> GetDataContextManagement( UserControl parent )
     {
-      m_Control = parent;
-      parent.Unload += parent_Unload;
+      if ( m_DataContextManagement == null )
+        m_DataContextManagement = new DataContextManagementAutoDispose<type>( parent );
+      return m_DataContextManagement;
     }
     public type DataContext
     {
@@ -28,6 +42,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
         return m_DataContext;
       }
     }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DataContextManagementAutoDispose{type}"/> class.
+    /// </summary>
+    /// <param name="parent">The parent.</param>
+    private DataContextManagementAutoDispose( UserControl parent )
+    {
+      m_Control = parent.Page;
+      parent.Unload += parent_Unload;
+    }
     private void parent_Unload( object sender, EventArgs e )
     {
       if ( m_DataContext == null )
@@ -37,6 +60,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       m_DataContext = null;
     }
     private type m_DataContext;
-    private UserControl m_Control;
+    private Page m_Control;
+    private static DataContextManagementAutoDispose<type> m_DataContextManagement = null;
   }
 }

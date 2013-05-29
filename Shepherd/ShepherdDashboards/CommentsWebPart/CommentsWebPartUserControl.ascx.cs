@@ -149,7 +149,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
       get
       {
         if ( myDataContextManagement == null )
-          myDataContextManagement = new DataContextManagementAutoDispose<EntitiesDataContext>( this );
+          myDataContextManagement = DataContextManagementAutoDispose<EntitiesDataContext>.GetDataContextManagement( this );
         return myDataContextManagement.DataContext;
       }
     }
