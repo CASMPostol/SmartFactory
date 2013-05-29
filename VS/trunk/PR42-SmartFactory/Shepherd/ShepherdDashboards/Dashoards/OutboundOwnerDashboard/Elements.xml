@@ -90,6 +90,24 @@
  </webParts>
  ]]>
       </View>
+      <AllUsersWebPart WebPartZoneID="AlarmsAndEvents" WebPartOrder="1">
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart.CommentsWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">CommentsWebPart</property>
+        <property name="Description" type="string">My Visual WebPart</property>
+        <property name="ID" type="string">CommentsWebPart</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>
+]]>
+      </AllUsersWebPart>
       <View List="Lists/AlarmsAndEventsList" BaseViewID="4" WebPartZoneID="AlarmsAndEvents" WebPartOrder="0">
         <![CDATA[
  <webParts>
