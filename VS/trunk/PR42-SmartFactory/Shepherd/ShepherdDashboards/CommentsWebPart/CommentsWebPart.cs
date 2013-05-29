@@ -15,7 +15,7 @@ using System.Web.UI;
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System.Web.UI.WebControls.WebParts;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
@@ -26,10 +26,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
     // Visual Studio might automatically update this path when you change the Visual Web Part project item.
     private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS.SmartFactory.Shepherd.Dashboards/CommentsWebPart/CommentsWebPartUserControl.ascx";
     private CommentsWebPartUserControl m_Control;
+    IWebPartRow m_Provider = null;
     protected override void CreateChildControls()
     {
-      m_Control = Page.LoadControl( _ascxPath ) as CommentsWebPartUserControl;
+      object _Ctrl = Page.LoadControl( _ascxPath );
+      m_Control = (CommentsWebPartUserControl)_Ctrl;
       Controls.Add( m_Control );
+      if (m_Provider != null)
+        m_Control.SetInterconnectionData( m_Provider );
     }
     protected override void OnPreRender( EventArgs e )
     {
@@ -43,7 +47,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
     [ConnectionConsumer( "Shipping list interconnection", "ShippingInterconnectionData", AllowsMultipleConnections = false )]
     public void SetProjectProvider( IWebPartRow _provider )
     {
-      m_Control.SetInterconnectionData( _provider );
+      if ( m_Control != null )
+        m_Control.SetInterconnectionData( _provider );
+      else
+        m_Provider = _provider;
     }
     #endregion
   }

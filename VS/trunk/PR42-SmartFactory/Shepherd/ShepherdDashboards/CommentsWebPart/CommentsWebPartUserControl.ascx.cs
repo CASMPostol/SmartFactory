@@ -178,6 +178,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
       try
       {
         Shipping _shpppng = CurrentShipping;
+        if ( m_Shipping == null )
+          return;
         string _to = CurrentShipping.PartnerTitle == null ? "All internal" : CurrentShipping.PartnerTitle.Tytuł;
         ShippingComments _new = new ShippingComments()
         {
