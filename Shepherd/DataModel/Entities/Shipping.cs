@@ -376,6 +376,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         ShippingDuration = 0,
         ShippingState = Entities.ShippingState.Invalid,
         TruckAwaiting = false,
+        IsOutbound = outbound,
         Tytuł = "Creating new shippment"
       };
     }
