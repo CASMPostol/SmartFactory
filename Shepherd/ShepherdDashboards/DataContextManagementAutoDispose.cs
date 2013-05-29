@@ -58,6 +58,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       m_Control.Unload -= parent_Unload;
       m_DataContext.Dispose();
       m_DataContext = null;
+      m_DataContextManagement = null;
     }
     private type m_DataContext;
     private Page m_Control;
