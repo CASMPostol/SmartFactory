@@ -704,6 +704,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           _checkPoint = "SubmitChanges #1";
           EDC.SubmitChanges();
           EDC.Shipping.InsertOnSubmit( _sppng );
+          _checkPoint = "Shipping.SubmitChanges #2";
+          EDC.SubmitChanges();
           _checkPoint = "Shipping.MakeBooking";
           _sppng.MakeBooking( _Tss, m_ControlState.TimeSlotIsDouble );
           _sppng.UpdateTitle();
@@ -719,28 +721,28 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           EDC.LoadDescription.InsertOnSubmit( _ld );
           try
           {
-            _checkPoint = "SubmitChanges #2";
+            _checkPoint = "SubmitChanges #3";
             EDC.SubmitChanges( ConflictMode.ContinueOnConflict );
           }
           catch ( ChangeConflictException )
           {
             _checkPoint = "ResolveChangeConflicts #1";
             EDC.ResolveChangeConflicts( _rsult );
-            _checkPoint = "SubmitChanges #3";
+            _checkPoint = "SubmitChanges #4";
             EDC.SubmitChanges();
           }
           _checkPoint = "CalculateState";
           _sppng.CalculateState();
           try
           {
-            _checkPoint = "SubmitChanges #4";
+            _checkPoint = "SubmitChanges #5";
             EDC.SubmitChanges( ConflictMode.ContinueOnConflict );
           }
           catch ( ChangeConflictException )
           {
             _checkPoint = "ResolveChangeConflicts #2";
             EDC.ResolveChangeConflicts( _rsult );
-            _checkPoint = "SubmitChanges #5";
+            _checkPoint = "SubmitChanges #6";
             EDC.SubmitChanges();
           }
           SendShippingData( _sppng );
