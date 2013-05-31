@@ -160,7 +160,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       catch ( Exception )
       {
-        throw new ApplicationException( String.Format( "{0} cannot be found at specified index{1}", typeof( t ).Name, _index.Value ) );
+        throw new ApplicationException( String.Format( "{0} cannot be found at specified index: [{1}]", typeof( t ).Name, _index.Value ) );
       }
     }
     /// <summary>
