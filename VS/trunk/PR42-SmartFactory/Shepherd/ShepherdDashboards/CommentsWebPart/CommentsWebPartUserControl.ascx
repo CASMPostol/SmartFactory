@@ -20,11 +20,11 @@
                             <asp:Label ID="m_TaskLabel" runat="server" CssClass="Label" Text="Operation:" />
                         </asp:TableCell>
                     </asp:TableRow>
-                    <asp:TableRow>
+                    <%--<asp:TableRow>
                         <asp:TableCell ColumnSpan="2">
                             <asp:TextBox ID="m_TaskTitleTextBox" runat="server" CssClass="TextBoxLong" />
                         </asp:TableCell>
-                    </asp:TableRow>
+                    </asp:TableRow>--%>
                     <asp:TableRow>
                         <asp:TableCell>
                             <asp:Label ID="m_ExternalLabel" runat="server" CssClass="Label" Text="Is external" />
