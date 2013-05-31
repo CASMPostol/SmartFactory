@@ -89,19 +89,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     #region EventHandlers
     private void m_TimeSlotList_SelectedIndexChanged( object sender, EventArgs e )
     {
+      string _at = "Starting";
       m_TimeSlotSelection = true;
       if ( m_TimeSlotList.SelectedValue.IsNullOrEmpty() )
         return;
       try
       {
+        _at = "TimeSlotTimeSlot";
         TimeSlotTimeSlot _slctdTmslt = Element.GetAtIndex( EDC.TimeSlot, m_TimeSlotList.SelectedValue );
         _slctdTmslt.IsDouble = m_ShowDoubleTimeSlots.Checked;
+        _at = "m_InterconnectionDataTable_TimeSlotTimeSlot";
         m_InterconnectionDataTable_TimeSlotTimeSlot.SetData
           ( this, new InterconnectionDataTable<TimeSlotTimeSlot>.InterconnectionEventArgs( _slctdTmslt ) );
       }
       catch ( Exception ex )
       {
-        Anons.WriteEntry( EDC, "TimeSlotList_SelectedIndexChanged", ex.Message );
+        string _msg = String.Format( "TimeSlotList_SelectedIndexChanged at: {0}", _at );
+        Anons.WriteEntry( EDC, _msg, ex.Message );
       }
     }
     private void m_Calendar_VisibleMonthChanged( object sender, MonthChangedEventArgs e ) { }
