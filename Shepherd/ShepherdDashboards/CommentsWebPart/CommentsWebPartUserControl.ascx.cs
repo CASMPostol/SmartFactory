@@ -187,7 +187,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
           ExternalComment = m_ExternalCheckBox.Checked && CurrentShipping.PartnerTitle != null,
           ShippingComments2PartnerTitle = CurrentShipping.PartnerTitle,
           ShippingComments2ShippingID = CurrentShipping,
-          Tytuł = String.Format( "{0} => {1}", this.Context.User.Identity.Name, _to )
         };
         EDC.Comments.InsertOnSubmit( _new );
         EDC.SubmitChanges();

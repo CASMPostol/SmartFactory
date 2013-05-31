@@ -58,15 +58,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart {
         protected global::System.Web.UI.WebControls.Label m_TaskLabel;
         
         /// <summary>
-        /// m_TaskTitleTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox m_TaskTitleTextBox;
-        
-        /// <summary>
         /// m_ExternalLabel control.
         /// </summary>
         /// <remarks>
