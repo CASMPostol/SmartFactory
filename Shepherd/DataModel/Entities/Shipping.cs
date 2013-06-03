@@ -376,7 +376,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         ShippingSecurityCost = 0,
         EuroPalletsQuantity = 0,
         ShippingDuration = 0,
-        ShippingState = Entities.ShippingState.Invalid,
+        ShippingState = Entities.ShippingState.Creation,
         TruckAwaiting = false,
         IsOutbound = outbound,
         Tytuł = "Creating new shippment"
