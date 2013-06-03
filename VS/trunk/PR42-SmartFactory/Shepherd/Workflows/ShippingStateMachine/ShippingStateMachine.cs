@@ -120,30 +120,33 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         {
           _at = "Shipping _sp = ";
           Shipping _sp = Element.GetAtIndex( _EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID.ToString() );
-          m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format( "ShipmentModified".GetLocalizedString(), _sp.ShippingState.GetValueOrDefault( ShippingState.Invalid ), _sp.Editor.NotAvailable() );
+          m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format( "ShipmentModified".GetLocalizedString(), _sp.ShippingState.GetValueOrDefault( ShippingState.None ), _sp.Editor.NotAvailable() );
           _at = "if ( _sp.IsOutbound";
+          bool _needSubmitChanges = false;
           if ( _sp.IsOutbound.GetValueOrDefault( false ) && ( _sp.ShippingState.GetValueOrDefault( ShippingState.None ) == ShippingState.Completed ) )
           {
             _at = "MakeOutboundReport";
             MakeOutboundReport( _sp, _EDC, _ar );
+            _needSubmitChanges = true;
           }
-          if ( _sp.ShippingState.Value == ShippingState.Completed || _sp.ShippingState.Value == ShippingState.Cancelation )
+          if ( _sp.ShippingState.GetValueOrDefault( ShippingState.None ) == ShippingState.Completed || _sp.ShippingState.GetValueOrDefault( ShippingState.None ) == ShippingState.Cancelation )
           {
             _at = "MakePerformanceReport";
             MakePerformanceReport( _EDC, _sp, _ar );
           }
-          try
-          {
-            _at = "_EDC.SubmitChanges";
-            _EDC.SubmitChanges( ConflictMode.ContinueOnConflict );
-          }
-          catch ( ChangeConflictException )
-          {
-            _at = "_EDC.ResolveChangeConflicts";
-            _EDC.ResolveChangeConflicts( _ar );
-            _at = "_EDC.SubmitChanges #2";
-            _EDC.SubmitChanges();
-          }
+          if ( _needSubmitChanges )
+            try
+            {
+              _at = "_EDC.SubmitChanges";
+              _EDC.SubmitChanges( ConflictMode.ContinueOnConflict );
+            }
+            catch ( ChangeConflictException )
+            {
+              _at = "_EDC.ResolveChangeConflicts";
+              _EDC.ResolveChangeConflicts( _ar );
+              _at = "_EDC.SubmitChanges #2";
+              _EDC.SubmitChanges();
+            }
           _at = "_ar.ReportActionResult";
           _ar.ReportActionResult( _EDC );
         }
@@ -238,6 +241,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
               break;
           }
         }
+        //TODO to be delated.
         try
         {
           EDC.SubmitChanges();
@@ -343,7 +347,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         {
           Shipping _sp = Element.GetAtIndex<Shipping>( EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId.ToString() );
           TimeSpan _timeDistance;
-          switch ( _sp.ShippingState.Value )
+          switch ( _sp.ShippingState.GetValueOrDefault( ShippingState.None ) )
           {
             case ShippingState.Confirmed:
               switch ( _sp.CalculateDistance( out _timeDistance ) )
