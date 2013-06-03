@@ -711,14 +711,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             return _rsult;
           _checkPoint = "BookTimeSlots";
           List<TimeSlotTimeSlot> _Tss = TimeSlotTimeSlot.BookTimeSlots( EDC, m_ControlState.TimeSlotID, m_ControlState.TimeSlotIsDouble );
-          _checkPoint = "SubmitChanges #1";
-          EDC.SubmitChanges();
-          EDC.Shipping.InsertOnSubmit( _sppng );
-          _checkPoint = "Shipping.SubmitChanges #2";
-          EDC.SubmitChanges();
+          //_checkPoint = "SubmitChanges #1";
+          //EDC.SubmitChanges();
+
+          //_checkPoint = "Shipping.SubmitChanges #2";
+          //EDC.SubmitChanges();
           _checkPoint = "Shipping.MakeBooking";
           _sppng.MakeBooking( _Tss, m_ControlState.TimeSlotIsDouble );
-          m_ControlState.ShippingID = _sppng.Identyfikator.Value.ToString();
+          m_ControlState.ShippingID = String.Empty; //_sppng.Identyfikator.Value.ToString();
           _checkPoint = "LoadDescription";
           LoadDescription _ld = new LoadDescription()
           {
@@ -727,6 +727,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             LoadDescription2ShippingIndex = _sppng,
             LoadDescription2PartnerTitle = _sppng.PartnerTitle
           };
+          EDC.Shipping.InsertOnSubmit( _sppng );
           EDC.LoadDescription.InsertOnSubmit( _ld );
           try
           {
