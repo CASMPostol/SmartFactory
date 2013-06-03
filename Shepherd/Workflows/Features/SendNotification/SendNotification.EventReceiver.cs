@@ -37,24 +37,24 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
           SPList _taskList = _web.Lists[ CommonDefinition.SendNotificationWorkflowTasks ];
           SPList _historyList = _web.Lists[ CommonDefinition.SendNotificationWorkflowHistory ];
           _taskList.UseFormsForDisplay = false;
+          _state = "Update";
           _taskList.Update();
-          _state = "_taskList.Update";
+          _state = "FreightPOLibraryTitle";
           NewSendEmailAssociation( CommonDefinition.FreightPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.FreightPOAssociationData() );
-          _state = "FreightPOLibraryName";
-          NewSendEmailAssociation( CommonDefinition.EscortPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.SecurityPOAssociationData() );
           _state = "EscortPOLibraryTitle";
+          NewSendEmailAssociation( CommonDefinition.EscortPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.SecurityPOAssociationData() );
+          _state = "CreatePO";
           NewCreatePOAssociation( CreatePO.CreatePO.WorkflowDescription, _web, _taskList, _historyList, false );
-          _state = "AddCreateFPOAssociation";
+          _state = "CreateSecurityPO1";
           NewCreatePOAssociation( CreateSecurityPO1.CreateSecurityPO1.WorkflowDescription, _web, _taskList, _historyList, false );
-          _state = "AddCreateFPOAssociation";
+          _state = "CreateSealProtocol";
           NewCreatePOAssociation( CreateSealProtocol.CreateSealProtocol.WorkflowDescription, _web, _taskList, _historyList, false );
-          _state = "AddCreateFPOAssociation";
-          NewCreatePOAssociation( ShippingStateMachine.ShippingStateMachine.WorkflowDescription, _web, _taskList, _historyList, true );
           _state = "ShippingStateMachine";
-          NewWorkflowAssociation( CommonDefinition.ScheduleTemplateListTitle, AddTimeSlots.Definitions.WorkflowDescription, _web, _taskList, _historyList );
+          NewCreatePOAssociation( ShippingStateMachine.ShippingStateMachine.WorkflowDescription, _web, _taskList, _historyList, true );
           _state = "ScheduleTemplateListTitle";
-          NewWorkflowAssociation( CommonDefinition.DataImportLibraryTitle, ImportDictionaries.Definitions.WorkflowDescription, _web, _taskList, _historyList );
+          NewWorkflowAssociation( CommonDefinition.ScheduleTemplateListTitle, AddTimeSlots.Definitions.WorkflowDescription, _web, _taskList, _historyList );
           _state = "DataImportLibraryTitle";
+          NewWorkflowAssociation( CommonDefinition.DataImportLibraryTitle, ImportDictionaries.Definitions.WorkflowDescription, _web, _taskList, _historyList );
         }
       }
       catch ( Exception _ex )

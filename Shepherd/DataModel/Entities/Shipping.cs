@@ -152,7 +152,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// </summary>
     public void CalculateState()
     {
-      switch ( this.ShippingState.Value )
+      switch ( this.ShippingState.GetValueOrDefault( Entities.ShippingState.None ) )
       {
         case Entities.ShippingState.Confirmed:
         case Entities.ShippingState.Creation:
@@ -177,8 +177,10 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
           else if ( this.SecurityEscortCatalogTitle == null || ( _seDrivers > 0 && this.Shipping2TruckTitle != null ) )
             this.ShippingState = Entities.ShippingState.WaitingForCarrierData;
           break;
-        case Entities.ShippingState.Underway:
         case Entities.ShippingState.None:
+          this.ShippingState = Entities.ShippingState.Creation;
+          break;
+        case Entities.ShippingState.Underway:
         case Entities.ShippingState.Invalid:
         case Entities.ShippingState.Cancelation:
         case Entities.ShippingState.Canceled:

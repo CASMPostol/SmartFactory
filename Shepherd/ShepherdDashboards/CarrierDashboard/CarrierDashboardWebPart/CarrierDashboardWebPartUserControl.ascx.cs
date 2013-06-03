@@ -216,34 +216,44 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     protected void Page_Load( object sender, EventArgs e )
     {
-      if ( !IsPostBack )
+      try
       {
-        SetVisible( m_AllButtons );
-        m_StateMachineEngine.InitMahine();
-        m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownSelect".GetLocalizedString(), "-1" ) { Selected = true } );
-        m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownUnacceptable".GetLocalizedString(), ( (int)TrailerCondition._1Unexceptable ).ToString() ) );
-        m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownBad".GetLocalizedString(), ( (int)TrailerCondition._2 ).ToString() ) );
-        m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownPoor".GetLocalizedString(), ( (int)TrailerCondition._3 ).ToString() ) );
-        m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownGood".GetLocalizedString(), ( (int)TrailerCondition._4 ).ToString() ) );
-        m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownExcellent".GetLocalizedString(), ( (int)TrailerCondition._5Excellent ).ToString() ) );
-        m_TransportUnitTypeDropDownList.DataSource = from _idx in EDC.TransportUnitType
-                                                     orderby _idx.Tytuł ascending
-                                                     select new { Title = _idx.Tytuł, Index = _idx.Identyfikator };
-        m_TransportUnitTypeDropDownList.DataTextField = "Title";
-        m_TransportUnitTypeDropDownList.DataValueField = "Index";
-        m_TransportUnitTypeDropDownList.DataBind();
-        m_TransportUnitTypeDropDownList.SelectedIndex = 0;
+        if ( !IsPostBack )
+        {
+          SetVisible( m_AllButtons );
+          m_StateMachineEngine.InitMahine();
+          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownSelect".GetLocalizedString(), "-1" ) { Selected = true } );
+          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownUnacceptable".GetLocalizedString(), ( (int)TrailerCondition._1Unexceptable ).ToString() ) );
+          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownBad".GetLocalizedString(), ( (int)TrailerCondition._2 ).ToString() ) );
+          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownPoor".GetLocalizedString(), ( (int)TrailerCondition._3 ).ToString() ) );
+          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownGood".GetLocalizedString(), ( (int)TrailerCondition._4 ).ToString() ) );
+          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownExcellent".GetLocalizedString(), ( (int)TrailerCondition._5Excellent ).ToString() ) );
+          m_TransportUnitTypeDropDownList.DataSource = from _idx in EDC.TransportUnitType
+                                                       orderby _idx.Tytuł ascending
+                                                       select new { Title = _idx.Tytuł, Index = _idx.Identyfikator };
+          m_TransportUnitTypeDropDownList.DataTextField = "Title";
+          m_TransportUnitTypeDropDownList.DataValueField = "Index";
+          m_TransportUnitTypeDropDownList.DataBind();
+          m_TransportUnitTypeDropDownList.SelectedIndex = 0;
+        }
+        m_EstimateDeliveryTimeDateTimeControl.LocaleId = CultureInfo.CurrentUICulture.LCID;
+        m_WarehouseEndTimeControl.LocaleId = CultureInfo.CurrentUICulture.LCID;
+        m_WarehouseStartTimeControl.LocaleId = CultureInfo.CurrentUICulture.LCID;
+        m_SaveButton.Click += new EventHandler( m_StateMachineEngine.SaveButton_Click );
+        m_NewShippingButton.Click += new EventHandler( m_StateMachineEngine.NewShippingButton_Click );
+        m_CancelButton.Click += new EventHandler( m_StateMachineEngine.CancelButton_Click );
+        m_EditButton.Click += new EventHandler( m_StateMachineEngine.EditButton_Click );
+        m_AbortButton.Click += new EventHandler( m_StateMachineEngine.AbortButton_Click );
+        m_CoordinatorEditCheckBox.CheckedChanged += new EventHandler( m_StateMachineEngine.m_CoordinatorEditCheckBox_CheckedChanged );
+        m_SecurityRequiredChecbox.CheckedChanged += new EventHandler( m_StateMachineEngine.m_SecurityRequiredChecbox_CheckedChanged );
+
       }
-      m_EstimateDeliveryTimeDateTimeControl.LocaleId = CultureInfo.CurrentUICulture.LCID;
-      m_WarehouseEndTimeControl.LocaleId = CultureInfo.CurrentUICulture.LCID;
-      m_WarehouseStartTimeControl.LocaleId = CultureInfo.CurrentUICulture.LCID;
-      m_SaveButton.Click += new EventHandler( m_StateMachineEngine.SaveButton_Click );
-      m_NewShippingButton.Click += new EventHandler( m_StateMachineEngine.NewShippingButton_Click );
-      m_CancelButton.Click += new EventHandler( m_StateMachineEngine.CancelButton_Click );
-      m_EditButton.Click += new EventHandler( m_StateMachineEngine.EditButton_Click );
-      m_AbortButton.Click += new EventHandler( m_StateMachineEngine.AbortButton_Click );
-      m_CoordinatorEditCheckBox.CheckedChanged += new EventHandler( m_StateMachineEngine.m_CoordinatorEditCheckBox_CheckedChanged );
-      m_SecurityRequiredChecbox.CheckedChanged += new EventHandler( m_StateMachineEngine.m_SecurityRequiredChecbox_CheckedChanged );
+      catch ( Exception ex )
+      {
+        ActionResult _ar = new ActionResult();
+        _ar.AddException( ex );
+        this.ShowActionResult( _ar );
+      }
     }
     /// <summary>
     /// Loads the state of the control.
@@ -708,7 +718,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           EDC.SubmitChanges();
           _checkPoint = "Shipping.MakeBooking";
           _sppng.MakeBooking( _Tss, m_ControlState.TimeSlotIsDouble );
-          _sppng.UpdateTitle();
           m_ControlState.ShippingID = _sppng.Identyfikator.Value.ToString();
           _checkPoint = "LoadDescription";
           LoadDescription _ld = new LoadDescription()
@@ -731,6 +740,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             _checkPoint = "SubmitChanges #4";
             EDC.SubmitChanges();
           }
+          _checkPoint = "UpdateTitle";
+          _sppng.UpdateTitle();
           _checkPoint = "CalculateState";
           _sppng.CalculateState();
           try
@@ -745,6 +756,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             _checkPoint = "SubmitChanges #6";
             EDC.SubmitChanges();
           }
+          _checkPoint = "SendShippingData";
           SendShippingData( _sppng );
         }
       }
