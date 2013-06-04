@@ -7,7 +7,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #region public
 
     [Flags]
-    internal enum ControlsSet
+    internal enum ControlsSet: ulong
     {
       SaveOn = 0x01,
       EditOn = 0x02,
@@ -24,12 +24,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       WarehouseOn = 0x400,
       TimeSlotOn = 0x800,
       //
+      OperatorControlsOn = 0x1000,
       TransportUnitOn = 0x2000,
       CityOn = 0x4000,
       PartnerOn = 0x8000,
       //
-      OperatorControlsOn = 0x10000,
-      LoadingUnloadingTimeOn = 0x20000,
+      LoadingUnloadingTimeOn = 0x10000,
     }
     internal enum InterfaceEvent { SaveClick, EditClick, CancelClick, NewClick, EnterState, AbortClick }
     internal enum InterfaceState { ViewState, EditState, NewState }
@@ -270,7 +270,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             (
               ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.CommentsOn | ControlsSet.EstimatedDeliveryTimeOn |
               ControlsSet.AbortOn | ControlsSet.TransportUnitOn | ControlsSet.CoordinatorPanelOn |
-              ControlsSet.OperatorControlsOn | ControlsSet.ContainerNoOn
+              ControlsSet.OperatorControlsOn | ControlsSet.ContainerNoOn | ControlsSet.LoadingUnloadingTimeOn
             );
           break;
         case InterfaceState.NewState:
