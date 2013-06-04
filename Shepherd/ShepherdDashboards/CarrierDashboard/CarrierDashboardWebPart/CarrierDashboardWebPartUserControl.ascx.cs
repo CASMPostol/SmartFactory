@@ -1176,7 +1176,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private ButtonsSet m_EditbilityACL;
     private ControlState m_ControlState = new ControlState( null );
     private GlobalDefinitions.Roles m_DashboardType = GlobalDefinitions.Roles.None;
-    private const StateMachineEngine.ControlsSet m_AllButtons = (StateMachineEngine.ControlsSet)int.MaxValue;
+    private const StateMachineEngine.ControlsSet m_AllButtons = (StateMachineEngine.ControlsSet)ulong.MaxValue;
     private event InterconnectionDataTable<Shipping>.SetDataEventArg m_ShippintInterconnectionEvent;
     #endregion
 
@@ -1195,9 +1195,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       if ( CurrentShipping == null )
         return;
       if ( !m_WarehouseStartTimeControl.IsValid || m_WarehouseStartTimeControl.IsDateEmpty )
-        CurrentShipping.WarehouseEndTime = null;
+        CurrentShipping.WarehouseStartTime = null;
       else
-        CurrentShipping.WarehouseEndTime = m_WarehouseStartTimeControl.SelectedDate;
+        CurrentShipping.WarehouseStartTime = m_WarehouseStartTimeControl.SelectedDate;
     }
     protected void m_WarehouseEndTimeButton_Click( object sender, EventArgs e )
     {
