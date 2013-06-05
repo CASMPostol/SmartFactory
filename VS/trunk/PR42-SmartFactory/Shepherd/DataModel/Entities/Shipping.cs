@@ -345,6 +345,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     {
       StartTime = timeSlotsCollection[ 0 ].StartTime;
       TSStartTime = timeSlotsCollection[ 0 ].StartTime;
+      WarehouseStartTime = timeSlotsCollection[ 0 ].StartTime;
       Shipping2WarehouseTitle = timeSlotsCollection[ 0 ].GetWarehouse();
       TimeSlotTimeSlot _next = timeSlotsCollection[ 0 ];
       foreach ( TimeSlotTimeSlot _tsx in timeSlotsCollection )
@@ -354,6 +355,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       EndTime = _next.EndTime;
       TSEndTime = _next.EndTime;
+      WarehouseEndTime = _next.EndTime;
       ShippingDuration = Convert.ToDouble( ( _next.EndTime.Value - this.StartTime.Value ).TotalMinutes );
       LoadingType = isDouble ? Entities.LoadingType.Manual : Entities.LoadingType.Pallet;
       return timeSlotsCollection;

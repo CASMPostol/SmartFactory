@@ -180,6 +180,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       public InterfaceState InterfaceState = InterfaceState.ViewState;
       internal StateMachineEngine.ControlsSet SetEnabled = 0;
       public bool TimeSlotChanged = false;
+      public bool WarehouseEndTimeChanged = false;
+      public bool WarehouseStartTimeChanged = false;
       #endregion
 
       #region public
@@ -592,8 +594,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_ShowDocumentLabel( CurrentShipping );
         _at = "ShowOperatorStuff";
         ShowOperatorStuff( CurrentShipping );
-        m_WarehouseStartTimeControl.SetTimePicker( CurrentShipping.WarehouseStartTime );
-        m_WarehouseEndTimeControl.SetTimePicker( CurrentShipping.WarehouseEndTime );
+        ShowLoadingUnloadingTimePanel( CurrentShipping );
         if ( CurrentShipping.IsOutbound.Value )
         {
           _at = "m_EstimateDeliveryTimeDateTimeControl";
@@ -617,6 +618,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _rsult.AddException( ex );
       }
       return _rsult;
+    }
+    private void ShowLoadingUnloadingTimePanel( Shipping shipping )
+    {
+      m_WarehouseStartTimeControl.SetTimePicker( shipping.WarehouseStartTime );
+      m_WarehouseEndTimeControl.SetTimePicker( shipping.WarehouseEndTime );
+      m_ControlState.WarehouseStartTimeChanged = false;
+      m_ControlState.WarehouseEndTimeChanged = false;
     }
     private void ShowOperatorStuff( Shipping _sppng )
     {
@@ -711,14 +719,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             return _rsult;
           _checkPoint = "BookTimeSlots";
           List<TimeSlotTimeSlot> _Tss = TimeSlotTimeSlot.BookTimeSlots( EDC, m_ControlState.TimeSlotID, m_ControlState.TimeSlotIsDouble );
-          //_checkPoint = "SubmitChanges #1";
-          //EDC.SubmitChanges();
-
-          //_checkPoint = "Shipping.SubmitChanges #2";
-          //EDC.SubmitChanges();
           _checkPoint = "Shipping.MakeBooking";
           _sppng.MakeBooking( _Tss, m_ControlState.TimeSlotIsDouble );
-          m_ControlState.ShippingID = String.Empty; //_sppng.Identyfikator.Value.ToString();
+          m_ControlState.ShippingID = String.Empty;
           _checkPoint = "LoadDescription";
           LoadDescription _ld = new LoadDescription()
           {
@@ -778,10 +781,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       string _checkPoint = "Starting";
       try
       {
+        _checkPoint = "UpdateShipping";
         UpdateShipping( CurrentShipping, _rst, EDC );
-        UpdateTimeSlot( CurrentShipping, _rst, EDC.TimeSlot );
-        CurrentShipping.CalculateState();
         _checkPoint = "UpdateTimeSlot";
+        UpdateTimeSlot( CurrentShipping, _rst, EDC.TimeSlot );
+        _checkPoint = "CurrentShipping";
+        CurrentShipping.CalculateState();
+        if ( m_ControlState.WarehouseEndTimeChanged )
+          CurrentShipping.WarehouseEndTime = UpdateTime( m_WarehouseEndTimeControl );
+        if ( m_ControlState.WarehouseStartTimeChanged )
+          CurrentShipping.WarehouseStartTime = UpdateTime( m_WarehouseStartTimeControl );
+        _checkPoint = "SubmitChanges";
         try
         {
           EDC.SubmitChanges();
@@ -1183,21 +1193,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #region EventHandlers
     protected void m_WarehouseEndTimeButton_DateChanged( object sender, EventArgs e )
     {
-      if ( CurrentShipping == null )
-        return;
-      if ( !m_WarehouseEndTimeControl.IsValid || m_WarehouseEndTimeControl.IsDateEmpty )
-        CurrentShipping.WarehouseEndTime = null;
-      else
-        CurrentShipping.WarehouseEndTime = m_WarehouseEndTimeControl.SelectedDate;
+      m_ControlState.WarehouseEndTimeChanged = true;
     }
     protected void m_WarehouseStartTimeControl_DateChanged( object sender, EventArgs e )
     {
-      if ( CurrentShipping == null )
-        return;
-      if ( !m_WarehouseStartTimeControl.IsValid || m_WarehouseStartTimeControl.IsDateEmpty )
-        CurrentShipping.WarehouseStartTime = null;
-      else
-        CurrentShipping.WarehouseStartTime = m_WarehouseStartTimeControl.SelectedDate;
+      m_ControlState.WarehouseStartTimeChanged = true;
     }
     protected void m_WarehouseEndTimeButton_Click( object sender, EventArgs e )
     {
@@ -1230,6 +1230,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     #endregion
 
+    #region helpers
+    private DateTime? UpdateTime( Microsoft.SharePoint.WebControls.DateTimeControl m_WarehouseEndTimeControl )
+    {
+      if ( !m_WarehouseEndTimeControl.IsValid || m_WarehouseEndTimeControl.IsDateEmpty )
+        return new Nullable<DateTime>();
+      else
+        return m_WarehouseEndTimeControl.SelectedDate;
+    }
+    #endregion
 
     #endregion
   }
