@@ -241,6 +241,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     {
       if ( date.HasValue )
         control.SelectedDate = date.Value;
+      else
+        control.IsValid = false;
     }
     #endregion
 
