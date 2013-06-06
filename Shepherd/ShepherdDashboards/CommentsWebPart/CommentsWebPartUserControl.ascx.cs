@@ -38,6 +38,32 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
     #endregion
 
     #region public
+    internal GlobalDefinitions.Roles Role
+    {
+      set
+      {
+        switch ( value )
+        {
+          case GlobalDefinitions.Roles.InboundOwner:
+          case GlobalDefinitions.Roles.OutboundOwner:
+          case GlobalDefinitions.Roles.Coordinator:
+          case GlobalDefinitions.Roles.Supervisor:
+          case GlobalDefinitions.Roles.Operator:
+            SetVisible( true );
+            break;
+          case GlobalDefinitions.Roles.Vendor:
+          case GlobalDefinitions.Roles.Forwarder:
+          case GlobalDefinitions.Roles.Escort:
+          case GlobalDefinitions.Roles.Guard:
+          case GlobalDefinitions.Roles.None:
+            SetVisible( false );
+            break;
+          default:
+            SetVisible( false );
+            break;
+        }
+      }
+    }
     internal void SetInterconnectionData( IWebPartRow provider )
     {
       try
@@ -172,6 +198,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
         this.Controls.Add( GlobalDefinitions.ErrorLiteralControl( String.Format( _format, _rslt.ActionException.Source, At, _rslt.ActionException.Message ) ) );
       }
     }
+    private void SetVisible( bool visible )
+    {
+      m_ExternalCheckBox.Checked = true;
+      m_ExternalCheckBox.Visible = visible;
+      m_ExternalLabel.Visible = visible;
+    }
+
     #region events handling
     protected void m_ShippingCommentsTextBox_TextChanged( object sender, EventArgs e )
     {
@@ -200,6 +233,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
     #endregion
 
     #endregion
+
 
   }
 }
