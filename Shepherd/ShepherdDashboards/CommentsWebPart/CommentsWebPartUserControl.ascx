@@ -50,7 +50,7 @@
             <asp:Table ID="m_Actions" runat="server" CssClass="Table">
                 <asp:TableRow>
                     <asp:TableCell>
-                        <asp:Button runat="server" ID="m_ButtonAddNew" Text="<%$Resources:CASSmartFactoryShepherd,AddNew%>" CssClass="Button" />
+                        <asp:Button runat="server" ID="m_ButtonAddNew" OnClick="m_ButtonAddNew_Click" Text="<%$Resources:CASSmartFactoryShepherd,AddNew%>" CssClass="Button" />
                     </asp:TableCell>
                     <%--<asp:TableCell>
                             <asp:Button runat="server" ID="m_ButtonSave" Text="Save" CssClass="Button" />
