@@ -387,12 +387,17 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <summary>
     /// Updates the purchase order info.
     /// </summary>
-    public void UpdatePOInfo()
+    /// <param name="excludedLoadDescription">The <see cref="Entities.LoadDescription"/> object that should be exlided from the list of PO.</param>
+    public void UpdatePOInfo( Entities.LoadDescription excludedLoadDescription )
     {
       this.PoLastModification = DateTime.Now;
       StringBuilder _po = new StringBuilder();
       foreach ( LoadDescription _ldx in LoadDescription )
+      {
+        if ( excludedLoadDescription == _ldx )
+          continue;
         _po.AppendLine( SPEncode.HtmlEncode( _ldx.Tytuł ) );
+      }
       this.PoNumberMultiline = _po.ToString();
     }
     #endregion
