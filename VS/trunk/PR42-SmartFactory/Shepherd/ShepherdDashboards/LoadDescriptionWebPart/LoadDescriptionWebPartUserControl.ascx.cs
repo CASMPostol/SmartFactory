@@ -83,6 +83,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       public string LoadDescriptionID = String.Empty;
       internal StateMachineEngine.ControlsSet SetEnabled = 0;
       public InterfaceState InterfaceState = InterfaceState.ViewState;
+      public bool m_POModified = false;
       #endregion
 
       #region public
@@ -325,14 +326,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         if ( m_Shipping != null )
           return m_Shipping;
         if ( m_ControlState.ShippingID.IsNullOrEmpty() )
-          throw new ApplicationException("Not connected - no shipping associated.");
+          throw new ApplicationException( "Not connected - no shipping associated." );
         m_Shipping = Element.GetAtIndex<Shipping>( EDC.Shipping, m_ControlState.ShippingID );
         return m_Shipping;
       }
     }
     private BoundField m_DeliveryNumberBoundField = new BoundField() { DataField = "DeliveryNumber", Visible = true, HeaderText = "DeliveryNumberBoundFieldHeaderText".GetLocalizedString() };
     private BoundField m_MarketTitleBoundField = new BoundField() { DataField = "MarketTitle", Visible = false, HeaderText = "MarketTitleBoundFieldHeaderText".GetLocalizedString() };
-    private bool m_POModified = false;
     #endregion
 
     #region private methods
@@ -370,7 +370,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           m_MarketDropDown.DataBind();
           m_MarketDropDown.SelectedIndex = -1;
         }
-        InitLoadDescriptionGridView( _sppng );
+        InitLoadDescriptionGridView( _sppng, null );
         return StateMachineEngine.ActionResult.Success;
       }
       catch ( Exception ex )
@@ -391,11 +391,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           //ReportAlert("LoadDescription created");
           _ld.LoadDescription2PartnerTitle = CurrentShipping.PartnerTitle;
           EDC.LoadDescription.InsertOnSubmit( _ld );
-          if ( m_POModified )
-            CurrentShipping.UpdatePOInfo();
+          if ( m_ControlState.m_POModified )
+          {
+            CurrentShipping.UpdatePOInfo( null );
+            m_ControlState.m_POModified = false;
+          }
           EDC.SubmitChanges();
           m_ControlState.LoadDescriptionID = _ld.Identyfikator.Value.ToString();
-          InitLoadDescriptionGridView( CurrentShipping );
+          InitLoadDescriptionGridView( CurrentShipping, null );
         }
         return _res;
       }
@@ -412,11 +415,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       {
         LoadDescription _ld = Element.GetAtIndex<LoadDescription>( EDC.LoadDescription, m_ControlState.LoadDescriptionID );
         //string _msg = String.Format("The {0} load description deleted.", _ld.Tytuł);
-        EDC.LoadDescription.RecycleOnSubmit( _ld );
-        CurrentShipping.UpdatePOInfo();
+        EDC.LoadDescription.DeleteOnSubmit( _ld );
+        CurrentShipping.UpdatePOInfo( _ld );
         //ReportAlert(_msg);
         EDC.SubmitChanges();
-        InitLoadDescriptionGridView( CurrentShipping );
+        InitLoadDescriptionGridView( CurrentShipping, _ld );
         return StateMachineEngine.ActionResult.Success;
       }
       catch ( Exception ex )
@@ -436,10 +439,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         if ( _res.ActionSucceeded )
         {
           //ReportAlert("LoadDescription updated");
-          if ( m_POModified )
-            CurrentShipping.UpdatePOInfo();
+          if ( m_ControlState.m_POModified )
+          {
+            CurrentShipping.UpdatePOInfo( null );
+            m_ControlState.m_POModified = false;
+          }
           EDC.SubmitChanges();
-          InitLoadDescriptionGridView( CurrentShipping );
+          InitLoadDescriptionGridView( CurrentShipping, null );
         }
         return _res;
       }
@@ -482,10 +488,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       }
       return AddValidationMessages( _ve );
     }
-    private void InitLoadDescriptionGridView( Shipping _sppng )
+    private void InitLoadDescriptionGridView( Shipping _sppng, LoadDescription excludedLoadDescription )
     {
-      m_LoadDescriptionGridView.DataSource = from _ldidx in _sppng.LoadDescription
+      List<LoadDescription> _ldc = _sppng.LoadDescription.ToList();
+      m_LoadDescriptionGridView.DataSource = from _ldidx in _ldc
                                              orderby _ldidx.DeliveryNumber
+                                             where _ldidx != excludedLoadDescription
                                              select new
                                              {
                                                Title = _ldidx.Tytuł,
@@ -567,7 +575,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     #region events hanlers
     protected void m_LoadDescriptionNumberTextBox_TextChanged( object sender, EventArgs e )
     {
-      m_POModified = true;
+      m_ControlState.m_POModified = true;
     }
     #endregion
 

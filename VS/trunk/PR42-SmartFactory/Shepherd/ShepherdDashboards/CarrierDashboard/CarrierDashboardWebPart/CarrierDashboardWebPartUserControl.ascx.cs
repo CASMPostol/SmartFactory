@@ -745,6 +745,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             EDC.SubmitChanges();
           }
           _checkPoint = "UpdateTitle";
+          _sppng.UpdatePOInfo( null );
           _sppng.UpdateTitle();
           _checkPoint = "CalculateState";
           _sppng.CalculateState();
