@@ -15,7 +15,6 @@
 
 using System;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
@@ -200,20 +199,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
     }
     private void SetVisible( bool visible )
     {
-      m_ExternalCheckBox.Checked = true;
+      m_ExternalCheckBox.Checked = false;
       m_ExternalCheckBox.Visible = visible;
       m_ExternalLabel.Visible = visible;
     }
-
-    #region events handling
-    protected void m_ShippingCommentsTextBox_TextChanged( object sender, EventArgs e )
+    protected void m_ButtonAddNew_Click( object sender, EventArgs e )
     {
       try
       {
         Shipping _shpppng = CurrentShipping;
         if ( m_Shipping == null )
           return;
-        string _to = CurrentShipping.PartnerTitle == null ? "All internal" : CurrentShipping.PartnerTitle.Tytuł;
+        if ( m_ExternalCheckBox.Checked && CurrentShipping.PartnerTitle == null )
+        {
+          m_ExternalCheckBox.Checked = false;
+          //TODO must be localized.
+          Parent.Controls.Add( GlobalDefinitions.ErrorLiteralControl( "Partner not set only internal messages allowed." ) );
+          return;
+        }
         ShippingComments _new = new ShippingComments()
         {
           Body = m_ShippingCommentsTextBox.Text,
@@ -223,6 +226,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
         };
         EDC.Comments.InsertOnSubmit( _new );
         EDC.SubmitChanges();
+        m_ShippingCommentsTextBox.Text = String.Empty;
       }
       catch ( Exception ex )
       {
@@ -231,9 +235,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
       }
     }
     #endregion
-
-    #endregion
-
 
   }
 }

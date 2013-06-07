@@ -40,9 +40,8 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell ColumnSpan="2">
-                            <SharePoint:InputFormTextBox ID="m_ShippingCommentsTextBox" runat="server" RichText="true" RichTextMode="FullHtml" TextMode="MultiLine" Width="600" Rows="10"
-                                OnTextChanged="m_ShippingCommentsTextBox_TextChanged" />
-                      </asp:TableCell>
+                            <SharePoint:InputFormTextBox ID="m_ShippingCommentsTextBox" runat="server" RichText="true" RichTextMode="FullHtml" TextMode="MultiLine" Width="600" Rows="10" />
+                        </asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>
             </asp:TableCell>
@@ -52,7 +51,7 @@
                 <asp:Table ID="m_Actions" runat="server" CssClass="Table">
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:Button runat="server" ID="m_ButtonAddNew" Text="Add comment" CssClass="Button" />
+                            <asp:Button runat="server" ID="m_ButtonAddNew" Text="Add comment" CssClass="Button" OnClick="m_ButtonAddNew_Click" />
                         </asp:TableCell>
                         <%--<asp:TableCell>
                             <asp:Button runat="server" ID="m_ButtonSave" Text="Save" CssClass="Button" />
