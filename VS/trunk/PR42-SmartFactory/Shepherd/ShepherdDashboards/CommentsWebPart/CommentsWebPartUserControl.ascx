@@ -39,8 +39,7 @@
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell ColumnSpan="2">
-                        <SharePoint:InputFormTextBox ID="m_ShippingCommentsTextBox" runat="server" RichText="true" RichTextMode="FullHtml" TextMode="MultiLine" Width="600" Rows="10"
-                            OnTextChanged="m_ShippingCommentsTextBox_TextChanged" />
+                        <SharePoint:InputFormTextBox ID="m_ShippingCommentsTextBox" runat="server" RichText="true" RichTextMode="FullHtml" TextMode="MultiLine" Width="600" Rows="10" />
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
