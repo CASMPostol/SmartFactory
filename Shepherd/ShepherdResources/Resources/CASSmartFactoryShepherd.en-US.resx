@@ -816,4 +816,7 @@
   <data name="CAS_PoLastModification" xml:space="preserve">
     <value>Last delivery mod.</value>
   </data>
+  <data name="CAS_CommentsWebPart" xml:space="preserve">
+    <value>Comments Manager</value>
+  </data>
 </root>
