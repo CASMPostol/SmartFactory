@@ -22,15 +22,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart {
         protected global::Microsoft.SharePoint.WebControls.CssRegistration cssreg;
         
         /// <summary>
-        /// m_PanelAddEdit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel m_PanelAddEdit;
-        
-        /// <summary>
         /// m_TableMain control.
         /// </summary>
         /// <remarks>

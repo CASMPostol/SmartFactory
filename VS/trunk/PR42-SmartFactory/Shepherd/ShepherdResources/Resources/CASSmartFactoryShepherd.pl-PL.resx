@@ -816,4 +816,7 @@
   <data name="CAS_PoLastModification" xml:space="preserve">
     <value>Ostatnia modyfikacja wydania</value>
   </data>
+  <data name="CAS_CommentsWebPart" xml:space="preserve">
+    <value>Dodaj komentarz</value>
+  </data>
 </root>
