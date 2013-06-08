@@ -188,7 +188,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       }
       catch ( Exception ex )
       {
-        SignalException( "m_RemoveDriverButton_Click", "RemoveDriverButtonErrorMessage".GetLocalizedString(), ex );
+        SignalException( "TransportResourcesUserControl.m_RemoveDriverButton_Click", "RemoveDriverButtonErrorMessage".GetLocalizedString(), ex );
       }
     }
     private void m_AddDriverButton_Click( object sender, EventArgs e )
