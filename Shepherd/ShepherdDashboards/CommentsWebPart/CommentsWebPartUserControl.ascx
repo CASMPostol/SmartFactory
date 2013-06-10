@@ -12,23 +12,21 @@
 <SharePoint:CssRegistration runat="server" ID="cssreg" Name="/_layouts/ShepherdDashboards/CAS_ShepherdDashboards.css" />
 <asp:Table ID="m_TableMain" runat="server" CssClass="Table">
     <asp:TableRow>
-        <asp:TableCell Width="600px" VerticalAlign="Top">
+        <asp:TableCell VerticalAlign="Top">
             <asp:Table ID="m_TableLeft" runat="server" CssClass="TableInside">
                 <asp:TableRow>
-                    <asp:TableCell ColumnSpan="2">
+                    <asp:TableCell>
+                        <asp:Label ID="m_CurrentShipping" runat="server" CssClass="Label" Text="<%$Resources:CASSmartFactoryShepherd,Shipping%>" />
+                    </asp:TableCell>
+                    <asp:TableCell HorizontalAlign="Left">
                         <asp:Label ID="m_TaskLabel" runat="server" CssClass="Label" Text="" />
                     </asp:TableCell>
                 </asp:TableRow>
-                <%--<asp:TableRow>
-                        <asp:TableCell ColumnSpan="2">
-                            <asp:TextBox ID="m_TaskTitleTextBox" runat="server" CssClass="TextBoxLong" />
-                        </asp:TableCell>
-                    </asp:TableRow>--%>
                 <asp:TableRow>
                     <asp:TableCell>
                         <asp:Label ID="m_ExternalLabel" runat="server" CssClass="Label" Text="<%$Resources:CASSmartFactoryShepherd,External%>" />
                     </asp:TableCell>
-                    <asp:TableCell>
+                    <asp:TableCell HorizontalAlign="Left">
                         <asp:CheckBox ID="m_ExternalCheckBox" runat="server" Checked="false" />
                     </asp:TableCell>
                 </asp:TableRow>
