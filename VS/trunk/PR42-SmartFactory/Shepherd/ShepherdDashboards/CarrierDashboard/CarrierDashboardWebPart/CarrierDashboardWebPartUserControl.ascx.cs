@@ -580,10 +580,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         SendShippingData( CurrentShipping );
         TimeSlotTimeSlot _timeSlot = null;
         _at = "_timeSlot = (TimeSlotTimeSlot)( from";
-        _timeSlot = (TimeSlotTimeSlot)( from _ts in CurrentShipping.TimeSlot 
-                                        where _ts.Occupied.GetValueOrDefault( Occupied.Free ) == Occupied.Occupied0 
-                                        orderby _ts.StartTime 
-                                        ascending select _ts ).FirstOrDefault();
+        _timeSlot = (TimeSlotTimeSlot)( from _ts in CurrentShipping.TimeSlot
+                                        where _ts.Occupied.GetValueOrDefault( Occupied.Free ) == Occupied.Occupied0
+                                        orderby _ts.StartTime
+                                        ascending
+                                        select _ts ).FirstOrDefault();
         m_ControlState.TimeSlotChanged = false;
         if ( _timeSlot == null )
           m_ControlState.TimeSlotID = String.Empty;
@@ -736,38 +737,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           };
           EDC.Shipping.InsertOnSubmit( _sppng );
           EDC.LoadDescription.InsertOnSubmit( _ld );
-          try
-          {
-            _checkPoint = "SubmitChanges #3";
-            EDC.SubmitChanges( ConflictMode.ContinueOnConflict );
-          }
-          catch ( ChangeConflictException )
-          {
-            _checkPoint = "ResolveChangeConflicts #1";
-            EDC.ResolveChangeConflicts( _rsult );
-            _checkPoint = "SubmitChanges #4";
-            EDC.SubmitChanges();
-          }
+          _checkPoint = "SubmitChanges #1";
+          EDC.SubmitChanges();
           _checkPoint = "UpdateTitle";
           _sppng.UpdatePOInfo( null );
           _sppng.UpdateTitle();
           _checkPoint = "CalculateState";
           _sppng.CalculateState();
-          try
-          {
-            _checkPoint = "SubmitChanges #5";
-            EDC.SubmitChanges( ConflictMode.ContinueOnConflict );
-          }
-          catch ( ChangeConflictException )
-          {
-            _checkPoint = "ResolveChangeConflicts #2";
-            EDC.ResolveChangeConflicts( _rsult );
-            _checkPoint = "SubmitChanges #6";
-            EDC.SubmitChanges();
-          }
+          _checkPoint = "SubmitChanges #2";
+          EDC.SubmitChanges();
           _checkPoint = "SendShippingData";
           SendShippingData( _sppng );
         }
+      }
+      catch ( ChangeConflictException )
+      {
+        _checkPoint = "ChangeConflictException ";
+        _rsult.AddLabel( "Change conflict try again" );
+        EDC.SubmitChanges();
       }
       catch ( TimeSlotTimeSlot.TimeSlotException _tse )
       {
@@ -797,18 +784,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         if ( m_ControlState.WarehouseStartTimeChanged )
           CurrentShipping.WarehouseStartTime = UpdateTime( m_WarehouseStartTimeControl );
         _checkPoint = "SubmitChanges";
-        try
-        {
-          EDC.SubmitChanges();
-        }
-        catch ( ChangeConflictException )
-        {
-          _checkPoint = "ChangeConflictException";
-          EDC.ResolveChangeConflicts( _rst );
-          _checkPoint = "ResolveChangeConflicts";
-          EDC.SubmitChanges();
-        }
+        EDC.SubmitChanges();
         m_ControlState.TimeSlotChanged = false;
+      }
+      catch ( ChangeConflictException )
+      {
+        _checkPoint = "ChangeConflictException ";
+        _rst.AddLabel( "Change conflict - try again" );
+        EDC.SubmitChanges();
       }
       catch ( TimeSlotTimeSlot.TimeSlotException _tse )
       {
