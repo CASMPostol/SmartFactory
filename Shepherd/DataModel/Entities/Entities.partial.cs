@@ -66,7 +66,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         foreach ( ObjectChangeConflict _itx in this.ChangeConflicts )
         {
           _cp = "ObjectChangeConflict";
-          string _tmp = String.Format( "Object: {0}", _itx.Object == null ? "null" : _itx.Object.ToString() );
+          string _tmp = String.Format( "ResolveChangeConflicts: object of {0}", _itx.Object == null ? "null" : _itx.Object.ToString() );
           if ( _itx.MemberConflicts != null )
           {
             string _ft = ", Conflicts: Member.Name={0}; CurrentValue={1}; DatabaseValue={2}; OriginalValue={3}";

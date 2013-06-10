@@ -65,7 +65,9 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionResult.cs" />
+    <Compile Include="ActionResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPart.cs" />
     <Compile Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx.cs">
       <DependentUpon>CarrierDashboardWebPartUserControl.ascx</DependentUpon>

@@ -114,7 +114,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       string _at = "Starting";
       try
       {
-        ActionResult _ar = new ActionResult();
+        ActionResult _ar = new ActionResult( "ShippingStateMachine.m_OnWorkflowItemChanged_Invoked" );
         _at = "using ( EntitiesDataContext ";
         using ( EntitiesDataContext _EDC = new EntitiesDataContext( m_OnWorkflowActivated_WorkflowProperties.SiteUrl ) )
         {
@@ -153,8 +153,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
       catch ( Exception ex )
       {
-        string _msg = String.Format( "ShippingStateMachine.m_OnWorkflowItemChanged_Invoked at: {0}", _at );
-        ReportException( _msg, ex );
+        ReportException( _at, ex );
       }
       //if (m_OnWorkflowItemChanged_BeforeProperties1.Count == 0)
       //{
@@ -399,7 +398,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           }
           catch ( ChangeConflictException )
           {
-            ActionResult _ar = new ActionResult();
+            ActionResult _ar = new ActionResult( "ShippingStateMachine.m_CalculateTimeoutCode_ExecuteCode" );
             EDC.ResolveChangeConflicts( _ar );
             EDC.SubmitChanges();
             _ar.ReportActionResult( EDC );
@@ -409,7 +408,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
       catch ( Exception _ex )
       {
-        ReportException( "m_CalculateTimeoutCode_ExecuteCode", _ex );
+        ReportException( "ShippingStateMachine.m_CalculateTimeoutCode_ExecuteCode", _ex );
       }
     }
     private bool m_TimeOutReached = false;
@@ -586,7 +585,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
       catch ( Exception ex )
       {
-        ReportException( "", ex );
+        ReportException( "SendingEmailsReplicator_ChildInitialized", ex );
       }
     }
     private void SendingEmailsReplicator_ChildCompleted( object sender, ReplicatorChildEventArgs e ) { }
