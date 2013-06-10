@@ -9,6 +9,7 @@
   Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CarrierDashboardWebPartUserControl.ascx.cs"
   Inherits="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPartUserControl" %>
+
 <SharePoint:CssRegistration runat="server" ID="cssreg" Name="/_layouts/ShepherdDashboards/CAS_ShepherdDashboards.css" />
 <asp:Panel ID="m_Panel" runat="server">
   <asp:Table ID="m_CarrierDashboardWebPart" runat="server" CssClass="Table">
@@ -175,7 +176,7 @@
   </asp:Table>
   <asp:Button ID="m_NewShippingButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,AddNew%>" CssClass="Button" />
   <asp:Button ID="m_EditButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Edit%>" CssClass="Button" />
-  <asp:Button ID="m_AbortButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Abort%>" CssClass="Button" />
+  <asp:Button ID="m_AbortButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Abort%>" CssClass="Button" OnClientClick="return confirm('Are you sure?');" />
   <asp:Button ID="m_SaveButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Save%>" CssClass="Button" />
   <asp:Button ID="m_CancelButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Cancel%>" CssClass="Button" />
 </asp:Panel>
