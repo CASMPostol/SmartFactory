@@ -59,7 +59,7 @@
                           <asp:TableCell>
                             <asp:Label ID="m_WarehouseStartTimeLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,WarehouseStartTime%>" CssClass="Label"></asp:Label>
                           </asp:TableCell>
-                          <asp:TableCell>
+                          <asp:TableCell ColumnSpan="2">
                             <SharePoint:DateTimeControl ID="m_WarehouseStartTimeControl" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx"
                                 OnDateChanged="m_WarehouseStartTimeControl_DateChanged"
                                 ToolTip="Start of loading/unloading time." />
@@ -73,6 +73,8 @@
                             <SharePoint:DateTimeControl ID="m_WarehouseEndTimeControl" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" 
                                 OnDateChanged="m_WarehouseEndTimeButton_DateChanged" 
                                 ToolTip="End of loading/unloading time." />
+                          </asp:TableCell>
+                          <asp:TableCell HorizontalAlign="Right">
                               <asp:Button ID="m_WarehouseEndTimeButton" runat="server" CssClass="Button" Text="END"  OnClick="m_WarehouseEndTimeButton_Click"
                                   ToolTip="Click to assign end of loading/unloading time." />
                           </asp:TableCell>

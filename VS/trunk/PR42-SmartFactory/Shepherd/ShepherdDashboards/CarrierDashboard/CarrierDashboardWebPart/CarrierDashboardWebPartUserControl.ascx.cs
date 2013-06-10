@@ -1207,6 +1207,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected void m_WarehouseEndTimeButton_Click( object sender, EventArgs e )
     {
       m_WarehouseEndTimeControl.SelectedDate = DateTime.Now;
+      m_ControlState.WarehouseEndTimeChanged = true;
     }
     #endregion
 
