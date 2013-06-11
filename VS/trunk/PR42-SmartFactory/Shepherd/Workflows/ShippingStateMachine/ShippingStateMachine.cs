@@ -129,7 +129,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
             MakeOutboundReport( _sp, _EDC, _ar );
             _needSubmitChanges = true;
           }
-          if ( _sp.ShippingState.GetValueOrDefault( ShippingState.None ) == ShippingState.Completed || _sp.ShippingState.GetValueOrDefault( ShippingState.None ) == ShippingState.Cancelation )
+          if ( _sp.ShippingState.GetValueOrDefault( ShippingState.None ) == ShippingState.Completed ||
+               ( _sp.ShippingState.GetValueOrDefault( ShippingState.None ) == ShippingState.Cancelation && _sp.Shipping2PartnerTitle != null ) )
           {
             _at = "MakePerformanceReport";
             MakePerformanceReport( _EDC, _sp, _ar );
