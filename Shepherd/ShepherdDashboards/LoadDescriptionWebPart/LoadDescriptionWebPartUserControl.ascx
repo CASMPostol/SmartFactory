@@ -14,7 +14,10 @@
         <asp:Table ID="LoadDescriptionList" CssClass="TableInside" runat="server">
           <asp:TableRow>
             <asp:TableCell>
-              <asp:GridView ID="m_LoadDescriptionGridView" runat="server" Enabled="true" AutoGenerateSelectButton="true">
+              <asp:GridView ID="m_LoadDescriptionGridView" runat="server" Enabled="true" AutoGenerateSelectButton="true" GridLines="Horizontal" BorderColor="#91cdf2" BorderStyle="None" BorderWidth="1px" CellPadding="6">
+                  <HeaderStyle BackColor="#91cdf2" Font-Bold="True" ForeColor="White" />
+                  <AlternatingRowStyle BackColor="#E8E8E8" />
+                  <RowStyle BackColor="#FFFFFF" BorderColor="#91cdf2" />
               </asp:GridView>
             </asp:TableCell>
           </asp:TableRow>
