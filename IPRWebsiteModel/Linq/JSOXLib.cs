@@ -77,6 +77,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.OutboundDateStart = _thisOutboundDateStart;
 
       //Balance
+      //TODO JSOX report ReassumeQuantity has vrong value  http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3839
       decimal _thisBalanceQuantity = Convert.ToDecimal( this.PreviousMonthQuantity ) + _introducingQuantity - _outQuantity;
       this.BalanceQuantity = _thisBalanceQuantity.Convert2Double2Decimals();
 
