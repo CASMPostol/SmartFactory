@@ -396,4 +396,16 @@
   <data name="External" xml:space="preserve">
     <value>External</value>
   </data>
+  <data name="End" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="EndToolTip" xml:space="preserve">
+    <value>Click to assign end of loading/unloading time</value>
+  </data>
+  <data name="WarehouseEndTimeToolTip" xml:space="preserve">
+    <value>End of loading/unloading time</value>
+  </data>
+  <data name="WarehouseStartTimeToolTip" xml:space="preserve">
+    <value>Start of loading/unloading time</value>
+  </data>
 </root>
