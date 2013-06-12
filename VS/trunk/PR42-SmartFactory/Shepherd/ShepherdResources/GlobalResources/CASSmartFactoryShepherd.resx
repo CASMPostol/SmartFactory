@@ -121,7 +121,7 @@
     <value>Abort</value>
   </data>
   <data name="AddDrivers" xml:space="preserve">
-    <value>&gt;&gt;</value>
+    <value>Add &gt;</value>
   </data>
   <data name="AddNew" xml:space="preserve">
     <value>Add new</value>
@@ -163,7 +163,7 @@
     <value>PO No.</value>
   </data>
   <data name="RemoveDrivers" xml:space="preserve">
-    <value>&lt;&lt;</value>
+    <value>&lt; Remove</value>
   </data>
   <data name="Route" xml:space="preserve">
     <value>Route</value>

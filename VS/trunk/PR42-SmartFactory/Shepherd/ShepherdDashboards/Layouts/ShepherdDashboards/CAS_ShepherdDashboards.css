@@ -18,30 +18,44 @@
 }
 .Button
 {
-    border-width:1px 1px 1px 12px;
+    border-width:1px 1px 1px 1px;
     width:90px;
     height:20px;
-    border-top-color:#addbf7;
-    border-bottom-color:#addbf7;
-    border-left-color:#91cdf2;
-    border-right-color:#91cdf2;
+    border-top-color:#26a0da;
+    border-bottom-color:#26a0da;
+    border-left-color:#26a0da;
+    border-right-color:#26a0da;
     border-style:solid;
-    background-image:url(/_layouts/images/ShepherdDashboards/button_background.jpg);
+    background-image:url(/_layouts/images/ShepherdDashboards/button_background_gray.jpg);
     background-color:#FFFFFF;
+    font-family:Verdana;
+    font-size:8pt; 
+}
+.Button_Alert
+{
+    border-width:1px 1px 1px 1px;
+    width:90px;
+    height:20px;
+    border-top-color:#26a0da;
+    border-bottom-color:#26a0da;
+    border-left-color:#26a0da;
+    border-right-color:#26a0da;
+    border-style:solid;
+    background-color:#a6f4ff;
     font-family:Verdana;
     font-size:8pt; 
 }
 .Button_TR
 {
-    border-width:1px 1px 1px 12px;
-    width:70px;
+    border-width:1px 1px 1px 1px;
+    width:75px;
     height:20px;
-    border-top-color:#addbf7;
-    border-bottom-color:#addbf7;
-    border-left-color:#91cdf2;
-    border-right-color:#91cdf2;
+    border-top-color:#26a0da;
+    border-bottom-color:#26a0da;
+    border-left-color:#26a0da;
+    border-right-color:#26a0da;
     border-style:solid;
-    background-image:url(/_layouts/images/ShepherdDashboards/button_background.jpg);
+    background-image:url(/_layouts/images/ShepherdDashboards/button_background_gray.jpg);
     background-color:#FFFFFF;
     font-family:Verdana;
     font-size:8pt; 
@@ -67,7 +81,7 @@
 .DropDown
 {
     border-width:1px 1px 1px 1px;
-    border-color:#91cdf2;
+    border-color:#26a0da;
     border-style:solid;
     background-color:#FFFFFF;
     font-family:Verdana;
@@ -77,7 +91,7 @@
 .DropDownLD
 {
     border-width:1px 1px 1px 1px;
-    border-color:#91cdf2;
+    border-color:#26a0da;
     border-style:solid;
     background-color:#FFFFFF;
     font-family:Verdana;
@@ -87,7 +101,7 @@
 .ListBox
 {
     border-width:1px 1px 1px 1px;
-    border-color:#91cdf2;
+    border-color:#26a0da;
     border-style:solid;
     background-color:#FFFFFF;
     font-family:Verdana;
@@ -96,7 +110,7 @@
 .ListBoxInside
 {
     border-width:1px 1px 1px 1px;
-    border-color:#91cdf2;
+    border-color:#26a0da;
     border-style:solid;
     background-color:#FFFFFF;
     font-family:Verdana;

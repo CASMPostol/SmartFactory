@@ -116,7 +116,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
             //site.AlternateCssUrl = WebAppRelativePath + "Style%20Library/Branding101/Styles.css";
             //site.SiteLogoUrl = WebAppRelativePath + "Style%20Library/Branding101/Images/Logo.gif";
             _webx.Title = "Shepherd Home";
-            _webx.SiteLogoUrl = @"_layouts/images/ShepherdDashboards/Shepherd_50x50.png";
+            _webx.SiteLogoUrl = @"_layouts/images/ShepherdDashboards/Shepherd_60x60.png";
             _webx.UIVersion = 4;
             _webx.Update();
           }
