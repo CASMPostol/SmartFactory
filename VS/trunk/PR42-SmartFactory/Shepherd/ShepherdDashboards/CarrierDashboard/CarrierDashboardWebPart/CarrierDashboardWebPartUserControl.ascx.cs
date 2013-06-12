@@ -751,9 +751,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       catch ( ChangeConflictException )
       {
-        _checkPoint = "ChangeConflictException ";
         _rsult.AddLabel( "Change conflict try again" );
-        EDC.SubmitChanges();
       }
       catch ( TimeSlotTimeSlot.TimeSlotException _tse )
       {
