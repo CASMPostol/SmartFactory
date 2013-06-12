@@ -755,7 +755,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       catch ( TimeSlotTimeSlot.TimeSlotException _tse )
       {
-        _rsult.AddException( _tse );
+        _rsult.AddLabel( _tse.Message );
       }
       catch ( Exception ex )
       {
