@@ -304,7 +304,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// </returns>
     public static string ToString( this DateTime? _val )
     {
-      return _val.HasValue ? _val.Value.ToString( CultureInfo.CurrentUICulture ) : String.Empty;
+      return _val.HasValue ? _val.Value.ToString( CultureInfo.CurrentCulture ) : String.Empty;
     }
     /// <summary>
     /// Returns a <see cref="System.String"/> that represents this instance.
@@ -316,7 +316,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// </returns>
     public static string ToString( this DateTime? _val, string _format )
     {
-      return _val.HasValue ? string.Format( _format, _val.Value.ToString( CultureInfo.CurrentUICulture ) ) : String.Empty;
+      return _val.HasValue ? string.Format( _format, _val.Value.ToString( CultureInfo.CurrentCulture ) ) : String.Empty;
     }
     internal const string UnknownEmail = "unknown@comapny.com";
     /// <summary>
