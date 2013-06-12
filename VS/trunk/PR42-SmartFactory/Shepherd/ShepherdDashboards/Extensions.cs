@@ -36,7 +36,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     /// </returns>
     public static string ToString(this DateTime? _val)
     {
-      return _val.HasValue ? _val.Value.ToString(CultureInfo.CurrentUICulture) : String.Empty;
+      return _val.HasValue ? _val.Value.ToString(CultureInfo.CurrentCulture) : String.Empty;
     }
     /// <summary>
     /// Returns a <see cref="System.String"/> that represents this instance.
@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     /// </returns>
     public static string ToString(this DateTime? _val, string _format)
     {
-      return _val.HasValue ? string.Format(_format, _val.Value.ToString(CultureInfo.CurrentUICulture)) : String.Empty;
+      return _val.HasValue ? string.Format(_format, _val.Value.ToString(CultureInfo.CurrentCulture)) : String.Empty;
     }
     ///// <summary>
     ///// Labels the text property.
@@ -109,7 +109,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       if (_trimed.IsNullOrEmpty())
         return null;
       double _dv;
-      if (Double.TryParse(_trimed, NumberStyles.Any, CultureInfo.CurrentUICulture, out _dv))
+      if (Double.TryParse(_trimed, NumberStyles.Any, CultureInfo.CurrentCulture, out _dv))
         return _dv;
       _errors.Add(String.Format("WrongValue".GetLocalizedString(), _value.Text));
       return null;
@@ -124,7 +124,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     public static string GetLocalizedString(this string val)
     {
       string _frmt = "$Resources:{0}";
-      return SPUtility.GetLocalizedString(String.Format(_frmt, val), GlobalDefinitions.RootResourceFileName, (uint)CultureInfo.CurrentUICulture.LCID);
+      return SPUtility.GetLocalizedString(String.Format(_frmt, val), GlobalDefinitions.RootResourceFileName, (uint)CultureInfo.CurrentCulture.LCID);
     }
     public static string GetLocalizationExpresion(this string val)
     {

@@ -238,9 +238,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           m_TransportUnitTypeDropDownList.DataBind();
           m_TransportUnitTypeDropDownList.SelectedIndex = 0;
         }
-        m_EstimateDeliveryTimeDateTimeControl.LocaleId = CultureInfo.CurrentUICulture.LCID;
-        m_WarehouseEndTimeControl.LocaleId = CultureInfo.CurrentUICulture.LCID;
-        m_WarehouseStartTimeControl.LocaleId = CultureInfo.CurrentUICulture.LCID;
+        m_EstimateDeliveryTimeDateTimeControl.LocaleId = CultureInfo.CurrentCulture.LCID;
+        m_WarehouseEndTimeControl.LocaleId = CultureInfo.CurrentCulture.LCID;
+        m_WarehouseStartTimeControl.LocaleId = CultureInfo.CurrentCulture.LCID;
         m_SaveButton.Click += new EventHandler( m_StateMachineEngine.SaveButton_Click );
         m_NewShippingButton.Click += new EventHandler( m_StateMachineEngine.NewShippingButton_Click );
         m_CancelButton.Click += new EventHandler( m_StateMachineEngine.CancelButton_Click );
@@ -646,7 +646,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_TimeSlotTextBox.Text = _isEditable ? "ShowSelectTimeSlot".GetLocalizedString() : "ShowShippingLocked".GetLocalizedString();
         return;
       }
-      m_TimeSlotTextBox.Text = String.Format( "{0}{1}{2}", _cts.StartTime.Value.ToString( CultureInfo.CurrentUICulture ), _isEditable ? "" : " ! ", _isDouble ? "x2" : "" );
+      m_TimeSlotTextBox.Text = String.Format( "{0}{1}{2}", _cts.StartTime.Value.ToString( CultureInfo.CurrentCulture ), _isEditable ? "" : " ! ", _isDouble ? "x2" : "" );
       Warehouse _wrs = _cts.GetWarehouse();
       m_WarehouseLabel.Text = _wrs.Tytuł;
     }
@@ -786,13 +786,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       catch ( ChangeConflictException )
       {
-        _checkPoint = "ChangeConflictException ";
         _rst.AddLabel( "Change conflict - try again" );
-        EDC.SubmitChanges();
       }
       catch ( TimeSlotTimeSlot.TimeSlotException _tse )
       {
-        _rst.AddException( _tse );
+        _rst.AddLabel( _tse.Message );
       }
       catch ( Exception ex )
       {

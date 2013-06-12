@@ -77,7 +77,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     public static string GetLocalizedString(this string val)
     {
       string _frmt = "$Resources:{0}";
-      return SPUtility.GetLocalizedString(String.Format(_frmt, val), RootResourceFileName, (uint)CultureInfo.CurrentUICulture.LCID);
+      return SPUtility.GetLocalizedString(String.Format(_frmt, val), RootResourceFileName, (uint)CultureInfo.CurrentCulture.LCID);
     }
     public static string GetLocalizationExpresion(this string val)
     {
