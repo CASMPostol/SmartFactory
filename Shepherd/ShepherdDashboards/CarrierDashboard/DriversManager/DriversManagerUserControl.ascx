@@ -39,5 +39,5 @@
 <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,AddNew%>" ID="m_AddNewButton" />
 <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,Edit%>" ID="m_EditButton" />
 <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,Save%>" ID="m_SaveButton" />
-<asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,Delete%>" ID="m_DeleteButton" />
+<asp:Button runat="server" CssClass="Button_Alert" OnClientClick="return confirm('Are you sure?');" Text="<%$Resources:CASSmartFactoryShepherd,Delete%>" ID="m_DeleteButton" />
 <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,Cancel%>" ID="m_CancelButton" />

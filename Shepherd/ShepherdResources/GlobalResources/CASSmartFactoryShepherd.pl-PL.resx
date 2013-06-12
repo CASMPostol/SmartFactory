@@ -121,7 +121,7 @@
     <value>Przerwij</value>
   </data>
   <data name="AddDrivers" xml:space="preserve">
-    <value>&gt;&gt;</value>
+    <value>Dodaj &gt;</value>
   </data>
   <data name="AddNew" xml:space="preserve">
     <value>Dodaj nowy</value>
@@ -163,7 +163,7 @@
     <value>Zamówienie nr</value>
   </data>
   <data name="RemoveDrivers" xml:space="preserve">
-    <value>&lt;&lt;</value>
+    <value>&lt; Usuń</value>
   </data>
   <data name="Route" xml:space="preserve">
     <value>Trasa</value>

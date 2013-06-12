@@ -384,10 +384,12 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Images\ShepherdDashboards\button_background.jpg" />
+    <Content Include="Images\ShepherdDashboards\button_background_gray.jpg" />
     <Content Include="Images\ShepherdDashboards\FeatureLogo32x32.gif" />
     <Content Include="Images\ShepherdDashboards\Shepherd_16x16.png" />
     <Content Include="Images\ShepherdDashboards\Shepherd_32x32.png" />
     <Content Include="Images\ShepherdDashboards\Shepherd_50x50.png" />
+    <Content Include="Images\ShepherdDashboards\Shepherd_60x60.png" />
     <Content Include="Images\ShepherdDashboards\SiteLogo49x48.gif" />
     <Content Include="Images\ShepherdImages\DefaultBanner.jpg" />
     <Content Include="Images\ShepherdImages\DefaultBanner2.jpg" />

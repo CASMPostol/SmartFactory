@@ -176,7 +176,7 @@
   </asp:Table>
   <asp:Button ID="m_NewShippingButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,AddNew%>" CssClass="Button" />
   <asp:Button ID="m_EditButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Edit%>" CssClass="Button" />
-  <asp:Button ID="m_AbortButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Abort%>" CssClass="Button" OnClientClick="return confirm('Are you sure?');" />
+  <asp:Button ID="m_AbortButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Abort%>" CssClass="Button_Alert" OnClientClick="return confirm('Are you sure?');" />
   <asp:Button ID="m_SaveButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Save%>" CssClass="Button" />
   <asp:Button ID="m_CancelButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Cancel%>" CssClass="Button" />
 </asp:Panel>
