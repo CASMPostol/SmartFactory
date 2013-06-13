@@ -72,7 +72,6 @@
         </asp:Table>
     </asp:TableCell>
     <asp:TableCell VerticalAlign="Top">
-        <asp:Panel ID="m_OutboundControlsPanel" runat="server">
           <asp:Table ID="m_OutboundControlsTable"  CssClass="TableInside" runat="server">
           <asp:TableRow>
             <asp:TableCell>
@@ -108,7 +107,6 @@
             </asp:TableCell>
           </asp:TableRow>
        </asp:Table>
-       </asp:Panel>
       </asp:TableCell>
     </asp:TableRow>
   </asp:Table>
