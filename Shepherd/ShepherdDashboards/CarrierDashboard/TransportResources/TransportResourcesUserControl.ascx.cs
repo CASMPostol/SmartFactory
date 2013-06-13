@@ -5,19 +5,18 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
-using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResources
 {
   public partial class TransportResourcesUserControl: UserControl
   {
     #region public
-    internal void GetData( Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary )
+    internal void GetData( Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary )
     {
       foreach ( var item in _ProvidesDictionary )
         switch ( item.Key )
         {
-          case InboundInterconnectionData.ConnectionSelector.ShippingInterconnection:
+          case InterconnectionData.ConnectionSelector.ShippingInterconnection:
             new ShippingInterconnectionData().SetRowData( _ProvidesDictionary[ item.Key ], NewDataEventHandler );
             break;
           default:

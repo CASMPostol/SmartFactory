@@ -16,15 +16,13 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SharePoint.Linq;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
-using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
-using System.Globalization;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart
 {
@@ -44,29 +42,29 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       m_StateMachineEngine = new LocalStateMachineEngine( this );
     }
-    internal void SetInterconnectionData( Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary )
+    internal void SetInterconnectionData( Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary )
     {
       foreach ( var item in _ProvidesDictionary )
         try
         {
           switch ( item.Key )
           {
-            case InboundInterconnectionData.ConnectionSelector.ShippingInterconnection:
+            case InterconnectionData.ConnectionSelector.ShippingInterconnection:
               new ShippingInterconnectionData().SetRowData( _ProvidesDictionary[ item.Key ], m_StateMachineEngine.NewDataEventHandler );
               break;
-            case InboundInterconnectionData.ConnectionSelector.TimeSlotInterconnection:
+            case InterconnectionData.ConnectionSelector.TimeSlotInterconnection:
               new TimeSlotInterconnectionData().SetRowData( _ProvidesDictionary[ item.Key ], m_StateMachineEngine.NewDataEventHandler );
               break;
-            case InboundInterconnectionData.ConnectionSelector.PartnerInterconnection:
+            case InterconnectionData.ConnectionSelector.PartnerInterconnection:
               new PartnerInterconnectionData().SetRowData( _ProvidesDictionary[ item.Key ], m_StateMachineEngine.NewDataEventHandler );
               break;
-            case InboundInterconnectionData.ConnectionSelector.CityInterconnection:
+            case InterconnectionData.ConnectionSelector.CityInterconnection:
               new CityInterconnectionData().SetRowData( _ProvidesDictionary[ item.Key ], m_StateMachineEngine.NewDataEventHandler );
               break;
-            case InboundInterconnectionData.ConnectionSelector.RouteInterconnection:
+            case InterconnectionData.ConnectionSelector.RouteInterconnection:
               new RouteInterconnectionnData().SetRowData( _ProvidesDictionary[ item.Key ], m_StateMachineEngine.NewDataEventHandler );
               break;
-            case InboundInterconnectionData.ConnectionSelector.SecurityEscortCatalogInterconnection:
+            case InterconnectionData.ConnectionSelector.SecurityEscortCatalogInterconnection:
               new SecurityEscortCatalogInterconnectionData().SetRowData( _ProvidesDictionary[ item.Key ], m_StateMachineEngine.NewDataEventHandler );
               break;
             default:
