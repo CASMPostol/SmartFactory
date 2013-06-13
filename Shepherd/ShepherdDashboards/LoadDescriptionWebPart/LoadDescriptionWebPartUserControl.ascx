@@ -113,6 +113,6 @@
   <asp:Button ID="m_NewLoadDescriptionButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,AddNew%>" CssClass="Button" />
   <asp:Button ID="m_EditLoadDescriptionButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Edit%>" CssClass="Button" />
   <asp:Button ID="m_SaveLoadDescriptionButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Save%>" CssClass="Button" />
-  <asp:Button ID="m_DeleteLoadDescriptionButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Delete%>" CssClass="Button" />
+  <asp:Button ID="m_DeleteLoadDescriptionButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Delete%>" CssClass="Button_Alert" OnClientClick="return confirm('Are you sure?');" />
   <asp:Button ID="m_CancelLoadDescriptionButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Cancel%>" CssClass="Button" />
 </asp:Panel>
