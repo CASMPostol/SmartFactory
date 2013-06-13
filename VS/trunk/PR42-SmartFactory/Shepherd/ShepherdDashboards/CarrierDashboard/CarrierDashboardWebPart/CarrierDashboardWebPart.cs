@@ -37,8 +37,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_Control.SetInterconnectionData(m_ProvidesDictionary);
       base.OnPreRender(e);
     }
-    private Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> m_ProvidesDictionary =
-      new Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow>();
+    private Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow> m_ProvidesDictionary =
+      new Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow>();
     #endregion
 
     #region public
@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     [ConnectionConsumer("Security Escort Catalog table interconnection", "SecurityEscortCatalogInterconnection", AllowsMultipleConnections = false)]
     public void SetSecurityEscortCatalogProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.SecurityEscortCatalogInterconnection, _provider);
+      m_ProvidesDictionary.Add( InterconnectionData.ConnectionSelector.SecurityEscortCatalogInterconnection, _provider );
     }
     /// <summary>
     /// "Route table interconnection.
@@ -85,7 +85,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     [ConnectionConsumer("Route table interconnection", "RouteInterconnection", AllowsMultipleConnections = false)]
     public void SetRouteProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.RouteInterconnection, _provider);
+      m_ProvidesDictionary.Add( InterconnectionData.ConnectionSelector.RouteInterconnection, _provider );
     }
     /// <summary>
     /// Sets the shipping provider.
@@ -94,7 +94,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     [ConnectionConsumer("Shipping table interconnection", "ShippingInterconnection", AllowsMultipleConnections = false)]
     public void SetShippingProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.ShippingInterconnection, _provider);
+      m_ProvidesDictionary.Add( InterconnectionData.ConnectionSelector.ShippingInterconnection, _provider );
     }
     /// <summary>
     /// Sets the time slots provider.
@@ -103,7 +103,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     [ConnectionConsumer("Time Slots calendar interconnection", "TimeSlotInterconnection", AllowsMultipleConnections = false)]
     public void SetTimeSlotsProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.TimeSlotInterconnection, _provider);
+      m_ProvidesDictionary.Add( InterconnectionData.ConnectionSelector.TimeSlotInterconnection, _provider );
     }
     /// <summary>
     /// Sets the current user provider.
@@ -112,7 +112,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     [ConnectionConsumer("Current user table interconnection", "PartnerInterconnection", AllowsMultipleConnections = false)]
     public void SetCurrentUserProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.PartnerInterconnection, _provider);
+      m_ProvidesDictionary.Add( InterconnectionData.ConnectionSelector.PartnerInterconnection, _provider );
     }
     /// <summary>
     /// City table interconnection.
@@ -121,7 +121,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     [ConnectionConsumer("City table interconnection", "CityInterconnection", AllowsMultipleConnections = false)]
     public void SetCityProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.CityInterconnection, _provider);
+      m_ProvidesDictionary.Add( InterconnectionData.ConnectionSelector.CityInterconnection, _provider );
     }    /// <summary>
     /// Gets the connection interface allowing to get selected entry of <see cref="ShippingOperationInbound"/>.
     /// </summary>

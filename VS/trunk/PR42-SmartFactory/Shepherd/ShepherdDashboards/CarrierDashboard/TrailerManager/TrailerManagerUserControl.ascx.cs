@@ -15,11 +15,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
   public partial class TrailerManagerUserControl: UserControl
   {
     #region public
-    internal void SetInterconnectionData( Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary )
+    internal void SetInterconnectionData( Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary )
     {
-      if ( _ProvidesDictionary.Keys.Contains( InboundInterconnectionData.ConnectionSelector.TrailerInterconnection ) )
+      if ( _ProvidesDictionary.Keys.Contains( InterconnectionData.ConnectionSelector.TrailerInterconnection ) )
         new TrailerInterconnectionData().SetRowData
-          ( _ProvidesDictionary[ InboundInterconnectionData.ConnectionSelector.TrailerInterconnection ], m_StateMachineEngine.NewDataEventHandler );
+          ( _ProvidesDictionary[ InterconnectionData.ConnectionSelector.TrailerInterconnection ], m_StateMachineEngine.NewDataEventHandler );
     }
     /// <summary>
     /// Initializes a new instance of the <see cref="TrailerManagerUserControl"/> class.

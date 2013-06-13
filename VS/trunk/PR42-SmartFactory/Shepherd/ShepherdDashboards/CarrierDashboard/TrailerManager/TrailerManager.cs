@@ -13,7 +13,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     // Visual Studio might automatically update this path when you change the Visual Web Part project item.
     private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard/TrailerManager/TrailerManagerUserControl.ascx";
     private TrailerManagerUserControl m_AssociatedUserControl;
-    private Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> m_ProvidesDictionary = new Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow>();
+    private Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow> m_ProvidesDictionary = new Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow>();
     #endregion
 
     #region WebPart override
@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     [ConnectionConsumer("Trailer list interconnection", "Trailer", AllowsMultipleConnections = false)]
     public void SetShippingProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.TrailerInterconnection, _provider);
+      m_ProvidesDictionary.Add( InterconnectionData.ConnectionSelector.TrailerInterconnection, _provider );
     }
     #endregion  
   }

@@ -12,11 +12,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
   public partial class DriversManagerUserControl: UserControl
   {
     #region public
-    internal void SetInterconnectionData( Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary )
+    internal void SetInterconnectionData( Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary )
     {
-      if ( _ProvidesDictionary.Keys.Contains( InboundInterconnectionData.ConnectionSelector.DriverInterconnection ) )
+      if ( _ProvidesDictionary.Keys.Contains( InterconnectionData.ConnectionSelector.DriverInterconnection ) )
         new DriverInterconnectionData().SetRowData
-          ( _ProvidesDictionary[ InboundInterconnectionData.ConnectionSelector.DriverInterconnection ], m_StateMachineEngine.NewDataEventHandler );
+          ( _ProvidesDictionary[ InterconnectionData.ConnectionSelector.DriverInterconnection ], m_StateMachineEngine.NewDataEventHandler );
     }
     /// <summary>
     /// Initializes a new instance of the <see cref="DriversManagerUserControl"/> class.

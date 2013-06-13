@@ -1,12 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using Microsoft.SharePoint;
-using Microsoft.SharePoint.WebControls;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Web.UI;
+using System.Web.UI.WebControls.WebParts;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
 {
@@ -17,7 +13,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
     // Visual Studio might automatically update this path when you change the Visual Web Part project item.
     private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard/TruckManager/TruckManagerUserControl.ascx";
     private TruckManagerUserControl m_AssociatedUserControl;
-    private Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> m_ProvidesDictionary = new Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow>();
+    private Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow> m_ProvidesDictionary = new Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow>();
     #endregion
 
     #region WebPart override
@@ -48,7 +44,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
     [ConnectionConsumer("Truck list interconnection", "TruckInterconnection", AllowsMultipleConnections = false)]
     public void SetShippingProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.TruckInterconnection, _provider);
+      m_ProvidesDictionary.Add( InterconnectionData.ConnectionSelector.TruckInterconnection, _provider );
     }
     #endregion  
 
