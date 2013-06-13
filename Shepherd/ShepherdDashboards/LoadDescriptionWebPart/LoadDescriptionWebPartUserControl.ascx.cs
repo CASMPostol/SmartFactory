@@ -57,7 +57,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           case GlobalDefinitions.Roles.Vendor:
           case GlobalDefinitions.Roles.Forwarder:
           case GlobalDefinitions.Roles.Escort:
-            m_OutboundControlsPanel.Visible = false;
+            m_MarketLabel.Visible = false;
+            m_MarketDropDown.Visible = false;
             break;
           case GlobalDefinitions.Roles.OutboundOwner:
           case GlobalDefinitions.Roles.Coordinator:
@@ -65,7 +66,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           case GlobalDefinitions.Roles.Operator:
           case GlobalDefinitions.Roles.Guard:
           case GlobalDefinitions.Roles.None:
-            m_OutboundControlsPanel.Visible = true;
+            m_MarketLabel.Visible = true;
+            m_MarketDropDown.Visible = true;
             break;
           default:
             break;
