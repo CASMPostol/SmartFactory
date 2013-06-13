@@ -213,7 +213,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
         if ( m_ExternalCheckBox.Checked && CurrentShipping.PartnerTitle == null )
         {
           m_ExternalCheckBox.Checked = false;
-          //TODO must be localized.
+          //TODO must be localized http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3842
           Parent.Controls.Add( GlobalDefinitions.ErrorLiteralControl( "Partner not set only internal messages allowed." ) );
           return;
         }
