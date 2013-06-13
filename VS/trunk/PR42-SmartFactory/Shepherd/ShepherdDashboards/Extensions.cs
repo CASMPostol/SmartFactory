@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Linq;
 using System.Web.UI.WebControls;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
-using Microsoft.SharePoint.Linq;
 using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
 

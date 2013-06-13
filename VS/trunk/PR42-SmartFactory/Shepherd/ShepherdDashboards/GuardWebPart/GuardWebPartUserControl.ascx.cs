@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint;
 
@@ -12,14 +11,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
   public partial class GuardWebPartUserControl : UserControl
   {
     #region public
-    internal void SetInterconnectionData(Dictionary<CarrierDashboard.InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary)
+    internal void SetInterconnectionData( Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary )
     {
       foreach (var item in _ProvidesDictionary)
         try
         {
           switch (item.Key)
           {
-            case InboundInterconnectionData.ConnectionSelector.ShippingInterconnection:
+            case InterconnectionData.ConnectionSelector.ShippingInterconnection:
               new ShippingInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
               break;
             default:
