@@ -464,7 +464,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void SetupAlarmsEvents( string _msg, Shipping.RequiredOperations _operations, AlarmPriority _prrty, EntitiesDataContext EDC, Shipping _sh )
     {
       if ( Shipping.InSet( _operations, Shipping.RequiredOperations.AddAlarm2Escort ) )
-        //TODO the messge must depend on the receiver roele 
+        //TODO the messge must depend on the receiver roele http://cas_sp:11225/sites/awt/Lists/RequirementsList/DispForm.aspx?ID=447
         ReportAlarmsAndEvents( _msg, _prrty, ServiceType.SecurityEscortProvider, EDC, _sh );
       if ( Shipping.InSet( _operations, Shipping.RequiredOperations.AddAlarm2Carrier ) )
         ReportAlarmsAndEvents( _msg, _prrty, ServiceType.VendorAndForwarder, EDC, _sh );
