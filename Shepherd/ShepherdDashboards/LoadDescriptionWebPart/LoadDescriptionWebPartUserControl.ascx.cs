@@ -19,13 +19,10 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SharePoint.Linq;
-using CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
 {
-  using System.Text;
   using InterfaceState = StateMachineEngine.InterfaceState;
 
   /// <summary>
@@ -41,11 +38,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     {
       m_StateMachineEngine = new LocalStateMachineEngine( this );
     }
-    internal void SetInterconnectionData( Dictionary<CarrierDashboard.InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary )
+    internal void SetInterconnectionData( Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary )
     {
-      if ( _ProvidesDictionary.Keys.Contains( InboundInterconnectionData.ConnectionSelector.ShippingInterconnection ) )
+      if ( _ProvidesDictionary.Keys.Contains( InterconnectionData.ConnectionSelector.ShippingInterconnection ) )
         new ShippingInterconnectionData().SetRowData
-          ( _ProvidesDictionary[ InboundInterconnectionData.ConnectionSelector.ShippingInterconnection ], m_StateMachineEngine.NewDataEventHandler );
+          ( _ProvidesDictionary[ InterconnectionData.ConnectionSelector.ShippingInterconnection ], m_StateMachineEngine.NewDataEventHandler );
     }
     internal GlobalDefinitions.Roles Role
     {

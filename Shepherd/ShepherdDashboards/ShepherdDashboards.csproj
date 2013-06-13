@@ -85,7 +85,6 @@
     <Compile Include="CarrierDashboard\DriversManager\DriversManagerUserControl.ascx.designer.cs">
       <DependentUpon>DriversManagerUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="CarrierDashboard\InboundInterconnectionData.cs" />
     <Compile Include="CarrierDashboard\TrailerManager\TrailerManager.cs" />
     <Compile Include="CarrierDashboard\TrailerManager\TrailerManagerUserControl.ascx.cs">
       <DependentUpon>TrailerManagerUserControl.ascx</DependentUpon>
@@ -169,6 +168,7 @@
     <Compile Include="GuardWebPart\GuardWebPartUserControl.ascx.designer.cs">
       <DependentUpon>GuardWebPartUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="InterconnectionData.cs" />
     <Compile Include="LoadDescriptionWebPart\LoadDescriptionWebPart.cs" />
     <Compile Include="LoadDescriptionWebPart\LoadDescriptionWebPartUserControl.ascx.cs">
       <DependentUpon>LoadDescriptionWebPartUserControl.ascx</DependentUpon>
@@ -318,7 +318,9 @@
     <Content Include="CarrierDashboard\DriversManager\DriversManagerUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="CarrierDashboard\DriversManager\Elements.xml" />
+    <Content Include="CarrierDashboard\DriversManager\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="CarrierDashboard\TrailerManager\Elements.xml" />
     <Content Include="CarrierDashboard\TrailerManager\TrailerManagerUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -400,7 +402,9 @@
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDashboards.css" />
     <Content Include="DefaultPage\DefaultTemplate.aspx" />
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDefault.css" />
-    <Content Include="LoadDescriptionWebPart\Elements.xml" />
+    <Content Include="LoadDescriptionWebPart\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="LoadDescriptionWebPart\LoadDescriptionWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>

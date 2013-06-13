@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.UI;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
 {
@@ -36,7 +35,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_AssociatedUserControl.SetInterconnectionData(m_ProvidesDictionary);
       base.OnPreRender(e);
     }
-    private Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> m_ProvidesDictionary = new Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow>();
+    private Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow> m_ProvidesDictionary = new Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow>();
     #endregion
 
     #region public
@@ -69,7 +68,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     [ConnectionConsumer("Shipping table interconnection", "ShippingInterconnection", AllowsMultipleConnections = false)]
     public void SetShippingProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.ShippingInterconnection, _provider);
+      m_ProvidesDictionary.Add( InterconnectionData.ConnectionSelector.ShippingInterconnection, _provider );
     }
     #endregion    
 
