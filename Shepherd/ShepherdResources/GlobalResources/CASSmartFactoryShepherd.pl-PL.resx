@@ -322,7 +322,7 @@
     <value>Brama</value>
   </data>
   <data name="InboundOwner" xml:space="preserve">
-    <value>Właściciel dostaw</value>
+    <value>Dostawy</value>
   </data>
   <data name="ManageResources" xml:space="preserve">
     <value>Zarządzaj zasobami</value>
@@ -334,10 +334,10 @@
     <value>Koordynator wysyłek</value>
   </data>
   <data name="OutboundOwner" xml:space="preserve">
-    <value>Właściciel wysyłek</value>
+    <value>Wysyłki</value>
   </data>
   <data name="Supervisor" xml:space="preserve">
-    <value>Nadzorca</value>
+    <value>Magazyn</value>
   </data>
   <data name="Vendor" xml:space="preserve">
     <value>Dostawca</value>

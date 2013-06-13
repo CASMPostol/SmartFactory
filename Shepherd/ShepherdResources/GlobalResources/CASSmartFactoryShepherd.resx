@@ -322,7 +322,7 @@
     <value>Gate</value>
   </data>
   <data name="InboundOwner" xml:space="preserve">
-    <value>Inbound owner</value>
+    <value>Inbound</value>
   </data>
   <data name="ManageResources" xml:space="preserve">
     <value>Manage resources</value>
@@ -334,10 +334,10 @@
     <value>Outbound coordinator</value>
   </data>
   <data name="OutboundOwner" xml:space="preserve">
-    <value>Outbound owner</value>
+    <value>Outbound</value>
   </data>
   <data name="Supervisor" xml:space="preserve">
-    <value>Supervisor</value>
+    <value>Warehouse</value>
   </data>
   <data name="Vendor" xml:space="preserve">
     <value>Vendor</value>

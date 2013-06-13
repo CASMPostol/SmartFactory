@@ -587,7 +587,9 @@
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Schema.xml" />
     <Content Include="Lists\Shipping\ShippingCommentsTemplate\Elements.xml" />
-    <Content Include="Lists\Shipping\ShippingCommentsTemplate\Schema.xml" />
+    <Content Include="Lists\Shipping\ShippingCommentsTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Shipping\ShippingCommentsTemplate\ShippingCommentsList\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShippingPointTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShippingPointTemplate\ShippingPointList\Elements.xml">
