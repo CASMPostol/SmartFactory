@@ -58,6 +58,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart {
         protected global::System.Web.UI.WebControls.Label m_ShippingLabel;
         
         /// <summary>
+        /// m_ArrivedButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button m_ArrivedButton;
+        
+        /// <summary>
         /// m_EnteredButton control.
         /// </summary>
         /// <remarks>
@@ -74,15 +83,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button m_LeftButton;
-        
-        /// <summary>
-        /// m_ArrivedButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_ArrivedButton;
         
         /// <summary>
         /// m_UnDoButton control.

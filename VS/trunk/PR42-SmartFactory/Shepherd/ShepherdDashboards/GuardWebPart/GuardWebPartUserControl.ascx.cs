@@ -218,7 +218,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
               return;
             CurrentShipping.TruckAwaiting = true;
             CurrentShipping.ArrivalTime = DateTime.Now;
-            CurrentShipping.WarehouseStartTime = DateTime.Now;
             EDC.SubmitChanges();
             break;
           case ShippingState.Underway:
@@ -282,6 +281,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           case ShippingState.WaitingForCarrierData:
           case ShippingState.WaitingForConfirmation:
             CurrentShipping.StartTime = DateTime.Now;
+            CurrentShipping.WarehouseStartTime = DateTime.Now;
             CurrentShipping.ShippingState = ShippingState.Underway;
             CurrentShipping.TruckAwaiting = true;
             EDC.SubmitChanges();
