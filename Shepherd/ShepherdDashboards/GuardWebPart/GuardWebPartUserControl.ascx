@@ -21,8 +21,8 @@
       </asp:TableCell>
     </asp:TableRow>
   </asp:Table>
+  <asp:Button ID="m_ArrivedButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Arrived%>" CssClass="Button" />
   <asp:Button ID="m_EnteredButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Enters%>" CssClass="Button" />
   <asp:Button ID="m_LeftButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Leaves%>" CssClass="Button" />
-  <asp:Button ID="m_ArrivedButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Arrived%>" CssClass="Button" />
-  <asp:Button ID="m_UnDoButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Undo%>" CssClass="Button" />
+  <asp:Button ID="m_UnDoButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Undo%>" CssClass="Button_Alert" OnClientClick="return confirm('Are you sure?');" />
 </asp:Panel>
