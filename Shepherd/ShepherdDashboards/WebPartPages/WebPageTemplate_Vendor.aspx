@@ -78,24 +78,6 @@
                             </td>
                         </tr>
                     </table>
-                    <asp:Panel ID="m_Comments" runat="server" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryShepherd,Comments%>">
-                        <table border="0" width="100%">
-                            <tr>
-                                <td width="40%" valign="top">
-                                    <WebPartPages:WebPartZone
-                                        ID="CommentsWebPart" runat="server"
-                                        Title="Comments Web Part Zone"
-                                        FrameType="TitleBarOnly" />
-                                </td>
-                                <td width="60%" valign="top">
-                                    <WebPartPages:WebPartZone
-                                        ID="CommentsList" runat="server"
-                                        Title="Commenst List Web Part Zone"
-                                        FrameType="TitleBarOnly" />
-                                </td>
-                            </tr>
-                        </table>
-                    </asp:Panel>
                     <table border="0" width="100%">
                         <tr>
                             <td valign="top" width="400px">

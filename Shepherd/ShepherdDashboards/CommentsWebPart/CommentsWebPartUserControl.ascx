@@ -22,14 +22,14 @@
                         <asp:Label ID="m_TaskLabel" runat="server" CssClass="Label" Text="" />
                     </asp:TableCell>
                 </asp:TableRow>
-                <asp:TableRow>
+                <%--<asp:TableRow>
                     <asp:TableCell>
                         <asp:Label ID="m_ExternalLabel" runat="server" CssClass="Label" Text="<%$Resources:CASSmartFactoryShepherd,External%>" />
                     </asp:TableCell>
                     <asp:TableCell HorizontalAlign="Left">
                         <asp:CheckBox ID="m_ExternalCheckBox" runat="server" Checked="false" />
                     </asp:TableCell>
-                </asp:TableRow>
+                </asp:TableRow>--%>
                 <asp:TableRow>
                     <asp:TableCell ColumnSpan="2">
                             <asp:Label runat="server" CssClass="Label" Text="<%$Resources:CASSmartFactoryShepherd,Comment%>" />

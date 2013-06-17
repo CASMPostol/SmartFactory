@@ -316,13 +316,13 @@
     <value>Escort</value>
   </data>
   <data name="Forwarder" xml:space="preserve">
-    <value>Forwarder</value>
+    <value>Outbound</value>
   </data>
   <data name="Gate" xml:space="preserve">
     <value>Gate</value>
   </data>
   <data name="InboundOwner" xml:space="preserve">
-    <value>Inbound</value>
+    <value>Inbound Owner</value>
   </data>
   <data name="ManageResources" xml:space="preserve">
     <value>Manage resources</value>
@@ -334,13 +334,13 @@
     <value>Outbound coordinator</value>
   </data>
   <data name="OutboundOwner" xml:space="preserve">
-    <value>Outbound</value>
+    <value>Outbound Owner</value>
   </data>
   <data name="Supervisor" xml:space="preserve">
     <value>Warehouse</value>
   </data>
   <data name="Vendor" xml:space="preserve">
-    <value>Vendor</value>
+    <value>Inbound</value>
   </data>
   <data name="ViewInbounds" xml:space="preserve">
     <value>View inbounds</value>
