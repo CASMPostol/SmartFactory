@@ -316,13 +316,13 @@
     <value>Eskorta</value>
   </data>
   <data name="Forwarder" xml:space="preserve">
-    <value>Spedytor</value>
+    <value>Wysyłki</value>
   </data>
   <data name="Gate" xml:space="preserve">
     <value>Brama</value>
   </data>
   <data name="InboundOwner" xml:space="preserve">
-    <value>Dostawy</value>
+    <value>Właściciel dostaw</value>
   </data>
   <data name="ManageResources" xml:space="preserve">
     <value>Zarządzaj zasobami</value>
@@ -334,13 +334,13 @@
     <value>Koordynator wysyłek</value>
   </data>
   <data name="OutboundOwner" xml:space="preserve">
-    <value>Wysyłki</value>
+    <value>Właściciel wysyłek</value>
   </data>
   <data name="Supervisor" xml:space="preserve">
     <value>Magazyn</value>
   </data>
   <data name="Vendor" xml:space="preserve">
-    <value>Dostawca</value>
+    <value>Dostawy</value>
   </data>
   <data name="ViewInbounds" xml:space="preserve">
     <value>Dostawy - podgląd</value>

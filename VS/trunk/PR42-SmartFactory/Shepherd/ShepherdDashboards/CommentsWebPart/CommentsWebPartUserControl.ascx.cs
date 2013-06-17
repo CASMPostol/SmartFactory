@@ -197,11 +197,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
         this.Controls.Add( GlobalDefinitions.ErrorLiteralControl( String.Format( _format, _rslt.ActionException.Source, At, _rslt.ActionException.Message ) ) );
       }
     }
-    private void SetVisible( bool visible )
+    private void SetVisible(bool visible)
     {
-      m_ExternalCheckBox.Checked = false;
-      m_ExternalCheckBox.Visible = visible;
-      m_ExternalLabel.Visible = visible;
+        //m_ExternalCheckBox.Checked = false;
+        //m_ExternalCheckBox.Visible = visible;
+        //m_ExternalLabel.Visible = visible;
     }
     protected void m_ButtonAddNew_Click( object sender, EventArgs e )
     {
@@ -210,17 +210,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
         Shipping _shpppng = CurrentShipping;
         if ( m_Shipping == null )
           return;
-        if ( m_ExternalCheckBox.Checked && CurrentShipping.PartnerTitle == null )
-        {
-          m_ExternalCheckBox.Checked = false;
-          //TODO must be localized http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3842
-          Parent.Controls.Add( GlobalDefinitions.ErrorLiteralControl( "Partner not set only internal messages allowed." ) );
-          return;
-        }
+        //if ( m_ExternalCheckBox.Checked && CurrentShipping.PartnerTitle == null )
+        //{
+        //  m_ExternalCheckBox.Checked = false;
+        //  //TODO must be localized http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3842
+        //  Parent.Controls.Add( GlobalDefinitions.ErrorLiteralControl( "Partner not set only internal messages allowed." ) );
+        //  return;
+        //}
         ShippingComments _new = new ShippingComments()
         {
           Body = m_ShippingCommentsTextBox.Text,
-          ExternalComment = m_ExternalCheckBox.Checked && CurrentShipping.PartnerTitle != null,
+          //ExternalComment = m_ExternalCheckBox.Checked && CurrentShipping.PartnerTitle != null,
           ShippingComments2PartnerTitle = CurrentShipping.PartnerTitle,
           ShippingComments2ShippingID = CurrentShipping,
         };

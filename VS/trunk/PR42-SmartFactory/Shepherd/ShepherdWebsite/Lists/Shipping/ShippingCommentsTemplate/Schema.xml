@@ -60,35 +60,9 @@
         <RowLimit Paged="TRUE">6</RowLimit>
         <ViewFields>
           <FieldRef Name="Body" />
-          <FieldRef Name="ExternalComment" />
-          <FieldRef Name="ShippingComments2PartnerTitle" />
           <FieldRef Name="Author" />
         </ViewFields>
         <Query>
-          <OrderBy>
-            <FieldRef Name="Modified" Ascending="FALSE">
-            </FieldRef>
-          </OrderBy>
-        </Query>
-        <ParameterBindings>
-          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
-          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
-        </ParameterBindings>
-      </View>
-      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="External Comments" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="ExternalComments.aspx">
-        <Toolbar Type="None" />
-        <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">6</RowLimit>
-        <ViewFields>
-          <FieldRef Name="Body" />
-        </ViewFields>
-        <Query>
-          <Where>
-            <Neq>
-              <FieldRef Name="ExternalComment" />
-              <Value Type="Boolean">No</Value>
-            </Neq>
-          </Where>
           <OrderBy>
             <FieldRef Name="Modified" Ascending="FALSE">
             </FieldRef>
