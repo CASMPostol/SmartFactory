@@ -70,7 +70,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         }
         m_InterconnectionDataTable_TimeSlotTimeSlot = new InterconnectionDataTable<TimeSlotTimeSlot>( typeof( TimeSlot ).Name );
         m_Calendar.DayRender += new DayRenderEventHandler( m_Calendar_DayRender );
-        m_Calendar.SelectionChanged += new EventHandler( m_SelectionChanged );
+        m_Calendar.SelectionChanged += new EventHandler( m_Calendar_SelectionChanged );
         m_Calendar.VisibleMonthChanged += new MonthChangedEventHandler( m_Calendar_VisibleMonthChanged );
         m_TimeSlotList.SelectedIndexChanged += new EventHandler( m_TimeSlotList_SelectedIndexChanged );
       }
@@ -109,7 +109,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       }
     }
     private void m_Calendar_VisibleMonthChanged( object sender, MonthChangedEventArgs e ) { }
-    private void m_SelectionChanged( object sender, EventArgs e ) { }
+    private void m_Calendar_SelectionChanged( object sender, EventArgs e ) { }
     private void m_Calendar_DayRender( object sender, DayRenderEventArgs e )
     {
       if ( e.Day.IsOtherMonth )
@@ -185,20 +185,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       else
         m_AvailableDays[ _cts.StartTime.Value.Date ] += 1;
     }
-    private void ExposeTimeSlots( List<TimeSlot> _avlblTmslts )
+    private void ExposeTimeSlots( List<TimeSlot> availableList )
     {
       if ( m_TimeSlotSelection )
         return;
       m_TimeSlotList.Items.Clear();
       HashSet<string> _labels2Display = new HashSet<string>();
-      foreach ( TimeSlot _item in _avlblTmslts.OrderBy<TimeSlot, DateTime>( x => x.StartTime.Value ) )
+      foreach ( TimeSlot _item in availableList.OrderBy<TimeSlot, DateTime>( x => x.StartTime.Value ) )
       {
         string _label = String.Format( "FormatHourMinutes".GetLocalizedString(), _item.StartTime.Value );
         if ( _labels2Display.Contains( _label ) )
           continue;
         _labels2Display.Add( _label );
-        ListItem _ni = new ListItem( _label, _item.Identyfikator.Value.ToString(), true );
-        m_TimeSlotList.Items.Add( _ni );
+        ListItem _nli = new ListItem( _label, _item.Identyfikator.Value.ToString(), true );
+        m_TimeSlotList.Items.Add( _nli );
       }
     }
     private bool m_TimeSlotSelection = false;
