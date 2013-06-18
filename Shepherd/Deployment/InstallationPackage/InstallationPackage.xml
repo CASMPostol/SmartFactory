@@ -36,7 +36,7 @@
     <Solution>
       <Activated>true</Activated>
       <Deployed>true</Deployed>
-      <FileName>CASShepherdDataModel.wsp</FileName>
+      <FileName>CAS%20Shepherd%20Data%20Model%20.wsp</FileName>
       <Fetures>
         <Feature>
           <DisplayName></DisplayName>
@@ -65,9 +65,9 @@
         </Feature>
       </Fetures>
       <FeatureDefinitionScope>Farm</FeatureDefinitionScope>
-      <Priority>40</Priority>
+      <Priority>50</Priority>
       <SolutionID></SolutionID>
-      <Global>false</Global>
+      <Global>true</Global>
     </Solution>
     <Solution>
       <Activated>true</Activated>
@@ -83,7 +83,7 @@
         </Feature>
       </Fetures>
       <FeatureDefinitionScope>Farm</FeatureDefinitionScope>
-      <Priority>50</Priority>
+      <Priority>40</Priority>
       <SolutionID></SolutionID>
       <Global>false</Global>
     </Solution>
