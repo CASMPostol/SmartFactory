@@ -900,7 +900,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       try
       {
-        Shipping _sppng = Element.GetAtIndex<Shipping>( EDC.Shipping, m_ControlState.ShippingID );
+        Shipping _sppng = CurrentShipping;
         switch ( _sppng.ShippingState.Value )
         {
           case ShippingState.Confirmed:
