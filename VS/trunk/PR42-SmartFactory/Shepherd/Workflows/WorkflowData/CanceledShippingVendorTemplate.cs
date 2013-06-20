@@ -15,10 +15,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\CanceledShippingVendorTemplate.tt"
+    #line 1 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\Shepherd\Workflows\WorkflowData\CanceledShippingVendorTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "11.0.0.0")]
     public partial class CanceledShippingVendorTemplate : CanceledShippingVendorTemplateBase
     {
+#line hidden
         /// <summary>
         /// Create the template output
         /// </summary>
@@ -28,21 +29,21 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
                     "t and received before this notification are no longer valid.</b></p>\r\n<p><b>Part" +
                     "ner:</b> ");
             
-            #line 2 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\CanceledShippingVendorTemplate.tt"
+            #line 2 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\Shepherd\Workflows\WorkflowData\CanceledShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PartnerTitle));
             
             #line default
             #line hidden
             this.Write("</p>\r\n<p><b>Shipping:</b> ");
             
-            #line 3 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\CanceledShippingVendorTemplate.tt"
+            #line 3 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\Shepherd\Workflows\WorkflowData\CanceledShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ShippingTitle));
             
             #line default
             #line hidden
             this.Write("</p>\r\n<p><b>Time Slot:</b> ");
             
-            #line 4 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\CanceledShippingVendorTemplate.tt"
+            #line 4 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\Shepherd\Workflows\WorkflowData\CanceledShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(StartTime));
             
             #line default
