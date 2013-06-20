@@ -15,10 +15,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\DelayedShippingVendorTemplate.tt"
+    #line 1 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\Shepherd\Workflows\WorkflowData\DelayedShippingVendorTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "11.0.0.0")]
     public partial class DelayedShippingVendorTemplate : DelayedShippingVendorTemplateBase
     {
+#line hidden
         /// <summary>
         /// Create the template output
         /// </summary>
@@ -26,28 +27,28 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
         {
             this.Write("<p><b>Shipment is delayed. Expected truck ");
             
-            #line 1 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\DelayedShippingVendorTemplate.tt"
+            #line 1 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\Shepherd\Workflows\WorkflowData\DelayedShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TruckTitle));
             
             #line default
             #line hidden
             this.Write(" had not arrived.</b></p>\r\n<p><b>Partner:</b> ");
             
-            #line 2 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\DelayedShippingVendorTemplate.tt"
+            #line 2 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\Shepherd\Workflows\WorkflowData\DelayedShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PartnerTitle));
             
             #line default
             #line hidden
             this.Write("</p>\r\n<p><b>Shipping:</b> ");
             
-            #line 3 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\DelayedShippingVendorTemplate.tt"
+            #line 3 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\Shepherd\Workflows\WorkflowData\DelayedShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ShippingTitle));
             
             #line default
             #line hidden
             this.Write("</p>\r\n<p><b>Time Slot:</b> ");
             
-            #line 4 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\DelayedShippingVendorTemplate.tt"
+            #line 4 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\Shepherd\Workflows\WorkflowData\DelayedShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(StartTime));
             
             #line default
