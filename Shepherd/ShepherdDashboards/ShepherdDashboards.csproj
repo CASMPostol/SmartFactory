@@ -155,6 +155,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GlobalDefinitions.cs</LastGenOutput>
     </None>
+    <Compile Include="GlobalDefinitions .tt.cs" />
     <Compile Include="GlobalDefinitions.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
