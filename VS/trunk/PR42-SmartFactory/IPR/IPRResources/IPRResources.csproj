@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E5A0F0A1-DB5F-4DEC-83C2-19107F11D597}</ProjectGuid>
+    <ProjectGuid>{EE8EE82E-4AEA-4677-BD69-6BCA5A6B4969}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CAS.SmartFactory.IPR.Resources</RootNamespace>
