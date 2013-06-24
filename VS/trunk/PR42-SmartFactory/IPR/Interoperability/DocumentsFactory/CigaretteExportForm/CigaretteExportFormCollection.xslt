@@ -282,7 +282,7 @@
       <td align="center">
         <xsl:value-of select="format-number(cas:TobaccoQuantity, $FoarmatOfFloat, 'pl')"/>
       </td>
-      <td align="center">
+      <td align="center" nowrap="true">
         <xsl:choose>
           <xsl:when test="cas:ItemClearingType='PartialWindingUp'">l. część</xsl:when>
           <xsl:when test="cas:ItemClearingType='TotalWindingUp'">l. całk</xsl:when>
