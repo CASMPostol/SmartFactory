@@ -36,7 +36,7 @@
     <Solution>
       <Activated>true</Activated>
       <Deployed>true</Deployed>
-      <FileName>CAS%20Shepherd%20Data%20Model%20.wsp</FileName>
+      <FileName>CASShepherdDataModel.wsp</FileName>
       <Fetures>
         <Feature>
           <DisplayName></DisplayName>

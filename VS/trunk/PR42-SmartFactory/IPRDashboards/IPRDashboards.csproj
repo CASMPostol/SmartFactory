@@ -199,9 +199,9 @@
       <Project>{8920f657-54a3-4376-99a5-c2d823f94038}</Project>
       <Name>IPRWebsiteModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IPR\Iteroperability\Iteroperability.csproj">
+    <ProjectReference Include="..\IPR\Interoperability\Interoperability.csproj">
       <Project>{bbc177df-cd0c-4fdf-9e78-41f2ce4faf52}</Project>
-      <Name>Iteroperability</Name>
+      <Name>Interoperability</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
