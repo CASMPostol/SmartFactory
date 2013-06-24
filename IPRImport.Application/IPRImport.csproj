@@ -132,16 +132,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IPRWebsiteModel\IPRWebsiteModel.csproj">
-      <Project>{8920f657-54a3-4376-99a5-c2d823f94038}</Project>
-      <Name>IPRWebsiteModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IPRWorkflow\IPRWorkflows.csproj">
-      <Project>{c4d9bbc4-c123-4aab-b1e6-9906b7b51bc6}</Project>
-      <Name>IPRWorkflows</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
