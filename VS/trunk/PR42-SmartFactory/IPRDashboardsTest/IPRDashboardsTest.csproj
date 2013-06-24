@@ -87,10 +87,6 @@
     <Compile Include="DocumentsFactoryUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IPRDashboards\IPRDashboards.csproj">
-      <Project>{C3E386B9-7F0D-4B3B-A1E8-62EE6A5DB102}</Project>
-      <Name>IPRDashboards</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IPRWebsiteModel\IPRWebsiteModel.csproj">
       <Project>{8920f657-54a3-4376-99a5-c2d823f94038}</Project>
       <Name>IPRWebsiteModel</Name>
