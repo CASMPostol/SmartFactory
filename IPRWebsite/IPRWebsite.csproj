@@ -729,7 +729,9 @@
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Schema.xml" />
     <Content Include="Lists\CWDisposalTemplate\CWDisposalList\Elements.xml" />
     <Content Include="Lists\CWDisposalTemplate\Elements.xml" />
-    <Content Include="Lists\CWDisposalTemplate\Schema.xml" />
+    <Content Include="Lists\CWDisposalTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\CWLibraryTemplate\CWLibrary\Elements.xml" />
     <Content Include="Lists\CWLibraryTemplate\EditDlg.htm" />
     <Content Include="Lists\CWLibraryTemplate\Elements.xml" />
