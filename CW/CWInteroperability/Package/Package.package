@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="5783eb58-ba24-4f23-9b17-bd6d50e0ab61" solutionId="5783eb58-ba24-4f23-9b17-bd6d50e0ab61" resetWebServer="false" name="CASSmartFactoryCWInteroperability" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="605eb80a-ecf2-420a-8044-8f64d920cd9b" />
+  </features>
+</package>
