@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x010100719D28821A6F456C8F47FB42F9B33DAA"
+               Name="CustomsWarehouseLib"
+               Group="CAS Smart Factory Customs Warehouse"
+               Description="Customs Warehouse Library Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
+    <FieldRefs>
+    </FieldRefs>
+  </ContentType>
+</Elements>
