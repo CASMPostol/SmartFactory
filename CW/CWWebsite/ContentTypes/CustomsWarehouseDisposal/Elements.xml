@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x0100809C8CF50E9E4E97B2809D1CD4C3F14F"
+               Name="CustomsWarehouseDisposal"
+               Group="CAS Smart Factory Customs Warehouse"
+               Description="Customs Warehouse Disposal Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
+    <Folder TargetName="_cts/CustomsWarehouseDisposal" />
+    <FieldRefs>
+      <FieldRef ID="{B304AE65-8CCF-49E8-B1F2-C60D6453753A}" Name="CWC_EntryDate" />
+      <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />
+      <FieldRef ID="{E94071CD-B982-45CF-9E1F-A28D4C0B0FC1}" Name="SADDocumentNo" />
+      <FieldRef ID="{1CBC328D-A936-4125-A6C6-A2E0E956D250}" Name="SADDate" />
+      <FieldRef ID="{39BF8BA0-19DE-49FB-AE9A-892A518F9C52}" Name="TobaccoName" />
+      <FieldRef ID="{01F8D41D-F043-4C23-8D7E-FA7BDAC4B8A0}" Name="Grade" />
+      <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+      <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
+      <FieldRef ID="{B1AFC3A9-A6AE-4F71-B5EF-168317EB6DA5}" Name="CW_DeclaredNetMass" />
+      <FieldRef ID="{FA67A59F-AFCD-4BD1-ADD4-8DA367AB5633}" Name="CW_Wz1" />
+      <FieldRef ID="{31F88F12-A058-4966-BE6E-231B15FA97F3}" Name="CW_Wz2" />
+      <FieldRef ID="{81011546-BADA-4C37-B5C3-6531335B7E32}" Name="CW_Wz3" />
+      <FieldRef ID="{16D33CFD-B8D1-4843-AA1B-A5155DE5FE6B}" Name="CW_AddedKg" />
+      <FieldRef ID="{2E618017-3154-41E8-8C1A-91014C8B1322}" Name="CW_SettledNetMass" />
+      <FieldRef ID="{5D90137F-9150-404D-A3EE-91E7BE4D5CA4}" Name="CW_SettledGrossMass" />
+      <FieldRef ID="{3F511117-AE6F-40FF-801C-C8765D68E86D}" Name="TobaccoValue" />
+      <FieldRef ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Name="Currency" />
+      <FieldRef ID="{0E24A674-1FE7-4C77-9106-387E12417644}" Name="RemainingQuantity" />
+      <FieldRef ID="{0260B0D5-F932-427E-91B4-B2626BD8BFC3}" Name="CW_RemainingPackage" />
+      <FieldRef ID="{7239BCCE-5417-41CF-90E5-54993500A1C4}" Name="CW_RemainingTobaccoValue" />
+      <FieldRef ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}" Name="ClearingType" />
+      <FieldRef ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}" Name="CustomsProcedure" />
+      <FieldRef ID="{00C37821-B465-43A9-8F81-7B05F6607143}" Name="CWL_CWDisposal2PCNTID" />
+      <FieldRef ID="{209CDFFF-BE3C-4C89-AAF5-1EDE9A124E10}" Name="CWL_CWDisposal2PCNPCN_sec" />
+      <FieldRef ID="{298F8DD7-97D6-4FE0-8A1F-08621BCF807A}" Name="CustomsStatus" />
+      <FieldRef ID="{9B890369-B6CC-403E-A921-F9E686EF094C}" Name="DutyPerSettledAmount" />
+      <FieldRef ID="{6AA3AB04-1DC6-4E5A-8602-BC0B06F9386A}" Name="VATPerSettledAmount" />
+      <FieldRef ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}" Name="DutyAndVAT" />
+    </FieldRefs>
+  </ContentType>
+</Elements>

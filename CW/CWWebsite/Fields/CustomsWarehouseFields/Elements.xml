@@ -43,4 +43,64 @@
     DisplayName="Certificate"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Text"/>
+  <Field
+    ID="{B1AFC3A9-A6AE-4F71-B5EF-168317EB6DA5}"
+    Name="CW_DeclaredNetMass"
+    DisplayName="Declared net mass [kg]"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Number"
+    Decimals="2"/>
+  <Field
+    ID="{FA67A59F-AFCD-4BD1-ADD4-8DA367AB5633}"
+    Name="CW_Wz1"
+    DisplayName="WZ 1"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Text"/>
+  <Field
+    ID="{31F88F12-A058-4966-BE6E-231B15FA97F3}"
+    Name="CW_Wz2"
+    DisplayName="WZ 2"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Text"/>
+  <Field
+    ID="{81011546-BADA-4C37-B5C3-6531335B7E32}"
+    Name="CW_Wz3"
+    DisplayName="WZ 3"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Text"/>
+  <Field
+    ID="{16D33CFD-B8D1-4843-AA1B-A5155DE5FE6B}"
+    Name="CW_AddedKg"
+    DisplayName="Added [kg]"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Number"
+    Decimals="2"/>
+  <Field
+    ID="{2E618017-3154-41E8-8C1A-91014C8B1322}"
+    Name="CW_SettledNetMass"
+    DisplayName="Settled net mass [kg]"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Number"
+    Decimals="2"/>
+  <Field
+    ID="{5D90137F-9150-404D-A3EE-91E7BE4D5CA4}"
+    Name="CW_SettledGrossMass"
+    DisplayName="Settled gross mass [kg]"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Number"
+    Decimals="2"/>
+  <Field
+    ID="{0260B0D5-F932-427E-91B4-B2626BD8BFC3}"
+    Name="CW_RemainingPackage"
+    DisplayName="Remaining package"
+    Group="CAS Smart Factory CW"
+    Type="Number"
+    Decimals="2"/>
+  <Field
+    ID="{7239BCCE-5417-41CF-90E5-54993500A1C4}"
+    Name="CW_RemainingTobaccoValue"
+    DisplayName="Remaining tobacco value [PLN]"
+    Group="CAS Smart Factory CW"
+    Type="Number"
+    Decimals="3"/>
 </Elements>

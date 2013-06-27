@@ -64,4 +64,34 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="CWL_CWDisposal2PCNTID"
+    ID="{00C37821-B465-43A9-8F81-7B05F6607143}"
+    Type="Lookup"
+    List="Lists/PCNCodeList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="CN ID"
+    Group="CAS Smart Factory CW"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    Type="Lookup"
+    DisplayName="CN tariff code"
+    List="Lists/PCNCodeList"
+    ShowField="ProductCodeNumber"
+    FieldRef="00C37821-B465-43A9-8F81-7B05F6607143"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory CW"
+    ID="{209CDFFF-BE3C-4C89-AAF5-1EDE9A124E10}"
+    Name="CWL_CWDisposal2PCNPCN_sec"
+    Overwrite="TRUE"
+  />
 </Elements>
