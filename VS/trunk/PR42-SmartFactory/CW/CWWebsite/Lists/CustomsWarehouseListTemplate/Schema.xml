@@ -37,7 +37,47 @@
         </FieldRefs>
       </ContentType>
     </ContentTypes>
-    <Fields></Fields>
+    <Fields>
+      <Field ID="{B304AE65-8CCF-49E8-B1F2-C60D6453753A}" Name="CWC_EntryDate" Group="CAS Smart Factory Customs Warehouse - Customs" Type="DateTime" Format="DateOnly" DisplayName="Entry date">
+        <Default>[today]</Default>
+      </Field>
+      <Field Name="CWL_CW2ConsentTitle" ID="{39DB0101-A722-49AB-9369-6410727F4C97}" Type="Lookup" List="Lists/ConsentList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Consent" Group="CAS Smart Factory Customs Warehouse" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field ID="{7bf919f9-500d-4584-a5ac-ac03d705d2b1}" Name="ValidFromDate" Group="CAS Smart Factory IPR Dictionaries" Type="DateTime" Format="DateOnly" DisplayName="$Resources:CASSmartFactoryIPR,CAS_ValidFromDate;" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="ValidFromDate">
+        <Default>[today]</Default>
+      </Field>
+      <Field ID="{05a2c176-9a58-449d-b2e6-84f3c5b32307}" Name="ValidToDate" Group="CAS Smart Factory IPR Dictionaries" Type="DateTime" Format="DateOnly" DisplayName="$Resources:CASSmartFactoryIPR,CAS_ValidToDAte;" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="ValidToDate">
+        <Default>[today]</Default>
+      </Field>
+      <Field Name="ConsentPeriod" ID="{da5a1735-e0c6-44cf-aeca-490c6e17498a}" Type="Number" DisplayName="$Resources:CASSmartFactoryIPR,CAS_ConsentPeriod;" Group="CAS Smart Factory IPR Dictionaries" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="ConsentPeriod" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_DocumentNo;" Name="DocumentNo" Type="Text" Indexed="TRUE" ID="{7e9d625d-14fa-4626-9412-14bcd2bce8e6}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="DocumentNo" />
+      <Field ID="{fe3b4425-fbf7-474a-9cfa-bd2f27f13e17}" Name="CustomsDebtDate" Group="CAS Smart Factory IPR" Type="DateTime" Format="DateOnly" DisplayName="$Resources:CASSmartFactoryIPR,CAS_CustomsDebtDate;" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="CustomsDebtDate">
+        <Default>[today]</Default>
+      </Field>
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoName;" Name="TobaccoName" Type="Text" ID="{39bf8ba0-19de-49fb-ae9a-892a518f9c52}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="TobaccoName" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_Grade;" Name="Grade" Type="Text" ID="{01f8d41d-f043-4c23-8d7e-fa7bdac4b8a0}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="Grade" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_SKU;" Name="SKU" Type="Text" Indexed="TRUE" ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Group="CAS Smart Factory IPR Customs" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="SKU" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_Batch;" Name="Batch" Type="Text" Indexed="TRUE" ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="Batch" />
+      <Field Type="Lookup" DisplayName="CN tariff code" List="Lists/PCNCodeList" ShowField="ProductCodeNumber" FieldRef="C13CA3FF-19F6-47FC-9EA3-8365EB8EB07F" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Customs Warehouse" ID="{120E777C-7108-42CF-AB85-42766FF1840B}" Name="CWL_CW2PCNPCN_sec" Overwrite="TRUE" />
+      <Field ID="{9A6D0500-DE73-41A6-9F9F-99DE8A189491}" Name="CW_Quantity" DisplayName="Quantity" Group="CAS Smart Factory Customs Warehouse" Type="Number" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_Units;" Name="Units" Type="Text" ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Group="CAS Smart Factory IPR Customs" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="Units" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_NetMass;" Name="NetMass" Type="Number" Decimals="2" ID="{db454782-449a-4ec5-b0cd-55a7d7af3428}" Group="CAS Smart Factory IPR Customs" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="NetMass" />
+      <Field Name="GrossMass" Type="Number" Decimals="2" ID="{aa5b5938-e498-458e-9b3b-d19b43d42751}" DisplayName="$Resources:CASSmartFactoryIPR,CAS_GrossMass;" Group="CAS Smart Factory IPR Customs" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="GrossMass" />
+      <Field ID="{0D659694-3661-4AE1-95ED-4C15C02CD774}" Name="CW_PackageUnits" DisplayName="Pakage [units]" Group="CAS Smart Factory Customs Warehouse" Type="Number" />
+      <Field ID="{0912FC75-ED32-4919-950D-790D0E82B6BC}" Name="CW_PackageKg" DisplayName="Pakage [kg]" Group="CAS Smart Factory Customs Warehouse" Type="Number" />
+      <Field ID="{914FFBC3-8F54-43E2-8D29-E1D614CF0975}" Name="CW_MassPerPackage" DisplayName="Mass per package" Group="CAS Smart Factory Customs Warehouse" Type="Number" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_Value;" Name="Value" Type="Number" Decimals="2" ID="{de38c643-c8bc-4469-8d2f-266bf236f6d1}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="Value" />
+      <Field Name="Currency" ID="{91f0305a-9f13-468a-85ca-1ae1c859dbd7}" Type="Text" DisplayName="$Resources:CASSmartFactoryIPR,CAS_Currency;" Group="CAS Smart Factory IPR Customs" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="Currency" />
+      <Field ID="{BD5E3778-B908-48BF-BCB1-8DDB8E9B2701}" Name="CW_UnitPrice" DisplayName="Unit price" Group="CAS Smart Factory Customs Warehouse" Type="Number" Decimals="2" />
+      <Field ID="{F061A643-E22C-46CD-AC9C-C61FAEC1F301}" Name="CW_PzNo" DisplayName="PZ no." Group="CAS Smart Factory Customs Warehouse" Type="Text" />
+      <Field Name="InvoiceNo" ID="{d41c0f0b-a4a9-4d19-bd42-78d3de4a22ec}" Type="Text" DisplayName="$Resources:CASSmartFactoryIPR,CAS_InvoiceNo;" Group="CAS Smart Factory IPR Reports" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="InvoiceNo" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_AccountBalance;" Name="AccountBalance" Type="Number" Decimals="2" ID="{6979efb8-2614-49b7-9482-5869ce4f3108}" Group="CAS Smart Factory IPR" Required="TRUE" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="AccountBalance" />
+      <Field ID="{5B43999B-FBF9-498F-9E4F-CBE44CE7DD96}" Name="CW_Certificate" DisplayName="Certificate" Group="CAS Smart Factory Customs Warehouse" Type="Text" />
+      <Field ID="{e6a94982-f43e-436d-94a5-63c3916455a3}" Name="ClosingDate" Group="CAS Smart Factory IPR" Type="DateTime" Format="DateOnly" DisplayName="$Resources:CASSmartFactoryIPR,CAS_ClosingDate;" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="ClosingDate">
+        <Default>[today]</Default>
+      </Field>
+      <Field Name="CWL_CW2PCNID" ID="{C13CA3FF-19F6-47FC-9EA3-8365EB8EB07F}" Type="Lookup" List="Lists/PCNCodeList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="CN ID" Group="CAS Smart Factory Customs Warehouse" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="CWL_CW2CWLibraryID" ID="{615855F8-6922-456C-95FB-2DAC71809663}" Type="Lookup" List="Lists/CWLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="CW Library ID" Group="CAS Smart Factory CW" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+    </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
         <Toolbar Type="Standard" />

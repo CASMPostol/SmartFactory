@@ -50,6 +50,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ContentTypes\CustomsWarehouseDisposal\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b5769e2b-8462-4748-98ae-81671328f025}</SharePointProjectItemId>
+    </None>
     <None Include="ContentTypes\CustomsWarehouseLib\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{87d5f4bf-5eec-419a-948c-f3464f6d711d}</SharePointProjectItemId>
     </None>
@@ -69,6 +72,12 @@
       <SharePointProjectItemId>{37de7862-5af2-4ce9-88ec-4fd19b4a4172}</SharePointProjectItemId>
     </None>
     <None Include="key.snk" />
+    <None Include="Lists\CustomsWarehouseDisposalListTemplate\CustomsWarehouseDisposalList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{90b2b4bd-038c-4a75-9ba0-a87d7bd741e4}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\CustomsWarehouseDisposalListTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{52c5e102-fb8a-45b0-ac32-89a1f0943d9c}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\CustomsWarehouseLibraryTemplate\CustomsWarehouseLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6a6349e3-6904-4935-947b-ad17a08518d1}</SharePointProjectItemId>
     </None>
@@ -90,6 +99,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="ContentTypes\CustomsWarehouseDisposal\Elements.xml" />
     <Content Include="ContentTypes\CustomsWarehouseLib\Elements.xml" />
     <Content Include="ContentTypes\CustomsWarehouse\Elements.xml" />
     <Content Include="Features\CWData\CWData.Template.xml">
@@ -98,6 +108,9 @@
     <Content Include="Fields\CustomsWarehouseCustomsFields\Elements.xml" />
     <Content Include="Fields\CustomsWarehouseFields\Elements.xml" />
     <Content Include="Fields\CustomsWarehouseLookupFields\Elements.xml" />
+    <Content Include="Lists\CustomsWarehouseDisposalListTemplate\CustomsWarehouseDisposalList\Elements.xml" />
+    <Content Include="Lists\CustomsWarehouseDisposalListTemplate\Elements.xml" />
+    <Content Include="Lists\CustomsWarehouseDisposalListTemplate\Schema.xml" />
     <Content Include="Lists\CustomsWarehouseLibraryTemplate\CustomsWarehouseLibrary\Elements.xml" />
     <Content Include="Lists\CustomsWarehouseLibraryTemplate\EditDlg.htm" />
     <Content Include="Lists\CustomsWarehouseLibraryTemplate\Elements.xml" />

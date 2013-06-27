@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="CustomsWarehouseDisposalListTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/CustomsWarehouseDisposalListTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/" EnableContentTypes="TRUE">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x0100809C8CF50E9E4E97B2809D1CD4C3F14F" Name="CustomsWarehouseDisposal" Group="CAS Smart Factory Customs Warehouse" Description="Customs Warehouse Disposal Content Type" Overwrite="TRUE" Inherits="TRUE">
+        <Folder TargetName="_cts/CustomsWarehouseDisposal" />
+        <FieldRefs>
+          <FieldRef ID="{B304AE65-8CCF-49E8-B1F2-C60D6453753A}" Name="CWC_EntryDate" />
+          <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />
+          <FieldRef ID="{E94071CD-B982-45CF-9E1F-A28D4C0B0FC1}" Name="SADDocumentNo" />
+          <FieldRef ID="{1CBC328D-A936-4125-A6C6-A2E0E956D250}" Name="SADDate" />
+          <FieldRef ID="{39BF8BA0-19DE-49FB-AE9A-892A518F9C52}" Name="TobaccoName" />
+          <FieldRef ID="{01F8D41D-F043-4C23-8D7E-FA7BDAC4B8A0}" Name="Grade" />
+          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
+          <FieldRef ID="{B1AFC3A9-A6AE-4F71-B5EF-168317EB6DA5}" Name="CW_DeclaredNetMass" />
+          <FieldRef ID="{FA67A59F-AFCD-4BD1-ADD4-8DA367AB5633}" Name="CW_Wz1" />
+          <FieldRef ID="{31F88F12-A058-4966-BE6E-231B15FA97F3}" Name="CW_Wz2" />
+          <FieldRef ID="{81011546-BADA-4C37-B5C3-6531335B7E32}" Name="CW_Wz3" />
+          <FieldRef ID="{16D33CFD-B8D1-4843-AA1B-A5155DE5FE6B}" Name="CW_AddedKg" />
+          <FieldRef ID="{2E618017-3154-41E8-8C1A-91014C8B1322}" Name="CW_SettledNetMass" />
+          <FieldRef ID="{5D90137F-9150-404D-A3EE-91E7BE4D5CA4}" Name="CW_SettledGrossMass" />
+          <FieldRef ID="{3F511117-AE6F-40FF-801C-C8765D68E86D}" Name="TobaccoValue" />
+          <FieldRef ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Name="Currency" />
+          <FieldRef ID="{0E24A674-1FE7-4C77-9106-387E12417644}" Name="RemainingQuantity" />
+          <FieldRef ID="{0260B0D5-F932-427E-91B4-B2626BD8BFC3}" Name="CW_RemainingPackage" />
+          <FieldRef ID="{7239BCCE-5417-41CF-90E5-54993500A1C4}" Name="CW_RemainingTobaccoValue" />
+          <FieldRef ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}" Name="ClearingType" />
+          <FieldRef ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}" Name="CustomsProcedure" />
+          <FieldRef ID="{00C37821-B465-43A9-8F81-7B05F6607143}" Name="CWL_CWDisposal2PCNTID" />
+          <FieldRef ID="{209CDFFF-BE3C-4C89-AAF5-1EDE9A124E10}" Name="CWL_CWDisposal2PCNPCN_sec" />
+          <FieldRef ID="{298F8DD7-97D6-4FE0-8A1F-08621BCF807A}" Name="CustomsStatus" />
+          <FieldRef ID="{9B890369-B6CC-403E-A921-F9E686EF094C}" Name="DutyPerSettledAmount" />
+          <FieldRef ID="{6AA3AB04-1DC6-4E5A-8602-BC0B06F9386A}" Name="VATPerSettledAmount" />
+          <FieldRef ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}" Name="DutyAndVAT" />
+        </FieldRefs>
+      </ContentType>
+    </ContentTypes>
+    <Fields>
+      <Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Type="Text" Name="Title" DisplayName="$Resources:core,Title;" Required="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" MaxLength="255" />
+      <Field ID="{B304AE65-8CCF-49E8-B1F2-C60D6453753A}" Name="CWC_EntryDate" Group="CAS Smart Factory Customs Warehouse - Customs" Type="DateTime" Format="DateOnly" DisplayName="Entry date">
+        <Default>[today]</Default>
+      </Field>
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_No;" Name="No" Type="Number" ID="{661ec112-f8f2-4cda-88b4-a822f5099ca2}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="No" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_SADDocumentNo;" Name="SADDocumentNo" Type="Text" ID="{e94071cd-b982-45cf-9e1f-a28d4c0b0fc1}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="SADDocumentNo" />
+      <Field Name="SADDate" ID="{1cbc328d-a936-4125-a6c6-a2e0e956d250}" Type="DateTime" Format="DateOnly" DisplayName="$Resources:CASSmartFactoryIPR,CAS_SADDate;" Group="CAS Smart Factory IPR Reports" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="SADDate">
+        <Default>[today]</Default>
+      </Field>
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoName;" Name="TobaccoName" Type="Text" ID="{39bf8ba0-19de-49fb-ae9a-892a518f9c52}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="TobaccoName" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_Grade;" Name="Grade" Type="Text" ID="{01f8d41d-f043-4c23-8d7e-fa7bdac4b8a0}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="Grade" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_SKU;" Name="SKU" Type="Text" Indexed="TRUE" ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Group="CAS Smart Factory IPR Customs" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="SKU" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_Batch;" Name="Batch" Type="Text" Indexed="TRUE" ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="Batch" />
+      <Field ID="{B1AFC3A9-A6AE-4F71-B5EF-168317EB6DA5}" Name="CW_DeclaredNetMass" DisplayName="Declared net mass [kg]" Group="CAS Smart Factory Customs Warehouse" Type="Number" Decimals="2" />
+      <Field ID="{FA67A59F-AFCD-4BD1-ADD4-8DA367AB5633}" Name="CW_Wz1" DisplayName="WZ 1" Group="CAS Smart Factory Customs Warehouse" Type="Text" />
+      <Field ID="{31F88F12-A058-4966-BE6E-231B15FA97F3}" Name="CW_Wz2" DisplayName="WZ 2" Group="CAS Smart Factory Customs Warehouse" Type="Text" />
+      <Field ID="{81011546-BADA-4C37-B5C3-6531335B7E32}" Name="CW_Wz3" DisplayName="WZ 3" Group="CAS Smart Factory Customs Warehouse" Type="Text" />
+      <Field ID="{16D33CFD-B8D1-4843-AA1B-A5155DE5FE6B}" Name="CW_AddedKg" DisplayName="Added [kg]" Group="CAS Smart Factory Customs Warehouse" Type="Number" Decimals="2" />
+      <Field ID="{2E618017-3154-41E8-8C1A-91014C8B1322}" Name="CW_SettledNetMass" DisplayName="Settled net mass [kg]" Group="CAS Smart Factory Customs Warehouse" Type="Number" Decimals="2" />
+      <Field ID="{5D90137F-9150-404D-A3EE-91E7BE4D5CA4}" Name="CW_SettledGrossMass" DisplayName="Settled gross mass [kg]" Group="CAS Smart Factory Customs Warehouse" Type="Number" Decimals="2" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoVAlue;" Name="TobaccoValue" Type="Number" Decimals="3" ID="{3f511117-ae6f-40ff-801c-c8765d68e86d}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="TobaccoValue" />
+      <Field Name="Currency" ID="{91f0305a-9f13-468a-85ca-1ae1c859dbd7}" Type="Text" DisplayName="$Resources:CASSmartFactoryIPR,CAS_Currency;" Group="CAS Smart Factory IPR Customs" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="Currency" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_RemainingQuantity;" Name="RemainingQuantity" Type="Number" Decimals="2" ID="{0e24a674-1fe7-4c77-9106-387e12417644}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="RemainingQuantity" />
+      <Field ID="{0260B0D5-F932-427E-91B4-B2626BD8BFC3}" Name="CW_RemainingPackage" DisplayName="Remaining package" Group="CAS Smart Factory CW" Type="Number" Decimals="2" />
+      <Field ID="{7239BCCE-5417-41CF-90E5-54993500A1C4}" Name="CW_RemainingTobaccoValue" DisplayName="Remaining tobacco value [PLN]" Group="CAS Smart Factory CW" Type="Number" Decimals="3" />
+      <Field Type="Choice" DisplayName="$Resources:CASSmartFactoryIPR,CAS_ClearingType;" ID="{69e74e2d-ba07-48ae-8944-13cbbf99dd25}" Format="Dropdown" BaseType="Text" Name="ClearingType" Group="CAS Smart Factory IPR" CanToggleHidden="TRUE" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="ClearingType">
+        <Default>Partial winding-up</Default>
+        <CHOICES>
+          <CHOICE>Partial winding-up</CHOICE>
+          <CHOICE>Total winding-up</CHOICE>
+        </CHOICES>
+      </Field>
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_CustomsProcedure;" Name="CustomsProcedure" Type="Text" ID="{561ef73a-ddb8-4b66-badb-540c80cd83e6}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="CustomsProcedure" />
+      <Field Name="CWL_CWDisposal2PCNTID" ID="{00C37821-B465-43A9-8F81-7B05F6607143}" Type="Lookup" List="Lists/PCNCodeList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="CN ID" Group="CAS Smart Factory CW" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Type="Lookup" DisplayName="CN tariff code" List="Lists/PCNCodeList" ShowField="ProductCodeNumber" FieldRef="00C37821-B465-43A9-8F81-7B05F6607143" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory CW" ID="{209CDFFF-BE3C-4C89-AAF5-1EDE9A124E10}" Name="CWL_CWDisposal2PCNPCN_sec" Overwrite="TRUE" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_CustomsStatus;" Name="CustomsStatus" Type="Choice" Format="Dropdown" BaseType="Text" Indexed="TRUE" CanToggleHidden="TRUE" ID="{298f8dd7-97d6-4fe0-8a1f-08621bcf807a}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="CustomsStatus">
+        <Default>Not started</Default>
+        <CHOICES>
+          <CHOICE>Not started</CHOICE>
+          <CHOICE>Started</CHOICE>
+          <CHOICE>Finished</CHOICE>
+        </CHOICES>
+      </Field>
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_DutyPerAmount;" Name="DutyPerSettledAmount" Type="Number" Decimals="2" ID="{9b890369-b6cc-403e-a921-f9e686ef094c}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="DutyPerSettledAmount" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_VATPerAmount;" Name="VATPerSettledAmount" Type="Number" Decimals="2" ID="{6aa3ab04-1dc6-4e5a-8602-bc0b06f9386a}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="VATPerSettledAmount" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_DutyVAT;" Decimals="2" Type="Number" ID="{e7d69ae8-aeac-4a9f-a597-87a7957950b8}" Name="DutyAndVAT" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="DutyAndVAT" />
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu"></FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Attachments"></FieldRef>
+          <FieldRef Name="LinkTitle"></FieldRef>
+          <FieldRef Name="CWC_EntryDate" />
+          <FieldRef Name="No" />
+          <FieldRef Name="SADDocumentNo" />
+          <FieldRef Name="SADDate" />
+          <FieldRef Name="TobaccoName" />
+          <FieldRef Name="Grade" />
+          <FieldRef Name="SKU" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="CW_DeclaredNetMass" />
+          <FieldRef Name="CW_Wz1" />
+          <FieldRef Name="CW_Wz2" />
+          <FieldRef Name="CW_Wz3" />
+          <FieldRef Name="CW_AddedKg" />
+          <FieldRef Name="CW_SettledNetMass" />
+          <FieldRef Name="CW_SettledGrossMass" />
+          <FieldRef Name="TobaccoValue" />
+          <FieldRef Name="Currency" />
+          <FieldRef Name="RemainingQuantity" />
+          <FieldRef Name="CW_RemainingPackage" />
+          <FieldRef Name="CW_RemainingTobaccoValue" />
+          <FieldRef Name="ClearingType" />
+          <FieldRef Name="CustomsProcedure" />
+          <FieldRef Name="CWL_CWDisposal2PCNTID" />
+          <FieldRef Name="CWL_CWDisposal2PCNPCN_sec" />
+          <FieldRef Name="CustomsStatus" />
+          <FieldRef Name="DutyPerSettledAmount" />
+          <FieldRef Name="VATPerSettledAmount" />
+          <FieldRef Name="DutyAndVAT" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>
