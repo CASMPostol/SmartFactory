@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x0100537ABB20EDAC43A6ABD0F3E10DB2BECE"
+               Name="CustomsWarehouse"
+               Group="CAS Smart Factory Customs Warehouse"
+               Description="Customs Warehouse Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
+    <Folder TargetName="_cts/CustomsWarehouse" />
+    <FieldRefs>
+      <FieldRef ID="{B304AE65-8CCF-49E8-B1F2-C60D6453753A}" Name="CWC_EntryDate" />
+      <FieldRef ID="{39DB0101-A722-49AB-9369-6410727F4C97}" Name="CWL_CW2ConsentTitle" />
+      <FieldRef ID="{7BF919F9-500D-4584-A5AC-AC03D705D2B1}" Name="ValidFromDate" />
+      <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
+      <FieldRef ID="{DA5A1735-E0C6-44CF-AECA-490C6E17498A}" Name="ConsentPeriod" />
+      <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
+      <FieldRef ID="{FE3B4425-FBF7-474A-9CFA-BD2F27F13E17}" Name="CustomsDebtDate" />
+      <FieldRef ID="{39BF8BA0-19DE-49FB-AE9A-892A518F9C52}" Name="TobaccoName" />
+      <FieldRef ID="{01F8D41D-F043-4C23-8D7E-FA7BDAC4B8A0}" Name="Grade" />
+      <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+      <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
+      <FieldRef ID="{120E777C-7108-42CF-AB85-42766FF1840B}" Name="CWL_CW2PCNPCN_sec" />
+      <FieldRef ID="{9A6D0500-DE73-41A6-9F9F-99DE8A189491}" Name="CW_Quantity" />
+      <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+      <FieldRef ID="{DB454782-449A-4EC5-B0CD-55A7D7AF3428}" Name="NetMass" />
+      <FieldRef ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" Name="GrossMass" />
+      <FieldRef ID="{0D659694-3661-4AE1-95ED-4C15C02CD774}" Name="CW_PackageUnits" />
+      <FieldRef ID="{0912FC75-ED32-4919-950D-790D0E82B6BC}" Name="CW_PackageKg" />
+      <FieldRef ID="{914FFBC3-8F54-43E2-8D29-E1D614CF0975}" Name="CW_MassPerPackage" />
+      <FieldRef ID="{DE38C643-C8BC-4469-8D2F-266BF236F6D1}" Name="Value" />
+      <FieldRef ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Name="Currency" />
+      <FieldRef ID="{BD5E3778-B908-48BF-BCB1-8DDB8E9B2701}" Name="CW_UnitPrice" />
+      <FieldRef ID="{F061A643-E22C-46CD-AC9C-C61FAEC1F301}" Name="CW_PzNo" />
+      <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
+      <FieldRef ID="{6979EFB8-2614-49B7-9482-5869CE4F3108}" Name="AccountBalance" />
+      <FieldRef ID="{5B43999B-FBF9-498F-9E4F-CBE44CE7DD96}" Name="CW_Certificate" />
+      <FieldRef ID="{E6A94982-F43E-436D-94A5-63C3916455A3}" Name="ClosingDate" />
+      <FieldRef ID="{C13CA3FF-19F6-47FC-9EA3-8365EB8EB07F}" Name="CWL_CW2PCNID" />
+      <FieldRef ID="{615855F8-6922-456C-95FB-2DAC71809663}" Name="CWL_CW2CWLibraryID" />
+    </FieldRefs>
+  </ContentType>
+</Elements>

@@ -50,10 +50,28 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ContentTypes\CustomsWarehouse\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bf691159-0109-40ce-93ae-412c87735f78}</SharePointProjectItemId>
+    </None>
     <None Include="Features\CWData\CWData.feature">
       <FeatureId>{6148b4a2-1a02-4980-8df8-ba379db910a6}</FeatureId>
     </None>
+    <None Include="Fields\CustomsWarehouseCustomsFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{11375570-e153-4fe1-bea5-179448907219}</SharePointProjectItemId>
+    </None>
+    <None Include="Fields\CustomsWarehouseFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{02d07213-8dd6-45d1-bafb-11139c4b8879}</SharePointProjectItemId>
+    </None>
+    <None Include="Fields\CustomsWarehouseLookupFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{37de7862-5af2-4ce9-88ec-4fd19b4a4172}</SharePointProjectItemId>
+    </None>
     <None Include="key.snk" />
+    <None Include="Lists\CustomsWarehouseListTemplate\CustomsWarehouseList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c9cda4a3-0932-489d-9fdf-fb43b23526f8}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\CustomsWarehouseListTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{392cead2-82a1-40ad-993c-a18a65ce97fb}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{d8b16157-a66b-4d23-b687-4b259f3e00bb}</PackageId>
     </None>
@@ -61,15 +79,18 @@
       <DependentUpon>Package.package</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="ContentTypes\" />
-    <Folder Include="Fields\" />
-    <Folder Include="Lists\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="ContentTypes\CustomsWarehouse\Elements.xml" />
     <Content Include="Features\CWData\CWData.Template.xml">
       <DependentUpon>CWData.feature</DependentUpon>
     </Content>
+    <Content Include="Fields\CustomsWarehouseCustomsFields\Elements.xml" />
+    <Content Include="Fields\CustomsWarehouseFields\Elements.xml" />
+    <Content Include="Fields\CustomsWarehouseLookupFields\Elements.xml" />
+    <Content Include="Lists\CustomsWarehouseListTemplate\CustomsWarehouseList\Elements.xml" />
+    <Content Include="Lists\CustomsWarehouseListTemplate\Elements.xml" />
+    <Content Include="Lists\CustomsWarehouseListTemplate\Schema.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

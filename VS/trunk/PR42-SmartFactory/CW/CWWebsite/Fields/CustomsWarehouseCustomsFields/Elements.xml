@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+  ID="{B304AE65-8CCF-49E8-B1F2-C60D6453753A}"
+  Name="CWC_EntryDate"
+  Group="CAS Smart Factory Customs Warehouse - Customs"
+  Type="DateTime"
+  Format="DateOnly"
+  DisplayName="Entry date">
+    <Default>[today]</Default>
+  </Field>
+</Elements>
