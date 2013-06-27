@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    ID="{9A6D0500-DE73-41A6-9F9F-99DE8A189491}"
+    Name="CW_Quantity"
+    DisplayName="Quantity"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Number" />
+  <Field
+    ID="{0D659694-3661-4AE1-95ED-4C15C02CD774}"
+    Name="CW_PackageUnits"
+    DisplayName="Pakage [units]"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Number" />
+  <Field
+    ID="{0912FC75-ED32-4919-950D-790D0E82B6BC}"
+    Name="CW_PackageKg"
+    DisplayName="Pakage [kg]"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Number" />
+  <Field
+    ID="{914FFBC3-8F54-43E2-8D29-E1D614CF0975}"
+    Name="CW_MassPerPackage"
+    DisplayName="Mass per package"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Number" />
+  <Field
+    ID="{BD5E3778-B908-48BF-BCB1-8DDB8E9B2701}"
+    Name="CW_UnitPrice"
+    DisplayName="Unit price"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Number"
+    Decimals="2"/>
+  <Field
+    ID="{F061A643-E22C-46CD-AC9C-C61FAEC1F301}"
+    Name="CW_PzNo"
+    DisplayName="PZ no."
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Text"/>
+  <Field
+    ID="{5B43999B-FBF9-498F-9E4F-CBE44CE7DD96}"
+    Name="CW_Certificate"
+    DisplayName="Certificate"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Text"/>
+</Elements>
