@@ -105,11 +105,17 @@
     <Content Include="Features\CWData\CWData.Template.xml">
       <DependentUpon>CWData.feature</DependentUpon>
     </Content>
-    <Content Include="Fields\CustomsWarehouseCustomsFields\Elements.xml" />
-    <Content Include="Fields\CustomsWarehouseFields\Elements.xml" />
+    <Content Include="Fields\CustomsWarehouseCustomsFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Fields\CustomsWarehouseFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Fields\CustomsWarehouseLookupFields\Elements.xml" />
     <Content Include="Lists\CustomsWarehouseDisposalListTemplate\CustomsWarehouseDisposalList\Elements.xml" />
-    <Content Include="Lists\CustomsWarehouseDisposalListTemplate\Elements.xml" />
+    <Content Include="Lists\CustomsWarehouseDisposalListTemplate\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\CustomsWarehouseDisposalListTemplate\Schema.xml" />
     <Content Include="Lists\CustomsWarehouseLibraryTemplate\CustomsWarehouseLibrary\Elements.xml" />
     <Content Include="Lists\CustomsWarehouseLibraryTemplate\EditDlg.htm" />

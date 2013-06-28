@@ -30,10 +30,18 @@
       <FieldRef ID="{DE38C643-C8BC-4469-8D2F-266BF236F6D1}" Name="Value" />
       <FieldRef ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Name="Currency" />
       <FieldRef ID="{BD5E3778-B908-48BF-BCB1-8DDB8E9B2701}" Name="CW_UnitPrice" />
+      <FieldRef ID="{30DC9FA3-9E24-479C-AE70-B2C0D194CB36}" Name="DutyName" />
+      <FieldRef ID="{A71AE110-34D7-4468-A64E-00BD0B4A76D5}" Name="Duty" />
+      <FieldRef ID="{BBA456AC-91B9-425D-8DE7-40C311AEB345}" Name="VATName" />
+      <FieldRef ID="{1C4FC96E-0E0C-4DBF-96FB-FEC8E079D18B}" Name="VAT"/>
       <FieldRef ID="{F061A643-E22C-46CD-AC9C-C61FAEC1F301}" Name="CW_PzNo" />
       <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
       <FieldRef ID="{6979EFB8-2614-49B7-9482-5869CE4F3108}" Name="AccountBalance" />
-      <FieldRef ID="{5B43999B-FBF9-498F-9E4F-CBE44CE7DD96}" Name="CW_Certificate" />
+      <FieldRef ID="{8C385B9F-6442-4FB5-8258-961C9A723492}" Name="TobaccoNotAllocated" />
+      <FieldRef ID="{D5BEFDD7-BA59-42EE-89F8-EA173C73F8DA}" Name="CW_CertificateOfOrgin" />
+      <FieldRef ID="{3120670C-1291-4EAD-99A4-A497F779DF51}" Name="CW_CODate" />
+      <FieldRef ID="{6CA6F676-A1D0-455F-83C0-68AE5173E6BA}" Name="CW_CertificateOfAuthenticity" />
+      <FieldRef ID="{E47C39BD-90E7-4CB2-AC96-745DBC6463C6}" Name="CW_COADate" />
       <FieldRef ID="{E6A94982-F43E-436D-94A5-63C3916455A3}" Name="ClosingDate" />
       <FieldRef ID="{C13CA3FF-19F6-47FC-9EA3-8365EB8EB07F}" Name="CWL_CW2PCNID" />
       <FieldRef ID="{615855F8-6922-456C-95FB-2DAC71809663}" Name="CWL_CW2CWLibraryID" />
