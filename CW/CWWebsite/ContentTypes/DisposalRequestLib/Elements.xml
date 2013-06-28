@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x0101006A3BDDD5D82D4C03B297650EEECA0EF2"
+               Name="DisposalRequestLib"
+               Group="CAS Smart Factory Customs Warehouse"
+               Description="Disposal Request Library Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
+    <FieldRefs>
+    </FieldRefs>
+  </ContentType>
+</Elements>

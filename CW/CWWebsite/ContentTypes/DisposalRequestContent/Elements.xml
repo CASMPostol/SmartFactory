@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x0100B15477CF72A241D4B1E147913CB151F1"
+               Name="DisposalRequestContent"
+               Group="CAS Smart Factory Customs Warehouse"
+               Description="Disposal Request Content Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
+    <Folder TargetName="_cts/DisposalRequestContent" />
+    <FieldRefs>
+      <FieldRef ID="{B304AE65-8CCF-49E8-B1F2-C60D6453753A}" Name="CWC_EntryDate" />
+      <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />
+      <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+      <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
+      <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
+      <FieldRef ID="{87F03311-404C-42FE-82F3-D7490CC07496}" Name="CW_DeclaredToClear" />
+      <FieldRef ID="{EF50EAD3-E895-4E80-BE1E-9412AEB18D0E}" Name="CW_QuantityAvailable" />
+      <FieldRef ID="{6EAB5EE1-9217-4C92-9A69-AD1F0A03F9E0}" Name="CW_PackageAvailable" />
+      <FieldRef ID="{5B18A2BC-F7CE-47DC-B811-96760938BC10}" Name="CW_QuantityToClead" />
+      <FieldRef ID="{61C75289-DC52-4757-8955-D4FA27C0E345}" Name="CW_PackageToClead" />
+      <FieldRef ID="{569D15FD-BB82-477A-81ED-DA677E6AD342}" Name="CW_AddedKg" />
+      <FieldRef ID="{8EAF2500-712D-4412-882B-9ABC7FFE4C32}" Name="CWL_CWDisposalRequest2DisposalRequestLibraryID" />
+    </FieldRefs>
+  </ContentType>
+</Elements>
+

@@ -59,6 +59,12 @@
     <None Include="ContentTypes\CustomsWarehouse\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bf691159-0109-40ce-93ae-412c87735f78}</SharePointProjectItemId>
     </None>
+    <None Include="ContentTypes\DisposalRequestContent\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0ddf6f42-52c4-4341-97f9-3481ad6bea6b}</SharePointProjectItemId>
+    </None>
+    <None Include="ContentTypes\DisposalRequestLib\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ed137059-c5be-4d36-bac7-73833b54c7b8}</SharePointProjectItemId>
+    </None>
     <None Include="Features\CWData\CWData.feature">
       <FeatureId>{6148b4a2-1a02-4980-8df8-ba379db910a6}</FeatureId>
     </None>
@@ -90,6 +96,12 @@
     <None Include="Lists\CustomsWarehouseListTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{392cead2-82a1-40ad-993c-a18a65ce97fb}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\DisposalRequestLibraryTemplate\DisposalRequestLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7851d9d2-3b8a-4f08-8735-f67ef6fdde3d}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\DisposalRequestLibraryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{fcc2de45-59b7-4bd0-8953-ff665f6eb012}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{d8b16157-a66b-4d23-b687-4b259f3e00bb}</PackageId>
     </None>
@@ -99,9 +111,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="ContentTypes\CustomsWarehouseDisposal\Elements.xml" />
+    <Content Include="ContentTypes\CustomsWarehouseDisposal\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ContentTypes\CustomsWarehouseLib\Elements.xml" />
-    <Content Include="ContentTypes\CustomsWarehouse\Elements.xml" />
+    <Content Include="ContentTypes\CustomsWarehouse\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ContentTypes\DisposalRequestContent\Elements.xml" />
+    <Content Include="ContentTypes\DisposalRequestLib\Elements.xml" />
     <Content Include="Features\CWData\CWData.Template.xml">
       <DependentUpon>CWData.feature</DependentUpon>
     </Content>
@@ -111,7 +129,9 @@
     <Content Include="Fields\CustomsWarehouseFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Fields\CustomsWarehouseLookupFields\Elements.xml" />
+    <Content Include="Fields\CustomsWarehouseLookupFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\CustomsWarehouseDisposalListTemplate\CustomsWarehouseDisposalList\Elements.xml" />
     <Content Include="Lists\CustomsWarehouseDisposalListTemplate\Elements.xml">
       <SubType>Designer</SubType>
@@ -126,7 +146,16 @@
     <Content Include="Lists\CustomsWarehouseLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\CustomsWarehouseListTemplate\CustomsWarehouseList\Elements.xml" />
     <Content Include="Lists\CustomsWarehouseListTemplate\Elements.xml" />
-    <Content Include="Lists\CustomsWarehouseListTemplate\Schema.xml" />
+    <Content Include="Lists\CustomsWarehouseListTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Lists\DisposalRequestLibraryTemplate\DisposalRequestLibrary\Elements.xml" />
+    <Content Include="Lists\DisposalRequestLibraryTemplate\EditDlg.htm" />
+    <Content Include="Lists\DisposalRequestLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\DisposalRequestLibraryTemplate\FileDlg.htm" />
+    <Content Include="Lists\DisposalRequestLibraryTemplate\Repair.aspx" />
+    <Content Include="Lists\DisposalRequestLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\DisposalRequestLibraryTemplate\Upload.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
