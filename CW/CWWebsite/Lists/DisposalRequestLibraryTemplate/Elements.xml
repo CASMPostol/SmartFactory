@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <ListTemplate
+        Name="DisposalRequestLibraryTemplate"
+        Type="10003"
+        BaseType="1"
+        OnQuickLaunch="TRUE"
+        SecurityBits="11"
+        Sequence="110"
+        DisplayName="Disposa lRequest Library Template"
+        Description="Disposa lRequest Library Definition"
+        Image="/_layouts/images/itdl.png"
+        DocumentTemplate="121"/>
+</Elements>
