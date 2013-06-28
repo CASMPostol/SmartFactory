@@ -38,11 +38,35 @@
     Group="CAS Smart Factory Customs Warehouse"
     Type="Text"/>
   <Field
-    ID="{5B43999B-FBF9-498F-9E4F-CBE44CE7DD96}"
-    Name="CW_Certificate"
-    DisplayName="Certificate"
+    ID="{D5BEFDD7-BA59-42EE-89F8-EA173C73F8DA}"
+    Name="CW_CertificateOfOrgin"
+    DisplayName="Certificate of Orgin"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Text"/>
+  <Field
+    ID="{3120670C-1291-4EAD-99A4-A497F779DF51}"
+    Name="CW_CODate"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Date - CO">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    ID="{6CA6F676-A1D0-455F-83C0-68AE5173E6BA}"
+    Name="CW_CertificateOfAuthenticity"
+    DisplayName="Certificate of Authenticity"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Text"/>
+  <Field
+    ID="{E47C39BD-90E7-4CB2-AC96-745DBC6463C6}"
+    Name="CW_COADate"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Date - COA">
+    <Default>[today]</Default>
+  </Field>
   <Field
     ID="{B1AFC3A9-A6AE-4F71-B5EF-168317EB6DA5}"
     Name="CW_DeclaredNetMass"

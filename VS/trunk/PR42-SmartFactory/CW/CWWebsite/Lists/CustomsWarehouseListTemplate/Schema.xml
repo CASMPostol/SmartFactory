@@ -27,10 +27,18 @@
           <FieldRef ID="{DE38C643-C8BC-4469-8D2F-266BF236F6D1}" Name="Value" />
           <FieldRef ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Name="Currency" />
           <FieldRef ID="{BD5E3778-B908-48BF-BCB1-8DDB8E9B2701}" Name="CW_UnitPrice" />
+          <FieldRef ID="{30DC9FA3-9E24-479C-AE70-B2C0D194CB36}" Name="DutyName" />
+          <FieldRef ID="{A71AE110-34D7-4468-A64E-00BD0B4A76D5}" Name="Duty" />
+          <FieldRef ID="{BBA456AC-91B9-425D-8DE7-40C311AEB345}" Name="VATName" />
+          <FieldRef ID="{1C4FC96E-0E0C-4DBF-96FB-FEC8E079D18B}" Name="VAT" />
           <FieldRef ID="{F061A643-E22C-46CD-AC9C-C61FAEC1F301}" Name="CW_PzNo" />
           <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
           <FieldRef ID="{6979EFB8-2614-49B7-9482-5869CE4F3108}" Name="AccountBalance" />
-          <FieldRef ID="{5B43999B-FBF9-498F-9E4F-CBE44CE7DD96}" Name="CW_Certificate" />
+          <FieldRef ID="{8C385B9F-6442-4FB5-8258-961C9A723492}" Name="TobaccoNotAllocated" />
+          <FieldRef ID="{D5BEFDD7-BA59-42EE-89F8-EA173C73F8DA}" Name="CW_CertificateOfOrgin" />
+          <FieldRef ID="{3120670C-1291-4EAD-99A4-A497F779DF51}" Name="CW_CODate" />
+          <FieldRef ID="{6CA6F676-A1D0-455F-83C0-68AE5173E6BA}" Name="CW_CertificateOfAuthenticity" />
+          <FieldRef ID="{E47C39BD-90E7-4CB2-AC96-745DBC6463C6}" Name="CW_COADate" />
           <FieldRef ID="{E6A94982-F43E-436D-94A5-63C3916455A3}" Name="ClosingDate" />
           <FieldRef ID="{C13CA3FF-19F6-47FC-9EA3-8365EB8EB07F}" Name="CWL_CW2PCNID" />
           <FieldRef ID="{615855F8-6922-456C-95FB-2DAC71809663}" Name="CWL_CW2CWLibraryID" />
@@ -68,10 +76,22 @@
       <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_Value;" Name="Value" Type="Number" Decimals="2" ID="{de38c643-c8bc-4469-8d2f-266bf236f6d1}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="Value" />
       <Field Name="Currency" ID="{91f0305a-9f13-468a-85ca-1ae1c859dbd7}" Type="Text" DisplayName="$Resources:CASSmartFactoryIPR,CAS_Currency;" Group="CAS Smart Factory IPR Customs" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="Currency" />
       <Field ID="{BD5E3778-B908-48BF-BCB1-8DDB8E9B2701}" Name="CW_UnitPrice" DisplayName="Unit price" Group="CAS Smart Factory Customs Warehouse" Type="Number" Decimals="2" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_DutyName;" Name="DutyName" Type="Text" ID="{30dc9fa3-9e24-479c-ae70-b2c0d194cb36}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="DutyName" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_Duty;" Name="Duty" Type="Number" Decimals="2" ID="{a71ae110-34d7-4468-a64e-00bd0b4a76d5}" Group="CAS Smart Factory IPR Customs" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="Duty" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_VATName;" Name="VATName" Type="Text" ID="{bba456ac-91b9-425d-8de7-40c311aeb345}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="VATName" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_VAT;" Name="VAT" Type="Number" Decimals="2" ID="{1c4fc96e-0e0c-4dbf-96fb-fec8e079d18b}" Group="CAS Smart Factory IPR Customs" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="VAT" />
       <Field ID="{F061A643-E22C-46CD-AC9C-C61FAEC1F301}" Name="CW_PzNo" DisplayName="PZ no." Group="CAS Smart Factory Customs Warehouse" Type="Text" />
       <Field Name="InvoiceNo" ID="{d41c0f0b-a4a9-4d19-bd42-78d3de4a22ec}" Type="Text" DisplayName="$Resources:CASSmartFactoryIPR,CAS_InvoiceNo;" Group="CAS Smart Factory IPR Reports" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="InvoiceNo" />
       <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_AccountBalance;" Name="AccountBalance" Type="Number" Decimals="2" ID="{6979efb8-2614-49b7-9482-5869ce4f3108}" Group="CAS Smart Factory IPR" Required="TRUE" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="AccountBalance" />
-      <Field ID="{5B43999B-FBF9-498F-9E4F-CBE44CE7DD96}" Name="CW_Certificate" DisplayName="Certificate" Group="CAS Smart Factory Customs Warehouse" Type="Text" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoNotAllocated;" Name="TobaccoNotAllocated" Type="Number" Decimals="2" ID="{8c385b9f-6442-4fb5-8258-961c9a723492}" Group="CAS Smart Factory IPR" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="TobaccoNotAllocated" />
+      <Field ID="{D5BEFDD7-BA59-42EE-89F8-EA173C73F8DA}" Name="CW_CertificateOfOrgin" DisplayName="Certificate of Orgin" Group="CAS Smart Factory Customs Warehouse" Type="Text" />
+      <Field ID="{3120670C-1291-4EAD-99A4-A497F779DF51}" Name="CW_CODate" Group="CAS Smart Factory Customs Warehouse" Type="DateTime" Format="DateOnly" DisplayName="Date - CO">
+        <Default>[today]</Default>
+      </Field>
+      <Field ID="{6CA6F676-A1D0-455F-83C0-68AE5173E6BA}" Name="CW_CertificateOfAuthenticity" DisplayName="Certificate of Authenticity" Group="CAS Smart Factory Customs Warehouse" Type="Text" />
+      <Field ID="{E47C39BD-90E7-4CB2-AC96-745DBC6463C6}" Name="CW_COADate" Group="CAS Smart Factory Customs Warehouse" Type="DateTime" Format="DateOnly" DisplayName="Date - COA">
+        <Default>[today]</Default>
+      </Field>
       <Field ID="{e6a94982-f43e-436d-94a5-63c3916455a3}" Name="ClosingDate" Group="CAS Smart Factory IPR" Type="DateTime" Format="DateOnly" DisplayName="$Resources:CASSmartFactoryIPR,CAS_ClosingDate;" SourceID="{4f185ee7-ce6c-4405-995f-a04de46f252c}" StaticName="ClosingDate">
         <Default>[today]</Default>
       </Field>
@@ -126,10 +146,18 @@
           <FieldRef Name="Value" />
           <FieldRef Name="Currency" />
           <FieldRef Name="CW_UnitPrice" />
+          <FieldRef Name="DutyName" />
+          <FieldRef Name="Duty" />
+          <FieldRef Name="VATName" />
+          <FieldRef Name="VAT" />
           <FieldRef Name="CW_PzNo" />
           <FieldRef Name="InvoiceNo" />
           <FieldRef Name="AccountBalance" />
-          <FieldRef Name="CW_Certificate" />
+          <FieldRef Name="TobaccoNotAllocated" />
+          <FieldRef Name="CW_CertificateOfOrgin" />
+          <FieldRef Name="CW_CODate" />
+          <FieldRef Name="CW_CertificateOfAuthenticity" />
+          <FieldRef Name="CW_COADate" />
           <FieldRef Name="ClosingDate" />
           <FieldRef Name="CWL_CW2PCNID" />
           <FieldRef Name="CWL_CW2CWLibraryID" />
