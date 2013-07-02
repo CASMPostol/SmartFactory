@@ -8,12 +8,17 @@
   <List Name="Clearence" />
   <List Name="Consent" />
   <List Name="Customs Union" />
+  <List Name="Customs Warehouse" />
+  <List Name="Customs Warehouse Disposal" />
+  <List Name="Customs Warehouse Library" />
   <List Name="Cutfiller Coefficient" />
   <List Name="CW" />
   <List Name="CW Disposal" />
   <List Name="CW Library" />
+  <List Name="Disposa Request Content" />
   <List Name="Disposal" />
   <List Name="Disposal Declaration" />
+  <List Name="Disposal Request Library" />
   <List Name="Dust" />
   <List Name="Format" />
   <List Name="Invoice Content" />
@@ -102,6 +107,7 @@
     <Column Name="Disposal2PCNPCN_sec" Member="Disposal2PCNPCN_sec" />
     <Column Name="ClearingType" Member="ClearingType" />
     <Column Name="Disposal2IPROGL_sec" Member="Disposal2IPROGL_sec" />
+    <Column Name="Disposal2IPRSKU_sec" Member="Disposal2IPRSKU_sec" />
     <Column Name="Disposal2IPRBatch_sec" Member="Disposal2IPRBatch_sec" />
     <Column Name="Disposal2ClearenceIndex" Member="Disposal2ClearenceIndex" />
     <Column Name="JSOXCustomsSummaryIndex" Member="JSOXCustomsSummaryIndex" />
@@ -241,6 +247,47 @@
     <Column Name="SHMenthol" Member="SHMenthol" />
     <Column Name="Material2BatchIndex" Member="Material2BatchIndex" />
   </ContentType>
+  <ContentType Name="CustomsWarehouse" Class="CustomsWarehouse">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="Title" Member="Title" />
+    <Column Name="CWC_EntryDate" Member="CWC_EntryDate" />
+    <Column Name="CWL_CW2ConsentTitle" Member="CWL_CW2ConsentTitle" />
+    <Column Name="ValidFromDate" Member="ValidFromDate" />
+    <Column Name="ValidToDate" Member="ValidToDate" />
+    <Column Name="ConsentPeriod" Member="ConsentPeriod" />
+    <Column Name="DocumentNo" Member="DocumentNo" />
+    <Column Name="CustomsDebtDate" Member="CustomsDebtDate" />
+    <Column Name="TobaccoName" Member="TobaccoName" />
+    <Column Name="Grade" Member="Grade" />
+    <Column Name="SKU" Member="SKU" />
+    <Column Name="Batch" Member="Batch" />
+    <Column Name="CWL_CW2PCNPCN_sec" Member="CWL_CW2PCNPCN_sec" />
+    <Column Name="CW_Quantity" Member="CW_Quantity" />
+    <Column Name="Units" Member="Units" />
+    <Column Name="NetMass" Member="NetMass" />
+    <Column Name="GrossMass" Member="GrossMass" />
+    <Column Name="CW_PackageUnits" Member="CW_PackageUnits" />
+    <Column Name="CW_PackageKg" Member="CW_PackageKg" />
+    <Column Name="CW_MassPerPackage" Member="CW_MassPerPackage" />
+    <Column Name="Value" Member="Value" />
+    <Column Name="Currency" Member="Currency" />
+    <Column Name="CW_UnitPrice" Member="CW_UnitPrice" />
+    <Column Name="DutyName" Member="DutyName" />
+    <Column Name="Duty" Member="Duty" />
+    <Column Name="VATName" Member="VATName" />
+    <Column Name="VAT" Member="VAT" />
+    <Column Name="CW_PzNo" Member="CW_PzNo" />
+    <Column Name="InvoiceNo" Member="InvoiceNo" />
+    <Column Name="AccountBalance" Member="AccountBalance" />
+    <Column Name="TobaccoNotAllocated" Member="TobaccoNotAllocated" />
+    <Column Name="CW_CertificateOfOrgin" Member="CW_CertificateOfOrgin" />
+    <Column Name="CW_CODate" Member="CW_CODate" />
+    <Column Name="CW_CertificateOfAuthenticity" Member="CW_CertificateOfAuthenticity" />
+    <Column Name="CW_COADate" Member="CW_COADate" />
+    <Column Name="ClosingDate" Member="ClosingDate" />
+    <Column Name="CWL_CW2PCNID" Member="CWL_CW2PCNID" />
+    <Column Name="CWL_CW2CWLibraryID" Member="CWL_CW2CWLibraryID" />
+  </ContentType>
   <ContentType Name="DisposalDeclaration" Class="DisposalDeclaration">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
@@ -273,6 +320,38 @@
     <Column Name="ItemNo" Member="ItemNo" />
     <Column Name="Package" Member="Package" />
     <Column Name="SADPackage2SADGoodID" Member="SADPackage2SADGoodID" />
+  </ContentType>
+  <ContentType Name="CustomsWarehouseDisposal" Class="CustomsWarehouseDisposal">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="Title" Member="Title" />
+    <Column Name="CWC_EntryDate" Member="CWC_EntryDate" />
+    <Column Name="No" Member="No" />
+    <Column Name="SADDocumentNo" Member="SADDocumentNo" />
+    <Column Name="SADDate" Member="SADDate" />
+    <Column Name="TobaccoName" Member="TobaccoName" />
+    <Column Name="Grade" Member="Grade" />
+    <Column Name="SKU" Member="SKU" />
+    <Column Name="Batch" Member="Batch" />
+    <Column Name="CW_DeclaredNetMass" Member="CW_DeclaredNetMass" />
+    <Column Name="CW_Wz1" Member="CW_Wz1" />
+    <Column Name="CW_Wz2" Member="CW_Wz2" />
+    <Column Name="CW_Wz3" Member="CW_Wz3" />
+    <Column Name="CW_AddedKg" Member="CW_AddedKg" />
+    <Column Name="CW_SettledNetMass" Member="CW_SettledNetMass" />
+    <Column Name="CW_SettledGrossMass" Member="CW_SettledGrossMass" />
+    <Column Name="TobaccoValue" Member="TobaccoValue" />
+    <Column Name="Currency" Member="Currency" />
+    <Column Name="RemainingQuantity" Member="RemainingQuantity" />
+    <Column Name="CW_RemainingPackage" Member="CW_RemainingPackage" />
+    <Column Name="CW_RemainingTobaccoValue" Member="CW_RemainingTobaccoValue" />
+    <Column Name="ClearingType" Member="ClearingType" />
+    <Column Name="CustomsProcedure" Member="CustomsProcedure" />
+    <Column Name="CWL_CWDisposal2PCNTID" Member="CWL_CWDisposal2PCNTID" />
+    <Column Name="CWL_CWDisposal2PCNPCN_sec" Member="CWL_CWDisposal2PCNPCN_sec" />
+    <Column Name="CustomsStatus" Member="CustomsStatus" />
+    <Column Name="DutyPerSettledAmount" Member="DutyPerSettledAmount" />
+    <Column Name="VATPerSettledAmount" Member="VATPerSettledAmount" />
+    <Column Name="DutyAndVAT" Member="DutyAndVAT" />
   </ContentType>
   <ContentType Name="Format" Class="Format">
     <!--<Column Name="ContentType" Member="ContentType" />-->
@@ -386,6 +465,22 @@
     <Column Name="VATPerSettledAmount" Member="VATPerSettledAmount" />
     <Column Name="DutyAndVAT" Member="DutyAndVAT" />
     <Column Name="CWDisposal2PCNTID" Member="CWDisposal2PCNTID" />
+  </ContentType>
+  <ContentType Name="DisposalRequestContent" Class="DisposalRequestContent">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="Title" Member="Title" />
+    <Column Name="CWC_EntryDate" Member="CWC_EntryDate" />
+    <Column Name="No" Member="No" />
+    <Column Name="SKU" Member="SKU" />
+    <Column Name="SKUDescription" Member="SKUDescription" />
+    <Column Name="Batch" Member="Batch" />
+    <Column Name="CW_DeclaredToClear" Member="CW_DeclaredToClear" />
+    <Column Name="CW_QuantityAvailable" Member="CW_QuantityAvailable" />
+    <Column Name="CW_PackageAvailable" Member="CW_PackageAvailable" />
+    <Column Name="CW_QuantityToClead" Member="CW_QuantityToClead" />
+    <Column Name="CW_PackageToClead" Member="CW_PackageToClead" />
+    <Column Name="CW_AddedKg" Member="CW_AddedKg" />
+    <Column Name="CWL_CWDisposalRequest2DisposalRequestLibraryID" Member="CWL_CWDisposalRequest2DisposalRequestLibraryID" />
   </ContentType>
   <ContentType Name="IPR" Class="IPR">
     <!--<Column Name="ContentType" Member="ContentType" />-->
@@ -657,6 +752,20 @@
     <Column Name="Created_x0020_By" Member="Created_x0020_By" />
     <Column Name="BatchLibraryOK" Member="BatchLibraryOK" />
     <Column Name="BatchLibraryComments" Member="BatchLibraryComments" />
+  </ContentType>
+  <ContentType Name="DisposalRequestLib" Class="DisposalRequestLib">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+  </ContentType>
+  <ContentType Name="CustomsWarehouseLib" Class="CustomsWarehouseLib">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
   </ContentType>
   <ContentType Name="CWLib" Class="CWLib">
     <!--<Column Name="ContentType" Member="ContentType" />-->

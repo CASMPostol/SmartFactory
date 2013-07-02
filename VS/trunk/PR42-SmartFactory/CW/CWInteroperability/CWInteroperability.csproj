@@ -55,7 +55,6 @@
     <None Include="Features\CWInteroperability\CWInteroperability.feature">
       <FeatureId>{605eb80a-ecf2-420a-8044-8f64d920cd9b}</FeatureId>
     </None>
-    <None Include="key.snk" />
     <None Include="Package\Package.package">
       <PackageId>{5783eb58-ba24-4f23-9b17-bd6d50e0ab61}</PackageId>
     </None>

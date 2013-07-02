@@ -75,7 +75,6 @@
     <None Include="Fields\CustomsWarehouseLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{37de7862-5af2-4ce9-88ec-4fd19b4a4172}</SharePointProjectItemId>
     </None>
-    <None Include="key.snk" />
     <None Include="Lists\CustomsWarehouseDisposalListTemplate\CustomsWarehouseDisposalList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{90b2b4bd-038c-4a75-9ba0-a87d7bd741e4}</SharePointProjectItemId>
     </None>
