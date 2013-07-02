@@ -7,8 +7,8 @@
     <ProjectGuid>{52A878E1-45DB-4416-B2C5-1CEDC59BF4B5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CWWorkflows</RootNamespace>
-    <AssemblyName>CWWorkflows</AssemblyName>
+    <RootNamespace>CAS.SmartFactory.CW.Workflows</RootNamespace>
+    <AssemblyName>CAS.CWWorkflows</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -37,7 +37,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -48,6 +48,7 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cas.snk" />
     <None Include="Features\CWWorkflows\CWWorkflows.feature">
       <FeatureId>{87f225c4-cbba-40d9-989c-d065bf53e88f}</FeatureId>
     </None>

@@ -7,8 +7,8 @@
     <ProjectGuid>{19649FCB-22B6-428A-9B59-D53EF86ECE80}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CWDashboards</RootNamespace>
-    <AssemblyName>CWDashboards</AssemblyName>
+    <RootNamespace>CAS.SmartFactory.CW.Dashboards</RootNamespace>
+    <AssemblyName>CAS.CWDashboards</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -37,7 +37,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -48,6 +48,7 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cas.snk" />
     <None Include="Features\CWDashboards\CWDashboards.feature">
       <FeatureId>{d02741c0-3c27-40d5-a779-6d96683b9dbd}</FeatureId>
     </None>
