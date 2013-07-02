@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x0100DC84F48478204C6B815C06C178C57F9D"
+               Name="Vendor"
+               Group="CAS Smart Factory Customs Warehouse"
+               Description="Vendor Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
+    <Folder TargetName="_cts/Vendor" />
+    <FieldRefs>
+      <FieldRef ID="fc2e188e-ba91-48c9-9dd3-16431afddd50" Name="WorkAddress" />
+      <FieldRef ID="6ca7bd7f-b490-402e-af1b-2813cf087b1e" Name="WorkCity" />
+      <FieldRef ID="3f3a5c85-9d5a-4663-b925-8b68a678ea3a" Name="WorkCountry" />
+      <FieldRef ID="9a631556-3dac-49db-8d2f-fb033b0fdc24" Name="WorkZip" />
+    </FieldRefs>
+  </ContentType>
+</Elements>

@@ -67,7 +67,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DocumentsFactory\BinCard\BinCardStylesheet.xslt" />
+    <Content Include="DocumentsFactory\BinCard\BinCardStylesheet.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Features\CWInteroperability\CWInteroperability.Template.xml">
       <DependentUpon>CWInteroperability.feature</DependentUpon>
     </Content>

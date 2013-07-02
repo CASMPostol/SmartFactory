@@ -63,6 +63,9 @@
     <None Include="ContentTypes\DisposalRequestLib\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ed137059-c5be-4d36-bac7-73833b54c7b8}</SharePointProjectItemId>
     </None>
+    <None Include="ContentTypes\Vendor\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{85f101fc-b1b2-4c48-a4f6-0e336545790f}</SharePointProjectItemId>
+    </None>
     <None Include="Features\CWData\CWData.feature">
       <FeatureId>{6148b4a2-1a02-4980-8df8-ba379db910a6}</FeatureId>
     </None>
@@ -105,6 +108,12 @@
     <None Include="Lists\DisposalRequestLibraryTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fcc2de45-59b7-4bd0-8953-ff665f6eb012}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\VendorListTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f98f1835-abcf-4265-923d-bffdeda82b37}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\VendorListTemplate\VendorList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{abec54bb-07fa-42f4-bcf0-248f12150cae}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{d8b16157-a66b-4d23-b687-4b259f3e00bb}</PackageId>
     </None>
@@ -129,6 +138,7 @@
     </Content>
     <Content Include="ContentTypes\DisposalRequestContent\Elements.xml" />
     <Content Include="ContentTypes\DisposalRequestLib\Elements.xml" />
+    <Content Include="ContentTypes\Vendor\Elements.xml" />
     <Content Include="Features\CWData\CWData.Template.xml">
       <DependentUpon>CWData.feature</DependentUpon>
     </Content>
@@ -172,6 +182,9 @@
     <Content Include="Lists\DisposalRequestLibraryTemplate\Repair.aspx" />
     <Content Include="Lists\DisposalRequestLibraryTemplate\Schema.xml" />
     <Content Include="Lists\DisposalRequestLibraryTemplate\Upload.aspx" />
+    <Content Include="Lists\VendorListTemplate\Elements.xml" />
+    <Content Include="Lists\VendorListTemplate\Schema.xml" />
+    <Content Include="Lists\VendorListTemplate\VendorList\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
