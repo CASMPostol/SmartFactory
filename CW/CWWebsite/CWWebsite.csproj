@@ -47,9 +47,6 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ContentTypes\CustomsWarehouseDisposal\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b5769e2b-8462-4748-98ae-81671328f025}</SharePointProjectItemId>
     </None>
@@ -108,8 +105,14 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="Properties\AssemblyInfo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
+    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="ContentTypes\CustomsWarehouseDisposal\Elements.xml">
       <SubType>Designer</SubType>
@@ -156,6 +159,13 @@
     <Content Include="Lists\DisposalRequestLibraryTemplate\Repair.aspx" />
     <Content Include="Lists\DisposalRequestLibraryTemplate\Schema.xml" />
     <Content Include="Lists\DisposalRequestLibraryTemplate\Upload.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
