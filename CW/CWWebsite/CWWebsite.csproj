@@ -93,6 +93,12 @@
     <None Include="Lists\CustomsWarehouseListTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{392cead2-82a1-40ad-993c-a18a65ce97fb}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\DisposalRequestContentListTemplate\DisposalRequestContentList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8f150afa-3ff2-49ae-9499-a5711ea8d73a}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\DisposalRequestContentListTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7e0fa62d-36f9-4ea9-9b94-6fdb1fff3871}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\DisposalRequestLibraryTemplate\DisposalRequestLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{7851d9d2-3b8a-4f08-8735-f67ef6fdde3d}</SharePointProjectItemId>
     </None>
@@ -152,6 +158,13 @@
     <Content Include="Lists\CustomsWarehouseListTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\DisposalRequestContentListTemplate\DisposalRequestContentList\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Lists\DisposalRequestContentListTemplate\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Lists\DisposalRequestContentListTemplate\Schema.xml" />
     <Content Include="Lists\DisposalRequestLibraryTemplate\DisposalRequestLibrary\Elements.xml" />
     <Content Include="Lists\DisposalRequestLibraryTemplate\EditDlg.htm" />
     <Content Include="Lists\DisposalRequestLibraryTemplate\Elements.xml" />
