@@ -162,11 +162,4 @@
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number"
     Decimals="2"/>
-  <Field
-    ID="{569D15FD-BB82-477A-81ED-DA677E6AD342}"
-    Name="CW_AddedKg"
-    DisplayName="Added [kg]"
-    Group="CAS Smart Factory Customs Warehouse"
-    Type="Number"
-    Decimals="2"/>
 </Elements>
