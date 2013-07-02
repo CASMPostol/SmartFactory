@@ -52,7 +52,6 @@
     <None Include="Features\CWDashboards\CWDashboards.feature">
       <FeatureId>{d02741c0-3c27-40d5-a779-6d96683b9dbd}</FeatureId>
     </None>
-    <None Include="key.snk" />
     <None Include="Package\Package.package">
       <PackageId>{70cd31ac-87f9-48bc-9ef4-e244d239c8e8}</PackageId>
     </None>
