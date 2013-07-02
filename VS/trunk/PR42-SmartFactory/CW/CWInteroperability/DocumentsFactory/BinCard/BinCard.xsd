@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://CAS.SmartFactory.xml.DocumentsFactory.BinCard/DocumentContent.xsd" xmlns:tns="http://CAS.SmartFactory.xml.DocumentsFactory.BinCard/DocumentContent.xsd" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+  <xs:element name="DocumentContent" type="tns:DocumentContent" />
+  <xs:complexType name="DocumentContent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="TobaccoName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TobaccoType" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SKU" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SAD" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SADDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PzNo" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NetWeight" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PackageQuantity" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

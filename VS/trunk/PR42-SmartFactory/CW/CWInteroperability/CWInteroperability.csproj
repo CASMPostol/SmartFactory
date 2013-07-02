@@ -49,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
+    <None Include="DocumentsFactory\BinCard\BinCard.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Features\CWInteroperability\CWInteroperability.feature">
       <FeatureId>{605eb80a-ecf2-420a-8044-8f64d920cd9b}</FeatureId>
     </None>
@@ -65,6 +68,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DocumentsFactory\BinCard\BinCardStylesheet.xslt" />
     <Content Include="Features\CWInteroperability\CWInteroperability.Template.xml">
       <DependentUpon>CWInteroperability.feature</DependentUpon>
     </Content>
