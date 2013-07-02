@@ -7,8 +7,8 @@
     <ProjectGuid>{F0416078-82CD-4F9D-905C-1E346198759A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CWInteroperability</RootNamespace>
-    <AssemblyName>CWInteroperability</AssemblyName>
+    <RootNamespace>CAS.SmartFactory.CW.Interoperability</RootNamespace>
+    <AssemblyName>CAS.CWInteroperability</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -37,7 +37,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -48,6 +48,7 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cas.snk" />
     <None Include="Features\CWInteroperability\CWInteroperability.feature">
       <FeatureId>{605eb80a-ecf2-420a-8044-8f64d920cd9b}</FeatureId>
     </None>

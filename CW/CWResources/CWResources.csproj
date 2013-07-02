@@ -7,8 +7,8 @@
     <ProjectGuid>{DD1AC983-8A81-4292-A097-D61545CAD390}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CWResources</RootNamespace>
-    <AssemblyName>CWResources</AssemblyName>
+    <RootNamespace>CAS.SmartFactory.CW.Resources</RootNamespace>
+    <AssemblyName>CAS.CWResources</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -37,7 +37,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -48,6 +48,7 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cas.snk" />
     <None Include="Features\CWResources\CWResources.feature">
       <FeatureId>{1c6e5c2e-833f-4ac9-99d1-0ce03e355b69}</FeatureId>
     </None>
