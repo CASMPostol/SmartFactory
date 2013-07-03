@@ -9,7 +9,7 @@ using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.Customs;
 using IPRClass = CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR;
 
-namespace CAS.SmartFactory.IPR.Customs
+namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
 {
   internal static class ClearenceHelpers
   {
@@ -55,7 +55,7 @@ namespace CAS.SmartFactory.IPR.Customs
                   CreateIPRAccount( _edc, _cx, CustomsDocument.DocumentType.SAD, out _comments, warnings );
                   break;
                 case CustomsProcedureCodes.CustomsWarehousingProcedure:
-                  CreateCWAccount( _edc, _cx, CustomsDocument.DocumentType.SAD, out _comments, warnings );
+                  CreateCWAccount( _edc, CustomsDocument.DocumentType.SAD, out _comments, warnings, _cx );
                   break;
                 case CustomsProcedureCodes.ReExport:
                 case CustomsProcedureCodes.NoProcedure:
@@ -86,9 +86,15 @@ namespace CAS.SmartFactory.IPR.Customs
         throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
       }
     }
+
     #endregion
 
     #region private
+    private static void CreateCWAccount( Entities _edc, CustomsDocument.DocumentType documentType, out string _comments, List<InputDataValidationException> warnings, Clearence _cx )
+    {
+      ICWClearanceHelpers _cwHelper = CWClearanceHelpers.GetICWClearanceHelpers();
+      _cwHelper.CreateCWAccount( _edc, _cx, documentType, out _comments, warnings );
+    }
     private static CustomsProcedureCodes RequestedProcedure( this ClearenceProcedure value )
     {
       CustomsProcedureCodes _ret = default( CustomsProcedureCodes );
@@ -145,7 +151,9 @@ namespace CAS.SmartFactory.IPR.Customs
             at = "NewClearence";
             Clearence _newWarehousinClearance = Clearence.CreataClearence( edc, "CustomsWarehousingProcedure", ClearenceProcedure._7100, _sgx );
             if ( messageType == CustomsDocument.DocumentType.PZC )
-              CreateCWAccount( edc, _newWarehousinClearance, CustomsDocument.DocumentType.PZC, out comments, warnings );
+            {
+              CreateCWAccount( edc, CustomsDocument.DocumentType.PZC, out comments, warnings, _newWarehousinClearance );
+            }
             else
               comments = "Document added";
             break;
@@ -156,54 +164,7 @@ namespace CAS.SmartFactory.IPR.Customs
         }
       } //switch (_customsProcedureCodes)
     }
-    private static void CreateCWAccount( Entities entities, Clearence clearence, CustomsDocument.DocumentType _messageType, out string _comments, List<InputDataValidationException> warnings )
-    {
-      string _at = "started";
-      _comments = "IPR account creation error";
-      string _referenceNumber = String.Empty;
-      try
-      {
-        SADDocumentType declaration = clearence.Clearence2SadGoodID.SADDocumentIndex;
-        _referenceNumber = declaration.ReferenceNumber;
-        if ( WebsiteModel.Linq.IPR.RecordExist( entities, clearence.DocumentNo ) )
-        {
-          string _msg = "IPR record with the same SAD document number: {0} exist";
-          throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _msg, clearence.DocumentNo ) );
-        }
-        _at = "newIPRData";
-        _comments = "Inconsistent or incomplete data to create IPR account";
-        CWAccountData _accountData = new CWAccountData( entities, clearence.Clearence2SadGoodID, Convert2MessageType( _messageType ) );
-        ErrorsList _ar = new ErrorsList();
-        if ( !_accountData.Validate( entities, _ar ) )
-          warnings.Add( new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar ) );
-        _comments = "Consent lookup filed";
-        _at = "new IPRClass";
-        CW _cw = new CW( _accountData, clearence, declaration );
-        _at = "new InsertOnSubmit";
-        entities.CW.InsertOnSubmit( _cw );
-        clearence.Status = true;
-        _at = "new SubmitChanges #1";
-        entities.SubmitChanges();
-        _cw.UpdateTitle();
-        _at = "new SubmitChanges #2";
-        entities.SubmitChanges();
-      }
-      catch ( InputDataValidationException _idve )
-      {
-        throw _idve;
-      }
-      catch ( GenericStateMachineEngine.ActionResult _ex )
-      {
-        _ex.Message.Insert( 0, String.Format( "Message={0}, Reference={1}; ", _messageType, _referenceNumber ) );
-        throw _ex;
-      }
-      catch ( Exception _ex )
-      {
-        string _src = String.Format( "CreateIPRAccount method error at {0}", _at );
-        throw new IPRDataConsistencyException( _src, _ex.Message, _ex, "IPR account creation error" );
-      }
-      _comments = "IPR account created";
-    }
+
     /// <summary>
     /// Creates the IPR account.
     /// </summary>
@@ -232,7 +193,7 @@ namespace CAS.SmartFactory.IPR.Customs
         }
         _at = "newIPRData";
         _comments = "Inconsistent or incomplete data to create IPR account";
-        IPRAccountData _iprdata = new IPRAccountData( entities, clearence.Clearence2SadGoodID, Convert2MessageType( _messageType ) );
+        IPRAccountData _iprdata = new IPRAccountData( entities, clearence.Clearence2SadGoodID, ImportXMLCommon.Convert2MessageType( _messageType ) );
         ErrorsList _ar = new ErrorsList();
         if ( !_iprdata.Validate( entities, _ar ) )
           warnings.Add( new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar ) );
@@ -263,24 +224,6 @@ namespace CAS.SmartFactory.IPR.Customs
         throw new IPRDataConsistencyException( _src, _ex.Message, _ex, "IPR account creation error" );
       }
       _comments = "IPR account created";
-    }
-    private static AccountData.MessageType Convert2MessageType( CustomsDocument.DocumentType type )
-    {
-      AccountData.MessageType _ret = default( AccountData.MessageType );
-      switch ( type )
-      {
-        case CustomsDocument.DocumentType.SAD:
-          _ret = AccountData.MessageType.SAD;
-          break;
-        case CustomsDocument.DocumentType.PZC:
-          _ret = AccountData.MessageType.SAD;
-          break;
-        case CustomsDocument.DocumentType.IE529:
-        case CustomsDocument.DocumentType.CLNE:
-        default:
-          throw new ArgumentException( "Out of range value for CustomsDocument.DocumentType argument in Convert2MessageType ", "type" );
-      }
-      return _ret;
     }
     private static void ClearThroughCustoms( Entities entities, SADGood good )
     {

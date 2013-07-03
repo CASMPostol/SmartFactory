@@ -176,7 +176,6 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
 
     #endregion
 
-
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated OnWorkflowActivated;
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated onWorkflowActivated1;
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity LogWarningMessageToHistory;
@@ -189,18 +188,6 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
     private IfElseActivity IfRecordValid;
     private CodeActivity RecordValidation;
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity LogStartingMessageToHistory;
-
-
-
-
-
-
-
-
-
-
-
-
 
   }
 }

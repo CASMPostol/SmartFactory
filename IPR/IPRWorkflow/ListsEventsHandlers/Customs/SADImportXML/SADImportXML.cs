@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using CAS.SharePoint;
 using CAS.SharePoint.Web;
+using CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml;
@@ -16,13 +17,6 @@ namespace CAS.SmartFactory.IPR.Customs
   /// </summary>
   public class SADImportXML: SPItemEventReceiver
   {
-    ///// <summary>
-    ///// An item is being added
-    ///// </summary>
-    //public override void ItemAdding( SPItemEventProperties properties )
-    //{
-    //  base.ItemAdding( properties );
-    //}
     /// <summary>
     /// An item was added
     /// </summary>
