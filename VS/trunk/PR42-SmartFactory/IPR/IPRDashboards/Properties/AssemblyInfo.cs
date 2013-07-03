@@ -33,8 +33,8 @@ using System.Security;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.61.00.*")]
-[assembly: AssemblyFileVersion("1.61.00")]
+[assembly: AssemblyVersion("1.80.00.*")]
+[assembly: AssemblyFileVersion("1.80.00")]
 
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo( "IPRDashboardsTest, PublicKey=002400000480000094000000060200000024000052534131000400000100010015c024c9d0c88f" +
