@@ -15,10 +15,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
 
     }
     //public CWClearanceHelpers 
-    public void CreateCWAccount( Entities entities, Clearence clearence, CustomsDocument.DocumentType _messageType, out string _comments, List<InputDataValidationException> warnings )
+    public void CreateCWAccount( Entities entities, Clearence clearence, CustomsDocument.DocumentType messageType, out string comments, List<InputDataValidationException> warnings )
     {
       string _at = "started";
-      _comments = "IPR account creation error";
+      comments = "IPR account creation error";
       string _referenceNumber = String.Empty;
       try
       {
@@ -30,12 +30,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
           throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _msg, clearence.DocumentNo ) );
         }
         _at = "newIPRData";
-        _comments = "Inconsistent or incomplete data to create IPR account";
-        CWAccountData _accountData = new CWAccountData( entities, clearence.Clearence2SadGoodID, ImportXMLCommon.Convert2MessageType( _messageType ) );
+        comments = "Inconsistent or incomplete data to create IPR account";
+        CWAccountData _accountData = new CWAccountData( entities, clearence.Clearence2SadGoodID, ImportXMLCommon.Convert2MessageType( messageType ) );
         ErrorsList _ar = new ErrorsList();
         if ( !_accountData.Validate( entities, _ar ) )
           warnings.Add( new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar ) );
-        _comments = "Consent lookup filed";
+        comments = "Consent lookup filed";
         _at = "new IPRClass";
         CW _cw = new CW( _accountData, clearence, declaration );
         _at = "new InsertOnSubmit";
@@ -53,18 +53,16 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       }
       catch ( GenericStateMachineEngine.ActionResult _ex )
       {
-        _ex.Message.Insert( 0, String.Format( "Message={0}, Reference={1}; ", _messageType, _referenceNumber ) );
+        _ex.Message.Insert( 0, String.Format( "Message={0}, Reference={1}; ", messageType, _referenceNumber ) );
         throw _ex;
       }
       catch ( Exception _ex )
       {
-        string _src = String.Format( "CreateIPRAccount method error at {0}", _at );
+        string _src = String.Format( "CreateCWAccount method error at {0}", _at );
         throw new IPRDataConsistencyException( _src, _ex.Message, _ex, "IPR account creation error" );
       }
-      _comments = "IPR account created";
+      comments = "IPR account created";
     }
-
-
     internal static ICWClearanceHelpers GetICWClearanceHelpers()
     {
       throw new NotImplementedException();
