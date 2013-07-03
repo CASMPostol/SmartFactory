@@ -136,7 +136,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
             break;
           case CustomsProcedureCodes.InwardProcessing:
             {
-              at = "NewClearence";
+              at = "InwardProcessing:CreataClearence";
               Clearence _newClearance = Clearence.CreataClearence( edc, "InwardProcessing", ClearenceProcedure._5171, _sgx );
               if ( messageType == CustomsDocument.DocumentType.PZC )
               {
@@ -148,10 +148,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
               break;
             }
           case CustomsProcedureCodes.CustomsWarehousingProcedure:
-            at = "NewClearence";
+            at = "CustomsWarehousingProcedure:CreataClearence";
             Clearence _newWarehousinClearance = Clearence.CreataClearence( edc, "CustomsWarehousingProcedure", ClearenceProcedure._7100, _sgx );
             if ( messageType == CustomsDocument.DocumentType.PZC )
             {
+              at = "CreateCWAccount";
               CreateCWAccount( edc, CustomsDocument.DocumentType.PZC, out comments, warnings, _newWarehousinClearance );
             }
             else
