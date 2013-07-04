@@ -19,7 +19,7 @@ using System.Linq;
 using System.Text;
 using CAS.SmartFactory.Customs.Account;
 
-namespace CAS.SmartFactory.CW.WebsiteModel.Linq
+namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
 {
   /// <summary>
   /// Customs Warehouse Account Record Data
