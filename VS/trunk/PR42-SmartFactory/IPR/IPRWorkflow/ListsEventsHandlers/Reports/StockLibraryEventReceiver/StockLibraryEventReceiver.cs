@@ -97,7 +97,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       catch ( WebsiteModel.InputDataValidationException _iove )
       {
         _iove.ReportActionResult( url, fileName );
-        ActivityLogCT.WriteEntry( String.Format( m_Source, "Import of the stock message {0} failed.", fileName ), url );
+        ActivityLogCT.WriteEntry( m_Source, String.Format( "Import of the stock message {0} failed.", fileName ), url );
       }
       catch ( Exception ex )
       {

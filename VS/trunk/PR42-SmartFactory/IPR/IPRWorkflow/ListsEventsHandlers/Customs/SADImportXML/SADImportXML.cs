@@ -135,9 +135,9 @@ namespace CAS.SmartFactory.IPR.Customs
         GetSADGood( document.GetSADGood(), edc, newRow );
         return newRow;
       }
-      catch ( IPRDataConsistencyException _ex )
+      catch ( IPRDataConsistencyException )
       {
-        throw _ex;
+        throw;
       }
       catch ( Exception ex )
       {
@@ -173,9 +173,9 @@ namespace CAS.SmartFactory.IPR.Customs
           GetSADRequiredDocuments( _doc.GetSADRequiredDocuments(), edc, newRow );
         }
       }
-      catch ( IPRDataConsistencyException _ex )
+      catch ( IPRDataConsistencyException )
       {
-        throw _ex;
+        throw;
       }
       catch ( Exception ex )
       {
