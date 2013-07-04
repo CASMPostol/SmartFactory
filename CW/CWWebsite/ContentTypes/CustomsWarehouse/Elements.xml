@@ -45,6 +45,7 @@
       <FieldRef ID="{E6A94982-F43E-436D-94A5-63C3916455A3}" Name="ClosingDate" />
       <FieldRef ID="{C13CA3FF-19F6-47FC-9EA3-8365EB8EB07F}" Name="CWL_CW2PCNID" />
       <FieldRef ID="{615855F8-6922-456C-95FB-2DAC71809663}" Name="CWL_CW2CWLibraryID" />
+      <FieldRef ID="{7B4C1B77-5160-4E59-9BE3-42A39AE9A5D4}" Name="CWL_CW2VendorTitle" />
     </FieldRefs>
   </ContentType>
 </Elements>
