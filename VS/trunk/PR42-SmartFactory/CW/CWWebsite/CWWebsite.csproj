@@ -138,7 +138,9 @@
     </Content>
     <Content Include="ContentTypes\DisposalRequestContent\Elements.xml" />
     <Content Include="ContentTypes\DisposalRequestLib\Elements.xml" />
-    <Content Include="ContentTypes\Vendor\Elements.xml" />
+    <Content Include="ContentTypes\Vendor\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Features\CWData\CWData.Template.xml">
       <DependentUpon>CWData.feature</DependentUpon>
     </Content>
@@ -182,8 +184,12 @@
     <Content Include="Lists\DisposalRequestLibraryTemplate\Repair.aspx" />
     <Content Include="Lists\DisposalRequestLibraryTemplate\Schema.xml" />
     <Content Include="Lists\DisposalRequestLibraryTemplate\Upload.aspx" />
-    <Content Include="Lists\VendorListTemplate\Elements.xml" />
-    <Content Include="Lists\VendorListTemplate\Schema.xml" />
+    <Content Include="Lists\VendorListTemplate\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Lists\VendorListTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\VendorListTemplate\VendorList\Elements.xml" />
   </ItemGroup>
   <ItemGroup>

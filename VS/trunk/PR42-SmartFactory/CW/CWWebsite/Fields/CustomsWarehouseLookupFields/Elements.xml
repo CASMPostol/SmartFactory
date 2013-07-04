@@ -111,4 +111,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="CWL_CW2VendorTitle"
+    ID="{7B4C1B77-5160-4E59-9BE3-42A39AE9A5D4}"
+    Type="Lookup"
+    List="Lists/VendorList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Vendor"
+    Group="CAS Smart Factory Customs Warehouse"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
