@@ -9,7 +9,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
   /// <summary>
   /// Account Data
   /// </summary>
-  public abstract class AccountData
+  public abstract class AccountData: CAS.SmartFactory.Customs.Account.CommonAccountData
   {
 
     #region cretor
@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         _at = "AnalizeGoodsDescription";
         AnalizeGoodsDescription( edc, good.GoodsDescription );
         _at = "PCN lookup filed";
-        PCNTariffCode = PCNCode.AddOrGet( edc, good.PCNTariffCode, TobaccoName );
+        PCNTariffCodeLookup = PCNCode.AddOrGet( edc, good.PCNTariffCode, TobaccoName ).Identyfikator.Value;
       }
       catch ( InputDataValidationException _idve )
       {
@@ -114,91 +114,57 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
       TobaccoName = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionTobaccoNamePattern ), _na, _sErrors );
       GradeName = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionWGRADEPattern ), _na, _sErrors );
       SKU = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionSKUPattern ), _na, _sErrors );
-      Batch = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionBatchPattern ), _na, _sErrors );
+      this.BatchId = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionBatchPattern ), _na, _sErrors );
       if ( _sErrors.Count > 0 )
         throw new InputDataValidationException( "Syntax errors in the good description.", "AnalizeGoodsDescription", _sErrors );
     }
-    private List<string> m_Warnings = new List<string>();
     private void FindConsentRecord( Entities edc, EntitySet<SADRequiredDocuments> sadRequiredDocumentsEntitySet, DateTime customsDebtDate )
     {
       SADRequiredDocuments _rd = ( from _dx in sadRequiredDocumentsEntitySet
                                    let CustomsProcedureCode = _dx.Code.ToUpper()
-                                   where CustomsProcedureCode.Contains( GlobalDefinitions.CustomsProcedureCodeC600 ) || 
+                                   where CustomsProcedureCode.Contains( GlobalDefinitions.CustomsProcedureCodeC600 ) ||
                                          CustomsProcedureCode.Contains( GlobalDefinitions.CustomsProcedureCodeC601 ) ||
                                          CustomsProcedureCode.Contains( GlobalDefinitions.CustomsProcedureCode1PG1 )
                                    select _dx
                                   ).FirstOrDefault();
+      Linq.Consent _cnst = null;
       if ( _rd == null )
       {
         m_Warnings.Add( "There is not attached any consent document with code = C600/C601/1PG1" );
-        CreateDefaultConsent( edc, String.Empty.NotAvailable() );
+        _cnst = CreateDefaultConsent( edc, String.Empty.NotAvailable() );
       }
       else
       {
         string _nr = _rd.Number.Trim();
-        this.ConsentLookup = Consent.Find( edc, _nr );
+        _cnst = Consent.Find( edc, _nr );
         if ( this.ConsentLookup == null )
-          CreateDefaultConsent( edc, _nr );
+          _cnst = CreateDefaultConsent( edc, _nr );
+        this.ConsentLookup = _cnst.Identyfikator.Value;
       }
-      ValidToDate = customsDebtDate + TimeSpan.FromDays( ConsentLookup.ConsentPeriod.Value * m_DaysPerMath ); //TODO different for CW !!!
+      ValidToDate = customsDebtDate + TimeSpan.FromDays( _cnst.ConsentPeriod.Value * m_DaysPerMath ); //TODO different for CW !!!
     }
     private static int m_DaysPerMath = 30;
-    private void CreateDefaultConsent( Entities edc, string _nr )
+    private Linq.Consent CreateDefaultConsent( Entities edc, string _nr )
     {
-      this.ConsentLookup = Consent.DefaultConsent( edc, Process, _nr );
+      Linq.Consent _ret = Consent.DefaultConsent( edc, GetCustomsProcess( Process ), _nr );
       string _msg = "Cannot find consent document with number: {0}. The Consent period is {1} months";
-      m_Warnings.Add( String.Format( _msg, _nr, this.ConsentLookup.ConsentPeriod ) );
-    }
-    /// <summary>
-    /// Gets the process.
-    /// </summary>
-    /// <value>
-    /// The process.
-    /// </value>
-    protected internal abstract Consent.CustomsProcess Process { get; }
-    #endregion
-
-    #region public
-    /// <summary>
-    /// Message Type
-    /// </summary>
-    public enum MessageType
-    {
-      /// <summary>
-      /// The PZC
-      /// </summary>
-      PZC,
-      /// <summary>
-      /// The SAD
-      /// </summary>
-      SAD
-    }
-    /// <summary>
-    /// Validates the specified entities.
-    /// </summary>
-    /// <param name="entities">The entities.</param>
-    /// <param name="warnnings">The warnnings.</param>
-    /// <returns></returns>
-    public bool Validate( Entities entities, List<string> warnnings )
-    {
-      bool _ret = m_Warnings.Count == 0;
-      warnnings.AddRange( m_Warnings );
+      m_Warnings.Add( String.Format( _msg, _nr, _ret.ConsentPeriod ) );
       return _ret;
     }
-    internal Consent ConsentLookup { get; private set; }
-    internal DateTime CustomsDebtDate { get; private set; }
-    internal string GradeName { get; private set; }
-    internal double GrossMass { get; private set; }
-    internal string Invoice { get; private set; }
-    internal double NetMass { get; set; }
-    internal string TobaccoName { get; private set; }
-    internal double UnitPrice { get; private set; }
-    internal double Value { get; private set; }
-    internal string Batch { get; private set; }
-    internal PCNCode PCNTariffCode { get; private set; }
-    internal string SKU { get; private set; }
-    internal DateTime ValidToDate { get; private set; }
+    private static Consent.CustomsProcess GetCustomsProcess( CustomsProcess process )
+    {
+      Consent.CustomsProcess _ret = default( Consent.CustomsProcess );
+      switch ( process )
+      {
+        case CustomsProcess.ipr:
+          _ret = Consent.CustomsProcess.ipr;
+          break;
+        case CustomsProcess.cw:
+          _ret = Consent.CustomsProcess.cw;
+          break;
+      }
+      return _ret;
+    }
     #endregion
-
   }
 }

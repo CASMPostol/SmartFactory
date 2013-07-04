@@ -99,7 +99,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
         entry.BillDoc = String.Empty.NotAvailable();
         entry.InvoiceLibraryStatus = false;
         edc.SubmitChanges();
-        throw ex;
+        throw ;
       }
     }
     private static bool GetXmlContent( InvoiceItemXml[] invoiceEntries, Entities edc, InvoiceLib parent )

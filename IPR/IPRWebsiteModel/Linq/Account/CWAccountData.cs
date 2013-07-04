@@ -36,9 +36,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     {
       NetMass = good.NetMass.GetValueOrDefault( 0 );
     }
-    protected internal override Consent.CustomsProcess Process
+    /// <summary>
+    /// Gets the customs process.
+    /// </summary>
+    /// <value>
+    /// The customs process.
+    /// </value>
+    protected override CustomsProcess Process
     {
-      get { return Consent.CustomsProcess.cw; }
+      get { return CustomsProcess.cw; }
     }
     protected override void AnalizeGoodsDescription( Entities edc, string goodsDescription )
     {

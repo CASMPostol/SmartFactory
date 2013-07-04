@@ -68,17 +68,17 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
             throw new IPRDataConsistencyException( "Clearence.Associate", "Unexpected message type.", null, "Unexpected message type." );
         }//switch (_documentType
       }
-      catch ( InputDataValidationException _idce )
+      catch ( InputDataValidationException )
       {
-        throw _idce;
+        throw ;
       }
-      catch ( IPRDataConsistencyException _iorex )
+      catch ( IPRDataConsistencyException )
       {
-        throw _iorex;
+        throw ;
       }
-      catch ( GenericStateMachineEngine.ActionResult _ar )
+      catch ( GenericStateMachineEngine.ActionResult  )
       {
-        throw _ar;
+        throw;
       }
       catch ( Exception _ex )
       {
@@ -172,7 +172,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     /// <param name="entities">The entities.</param>
     /// <param name="clearence">The clearence.</param>
     /// <param name="_messageType">Type of the _message.</param>
-    /// <param name="customsDebtDate">The customs debt date.</param>
     /// <param name="_comments">The _comments.</param>
     /// <param name="warnings">The warnings.</param>
     /// <exception cref="IPRDataConsistencyException">IPR account creation error</exception>
@@ -196,7 +195,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         _comments = "Inconsistent or incomplete data to create IPR account";
         IPRAccountData _iprdata = new IPRAccountData( entities, clearence.Clearence2SadGoodID, ImportXMLCommon.Convert2MessageType( _messageType ) );
         ErrorsList _ar = new ErrorsList();
-        if ( !_iprdata.Validate( entities, _ar ) )
+        if ( !_iprdata.Validate( _ar ) )
           warnings.Add( new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar ) );
         _comments = "Consent lookup filed";
         _at = "new IPRClass";
@@ -210,14 +209,14 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         _at = "new SubmitChanges #2";
         entities.SubmitChanges();
       }
-      catch ( InputDataValidationException _idve )
+      catch ( InputDataValidationException )
       {
-        throw _idve;
+        throw ;
       }
       catch ( GenericStateMachineEngine.ActionResult _ex )
       {
         _ex.Message.Insert( 0, String.Format( "Message={0}, Reference={1}; ", _messageType, _referenceNumber ) );
-        throw _ex;
+        throw ;
       }
       catch ( Exception _ex )
       {

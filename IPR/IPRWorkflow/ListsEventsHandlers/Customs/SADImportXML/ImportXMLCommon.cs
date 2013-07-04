@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : Import XML message Common Fuctionality
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.Account;
 using CAS.SmartFactory.xml.Customs;
 
@@ -6,7 +21,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
 {
   internal static class ImportXMLCommon
   {
-    internal static AccountData.MessageType Convert2MessageType( CustomsDocument.DocumentType type )
+    internal static CAS.SmartFactory.Customs.Account.CommonAccountData.MessageType Convert2MessageType( CustomsDocument.DocumentType type )
     {
       AccountData.MessageType _ret = default( AccountData.MessageType );
       switch ( type )

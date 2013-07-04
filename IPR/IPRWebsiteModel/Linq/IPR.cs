@@ -18,13 +18,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public IPR( Entities entities, Account.IPRAccountData iprdata, Clearence clearence, SADDocumentType declaration )
       : this()
     {
+      Linq.Consent _consentLookup = GetAtIndex<Consent>( entities.Consent, iprdata.ConsentLookup.Value );
       AccountClosed = false;
       AccountBalance = iprdata.NetMass;
-      Batch = iprdata.Batch;
+      Batch = iprdata.BatchId;
       Cartons = iprdata.CartonsMass;
       ClearenceIndex = clearence;
       ClosingDate = CAS.SharePoint.Extensions.SPMinimum;
-      ConsentPeriod = iprdata.ConsentLookup.ConsentPeriod;
+      ConsentPeriod = _consentLookup.ConsentPeriod;
       Currency = declaration.Currency;
       CustomsDebtDate = iprdata.CustomsDebtDate;
       DocumentNo = clearence.DocumentNo;
@@ -35,15 +36,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       InvoiceNo = iprdata.Invoice;
       IPRDutyPerUnit = iprdata.DutyPerUnit;
       IPRLibraryIndex = null;
-      IPR2ConsentTitle = iprdata.ConsentLookup;
-      IPR2PCNPCN = iprdata.PCNTariffCode;
+      IPR2ConsentTitle = _consentLookup;
+      IPR2PCNPCN = GetAtIndex<PCNCode>( entities.PCNCode, iprdata.PCNTariffCodeLookup );
       IPRUnitPrice = iprdata.UnitPrice;
       IPRVATPerUnit = iprdata.VATPerUnit;
       this.IPR2JSOXIndex = null;
       NetMass = iprdata.NetMass;
       OGLValidTo = iprdata.ValidToDate;
-      ProductivityRateMax = iprdata.ConsentLookup.ProductivityRateMax;
-      ProductivityRateMin = iprdata.ConsentLookup.ProductivityRateMin;
+      ProductivityRateMax = _consentLookup.ProductivityRateMax;
+      ProductivityRateMin = _consentLookup.ProductivityRateMin;
       SKU = iprdata.SKU;
       TobaccoName = iprdata.TobaccoName;
       TobaccoNotAllocated = iprdata.NetMass;
@@ -51,8 +52,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Value = iprdata.Value;
       VATName = iprdata.VATName;
       VAT = iprdata.VAT;
-      ValidFromDate = iprdata.ConsentLookup.ValidFromDate;
-      ValidToDate = iprdata.ConsentLookup.ValidToDate;
+      ValidFromDate = _consentLookup.ValidFromDate;
+      ValidToDate = _consentLookup.ValidToDate;
       if ( iprdata.CartonsMass > 0 )
         AddDisposal( entities, Convert.ToDecimal( iprdata.CartonsMass ) );
     }

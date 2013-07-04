@@ -50,6 +50,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
         return Result.Success;
       }
     }
+    /// <summary>
+    /// Result
+    /// </summary>
     public enum Result
     {
       /// <summary>

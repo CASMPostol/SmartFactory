@@ -24,7 +24,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     }
     #endregion
 
-    #region CW Data
+    #region IPR Data
     internal double CartonsMass { get; private set; }
     internal double Duty { get; private set; }
     internal string DutyName { get; private set; }
@@ -94,9 +94,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
       else
         CartonsMass = 0;
     }
-    protected internal override Consent.CustomsProcess Process
+    /// <summary>
+    /// Gets the process.
+    /// </summary>
+    /// <value>
+    /// The process.
+    /// </value>
+    protected override CustomsProcess Process
     {
-      get { return Consent.CustomsProcess.cw; }
+      get { return CustomsProcess.cw; }
     }
     protected internal override void GetNetMass( SADGood good )
     {

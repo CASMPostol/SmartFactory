@@ -154,7 +154,12 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Customs\Customs.csproj">
+      <Project>{6c705843-6387-4d2d-a7cf-a66976186ce2}</Project>
+      <Name>Customs</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

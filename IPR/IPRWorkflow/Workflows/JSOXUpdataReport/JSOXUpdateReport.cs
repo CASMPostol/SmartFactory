@@ -1,16 +1,42 @@
-﻿using System;
+﻿//<summary>
+//  Title   : NameJSOXUpdateReport - Sequential Workflow Activity
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+using System;
 using System.Workflow.Activities;
 using Microsoft.SharePoint.Workflow;
 
 namespace CAS.SmartFactory.IPR.Workflows.JSOXUpdateReport
 {
+  /// <summary>
+  /// JSOXUpdateReport - Sequential Workflow Activity
+  /// </summary>
   public sealed partial class JSOXUpdateReport: SequentialWorkflowActivity
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="JSOXUpdateReport"/> class.
+    /// </summary>
     public JSOXUpdateReport()
     {
       InitializeComponent();
     }
+    /// <summary>
+    /// The workflow id
+    /// </summary>
     public Guid workflowId = default( System.Guid );
+    /// <summary>
+    /// The workflow properties
+    /// </summary>
     public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
     private void CreateReport( object sender, EventArgs e )
     {

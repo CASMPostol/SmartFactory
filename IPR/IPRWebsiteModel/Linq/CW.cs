@@ -14,17 +14,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="data">The data.</param>
     /// <param name="clearence">The clearence.</param>
     /// <param name="declaration">The declaration.</param>
-    public CW( Account.CWAccountData data, Clearence clearence, SADDocumentType declaration )
+    public CW( Linq.Entities edc, Account.CWAccountData data, Clearence clearence, SADDocumentType declaration )
       : this()
     {
+      Linq.Consent _consentLookup = GetAtIndex<Consent>( edc.Consent, data.ConsentLookup.Value );
       this.AccountBalance = data.NetMass;
-      this.Batch = data.Batch;
-      this.ConsentPeriod = data.ConsentLookup.ConsentPeriod;
+      this.Batch = data.BatchId;
+      this.ConsentPeriod = _consentLookup.ConsentPeriod;
       //this.CW2Clearence = clearence;
       this.ClosingDate = Extensions.DateTimeNull;
       this.Currency = "PLN";
-      this.CW2ConsentTitle = data.ConsentLookup; 
-      this.CW2PCNID = data.PCNTariffCode;
+      this.CW2ConsentTitle = _consentLookup;
+      this.CW2PCNID = GetAtIndex<PCNCode>( edc.PCNCode, data.PCNTariffCodeLookup );
       this.CW2CWLibraryID = null;
       this.CWCertificate = data.CWCertificate;
       this.CustomsDebtDate = data.CustomsDebtDate;

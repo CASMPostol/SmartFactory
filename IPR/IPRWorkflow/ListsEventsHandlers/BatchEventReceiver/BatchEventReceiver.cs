@@ -90,9 +90,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     /// </summary>
     /// <param name="edc">The _edc.</param>
     /// <param name="stream">The stream.</param>
-    /// <param name="entry">The _entry.</param>
     /// <param name="fileName">Name of the file.</param>
     /// <param name="progressChanged">The progress changed delegate <see cref="ProgressChangedEventHandler" />.</param>
+    /// <returns></returns>
+    /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException">Batch XML message validation failed;XML sysntax validation</exception>
     /// <exception cref="IPRDataConsistencyException"></exception>
     public static BatchXml ImportBatchFromXml( Entities edc, Stream stream, string fileName, ProgressChangedEventHandler progressChanged )
     {
