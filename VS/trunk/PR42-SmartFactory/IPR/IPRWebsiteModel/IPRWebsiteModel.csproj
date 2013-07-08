@@ -95,7 +95,6 @@
     <Compile Include="Linq\Consent.cs" />
     <Compile Include="Linq\CustomsUnion.cs" />
     <Compile Include="Linq\CutfillerCoefficient.cs" />
-    <Compile Include="Linq\CW.cs" />
     <Compile Include="Linq\Disposal.cs" />
     <Compile Include="Linq\Dust.cs" />
     <Compile Include="Linq\Element.cs" />

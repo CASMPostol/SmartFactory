@@ -1,7 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿//<summary>
+//  Title   : Customs Warehouse Account Record Data
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
 {
@@ -11,6 +21,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
   public class CWAccountData: AccountData
   {
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CWAccountData"/> class.
+    /// </summary>
+    /// <param name="edc">The <see cref="Entities" /> object.</param>
+    /// <param name="good">The good.</param>
+    /// <param name="messageType">Type of the customs message.</param>
     public CWAccountData( Entities edc, SADGood good, MessageType messageType )
       : base( edc, good, messageType )
     {
@@ -32,6 +48,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     //internal double? CWQuantity { get; private set; } //Good descriptionc
     //internal DateTime? EntryDate { get; private set; } // Today ?
     //internal string Units { get; private set; } //TODO Good description - ??
+    /// <summary>
+    /// Gets the net mass.
+    /// </summary>
+    /// <param name="good">The good.</param>
     protected internal override void GetNetMass( SADGood good )
     {
       NetMass = good.NetMass.GetValueOrDefault( 0 );
@@ -46,10 +66,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     {
       get { return CustomsProcess.cw; }
     }
+    /// <summary>
+    /// Analizes the goods description.
+    /// </summary>
+    /// <param name="edc">The <see cref="Entities"/>.</param>
+    /// <param name="goodsDescription">The goods description.</param>
     protected override void AnalizeGoodsDescription( Entities edc, string goodsDescription )
     {
       base.AnalizeGoodsDescription( edc, goodsDescription );
-      CWQuantity = 0; //TODO
     }
   }
 }

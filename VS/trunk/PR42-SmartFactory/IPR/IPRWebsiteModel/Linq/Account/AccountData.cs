@@ -109,14 +109,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException">Syntax errors in the good description.</exception>
     protected virtual void AnalizeGoodsDescription( Entities edc, string goodsDescription )
     {
-      ErrorsList _sErrors = new ErrorsList();
+      List<string> _sErrors = new List<string>();
       string _na = "Not recognized";
       TobaccoName = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionTobaccoNamePattern ), _na, _sErrors );
       GradeName = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionWGRADEPattern ), _na, _sErrors );
       SKU = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionSKUPattern ), _na, _sErrors );
       this.BatchId = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionBatchPattern ), _na, _sErrors );
       if ( _sErrors.Count > 0 )
-        throw new InputDataValidationException( "Syntax errors in the good description.", "AnalizeGoodsDescription", _sErrors );
+      {
+        ErrorsList _el = new ErrorsList();
+        _el.Add( _sErrors, true );
+        throw new InputDataValidationException( "Syntax errors in the good description.", "AnalizeGoodsDescription", _el );
+      }
     }
     private void FindConsentRecord( Entities edc, EntitySet<SADRequiredDocuments> sadRequiredDocumentsEntitySet, DateTime customsDebtDate )
     {
@@ -130,7 +134,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
       Linq.Consent _cnst = null;
       if ( _rd == null )
       {
-        m_Warnings.Add( "There is not attached any consent document with code = C600/C601/1PG1" );
+        m_Warnings.Add( new Customs.Warnning( "There is not attached any consent document with code = C600/C601/1PG1", false ) );
         _cnst = CreateDefaultConsent( edc, String.Empty.NotAvailable() );
       }
       else
@@ -148,7 +152,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     {
       Linq.Consent _ret = Consent.DefaultConsent( edc, GetCustomsProcess( Process ), _nr );
       string _msg = "Cannot find consent document with number: {0}. The Consent period is {1} months";
-      m_Warnings.Add( String.Format( _msg, _nr, _ret.ConsentPeriod ) );
+      m_Warnings.Add( new Customs.Warnning( String.Format( _msg, _nr, _ret.ConsentPeriod ), false ) );
       return _ret;
     }
     private static Consent.CustomsProcess GetCustomsProcess( CustomsProcess process )
