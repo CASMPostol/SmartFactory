@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CAS.SharePoint.Web;
+using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.Account;
@@ -70,13 +71,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       }
       catch ( InputDataValidationException )
       {
-        throw ;
+        throw;
       }
       catch ( IPRDataConsistencyException )
       {
-        throw ;
+        throw;
       }
-      catch ( GenericStateMachineEngine.ActionResult  )
+      catch ( GenericStateMachineEngine.ActionResult )
       {
         throw;
       }
@@ -177,7 +178,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     /// <exception cref="IPRDataConsistencyException">IPR account creation error</exception>
     /// <exception cref="InputDataValidationException"></exception>
     private static void CreateIPRAccount
-      ( Entities entities, Clearence clearence, CustomsDocument.DocumentType _messageType, out string _comments, List<InputDataValidationException> warnings )
+      ( Entities entities, Clearence clearence, CustomsDocument.DocumentType _messageType, out string _comments, List<Warnning> warnings )
     {
       string _at = "started";
       _comments = "IPR account creation error";
@@ -194,9 +195,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         _at = "newIPRData";
         _comments = "Inconsistent or incomplete data to create IPR account";
         IPRAccountData _iprdata = new IPRAccountData( entities, clearence.Clearence2SadGoodID, ImportXMLCommon.Convert2MessageType( _messageType ) );
-        ErrorsList _ar = new ErrorsList();
-        if ( !_iprdata.Validate( _ar ) )
-          warnings.Add( new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar ) );
+        if ( !_iprdata.Validate( warnings ) )
+          throw new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar );
         _comments = "Consent lookup filed";
         _at = "new IPRClass";
         IPRClass _ipr = new IPRClass( entities, _iprdata, clearence, declaration );
@@ -211,12 +211,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       }
       catch ( InputDataValidationException )
       {
-        throw ;
+        throw;
       }
       catch ( GenericStateMachineEngine.ActionResult _ex )
       {
         _ex.Message.Insert( 0, String.Format( "Message={0}, Reference={1}; ", _messageType, _referenceNumber ) );
-        throw ;
+        throw;
       }
       catch ( Exception _ex )
       {

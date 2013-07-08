@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using CAS.SharePoint.Web;
+using CAS.SmartFactory.Customs;
+using CAS.SmartFactory.Customs.Account;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.Account;
@@ -11,7 +13,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
   /// <summary>
   /// CWClearanceHelpers implementation of the <see cref="ICWClearanceHelpers"/> interface
   /// </summary>
-  public class CWClearanceHelpers: ICWClearanceHelpers
+  public class CWClearanceHelpers
   {
     private CWClearanceHelpers()
     {
@@ -27,7 +29,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     /// <param name="comments">The comments.</param>
     /// <param name="warnings">The warnings.</param>
     /// <exception cref="IPRDataConsistencyException">IPR account creation error</exception>
-    public void CreateCWAccount( Entities entities, Clearence clearence, CustomsDocument.DocumentType messageType, out string comments, List<InputDataValidationException> warnings )
+    public void CreateCWAccount( Entities entities, Clearence clearence, CustomsDocument.DocumentType messageType, out string comments, List<Warnning> warnings )
     {
       string _at = "started";
       comments = "IPR account creation error";
@@ -49,13 +51,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
           warnings.Add( new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar ) );
         comments = "Consent lookup filed";
         _at = "new IPRClass";
-        CW _cw = new CW( entities, _accountData, clearence, declaration );
-        _at = "new InsertOnSubmit";
-        entities.CW.InsertOnSubmit( _cw );
+        ICWAccountFactory _cwFactory = GetICWAccountFactory();
+        _cwFactory.CreateCWAccount( _accountData, warnings, entities.Web );
         clearence.Status = true;
         _at = "new SubmitChanges #1";
         entities.SubmitChanges();
-        _cw.UpdateTitle();
         _at = "new SubmitChanges #2";
         entities.SubmitChanges();
       }
@@ -75,7 +75,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       }
       comments = "IPR account created";
     }
-    internal static ICWClearanceHelpers GetICWClearanceHelpers()
+    internal static ICWAccountFactory GetICWAccountFactory()
     {
       throw new NotImplementedException();
     }

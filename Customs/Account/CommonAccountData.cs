@@ -35,7 +35,7 @@ namespace CAS.SmartFactory.Customs.Account
     /// <summary>
     /// The m_ warnings
     /// </summary>
-    protected List<string> m_Warnings = new List<string>();
+    protected List<Warnning> m_Warnings = new List<Warnning>();
 
     /// <summary>
     /// Gets the process.
@@ -81,7 +81,7 @@ namespace CAS.SmartFactory.Customs.Account
     /// <param name="entities">The entities.</param>
     /// <param name="warnnings">The warnnings.</param>
     /// <returns></returns>
-    public bool Validate( List<string> warnnings )
+    public bool Validate( List<Warnning> warnnings )
     {
       bool _ret = m_Warnings.Count == 0;
       warnnings.AddRange( m_Warnings );

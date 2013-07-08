@@ -20,14 +20,16 @@ namespace CAS.SmartFactory.Customs.Account
   /// <summary>
   /// Customs Warehousing Account Factory
   /// </summary>
-  interface ICWAccountFactory
+  public interface ICWAccountFactory
   {
-    
+
     /// <summary>
     /// Creates the Customs Warehousing account.
     /// </summary>
     /// <param name="accountData">The account data.</param>
     /// <param name="warning">The warnings collection.</param>
-    void CreateCWAccount( CommonAccountData accountData, List<Warnning> warning );
+    /// <param name="requestUrl">The The URL of a Windows SharePoint Services "14" Web site.</param>
+    void CreateCWAccount( CommonAccountData accountData, List<Warnning> warning, string requestUrl );
+
   }
 }
