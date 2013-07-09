@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using CAS.SharePoint;
+using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml;
@@ -94,12 +95,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
         entry.InvoiceLibraryStatus = GetXmlContent( xml.Item, edc, entry );
         edc.SubmitChanges();
       }
-      catch ( Exception ex )
+      catch ( Exception )
       {
         entry.BillDoc = String.Empty.NotAvailable();
         entry.InvoiceLibraryStatus = false;
         edc.SubmitChanges();
-        throw ;
+        throw;
       }
     }
     private static bool GetXmlContent( InvoiceItemXml[] invoiceEntries, Entities edc, InvoiceLib parent )
@@ -125,7 +126,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
         catch ( Exception ex )
         {
           string _msg = "Cannot create new entry for the invoice No={0}/{1}, SKU={2}, because of error: {3}";
-          _warnings.Add( String.Format( _msg, item.Bill_doc, item.Item, item.Description, ex.Message ) );
+          _warnings.Add( new Warnning( String.Format( _msg, item.Bill_doc, item.Item, item.Description, ex.Message ), true ) );
         }
       }
       if ( _warnings.Count > 0 )
@@ -137,12 +138,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
       edc.SubmitChanges();
       return _result;
     }
-    private static InvoiceContent CreateInvoiceContent( Entities edc, InvoiceLib parent, InvoiceItemXml item, List<string> errors )
+    private static InvoiceContent CreateInvoiceContent( Entities edc, InvoiceLib parent, InvoiceItemXml item, ErrorsList errors )
     {
       Batch _batch = Batch.FindLookup( edc, item.Batch );
       if ( _batch == null )
       {
-        errors.Add( String.Format( "Cannot find batch {0} for stock record {1}.", item.Batch, item.Description ) );
+        errors.Add( new Warnning( String.Format( "Cannot find batch {0} for stock record {1}.", item.Batch, item.Description ), true ) );
         return null;
       }
       InvoiceContentStatus _invoiceContentStatus = InvoiceContentStatus.OK;

@@ -102,10 +102,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       ActivityLogCT.WriteEntry( edc, m_Title, _Message );
       BatchXml _xml = BatchXml.ImportDocument( stream );
       progressChanged( null, new ProgressChangedEventArgs( 1, "ImportBatchFromXml.Validate" ) );
-      ErrorsList _validationErrors = new ErrorsList();
+      List<string> _validationErrors = new List<string>();
       _xml.Validate( Settings.GetParameter( edc, SettingsEntry.BatchNumberPattern ), _validationErrors );
       if ( _validationErrors.Count > 0 )
-        throw new InputDataValidationException( "Batch XML message validation failed", "XML sysntax validation", _validationErrors );
+      {
+        ErrorsList _el = new ErrorsList(_validationErrors, true);
+        throw new InputDataValidationException( "Batch XML message validation failed", "XML sysntax validation", _el );
+      }
       return _xml;
     }
     #endregion

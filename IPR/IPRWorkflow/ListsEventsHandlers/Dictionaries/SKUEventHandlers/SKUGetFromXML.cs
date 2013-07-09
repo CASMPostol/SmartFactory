@@ -31,7 +31,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
             xmlDocument.GetMaterial(),
             edc,
             entry,
-            ( MaterialXml xml, Dokument lib, Entities context, List<String> warnings ) => { return SKUCutfiller( (CutfillerMaterialxML)xml, lib, context, warnings ); }, 
+            ( MaterialXml xml, Dokument lib, Entities context, List<String> warnings ) => { return SKUCutfiller( (CutfillerMaterialxML)xml, lib, context, warnings ); },
             progressChanged );
           break;
       }
@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
       ( MaterialXml[] material, Entities edc, Dokument parent, CreateMaterialXml creator, ProgressChangedEventHandler progressChanged )
     {
       List<SKUCommonPart> entities = new List<SKUCommonPart>();
-      ErrorsList warnings = new ErrorsList();
+      List<string> warnings = new List<string>();
       int _entries = 0;
       int _newEntries = 0;
       foreach ( MaterialXml item in material )
@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
         edc.SubmitChanges();
       }
       if ( warnings.Count > 0 )
-        throw new InputDataValidationException( "SKU message import errors.", "XML import", warnings );
+        throw new InputDataValidationException( "SKU message import errors.", "XML import", new ErrorsList( warnings, true ) );
       string _pattern = "Finished content analysis, there are {0} entries, {1} new entries, {2} erroneous entries";
       ActivityLogCT.WriteEntry( "SKU Message Import", String.Format( _pattern, _entries, _newEntries, warnings.Count ), edc.Web );
     }

@@ -10,6 +10,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
   /// </summary>
   public class InputDataValidationException: ArgumentException
   {
+
+    #region creators
     /// <summary>
     /// Initializes a new instance of the <see cref="InputDataValidationException" /> class.
     /// </summary>
@@ -34,6 +36,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
       m_Errors = new ErrorsList();
       m_Errors.Add( new Warnning( error, fatal ) );
     }
+    #endregion
+
     #region public
     /// <summary>
     /// Gets a value indicating whether this <see cref="InputDataValidationException" /> is valid.

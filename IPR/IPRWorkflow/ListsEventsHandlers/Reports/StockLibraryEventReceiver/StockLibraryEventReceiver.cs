@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using CAS.SharePoint;
+using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using Microsoft.SharePoint;
@@ -122,7 +123,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
         }
         catch ( Exception ex )
         {
-          _warnings.Add( String.Format( "Stock entry {1} fatal import error: {0}", ex.ToString(), _row.MaterialDescription ), true );
+          _warnings.Add( new Warnning( String.Format( "Stock entry {1} fatal import error: {0}", ex.ToString(), _row.MaterialDescription ), true ) );
         }
       }
       if ( stockEntities.Count > 0 )
