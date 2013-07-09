@@ -16,17 +16,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
       Fatal = false;
     }
     /// <summary>
-    /// Adds the specified message.
+    /// Initializes a new instance of the <see cref="ErrorsList"/> class.
     /// </summary>
-    /// <param name="message">The message.</param>
-    public new void Add( Warnning message )
+    /// <param name="warnnings">The warnnings.</param>
+    /// <param name="fatal">if set to <c>true</c> [fatal].</param>
+    public ErrorsList(List<string> warnnings, bool fatal)
     {
-      this.Add( message, message.Fatal );
+      Add( warnnings, fatal );
     }
     /// <summary>
     /// Adds the specified warnnings.
     /// </summary>
-    /// <param name="warnnings">The warnnings.</param>
+    /// <param name="warnnings">The list of warnning strings.</param>
     /// <param name="fatal">if set to <c>true</c> [fatal].</param>
     public void Add( List<string> warnnings, bool fatal )
     {
@@ -37,11 +38,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// Adds the specified message.
     /// </summary>
     /// <param name="message">The message.</param>
-    /// <param name="fatal">if set to <c>true</c> it is fata error.</param>
-    public void Add( Warnning message, bool fatal )
+    public new void Add( Warnning message )
     {
       base.Add( message );
-      Fatal |= fatal;
+      Fatal |= message.Fatal;
     }
     /// <summary>
     /// Adds the specified warnnings.

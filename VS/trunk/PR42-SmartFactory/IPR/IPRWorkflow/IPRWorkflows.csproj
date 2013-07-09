@@ -79,7 +79,9 @@
     <Compile Include="ListsEventsHandlers\BatchEventReceiver\BatchEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\InvoiceEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Customs\SADImportXML\ClearenceHelpers.cs" />
-    <Compile Include="ListsEventsHandlers\Customs\SADImportXML\CWClearanceHelpers.cs" />
+    <Compile Include="ListsEventsHandlers\Customs\SADImportXML\CWClearanceHelpers.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ListsEventsHandlers\Customs\SADImportXML\ImportXMLCommon.cs" />
     <Compile Include="ListsEventsHandlers\Customs\SADImportXML\SADImportXML.cs" />
     <Compile Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SKUEventHandlers.cs" />

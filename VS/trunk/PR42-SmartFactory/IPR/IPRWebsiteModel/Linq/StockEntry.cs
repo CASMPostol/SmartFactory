@@ -1,4 +1,5 @@
 ﻿using System;
+using CAS.SmartFactory.Customs;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -73,7 +74,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.BatchIndex = Linq.Batch.FindStockToBatchLookup( edc, this.Batch );
       if ( this.BatchIndex != null )
         return;
-      warnings.Add( NoMachingBatchWarningMessage, false );
+      warnings.Add( new Warnning( NoMachingBatchWarningMessage, false ) );
     }
     #endregion
 

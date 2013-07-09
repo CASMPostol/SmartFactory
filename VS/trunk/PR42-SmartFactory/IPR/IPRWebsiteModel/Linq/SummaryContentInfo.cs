@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using CAS.SmartFactory.Customs;
 using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
@@ -124,12 +125,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       ErrorsList _validationErrors = new ErrorsList();
       if ( Product == null )
-        _validationErrors.Add( "Unrecognized finished good" );
+        _validationErrors.Add( new Warnning( "Unrecognized finished good", true ) );
       SKULookup = SKUCommonPart.Find( edc, Product.SKU );
       if ( SKULookup == null )
       {
         string _msg = "Cannot find finished good SKU={0} in the SKU dictionary - dictionary update is required";
-        _validationErrors.Add( String.Format( _msg, Product.SKU ) );
+        _validationErrors.Add( new Warnning( String.Format( _msg, Product.SKU ), true ) );
       }
       if ( Product.ProductType != ProductType.Cigarette )
         return;
@@ -147,7 +148,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         if ( _diff < -1 )  //TODO add common cheking point and get data from settings.
         {
           string _mssg = "Cannot find any IPR account to dispose the quantity {3}: Tobacco batch: {0}, fg batch: {1}, quantity to dispose: {2} kg";
-          _validationErrors.Add( String.Format( _mssg, _qutty.Key, Product.Batch, _qutty.Value, -_diff ) );
+          _validationErrors.Add( new Warnning( String.Format( _mssg, _qutty.Key, Product.Batch, _qutty.Value, -_diff ), true ) );
         }
       }
       if ( _validationErrors.Count > 0 )

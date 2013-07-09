@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using CAS.SharePoint;
 using CAS.SharePoint.Web;
+using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
@@ -60,15 +61,13 @@ namespace CAS.SmartFactory.IPR.Customs
           edc.SubmitChanges();
           _at = "Clearence.Associate";
           string _comments = "OK";
-          List<InputDataValidationException> warnings = new List<InputDataValidationException>();
-          ClearenceHelpers.DeclarationProcessing( _sad, edc, _message.MessageRootName(), ref _comments, warnings );
-          foreach ( var _wrn in warnings )
-            _wrn.ReportActionResult( properties.WebUrl, properties.ListItem.File.Name );
+          List<Warnning> warnings = new List<Warnning>();
+          ClearenceHelpers.DeclarationProcessing( _sad, edc, _message.MessageRootName(), ref _comments );
           entry.SADDocumentLibraryOK = true;
           entry.SADDocumentLibraryComments = _comments;
           _at = "SubmitChanges #2";
           edc.SubmitChanges();
-          ActivityLogCT.WriteEntry( m_Title, String.Format( "Import of the SAD declaration {0} finished.", properties.ListItem.File.Name ), properties.WebUrl );
+          ActivityLogCT.WriteEntry( edc, m_Title, String.Format( "Import of the SAD declaration {0} finished.", properties.ListItem.File.Name ) );
         }
       }
       catch ( InputDataValidationException idve )
