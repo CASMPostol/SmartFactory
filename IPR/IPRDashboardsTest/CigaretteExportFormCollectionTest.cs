@@ -256,9 +256,9 @@ namespace IPRDashboardsTest
       ingridients.Add( CAS.SmartFactory.IPR.Dashboards.Clearance.FinishedGoodsFormFactory.GetIPRIngredient( _disposal1 ) );
       ingridients.Add( CAS.SmartFactory.IPR.Dashboards.Clearance.FinishedGoodsFormFactory.GetIPRIngredient( _disposal2 ) );
       ingridients.Add( new CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.RegularIngredient( "Reg Batch 54321", "Reg SKU 12345", 1234.56789 ) );
-      string _masterDocumentName = "CigaretteExportFormCollection";
-      string _invoiceNumber = "INV987654";
-      int _position = 1;
+      //string _masterDocumentName = "CigaretteExportFormCollection";
+      //string _invoiceNumber = "INV987654";
+      //int _position = 1;
       //List<XmlCigaretteExportForm> cigaretteExportFormList = new List<XmlCigaretteExportForm>();
       //CigaretteExportForm _cigaretteExportForm = FinishedGoodsFormFactory.GetCigaretteExportForm( _cc, _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, ClearenceProcedure._3151 );
       //cigaretteExportFormList.Add( _cigaretteExportForm );

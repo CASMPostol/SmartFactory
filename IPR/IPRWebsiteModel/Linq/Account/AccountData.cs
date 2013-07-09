@@ -21,30 +21,31 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     /// <param name="messageType">Type of the customs message.</param>
     /// <exception cref="IPRDataConsistencyException">There is not attached any consent document with code = 1PG1/C601</exception>
     /// <exception cref="InputDataValidationException">Syntax errors in the good description.</exception>
-    protected AccountData( Entities edc, SADGood good, MessageType messageType )
+    protected AccountData( Entities edc, Clearence clearence, MessageType messageType )
     {
       string _at = "starting";
       try
       {
-        DateTime _customsDebtDate = good.SADDocumentIndex.CustomsDebtDate.Value;
+        DocumentNo = clearence.DocumentNo;
+        DateTime _customsDebtDate = clearence.Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value;
         this.CustomsDebtDate = _customsDebtDate;
-        AnalizeGood( good, messageType );
+        AnalizeGood( clearence.Clearence2SadGoodID, messageType );
         _at = "Value";
-        Value = good.TotalAmountInvoiced.GetValueOrDefault( 0 );
+        Value = clearence.Clearence2SadGoodID.TotalAmountInvoiced.GetValueOrDefault( 0 );
         _at = "UnitPrice";
         UnitPrice = Value / NetMass;
         _at = "Invoice";
-        this.Invoice = ( from _dx in good.SADRequiredDocuments
+        this.Invoice = ( from _dx in clearence.Clearence2SadGoodID.SADRequiredDocuments
                          let CustomsProcedureCode = _dx.Code.ToUpper()
                          where CustomsProcedureCode.Contains( "N380" ) || CustomsProcedureCode.Contains( "N935" )
                          select new { Number = _dx.Number }
                         ).First().Number;
         _at = "FindConsentRecord";
-        FindConsentRecord( edc, good.SADRequiredDocuments, _customsDebtDate );
+        FindConsentRecord( edc, clearence.Clearence2SadGoodID.SADRequiredDocuments, _customsDebtDate );
         _at = "AnalizeGoodsDescription";
-        AnalizeGoodsDescription( edc, good.GoodsDescription );
+        AnalizeGoodsDescription( edc, clearence.Clearence2SadGoodID.GoodsDescription );
         _at = "PCN lookup filed";
-        PCNTariffCodeLookup = PCNCode.AddOrGet( edc, good.PCNTariffCode, TobaccoName ).Identyfikator.Value;
+        PCNTariffCodeLookup = PCNCode.AddOrGet( edc, clearence.Clearence2SadGoodID.PCNTariffCode, TobaccoName ).Identyfikator.Value;
       }
       catch ( InputDataValidationException _idve )
       {

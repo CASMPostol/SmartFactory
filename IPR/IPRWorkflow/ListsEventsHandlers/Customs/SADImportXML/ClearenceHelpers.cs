@@ -91,17 +91,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     #endregion
 
     #region private
-    private static void CreateCWAccount( CommonAccountData accountData, string web, Clearence _cx )
-    {
-      ICWAccountFactory _cwHelper = CWClearanceHelpers.GetICWAccountFactory();
-      List<Warnning> _lw = new List<Warnning>();
-      _cwHelper.CreateCWAccount( accountData, _lw, web );
-      if ( _lw.Count == 0 )
-        return;
-      ErrorsList _el = new ErrorsList();
-      _el.Add( _lw );
-      throw new InputDataValidationException( "Create CW Account Failed", "CreateCWAccount", _el );
-    }
     private static CustomsProcedureCodes RequestedProcedure( this ClearenceProcedure value )
     {
       CustomsProcedureCodes _ret = default( CustomsProcedureCodes );
@@ -178,15 +167,14 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     /// </summary>
     /// <param name="entities">The entities.</param>
     /// <param name="clearence">The clearence.</param>
-    /// <param name="_messageType">Type of the _message.</param>
-    /// <param name="_comments">The _comments.</param>
+    /// <param name="messageType">Type of the _message.</param>
+    /// <param name="comments">The _comments.</param>
     /// <exception cref="InputDataValidationException">Inconsistent or incomplete data to create IPR account;Create IPR Account</exception>
     /// <exception cref="IPRDataConsistencyException">IPR account creation error</exception>
-    private static void CreateIPRAccount
-      ( Entities entities, Clearence clearence, CustomsDocument.DocumentType _messageType, out string _comments )
+    private static void CreateIPRAccount( Entities entities, Clearence clearence, CustomsDocument.DocumentType messageType, out string comments )
     {
       string _at = "started";
-      _comments = "IPR account creation error";
+      comments = "IPR account creation error";
       string _referenceNumber = String.Empty;
       try
       {
@@ -198,12 +186,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
           throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _msg, clearence.DocumentNo ) );
         }
         _at = "newIPRData";
-        _comments = "Inconsistent or incomplete data to create IPR account";
-        IPRAccountData _iprdata = new IPRAccountData( entities, clearence.Clearence2SadGoodID, ImportXMLCommon.Convert2MessageType( _messageType ) );
+        comments = "Inconsistent or incomplete data to create IPR account";
+        IPRAccountData _iprdata = new IPRAccountData( entities, clearence, ImportXMLCommon.Convert2MessageType( messageType ) );
         ErrorsList warnings = new ErrorsList();
         if ( !_iprdata.Validate( warnings ) )
           throw new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", warnings );
-        _comments = "Consent lookup filed";
+        comments = "Consent lookup filed";
         _at = "new IPRClass";
         IPRClass _ipr = new IPRClass( entities, _iprdata, clearence, declaration );
         _at = "new InsertOnSubmit";
@@ -221,7 +209,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       }
       catch ( GenericStateMachineEngine.ActionResult _ex )
       {
-        _ex.Message.Insert( 0, String.Format( "Message={0}, Reference={1}; ", _messageType, _referenceNumber ) );
+        _ex.Message.Insert( 0, String.Format( "Message={0}, Reference={1}; ", messageType, _referenceNumber ) );
         throw;
       }
       catch ( Exception _ex )
@@ -229,7 +217,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         string _src = String.Format( "CreateIPRAccount method error at {0}", _at );
         throw new IPRDataConsistencyException( _src, _ex.Message, _ex, "IPR account creation error" );
       }
-      _comments = "IPR account created";
+      comments = "IPR account created";
     }
     /// <summary>
     /// Creates the CW account.
@@ -240,7 +228,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     /// <param name="comments">The comments.</param>
     /// <exception cref="InputDataValidationException">Create CW Account Failed;CreateCWAccount</exception>
     /// <exception cref="IPRDataConsistencyException">IPR account creation error</exception>
-    public static void CreateCWAccount( Entities entities, Clearence clearence, CustomsDocument.DocumentType messageType, out string comments )
+    private static void CreateCWAccount( Entities entities, Clearence clearence, CustomsDocument.DocumentType messageType, out string comments )
     {
       string _at = "started";
       comments = "IPR account creation error";
@@ -249,14 +237,9 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       {
         SADDocumentType declaration = clearence.Clearence2SadGoodID.SADDocumentIndex;
         _referenceNumber = declaration.ReferenceNumber;
-        if ( WebsiteModel.Linq.IPR.RecordExist( entities, clearence.DocumentNo ) )
-        {
-          string _msg = "IPR record with the same SAD document number: {0} exist";
-          throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _msg, clearence.DocumentNo ) );
-        }
         _at = "newIPRData";
         comments = "Inconsistent or incomplete data to create IPR account";
-        CWAccountData _accountData = new CWAccountData( entities, clearence.Clearence2SadGoodID, ImportXMLCommon.Convert2MessageType( messageType ) );
+        CWAccountData _accountData = new CWAccountData( entities, clearence, ImportXMLCommon.Convert2MessageType( messageType ) );
         comments = "Consent lookup filed";
         _at = "new IPRClass";
         ICWAccountFactory _cwFactory = CWClearanceHelpers.GetICWAccountFactory();
@@ -264,10 +247,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         _cwFactory.CreateCWAccount( _accountData, _lw, entities.Web );
         if ( _lw.Count == 0 )
         {
-          comments = "IPR account created";
+          comments = "CW account created";
           return;
         }
         ErrorsList _el = new ErrorsList();
+        _el.Add( _lw );
         throw new InputDataValidationException( "Create CW Account Failed", "CreateCWAccount", _el );
         //clearence.Status = true;
         //_at = "new SubmitChanges #1";

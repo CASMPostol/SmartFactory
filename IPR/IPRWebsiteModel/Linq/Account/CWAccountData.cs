@@ -27,8 +27,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     /// <param name="edc">The <see cref="Entities" /> object.</param>
     /// <param name="good">The good.</param>
     /// <param name="messageType">Type of the customs message.</param>
-    public CWAccountData( Entities edc, SADGood good, MessageType messageType )
-      : base( edc, good, messageType )
+    public CWAccountData( Entities edc, Clearence clearence, MessageType messageType )
+      : base( edc, clearence, messageType )
     {
       //this.CWCertificate = "TBD";
       //this.CWMassPerPackage = 0;

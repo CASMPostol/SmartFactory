@@ -17,10 +17,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     /// <param name="edc">The edc.</param>
     /// <param name="good">The good.</param>
     /// <param name="messageType">Type of the _message.</param>
-    public IPRAccountData( Entities edc, SADGood good, MessageType messageType )
-      : base( edc, good, messageType )
+    public IPRAccountData( Entities edc, Clearence clearence, MessageType messageType )
+      : base( edc, clearence, messageType )
     {
-      AnalizeDutyAndVAT( good );
+      AnalizeDutyAndVAT( clearence.Clearence2SadGoodID );
     }
     #endregion
 
@@ -104,6 +104,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     {
       get { return CustomsProcess.cw; }
     }
+    /// <summary>
+    /// Gets the net mass.
+    /// </summary>
+    /// <param name="good">The good.</param>
     protected internal override void GetNetMass( SADGood good )
     {
       SADQuantity _quantity = good.SADQuantity.FirstOrDefault();

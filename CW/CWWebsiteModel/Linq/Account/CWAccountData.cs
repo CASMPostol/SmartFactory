@@ -87,6 +87,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
       using ( Entities _edc = new Entities( requestUrl ) )
       {
         ProcessCustomsMessage( accountData );
+        if ( WebsiteModel.Linq.CW.RecordExist( _edc, accountData.DocumentNo ) )
+        {
+          string _msg = "IPR record with the same SAD document number: {0} exist";
+          throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _msg, clearence.DocumentNo ) );
+        }
+
         CW _cw = new CW( _edc, this );
         _at = "new InsertOnSubmit";
         _edc.CW.InsertOnSubmit( _cw );

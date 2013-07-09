@@ -89,6 +89,7 @@ namespace CAS.SmartFactory.Customs.Account
     }
     public int? ConsentLookup { get; protected set; }
     public DateTime CustomsDebtDate { get; protected set; }
+    public object DocumentNo { get; protected set; }
     public string GradeName { get; protected set; }
     public double GrossMass { get; protected set; }
     public string Invoice { get; protected set; }
