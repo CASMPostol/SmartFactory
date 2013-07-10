@@ -15,8 +15,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Customs.Account;
 
@@ -52,28 +50,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     internal DateTime? EntryDate { get; private set; } // Today ?
     internal string Units { get; private set; } //TODO Good description - ??
     internal Clearence Clearence { get; private set; } //TODO 
-
-    internal void GetNetMass( SADGood good )
-    {
-      //NetMass = good.NetMass.GetValueOrDefault( 0 );
-    }
-    ///// <summary>
-    ///// Gets the customs process.
-    ///// </summary>
-    ///// <value>
-    ///// The customs process.
-    ///// </value>
-    //protected CustomsProcess Process
-    //{
-    //  get { return CustomsProcess.cw; }
-    //}
     protected void AnalizeGoodsDescription( string goodsDescription )
     {
       CWQuantity = 0; //TODO
     }
 
     #region ICWAccountFactory Members
-
     /// <summary>
     /// Creates the Customs Warehousing account.
     /// </summary>
@@ -91,19 +73,17 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
         Clearence = Element.GetAtIndex<Clearence>( _edc.Clearence, accountData.ConsentLookup );
         if ( WebsiteModel.Linq.CW.RecordExist( _edc, accountData.DocumentNo ) )
         {
-          string _msg = "IPR record with the same SAD document number: {0} exist";
+          string _msg = "CW record with the same SAD document number: {0} exist";
           throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _msg, Clearence.DocumentNo ) );
         }
-
         CW _cw = new CW( _edc, this );
         _at = "new InsertOnSubmit";
         _edc.CW.InsertOnSubmit( _cw );
-
+        _edc.SubmitChanges();
         _cw.UpdateTitle();
-        throw new NotImplementedException();
+        _edc.SubmitChanges();
       }
     }
-
     #endregion
   }
 }
