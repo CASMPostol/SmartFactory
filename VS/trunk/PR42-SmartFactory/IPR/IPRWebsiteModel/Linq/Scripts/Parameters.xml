@@ -9,9 +9,9 @@
   <List Name="Consent" />
   <List Name="Customs Union" />
   <List Name="Cutfiller Coefficient" />
-  <List Name="CW" />
-  <List Name="CW Disposal" />
-  <List Name="CW Library" />
+  <!--<List Name="CW" />-->
+  <!--<List Name="CW Disposal" />-->
+  <!--<List Name="CW Library" />-->
   <List Name="Disposal" />
   <List Name="Disposal Declaration" />
   <List Name="Dust" />
@@ -307,8 +307,8 @@
     <Column Name="NetMass" Member="NetMass" />
     <Column Name="SystemID" Member="SystemID" />
   </ContentType>
-  <ContentType Name="CW" Class="CW">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  <!--<ContentType Name="CW" Class="CW">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="EntryDate" Member="EntryDate" />
     <Column Name="CW2ConsentTitle" Member="CW2ConsentTitle" />
@@ -339,7 +339,7 @@
     <Column Name="ClosingDate" Member="ClosingDate" />
     <Column Name="CW2PCNID" Member="CW2PCNID" />
     <Column Name="CW2CWLibraryID" Member="CW2CWLibraryID" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="TobaccoBatchSummary" Class="TobaccoBatchSummary">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
@@ -355,8 +355,8 @@
     <Column Name="ConsentPeriod" Member="ConsentPeriod" />
     <Column Name="IsIPR" Member="IsIPR" />
   </ContentType>
-  <ContentType Name="CWDisposal" Class="CWDisposal">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  <!--<ContentType Name="CWDisposal" Class="CWDisposal">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="EntryDate" Member="EntryDate" />
     <Column Name="No" Member="No" />
@@ -386,7 +386,7 @@
     <Column Name="VATPerSettledAmount" Member="VATPerSettledAmount" />
     <Column Name="DutyAndVAT" Member="DutyAndVAT" />
     <Column Name="CWDisposal2PCNTID" Member="CWDisposal2PCNTID" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="IPR" Class="IPR">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
@@ -658,13 +658,13 @@
     <Column Name="BatchLibraryOK" Member="BatchLibraryOK" />
     <Column Name="BatchLibraryComments" Member="BatchLibraryComments" />
   </ContentType>
-  <ContentType Name="CWLib" Class="CWLib">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  <!--<ContentType Name="CWLib" Class="CWLib">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
     <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
     <Column Name="Created_x0020_By" Member="Created_x0020_By" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="ActivityLogCT" Class="ActivityLogCT">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
