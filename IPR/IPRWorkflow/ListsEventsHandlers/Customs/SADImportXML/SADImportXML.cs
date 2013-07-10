@@ -62,7 +62,7 @@ namespace CAS.SmartFactory.IPR.Customs
           _at = "Clearence.Associate";
           string _comments = "OK";
           List<Warnning> warnings = new List<Warnning>();
-          ClearenceHelpers.DeclarationProcessing( _sad, edc, _message.MessageRootName(), ref _comments );
+          ClearenceHelpers.DeclarationProcessing( edc, _sad, _message.MessageRootName(), ref _comments );
           entry.SADDocumentLibraryOK = true;
           entry.SADDocumentLibraryComments = _comments;
           _at = "SubmitChanges #2";
