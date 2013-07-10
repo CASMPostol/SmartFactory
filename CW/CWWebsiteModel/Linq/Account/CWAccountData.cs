@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CAS.SharePoint.Web;
 using CAS.SmartFactory.Customs.Account;
 
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
@@ -87,10 +88,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
       using ( Entities _edc = new Entities( requestUrl ) )
       {
         ProcessCustomsMessage( accountData );
+        Clearence = Element.GetAtIndex<Clearence>( _edc.Clearence, accountData.ConsentLookup );
         if ( WebsiteModel.Linq.CW.RecordExist( _edc, accountData.DocumentNo ) )
         {
           string _msg = "IPR record with the same SAD document number: {0} exist";
-          throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _msg, clearence.DocumentNo ) );
+          throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _msg, Clearence.DocumentNo ) );
         }
 
         CW _cw = new CW( _edc, this );

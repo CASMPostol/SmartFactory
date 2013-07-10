@@ -20,6 +20,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     public override void GetAccountData( Entities edc, Clearence clearence, Customs.Account.CommonAccountData.MessageType messageType )
     {
       base.GetAccountData( edc, clearence, messageType );
+      Value = clearence.Clearence2SadGoodID.TotalAmountInvoiced.GetValueOrDefault( 0 );
+      UnitPrice = Value / NetMass;
       AnalizeDutyAndVAT( clearence.Clearence2SadGoodID );
     }
     #endregion
@@ -32,6 +34,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     internal string VATName { get; private set; }
     internal double VAT { get; private set; }
     internal double VATPerUnit { get; private set; }
+    internal double UnitPrice { get; private set; }
+    internal double Value { get; private set; }
+    internal DateTime ValidToDate { get; private set; }
     #endregion
 
     #region private
@@ -112,6 +117,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     {
       SADQuantity _quantity = good.SADQuantity.FirstOrDefault();
       NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault( 0 );
+    }
+    protected internal override void SetValidToDate( DateTime date )
+    {
+      ValidToDate = date;
     }
     #endregion
 
