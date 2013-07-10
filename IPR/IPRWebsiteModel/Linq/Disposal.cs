@@ -10,7 +10,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// <summary>
   /// Disposal
   /// </summary>
-  public partial class Disposal
+  public sealed partial class Disposal
   {
 
     #region ctor
@@ -239,7 +239,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           PCNCode _pcn = PCNCode.Find( edc, IsDisposal, _productCodeNumber );
           if ( _pcn == null )
           {
-            string _mtmp = "Cannot find pcn code: {0} for the good: {1} with IsDisposal set to {3}";
+            string _mtmp = "Cannot find pcn code: {0} for the good: {1} with IsDisposal set to {2}";
             throw new InputDataValidationException(
                 "wrong PCN code in customs message", "PCN Code",
                 string.Format( _mtmp, _productCodeNumber, sadGood.GoodsDescription, IsDisposal ),

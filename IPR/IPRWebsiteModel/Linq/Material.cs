@@ -9,7 +9,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// <summary>
   /// Material 
   /// </summary>
-  public partial class Material
+  public sealed partial class Material
   {
     #region ctor
     public Material( Entities edc, Entities.ProductDescription product, string batch, string sku, string storLoc, string skuDescription, string units, decimal fgQuantity, decimal tobaccoQuantity, string productID )

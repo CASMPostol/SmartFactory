@@ -30,37 +30,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
           IE529Processing( edc, _sad, ref comments );
           break;
         case CustomsDocument.DocumentType.CLNE:
-          CLNEProcessing( _sad, edc, ref comments );
+          CLNEProcessing( edc, _sad, ref comments );
           break;
       }//switch (_documentType
     }
     #endregion
 
     #region private
-    private static CustomsProcedureCodes RequestedProcedure( this ClearenceProcedure value )
-    {
-      CustomsProcedureCodes _ret = default( CustomsProcedureCodes );
-      switch ( value )
-      {
-        case ClearenceProcedure._3151:
-        case ClearenceProcedure._3171:
-          _ret = CustomsProcedureCodes.NoProcedure;
-          break;
-        case ClearenceProcedure._4051:
-        case ClearenceProcedure._4071:
-          _ret = CustomsProcedureCodes.FreeCirculation;
-          break;
-        case ClearenceProcedure._5100:
-        case ClearenceProcedure._5171:
-          _ret = CustomsProcedureCodes.InwardProcessing;
-          break;
-        case ClearenceProcedure._7100:
-        case ClearenceProcedure._7171:
-          _ret = CustomsProcedureCodes.CustomsWarehousingProcedure;
-          break;
-      }
-      return _ret;
-    }
     private static void IE529Processing( Entities _edc, SADDocumentType _sad, ref string _comments )
     {
       _comments = "Reexport of goods failed";
@@ -68,27 +44,27 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         ClearThroughCustoms( _edc, _gdx );
       _comments = "Reexport of goods";
     }
-    private static void CLNEProcessing( SADDocumentType _sad, Entities _edc, ref string _comments )
+    private static void CLNEProcessing( Entities entities, SADDocumentType sad, ref string comments )
     {
-      IQueryable<Clearence> _clrncs = Clearence.GetClearence( _edc, _sad.ReferenceNumber );
+      IQueryable<Clearence> _clrncs = Clearence.GetClearence( entities, sad.ReferenceNumber );
       if ( ( from _cx in _clrncs where _cx.Clearence2SadGoodID == null select _cx ).Any<Clearence>() )
       {
-        string _error = String.Format( "SAD with reference number: {0} must be imported first", _sad.ReferenceNumber );
+        string _error = String.Format( "SAD with reference number: {0} must be imported first", sad.ReferenceNumber );
         throw new InputDataValidationException( "CLNE message cannot be processed befor SAD", "DeclarationProcessing", _error, true );
       }
       foreach ( Clearence _cx in _clrncs )
       {
-        _cx.DocumentNo = _sad.DocumentNumber;
+        _cx.DocumentNo = sad.DocumentNumber;
         switch ( _cx.ClearenceProcedure.Value.RequestedProcedure() )
         {
           case CustomsProcedureCodes.FreeCirculation:
-            _cx.FinishClearingThroughCustoms( _edc );
+            _cx.FinishClearingThroughCustoms( entities );
             break;
           case CustomsProcedureCodes.InwardProcessing:
-            CreateIPRAccount( _edc, _cx, CustomsDocument.DocumentType.SAD, out _comments );
+            CreateIPRAccount( entities, _cx, CustomsDocument.DocumentType.SAD, out comments );
             break;
           case CustomsProcedureCodes.CustomsWarehousingProcedure:
-            CreateCWAccount( _edc, _cx, CustomsDocument.DocumentType.SAD, out _comments );
+            CreateCWAccount( entities, _cx, CustomsDocument.DocumentType.SAD, out comments );
             break;
           case CustomsProcedureCodes.ReExport:
           case CustomsProcedureCodes.NoProcedure:
@@ -97,29 +73,28 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         }
       }
     }
-    private static void SADPZCProcessing( Entities edc, CustomsDocument.DocumentType messageType, SADDocumentType sad, ref string comments )
+    private static void SADPZCProcessing( Entities entities, CustomsDocument.DocumentType messageType, SADDocumentType sad, ref string comments )
     {
       string at = "_customsProcedureCodes";
       foreach ( SADGood _sgx in sad.SADGood )
       {
-        CustomsProcedureCodes _customsProcedureCodes = _sgx.Procedure.RequestedProcedure();
-        switch ( _customsProcedureCodes )
+        switch ( _sgx.Procedure.RequestedProcedure() )
         {
           case CustomsProcedureCodes.FreeCirculation:
-            at = "FimdClearence";
+            at = "FreeCirculation.ClearThroughCustoms";
             if ( messageType == CustomsDocument.DocumentType.PZC )
-              ClearThroughCustoms( edc, _sgx );
+              ClearThroughCustoms( entities, _sgx );
             else
               comments = "Document added";
             break;
           case CustomsProcedureCodes.InwardProcessing:
             {
               at = "InwardProcessing:CreataClearence";
-              Clearence _newClearance = Clearence.CreataClearence( edc, "InwardProcessing", ClearenceProcedure._5171, _sgx );
+              Clearence _newClearance = Clearence.CreataClearence( entities, "InwardProcessing", ClearenceProcedure._5171, _sgx );
               if ( messageType == CustomsDocument.DocumentType.PZC )
               {
                 at = "CreateIPRAccount";
-                CreateIPRAccount( edc, _newClearance, CustomsDocument.DocumentType.PZC, out comments );
+                CreateIPRAccount( entities, _newClearance, CustomsDocument.DocumentType.PZC, out comments );
               }
               else
                 comments = "Document added";
@@ -127,11 +102,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
             }
           case CustomsProcedureCodes.CustomsWarehousingProcedure:
             at = "CustomsWarehousingProcedure:CreataClearence";
-            Clearence _newWarehousinClearance = Clearence.CreataClearence( edc, "CustomsWarehousingProcedure", ClearenceProcedure._7100, _sgx );
+            Clearence _newWarehousinClearance = Clearence.CreataClearence( entities, "CustomsWarehousingProcedure", ClearenceProcedure._7100, _sgx );
             if ( messageType == CustomsDocument.DocumentType.PZC )
             {
               at = "CreateCWAccount";
-              CreateCWAccount( edc, _newWarehousinClearance, CustomsDocument.DocumentType.PZC, out comments );
+              CreateCWAccount( entities, _newWarehousinClearance, CustomsDocument.DocumentType.PZC, out comments );
             }
             else
               comments = "Document added";
@@ -143,7 +118,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         }
       } //switch (_customsProcedureCodes)
     }
-
     /// <summary>
     /// Creates the IPR account.
     /// </summary>
@@ -169,20 +143,21 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         }
         _at = "newIPRData";
         comments = "Inconsistent or incomplete data to create IPR account";
-        IPRAccountData _iprdata = new IPRAccountData( entities, clearence, ImportXMLCommon.Convert2MessageType( messageType ) );
+        IPRAccountData _iprdata = new IPRAccountData();
+        _iprdata.GetAccountData( entities, clearence, ImportXMLCommon.Convert2MessageType( messageType ) );
         ErrorsList warnings = new ErrorsList();
         if ( !_iprdata.Validate( warnings ) )
           throw new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", warnings );
         comments = "Consent lookup filed";
         _at = "new IPRClass";
         IPRClass _ipr = new IPRClass( entities, _iprdata, clearence, declaration );
-        _at = "new InsertOnSubmit";
+        _at = "InsertOnSubmit";
         entities.IPR.InsertOnSubmit( _ipr );
         clearence.Status = true;
-        _at = "new SubmitChanges #1";
+        _at = "SubmitChanges #1";
         entities.SubmitChanges();
         _ipr.UpdateTitle();
-        _at = "new SubmitChanges #2";
+        _at = "SubmitChanges #2";
         entities.SubmitChanges();
       }
       catch ( InputDataValidationException )
@@ -213,15 +188,16 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     private static void CreateCWAccount( Entities entities, Clearence clearence, CustomsDocument.DocumentType messageType, out string comments )
     {
       string _at = "started";
-      comments = "IPR account creation error";
+      comments = "CW account creation error";
       string _referenceNumber = String.Empty;
       try
       {
         SADDocumentType declaration = clearence.Clearence2SadGoodID.SADDocumentIndex;
         _referenceNumber = declaration.ReferenceNumber;
         _at = "newIPRData";
-        comments = "Inconsistent or incomplete data to create IPR account";
-        CWAccountData _accountData = new CWAccountData( entities, clearence, ImportXMLCommon.Convert2MessageType( messageType ) );
+        comments = "Inconsistent or incomplete data to create CW account";
+        CWAccountData _accountData = new CWAccountData();
+        _accountData.GetAccountData( entities, clearence, ImportXMLCommon.Convert2MessageType( messageType ) );
         comments = "Consent lookup filed";
         _at = "new IPRClass";
         ICWAccountFactory _cwFactory = CWClearanceHelpers.GetICWAccountFactory();
@@ -235,6 +211,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         ErrorsList _el = new ErrorsList();
         _el.Add( _lw );
         throw new InputDataValidationException( "Create CW Account Failed", "CreateCWAccount", _el );
+        //TODO to be removed
         //clearence.Status = true;
         //_at = "new SubmitChanges #1";
         //entities.SubmitChanges();
@@ -284,6 +261,30 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     /// </summary>
     /// <param name="_cpc">The Customs Procedure Code.</param>
     /// <returns>Requested procedure code <see cref="CustomsProcedureCodes"/> - first two chars of the box 37</returns>
+    private static CustomsProcedureCodes RequestedProcedure( this ClearenceProcedure value )
+    {
+      CustomsProcedureCodes _ret = default( CustomsProcedureCodes );
+      switch ( value )
+      {
+        case ClearenceProcedure._3151:
+        case ClearenceProcedure._3171:
+          _ret = CustomsProcedureCodes.NoProcedure;
+          break;
+        case ClearenceProcedure._4051:
+        case ClearenceProcedure._4071:
+          _ret = CustomsProcedureCodes.FreeCirculation;
+          break;
+        case ClearenceProcedure._5100:
+        case ClearenceProcedure._5171:
+          _ret = CustomsProcedureCodes.InwardProcessing;
+          break;
+        case ClearenceProcedure._7100:
+        case ClearenceProcedure._7171:
+          _ret = CustomsProcedureCodes.CustomsWarehousingProcedure;
+          break;
+      }
+      return _ret;
+    }
     private static CustomsProcedureCodes RequestedProcedure( this string _cpc )
     {
       switch ( _cpc.Remove( 2 ) )

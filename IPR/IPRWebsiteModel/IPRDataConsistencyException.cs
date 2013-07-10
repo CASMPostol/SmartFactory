@@ -21,6 +21,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
   /// <summary>
   /// IPR Data Consistency Exception class
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Usage", "CA2237:MarkISerializableTypesWithSerializable" )]
   public class IPRDataConsistencyException: ApplicationException
   {
     #region public
@@ -35,6 +36,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// <param name="message">The message.</param>
     /// <param name="innerException">The inner exception.</param>
     /// <param name="comments">The comments.</param>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors" )]
     public IPRDataConsistencyException( string source, string message, Exception innerException, string comments )
       : base( message, innerException )
     {

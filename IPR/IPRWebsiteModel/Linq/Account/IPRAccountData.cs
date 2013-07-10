@@ -12,14 +12,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
 
     #region ctor
     /// <summary>
-    /// Initializes a new instance of the <see cref="IPRAccountData" /> class.
+    /// Initializes a new instance of the <see cref="AccountData" /> class.
     /// </summary>
-    /// <param name="edc">The edc.</param>
-    /// <param name="good">The good.</param>
-    /// <param name="messageType">Type of the _message.</param>
-    public IPRAccountData( Entities edc, Clearence clearence, MessageType messageType )
-      : base( edc, clearence, messageType )
+    /// <param name="edc">The <see cref="Entities" /> object.</param>
+    /// <param name="clearence">The clearence.</param>
+    /// <param name="messageType">Type of the customs message.</param>
+    public override void GetAccountData( Entities edc, Clearence clearence, Customs.Account.CommonAccountData.MessageType messageType )
     {
+      base.GetAccountData( edc, clearence, messageType );
       AnalizeDutyAndVAT( clearence.Clearence2SadGoodID );
     }
     #endregion

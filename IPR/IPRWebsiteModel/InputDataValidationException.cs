@@ -8,6 +8,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
   /// <summary>
   /// Input Data Validation Exception
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Usage", "CA2237:MarkISerializableTypesWithSerializable" )]
   public class InputDataValidationException: ArgumentException
   {
 

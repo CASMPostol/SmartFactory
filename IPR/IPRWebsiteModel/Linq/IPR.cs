@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
-  public partial class IPR
+  public sealed partial class IPR
   {
 
     #region ctor
