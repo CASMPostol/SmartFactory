@@ -24,13 +24,6 @@ namespace CAS.SmartFactory.Customs.Account
   public abstract class CommonAccountData
   {
 
-    #region cretor
-    protected CommonAccountData()
-    {
-      ConsentLookup = new Nullable<int>();
-    }
-    #endregion
-
     #region private
     /// <summary>
     /// The m_ warnings
@@ -87,7 +80,7 @@ namespace CAS.SmartFactory.Customs.Account
       warnnings.AddRange( m_Warnings );
       return _ret;
     }
-    public int? ConsentLookup { get; protected set; }
+    public int ConsentLookup { get; protected set; }
     public DateTime CustomsDebtDate { get; protected set; }
     public object DocumentNo { get; protected set; }
     public string GradeName { get; protected set; }

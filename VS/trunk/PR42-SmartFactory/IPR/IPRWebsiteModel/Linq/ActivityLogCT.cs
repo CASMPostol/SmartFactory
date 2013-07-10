@@ -9,7 +9,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// <summary>
   /// Adds a message to the Event log list.
   /// </summary>
-  public partial class ActivityLogCT
+  public sealed partial class ActivityLogCT
   {
     /// <summary>
     /// Creates an entry with the given message text and application-defined event identifier to the event log list.

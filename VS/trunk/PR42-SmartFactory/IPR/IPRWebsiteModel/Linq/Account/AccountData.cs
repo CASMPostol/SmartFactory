@@ -1,27 +1,42 @@
-﻿using System;
+﻿//<summary>
+//  Title   : Account Data abstract common part
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CAS.SharePoint;
+using CAS.SmartFactory.Customs.Account;
 using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
 {
   /// <summary>
-  /// Account Data
+  /// Account Data abstract common part
   /// </summary>
-  public abstract class AccountData: CAS.SmartFactory.Customs.Account.CommonAccountData
+  public abstract class AccountData: CommonAccountData
   {
-
-    #region cretor
     /// <summary>
     /// Initializes a new instance of the <see cref="AccountData" /> class.
     /// </summary>
     /// <param name="edc">The <see cref="Entities" /> object.</param>
-    /// <param name="good">The good.</param>
+    /// <param name="clearence">The clearence.</param>
     /// <param name="messageType">Type of the customs message.</param>
+    /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.IPRDataConsistencyException"></exception>
     /// <exception cref="IPRDataConsistencyException">There is not attached any consent document with code = 1PG1/C601</exception>
     /// <exception cref="InputDataValidationException">Syntax errors in the good description.</exception>
-    protected AccountData( Entities edc, Clearence clearence, MessageType messageType )
+    public virtual void GetAccountData( Entities edc, Clearence clearence, MessageType messageType )
     {
       string _at = "starting";
       try
@@ -47,13 +62,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         _at = "PCN lookup filed";
         PCNTariffCodeLookup = PCNCode.AddOrGet( edc, clearence.Clearence2SadGoodID.PCNTariffCode, TobaccoName ).Identyfikator.Value;
       }
-      catch ( InputDataValidationException _idve )
+      catch ( InputDataValidationException  )
       {
-        throw _idve;
+        throw ;
       }
-      catch ( IPRDataConsistencyException es )
+      catch ( IPRDataConsistencyException  )
       {
-        throw es;
+        throw ;
       }
       catch ( Exception _ex )
       {
@@ -61,7 +76,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
       }
     }
-    #endregion
 
     #region private
     /// <summary>

@@ -20,34 +20,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
   /// </summary>
   public class CWAccountData: AccountData
   {
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="CWAccountData"/> class.
-    /// </summary>
-    /// <param name="edc">The <see cref="Entities" /> object.</param>
-    /// <param name="good">The good.</param>
-    /// <param name="messageType">Type of the customs message.</param>
-    public CWAccountData( Entities edc, Clearence clearence, MessageType messageType )
-      : base( edc, clearence, messageType )
-    {
-      //this.CWCertificate = "TBD";
-      //this.CWMassPerPackage = 0;
-      //this.CWPackageKg = 0;
-      //this.CWPackageUnits = 0;
-      //this.CWPzNo = "TBD";
-      //this.CWQuantity = 0;
-      //this.EntryDate = DateTime.Today.Date;
-      //this.Units = "TBT";
-      //TODO how to assign values. More info required.
-    }
-    //internal string CWCertificate { get; private set; }  //TODO from Required documents. 
-    //internal double? CWMassPerPackage { get; private set; } //TODO Calculated
-    //internal double? CWPackageKg { get; private set; } // Good description
-    //internal double? CWPackageUnits { get; private set; } //Good description
-    //internal string CWPzNo { get; private set; } // Manualy
-    //internal double? CWQuantity { get; private set; } //Good descriptionc
-    //internal DateTime? EntryDate { get; private set; } // Today ?
-    //internal string Units { get; private set; } //TODO Good description - ??
     /// <summary>
     /// Gets the net mass.
     /// </summary>
