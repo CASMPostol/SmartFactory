@@ -32,7 +32,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     public CW( Linq.Entities edc, Account.CWAccountData data )
       : this()
     {
-      Linq.Consent _consentLookup = GetAtIndex<Consent>( edc.Consent, data.CommonAccountData.ConsentLookup.Value );
+      Linq.Consent _consentLookup = GetAtIndex<Consent>( edc.Consent, data.CommonAccountData.ConsentLookup );
       this.AccountBalance = data.CommonAccountData.NetMass;
       this.Batch = data.CommonAccountData.BatchId;
       this.ConsentPeriod = _consentLookup.ConsentPeriod;
@@ -50,7 +50,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.CWPackageUnits = data.CWPackageUnits;
       this.CWPzNo = data.CWPzNo;
       this.CWQuantity = data.CWQuantity;
-      this.CWUnitPrice = data.CommonAccountData.UnitPrice;
       this.DocumentNo = data.Clearence.DocumentNo;
       this.EntryDate = data.EntryDate;
       this.Grade = data.CommonAccountData.GradeName;
@@ -62,7 +61,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.Title = "-- creating -- ";
       this.Units = data.Units;
       this.ValidToDate = data.CommonAccountData.CustomsDebtDate;
-      this.Value = data.CommonAccountData.Value;
     }
     /// <summary>
     /// Updates the title.
@@ -70,6 +68,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     public void UpdateTitle()
     {
       Title = String.Format( "CW-{0:D4}{1:D6}", this.EntryDate.Value.Year, Identyfikator.Value );
+    }
+
+    internal static bool RecordExist( Entities _edc, object p )
+    {
+      throw new NotImplementedException();
     }
   }
 }

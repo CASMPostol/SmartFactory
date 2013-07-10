@@ -45,10 +45,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         DateTime _customsDebtDate = clearence.Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value;
         this.CustomsDebtDate = _customsDebtDate;
         AnalizeGood( clearence.Clearence2SadGoodID, messageType );
-        _at = "Value";
-        Value = clearence.Clearence2SadGoodID.TotalAmountInvoiced.GetValueOrDefault( 0 );
-        _at = "UnitPrice";
-        UnitPrice = Value / NetMass;
         _at = "Invoice";
         this.Invoice = ( from _dx in clearence.Clearence2SadGoodID.SADRequiredDocuments
                          let CustomsProcedureCode = _dx.Code.ToUpper()
@@ -58,17 +54,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         _at = "FindConsentRecord";
         FindConsentRecord( edc, clearence.Clearence2SadGoodID.SADRequiredDocuments, _customsDebtDate );
         _at = "AnalizeGoodsDescription";
-        AnalizeGoodsDescription( edc, clearence.Clearence2SadGoodID.GoodsDescription );
+        AnalizeGoodsDescription( edc, clearence.Clearence2SadGoodID.GoodsDescription ); //TODO to IPR
         _at = "PCN lookup filed";
         PCNTariffCodeLookup = PCNCode.AddOrGet( edc, clearence.Clearence2SadGoodID.PCNTariffCode, TobaccoName ).Identyfikator.Value;
       }
-      catch ( InputDataValidationException  )
+      catch ( InputDataValidationException )
       {
-        throw ;
+        throw;
       }
-      catch ( IPRDataConsistencyException  )
+      catch ( IPRDataConsistencyException )
       {
-        throw ;
+        throw;
       }
       catch ( Exception _ex )
       {
@@ -78,6 +74,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     }
 
     #region private
+    /// <summary>
+    /// Sets the valid to date.
+    /// </summary>
+    /// <param name="date">The date.</param>
+    protected internal virtual void SetValidToDate( DateTime date ) { }
     /// <summary>
     /// Analizes the good.
     /// </summary>
@@ -156,11 +157,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
       {
         string _nr = _rd.Number.Trim();
         _cnst = Consent.Find( edc, _nr );
-        if ( this.ConsentLookup == null )
+        if ( _cnst == null )
           _cnst = CreateDefaultConsent( edc, _nr );
         this.ConsentLookup = _cnst.Identyfikator.Value;
       }
-      ValidToDate = customsDebtDate + TimeSpan.FromDays( _cnst.ConsentPeriod.Value * m_DaysPerMath ); //TODO different for CW !!!
+      this.SetValidToDate( customsDebtDate + TimeSpan.FromDays( _cnst.ConsentPeriod.Value * m_DaysPerMath ) );
     }
     private static int m_DaysPerMath = 30;
     private Linq.Consent CreateDefaultConsent( Entities edc, string _nr )

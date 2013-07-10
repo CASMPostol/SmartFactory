@@ -18,7 +18,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public IPR( Entities entities, Account.IPRAccountData iprdata, Clearence clearence, SADDocumentType declaration )
       : this()
     {
-      Linq.Consent _consentLookup = GetAtIndex<Consent>( entities.Consent, iprdata.ConsentLookup.Value );
+      Linq.Consent _consentLookup = GetAtIndex<Consent>( entities.Consent, iprdata.ConsentLookup );
       AccountClosed = false;
       AccountBalance = iprdata.NetMass;
       Batch = iprdata.BatchId;

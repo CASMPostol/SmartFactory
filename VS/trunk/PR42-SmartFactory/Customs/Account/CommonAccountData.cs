@@ -29,7 +29,6 @@ namespace CAS.SmartFactory.Customs.Account
     /// The m_ warnings
     /// </summary>
     protected List<Warnning> m_Warnings = new List<Warnning>();
-
     /// <summary>
     /// Gets the process.
     /// </summary>
@@ -88,12 +87,9 @@ namespace CAS.SmartFactory.Customs.Account
     public string Invoice { get; protected set; }
     public double NetMass { get; protected set; }
     public string TobaccoName { get; protected set; }
-    public double UnitPrice { get; protected set; }
-    public double Value { get; protected set; }
     public string BatchId { get; protected set; }
     public int PCNTariffCodeLookup { get; protected set; }
     public string SKU { get; protected set; }
-    public DateTime ValidToDate { get; protected set; }
     #endregion
 
   }
