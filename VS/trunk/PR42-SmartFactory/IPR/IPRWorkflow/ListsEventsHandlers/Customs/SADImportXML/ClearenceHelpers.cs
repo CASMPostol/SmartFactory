@@ -17,76 +17,22 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
   {
 
     #region public
-    internal static void DeclarationProcessing( SADDocumentType _sad, Entities _edc, CustomsDocument.DocumentType _messageType, ref string _comments )
+    internal static void DeclarationProcessing( Entities edc, SADDocumentType _sad, CustomsDocument.DocumentType messageType, ref string comments )
     {
-      string _at = "started";
-      _comments = "Clearance association error";
-      try
+      comments = "Clearance association error";
+      switch ( messageType )
       {
-        switch ( _messageType )
-        {
-          case CustomsDocument.DocumentType.SAD:
-          case CustomsDocument.DocumentType.PZC:
-            SADPZCProcessing( _edc, _messageType, _sad, ref _comments, ref _at );
-            break;
-          case CustomsDocument.DocumentType.IE529:
-            _at = "ReExportOfGoods";
-            _comments = "Reexport of goods failed";
-            foreach ( SADGood _gdx in _sad.SADGood )
-              ClearThroughCustoms( _edc, _gdx );
-            _comments = "Reexport of goods";
-            break;
-          case CustomsDocument.DocumentType.CLNE:
-            _at = "FimdClearence";
-            IQueryable<Clearence> _clrncs = Clearence.GetClearence( _edc, _sad.ReferenceNumber );
-            if ( ( from _cx in _clrncs where _cx.Clearence2SadGoodID == null select _cx ).Any<Clearence>() )
-            {
-              string _error = String.Format( "SAD with reference number: {0} must be imported first", _sad.ReferenceNumber );
-              throw new InputDataValidationException( "CLNE message cannot be processed befor SAD", "DeclarationProcessing", _error, true );
-            }
-            foreach ( Clearence _cx in _clrncs )
-            {
-              _cx.DocumentNo = _sad.DocumentNumber;
-              _at = "switch RequestedProcedure";
-              switch ( _cx.ClearenceProcedure.Value.RequestedProcedure() )
-              {
-                case CustomsProcedureCodes.FreeCirculation:
-                  _cx.FinishClearingThroughCustoms( _edc );
-                  break;
-                case CustomsProcedureCodes.InwardProcessing:
-                  CreateIPRAccount( _edc, _cx, CustomsDocument.DocumentType.SAD, out _comments );
-                  break;
-                case CustomsProcedureCodes.CustomsWarehousingProcedure:
-                  CreateCWAccount( _edc, _cx, CustomsDocument.DocumentType.SAD, out _comments );
-                  break;
-                case CustomsProcedureCodes.ReExport:
-                case CustomsProcedureCodes.NoProcedure:
-                default:
-                  throw new IPRDataConsistencyException( "Clearence.Associate", "Unexpected procedure code for CLNE message", null, _wrongProcedure );
-              }
-            }
-            break;
-          default:
-            throw new IPRDataConsistencyException( "Clearence.Associate", "Unexpected message type.", null, "Unexpected message type." );
-        }//switch (_documentType
-      }
-      catch ( InputDataValidationException )
-      {
-        throw;
-      }
-      catch ( IPRDataConsistencyException )
-      {
-        throw;
-      }
-      catch ( GenericStateMachineEngine.ActionResult )
-      {
-        throw;
-      }
-      catch ( Exception _ex )
-      {
-        string _src = String.Format( "Clearence analyses error at {0}", _at );
-        throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
-      }
+        case CustomsDocument.DocumentType.SAD:
+        case CustomsDocument.DocumentType.PZC:
+          SADPZCProcessing( edc, messageType, _sad, ref comments );
+          break;
+        case CustomsDocument.DocumentType.IE529:
+          IE529Processing( edc, _sad, ref comments );
+          break;
+        case CustomsDocument.DocumentType.CLNE:
+          CLNEProcessing( _sad, edc, ref comments );
+          break;
+      }//switch (_documentType
     }
     #endregion
 
@@ -115,9 +61,45 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       }
       return _ret;
     }
-    private static void SADPZCProcessing( Entities edc, CustomsDocument.DocumentType messageType, SADDocumentType sad, ref string comments, ref string at )
+    private static void IE529Processing( Entities _edc, SADDocumentType _sad, ref string _comments )
     {
-      at = "_customsProcedureCodes";
+      _comments = "Reexport of goods failed";
+      foreach ( SADGood _gdx in _sad.SADGood )
+        ClearThroughCustoms( _edc, _gdx );
+      _comments = "Reexport of goods";
+    }
+    private static void CLNEProcessing( SADDocumentType _sad, Entities _edc, ref string _comments )
+    {
+      IQueryable<Clearence> _clrncs = Clearence.GetClearence( _edc, _sad.ReferenceNumber );
+      if ( ( from _cx in _clrncs where _cx.Clearence2SadGoodID == null select _cx ).Any<Clearence>() )
+      {
+        string _error = String.Format( "SAD with reference number: {0} must be imported first", _sad.ReferenceNumber );
+        throw new InputDataValidationException( "CLNE message cannot be processed befor SAD", "DeclarationProcessing", _error, true );
+      }
+      foreach ( Clearence _cx in _clrncs )
+      {
+        _cx.DocumentNo = _sad.DocumentNumber;
+        switch ( _cx.ClearenceProcedure.Value.RequestedProcedure() )
+        {
+          case CustomsProcedureCodes.FreeCirculation:
+            _cx.FinishClearingThroughCustoms( _edc );
+            break;
+          case CustomsProcedureCodes.InwardProcessing:
+            CreateIPRAccount( _edc, _cx, CustomsDocument.DocumentType.SAD, out _comments );
+            break;
+          case CustomsProcedureCodes.CustomsWarehousingProcedure:
+            CreateCWAccount( _edc, _cx, CustomsDocument.DocumentType.SAD, out _comments );
+            break;
+          case CustomsProcedureCodes.ReExport:
+          case CustomsProcedureCodes.NoProcedure:
+          default:
+            throw new IPRDataConsistencyException( "CLNEProcessing", "Unexpected procedure code for CLNE message", null, _wrongProcedure );
+        }
+      }
+    }
+    private static void SADPZCProcessing( Entities edc, CustomsDocument.DocumentType messageType, SADDocumentType sad, ref string comments )
+    {
+      string at = "_customsProcedureCodes";
       foreach ( SADGood _sgx in sad.SADGood )
       {
         CustomsProcedureCodes _customsProcedureCodes = _sgx.Procedure.RequestedProcedure();
