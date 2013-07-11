@@ -25,6 +25,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPMetalParametersCreator", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customs", "Customs\Customs.csproj", "{6C705843-6387-4D2D-A7CF-A66976186CE2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{E5B3C924-7BC6-495C-B50F-0617E2CF29F9}"
+	ProjectSection(SolutionItems) = preProject
+		..\CommonBinaries\take_recent_binaries.cmd = ..\CommonBinaries\take_recent_binaries.cmd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
