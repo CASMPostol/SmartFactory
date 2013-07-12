@@ -21,7 +21,7 @@ using CAS.SmartFactory.Customs.Account;
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
 {
   /// <summary>
-  /// Customs Warehouse Account Record Data
+  /// Customs Warehouse Account Record Data - registered as an external service
   /// </summary>
   public class CWAccountData: ICWAccountFactory
   {

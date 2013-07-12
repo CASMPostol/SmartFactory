@@ -81,6 +81,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\CWWebsiteModel\CWWebsiteModel.EventReceiver.cs">
+      <DependentUpon>CWWebsiteModel.feature</DependentUpon>
+    </Compile>
     <Compile Include="Linq\Account\CWAccountData.cs" />
     <Compile Include="Linq\CW.cs" />
     <Compile Include="Linq\Element.cs" />
@@ -92,6 +95,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\EX06-SharePointGuidance2010\SharePoint 2010\Microsoft.Practices.SharePoint.Common\Source\Microsoft.Practices.SharePoint.Common.csproj">
+      <Project>{0fab4900-9fe2-4ce9-a047-ceeb28920f57}</Project>
+      <Name>Microsoft.Practices.SharePoint.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Customs\Customs.csproj">
       <Project>{6c705843-6387-4d2d-a7cf-a66976186ce2}</Project>
       <Name>Customs</Name>
