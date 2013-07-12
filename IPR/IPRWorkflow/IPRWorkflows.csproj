@@ -51,7 +51,10 @@
   <ItemGroup>
     <Reference Include="CAS.SharePoint, Version=1.60.40.23943, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\CommonBinaries\PR42-SmartFactory\CAS.SharePoint.dll</HintPath>
+      <HintPath>..\..\..\..\CASTrunk\CommonBinaries\PR42-SmartFactory\CAS.SharePoint.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\..\CommonBinaries\EX06-SharePointGuidance2010\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SharePoint.WorkflowActions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
@@ -184,6 +187,10 @@
     <Content Include="Workflows\WorkflowTasks\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\EX06-SharePointGuidance2010\SharePoint 2010\Microsoft.Practices.SharePoint.Common\Source\Microsoft.Practices.SharePoint.Common.csproj">
+      <Project>{0fab4900-9fe2-4ce9-a047-ceeb28920f57}</Project>
+      <Name>Microsoft.Practices.SharePoint.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Customs\Customs.csproj">
       <Project>{6c705843-6387-4d2d-a7cf-a66976186ce2}</Project>
       <Name>Customs</Name>

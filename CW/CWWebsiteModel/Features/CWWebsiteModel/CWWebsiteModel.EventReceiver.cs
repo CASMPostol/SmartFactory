@@ -60,7 +60,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Features.CWWebsiteModel
       _typeMappings.RemoveTypeMapping<CAS.SmartFactory.Customs.Account.ICWAccountFactory>( null );
     }
 
-    // Uncomment the method below to handle the event raised when a feature is upgrading.
     //public override void FeatureUpgrading(SPFeatureReceiverProperties properties, string upgradeActionName, System.Collections.Generic.IDictionary<string, string> parameters)
     //{
     //}
