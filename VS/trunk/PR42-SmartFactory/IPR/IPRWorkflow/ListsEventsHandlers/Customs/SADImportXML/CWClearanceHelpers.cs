@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using CAS.SharePoint.Web;
-using CAS.SmartFactory.Customs;
-using CAS.SmartFactory.Customs.Account;
-using CAS.SmartFactory.IPR.WebsiteModel;
-using CAS.SmartFactory.IPR.WebsiteModel.Linq;
-using CAS.SmartFactory.IPR.WebsiteModel.Linq.Account;
-using CAS.SmartFactory.xml.Customs;
+﻿using CAS.SmartFactory.Customs.Account;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.SharePoint.Common.ServiceLocation;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
 {
@@ -16,12 +10,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
   public class CWClearanceHelpers
   {
     private CWClearanceHelpers()
-    {
-
-    }
+    { }
     internal static ICWAccountFactory GetICWAccountFactory()
     {
-      throw new NotImplementedException();
+      IServiceLocator serviceLocator = SharePointServiceLocator.GetCurrent();
+      return serviceLocator.GetInstance<ICWAccountFactory>();
     }
   }
 }
