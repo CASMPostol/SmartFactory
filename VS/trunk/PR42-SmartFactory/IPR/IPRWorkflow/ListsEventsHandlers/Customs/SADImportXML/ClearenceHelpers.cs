@@ -194,14 +194,15 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       {
         SADDocumentType declaration = clearence.Clearence2SadGoodID.SADDocumentIndex;
         _referenceNumber = declaration.ReferenceNumber;
-        _at = "newIPRData";
+        _at = "new CWAccountData";
         comments = "Inconsistent or incomplete data to create CW account";
         CWAccountData _accountData = new CWAccountData();
         _accountData.GetAccountData( entities, clearence, ImportXMLCommon.Convert2MessageType( messageType ) );
         comments = "Consent lookup filed";
-        _at = "new IPRClass";
+        _at = "GetICWAccountFactory";
         ICWAccountFactory _cwFactory = CWClearanceHelpers.GetICWAccountFactory();
         List<Warnning> _lw = new List<Warnning>();
+        _at = "CreateCWAccount";
         _cwFactory.CreateCWAccount( _accountData, _lw, entities.Web );
         if ( _lw.Count == 0 )
         {
@@ -219,6 +220,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         //entities.SubmitChanges();
       }
       catch ( InputDataValidationException )
+      {
+        throw;
+      }
+      catch ( IPRDataConsistencyException )
       {
         throw;
       }
