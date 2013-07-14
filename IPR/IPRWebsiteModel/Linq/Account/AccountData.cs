@@ -68,7 +68,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
       }
       catch ( Exception _ex )
       {
-        string _src = String.Format( "IPR.IPRData creator error at {0}", _at );
+        string _src = String.Format( "AccountData.GetAccountData unexpected error at {0}", _at );
         throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
       }
     }

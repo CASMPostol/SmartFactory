@@ -35,6 +35,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         ValidToDate = _defDate + TimeSpan.FromDays( _defPeriod )
       };
       edc.Consent.InsertOnSubmit( _ret );
+      edc.SubmitChanges();
       return _ret;
     }
   }
