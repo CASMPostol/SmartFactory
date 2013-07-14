@@ -14,6 +14,7 @@
 //</summary>
 
 using System;
+using System.Linq;
 using CAS.SharePoint;
 
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq
@@ -38,7 +39,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.ConsentPeriod = _consentLookup.ConsentPeriod;
       //this.CW2Clearence = clearence;
       this.ClosingDate = Extensions.DateTimeNull;
-
       this.Currency = "PLN";
       this.CW2ConsentTitle = _consentLookup;
       this.CW2PCNID = GetAtIndex<PCNCode>( edc.PCNCode, data.CommonAccountData.PCNTariffCodeLookup );
@@ -69,10 +69,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     {
       Title = String.Format( "CW-{0:D4}{1:D6}", this.EntryDate.Value.Year, Identyfikator.Value );
     }
-
-    internal static bool RecordExist( Entities _edc, object p )
+    internal static bool RecordExist( Entities entities, string documentNo )
     {
-      throw new NotImplementedException();
+      return ( from CW _cwx in entities.CW where _cwx.DocumentNo.Contains( documentNo ) select _cwx ).Any();
     }
   }
 }
