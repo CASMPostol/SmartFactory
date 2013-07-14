@@ -71,14 +71,14 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
       {
         ProcessCustomsMessage( accountData );
         Clearence = Element.GetAtIndex<Clearence>( _edc.Clearence, accountData.ConsentLookup );
-        if ( WebsiteModel.Linq.CW.RecordExist( _edc, accountData.DocumentNo ) )
+        if ( WebsiteModel.Linq.CustomsWarehouse.RecordExist( _edc, accountData.DocumentNo ) )
         {
           string _msg = "CW record with the same SAD document number: {0} exist";
           throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _msg, Clearence.DocumentNo ) );
         }
-        CW _cw = new CW( _edc, this );
+        CustomsWarehouse _cw = new CustomsWarehouse( _edc, this );
         _at = "new InsertOnSubmit";
-        _edc.CW.InsertOnSubmit( _cw );
+        _edc.CustomsWarehouse.InsertOnSubmit( _cw );
         _edc.SubmitChanges();
         _cw.UpdateTitle();
         _edc.SubmitChanges();
