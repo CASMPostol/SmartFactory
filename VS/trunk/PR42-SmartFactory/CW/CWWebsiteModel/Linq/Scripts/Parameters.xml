@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0"?>
 <Web xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Class="Entities" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal">
   <List Name="Activity Log" />
-  <List Name="Balance Batch" />
-  <List Name="Balance IPR" />
-  <List Name="Batch" />
-  <List Name="Batch Library" />
+  <!--<List Name="Balance Batch" />-->
+  <!--<List Name="Balance IPR" />-->
+  <!--<List Name="Batch" />-->
+  <!--<List Name="Batch Library" />-->
   <List Name="Clearence" />
   <List Name="Consent" />
   <List Name="Customs Union" />
   <List Name="Customs Warehouse" />
   <List Name="Customs Warehouse Disposal" />
   <List Name="Customs Warehouse Library" />
-  <List Name="Cutfiller Coefficient" />
-  <List Name="CW" />
-  <List Name="CW Disposal" />
-  <List Name="CW Library" />
+  <!--<List Name="Cutfiller Coefficient" />-->
+  <!--<List Name="CW" />-->
+  <!--<List Name="CW Disposal" />-->
+  <!--<List Name="CW Library" />-->
   <List Name="Disposa Request Content" />
   <List Name="Disposal" />
   <List Name="Disposal Declaration" />
@@ -23,13 +23,13 @@
   <List Name="Format" />
   <List Name="Invoice Content" />
   <List Name="Invoice Library" />
-  <List Name="IPR" />
-  <List Name="IPR Library" />
+  <!--<List Name="IPR" />-->
+  <!--<List Name="IPR Library" />-->
   <!--<List Name="JSOX Customs Summary" />-->
   <!--<List Name="JSOX Library" />-->
   <!--<List Name="List Template Gallery" />-->
   <!--<List Name="Master Page Gallery" />-->
-  <List Name="Material" />
+  <!--<List Name="Material" />-->
   <List Name="PCN Code" />
   <List Name="SAD Consignment" />
   <List Name="SAD Document" />
@@ -40,26 +40,26 @@
   <List Name="SAD Quantity" />
   <List Name="SAD Required Documents" />
   <List Name="Settings" />
-  <List Name="SHMenthol" />
-  <List Name="SKU" />
-  <List Name="SKU Library" />
+  <!--<List Name="SHMenthol" />-->
+  <!--<List Name="SKU" />-->
+  <!--<List Name="SKU Library" />-->
   <!--<List Name="Solution Gallery" />-->
-  <List Name="Stock Entry" />
-  <List Name="Stock Library" />
+  <!--<List Name="Stock Entry" />-->
+  <!--<List Name="Stock Library" />-->
   <!--<List Name="Style Library" />-->
   <!--<List Name="Theme Gallery" />-->
-  <List Name="Usage" />
+  <!--<List Name="Usage" />-->
   <!--<List Name="User Information List" />-->
-  <List Name="Warehouse" />
-  <List Name="Waste" />
+  <!--<List Name="Warehouse" />-->
+  <!--<List Name="Waste" />-->
   <ExcludeOtherLists/>
   <!--<List Name="Web Part Gallery" />-->
   <ContentType Name="Element" Class="Element">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
   </ContentType>
-  <ContentType Name="StockEntry" Class="StockEntry">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  <!--<ContentType Name="StockEntry" Class="StockEntry">
+    --><!--<Column Name="ContentType" Member="ContentType" />--><!--
     <Column Name="Title" Member="Title" />
     <Column Name="SKU" Member="SKU" />
     <Column Name="StorLoc" Member="StorLoc" />
@@ -74,16 +74,16 @@
     <Column Name="ProductType" Member="ProductType" />
     <Column Name="BatchIndex" Member="BatchIndex" />
     <Column Name="StockLibraryIndex" Member="StockLibraryIndex" />
-  </ContentType>
-  <ContentType Name="Usage" Class="Usage">
+  </ContentType>-->
+  <!--<ContentType Name="Usage" Class="Usage">
     <Column Name="FormatIndex" Member="FormatIndex" />
     <Column Name="UsageMin" Member="UsageMin" />
     <Column Name="UsageMax" Member="UsageMax" />
     <Column Name="CTFUsageMin" Member="CTFUsageMin" />
     <Column Name="CTFUsageMax" Member="CTFUsageMax" />
-  </ContentType>
-  <ContentType Name="Disposal" Class="Disposal" >
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>-->
+  <!--<ContentType Name="Disposal" Class="Disposal" >
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="No" Member="No" />
     <Column Name="SADDocumentNo" Member="SADDocumentNo" />
@@ -117,16 +117,16 @@
     <Column Name="Disposal2InvoiceContentIndex" Member="Disposal2InvoiceContentIndex" />
     <Column Name="Created" Member="Created" />
     <Column Name="Author" Member="Author" />
-  </ContentType>
-  <ContentType Name="SKUCommonPart" Class="SKUCommonPart">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>-->
+  <!--<ContentType Name="SKUCommonPart" Class="SKUCommonPart">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="ProductType" Member="ProductType" />
     <Column Name="FormatIndex" Member="FormatIndex" />
     <Column Name="SKU" Member="SKU" />
     <Column Name="IPRMaterial" Member="IPRMaterial" />
     <Column Name="SKULibraryIndex" Member="SKULibraryIndex" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="SKUCigarette" Class="SKUCigarette">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
