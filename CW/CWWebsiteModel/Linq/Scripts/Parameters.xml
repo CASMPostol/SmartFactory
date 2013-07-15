@@ -127,8 +127,8 @@
     <Column Name="IPRMaterial" Member="IPRMaterial" />
     <Column Name="SKULibraryIndex" Member="SKULibraryIndex" />
   </ContentType>-->
-  <ContentType Name="SKUCigarette" Class="SKUCigarette">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  <!--<ContentType Name="SKUCigarette" Class="SKUCigarette">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="ProductType" Member="ProductType" />
     <Column Name="FormatIndex" Member="FormatIndex" />
@@ -142,9 +142,9 @@
     <Column Name="PrimeMarket" Member="PrimeMarket" />
     <Column Name="MentholMaterial" Member="MentholMaterial" />
     <Column Name="Menthol" Member="Menthol" />
-  </ContentType>
-  <ContentType Name="SKUCutfiller" Class="SKUCutfiller">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>-->
+  <!--<ContentType Name="SKUCutfiller" Class="SKUCutfiller">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="ProductType" Member="ProductType" />
     <Column Name="FormatIndex" Member="FormatIndex" />
@@ -153,21 +153,21 @@
     <Column Name="SKULibraryIndex" Member="SKULibraryIndex" />
     <Column Name="Units" Member="Units" />
     <Column Name="BlendPurpose" Member="BlendPurpose" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="SADQuantity" Class="SADQuantity">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="ItemNo" Member="ItemNo" />
     <Column Name="NetMass" Member="NetMass" />
     <Column Name="Units" Member="Units" />
     <Column Name="SADQuantity2SADGoodID" Member="SADQuantity2SADGoodID" />
   </ContentType>
-  <ContentType Name="CutfillerCoefficient" Class="CutfillerCoefficient">
+  <!--<ContentType Name="CutfillerCoefficient" Class="CutfillerCoefficient">
     <Column Name="CFTProductivityRateMin" Member="CFTProductivityRateMin" />
     <Column Name="CFTProductivityRateMax" Member="CFTProductivityRateMax" />
     <Column Name="CFTProductivityNormMin" Member="CFTProductivityNormMin" />
     <Column Name="CFTProductivityNormMax" Member="CFTProductivityNormMax" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="Warehouse" Class="Warehouse">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
@@ -186,14 +186,14 @@
     <Column Name="ClearenceProcedure" Member="ClearenceProcedure" />
     <Column Name="Clearence2SadGoodID" Member="Clearence2SadGoodID" />
   </ContentType>
-  <ContentType Name="SHMenthol" Class="SHMenthol">
+  <!--<ContentType Name="SHMenthol" Class="SHMenthol">
     <Column Name="ProductType" Member="ProductType" />
     <Column Name="SHMentholRatio" Member="SHMentholRatio" />
-  </ContentType>
-  <ContentType Name="Waste" Class="Waste">
+  </ContentType>-->
+  <!--<ContentType Name="Waste" Class="Waste">
     <Column Name="ProductType" Member="ProductType" />
     <Column Name="WasteRatio" Member="WasteRatio" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="PCNCode" Class="PCNCode">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
@@ -220,16 +220,16 @@
     <Column Name="Amount" Member="Amount" />
     <Column Name="SADDuties2SADGoodID" Member="SADDuties2SADGoodID" />
   </ContentType>
-  <ContentType Name="Commodity" Class="Commodity">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  <!--<ContentType Name="Commodity" Class="Commodity">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
-  </ContentType>
-  <ContentType Name="City" Class="City">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>-->
+  <!--<ContentType Name="City" Class="City">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
-  </ContentType>
-  <ContentType Name="Material" Class="Material">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>-->
+  <!--<ContentType Name="Material" Class="Material">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="SKUDescription" Member="SKUDescription" />
     <Column Name="SKU" Member="SKU" />
@@ -246,7 +246,7 @@
     <Column Name="Tobacco" Member="Tobacco" />
     <Column Name="SHMenthol" Member="SHMenthol" />
     <Column Name="Material2BatchIndex" Member="Material2BatchIndex" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="CustomsWarehouse" Class="CustomsWarehouse">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
@@ -288,8 +288,8 @@
     <Column Name="CWL_CW2PCNID" Member="CWL_CW2PCNID" />
     <Column Name="CWL_CW2CWLibraryID" Member="CWL_CW2CWLibraryID" />
   </ContentType>
-  <ContentType Name="DisposalDeclaration" Class="DisposalDeclaration">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  <!--<ContentType Name="DisposalDeclaration" Class="DisposalDeclaration">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="EntryDate" Member="EntryDate" />
     <Column Name="No" Member="No" />
@@ -303,12 +303,12 @@
     <Column Name="PackageToCleared" Member="PackageToCleared" />
     <Column Name="AddedToClearDeclared" Member="AddedToClearDeclared" />
     <Column Name="Procedure" Member="Procedure" />
-  </ContentType>
-  <ContentType Name="CustomsUnion" Class="CustomsUnion">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>-->
+  <!--<ContentType Name="CustomsUnion" Class="CustomsUnion">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="EUPrimeMarket" Member="EUPrimeMarket" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="Settings" Class="Settings">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
@@ -353,14 +353,14 @@
     <Column Name="VATPerSettledAmount" Member="VATPerSettledAmount" />
     <Column Name="DutyAndVAT" Member="DutyAndVAT" />
   </ContentType>
-  <ContentType Name="Format" Class="Format">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  <!--<ContentType Name="Format" Class="Format">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="CigaretteLenght" Member="CigaretteLenght" />
     <Column Name="FilterLenght" Member="FilterLenght" />
-  </ContentType>
-  <ContentType Name="InvoiceContent" Class="InvoiceContent">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>-->
+  <!--<ContentType Name="InvoiceContent" Class="InvoiceContent">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="SKUDescription" Member="SKUDescription" />
     <Column Name="ProductType" Member="ProductType" />
@@ -372,7 +372,7 @@
     <Column Name="InvoiceIndex" Member="InvoiceIndex" />
     <Column Name="InvoiceContent2BatchIndex" Member="InvoiceContent2BatchIndex" />
     <Column Name="InvoiceContent2BatchQty_sec" Member="InvoiceContent2BatchQty_sec" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="SADDocumentType" Class="SADDocumentType">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
@@ -386,8 +386,8 @@
     <Column Name="NetMass" Member="NetMass" />
     <Column Name="SystemID" Member="SystemID" />
   </ContentType>
-  <ContentType Name="CW" Class="CW">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  <!--<ContentType Name="CW" Class="CW">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="EntryDate" Member="EntryDate" />
     <Column Name="CW2ConsentTitle" Member="CW2ConsentTitle" />
@@ -418,11 +418,11 @@
     <Column Name="ClosingDate" Member="ClosingDate" />
     <Column Name="CW2PCNID" Member="CW2PCNID" />
     <Column Name="CW2CWLibraryID" Member="CW2CWLibraryID" />
-  </ContentType>
-  <ContentType Name="TobaccoBatchSummary" Class="TobaccoBatchSummary">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>-->
+  <!--<ContentType Name="TobaccoBatchSummary" Class="TobaccoBatchSummary">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="Consent" Class="Consent">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
@@ -434,8 +434,8 @@
     <Column Name="ConsentPeriod" Member="ConsentPeriod" />
     <Column Name="IsIPR" Member="IsIPR" />
   </ContentType>
-  <ContentType Name="CWDisposal" Class="CWDisposal">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  <!--<ContentType Name="CWDisposal" Class="CWDisposal">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="EntryDate" Member="EntryDate" />
     <Column Name="No" Member="No" />
@@ -465,7 +465,7 @@
     <Column Name="VATPerSettledAmount" Member="VATPerSettledAmount" />
     <Column Name="DutyAndVAT" Member="DutyAndVAT" />
     <Column Name="CWDisposal2PCNTID" Member="CWDisposal2PCNTID" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="DisposalRequestContent" Class="DisposalRequestContent">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
@@ -482,8 +482,8 @@
     <Column Name="CW_AddedKg" Member="CW_AddedKg" />
     <Column Name="CWL_CWDisposalRequest2DisposalRequestLibraryID" Member="CWL_CWDisposalRequest2DisposalRequestLibraryID" />
   </ContentType>
-  <ContentType Name="IPR" Class="IPR">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  <!--<ContentType Name="IPR" Class="IPR">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="IPR2ConsentTitle" Member="IPR2ConsentTitle" />
     <Column Name="ValidFromDate" Member="ValidFromDate" />
@@ -519,9 +519,9 @@
     <Column Name="ClearenceIndex" Member="ClearenceIndex" />
     <Column Name="IPRLibraryIndex" Member="IPRLibraryIndex" />
     <Column Name="AccountClosed" Member="AccountClosed" />
-  </ContentType>
-  <ContentType Name="ReportsCommonPart" Class="ReportsCommonPart">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>-->
+  <!--<ContentType Name="ReportsCommonPart" Class="ReportsCommonPart">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="DocumentNo" Member="DocumentNo" />
     <Column Name="SKU" Member="SKU" />
@@ -545,9 +545,9 @@
     <Column Name="PureTobaccoCSNotStarted" Member="PureTobaccoCSNotStarted" />
     <Column Name="TobaccoUsedInTheProduction" Member="TobaccoUsedInTheProduction" />
     <Column Name="TobaccoToBeUsedInTheProduction" Member="TobaccoToBeUsedInTheProduction" />
-  </ContentType>
-  <ContentType Name="BalanceBatch" Class="BalanceBatch">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>-->
+  <!--<ContentType Name="BalanceBatch" Class="BalanceBatch">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="DocumentNo" Member="DocumentNo" />
     <Column Name="SKU" Member="SKU" />
@@ -577,9 +577,9 @@
     <Column Name="TobaccoInCutfillerWarehouse" Member="TobaccoInCutfillerWarehouse" />
     <Column Name="Balance" Member="Balance" />
     <Column Name="Balance2JSOXLibraryIndex" Member="Balance2JSOXLibraryIndex" />
-  </ContentType>
-  <ContentType Name="BalanceIPR" Class="BalanceIPR">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>-->
+  <!--<ContentType Name="BalanceIPR" Class="BalanceIPR">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="DocumentNo" Member="DocumentNo" />
     <Column Name="SKU" Member="SKU" />
@@ -610,9 +610,9 @@
     <Column Name="BalanceBatchIndex" Member="BalanceBatchIndex" />
     <Column Name="BalanceIPR2JSOXIndex" Member="BalanceIPR2JSOXIndex" />
     <Column Name="IPRIndex" Member="IPRIndex" />
-  </ContentType>
-  <ContentType Name="JSOXCustomsSummary" Class="JSOXCustomsSummary">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>-->
+  <!--<ContentType Name="JSOXCustomsSummary" Class="JSOXCustomsSummary">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="ExportOrFreeCirculationSAD" Member="ExportOrFreeCirculationSAD" />
     <Column Name="SADDate" Member="SADDate" />
@@ -624,7 +624,7 @@
     <Column Name="RemainingQuantity" Member="RemainingQuantity" />
     <Column Name="CustomsProcedure" Member="CustomsProcedure" />
     <Column Name="JSOXCustomsSummary2JSOXIndex" Member="JSOXCustomsSummary2JSOXIndex" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="SADRequiredDocuments" Class="SADRequiredDocuments">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
@@ -632,16 +632,16 @@
     <Column Name="Number" Member="Number" />
     <Column Name="SADRequiredDoc2SADGoodID" Member="SADRequiredDoc2SADGoodID" />
   </ContentType>
-  <ContentType Name="Country" Class="Country">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  <!--<ContentType Name="Country" Class="Country">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
-  </ContentType>
-  <ContentType Name="Dust" Class="Dust">
+  </ContentType>-->
+  <!--<ContentType Name="Dust" Class="Dust">
     <Column Name="ProductType" Member="ProductType" />
     <Column Name="DustRatio" Member="DustRatio" />
-  </ContentType>
-  <ContentType Name="Batch" Class="Batch">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>-->
+  <!--<ContentType Name="Batch" Class="Batch">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="ProductType" Member="ProductType" />
     <Column Name="BatchStatus" Member="BatchStatus" />
@@ -677,9 +677,9 @@
     <Column Name="CTFUsageMin" Member="CTFUsageMin" />
     <Column Name="CTFUsageMax" Member="CTFUsageMax" />
     <Column Name="UsageVersion" Member="UsageVersion" />
-  </ContentType>
-  <ContentType Name="StockLib" Class="StockLib">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>-->
+  <!--<ContentType Name="StockLib" Class="StockLib">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
     <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
@@ -687,7 +687,7 @@
     <Column Name="Stock2JSOXLibraryIndex" Member="Stock2JSOXLibraryIndex" />
   </ContentType>
   <ContentType Name="IPRLib" Class="IPRLib">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
     <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
@@ -695,7 +695,7 @@
     <Column Name="DocumentNo" Member="DocumentNo" />
   </ContentType>
   <ContentType Name="JSOXLib" Class="JSOXLib">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
     <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
@@ -714,16 +714,16 @@
     <Column Name="SituationQuantity" Member="SituationQuantity" />
     <Column Name="ReassumeQuantity" Member="ReassumeQuantity" />
     <Column Name="JSOXLibraryReadOnly" Member="JSOXLibraryReadOnly" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="SADConsignment" Class="SADConsignment">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
-    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="Modified_x0020_By" Member="ModifiedBy" />
+    <Column Name="Created_x0020_By" Member="CreatedBy" />
   </ContentType>
-  <ContentType Name="InvoiceLib" Class="InvoiceLib">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  <!--<ContentType Name="InvoiceLib" Class="InvoiceLib">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
     <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
@@ -734,22 +734,22 @@
     <Column Name="InvoiceLibraryStatus" Member="InvoiceLibraryStatus" />
     <Column Name="InvoiceLibraryReadOnly" Member="InvoiceLibraryReadOnly" />
     <Column Name="IsExport" Member="IsExport" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="SADDocumentLib" Class="SADDocumentLib">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
-    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="Modified_x0020_By" Member="ModifiedBy" />
+    <Column Name="Created_x0020_By" Member="CreatedBy" />
     <Column Name="SADDocumentLibraryOK" Member="SADDocumentLibraryOK" />
     <Column Name="SADDocumentLibraryComments" Member="SADDocumentLibraryComments" />
   </ContentType>
   <ContentType Name="BatchLib" Class="BatchLib">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
-    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="Modified_x0020_By" Member="ModifiedBy" />
+    <Column Name="Created_x0020_By" Member="CreatedBy" />
     <Column Name="BatchLibraryOK" Member="BatchLibraryOK" />
     <Column Name="BatchLibraryComments" Member="BatchLibraryComments" />
   </ContentType>
@@ -757,23 +757,23 @@
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
-    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="Modified_x0020_By" Member="ModifiedBy" />
+    <Column Name="Created_x0020_By" Member="CreatedBy" />
   </ContentType>
   <ContentType Name="CustomsWarehouseLib" Class="CustomsWarehouseLib">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
-    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="Modified_x0020_By" Member="ModifiedBy" />
+    <Column Name="Created_x0020_By" Member="CreatedBy" />
   </ContentType>
-  <ContentType Name="CWLib" Class="CWLib">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
+  <!--<ContentType Name="CWLib" Class="CWLib">
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
-    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
-  </ContentType>
+    <Column Name="Modified_x0020_By" Member="ModifiedBy" />
+    <Column Name="Created_x0020_By" Member="CreatedBy" />
+  </ContentType>-->
   <ContentType Name="ActivityLogCT" Class="ActivityLogCT">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
