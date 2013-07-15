@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// <param name="fatal">if set to <c>true</c> [fatal].</param>
     public ErrorsList(List<string> warnnings, bool fatal)
     {
-      Add( warnnings, fatal );
+      this.Add( warnnings, fatal );
     }
     /// <summary>
     /// Adds the specified warnnings.
@@ -32,7 +32,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     public void Add( List<string> warnnings, bool fatal )
     {
       foreach ( string _wrn in warnnings )
-        Add( new Warnning( _wrn, fatal ) );
+        this.Add( new Warnning( _wrn, fatal ) );
     }
     /// <summary>
     /// Adds the specified message.
