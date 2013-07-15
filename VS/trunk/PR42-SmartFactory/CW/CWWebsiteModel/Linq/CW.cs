@@ -42,7 +42,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.Currency = "PLN";
       this.CWL_CW2ConsentTitle = _consentLookup;
       this.CWL_CW2PCNID = GetAtIndex<PCNCode>( edc.PCNCode, data.CommonAccountData.PCNTariffCodeLookup );
-      this.CWL_CW2CWLibraryID = null;
+      this.CWL_CW2CWLibraryIDIdentyfikator = null;
       this.CW_CertificateOfOrgin = data.CWCertificate;
       this.CustomsDebtDate = data.CommonAccountData.CustomsDebtDate;
       this.CW_MassPerPackage = data.CWMassPerPackage;
@@ -71,7 +71,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     }
     internal static bool RecordExist( Entities entities, string documentNo )
     {
-      return ( from CW _cwx in entities.CW where _cwx.DocumentNo.Contains( documentNo ) select _cwx ).Any();
+      return ( from CustomsWarehouse _cwx in entities.CustomsWarehouse where _cwx.DocumentNo.Contains( documentNo ) select _cwx ).Any();
     }
   }
 }
