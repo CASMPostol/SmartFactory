@@ -48,12 +48,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
       catch ( InputDataValidationException _ioex )
       {
         _ioex.ReportActionResult( properties.WebUrl, properties.ListItem.File.Name );
-        ActivityLogCT.WriteEntry( m_Title, "Import of the message finished", properties.WebUrl );
+        ActivityLogCT.WriteEntry( m_Title, String.Format( "SKU message {0} import has been stoped because of errors.", properties.ListItem.File.Name ), properties.WebUrl );
       }
       catch ( Exception ex )
       {
-        string _pattern = @"SKU message import has been stoped because of a fatal error <b>{0}</b> at: <b>{1}</b>";
-        ActivityLogCT.WriteEntry( String.Format( _pattern, ex.Message, At ), properties.WebUrl );
+        string _pattern = @"SKU message {2} import has been stoped because of an unexpected fatal error <b>{0}</b> at: <b>{1}</b>";
+        ActivityLogCT.WriteEntry( String.Format( _pattern, ex.Message, At, properties.ListItem.File.Name ), properties.WebUrl );
       }
       finally
       {
