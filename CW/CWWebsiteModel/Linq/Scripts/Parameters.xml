@@ -50,6 +50,7 @@
   <!--<List Name="Theme Gallery" />-->
   <!--<List Name="Usage" />-->
   <!--<List Name="User Information List" />-->
+  <!--<List Name="Vendor" />-->
   <!--<List Name="Warehouse" />-->
   <!--<List Name="Waste" />-->
   <ExcludeOtherLists/>
@@ -59,7 +60,7 @@
     <Column Name="Title" Member="Title" />
   </ContentType>
   <!--<ContentType Name="StockEntry" Class="StockEntry">
-    --><!--<Column Name="ContentType" Member="ContentType" />--><!--
+    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="SKU" Member="SKU" />
     <Column Name="StorLoc" Member="StorLoc" />
