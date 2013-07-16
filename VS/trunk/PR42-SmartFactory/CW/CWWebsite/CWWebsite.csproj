@@ -157,7 +157,9 @@
     <Content Include="Lists\CustomsWarehouseDisposalListTemplate\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Lists\CustomsWarehouseDisposalListTemplate\Schema.xml" />
+    <Content Include="Lists\CustomsWarehouseDisposalListTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\CustomsWarehouseLibraryTemplate\CustomsWarehouseLibrary\Elements.xml" />
     <Content Include="Lists\CustomsWarehouseLibraryTemplate\EditDlg.htm" />
     <Content Include="Lists\CustomsWarehouseLibraryTemplate\Elements.xml" />
