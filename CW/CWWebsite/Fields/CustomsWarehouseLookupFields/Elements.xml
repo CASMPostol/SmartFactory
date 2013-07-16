@@ -19,6 +19,36 @@
     />
   <Field
     Type="Lookup"
+    DisplayName="Consent date"
+    List="Lists/ConsentList"
+    ShowField="ConsentDate"
+    FieldRef="39DB0101-A722-49AB-9369-6410727F4C97"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory Customs Warehouse"
+    ID="{1F643FD7-FDD2-4198-9613-01D9DEE70722}"
+    Name="CWL_CW2ConsentDate_sec"
+    Overwrite="TRUE"
+  />
+  <Field
+    Name="CWL_CW2ClearenceID"
+    ID="{2114C077-3416-4465-AFB8-27B9ADDFDE2F}"
+    Type="Lookup"
+    List="Lists/ClearenceList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Clearence"
+    Group="CAS Smart Factory Customs Warehouse"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    Type="Lookup"
     DisplayName="CN tariff code"
     List="Lists/PCNCodeList"
     ShowField="ProductCodeNumber"

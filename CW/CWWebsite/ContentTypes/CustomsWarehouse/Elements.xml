@@ -10,9 +10,7 @@
     <FieldRefs>
       <FieldRef ID="{B304AE65-8CCF-49E8-B1F2-C60D6453753A}" Name="CWC_EntryDate" />
       <FieldRef ID="{39DB0101-A722-49AB-9369-6410727F4C97}" Name="CWL_CW2ConsentTitle" />
-      <FieldRef ID="{7BF919F9-500D-4584-A5AC-AC03D705D2B1}" Name="ValidFromDate" />
-      <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
-      <FieldRef ID="{DA5A1735-E0C6-44CF-AECA-490C6E17498A}" Name="ConsentPeriod" />
+      <FieldRef ID="{1F643FD7-FDD2-4198-9613-01D9DEE70722}" Name="CWL_CW2ConsentDate_sec" />
       <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
       <FieldRef ID="{FE3B4425-FBF7-474A-9CFA-BD2F27F13E17}" Name="CustomsDebtDate" />
       <FieldRef ID="{39BF8BA0-19DE-49FB-AE9A-892A518F9C52}" Name="TobaccoName" />
@@ -42,10 +40,12 @@
       <FieldRef ID="{3120670C-1291-4EAD-99A4-A497F779DF51}" Name="CW_CODate" />
       <FieldRef ID="{6CA6F676-A1D0-455F-83C0-68AE5173E6BA}" Name="CW_CertificateOfAuthenticity" />
       <FieldRef ID="{E47C39BD-90E7-4CB2-AC96-745DBC6463C6}" Name="CW_COADate" />
+      <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
       <FieldRef ID="{E6A94982-F43E-436D-94A5-63C3916455A3}" Name="ClosingDate" />
       <FieldRef ID="{C13CA3FF-19F6-47FC-9EA3-8365EB8EB07F}" Name="CWL_CW2PCNID" />
       <FieldRef ID="{615855F8-6922-456C-95FB-2DAC71809663}" Name="CWL_CW2CWLibraryID" />
       <FieldRef ID="{7B4C1B77-5160-4E59-9BE3-42A39AE9A5D4}" Name="CWL_CW2VendorTitle" />
+      <FieldRef ID="{2114C077-3416-4465-AFB8-27B9ADDFDE2F}" Name="CWL_CW2ClearenceID" />
     </FieldRefs>
   </ContentType>
 </Elements>
