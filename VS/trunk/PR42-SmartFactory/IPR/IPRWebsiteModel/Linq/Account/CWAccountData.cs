@@ -38,14 +38,5 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     {
       get { return CustomsProcess.cw; }
     }
-    /// <summary>
-    /// Analizes the goods description.
-    /// </summary>
-    /// <param name="edc">The <see cref="Entities"/>.</param>
-    /// <param name="goodsDescription">The goods description.</param>
-    protected override void AnalizeGoodsDescription( Entities edc, string goodsDescription )
-    {
-      base.AnalizeGoodsDescription( edc, goodsDescription );
-    }
   }
 }

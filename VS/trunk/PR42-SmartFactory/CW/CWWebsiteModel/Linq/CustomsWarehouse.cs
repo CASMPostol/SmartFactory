@@ -33,24 +33,22 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     public CustomsWarehouse( Linq.Entities edc, Account.CWAccountData data )
       : this()
     {
-      Linq.Consent _consentLookup = GetAtIndex<Consent>( edc.Consent, data.CommonAccountData.ConsentLookup );
       this.AccountBalance = data.CommonAccountData.NetMass;
       this.Batch = data.CommonAccountData.BatchId;
-      this.ConsentPeriod = _consentLookup.ConsentPeriod;
-      //this.CW2Clearence = clearence;
+      this.ConsentPeriod = data.ConsentLookup.ConsentPeriod;
+      //this.CWL_2Clearence = clearence; //TODO - the column must be defined 
       this.ClosingDate = Extensions.DateTimeNull;
       this.Currency = "PLN";
-      this.CWL_CW2ConsentTitle = _consentLookup;
+      this.CWL_CW2ConsentTitle = data.ConsentLookup;
       this.CWL_CW2PCNID = GetAtIndex<PCNCode>( edc.PCNCode, data.CommonAccountData.PCNTariffCodeLookup );
       this.CWL_CW2CWLibraryIDIdentyfikator = null;
-      this.CW_CertificateOfOrgin = data.CWCertificate;
       this.CustomsDebtDate = data.CommonAccountData.CustomsDebtDate;
       this.CW_MassPerPackage = data.CWMassPerPackage;
       this.CW_PackageKg = data.CWPackageKg;
       this.CW_PackageUnits = data.CWPackageUnits;
       this.CW_PzNo = data.CWPzNo;
       this.CW_Quantity = data.CWQuantity;
-      this.DocumentNo = data.Clearence.DocumentNo;
+      this.DocumentNo = data.ClearenceLookup.DocumentNo;
       this.CWC_EntryDate = data.EntryDate;
       this.Grade = data.CommonAccountData.GradeName;
       this.GrossMass = data.CommonAccountData.GrossMass;
@@ -60,7 +58,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.TobaccoName = data.CommonAccountData.TobaccoName;
       this.Title = "-- creating -- ";
       this.Units = data.Units;
-      this.ValidToDate = data.CommonAccountData.CustomsDebtDate;
+      this.ValidToDate = data.ValidToDate;
+      //Certificate
+      this.CW_CertificateOfOrgin = data.CW_CertificateOfOrgin;
+      this.CW_CertificateOfAuthenticity = data.CW_CertificateOfAuthenticity;
+      this.CW_COADate = data.CW_COADate;
+      this.CW_CODate = data.CW_CODate;
     }
     /// <summary>
     /// Updates the title.
