@@ -14,11 +14,13 @@
 //</summary>
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using CAS.SharePoint.Web;
 using CAS.SharePoint;
 using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.Customs.Account;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
 {
@@ -40,6 +42,10 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     internal string Units { get; private set; } //Good description
     internal Clearence ClearenceLookup { get; private set; }
     internal Consent ConsentLookup { get; private set; }
+    internal string CW_CertificateOfAuthenticity { get; private set; }
+    internal DateTime? CW_CODate { get; private set; }
+    internal DateTime? CW_COADate { get; private set; }
+    public DateTime? ValidToDate { get; private set; }
 
     #region ICWAccountFactory Members
     /// <summary>
@@ -96,19 +102,54 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
         warnings.Add( _wrn );
       }
     }
-
     #endregion
 
     #region private
-    private void AnalizeGoodsDescription( Entities edc, string goodsDescription, List<Warnning> warning )
+    private void AnalyzeCertificates( Entities edc, EntitySet<SADRequiredDocuments> sadRequiredDocumentsEntitySet, List<Warnning> warnings )
     {
-      List<string> _sErrors = new List<string>();
-      string _na = "Not recognized";
-      CWPackageKg = Convert2Double( goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CWPackageKg_Pattern ), _na, _sErrors ), _sErrors );
-      CWPackageUnits = Convert2Double( goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CWPackageKg_Pattern ), _na, _sErrors ), _sErrors );
-      CWQuantity = Convert2Double( goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CWQuantity_Pattern ), _na, _sErrors ), _sErrors );
-      Units = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_Units_Pattern ), _na, _sErrors );
+      //TODO review
+      List<string> _stringsList = new List<string>();
+      double _validPeriod = 180;
+      if ( !Double.TryParse( Settings.GetParameter( edc, SettingsEntry.DefaultValidToDatePeriod ), out _validPeriod ) )
+        _validPeriod = 180;
+      ValidToDate = DateTime.Now.Date + TimeSpan.FromDays( _validPeriod );
+      foreach ( SADRequiredDocuments _srdx in ( from _dx in sadRequiredDocumentsEntitySet select _dx ) )
+      {
+        string _code = _srdx.Code.Trim().ToUpper();
+        if ( _code.Contains( Settings.CustomsProcedureCodeA004 ) )
+        {
+          CW_CertificateOfAuthenticity = _srdx.Code.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CertificateOfAuthenticity_Pattern ), _na, _stringsList );
+          CW_COADate = GetCertificateDate( _srdx.Code, warnings );
+        }
+        else if ( _code.Contains( Settings.CustomsProcedureCodeN865 ) || _code.Contains( Settings.CustomsProcedureCodeN954 ) )
+        {
+          CW_CertificateOfOrgin = String.Empty;
+          CW_CODate = GetCertificateDate( _srdx.Code, warnings );
+        }
+      }
+      Convert2Warning( warnings, _stringsList, false );
     }
+    private DateTime? GetCertificateDate( string p, List<Warnning> warnings )
+    {
+      throw new NotImplementedException();
+    }
+    private void AnalizeGoodsDescription( Entities edc, string goodsDescription, List<Warnning> warnings )
+    {
+      List<string> _stringsList = new List<string>();
+      CWPackageKg = Convert2Double( goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CWPackageKg_Pattern ), _na, _stringsList ), _stringsList );
+      CWPackageUnits = Convert2Double( goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CWPackageKg_Pattern ), _na, _stringsList ), _stringsList );
+      CWQuantity = Convert2Double( goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CWQuantity_Pattern ), _na, _stringsList ), _stringsList );
+      Units = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_Units_Pattern ), _na, _stringsList );
+      Convert2Warning( warnings, _stringsList, false );
+    }
+
+    private static void Convert2Warning( List<Warnning> warningsList, List<string> stringsList, bool fatal )
+    {
+      if ( stringsList.Count == 0 )
+        return;
+      warningsList.AddRange( from _erx in stringsList select new Warnning( _erx, fatal ) );
+    }
+    string _na = "Not recognized";
     private double? Convert2Double( string vlaue, List<string> errors )
     {
       return new Nullable<double>();
@@ -119,12 +160,5 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     }
     #endregion
 
-    public string CW_CertificateOfAuthenticity { get; set; }
-
-    public DateTime? CW_CODate { get; set; }
-
-    public DateTime? CW_COADate { get; set; }
-
-    public DateTime? ValidToDate { get; set; }
   }
 }
