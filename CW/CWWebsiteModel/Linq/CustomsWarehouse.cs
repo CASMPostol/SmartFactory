@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.CW_MassPerPackage = data.CWMassPerPackage;
       this.CW_PackageKg = data.CWPackageKg;
       this.CW_PackageUnits = data.CWPackageUnits;
-      this.CW_PzNo = data.CWPzNo;
+      this.CW_PzNo = "M/A";
       this.CW_Quantity = data.CWQuantity;
       this.DocumentNo = data.ClearenceLookup.DocumentNo;
       this.CWC_EntryDate = data.EntryDate;
