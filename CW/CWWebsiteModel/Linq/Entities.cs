@@ -4435,11 +4435,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 				}
 			}
 		}
-
-    internal static string GetParameter( Entities edc, SettingsEntry settingsEntry )
-    {
-      throw new NotImplementedException();
-    }
   }
 	
 	/// <summary>

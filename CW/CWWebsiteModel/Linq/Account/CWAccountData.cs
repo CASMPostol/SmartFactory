@@ -16,6 +16,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using CAS.SharePoint;
 using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.Customs.Account;
@@ -28,16 +29,19 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
   /// </summary>
   public class CWAccountData: ICWAccountFactory
   {
+    #region ctor
     public CWAccountData() { }
+    #endregion
 
+    #region properties
     internal CommonAccountData CommonAccountData { get; private set; }
     internal DateTime? EntryDate { get; private set; }
     internal Clearence ClearenceLookup { get; private set; }
     internal Consent ConsentLookup { get; private set; }
     internal double? CWMassPerPackage { get { return CommonAccountData.NetMass / CWMassPerPackage; } }
     //Good descriptionc
-    internal double? CWQuantity { get; private set; } 
-    internal string Units { get; private set; } 
+    internal double? CWQuantity { get; private set; }
+    internal string Units { get; private set; }
     internal double? CWPackageKg { get; private set; }
     internal double? CWPackageUnits { get; private set; }
     //from Required documents.
@@ -46,6 +50,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     internal DateTime? CW_CODate { get; private set; }
     internal DateTime? CW_COADate { get; private set; }
     internal DateTime ValidToDate { get; private set; }
+    #endregion
 
     #region ICWAccountFactory Members
     /// <summary>
@@ -70,9 +75,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
           _at = "ProcessCustomsMessage";
           this.CommonAccountData = accountData;
           _at = "GetAtIndex<Clearence>";
-          ClearenceLookup = Element.GetAtIndex<Clearence>( _edc.Clearence, accountData.ConsentLookup );
+          this.ClearenceLookup = Element.GetAtIndex<Clearence>( _edc.Clearence, accountData.ConsentLookup );
           _at = "GetAtIndex<Consent>";
-          Linq.Consent _consentLookup = Element.GetAtIndex<Consent>( _edc.Consent, CommonAccountData.ConsentLookup );
+          this.ConsentLookup = Element.GetAtIndex<Consent>( _edc.Consent, CommonAccountData.ConsentLookup );
           _at = "AnalizeGoodsDescription";
           AnalizeGoodsDescription( _edc, ClearenceLookup.Clearence2SadGoodID.GoodsDescription, warnings );
           AnalyzeCertificates( _edc, ClearenceLookup.Clearence2SadGoodID.SADRequiredDocuments, warnings );
@@ -112,12 +117,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
         if ( _code.Contains( Settings.CustomsProcedureCodeA004 ) )
         {
           CW_CertificateOfAuthenticity = _srdx.Code.GetFirstCapture( Settings.GetParameter( entities, SettingsEntry.GoodsDescription_CertificateOfAuthenticity_Pattern ), _na, _stringsList );
-          CW_COADate = GetCertificateDate( _srdx.Code, warnings );
+          CW_COADate = GetCertificateDate( entities, _srdx.Code, warnings );
         }
         else if ( _code.Contains( Settings.CustomsProcedureCodeN865 ) || _code.Contains( Settings.CustomsProcedureCodeN954 ) )
         {
           CW_CertificateOfOrgin = _srdx.Code.GetFirstCapture( Settings.GetParameter( entities, SettingsEntry.GoodsDescription_CertificateOfOrgin_Pattern ), _na, _stringsList );
-          CW_CODate = GetCertificateDate( _srdx.Code, warnings );
+          CW_CODate = GetCertificateDate( entities, _srdx.Code, warnings );
         }
       }
       Convert2Warnings( warnings, _stringsList, false );
@@ -135,10 +140,19 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
         _validPeriod = 180;
       return DateTime.Now.Date + TimeSpan.FromDays( _validPeriod );
     }
-    private DateTime? GetCertificateDate( string code, List<Warnning> warnings )
+    private DateTime? GetCertificateDate( Entities entities, string code, List<Warnning> warnings )
     {
       DateTime? _ret = new Nullable<DateTime>();
-      //TODO NotImplementedException();
+      try
+      {
+        MatchCollection _result = Regex.Matches( code, Settings.GetParameter( entities, SettingsEntry.LooselyFormatedDate ) );
+        _ret = new DateTime( int.Parse( _result[ 3 ].Value ), int.Parse( _result[ 2 ].Value ), int.Parse( _result[ 1 ].Value ) );
+      }
+      catch ( Exception _ex )
+      {
+        string _mssg = String.Format( "Cannot get data from the certificate code {0}.", code );
+        warnings.Add( new Warnning( _mssg, false ) );
+      }
       return _ret;
     }
     private void AnalizeGoodsDescription( Entities edc, string goodsDescription, List<Warnning> warnings )
