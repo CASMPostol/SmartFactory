@@ -254,7 +254,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
       try
       {
         if ( m_ControlState.ItemID.IsNullOrEmpty() )
-          return new LocalStateMachineEngine.ActionResult( new ApplicationException( "UpdatetrailerNotSelected".GetLocalizedString() ), "Update" );
+            return new LocalStateMachineEngine.ActionResult(new ApplicationException("UpdatetrailerNotSelected".GetShepherdLocalizedString()), "Update");
         Trailer _drv = Element.GetAtIndex<Trailer>( EDC.Trailer, m_ControlState.ItemID );
         LocalStateMachineEngine.ActionResult _rr = Update( _drv );
         if ( !_rr.ActionSucceeded )
@@ -271,7 +271,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     {
       _itm.AdditionalComments = m_Comments.Text;
       if ( m_TrailerTitle.Text.IsNullOrEmpty() )
-        return LocalStateMachineEngine.ActionResult.NotValidated( m_TrailerNameLabel.Text + "MustBeProvided".GetLocalizedString() );
+          return LocalStateMachineEngine.ActionResult.NotValidated(m_TrailerNameLabel.Text + "MustBeProvided".GetShepherdLocalizedString());
       _itm.Tytuł = m_TrailerTitle.Text;
       return LocalStateMachineEngine.ActionResult.Success;
     }
@@ -283,7 +283,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
       {
         Partner _Partner = Partner.FindForUser( EDC, SPContext.Current.Web.CurrentUser );
         if ( _Partner == null )
-          return LocalStateMachineEngine.ActionResult.NotValidated( "CreateuserMustBeExternalPartner".GetLocalizedString() );
+            return LocalStateMachineEngine.ActionResult.NotValidated("CreateuserMustBeExternalPartner".GetShepherdLocalizedString());
         Trailer _drv = new Trailer() { Trailer2PartnerTitle = _Partner };
         LocalStateMachineEngine.ActionResult _rr = Update( _drv );
         if ( !_rr.ActionSucceeded )
@@ -300,7 +300,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     private LocalStateMachineEngine.ActionResult Delete()
     {
       if ( m_ControlState.ItemID.IsNullOrEmpty() )
-        return new LocalStateMachineEngine.ActionResult( new ApplicationException( "DeletetrailerIsNotSelected".GetLocalizedString() ), "Delete" );
+          return new LocalStateMachineEngine.ActionResult(new ApplicationException("DeletetrailerIsNotSelected".GetShepherdLocalizedString()), "Delete");
       try
       {
         Trailer _drv = Element.GetAtIndex<Trailer>( EDC.Trailer, m_ControlState.ItemID );

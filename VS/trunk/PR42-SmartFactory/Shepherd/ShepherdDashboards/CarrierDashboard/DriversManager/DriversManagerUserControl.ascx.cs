@@ -251,7 +251,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
       try
       {
         if ( m_ControlState.ItemID.IsNullOrEmpty() )
-          return new LocalStateMachineEngine.ActionResult( new ApplicationException( "UpdateDriverNotSelected".GetLocalizedString() ), "Update" );
+            return new LocalStateMachineEngine.ActionResult(new ApplicationException("UpdateDriverNotSelected".GetShepherdLocalizedString()), "Update");
         Driver _drv = Element.GetAtIndex<Driver>( EDC.Driver, m_ControlState.ItemID );
         LocalStateMachineEngine.ActionResult _rr = Update( _drv );
         if ( !_rr.ActionSucceeded )
@@ -269,7 +269,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
       _drv.IdentityDocumentNumber = m_DriverIDNumber.Text;
       _drv.CellPhone = m_DriverMobileNo.Text;
       if ( m_DriverTitle.Text.IsNullOrEmpty() )
-        return LocalStateMachineEngine.ActionResult.NotValidated( m_DriverNameLabel.Text + "MustBeProvided".GetLocalizedString() );
+          return LocalStateMachineEngine.ActionResult.NotValidated(m_DriverNameLabel.Text + "MustBeProvided".GetShepherdLocalizedString());
       _drv.Tytuł = m_DriverTitle.Text;
       return LocalStateMachineEngine.ActionResult.Success;
     }
@@ -281,7 +281,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
       {
         Partner _Partner = Partner.FindForUser( EDC, SPContext.Current.Web.CurrentUser );
         if ( _Partner == null )
-          return LocalStateMachineEngine.ActionResult.NotValidated( "CreateuserMustBeExternalPartner".GetLocalizedString() );
+            return LocalStateMachineEngine.ActionResult.NotValidated("CreateuserMustBeExternalPartner".GetShepherdLocalizedString());
         Driver _drv = new Driver() { Driver2PartnerTitle = _Partner };
         LocalStateMachineEngine.ActionResult _rr = Update( _drv );
         if ( !_rr.ActionSucceeded )
@@ -298,7 +298,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
     private LocalStateMachineEngine.ActionResult Delete()
     {
       if ( m_ControlState.ItemID.IsNullOrEmpty() )
-        return new LocalStateMachineEngine.ActionResult( new ApplicationException( "DeleteDriverNotSelected".GetLocalizedString() ), "Delete" );
+          return new LocalStateMachineEngine.ActionResult(new ApplicationException("DeleteDriverNotSelected".GetShepherdLocalizedString()), "Delete");
       try
       {
         Driver _drv = Element.GetAtIndex<Driver>( EDC.Driver, m_ControlState.ItemID );

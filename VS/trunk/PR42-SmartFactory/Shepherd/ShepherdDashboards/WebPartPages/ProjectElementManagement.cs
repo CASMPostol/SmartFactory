@@ -13,20 +13,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.WebPartPages
   internal class ProjectElementManagement
   {
     //Menu entries
-    internal static string MenuOutboundOwnerTitle = "OutboundOwner".GetLocalizationExpresion();
-    internal static string MenuInboundOwnerTitle = "InboundOwner".GetLocalizationExpresion();
-    internal static string MenuVendorTitle = "Vendor".GetLocalizationExpresion();
-    internal static string MenuForwarderTitle = "Forwarder".GetLocalizationExpresion();
-    internal static string MenuSecurityEscortProviderTitle = "Escort".GetLocalizationExpresion();
-    internal static string MenuSecurityGateTitle = "Gate".GetLocalizationExpresion();
-    internal static string MenuOutboundCoordinatorTitle = "OutboundCoordinator".GetLocalizationExpresion();
-    internal static string MenuOperatorTitle = "Operator".GetLocalizationExpresion();
-    internal static string MenuSupervisorTitle = "Supervisor".GetLocalizationExpresion();
-    internal static string MenuDriversTitle = "Drivers".GetLocalizationExpresion();
-    internal static string MenuTrucksTitle = "Trucks".GetLocalizationExpresion();
-    internal static string MenuTrailersTitle = "Trailers".GetLocalizationExpresion();
-    internal static string MenuViewInboundsTitle = "ViewInbounds".GetLocalizationExpresion();
-    internal static string MenuViewOutboundsTitle = "ViewOutbounds".GetLocalizationExpresion();
+      internal static string MenuOutboundOwnerTitle = "OutboundOwner".GetShepherdLocalizationExpresion();
+      internal static string MenuInboundOwnerTitle = "InboundOwner".GetShepherdLocalizationExpresion();
+      internal static string MenuVendorTitle = "Vendor".GetShepherdLocalizationExpresion();
+      internal static string MenuForwarderTitle = "Forwarder".GetShepherdLocalizationExpresion();
+      internal static string MenuSecurityEscortProviderTitle = "Escort".GetShepherdLocalizationExpresion();
+      internal static string MenuSecurityGateTitle = "Gate".GetShepherdLocalizationExpresion();
+      internal static string MenuOutboundCoordinatorTitle = "OutboundCoordinator".GetShepherdLocalizationExpresion();
+      internal static string MenuOperatorTitle = "Operator".GetShepherdLocalizationExpresion();
+      internal static string MenuSupervisorTitle = "Supervisor".GetShepherdLocalizationExpresion();
+      internal static string MenuDriversTitle = "Drivers".GetShepherdLocalizationExpresion();
+      internal static string MenuTrucksTitle = "Trucks".GetShepherdLocalizationExpresion();
+      internal static string MenuTrailersTitle = "Trailers".GetShepherdLocalizationExpresion();
+      internal static string MenuViewInboundsTitle = "ViewInbounds".GetShepherdLocalizationExpresion();
+      internal static string MenuViewOutboundsTitle = "ViewOutbounds".GetShepherdLocalizationExpresion();
 
     //Webpages
     internal const string WebPartPagesFolder = "WebPartPages";

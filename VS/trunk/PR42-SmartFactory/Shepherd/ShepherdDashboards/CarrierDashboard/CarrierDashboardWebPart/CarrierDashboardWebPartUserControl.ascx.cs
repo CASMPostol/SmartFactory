@@ -222,12 +222,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         {
           SetVisible( m_AllButtons );
           m_StateMachineEngine.InitMahine();
-          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownSelect".GetLocalizedString(), "-1" ) { Selected = true } );
-          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownUnacceptable".GetLocalizedString(), ( (int)TrailerCondition._1Unexceptable ).ToString() ) );
-          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownBad".GetLocalizedString(), ( (int)TrailerCondition._2 ).ToString() ) );
-          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownPoor".GetLocalizedString(), ( (int)TrailerCondition._3 ).ToString() ) );
-          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownGood".GetLocalizedString(), ( (int)TrailerCondition._4 ).ToString() ) );
-          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownExcellent".GetLocalizedString(), ( (int)TrailerCondition._5Excellent ).ToString() ) );
+          m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownSelect".GetShepherdLocalizedString(), "-1") { Selected = true });
+          m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownUnacceptable".GetShepherdLocalizedString(), ((int)TrailerCondition._1Unexceptable).ToString()));
+          m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownBad".GetShepherdLocalizedString(), ((int)TrailerCondition._2).ToString()));
+          m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownPoor".GetShepherdLocalizedString(), ((int)TrailerCondition._3).ToString()));
+          m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownGood".GetShepherdLocalizedString(), ((int)TrailerCondition._4).ToString()));
+          m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownExcellent".GetShepherdLocalizedString(), ((int)TrailerCondition._5Excellent).ToString()));
           m_TransportUnitTypeDropDownList.DataSource = from _idx in EDC.TransportUnitType
                                                        orderby _idx.Tytuł ascending
                                                        select new { Title = _idx.Tytuł, Index = _idx.Identyfikator };
@@ -285,7 +285,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
     protected override void OnPreRender( EventArgs e )
     {
-      m_StateLiteral.Text = ( "InterfaceState" + m_ControlState.InterfaceState.ToString() ).GetLocalizedString();
+        m_StateLiteral.Text = ("InterfaceState" + m_ControlState.InterfaceState.ToString()).GetShepherdLocalizedString();
       SetEnabled( m_ControlState.SetEnabled );
       if ( m_ControlState.ShippingID.IsNullOrEmpty() )
       {
@@ -458,12 +458,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         if ( VendorFixed( CurrentShipping ) )
         {
           ActionResult _rst = new ActionResult();
-          _rst.AddMessage( "SetInterconnectionDataItIsTooLate".GetLocalizedString() );
+          _rst.AddMessage("SetInterconnectionDataItIsTooLate".GetShepherdLocalizedString());
           ShowActionResult( _rst );
           return;
         }
         TimeSlotTimeSlot _cts = Element.GetAtIndex( EDC.TimeSlot, _interconnectionData.ID );
-        Debug.Assert( _cts.Occupied.Value == Occupied.Free, "SetInterconnectionDataTimeSlotInUse".GetLocalizedString() );
+        Debug.Assert(_cts.Occupied.Value == Occupied.Free, "SetInterconnectionDataTimeSlotInUse".GetShepherdLocalizedString());
         m_ControlState.TimeSlotID = _interconnectionData.ID;
         m_ControlState.TimeSlotIsDouble = _interconnectionData.IsDouble;
         m_ControlState.TimeSlotChanged = true;
@@ -641,7 +641,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if ( _cts == null )
       {
-        m_TimeSlotTextBox.Text = _isEditable ? "ShowSelectTimeSlot".GetLocalizedString() : "ShowShippingLocked".GetLocalizedString();
+          m_TimeSlotTextBox.Text = _isEditable ? "ShowSelectTimeSlot".GetShepherdLocalizedString() : "ShowShippingLocked".GetShepherdLocalizedString();
         return;
       }
       m_TimeSlotTextBox.Text = String.Format( "{0}{1}{2}", _cts.StartTime.Value.ToString( CultureInfo.CurrentCulture ), _isEditable ? "" : " ! ", _isDouble ? "x2" : "" );
@@ -801,7 +801,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if ( _sppng == null )
       {
-        _rsult.AddLabel( "Shipping".GetLocalizedString() );
+          _rsult.AddLabel("Shipping".GetShepherdLocalizedString());
         return;
       }
       _sppng.CancelationReason = m_CommentsTextBox.Text;
@@ -1158,11 +1158,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region variables
-    private string m_LabetTextLike_PurchaseOrder = "PO_No".GetLocalizedString();
-    private string m_LabetTextLike_DeliveryNo = "DeliveryNumber".GetLocalizedString();
-    private string m_LabetTextLike_Vendor = "Vendor".GetLocalizedString();
-    private string m_LabetTextLike_SecurityEscort = "Escort".GetLocalizedString();
-    private string m_LabetTextLike_ShippingNo = "ShippingNumber".GetLocalizedString();
+    private string m_LabetTextLike_PurchaseOrder = "PO_No".GetShepherdLocalizedString();
+    private string m_LabetTextLike_DeliveryNo = "DeliveryNumber".GetShepherdLocalizedString();
+    private string m_LabetTextLike_Vendor = "Vendor".GetShepherdLocalizedString();
+    private string m_LabetTextLike_SecurityEscort = "Escort".GetShepherdLocalizedString();
+    private string m_LabetTextLike_ShippingNo = "ShippingNumber".GetShepherdLocalizedString();
     private ButtonsSet m_VisibilityACL;
     private ButtonsSet m_EditbilityACL;
     private ControlState m_ControlState = new ControlState( null );

@@ -59,7 +59,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       {
         m_TrailerDropDown.Visible = false;
         m_TrailerHeaderLabel.Visible = false;
-        m_TruckHeaderLabel.Text = "Cars".GetLocalizedString();
+        m_TruckHeaderLabel.Text = "Cars".GetShepherdLocalizedString();
       }
       m_AddDriverButton.Click += new EventHandler( m_AddDriverButton_Click );
       m_RemoveDriverButton.Click += new EventHandler( m_RemoveDriverButton_Click );
@@ -87,7 +87,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       }
       catch ( Exception ex )
       {
-        string _frmt = "NewDataEventHandlerErrorMesage".GetLocalizedString();
+          string _frmt = "NewDataEventHandlerErrorMesage".GetShepherdLocalizedString();
         this.Controls.Add( new LiteralControl( String.Format( _frmt, m_ControlState.ShippingIdx, ex.Message ) ) );
       }
     }
@@ -187,7 +187,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       }
       catch ( Exception ex )
       {
-        SignalException( "TransportResourcesUserControl.m_RemoveDriverButton_Click", "RemoveDriverButtonErrorMessage".GetLocalizedString(), ex );
+          SignalException("TransportResourcesUserControl.m_RemoveDriverButton_Click", "RemoveDriverButtonErrorMessage".GetShepherdLocalizedString(), ex);
       }
     }
     private void m_AddDriverButton_Click( object sender, EventArgs e )
@@ -210,7 +210,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       }
       catch ( Exception ex )
       {
-        SignalException( "m_AddDriverButton_Click", "AddDriverButtonErrorMessage".GetLocalizedString(), ex );
+          SignalException("m_AddDriverButton_Click", "AddDriverButtonErrorMessage".GetShepherdLocalizedString(), ex);
       }
     }
     private void m_TruckDropDown_SelectedIndexChanged( object sender, EventArgs e )
@@ -239,7 +239,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       }
       catch ( Exception _ex )
       {
-        SignalException( "m_TruckDropDown_SelectedIndexChanged", "TruckDropDownErrorMessage".GetLocalizedString(), _ex );
+          SignalException("m_TruckDropDown_SelectedIndexChanged", "TruckDropDownErrorMessage".GetShepherdLocalizedString(), _ex);
       }
     }
     private void m_TrailerDropDown_SelectedIndexChanged( object sender, EventArgs e )
@@ -259,7 +259,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       }
       catch ( Exception _ex )
       {
-        SignalException( "m_TrailerDropDown_SelectedIndexChanged", "TrailerDropDownErrorMessage".GetLocalizedString(), _ex );
+          SignalException("m_TrailerDropDown_SelectedIndexChanged", "TrailerDropDownErrorMessage".GetShepherdLocalizedString(), _ex);
       }
     }
     private ListBox SortTextBox( ListBox _listBox )

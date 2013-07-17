@@ -110,7 +110,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       double _dv;
       if (Double.TryParse(_trimed, NumberStyles.Any, CultureInfo.CurrentCulture, out _dv))
         return _dv;
-      _errors.Add(String.Format("WrongValue".GetLocalizedString(), _value.Text));
+      _errors.Add(String.Format("WrongValue".GetShepherdLocalizedString(), _value.Text));
       return null;
     }
 
@@ -120,15 +120,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     /// </summary>
     /// <param name="val">The val.</param>
     /// <returns></returns>
-    public static string GetLocalizedString(this string val)
+    public static string GetShepherdLocalizedString(this string val)
     {
       string _frmt = "$Resources:{0}";
-      return SPUtility.GetLocalizedString(String.Format(_frmt, val), GlobalDefinitions.RootResourceFileName, (uint)CultureInfo.CurrentCulture.LCID);
+      return SPUtility.GetLocalizedString(String.Format(_frmt, val), GlobalDefinitions.ShepherdResourceFileName, (uint)CultureInfo.CurrentCulture.LCID);
     }
-    public static string GetLocalizationExpresion(this string val)
+    public static string GetShepherdLocalizationExpresion(this string val)
     {
       string _frmt = "$Resources:{0},{1}";
-      return String.Format(_frmt, GlobalDefinitions.RootResourceFileName, val);
+      return String.Format(_frmt, GlobalDefinitions.ShepherdResourceFileName, val);
     }
     /// <summary>
     /// Controls the text property.
@@ -137,7 +137,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     /// <returns></returns>
     public static string ControlTextProperty(this string _val)
     {
-      return String.IsNullOrEmpty(_val) ? "SelectFromList".GetLocalizedString() : _val;
+        return String.IsNullOrEmpty(_val) ? "SelectFromList".GetShepherdLocalizedString() : _val;
     }
     /// <summary>
     /// String2s the int.
