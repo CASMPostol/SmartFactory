@@ -25,6 +25,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     GoodsDescription_CWQuantity_Pattern,
     GoodsDescription_Units_Pattern,
     GoodsDescription_CertificateOfAuthenticity_Pattern,
-    DefaultValidToDatePeriod
+    DefaultValidToDatePeriod,
+    GoodsDescription_CertificateOfOrgin_Pattern
   }
 }

@@ -14,9 +14,8 @@
 //</summary>
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
-using CAS.SharePoint.Web;
+using System.Linq;
 using CAS.SharePoint;
 using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.Customs.Account;
@@ -32,20 +31,21 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     public CWAccountData() { }
 
     internal CommonAccountData CommonAccountData { get; private set; }
-    internal string CW_CertificateOfOrgin { get; private set; }  //TODO from Required documents. 
-    internal double? CWMassPerPackage { get; private set; } //TODO Calculated
-    internal double? CWPackageKg { get; private set; } // Good description
-    internal double? CWPackageUnits { get; private set; } //Good description
-    internal string CWPzNo { get; private set; } // Manualy
-    internal double? CWQuantity { get; private set; } //Good descriptionc
-    internal DateTime? EntryDate { get; private set; } // Today ?
-    internal string Units { get; private set; } //Good description
+    internal DateTime? EntryDate { get; private set; }
     internal Clearence ClearenceLookup { get; private set; }
     internal Consent ConsentLookup { get; private set; }
+    internal double? CWMassPerPackage { get { return CommonAccountData.NetMass / CWMassPerPackage; } }
+    //Good descriptionc
+    internal double? CWQuantity { get; private set; } 
+    internal string Units { get; private set; } 
+    internal double? CWPackageKg { get; private set; }
+    internal double? CWPackageUnits { get; private set; }
+    //from Required documents.
+    internal string CW_CertificateOfOrgin { get; private set; }
     internal string CW_CertificateOfAuthenticity { get; private set; }
     internal DateTime? CW_CODate { get; private set; }
     internal DateTime? CW_COADate { get; private set; }
-    public DateTime? ValidToDate { get; private set; }
+    internal DateTime ValidToDate { get; private set; }
 
     #region ICWAccountFactory Members
     /// <summary>
@@ -65,7 +65,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
           if ( Linq.CustomsWarehouse.RecordExist( _edc, accountData.DocumentNo ) )
           {
             string _msg = "CW record with the same SAD document number: {0} exist";
-            throw new CreateCWAccount( String.Format( _msg, ClearenceLookup.DocumentNo ) );
+            throw new CreateCWAccountException( String.Format( _msg, ClearenceLookup.DocumentNo ) );
           }
           _at = "ProcessCustomsMessage";
           this.CommonAccountData = accountData;
@@ -75,10 +75,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
           Linq.Consent _consentLookup = Element.GetAtIndex<Consent>( _edc.Consent, CommonAccountData.ConsentLookup );
           _at = "AnalizeGoodsDescription";
           AnalizeGoodsDescription( _edc, ClearenceLookup.Clearence2SadGoodID.GoodsDescription, warnings );
-          this.CW_CertificateOfOrgin = "TBD";
-          this.CWMassPerPackage = 0;
-          this.CWPzNo = "M/A";
-          this.EntryDate = DateTime.Today.Date;
+          AnalyzeCertificates( _edc, ClearenceLookup.Clearence2SadGoodID.SADRequiredDocuments, warnings );
+          this.EntryDate = DateTime.Today;
           CustomsWarehouse _cw = new CustomsWarehouse( _edc, this );
           _at = "InsertOnSubmit";
           _edc.CustomsWarehouse.InsertOnSubmit( _cw );
@@ -90,7 +88,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
           _edc.SubmitChanges();
         }
       }
-      catch ( CreateCWAccount _ccwe )
+      catch ( CreateCWAccountException _ccwe )
       {
         Warnning _wrn = new Warnning( _ccwe.Message, true );
         warnings.Add( _wrn );
@@ -105,33 +103,43 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     #endregion
 
     #region private
-    private void AnalyzeCertificates( Entities edc, EntitySet<SADRequiredDocuments> sadRequiredDocumentsEntitySet, List<Warnning> warnings )
+    private void AnalyzeCertificates( Entities entities, EntitySet<SADRequiredDocuments> sadRequiredDocumentsEntitySet, List<Warnning> warnings )
     {
-      //TODO review
       List<string> _stringsList = new List<string>();
-      double _validPeriod = 180;
-      if ( !Double.TryParse( Settings.GetParameter( edc, SettingsEntry.DefaultValidToDatePeriod ), out _validPeriod ) )
-        _validPeriod = 180;
-      ValidToDate = DateTime.Now.Date + TimeSpan.FromDays( _validPeriod );
       foreach ( SADRequiredDocuments _srdx in ( from _dx in sadRequiredDocumentsEntitySet select _dx ) )
       {
         string _code = _srdx.Code.Trim().ToUpper();
         if ( _code.Contains( Settings.CustomsProcedureCodeA004 ) )
         {
-          CW_CertificateOfAuthenticity = _srdx.Code.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CertificateOfAuthenticity_Pattern ), _na, _stringsList );
+          CW_CertificateOfAuthenticity = _srdx.Code.GetFirstCapture( Settings.GetParameter( entities, SettingsEntry.GoodsDescription_CertificateOfAuthenticity_Pattern ), _na, _stringsList );
           CW_COADate = GetCertificateDate( _srdx.Code, warnings );
         }
         else if ( _code.Contains( Settings.CustomsProcedureCodeN865 ) || _code.Contains( Settings.CustomsProcedureCodeN954 ) )
         {
-          CW_CertificateOfOrgin = String.Empty;
+          CW_CertificateOfOrgin = _srdx.Code.GetFirstCapture( Settings.GetParameter( entities, SettingsEntry.GoodsDescription_CertificateOfOrgin_Pattern ), _na, _stringsList );
           CW_CODate = GetCertificateDate( _srdx.Code, warnings );
         }
       }
-      Convert2Warning( warnings, _stringsList, false );
+      Convert2Warnings( warnings, _stringsList, false );
+      ValidToDate = CalculateValidToDate( entities, CW_COADate, CW_CODate );
     }
-    private DateTime? GetCertificateDate( string p, List<Warnning> warnings )
+    private DateTime CalculateValidToDate( Entities entities, DateTime? CW_COADate, DateTime? CW_CODate )
     {
-      throw new NotImplementedException();
+      double _validPeriod = 180;
+      DateTime _ret = DateTime.Today;
+      if ( !CW_COADate.HasValue || !CW_CODate.HasValue )
+        return _ret + TimeSpan.FromDays( _validPeriod );
+      _ret = CW_CODate.GetValueOrDefault( DateTime.Today ) < _ret ? CW_CODate.GetValueOrDefault( DateTime.Today ) : _ret;
+      _ret = CW_COADate.GetValueOrDefault( DateTime.Today ) < _ret ? CW_COADate.GetValueOrDefault( DateTime.Today ) : _ret;
+      if ( !Double.TryParse( Settings.GetParameter( entities, SettingsEntry.DefaultValidToDatePeriod ), out _validPeriod ) )
+        _validPeriod = 180;
+      return DateTime.Now.Date + TimeSpan.FromDays( _validPeriod );
+    }
+    private DateTime? GetCertificateDate( string code, List<Warnning> warnings )
+    {
+      DateTime? _ret = new Nullable<DateTime>();
+      //TODO NotImplementedException();
+      return _ret;
     }
     private void AnalizeGoodsDescription( Entities edc, string goodsDescription, List<Warnning> warnings )
     {
@@ -140,10 +148,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
       CWPackageUnits = Convert2Double( goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CWPackageKg_Pattern ), _na, _stringsList ), _stringsList );
       CWQuantity = Convert2Double( goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CWQuantity_Pattern ), _na, _stringsList ), _stringsList );
       Units = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_Units_Pattern ), _na, _stringsList );
-      Convert2Warning( warnings, _stringsList, false );
+      Convert2Warnings( warnings, _stringsList, false );
     }
-
-    private static void Convert2Warning( List<Warnning> warningsList, List<string> stringsList, bool fatal )
+    private static void Convert2Warnings( List<Warnning> warningsList, List<string> stringsList, bool fatal )
     {
       if ( stringsList.Count == 0 )
         return;
@@ -154,9 +161,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     {
       return new Nullable<double>();
     }
-    private class CreateCWAccount: Exception
+    private class CreateCWAccountException: Exception
     {
-      public CreateCWAccount( string message ) : base( message ) { }
+      public CreateCWAccountException( string message ) : base( message ) { }
     }
     #endregion
 
