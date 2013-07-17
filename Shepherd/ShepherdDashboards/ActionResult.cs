@@ -33,12 +33,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     internal bool Valid { get { return this.Count == 0; } }
     internal void AddException( Exception _excptn )
     {
-      string _msg = String.Format( "ReportExceptionTemplate".GetLocalizedString(), _excptn.Message );
+        string _msg = String.Format("ReportExceptionTemplate".GetShepherdLocalizedString(), _excptn.Message);
       base.Add( GlobalDefinitions.ErrorMessage( _msg ) );
     }
     public void AddLabel( string _source )
     {
-      string _msg = _source + "MustBeProvided".GetLocalizedString();
+        string _msg = _source + "MustBeProvided".GetShepherdLocalizedString();
       base.Add( GlobalDefinitions.ErrorMessage( _msg ) );
     }
     public void AddMessage( string _message )

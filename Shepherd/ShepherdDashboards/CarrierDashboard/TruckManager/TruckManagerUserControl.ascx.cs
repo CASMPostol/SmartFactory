@@ -258,7 +258,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
       try
       {
         if ( m_ControlState.ItemID.IsNullOrEmpty() )
-          return new LocalStateMachineEngine.ActionResult( new ApplicationException( "UpdateTruckNotSelected".GetLocalizedString() ), "Update" );
+            return new LocalStateMachineEngine.ActionResult(new ApplicationException("UpdateTruckNotSelected".GetShepherdLocalizedString()), "Update");
         Truck _drv = Element.GetAtIndex<Truck>( EDC.Truck, m_ControlState.ItemID );
         LocalStateMachineEngine.ActionResult _rr = Update( _drv );
         if ( !_rr.ActionSucceeded )
@@ -275,10 +275,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
     {
       _drv.AdditionalComments = m_Comments.Text;
       if ( m_TruckTitle.Text.IsNullOrEmpty() )
-        return LocalStateMachineEngine.ActionResult.NotValidated( m_TruckNameLabel.Text + "MustBeProvided".GetLocalizedString() );
+          return LocalStateMachineEngine.ActionResult.NotValidated(m_TruckNameLabel.Text + "MustBeProvided".GetShepherdLocalizedString());
       _drv.Tytuł = m_TruckTitle.Text;
       if ( m_VehicleType.SelectedIndex < 0 )
-        return LocalStateMachineEngine.ActionResult.NotValidated( m_VehicleTypeLabel.Text + "MustBeProvided".GetLocalizedString() );
+          return LocalStateMachineEngine.ActionResult.NotValidated(m_VehicleTypeLabel.Text + "MustBeProvided".GetShepherdLocalizedString());
       _drv.VehicleType = (VehicleType)m_VehicleType.SelectedValue.String2Int().GetValueOrDefault( 0 );
       return LocalStateMachineEngine.ActionResult.Success;
     }
@@ -290,7 +290,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
       {
         Partner _Partner = Partner.FindForUser( EDC, SPContext.Current.Web.CurrentUser );
         if ( _Partner == null )
-          return LocalStateMachineEngine.ActionResult.NotValidated( "CreateuserMustBeExternalPartner".GetLocalizedString() );
+            return LocalStateMachineEngine.ActionResult.NotValidated("CreateuserMustBeExternalPartner".GetShepherdLocalizedString());
         Truck _drv = new Truck() { Truck2PartnerTitle = _Partner };
         LocalStateMachineEngine.ActionResult _rr = Update( _drv );
         if ( !_rr.ActionSucceeded )
@@ -307,7 +307,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
     private LocalStateMachineEngine.ActionResult Delete()
     {
       if ( m_ControlState.ItemID.IsNullOrEmpty() )
-        return new LocalStateMachineEngine.ActionResult( new ApplicationException( "DeleteTruckNotSelected".GetLocalizedString() ), "Delete" );
+          return new LocalStateMachineEngine.ActionResult(new ApplicationException("DeleteTruckNotSelected".GetShepherdLocalizedString()), "Delete");
       try
       {
         Truck _itm = Element.GetAtIndex<Truck>( EDC.Truck, m_ControlState.ItemID );

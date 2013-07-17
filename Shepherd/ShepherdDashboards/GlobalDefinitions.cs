@@ -9,7 +9,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
   public partial class GlobalDefinitions
   {
     internal const string MasterPage = "cas.master";
-    internal const string RootResourceFileName = "CASSmartFactoryShepherd";
+    internal const string ShepherdResourceFileName = "CASSmartFactoryShepherdCode";
     public delegate void UpdateToolStripEvent(object obj, ProgressChangedEventArgs progres);
     internal const string CarrierDashboardWebPart = "CarrierDashboardWebPart";
     internal const string DriversManager = "DriversManager";
