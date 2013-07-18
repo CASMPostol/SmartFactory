@@ -16,13 +16,13 @@
   <!--<List Name="CW Disposal" />-->
   <!--<List Name="CW Library" />-->
   <List Name="Disposa Request Content" />
-  <List Name="Disposal" />
-  <List Name="Disposal Declaration" />
+  <!--<List Name="Disposal" />-->
+  <!--<List Name="Disposal Declaration" />-->
   <List Name="Disposal Request Library" />
-  <List Name="Dust" />
-  <List Name="Format" />
-  <List Name="Invoice Content" />
-  <List Name="Invoice Library" />
+  <!--<List Name="Dust" />-->
+  <!--<List Name="Format" />-->
+  <!--<List Name="Invoice Content" />-->
+  <!--<List Name="Invoice Library" />-->
   <!--<List Name="IPR" />-->
   <!--<List Name="IPR Library" />-->
   <!--<List Name="JSOX Customs Summary" />-->
@@ -39,6 +39,7 @@
   <List Name="SAD Package" />
   <List Name="SAD Quantity" />
   <List Name="SAD Required Documents" />
+  <List Name="Vendor" />
   <List Name="Settings" />
   <!--<List Name="SHMenthol" />-->
   <!--<List Name="SKU" />-->
@@ -50,12 +51,11 @@
   <!--<List Name="Theme Gallery" />-->
   <!--<List Name="Usage" />-->
   <!--<List Name="User Information List" />-->
-  <!--<List Name="Vendor" />-->
   <!--<List Name="Warehouse" />-->
   <!--<List Name="Waste" />-->
   <ExcludeOtherLists/>
   <!--<List Name="Web Part Gallery" />-->
-  <ContentType Name="Element" Class="Element">
+  <ContentType Name="Item" Class="Element">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
   </ContentType>
@@ -745,7 +745,7 @@
     <Column Name="SADDocumentLibraryOK" Member="SADDocumentLibraryOK" />
     <Column Name="SADDocumentLibraryComments" Member="SADDocumentLibraryComments" />
   </ContentType>
-  <ContentType Name="BatchLib" Class="BatchLib">
+  <!--<ContentType Name="BatchLib" Class="BatchLib">
     <Column Name="ContentType" Member="ContentType" />
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
@@ -753,7 +753,7 @@
     <Column Name="Created_x0020_By" Member="CreatedBy" />
     <Column Name="BatchLibraryOK" Member="BatchLibraryOK" />
     <Column Name="BatchLibraryComments" Member="BatchLibraryComments" />
-  </ContentType>
+  </ContentType>-->
   <ContentType Name="DisposalRequestLib" Class="DisposalRequestLib">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="FileLeafRef" Member="FileLeafRef" />
@@ -782,5 +782,13 @@
     <Column Name="Expires" Member="Expires" />
     <Column Name="ActivityPriority" Member="ActivityPriority" />
     <Column Name="ActivitySource" Member="ActivitySource" />
+  </ContentType>
+  <ContentType Name="Vendor" Class="Vendor">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="Title" Member="Title" />
+    <Column Name="WorkAddress" Member="Address" />
+    <Column Name="WorkCity" Member="City" />
+    <Column Name="WorkCountry" Member="Country" />
+    <Column Name="WorkZip" Member="PostalCode" />
   </ContentType>
 </Web>
