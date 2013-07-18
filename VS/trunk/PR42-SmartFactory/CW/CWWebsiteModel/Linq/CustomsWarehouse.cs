@@ -49,7 +49,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.CW_PackageUnits = data.CWPackageUnits;
       this.CW_PzNo = "M/A";
       this.CW_Quantity = data.CWQuantity;
-      this.DocumentNo = data.ClearenceLookup.DocumentNo;
+      this.DocumentNo = data.CommonAccountData.DocumentNo;
       this.CWC_EntryDate = data.EntryDate;
       this.Grade = data.CommonAccountData.GradeName;
       this.GrossMass = data.CommonAccountData.GrossMass;
