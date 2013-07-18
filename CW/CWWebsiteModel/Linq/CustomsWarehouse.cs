@@ -59,13 +59,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.Title = "-- creating -- ";
       this.Units = data.Units;
       this.ValidToDate = data.ValidToDate;
-      //TODO to be removed this.ValidFromDate 
       //Certificate
       this.CW_CertificateOfOrgin = data.CW_CertificateOfOrgin;
       this.CW_CertificateOfAuthenticity = data.CW_CertificateOfAuthenticity;
       this.CW_COADate = data.CW_COADate;
       this.CW_CODate = data.CW_CODate;
-      // TODO this.VendorTitle add to the model - default must be assigned. 
+      this.Vendor = data.VendorLookup; 
     }
     /// <summary>
     /// Updates the title.

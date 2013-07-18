@@ -93,6 +93,7 @@
     <Compile Include="Linq\Element.cs" />
     <Compile Include="Linq\Entities.cs" />
     <Compile Include="Linq\Settings.cs" />
+    <Compile Include="Linq\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
