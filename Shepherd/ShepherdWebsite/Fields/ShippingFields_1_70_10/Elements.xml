@@ -68,4 +68,21 @@
     DisplayName="$Resources:CASSmartFactoryShepherd,CAS_DeliveryNumber"
     Group="CAS Smart Factory Shepherd"
     />
+  <Field
+   Type="Choice"
+   DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Substate"
+   ID="{86FEC976-7423-455B-91F8-661EAA228C11}"
+   Format="Dropdown"
+   BaseType="Text"
+   Name="ShippingSubstate"
+   Group="CAS Smart Factory Shepherd">
+    <Default>None</Default>
+    <CHOICES>
+      <CHOICE>None</CHOICE>
+      <CHOICE>Waiting</CHOICE>
+      <CHOICE>Started</CHOICE>
+      <CHOICE>Completed</CHOICE>
+      <CHOICE>Left</CHOICE>
+    </CHOICES>
+  </Field>
 </Elements>
