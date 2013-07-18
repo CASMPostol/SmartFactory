@@ -39,6 +39,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     internal DateTime? EntryDate { get; private set; }
     internal Clearence ClearenceLookup { get; private set; }
     internal Consent ConsentLookup { get; private set; }
+    internal Vendor VendorLookup { get; private set; }
     //internal Vendor  
     internal double? CWMassPerPackage { get { return CWQuantity / CWPackageUnits; } }
     //Good descriptionc
@@ -81,11 +82,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
           _at = "GetAtIndex<Consent>";
           this.ConsentLookup = Element.GetAtIndex<Consent>( _edc.Consent, CommonAccountData.ConsentLookup );
           _at = "AnalizeGoodsDescription";
-          //TODO Vendor
+          VendorLookup = Vendor.FirstOrDefault( _edc ); 
           AnalizeGoodsDescription( _edc, ClearenceLookup.Clearence2SadGoodID.GoodsDescription, warnings );
           AnalyzeCertificates( _edc, ClearenceLookup.Clearence2SadGoodID.SADRequiredDocuments, warnings );
           this.EntryDate = DateTime.Today;
-          //Check warnnings before creation. 
+          //TODO Check warnnings before creation. 
           CustomsWarehouse _cw = new CustomsWarehouse( _edc, this );
           _at = "InsertOnSubmit";
           _edc.CustomsWarehouse.InsertOnSubmit( _cw );
