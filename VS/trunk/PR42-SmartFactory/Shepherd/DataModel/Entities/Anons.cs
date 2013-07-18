@@ -36,9 +36,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     {
       return new Anons()
       {
-        Tytuł = source,
-        Treść = message,
-        Wygasa = DateTime.Now + new TimeSpan( 2, 0, 0, 0 )
+        Title = source,
+        Body = message,
+        Expires = DateTime.Now + new TimeSpan( 2, 0, 0, 0 )
       };
     }
     /// <summary>

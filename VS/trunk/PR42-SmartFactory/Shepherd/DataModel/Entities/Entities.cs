@@ -177,9 +177,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 		/// $Resources:CASSmartFactoryShepherd,CAS_EventLogList;
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Event Log List")]
-		public Microsoft.SharePoint.Linq.EntityList<Announcement> EventLogList {
+		public Microsoft.SharePoint.Linq.EntityList<Anons> EventLogList {
 			get {
-				return this.GetList<Announcement>("Event Log List");
+				return this.GetList<Anons>("Event Log List");
 			}
 		}
 		
@@ -392,7 +392,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DistributionList))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Driver))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingDriversTeam))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Announcement))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Anons))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(FreightPayer))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(LoadDescription))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Market))]
@@ -410,7 +410,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TranspotUnit))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Truck))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Warehouse))]
-	public partial class Item : Microsoft.SharePoint.Linq.ITrackEntityState, Microsoft.SharePoint.Linq.ITrackOriginalValues, System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.INotifyPropertyChanging {
+	public partial class Element : Microsoft.SharePoint.Linq.ITrackEntityState, Microsoft.SharePoint.Linq.ITrackOriginalValues, System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.INotifyPropertyChanging {
 		
 		private System.Nullable<int> _id;
 		
@@ -450,7 +450,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 			}
 		}
 		
-		public Item() {
+		public Element() {
 			this.OnCreated();
 		}
 		
@@ -540,7 +540,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(EscortPO))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(FreightPO))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SealProtocol))]
-	public partial class Document : Item {
+	public partial class Document : Element {
 		
 		private string _name;
 		
@@ -605,7 +605,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Create a new news item, status or other short piece of information.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Announcement", Id="0x0104")]
-	public partial class Announcement : Item {
+	public partial class Anons : Element {
 		
 		private string _body;
 		
@@ -617,7 +617,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 		partial void OnCreated();
 		#endregion
 		
-		public Announcement() {
+		public Anons() {
 			this.OnCreated();
 		}
 		
@@ -655,7 +655,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Event", Id="0x0102")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TimeSlot))]
-	public partial class Event : Item {
+	public partial class Event : Element {
 		
 		private string _location;
 		
@@ -800,7 +800,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Alarms & Events List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="AlarmsAndEvents", Id="0x010049AA7238FCE34BE18336F419AE924845")]
-	public partial class AlarmsAndEvents : Item {
+	public partial class AlarmsAndEvents : Element {
 		
 		private string _alarmAndEventDetails;
 		
@@ -931,7 +931,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Business Description List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="BusienssDescription", Id="0x01004370601701A847C99F7609B048824AA9")]
-	public partial class BusienssDescription : Item {
+	public partial class BusienssDescription : Element {
 		
 		private string _additionalComments;
 		
@@ -1030,7 +1030,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Carriers List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CarrierType", Id="0x0100FB94BE01F9B0429F89E6A98EA44AA06E")]
-	public partial class CarrierType : Item {
+	public partial class CarrierType : Element {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Route> _route;
 		
@@ -1080,7 +1080,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Carrier Performance Report List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CarrierPerformanceReport", Id="0x0100BB5037BBD6ED46B98AC227A358889AFA")]
-	public partial class CarrierPerformanceReport : Item {
+	public partial class CarrierPerformanceReport : Element {
 		
 		private string _reportPeriod;
 		
@@ -1258,7 +1258,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// City List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CityType", Id="0x01003C7CE387CDAEA94B89FEB3FC6264FB71")]
-	public partial class CityType : Item {
+	public partial class CityType : Element {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<CountryType> _countryTitle;
 		
@@ -1407,7 +1407,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Shipping Comments
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ShippingComments", Id="0x0100EA883657E6BE40E0991BD77667B1D2FD")]
-	public partial class ShippingComments : Item {
+	public partial class ShippingComments : Element {
 		
 		private string _body;
 		
@@ -1533,7 +1533,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Commodity List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Commodity", Id="0x01003A76AB24637A7541B0D982B65D5916CE")]
-	public partial class Commodity : Item {
+	public partial class Commodity : Element {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
 		
@@ -1649,7 +1649,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Country List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CountryType", Id="0x0100CE031DC456C86C409854D818EDA7E1F3")]
-	public partial class CountryType : Item {
+	public partial class CountryType : Element {
 		
 		private string _countryGroup;
 		
@@ -1715,7 +1715,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Currency List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Currency", Id="0x010024C2D44B310A47EDB90969B622490CF9")]
-	public partial class Currency : Item {
+	public partial class Currency : Element {
 		
 		private System.Nullable<double> _exchangeRate;
 		
@@ -1883,7 +1883,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Destination Market List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DestinationMarket", Id="0x01002CD380C2A0BC484CAF14A0A71DADEF4E")]
-	public partial class DestinationMarket : Item {
+	public partial class DestinationMarket : Element {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<CityType> _destinationMarket2CityTitle;
 		
@@ -1971,7 +1971,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Distribution List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DistributionList", Id="0x01009EC30F7F369D427D825C9478610D3E58")]
-	public partial class DistributionList : Item {
+	public partial class DistributionList : Element {
 		
 		private string _emailAddress;
 		
@@ -2020,7 +2020,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Drivers List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Driver", Id="0x0100B0982F01816047B1ABFF933B9F49B5DB")]
-	public partial class Driver : Item {
+	public partial class Driver : Element {
 		
 		private string _identityDocumentNumber;
 		
@@ -2135,7 +2135,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Drivers Team List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ShippingDriversTeam", Id="0x01000A5D8B5F3F67453882811C27556D5D30")]
-	public partial class ShippingDriversTeam : Item {
+	public partial class ShippingDriversTeam : Element {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Driver> _driverTitle;
 		
@@ -2229,7 +2229,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Freight payer List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="FreightPayer", Id="0x01002BD66F0631854603A0815888852526D0")]
-	public partial class FreightPayer : Item {
+	public partial class FreightPayer : Element {
 		
 		private string _payerName;
 		
@@ -2358,7 +2358,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Load Description List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="LoadDescription", Id="0x0100F5C0C5AAA44E47B1A7CCFECEE1E8E94E")]
-	public partial class LoadDescription : Item {
+	public partial class LoadDescription : Element {
 		
 		private string _deliveryNumber;
 		
@@ -2597,7 +2597,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Market
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Market", Id="0x010002DF2DC592811A4DA07999F3867CDC82")]
-	public partial class Market : Item {
+	public partial class Market : Element {
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -2614,7 +2614,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Partners List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Partner", Id="0x010017A675502BE747DB9FB9DCB304429EEF")]
-	public partial class Partner : Item {
+	public partial class Partner : Element {
 		
 		private string _vendorNumber;
 		
@@ -3040,7 +3040,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Routes List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Route", Id="0x0100121B8B770545430A8B59B62D84C02C38")]
-	public partial class Route : Item {
+	public partial class Route : Element {
 		
 		private string _materialMaster;
 		
@@ -3514,7 +3514,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// SAP Destination Plant Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SAPDestinationPlant", Id="0x010091A84CFF2DF74C3B847A78E9F9D503D4")]
-	public partial class SAPDestinationPlant : Item {
+	public partial class SAPDestinationPlant : Element {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Route> _route;
 		
@@ -3564,7 +3564,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Schedule Template List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ScheduleTemplate", Id="0x010091765907174D4799B44C4DF249630D28")]
-	public partial class ScheduleTemplate : Item {
+	public partial class ScheduleTemplate : Element {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<ShippingPoint> _shippingPointLookupTitle;
 		
@@ -3647,7 +3647,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Escort Catalog List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SecurityEscortCatalog", Id="0x01004D883AD19A284D1F826EA7B4E70F0ACA")]
-	public partial class SecurityEscortCatalog : Item {
+	public partial class SecurityEscortCatalog : Element {
 		
 		private string _escortDestination;
 		
@@ -3891,7 +3891,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Shipment Type List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ShipmentType", Id="0x01009FC484DC88AC45AEBDFEEFEB856EFEE0")]
-	public partial class ShipmentType : Item {
+	public partial class ShipmentType : Element {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Route> _route;
 		
@@ -3941,7 +3941,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Shippings List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Shipping", Id="0x0100BBD0D4AB58624F5B900FECE61EEC2988")]
-	public partial class Shipping : Item {
+	public partial class Shipping : Element {
 		
 		private string _reportPeriod;
 		
@@ -5286,7 +5286,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Shipping Point List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ShippingPoint", Id="0x0100CB62286DE09CE54780611F275F43DB47")]
-	public partial class ShippingPoint : Item {
+	public partial class ShippingPoint : Element {
 		
 		private string _shippingPointDescription;
 		
@@ -5437,7 +5437,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Time Slot Template List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlotsTemplate", Id="0x0100E4381E17DE2049B895B5140F70D7C21C")]
-	public partial class TimeSlotsTemplate : Item {
+	public partial class TimeSlotsTemplate : Element {
 		
 		private System.Nullable<TimeSlotsTemplateDay> _timeSlotsTemplateDay;
 		
@@ -5578,7 +5578,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Trailer List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Trailer", Id="0x01009EF7D9CEE9664A48928AD8C8857ADA95")]
-	public partial class Trailer : Item {
+	public partial class Trailer : Element {
 		
 		private string _additionalComments;
 		
@@ -5677,7 +5677,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Transpot Unit Type List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TranspotUnit", Id="0x0100017ECA95BFABB941B9E7FE63643FCD7C")]
-	public partial class TranspotUnit : Item {
+	public partial class TranspotUnit : Element {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Route> _route;
 		
@@ -5760,7 +5760,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Truck List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Truck", Id="0x01003E7761AEF97A4C619F44D01B53A56568")]
-	public partial class Truck : Item {
+	public partial class Truck : Element {
 		
 		private string _additionalComments;
 		
@@ -5908,7 +5908,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	/// Warehouses List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Warehouse", Id="0x01001E57547208B49B46B4AA7CB4536B1A55")]
-	public partial class Warehouse : Item {
+	public partial class Warehouse : Element {
 		
 		private string _warehouseAddress;
 		

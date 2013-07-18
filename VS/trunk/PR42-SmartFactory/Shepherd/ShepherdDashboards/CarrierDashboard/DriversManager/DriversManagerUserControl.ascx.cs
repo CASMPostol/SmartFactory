@@ -244,7 +244,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
     {
       m_DriverIDNumber.Text = _drv.IdentityDocumentNumber;
       m_DriverMobileNo.Text = _drv.CellPhone;
-      m_DriverTitle.Text = _drv.Tytuł;
+      m_DriverTitle.Text = _drv.Title;
     }
     private LocalStateMachineEngine.ActionResult Update()
     {
@@ -270,7 +270,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
       _drv.CellPhone = m_DriverMobileNo.Text;
       if ( m_DriverTitle.Text.IsNullOrEmpty() )
           return LocalStateMachineEngine.ActionResult.NotValidated(m_DriverNameLabel.Text + "MustBeProvided".GetShepherdLocalizedString());
-      _drv.Tytuł = m_DriverTitle.Text;
+      _drv.Title = m_DriverTitle.Text;
       return LocalStateMachineEngine.ActionResult.Success;
     }
     private LocalStateMachineEngine.ActionResult Create()

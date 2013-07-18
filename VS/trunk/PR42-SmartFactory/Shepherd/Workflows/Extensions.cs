@@ -14,7 +14,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     }
     public static string Title(this Element _val)
     {
-      return _val == null ? "NotApplicable".GetLocalizedString() : _val.Tytuł;
+      return _val == null ? "NotApplicable".GetLocalizedString() : _val.Title;
     }
     public static string ToMonthString(this DateTime _dateTime)
     {

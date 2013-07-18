@@ -39,7 +39,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
         {
           _stt = "using";
           Shipping _sp = ( from idx in _EDC.Shipping
-                           where idx.Identyfikator == m_WorkflowProperties.ItemId
+                           where idx.Id == m_WorkflowProperties.ItemId
                            select idx ).First();
           if ( !_sp.IsOutbound.Value )
           {
@@ -47,17 +47,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
             return;
           }
           _stt = "Shipping";
-          _spTitle = _sp.Tytuł;
+          _spTitle = _sp.Title;
           SPDocumentLibrary _lib = (SPDocumentLibrary)m_WorkflowProperties.Web.Lists[ CommonDefinition.FreightPOLibraryTitle ];
           _stt = "SPDocumentLibrary";
           SPFile _teml = m_WorkflowProperties.Web.GetFile( _lib.DocumentTemplateUrl );
-          string _fname = String.Format( "FREIGHTPOFileName".GetLocalizedString(), _sp.Identyfikator.ToString() );
+          string _fname = String.Format( "FREIGHTPOFileName".GetLocalizedString(), _sp.Id.ToString() );
           SPFile _docFile = OpenXMLHelpers.AddDocument2Collection( _teml, _lib.RootFolder.Files, _fname );
           _newFileName = _docFile.Name;
           _stt = "_doc";
           int _docId = (int)_docFile.Item.ID;
           FreightPO _fpo = ( from idx in _EDC.FreightPOLibrary
-                             where idx.Identyfikator == _docId
+                             where idx.Id == _docId
                              select idx ).First();
           _stt = "FreightPO";
           if ( _sp.Shipping2RouteTitle != null )
@@ -86,7 +86,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
           _fpo.FPODispatchDate = _sp.EndTime;
           _fpo.EmailAddress = _sp.PartnerTitle == null ? String.Empty.NotAvailable() : _sp.PartnerTitle.EmailAddress.NotAvailable();
           _fpo.FPOLoadingDate = _sp.StartTime;
-          _fpo.Tytuł = String.Format( "FREIGHT PURCHASE ORDER FPO-1{0, 5}", _fpo.Identyfikator.Value );
+          _fpo.Title = String.Format( "FREIGHT PURCHASE ORDER FPO-1{0, 5}", _fpo.Id.Value );
           _fpo.FPOWarehouseAddress = _sp.Shipping2WarehouseTitle == null ? String.Empty.NotAvailable() : _sp.Shipping2WarehouseTitle.WarehouseAddress.NotAvailable();
           _stt = "WarehouseAddress ";
           _sp.Shipping2FreightPOIndex = _fpo;

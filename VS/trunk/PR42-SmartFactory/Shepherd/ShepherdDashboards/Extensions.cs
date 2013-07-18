@@ -189,7 +189,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     {
       if (_row == null)
         return;
-      _ddl.Select(_row.Identyfikator.Value);
+      _ddl.Select(_row.Id.Value);
     }
     /// <summary>
     /// Selects the specified _DDL.
@@ -216,7 +216,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       if (_all)
       {
         _ddl.DataSource = from Partner _prtnrs in EDC.Partner
-                          select new { Name = _prtnrs.Tytuł, ID = _prtnrs.Identyfikator.Value.ToString() };
+                          select new { Name = _prtnrs.Title, ID = _prtnrs.Id.Value.ToString() };
         _ddl.DataValueField = "ID";
         _ddl.DataTextField = "Name";
         _ddl.DataBind();
@@ -226,7 +226,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
           _ddl.Select(_Partner);
       }
       else
-        _ddl.Items.Add(new ListItem(_Partner.Tytuł, _Partner.Identyfikator.Value.ToString()));
+        _ddl.Items.Add(new ListItem(_Partner.Title, _Partner.Id.Value.ToString()));
     }
     #endregion
 

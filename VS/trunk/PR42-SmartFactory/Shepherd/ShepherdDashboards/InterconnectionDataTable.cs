@@ -70,7 +70,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
           {
             Element _el = _cv as Element;
             if (_el != null)
-              _strVal = _el.Identyfikator.Value.ToString();
+              _strVal = _el.Id.Value.ToString();
             else
               _strVal = _cv.ToString();
           }

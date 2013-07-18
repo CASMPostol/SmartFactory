@@ -107,26 +107,26 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       if ( _prtn == null )
         return;
       ;
-      Dictionary<int, Driver> _drivers = _prtn.Driver.ToDictionary( x => x.Identyfikator.Value );
+      Dictionary<int, Driver> _drivers = _prtn.Driver.ToDictionary( x => x.Id.Value );
       foreach ( ShippingDriversTeam item in from idx in _Shipping.ShippingDriversTeam select idx )
       {
         Driver _driver = item.DriverTitle;
         if ( ( Role == TransportResources.RolesSet.SecurityEscort && _driver.Driver2PartnerTitle.ServiceType.Value != ServiceType.SecurityEscortProvider ) ||
            ( Role == TransportResources.RolesSet.Carrier && _driver.Driver2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider ) )
           continue;
-        m_DriversTeamListBox.Items.Add( new ListItem( _driver.Tytuł, item.Identyfikator.Value.ToString() ) );
-        _drivers.Remove( _driver.Identyfikator.Value );
+        m_DriversTeamListBox.Items.Add( new ListItem( _driver.Title, item.Id.Value.ToString() ) );
+        _drivers.Remove( _driver.Id.Value );
       }
       foreach ( var item in _drivers )
-        m_DriversListBox.Items.Add( new ListItem( item.Value.Tytuł, item.Key.ToString() ) );
-      m_ShippingTextBox.Text = _Shipping.Tytuł;
+        m_DriversListBox.Items.Add( new ListItem( item.Value.Title, item.Key.ToString() ) );
+      m_ShippingTextBox.Text = _Shipping.Title;
       m_TruckDropDown.Items.Add( new ListItem() );
       foreach ( Truck _item in _prtn.Truck )
       {
         if ( ( Role == TransportResources.RolesSet.SecurityEscort && _item.Truck2PartnerTitle.ServiceType.Value != ServiceType.SecurityEscortProvider ) ||
           ( Role == TransportResources.RolesSet.Carrier && _item.Truck2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider ) )
           continue;
-        ListItem _li = new ListItem( _item.Tytuł, _item.Identyfikator.Value.ToString() );
+        ListItem _li = new ListItem( _item.Title, _item.Id.Value.ToString() );
         m_TruckDropDown.Items.Add( _li );
         if ( Role == TransportResources.RolesSet.SecurityEscort )
         {
@@ -140,7 +140,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       m_TrailerDropDown.Items.Add( new ListItem() );
       foreach ( Trailer item in _prtn.Trailer )
       {
-        ListItem _li = new ListItem( item.Tytuł, item.Identyfikator.Value.ToString() );
+        ListItem _li = new ListItem( item.Title, item.Id.Value.ToString() );
         m_TrailerDropDown.Items.Add( _li );
         if ( _Shipping.TrailerTitle == item )
           _li.Selected = true;

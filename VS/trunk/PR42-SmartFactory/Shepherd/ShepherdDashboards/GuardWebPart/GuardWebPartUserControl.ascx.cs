@@ -134,7 +134,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     #region private
     private void ShowShipping(Shipping _currentShipping)
     {
-      m_ShippingLabel.Text = _currentShipping.Tytuł;
+      m_ShippingLabel.Text = _currentShipping.Title;
     }
     private void ClearUserInterface()
     {
@@ -153,7 +153,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
       {
         AlarmsAndEventsList2Shipping = _shipping,
         AlarmsAndEventsList2PartnerTitle = _shipping.PartnerTitle,
-        Tytuł = _msg,
+        Title = _msg,
       };
       EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
       EDC.SubmitChanges();

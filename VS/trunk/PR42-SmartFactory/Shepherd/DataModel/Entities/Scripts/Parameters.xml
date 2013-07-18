@@ -374,4 +374,14 @@
     <Column Name="Occupied" Member="Occupied" />
     <Column Name="IsDouble" Member="IsDouble" />
   </ContentType>
+<ContentType Name="Item" Class="Element">
+  <Column Name="Title" Member="Title" />
+  <!--<Column Name="ContentType" Member="ContentType" />-->
+</ContentType>
+<ContentType Name="Announcement" Class="Anons">
+  <Column Name="Title" Member="Title" />
+  <Column Name="Body" Member="Body" />
+  <Column Name="Expires" Member="Expires" />
+  <!--<Column Name="ContentType" Member="ContentType" />-->
+</ContentType>
 </Web>

@@ -37,7 +37,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO1
         {
           _stt = "using";
           Shipping _sp = ( from idx in _EDC.Shipping
-                           where idx.Identyfikator == workflowProperties.ItemId
+                           where idx.Id == workflowProperties.ItemId
                            select idx ).First();
           if ( !_sp.IsOutbound.Value )
           {
@@ -45,17 +45,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO1
             return;
           }
           _stt = "Shipping";
-          _spTitle = _sp.Tytuł;
+          _spTitle = _sp.Title;
           SPDocumentLibrary _lib = (SPDocumentLibrary)workflowProperties.Web.Lists[ CommonDefinition.EscortPOLibraryTitle ];
           _stt = "SPDocumentLibrary";
           SPFile _teml = workflowProperties.Web.GetFile( _lib.DocumentTemplateUrl );
-          string _fname = String.Format( "ESCORTPONFileName".GetLocalizedString(), _sp.Identyfikator.ToString() );
+          string _fname = String.Format( "ESCORTPONFileName".GetLocalizedString(), _sp.Id.ToString() );
           SPFile _docFile = OpenXMLHelpers.AddDocument2Collection( _teml, _lib.RootFolder.Files, _fname );
           _newFileName = _docFile.Name;
           _stt = "_doc";
           int _docId = (int)_docFile.Item.ID;
           EscortPO _epo = ( from idx in _EDC.EscortPOLibrary
-                            where idx.Identyfikator == _docId
+                            where idx.Id == _docId
                             select idx ).First();
           _stt = "EscortPO";
           if ( _sp.Shipping2RouteTitle != null )
@@ -84,7 +84,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO1
           _epo.SecurityPOCountry = _sp.Shipping2City == null ? String.Empty.NotAvailable() : _sp.Shipping2City.CountryTitle.Title();
           _epo.SPODispatchDate = _sp.StartTime;
           _epo.EmailAddress = _sp.Shipping2PartnerTitle == null ? String.Empty.NotAvailable() : _sp.Shipping2PartnerTitle.EmailAddress.NotAvailable();
-          _epo.Tytuł = String.Format( "SECURITY ESCORT PURCHASE ORDER EPO-2{0, 5}", _epo.Identyfikator );
+          _epo.Title = String.Format( "SECURITY ESCORT PURCHASE ORDER EPO-2{0, 5}", _epo.Id );
           _epo.FPOWarehouseAddress = _sp.Shipping2WarehouseTitle == null ? String.Empty.NotAvailable() : _sp.Shipping2WarehouseTitle.WarehouseAddress.NotAvailable();
           _stt = "WarehouseAddress";
           _sp.Shipping2EscortPOIndex = _epo;

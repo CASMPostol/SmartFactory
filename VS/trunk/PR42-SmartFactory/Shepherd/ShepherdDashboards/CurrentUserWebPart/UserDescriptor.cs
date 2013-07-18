@@ -31,8 +31,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
         Partner _Partner = Partner.FindForUser(edc, _user);
         if (_Partner != null)
         {
-          row[_CompanyIDColumnName] = _Partner.Identyfikator.ToString();
-          row[_CompanyTitleColumnName] = Company = _Partner.Tytuł;
+          row[_CompanyIDColumnName] = _Partner.Id.ToString();
+          row[_CompanyTitleColumnName] = Company = _Partner.Title;
         }
         else
         {

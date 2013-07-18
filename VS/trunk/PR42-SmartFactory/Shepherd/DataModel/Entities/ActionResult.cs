@@ -70,7 +70,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     {
       foreach ( string _msg in this )
       {
-        Anons _entry = new Anons() { Tytuł = m_Source, Treść = _msg, Wygasa = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) };
+        Anons _entry = new Anons() { Title = m_Source, Body = _msg, Expires = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) };
         EDC.EventLogList.InsertOnSubmit( _entry );
       }
     }

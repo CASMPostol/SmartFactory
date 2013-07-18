@@ -140,8 +140,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           if ( m_CommodityDropDown.Visible )
           {
             m_CommodityDropDown.DataSource = from _idx in EDC.Commodity
-                                             orderby _idx.Tytuł ascending
-                                             select new { Label = _idx.Tytuł, Index = _idx.Identyfikator };
+                                             orderby _idx.Title ascending
+                                             select new { Label = _idx.Title, Index = _idx.Id };
             m_CommodityDropDown.DataTextField = "Label";
             m_CommodityDropDown.DataValueField = "Index";
             m_CommodityDropDown.DataBind();
@@ -357,13 +357,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       try
       {
         ClearUserInterface( _sppng.IsOutbound.Value );
-        m_ShippingLabel.Text = _sppng.Tytuł;
+        m_ShippingLabel.Text = _sppng.Title;
         if ( m_MarketDropDown.Visible && _sppng.Shipping2City != null )
         {
           m_MarketDropDown.DataSource = from DestinationMarket _idx in _sppng.Shipping2City.DestinationMarket
                                         let _mkr = _idx.MarketTitle
-                                        orderby _mkr.Tytuł ascending
-                                        select new { Label = _mkr.Tytuł, Index = _mkr.Identyfikator.Value };
+                                        orderby _mkr.Title ascending
+                                        select new { Label = _mkr.Title, Index = _mkr.Id.Value };
           m_MarketDropDown.DataTextField = "Label";
           m_MarketDropDown.DataValueField = "Index";
           m_MarketDropDown.DataBind();
@@ -396,7 +396,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
             m_ControlState.m_POModified = false;
           }
           EDC.SubmitChanges();
-          m_ControlState.LoadDescriptionID = _ld.Identyfikator.Value.ToString();
+          m_ControlState.LoadDescriptionID = _ld.Id.Value.ToString();
           InitLoadDescriptionGridView( CurrentShipping, null );
         }
         return _res;
@@ -413,7 +413,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       try
       {
         LoadDescription _ld = Element.GetAtIndex<LoadDescription>( EDC.LoadDescription, m_ControlState.LoadDescriptionID );
-        //string _msg = String.Format("The {0} load description deleted.", _ld.Tytuł);
+        //string _msg = String.Format("The {0} load description deleted.", _ld.Title);
         EDC.LoadDescription.DeleteOnSubmit( _ld );
         CurrentShipping.UpdatePOInfo( _ld );
         //ReportAlert(_msg);
@@ -478,7 +478,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         _ld.MarketTitle = Element.FindAtIndex<Market>( EDC.Market, m_MarketDropDown.SelectedValue );
         _ld.NumberOfPallets = m_NumberOfPalletsTextBox.TextBox2Double( _ve );
         _ld.PalletType = (PalletType)m_PalletTypesDropDown.SelectedValue.String2Int().Value;
-        _ld.Tytuł = _ld.DeliveryNumber;
+        _ld.Title = _ld.DeliveryNumber;
       }
       catch ( Exception ex )
       {
@@ -495,13 +495,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
                                              where _ldidx != excludedLoadDescription
                                              select new
                                              {
-                                               Title = _ldidx.Tytuł,
+                                               Title = _ldidx.Title,
                                                DeliveryNumber = _ldidx.DeliveryNumber,
                                                PalletTypes = _ldidx.PalletType.HasValue ? _ldidx.PalletType.Value : PalletType.Other,
                                                NumberOfPallets = _ldidx.NumberOfPallets,
-                                               Commodity = _ldidx.LoadDescription2Commodity == null ? String.Empty : _ldidx.LoadDescription2Commodity.Tytuł,
-                                               MarketTitle = _ldidx.MarketTitle == null ? String.Empty : _ldidx.MarketTitle.Tytuł,
-                                               ID = _ldidx.Identyfikator.Value
+                                               Commodity = _ldidx.LoadDescription2Commodity == null ? String.Empty : _ldidx.LoadDescription2Commodity.Title,
+                                               MarketTitle = _ldidx.MarketTitle == null ? String.Empty : _ldidx.MarketTitle.Title,
+                                               ID = _ldidx.Id.Value
                                              };
       m_LoadDescriptionGridView.DataBind();
       m_LoadDescriptionGridView.SelectedIndex = -1;
@@ -552,7 +552,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       {
         AlarmsAndEventsList2Shipping = CurrentShipping,
         AlarmsAndEventsList2PartnerTitle = CurrentShipping.PartnerTitle,
-        Tytuł = _msg,
+        Title = _msg,
       };
       EDC.AlarmsAndEvents.InsertOnSubmit( _ae );
       EDC.SubmitChanges();

@@ -155,7 +155,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       {
         return (
               from idx in list
-              where idx.Identyfikator == _index.Value
+              where idx.Id == _index.Value
               select idx ).First();
       }
       catch ( Exception )
@@ -180,7 +180,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       {
         return (
               from idx in list
-              where idx.Identyfikator == _index.Value
+              where idx.Id == _index.Value
               select idx ).FirstOrDefault();
       }
       catch ( Exception )
@@ -211,7 +211,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       AlarmsAndEvents _log = new AlarmsAndEvents()
         {
-          Tytuł = title,
+          Title = title,
           AlarmsAndEventsList2PartnerTitle = partner,
           AlarmsAndEventsList2Shipping = shippingIndex
         };
@@ -255,7 +255,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     {
       for ( int i = 0; i < 10; i++ )
       {
-        CityType _cmm = new CityType() { Tytuł = String.Format( "City {0}", i ) };
+        CityType _cmm = new CityType() { Title = String.Format( "City {0}", i ) };
         EDC.City.InsertOnSubmit( _cmm );
         EDC.SubmitChanges();
       }

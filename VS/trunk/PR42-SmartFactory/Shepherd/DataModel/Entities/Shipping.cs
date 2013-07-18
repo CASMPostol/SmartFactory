@@ -49,7 +49,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         this.PartnerTitle = null;
         return;
       }
-      this.BusinessDescription = Shipping2RouteTitle.Route2BusinessDescriptionTitle == null ? String.Empty : Shipping2RouteTitle.Route2BusinessDescriptionTitle.Tytuł;
+      this.BusinessDescription = Shipping2RouteTitle.Route2BusinessDescriptionTitle == null ? String.Empty : Shipping2RouteTitle.Route2BusinessDescriptionTitle.Title;
       this.PartnerTitle = Shipping2RouteTitle.PartnerTitle;
     }
     /// <summary>
@@ -145,7 +145,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public void UpdateTitle()
     {
       string _tf = "{0}{1:D6}";
-      Tytuł = String.Format( _tf, IsOutbound.Value ? "O" : "I", Identyfikator.Value );
+      Title = String.Format( _tf, IsOutbound.Value ? "O" : "I", Id.Value );
     }
     /// <summary>
     /// Calculates the state.
@@ -370,7 +370,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       return new Shipping()
       {
         AdditionalCosts = 0,
-        EditorIdentyfikator = 0,
+        EditorId = 0,
         TotalCostsPerKU = 0,
         TotalQuantityKU = 0,
         TrailerCondition = Entities.TrailerCondition._5Excellent,
@@ -381,7 +381,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         ShippingState = Entities.ShippingState.Creation,
         TruckAwaiting = false,
         IsOutbound = outbound,
-        Tytuł = "Creating new shippment"
+        Title = "Creating new shippment"
       };
     }
     /// <summary>
@@ -396,7 +396,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       {
         if ( excludedLoadDescription == _ldx )
           continue;
-        _po.AppendLine( SPEncode.HtmlEncode( _ldx.Tytuł ) );
+        _po.AppendLine( SPEncode.HtmlEncode( _ldx.Title ) );
       }
       this.PoNumberMultiline = _po.ToString();
     }

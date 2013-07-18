@@ -29,7 +29,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
       try
       {
         EscortPO _fpo = (from idx in _EDC.EscortPOLibrary
-                         where idx.Identyfikator == _item.ID
+                         where idx.Id == _item.ID
                          select idx).First();
         return new SecurityEscortPurchaseOrderTemplate()
         {
