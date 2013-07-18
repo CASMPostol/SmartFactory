@@ -41,7 +41,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.Currency = "PLN";
       this.CWL_CW2ConsentTitle = data.ConsentLookup;
       this.CWL_CW2PCNID = GetAtIndex<PCNCode>( edc.PCNCode, data.CommonAccountData.PCNTariffCodeLookup );
-      this.CWL_CW2CWLibraryIDIdentyfikator = null;
+      this.CWL_CW2CWLibraryIDId = null;
       this.CustomsDebtDate = data.CommonAccountData.CustomsDebtDate;
       this.CW_MassPerPackage = data.CWMassPerPackage;
       this.CW_PackageKg = data.CWPackageKg;
@@ -72,7 +72,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// </summary>
     public void UpdateTitle()
     {
-      Title = String.Format( "CW-{0:D4}{1:D6}", this.CWC_EntryDate.Value.Year, Identyfikator.Value );
+      Title = String.Format( "CW-{0:D4}{1:D6}", this.CWC_EntryDate.Value.Year, Id.Value );
     }
     internal static bool RecordExist( Entities entities, string documentNo )
     {
