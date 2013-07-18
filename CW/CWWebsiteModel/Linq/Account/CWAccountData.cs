@@ -38,11 +38,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     internal DateTime? EntryDate { get; private set; }
     internal Clearence ClearenceLookup { get; private set; }
     internal Consent ConsentLookup { get; private set; }
-    internal double? CWMassPerPackage { get { return CommonAccountData.NetMass / CWMassPerPackage; } }
+    internal double? CWMassPerPackage { get { return CWQuantity / CWPackageUnits; } }
     //Good descriptionc
     internal double? CWQuantity { get; private set; }
     internal string Units { get; private set; }
-    internal double? CWPackageKg { get; private set; }
+    internal double? CWPackageKg { get { return CommonAccountData.GrossMass - CWQuantity; } }
     internal double? CWPackageUnits { get; private set; }
     //from Required documents.
     internal string CW_CertificateOfOrgin { get; private set; }
@@ -116,13 +116,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
         string _code = _srdx.Code.Trim().ToUpper();
         if ( _code.Contains( Settings.CustomsProcedureCodeA004 ) )
         {
-          CW_CertificateOfAuthenticity = _srdx.Code.GetFirstCapture( Settings.GetParameter( entities, SettingsEntry.GoodsDescription_CertificateOfAuthenticity_Pattern ), _na, _stringsList );
-          CW_COADate = GetCertificateDate( entities, _srdx.Code, warnings );
+          CW_CertificateOfAuthenticity = _srdx.Number.GetFirstCapture( Settings.GetParameter( entities, SettingsEntry.GoodsDescription_CertificateOfAuthenticity_Pattern ), _na, _stringsList );
+          CW_COADate = GetCertificateDate( entities, _srdx.Number, warnings );
         }
         else if ( _code.Contains( Settings.CustomsProcedureCodeN865 ) || _code.Contains( Settings.CustomsProcedureCodeN954 ) )
         {
-          CW_CertificateOfOrgin = _srdx.Code.GetFirstCapture( Settings.GetParameter( entities, SettingsEntry.GoodsDescription_CertificateOfOrgin_Pattern ), _na, _stringsList );
-          CW_CODate = GetCertificateDate( entities, _srdx.Code, warnings );
+          CW_CertificateOfOrgin = _srdx.Number.GetFirstCapture( Settings.GetParameter( entities, SettingsEntry.GoodsDescription_CertificateOfOrgin_Pattern ), _na, _stringsList );
+          CW_CODate = GetCertificateDate( entities, _srdx.Number, warnings );
         }
       }
       Convert2Warnings( warnings, _stringsList, false );
@@ -130,14 +130,14 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     }
     private DateTime CalculateValidToDate( Entities entities, DateTime? CW_COADate, DateTime? CW_CODate )
     {
-      double _validPeriod = 180;
+      double _validPeriod = 365;//in days - 
       DateTime _ret = DateTime.Today;
       if ( !CW_COADate.HasValue || !CW_CODate.HasValue )
         return _ret + TimeSpan.FromDays( _validPeriod );
       _ret = CW_CODate.GetValueOrDefault( DateTime.Today ) < _ret ? CW_CODate.GetValueOrDefault( DateTime.Today ) : _ret;
       _ret = CW_COADate.GetValueOrDefault( DateTime.Today ) < _ret ? CW_COADate.GetValueOrDefault( DateTime.Today ) : _ret;
       if ( !Double.TryParse( Settings.GetParameter( entities, SettingsEntry.DefaultValidToDatePeriod ), out _validPeriod ) )
-        _validPeriod = 180;
+        _validPeriod = 365; //TODO add warning
       return DateTime.Now.Date + TimeSpan.FromDays( _validPeriod );
     }
     private DateTime? GetCertificateDate( Entities entities, string code, List<Warnning> warnings )
@@ -150,7 +150,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
       }
       catch ( Exception _ex )
       {
-        string _mssg = String.Format( "Cannot get data from the certificate code {0}.", code );
+        string _mssg = String.Format( "Cannot get data from the certificate {0}, because of the error {1}", code, _ex.Message );
         warnings.Add( new Warnning( _mssg, false ) );
       }
       return _ret;
@@ -158,8 +158,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     private void AnalizeGoodsDescription( Entities edc, string goodsDescription, List<Warnning> warnings )
     {
       List<string> _stringsList = new List<string>();
-      CWPackageKg = Convert2Double( goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CWPackageKg_Pattern ), _na, _stringsList ), _stringsList );
-      CWPackageUnits = Convert2Double( goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CWPackageKg_Pattern ), _na, _stringsList ), _stringsList );
+      CWPackageUnits = Convert2Double( goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CWPackageUnits_Pattern ), _na, _stringsList ), _stringsList );
       CWQuantity = Convert2Double( goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CWQuantity_Pattern ), _na, _stringsList ), _stringsList );
       Units = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_Units_Pattern ), _na, _stringsList );
       Convert2Warnings( warnings, _stringsList, false );

@@ -35,7 +35,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     {
       this.AccountBalance = data.CommonAccountData.NetMass;
       this.Batch = data.CommonAccountData.BatchId;
-      this.ConsentPeriod = data.ConsentLookup.ConsentPeriod;
+      this.ConsentPeriod = data.ConsentLookup.ConsentPeriod;// To be removed
       //this.CWL_2Clearence = clearence; //TODO - the column must be defined 
       this.ClosingDate = Extensions.DateTimeNull;
       this.Currency = "PLN";
@@ -59,11 +59,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.Title = "-- creating -- ";
       this.Units = data.Units;
       this.ValidToDate = data.ValidToDate;
+      //TODO to be removed this.ValidFromDate 
       //Certificate
       this.CW_CertificateOfOrgin = data.CW_CertificateOfOrgin;
       this.CW_CertificateOfAuthenticity = data.CW_CertificateOfAuthenticity;
       this.CW_COADate = data.CW_COADate;
       this.CW_CODate = data.CW_CODate;
+      // TODO this.VendorTitle add to the model - default must be assigned. 
     }
     /// <summary>
     /// Updates the title.

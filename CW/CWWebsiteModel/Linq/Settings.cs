@@ -1,7 +1,20 @@
-﻿using System;
+﻿//<summary>
+//  Title   : Settings entity class
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq
 {
@@ -38,25 +51,23 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
 
     private static Dictionary<SettingsEntry, string> m_DefaultSettings = new Dictionary<SettingsEntry, string>()
     {
-       {SettingsEntry.GoodsDescription_CWPackageKg_Pattern,  @"(?<=P\w*\b\st\w*\b\s)(\d{7})"},
-       {SettingsEntry.GoodsDescription_CWQuantity_CWPackageKg_Pattern , @"\b(.*)(?=\sGRADE:)"},
-       {SettingsEntry.GoodsDescription_CWQuantity_Pattern,  @"(?<=\WGRADE:)\W*\b(\w*)"},
-       {SettingsEntry.GoodsDescription_Units_Pattern,  @"(?<=\WSKU:)\W*\b(\d*)"}, 
-       {SettingsEntry.GoodsDescription_CertificateOfAuthenticity_Pattern,  @"(?<=\WBatch:)\W*\b(\d*)"},
-       {SettingsEntry.DefaultValidToDatePeriod, "720"},
-       {SettingsEntry.GoodsDescription_CertificateOfOrgin_Pattern, "Proces technologiczny {0:D7}"},
-       {SettingsEntry.LooselyFormatedDate, @"(?<=/)\D*(\d{1,2}).(\d{1,2}).(\d{4})"},
+       { SettingsEntry.GoodsDescription_CWQuantity_Pattern,  @"(?<=\bbatch:)\D*\d*\D*(\d*[.,,]\d*)\w*\D*\d*ct" },
+       { SettingsEntry.GoodsDescription_CWPackageUnits_Pattern, @"(?<=\bbatch:)\D*\d*\D*\d*[.,,]\d*\w*\D*(\d*)ct" },
+       { SettingsEntry.GoodsDescription_Units_Pattern,  @"(?<=\bbatch:)\D*\d*\D*\d*[.,,]\d*(\w)*\D*\d*ct" },
+       { SettingsEntry.GoodsDescription_CertificateOfAuthenticity_Pattern,  @"\b([\w,\d\s]*)/.*" },
+       { SettingsEntry.GoodsDescription_CertificateOfOrgin_Pattern, @"\b([\w,\d\s]*)/.*" },
+       { SettingsEntry.DefaultValidToDatePeriod, "720" },
+       { SettingsEntry.LooselyFormatedDate, @"(?<=/)\D*(\d{1,2}).(\d{1,2}).(\d{4})" },
     };
   }
   public enum SettingsEntry
   {
-    GoodsDescription_CWPackageKg_Pattern,
-    GoodsDescription_CWQuantity_CWPackageKg_Pattern,
     GoodsDescription_CWQuantity_Pattern,
+    GoodsDescription_CWPackageUnits_Pattern,
     GoodsDescription_Units_Pattern,
     GoodsDescription_CertificateOfAuthenticity_Pattern,
-    DefaultValidToDatePeriod,
     GoodsDescription_CertificateOfOrgin_Pattern,
+    DefaultValidToDatePeriod,
     LooselyFormatedDate
   }
 }
