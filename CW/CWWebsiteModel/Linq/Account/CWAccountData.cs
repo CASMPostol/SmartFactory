@@ -73,12 +73,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
           if ( Linq.CustomsWarehouse.RecordExist( _edc, accountData.DocumentNo ) )
           {
             string _msg = "CW record with the same SAD document number: {0} exist";
-            throw new CreateCWAccountException( String.Format( _msg, ClearenceLookup.DocumentNo ) );
+            throw new CreateCWAccountException( String.Format( _msg, accountData.DocumentNo ) );
           }
           _at = "ProcessCustomsMessage";
           this.CommonAccountData = accountData;
           _at = "GetAtIndex<Clearence>";
-          this.ClearenceLookup = Element.GetAtIndex<Clearence>( _edc.Clearence, accountData.ConsentLookup );
+          this.ClearenceLookup = Element.GetAtIndex<Clearence>( _edc.Clearence, accountData.ClearenceLookup );
           _at = "GetAtIndex<Consent>";
           this.ConsentLookup = Element.GetAtIndex<Consent>( _edc.Consent, CommonAccountData.ConsentLookup );
           _at = "AnalizeGoodsDescription";

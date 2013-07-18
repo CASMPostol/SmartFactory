@@ -41,6 +41,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
       string _at = "starting";
       try
       {
+        this.ClearenceLookup = clearence.Identyfikator.Value;
         DocumentNo = clearence.DocumentNo;
         DateTime _customsDebtDate = clearence.Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value;
         this.CustomsDebtDate = _customsDebtDate;

@@ -80,6 +80,8 @@ namespace CAS.SmartFactory.Customs.Account
       return _ret;
     }
     public int ConsentLookup { get; protected set; }
+    public int ClearenceLookup { get; protected set; }
+    public int PCNTariffCodeLookup { get; protected set; }
     public DateTime CustomsDebtDate { get; protected set; }
     public string DocumentNo { get; protected set; }
     public string GradeName { get; protected set; }
@@ -88,7 +90,6 @@ namespace CAS.SmartFactory.Customs.Account
     public double NetMass { get; protected set; }
     public string TobaccoName { get; protected set; }
     public string BatchId { get; protected set; }
-    public int PCNTariffCodeLookup { get; protected set; }
     public string SKU { get; protected set; }
     #endregion
 
