@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using CAS.SharePoint;
@@ -38,6 +39,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     internal DateTime? EntryDate { get; private set; }
     internal Clearence ClearenceLookup { get; private set; }
     internal Consent ConsentLookup { get; private set; }
+    //internal Vendor  
     internal double? CWMassPerPackage { get { return CWQuantity / CWPackageUnits; } }
     //Good descriptionc
     internal double? CWQuantity { get; private set; }
@@ -79,9 +81,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
           _at = "GetAtIndex<Consent>";
           this.ConsentLookup = Element.GetAtIndex<Consent>( _edc.Consent, CommonAccountData.ConsentLookup );
           _at = "AnalizeGoodsDescription";
+          //TODO Vendor
           AnalizeGoodsDescription( _edc, ClearenceLookup.Clearence2SadGoodID.GoodsDescription, warnings );
           AnalyzeCertificates( _edc, ClearenceLookup.Clearence2SadGoodID.SADRequiredDocuments, warnings );
           this.EntryDate = DateTime.Today;
+          //Check warnnings before creation. 
           CustomsWarehouse _cw = new CustomsWarehouse( _edc, this );
           _at = "InsertOnSubmit";
           _edc.CustomsWarehouse.InsertOnSubmit( _cw );
@@ -126,18 +130,21 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
         }
       }
       Convert2Warnings( warnings, _stringsList, false );
-      ValidToDate = CalculateValidToDate( entities, CW_COADate, CW_CODate );
+      ValidToDate = CalculateValidToDate( entities, CW_COADate, CW_CODate, warnings );
     }
-    private DateTime CalculateValidToDate( Entities entities, DateTime? CW_COADate, DateTime? CW_CODate )
+    private DateTime CalculateValidToDate( Entities entities, DateTime? CW_COADate, DateTime? CW_CODate, List<Warnning> warnings )
     {
-      double _validPeriod = 365;//in days - 
+      double _vtdIfNotProvided = 365; // in days
+      double _validPeriod = _vtdIfNotProvided;
       DateTime _ret = DateTime.Today;
       if ( !CW_COADate.HasValue || !CW_CODate.HasValue )
         return _ret + TimeSpan.FromDays( _validPeriod );
       _ret = CW_CODate.GetValueOrDefault( DateTime.Today ) < _ret ? CW_CODate.GetValueOrDefault( DateTime.Today ) : _ret;
       _ret = CW_COADate.GetValueOrDefault( DateTime.Today ) < _ret ? CW_COADate.GetValueOrDefault( DateTime.Today ) : _ret;
       if ( !Double.TryParse( Settings.GetParameter( entities, SettingsEntry.DefaultValidToDatePeriod ), out _validPeriod ) )
-        _validPeriod = 365; //TODO add warning
+      {
+        _validPeriod = _vtdIfNotProvided; //TODO add warning
+      }
       return DateTime.Now.Date + TimeSpan.FromDays( _validPeriod );
     }
     private DateTime? GetCertificateDate( Entities entities, string code, List<Warnning> warnings )
@@ -161,7 +168,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
       CWPackageUnits = Convert2Double( goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CWPackageUnits_Pattern ), _na, _stringsList ), _stringsList );
       CWQuantity = Convert2Double( goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_CWQuantity_Pattern ), _na, _stringsList ), _stringsList );
       Units = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescription_Units_Pattern ), _na, _stringsList );
-      Convert2Warnings( warnings, _stringsList, false );
+      Convert2Warnings( warnings, _stringsList, true );
     }
     private static void Convert2Warnings( List<Warnning> warningsList, List<string> stringsList, bool fatal )
     {
@@ -169,9 +176,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
         return;
       warningsList.AddRange( from _erx in stringsList select new Warnning( _erx, fatal ) );
     }
-    string _na = "Not recognized";
-    private double? Convert2Double( string vlaue, List<string> errors )
+    private string _na = "Not recognized";
+    private double? Convert2Double( string value, List<string> errors )
     {
+      double _ret;
+      if ( Double.TryParse( value, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out _ret ) )
+        return _ret;
       return new Nullable<double>();
     }
     private class CreateCWAccountException: Exception
