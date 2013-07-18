@@ -53,8 +53,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         if ( !IsPostBack )
         {
           m_WarehouseDropDownList.DataSource = from _idx in EDC.Warehouse
-                                               orderby _idx.Tytuł ascending
-                                               select new { Title = _idx.Tytuł, ID = _idx.Identyfikator.Value };
+                                               orderby _idx.Title ascending
+                                               select new { Title = _idx.Title, ID = _idx.Id.Value };
           m_WarehouseDropDownList.DataTextField = "Title";
           m_WarehouseDropDownList.DataValueField = "ID";
           m_WarehouseDropDownList.DataBind();
@@ -197,7 +197,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         if ( _labels2Display.Contains( _label ) )
           continue;
         _labels2Display.Add( _label );
-        ListItem _nli = new ListItem( _label, _item.Identyfikator.Value.ToString(), true );
+        ListItem _nli = new ListItem( _label, _item.Id.Value.ToString(), true );
         m_TimeSlotList.Items.Add( _nli );
       }
     }

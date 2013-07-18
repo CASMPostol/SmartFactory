@@ -229,8 +229,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownGood".GetShepherdLocalizedString(), ((int)TrailerCondition._4).ToString()));
           m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownExcellent".GetShepherdLocalizedString(), ((int)TrailerCondition._5Excellent).ToString()));
           m_TransportUnitTypeDropDownList.DataSource = from _idx in EDC.TransportUnitType
-                                                       orderby _idx.Tytuł ascending
-                                                       select new { Title = _idx.Tytuł, Index = _idx.Identyfikator };
+                                                       orderby _idx.Title ascending
+                                                       select new { Title = _idx.Title, Index = _idx.Id };
           m_TransportUnitTypeDropDownList.DataTextField = "Title";
           m_TransportUnitTypeDropDownList.DataValueField = "Index";
           m_TransportUnitTypeDropDownList.DataBind();
@@ -587,7 +587,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           m_ControlState.TimeSlotID = String.Empty;
         else
         {
-          m_ControlState.TimeSlotID = _timeSlot.Identyfikator.IntToString();
+          m_ControlState.TimeSlotID = _timeSlot.Id.IntToString();
           _at = "Show( _timeSlot, CurrentShipping";
           Show( _timeSlot, CurrentShipping.IsEditable(), _timeSlot.IsDouble.GetValueOrDefault( false ) );
         }
@@ -646,44 +646,44 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       m_TimeSlotTextBox.Text = String.Format( "{0}{1}{2}", _cts.StartTime.Value.ToString( CultureInfo.CurrentCulture ), _isEditable ? "" : " ! ", _isDouble ? "x2" : "" );
       Warehouse _wrs = _cts.GetWarehouse();
-      m_WarehouseLabel.Text = _wrs.Tytuł;
+      m_WarehouseLabel.Text = _wrs.Title;
     }
     private void Show( CityType _city )
     {
       if ( _city == null )
         return;
-      m_CityLabel.Text = _city.Tytuł;
-      m_ControlState.CityID = _city.Identyfikator.IntToString();
+      m_CityLabel.Text = _city.Title;
+      m_ControlState.CityID = _city.Id.IntToString();
     }
     private void Show( Route _route )
     {
       if ( _route == null )
         return;
-      m_RouteLabel.Text = _route.Tytuł;
-      m_ControlState.RouteID = _route.Identyfikator.IntToString();
+      m_RouteLabel.Text = _route.Title;
+      m_ControlState.RouteID = _route.Id.IntToString();
     }
     private void Show( Partner _partner )
     {
       if ( _partner == null )
         return;
       m_PartnerHeaderLabel.Text = m_LabetTextLike_Vendor;
-      m_PartnerLabel.Text = _partner.Tytuł;
-      m_ControlState.PartnerID = _partner.Identyfikator.IntToString();
+      m_PartnerLabel.Text = _partner.Title;
+      m_ControlState.PartnerID = _partner.Id.IntToString();
     }
     private void Show( SecurityEscortCatalog _security )
     {
       m_SecurityEscortHeaderLabel.Text = m_LabetTextLike_SecurityEscort;
       if ( _security == null )
         return;
-      m_SecurityEscortLabel.Text = _security.Tytuł;
-      m_ControlState.SecurityCatalogID = _security.Identyfikator.IntToString();
+      m_SecurityEscortLabel.Text = _security.Title;
+      m_ControlState.SecurityCatalogID = _security.Id.IntToString();
       m_SecurityRequiredChecbox.Checked = true;
     }
     private void Show( TranspotUnit _unitType )
     {
       if ( _unitType == null )
         return;
-      SelectDropdown( m_TransportUnitTypeDropDownList, _unitType.Identyfikator.Value, -1 );
+      SelectDropdown( m_TransportUnitTypeDropDownList, _unitType.Id.Value, -1 );
     }
     private void SelectDropdown( DropDownList _list, int _value, int _default )
     {
@@ -727,7 +727,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           _checkPoint = "LoadDescription";
           LoadDescription _ld = new LoadDescription()
           {
-            Tytuł = m_DocumentTextBox.Text,
+            Title = m_DocumentTextBox.Text,
             DeliveryNumber = m_DocumentTextBox.Text,
             LoadDescription2ShippingIndex = _sppng,
             LoadDescription2PartnerTitle = _sppng.PartnerTitle
@@ -892,7 +892,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _rsult.AddLabel( m_PartnerHeaderLabel.Text );
         return;
       }
-      if ( ( _sipping.PartnerTitle != null ) && ( m_ControlState.PartnerID.String2Int() == _sipping.PartnerTitle.Identyfikator.Value ) )
+      if ( ( _sipping.PartnerTitle != null ) && ( m_ControlState.PartnerID.String2Int() == _sipping.PartnerTitle.Id.Value ) )
         return;
       _sipping.PartnerTitle = Element.GetAtIndex( _EDC.Partner, m_ControlState.PartnerID );
     }
@@ -1044,7 +1044,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         case InterfaceState.ViewState:
         case InterfaceState.EditState:
-          m_DocumentTextBox.Text = _shppng.Tytuł;
+          m_DocumentTextBox.Text = _shppng.Title;
           break;
         case InterfaceState.NewState:
         default:
@@ -1071,7 +1071,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         case InterfaceState.ViewState:
         case InterfaceState.EditState:
-          m_DocumentTextBox.Text = _shppng.Tytuł;
+          m_DocumentTextBox.Text = _shppng.Title;
           break;
         case InterfaceState.NewState:
         default:
@@ -1101,7 +1101,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
         case InterfaceState.NewState:
         default:
-          m_DocumentTextBox.Text = _shppng.Tytuł;
+          m_DocumentTextBox.Text = _shppng.Title;
           break;
       }
     }
@@ -1128,7 +1128,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
         case InterfaceState.NewState:
         default:
-          m_DocumentTextBox.Text = _shppng.Tytuł;
+          m_DocumentTextBox.Text = _shppng.Title;
           break;
       }
     }
@@ -1151,7 +1151,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         case InterfaceState.EditState:
         case InterfaceState.NewState:
         default:
-          m_DocumentTextBox.Text = _shppng.Tytuł;
+          m_DocumentTextBox.Text = _shppng.Title;
           break;
       }
     }

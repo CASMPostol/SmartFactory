@@ -36,7 +36,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       {
         using ( EntitiesDataContext EDC = new EntitiesDataContext( m_OnWorkflowActivated_WorkflowProperties.SiteUrl ) )
         {
-          Anons _entry = new Anons() { Tytuł = _source, Treść = String.Format( "ReportExceptionTemplate".GetLocalizedString(), ex.Message ), Wygasa = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) };
+          Anons _entry = new Anons() { Title = _source, Body = String.Format( "ReportExceptionTemplate".GetLocalizedString(), ex.Message ), Expires = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) };
           EDC.EventLogList.InsertOnSubmit( _entry );
           EDC.SubmitChanges();
         }
@@ -68,7 +68,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         AlarmPriority = _priority,
         AlarmsAndEventsList2Shipping = _sh,
         AlarmsAndEventsList2PartnerTitle = _principal,
-        Tytuł = _sh.Title(),
+        Title = _sh.Title(),
       };
       EDC.AlarmsAndEvents.InsertOnSubmit( _ae );
     }
@@ -208,7 +208,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           {
             CPRDate = sp.StartTime.Value.Date,
             CPR2PartnerTitle = sp.PartnerTitle,
-            Tytuł = sp.PartnerTitle.Title(),
+            Title = sp.PartnerTitle.Title(),
             CPRNumberDelayed = 0,
             CPRNumberDelayed1h = 0,
             CPRNumberNotShowingUp = 0,
@@ -300,7 +300,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         }
         _sp.ShippingCarrierTitle = _sp.Shipping2RouteTitle == null ? String.Empty.NotAvailable() : _sp.Shipping2RouteTitle.CarrierTitle.Title();
         Currency _defCurrency = ( from Currency _cu in EDC.Currency
-                                  where !String.IsNullOrEmpty( _cu.Tytuł ) && _cu.Tytuł.ToUpper().Contains( CommonDefinition.DefaultCurrency )
+                                  where !String.IsNullOrEmpty( _cu.Title ) && _cu.Title.ToUpper().Contains( CommonDefinition.DefaultCurrency )
                                   select _cu ).FirstOrDefault();
         _sp.Shipping2Currency4CostsPerKU = _defCurrency;
         //Costs calculation
@@ -484,7 +484,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       {
         EmailType = _etype,
         Role = _role,
-        ShippmentID = _sp.Identyfikator.Value,
+        ShippmentID = _sp.Id.Value,
         URL = this.m_OnWorkflowActivated_WorkflowProperties.Site.Url
       };
       _Operarion2Do.Add( _ced );

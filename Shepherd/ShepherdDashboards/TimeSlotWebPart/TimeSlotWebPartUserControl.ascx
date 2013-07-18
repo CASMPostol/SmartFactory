@@ -14,7 +14,7 @@
   <asp:TableRow runat="server">
     <asp:TableCell runat="server">
       <asp:DropDownList CssClass="DropDown" ID="m_WarehouseDropDownList" runat="server"
-        Width="100%" DataTextField="Tytuł" DataValueField="Identyfikator" AutoPostBack="true">
+        Width="100%" DataTextField="Title" DataValueField="Id" AutoPostBack="true">
       </asp:DropDownList>
     </asp:TableCell>
   </asp:TableRow>

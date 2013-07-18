@@ -245,7 +245,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     }
     private void Show( Trailer _drv )
     {
-      m_TrailerTitle.Text = _drv.Tytuł;
+      m_TrailerTitle.Text = _drv.Title;
       m_Comments.Text = _drv.AdditionalComments;
     }
     private LocalStateMachineEngine.ActionResult Update()
@@ -272,7 +272,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
       _itm.AdditionalComments = m_Comments.Text;
       if ( m_TrailerTitle.Text.IsNullOrEmpty() )
           return LocalStateMachineEngine.ActionResult.NotValidated(m_TrailerNameLabel.Text + "MustBeProvided".GetShepherdLocalizedString());
-      _itm.Tytuł = m_TrailerTitle.Text;
+      _itm.Title = m_TrailerTitle.Text;
       return LocalStateMachineEngine.ActionResult.Success;
     }
     private LocalStateMachineEngine.ActionResult Create()

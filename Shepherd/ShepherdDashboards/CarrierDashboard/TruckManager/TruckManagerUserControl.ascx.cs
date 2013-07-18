@@ -247,7 +247,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
     }
     private void Show( Truck _item )
     {
-      m_TruckTitle.Text = _item.Tytuł;
+      m_TruckTitle.Text = _item.Title;
       string _id = ( (int)_item.VehicleType.GetValueOrDefault( VehicleType.None ) ).ToString();
       m_VehicleTypeSelect( _item.VehicleType.GetValueOrDefault( VehicleType.None ) );
       m_Comments.Text = _item.AdditionalComments;
@@ -276,7 +276,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
       _drv.AdditionalComments = m_Comments.Text;
       if ( m_TruckTitle.Text.IsNullOrEmpty() )
           return LocalStateMachineEngine.ActionResult.NotValidated(m_TruckNameLabel.Text + "MustBeProvided".GetShepherdLocalizedString());
-      _drv.Tytuł = m_TruckTitle.Text;
+      _drv.Title = m_TruckTitle.Text;
       if ( m_VehicleType.SelectedIndex < 0 )
           return LocalStateMachineEngine.ActionResult.NotValidated(m_VehicleTypeLabel.Text + "MustBeProvided".GetShepherdLocalizedString());
       _drv.VehicleType = (VehicleType)m_VehicleType.SelectedValue.String2Int().GetValueOrDefault( 0 );

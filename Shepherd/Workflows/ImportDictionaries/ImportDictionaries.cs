@@ -60,7 +60,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries
         {TimeSlotsTemplateStartHour._15, TimeSlotsTemplateEndHour._16}, {TimeSlotsTemplateStartHour._16, TimeSlotsTemplateEndHour._17}, {TimeSlotsTemplateStartHour._17, TimeSlotsTemplateEndHour._18}, {TimeSlotsTemplateStartHour._18, TimeSlotsTemplateEndHour._19}, {TimeSlotsTemplateStartHour._19, TimeSlotsTemplateEndHour._20},
         {TimeSlotsTemplateStartHour._20, TimeSlotsTemplateEndHour._21}, {TimeSlotsTemplateStartHour._21, TimeSlotsTemplateEndHour._22}, {TimeSlotsTemplateStartHour._22, TimeSlotsTemplateEndHour._23}, {TimeSlotsTemplateStartHour._23, TimeSlotsTemplateEndHour._0}
       };
-      ScheduleTemplate _schedule = new ScheduleTemplate() { ShippingPointLookupTitle = _sp, Tytuł = _sp.Title() + " All day schedule." };
+      ScheduleTemplate _schedule = new ScheduleTemplate() { ShippingPointLookupTitle = _sp, Title = _sp.Title() + " All day schedule." };
       _EDC.ScheduleTemplate.InsertOnSubmit(_schedule);
       _EDC.SubmitChanges();
       List<TimeSlotsTemplateDay > _days = new List<TimeSlotsTemplateDay>() { { TimeSlotsTemplateDay.Friday }, { TimeSlotsTemplateDay.Monday }, { TimeSlotsTemplateDay.Saturday }, { TimeSlotsTemplateDay.Sunday }, { TimeSlotsTemplateDay.Thursday }, { TimeSlotsTemplateDay.Tuesday }, { TimeSlotsTemplateDay.Wednesday } }; 

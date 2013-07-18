@@ -119,7 +119,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         if (_prt.ServiceType.Value != ServiceType.SecurityEscortProvider)
           CraeteTrailer(_EDC, _prt, ref _trailerId, _update);
         _EDC.SubmitChanges();
-        _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _prt.Tytuł)));
+        _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _prt.Title)));
       }
     }
     private void CraeteTrucks(EntitiesDataContext _EDC, Partner _prt, ref short _truckId, UpdateToolStripEvent _update)
@@ -133,7 +133,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       for (int i = 0; i < 2; i++)
       {
         string _tm = String.Format("Truck {0}", _truckId++);
-        Truck _trck = new Truck() { Tytuł = _tm, VehicleType = _vt, Truck2PartnerTitle = _prt };
+        Truck _trck = new Truck() { Title = _tm, VehicleType = _vt, Truck2PartnerTitle = _prt };
         _EDC.Truck.InsertOnSubmit(_trck);
         _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _tm)));
       }
@@ -144,7 +144,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       for (int i = 0; i < 2; i++)
       {
         string _tm = String.Format("Trailer {0}", _trailerId++);
-        Trailer _trck = new Trailer() { Tytuł = _tm, Trailer2PartnerTitle = _prt, };
+        Trailer _trck = new Trailer() { Title = _tm, Trailer2PartnerTitle = _prt, };
         _EDC.Trailer.InsertOnSubmit(_trck);
         _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _tm)));
       }
@@ -155,7 +155,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       for (int i = 0; i < 2; i++)
       {
         string _tm = String.Format("Driver {0}", _driverId++);
-        Driver _drv = new Driver() { Tytuł = _tm, Driver2PartnerTitle = _prt, IdentityDocumentNumber = "IdentityDocumentNumber" };
+        Driver _drv = new Driver() { Title= _tm, Driver2PartnerTitle = _prt, IdentityDocumentNumber = "IdentityDocumentNumber" };
         _EDC.Driver.InsertOnSubmit(_drv);
         _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _tm)));
       }

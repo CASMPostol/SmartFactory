@@ -52,7 +52,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
         using ( EntitiesDataContext _EDC = new EntitiesDataContext( workflowProperties.SiteUrl ) )
         {
           Shipping _sp = ( from idx in _EDC.Shipping
-                           where idx.Identyfikator == workflowProperties.ItemId
+                           where idx.Id == workflowProperties.ItemId
                            select idx ).First();
           if ( !_sp.IsOutbound.Value )
           {
@@ -60,17 +60,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
             return;
           }
           _stt = "Shipping";
-          _spTitle = _sp.Tytuł;
+          _spTitle = _sp.Title;
           SPDocumentLibrary _lib = (SPDocumentLibrary)workflowProperties.Web.Lists[ CommonDefinition.SealProtocolLibraryTitle ];
           _stt = "SPDocumentLibrary";
           SPFile _teml = workflowProperties.Web.GetFile( _lib.DocumentTemplateUrl );
-          string _fname = String.Format( "SealProtocolFileName".GetLocalizedString(), _sp.Identyfikator.ToString() );
+          string _fname = String.Format( "SealProtocolFileName".GetLocalizedString(), _sp.Id.ToString() );
           SPFile _docFile = OpenXMLHelpers.AddDocument2Collection( _teml, _lib.RootFolder.Files, _fname );
           _newFileName = _docFile.Name;
           _stt = "_doc";
           int _docId = (int)_docFile.Item.ID;
           SealProtocol _sprt = ( from idx in _EDC.SealProtocolLibrary
-                                 where idx.Identyfikator == _docId
+                                 where idx.Id == _docId
                                  select idx ).First();
           Dictionary<TeamMembers, string> _team = GetTeamData( _sp );
           _sprt.SealProtocol1stDriver = _team[ TeamMembers._1stDriver ];
@@ -90,7 +90,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
           _sp.SecuritySealProtocolIndex = _sprt;
           _sprt.SealProtocolTrailerNo = _team[ TeamMembers.TrailerNo ];
           _sprt.SealProtocolTruckNo = _team[ TeamMembers.TruckNo ];
-          _sprt.Tytuł = String.Format( "Security Seal & Signature Protocol SSP-3{0, 5}", _sprt.Identyfikator );
+          _sprt.Title = String.Format( "Security Seal & Signature Protocol SSP-3{0, 5}", _sprt.Id );
           _sprt.SealProtocolWarehouse = _sp.Shipping2WarehouseTitle == null ? String.Empty.NotAvailable() : _sp.Shipping2WarehouseTitle.WarehouseAddress.NotAvailable();
           _stt = "WarehouseAddress ";
           _EDC.SubmitChanges();
