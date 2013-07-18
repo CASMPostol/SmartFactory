@@ -35,8 +35,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     {
       this.AccountBalance = data.CommonAccountData.NetMass;
       this.Batch = data.CommonAccountData.BatchId;
-      this.ConsentPeriod = data.ConsentLookup.ConsentPeriod;// To be removed
-      //this.CWL_2Clearence = clearence; //TODO - the column must be defined 
+      this.ConsentPeriod = 0; //data.ConsentLookup.ConsentDate;//TODO To be nodified 
+      
+      //this.CWL_2Clearence = clearence; //TODO must be added - the column must be defined 
       this.ClosingDate = Extensions.DateTimeNull;
       this.Currency = "PLN";
       this.CWL_CW2ConsentTitle = data.ConsentLookup;
@@ -59,6 +60,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.Title = "-- creating -- ";
       this.Units = data.Units;
       this.ValidToDate = data.ValidToDate;
+      this.ValidFromDate = new Nullable<DateTime>(); //TODO remove
+
       //Certificate
       this.CW_CertificateOfOrgin = data.CW_CertificateOfOrgin;
       this.CW_CertificateOfAuthenticity = data.CW_CertificateOfAuthenticity;
