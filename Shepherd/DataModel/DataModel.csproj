@@ -82,6 +82,8 @@
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Entities\Entities.partial.cs" />
     <Compile Include="Entities\EntitiesDataDictionary.cs" />
+    <Compile Include="Entities\SheepingSubstateMachine\Context.cs" />
+    <Compile Include="Entities\SheepingSubstateMachine\IContext.cs" />
     <Compile Include="Entities\Shipping.cs" />
     <Compile Include="Entities\TimeSlotTimeSlot.cs" />
     <Compile Include="GlobalSuppressions.cs" />
