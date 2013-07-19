@@ -4091,7 +4091,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 			this._partnerTitle.OnChanged += new System.EventHandler(this.OnPartnerTitleChanged);
 			this._partnerTitle.OnChanging += new System.EventHandler(this.OnPartnerTitleChanging);
 			this._shipping2WarehouseTitle = new Microsoft.SharePoint.Linq.EntityRef<Warehouse>();
-			this._shipping2WarehouseTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnShipping2WarehouseTitleSync);
 			this._shipping2WarehouseTitle.OnChanged += new System.EventHandler(this.OnShipping2WarehouseTitleChanged);
 			this._shipping2WarehouseTitle.OnChanging += new System.EventHandler(this.OnShipping2WarehouseTitleChanging);
 			this._truckTitle = new Microsoft.SharePoint.Linq.EntityRef<Truck>();
@@ -5000,14 +4999,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 			this.OnPropertyChanged("Shipping2WarehouseTitle");
 		}
 		
-		private void OnShipping2WarehouseTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping.Add(this);
-			}
-			else {
-				e.Item.Shipping.Remove(this);
-			}
-		}
 		
 		private void OnTruckTitleChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("TruckTitle", this._truckTitle.Clone());
@@ -5970,15 +5961,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2WarehouseTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
-			get {
-				return this._shipping;
-			}
-			set {
-				this._shipping.Assign(value);
-			}
-		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="WarehouseTitle", Storage="_shippingPoint", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping Point")]
 		public Microsoft.SharePoint.Linq.EntitySet<ShippingPoint> ShippingPoint {
