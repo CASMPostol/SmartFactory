@@ -37,17 +37,18 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     #region properties
     internal CommonAccountData CommonAccountData { get; private set; }
     internal DateTime? EntryDate { get; private set; }
+    //lookup columns.
     internal Clearence ClearenceLookup { get; private set; }
     internal Consent ConsentLookup { get; private set; }
     internal Vendor VendorLookup { get; private set; }
-    //internal Vendor  
-    internal double? CWMassPerPackage { get { return CWQuantity / CWPackageUnits; } }
-    //Good descriptionc
+    internal PCNCode PCNTariffCodeLookup { get; set; }
+    //from good descriptions.
     internal double? CWQuantity { get; private set; }
     internal string Units { get; private set; }
     internal double? CWPackageKg { get { return CommonAccountData.GrossMass - CWQuantity; } }
     internal double? CWPackageUnits { get; private set; }
-    //from Required documents.
+    internal double? CWMassPerPackage { get { return CWQuantity / CWPackageUnits; } }
+    //from required documents.
     internal string CW_CertificateOfOrgin { get; private set; }
     internal string CW_CertificateOfAuthenticity { get; private set; }
     internal DateTime? CW_CODate { get; private set; }
@@ -75,15 +76,19 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
             string _msg = "CW record with the same SAD document number: {0} exist";
             throw new CreateCWAccountException( String.Format( _msg, accountData.DocumentNo ) );
           }
-          _at = "ProcessCustomsMessage";
+          _at = "CommonAccountData";
           this.CommonAccountData = accountData;
-          _at = "GetAtIndex<Clearence>";
+          _at = "ClearenceLookup";
           this.ClearenceLookup = Element.GetAtIndex<Clearence>( _edc.Clearence, accountData.ClearenceLookup );
-          _at = "GetAtIndex<Consent>";
+          _at = "ConsentLookup";
           this.ConsentLookup = Element.GetAtIndex<Consent>( _edc.Consent, CommonAccountData.ConsentLookup );
+          _at = "VendorLookup";
+          VendorLookup = Vendor.FirstOrDefault( _edc );
+          _at = "PCNTariffCodeLookup";
+          PCNTariffCodeLookup = Element.GetAtIndex<PCNCode>( _edc.PCNCode, accountData.PCNTariffCodeLookup );
           _at = "AnalizeGoodsDescription";
-          VendorLookup = Vendor.FirstOrDefault( _edc ); 
           AnalizeGoodsDescription( _edc, ClearenceLookup.Clearence2SadGoodID.GoodsDescription, warnings );
+          _at = "AnalizeGoodsDescription";
           AnalyzeCertificates( _edc, ClearenceLookup.Clearence2SadGoodID.SADRequiredDocuments, warnings );
           this.EntryDate = DateTime.Today;
           //TODO Check warnnings before creation. 
