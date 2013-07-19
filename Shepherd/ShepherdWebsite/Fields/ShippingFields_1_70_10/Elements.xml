@@ -70,19 +70,25 @@
     />
   <Field
    Type="Choice"
-   DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Substate"
+   DisplayName="$Resources:CASSmartFactoryShepherd,CAS_State2"
    ID="{86FEC976-7423-455B-91F8-661EAA228C11}"
    Format="Dropdown"
    BaseType="Text"
-   Name="ShippingSubstate"
+   Name="ShippingState2"
    Group="CAS Smart Factory Shepherd">
-    <Default>None</Default>
+    <Default>Creation</Default>
     <CHOICES>
-      <CHOICE>None</CHOICE>
-      <CHOICE>Waiting</CHOICE>
-      <CHOICE>Started</CHOICE>
+      <CHOICE>Cancelation</CHOICE>
+      <CHOICE>Canceled</CHOICE>
       <CHOICE>Completed</CHOICE>
+      <CHOICE>Confirmed</CHOICE>
+      <CHOICE>Creation</CHOICE>
+      <CHOICE>Delayed</CHOICE>
       <CHOICE>Left</CHOICE>
+      <CHOICE>Started</CHOICE>
+      <CHOICE>Waiting</CHOICE>
+      <CHOICE>WaitingForCarrierData</CHOICE>
+      <CHOICE>WaitingForConfirmation</CHOICE>
     </CHOICES>
   </Field>
 </Elements>

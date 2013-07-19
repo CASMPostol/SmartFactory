@@ -819,7 +819,7 @@
   <data name="CAS_CommentsWebPart" xml:space="preserve">
     <value>Dodaj komentarz</value>
   </data>
-  <data name="CAS_Substate" xml:space="preserve">
-    <value>Podstatus</value>
+  <data name="CAS_State2" xml:space="preserve">
+    <value>Stan</value>
   </data>
 </root>

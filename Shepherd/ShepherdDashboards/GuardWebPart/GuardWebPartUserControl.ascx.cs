@@ -180,7 +180,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
             CurrentShipping.ShippingDuration = _ts.Duration();
             CurrentShipping.ShippingState = ShippingState.Creation;
             CurrentShipping.CalculateState();
-            CurrentShipping.Substate = Substate.None0;
             EDC.SubmitChanges();
             break;
           case ShippingState.Confirmed:
@@ -219,7 +218,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
               return;
             CurrentShipping.TruckAwaiting = true;
             CurrentShipping.ArrivalTime = DateTime.Now;
-            CurrentShipping.Substate = Substate.Waiting;
             EDC.SubmitChanges();
             break;
           case ShippingState.Underway:
@@ -247,7 +245,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           case ShippingState.Underway:
             CurrentShipping.EndTime = DateTime.Now;
             CurrentShipping.ShippingState = ShippingState.Completed;
-            CurrentShipping.Substate = Substate.Left;
             CurrentShipping.ShippingDuration = (CurrentShipping.EndTime.Value - CurrentShipping.StartTime.Value).TotalMinutes;
             EDC.SubmitChanges();
             break;
@@ -286,7 +283,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
             CurrentShipping.StartTime = DateTime.Now;
             CurrentShipping.WarehouseStartTime = DateTime.Now;
             CurrentShipping.ShippingState = ShippingState.Underway;
-            CurrentShipping.Substate = Substate.Started;
             CurrentShipping.TruckAwaiting = true;
             EDC.SubmitChanges();
             break;
