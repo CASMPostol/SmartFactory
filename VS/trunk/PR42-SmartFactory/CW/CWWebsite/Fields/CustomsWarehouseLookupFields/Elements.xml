@@ -162,7 +162,7 @@
     Name="CWL_CW2BinCardTitle"
     ID="{AC784B2F-C1D9-4CA4-A9AB-DB59732DA4D0}"
     Type="Lookup"
-    List="Lists/BinCardList"
+    List="Lists/BinCardLibrary"
     ShowField="Title"
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
