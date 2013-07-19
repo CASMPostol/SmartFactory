@@ -5,6 +5,7 @@
   <!--<List Name="Balance IPR" />-->
   <!--<List Name="Batch" />-->
   <!--<List Name="Batch Library" />-->
+  <List Name="Bin Card Library" />
   <List Name="Clearence" />
   <List Name="Consent" />
   <List Name="Customs Union" />
@@ -289,6 +290,7 @@
     <Column Name="CWL_CW2CWLibraryID" Member="CWL_CW2CWLibraryID" />
     <Column Name="CWL_CW2VendorTitle" Member="CWL_CW2VendorTitle" />
     <Column Name="CWL_CW2ClearenceID" Member="CWL_CW2ClearenceID" />
+    <Column Name="CWL_CW2BinCardTitle" Member="CWL_CW2BinCardTitle" />
   </ContentType>
   <!--<ContentType Name="DisposalDeclaration" Class="DisposalDeclaration">
     <Column Name="ContentType" Member="ContentType" />
@@ -784,6 +786,13 @@
     <Column Name="Modified_x0020_By" Member="ModifiedBy" />
     <Column Name="Created_x0020_By" Member="CreatedBy" />
   </ContentType>-->
+  <ContentType Name="BinCardLib" Class="BinCardLib">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="Modified_x0020_By" Member="ModifiedBy" />
+    <Column Name="Created_x0020_By" Member="CreatedBy" />
+  </ContentType>
   <ContentType Name="ActivityLogCT" Class="ActivityLogCT">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
