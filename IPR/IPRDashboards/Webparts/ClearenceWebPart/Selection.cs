@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         Quantity = _dspslx.SettledQuantity.Value;
         Status = _dspslx.DisposalStatus.Value.ToString();
         Created = _dspslx.Created.Value;
-        ID = ( -_dspslx.Identyfikator.Value ).ToString();
+        ID = ( -_dspslx.Id.Value ).ToString();
       }
       internal SelectionTableRowWraper( IPRClass _iprx )
       {
@@ -34,7 +34,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         Quantity = _iprx.TobaccoNotAllocated.Value;
         Status = "IPR Material";
         Created = _iprx.CustomsDebtDate.Value;
-        ID = _iprx.Identyfikator.Value.ToString();
+        ID = _iprx.Id.Value.ToString();
       }
       #endregion
 
@@ -51,7 +51,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       internal string Batch { get; set; }
       internal string SKU { get; set; }
       internal string ID { get; set; }
-      internal int Identyfikator
+      internal int Id
       {
         get { return Math.Abs( ID.String2Int().Value ); }
       }
@@ -144,7 +144,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     ///</summary>
     public partial class SelectionTableRow
     {
-      internal int Identyfikator
+      internal int Id
       {
         get { return Math.Abs( ID.String2Int().Value ); }
       }

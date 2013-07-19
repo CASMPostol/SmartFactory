@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         if ( _current.JSOXLibraryReadOnly.Value )
           throw new ApplicationException( "The record is read only and the report must not be updated." );
         bool _validated = _current.UpdateBalanceReport( _edc );
-        string _documentName = Settings.RequestForBalanceSheetDocumentName( _edc, _current.Identyfikator.Value );
+        string _documentName = Settings.RequestForBalanceSheetDocumentName( _edc, _current.Id.Value );
         _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent( _current, _documentName, !_validated );
         _current.JSOXLibraryReadOnly = true;
         _edc.SubmitChanges();

@@ -28,7 +28,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal void UpdateExportedDisposals( Entities edc )
     {
       IQueryable<IGrouping<int, Disposal>> _dspslsGroups = from _dsx in this.Disposal
-                                                           let _midx = _dsx.Disposal2MaterialIndex.Identyfikator.Value
+                                                           let _midx = _dsx.Disposal2MaterialIndex.Id.Value
                                                            group _dsx by _midx;
       foreach ( IGrouping<int, Disposal> _gx in _dspslsGroups )
       {

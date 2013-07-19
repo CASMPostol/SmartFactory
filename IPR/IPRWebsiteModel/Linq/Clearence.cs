@@ -120,7 +120,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _quantity = " --- ";
       string _ClearanceTitleFormat = Settings.GetParameter( entities, SettingsEntry.ClearanceTitleFormat );
       Title = String.Format( _ClearanceTitleFormat, this.ProcedureCode, Entities.ToString( ClearenceProcedure.GetValueOrDefault( Linq.ClearenceProcedure.Invalid ) ),
-                             ReferenceNumber.NotAvailable(), _quantity, Identyfikator.GetValueOrDefault( -999 ) );
+                             ReferenceNumber.NotAvailable(), _quantity, Id.GetValueOrDefault( -999 ) );
     }
     #endregion
 

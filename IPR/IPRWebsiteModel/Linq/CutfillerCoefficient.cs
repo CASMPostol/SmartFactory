@@ -11,7 +11,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       try
       {
-        return (from idx in edc.CutfillerCoefficient orderby idx.Wersja select idx).First();
+        return (from idx in edc.CutfillerCoefficient orderby idx.Version select idx).First();
       }
       catch (System.Exception ex)
       {

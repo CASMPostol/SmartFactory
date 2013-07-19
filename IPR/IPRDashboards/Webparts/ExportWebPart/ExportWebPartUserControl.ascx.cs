@@ -174,7 +174,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         set
         {
           p_InvoiceContent = value;
-          InvoiceContentID = value == null ? String.Empty : value.Identyfikator.ToString();
+          InvoiceContentID = value == null ? String.Empty : value.Id.ToString();
         }
       }
       internal InvoiceLib Invoice
@@ -188,7 +188,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         set
         {
           p_InvoiceLib = value;
-          InvoiceID = value == null ? String.Empty : value.Identyfikator.ToString();
+          InvoiceID = value == null ? String.Empty : value.Id.ToString();
         }
       }
       internal Batch Batch
@@ -202,7 +202,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         set
         {
           p_Batch = value;
-          BatchID = value == null ? String.Empty : value.Identyfikator.ToString();
+          BatchID = value == null ? String.Empty : value.Id.ToString();
         }
       }
       internal WebsiteModel.Linq.Batch InvoiceBatch
@@ -571,7 +571,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       m_ControlState.Invoice.InvoiceLibraryStatus = true;
       Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, "FinishedGoodsExport", ClearenceProcedure._3151 );
-      string _masterDocumentName = Settings.FinishedGoodsExportFormFileName( m_DataContextManagement.DataContext, _newClearance.Identyfikator.Value );
+      string _masterDocumentName = Settings.FinishedGoodsExportFormFileName( m_DataContextManagement.DataContext, _newClearance.Id.Value );
       CigaretteExportFormCollection _cefc = FinishedGoodsFormFactory.GetFormContent( m_DataContextManagement.DataContext, m_ControlState.Invoice, _newClearance, _masterDocumentName );
       int _sadConsignmentIdentifier = SPDocumentFactory.Prepare( SPContext.Current.Web, _cefc, _masterDocumentName );
       SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );

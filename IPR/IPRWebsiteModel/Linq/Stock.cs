@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return ( from _stcx in edc.StockLibrary
                let _notAssociated = _stcx.Stock2JSOXLibraryIndex == null
                where _notAssociated
-               orderby _stcx.Identyfikator.Value descending
+               orderby _stcx.Id.Value descending
                select _stcx ).FirstOrDefault<StockLib>();
     }
     internal void GetInventory( Entities edc, Balance.StockDictionary balanceStock )
@@ -96,7 +96,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Dictionary<string, Batch> _ret = new Dictionary<string, Batch>();
       List<Batch> _list = ( from _btx in edc.Batch
                             where _btx.FGQuantityAvailable.Value > 0
-                            orderby _btx.Identyfikator.Value descending
+                            orderby _btx.Id.Value descending
                             select _btx ).ToList<Batch>();
       foreach ( Batch _bidx in from _btx in _list where !_btx.StockEntry.Any( x => x.StockLibraryIndex == library ) select _btx )
       {

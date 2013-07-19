@@ -22,10 +22,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       : this()
     {
       Title = title;
-      Treść = message;
+      Body = message;
       this.ActivityPriority = level.ToString();
       this.ActivitySource = source;
-      this.Wygasa = DateTime.Now + new TimeSpan( 2, 0, 0, 0 );
+      this.Expires = DateTime.Now + new TimeSpan( 2, 0, 0, 0 );
     }
     /// <summary>
     /// Writes an entry with the given message text and application-defined event identifier to the event log list. 

@@ -24,11 +24,11 @@
       <FileName>Entities\Entities.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CAS.SmartFactory.IPR.Entities.Dokument" Collapsed="true">
+  <Class Name="CAS.SmartFactory.IPR.Entities.Document" Collapsed="true">
     <Position X="7" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgBAAAAAAAAAAAAQAEBAAAQACAAAAAAAABwAAAAAAA=</HashCode>
-      <FileName>Entities\Dokument.cs</FileName>
+      <FileName>Entities\Document.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

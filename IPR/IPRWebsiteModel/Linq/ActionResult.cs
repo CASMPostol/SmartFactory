@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         {
           foreach ( string _msg in this )
           {
-            ActivityLogCT _entry = new ActivityLogCT() { Title = "ReportActionResult", Treść = _msg, Wygasa = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) };
+            ActivityLogCT _entry = new ActivityLogCT() { Title = "ReportActionResult", Body = _msg, Expires = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) };
             _edc.ActivityLog.InsertOnSubmit( _entry );
           }
           _edc.SubmitChanges();

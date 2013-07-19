@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       try
       {
-        return ( from idx in edc.Waste where idx.ProductType == type orderby idx.Wersja descending select idx ).First();
+        return ( from idx in edc.Waste where idx.ProductType == type orderby idx.Version descending select idx ).First();
       }
       catch ( Exception ex )
       {

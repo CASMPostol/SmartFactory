@@ -41,7 +41,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
       string _at = "starting";
       try
       {
-        this.ClearenceLookup = clearence.Identyfikator.Value;
+        this.ClearenceLookup = clearence.Id.Value;
         DocumentNo = clearence.DocumentNo;
         DateTime _customsDebtDate = clearence.Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value;
         this.CustomsDebtDate = _customsDebtDate;
@@ -57,7 +57,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         _at = "AnalizeGoodsDescription";
         AnalizeGoodsDescription( edc, clearence.Clearence2SadGoodID.GoodsDescription ); //TODO to IPR
         _at = "PCN lookup filed";
-        PCNTariffCodeLookup = PCNCode.AddOrGet( edc, clearence.Clearence2SadGoodID.PCNTariffCode, TobaccoName ).Identyfikator.Value;
+        PCNTariffCodeLookup = PCNCode.AddOrGet( edc, clearence.Clearence2SadGoodID.PCNTariffCode, TobaccoName ).Id.Value;
       }
       catch ( InputDataValidationException )
       {
@@ -160,7 +160,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         _cnst = Consent.Find( edc, _nr );
         if ( _cnst == null )
           _cnst = CreateDefaultConsent( edc, _nr );
-        this.ConsentLookup = _cnst.Identyfikator.Value;
+        this.ConsentLookup = _cnst.Id.Value;
       }
       this.SetValidToDate( customsDebtDate + TimeSpan.FromDays( _cnst.ConsentPeriod.Value * m_DaysPerMath ) );
     }

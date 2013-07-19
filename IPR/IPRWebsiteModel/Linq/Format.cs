@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public static Format FindFormatLookup( string cigaretteLength, string filterSegmentLength, Entities edc )
     {
-      return ( from idx in edc.Format where idx.Match( cigaretteLength, filterSegmentLength ) orderby idx.Wersja descending select idx ).FirstOrDefault();
+      return ( from idx in edc.Format where idx.Match( cigaretteLength, filterSegmentLength ) orderby idx.Version descending select idx ).FirstOrDefault();
     }
     /// <summary>
     /// Gets the format lookup.
@@ -35,7 +35,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public static Format GetFormatLookup( string name, Entities edc )
     {
-      Format frmt = ( from idx in edc.Format where idx.Title.StartsWith( name ) orderby idx.Identyfikator descending, idx.Wersja descending select idx ).First();
+      Format frmt = ( from idx in edc.Format where idx.Title.StartsWith( name ) orderby idx.Id descending, idx.Version descending select idx ).First();
       return frmt;
     }
     private bool Match( string cigaretteLength, string filterSegmentLength )

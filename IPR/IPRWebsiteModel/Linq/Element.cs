@@ -21,7 +21,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// The ID property name
     /// </summary>
-    public const string IDPropertyName = "Identyfikator";
+    public const string IDPropertyName = "Id";
     /// <summary>
     /// The title property name
     /// </summary>
@@ -59,7 +59,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         return (
               from idx in _list
-              where idx.Identyfikator == _index.Value
+              where idx.Id == _index.Value
               select idx ).First();
       }
       catch ( Exception )
@@ -82,7 +82,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       try
       {
-        return ( from idx in list where idx.Identyfikator == index select idx ).First();
+        return ( from idx in list where idx.Id == index select idx ).First();
       }
       catch ( Exception )
       {
@@ -103,7 +103,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( !_index.HasValue )
         return null;
       return ( from idx in _list
-               where idx.Identyfikator == _index.Value
+               where idx.Id == _index.Value
                select idx ).FirstOrDefault();
     }
   } //Element

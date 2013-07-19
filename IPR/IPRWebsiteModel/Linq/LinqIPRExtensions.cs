@@ -41,7 +41,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         if ( invoice.InvoiceContent2BatchIndex.SKUIndex != null )
           _sku = invoice.InvoiceContent2BatchIndex.SKUIndex.SKU;
       }
-      invoice.Title = String.Format( _tmplt, invoice.Identyfikator.Value, invoice.InvoiceIndex.BillDoc, _sku, _batch );
+      invoice.Title = String.Format( _tmplt, invoice.Id.Value, invoice.InvoiceIndex.BillDoc, _sku, _batch );
     }
     public static bool Available( this Batch batch, double _nq )
     {
