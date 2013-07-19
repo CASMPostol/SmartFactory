@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return ( from _batchX in edc.Batch
                where _batchX.Batch0.Contains( batch ) && _batchX.BatchStatus != Linq.BatchStatus.Progress
-               orderby _batchX.Identyfikator.Value
+               orderby _batchX.Id.Value
                select _batchX ).FirstOrDefault();
     }
     /// <summary>
@@ -41,7 +41,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return ( from _batchX in edc.Batch
                where _batchX.Batch0.Contains( batch )
-               orderby _batchX.Identyfikator.Value descending
+               orderby _batchX.Id.Value descending
                select _batchX ).FirstOrDefault();
     }
     /// <summary>
@@ -81,25 +81,25 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       //Dependences
       Dust DustIndex = Linq.Dust.GetLookup( ProductType.Value, edc );
       BatchDustCooeficiency = DustIndex.DustRatio;
-      DustCooeficiencyVersion = DustIndex.Wersja;
+      DustCooeficiencyVersion = DustIndex.Version;
       SHMenthol SHMentholIndex = Linq.SHMenthol.GetLookup( ProductType.Value, edc );
       BatchSHCooeficiency = SHMentholIndex.SHMentholRatio;
-      SHCooeficiencyVersion = SHMentholIndex.Wersja;
+      SHCooeficiencyVersion = SHMentholIndex.Version;
       Waste WasteIndex = Linq.Waste.GetLookup( ProductType.Value, edc );
       BatchWasteCooeficiency = WasteIndex.WasteRatio;
-      WasteCooeficiencyVersion = WasteIndex.Wersja;
+      WasteCooeficiencyVersion = WasteIndex.Version;
       CutfillerCoefficient _cc = CutfillerCoefficient.GetLookup( edc );
       this.CFTProductivityNormMax = _cc.CFTProductivityNormMax;
       this.CFTProductivityNormMin = _cc.CFTProductivityNormMin;
       this.CFTProductivityRateMax = _cc.CFTProductivityRateMax;
       this.CFTProductivityRateMin = _cc.CFTProductivityRateMin;
-      this.CFTProductivityVersion = _cc.Wersja;
+      this.CFTProductivityVersion = _cc.Version;
       Usage _usage = Usage.GetLookup( SKUIndex.FormatIndex, edc );
       this.CTFUsageMax = _usage.CTFUsageMax;
       this.CTFUsageMin = _usage.CTFUsageMin;
       this.UsageMin = _usage.UsageMin;
       this.UsageMax = _usage.UsageMax;
-      this.UsageVersion = _usage.Wersja;
+      this.UsageVersion = _usage.Version;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
       //processing
       CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantity.Value, UsageMax.Value, UsageMin.Value );

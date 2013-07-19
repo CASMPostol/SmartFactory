@@ -19,7 +19,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return ( from idx in edc.SKU
                where idx.SKU.Contains( index )
-               orderby idx.Wersja descending
+               orderby idx.Version descending
                select idx ).FirstOrDefault();
     }
     /// <summary>

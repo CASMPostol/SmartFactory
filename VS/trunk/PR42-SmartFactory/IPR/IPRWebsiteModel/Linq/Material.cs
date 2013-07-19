@@ -169,7 +169,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             from _didx in this.Disposal
             let _ipr = _didx.Disposal2IPRIndex
             where _didx.CustomsStatus.Value == CustomsStatus.NotStarted && _didx.DisposalStatus.Value == status
-            orderby _ipr.Identyfikator ascending
+            orderby _ipr.Id ascending
             select _didx
         ).ToList();
     }
@@ -195,7 +195,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return;
       string _error = String.Format(
         "There are {0} kg of material {1}/Id={2} that cannot be found for invoice {3}/Content Id={4}.",
-        _quantity, this.Batch, this.Identyfikator, invoiceContent.InvoiceIndex.BillDoc, invoiceContent.Identyfikator.Value );
+        _quantity, this.Batch, this.Id, invoiceContent.InvoiceIndex.BillDoc, invoiceContent.Id.Value );
       throw new CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException( "internal error: it is imposible to mark as exported the material", "Material export`", _error, false );
     }
     public override string ToString()

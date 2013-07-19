@@ -472,7 +472,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       //remove from clearance
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyAdded )
       {
-        Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
+        Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Id );
         RemoveDisposalFromClearance( _edc, _dspsl );
       }
       //add to clearance
@@ -480,12 +480,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         if ( _row.Disposal )
         {
-          Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
+          Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Id );
           _dspsl.Disposal2ClearenceIndex = CurrentClearence;
         }
         else
         {
-          IPRClass _ipr = Element.GetAtIndex<IPRClass>( _edc.IPR, _row.Identyfikator );
+          IPRClass _ipr = Element.GetAtIndex<IPRClass>( _edc.IPR, _row.Id );
           _ipr.AddDisposal( _edc, Convert.ToDecimal( _row.Quantity ), CurrentClearence );
         }
       }
@@ -559,7 +559,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       try
       {
         Entities _edc = m_DataContextManagement.DataContext;
-        string _masterDocumentName = Settings.FinishedGoodsExportFormFileName( _edc, CurrentClearence.Identyfikator.Value );
+        string _masterDocumentName = Settings.FinishedGoodsExportFormFileName( _edc, CurrentClearence.Id.Value );
         int _sadConsignmentIdentifier = default( int );
         switch ( ToSelectedGroup( CurrentClearence.ProcedureCode ) )
         {
@@ -759,7 +759,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       set
       {
         _clearence = value;
-        m_ControlState.ClearanceID = value.Identyfikator.Value.ToString();
+        m_ControlState.ClearanceID = value.Id.Value.ToString();
         m_ControlState.ClearanceTitle = value.Title;
       }
     }

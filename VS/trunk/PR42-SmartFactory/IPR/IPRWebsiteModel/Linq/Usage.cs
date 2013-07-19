@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       try
       {
-        return (from idx in edc.Usage where idx.FormatIndex.Identyfikator == format.Identyfikator select idx).Aggregate((x, y) => (x.Wersja < y.Wersja ? y : x));
+        return (from idx in edc.Usage where idx.FormatIndex.Id == format.Id select idx).Aggregate((x, y) => (x.Version < y.Version ? y : x));
       }
       catch (Exception ex)
       {

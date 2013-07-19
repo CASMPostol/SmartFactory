@@ -140,7 +140,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       catch ( Exception _ex )
       {
         string _template = "Cannot finish Export of disposal {0} {1} because of internal error: {2} at: {3}";
-        throw GenericStateMachineEngine.ActionResult.Exception( _ex, String.Format( _template, this.Title, this.Identyfikator.Value, _ex.Message, _at ) );
+        throw GenericStateMachineEngine.ActionResult.Exception( _ex, String.Format( _template, this.Title, this.Id.Value, _ex.Message, _at ) );
       }
     }
     internal decimal CalculateRemainingQuantity()

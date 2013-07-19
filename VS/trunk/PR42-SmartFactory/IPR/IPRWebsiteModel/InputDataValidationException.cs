@@ -91,10 +91,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
       {
         string _title = "Input Data Validation Errors";
         string _msg = String.Format( "The import of the file {3} encountered a problem at operation <b>{0}</b> because of: {1}. List of {2} problems are reported.", ParamName, Message, m_Errors.Count, FileName );
-        _edc.ActivityLog.InsertOnSubmit( new ActivityLogCT() { Title = _title, Treść = _msg, Wygasa = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) } );
+        _edc.ActivityLog.InsertOnSubmit( new ActivityLogCT() { Title = _title, Body = _msg, Expires = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) } );
         foreach ( Warnning _err in m_Errors )
           //TODO use fatal flag
-          _edc.ActivityLog.InsertOnSubmit( new ActivityLogCT() { Title = _title, Treść = _err.Message, Wygasa = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) } );
+          _edc.ActivityLog.InsertOnSubmit( new ActivityLogCT() { Title = _title, Body = _err.Message, Expires = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) } );
         _edc.SubmitChanges();
       }
       //}

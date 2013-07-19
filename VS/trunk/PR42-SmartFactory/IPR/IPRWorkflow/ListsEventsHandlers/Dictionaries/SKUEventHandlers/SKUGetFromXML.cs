@@ -14,7 +14,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
   {
     #region public
     internal static void GetXmlContent
-      ( SKUXml xmlDocument, Entities edc, Dokument entry, ProgressChangedEventHandler progressChanged )
+      ( SKUXml xmlDocument, Entities edc, Document entry, ProgressChangedEventHandler progressChanged )
     {
       switch ( xmlDocument.Type )
       {
@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
             xmlDocument.GetMaterial(),
             edc,
             entry,
-            ( MaterialXml xml, Dokument lib, Entities context, List<String> warnings ) => { return SKUCigarette( (CigarettesMaterialxML)xml, lib, context, warnings ); },
+            ( MaterialXml xml, Document lib, Entities context, List<String> warnings ) => { return SKUCigarette( (CigarettesMaterialxML)xml, lib, context, warnings ); },
             progressChanged );
           break;
         case CAS.SmartFactory.xml.erp.SKU.SKUType.Cutfiller:
@@ -31,7 +31,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
             xmlDocument.GetMaterial(),
             edc,
             entry,
-            ( MaterialXml xml, Dokument lib, Entities context, List<String> warnings ) => { return SKUCutfiller( (CutfillerMaterialxML)xml, lib, context, warnings ); },
+            ( MaterialXml xml, Document lib, Entities context, List<String> warnings ) => { return SKUCutfiller( (CutfillerMaterialxML)xml, lib, context, warnings ); },
             progressChanged );
           break;
       }
@@ -39,9 +39,9 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
     #endregion
 
     #region private
-    private delegate SKUCommonPart CreateMaterialXml( MaterialXml xml, Dokument lib, Entities context, List<String> warnings );
+    private delegate SKUCommonPart CreateMaterialXml( MaterialXml xml, Document lib, Entities context, List<String> warnings );
     private static void GetXmlContent
-      ( MaterialXml[] material, Entities edc, Dokument parent, CreateMaterialXml creator, ProgressChangedEventHandler progressChanged )
+      ( MaterialXml[] material, Entities edc, Document parent, CreateMaterialXml creator, ProgressChangedEventHandler progressChanged )
     {
       List<SKUCommonPart> entities = new List<SKUCommonPart>();
       List<string> warnings = new List<string>();
@@ -80,7 +80,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
       string _pattern = "Finished content analysis, there are {0} entries, {1} new entries, {2} erroneous entries";
       ActivityLogCT.WriteEntry( "SKU Message Import", String.Format( _pattern, _entries, _newEntries, warnings.Count ), edc.Web );
     }
-    private static SKUCigarette SKUCigarette( CigarettesMaterialxML xmlDocument, Dokument parent, Entities edc, List<String> warnings )
+    private static SKUCigarette SKUCigarette( CigarettesMaterialxML xmlDocument, Document parent, Entities edc, List<String> warnings )
     {
       bool _menthol = xmlDocument.IsMenthol;
       SKUCigarette _ret = new SKUCigarette()
@@ -97,7 +97,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
       SKUGetFromXML.UpdateSKUCommonPart( _ret, xmlDocument, parent );
       return _ret;
     }
-    private static SKUCutfiller SKUCutfiller( CutfillerMaterialxML xmlDocument, Dokument parent, Entities edc, List<String> warnings )
+    private static SKUCutfiller SKUCutfiller( CutfillerMaterialxML xmlDocument, Document parent, Entities edc, List<String> warnings )
     {
       SKUCutfiller _ret = new SKUCutfiller()
       {
@@ -109,7 +109,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
       SKUGetFromXML.UpdateSKUCommonPart( _ret, xmlDocument, parent );
       return _ret;
     }
-    private static void UpdateSKUCommonPart( SKUCommonPart skuCommonPart, MaterialXml xml, Dokument parent )
+    private static void UpdateSKUCommonPart( SKUCommonPart skuCommonPart, MaterialXml xml, Document parent )
     {
       skuCommonPart.SKULibraryIndex = parent;
       skuCommonPart.SKU = xml.GetMaterial();

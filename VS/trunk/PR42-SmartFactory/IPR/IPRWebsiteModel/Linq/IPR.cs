@@ -65,7 +65,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     public void UpdateTitle()
     {
-      Title = String.Format( "IPR-{0:D4}{1:D6}", DateTime.Today.Year, Identyfikator.Value );
+      Title = String.Format( "IPR-{0:D4}{1:D6}", DateTime.Today.Year, Id.Value );
     }
     /// <summary>
     /// Reverts the withdraw.
@@ -99,7 +99,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       _dsp.Clearance = clearence;
       if ( quantity > 0 )
       {
-        string _msg = String.Format( "Cannot add Disposal to IPR  {0} because because the there is not material on tje IPR.", this.Identyfikator.Value );
+        string _msg = String.Format( "Cannot add Disposal to IPR  {0} because because the there is not material on tje IPR.", this.Id.Value );
         throw CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult.Exception
           ( new CAS.SharePoint.ApplicationError( "CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal", "_qunt > 0", _msg, null ), _msg );
       }

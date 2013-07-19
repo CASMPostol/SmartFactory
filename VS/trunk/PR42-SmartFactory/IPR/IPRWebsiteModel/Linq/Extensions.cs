@@ -37,7 +37,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     ///// <returns></returns>
     //public static Dokument FindTopMostDocumentLookup( this  EntityList<Dokument> library )
     //{
-    //  return ( from idx in library orderby idx.Identyfikator descending select idx ).FirstOrDefault();
+    //  return ( from idx in library orderby idx.Id descending select idx ).FirstOrDefault();
     //}
   }
 }

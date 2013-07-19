@@ -18,7 +18,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public static Consent Find( Entities edc, string consentNo )
     {
-      return ( from _cidx in edc.Consent where _cidx.Title.Trim().Equals( consentNo.Trim() ) orderby _cidx.Wersja descending select _cidx ).FirstOrDefault();
+      return ( from _cidx in edc.Consent where _cidx.Title.Trim().Equals( consentNo.Trim() ) orderby _cidx.Version descending select _cidx ).FirstOrDefault();
     }
     public enum CustomsProcess { ipr, cw };
     internal static Consent DefaultConsent( Entities edc, CustomsProcess process, string number )

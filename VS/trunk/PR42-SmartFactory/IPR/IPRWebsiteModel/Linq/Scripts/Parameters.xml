@@ -49,10 +49,6 @@
   <List Name="Waste" />
   <ExcludeOtherLists/>
   <!--<List Name="Web Part Gallery" />-->
-  <ContentType Name="Element" Class="Element">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-  </ContentType>
   <ContentType Name="StockEntry" Class="StockEntry">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
@@ -102,6 +98,7 @@
     <Column Name="Disposal2PCNPCN_sec" Member="Disposal2PCNPCN_sec" />
     <Column Name="ClearingType" Member="ClearingType" />
     <Column Name="Disposal2IPROGL_sec" Member="Disposal2IPROGL_sec" />
+    <Column Name="Disposal2IPRSKU_sec" Member="Disposal2IPRSKU_sec" />
     <Column Name="Disposal2IPRBatch_sec" Member="Disposal2IPRBatch_sec" />
     <Column Name="Disposal2ClearenceIndex" Member="Disposal2ClearenceIndex" />
     <Column Name="JSOXCustomsSummaryIndex" Member="JSOXCustomsSummaryIndex" />
@@ -672,5 +669,9 @@
     <Column Name="Expires" Member="Expires" />
     <Column Name="ActivityPriority" Member="ActivityPriority" />
     <Column Name="ActivitySource" Member="ActivitySource" />
+  </ContentType>
+  <ContentType Name="Item" Class="Element">
+    <Column Name="Title" Member="Title" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
   </ContentType>
 </Web>
