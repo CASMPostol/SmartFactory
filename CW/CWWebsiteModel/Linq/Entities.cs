@@ -971,9 +971,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _cWL_CW2ClearenceID;
 		
-		private System.Nullable<int> _cWL_CW2BinCardTitleId;
-		
-		private string _cWL_CW2BinCardTitleTitle;
+		private Microsoft.SharePoint.Linq.EntityRef<BinCardLib> _cWL_CW2BinCardTitle;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -998,6 +996,10 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this._cWL_CW2ClearenceID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence>>(this.OnCWL_CW2ClearenceIDSync);
 			this._cWL_CW2ClearenceID.OnChanged += new System.EventHandler(this.OnCWL_CW2ClearenceIDChanged);
 			this._cWL_CW2ClearenceID.OnChanging += new System.EventHandler(this.OnCWL_CW2ClearenceIDChanging);
+			this._cWL_CW2BinCardTitle = new Microsoft.SharePoint.Linq.EntityRef<BinCardLib>();
+			this._cWL_CW2BinCardTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<BinCardLib>>(this.OnCWL_CW2BinCardTitleSync);
+			this._cWL_CW2BinCardTitle.OnChanged += new System.EventHandler(this.OnCWL_CW2BinCardTitleChanged);
+			this._cWL_CW2BinCardTitle.OnChanging += new System.EventHandler(this.OnCWL_CW2BinCardTitleChanging);
 			this.OnCreated();
 		}
 		
@@ -1489,31 +1491,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWL_CW2BinCardTitle", Storage="_cWL_CW2BinCardTitleId", FieldType="Lookup", IsLookupId=true)]
-		public System.Nullable<int> CWL_CW2BinCardTitleId {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CW2BinCardTitle", Storage="_cWL_CW2BinCardTitle", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Bin Card Library")]
+		public BinCardLib CWL_CW2BinCardTitle {
 			get {
-				return this._cWL_CW2BinCardTitleId;
+				return this._cWL_CW2BinCardTitle.GetEntity();
 			}
 			set {
-				if ((value != this._cWL_CW2BinCardTitleId)) {
-					this.OnPropertyChanging("CWL_CW2BinCardTitleId", this._cWL_CW2BinCardTitleId);
-					this._cWL_CW2BinCardTitleId = value;
-					this.OnPropertyChanged("CWL_CW2BinCardTitleId");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWL_CW2BinCardTitle", Storage="_cWL_CW2BinCardTitleTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
-		public string CWL_CW2BinCardTitleTitle {
-			get {
-				return this._cWL_CW2BinCardTitleTitle;
-			}
-			set {
-				if ((value != this._cWL_CW2BinCardTitleTitle)) {
-					this.OnPropertyChanging("CWL_CW2BinCardTitleTitle", this._cWL_CW2BinCardTitleTitle);
-					this._cWL_CW2BinCardTitleTitle = value;
-					this.OnPropertyChanged("CWL_CW2BinCardTitleTitle");
-				}
+				this._cWL_CW2BinCardTitle.SetEntity(value);
 			}
 		}
 		
@@ -1577,6 +1561,23 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		}
 		
 		private void OnCWL_CW2ClearenceIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CustomsWarehouse.Add(this);
+			}
+			else {
+				e.Item.CustomsWarehouse.Remove(this);
+			}
+		}
+		
+		private void OnCWL_CW2BinCardTitleChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CWL_CW2BinCardTitle", this._cWL_CW2BinCardTitle.Clone());
+		}
+		
+		private void OnCWL_CW2BinCardTitleChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CWL_CW2BinCardTitle");
+		}
+		
+		private void OnCWL_CW2BinCardTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<BinCardLib> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.CustomsWarehouse.Add(this);
 			}
@@ -3578,6 +3579,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="BinCardLib", Id="0x010100F4691A6A293E458E8EF97B775DBAE861")]
 	public partial class BinCardLib : Document {
 		
+		private Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouse> _customsWarehouse;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -3585,7 +3588,38 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		#endregion
 		
 		public BinCardLib() {
+			this._customsWarehouse = new Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouse>();
+			this._customsWarehouse.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CustomsWarehouse>>(this.OnCustomsWarehouseSync);
+			this._customsWarehouse.OnChanged += new System.EventHandler(this.OnCustomsWarehouseChanged);
+			this._customsWarehouse.OnChanging += new System.EventHandler(this.OnCustomsWarehouseChanging);
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CW2BinCardTitle", Storage="_customsWarehouse", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Customs Warehouse")]
+		public Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouse> CustomsWarehouse {
+			get {
+				return this._customsWarehouse;
+			}
+			set {
+				this._customsWarehouse.Assign(value);
+			}
+		}
+		
+		private void OnCustomsWarehouseChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CustomsWarehouse", this._customsWarehouse.Clone());
+		}
+		
+		private void OnCustomsWarehouseChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CustomsWarehouse");
+		}
+		
+		private void OnCustomsWarehouseSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CustomsWarehouse> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CWL_CW2BinCardTitle = this;
+			}
+			else {
+				e.Item.CWL_CW2BinCardTitle = null;
+			}
 		}
 	}
 	
