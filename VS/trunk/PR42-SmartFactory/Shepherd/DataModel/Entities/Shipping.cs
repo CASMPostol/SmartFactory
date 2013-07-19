@@ -381,6 +381,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         ShippingState = Entities.ShippingState.Creation,
         TruckAwaiting = false,
         IsOutbound = outbound,
+        ShippingState2 = Entities.ShippingState2.Creation,
         Title = "Creating new shippment"
       };
     }
@@ -403,6 +404,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     #endregion
 
     #region private
+    private SheepingSubstateMachine.Context _stateContext;
     private TimeSpan _12h = new TimeSpan( 12, 0, 0 );
     private void RemoveDrivers( EntitiesDataContext EDC, Partner partner )
     {
@@ -414,6 +416,19 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
           _2Delete.Add( _drv );
       EDC.DriversTeam.DeleteAllOnSubmit( _2Delete );
       EDC.SubmitChanges();
+    }
+    partial void OnCreated()
+    {
+      _stateContext = new SheepingSubstateMachine.Context( this );
+    }
+    /// <summary>
+    /// Called when a selected property value has been changed.
+    /// </summary>
+    /// <param name="propertyName">Name of the property.</param>
+    protected override void OnPropertyChanged( string propertyName )
+    {
+      base.OnPropertyChanged( propertyName );
+
     }
     #endregion
 
