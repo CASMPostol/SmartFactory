@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x010100F4691A6A293E458E8EF97B775DBAE861"
+               Name="BinCardLib"
+               Group="CAS Smart Factory Customs Warehouse"
+               Description="Bin Card Library Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
+    <FieldRefs>
+    </FieldRefs>
+  </ContentType>
+</Elements>

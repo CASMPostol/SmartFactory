@@ -158,4 +158,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="CWL_CW2BinCardTitle"
+    ID="{AC784B2F-C1D9-4CA4-A9AB-DB59732DA4D0}"
+    Type="Lookup"
+    List="Lists/BinCardList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Bin card"
+    Group="CAS Smart Factory Customs Warehouse"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
