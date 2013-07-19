@@ -247,6 +247,7 @@
     <Column Name="ArrivalTime" Member="ArrivalTime" />
     <Column Name="PoLastModification" Member="PoLastModification" />
     <Column Name="PoNumberMultiline" Member="PoNumberMultiline" />
+    <Column Name="ShippingState2" Member="ShippingState2" />
   </ContentType>
   <ContentType Name="ShippingPoint" Class="ShippingPoint">
     <Column Name="Title" Member="Title" />
