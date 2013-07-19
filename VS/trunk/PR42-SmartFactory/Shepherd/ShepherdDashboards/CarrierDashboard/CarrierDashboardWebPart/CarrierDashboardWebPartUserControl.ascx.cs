@@ -774,8 +774,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         UpdateTimeSlot( CurrentShipping, _rst, EDC.TimeSlot );
         _checkPoint = "CurrentShipping";
         CurrentShipping.CalculateState();
-        if ( m_ControlState.WarehouseEndTimeChanged )
-          CurrentShipping.WarehouseEndTime = UpdateTime( m_WarehouseEndTimeControl );
+        if (m_ControlState.WarehouseEndTimeChanged)
+            CurrentShipping.WarehouseEndTime = UpdateTime(m_WarehouseEndTimeControl);
         if ( m_ControlState.WarehouseStartTimeChanged )
           CurrentShipping.WarehouseStartTime = UpdateTime( m_WarehouseStartTimeControl );
         _checkPoint = "SubmitChanges";
