@@ -35,15 +35,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     {
       this.AccountBalance = data.CommonAccountData.NetMass;
       this.Batch = data.CommonAccountData.BatchId;
-      this.ConsentPeriod = 0; //data.ConsentLookup.ConsentDate;//TODO To be nodified 
-      
-      //this.CWL_2Clearence = clearence; //TODO must be added - the column must be defined 
       this.ClosingDate = Extensions.DateTimeNull;
       this.Currency = "PLN";
-      this.CWL_CW2ConsentTitle = data.ConsentLookup;
-      this.CWL_CW2PCNID = GetAtIndex<PCNCode>( edc.PCNCode, data.CommonAccountData.PCNTariffCodeLookup );
-      this.CWL_CW2CWLibraryIDId = null;
       this.CustomsDebtDate = data.CommonAccountData.CustomsDebtDate;
+      this.CWL_CW2ClearenceID = data.ClearenceLookup;
+      this.CWL_CW2ConsentTitle = data.ConsentLookup;
+      this.CWL_CW2PCNID = data.PCNTariffCodeLookup;
+      this.CWL_CW2CWLibraryIDId = null;
       this.CW_MassPerPackage = data.CWMassPerPackage;
       this.CW_PackageKg = data.CWPackageKg;
       this.CW_PackageUnits = data.CWPackageUnits;
@@ -60,14 +58,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.Title = "-- creating -- ";
       this.Units = data.Units;
       this.ValidToDate = data.ValidToDate;
-      this.ValidFromDate = new Nullable<DateTime>(); //TODO remove
 
       //Certificate
       this.CW_CertificateOfOrgin = data.CW_CertificateOfOrgin;
       this.CW_CertificateOfAuthenticity = data.CW_CertificateOfAuthenticity;
       this.CW_COADate = data.CW_COADate;
       this.CW_CODate = data.CW_CODate;
-      this.Vendor = data.VendorLookup; 
+      this.CWL_CW2VendorTitle = data.VendorLookup; 
     }
     /// <summary>
     /// Updates the title.
