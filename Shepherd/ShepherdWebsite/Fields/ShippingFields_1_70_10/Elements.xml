@@ -84,11 +84,10 @@
       <CHOICE>Confirmed</CHOICE>
       <CHOICE>Creation</CHOICE>
       <CHOICE>Delayed</CHOICE>
+      <CHOICE>Lack of data</CHOICE>
       <CHOICE>Left</CHOICE>
       <CHOICE>Started</CHOICE>
       <CHOICE>Waiting</CHOICE>
-      <CHOICE>WaitingForCarrierData</CHOICE>
-      <CHOICE>WaitingForConfirmation</CHOICE>
     </CHOICES>
   </Field>
 </Elements>

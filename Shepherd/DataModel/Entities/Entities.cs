@@ -4091,6 +4091,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 			this._partnerTitle.OnChanged += new System.EventHandler(this.OnPartnerTitleChanged);
 			this._partnerTitle.OnChanging += new System.EventHandler(this.OnPartnerTitleChanging);
 			this._shipping2WarehouseTitle = new Microsoft.SharePoint.Linq.EntityRef<Warehouse>();
+			this._shipping2WarehouseTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnShipping2WarehouseTitleSync);
 			this._shipping2WarehouseTitle.OnChanged += new System.EventHandler(this.OnShipping2WarehouseTitleChanged);
 			this._shipping2WarehouseTitle.OnChanging += new System.EventHandler(this.OnShipping2WarehouseTitleChanging);
 			this._truckTitle = new Microsoft.SharePoint.Linq.EntityRef<Truck>();
@@ -4999,6 +5000,14 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 			this.OnPropertyChanged("Shipping2WarehouseTitle");
 		}
 		
+		private void OnShipping2WarehouseTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Shipping.Add(this);
+			}
+			else {
+				e.Item.Shipping.Remove(this);
+			}
+		}
 		
 		private void OnTruckTitleChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("TruckTitle", this._truckTitle.Clone());
@@ -5961,6 +5970,15 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2WarehouseTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+			get {
+				return this._shipping;
+			}
+			set {
+				this._shipping.Assign(value);
+			}
+		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="WarehouseTitle", Storage="_shippingPoint", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping Point")]
 		public Microsoft.SharePoint.Linq.EntitySet<ShippingPoint> ShippingPoint {
@@ -7480,20 +7498,17 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Delayed")]
 		Delayed = 64,
 		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Lack of data")]
+		LackOfData = 128,
+		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Left")]
-		Left = 128,
+		Left = 256,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Started")]
-		Started = 256,
+		Started = 512,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Waiting")]
-		Waiting = 512,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="WaitingForCarrierData")]
-		WaitingForCarrierData = 1024,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="WaitingForConfirmation")]
-		WaitingForConfirmation = 2048,
+		Waiting = 1024,
 	}
 	
 	public enum Direction : int {
