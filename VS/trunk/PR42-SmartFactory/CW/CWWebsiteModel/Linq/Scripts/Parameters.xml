@@ -39,7 +39,6 @@
   <List Name="SAD Package" />
   <List Name="SAD Quantity" />
   <List Name="SAD Required Documents" />
-  <List Name="Vendor" />
   <List Name="Settings" />
   <!--<List Name="SHMenthol" />-->
   <!--<List Name="SKU" />-->
@@ -51,6 +50,7 @@
   <!--<List Name="Theme Gallery" />-->
   <!--<List Name="Usage" />-->
   <!--<List Name="User Information List" />-->
+  <List Name="Vendor" />
   <!--<List Name="Warehouse" />-->
   <!--<List Name="Waste" />-->
   <ExcludeOtherLists/>
@@ -253,9 +253,7 @@
     <Column Name="Title" Member="Title" />
     <Column Name="CWC_EntryDate" Member="CWC_EntryDate" />
     <Column Name="CWL_CW2ConsentTitle" Member="CWL_CW2ConsentTitle" />
-    <Column Name="ValidFromDate" Member="ValidFromDate" />
-    <Column Name="ValidToDate" Member="ValidToDate" />
-    <Column Name="ConsentPeriod" Member="ConsentPeriod" />
+    <Column Name="CWL_CW2ConsentDate_sec" Member="CWL_CW2ConsentDate_sec" />
     <Column Name="DocumentNo" Member="DocumentNo" />
     <Column Name="CustomsDebtDate" Member="CustomsDebtDate" />
     <Column Name="TobaccoName" Member="TobaccoName" />
@@ -285,9 +283,12 @@
     <Column Name="CW_CODate" Member="CW_CODate" />
     <Column Name="CW_CertificateOfAuthenticity" Member="CW_CertificateOfAuthenticity" />
     <Column Name="CW_COADate" Member="CW_COADate" />
+    <Column Name="ValidToDate" Member="ValidToDate" />
     <Column Name="ClosingDate" Member="ClosingDate" />
     <Column Name="CWL_CW2PCNID" Member="CWL_CW2PCNID" />
     <Column Name="CWL_CW2CWLibraryID" Member="CWL_CW2CWLibraryID" />
+    <Column Name="CWL_CW2VendorTitle" Member="CWL_CW2VendorTitle" />
+    <Column Name="CWL_CW2ClearenceID" Member="CWL_CW2ClearenceID" />
   </ContentType>
   <!--<ContentType Name="DisposalDeclaration" Class="DisposalDeclaration">
     <Column Name="ContentType" Member="ContentType" />
@@ -633,6 +634,14 @@
     <Column Name="Number" Member="Number" />
     <Column Name="SADRequiredDoc2SADGoodID" Member="SADRequiredDoc2SADGoodID" />
   </ContentType>
+  <ContentType Name="Vendor" Class="Vendor">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="Title" Member="Title" />
+    <Column Name="WorkAddress" Member="WorkAddress" />
+    <Column Name="WorkCity" Member="WorkCity" />
+    <Column Name="WorkCountry" Member="WorkCountry" />
+    <Column Name="WorkZip" Member="WorkZip" />
+  </ContentType>
   <!--<ContentType Name="Country" Class="Country">
     <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
@@ -782,13 +791,5 @@
     <Column Name="Expires" Member="Expires" />
     <Column Name="ActivityPriority" Member="ActivityPriority" />
     <Column Name="ActivitySource" Member="ActivitySource" />
-  </ContentType>
-  <ContentType Name="Vendor" Class="Vendor">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="WorkAddress" Member="Address" />
-    <Column Name="WorkCity" Member="City" />
-    <Column Name="WorkCountry" Member="Country" />
-    <Column Name="WorkZip" Member="PostalCode" />
   </ContentType>
 </Web>
