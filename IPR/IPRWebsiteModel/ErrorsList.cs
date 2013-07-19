@@ -50,7 +50,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     public void Add( List<Warnning> warnnings )
     {
       foreach ( Warnning _item in warnnings )
-        this.Add( warnnings );
+        this.Add( _item );
     }
     /// <summary>
     /// Gets or sets a value indicating whether this collection contains fatal errors.
