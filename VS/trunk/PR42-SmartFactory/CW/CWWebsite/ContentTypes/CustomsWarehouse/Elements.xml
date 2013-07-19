@@ -46,6 +46,7 @@
       <FieldRef ID="{615855F8-6922-456C-95FB-2DAC71809663}" Name="CWL_CW2CWLibraryID" />
       <FieldRef ID="{7B4C1B77-5160-4E59-9BE3-42A39AE9A5D4}" Name="CWL_CW2VendorTitle" />
       <FieldRef ID="{2114C077-3416-4465-AFB8-27B9ADDFDE2F}" Name="CWL_CW2ClearenceID" />
+      <FieldRef ID="{AC784B2F-C1D9-4CA4-A9AB-DB59732DA4D0}" Name="CWL_CW2BinCardTitle" />
     </FieldRefs>
   </ContentType>
 </Elements>

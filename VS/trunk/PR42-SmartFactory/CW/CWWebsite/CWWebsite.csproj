@@ -48,6 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
+    <None Include="ContentTypes\BinCardLib\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8d19b916-113d-470f-b758-aaa7d2576db0}</SharePointProjectItemId>
+    </None>
     <None Include="ContentTypes\CustomsWarehouseDisposal\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b5769e2b-8462-4748-98ae-81671328f025}</SharePointProjectItemId>
     </None>
@@ -77,6 +80,12 @@
     </None>
     <None Include="Fields\CustomsWarehouseLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{37de7862-5af2-4ce9-88ec-4fd19b4a4172}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\BinCardLibraryTemplate\BinCardLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{63e5fb9b-040b-4652-ad87-3db9ee7748be}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\BinCardLibraryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{74e37160-0881-440c-9567-d4a941d431a6}</SharePointProjectItemId>
     </None>
     <None Include="Lists\CustomsWarehouseDisposalListTemplate\CustomsWarehouseDisposalList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{90b2b4bd-038c-4a75-9ba0-a87d7bd741e4}</SharePointProjectItemId>
@@ -129,6 +138,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ContentTypes\BinCardLib\Elements.xml" />
     <Content Include="ContentTypes\CustomsWarehouseDisposal\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -153,6 +163,13 @@
     <Content Include="Fields\CustomsWarehouseLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\BinCardLibraryTemplate\BinCardLibrary\Elements.xml" />
+    <Content Include="Lists\BinCardLibraryTemplate\EditDlg.htm" />
+    <Content Include="Lists\BinCardLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\BinCardLibraryTemplate\FileDlg.htm" />
+    <Content Include="Lists\BinCardLibraryTemplate\Repair.aspx" />
+    <Content Include="Lists\BinCardLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\BinCardLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\CustomsWarehouseDisposalListTemplate\CustomsWarehouseDisposalList\Elements.xml" />
     <Content Include="Lists\CustomsWarehouseDisposalListTemplate\Elements.xml">
       <SubType>Designer</SubType>
