@@ -34,6 +34,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		}
 		
 		/// <summary>
+		/// Bin Card Library Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Bin Card Library")]
+		public Microsoft.SharePoint.Linq.EntityList<BinCardLib> BinCardLibrary {
+			get {
+				return this.GetList<BinCardLib>("Bin Card Library");
+			}
+		}
+		
+		/// <summary>
 		/// Clearence List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Clearence")]
@@ -229,12 +239,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Item", Id="0x01")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Announcement))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Document))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Clearence))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Consent))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsUnion))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouse))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouseDisposal))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Document))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DisposalRequestContent))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(PCNCode))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDocumentType))]
@@ -423,6 +433,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	/// Create a new document.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Document", Id="0x0101")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(BinCardLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouseLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DisposalRequestLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADConsignment))]
@@ -960,6 +971,10 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _cWL_CW2ClearenceID;
 		
+		private System.Nullable<int> _cWL_CW2BinCardTitleId;
+		
+		private string _cWL_CW2BinCardTitleTitle;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -1471,6 +1486,34 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 			set {
 				this._cWL_CW2ClearenceID.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWL_CW2BinCardTitle", Storage="_cWL_CW2BinCardTitleId", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> CWL_CW2BinCardTitleId {
+			get {
+				return this._cWL_CW2BinCardTitleId;
+			}
+			set {
+				if ((value != this._cWL_CW2BinCardTitleId)) {
+					this.OnPropertyChanging("CWL_CW2BinCardTitleId", this._cWL_CW2BinCardTitleId);
+					this._cWL_CW2BinCardTitleId = value;
+					this.OnPropertyChanged("CWL_CW2BinCardTitleId");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWL_CW2BinCardTitle", Storage="_cWL_CW2BinCardTitleTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string CWL_CW2BinCardTitleTitle {
+			get {
+				return this._cWL_CW2BinCardTitleTitle;
+			}
+			set {
+				if ((value != this._cWL_CW2BinCardTitleTitle)) {
+					this.OnPropertyChanging("CWL_CW2BinCardTitleTitle", this._cWL_CW2BinCardTitleTitle);
+					this._cWL_CW2BinCardTitleTitle = value;
+					this.OnPropertyChanged("CWL_CW2BinCardTitleTitle");
+				}
 			}
 		}
 		
@@ -3526,6 +3569,23 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this.OnPropertyChanged("ActivitySource");
 				}
 			}
+		}
+	}
+	
+	/// <summary>
+	/// Bin Card Library Content Type
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="BinCardLib", Id="0x010100F4691A6A293E458E8EF97B775DBAE861")]
+	public partial class BinCardLib : Document {
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public BinCardLib() {
+			this.OnCreated();
 		}
 	}
 	
