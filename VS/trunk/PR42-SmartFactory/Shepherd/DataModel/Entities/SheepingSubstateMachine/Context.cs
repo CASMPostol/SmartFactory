@@ -1,19 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿//<summary>
+//  Title   : Sheeping Substate Machine Context
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
 
 namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
 {
   internal class Context: IContextTrigers
   {
+
+    #region ctor
     internal Context( Shipping parent )
     {
       m_Parent = parent;
       switch ( parent.ShippingState2.Value )
       {
         case ShippingState2.Cancelation:
-          m_AbstractState = new CancelationState(this);
+          m_AbstractState = new CancelationState( this );
           break;
         case ShippingState2.Canceled:
           m_AbstractState = new CanceledState( this );
@@ -44,11 +58,32 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
           break;
       }
     }
+    #endregion
+
+    #region IContextTrigers Members
+    public void SetAwaiting( bool value )
+    {
+      m_AbstractState.SetAwaiting( value );
+    }
+    public void SetEndTime()
+    {
+      m_AbstractState.SetEndTime();
+    }
+    public void SetShippingState( ShippingState shippingState )
+    {
+      m_AbstractState.SetShippingState( shippingState );
+    }
+    #endregion
+
+    #region private
+
+    #region states implementation
     private abstract class AbstractState: IContextTrigers
     {
+
       internal AbstractState( Context parent )
       {
-        m_parent = parent;
+        Parent = parent;
       }
 
       #region IContextTrigers Members
@@ -69,21 +104,26 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
       #region private
       protected virtual void Transition( ShippingState2 newState )
       {
-        m_parent.m_Parent.ShippingState2 = newState;
+        Parent.m_Parent.ShippingState2 = newState;
       }
-      private Context m_parent;
+      protected Context Parent { get; private set; }
       #endregion
+
     }
     private class CreationState: AbstractState
     {
+
       internal CreationState( Context parent )
         : base( parent )
       { }
 
+      #region IContextTrigers
       public override void SetShippingState( ShippingState shippingState )
       {
         switch ( shippingState )
         {
+          case ShippingState.Creation:
+            break;
           case ShippingState.Delayed:
             Transition( ShippingState2.Delayed );
             break;
@@ -96,6 +136,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
             break;
         }
       }
+      #endregion
+
     }
     private class LackOfDataState: AbstractState
     {
@@ -103,6 +145,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
         : base( parent )
       { }
 
+      #region IContextTrigers
       public override void SetShippingState( ShippingState shippingState )
       {
         switch ( shippingState )
@@ -116,8 +159,13 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
           case ShippingState.Confirmed:
             Transition( ShippingState2.Confirmed );
             break;
+          case ShippingState.WaitingForConfirmation:
+          case ShippingState.WaitingForCarrierData:
+            break;
         }
       }
+      #endregion
+
     }
     private class ConfirmedState: AbstractState
     {
@@ -125,6 +173,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
         : base( parent )
       { }
 
+      #region IContextTrigers
       public override void SetAwaiting( bool value )
       {
         if ( !value )
@@ -151,14 +200,21 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
           case ShippingState.Underway:
             Transition( ShippingState2.Started );
             break;
+          case ShippingState.Confirmed:
+            break;
         }
       }
+      #endregion
+
     }
     private class DelayedState: AbstractState
     {
+
       internal DelayedState( Context parent )
         : base( parent )
       { }
+
+      #region IContextTrigers
       public override void SetAwaiting( bool value )
       {
         if ( !value )
@@ -169,6 +225,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
       {
         switch ( shippingState )
         {
+          case ShippingState.Delayed:
+            break;
           case ShippingState.Cancelation:
             Transition( ShippingState2.Cancelation );
             break;
@@ -184,12 +242,23 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
             break;
         }
       }
+      #endregion
+
     }
     private class WaitingState: AbstractState
     {
+
       internal WaitingState( Context parent )
         : base( parent )
       { }
+
+      #region IContextTrigers
+      public override void SetAwaiting( bool value )
+      {
+        if ( value )
+          return;
+        Transition( ShippingState2.Confirmed );
+      }
       public override void SetShippingState( ShippingState shippingState )
       {
         switch ( shippingState )
@@ -200,44 +269,22 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
           case ShippingState.Underway:
             Transition( ShippingState2.Started );
             break;
-        }
-      }
-    }
-    private class CancelationState: AbstractState
-    {
-      internal CancelationState( Context parent )
-        : base( parent )
-      { }
-      public override void SetShippingState( ShippingState shippingState )
-      {
-        switch ( shippingState )
-        {
-          case ShippingState.Canceled:
-            Transition( ShippingState2.Canceled );
+          case ShippingState.Confirmed:
+            if ( !Parent.m_Parent.TruckAwaiting.Value )
+              Transition( ShippingState2.Confirmed );
             break;
         }
       }
-    }
-    private class CompletedState: AbstractState
-    {
-      internal CompletedState( Context parent )
-        : base( parent )
-      { }
-      public override void SetShippingState( ShippingState shippingState )
-      {
-        switch ( shippingState )
-        {
-          case ShippingState.Completed:
-            Transition( ShippingState2.Left );
-            break;
-        }
-      }
+      #endregion
+
     }
     private class StartedState: AbstractState
     {
       internal StartedState( Context parent )
         : base( parent )
       { }
+
+      #region IContextTrigers
       public override void SetEndTime()
       {
         Transition( ShippingState2.Completed );
@@ -249,14 +296,77 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
           case ShippingState.Completed:
             Transition( ShippingState2.Left );
             break;
+          case ShippingState.Confirmed:
+            if ( Parent.m_Parent.TruckAwaiting.Value )
+              Transition( ShippingState2.Waiting );
+            else
+              Transition( ShippingState2.Confirmed );
+            break;
+          case ShippingState.Underway:
+            break;
         }
       }
+      #endregion
+
+    }
+    private class CompletedState: AbstractState
+    {
+      internal CompletedState( Context parent )
+        : base( parent )
+      { }
+
+      #region IContextTrigers
+      public override void SetShippingState( ShippingState shippingState )
+      {
+        switch ( shippingState )
+        {
+          case ShippingState.Completed:
+            Transition( ShippingState2.Left );
+            break;
+          case ShippingState.Underway:
+            break;
+        }
+      }
+      #endregion
+
+    }
+    private class CancelationState: AbstractState
+    {
+      internal CancelationState( Context parent )
+        : base( parent )
+      { }
+
+      #region IContextTrigers
+      public override void SetShippingState( ShippingState shippingState )
+      {
+        switch ( shippingState )
+        {
+          case ShippingState.Cancelation:
+            break;
+          case ShippingState.Canceled:
+            Transition( ShippingState2.Canceled );
+            break;
+        }
+      }
+      #endregion
+
     }
     private class LeftState: AbstractState
     {
       internal LeftState( Context parent )
         : base( parent )
       { }
+
+      #region IContextTrigers
+      public override void SetShippingState( ShippingState shippingState )
+      {
+        switch ( shippingState )
+        {
+          case ShippingState.Completed:
+            break;
+        }
+      }
+      #endregion
 
     }
     private class CanceledState: AbstractState
@@ -265,20 +375,23 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
         : base( parent )
       { }
 
+      #region IContextTrigers
+      public override void SetShippingState( ShippingState shippingState )
+      {
+        switch ( shippingState )
+        {
+          case ShippingState.Canceled:
+            break;
+        }
+      }
+      #endregion
+
     }
-    private AbstractState m_AbstractState;
-    internal Shipping m_Parent;
-    #region IContextTrigers Members
-    public void SetAwaiting( bool value )
-    {
-      m_AbstractState.SetAwaiting( value );
-    }
-    public void SetEndTime()
-    {
-      m_AbstractState.SetEndTime();
-    }
-    public void SetShippingState( ShippingState shippingState ) { }
     #endregion
 
+    private AbstractState m_AbstractState;
+    private Shipping m_Parent;
+
+    #endregion
   }
 }

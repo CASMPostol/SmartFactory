@@ -178,7 +178,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
             CurrentShipping.StartTime = _ts.StartTime;
             CurrentShipping.EndTime = _ts.EndTime;
             CurrentShipping.ShippingDuration = _ts.Duration();
-            CurrentShipping.ShippingState = ShippingState.Creation;
             CurrentShipping.CalculateState();
             EDC.SubmitChanges();
             break;
