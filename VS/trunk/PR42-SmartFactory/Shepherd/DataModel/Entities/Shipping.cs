@@ -402,6 +402,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       this.PoNumberMultiline = _po.ToString();
     }
+    /// <summary>
+    /// Sets the warehouse end time.
+    /// </summary>
     public void SetWarehouseEndTime()
     {
       m_SheepingSubstateMachineContext.SetEndTime();
@@ -433,10 +436,17 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     protected override void OnPropertyChanged( string propertyName )
     {
       base.OnPropertyChanged( propertyName );
-      if ( propertyName.Equals( "ShippingState" ) )
-        m_SheepingSubstateMachineContext.SetShippingState( this.ShippingState.Value );
-      else if ( propertyName.Equals( "TruckAwaiting" ) )
-        m_SheepingSubstateMachineContext.SetAwaiting( this.TruckAwaiting.Value );
+      try
+      {
+        if ( propertyName.Equals( "ShippingState" ) )
+          m_SheepingSubstateMachineContext.SetShippingState( this.ShippingState.Value );
+        else if ( propertyName.Equals( "TruckAwaiting" ) )
+          m_SheepingSubstateMachineContext.SetAwaiting( this.TruckAwaiting.Value );
+      }
+      catch ( SheepingSubstateMachine.Context.ContexException )
+      {
+        throw;
+      }
     }
     #endregion
 
