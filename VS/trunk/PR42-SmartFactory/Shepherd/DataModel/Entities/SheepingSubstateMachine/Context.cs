@@ -17,6 +17,9 @@ using System;
 
 namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
 {
+  /// <summary>
+  /// Sheeping Substate Machine Context
+  /// </summary>
   internal class Context: IContextTrigers
   {
 
@@ -93,7 +96,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
       }
       public virtual void SetEndTime()
       {
-        throw new NotImplementedException();
       }
       public virtual void SetShippingState( ShippingState shippingState )
       {

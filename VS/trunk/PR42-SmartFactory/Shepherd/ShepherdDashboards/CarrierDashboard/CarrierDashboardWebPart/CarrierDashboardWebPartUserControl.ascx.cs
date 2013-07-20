@@ -222,12 +222,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         {
           SetVisible( m_AllButtons );
           m_StateMachineEngine.InitMahine();
-          m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownSelect".GetShepherdLocalizedString(), "-1") { Selected = true });
-          m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownUnacceptable".GetShepherdLocalizedString(), ((int)TrailerCondition._1Unexceptable).ToString()));
-          m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownBad".GetShepherdLocalizedString(), ((int)TrailerCondition._2).ToString()));
-          m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownPoor".GetShepherdLocalizedString(), ((int)TrailerCondition._3).ToString()));
-          m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownGood".GetShepherdLocalizedString(), ((int)TrailerCondition._4).ToString()));
-          m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownExcellent".GetShepherdLocalizedString(), ((int)TrailerCondition._5Excellent).ToString()));
+          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownSelect".GetShepherdLocalizedString(), "-1" ) { Selected = true } );
+          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownUnacceptable".GetShepherdLocalizedString(), ( (int)TrailerCondition._1Unexceptable ).ToString() ) );
+          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownBad".GetShepherdLocalizedString(), ( (int)TrailerCondition._2 ).ToString() ) );
+          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownPoor".GetShepherdLocalizedString(), ( (int)TrailerCondition._3 ).ToString() ) );
+          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownGood".GetShepherdLocalizedString(), ( (int)TrailerCondition._4 ).ToString() ) );
+          m_TrailerConditionDropdown.Items.Add( new ListItem( "TrailerConditionDropdownExcellent".GetShepherdLocalizedString(), ( (int)TrailerCondition._5Excellent ).ToString() ) );
           m_TransportUnitTypeDropDownList.DataSource = from _idx in EDC.TransportUnitType
                                                        orderby _idx.Title ascending
                                                        select new { Title = _idx.Title, Index = _idx.Id };
@@ -285,7 +285,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
     protected override void OnPreRender( EventArgs e )
     {
-        m_StateLiteral.Text = ("InterfaceState" + m_ControlState.InterfaceState.ToString()).GetShepherdLocalizedString();
+      m_StateLiteral.Text = ( "InterfaceState" + m_ControlState.InterfaceState.ToString() ).GetShepherdLocalizedString();
       SetEnabled( m_ControlState.SetEnabled );
       if ( m_ControlState.ShippingID.IsNullOrEmpty() )
       {
@@ -458,12 +458,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         if ( VendorFixed( CurrentShipping ) )
         {
           ActionResult _rst = new ActionResult();
-          _rst.AddMessage("SetInterconnectionDataItIsTooLate".GetShepherdLocalizedString());
+          _rst.AddMessage( "SetInterconnectionDataItIsTooLate".GetShepherdLocalizedString() );
           ShowActionResult( _rst );
           return;
         }
         TimeSlotTimeSlot _cts = Element.GetAtIndex( EDC.TimeSlot, _interconnectionData.ID );
-        Debug.Assert(_cts.Occupied.Value == Occupied.Free, "SetInterconnectionDataTimeSlotInUse".GetShepherdLocalizedString());
+        Debug.Assert( _cts.Occupied.Value == Occupied.Free, "SetInterconnectionDataTimeSlotInUse".GetShepherdLocalizedString() );
         m_ControlState.TimeSlotID = _interconnectionData.ID;
         m_ControlState.TimeSlotIsDouble = _interconnectionData.IsDouble;
         m_ControlState.TimeSlotChanged = true;
@@ -641,7 +641,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if ( _cts == null )
       {
-          m_TimeSlotTextBox.Text = _isEditable ? "ShowSelectTimeSlot".GetShepherdLocalizedString() : "ShowShippingLocked".GetShepherdLocalizedString();
+        m_TimeSlotTextBox.Text = _isEditable ? "ShowSelectTimeSlot".GetShepherdLocalizedString() : "ShowShippingLocked".GetShepherdLocalizedString();
         return;
       }
       m_TimeSlotTextBox.Text = String.Format( "{0}{1}{2}", _cts.StartTime.Value.ToString( CultureInfo.CurrentCulture ), _isEditable ? "" : " ! ", _isDouble ? "x2" : "" );
@@ -774,8 +774,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         UpdateTimeSlot( CurrentShipping, _rst, EDC.TimeSlot );
         _checkPoint = "CurrentShipping";
         CurrentShipping.CalculateState();
-        if (m_ControlState.WarehouseEndTimeChanged)
-            CurrentShipping.WarehouseEndTime = UpdateTime(m_WarehouseEndTimeControl);
+        if ( m_ControlState.WarehouseEndTimeChanged )
+        {
+          CurrentShipping.WarehouseEndTime = UpdateTime( m_WarehouseEndTimeControl );
+          m_ControlState.WarehouseEndTimeChanged = false;
+        }
         if ( m_ControlState.WarehouseStartTimeChanged )
           CurrentShipping.WarehouseStartTime = UpdateTime( m_WarehouseStartTimeControl );
         _checkPoint = "SubmitChanges";
@@ -801,7 +804,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if ( _sppng == null )
       {
-          _rsult.AddLabel("Shipping".GetShepherdLocalizedString());
+        _rsult.AddLabel( "Shipping".GetShepherdLocalizedString() );
         return;
       }
       _sppng.CancelationReason = m_CommentsTextBox.Text;
@@ -1183,6 +1186,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected void m_WarehouseEndTimeButton_Click( object sender, EventArgs e )
     {
       m_WarehouseEndTimeControl.SelectedDate = DateTime.Now;
+      CurrentShipping.SetWarehouseEndTime();
       m_ControlState.WarehouseEndTimeChanged = true;
     }
     #endregion
