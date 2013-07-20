@@ -1,10 +1,39 @@
-﻿using System;
+﻿//<summary>
+//  Title   : Sheeping substate machine context trigers interface
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+
 namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
 {
+  /// <summary>
+  /// Sheeping substate machine context trigers interface
+  /// </summary>
   internal interface IContextTrigers
   {
+    /// <summary>
+    /// Sets that the truck is awaiting.
+    /// </summary>
+    /// <param name="value">if set to <c>true</c> the truck is aeaiting.</param>
     void SetAwaiting(bool value);
+    /// <summary>
+    /// Sets the end time of the inbound or outbound operation.
+    /// </summary>
     void SetEndTime();
-    void SetShippingState( CAS.SmartFactory.Shepherd.DataModel.Entities.ShippingState shippingState );
+    /// <summary>
+    /// Sets the state of the shipping.
+    /// </summary>
+    /// <param name="shippingState">State of the shipping.</param>
+    void SetShippingState( ShippingState shippingState );
   }
 }

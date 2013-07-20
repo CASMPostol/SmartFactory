@@ -402,10 +402,14 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       this.PoNumberMultiline = _po.ToString();
     }
+    public void SetWarehouseEndTime()
+    {
+      m_SheepingSubstateMachineContext.SetEndTime();
+    }
     #endregion
 
     #region private
-    private SheepingSubstateMachine.Context _stateContext;
+    private SheepingSubstateMachine.Context m_SheepingSubstateMachineContext;
     private TimeSpan _12h = new TimeSpan( 12, 0, 0 );
     private void RemoveDrivers( EntitiesDataContext EDC, Partner partner )
     {
@@ -420,7 +424,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     }
     partial void OnCreated()
     {
-      _stateContext = new SheepingSubstateMachine.Context( this );
+      m_SheepingSubstateMachineContext = new SheepingSubstateMachine.Context( this );
     }
     /// <summary>
     /// Called when a selected property value has been changed.
@@ -429,7 +433,10 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     protected override void OnPropertyChanged( string propertyName )
     {
       base.OnPropertyChanged( propertyName );
-
+      if ( propertyName.Equals( "ShippingState" ) )
+        m_SheepingSubstateMachineContext.SetShippingState( this.ShippingState.Value );
+      else if ( propertyName.Equals( "TruckAwaiting" ) )
+        m_SheepingSubstateMachineContext.SetAwaiting( this.TruckAwaiting.Value );
     }
     #endregion
 
