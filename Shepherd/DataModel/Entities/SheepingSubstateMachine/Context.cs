@@ -63,6 +63,13 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
     }
     #endregion
 
+    /// <summary>
+    /// Contex Exception
+    /// </summary>
+    public class ContexException: Exception
+    {
+      public ContexException( string message ) : base( message ) { }
+    }
     #region IContextTrigers Members
     public void SetAwaiting( bool value )
     {
@@ -92,14 +99,22 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
       #region IContextTrigers Members
       public virtual void SetAwaiting( bool value )
       {
-        throw new NotImplementedException();
+        string _msg = String.Format
+          ( "SheepingSubstateMachine error: SetAwaiting( {0} ) trigger is not allowed in the current state {1}", 
+            value, 
+            this.Parent.m_Parent.ShippingState2.Value 
+          );
+        throw new ContexException( _msg );
       }
-      public virtual void SetEndTime()
-      {
-      }
+      public virtual void SetEndTime() { }
       public virtual void SetShippingState( ShippingState shippingState )
       {
-        throw new NotImplementedException();
+        string _msg = String.Format
+          ( "SheepingSubstateMachine error: SetShippingState( {0} ) trigger is not allowed in the current state {1}", 
+            shippingState, 
+            this.Parent.m_Parent.ShippingState2.Value 
+          );
+        throw new ContexException( _msg );
       }
       #endregion
 
