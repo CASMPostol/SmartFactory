@@ -156,7 +156,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       {
         case Entities.ShippingState.Confirmed:
         case Entities.ShippingState.Creation:
-        case Entities.ShippingState.Delayed:
         case Entities.ShippingState.WaitingForCarrierData:
         case Entities.ShippingState.WaitingForConfirmation:
           int _seDrivers = 0;
@@ -166,7 +165,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
               _seDrivers++;
             else
               _crDrivers++;
-          this.ShippingState = Entities.ShippingState.Creation;
           if ( _crDrivers > 0 && this.TruckTitle != null )
           {
             if ( this.SecurityEscortCatalogTitle == null || ( _seDrivers > 0 && this.Shipping2TruckTitle != null ) )
@@ -176,10 +174,13 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
           }
           else if ( this.SecurityEscortCatalogTitle == null || ( _seDrivers > 0 && this.Shipping2TruckTitle != null ) )
             this.ShippingState = Entities.ShippingState.WaitingForCarrierData;
+          else
+            this.ShippingState = Entities.ShippingState.Creation;
           break;
         case Entities.ShippingState.None:
           this.ShippingState = Entities.ShippingState.Creation;
           break;
+        case Entities.ShippingState.Delayed:
         case Entities.ShippingState.Underway:
         case Entities.ShippingState.Invalid:
         case Entities.ShippingState.Cancelation:
