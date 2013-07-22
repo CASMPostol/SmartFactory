@@ -26,6 +26,7 @@ using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart
 {
+  using Microsoft.SharePoint;
   using ButtonsSet = StateMachineEngine.ControlsSet;
   using InterfaceState = StateMachineEngine.InterfaceState;
 
@@ -313,9 +314,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       catch ( Exception ex )
       {
-        ActionResult _ar = new ActionResult();
-        _ar.AddException( new Exception( String.Format( "The operation OnPreRender has been interrupted by the error: '{0}'", ex.Message ) ) );
-        this.ShowActionResult( _ar );
+        using ( EntitiesDataContext _edc = new EntitiesDataContext() )
+          Anons.ReportException( _edc, "OnPreRender", new Exception( String.Format( "The operation OnPreRender has been interrupted by the error: '{0}'", ex.Message ) ) );
       }
       base.OnPreRender( e );
     }
