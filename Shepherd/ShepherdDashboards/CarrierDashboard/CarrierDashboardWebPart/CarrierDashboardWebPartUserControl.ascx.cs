@@ -285,29 +285,38 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
     protected override void OnPreRender( EventArgs e )
     {
-      m_StateLiteral.Text = ( "InterfaceState" + m_ControlState.InterfaceState.ToString() ).GetShepherdLocalizedString();
-      SetEnabled( m_ControlState.SetEnabled );
-      if ( m_ControlState.ShippingID.IsNullOrEmpty() )
+      try
       {
-        m_AbortButton.Enabled = false;
-        m_EditButton.Enabled = false;
-        m_AbortButton.Enabled = false;
-        m_CoordinatorPanel.Enabled = false;
-        m_CoordinatorEditCheckBox.Checked = false;
-        m_LoadingUnloadingTime.Enabled = false;
-      }
-      else
-      {
-        if ( VendorFixed( CurrentShipping ) )
-          m_AbortButton.Enabled = false;
-        if ( !CurrentShipping.IsEditable() )
+        m_StateLiteral.Text = ( "InterfaceState" + m_ControlState.InterfaceState.ToString() ).GetShepherdLocalizedString();
+        SetEnabled( m_ControlState.SetEnabled );
+        if ( m_ControlState.ShippingID.IsNullOrEmpty() )
         {
+          m_AbortButton.Enabled = false;
+          m_EditButton.Enabled = false;
           m_AbortButton.Enabled = false;
           m_CoordinatorPanel.Enabled = false;
           m_CoordinatorEditCheckBox.Checked = false;
+          m_LoadingUnloadingTime.Enabled = false;
         }
+        else
+        {
+          if ( VendorFixed( CurrentShipping ) )
+            m_AbortButton.Enabled = false;
+          if ( !CurrentShipping.IsEditable() )
+          {
+            m_AbortButton.Enabled = false;
+            m_CoordinatorPanel.Enabled = false;
+            m_CoordinatorEditCheckBox.Checked = false;
+          }
+        }
+        m_SecurityRequiredChecbox.Enabled = m_CoordinatorEditCheckBox.Checked;
       }
-      m_SecurityRequiredChecbox.Enabled = m_CoordinatorEditCheckBox.Checked;
+      catch ( Exception ex )
+      {
+        ActionResult _ar = new ActionResult();
+        _ar.AddException( new Exception( String.Format( "The operation OnPreRender has been interrupted by the error: '{0}'", ex.Message ) ) );
+        this.ShowActionResult( _ar );
+      }
       base.OnPreRender( e );
     }
     /// <summary>
