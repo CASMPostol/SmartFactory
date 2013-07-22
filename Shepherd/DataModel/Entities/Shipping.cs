@@ -425,6 +425,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       EDC.DriversTeam.DeleteAllOnSubmit( _2Delete );
       EDC.SubmitChanges();
     }
+    /// <summary>
+    /// Called when created.
+    /// </summary>
     partial void OnCreated()
     {
       m_SheepingSubstateMachineContext = new SheepingSubstateMachine.Context( this );
