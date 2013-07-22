@@ -158,9 +158,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
               where idx.Id == _index.Value
               select idx ).First();
       }
-      catch ( Exception )
+      catch ( Exception _ex )
       {
-        throw new ApplicationException( String.Format( "{0} cannot be found at specified index: [{1}]", typeof( t ).Name, _index.Value ) );
+        throw new ApplicationException( String.Format( "{0} cannot be found at specified index: [{1}] because of error: {2}", typeof( t ).Name, _index.Value, _ex ) );
       }
     }
     /// <summary>
