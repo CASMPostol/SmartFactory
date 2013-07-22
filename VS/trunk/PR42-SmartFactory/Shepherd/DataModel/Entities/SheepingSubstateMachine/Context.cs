@@ -27,39 +27,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
     internal Context( Shipping parent )
     {
       m_Parent = parent;
-      switch ( parent.ShippingState2.Value )
-      {
-        case ShippingState2.Cancelation:
-          m_AbstractState = new CancelationState( this );
-          break;
-        case ShippingState2.Canceled:
-          m_AbstractState = new CanceledState( this );
-          break;
-        case ShippingState2.Completed:
-          m_AbstractState = new CompletedState( this );
-          break;
-        case ShippingState2.Confirmed:
-          m_AbstractState = new ConfirmedState( this );
-          break;
-        case ShippingState2.Creation:
-          m_AbstractState = new CreationState( this );
-          break;
-        case ShippingState2.Delayed:
-          m_AbstractState = new DelayedState( this );
-          break;
-        case ShippingState2.LackOfData:
-          m_AbstractState = new LackOfDataState( this );
-          break;
-        case ShippingState2.Left:
-          m_AbstractState = new LeftState( this );
-          break;
-        case ShippingState2.Started:
-          m_AbstractState = new StartedState( this );
-          break;
-        case ShippingState2.Waiting:
-          m_AbstractState = new WaitingState( this );
-          break;
-      }
     }
     #endregion
 
@@ -100,9 +67,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
       public virtual void SetAwaiting( bool value )
       {
         string _msg = String.Format
-          ( "SheepingSubstateMachine error: SetAwaiting( {0} ) trigger is not allowed in the current state {1}", 
-            value, 
-            this.Parent.m_Parent.ShippingState2.Value 
+          ( "SheepingSubstateMachine error: SetAwaiting( {0} ) trigger is not allowed in the current state {1}",
+            value,
+            this.Parent.m_Parent.ShippingState2.Value
           );
         throw new ContexException( _msg );
       }
@@ -110,9 +77,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
       public virtual void SetShippingState( ShippingState shippingState )
       {
         string _msg = String.Format
-          ( "SheepingSubstateMachine error: SetShippingState( {0} ) trigger is not allowed in the current state {1}", 
-            shippingState, 
-            this.Parent.m_Parent.ShippingState2.Value 
+          ( "SheepingSubstateMachine error: SetShippingState( {0} ) trigger is not allowed in the current state {1}",
+            shippingState,
+            this.Parent.m_Parent.ShippingState2.Value
           );
         throw new ContexException( _msg );
       }
@@ -405,8 +372,98 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
 
     }
     #endregion
-
-    private AbstractState m_AbstractState;
+    private AbstractState p_AbstractState = null;
+    private AbstractState m_AbstractState
+    {
+      get
+      {
+        if ( p_AbstractState == null )
+          p_AbstractState = CreateAbstractState( m_Parent );
+        return p_AbstractState;
+      }
+    }
+    private AbstractState CreateAbstractState( Shipping m_Parent )
+    {
+      AbstractState _ret = null;
+      switch ( m_Parent.ShippingState2.GetValueOrDefault( GetDefaultValue( m_Parent ) ) )
+      {
+        case ShippingState2.Cancelation:
+          _ret = new CancelationState( this );
+          break;
+        case ShippingState2.Canceled:
+          _ret = new CanceledState( this );
+          break;
+        case ShippingState2.Completed:
+          _ret = new CompletedState( this );
+          break;
+        case ShippingState2.Confirmed:
+          _ret = new ConfirmedState( this );
+          break;
+        case ShippingState2.Creation:
+          _ret = new CreationState( this );
+          break;
+        case ShippingState2.Delayed:
+          _ret = new DelayedState( this );
+          break;
+        case ShippingState2.LackOfData:
+          _ret = new LackOfDataState( this );
+          break;
+        case ShippingState2.Left:
+          _ret = new LeftState( this );
+          break;
+        case ShippingState2.Started:
+          _ret = new StartedState( this );
+          break;
+        case ShippingState2.Waiting:
+          _ret = new WaitingState( this );
+          break;
+      }
+      return _ret;
+    }
+    private ShippingState2 GetDefaultValue( Shipping nullable )
+    {
+      ShippingState2 _ret = default( ShippingState2 );
+      switch ( nullable.ShippingState.Value )
+      {
+        case ShippingState.Cancelation:
+          _ret = ShippingState2.Cancelation;
+          break;
+        case ShippingState.Canceled:
+          _ret = ShippingState2.Canceled;
+          break;
+        case ShippingState.Completed:
+          _ret = ShippingState2.Left;
+          break;
+        case ShippingState.Confirmed:
+          if ( nullable.TruckAwaiting.Value )
+            _ret = ShippingState2.Waiting;
+          else
+            _ret = ShippingState2.Confirmed;
+          break;
+        case ShippingState.Creation:
+          _ret = ShippingState2.Creation;
+          break;
+        case ShippingState.Delayed:
+          if ( nullable.TruckAwaiting.Value )
+            _ret = ShippingState2.Waiting;
+          else
+            _ret = ShippingState2.Delayed;
+          break;
+        case ShippingState.WaitingForCarrierData:
+          _ret = ShippingState2.LackOfData;
+          break;
+        case ShippingState.WaitingForConfirmation:
+          _ret = ShippingState2.LackOfData;
+          break;
+        case ShippingState.Underway:
+          if ( nullable.WarehouseEndTime > DateTime.Now )
+            _ret = ShippingState2.Completed;
+          else
+            _ret = ShippingState2.Started;
+          break;
+      }
+      return _ret;
+    }
     private Shipping m_Parent;
 
     #endregion
