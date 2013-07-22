@@ -102,12 +102,12 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
     }
     /// <summary>
-    /// Fixeds this instance.
+    /// It is planned for the future.
     /// </summary>
-    /// <returns></returns>
-    public bool Fixed()
+    /// <returns><c>true</c> is shipping is planned for the future.</returns>
+    public bool ForFuture()
     {
-      return this.StartTime.Value - _12h < DateTime.Now;
+      return this.StartTime.Value < DateTime.Now;
     }
     /// <summary>
     /// Releases the booking.
@@ -129,7 +129,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       foreach ( var item in _2release )
       {
         //item.Tytuł = "-- not assigned --";
-        if ( Fixed() )
+        if ( ForFuture() )
           item.Occupied = Entities.Occupied.Delayed;
         else
         {
