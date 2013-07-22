@@ -420,10 +420,10 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
       }
       return _ret;
     }
-    private ShippingState2 GetDefaultValue( Shipping nullable )
+    private ShippingState2 GetDefaultValue( Shipping shipping )
     {
       ShippingState2 _ret = default( ShippingState2 );
-      switch ( nullable.ShippingState.Value )
+      switch ( shipping.ShippingState.GetValueOrDefault( ShippingState.Creation ) )
       {
         case ShippingState.Cancelation:
           _ret = ShippingState2.Cancelation;
@@ -435,7 +435,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
           _ret = ShippingState2.Left;
           break;
         case ShippingState.Confirmed:
-          if ( nullable.TruckAwaiting.Value )
+          if ( shipping.TruckAwaiting.Value )
             _ret = ShippingState2.Waiting;
           else
             _ret = ShippingState2.Confirmed;
@@ -444,7 +444,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
           _ret = ShippingState2.Creation;
           break;
         case ShippingState.Delayed:
-          if ( nullable.TruckAwaiting.Value )
+          if ( shipping.TruckAwaiting.Value )
             _ret = ShippingState2.Waiting;
           else
             _ret = ShippingState2.Delayed;
@@ -456,7 +456,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
           _ret = ShippingState2.LackOfData;
           break;
         case ShippingState.Underway:
-          if ( nullable.WarehouseEndTime > DateTime.Now )
+          if ( shipping.WarehouseEndTime > DateTime.Now )
             _ret = ShippingState2.Completed;
           else
             _ret = ShippingState2.Started;
