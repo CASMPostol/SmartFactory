@@ -447,7 +447,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private bool VendorFixed( Shipping CurrentShipping )
     {
-      return ( m_DashboardType == GlobalDefinitions.Roles.Vendor ) && ( CurrentShipping != null ) && CurrentShipping.Fixed();
+      return ( m_DashboardType == GlobalDefinitions.Roles.Vendor ) && ( CurrentShipping != null ) && CurrentShipping.FotFuture();
     }
     private void SetInterconnectionData( TimeSlotInterconnectionData _interconnectionData )
     {
