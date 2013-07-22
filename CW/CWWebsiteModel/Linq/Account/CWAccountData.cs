@@ -156,14 +156,22 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     private DateTime? GetCertificateDate( Entities entities, string code, List<Warnning> warnings )
     {
       DateTime? _ret = new Nullable<DateTime>();
+      string _at = "Matches";
       try
       {
         MatchCollection _result = Regex.Matches( code, Settings.GetParameter( entities, SettingsEntry.LooselyFormatedDate ) );
-        _ret = new DateTime( int.Parse( _result[ 3 ].Value ), int.Parse( _result[ 2 ].Value ), int.Parse( _result[ 1 ].Value ) );
+        _at = "yar";
+        int _yar = int.Parse( _result[ 3 ].Value );
+        _at = "month";
+        int _month = int.Parse( _result[ 2 ].Value );
+        _at = "day";
+        int _day = int.Parse( _result[ 1 ].Value );
+        _at = "new DateTime";
+        _ret = new DateTime( _yar, _month, _day );
       }
       catch ( Exception _ex )
       {
-        string _mssg = String.Format( "Cannot get data from the certificate {0}, because of the error {1}", code, _ex.Message );
+        string _mssg = String.Format( "Cannot get data from the certificate '{0}' at {2} because of the error {1}", code, _ex.Message, _at );
         warnings.Add( new Warnning( _mssg, false ) );
       }
       return _ret;
@@ -186,8 +194,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     private double? Convert2Double( string value, List<string> errors )
     {
       double _ret;
-      if ( Double.TryParse( value, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out _ret ) )
+      if ( Double.TryParse( value.Replace(",", "."), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out _ret ) )
         return _ret;
+      errors.Add( String.Format( "Coversion to float of the {0} failed.", value ) );
       return new Nullable<double>();
     }
     private class CreateCWAccountException: Exception
