@@ -54,7 +54,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
        { SettingsEntry.GoodsDescription_CWQuantity_Pattern,  @"(?<=\bBATCH:)\D*\d*\D*(\d*[.,,]\d*)\W*\w*\D*\d*\W*CT" },
        { SettingsEntry.GoodsDescription_CWPackageUnits_Pattern, @"(?<=\bBATCH:)\D*\d*\D*\d*[.,,]\d*\W*\w*\D*(\d*)\W*CT" },
        { SettingsEntry.GoodsDescription_Units_Pattern,  @"(?<=\bBATCH:)\D*\d*\D*\d*[.,,]\d*\W*(\w*)\D*\d*\W*CT" },
-       { SettingsEntry.GoodsDescription_CertificateOfAuthenticity_Pattern,  @"\b([\w,\d\s]*)/.*" },
+       { SettingsEntry.GoodsDescription_CertificateOfAuthenticity_Pattern,  @"\b([\w,\d,\s,,,\.]*)/.*" },
        { SettingsEntry.GoodsDescription_CertificateOfOrgin_Pattern, @"\b([\w,\d\s\.,,,-]*)/.*" },
        { SettingsEntry.DefaultValidToDatePeriod, "720" },
        { SettingsEntry.LooselyFormatedDate, @"(?<=/)\D*(\d{1,2}).(\d{1,2}).(\d{4})" },

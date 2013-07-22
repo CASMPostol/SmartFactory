@@ -155,11 +155,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     }
     private DateTime? GetCertificateDate( Entities entities, string code, List<Warnning> warnings )
     {
+      bool _severity = false;
       DateTime? _ret = new Nullable<DateTime>();
       string _at = "Matches";
       try
       {
-        MatchCollection _result = Regex.Matches( code, Settings.GetParameter( entities, SettingsEntry.LooselyFormatedDate ) );
+        string _pattern = Settings.GetParameter( entities, SettingsEntry.LooselyFormatedDate );
+        MatchCollection _result = Regex.Matches( code, _pattern );
+        int _cnt = _result.Count;
+        if ( _cnt < 4 )
+        {
+          string _wrn = "Cannot recognize correct data format from the certificate {0} using pattern {1} - wrong number of date parts {2}";
+          _wrn = String.Format( _wrn, code, _pattern, _cnt );
+          warnings.Add( new Warnning( _wrn, _severity ) );
+        }
         _at = "yar";
         int _yar = int.Parse( _result[ 3 ].Value );
         _at = "month";
@@ -172,7 +181,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
       catch ( Exception _ex )
       {
         string _mssg = String.Format( "Cannot get data from the certificate '{0}' at {2} because of the error {1}", code, _ex.Message, _at );
-        warnings.Add( new Warnning( _mssg, false ) );
+        warnings.Add( new Warnning( _mssg, _severity ) );
       }
       return _ret;
     }
@@ -194,7 +203,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     private double? Convert2Double( string value, List<string> errors )
     {
       double _ret;
-      if ( Double.TryParse( value.Replace(",", "."), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out _ret ) )
+      if ( Double.TryParse( value.Replace( ",", "." ), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out _ret ) )
         return _ret;
       errors.Add( String.Format( "Coversion to float of the {0} failed.", value ) );
       return new Nullable<double>();
