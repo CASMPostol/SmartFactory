@@ -102,6 +102,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
       { }
 
       #region IContextTrigers
+      public override void SetAwaiting( bool value ) { }
       public override void SetShippingState( ShippingState shippingState )
       {
         switch ( shippingState )
