@@ -40,6 +40,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     #endregion
 
     #region private
+    private static int m_DaysPerMath = 30;
     private void AnalizeDutyAndVAT( SADGood good )
     {
       string _at = "Started";
@@ -118,9 +119,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
       SADQuantity _quantity = good.SADQuantity.FirstOrDefault();
       NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault( 0 );
     }
-    protected internal override void SetValidToDate( DateTime date )
+    /// <summary>
+    /// Sets the valid to date.
+    /// </summary>
+    /// <param name="customsDebtDate"></param>
+    /// <param name="consent"></param>
+    protected internal override void SetValidToDate( DateTime customsDebtDate, Consent consent )
     {
-      ValidToDate = date;
+      ValidToDate = customsDebtDate + TimeSpan.FromDays( consent.ConsentPeriod.Value * m_DaysPerMath );
     }
     #endregion
 
