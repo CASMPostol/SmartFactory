@@ -79,7 +79,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     /// Sets the valid to date.
     /// </summary>
     /// <param name="date">The date.</param>
-    protected internal virtual void SetValidToDate( DateTime date ) { }
+    protected internal virtual void SetValidToDate( DateTime customsDebtDate, Consent consent ) { }
     /// <summary>
     /// Analizes the good.
     /// </summary>
@@ -162,9 +162,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
           _cnst = CreateDefaultConsent( edc, _nr );
         this.ConsentLookup = _cnst.Id.Value;
       }
-      this.SetValidToDate( customsDebtDate + TimeSpan.FromDays( _cnst.ConsentPeriod.Value * m_DaysPerMath ) );
+      this.SetValidToDate( customsDebtDate, _cnst );
     }
-    private static int m_DaysPerMath = 30;
     private Linq.Consent CreateDefaultConsent( Entities edc, string _nr )
     {
       Linq.Consent _ret = Consent.DefaultConsent( edc, GetCustomsProcess( Process ), _nr );
