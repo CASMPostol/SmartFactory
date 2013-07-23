@@ -180,6 +180,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       internal StateMachineEngine.ControlsSet SetEnabled = 0;
       public bool TimeSlotChanged = false;
       public bool WarehouseEndTimeChanged = false;
+      public bool WarehouseEndOperation = false;
       public bool WarehouseStartTimeChanged = false;
       #endregion
 
@@ -636,6 +637,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_WarehouseEndTimeControl.SetTimePicker( shipping.WarehouseEndTime );
       m_ControlState.WarehouseStartTimeChanged = false;
       m_ControlState.WarehouseEndTimeChanged = false;
+      m_ControlState.WarehouseEndOperation = false;
     }
     private void ShowOperatorStuff( Shipping _sppng )
     {
@@ -784,15 +786,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _checkPoint = "CurrentShipping";
         CurrentShipping.CalculateState();
         if ( m_ControlState.WarehouseEndTimeChanged )
-        {
           CurrentShipping.WarehouseEndTime = UpdateTime( m_WarehouseEndTimeControl );
-          m_ControlState.WarehouseEndTimeChanged = false;
-        }
         if ( m_ControlState.WarehouseStartTimeChanged )
           CurrentShipping.WarehouseStartTime = UpdateTime( m_WarehouseStartTimeControl );
+        if ( m_ControlState.WarehouseEndOperation )
+          CurrentShipping.SetWarehouseEndTime();
         _checkPoint = "SubmitChanges";
         EDC.SubmitChanges();
+        m_ControlState.WarehouseEndTimeChanged = false;
         m_ControlState.TimeSlotChanged = false;
+        m_ControlState.WarehouseEndOperation = false;
       }
       catch ( ChangeConflictException )
       {
@@ -1195,8 +1198,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected void m_WarehouseEndTimeButton_Click( object sender, EventArgs e )
     {
       m_WarehouseEndTimeControl.SelectedDate = DateTime.Now;
-      CurrentShipping.SetWarehouseEndTime();
       m_ControlState.WarehouseEndTimeChanged = true;
+      m_ControlState.WarehouseEndOperation = true;
     }
     #endregion
 

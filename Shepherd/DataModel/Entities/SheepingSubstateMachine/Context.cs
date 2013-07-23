@@ -115,9 +115,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
           case ShippingState.Cancelation:
             Transition( ShippingState2.Cancelation );
             break;
-          case ShippingState.WaitingForConfirmation:
           case ShippingState.WaitingForCarrierData:
             Transition( ShippingState2.LackOfData );
+            break;
+          case ShippingState.WaitingForConfirmation:
+            Transition( ShippingState2.Confirmed);
             break;
         }
       }
@@ -142,9 +144,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
             Transition( ShippingState2.Cancelation );
             break;
           case ShippingState.Confirmed:
+          case ShippingState.WaitingForConfirmation:
             Transition( ShippingState2.Confirmed );
             break;
-          case ShippingState.WaitingForConfirmation:
           case ShippingState.WaitingForCarrierData:
             break;
         }
@@ -175,7 +177,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
           case ShippingState.Cancelation:
             Transition( ShippingState2.Cancelation );
             break;
-          case ShippingState.WaitingForConfirmation:
           case ShippingState.WaitingForCarrierData:
             Transition( ShippingState2.LackOfData );
             break;
@@ -185,6 +186,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
           case ShippingState.Underway:
             Transition( ShippingState2.Started );
             break;
+          case ShippingState.WaitingForConfirmation:
           case ShippingState.Confirmed:
             break;
         }
@@ -216,6 +218,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
             Transition( ShippingState2.Cancelation );
             break;
           case ShippingState.WaitingForConfirmation:
+          case ShippingState.Confirmed:
+            Transition( ShippingState2.Confirmed );
+            break;
           case ShippingState.WaitingForCarrierData:
             Transition( ShippingState2.LackOfData );
             break;

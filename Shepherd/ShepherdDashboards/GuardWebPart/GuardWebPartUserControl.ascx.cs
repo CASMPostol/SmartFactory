@@ -176,8 +176,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
             if (_ts == null)
               break;
             CurrentShipping.StartTime = _ts.StartTime;
-            CurrentShipping.EndTime = _ts.EndTime;
-            CurrentShipping.ShippingDuration = _ts.Duration();
+            CurrentShipping.TruckAwaiting = false;
             CurrentShipping.CalculateState();
             EDC.SubmitChanges();
             break;
