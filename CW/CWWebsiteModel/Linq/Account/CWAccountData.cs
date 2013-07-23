@@ -161,20 +161,21 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
       try
       {
         string _pattern = Settings.GetParameter( entities, SettingsEntry.LooselyFormatedDate );
-        MatchCollection _result = Regex.Matches( code, _pattern );
-        int _cnt = _result.Count;
+        Match _result = Regex.Match( code, _pattern );
+        int _cnt = _result.Groups.Count;
         if ( _cnt < 4 )
         {
           string _wrn = "Cannot recognize correct data format from the certificate {0} using pattern {1} - wrong number of date parts {2}";
           _wrn = String.Format( _wrn, code, _pattern, _cnt );
           warnings.Add( new Warnning( _wrn, _severity ) );
+          return _ret;
         }
         _at = "yar";
-        int _yar = int.Parse( _result[ 3 ].Value );
+        int _yar = int.Parse( _result.Groups[ 3 ].Value );
         _at = "month";
-        int _month = int.Parse( _result[ 2 ].Value );
+        int _month = int.Parse( _result.Groups[ 2 ].Value );
         _at = "day";
-        int _day = int.Parse( _result[ 1 ].Value );
+        int _day = int.Parse( _result.Groups[ 1 ].Value );
         _at = "new DateTime";
         _ret = new DateTime( _yar, _month, _day );
       }
