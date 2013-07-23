@@ -158,6 +158,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         case Entities.ShippingState.Creation:
         case Entities.ShippingState.WaitingForCarrierData:
         case Entities.ShippingState.WaitingForConfirmation:
+        case Entities.ShippingState.Underway:
           int _seDrivers = 0;
           int _crDrivers = 0;
           foreach ( var _dr in this.ShippingDriversTeam )
@@ -165,23 +166,27 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
               _seDrivers++;
             else
               _crDrivers++;
-          if ( _crDrivers > 0 && this.TruckTitle != null )
-          {
-            if ( this.SecurityEscortCatalogTitle == null || ( _seDrivers > 0 && this.Shipping2TruckTitle != null ) )
-              this.ShippingState = Entities.ShippingState.Confirmed;
-            else
-              this.ShippingState = Entities.ShippingState.WaitingForConfirmation;
-          }
-          else if ( this.SecurityEscortCatalogTitle == null || ( _seDrivers > 0 && this.Shipping2TruckTitle != null ) )
-            this.ShippingState = Entities.ShippingState.WaitingForCarrierData;
-          else
+          if ( this.Shipping2RouteTitle == null )
             this.ShippingState = Entities.ShippingState.Creation;
+          else
+          {
+            if ( _crDrivers > 0 && this.TruckTitle != null )
+            {
+              if ( this.SecurityEscortCatalogTitle == null || ( _seDrivers > 0 && this.Shipping2TruckTitle != null ) )
+                this.ShippingState = Entities.ShippingState.Confirmed;
+              else
+                this.ShippingState = Entities.ShippingState.WaitingForConfirmation;
+            }
+            else if ( this.SecurityEscortCatalogTitle == null || ( _seDrivers > 0 && this.Shipping2TruckTitle != null ) )
+              this.ShippingState = Entities.ShippingState.WaitingForCarrierData;
+            else
+              this.ShippingState = Entities.ShippingState.Creation;
+          }
           break;
         case Entities.ShippingState.None:
           this.ShippingState = Entities.ShippingState.Creation;
           break;
         case Entities.ShippingState.Delayed:
-        case Entities.ShippingState.Underway:
         case Entities.ShippingState.Invalid:
         case Entities.ShippingState.Cancelation:
         case Entities.ShippingState.Canceled:
