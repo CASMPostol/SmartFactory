@@ -49,7 +49,8 @@
         <asp:Label ID="m_EstimateDeliveryTimeLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,ETA%>" CssClass="Label"
           ToolTip="<%$Resources:CASSmartFactoryShepherd,ETAToolTip%>"></asp:Label>
       </asp:TableCell><asp:TableCell>
-        <SharePoint:DateTimeControl HoursMode24="true" ID="m_EstimateDeliveryTimeDateTimeControl" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" />
+        <SharePoint:DateTimeControl HoursMode24="true" ID="m_EstimateDeliveryTimeDateTimeControl" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx"
+             OnDateChanged="m_EstimateDeliveryTimeDateTimeControl_DateChanged" AutoPostBack="true" />
       </asp:TableCell>
     </asp:TableRow>
     <asp:TableRow>
@@ -62,7 +63,7 @@
                           </asp:TableCell>
                           <asp:TableCell ColumnSpan="2">
                             <SharePoint:DateTimeControl ID="m_WarehouseStartTimeControl" HoursMode24="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx"
-                                OnDateChanged="m_WarehouseStartTimeControl_DateChanged"
+                                OnDateChanged="m_WarehouseStartTimeControl_DateChanged", AutoPostBack="true"
                                 ToolTip="<%$Resources:CASSmartFactoryShepherd,WarehouseStartTimeToolTip%>" />
                           </asp:TableCell>
                       </asp:TableRow>
@@ -72,7 +73,7 @@
                           </asp:TableCell>
                           <asp:TableCell>
                             <SharePoint:DateTimeControl ID="m_WarehouseEndTimeControl" HoursMode24="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" 
-                                OnDateChanged="m_WarehouseEndTimeButton_DateChanged" 
+                                OnDateChanged="m_WarehouseEndTimeControl_DateChanged" AutoPostBack="true"
                                 ToolTip="<%$Resources:CASSmartFactoryShepherd,WarehouseEndTimeToolTip%>" />
                           </asp:TableCell>
                           <asp:TableCell HorizontalAlign="Right">
