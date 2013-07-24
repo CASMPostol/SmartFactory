@@ -49,7 +49,7 @@
         <asp:Label ID="m_EstimateDeliveryTimeLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,ETA%>" CssClass="Label"
           ToolTip="<%$Resources:CASSmartFactoryShepherd,ETAToolTip%>"></asp:Label>
       </asp:TableCell><asp:TableCell>
-        <SharePoint:DateTimeControl ID="m_EstimateDeliveryTimeDateTimeControl" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" />
+        <SharePoint:DateTimeControl HoursMode24="true" ID="m_EstimateDeliveryTimeDateTimeControl" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" />
       </asp:TableCell>
     </asp:TableRow>
     <asp:TableRow>
@@ -61,7 +61,7 @@
                             <asp:Label ID="m_WarehouseStartTimeLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,WarehouseStartTime%>" CssClass="Label"></asp:Label>
                           </asp:TableCell>
                           <asp:TableCell ColumnSpan="2">
-                            <SharePoint:DateTimeControl ID="m_WarehouseStartTimeControl" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx"
+                            <SharePoint:DateTimeControl ID="m_WarehouseStartTimeControl" HoursMode24="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx"
                                 OnDateChanged="m_WarehouseStartTimeControl_DateChanged"
                                 ToolTip="<%$Resources:CASSmartFactoryShepherd,WarehouseStartTimeToolTip%>" />
                           </asp:TableCell>
@@ -71,7 +71,7 @@
                             <asp:Label ID="m_WarehouseEndTimeLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,WarehouseEndTime%>" CssClass="Label"></asp:Label>
                           </asp:TableCell>
                           <asp:TableCell>
-                            <SharePoint:DateTimeControl ID="m_WarehouseEndTimeControl" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" 
+                            <SharePoint:DateTimeControl ID="m_WarehouseEndTimeControl" HoursMode24="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" 
                                 OnDateChanged="m_WarehouseEndTimeButton_DateChanged" 
                                 ToolTip="<%$Resources:CASSmartFactoryShepherd,WarehouseEndTimeToolTip%>" />
                           </asp:TableCell>
