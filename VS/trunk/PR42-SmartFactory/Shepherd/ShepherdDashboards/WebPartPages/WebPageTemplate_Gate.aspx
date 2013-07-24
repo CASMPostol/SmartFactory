@@ -22,14 +22,6 @@
     <table border="0" width="1100px">
         <tr>
             <td valign="top">
-                        <WebPartPages:WebpartZone
-                        ID="Shippings" runat="server"
-                        Title="Shippings Web Part Zone"
-                        FrameType="TitleBarOnly" />
-            </td>
-        </tr>
-        <tr>
-            <td valign="top">
                 <table border="0" width="100%">
                     <tr>
                         <td width="50%" valign="top">
@@ -46,6 +38,14 @@
                         </td>
                     </tr>
                 </table>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                        <WebPartPages:WebpartZone
+                        ID="Shippings" runat="server"
+                        Title="Shippings Web Part Zone"
+                        FrameType="TitleBarOnly" />
             </td>
         </tr>
     </table>
