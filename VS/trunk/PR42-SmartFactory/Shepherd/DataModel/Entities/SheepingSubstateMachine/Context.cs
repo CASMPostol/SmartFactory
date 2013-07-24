@@ -36,6 +36,15 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
     public class ContexException: Exception
     {
       public ContexException( string message ) : base( message ) { }
+      public static ContexException TriggerError( string trigger, ShippingState2 contextState )
+      {
+        string _msg = String.Format
+          ( "SheepingSubstateMachine error: the {0} trigger is not allowed in the current state {1}",
+            trigger,
+            contextState
+          );
+        return new ContexException( _msg );
+      }
     }
     #region IContextTrigers Members
     public void SetAwaiting( bool value )
@@ -49,6 +58,10 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
     public void SetShippingState( ShippingState shippingState )
     {
       m_AbstractState.SetShippingState( shippingState );
+    }
+    public void SetPartner( Partner partner )
+    {
+      m_AbstractState.SetPartner( partner );
     }
     #endregion
 
@@ -76,12 +89,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
       public virtual void SetEndTime() { }
       public virtual void SetShippingState( ShippingState shippingState )
       {
-        string _msg = String.Format
-          ( "SheepingSubstateMachine error: SetShippingState( {0} ) trigger is not allowed in the current state {1}",
-            shippingState,
-            this.Parent.m_Parent.ShippingState2.Value
-          );
-        throw new ContexException( _msg );
+        throw ContexException.TriggerError( String.Format( "SetShippingState( {0} )", shippingState ), this.Parent.m_Parent.ShippingState2.Value );
+      }
+      public virtual void SetPartner( Partner partner )
+      {
+        throw ContexException.TriggerError( "SetPartner", this.Parent.m_Parent.ShippingState2.Value );
       }
       #endregion
 
@@ -102,7 +114,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
       { }
 
       #region IContextTrigers
-      public override void SetAwaiting( bool value ) { }
+      public override void SetPartner( Partner partner )
+      {
+        if ( partner != null )
+          Transition( ShippingState2.LackOfData );
+      }
       public override void SetShippingState( ShippingState shippingState )
       {
         switch ( shippingState )
@@ -118,9 +134,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
           case ShippingState.WaitingForCarrierData:
             Transition( ShippingState2.LackOfData );
             break;
-          case ShippingState.WaitingForConfirmation:
-            Transition( ShippingState2.Confirmed);
-            break;
         }
       }
       #endregion
@@ -133,6 +146,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
       { }
 
       #region IContextTrigers
+      public override void SetPartner( Partner partner )
+      {
+        if ( partner == null )
+          Transition( ShippingState2.Creation );
+      }
       public override void SetShippingState( ShippingState shippingState )
       {
         switch ( shippingState )
@@ -148,6 +166,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
             Transition( ShippingState2.Confirmed );
             break;
           case ShippingState.WaitingForCarrierData:
+          case ShippingState.Creation:
             break;
         }
       }
@@ -167,6 +186,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
           return;
         Transition( ShippingState2.Waiting );
       }
+      public override void SetPartner( Partner partner )
+      {
+        if ( partner == null )
+          Transition( ShippingState2.Creation );
+      }
       public override void SetShippingState( ShippingState shippingState )
       {
         switch ( shippingState )
@@ -181,7 +205,10 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
             Transition( ShippingState2.LackOfData );
             break;
           case ShippingState.Creation:
-            Transition( ShippingState2.Creation );
+            if ( Parent.m_Parent.PartnerTitle == null )
+              Transition( ShippingState2.Creation );
+            else
+              Transition( ShippingState2.LackOfData );
             break;
           case ShippingState.Underway:
             Transition( ShippingState2.Started );
@@ -225,7 +252,10 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
             Transition( ShippingState2.LackOfData );
             break;
           case ShippingState.Creation:
-            Transition( ShippingState2.Creation );
+            if ( Parent.m_Parent.PartnerTitle == null )
+              Transition( ShippingState2.Creation );
+            else
+              Transition( ShippingState2.LackOfData );
             break;
           case ShippingState.Underway:
             Transition( ShippingState2.Started );
@@ -275,6 +305,10 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
       { }
 
       #region IContextTrigers
+      public override void SetAwaiting( bool value )
+      {
+
+      }
       public override void SetEndTime()
       {
         Transition( ShippingState2.Completed );
@@ -378,6 +412,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
 
     }
     #endregion
+
     private AbstractState p_AbstractState = null;
     private AbstractState m_AbstractState
     {
@@ -473,5 +508,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
     private Shipping m_Parent;
 
     #endregion
+
   }
 }

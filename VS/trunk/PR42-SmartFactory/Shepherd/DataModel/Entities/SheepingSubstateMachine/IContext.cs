@@ -13,7 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-
 namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
 {
   /// <summary>
@@ -21,6 +20,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
   /// </summary>
   internal interface IContextTrigers
   {
+    /// <summary>
+    /// Sets the partner.
+    /// </summary>
+    /// <param name="partner">The partner.</param>
+    void SetPartner( Partner partner );
     /// <summary>
     /// Sets that the truck is awaiting.
     /// </summary>
