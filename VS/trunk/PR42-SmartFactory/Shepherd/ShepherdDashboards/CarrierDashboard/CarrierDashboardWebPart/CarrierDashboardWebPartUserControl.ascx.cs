@@ -182,6 +182,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       public bool WarehouseEndTimeChanged = false;
       public bool WarehouseEndOperation = false;
       public bool WarehouseStartTimeChanged = false;
+      public bool ETATimeChanged = false;
+      public DateTime? WarehouseEndTime = new Nullable<DateTime>();
+      public DateTime? WarehouseStartTime = new Nullable<DateTime>();
+      public DateTime? ETATime = new Nullable<DateTime>();
       #endregion
 
       #region public
@@ -193,6 +197,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         SecurityCatalogID = String.Empty;
         TimeSlotID = String.Empty;
         TimeSlotChanged = false;
+        WarehouseEndTime = new Nullable<DateTime>();
+        WarehouseStartTime = new Nullable<DateTime>();
+        ETATime = new Nullable<DateTime>();
       }
       public ControlState( ControlState _old )
       {
@@ -291,6 +298,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         m_StateLiteral.Text = ( "InterfaceState" + m_ControlState.InterfaceState.ToString() ).GetShepherdLocalizedString();
         SetEnabled( m_ControlState.SetEnabled );
+        m_WarehouseEndTimeControl.SetTimePicker( m_ControlState.WarehouseEndTime );
+        m_WarehouseStartTimeControl.SetTimePicker( m_ControlState.WarehouseStartTime );
+        m_EstimateDeliveryTimeDateTimeControl.SetTimePicker( m_ControlState.ETATime );
         if ( m_ControlState.ShippingID.IsNullOrEmpty() )
         {
           m_AbortButton.Enabled = false;
@@ -545,7 +555,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_WarehouseLabel.Text = String.Empty;
       m_DocumentTextBox.TextBoxTextProperty( String.Empty, true );
       m_CommentsTextBox.TextBoxTextProperty( String.Empty, false );
-      m_EstimateDeliveryTimeDateTimeControl.SelectedDate = DateTime.Now;
       m_TransportUnitTypeDropDownList.SelectedIndex = -1;
       m_DockNumberTextBox.Text = String.Empty;
       m_TrailerConditionCommentsTextBox.Text = String.Empty;
@@ -609,8 +618,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         ShowLoadingUnloadingTimePanel( CurrentShipping );
         if ( CurrentShipping.IsOutbound.Value )
         {
-          _at = "m_EstimateDeliveryTimeDateTimeControl";
-          m_EstimateDeliveryTimeDateTimeControl.SetTimePicker( CurrentShipping.EstimateDeliveryTime );
+          _at = "ETATime";
+          m_ControlState.ETATime = CurrentShipping.EstimateDeliveryTime;
           _at = "Shipping2RouteTitle";
           Show( CurrentShipping.Shipping2RouteTitle );
           _at = "Show( CurrentShipping.SecurityEscortCatalogTitle";
@@ -633,11 +642,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void ShowLoadingUnloadingTimePanel( Shipping shipping )
     {
-      m_WarehouseStartTimeControl.SetTimePicker( shipping.WarehouseStartTime );
-      m_WarehouseEndTimeControl.SetTimePicker( shipping.WarehouseEndTime );
-      m_ControlState.WarehouseStartTimeChanged = false;
-      m_ControlState.WarehouseEndTimeChanged = false;
-      m_ControlState.WarehouseEndOperation = false;
+      m_ControlState.WarehouseEndTime = shipping.WarehouseEndTime;
+      m_ControlState.WarehouseStartTime = shipping.WarehouseStartTime;
     }
     private void ShowOperatorStuff( Shipping _sppng )
     {
@@ -786,16 +792,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _checkPoint = "CurrentShipping";
         CurrentShipping.CalculateState();
         if ( m_ControlState.WarehouseEndTimeChanged )
-          CurrentShipping.WarehouseEndTime = UpdateTime( m_WarehouseEndTimeControl );
+          CurrentShipping.WarehouseEndTime = m_ControlState.WarehouseEndTime;
         if ( m_ControlState.WarehouseStartTimeChanged )
-          CurrentShipping.WarehouseStartTime = UpdateTime( m_WarehouseStartTimeControl );
+          CurrentShipping.WarehouseStartTime = m_ControlState.WarehouseStartTime;
         if ( m_ControlState.WarehouseEndOperation )
           CurrentShipping.SetWarehouseEndTime();
+        if ( m_ControlState.ETATimeChanged )
+          CurrentShipping.EstimateDeliveryTime = m_ControlState.ETATime;
         _checkPoint = "SubmitChanges";
         EDC.SubmitChanges();
         m_ControlState.WarehouseEndTimeChanged = false;
         m_ControlState.TimeSlotChanged = false;
         m_ControlState.WarehouseEndOperation = false;
+        m_ControlState.ETATimeChanged = false;
       }
       catch ( ChangeConflictException )
       {
@@ -826,7 +835,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       UpdateOperatorPanel( _sppng );
       if ( _sppng.IsOutbound.Value )
       {
-        UpdateEstimateDeliveryTime( _sppng );
         UpdateCity( _sppng, _rsult, _EDC );
         UpdateRoute( _sppng, _EDC );
         UpdateSecurityEscort( _sppng, _EDC );
@@ -845,15 +853,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _sppng.TrailerCondition = null;
       if ( m_DockNumberTextBox.Enabled )
         _sppng.DockNumber = m_DockNumberTextBox.Text;
-    }
-    private void UpdateEstimateDeliveryTime( Shipping _sppng )
-    {
-      if ( !m_EstimateDeliveryTimeDateTimeControl.IsValid )
-      {
-        _sppng.EstimateDeliveryTime = null;
-        return;
-      }
-      _sppng.EstimateDeliveryTime = m_EstimateDeliveryTimeDateTimeControl.SelectedDate;
     }
     private void UpdateCity( Shipping _sppng, ActionResult _rsult, EntitiesDataContext _EDC )
     {
@@ -1187,17 +1186,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region EventHandlers
-    protected void m_WarehouseEndTimeButton_DateChanged( object sender, EventArgs e )
+    protected void m_WarehouseEndTimeControl_DateChanged( object sender, EventArgs e )
     {
       m_ControlState.WarehouseEndTimeChanged = true;
+      m_ControlState.WarehouseEndTime = m_WarehouseEndTimeControl.SelectedDate;
     }
     protected void m_WarehouseStartTimeControl_DateChanged( object sender, EventArgs e )
     {
       m_ControlState.WarehouseStartTimeChanged = true;
+      m_ControlState.WarehouseStartTime = m_WarehouseStartTimeControl.SelectedDate;
+    }
+    protected void m_EstimateDeliveryTimeDateTimeControl_DateChanged( object sender, EventArgs e )
+    {
+      m_ControlState.ETATimeChanged = true;
+      m_ControlState.ETATime = m_EstimateDeliveryTimeDateTimeControl.SelectedDate;
     }
     protected void m_WarehouseEndTimeButton_Click( object sender, EventArgs e )
     {
-      m_WarehouseEndTimeControl.SelectedDate = DateTime.Now;
+      m_ControlState.WarehouseEndTime = DateTime.Now;
       m_ControlState.WarehouseEndTimeChanged = true;
       m_ControlState.WarehouseEndOperation = true;
     }
@@ -1225,16 +1231,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           myShipping = Element.GetAtIndex<Shipping>( EDC.Shipping, m_ControlState.ShippingID );
         return myShipping;
       }
-    }
-    #endregion
-
-    #region helpers
-    private DateTime? UpdateTime( Microsoft.SharePoint.WebControls.DateTimeControl m_WarehouseEndTimeControl )
-    {
-      if ( !m_WarehouseEndTimeControl.IsValid || m_WarehouseEndTimeControl.IsDateEmpty )
-        return new Nullable<DateTime>();
-      else
-        return m_WarehouseEndTimeControl.SelectedDate;
     }
     #endregion
 
