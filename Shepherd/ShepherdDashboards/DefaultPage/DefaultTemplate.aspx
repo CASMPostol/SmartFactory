@@ -21,16 +21,9 @@
   <div id="Body" >
     <table cellspacing="0" cellpadding="0" border="0">
         <tr>
-            <td style="Width:940px;Height:201px;vertical-align:top" background="_layouts/images/ShepherdImages/DefaultBanner_truck.jpg">
-            </td>
-        </tr>
-        <tr>
-            <td style="Width:940px;Height:64px" background="_layouts/images/ShepherdImages/DefaultBanner2_truck.jpg">
-                <h1 class="H1White">Welcome to Shepherd!</h1>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            <td style="Width:940px;Height:201px;vertical-align:top">
+                <h1>Welcome to Shepherd!</h1>
+                <h4>Optimal Management of Inbound and Outbound Deliveries</h4>
                 <p class="MainText">Shepherd is designed to simplify inbound/outbound management in the factory to gain maximum benefits. The main idea for inbound is to allow all vendors to book deliveries by themselves (like cinema tickets booking) and for outbound to allow the factory Export Department to book shipments by themselves. On the other hand, forwarders and security escort providers may see online information about planned shipments and provide truck and security escort information by themselves (all the information is available to execute shipments on time and in a safe way). For the global environment it is important that multilingual support is provided.</p>
                 <p class="MainText">Main Advantages:</p>
                 <ul>
