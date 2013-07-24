@@ -119,6 +119,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
         if ( partner != null )
           Transition( ShippingState2.LackOfData );
       }
+      public override void SetAwaiting( bool value ) { }
       public override void SetShippingState( ShippingState shippingState )
       {
         switch ( shippingState )
@@ -327,7 +328,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
               Transition( ShippingState2.Confirmed );
             break;
           case ShippingState.Delayed:
-            Transition( ShippingState2.Delayed);
+            Transition( ShippingState2.Delayed );
             break;
           case ShippingState.Underway:
             break;
