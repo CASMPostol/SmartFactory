@@ -326,6 +326,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
             else
               Transition( ShippingState2.Confirmed );
             break;
+          case ShippingState.Delayed:
+            Transition( ShippingState2.Delayed);
+            break;
           case ShippingState.Underway:
             break;
         }
