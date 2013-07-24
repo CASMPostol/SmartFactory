@@ -100,7 +100,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entities\Scripts\Parameters.xml" />
+    <Content Include="Entities\Scripts\Parameters.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Features\SHRDataModel\SHRDataModel.Template.xml">
       <DependentUpon>SHRDataModel.feature</DependentUpon>
     </Content>
