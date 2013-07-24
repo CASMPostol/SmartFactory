@@ -166,7 +166,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
               _seDrivers++;
             else
               _crDrivers++;
-          if ( this.Shipping2RouteTitle == null )
+          if ( this.PartnerTitle == null )
             this.ShippingState = Entities.ShippingState.Creation;
           else
           {
@@ -450,6 +450,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
           m_SheepingSubstateMachineContext.SetShippingState( this.ShippingState.Value );
         else if ( propertyName.Equals( "TruckAwaiting" ) )
           m_SheepingSubstateMachineContext.SetAwaiting( this.TruckAwaiting.Value );
+        else if (propertyName.Equals("PartnerTitle"))
+          m_SheepingSubstateMachineContext.SetPartner( this.PartnerTitle );
       }
       catch ( SheepingSubstateMachine.Context.ContexException )
       {

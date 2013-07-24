@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : Guard Web Part User Control
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
@@ -8,26 +23,29 @@ using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
 {
-  public partial class GuardWebPartUserControl : UserControl
+  /// <summary>
+  /// Guard Web Part User Control
+  /// </summary>
+  public partial class GuardWebPartUserControl: UserControl
   {
     #region public
     internal void SetInterconnectionData( Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary )
     {
-      foreach (var item in _ProvidesDictionary)
+      foreach ( var item in _ProvidesDictionary )
         try
         {
-          switch (item.Key)
+          switch ( item.Key )
           {
             case InterconnectionData.ConnectionSelector.ShippingInterconnection:
-              new ShippingInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
+              new ShippingInterconnectionData().SetRowData( _ProvidesDictionary[ item.Key ], NewDataEventHandler );
               break;
             default:
-              throw new ApplicationException("SetInterconnectionData - SetInterconnectionData");
+              throw new ApplicationException( "SetInterconnectionData - SetInterconnectionData" );
           }
         }
-        catch (Exception ex)
+        catch ( Exception ex )
         {
-          ReportException("SetInterconnectionData at: " + item.Key.ToString(), ex);
+          ReportException( "SetInterconnectionData at: " + item.Key.ToString(), ex );
         }
     }
     #endregion
@@ -41,9 +59,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
       #endregion
 
       #region public
-      public ControlState(ControlState _old)
+      public ControlState( ControlState _old )
       {
-        if (_old == null)
+        if ( _old == null )
           return;
       }
       #endregion
@@ -52,30 +70,30 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
     /// </summary>
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
-    protected override void OnInit(EventArgs e)
+    protected override void OnInit( EventArgs e )
     {
-      Page.RegisterRequiresControlState(this);
-      base.OnInit(e);
+      Page.RegisterRequiresControlState( this );
+      base.OnInit( e );
     }
     /// <summary>
     /// Handles the Load event of the Page control.
     /// </summary>
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load( object sender, EventArgs e )
     {
-      m_EnteredButton.Click += new EventHandler(m_EnteredButton_Click);
-      m_LeftButton.Click += new EventHandler(m_LeftButton_Click);
-      m_ArrivedButton.Click += new EventHandler(m_ArrivedButton_Click);
-      m_UnDoButton.Click += new EventHandler(m_UnDoButton_Click);
+      m_EnteredButton.Click += new EventHandler( m_EnteredButton_Click );
+      m_LeftButton.Click += new EventHandler( m_LeftButton_Click );
+      m_ArrivedButton.Click += new EventHandler( m_ArrivedButton_Click );
+      m_UnDoButton.Click += new EventHandler( m_UnDoButton_Click );
     }
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
     /// <param name="state">The state.</param>
-    protected override void LoadControlState(object state)
+    protected override void LoadControlState( object state )
     {
-      if (state != null)
+      if ( state != null )
         m_ControlState = (ControlState)state;
     }
     /// <summary>
@@ -92,17 +110,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     /// Raises the <see cref="E:System.Web.UI.Control.PreRender"/> event.
     /// </summary>
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
-    protected override void OnPreRender(EventArgs e)
+    protected override void OnPreRender( EventArgs e )
     {
-      base.OnPreRender(e);
+      base.OnPreRender( e );
     }
     /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.Unload"/> event.
     /// </summary>
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains event data.</param>
-    protected override void OnUnload(EventArgs e)
+    protected override void OnUnload( EventArgs e )
     {
-      if (_EDC != null)
+      if ( _EDC != null )
       {
         try
         {
@@ -110,29 +128,29 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           _EDC.Dispose();
           _EDC = null;
         }
-        catch (Exception ex)
+        catch ( Exception ex )
         {
-          ReportException("OnUnload", ex);
+          ReportException( "OnUnload", ex );
         }
       }
-      base.OnUnload(e);
+      base.OnUnload( e );
     }
 
     #endregion
 
     #region Interconnection
-    internal void NewDataEventHandler(object sender, ShippingInterconnectionData _interconnectionData)
+    internal void NewDataEventHandler( object sender, ShippingInterconnectionData _interconnectionData )
     {
-      if (m_ControlState.ShippingID == _interconnectionData.ID)
+      if ( m_ControlState.ShippingID == _interconnectionData.ID )
         return;
       ClearUserInterface();
       m_ControlState.ShippingID = _interconnectionData.ID;
-      ShowShipping(CurrentShipping);
+      ShowShipping( CurrentShipping );
     }
     #endregion
 
     #region private
-    private void ShowShipping(Shipping _currentShipping)
+    private void ShowShipping( Shipping _currentShipping )
     {
       m_ShippingLabel.Text = _currentShipping.Title;
     }
@@ -140,14 +158,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     {
       m_ShippingLabel.Text = String.Empty;
     }
-    private void ReportException(string _source, Exception _ex)
+    private void ReportException( string _source, Exception _ex )
     {
-        string _tmplt = "ReportExceptionTemplate".GetShepherdLocalizedString();
-      Anons _entry = Anons.CreateAnons(_source, String.Format(_tmplt, _ex.Message));
-      EDC.EventLogList.InsertOnSubmit(_entry);
+      string _tmplt = "ReportExceptionTemplate".GetShepherdLocalizedString();
+      Anons _entry = Anons.CreateAnons( _source, String.Format( _tmplt, _ex.Message ) );
+      EDC.EventLogList.InsertOnSubmit( _entry );
       EDC.SubmitChanges();
     }
-    private void ReportAlert(Shipping _shipping, string _msg)
+    private void ReportAlert( Shipping _shipping, string _msg )
     {
       AlarmsAndEvents _ae = new AlarmsAndEvents()
       {
@@ -155,28 +173,27 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
         AlarmsAndEventsList2PartnerTitle = _shipping.PartnerTitle,
         Title = _msg,
       };
-      EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
+      EDC.AlarmsAndEvents.InsertOnSubmit( _ae );
       EDC.SubmitChanges();
     }
 
     #region event handlers
-    private void m_UnDoButton_Click(object sender, EventArgs e)
+    private void m_UnDoButton_Click( object sender, EventArgs e )
     {
       try
       {
-        if (CurrentShipping == null)
+        if ( CurrentShipping == null )
           return;
-        switch (CurrentShipping.ShippingState.Value)
+        switch ( CurrentShipping.ShippingState.Value )
         {
           case ShippingState.Underway:
-            TimeSlotTimeSlot _ts = (TimeSlotTimeSlot)(from _tsidx in CurrentShipping.TimeSlot
-                                                      where _tsidx.Occupied.GetValueOrDefault(Occupied.Free) == Occupied.Occupied0
-                                                      orderby _tsidx.StartTime ascending
-                                                      select _tsidx).FirstOrDefault();
-            if (_ts == null)
+            TimeSlotTimeSlot _ts = (TimeSlotTimeSlot)( from _tsidx in CurrentShipping.TimeSlot
+                                                       where _tsidx.Occupied.GetValueOrDefault( Occupied.Free ) == Occupied.Occupied0
+                                                       orderby _tsidx.StartTime ascending
+                                                       select _tsidx ).FirstOrDefault();
+            if ( _ts == null )
               break;
             CurrentShipping.StartTime = _ts.StartTime;
-            CurrentShipping.TruckAwaiting = false;
             CurrentShipping.CalculateState();
             EDC.SubmitChanges();
             break;
@@ -194,25 +211,25 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
             break;
         }
       }
-      catch (Exception ex)
+      catch ( Exception ex )
       {
-        ReportException("UnDoButton_Click", ex);
+        ReportException( "UnDoButton_Click", ex );
       }
     }
-    private void m_ArrivedButton_Click(object sender, EventArgs e)
+    private void m_ArrivedButton_Click( object sender, EventArgs e )
     {
       try
       {
-        if (CurrentShipping == null)
+        if ( CurrentShipping == null )
           return;
-        switch (CurrentShipping.ShippingState.Value)
+        switch ( CurrentShipping.ShippingState.Value )
         {
           case ShippingState.Confirmed:
           case ShippingState.Creation:
           case ShippingState.Delayed:
           case ShippingState.WaitingForCarrierData:
           case ShippingState.WaitingForConfirmation:
-            if (CurrentShipping.TruckAwaiting.GetValueOrDefault(false))
+            if ( CurrentShipping.TruckAwaiting.GetValueOrDefault( false ) )
               return;
             CurrentShipping.TruckAwaiting = true;
             CurrentShipping.ArrivalTime = DateTime.Now;
@@ -227,23 +244,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
             break;
         }
       }
-      catch (Exception ex)
+      catch ( Exception ex )
       {
-        ReportException("m_ArrivedButton_Click", ex);
+        ReportException( "m_ArrivedButton_Click", ex );
       }
     }
-    private void m_LeftButton_Click(object sender, EventArgs e)
+    private void m_LeftButton_Click( object sender, EventArgs e )
     {
       try
       {
-        if (CurrentShipping == null)
+        if ( CurrentShipping == null )
           return;
-        switch (CurrentShipping.ShippingState.Value)
+        switch ( CurrentShipping.ShippingState.Value )
         {
           case ShippingState.Underway:
             CurrentShipping.EndTime = DateTime.Now;
             CurrentShipping.ShippingState = ShippingState.Completed;
-            CurrentShipping.ShippingDuration = (CurrentShipping.EndTime.Value - CurrentShipping.StartTime.Value).TotalMinutes;
+            CurrentShipping.ShippingDuration = ( CurrentShipping.EndTime.Value - CurrentShipping.StartTime.Value ).TotalMinutes;
             EDC.SubmitChanges();
             break;
           case ShippingState.Confirmed:
@@ -260,28 +277,29 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
             break;
         }
       }
-      catch (Exception ex)
+      catch ( Exception ex )
       {
-        ReportException("LeftButton_Click", ex);
+        ReportException( "LeftButton_Click", ex );
       }
     }
-    private void m_EnteredButton_Click(object sender, EventArgs e)
+    private void m_EnteredButton_Click( object sender, EventArgs e )
     {
       try
       {
-        if (CurrentShipping == null)
+        if ( CurrentShipping == null )
           return;
-        switch (CurrentShipping.ShippingState.Value)
+        switch ( CurrentShipping.ShippingState.Value )
         {
           case ShippingState.Confirmed:
           case ShippingState.Creation:
           case ShippingState.Delayed:
           case ShippingState.WaitingForCarrierData:
           case ShippingState.WaitingForConfirmation:
+            if ( CurrentShipping.TruckAwaiting.GetValueOrDefault( false ) )
+              CurrentShipping.ArrivalTime = DateTime.Now;
             CurrentShipping.StartTime = DateTime.Now;
             CurrentShipping.WarehouseStartTime = DateTime.Now;
             CurrentShipping.ShippingState = ShippingState.Underway;
-            CurrentShipping.TruckAwaiting = true;
             EDC.SubmitChanges();
             break;
           case ShippingState.Underway:
@@ -294,23 +312,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
             break;
         }
       }
-      catch (Exception ex)
+      catch ( Exception ex )
       {
-        ReportException("EnteredButton_Click", ex);
+        ReportException( "EnteredButton_Click", ex );
       }
     }
     #endregion
 
     #region variables
-    private ControlState m_ControlState = new ControlState(null);
+    private ControlState m_ControlState = new ControlState( null );
     private EntitiesDataContext _EDC = null;
     private EntitiesDataContext EDC
     {
       get
       {
-        if (_EDC != null)
+        if ( _EDC != null )
           return _EDC;
-        _EDC = new EntitiesDataContext(SPContext.Current.Web.Url);
+        _EDC = new EntitiesDataContext( SPContext.Current.Web.Url );
         return _EDC;
       }
     }
@@ -319,13 +337,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     {
       get
       {
-        if (m_CurrentShipping_Shipping != null)
+        if ( m_CurrentShipping_Shipping != null )
           return m_CurrentShipping_Shipping;
-        if (m_ControlState.ShippingID.IsNullOrEmpty())
+        if ( m_ControlState.ShippingID.IsNullOrEmpty() )
         {
           return null;
         }
-        m_CurrentShipping_Shipping = Element.GetAtIndex<Shipping>(EDC.Shipping, m_ControlState.ShippingID);
+        m_CurrentShipping_Shipping = Element.GetAtIndex<Shipping>( EDC.Shipping, m_ControlState.ShippingID );
         return m_CurrentShipping_Shipping;
       }
     }
