@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="70cd31ac-87f9-48bc-9ef4-e244d239c8e8" solutionId="70cd31ac-87f9-48bc-9ef4-e244d239c8e8" resetWebServer="true" name="CASSmartFactoryIPRDashboards" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="70cd31ac-87f9-48bc-9ef4-e244d239c8e8" solutionId="70cd31ac-87f9-48bc-9ef4-e244d239c8e8" resetWebServer="true" name="CASSmartFactoryCWDashboards" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
     <featureReference itemId="d02741c0-3c27-40d5-a779-6d96683b9dbd" />
   </features>
