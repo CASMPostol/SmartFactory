@@ -63,7 +63,7 @@
                           </asp:TableCell>
                           <asp:TableCell ColumnSpan="2">
                             <SharePoint:DateTimeControl ID="m_WarehouseStartTimeControl" HoursMode24="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx"
-                                OnDateChanged="m_WarehouseStartTimeControl_DateChanged", AutoPostBack="true"
+                                OnDateChanged="m_WarehouseStartTimeControl_DateChanged" AutoPostBack="true"
                                 ToolTip="<%$Resources:CASSmartFactoryShepherd,WarehouseStartTimeToolTip%>" />
                           </asp:TableCell>
                       </asp:TableRow>
