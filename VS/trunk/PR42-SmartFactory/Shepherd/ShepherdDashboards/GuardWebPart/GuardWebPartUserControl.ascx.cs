@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -194,6 +194,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
             if ( _ts == null )
               break;
             CurrentShipping.StartTime = _ts.StartTime;
+            CurrentShipping.ShippingState = ShippingState.Confirmed;
             CurrentShipping.CalculateState();
             EDC.SubmitChanges();
             break;
@@ -295,7 +296,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           case ShippingState.Delayed:
           case ShippingState.WaitingForCarrierData:
           case ShippingState.WaitingForConfirmation:
-            if ( ! CurrentShipping.TruckAwaiting.GetValueOrDefault( false ) )
+            if ( !CurrentShipping.TruckAwaiting.GetValueOrDefault( false ) )
               CurrentShipping.ArrivalTime = DateTime.Now;
             CurrentShipping.StartTime = DateTime.Now;
             CurrentShipping.WarehouseStartTime = DateTime.Now;
