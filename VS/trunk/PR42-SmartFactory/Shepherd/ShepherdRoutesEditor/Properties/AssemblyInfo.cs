@@ -33,16 +33,6 @@ using System.Windows;
     ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
     ResourceDictionaryLocation.SourceAssembly //where the generic resource dictionary is located
 )]
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.61.00.*")]
-[assembly: AssemblyFileVersion("1.61.00")]
+[assembly: AssemblyVersion("1.70.11.*")]
+[assembly: AssemblyFileVersion("1.70.11")]
 

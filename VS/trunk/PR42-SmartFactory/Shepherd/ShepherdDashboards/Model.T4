@@ -1,6 +1,6 @@
 ﻿<#+
 string MasterPage = "cas.master";
-string RootResourceFileName = "CASSmartFactoryShepherd";
+string RootResourceFileName = "CASSmartFactoryShepherdCode";
 string CarrierDashboardWebPart = "CarrierDashboardWebPart";
 string DriversManager = "DriversManager";
 string TrailerManager = "TrailerManager";
