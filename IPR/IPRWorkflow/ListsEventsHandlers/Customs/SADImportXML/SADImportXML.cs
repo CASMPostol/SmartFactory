@@ -33,78 +33,89 @@ namespace CAS.SmartFactory.IPR.Customs
         base.ItemAdded( properties );
         return;
       }
+      bool _entrySADDocumentLibraryOK = false;
+      string _entrySADDocumentLibraryComments = "Item adding error";
       try
       {
         this.EventFiringEnabled = false;
-        using ( Entities edc = new Entities( properties.WebUrl ) )
+        if ( properties.ListItem.File == null )
         {
-          if ( properties.ListItem.File == null )
-          {
-            base.ItemAdded( properties );
-            return;
-            //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
-            //throw new IPRDataConsistencyException("ItemAdded", "Import of a SAD declaration message failed because the file is empty.", null, "There is no file");
-          }
+          base.ItemAdded( properties );
+          return;
+          //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
+          //throw new IPRDataConsistencyException("ItemAdded", "Import of a SAD declaration message failed because the file is empty.", null, "There is no file");
+        }
+        try
+        {
           ActivityLogCT.WriteEntry( m_Title, String.Format( "Import of the SAD declaration {0} starting.", properties.ListItem.File.Name ), properties.WebUrl );
-          _at = "GetAtIndex";
-          SADDocumentLib entry = Element.GetAtIndex<SADDocumentLib>( edc.SADDocumentLibrary, properties.ListItem.ID );
-          entry.SADDocumentLibraryOK = false;
-          entry.SADDocumentLibraryComments = "Item adding error";
-          _at = "ImportDocument";
-          edc.SubmitChanges();
           CustomsDocument _message = null;
           using ( Stream _str = properties.ListItem.File.OpenBinaryStream() )
             _message = CustomsDocument.ImportDocument( _str );
-          _at = "GetSADDocument";
-          SADDocumentType _sad = GetSADDocument( _message, edc, entry );
-          _at = "SubmitChanges #1";
-          edc.SubmitChanges();
-          _at = "Clearence.Associate";
-          string _comments = "OK";
-          List<Warnning> warnings = new List<Warnning>();
-          ClearenceHelpers.DeclarationProcessing( edc, _sad, _message.MessageRootName(), ref _comments );
-          entry.SADDocumentLibraryOK = true;
-          entry.SADDocumentLibraryComments = _comments;
-          _at = "SubmitChanges #2";
-          edc.SubmitChanges();
-          ActivityLogCT.WriteEntry( edc, m_Title, String.Format( "Import of the SAD declaration {0} finished.", properties.ListItem.File.Name ) );
+          using ( Entities edc = new Entities( properties.WebUrl ) )
+          {
+            SADDocumentLib entry = Element.GetAtIndex<SADDocumentLib>( edc.SADDocumentLibrary, properties.ListItem.ID );
+            _at = "GetSADDocument";
+            SADDocumentType _sad = GetSADDocument( _message, edc, entry );
+            //_at = "SubmitChanges #1";
+            //edc.SubmitChanges();
+            _at = "DeclarationProcessing";
+            _entrySADDocumentLibraryComments = "OK";
+            List<Warnning> warnings = new List<Warnning>();
+            ClearenceHelpers.DeclarationProcessing( edc, _sad, _message.MessageRootName(), ref _entrySADDocumentLibraryComments );
+            _at = "SubmitChanges #2";
+            edc.SubmitChanges();
+          }
+          ActivityLogCT.WriteEntry( m_Title, String.Format( "Import of the SAD declaration {0} finished.", properties.ListItem.File.Name ), properties.WebUrl );
+          _entrySADDocumentLibraryOK = true;
         }
-      }
-      catch ( InputDataValidationException idve )
-      {
-        idve.ReportActionResult( properties.WebUrl, properties.ListItem.File.Name );
-      }
-      catch ( Exception ex )
-      {
-        string _pattern = "XML import error at {0}.";
-        if ( ex is CustomsDataException )
+        catch ( InputDataValidationException idve )
         {
-          _pattern = "XML import error at {0}.";
-          _at = ( (CustomsDataException)ex ).Source;
+          idve.ReportActionResult( properties.WebUrl, properties.ListItem.File.Name );
         }
-        else if ( ex is IPRDataConsistencyException )
+        catch ( Exception ex )
         {
-          IPRDataConsistencyException _iprex = ex as IPRDataConsistencyException;
-          _pattern = "SAD analyses error at {0}.";
-          _at = _iprex.Source;
-        }
-        else if ( ex is GenericStateMachineEngine.ActionResult )
-        {
-          GenericStateMachineEngine.ActionResult _ar = ex as GenericStateMachineEngine.ActionResult;
-          if ( _ar.LastActionResult == GenericStateMachineEngine.ActionResult.Result.NotValidated )
-            _pattern = "SAD content validation error at {0}.";
+          string _pattern = "XML import error at {0}.";
+          if ( ex is CustomsDataException )
+          {
+            _pattern = "XML import error at {0}.";
+            _at = ( (CustomsDataException)ex ).Source;
+          }
+          else if ( ex is IPRDataConsistencyException )
+          {
+            IPRDataConsistencyException _iprex = ex as IPRDataConsistencyException;
+            _pattern = "SAD analyses error at {0}.";
+            _at = _iprex.Source;
+          }
+          else if ( ex is GenericStateMachineEngine.ActionResult )
+          {
+            GenericStateMachineEngine.ActionResult _ar = ex as GenericStateMachineEngine.ActionResult;
+            if ( _ar.LastActionResult == GenericStateMachineEngine.ActionResult.Result.NotValidated )
+              _pattern = "SAD content validation error at {0}.";
+            else
+              _pattern = "SAD analyses internal error at {0}.";
+            _at = _ar.Source;
+          }
           else
-            _pattern = "SAD analyses internal error at {0}.";
-          _at = _ar.Source;
+          {
+            _pattern = "ItemAdded error at {0}.";
+          }
+          string _innerMsg = String.Empty;
+          if ( ex.InnerException != null )
+            _innerMsg = String.Format( " as the result of {0}.", ex.InnerException.Message );
+          ActivityLogCT.WriteEntry( String.Format( _pattern, _at ), String.Format( "Message= {0}; Inner: {1}", ex.Message, _innerMsg ), properties.WebUrl );
         }
-        else
+        try
         {
-          _pattern = "ItemAdded error at {0}.";
+          SPListItem _addedItem = properties.ListItem;
+          _addedItem[ "SADDocumentLibraryOK" ] = _entrySADDocumentLibraryOK;
+          _addedItem[ "SADDocumentLibraryComments" ] = _entrySADDocumentLibraryComments;
+          _addedItem.UpdateOverwriteVersion();
         }
-        string _innerMsg = String.Empty;
-        if ( ex.InnerException != null )
-          _innerMsg = String.Format( " as the result of {0}.", ex.InnerException.Message );
-        ActivityLogCT.WriteEntry( String.Format( _pattern, _at ), String.Format( "Message= {0}{1}", ex.Message, _innerMsg ), properties.WebUrl );
+        catch ( Exception _ex )
+        {
+          string _pattern = "Unexpected SPListItem update error: {0}.";
+          ActivityLogCT.WriteEntry( m_Title, String.Format( _pattern, _ex.Message ), properties.WebUrl );
+        }
       }
       finally
       {
