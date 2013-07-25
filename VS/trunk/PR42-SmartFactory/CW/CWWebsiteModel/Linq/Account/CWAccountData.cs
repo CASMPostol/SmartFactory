@@ -149,7 +149,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
       _ret = CW_COADate.GetValueOrDefault( DateTime.Today ) < _ret ? CW_COADate.GetValueOrDefault( DateTime.Today ) : _ret;
       if ( !Double.TryParse( Settings.GetParameter( entities, SettingsEntry.DefaultValidToDatePeriod ), out _validPeriod ) )
         _validPeriod = _vtdIfNotProvided; //TODO add warning
-      return DateTime.Now.Date + TimeSpan.FromDays( _validPeriod );
+      return _ret + TimeSpan.FromDays( _validPeriod );
     }
     private DateTime? GetCertificateDate( Entities entities, string code, List<Warnning> warnings )
     {
