@@ -158,7 +158,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         case Entities.ShippingState.Creation:
         case Entities.ShippingState.WaitingForCarrierData:
         case Entities.ShippingState.WaitingForConfirmation:
-        case Entities.ShippingState.Underway:
           int _seDrivers = 0;
           int _crDrivers = 0;
           foreach ( var _dr in this.ShippingDriversTeam )
@@ -186,6 +185,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         case Entities.ShippingState.None:
           this.ShippingState = Entities.ShippingState.Creation;
           break;
+        case Entities.ShippingState.Underway:
         case Entities.ShippingState.Delayed:
         case Entities.ShippingState.Invalid:
         case Entities.ShippingState.Cancelation:
