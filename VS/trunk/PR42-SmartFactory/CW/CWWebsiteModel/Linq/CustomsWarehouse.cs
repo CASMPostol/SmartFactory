@@ -45,7 +45,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.CW_MassPerPackage = data.CWMassPerPackage;
       this.CW_PackageKg = data.CWPackageKg;
       this.CW_PackageUnits = data.CWPackageUnits;
-      this.CW_PzNo = "M/A";
+      //this.CW_PzNo = "N/A";
       this.CW_Quantity = data.CWQuantity;
       this.DocumentNo = data.CommonAccountData.DocumentNo;
       this.CWC_EntryDate = data.EntryDate;
@@ -62,9 +62,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       //Certificate
       this.CW_CertificateOfOrgin = data.CW_CertificateOfOrgin;
       this.CW_CertificateOfAuthenticity = data.CW_CertificateOfAuthenticity;
-      this.CW_COADate = data.CW_COADate;
-      this.CW_CODate = data.CW_CODate;
-      this.CWL_CW2VendorTitle = data.VendorLookup; 
+      if ( data.CW_COADate.HasValue )
+        this.CW_COADate = data.CW_COADate;
+      if ( data.CW_CODate.HasValue )
+        this.CW_CODate = data.CW_CODate;
+      this.CWL_CW2VendorTitle = data.VendorLookup;
     }
     /// <summary>
     /// Updates the title.

@@ -36,7 +36,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
 
     #region properties
     internal CommonAccountData CommonAccountData { get; private set; }
-    internal DateTime? EntryDate { get; private set; }
+    internal DateTime EntryDate { get; private set; }
     //lookup columns.
     internal Clearence ClearenceLookup { get; private set; }
     internal Consent ConsentLookup { get; private set; }
@@ -143,14 +143,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
       double _vtdIfNotProvided = 365; // in days
       double _validPeriod = _vtdIfNotProvided;
       DateTime _ret = DateTime.Today;
-      if ( !CW_COADate.HasValue || !CW_CODate.HasValue )
+      if ( !CW_COADate.HasValue && !CW_CODate.HasValue )
         return _ret + TimeSpan.FromDays( _validPeriod );
       _ret = CW_CODate.GetValueOrDefault( DateTime.Today ) < _ret ? CW_CODate.GetValueOrDefault( DateTime.Today ) : _ret;
       _ret = CW_COADate.GetValueOrDefault( DateTime.Today ) < _ret ? CW_COADate.GetValueOrDefault( DateTime.Today ) : _ret;
       if ( !Double.TryParse( Settings.GetParameter( entities, SettingsEntry.DefaultValidToDatePeriod ), out _validPeriod ) )
-      {
         _validPeriod = _vtdIfNotProvided; //TODO add warning
-      }
       return DateTime.Now.Date + TimeSpan.FromDays( _validPeriod );
     }
     private DateTime? GetCertificateDate( Entities entities, string code, List<Warnning> warnings )
