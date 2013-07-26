@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CAS.SharePoint;
+using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.Customs.Account;
 using Microsoft.SharePoint.Linq;
 
@@ -73,6 +74,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
       }
     }
+    public abstract void CallService( string requestUrl, List<Warnning> warnningList );
 
     #region private
     /// <summary>

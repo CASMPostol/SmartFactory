@@ -51,20 +51,22 @@ namespace CAS.SmartFactory.IPR.Customs
           CustomsDocument _message = null;
           using ( Stream _str = properties.ListItem.File.OpenBinaryStream() )
             _message = CustomsDocument.ImportDocument( _str );
+          int _sad;  
           using ( Entities edc = new Entities( properties.WebUrl ) )
           {
             SADDocumentLib entry = Element.GetAtIndex<SADDocumentLib>( edc.SADDocumentLibrary, properties.ListItem.ID );
             _at = "GetSADDocument";
-            SADDocumentType _sad = GetSADDocument( _message, edc, entry );
-            //_at = "SubmitChanges #1";
-            //edc.SubmitChanges();
-            _at = "DeclarationProcessing";
-            _entrySADDocumentLibraryComments = "OK";
-            List<Warnning> warnings = new List<Warnning>();
-            ClearenceHelpers.DeclarationProcessing( edc, _sad, _message.MessageRootName(), ref _entrySADDocumentLibraryComments );
-            _at = "SubmitChanges #2";
+            SADDocumentType _sadEntity = GetSADDocument( _message, edc, entry );
+            _at = "SubmitChanges #1";
             edc.SubmitChanges();
+            _sad = _sadEntity.Id.Value;
           }
+          _at = "DeclarationProcessing";
+          _entrySADDocumentLibraryComments = "OK";
+          List<Warnning> warnings = new List<Warnning>();
+          ClearenceHelpers.DeclarationProcessing( properties.WebUrl, _sad, _message.MessageRootName(), ref _entrySADDocumentLibraryComments );
+          //_at = "SubmitChanges #2";
+          //edc.SubmitChanges();
           ActivityLogCT.WriteEntry( m_Title, String.Format( "Import of the SAD declaration {0} finished.", properties.ListItem.File.Name ), properties.WebUrl );
           _entrySADDocumentLibraryOK = true;
         }

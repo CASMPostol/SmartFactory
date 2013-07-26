@@ -13,6 +13,12 @@
 //  http://www.cas.eu
 //</summary>
 
+using System.Collections.Generic;
+using CAS.SmartFactory.Customs;
+using CAS.SmartFactory.Customs.Account;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.SharePoint.Common.ServiceLocation;
+
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
 {
   /// <summary>
@@ -20,6 +26,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
   /// </summary>
   public class CWAccountData: AccountData
   {
+    public override void CallService( string requestUrl, List<Warnning> warnningList )
+    {
+      IServiceLocator serviceLocator = SharePointServiceLocator.GetCurrent();
+      ICWAccountFactory _cwFactory = serviceLocator.GetInstance<ICWAccountFactory>();
+      _cwFactory.CreateCWAccount( this, warnningList, requestUrl );
+    }
     /// <summary>
     /// Gets the net mass.
     /// </summary>

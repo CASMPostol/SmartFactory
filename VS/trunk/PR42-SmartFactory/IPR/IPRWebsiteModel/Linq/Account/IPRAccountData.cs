@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : Invard Processing Account Record Data
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
@@ -37,6 +52,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     internal double UnitPrice { get; private set; }
     internal double Value { get; private set; }
     internal DateTime ValidToDate { get; private set; }
+    #endregion
+
+    #region public
+    public override void CallService( string requestUrl, System.Collections.Generic.List<Customs.Warnning> warnningList )
+    {
+      //throw new NotImplementedException();
+    }
     #endregion
 
     #region private
