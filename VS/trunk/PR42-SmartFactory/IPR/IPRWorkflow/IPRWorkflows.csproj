@@ -164,7 +164,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\Elements.xml" />
-    <Content Include="ListsEventsHandlers\Customs\SADImportXML\Elements.xml" />
+    <Content Include="ListsEventsHandlers\Customs\SADImportXML\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

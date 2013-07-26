@@ -52,6 +52,8 @@
     <None Include="DocumentsFactory\BinCard\BinCard.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="DocumentsFactory\BinCard\GoCS.ps1" />
+    <None Include="DocumentsFactory\BinCard\GoXSD.ps1" />
     <None Include="Features\CWInteroperability\CWInteroperability.feature">
       <FeatureId>{605eb80a-ecf2-420a-8044-8f64d920cd9b}</FeatureId>
     </None>
@@ -78,6 +80,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocumentsFactory\BinCard\BinCard.cs">
+      <DependentUpon>BinCard.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

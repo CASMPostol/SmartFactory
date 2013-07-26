@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CAS.SharePoint.DocumentsFactory;
 using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm
@@ -15,7 +16,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm
     /// <returns>An object of <see cref="SPFile"/> containing the serialized <paramref name="destinationCollection"/></returns>
     public SPFile AddDocument2Collection( SPFileCollection destinationCollection, string fileName )
     {
-      return DocumentNames.CreateXmlFile<CigaretteExportFormCollection>( destinationCollection, fileName, this, DocumentNames.CigaretteExportFormName );
+      return File.CreateXmlFile<CigaretteExportFormCollection>( destinationCollection, fileName, this, DocumentNames.CigaretteExportFormName );
     }
   }
   /// <summary>

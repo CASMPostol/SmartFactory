@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CAS.SharePoint.DocumentsFactory;
 using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance
@@ -18,7 +15,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance
     /// </returns>
     public SPFile AddDocument2Collection( SPFileCollection destinationCollection, string fileName )
     {
-      return DocumentNames.CreateXmlFile<RequestContent>( destinationCollection, fileName, this, DocumentNames.RequestForAccountClearenceName );
+      return File.CreateXmlFile<RequestContent>( destinationCollection, fileName, this, DocumentNames.RequestForAccountClearenceName );
     }
 
   }
