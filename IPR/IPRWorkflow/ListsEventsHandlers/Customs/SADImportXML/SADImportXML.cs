@@ -51,13 +51,14 @@ namespace CAS.SmartFactory.IPR.Customs
           CustomsDocument _message = null;
           using ( Stream _str = properties.ListItem.File.OpenBinaryStream() )
             _message = CustomsDocument.ImportDocument( _str );
-          int _sad;  
+          int _sad;
           using ( Entities edc = new Entities( properties.WebUrl ) )
           {
+            _at = "GetAtIndex<SADDocumentLib>";
             SADDocumentLib entry = Element.GetAtIndex<SADDocumentLib>( edc.SADDocumentLibrary, properties.ListItem.ID );
             _at = "GetSADDocument";
             SADDocumentType _sadEntity = GetSADDocument( _message, edc, entry );
-            _at = "SubmitChanges #1";
+            _at = "SubmitChanges";
             edc.SubmitChanges();
             _sad = _sadEntity.Id.Value;
           }
@@ -65,8 +66,7 @@ namespace CAS.SmartFactory.IPR.Customs
           _entrySADDocumentLibraryComments = "OK";
           List<Warnning> warnings = new List<Warnning>();
           ClearenceHelpers.DeclarationProcessing( properties.WebUrl, _sad, _message.MessageRootName(), ref _entrySADDocumentLibraryComments );
-          //_at = "SubmitChanges #2";
-          //edc.SubmitChanges();
+          _at = "WriteEntry";
           ActivityLogCT.WriteEntry( m_Title, String.Format( "Import of the SAD declaration {0} finished.", properties.ListItem.File.Name ), properties.WebUrl );
           _entrySADDocumentLibraryOK = true;
         }
@@ -98,9 +98,7 @@ namespace CAS.SmartFactory.IPR.Customs
             _at = _ar.Source;
           }
           else
-          {
             _pattern = "ItemAdded error at {0}.";
-          }
           string _innerMsg = String.Empty;
           if ( ex.InnerException != null )
             _innerMsg = String.Format( " as the result of {0}.", ex.InnerException.Message );
@@ -108,14 +106,17 @@ namespace CAS.SmartFactory.IPR.Customs
         }
         try
         {
-          SPListItem _addedItem = properties.ListItem;
-          _addedItem[ "SADDocumentLibraryOK" ] = _entrySADDocumentLibraryOK;
-          _addedItem[ "SADDocumentLibraryComments" ] = _entrySADDocumentLibraryComments;
-          _addedItem.UpdateOverwriteVersion();
+          using ( Entities edc = new Entities( properties.WebUrl ) )
+          {
+            SADDocumentLib _entry = Element.GetAtIndex<SADDocumentLib>( edc.SADDocumentLibrary, properties.ListItem.ID );
+            _entry.SADDocumentLibraryOK = _entrySADDocumentLibraryOK;
+            _entry.SADDocumentLibraryComments = _entrySADDocumentLibraryComments;
+            edc.SubmitChanges();
+          }
         }
         catch ( Exception _ex )
         {
-          string _pattern = "Unexpected SPListItem update error: {0}.";
+          string _pattern = "Unexpected SADDocumentLib SubmitChanges error: {0}.";
           ActivityLogCT.WriteEntry( m_Title, String.Format( _pattern, _ex.Message ), properties.WebUrl );
         }
       }
