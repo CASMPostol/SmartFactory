@@ -91,7 +91,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
           _at = "AnalizeGoodsDescription";
           AnalyzeCertificates( _edc, ClearenceLookup.Clearence2SadGoodID.SADRequiredDocuments, warnings );
           this.EntryDate = DateTime.Today;
-          //TODO Check warnnings before creation. 
+          bool _fatal = ( from _wx in warnings where _wx.Fatal select _wx ).Any<Warnning>();
+          if ( _fatal )
+            throw new CreateCWAccountException( "There are fatal errors in the message - CW account is not created." );
           CustomsWarehouse _cw = new CustomsWarehouse( _edc, this );
           _at = "InsertOnSubmit";
           _edc.CustomsWarehouse.InsertOnSubmit( _cw );
