@@ -1,4 +1,5 @@
 ﻿using System;
+using CAS.SharePoint.DocumentsFactory;
 using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.xml.DocumentsFactory.Disposals
@@ -55,7 +56,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.Disposals
           stylesheetName = DocumentNames.TobaccoFormStylesheetName;
           break;
       }
-      return DocumentNames.CreateXmlFile<DocumentContent>( destinationCollection, fileName, this, stylesheetName );
+      return File.CreateXmlFile<DocumentContent>( destinationCollection, fileName, this, stylesheetName );
     }
   }
 }

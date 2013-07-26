@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CAS.SharePoint.DocumentsFactory;
 using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet
@@ -18,7 +15,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet
     /// </returns>
     public SPFile AddDocument2Collection( SPFileCollection destinationCollection, string fileName )
     {
-      return DocumentNames.CreateXmlFile<BalanceSheetContent>( destinationCollection, fileName, this, DocumentNames.BalanceSheetContentName );
+      return File.CreateXmlFile<BalanceSheetContent>( destinationCollection, fileName, this, DocumentNames.BalanceSheetContentName );
     }
     /// <summary>
     /// Updates the document.
@@ -26,7 +23,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet
     /// <param name="docFile">The doc file.</param>
     public void UpdateDocument( SPFile docFile )
     {
-      DocumentNames.WriteXmlFile<BalanceSheetContent>( docFile, this, DocumentNames.BalanceSheetContentName );
+      File.WriteXmlFile<BalanceSheetContent>( docFile, this, DocumentNames.BalanceSheetContentName );
     }
 
   }

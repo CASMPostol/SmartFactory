@@ -62,10 +62,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CAS.SharePoint, Version=1.60.40.35497, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\CommonBinaries\PR42-SmartFactory\CAS.SharePoint.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -469,6 +465,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
+      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
+      <Name>SharePoint</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Customs\Customs.csproj">
       <Project>{6c705843-6387-4d2d-a7cf-a66976186ce2}</Project>
       <Name>Customs</Name>
