@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://CAS.SmartFactory.xml.DocumentsFactory.BinCard/DocumentContent.xsd" xmlns:tns="http://CAS.SmartFactory.xml.DocumentsFactory.BinCard/DocumentContent.xsd" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" >
-  <xs:element name="DocumentContent" type="tns:DocumentContent" />
-  <xs:complexType name="DocumentContent">
+<xs:schema xmlns:tns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/BinCard.xsd" elementFormDefault="qualified" targetNamespace="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/BinCard.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BinCardContent" type="tns:BinCardContentType" />
+  <xs:complexType name="BinCardContentType">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="TobaccoName" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="TobaccoType" type="xs:string" />
