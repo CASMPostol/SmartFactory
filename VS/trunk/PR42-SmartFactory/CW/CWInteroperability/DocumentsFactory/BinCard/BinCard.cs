@@ -20,9 +20,11 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.BinCard {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://CAS.SmartFactory.xml.DocumentsFactory.BinCard/DocumentContent.xsd")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://CAS.SmartFactory.xml.DocumentsFactory.BinCard/DocumentContent.xsd", IsNullable=false)]
-    public partial class DocumentContent {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/BinCard.x" +
+        "sd")]
+    [System.Xml.Serialization.XmlRootAttribute("BinCardContent", Namespace="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/BinCard.x" +
+        "sd", IsNullable=false)]
+    public partial class BinCardContentType {
         
         private string tobaccoNameField;
         
