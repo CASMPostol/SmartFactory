@@ -90,6 +90,7 @@
       <DependentUpon>CWWebsiteModel.feature</DependentUpon>
     </Compile>
     <Compile Include="Linq\Account\CWAccountData.cs" />
+    <Compile Include="Linq\BinCardLib.cs" />
     <Compile Include="Linq\CustomsWarehouse.cs" />
     <Compile Include="Linq\Element.cs" />
     <Compile Include="Linq\Entities.cs" />

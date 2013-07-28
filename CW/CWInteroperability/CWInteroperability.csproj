@@ -80,8 +80,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocumentsFactory\BinCard\BinCard..xsd.cs">
+      <SubType>code</SubType>
+    </Compile>
     <Compile Include="DocumentsFactory\BinCard\BinCard.cs">
       <DependentUpon>BinCard.xsd</DependentUpon>
+      <SubType>code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>

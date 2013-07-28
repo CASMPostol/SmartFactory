@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,12 +27,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// <summary>
     /// Gets the parameter.
     /// </summary>
-    /// <param name="edc">The edc.</param>
+    /// <param name="entities">The edc.</param>
     /// <param name="index">The parameter index.</param>
     /// <returns></returns>
-    public static string GetParameter( Entities edc, SettingsEntry index )
+    public static string GetParameter( Entities entities, SettingsEntry index )
     {
-      Settings _ret = ( from _sx in edc.Settings where _sx.KeyValue.Contains( index.ToString() ) select _sx ).FirstOrDefault();
+      Settings _ret = ( from _sx in entities.Settings where _sx.KeyValue.Contains( index.ToString() ) select _sx ).FirstOrDefault();
       if ( _ret == null )
       {
         _ret = new Settings()
@@ -39,12 +40,15 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
           KeyValue = index.ToString(),
           Title = m_DefaultSettings[ index ]
         };
-        edc.Settings.InsertOnSubmit( _ret );
-        edc.SubmitChanges();
+        entities.Settings.InsertOnSubmit( _ret );
+        entities.SubmitChanges();
       }
       return _ret.Title;
     }
-
+    public static string BinCardDocumentName( Entities entities, int itemId )
+    {
+      return String.Format( GetParameter( entities, SettingsEntry.BinCardFileName ), itemId );
+    }
     public static string CustomsProcedureCodeA004 = "A004";
     public static string CustomsProcedureCodeN865 = "N865";
     public static string CustomsProcedureCodeN954 = "N954";
@@ -58,6 +62,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
        { SettingsEntry.GoodsDescription_CertificateOfOrgin_Pattern, @"\b([\w\d\s\.,-]*)/.*" },
        { SettingsEntry.DefaultValidToDatePeriod, "730" },
        { SettingsEntry.LooselyFormatedDate, @"(?<=/)\D*(\d{1,2}).(\d{1,2}).(\d{4})" },
+       { SettingsEntry.BinCardFileName, "Bin Card {0:D7}" },
     };
   }
   public enum SettingsEntry
@@ -68,6 +73,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     GoodsDescription_CertificateOfAuthenticity_Pattern,
     GoodsDescription_CertificateOfOrgin_Pattern,
     DefaultValidToDatePeriod,
-    LooselyFormatedDate
+    LooselyFormatedDate,
+    BinCardFileName
   }
 }
