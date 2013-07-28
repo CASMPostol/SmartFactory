@@ -40,15 +40,24 @@
     <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SharePoint.WorkflowActions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Workflow.Activities" />
+    <Reference Include="System.Workflow.ComponentModel" />
+    <Reference Include="System.Workflow.Runtime" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
+    <None Include="CustomsWarehouseList\BinCard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{53bfc9ea-327b-4fea-b711-db3417396c9d}</SharePointProjectItemId>
+    </None>
     <None Include="Features\CWWorkflows\CWWorkflows.feature">
       <FeatureId>{87f225c4-cbba-40d9-989c-d065bf53e88f}</FeatureId>
     </None>
@@ -64,6 +73,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CustomsWarehouseList\BinCard\Elements.xml" />
     <Content Include="Features\CWWorkflows\CWWorkflows.Template.xml">
       <DependentUpon>CWWorkflows.feature</DependentUpon>
     </Content>
@@ -71,8 +81,28 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
+      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
+      <Name>SharePoint</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CWInteroperability\CWInteroperability.csproj">
+      <Project>{f0416078-82cd-4f9d-905c-1e346198759a}</Project>
+      <Name>CWInteroperability</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CWWebsiteModel\CWWebsiteModel.csproj">
+      <Project>{28191aa2-5bff-4d48-a7ad-b10c83044e3c}</Project>
+      <Name>CWWebsiteModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomsWarehouseList\BinCard\BinCard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomsWarehouseList\BinCard\BinCard.Designer.cs">
+      <DependentUpon>BinCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomsWarehouseList\BinCard\Factory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
