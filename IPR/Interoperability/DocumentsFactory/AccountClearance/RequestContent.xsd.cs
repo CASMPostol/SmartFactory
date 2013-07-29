@@ -13,9 +13,9 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance
     /// <returns>
     /// An object of <see cref="SPFile" /> containing the serialized <paramref name="destinationCollection" />
     /// </returns>
-    public SPFile AddDocument2Collection( SPFileCollection destinationCollection, string fileName )
+    public SPFile AddDocument2Collection( SPWeb site, string fileName, string listName )
     {
-      return File.CreateXmlFile<RequestContent>( destinationCollection, fileName, this, DocumentNames.RequestForAccountClearenceName );
+      return File.CreateXmlFile<RequestContent>( site, this, fileName, listName, DocumentNames.RequestForAccountClearenceName );
     }
 
   }

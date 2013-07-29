@@ -14,9 +14,9 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm
     /// <param name="destinationCollection">The destination collection.</param>
     /// <param name="fileName">Name of the file.</param>
     /// <returns>An object of <see cref="SPFile"/> containing the serialized <paramref name="destinationCollection"/></returns>
-    public SPFile AddDocument2Collection( SPFileCollection destinationCollection, string fileName )
+    public SPFile AddDocument2Collection( SPWeb site, string fileName, string listName )
     {
-      return File.CreateXmlFile<CigaretteExportFormCollection>( destinationCollection, fileName, this, DocumentNames.CigaretteExportFormName );
+      return File.CreateXmlFile<CigaretteExportFormCollection>( site, this, fileName, listName, DocumentNames.CigaretteExportFormName );
     }
   }
   /// <summary>
