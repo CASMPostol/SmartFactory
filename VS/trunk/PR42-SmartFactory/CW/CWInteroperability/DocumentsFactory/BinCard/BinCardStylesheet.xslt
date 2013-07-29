@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:ms="urn:schemas-microsoft-com:xslt"
-    xmlns:cas="http://CAS.SmartFactory.xml.DocumentsFactory.BinCard/DocumentContent.xsd"
+    xmlns:cas="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/BinCard.xsd"
 >
   <xsl:output method="html" indent="yes"/>
   <xsl:decimal-format name="pl" decimal-separator=',' grouping-separator='.' />
@@ -31,26 +31,26 @@
             <td valign="top" colspan="2">
               <p>Nazwa tytoniu</p>
               <p>
-                <xsl:value-of select="cas:DocumentContent/cas:TobaccoName" />
+                <xsl:value-of select="cas:BinCardContent/cas:TobaccoName" />
               </p>
               <table border="1" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                   <td>
                     <p>Typ</p>
                     <p>
-                      <xsl:value-of select="cas:DocumentContent/cas:TobaccoType" />
+                      <xsl:value-of select="cas:BinCardContent/cas:TobaccoType" />
                     </p>
                   </td>
                   <td>
                     <p>SKU</p>
                     <p>
-                      <xsl:value-of select="cas:DocumentContent/cas:SKU" />
+                      <xsl:value-of select="cas:BinCardContent/cas:SKU" />
                     </p>
                   </td>
                   <td>
                     <p>Batch</p>
                     <p>
-                      <xsl:value-of select="cas:DocumentContent/cas:Batch" />
+                      <xsl:value-of select="cas:BinCardContent/cas:Batch" />
                     </p>
                   </td>
                 </tr>
@@ -59,28 +59,28 @@
             <td valign="top">
               <p>Nr SAD</p>
               <p>
-                <xsl:value-of select="cas:DocumentContent/cas:SAD" />
+                <xsl:value-of select="cas:BinCardContent/cas:SAD" />
               </p>
               <p>
-                z dnia <xsl:value-of select="ms:format-date(cas:DocumentContent/cas:SADDate, $FoarmatOfdate)"/>
+                z dnia <xsl:value-of select="ms:format-date(cas:BinCardContent/cas:SADDate, $FoarmatOfdate)"/>
               </p>
             </td>
             <td valign="top">
               <p>Nr PZ</p>
               <p>
-                <xsl:value-of select="cas:DocumentContent/cas:PzNo" />
+                <xsl:value-of select="cas:BinCardContent/cas:PzNo" />
               </p>
             </td>
             <td valign="top" width="13%">
               <p>Waga netto [kg]</p>
               <p>
-                <xsl:value-of select="format-number(cas:DocumentContent/cas:NetWeight, $FoarmatOfFloat, 'pl')" />
+                <xsl:value-of select="format-number(cas:BinCardContent/cas:NetWeight, $FoarmatOfFloat, 'pl')" />
               </p>
             </td>
             <td valign="top" width="10%">
               <p>Ilość opakowań [szt]</p>
               <p>
-                <xsl:value-of select="format-number(cas:DocumentContent/cas:PackageQuantity, $FoarmatOfFloat, 'pl')" />
+                <xsl:value-of select="format-number(cas:BinCardContent/cas:PackageQuantity, $FoarmatOfFloat, 'pl')" />
               </p>
             </td>
           </tr>

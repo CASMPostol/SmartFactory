@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<DocumentContent xmlns="http://CAS.SmartFactory.xml.DocumentsFactory.BinCard/DocumentContent.xsd">
+<BinCardContent xmlns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/BinCard.xsd">
   <TobaccoName>TobaccoName1</TobaccoName>
   <TobaccoType>TobaccoType1</TobaccoType>
-  <SKU>88888888</SKU>
-  <Batch>9999999999</Batch>
+  <SKU>SKU1</SKU>
+  <Batch>Batch1</Batch>
   <SAD>SAD1</SAD>
   <SADDate>1900-01-01</SADDate>
   <PzNo>PzNo1</PzNo>
   <NetWeight>1</NetWeight>
   <PackageQuantity>1</PackageQuantity>
-</DocumentContent>
+</BinCardContent>
