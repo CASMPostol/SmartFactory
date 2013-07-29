@@ -33,7 +33,12 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.BinCard
             _entities.SubmitChanges();
           }
           else
-            File.WriteXmlFile<BinCardContentType>( workflowProperties.Item.File, _newBinCard, BinCardContentType.StylesheetNmane );
+          {
+            int _binCardId = _cw.CWL_CW2BinCardTitle.Id.Value;
+            SPDocumentLibrary _lib = (SPDocumentLibrary)workflowProperties.Web.Lists[ BinCardLib.Name ];
+            SPFile _file = _lib.GetItemByIdSelectedFields( _binCardId ).File;
+            File.WriteXmlFile<BinCardContentType>( _file, _newBinCard, BinCardContentType.StylesheetNmane );
+          }
         }
         logToHistoryListActivity_HistoryOutcome = "Success";
         logToHistoryListActivity_HistoryDescription = "Document created successfully";
