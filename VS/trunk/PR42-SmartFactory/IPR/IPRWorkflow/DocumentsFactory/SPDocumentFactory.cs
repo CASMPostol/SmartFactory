@@ -17,10 +17,8 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       string _stt = "Starting";
       try
       {
-        _stt = "SPDocumentLibrary";
-        SPDocumentLibrary _lib = (SPDocumentLibrary)site.Lists[ Entities.IPRLibraryName ];
         _stt = "AddDocument2Collection";
-        SPFile _docFile = content.AddDocument2Collection( _lib.RootFolder.Files, fileName );
+        SPFile _docFile = content.AddDocument2Collection( site, fileName, Entities.IPRLibraryName );
         return _docFile.Item.ID;
       }
       catch ( Exception ex )
@@ -33,10 +31,8 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       string _stt = "Starting";
       try
       {
-        _stt = "SPDocumentLibrary";
-        SPDocumentLibrary _lib = (SPDocumentLibrary)site.Lists[ Entities.JSOXLibraryName ];
         _stt = "AddDocument2Collection";
-        return content.AddDocument2Collection( _lib.RootFolder.Files, fileName );
+        return content.AddDocument2Collection( site, fileName, Entities.JSOXLibraryName );
       }
       catch ( Exception ex )
       {

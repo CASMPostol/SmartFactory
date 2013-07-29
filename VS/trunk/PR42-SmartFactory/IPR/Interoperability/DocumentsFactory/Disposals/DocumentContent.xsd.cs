@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.Disposals
     /// <returns>
     /// An object of <see cref="SPFile" /> containing the serialized <paramref name="destinationCollection" />
     /// </returns>
-    public SPFile AddDocument2Collection( SPFileCollection destinationCollection, string fileName, CompensatiionGood compensatiionGood )
+    public SPFile AddDocument2Collection( SPWeb site, string fileName, string listName, CompensatiionGood compensatiionGood )
     {
       string stylesheetName = String.Empty;
       switch ( compensatiionGood )
@@ -56,7 +56,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.Disposals
           stylesheetName = DocumentNames.TobaccoFormStylesheetName;
           break;
       }
-      return File.CreateXmlFile<DocumentContent>( destinationCollection, fileName, this, stylesheetName );
+      return File.CreateXmlFile<DocumentContent>( site, this, fileName, listName, stylesheetName );
     }
   }
 }

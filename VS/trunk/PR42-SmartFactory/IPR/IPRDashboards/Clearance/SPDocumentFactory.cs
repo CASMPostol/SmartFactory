@@ -13,13 +13,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
   {
     internal static int Prepare( SPWeb site, CigaretteExportFormCollection _consignment, string fileName )
     {
-      string _stt = "Starting";
+      string _stt = "AddDocument2Collection";
       try
       {
-        _stt = "SPDocumentLibrary";
-        SPDocumentLibrary _lib = (SPDocumentLibrary)site.Lists[ CommonDefinitions.IPRSADConsignmentLibraryTitle ];
-        _stt = "AddDocument2Collection";
-        SPFile _docFile = _consignment.AddDocument2Collection( _lib.RootFolder.Files, fileName );
+        SPFile _docFile = _consignment.AddDocument2Collection( site, fileName, CommonDefinitions.IPRSADConsignmentLibraryTitle );
         return _docFile.Item.ID;
       }
       catch ( Exception ex )
@@ -30,13 +27,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
     internal static int Prepare
       ( SPWeb site, DocumentContent document, string fileName, CompensatiionGood compensatiionGood )
     {
-      string _stt = "Starting";
+      string _stt = "AddDocument2Collection";
       try
       {
-        _stt = "SPDocumentLibrary";
-        SPDocumentLibrary _lib = (SPDocumentLibrary)site.Lists[ CommonDefinitions.IPRSADConsignmentLibraryTitle ];
-        _stt = "AddDocument2Collection";
-        SPFile _docFile = document.AddDocument2Collection( _lib.RootFolder.Files, fileName, compensatiionGood );
+        SPFile _docFile = document.AddDocument2Collection( site, fileName, CommonDefinitions.IPRSADConsignmentLibraryTitle, compensatiionGood );
         return _docFile.Item.ID;
       }
       catch ( Exception ex )

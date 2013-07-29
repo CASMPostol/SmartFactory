@@ -14,7 +14,6 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.BinCard
     {
       InitializeComponent();
     }
-
     public Guid workflowId = default( System.Guid );
     public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
     private void CreateBinCard( object sender, EventArgs e )
@@ -27,7 +26,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.BinCard
         {
           string _documentName = Settings.BinCardDocumentName( _entities, workflowProperties.ItemId + 1 );
           SPFile _newFile =  File.CreateXmlFile<BinCardContentType>( workflowProperties.Web, _newBinCard, _documentName, BinCardLib.Name, BinCardContentType.StylesheetNmane );
-          BinCardLib _BinCardLibRntry = Element.GetAtIndex<BinCardLib>( _entities.JSOXLibrary, _newFile.Item.ID );
+          BinCardLib _BinCardLibRntry = Element.GetAtIndex<BinCardLib>( _entities.BinCardLibrary, _newFile.Item.ID );
           _cw.CWL_CW2BinCardTitle = _BinCardLibRntry;
           _entities.SubmitChanges();
         }

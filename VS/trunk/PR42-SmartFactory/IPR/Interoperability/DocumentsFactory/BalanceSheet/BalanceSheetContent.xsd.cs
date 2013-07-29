@@ -13,9 +13,9 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet
     /// <returns>
     /// An object of <see cref="SPFile" /> containing the serialized <paramref name="destinationCollection" />
     /// </returns>
-    public SPFile AddDocument2Collection( SPFileCollection destinationCollection, string fileName )
+    public SPFile AddDocument2Collection( SPWeb site, string fileName, string listName)
     {
-      return File.CreateXmlFile<BalanceSheetContent>( destinationCollection, fileName, this, DocumentNames.BalanceSheetContentName );
+      return File.CreateXmlFile<BalanceSheetContent>(site, this, fileName, listName, DocumentNames.BalanceSheetContentName );
     }
     /// <summary>
     /// Updates the document.
