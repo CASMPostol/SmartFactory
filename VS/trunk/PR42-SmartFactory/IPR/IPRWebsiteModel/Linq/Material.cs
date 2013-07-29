@@ -12,7 +12,22 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   public sealed partial class Material
   {
     #region ctor
-    public Material( Entities edc, Entities.ProductDescription product, string batch, string sku, string storLoc, string skuDescription, string units, decimal fgQuantity, decimal tobaccoQuantity, string productID )
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Material"/> class.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="product">The product.</param>
+    /// <param name="batch">The batch.</param>
+    /// <param name="sku">The sku.</param>
+    /// <param name="storLoc">The stor loc.</param>
+    /// <param name="skuDescription">The sku description.</param>
+    /// <param name="units">The units.</param>
+    /// <param name="fgQuantity">The fg quantity.</param>
+    /// <param name="tobaccoQuantity">The tobacco quantity.</param>
+    /// <param name="productID">The product ID.</param>
+    public Material
+      ( Entities edc, Entities.ProductDescription product, string batch, string sku, string storLoc, string skuDescription, string units, decimal fgQuantity, decimal 
+        tobaccoQuantity, string productID )
       : this()
     {
       Batch = batch;
