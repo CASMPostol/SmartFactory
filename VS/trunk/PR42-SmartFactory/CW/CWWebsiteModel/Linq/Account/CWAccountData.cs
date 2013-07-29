@@ -142,7 +142,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     }
     private DateTime CalculateValidToDate( Entities entities, DateTime? CW_COADate, DateTime? CW_CODate, List<Warnning> warnings )
     {
-      double _vtdIfNotProvided = 365; // in days
+      double _vtdIfNotProvided = 0; // in days
       double _validPeriod = _vtdIfNotProvided;
       DateTime _ret = DateTime.Today;
       if ( !CW_COADate.HasValue && !CW_CODate.HasValue )
