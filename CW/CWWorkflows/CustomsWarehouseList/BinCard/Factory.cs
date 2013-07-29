@@ -32,9 +32,9 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.BinCard
       BinCardContentType _ret = new BinCardContentType()
       {
         Batch = item.Batch,
-        NetWeight = item.NetMass.ValueOrException<double>(m_Source, _at, "NetWeight"),
+        NetWeight = item.CW_Quantity.ValueOrException<double>(m_Source, _at, "NetWeight"),
         NetWeightSpecified = true,
-        PackageQuantity = item.CW_Quantity.ValueOrException<double>(m_Source, _at, "PackageQuantity"),
+        PackageQuantity = item.CW_PackageUnits.ValueOrException<double>(m_Source, _at, "PackageQuantity"),
         PackageQuantitySpecified = true,
         PzNo = item.CW_PzNo,
         SAD = item.DocumentNo,
