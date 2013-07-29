@@ -13,7 +13,7 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
      CodeBesideAssembly="$assemblyname$">
     <Categories/>
     <MetaData>
-      <AssociationCategories>List</AssociationCategories>
+      <AssociationCategories>List;0b58649d-e709-47b1-9bfd-268e86318b49;10000</AssociationCategories>
       <!-- Tags to specify InfoPath forms for the workflow; delete tags for forms that you do not have -->
       <!--<Association_FormURN>[URN FOR ASSOCIATION FORM]</Association_FormURN>
        <Instantiation_FormURN>[URN FOR INSTANTIATION FORM]</Instantiation_FormURN>
