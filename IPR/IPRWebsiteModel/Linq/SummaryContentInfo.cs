@@ -1,7 +1,21 @@
-﻿using System;
+﻿//<summary>
+//  Title   : Summary Batch Content Info
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using CAS.SmartFactory.Customs;
 using Microsoft.SharePoint.Linq;
@@ -9,7 +23,7 @@ using Microsoft.SharePoint.Linq;
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   /// <summary>
-  /// Summary Content Info
+  /// Summary Batch Content Info
   /// </summary>
   public abstract class SummaryContentInfo: SortedList<string, Material>
   {
@@ -73,7 +87,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw new IPRDataConsistencyException( "SummaryContentInfo.ProcessMaterials", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized." );
       try
       {
-        //InsertAllOnSubmit( edc, parent );
         List<Material> _newMaterialList = new List<Material>();
         List<Material> _oldMaterialList = new List<Material>();
         Material.Ratios _mr = new Material.Ratios { dustRatio = dustRatio, shMentholRatio = shMentholRatio, wasteRatio = wasteRatio };

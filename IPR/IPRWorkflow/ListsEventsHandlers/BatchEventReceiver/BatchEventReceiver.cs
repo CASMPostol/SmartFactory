@@ -13,7 +13,7 @@ using BatchXml = CAS.SmartFactory.xml.erp.Batch;
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers
 {
   /// <summary>
-  /// List Item Events
+  /// Batch List Item Events
   /// </summary>
   public class BatchEventReceiver: SPItemEventReceiver
   {
