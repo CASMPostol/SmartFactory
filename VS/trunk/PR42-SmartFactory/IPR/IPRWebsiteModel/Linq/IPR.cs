@@ -176,7 +176,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Gets the current situation.
     /// </summary>
     /// <param name="edc">The edc.</param>
-    /// <param name="dateEnd">The date end.</param>
     /// <returns></returns>
     public static decimal GetCurrentSituationData( Entities edc )
     {

@@ -7,6 +7,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   public partial class CutfillerCoefficient
   {
     #region public
+    /// <summary>
+    /// Gets the lookup to the <see cref="CutfillerCoefficient"/>.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <returns></returns>
+    /// <exception cref="IPRDataConsistencyException">CutfillerCoefficient lookup error</exception>
     public static CutfillerCoefficient GetLookup( Entities edc )
     {
       try

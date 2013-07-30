@@ -7,6 +7,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class Dust
   {
+    /// <summary>
+    /// Gets the lookup to the <see cref="Dust"/> entity.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <param name="edc">The edc.</param>
+    /// <returns></returns>
+    /// <exception cref="IPRDataConsistencyException">Cannot find Dust</exception>
     public static Dust GetLookup( ProductType type, Entities edc )
     {
       try

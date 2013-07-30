@@ -112,6 +112,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           base[ _vkx ] += balance.Base[ _vkx ];
       }
     }
+    /// <summary>
+    /// Called when to notify clients that a property value has changed..
+    /// </summary>
+    /// <param name="propertyName">Name of the property.</param>
     protected override void OnPropertyChanged( string propertyName )
     {
       string _template = "SKU: {0}/Batch: {1}.";

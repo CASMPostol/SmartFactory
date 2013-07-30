@@ -20,7 +20,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return ( from _cidx in edc.Consent where _cidx.Title.Trim().Equals( consentNo.Trim() ) orderby _cidx.Version descending select _cidx ).FirstOrDefault();
     }
-    public enum CustomsProcess { ipr, cw };
+    /// <summary>
+    /// Enumerates supported customs processes
+    /// </summary>
+    internal enum CustomsProcess { ipr, cw };
     internal static Consent DefaultConsent( Entities edc, CustomsProcess process, string number )
     {
       int _defPeriod = 360;

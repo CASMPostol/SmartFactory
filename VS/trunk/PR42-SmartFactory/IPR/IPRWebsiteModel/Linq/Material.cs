@@ -213,6 +213,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _quantity, this.Batch, this.Id, invoiceContent.InvoiceIndex.BillDoc, invoiceContent.Id.Value );
       throw new CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException( "internal error: it is imposible to mark as exported the material", "Material export`", _error, false );
     }
+    /// <summary>
+    /// Returns a <see cref="System.String" /> that represents this instance.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="System.String" /> that represents this instance.
+    /// </returns>
     public override string ToString()
     {
       return GetKey();

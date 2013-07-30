@@ -12,7 +12,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Adds the or get.
     /// </summary>
     /// <param name="entities">The entities.</param>
-    /// <param name="procedureCode">The procedure code.</param>
     /// <param name="productCodeNumber">The product code number.</param>
     /// <param name="title">The title.</param>
     /// <returns></returns>

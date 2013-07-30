@@ -26,6 +26,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
   /// </summary>
   public class CWAccountData: AccountData
   {
+    /// <summary>
+    /// Calls the remote service.
+    /// </summary>
+    /// <param name="requestUrl">The The URL of a Windows SharePoint Services "14" Web site.</param>
+    /// <param name="warnningList">The warnning list.</param>
     public override void CallService( string requestUrl, List<Warnning> warnningList )
     {
       IServiceLocator serviceLocator = SharePointServiceLocator.GetCurrent();

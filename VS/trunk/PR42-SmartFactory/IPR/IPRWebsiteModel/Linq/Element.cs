@@ -33,7 +33,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="_list">The _list.</param>
     /// <param name="_ID">The _ ID.</param>
     /// <exception cref="ApplicationException">Element cannot be found.</exception>
-    /// <returns>An instance of the <see cref="t"/> for the selected index or null if <paramref name="_ID"/> is null or empty.</returns>
+    /// <returns>An instance of the <typeparamref name="t"/> for the selected index or null if <paramref name="_ID"/> is null or empty.</returns>
     public static t TryGetAtIndex<t>( EntityList<t> _list, string _ID )
       where t: Element
     {
@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="_list">The _list.</param>
     /// <param name="_ID">The _ ID.</param>
     /// <exception cref="ApplicationException">_ID is nuul or element cannot be found.</exception>
-    /// <returns>An instance of the <see cref="t"/> for the selected index.</returns>
+    /// <returns>An instance of the <typeparamref name="t"/> for the selected index.</returns>
     public static t GetAtIndex<t>( EntityList<t> _list, string _ID )
       where t: Element
     {
@@ -74,7 +74,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="list">The _list.</param>
     /// <param name="index">The _index.</param>
     /// <returns>
-    /// An instance of the <see cref="t"/> for the selected index.
+    /// An instance of the <typeparamref name="t"/> for the selected index.
     /// </returns>
     /// <exception cref="ApplicationException">_ID is nuul or element cannot be found.</exception>
     public static t GetAtIndex<t>( EntityList<t> list, int index )

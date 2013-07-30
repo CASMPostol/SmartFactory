@@ -28,6 +28,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
   /// </summary>
   public abstract class AccountData: CommonAccountData
   {
+    #region public
     /// <summary>
     /// Initializes a new instance of the <see cref="AccountData" /> class.
     /// </summary>
@@ -74,13 +75,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
       }
     }
+    /// <summary>
+    /// Calls the remote service.
+    /// </summary>
+    /// <param name="requestUrl">The The URL of a Windows SharePoint Services "14" Web site.</param>
+    /// <param name="warnningList">The warnning list.</param>
     public abstract void CallService( string requestUrl, List<Warnning> warnningList );
+    #endregion
 
     #region private
     /// <summary>
     /// Sets the valid to date.
     /// </summary>
-    /// <param name="date">The date.</param>
+    /// <param name="customsDebtDate">The customs debt date.</param>
+    /// <param name="consent">The consent.</param>
     protected internal virtual void SetValidToDate( DateTime customsDebtDate, Consent consent ) { }
     /// <summary>
     /// Analizes the good.
