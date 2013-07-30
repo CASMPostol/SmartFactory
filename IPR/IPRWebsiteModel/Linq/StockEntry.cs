@@ -29,6 +29,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return String.Format( "Cannot find batch:{0}/sku: {1} for stock record {2} on the stock location:{3}.", this.Batch, this.SKU, this.Title, this.StorLoc );
       }
     }
+    /// <summary>
+    /// Gets the no maching tobacco warning message.
+    /// </summary>
+    /// <value>
+    /// The no maching tobacco warning message.
+    /// </value>
     public string NoMachingTobaccoWarningMessage
     {
       get

@@ -8,6 +8,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   public partial class Waste
   {
     #region public
+    /// <summary>
+    /// Gets the lookup to the <see cref="Waste"/>.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <param name="edc">The edc.</param>
+    /// <returns></returns>
+    /// <exception cref="IPRDataConsistencyException">Waste lookup error</exception>
     public static Waste GetLookup( ProductType type, Entities edc )
     {
       try

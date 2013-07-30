@@ -7,7 +7,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class Usage
   {
-
+    /// <summary>
+    /// Gets the lookup.
+    /// </summary>
+    /// <param name="format">The format.</param>
+    /// <param name="edc">The edc.</param>
+    /// <returns></returns>
+    /// <exception cref="IPRDataConsistencyException">Usage lookup error</exception>
     public static Usage GetLookup( Format format, Entities edc )
     {
       try

@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -80,8 +80,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </value>
     public DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
     internal decimal TotalTobacco { get; private set; }
-    internal void ProcessMaterials
-      ( Entities edc, Batch parent, double dustRatio, double shMentholRatio, double wasteRatio, double overusageCoefficient, ProgressChangedEventHandler progressChanged )
+    internal void ProcessMaterials( Entities edc, Batch parent, Material.Ratios _mr, double overusageCoefficient, ProgressChangedEventHandler progressChanged )
     {
       if ( Product == null )
         throw new IPRDataConsistencyException( "SummaryContentInfo.ProcessMaterials", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized." );
@@ -89,7 +88,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         List<Material> _newMaterialList = new List<Material>();
         List<Material> _oldMaterialList = new List<Material>();
-        Material.Ratios _mr = new Material.Ratios { dustRatio = dustRatio, shMentholRatio = shMentholRatio, wasteRatio = wasteRatio };
         List<Material> _copyThis = new List<Material>();
         _copyThis.AddRange( this.Values );
         Dictionary<string, Material> _parentsMaterials = parent.Material.ToDictionary<Material, string>( x => x.GetKey() );
@@ -171,12 +169,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 
     #region private
     /// <summary>
-    /// Adds an element with the specified key and value into the System.Collections.Generic.SortedList<TKey,TValue>.
+    /// Adds an element with the specified key and value.
     /// </summary>
-    /// <param name="key">The key of the element to add.</param>
     /// <param name="value">The value of the element to add. The value can be null for reference types.</param>
     /// <exception cref="System.ArgumentNullException">key is null</exception>
-    /// <exception cref="System.ArgumentException">An element with the same key already exists in the <paramref name="System.Collections.Generic.SortedList<TKey,TValue>"/>.</exception>
+    /// <exception cref="System.ArgumentException">An element with the same key as the <paramref name="value" /> that already exists in the collection.</exception>
     protected void Add( Material value )
     {
       Material ce = null;
@@ -215,5 +212,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       edc.Material.InsertAllOnSubmit( this.Values );
     }
     #endregion
+
   }//SummaryContentInfo
 }

@@ -10,6 +10,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
   /// </summary>
   public static class WebsiteModelExtensions
   {
+    /// <summary>
+    /// Rounds a double-precision floating-point value to a specified number of fractional digits or returns the default value.
+    /// </summary>
+    /// <param name="value"> A  <see cref="double"/> number to be rounded.</param>
+    /// <returns></returns>
     public static decimal Rount2DecimalOrDefault( this double? value )
     {
       return Convert.ToDecimal( Math.Round( value.GetValueOrDefault(), 2 ));

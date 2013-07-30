@@ -8,11 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
+#pragma warning disable 1591
+
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
+{
 	using System;
-	
-	
-	public partial class Entities : Microsoft.SharePoint.Linq.DataContext {
+
+  
+  public partial class Entities : Microsoft.SharePoint.Linq.DataContext {
 		
 		#region Extensibility Method Definitions
 		partial void OnCreated();
@@ -8106,3 +8109,4 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		NotEnoughQnt = 4,
 	}
 }
+#pragma warning restore 1591

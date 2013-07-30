@@ -9,7 +9,37 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// <summary>
   /// Enumerated kinds of Disposal 
   /// </summary>
-  public enum DisposalEnum { OverusageInKg, TobaccoInCigaretess, Dust, SHMenthol, Waste, Tobacco, Cartons };
+  public enum DisposalEnum
+  {
+    /// <summary>
+    /// The overusage in kg
+    /// </summary>
+    OverusageInKg,
+    /// <summary>
+    /// The tobacco in cigaretess
+    /// </summary>
+    TobaccoInCigaretess,
+    /// <summary>
+    /// The dust
+    /// </summary>
+    Dust,
+    /// <summary>
+    /// The SH menthol
+    /// </summary>
+    SHMenthol,
+    /// <summary>
+    /// The waste
+    /// </summary>
+    Waste,
+    /// <summary>
+    /// The tobacco
+    /// </summary>
+    Tobacco,
+    /// <summary>
+    /// The cartons
+    /// </summary>
+    Cartons
+  };
   public partial class Entities
   {
     #region public
@@ -234,7 +264,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       return _typeOfDisposal;
     }
+    /// <summary>
+    /// The IPR library name
+    /// </summary>
     public static string IPRLibraryName = "IPR Library";
+    /// <summary>
+    /// The JSOX library name
+    /// </summary>
     public static string JSOXLibraryName = "JSOX Library";
     #endregion
 

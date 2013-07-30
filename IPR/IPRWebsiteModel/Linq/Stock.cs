@@ -15,7 +15,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                orderby _stcx.Id.Value descending
                select _stcx ).FirstOrDefault<StockLib>();
     }
-    internal void GetInventory( Entities edc, Balance.StockDictionary balanceStock )
+    internal void GetInventory( Balance.StockDictionary balanceStock )
     {
       foreach ( StockEntry _sex in StockEntry )
         _sex.GetInventory( balanceStock );
@@ -71,8 +71,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// List of all IPR finished goods that have not batch associated.
     /// </summary>
-    /// <param name="edc">The <see cref="Entities"/>.</param>
-    /// <returns></returns>
+    /// <returns>The collection of <see cref="StockEntry" /></returns>
     private IQueryable<StockEntry> AllIPRFinishedGoods
     {
       get

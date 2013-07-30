@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
+using CAS.SharePoint;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -32,7 +33,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Gets the lookup.
     /// </summary>
     /// <param name="edc">The <see cref="Entities" /> instance.</param>
-    /// <param name="index">The index of the entry we are lookin for.</param>
+    /// <param name="batch">The batch.</param>
     /// <returns>
     /// The most recent <see cref="Batch" /> object.
     /// </returns>
@@ -108,7 +109,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( ( SKUIndex is SKUCigarette ) && ( (SKUCigarette)SKUIndex ).MentholMaterial.Value )
         _shmcf = ( (SKUCigarette)SKUIndex ).MentholMaterial.Value ? SHMentholIndex.SHMentholRatio.Value : 0;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessDisposals" ) );
-      contentInfo.ProcessMaterials( edc, this, DustIndex.DustRatio.Value, _shmcf, WasteIndex.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
+      Material.Ratios _mr = new Material.Ratios
+      {
+        dustRatio = DustIndex.DustRatio.ValueOrException<double>( "Batch", "Material.Ratios", "dustRatio" ),
+        shMentholRatio = _shmcf,
+        wasteRatio = WasteIndex.WasteRatio.ValueOrException<double>( "Batch", "Material.Ratios", "wasteRatio" )
+      };
+      contentInfo.ProcessMaterials( edc, this, _mr, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
       Dust = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.Dust ] );
       SHMenthol = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.SHMenthol ] );
       Waste = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.Waste ] );

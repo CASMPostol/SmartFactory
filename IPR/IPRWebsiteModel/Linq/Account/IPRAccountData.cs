@@ -55,6 +55,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     #endregion
 
     #region public
+    /// <summary>
+    /// Calls the remote service.
+    /// </summary>
+    /// <param name="requestUrl">The The URL of a Windows SharePoint Services "14" Web site.</param>
+    /// <param name="warnningList">The warnning list.</param>
     public override void CallService( string requestUrl, System.Collections.Generic.List<Customs.Warnning> warnningList )
     {
       //throw new NotImplementedException();

@@ -52,6 +52,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   }
   public partial class Settings
   {
+
+    #region public
     /// <summary>
     /// Gets the parameter.
     /// </summary>
@@ -76,20 +78,36 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Finisheds the name of the goods export form file.
     /// </summary>
+    /// <param name="edc">The edc.</param>
     /// <param name="number">The number.</param>
     /// <returns></returns>
     public static string FinishedGoodsExportFormFileName( Entities edc, int number )
     {
       return String.Format( GetParameter( edc, SettingsEntry.FinishedGoodsExportFormFileName ), number );
     }
+    /// <summary>
+    /// Requests the name of for account clearence document.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="number">The number.</param>
+    /// <returns></returns>
     public static string RequestForAccountClearenceDocumentName( Entities edc, int number )
     {
       return String.Format( GetParameter( edc, SettingsEntry.RequestForAccountClearenceFormFileName ), number );
     }
+    /// <summary>
+    /// Requests the name of for balance sheet document.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="number">The number.</param>
+    /// <returns></returns>
     public static string RequestForBalanceSheetDocumentName( Entities edc, int number )
     {
       return String.Format( GetParameter( edc, SettingsEntry.JsoxBalanceReportFormFileName ), number );
     }
+    #endregion
+
+    #region private
     private static Dictionary<SettingsEntry, string> m_DefaultSettings = new Dictionary<SettingsEntry, string>()
     {
        {SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern,  @"(?<=P\w*\b\st\w*\b\s)(\d{7})"},
@@ -102,6 +120,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
        {SettingsEntry.RequestForAccountClearenceFormFileName,   "Bilans {0:D7}"},
        {SettingsEntry.JsoxBalanceReportFormFileName,   "Wniosek o zamknięcie {0:D7}"},
        {SettingsEntry.ClearanceTitleFormat,   "Nr: {4:D5} {0}/{1} SAD: {2} ilość: {3:F2} kg"}
-   };
+    };
+    #endregion
+
   }
 }

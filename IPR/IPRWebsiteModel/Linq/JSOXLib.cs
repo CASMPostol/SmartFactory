@@ -41,7 +41,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( _stock != null )
       {
         _validated = _stock.Validate( edc, _accountGroups, _stock );
-        _stock.GetInventory( edc, _balanceStock );
+        _stock.GetInventory( _balanceStock );
         _stock.Stock2JSOXLibraryIndex = this;
       }
       else

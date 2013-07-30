@@ -7,6 +7,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class SHMenthol
   {
+    /// <summary>
+    /// Gets the lookup.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <param name="edc">The edc.</param>
+    /// <returns></returns>
+    /// <exception cref="IPRDataConsistencyException">SHMenthol lookup error</exception>
     public static SHMenthol GetLookup( ProductType type, Entities edc )
     {
       try

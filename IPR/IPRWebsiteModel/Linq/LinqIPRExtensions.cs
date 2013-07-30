@@ -30,6 +30,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           return "N/A";
       }
     }
+    /// <summary>
+    /// Creates the title.
+    /// </summary>
+    /// <param name="invoice">The invoice.</param>
     public static void CreateTitle( this InvoiceContent invoice )
     {
       string _tmplt = "{0}/{1} SKU:{2}/Batch:{3}";
@@ -43,22 +47,50 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       invoice.Title = String.Format( _tmplt, invoice.Id.Value, invoice.InvoiceIndex.BillDoc, _sku, _batch );
     }
-    public static bool Available( this Batch batch, double _nq )
+    /// <summary>
+    /// Check if <paramref name="quantity" /> is availables in the specified batch.
+    /// </summary>
+    /// <param name="batch">The batch.</param>
+    /// <param name="quantity">The requested quantity.</param>
+    /// <returns></returns>
+    public static bool Available( this Batch batch, double quantity )
     {
-      return batch.FGQuantityAvailable >= _nq;
+      return batch.FGQuantityAvailable >= quantity;
     }
-    public static double AvailableQuantity( this Batch _batch )
+    /// <summary>
+    /// Returns available quantity.
+    /// </summary>
+    /// <param name="batch">The batch.</param>
+    /// <returns></returns>
+    public static double AvailableQuantity( this Batch batch )
     {
-      return _batch.FGQuantityAvailable.Value;
+      return batch.FGQuantityAvailable.Value;
     }
+    /// <summary>
+    /// Titles the specified _val.
+    /// </summary>
+    /// <param name="_val">The _val.</param>
+    /// <returns></returns>
     public static string Title( this Element _val )
     {
       return _val == null ? "NotApplicable".GetLocalizedString() : _val.Title.NotAvailable();
     }
+    /// <summary>
+    /// Mins the specified date time1.
+    /// </summary>
+    /// <param name="dateTime1">The date time1.</param>
+    /// <param name="dateTime2">The date time2.</param>
+    /// <returns></returns>
     public static DateTime Min( DateTime dateTime1, DateTime dateTime2 )
     {
       return dateTime1 < dateTime2 ? dateTime1 : dateTime2;
     }
+    /// <summary>
+    /// Maxes the specified date time1.
+    /// </summary>
+    /// <param name="dateTime1">The date time 1.</param>
+    /// <param name="dateTime2">The date time 2.</param>
+    /// <returns></returns>
     public static DateTime Max( DateTime dateTime1, DateTime dateTime2 )
     {
       return dateTime1 > dateTime2 ? dateTime1 : dateTime2;
