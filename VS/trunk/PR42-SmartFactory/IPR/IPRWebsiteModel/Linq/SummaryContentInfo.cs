@@ -80,7 +80,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </value>
     public DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
     internal decimal TotalTobacco { get; private set; }
-    internal void ProcessMaterials( Entities edc, Batch parent, Material.Ratios _mr, double overusageCoefficient, ProgressChangedEventHandler progressChanged )
+    internal void ProcessMaterials( Entities entities, Batch parent, Material.Ratios materialRatios, double overusageCoefficient, ProgressChangedEventHandler progressChanged )
     {
       if ( Product == null )
         throw new IPRDataConsistencyException( "SummaryContentInfo.ProcessMaterials", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized." );
@@ -96,7 +96,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           progressChanged( this, new ProgressChangedEventArgs( 1, "DisposalsAnalisis" ) );
           Material _material = _materialX.ReplaceByExistingOne( _oldMaterialList, _newMaterialList, _parentsMaterials, parent );
           progressChanged( this, new ProgressChangedEventArgs( 1, "CalculateCompensationComponents" ) );
-          _material.CalculateCompensationComponents( edc, _mr, overusageCoefficient );
+          _material.CalculateCompensationComponents( entities, materialRatios, overusageCoefficient );
           progressChanged( this, new ProgressChangedEventArgs( 1, "if ( _material.ProductType.Value" ) );
           if ( _material.ProductType.Value == ProductType.IPRTobacco )
           {
@@ -107,7 +107,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         if ( _newMaterialList.Count > 0 )
         {
           progressChanged( this, new ProgressChangedEventArgs( 1, "InsertAllOnSubmit" ) );
-          edc.Material.InsertAllOnSubmit( _newMaterialList );
+          entities.Material.InsertAllOnSubmit( _newMaterialList );
         }
         foreach ( Material _omx in _oldMaterialList )
         {
@@ -205,11 +205,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       else
         _warnings.Add( String.Format( "Cannot find material {0} to subtract", value.ToString() ) );
     }
-    private void InsertAllOnSubmit( Entities edc, Batch parent )
+    private void InsertAllOnSubmit( Entities entities, Batch parent )
     {
       foreach ( Material item in Values )
         item.Material2BatchIndex = parent;
-      edc.Material.InsertAllOnSubmit( this.Values );
+      entities.Material.InsertAllOnSubmit( this.Values );
     }
     #endregion
 

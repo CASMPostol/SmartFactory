@@ -124,7 +124,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     private static void GetXmlContent( BatchXml xml, Entities edc, BatchLib parent, ProgressChangedEventHandler progressChanged )
     {
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: starting" ) );
-      Content _contentInfo = new Content( xml.Material, edc, progressChanged );
+      Content _contentInfo = new Content( edc, xml.Material, progressChanged );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: FindLookup" ) );
       Batch _batch = Batch.FindLookup( edc, _contentInfo.Product.Batch );
       List<string> _warnings = new List<string>();
@@ -184,13 +184,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     }
     private class Content: SummaryContentInfo
     {
-      internal Content( BatchMaterialXml[] xml, Entities edc, ProgressChangedEventHandler progressChanged )
+      internal Content( Entities entities, BatchMaterialXml[] xml, ProgressChangedEventHandler progressChanged )
         : base()
       {
         foreach ( BatchMaterialXml item in xml )
         {
-          Entities.ProductDescription product = edc.GetProductType( item.Material, item.Stor__Loc, item.IsFinishedGood );
-          Material _newMaterial = new Material( edc, product, item.Batch, item.Material, item.Stor__Loc, item.Material_description, item.Unit, item.Quantity, item.Quantity_calculated, item.material_group );
+          Entities.ProductDescription product = entities.GetProductType( item.Material, item.Stor__Loc, item.IsFinishedGood );
+          Material _newMaterial = new Material( entities, product, item.Batch, item.Material, item.Stor__Loc, item.Material_description, item.Unit, item.Quantity, item.Quantity_calculated, item.material_group );
           progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "SKU={0}", _newMaterial.SKU ) ) );
           Add( _newMaterial );
         }

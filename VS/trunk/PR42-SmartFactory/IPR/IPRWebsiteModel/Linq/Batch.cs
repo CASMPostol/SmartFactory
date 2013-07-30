@@ -123,6 +123,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Overuse = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.OverusageInKg ] );
       if ( this.BatchStatus.Value == Linq.BatchStatus.Progress )
         return;
+      //TODO - adjust overuse 
       foreach ( InvoiceContent _ix in this.InvoiceContent )
         _ix.UpdateExportedDisposals( edc );
       contentInfo.UpdateNotStartedDisposals( edc, this, progressChanged );
