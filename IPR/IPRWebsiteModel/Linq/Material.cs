@@ -71,24 +71,24 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Disposalses the analisis.
     /// </summary>
-    /// <param name="edc">The edc.</param>
+    /// <param name="entities">The edc.</param>
     /// <param name="ratios">The ratios.</param>
-    /// <param name="overusage">The overusage.</param>
-    internal void CalculateCompensationComponents( Entities edc, Ratios ratios, double overusage )
+    /// <param name="overusageRatios">The overusage.</param>
+    internal void CalculateCompensationComponents( Entities entities, Ratios ratios, double overusageRatios )
     {
       if ( !( this.ProductType.Value == Linq.ProductType.IPRTobacco || this.ProductType.Value == Linq.ProductType.Tobacco ) )
         return;
       if ( this.ProductType.Value == Linq.ProductType.IPRTobacco )
       {
-        List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, Batch );
+        List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( entities, Batch );
         if ( _accounts.Count == 1 && Math.Abs( _accounts[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) < 1 )
           TobaccoQuantity = _accounts[ 0 ].TobaccoNotAllocated;
       }
       decimal material = TobaccoQuantityDec;
       decimal overuseInKg = 0;
-      if ( overusage > 0 )
+      if ( overusageRatios > 0 )
       {
-        overuseInKg = this[ DisposalEnum.OverusageInKg ] = ( TobaccoQuantityDec * Convert.ToDecimal( overusage ) ).Rount2Decimals();
+        overuseInKg = this[ DisposalEnum.OverusageInKg ] = ( TobaccoQuantityDec * Convert.ToDecimal( overusageRatios ) ).Rount2Decimals();
         material -= overuseInKg;
       }
       else
