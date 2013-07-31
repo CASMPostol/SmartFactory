@@ -132,19 +132,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return ( from IPR _iprx in edc.IPR where _iprx.DocumentNo.Contains( documentNo ) select _iprx ).Any();
     }
     /// <summary>
-    /// Finds the IPR accounts with not allocated tobacco.
-    /// </summary>
-    /// <param name="edc">The _edc.</param>
-    /// <param name="batch">The _batch.</param>
-    /// <returns></returns>
-    public static List<IPR> FindIPRAccountsWithNotAllocatedTobacco( Entities edc, string batch )
-    {
-      return ( from IPR _iprx in edc.IPR
-               where _iprx.Batch.Contains( batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0
-               orderby _iprx.CustomsDebtDate.Value ascending, _iprx.DocumentNo ascending
-               select _iprx ).ToList();
-    }
-    /// <summary>
     /// Gets the introducing quantity.
     /// </summary>
     /// <param name="edc">The edc.</param>
@@ -395,10 +382,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       Disposal _dsp = AddDisposal( edc, _kind, ref _toDispose );
       _dsp.Material = material;
-    }
-    internal static decimal IsAvailable( Entities edc, string batch, decimal requestedTobacco )
-    {
-      return FindIPRAccountsWithNotAllocatedTobacco( edc, batch ).Sum<IPR>( a => a.TobaccoNotAllocatedDec ) - requestedTobacco;
     }
     internal decimal TobaccoNotAllocatedDec { get { return Convert.ToDecimal( this.TobaccoNotAllocated.Value ); } set { this.TobaccoNotAllocated = Convert.ToDouble( value ); } }
     /// <summary>

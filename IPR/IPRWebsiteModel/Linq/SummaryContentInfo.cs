@@ -145,21 +145,19 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       if ( Product.ProductType != ProductType.Cigarette )
         return;
-      Dictionary<string, decimal> _materials = ( from _mx in this.Values
-                                                 where _mx.ProductType.Value == Linq.ProductType.IPRTobacco
-                                                 select new { batchId = _mx.Batch, quantity = _mx.TobaccoQuantityDec } ).ToDictionary( k => k.batchId, v => v.quantity );
-      foreach ( Disposal _dx in disposals )
-        if ( !_materials.Keys.Contains<string>( _dx.Disposal2IPRIndex.Batch ) )
-          _materials.Add( _dx.Disposal2IPRIndex.Batch, _dx.SettledQuantityDec );
-        else
-          _materials[ _dx.Disposal2IPRIndex.Batch ] -= _dx.SettledQuantityDec;
-      foreach ( var _qutty in _materials )
+      Dictionary<string, decimal> _materials = ( from _mx in disposals
+                                                 select new { batchId = _mx.Disposal2BatchIndex.Batch0, quantity = _mx.SettledQuantityDec } ).ToDictionary( k => k.batchId, v => v.quantity );
+      foreach ( Material _qutty in this.Values )
       {
-        decimal _diff = IPR.IsAvailable( edc, _qutty.Key, _qutty.Value );
-        if ( _diff < -1 )  //TODO add common cheking point and get data from settings.
+        if ( _qutty.ProductType.Value != Linq.ProductType.IPRTobacco )
+          continue;
+        decimal _disposed = 0;
+        _materials.TryGetValue( _qutty.Batch, out _disposed );
+        decimal _diff = _qutty.Accounts2Dispose.Sum<IPR>( a => a.TobaccoNotAllocatedDec ) + _disposed - _qutty.TobaccoQuantityDec;
+        if ( _diff > -1 )  //TODO add common cheking point and get data from settings.
         {
           string _mssg = "Cannot find any IPR account to dispose the quantity {3}: Tobacco batch: {0}, fg batch: {1}, quantity to dispose: {2} kg";
-          _validationErrors.Add( new Warnning( String.Format( _mssg, _qutty.Key, Product.Batch, _qutty.Value, -_diff ), true ) );
+          _validationErrors.Add( new Warnning( String.Format( _mssg, _qutty.Batch, Product.Batch, _qutty.TobaccoQuantityDec, -_diff ), true ) );
         }
       }
       if ( _validationErrors.Count > 0 )

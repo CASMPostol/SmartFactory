@@ -106,7 +106,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       _xml.Validate( Settings.GetParameter( edc, SettingsEntry.BatchNumberPattern ), _validationErrors );
       if ( _validationErrors.Count > 0 )
       {
-        ErrorsList _el = new ErrorsList(_validationErrors, true);
+        ErrorsList _el = new ErrorsList( _validationErrors, true );
         throw new InputDataValidationException( "Batch XML message validation failed", "XML sysntax validation", _el );
       }
       return _xml;
@@ -191,6 +191,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         {
           Entities.ProductDescription product = entities.GetProductType( item.Material, item.Stor__Loc, item.IsFinishedGood );
           Material _newMaterial = new Material( entities, product, item.Batch, item.Material, item.Stor__Loc, item.Material_description, item.Unit, item.Quantity, item.Quantity_calculated, item.material_group );
+          _newMaterial.GetListOfIPRAccounts( entities );
           progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "SKU={0}", _newMaterial.SKU ) ) );
           Add( _newMaterial );
         }
