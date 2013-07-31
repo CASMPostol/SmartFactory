@@ -78,11 +78,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       if ( !( this.ProductType.Value == Linq.ProductType.IPRTobacco || this.ProductType.Value == Linq.ProductType.Tobacco ) )
         return;
-      if ( this.ProductType.Value == Linq.ProductType.IPRTobacco )
-      {
-        if ( Accounts2Dispose.Count == 1 && Math.Abs( Accounts2Dispose[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) < 1 )
-          TobaccoQuantity = Accounts2Dispose[ 0 ].TobaccoNotAllocated;
-      }
+      AdjustTobaccoQuantity();
       decimal material = TobaccoQuantityDec;
       decimal overuseInKg = 0;
       if ( overusageRatios > 0 )
@@ -99,6 +95,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).Rount2Decimals();
       waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).Rount2Decimals();
       this[ DisposalEnum.TobaccoInCigaretess ] = material - shMenthol - waste - dust;
+    }
+
+    internal void AdjustTobaccoQuantity(ref double totalQuantity)
+    {
+      if ( this.ProductType.Value == Linq.ProductType.IPRTobacco )
+        return;
+      if ( Accounts2Dispose.Count != 1 || Math.Abs( Accounts2Dispose[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) > 1 )
+        return;
+      totalQuantity += TobaccoQuantity - Accounts2Dispose[ 0 ].TobaccoNotAllocated;
+      TobaccoQuantity = Accounts2Dispose[ 0 ].TobaccoNotAllocated;
     }
     /// <summary>
     /// Gets the <see cref="System.Decimal" /> at the specified index.
