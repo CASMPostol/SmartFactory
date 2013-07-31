@@ -211,5 +211,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     #endregion
 
+
+    internal void AdjustMaterialQuantity()
+    {
+      foreach ( Material _mx in this.Values)
+        _mx.AdjustTobaccoQuantity( ref this.TotalTobacco );
+    }
   }//SummaryContentInfo
 }
