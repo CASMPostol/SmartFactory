@@ -26,7 +26,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="tobaccoQuantity">The tobacco quantity.</param>
     /// <param name="productID">The product ID.</param>
     public Material
-      ( Entities edc, Entities.ProductDescription product, string batch, string sku, string storLoc, string skuDescription, string units, decimal fgQuantity, decimal 
+      ( Entities edc, Entities.ProductDescription product, string batch, string sku, string storLoc, string skuDescription, string units, decimal fgQuantity, decimal
         tobaccoQuantity, string productID )
       : this()
     {
@@ -80,9 +80,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return;
       if ( this.ProductType.Value == Linq.ProductType.IPRTobacco )
       {
-        List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( entities, Batch );
-        if ( _accounts.Count == 1 && Math.Abs( _accounts[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) < 1 )
-          TobaccoQuantity = _accounts[ 0 ].TobaccoNotAllocated;
+        if ( Accounts2Dispose.Count == 1 && Math.Abs( Accounts2Dispose[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) < 1 )
+          TobaccoQuantity = Accounts2Dispose[ 0 ].TobaccoNotAllocated;
       }
       decimal material = TobaccoQuantityDec;
       decimal overuseInKg = 0;
@@ -223,9 +222,30 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return GetKey();
     }
+    public void GetListOfIPRAccounts( Entities entities )
+    {
+      myVarAccounts2Dispose = ( from IPR _iprx in entities.IPR
+                                where _iprx.Batch == this.Batch && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0
+                                orderby _iprx.CustomsDebtDate.Value ascending, _iprx.DocumentNo ascending
+                                select _iprx ).ToList<IPR>();
+    }
     #endregion
 
     #region internal
+    /// <summary>
+    /// Accounts2s the dispose.
+    /// </summary>
+    /// <param name="entities">The entities.</param>
+    /// <returns></returns>
+    internal List<IPR> Accounts2Dispose
+    {
+      get
+      {
+        if ( myVarAccounts2Dispose == null )
+          throw new CAS.SharePoint.ApplicationError( "Material", "Accounts2Dispose", "myVarAccounts2Dispose is null", null );
+        return myVarAccounts2Dispose;
+      }
+    }
     /// <summary>
     /// Gets the tobacco total.
     /// </summary>
@@ -297,8 +317,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void AddNewDisposals( Entities edc, Linq.DisposalEnum _kind, ref decimal _toDispose )
     {
-      List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, this.Batch );
-      foreach ( IPR _iprx in _accounts )
+      foreach ( IPR _iprx in this.Accounts2Dispose )
       {
         _iprx.AddDisposal( edc, _kind, ref _toDispose, this );
         if ( _toDispose <= 0 )
@@ -307,8 +326,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void AddNewDisposals( Entities edc, Linq.DisposalEnum _kind, ref decimal _toDispose, InvoiceContent invoiceContent )
     {
-      List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, this.Batch );
-      foreach ( IPR _iprx in _accounts )
+      foreach ( IPR _iprx in this.Accounts2Dispose )
       {
         _iprx.AddDisposal( edc, _kind, ref _toDispose, this, invoiceContent );
         if ( _toDispose <= 0 )
@@ -341,6 +359,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return String.Format( m_keyForam, SKU, Batch, this.StorLoc );
     }
     private const string m_keyForam = "{0}:{1}:{2}";
+    private List<IPR> myVarAccounts2Dispose = null;
     #endregion
 
   }

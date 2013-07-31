@@ -4620,7 +4620,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 				e.Item.Material.Remove(this);
 			}
 		}
-	}
+
+
+  }
 	
 	/// <summary>
 	/// PCN Code List Content Type
