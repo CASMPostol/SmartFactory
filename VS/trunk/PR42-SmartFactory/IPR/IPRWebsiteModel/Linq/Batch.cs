@@ -108,13 +108,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       double _shmcf = 0;
       if ( ( SKUIndex is SKUCigarette ) && ( (SKUCigarette)SKUIndex ).MentholMaterial.Value )
         _shmcf = ( (SKUCigarette)SKUIndex ).MentholMaterial.Value ? SHMentholIndex.SHMentholRatio.Value : 0;
-      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessDisposals" ) );
       Material.Ratios _mr = new Material.Ratios
       {
         dustRatio = DustIndex.DustRatio.ValueOrException<double>( "Batch", "Material.Ratios", "dustRatio" ),
         shMentholRatio = _shmcf,
         wasteRatio = WasteIndex.WasteRatio.ValueOrException<double>( "Batch", "Material.Ratios", "wasteRatio" )
       };
+      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessDisposals" ) );
       contentInfo.ProcessMaterials( edc, this, _mr, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
       Dust = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.Dust ] );
       SHMenthol = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.SHMenthol ] );
