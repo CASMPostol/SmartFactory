@@ -233,20 +233,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The tobacco total.
     /// </value>
     internal decimal TobaccoQuantityDec { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
-    internal Material ReplaceByExistingOne( List<Material> _oldMaterials, List<Material> _newMaterials, Dictionary<string, Material> parentsMaterials, Batch parent )
+    internal Material ReplaceByExistingOne( List<Material> oldMaterials, List<Material> newMaterials, Dictionary<string, Material> parentsMaterials, Batch parent )
     {
       Material _old = null;
       if ( !parentsMaterials.TryGetValue( this.GetKey(), out _old ) )
       {
-        Debug.Assert( this.Material2BatchIndex == null, "Material2BatchIndex must be equl null for new materials" );
+        Debug.Assert( this.Material2BatchIndex == null, "Material2BatchIndex must be null for new materials" );
         this.Material2BatchIndex = parent;
-        _newMaterials.Add( this );
+        newMaterials.Add( this );
         return this;
       }
       Debug.Assert( this != _old, "this cannot be the same as _old" );
       Debug.Assert( _old.Material2BatchIndex == parent, "Material2BatchIndex must be equl parent for old materials" );
       Debug.Assert( ( (Microsoft.SharePoint.Linq.ITrackEntityState)_old ).EntityState != Microsoft.SharePoint.Linq.EntityState.ToBeInserted, "EntityState is in wrong state: ToBeInserted" );
-      _oldMaterials.Add( _old );
+      oldMaterials.Add( _old );
       _old.FGQuantity = this.FGQuantity;
       _old.TobaccoQuantity = this.TobaccoQuantity;
       return _old;
