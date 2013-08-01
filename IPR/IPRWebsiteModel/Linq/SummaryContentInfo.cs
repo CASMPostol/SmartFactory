@@ -79,7 +79,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The accumulated disposals analisis.
     /// </value>
     public DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
-    internal decimal TotalTobacco { get; private set; }
+    /// <summary>
+    /// Gets the total quantity of the tobacco.
+    /// </summary>
+    /// <value>
+    /// The total tobacco.
+    /// </value>
+    internal decimal TotalTobacco
+    {
+      get { return myTotalTobacco; }
+    }
     internal void ProcessMaterials( Entities entities, Batch parent, Material.Ratios materialRatios, double overusageCoefficient, ProgressChangedEventHandler progressChanged )
     {
       if ( Product == null )
@@ -163,9 +172,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( _validationErrors.Count > 0 )
         throw new InputDataValidationException( "Batch content validation failed", "XML content validation", _validationErrors );
     }
+    internal void AdjustMaterialQuantity()
+    {
+      foreach ( Material _mx in this.Values )
+        _mx.AdjustTobaccoQuantity( ref myTotalTobacco );
+    }
     #endregion
 
     #region private
+    private decimal myTotalTobacco = 0;
     /// <summary>
     /// Adds an element with the specified key and value.
     /// </summary>
@@ -176,7 +191,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       Material ce = null;
       if ( value.ProductType == ProductType.IPRTobacco || value.ProductType == ProductType.Tobacco )
-        TotalTobacco += value.TobaccoQuantityDec;
+        myTotalTobacco += value.TobaccoQuantityDec;
       if ( this.TryGetValue( value.GetKey(), out ce ) )
       {
         ce.FGQuantity += value.FGQuantity;
@@ -194,7 +209,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private void Subtract( Material value, List<string> _warnings )
     {
       if ( value.ProductType == ProductType.IPRTobacco || value.ProductType == ProductType.Tobacco )
-        TotalTobacco -= value.TobaccoQuantityDec;
+        myTotalTobacco -= value.TobaccoQuantityDec;
       if ( this.TryGetValue( value.GetKey(), out value ) )
       {
         value.FGQuantity -= value.FGQuantity;
@@ -212,10 +227,5 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
 
-    internal void AdjustMaterialQuantity()
-    {
-      foreach ( Material _mx in this.Values)
-        _mx.AdjustTobaccoQuantity( ref this.TotalTobacco );
-    }
   }//SummaryContentInfo
 }

@@ -243,10 +243,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       }
     }
     /// <summary>
-    /// Get requested customs procedure code 
+    /// Get requested customs procedure code
     /// </summary>
-    /// <param name="_cpc">The Customs Procedure Code.</param>
-    /// <returns>Requested procedure code <see cref="CustomsProcedureCodes"/> - first two chars of the box 37</returns>
+    /// <param name="value">The value.</param>
+    /// <returns>
+    /// Requested procedure code <see cref="CustomsProcedureCodes" /> - first two chars of the box 37
+    /// </returns>
     private static CustomsProcedureCodes RequestedProcedure( this ClearenceProcedure value )
     {
       CustomsProcedureCodes _ret = default( CustomsProcedureCodes );
