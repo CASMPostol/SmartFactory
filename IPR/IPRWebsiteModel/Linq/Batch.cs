@@ -75,7 +75,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         FGQuantityAvailable = _diff + _available;
       }
       FGQuantity = contentInfo.Product.FGQuantity;
-      contentInfo.AdjustMaterialQuantity();
+      contentInfo.AdjustMaterialQuantity( status == Linq.BatchStatus.Final );
       MaterialQuantity = Convert.ToDouble( contentInfo.TotalTobacco );
       ProductType = contentInfo.Product.ProductType;
       SKUIndex = contentInfo.SKULookup;

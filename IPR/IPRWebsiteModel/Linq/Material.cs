@@ -279,6 +279,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       oldMaterials.Add( _old );
       _old.FGQuantity = this.FGQuantity;
       _old.TobaccoQuantity = this.TobaccoQuantity;
+      myVarAccounts2Dispose = this.Accounts2Dispose;
       return _old;
     }
     internal void UpdateDisposals( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged )
