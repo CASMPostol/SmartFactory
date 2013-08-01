@@ -78,7 +78,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       if ( !( this.ProductType.Value == Linq.ProductType.IPRTobacco || this.ProductType.Value == Linq.ProductType.Tobacco ) )
         return;
-      AdjustTobaccoQuantity();
       decimal material = TobaccoQuantityDec;
       decimal overuseInKg = 0;
       if ( overusageRatios > 0 )
@@ -96,14 +95,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).Rount2Decimals();
       this[ DisposalEnum.TobaccoInCigaretess ] = material - shMenthol - waste - dust;
     }
-
-    internal void AdjustTobaccoQuantity(ref double totalQuantity)
+    internal void AdjustTobaccoQuantity( ref decimal totalQuantity )
     {
       if ( this.ProductType.Value == Linq.ProductType.IPRTobacco )
         return;
       if ( Accounts2Dispose.Count != 1 || Math.Abs( Accounts2Dispose[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) > 1 )
         return;
-      totalQuantity += TobaccoQuantity - Accounts2Dispose[ 0 ].TobaccoNotAllocated;
+      totalQuantity += TobaccoQuantityDec - Accounts2Dispose[ 0 ].TobaccoNotAllocatedDec;
       TobaccoQuantity = Accounts2Dispose[ 0 ].TobaccoNotAllocated;
     }
     /// <summary>
@@ -228,6 +226,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return GetKey();
     }
+    /// <summary>
+    /// Gets the list of IPR accounts - candidates to disposa material.
+    /// </summary>
+    /// <param name="entities">Provides LINQ (Language Integrated Query) access to, and change tracking for, the lists and document libraries of a Windows SharePoint Services "14" Web site.</param>
     public void GetListOfIPRAccounts( Entities entities )
     {
       myVarAccounts2Dispose = ( from IPR _iprx in entities.IPR
@@ -241,8 +243,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Accounts2s the dispose.
     /// </summary>
-    /// <param name="entities">The entities.</param>
-    /// <returns></returns>
+    /// <value>
+    /// The list of IPR accounts candidates to dispose.
+    /// </value>
+    /// <exception cref="CAS.SharePoint.ApplicationError">Material;Accounts2Dispose;myVarAccounts2Dispose is null;null</exception>
     internal List<IPR> Accounts2Dispose
     {
       get
