@@ -124,7 +124,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Overuse = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.OverusageInKg ] );
       if ( this.BatchStatus.Value == Linq.BatchStatus.Progress )
         return;
-      //TODO - adjust overuse 
+      if ( CalculatedOveruse > 0 )
+        contentInfo.AdjustOveruse( _mr );
       foreach ( InvoiceContent _ix in this.InvoiceContent )
         _ix.UpdateExportedDisposals( edc );
       contentInfo.UpdateNotStartedDisposals( edc, this, progressChanged );
@@ -137,16 +138,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return String.Format( _msg, this.Title );
       }
     }
-    //internal void AddProgressDisposals( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged )
-    //{
-    //  if ( edc.ObjectTrackingEnabled )
-    //    throw new ApplicationException( "At Batch.GetDisposals the ObjectTrackingEnabled is set." );
-    //  if ( this.BatchStatus.Value != Linq.BatchStatus.Progress )
-    //    throw new ApplicationException( "At Batch.GetDisposals the BatchStatus != Linq.BatchStatus.Progress" );
-    //  progressChanged( this, new ProgressChangedEventArgs( 1, "UpdateDisposals" ) );
-    //  foreach ( Material _materialX in this.Material )
-    //    _materialX.UpdateDisposals( edc, parent, progressChanged );
-    //}
     internal void GetInventory( StockDictionary balanceStock, StockDictionary.StockValueKey key, double quantityOnStock )
     {
       switch ( this.BatchStatus.Value )

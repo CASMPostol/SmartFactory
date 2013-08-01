@@ -5671,7 +5671,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 				}
 			}
 		}
-	}
+
+    public static decimal MinimalOveruse { get; set; }
+  }
 	
 	/// <summary>
 	/// SH Menthol List Content Type
