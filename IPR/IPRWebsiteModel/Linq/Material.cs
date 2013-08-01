@@ -9,7 +9,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// <summary>
   /// Material 
   /// </summary>
-  public sealed partial class Material
+  public sealed partial class Material: IComparable<Material>
   {
     #region ctor
     /// <summary>
@@ -76,8 +76,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="overusageRatios">The overusage.</param>
     internal void CalculateCompensationComponents( Entities entities, Ratios ratios, double overusageRatios )
     {
-      if ( !( this.ProductType.Value == Linq.ProductType.IPRTobacco || this.ProductType.Value == Linq.ProductType.Tobacco ) )
-        return;
       decimal material = TobaccoQuantityDec;
       decimal overuseInKg = 0;
       if ( overusageRatios > 0 )
@@ -87,13 +85,27 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       else
         this[ DisposalEnum.OverusageInKg ] = 0;
-      decimal dust = this[ DisposalEnum.Dust ] = 0;
-      decimal shMenthol = this[ DisposalEnum.SHMenthol ] = 0;
-      decimal waste = this[ DisposalEnum.Waste ] = 0;
-      dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).Rount2Decimals();
-      shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).Rount2Decimals();
-      waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).Rount2Decimals();
-      this[ DisposalEnum.TobaccoInCigaretess ] = material - shMenthol - waste - dust;
+      CalculateCompensationComponents( ratios, material );
+    }
+    internal decimal RemoveOveruseIfPossible( List<Material> _2Add, Ratios ratios )
+    {
+      decimal _ret = 0;
+      if ( this[ DisposalEnum.OverusageInKg ] > Settings.MinimalOveruse )
+        _2Add.Add( this );
+      else
+      {
+        CalculateCompensationComponents( ratios, this.TobaccoQuantityDec );
+        _ret = this[ DisposalEnum.OverusageInKg ];
+        this[ DisposalEnum.OverusageInKg ] = 0;
+      }
+      return _ret;
+    }
+    internal void IncreaseOveruse( decimal _AddingCff, Ratios ratios )
+    {
+      decimal overuseInKg = TobaccoQuantityDec * ( 1 + _AddingCff );
+      decimal material = TobaccoQuantityDec + overuseInKg;
+      this[ DisposalEnum.OverusageInKg ] += overuseInKg;
+      CalculateCompensationComponents( ratios, material );
     }
     internal void AdjustTobaccoQuantity( ref decimal totalQuantity )
     {
@@ -237,6 +249,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                                 orderby _iprx.CustomsDebtDate.Value ascending, _iprx.DocumentNo ascending
                                 select _iprx ).ToList<IPR>();
     }
+    internal bool IsTobacco
+    {
+      get
+      {
+        return ProductType.Value == Linq.ProductType.IPRTobacco || ProductType.Value == Linq.ProductType.Tobacco;
+      }
+    }
+    /// <summary>
+    /// Gets the key.
+    /// </summary>
+    /// <returns></returns>
+    internal string GetKey()
+    {
+      return String.Format( m_keyForam, SKU, Batch, this.StorLoc );
+    }
     #endregion
 
     #region internal
@@ -361,16 +388,24 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
-    /// <summary>
-    /// Gets the key.
-    /// </summary>
-    /// <returns></returns>
-    internal string GetKey()
+    private void CalculateCompensationComponents( Ratios ratios, decimal material )
     {
-      return String.Format( m_keyForam, SKU, Batch, this.StorLoc );
+      decimal dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).Rount2Decimals();
+      decimal shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).Rount2Decimals();
+      decimal waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).Rount2Decimals();
+      this[ DisposalEnum.TobaccoInCigaretess ] = material - shMenthol - waste - dust;
     }
     private const string m_keyForam = "{0}:{1}:{2}";
     private List<IPR> myVarAccounts2Dispose = null;
+    #endregion
+
+    #region IComparable<Material> Members
+    public int CompareTo( Material other )
+    {
+      if ( other == null )
+        return 1;
+      return TobaccoQuantityDec.CompareTo( other.TobaccoQuantityDec );
+    }
     #endregion
 
   }

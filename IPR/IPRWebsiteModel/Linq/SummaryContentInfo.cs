@@ -105,6 +105,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           progressChanged( this, new ProgressChangedEventArgs( 1, "DisposalsAnalisis" ) );
           Material _material = _materialX.ReplaceByExistingOne( _oldMaterialList, _newMaterialList, _parentsMaterials, parent );
           progressChanged( this, new ProgressChangedEventArgs( 1, "CalculateCompensationComponents" ) );
+          if ( !_materialX.IsTobacco )
+            continue;
           _material.CalculateCompensationComponents( entities, materialRatios, overusageCoefficient );
           progressChanged( this, new ProgressChangedEventArgs( 1, "if ( _material.ProductType.Value" ) );
           if ( _material.ProductType.Value == ProductType.IPRTobacco )
@@ -174,7 +176,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void AdjustMaterialQuantity( bool finalBatch )
     {
-
       switch ( this.Product.ProductType.Value )
       {
         case ProductType.Tobacco:
@@ -193,6 +194,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       foreach ( Material _mx in this.Values )
         _mx.AdjustTobaccoQuantity( ref myTotalTobacco );
     }
+    internal void AdjustOveruse(Material.Ratios materialRatios )
+    {
+      List<Material> _tobacco = this.Values.Where<Material>( x => x.IsTobacco ).ToList<Material>();
+      decimal _2remove = 0;
+      List<Material> _2Add = new List<Material>();
+      foreach ( Material _mx in _tobacco )
+        _2remove += _mx.RemoveOveruseIfPossible( _2Add, materialRatios );
+      if ( _2Add.Count == 0 )
+        _2Add.Add( _tobacco.Max<Material, Material>( x => x ) );
+      decimal _AddingCff = _2remove / _2Add.Sum<Material>( x => x.TobaccoQuantityDec );
+      foreach ( Material _mx in _2Add )
+        _mx.IncreaseOveruse( _AddingCff, materialRatios );
+    }
+
     #endregion
 
     #region private
@@ -241,7 +256,5 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       entities.Material.InsertAllOnSubmit( this.Values );
     }
     #endregion
-
-
   }//SummaryContentInfo
 }
