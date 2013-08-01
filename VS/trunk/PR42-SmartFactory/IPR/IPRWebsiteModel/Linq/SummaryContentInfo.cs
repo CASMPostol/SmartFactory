@@ -172,8 +172,24 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( _validationErrors.Count > 0 )
         throw new InputDataValidationException( "Batch content validation failed", "XML content validation", _validationErrors );
     }
-    internal void AdjustMaterialQuantity()
+    internal void AdjustMaterialQuantity( bool finalBatch )
     {
+
+      switch ( this.Product.ProductType.Value )
+      {
+        case ProductType.Tobacco:
+          if ( !finalBatch )
+            return;
+          break;
+        case ProductType.None:
+        case ProductType.Invalid:
+        case ProductType.Cutfiller:
+        case ProductType.Cigarette:
+        case ProductType.IPRTobacco:
+        case ProductType.Other:
+        default:
+          return;
+      }
       foreach ( Material _mx in this.Values )
         _mx.AdjustTobaccoQuantity( ref myTotalTobacco );
     }
