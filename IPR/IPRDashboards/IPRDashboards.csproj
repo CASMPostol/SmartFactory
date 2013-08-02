@@ -47,9 +47,6 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CAS.SharePoint">
-      <HintPath>..\..\..\CommonBinaries\PR42-SmartFactory\CAS.SharePoint.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -194,6 +191,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
+      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
+      <Name>SharePoint</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Customs\Customs.csproj">
+      <Project>{6c705843-6387-4d2d-a7cf-a66976186ce2}</Project>
+      <Name>Customs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interoperability\Interoperability.csproj">
       <Project>{bbc177df-cd0c-4fdf-9e78-41f2ce4faf52}</Project>
       <Name>Interoperability</Name>
