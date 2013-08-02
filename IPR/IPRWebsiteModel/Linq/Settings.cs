@@ -111,7 +111,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <value>
     /// The minimal overuse.
     /// </value>
-    public static decimal MinimalOveruse { get { return 1; } }
+    public static decimal MinimalOveruse { get { return 1; } } // //TODO get data from settings.
     #endregion
 
     #region private
