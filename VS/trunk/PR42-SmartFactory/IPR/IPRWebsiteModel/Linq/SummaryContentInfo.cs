@@ -165,7 +165,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         decimal _disposed = 0;
         _materials.TryGetValue( _qutty.Batch, out _disposed );
         decimal _diff = _qutty.Accounts2Dispose.Sum<IPR>( a => a.TobaccoNotAllocatedDec ) + _disposed - _qutty.TobaccoQuantityDec;
-        if ( _diff > -1 )  //TODO add common cheking point and get data from settings.
+        if ( _diff < -Settings.MinimalOveruse ) 
         {
           string _mssg = "Cannot find any IPR account to dispose the quantity {3}: Tobacco batch: {0}, fg batch: {1}, quantity to dispose: {2} kg";
           _validationErrors.Add( new Warnning( String.Format( _mssg, _qutty.Batch, Product.Batch, _qutty.TobaccoQuantityDec, -_diff ), true ) );
