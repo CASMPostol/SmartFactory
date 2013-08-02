@@ -109,8 +109,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void AdjustTobaccoQuantity( ref decimal totalQuantity )
     {
-      if ( this.ProductType.Value == Linq.ProductType.IPRTobacco )
-        return;
       if ( Accounts2Dispose.Count != 1 || Math.Abs( Accounts2Dispose[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) > 1 )
         return;
       totalQuantity += TobaccoQuantityDec - Accounts2Dispose[ 0 ].TobaccoNotAllocatedDec;

@@ -5672,7 +5672,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 			}
 		}
 
-    public static decimal MinimalOveruse { get; set; }
   }
 	
 	/// <summary>

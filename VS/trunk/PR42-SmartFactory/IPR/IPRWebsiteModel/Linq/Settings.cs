@@ -105,6 +105,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return String.Format( GetParameter( edc, SettingsEntry.JsoxBalanceReportFormFileName ), number );
     }
+    /// <summary>
+    /// Gets the minimal overuse.
+    /// </summary>
+    /// <value>
+    /// The minimal overuse.
+    /// </value>
+    public static decimal MinimalOveruse { get { return 1; } }
     #endregion
 
     #region private
