@@ -102,10 +102,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void IncreaseOveruse( decimal _AddingCff, Ratios ratios )
     {
-      decimal overuseInKg = TobaccoQuantityDec * ( 1 + _AddingCff );
+      decimal overuseInKg = TobaccoQuantityDec * _AddingCff;
       decimal material = TobaccoQuantityDec + overuseInKg;
       this[ DisposalEnum.OverusageInKg ] += overuseInKg;
-      CalculateCompensationComponents( ratios, material );
+      CalculateCompensationComponents( ratios, material - this[ DisposalEnum.OverusageInKg ] );
     }
     internal void AdjustTobaccoQuantity( ref decimal totalQuantity )
     {
