@@ -176,25 +176,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void AdjustMaterialQuantity( bool finalBatch )
     {
-      switch ( this.Product.ProductType.Value )
-      {
-        case ProductType.Tobacco:
-          if ( !finalBatch )
-            return;
-          break;
-        case ProductType.None:
-        case ProductType.Invalid:
-        case ProductType.Cutfiller:
-        case ProductType.Cigarette:
-        case ProductType.IPRTobacco:
-        case ProductType.Other:
-        default:
-          return;
-      }
+      if ( this.Product.ProductType.Value != ProductType.IPRTobacco || !finalBatch )
+        return;
       foreach ( Material _mx in this.Values )
         _mx.AdjustTobaccoQuantity( ref myTotalTobacco );
     }
-    internal void AdjustOveruse(Material.Ratios materialRatios )
+    internal void AdjustOveruse( Material.Ratios materialRatios )
     {
       List<Material> _tobacco = this.Values.Where<Material>( x => x.IsTobacco ).ToList<Material>();
       decimal _2remove = 0;
@@ -207,7 +194,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       foreach ( Material _mx in _2Add )
         _mx.IncreaseOveruse( _AddingCff, materialRatios );
     }
-
     #endregion
 
     #region private
