@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Title = skuDescription;
       Units = units;
       FGQuantity = Convert.ToDouble( fgQuantity );
-      TobaccoQuantity = Convert.ToDouble( tobaccoQuantity );
+      TobaccoQuantity = Convert.ToDouble( tobaccoQuantity ).Rount2Decimals();
       ProductID = productID;
       ProductType = product.productType;
       Overuse = 0;
@@ -102,7 +102,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void IncreaseOveruse( decimal _AddingCff, Ratios ratios )
     {
-      decimal overuseInKg = TobaccoQuantityDec * _AddingCff;
+      decimal overuseInKg = (TobaccoQuantityDec * _AddingCff).Rount2Decimals();
       decimal material = TobaccoQuantityDec + overuseInKg;
       this[ DisposalEnum.OverusageInKg ] += overuseInKg;
       CalculateCompensationComponents( ratios, material - this[ DisposalEnum.OverusageInKg ] );
@@ -183,7 +183,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </returns>
     public decimal CalculatedQuantity( InvoiceContent invoice )
     {
-      return Convert.ToDecimal( ( this.Tobacco.Value * invoice.Quantity.Value / this.Material2BatchIndex.FGQuantity.Value ).Rount2Decimals() );
+      return  ( this.Tobacco.Value * invoice.Quantity.Value / this.Material2BatchIndex.FGQuantity.Value ).Rount2Decimals() ;
     }
     /// <summary>
     /// Gets the list of disposals.

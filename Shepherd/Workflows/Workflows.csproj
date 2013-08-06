@@ -324,7 +324,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="CreatePO\Elements.xml" />
-    <Content Include="CreateSealProtocol\Elements.xml" />
+    <Content Include="CreateSealProtocol\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="CreateSecurityPO1\Elements.xml" />
     <Content Include="ImportDictionaries\Elements.xml">
       <AutoGen>True</AutoGen>
