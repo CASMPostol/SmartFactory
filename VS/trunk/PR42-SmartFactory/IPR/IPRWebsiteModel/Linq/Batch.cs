@@ -143,8 +143,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       switch ( this.BatchStatus.Value )
       {
         case Linq.BatchStatus.Progress:
+          double _portion = quantityOnStock / this.FGQuantity.Value;
           foreach ( Material _mtx in Material )
-            _mtx.GetInventory( balanceStock, key, quantityOnStock / this.FGQuantity.Value );
+            _mtx.GetInventory( balanceStock, key, _portion );
           break;
         case Linq.BatchStatus.Intermediate:
         case Linq.BatchStatus.Final:

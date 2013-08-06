@@ -183,7 +183,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </returns>
     public decimal CalculatedQuantity( InvoiceContent invoice )
     {
-      return  ( this.Tobacco.Value * invoice.Quantity.Value / this.Material2BatchIndex.FGQuantity.Value ).Rount2Decimals() ;
+      return  ( this.Tobacco.Value * invoice.Quantity.Value / this.Material2BatchIndex.FGQuantity.Value ).Rount2Double() ;
     }
     /// <summary>
     /// Gets the list of disposals.
