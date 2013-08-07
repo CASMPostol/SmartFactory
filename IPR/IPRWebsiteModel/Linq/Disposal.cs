@@ -165,7 +165,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal decimal SettledQuantityDec
     {
-      get { return Convert.ToDecimal( this.SettledQuantity ); }
+      get { return Convert.ToDecimal( this.SettledQuantity ).Rount2Decimals(); }
       set
       {
         this.SettledQuantity = Convert.ToDouble( value ).Rount2Decimals();

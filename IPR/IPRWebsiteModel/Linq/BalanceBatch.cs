@@ -7,6 +7,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   partial class BalanceBatch
   {
+
+    #region public
     internal static void Create( Entities edc, IGrouping<string, IPR> _grpx, JSOXLib parent, StockDictionary.BalanceStock balanceStock )
     {
       try
@@ -84,6 +86,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw new SharePoint.ApplicationError( "BalanceBatch.Update", "Body", ex.Message, ex );
       }
     }
+    internal decimal IPRBookDecimal { get { return this.IPRBook.Rount2DecimalOrDefault(); } }
+    #endregion
+
+    #region private
     /// <summary>
     /// Balance Totals
     /// </summary>
@@ -122,5 +128,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Title = String.Format( _template, this.SKU, this.Batch );
       base.OnPropertyChanged( propertyName );
     }
+    #endregion
+
   }
 }

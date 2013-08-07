@@ -82,7 +82,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.BalanceQuantity = _thisBalanceQuantity.Convert2Double2Decimals();
 
       //Situation at
-      decimal _thisSituationQuantity = Linq.IPR.GetCurrentSituationData( edc );
+      decimal _thisSituationQuantity = this.BalanceBatch.Sum<BalanceBatch>( x => x.IPRBookDecimal );
       this.SituationQuantity = _thisSituationQuantity.Convert2Double2Decimals();
 
       //Reassume
