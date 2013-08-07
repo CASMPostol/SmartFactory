@@ -144,9 +144,9 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       };
       return _ret;
     }
-    private static JSOXCustomsSummaryContent[] GetDisposalRowArray( IGrouping<string, JSOXCustomsSummary> collection, out decimal _total )
+    private static JSOXCustomsSummaryContent[] GetDisposalRowArray( IGrouping<string, JSOXCustomsSummary> collection, out decimal total )
     {
-      _total = 0;
+      total = 0;
       List<JSOXCustomsSummaryContent> _ret = new List<JSOXCustomsSummaryContent>();
       foreach ( JSOXCustomsSummary _jx in collection )
       {
@@ -162,7 +162,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           Procedure = _jx.CustomsProcedure
         };
         _ret.Add( _new );
-        _total += Convert.ToDecimal( _new.Quantity );
+        total += Convert.ToDecimal( _new.Quantity );
       }
       return _ret.ToArray<JSOXCustomsSummaryContent>();
     }
