@@ -255,6 +255,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
       this.SADDocumentNo = sadGood.SADDocumentIndex.DocumentNumber;
       this.CustomsProcedure = sadGood.Procedure;
+      //TODO remove it
       if ( this.JSOXCustomsSummaryIndex == null )
         return;
       this.JSOXCustomsSummaryIndex.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
