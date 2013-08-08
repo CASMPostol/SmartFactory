@@ -66,7 +66,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       decimal _introducingQuantity = Linq.IPR.GetIntroducingData( edc, this, out _thisIntroducingDateStart, out _thisIntroducingDateEnd );
       this.IntroducingDateStart = _thisIntroducingDateStart;
       this.IntroducingDateEnd = _thisIntroducingDateEnd;
-      this.IntroducingQuantity = _introducingQuantity.Convert2Double2Decimals();
+      this.IntroducingQuantity = Convert.ToDouble( _introducingQuantity );
 
       //Outbound
       DateTime _thisOutboundDateEnd = LinqIPRExtensions.DateTimeMinValue;
@@ -77,13 +77,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.OutboundDateStart = _thisOutboundDateStart;
 
       //Balance
-      //TODO JSOX report ReassumeQuantity has vrong value  http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3839
       decimal _thisBalanceQuantity = Convert.ToDecimal( this.PreviousMonthQuantity ) + _introducingQuantity - _outQuantity;
       this.BalanceQuantity = _thisBalanceQuantity.Convert2Double2Decimals();
 
       //Situation at
       decimal _thisSituationQuantity = this.BalanceBatch.Sum<BalanceBatch>( x => x.IPRBookDecimal );
-      this.SituationQuantity = _thisSituationQuantity.Convert2Double2Decimals();
+      this.SituationQuantity = Convert.ToDouble( _thisSituationQuantity );
 
       //Reassume
       this.ReassumeQuantity = ( _thisBalanceQuantity - _thisSituationQuantity ).Convert2Double2Decimals();
