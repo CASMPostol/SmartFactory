@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,719 +59,725 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<data name="CAS_AccountBalance" xml:space="preserve">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CAS_AccountBalance" xml:space="preserve">
     <value>Stan na dzień [kg]</value>
   </data>
-	<data name="CAS_AccountClosed" xml:space="preserve">
+  <data name="CAS_AccountClosed" xml:space="preserve">
     <value>Konto zamknięte</value>
   </data>
-	<data name="CAS_Amount" xml:space="preserve">
+  <data name="CAS_Amount" xml:space="preserve">
     <value>Ilość</value>
   </data>
-	<data name="CAS_Balance" xml:space="preserve">
+  <data name="CAS_Balance" xml:space="preserve">
     <value>Bilans</value>
   </data>
-	<data name="CAS_BalanceDate" xml:space="preserve">
+  <data name="CAS_BalanceDate" xml:space="preserve">
     <value>Data bilansu</value>
   </data>
-	<data name="CAS_BalanceLink" xml:space="preserve">
+  <data name="CAS_BalanceLink" xml:space="preserve">
     <value>ID - Bilans</value>
   </data>
-	<data name="CAS_BalanceQuantity" xml:space="preserve">
+  <data name="CAS_BalanceQuantity" xml:space="preserve">
     <value>Bilans [kg]</value>
   </data>
-	<data name="CAS_Batch" xml:space="preserve">
+  <data name="CAS_Batch" xml:space="preserve">
     <value>Batch</value>
   </data>
-	<data name="CAS_BatchFG" xml:space="preserve">
+  <data name="CAS_BatchFG" xml:space="preserve">
     <value>Batch PG</value>
   </data>
-	<data name="CAS_BatchID" xml:space="preserve">
+  <data name="CAS_BatchID" xml:space="preserve">
     <value>ID - Batch</value>
   </data>
-	<data name="CAS_BatchLibLink" xml:space="preserve">
+  <data name="CAS_BatchLibLink" xml:space="preserve">
     <value>ID - Biblioteka Batch</value>
   </data>
-	<data name="CAS_BatchLink" xml:space="preserve">
+  <data name="CAS_BatchLink" xml:space="preserve">
     <value>ID - Batch</value>
   </data>
-	<data name="CAS_BatchStatus" xml:space="preserve">
+  <data name="CAS_BatchStatus" xml:space="preserve">
     <value>Status Batch'a</value>
   </data>
-	<data name="CAS_BillDoc" xml:space="preserve">
+  <data name="CAS_BillDoc" xml:space="preserve">
     <value>Faktura nr</value>
   </data>
-	<data name="CAS_BilledQuantity" xml:space="preserve">
+  <data name="CAS_BilledQuantity" xml:space="preserve">
     <value>Ilość [KU/kg]</value>
   </data>
-	<data name="CAS_BlendPurpose" xml:space="preserve">
+  <data name="CAS_BlendPurpose" xml:space="preserve">
     <value>Przeznaczenie</value>
   </data>
-	<data name="CAS_Blocked" xml:space="preserve">
+  <data name="CAS_Blocked" xml:space="preserve">
     <value>Zablokowane [KU/kg]</value>
   </data>
-	<data name="CAS_Brand" xml:space="preserve">
+  <data name="CAS_Brand" xml:space="preserve">
     <value>Marka</value>
   </data>
-	<data name="CAS_CalculatedOveruse" xml:space="preserve">
+  <data name="CAS_CalculatedOveruse" xml:space="preserve">
     <value>Przepał [%]</value>
   </data>
-	<data name="CAS_Cartons" xml:space="preserve">
+  <data name="CAS_Cartons" xml:space="preserve">
     <value>Kartony [kg]</value>
   </data>
-	<data name="CAS_CFTNormMax" xml:space="preserve">
+  <data name="CAS_CFTNormMax" xml:space="preserve">
     <value>CFTProductivityNormMax</value>
   </data>
-	<data name="CAS_CFTNormMin" xml:space="preserve">
+  <data name="CAS_CFTNormMin" xml:space="preserve">
     <value>CFTProductivityNormMin</value>
   </data>
-	<data name="CAS_CFTProdVer" xml:space="preserve">
+  <data name="CAS_CFTProdVer" xml:space="preserve">
     <value>Wskaźnik produktywności krajanki (wer.) </value>
   </data>
-	<data name="CAS_CFTRateMax" xml:space="preserve">
+  <data name="CAS_CFTRateMax" xml:space="preserve">
     <value>CFTProductivityRateMax</value>
   </data>
-	<data name="CAS_CFTRateMin" xml:space="preserve">
+  <data name="CAS_CFTRateMin" xml:space="preserve">
     <value>CFTProductivityRateMin</value>
   </data>
-	<data name="CAS_CFTUsageMax" xml:space="preserve">
+  <data name="CAS_CFTUsageMax" xml:space="preserve">
     <value>Norma zużycia krajanki (max) [kg]</value>
   </data>
-	<data name="CAS_CFTUsageMin" xml:space="preserve">
+  <data name="CAS_CFTUsageMin" xml:space="preserve">
     <value>Norma zużycia krajanki (min) [kg]</value>
   </data>
-	<data name="CAS_CigaretteLenght" xml:space="preserve">
+  <data name="CAS_CigaretteLenght" xml:space="preserve">
     <value>Długość papierosa</value>
   </data>
-	<data name="CAS_ClearenceLink" xml:space="preserve">
+  <data name="CAS_ClearenceLink" xml:space="preserve">
     <value>ID - Odprawa</value>
   </data>
-	<data name="CAS_ClearingType" xml:space="preserve">
+  <data name="CAS_ClearingType" xml:space="preserve">
     <value>Likwidacja</value>
   </data>
-	<data name="CAS_ClosingDate" xml:space="preserve">
+  <data name="CAS_ClosingDate" xml:space="preserve">
     <value>Data zamknięcia</value>
   </data>
-	<data name="CAS_Code" xml:space="preserve">
+  <data name="CAS_Code" xml:space="preserve">
     <value>Kod PCN </value>
   </data>
-	<data name="CAS_Comments" xml:space="preserve">
+  <data name="CAS_Comments" xml:space="preserve">
     <value>Komentarz</value>
   </data>
-	<data name="CAS_CompensationGood" xml:space="preserve">
+  <data name="CAS_CompensationGood" xml:space="preserve">
     <value>Towar kompensacyjny</value>
   </data>
-	<data name="CAS_ConsentDate" xml:space="preserve">
+  <data name="CAS_ConsentDate" xml:space="preserve">
     <value>Data dok. zezwolenia</value>
   </data>
-	<data name="CAS_ConsentLink" xml:space="preserve">
+  <data name="CAS_ConsentLink" xml:space="preserve">
     <value>ID - Zezwolenie</value>
   </data>
-	<data name="CAS_ConsentNo" xml:space="preserve">
+  <data name="CAS_ConsentNo" xml:space="preserve">
     <value>Zezwolenie nr</value>
   </data>
-	<data name="CAS_ConsentPeriod" xml:space="preserve">
+  <data name="CAS_ConsentPeriod" xml:space="preserve">
     <value>Okres rozliczenia konta [mies.]</value>
   </data>
-	<data name="CAS_CreationDate" xml:space="preserve">
+  <data name="CAS_CreationDate" xml:space="preserve">
     <value>Data dokumentu</value>
   </data>
-	<data name="CAS_CSStarted" xml:space="preserve">
+  <data name="CAS_CSStarted" xml:space="preserve">
     <value>Pyły (CS - started) [kg] </value>
   </data>
-	<data name="CAS_Currency" xml:space="preserve">
+  <data name="CAS_Currency" xml:space="preserve">
     <value>Waluta</value>
   </data>
-	<data name="CAS_CustomsDebtDate" xml:space="preserve">
+  <data name="CAS_CustomsDebtDate" xml:space="preserve">
     <value>Data długu celnego</value>
   </data>
-	<data name="CAS_CustomsProcedure" xml:space="preserve">
+  <data name="CAS_CustomsProcedure" xml:space="preserve">
     <value>Procedura celna</value>
   </data>
-	<data name="CAS_CustomsStatus" xml:space="preserve">
+  <data name="CAS_CustomsStatus" xml:space="preserve">
     <value>Status celny</value>
   </data>
-	<data name="CAS_Disposal" xml:space="preserve">
+  <data name="CAS_Disposal" xml:space="preserve">
     <value>Dyspozycja</value>
   </data>
-	<data name="CAS_DisposalStatus" xml:space="preserve">
+  <data name="CAS_DisposalStatus" xml:space="preserve">
     <value>Status dyspozycji</value>
   </data>
-	<data name="CAS_DocumentNo" xml:space="preserve">
+  <data name="CAS_DocumentNo" xml:space="preserve">
     <value>SAD wprowadzenia nr</value>
   </data>
-	<data name="CAS_Dust" xml:space="preserve">
+  <data name="CAS_Dust" xml:space="preserve">
     <value>Pył [kg]</value>
   </data>
-	<data name="CAS_DustCoefficient" xml:space="preserve">
+  <data name="CAS_DustCoefficient" xml:space="preserve">
     <value>Wskaźnik pyłu [%]</value>
   </data>
-	<data name="CAS_DustCoefficientVer" xml:space="preserve">
+  <data name="CAS_DustCoefficientVer" xml:space="preserve">
     <value>Wskaźnik pyłu (wer.)</value>
   </data>
-	<data name="CAS_DustCSNotStarted" xml:space="preserve">
+  <data name="CAS_DustCSNotStarted" xml:space="preserve">
     <value>Pyły (CS - not started) [kg] </value>
   </data>
-	<data name="CAS_DustRatio" xml:space="preserve">
+  <data name="CAS_DustRatio" xml:space="preserve">
     <value>Wskaźnik pyłu</value>
   </data>
-	<data name="CAS_Duty" xml:space="preserve">
+  <data name="CAS_Duty" xml:space="preserve">
     <value>Wartość cła [PLN]</value>
   </data>
-	<data name="CAS_DutyName" xml:space="preserve">
+  <data name="CAS_DutyName" xml:space="preserve">
     <value>Cło [PLN]</value>
   </data>
-	<data name="CAS_DutyPerAmount" xml:space="preserve">
+  <data name="CAS_DutyPerAmount" xml:space="preserve">
     <value>Cło na ilość rozliczaną [PLN]</value>
   </data>
-	<data name="CAS_DutyPerUnit" xml:space="preserve">
+  <data name="CAS_DutyPerUnit" xml:space="preserve">
     <value>Cło na j.m. [PLN]</value>
   </data>
-	<data name="CAS_DutyType" xml:space="preserve">
+  <data name="CAS_DutyType" xml:space="preserve">
     <value>Typ cła</value>
   </data>
-	<data name="CAS_DutyVAT" xml:space="preserve">
+  <data name="CAS_DutyVAT" xml:space="preserve">
     <value>Cło i VAT [PLN]</value>
   </data>
-	<data name="CAS_EUPrimeMarket" xml:space="preserve">
+  <data name="CAS_EUPrimeMarket" xml:space="preserve">
     <value>Rynek EU</value>
   </data>
-	<data name="CAS_ExchangeRate" xml:space="preserve">
+  <data name="CAS_ExchangeRate" xml:space="preserve">
     <value>Kurs wymiany</value>
   </data>
-	<data name="CAS_Export" xml:space="preserve">
+  <data name="CAS_Export" xml:space="preserve">
     <value>Eksport</value>
   </data>
-	<data name="CAS_ExportOrFCSAD" xml:space="preserve">
+  <data name="CAS_ExportOrFCSAD" xml:space="preserve">
     <value>SAD eksportu lub dopuszczenia</value>
   </data>
-	<data name="CAS_External" xml:space="preserve">
+  <data name="CAS_External" xml:space="preserve">
     <value>Zewnętrzny</value>
   </data>
-	<data name="CAS_Family" xml:space="preserve">
+  <data name="CAS_Family" xml:space="preserve">
     <value>Rodzina</value>
   </data>
-	<data name="CAS_FGQ" xml:space="preserve">
+  <data name="CAS_FGQ" xml:space="preserve">
     <value>Ilość PG [KU/kg]</value>
   </data>
-	<data name="CAS_FGQAvailable" xml:space="preserve">
+  <data name="CAS_FGQAvailable" xml:space="preserve">
     <value>Ilość PG (dostępna) [KU/kg]</value>
   </data>
-	<data name="CAS_FGQBlocked" xml:space="preserve">
+  <data name="CAS_FGQBlocked" xml:space="preserve">
     <value>Ilość PG (zablokowana) [KU/kg]</value>
   </data>
-	<data name="CAS_FGQPrevius" xml:space="preserve">
+  <data name="CAS_FGQPrevius" xml:space="preserve">
     <value>Ilość PG (poprzednia) [KU/kg]</value>
   </data>
-	<data name="CAS_FGSKU" xml:space="preserve">
+  <data name="CAS_FGSKU" xml:space="preserve">
     <value>SKU PG</value>
   </data>
-	<data name="CAS_FilterLenght" xml:space="preserve">
+  <data name="CAS_FilterLenght" xml:space="preserve">
     <value>Długość filtra</value>
   </data>
-	<data name="CAS_FormatLink" xml:space="preserve">
+  <data name="CAS_FormatLink" xml:space="preserve">
     <value>Format</value>
   </data>
-	<data name="CAS_GoodsDescription" xml:space="preserve">
+  <data name="CAS_GoodsDescription" xml:space="preserve">
     <value>Opis towaru</value>
   </data>
-	<data name="CAS_Grade" xml:space="preserve">
+  <data name="CAS_Grade" xml:space="preserve">
     <value>Typ tytoniu</value>
   </data>
-	<data name="CAS_GrossMass" xml:space="preserve">
+  <data name="CAS_GrossMass" xml:space="preserve">
     <value>Masa brutto [kg]</value>
   </data>
-	<data name="CAS_InQualityInsp" xml:space="preserve">
+  <data name="CAS_InQualityInsp" xml:space="preserve">
     <value>Badanie jakości [KU/kg]</value>
   </data>
-	<data name="CAS_IntroDateEnd" xml:space="preserve">
+  <data name="CAS_IntroDateEnd" xml:space="preserve">
     <value>Wprowadzenia - koniec</value>
   </data>
-	<data name="CAS_IntroDateStart" xml:space="preserve">
+  <data name="CAS_IntroDateStart" xml:space="preserve">
     <value>Wprowadzenia - początek</value>
   </data>
-	<data name="CAS_IntroQuantity" xml:space="preserve">
+  <data name="CAS_IntroQuantity" xml:space="preserve">
     <value>Wprowadzona ilość [kg]</value>
   </data>
-	<data name="CAS_IntroSADDate" xml:space="preserve">
+  <data name="CAS_IntroSADDate" xml:space="preserve">
     <value>Wprowadzenia - data SAD</value>
   </data>
-	<data name="CAS_IntroSADNo" xml:space="preserve">
+  <data name="CAS_IntroSADNo" xml:space="preserve">
     <value>Wprowadzenia - SAD nr</value>
   </data>
-	<data name="CAS_InvoiceContentID" xml:space="preserve">
+  <data name="CAS_InvoiceContentID" xml:space="preserve">
     <value>ID - zawartość faktury</value>
   </data>
-	<data name="CAS_InvoiceLink" xml:space="preserve">
+  <data name="CAS_InvoiceLink" xml:space="preserve">
     <value>ID - Faktura</value>
   </data>
-	<data name="CAS_IPR" xml:space="preserve">
+  <data name="CAS_IPR" xml:space="preserve">
     <value>IPR</value>
   </data>
-	<data name="CAS_IPRBook" xml:space="preserve">
+  <data name="CAS_IPRBook" xml:space="preserve">
     <value>Księga IPR - saldo</value>
   </data>
-	<data name="CAS_IPRDocumentNo" xml:space="preserve">
+  <data name="CAS_IPRDocumentNo" xml:space="preserve">
     <value>Dokument IPR nr</value>
   </data>
-	<data name="CAS_IPRID" xml:space="preserve">
+  <data name="CAS_IPRID" xml:space="preserve">
     <value>ID - IPR </value>
   </data>
-	<data name="CAS_IPRLibLink" xml:space="preserve">
+  <data name="CAS_IPRLibLink" xml:space="preserve">
     <value>ID - Bilbioteka IPR</value>
   </data>
-	<data name="CAS_IPRLink" xml:space="preserve">
+  <data name="CAS_IPRLink" xml:space="preserve">
     <value>ID - IPR </value>
   </data>
-	<data name="CAS_IPRMaterial" xml:space="preserve">
+  <data name="CAS_IPRMaterial" xml:space="preserve">
     <value>Materiał IPR</value>
   </data>
-	<data name="CAS_IPRType" xml:space="preserve">
+  <data name="CAS_IPRType" xml:space="preserve">
     <value>Typ IPR</value>
   </data>
-	<data name="CAS_ItemNo" xml:space="preserve">
+  <data name="CAS_ItemNo" xml:space="preserve">
     <value>Poz.</value>
   </data>
-	<data name="CAS_JSOXCSLink" xml:space="preserve">
+  <data name="CAS_JSOXCSLink" xml:space="preserve">
     <value>ID - JSOX podsumowanie</value>
   </data>
-	<data name="CAS_JSOXLibID" xml:space="preserve">
+  <data name="CAS_JSOXLibID" xml:space="preserve">
     <value>ID - Biblioteka JSOX</value>
   </data>
-	<data name="CAS_JSOXLibLink" xml:space="preserve">
+  <data name="CAS_JSOXLibLink" xml:space="preserve">
     <value>ID - Biblioteka JSOX </value>
   </data>
-	<data name="CAS_Location" xml:space="preserve">
+  <data name="CAS_Location" xml:space="preserve">
     <value>Magazyn</value>
   </data>
-	<data name="CAS_MaterialID" xml:space="preserve">
+  <data name="CAS_MaterialID" xml:space="preserve">
     <value>ID - Materiał</value>
   </data>
-	<data name="CAS_MaterialQuantity" xml:space="preserve">
+  <data name="CAS_MaterialQuantity" xml:space="preserve">
     <value>Ilość tytoniu w PG [kg]</value>
   </data>
-	<data name="CAS_MaterialQuantityPrevious" xml:space="preserve">
+  <data name="CAS_MaterialQuantityPrevious" xml:space="preserve">
     <value>Ilość tytoniu w PG (poprzednia) [kg]</value>
   </data>
-	<data name="CAS_Menthol" xml:space="preserve">
+  <data name="CAS_Menthol" xml:space="preserve">
     <value>Mentol</value>
   </data>
-	<data name="CAS_MentholMaterial" xml:space="preserve">
+  <data name="CAS_MentholMaterial" xml:space="preserve">
     <value>Produkt mentolowy</value>
   </data>
-	<data name="CAS_NetMass" xml:space="preserve">
+  <data name="CAS_NetMass" xml:space="preserve">
     <value>Masa netto [kg]</value>
   </data>
-	<data name="CAS_No" xml:space="preserve">
+  <data name="CAS_No" xml:space="preserve">
     <value>Nr</value>
   </data>
-	<data name="CAS_Number" xml:space="preserve">
+  <data name="CAS_Number" xml:space="preserve">
     <value>Nr</value>
   </data>
-	<data name="CAS_OGL" xml:space="preserve">
+  <data name="CAS_OGL" xml:space="preserve">
     <value>OGL nr</value>
   </data>
-	<data name="CAS_OGLIntroduction" xml:space="preserve">
+  <data name="CAS_OGLIntroduction" xml:space="preserve">
     <value>OGL wprowadzenia</value>
   </data>
-	<data name="CAS_OK" xml:space="preserve">
+  <data name="CAS_OK" xml:space="preserve">
     <value>OK</value>
   </data>
-	<data name="CAS_OutboundDateEnd" xml:space="preserve">
+  <data name="CAS_OutboundDateEnd" xml:space="preserve">
     <value>Wyprowadzenia - koniec</value>
   </data>
-	<data name="CAS_OutboundDateStart" xml:space="preserve">
+  <data name="CAS_OutboundDateStart" xml:space="preserve">
     <value>Wyprowadzenia - początek</value>
   </data>
-	<data name="CAS_OutboundQuantity" xml:space="preserve">
+  <data name="CAS_OutboundQuantity" xml:space="preserve">
     <value>Wyprowadzona ilość [kg]</value>
   </data>
-	<data name="CAS_Overuse" xml:space="preserve">
+  <data name="CAS_Overuse" xml:space="preserve">
     <value>Przepał [kg]</value>
   </data>
-	<data name="CAS_OveruseCSNotStarted" xml:space="preserve">
+  <data name="CAS_OveruseCSNotStarted" xml:space="preserve">
     <value>Przepał (CS - not started) [kg]</value>
   </data>
-	<data name="CAS_OveruseCSStarted" xml:space="preserve">
+  <data name="CAS_OveruseCSStarted" xml:space="preserve">
     <value>Przepał (CS - started) [kg]</value>
   </data>
-	<data name="CAS_Package" xml:space="preserve">
+  <data name="CAS_Package" xml:space="preserve">
     <value>Rodzaj opakowania</value>
   </data>
-	<data name="CAS_PCN" xml:space="preserve">
+  <data name="CAS_PCN" xml:space="preserve">
     <value>Kod PCN</value>
   </data>
-	<data name="CAS_PCNCodeLink" xml:space="preserve">
+  <data name="CAS_PCNCodeLink" xml:space="preserve">
     <value>ID - Kod PCN </value>
   </data>
-	<data name="CAS_PCNID" xml:space="preserve">
+  <data name="CAS_PCNID" xml:space="preserve">
     <value>ID - PCN </value>
   </data>
-	<data name="CAS_PCNTariffCode" xml:space="preserve">
+  <data name="CAS_PCNTariffCode" xml:space="preserve">
     <value>Kod PCN</value>
   </data>
-	<data name="CAS_PreviosMonthDate" xml:space="preserve">
+  <data name="CAS_PreviosMonthDate" xml:space="preserve">
     <value>Poprzedni miesiąc (data)</value>
   </data>
-	<data name="CAS_PreviusMonthQuantity" xml:space="preserve">
+  <data name="CAS_PreviusMonthQuantity" xml:space="preserve">
     <value>Ilość w poprzednim miesiącu [kg]</value>
   </data>
-	<data name="CAS_PrimeMarket" xml:space="preserve">
+  <data name="CAS_PrimeMarket" xml:space="preserve">
     <value>Rynek </value>
   </data>
-	<data name="CAS_Priority" xml:space="preserve">
+  <data name="CAS_Priority" xml:space="preserve">
     <value>Priorytet</value>
   </data>
-	<data name="CAS_Procedure" xml:space="preserve">
+  <data name="CAS_Procedure" xml:space="preserve">
     <value>Procedura celna</value>
   </data>
-	<data name="CAS_ProcedureCode" xml:space="preserve">
+  <data name="CAS_ProcedureCode" xml:space="preserve">
     <value>Grupa</value>
   </data>
-	<data name="CAS_ProdRateMax" xml:space="preserve">
+  <data name="CAS_ProdRateMax" xml:space="preserve">
     <value>Wskaźnik produktywności (max) [%]</value>
   </data>
-	<data name="CAS_ProdRateMin" xml:space="preserve">
+  <data name="CAS_ProdRateMin" xml:space="preserve">
     <value>Wskaźnik produktywności (min) [%]</value>
   </data>
-	<data name="CAS_ProductID" xml:space="preserve">
+  <data name="CAS_ProductID" xml:space="preserve">
     <value>ID -  produkt</value>
   </data>
-	<data name="CAS_ProductType" xml:space="preserve">
+  <data name="CAS_ProductType" xml:space="preserve">
     <value>Rodzaj produktu</value>
   </data>
-	<data name="CAS_PureTobaccoCSNotStarted" xml:space="preserve">
+  <data name="CAS_PureTobaccoCSNotStarted" xml:space="preserve">
     <value>Tytoń (CS - not started) [kg]</value>
   </data>
-	<data name="CAS_PureTobaccoCSStarted" xml:space="preserve">
+  <data name="CAS_PureTobaccoCSStarted" xml:space="preserve">
     <value>Tytoń (CS - started) [kg]</value>
   </data>
-	<data name="CAS_Quantity" xml:space="preserve">
+  <data name="CAS_Quantity" xml:space="preserve">
     <value>Ilość [KU/kg]</value>
   </data>
-	<data name="CAS_ReadOnly" xml:space="preserve">
+  <data name="CAS_ReadOnly" xml:space="preserve">
     <value>Do odczytu</value>
   </data>
-	<data name="CAS_ReassumeQuantity" xml:space="preserve">
+  <data name="CAS_ReassumeQuantity" xml:space="preserve">
     <value>Rozbieżność [kg]</value>
   </data>
-	<data name="CAS_RemainingQuantity" xml:space="preserve">
+  <data name="CAS_RemainingQuantity" xml:space="preserve">
     <value>Ilość do rozliczenia z OGL [kg]</value>
   </data>
-	<data name="CAS_RestrictedUSe" xml:space="preserve">
+  <data name="CAS_RestrictedUSe" xml:space="preserve">
     <value>Ograniczone [KU/kg]</value>
   </data>
-	<data name="CAS_SADConsignmentLibLink" xml:space="preserve">
+  <data name="CAS_SADConsignmentLibLink" xml:space="preserve">
     <value>ID - Biblioteka SAD Consignment</value>
   </data>
-	<data name="CAS_SADDate" xml:space="preserve">
+  <data name="CAS_SADDate" xml:space="preserve">
     <value>Data SAD</value>
   </data>
-	<data name="CAS_SADDocumentLibLink" xml:space="preserve">
+  <data name="CAS_SADDocumentLibLink" xml:space="preserve">
     <value>ID - Bioblioteka dok. SAD </value>
   </data>
-	<data name="CAS_SADDocumentLink" xml:space="preserve">
+  <data name="CAS_SADDocumentLink" xml:space="preserve">
     <value>ID - Dokument SAD ID</value>
   </data>
-	<data name="CAS_SADDocumentNo" xml:space="preserve">
+  <data name="CAS_SADDocumentNo" xml:space="preserve">
     <value>SAD wyprowadzenia nr </value>
   </data>
-	<data name="CAS_SADDocumentRefNo" xml:space="preserve">
+  <data name="CAS_SADDocumentRefNo" xml:space="preserve">
     <value>Nr referencyjny</value>
   </data>
-	<data name="CAS_SADGoodID" xml:space="preserve">
+  <data name="CAS_SADGoodID" xml:space="preserve">
     <value>ID - towar SAD</value>
   </data>
-	<data name="CAS_SettledQuantity" xml:space="preserve">
+  <data name="CAS_SettledQuantity" xml:space="preserve">
     <value>Ilość rozliczana [kg]</value>
   </data>
-	<data name="CAS_SHCoefficient" xml:space="preserve">
+  <data name="CAS_SHCoefficient" xml:space="preserve">
     <value>Wskaźnik SH Menthol [%]</value>
   </data>
-	<data name="CAS_SHCoefficientVer" xml:space="preserve">
+  <data name="CAS_SHCoefficientVer" xml:space="preserve">
     <value>Wskaźnik SH Menthol (wer.)</value>
   </data>
-	<data name="CAS_SHMenthol" xml:space="preserve">
+  <data name="CAS_SHMenthol" xml:space="preserve">
     <value>SH Menthol [kg]</value>
   </data>
-	<data name="CAS_SHMentholCSNotStarted" xml:space="preserve">
+  <data name="CAS_SHMentholCSNotStarted" xml:space="preserve">
     <value>SH Menthol (CS - not started) [kg]</value>
   </data>
-	<data name="CAS_SHMentholCSStarted" xml:space="preserve">
+  <data name="CAS_SHMentholCSStarted" xml:space="preserve">
     <value>SH Menthol (CS - started) [kg]</value>
   </data>
-	<data name="CAS_SHMentholRatio" xml:space="preserve">
+  <data name="CAS_SHMentholRatio" xml:space="preserve">
     <value>Wskaźnik SH Menthol</value>
   </data>
-	<data name="CAS_SHWasteOveruseCSNotStarted" xml:space="preserve">
+  <data name="CAS_SHWasteOveruseCSNotStarted" xml:space="preserve">
     <value>SH, odpady, przepał, tytoń (CS - not started) [kg]</value>
   </data>
-	<data name="CAS_SituationDate" xml:space="preserve">
+  <data name="CAS_SituationDate" xml:space="preserve">
     <value>Stan na dzień</value>
   </data>
-	<data name="CAS_SituationQuantity" xml:space="preserve">
+  <data name="CAS_SituationQuantity" xml:space="preserve">
     <value>Ilość [kg]</value>
   </data>
-	<data name="CAS_SKU" xml:space="preserve">
+  <data name="CAS_SKU" xml:space="preserve">
     <value>SKU</value>
   </data>
-	<data name="CAS_SKUDescription" xml:space="preserve">
+  <data name="CAS_SKUDescription" xml:space="preserve">
     <value>Opis SKU</value>
   </data>
-	<data name="CAS_SKULibLink" xml:space="preserve">
+  <data name="CAS_SKULibLink" xml:space="preserve">
     <value>ID - Biblioteka SKU</value>
   </data>
-	<data name="CAS_SKULink" xml:space="preserve">
+  <data name="CAS_SKULink" xml:space="preserve">
     <value>ID - SKU</value>
   </data>
-	<data name="CAS_Source" xml:space="preserve">
+  <data name="CAS_Source" xml:space="preserve">
     <value>Źródło</value>
   </data>
-	<data name="CAS_Status" xml:space="preserve">
+  <data name="CAS_Status" xml:space="preserve">
     <value>Status</value>
   </data>
-	<data name="CAS_StockLibLink" xml:space="preserve">
+  <data name="CAS_StockLibLink" xml:space="preserve">
     <value>ID - Biblioteka zasobów</value>
   </data>
-	<data name="CAS_SystemID" xml:space="preserve">
+  <data name="CAS_SystemID" xml:space="preserve">
     <value>ID - System</value>
   </data>
-	<data name="CAS_Tobacco" xml:space="preserve">
+  <data name="CAS_Tobacco" xml:space="preserve">
     <value>Tytoń [kg]</value>
   </data>
-	<data name="CAS_Tobacco_InCigarettesWarehouse" xml:space="preserve">
+  <data name="CAS_Tobacco_InCigarettesWarehouse" xml:space="preserve">
     <value>Tytoń w papierosach [kg]</value>
   </data>
-	<data name="CAS_TobaccoAvailable" xml:space="preserve">
+  <data name="CAS_TobaccoAvailable" xml:space="preserve">
     <value>Tytoń dostępny [kg]</value>
   </data>
-	<data name="CAS_TobaccoCSFinished" xml:space="preserve">
+  <data name="CAS_TobaccoCSFinished" xml:space="preserve">
     <value>Tytoń odprawiony [kg]</value>
   </data>
-	<data name="CAS_TobaccoEnteredIntoIPR" xml:space="preserve">
+  <data name="CAS_TobaccoEnteredIntoIPR" xml:space="preserve">
     <value>Tytoń wprowadzony [kg]</value>
   </data>
-	<data name="CAS_TobaccoInCigarettesProduction" xml:space="preserve">
+  <data name="CAS_TobaccoInCigarettesProduction" xml:space="preserve">
     <value>Produkcja w toku [kg]</value>
   </data>
-	<data name="CAS_TobaccoInCutfillerWarehouse" xml:space="preserve">
+  <data name="CAS_TobaccoInCutfillerWarehouse" xml:space="preserve">
     <value>Tytoń w krajance [kg]</value>
   </data>
-	<data name="CAS_TobaccoInFGCSNotStarted" xml:space="preserve">
+  <data name="CAS_TobaccoInFGCSNotStarted" xml:space="preserve">
     <value>Tytoń w PG (CS - not started) [kg]</value>
   </data>
-	<data name="CAS_TobaccoInFGCSStarted" xml:space="preserve">
+  <data name="CAS_TobaccoInFGCSStarted" xml:space="preserve">
     <value>Tytoń w PG (CS - started) [kg]</value>
   </data>
-	<data name="CAS_TobaccoInWarehouse" xml:space="preserve">
+  <data name="CAS_TobaccoInWarehouse" xml:space="preserve">
     <value>Tytoń w magazynie [kg]</value>
   </data>
-	<data name="CAS_TobaccoName" xml:space="preserve">
+  <data name="CAS_TobaccoName" xml:space="preserve">
     <value>Nazwa tytoniu</value>
   </data>
-	<data name="CAS_TobaccoNotAllocated" xml:space="preserve">
+  <data name="CAS_TobaccoNotAllocated" xml:space="preserve">
     <value>Tytoń nieprzypisany [kg]</value>
   </data>
-	<data name="CAS_TobaccoQuantity" xml:space="preserve">
+  <data name="CAS_TobaccoQuantity" xml:space="preserve">
     <value>Ilość tytoni [kg]</value>
   </data>
-	<data name="CAS_TobaccoToBeUsedInProduction" xml:space="preserve">
+  <data name="CAS_TobaccoToBeUsedInProduction" xml:space="preserve">
     <value>Tytoń nieprzypisany  [kg]</value>
   </data>
-	<data name="CAS_TobaccoUsedInProduction" xml:space="preserve">
+  <data name="CAS_TobaccoUsedInProduction" xml:space="preserve">
     <value>Tytoń rozdysponowany [kg]</value>
   </data>
-	<data name="CAS_TobaccoVAlue" xml:space="preserve">
+  <data name="CAS_TobaccoVAlue" xml:space="preserve">
     <value>Wartość tytoni</value>
   </data>
-	<data name="CAS_TotalAmmount" xml:space="preserve">
+  <data name="CAS_TotalAmmount" xml:space="preserve">
     <value>Ilość [KU/kg]</value>
   </data>
-	<data name="CAS_TotalAmountInvoiced" xml:space="preserve">
+  <data name="CAS_TotalAmountInvoiced" xml:space="preserve">
     <value>Wartość</value>
   </data>
-	<data name="CAS_UnitPrice" xml:space="preserve">
+  <data name="CAS_UnitPrice" xml:space="preserve">
     <value>Cena jednostkowa</value>
   </data>
-	<data name="CAS_Units" xml:space="preserve">
+  <data name="CAS_Units" xml:space="preserve">
     <value>Jednostka</value>
   </data>
-	<data name="CAS_Unrestricted" xml:space="preserve">
+  <data name="CAS_Unrestricted" xml:space="preserve">
     <value>Nieograniczone [KU/kg]</value>
   </data>
-	<data name="CAS_UsageMax" xml:space="preserve">
+  <data name="CAS_UsageMax" xml:space="preserve">
     <value>Zużycie (max) [kg]</value>
   </data>
-	<data name="CAS_UsageMin" xml:space="preserve">
+  <data name="CAS_UsageMin" xml:space="preserve">
     <value>Zużycie (min) [kg]</value>
   </data>
-	<data name="CAS_UsageVer" xml:space="preserve">
+  <data name="CAS_UsageVer" xml:space="preserve">
     <value>Zużycie (wer.)</value>
   </data>
-	<data name="CAS_ValidFromDate" xml:space="preserve">
+  <data name="CAS_ValidFromDate" xml:space="preserve">
     <value>Dok. ważny od dnia</value>
   </data>
-	<data name="CAS_ValidToDAte" xml:space="preserve">
+  <data name="CAS_ValidToDAte" xml:space="preserve">
     <value>Dok. ważny do dnia</value>
   </data>
-	<data name="CAS_Value" xml:space="preserve">
+  <data name="CAS_Value" xml:space="preserve">
     <value>Wartość</value>
   </data>
-	<data name="CAS_VAT" xml:space="preserve">
+  <data name="CAS_VAT" xml:space="preserve">
     <value>Wartość VAT [PLN]</value>
   </data>
-	<data name="CAS_VATName" xml:space="preserve">
+  <data name="CAS_VATName" xml:space="preserve">
     <value>VAT [PLN]</value>
   </data>
-	<data name="CAS_VATPerAmount" xml:space="preserve">
+  <data name="CAS_VATPerAmount" xml:space="preserve">
     <value>VAT na ilość rozliczaną [PLN]</value>
   </data>
-	<data name="CAS_VatPerUnit" xml:space="preserve">
+  <data name="CAS_VatPerUnit" xml:space="preserve">
     <value>VAT na j.m. [PLN]</value>
   </data>
-	<data name="CAS_WarehouseName" xml:space="preserve">
+  <data name="CAS_WarehouseName" xml:space="preserve">
     <value>Nazwa magazynu</value>
   </data>
-	<data name="CAS_Waste" xml:space="preserve">
+  <data name="CAS_Waste" xml:space="preserve">
     <value>Odpad [kg]</value>
   </data>
-	<data name="CAS_WasteCoefficientVer" xml:space="preserve">
+  <data name="CAS_WasteCoefficientVer" xml:space="preserve">
     <value>Wskaźnik odpadu (wer.)</value>
   </data>
-	<data name="CAS_WasteCSNotStarted" xml:space="preserve">
+  <data name="CAS_WasteCSNotStarted" xml:space="preserve">
     <value>Odpad (CS - not started) [kg]</value>
   </data>
-	<data name="CAS_WasteCSStarted" xml:space="preserve">
+  <data name="CAS_WasteCSStarted" xml:space="preserve">
     <value>Odpad (CS - started) [kg]</value>
   </data>
-	<data name="CAS_WasteRatio" xml:space="preserve">
+  <data name="CAS_WasteRatio" xml:space="preserve">
     <value>Wskaźnik odpadu</value>
   </data>
-	<data name="CAS_InvoiceNo" xml:space="preserve">
+  <data name="CAS_InvoiceNo" xml:space="preserve">
     <value>Faktura nr</value>
   </data>
-	<data name="CAS_OGLValidTo" xml:space="preserve">
+  <data name="CAS_OGLValidTo" xml:space="preserve">
     <value>OGL ważny do</value>
   </data>
-	<data name="CAS_WasteCoefficient" xml:space="preserve">
+  <data name="CAS_WasteCoefficient" xml:space="preserve">
     <value>Wskaźnik odpadu [%]</value>
   </data>
-	<data name="CAS_FGBatch" xml:space="preserve">
+  <data name="CAS_FGBatch" xml:space="preserve">
     <value>Batch PG</value>
   </data>
-	<data name="CAS_ASPX_ClearenceList" xml:space="preserve">
-		<value>Odprawa</value>
-	</data>
-	<data name="CAS_ASPX_ClearenceManager" xml:space="preserve">
-		<value>Menadżer odpraw</value>
-	</data>
-	<data name="CAS_ASPX_InvoiceLibrary" xml:space="preserve">
-		<value>Faktury</value>
-	</data>
-	<data name="CAS_ASPX_InvoiceContentList" xml:space="preserve">
-		<value>Zawartość faktury</value>
-	</data>
-	<data name="CAS_ASPX_BatchList" xml:space="preserve">
-		<value>Batch</value>
-	</data>
-	<data name="CAS_ASPX_ExportManager" xml:space="preserve">
-		<value>Menadżer eksportu</value>
-	</data>
-	<data name="CAS_ASPX_IPRClosedAccounts" xml:space="preserve">
-		<value>Księga uszlachetniania czynnego - konta zamknięte</value>
-	</data>
-	<data name="CAS_ASPX_IPRExport" xml:space="preserve">
-		<value>Księga uszlachetniania czynnego - wywóz</value>
-	</data>
-	<data name="CAS_ASPX_IPRImport" xml:space="preserve">
-		<value>Księga uszlachetniania czynnego - przywóz</value>
-	</data>
-	<data name="CAS_ASPX_IPRList" xml:space="preserve">
-		<value>Księga uszlachetniania czynnego</value>
-	</data>
-	<data name="CAS_ASPX_StockEntry" xml:space="preserve">
-		<value>Zasoby - wprowadzenia</value>
-	</data>
-	<data name="CAS_ASPX_StockLibrary" xml:space="preserve">
-		<value>Zasoby - biblioteka</value>
-	</data>
-	<data name="CAS_ASPX_MaterialList" xml:space="preserve">
-		<value>Materiał</value>
-	</data>
-	<data name="CAS_ASPX_SADConsignmentLibrary" xml:space="preserve">
-		<value>SAD Consignment - biblioteka </value>
-	</data>
-	<data name="CAS_ASPX_IPRLibrary" xml:space="preserve">
-		<value>Księga uszlachetniania czynnego - biblioteka</value>
-	</data>
-	<data name="CAS_ASPX_BalanceIPR" xml:space="preserve">
-		<value>Bilans IPR</value>
-	</data>
-	<data name="CAS_ASPX_BalanceBatch" xml:space="preserve">
-		<value>Bilans Batch</value>
-	</data>
-	<data name="CAS_ASPX_JSOXSummary" xml:space="preserve">
-		<value>JSOX Summary</value>
-	</data>
-	<data name="CAS_ASPX_JSOXLibrary" xml:space="preserve">
-		<value>Biblioteka JSOX</value>
-	</data>
+  <data name="CAS_ASPX_ClearenceList" xml:space="preserve">
+    <value>Odprawa</value>
+  </data>
+  <data name="CAS_ASPX_ClearenceManager" xml:space="preserve">
+    <value>Menadżer odpraw</value>
+  </data>
+  <data name="CAS_ASPX_InvoiceLibrary" xml:space="preserve">
+    <value>Faktury</value>
+  </data>
+  <data name="CAS_ASPX_InvoiceContentList" xml:space="preserve">
+    <value>Zawartość faktury</value>
+  </data>
+  <data name="CAS_ASPX_BatchList" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="CAS_ASPX_ExportManager" xml:space="preserve">
+    <value>Menadżer eksportu</value>
+  </data>
+  <data name="CAS_ASPX_IPRClosedAccounts" xml:space="preserve">
+    <value>Księga uszlachetniania czynnego - konta zamknięte</value>
+  </data>
+  <data name="CAS_ASPX_IPRExport" xml:space="preserve">
+    <value>Księga uszlachetniania czynnego - wywóz</value>
+  </data>
+  <data name="CAS_ASPX_IPRImport" xml:space="preserve">
+    <value>Księga uszlachetniania czynnego - przywóz</value>
+  </data>
+  <data name="CAS_ASPX_IPRList" xml:space="preserve">
+    <value>Księga uszlachetniania czynnego</value>
+  </data>
+  <data name="CAS_ASPX_StockEntry" xml:space="preserve">
+    <value>Zasoby - wprowadzenia</value>
+  </data>
+  <data name="CAS_ASPX_StockLibrary" xml:space="preserve">
+    <value>Zasoby - biblioteka</value>
+  </data>
+  <data name="CAS_ASPX_MaterialList" xml:space="preserve">
+    <value>Materiał</value>
+  </data>
+  <data name="CAS_ASPX_SADConsignmentLibrary" xml:space="preserve">
+    <value>SAD Consignment - biblioteka </value>
+  </data>
+  <data name="CAS_ASPX_IPRLibrary" xml:space="preserve">
+    <value>Księga uszlachetniania czynnego - biblioteka</value>
+  </data>
+  <data name="CAS_ASPX_BalanceIPR" xml:space="preserve">
+    <value>Bilans IPR</value>
+  </data>
+  <data name="CAS_ASPX_BalanceBatch" xml:space="preserve">
+    <value>Bilans Batch</value>
+  </data>
+  <data name="CAS_ASPX_JSOXSummary" xml:space="preserve">
+    <value>JSOX Summary</value>
+  </data>
+  <data name="CAS_ASPX_JSOXLibrary" xml:space="preserve">
+    <value>Biblioteka JSOX</value>
+  </data>
+  <data name="CAS_Archival" xml:space="preserve">
+    <value>Archiwalny</value>
+  </data>
+  <data name="CAS_JSOXReportID" xml:space="preserve">
+    <value>ID - Raport JSOX</value>
+  </data>
 </root>
