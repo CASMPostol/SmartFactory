@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="4cdcf677-35f2-41fe-86c6-dcbaaf001b75" creator="CAS" description="SmartFactory IPR Data Model: columns, contenttypes, lists." featureId="4cdcf677-35f2-41fe-86c6-dcbaaf001b75" imageUrl="IPRDashboards\IPR_32x32.png" imageAltText="IPR Data Feature" scope="Site" solutionId="00000000-0000-0000-0000-000000000000" title="CAS SmartFactory IPR Data Feature" version="AAEAAAD/////AQAAAAAAAAAEAQAAAA5TeXN0ZW0uVmVyc2lvbgQAAAAGX01ham9yBl9NaW5vcgZfQnVpbGQJX1JldmlzaW9uAAAAAAgICAgBAAAAPAAAACgAAAAAAAAACw==" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
+<feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="4cdcf677-35f2-41fe-86c6-dcbaaf001b75" creator="CAS" description="SmartFactory IPR Data Model: columns, contenttypes, lists." featureId="4cdcf677-35f2-41fe-86c6-dcbaaf001b75" imageUrl="IPRDashboards\IPR_32x32.png" imageAltText="IPR Data Feature" scope="Site" solutionId="00000000-0000-0000-0000-000000000000" title="CAS SmartFactory IPR Data Feature" version="AAEAAAD/////AQAAAAAAAAAEAQAAAA5TeXN0ZW0uVmVyc2lvbgQAAAAGX01ham9yBl9NaW5vcgZfQnVpbGQJX1JldmlzaW9uAAAAAAgICAgBAAAAUAAAAAAAAAAAAAAACw==" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
   <projectItems>
     <projectItemReference itemId="53656ba7-5af2-433e-899c-e756a404c50d" />
     <projectItemReference itemId="baeb8126-42ea-432c-84e1-4c59bfa5f4d1" />
@@ -141,5 +141,6 @@
     <projectItemReference itemId="8be6de0d-7132-4269-b29f-01fd4def1a1c" />
     <projectItemReference itemId="a8cb3d6b-a839-4ffb-b31f-170f802cebf6" />
     <projectItemReference itemId="6d8953a5-236f-4306-a7e5-162b175330c6" />
+    <projectItemReference itemId="ce14b056-5f74-4ad7-9483-5455b64bc292" />
   </projectItems>
 </feature>
