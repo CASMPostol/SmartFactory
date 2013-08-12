@@ -631,7 +631,9 @@
     <Content Include="Field\DictionariesLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Field\Fields_1_80_0\Elements.xml" />
+    <Content Include="Field\Fields_1_80_0\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Field\IPRFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
