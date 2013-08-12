@@ -163,6 +163,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( this.CustomsStatus.Value == Linq.CustomsStatus.Finished )
         this.Disposal2IPRIndex.RecalculateClearedRecords( this.No.Value );
     }
+    /// <summary>
+    /// Gets or sets the settled quantity dec.
+    /// </summary>
+    /// <value>
+    /// The settled quantity as decimal.
+    /// </value>
     public decimal SettledQuantityDec
     {
       get { return Convert.ToDecimal( this.SettledQuantity ).Rount2Decimals(); }
@@ -174,11 +180,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
 
     #region static
-    public static IQueryable<Disposal> GetEntries4JSOX( Entities edc )
+    /// <summary>
+    /// Gets the entries4 JSOX.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="parent">The parent.</param>
+    /// <returns>The collection of <see cref="Disposal"/> that must be added to JSOX report.</returns>
+    public static IQueryable<Disposal> GetEntries4JSOX( Entities edc, JSOXLib parent )
     {
       return from _dspx in edc.Disposal
              where ( _dspx.DisposalStatus.Value != Linq.DisposalStatus.Cartons ) &&
-                   ( _dspx.JSOXCustomsSummaryIndex == null ) &&
+                   ( !_dspx.JSOXReportID.HasValue == null || _dspx.JSOXReportID.Value == parent.Id.Value ) &&
                    ( ( _dspx.CustomsStatus.Value == Linq.CustomsStatus.Started ) || ( _dspx.CustomsStatus.Value == Linq.CustomsStatus.Finished ) )
              orderby _dspx.Disposal2IPRIndex.Title
              select _dspx;
@@ -304,6 +316,5 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
     }
     #endregion
-
   }
 }
