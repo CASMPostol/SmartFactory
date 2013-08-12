@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Archival"
+    Name="Archival"
+    Type="Boolean"
+    ID="{3A6EC6FC-81DD-4E39-9A78-B95D198C6938}"
+    Group="CAS Smart Factory IPR"
+    />
+  <Field
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_JSOXReportID"
+    Name="JSOXReportID"
+    Type="Number"
+    ID="{980A3A72-0F5F-4832-A86B-0F76E15BBADE}"
+    Group="CAS Smart Factory IPR"
+    />
+</Elements>
