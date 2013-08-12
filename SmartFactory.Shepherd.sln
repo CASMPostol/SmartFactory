@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Model.t4 = Model.t4
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointLinqClient", "Shepherd\SharePointLinqClient\SharePointLinqClient.csproj", "{70DD8ABC-B012-427A-8163-64E63304BD42}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShepherdRoutesEditor", "Shepherd\ShepherdRoutesEditor\ShepherdRoutesEditor.csproj", "{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{6B01941B-5931-439D-BAF5-DA8578B02A49}"
@@ -33,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scripts", "Scripts\Scripts.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deployment", "Shepherd\Deployment\Deployment.csproj", "{D6A73A5C-783D-46F7-B938-359322BE6CA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointLinqClient", "..\PR44-SharePoint\SharePointLinqClient\SharePointLinqClient.csproj", "{70DD8ABC-B012-427A-8163-64E63304BD42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,14 +43,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{70DD8ABC-B012-427A-8163-64E63304BD42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70DD8ABC-B012-427A-8163-64E63304BD42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70DD8ABC-B012-427A-8163-64E63304BD42}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{70DD8ABC-B012-427A-8163-64E63304BD42}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{70DD8ABC-B012-427A-8163-64E63304BD42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70DD8ABC-B012-427A-8163-64E63304BD42}.Release|Any CPU.Build.0 = Release|Any CPU
-		{70DD8ABC-B012-427A-8163-64E63304BD42}.Release|x64.ActiveCfg = Release|Any CPU
-		{70DD8ABC-B012-427A-8163-64E63304BD42}.Release|x86.ActiveCfg = Release|Any CPU
 		{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -145,6 +137,14 @@ Global
 		{D6A73A5C-783D-46F7-B938-359322BE6CA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6A73A5C-783D-46F7-B938-359322BE6CA2}.Release|x64.ActiveCfg = Release|Any CPU
 		{D6A73A5C-783D-46F7-B938-359322BE6CA2}.Release|x86.ActiveCfg = Release|Any CPU
+		{70DD8ABC-B012-427A-8163-64E63304BD42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70DD8ABC-B012-427A-8163-64E63304BD42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70DD8ABC-B012-427A-8163-64E63304BD42}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{70DD8ABC-B012-427A-8163-64E63304BD42}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{70DD8ABC-B012-427A-8163-64E63304BD42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70DD8ABC-B012-427A-8163-64E63304BD42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70DD8ABC-B012-427A-8163-64E63304BD42}.Release|x64.ActiveCfg = Release|Any CPU
+		{70DD8ABC-B012-427A-8163-64E63304BD42}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
