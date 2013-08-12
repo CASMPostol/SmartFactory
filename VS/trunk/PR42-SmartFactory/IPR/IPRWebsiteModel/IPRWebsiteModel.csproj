@@ -90,6 +90,7 @@
     <Compile Include="Linq\ActivityLogCT.cs" />
     <Compile Include="Linq\BalanceBatch.cs" />
     <Compile Include="Linq\BalanceIPR.cs" />
+    <Compile Include="Linq\Balance\JSOXLibFactoryBase.cs" />
     <Compile Include="Linq\Balance\StockDictionary.cs" />
     <Compile Include="Linq\Batch.cs" />
     <Compile Include="Linq\Clearence.cs" />

@@ -163,7 +163,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( this.CustomsStatus.Value == Linq.CustomsStatus.Finished )
         this.Disposal2IPRIndex.RecalculateClearedRecords( this.No.Value );
     }
-    internal decimal SettledQuantityDec
+    public decimal SettledQuantityDec
     {
       get { return Convert.ToDecimal( this.SettledQuantity ).Rount2Decimals(); }
       set
@@ -174,7 +174,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
 
     #region static
-    internal static IQueryable<Disposal> GetEntries4JSOX( Entities edc )
+    public static IQueryable<Disposal> GetEntries4JSOX( Entities edc )
     {
       return from _dspx in edc.Disposal
              where ( _dspx.DisposalStatus.Value != Linq.DisposalStatus.Cartons ) &&

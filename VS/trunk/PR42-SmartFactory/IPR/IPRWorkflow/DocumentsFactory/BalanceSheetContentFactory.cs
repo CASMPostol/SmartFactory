@@ -26,10 +26,10 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         string _documentName = Settings.RequestForBalanceSheetDocumentName( _edc, jsoxLibItemId + 1 );
         _newFile = SPDocumentFactory.Prepare( web, _content, _documentName );
         _newFile.DocumentLibrary.Update();
-        JSOXLib _current = Element.GetAtIndex<JSOXLib>( _edc.JSOXLibrary, _newFile.Item.ID );
+        JSOXLibFactory _current = JSOXLibFactory.ConstructJSOXLibFActory( _edc, _newFile.Item.ID );
         bool _validated = _current.CreateJSOXReport( _edc, _old );
         _edc.SubmitChanges();
-        _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent( _current, _documentName, !_validated );
+        _content = CreateContent( _current, _documentName, !_validated );
       }
       _content.UpdateDocument( _newFile );
       _newFile.DocumentLibrary.Update();
@@ -39,11 +39,11 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       BalanceSheetContent _content = null;
       using ( Entities _edc = new Entities( WebUrl ) )
       {
-        JSOXLib _current = Element.GetAtIndex<JSOXLib>( _edc.JSOXLibrary, jsoxLibItemId );
-        if ( _current.JSOXLibraryReadOnly.Value )
+        JSOXLibFactory _current = JSOXLibFactory.ConstructJSOXLibFActory( _edc, jsoxLibItemId );
+        if ( _current.JSOXLibraryReadOnly )
           throw new ApplicationException( "The record is read only and the report must not be updated." );
         bool _validated = _current.UpdateBalanceReport( _edc );
-        string _documentName = Settings.RequestForBalanceSheetDocumentName( _edc, _current.Id.Value );
+        string _documentName = Settings.RequestForBalanceSheetDocumentName( _edc, _current.Id );
         _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent( _current, _documentName, !_validated );
         _current.JSOXLibraryReadOnly = true;
         _edc.SubmitChanges();
@@ -69,29 +69,31 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       };
       return _ret;
     }
-    private static BalanceSheetContent CreateContent( JSOXLib list, string documentName, bool preliminary )
+    private static BalanceSheetContent CreateContent( JSOXLibFactory factory, string documentName, bool preliminary )
     {
       if ( preliminary )
         documentName += " " + "PRELIMINARY".GetLocalizedString();
+      JSOXLib list = factory.JSOXList;
       BalanceSheetContent _ret = new BalanceSheetContent()
       {
         DocumentDate = DateTime.Today.Date,
         DocumentNo = documentName,
         EndDate = list.SituationDate.GetValueOrDefault(),
         BalanceBatch = GetBalanceBatchContent( list.BalanceBatch ),
-        JSOX = GetJSOX( list ),
+        JSOX = GetJSOX( factory ),
         SituationAtDate = list.SituationDate.GetValueOrDefault(),
         StartDate = list.PreviousMonthDate.GetValueOrDefault()
       };
       return _ret;
     }
-    private static JSOContent GetJSOX( JSOXLib list )
+    private static JSOContent GetJSOX( JSOXLibFactory factory )
     {
+      JSOXLib list = factory.JSOXList;
       JSOContent _ret = new JSOContent()
       {
         BalanceDate = list.BalanceDate.GetValueOrDefault(),
         BalanceQuantity = list.BalanceQuantity.Rount2DecimalOrDefault(),
-        JSOXCustomsSummaryList = GetDisposalsList( list.JSOXCustomsSummary ),
+        JSOXCustomsSummaryList = GetDisposalsList( factory.DisposalsList ),
         IntroducingDateEnd = list.IntroducingDateEnd.GetValueOrDefault(),
         IntroducingDateStart = list.IntroducingDateStart.GetValueOrDefault(),
         IntroducingQuantity = list.IntroducingQuantity.Rount2DecimalOrDefault(),
@@ -106,10 +108,10 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       };
       return _ret;
     }
-    private static JSOXCustomsSummaryContentList GetDisposalsList( EntitySet<JSOXCustomsSummary> entitySet )
+    private static JSOXCustomsSummaryContentList GetDisposalsList( List<JSOXCustomsSummaryContent> collection )
     {
       decimal _total = 0;
-      JSOXCustomsSummaryContentOGLGroup[] _arrayOfDisposalRows = GetJSOXCustomsSummaryContentOGLGroupArray( entitySet, out _total );
+      JSOXCustomsSummaryContentOGLGroup[] _arrayOfDisposalRows = GetJSOXCustomsSummaryContentOGLGroupArray( collection, out _total );
       JSOXCustomsSummaryContentList _ret = new JSOXCustomsSummaryContentList()
       {
         JSOXCustomsSummaryOGLGroupArray = _arrayOfDisposalRows,
@@ -117,12 +119,12 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       };
       return _ret;
     }
-    private static JSOXCustomsSummaryContentOGLGroup[] GetJSOXCustomsSummaryContentOGLGroupArray( EntitySet<JSOXCustomsSummary> collection, out decimal total )
+    private static JSOXCustomsSummaryContentOGLGroup[] GetJSOXCustomsSummaryContentOGLGroupArray( List<JSOXCustomsSummaryContent> collection, out decimal total )
     {
-      IQueryable<IGrouping<string, JSOXCustomsSummary>> _customsGroup = from _grpx in collection group _grpx by _grpx.ExportOrFreeCirculationSAD;
       List<JSOXCustomsSummaryContentOGLGroup> _ret = new List<JSOXCustomsSummaryContentOGLGroup>();
+      IEnumerable<IGrouping<string, JSOXCustomsSummaryContent>> _customsGroup = from _grpx in collection group _grpx by _grpx.ExportOrFreeCirculationSAD;
       decimal _total = 0;
-      foreach ( IGrouping<string, JSOXCustomsSummary> _grpx in _customsGroup )
+      foreach ( IGrouping<string, JSOXCustomsSummaryContent> _grpx in _customsGroup )
       {
         decimal _subTotal = 0;
         _ret.Add( GetJSOXCustomsSummaryContentOGLGroup( _grpx, out _subTotal ) );
@@ -131,7 +133,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       total = _total;
       return _ret.ToArray();
     }
-    private static JSOXCustomsSummaryContentOGLGroup GetJSOXCustomsSummaryContentOGLGroup( IGrouping<string, JSOXCustomsSummary> collection, out decimal total )
+    private static JSOXCustomsSummaryContentOGLGroup GetJSOXCustomsSummaryContentOGLGroup( IGrouping<string, JSOXCustomsSummaryContent> collection, out decimal total )
     {
       if ( collection == null )
         throw new ArgumentNullException( "collection", "GetDisposals cannot have collection null" );
@@ -140,29 +142,18 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       JSOXCustomsSummaryContentOGLGroup _ret = new JSOXCustomsSummaryContentOGLGroup()
       {
         JSOXCustomsSummaryArray = _rows,
-        SubtotalQuantity =  total
+        SubtotalQuantity = total
       };
       return _ret;
     }
-    private static JSOXCustomsSummaryContent[] GetDisposalRowArray( IGrouping<string, JSOXCustomsSummary> collection, out decimal total )
+    private static JSOXCustomsSummaryContent[] GetDisposalRowArray( IGrouping<string, JSOXCustomsSummaryContent> collection, out decimal total )
     {
       total = 0;
       List<JSOXCustomsSummaryContent> _ret = new List<JSOXCustomsSummaryContent>();
-      foreach ( JSOXCustomsSummary _jx in collection )
+      foreach ( JSOXCustomsSummaryContent _jx in collection )
       {
-        JSOXCustomsSummaryContent _new = new JSOXCustomsSummaryContent()
-        {
-          CompensationGood = _jx.CompensationGood,
-          EntryDocumentNo = _jx.IntroducingSADNo,
-          ExportOrFreeCirculationSAD = _jx.ExportOrFreeCirculationSAD,
-          InvoiceNo = _jx.InvoiceNo,
-          SADDate = _jx.SADDate.GetValueOrDefault(),
-          Quantity = _jx.TotalAmount.Rount2DecimalOrDefault(),
-          Balance = _jx.RemainingQuantity.Rount2DecimalOrDefault(),
-          Procedure = _jx.CustomsProcedure
-        };
-        _ret.Add( _new );
-        total += Convert.ToDecimal( _new.Quantity );
+        _ret.Add( _jx );
+        total += Convert.ToDecimal( _jx.Quantity );
       }
       return _ret.ToArray<JSOXCustomsSummaryContent>();
     }
