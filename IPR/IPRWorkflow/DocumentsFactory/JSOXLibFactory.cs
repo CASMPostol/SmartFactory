@@ -74,7 +74,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       _ret.GetJSOXLib( edc, jsoxLibindex );
       return _ret;
     }
-    internal List<JSOXCustomsSummaryContent> DisposalsList { get; private set; }
+    internal List<JSOXCustomsSummaryContent> SummaryContentList { get; private set; }
     #endregion
 
     #region private

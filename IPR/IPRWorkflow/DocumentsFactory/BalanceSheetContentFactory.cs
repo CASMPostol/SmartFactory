@@ -80,20 +80,20 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         DocumentNo = documentName,
         EndDate = list.SituationDate.GetValueOrDefault(),
         BalanceBatch = GetBalanceBatchContent( list.BalanceBatch ),
-        JSOX = GetJSOX( factory ),
+        JSOX = GetJSOContent( factory ),
         SituationAtDate = list.SituationDate.GetValueOrDefault(),
         StartDate = list.PreviousMonthDate.GetValueOrDefault()
       };
       return _ret;
     }
-    private static JSOContent GetJSOX( JSOXLibFactory factory )
+    private static JSOContent GetJSOContent( JSOXLibFactory factory )
     {
       JSOXLib list = factory.JSOXList;
       JSOContent _ret = new JSOContent()
       {
         BalanceDate = list.BalanceDate.GetValueOrDefault(),
         BalanceQuantity = list.BalanceQuantity.Rount2DecimalOrDefault(),
-        JSOXCustomsSummaryList = GetDisposalsList( factory.DisposalsList ),
+        JSOXCustomsSummaryList = GetDisposalsList( factory.SummaryContentList ),
         IntroducingDateEnd = list.IntroducingDateEnd.GetValueOrDefault(),
         IntroducingDateStart = list.IntroducingDateStart.GetValueOrDefault(),
         IntroducingQuantity = list.IntroducingQuantity.Rount2DecimalOrDefault(),
