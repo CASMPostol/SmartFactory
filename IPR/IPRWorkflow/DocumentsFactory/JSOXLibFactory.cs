@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       List<JSOXCustomsSummaryContent> _newEntries = new List<JSOXCustomsSummaryContent>();
       start = LinqIPRExtensions.DateTimeMaxValue;
       end = LinqIPRExtensions.DateTimeMinValue;
-      foreach ( Disposal _dspx in CAS.SmartFactory.IPR.WebsiteModel.Linq.Disposal.GetEntries4JSOX( entities ) )
+      foreach ( Disposal _dspx in Disposal.GetEntries4JSOX( entities, parent ) )
       {
         start = LinqIPRExtensions.Min( start, _dspx.SADDate.GetValueOrDefault( LinqIPRExtensions.DateTimeMaxValue ) );
         end = LinqIPRExtensions.Max( end, _dspx.SADDate.GetValueOrDefault( LinqIPRExtensions.DateTimeMinValue ) );
