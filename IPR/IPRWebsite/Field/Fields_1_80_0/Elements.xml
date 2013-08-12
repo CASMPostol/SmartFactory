@@ -11,6 +11,7 @@
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_JSOXReportID"
     Name="JSOXReportID"
     Type="Number"
+    Decimals="0"
     ID="{980A3A72-0F5F-4832-A86B-0F76E15BBADE}"
     Group="CAS Smart Factory IPR"
     />
