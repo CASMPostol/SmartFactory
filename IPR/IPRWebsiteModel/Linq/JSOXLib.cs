@@ -8,35 +8,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// <summary>
   /// JSOXLib
   /// </summary>
-  public partial class JSOXLib
+  sealed public partial class JSOXLib
   {
 
-    #region public
-    /// <summary>
-    /// Updates the JSOX report.
-    /// </summary>
-    /// <param name="edc">The edc.</param>
-    /// <param name="previous">The previous report.</param>
-    public bool CreateJSOXReport( Entities edc, JSOXLib previous )
-    {
-      PreviousMonthDate = previous.BalanceDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
-      PreviousMonthQuantity = previous.SituationQuantity.GetValueOrDefault( -1 );
-      this.BalanceDate = DateTime.Today.Date;
-      this.SituationDate = this.BalanceDate;
-      this.JSOXLibraryReadOnly = false;
-      return UpdateBalanceReport( edc );
-    }
+    internal delegate decimal GetOutboundQuantity( Entities entities, JSOXLib parent, out DateTime start, out DateTime end );
     /// <summary>
     /// Updates the balance report.
     /// </summary>
     /// <param name="edc">The edc.</param>
-    public bool UpdateBalanceReport( Entities edc )
+    /// <param name="getOutboundQuantity">Delagete to get outbound quantity.</param>
+    /// <returns></returns>
+    internal bool UpdateBalanceReport( Entities edc, GetOutboundQuantity getOutboundQuantity )
     {
       bool _validated = false;
       StockDictionary _balanceStock = new StockDictionary();
-      Linq.StockLib _stock = this.StockLib.FirstOrDefault<Linq.StockLib>();
-      if ( _stock == null )
-        _stock = Linq.StockLib.Find( edc );
+      Linq.StockLib _stock = this.GetStockLib( edc );
       Dictionary<string, IGrouping<string, IPR>> _accountGroups = Linq.IPR.GetAllOpen4JSOXGroups( edc ).ToDictionary( x => x.Key );
       if ( _stock != null )
       {
@@ -47,7 +33,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       else
         ActivityLogCT.WriteEntry( edc, "Balance report", "Cannot find stock report - only preliminary report will be created" );
       List<string> _processed = new List<string>();
-      foreach ( BalanceBatch _bbx in BalanceBatch )
+      foreach ( BalanceBatch _bbx in this.BalanceBatch )
       {
         if ( _accountGroups.ContainsKey( _bbx.Batch ) )
           _bbx.Update( edc, _accountGroups[ _bbx.Batch ], _balanceStock.GetOrDefault( _bbx.Batch ) );
@@ -71,7 +57,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       //Outbound
       DateTime _thisOutboundDateEnd = LinqIPRExtensions.DateTimeMinValue;
       DateTime _thisOutboundDateStart = LinqIPRExtensions.DateTimeMaxValue;
-      decimal _outQuantity = Linq.JSOXCustomsSummary.GetOutboundQuantity( edc, this, out _thisOutboundDateStart, out _thisOutboundDateEnd );
+      decimal _outQuantity = getOutboundQuantity( edc, this, out _thisOutboundDateStart, out _thisOutboundDateEnd );
       this.OutboundQuantity = _outQuantity.Convert2Double2Decimals();
       this.OutboundDateEnd = _thisOutboundDateEnd;
       this.OutboundDateStart = _thisOutboundDateStart;
@@ -88,7 +74,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.ReassumeQuantity = ( _thisBalanceQuantity - _thisSituationQuantity ).Convert2Double2Decimals();
       return _validated;
     }
-    #endregion
-
+    internal void CreateJSOXReport( JSOXLib previous )
+    {
+      PreviousMonthDate = previous.BalanceDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
+      PreviousMonthQuantity = previous.SituationQuantity.GetValueOrDefault( -1 );
+      this.BalanceDate = DateTime.Today.Date;
+      this.SituationDate = this.BalanceDate;
+      this.JSOXLibraryReadOnly = false;
+    }
+    internal StockLib GetStockLib( Entities edc )
+    {
+      Linq.StockLib _stock = this.StockLib.FirstOrDefault<Linq.StockLib>();
+      if ( _stock == null )
+        _stock = Linq.StockLib.Find( edc );
+      return _stock;
+    }
   }
 }
