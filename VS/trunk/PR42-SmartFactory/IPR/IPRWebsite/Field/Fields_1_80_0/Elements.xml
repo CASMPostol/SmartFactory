@@ -15,4 +15,11 @@
     ID="{980A3A72-0F5F-4832-A86B-0F76E15BBADE}"
     Group="CAS Smart Factory IPR"
     />
+  <Field
+    DisplayName="$Resources:CASSmartFactoryIPR,SadConsignmentNo"
+    Name="SadConsignmentNo"
+    Type="Text"
+    ID="{FB4540E2-A901-42D2-9A0B-F9D5FD5CA5B7}"
+    Group="CAS Smart Factory IPR"
+    />
 </Elements>

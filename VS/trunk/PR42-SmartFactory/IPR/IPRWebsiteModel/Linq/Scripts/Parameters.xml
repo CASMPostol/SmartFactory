@@ -110,6 +110,7 @@
     <Column Name="Author" Member="Author" />
     <Column Name="JSOXReportID" Member="JSOXReportID" />
     <Column Name="Archival" Member="Archival" />
+    <Column Name="SadConsignmentNo" Member="SadConsignmentNo" />
   </ContentType>
   <ContentType Name="SKUCommonPart" Class="SKUCommonPart">
     <!--<Column Name="ContentType" Member="ContentType" />-->
