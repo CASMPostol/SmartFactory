@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="URL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://casmp/smartfactory/I82/</Value>
+      <Value Profile="(Default)">http://cas_sp:11225/sites/ipr</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://casmp/smartfactory/I82/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://cas_sp:11225/sites/ipr")]
         public string URL {
             get {
                 return ((string)(this["URL"]));
