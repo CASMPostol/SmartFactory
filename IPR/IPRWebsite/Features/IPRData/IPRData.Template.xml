@@ -7,6 +7,7 @@
       </ApplyElementManifests>
       <AddContentTypeField ContentTypeId="0x01000FAE27B30BF7FC46886DA88A4D425DEF" FieldId="{980A3A72-0F5F-4832-A86B-0F76E15BBADE}" PushDown="TRUE"/>
       <AddContentTypeField ContentTypeId="0x01000FAE27B30BF7FC46886DA88A4D425DEF" FieldId="{3A6EC6FC-81DD-4E39-9A78-B95D198C6938}" PushDown="TRUE"/>
+      <AddContentTypeField ContentTypeId="0x01000FAE27B30BF7FC46886DA88A4D425DEF" FieldId="{FB4540E2-A901-42D2-9A0B-F9D5FD5CA5B7}" PushDown="TRUE"/>
     </VersionRange>
   </UpgradeActions>
 </Feature>
