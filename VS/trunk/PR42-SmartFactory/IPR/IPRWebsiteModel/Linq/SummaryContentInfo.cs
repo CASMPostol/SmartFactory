@@ -174,16 +174,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( _validationErrors.Count > 0 )
         throw new InputDataValidationException( "Batch content validation failed", "XML content validation", _validationErrors );
     }
-    internal void AdjustMaterialQuantity( bool finalBatch )
+    internal void AdjustMaterialQuantity( bool finalBatch, ProgressChangedEventHandler progressChanged )
     {
       if ( this.Product.ProductType.Value != ProductType.IPRTobacco || !finalBatch )
         return;
       foreach ( Material _mx in this.Values )
-        _mx.AdjustTobaccoQuantity( ref myTotalTobacco );
+        _mx.AdjustTobaccoQuantity( ref myTotalTobacco, progressChanged );
     }
     internal void AdjustOveruse( Material.Ratios materialRatios )
     {
-      List<Material> _tobacco = this.Values.Where<Material>( x => x.IsTobacco ).ToList<Material>();
+      List<Material> _tobacco = this.Values.Where<Material>( x => x.ProductType.Value == ProductType.IPRTobacco ).ToList<Material>();
       decimal _2remove = 0;
       List<Material> _2Add = new List<Material>();
       foreach ( Material _mx in _tobacco )

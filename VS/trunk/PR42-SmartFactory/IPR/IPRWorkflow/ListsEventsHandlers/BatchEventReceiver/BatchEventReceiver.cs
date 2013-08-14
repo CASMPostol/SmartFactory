@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using CAS.SharePoint.Web;
+using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using Microsoft.SharePoint;
@@ -35,14 +36,23 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           //throw new IPRDataConsistencyException(m_Title, "Wrong library name", null, "Wrong library name");
         }
         this.EventFiringEnabled = false;
+        ErrorsList _warnings = new ErrorsList();
         using ( Entities _edc = new Entities( _properties.WebUrl ) )
         {
           BatchLib _entry = _entry = Element.GetAtIndex<BatchLib>( _edc.BatchLibrary, _properties.ListItemId );
           At = "ImportBatchFromXml";
           BatchXml _xml = default( BatchXml );
           using ( Stream _stream = _properties.ListItem.File.OpenBinaryStream() )
-            _xml = ImportBatchFromXml( _edc, _stream, _properties.ListItem.File.Name,
-                                     ( object obj, ProgressChangedEventArgs progres ) => { At = (string)progres.UserState; } );
+            _xml = ImportBatchFromXml( _edc, _stream, _properties.ListItem.File.Name, ( object obj, ProgressChangedEventArgs progres ) =>
+                                                                                                                                          {
+                                                                                                                                            if ( progres.UserState is String )
+                                                                                                                                              At = (string)progres.UserState;
+                                                                                                                                            else if ( progres.UserState is Warnning )
+                                                                                                                                              _warnings.Add( progres.UserState as Warnning );
+                                                                                                                                            else
+                                                                                                                                              throw new ArgumentException( "Wrong state reported", "UserState" );
+                                                                                                                                          }
+                                      );
           At = "Getting Data";
           GetXmlContent( _xml, _edc, _entry, ( object obj, ProgressChangedEventArgs progres ) => { At = (string)progres.UserState; } );
           At = "ListItem assign";
@@ -50,6 +60,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           _entry.BatchLibraryComments = "Batch message import succeeded.";
           At = "SubmitChanges";
           _edc.SubmitChanges();
+          foreach ( Warnning _wrnngx in _warnings )
+            ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( "Import of the batch warnning: {0}", _wrnngx.Message ) );
           ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( "Import of the batch {0} message finished", _properties.ListItem.File.Name ) );
         }
       }

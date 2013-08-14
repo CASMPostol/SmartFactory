@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using CAS.SmartFactory.Customs;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -102,17 +103,22 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void IncreaseOveruse( decimal _AddingCff, Ratios ratios )
     {
-      decimal overuseInKg = (TobaccoQuantityDec * _AddingCff).Rount2Decimals();
-      decimal material = TobaccoQuantityDec + overuseInKg;
+      decimal overuseInKg = ( TobaccoQuantityDec * _AddingCff ).Rount2Decimals();
       this[ DisposalEnum.OverusageInKg ] += overuseInKg;
-      CalculateCompensationComponents( ratios, material - this[ DisposalEnum.OverusageInKg ] );
+      decimal material = TobaccoQuantityDec - this[ DisposalEnum.OverusageInKg ];
+      if ( material < 0 )
+        throw new CAS.SmartFactory.IPR.WebsiteModel.IPRDataConsistencyException( "Material.IncreaseOveruse", "There is not enought tobacco to correct overuse", null, "Operation has benn aborted" );
+      CalculateCompensationComponents( ratios, material );
     }
-    internal void AdjustTobaccoQuantity( ref decimal totalQuantity )
+    internal void AdjustTobaccoQuantity( ref decimal totalQuantity, System.ComponentModel.ProgressChangedEventHandler progressChanged )
     {
-      if ( Accounts2Dispose.Count != 1 || Math.Abs( Accounts2Dispose[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) > 1 )
+      if ( Accounts2Dispose.Count != 1 || Math.Abs( Accounts2Dispose[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) > Convert.ToDouble( Settings.MinimalOveruse ) )
         return;
-      totalQuantity += TobaccoQuantityDec - Accounts2Dispose[ 0 ].TobaccoNotAllocatedDec;
-      TobaccoQuantity = Accounts2Dispose[ 0 ].TobaccoNotAllocated;
+      totalQuantity += Accounts2Dispose[ 0 ].TobaccoNotAllocatedDec - TobaccoQuantityDec;
+      this.TobaccoQuantity = Accounts2Dispose[ 0 ].TobaccoNotAllocated;
+      string _tmpl = "Adjusted TobaccoQuantity of material: batch {0} IPR: {1}";
+      Warnning _wrning = new Warnning( String.Format( _tmpl, this.Batch, Accounts2Dispose[ 0 ].DocumentNo ), false );
+      progressChanged( this, new ProgressChangedEventArgs( 1, _wrning ) );
     }
     /// <summary>
     /// Gets the <see cref="System.Decimal" /> at the specified index.
@@ -183,7 +189,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </returns>
     public decimal CalculatedQuantity( InvoiceContent invoice )
     {
-      return  ( this.Tobacco.Value * invoice.Quantity.Value / this.Material2BatchIndex.FGQuantity.Value ).Rount2Double() ;
+      return ( this.Tobacco.Value * invoice.Quantity.Value / this.Material2BatchIndex.FGQuantity.Value ).Rount2Double();
     }
     /// <summary>
     /// Gets the list of disposals.
