@@ -39,13 +39,13 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       BalanceSheetContent _content = null;
       using ( Entities _edc = new Entities( WebUrl ) )
       {
-        JSOXLibFactory _current = JSOXLibFactory.ConstructJSOXLibFActory( _edc, jsoxLibItemId );
-        if ( _current.JSOXLibraryReadOnly )
+        JSOXLibFactory _jsoxLibFactory = JSOXLibFactory.ConstructJSOXLibFActory( _edc, jsoxLibItemId );
+        if ( _jsoxLibFactory.JSOXLibraryReadOnly )
           throw new ApplicationException( "The record is read only and the report must not be updated." );
-        bool _validated = _current.UpdateBalanceReport( _edc );
-        string _documentName = Settings.RequestForBalanceSheetDocumentName( _edc, _current.Id );
-        _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent( _current, _documentName, !_validated );
-        _current.JSOXLibraryReadOnly = true;
+        bool _validated = _jsoxLibFactory.UpdateBalanceReport( _edc );
+        string _documentName = Settings.RequestForBalanceSheetDocumentName( _edc, _jsoxLibFactory.Id );
+        _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent( _jsoxLibFactory, _documentName, !_validated );
+        _jsoxLibFactory.JSOXLibraryReadOnly = true;
         _edc.SubmitChanges();
       }
       _content.UpdateDocument( listItem.File );
