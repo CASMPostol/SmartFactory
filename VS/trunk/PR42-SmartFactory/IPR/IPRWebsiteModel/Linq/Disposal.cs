@@ -190,7 +190,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return from _dspx in edc.Disposal
              where ( _dspx.DisposalStatus.Value != Linq.DisposalStatus.Cartons ) &&
-                   ( !_dspx.JSOXReportID.HasValue == null && _dspx.JSOXReportID.Value == parent.Id.Value ) &&
+                   ( !_dspx.JSOXReportID.HasValue || _dspx.JSOXReportID.Value == parent.Id.Value ) &&
                    ( ( _dspx.CustomsStatus.Value == Linq.CustomsStatus.Started ) || ( _dspx.CustomsStatus.Value == Linq.CustomsStatus.Finished ) )
              orderby _dspx.Disposal2IPRIndex.Title
              select _dspx;
