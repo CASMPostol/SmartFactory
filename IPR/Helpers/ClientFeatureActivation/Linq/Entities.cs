@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 #pragma warning disable 1591
+
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	using System;
 	
@@ -1668,7 +1669,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 				this._disposal.Assign(value);
 			}
 		}
-
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="InvoiceContent2BatchIndex", Storage="_invoiceContent", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Invoice Content")]
 		public Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> InvoiceContent {
@@ -2115,16 +2115,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPR2ConsentTitle", Storage="_iPR", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="IPR")]
-		public Microsoft.SharePoint.Linq.EntitySet<IPR> IPR {
-			get {
-				return this._iPR;
-			}
-			set {
-				this._iPR.Assign(value);
-			}
-		}
-		
 		private void OnIPRChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("IPR", this._iPR.Clone());
 		}
@@ -2303,6 +2293,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		private System.Nullable<double> _jSOXReportID;
 		
 		private System.Nullable<bool> _archival;
+		
+		private string _sadConsignmentNo;
 		
 		private System.Nullable<DisposalStatus> _disposalStatus;
 		
@@ -2570,6 +2562,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 					this.OnPropertyChanging("Archival", this._archival);
 					this._archival = value;
 					this.OnPropertyChanged("Archival");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SadConsignmentNo", Storage="_sadConsignmentNo", FieldType="Text")]
+		public string SadConsignmentNo {
+			get {
+				return this._sadConsignmentNo;
+			}
+			set {
+				if ((value != this._sadConsignmentNo)) {
+					this.OnPropertyChanging("SadConsignmentNo", this._sadConsignmentNo);
+					this._sadConsignmentNo = value;
+					this.OnPropertyChanged("SadConsignmentNo");
 				}
 			}
 		}
@@ -3014,7 +3020,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		private void OnDisposalsDeclaration2BatchIndexChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("DisposalsDeclaration2BatchIndex");
 		}
-		
+
 	}
 	
 	/// <summary>
@@ -3412,7 +3418,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this._disposal.OnChanged += new System.EventHandler(this.OnDisposalChanged);
 			this._disposal.OnChanging += new System.EventHandler(this.OnDisposalChanging);
 			this._iPR2ConsentTitle = new Microsoft.SharePoint.Linq.EntityRef<Consent>();
-			this._iPR2ConsentTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Consent>>(this.OnIPR2ConsentTitleSync);
 			this._iPR2ConsentTitle.OnChanged += new System.EventHandler(this.OnIPR2ConsentTitleChanged);
 			this._iPR2ConsentTitle.OnChanging += new System.EventHandler(this.OnIPR2ConsentTitleChanging);
 			this._iPR2PCNPCN = new Microsoft.SharePoint.Linq.EntityRef<PCNCode>();
@@ -3927,15 +3932,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnPropertyChanged("IPR2ConsentTitle");
 		}
 		
-		private void OnIPR2ConsentTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Consent> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.IPR.Add(this);
-			}
-			else {
-				e.Item.IPR.Remove(this);
-			}
-		}
-		
 		private void OnIPR2PCNPCNChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("IPR2PCNPCN", this._iPR2PCNPCN.Clone());
 		}
@@ -4038,7 +4034,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this._disposal.OnChanged += new System.EventHandler(this.OnDisposalChanged);
 			this._disposal.OnChanging += new System.EventHandler(this.OnDisposalChanging);
 			this._jSOXCustomsSummary2JSOXIndex = new Microsoft.SharePoint.Linq.EntityRef<JSOXLib>();
-			this._jSOXCustomsSummary2JSOXIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXLib>>(this.OnJSOXCustomsSummary2JSOXIndexSync);
 			this._jSOXCustomsSummary2JSOXIndex.OnChanged += new System.EventHandler(this.OnJSOXCustomsSummary2JSOXIndexChanged);
 			this._jSOXCustomsSummary2JSOXIndex.OnChanging += new System.EventHandler(this.OnJSOXCustomsSummary2JSOXIndexChanging);
 			this.OnCreated();
@@ -4204,15 +4199,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		private void OnJSOXCustomsSummary2JSOXIndexChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("JSOXCustomsSummary2JSOXIndex");
 		}
-		
-		private void OnJSOXCustomsSummary2JSOXIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXLib> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.JSOXCustomsSummary.Add(this);
-			}
-			else {
-				e.Item.JSOXCustomsSummary.Remove(this);
-			}
-		}
+
 	}
 	
 	/// <summary>
@@ -6932,16 +6919,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 			set {
 				this._iPR.Assign(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="JSOXCustomsSummary2JSOXIndex", Storage="_jSOXCustomsSummary", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="JSOX Customs Summary")]
-		public Microsoft.SharePoint.Linq.EntitySet<JSOXCustomsSummary> JSOXCustomsSummary {
-			get {
-				return this._jSOXCustomsSummary;
-			}
-			set {
-				this._jSOXCustomsSummary.Assign(value);
 			}
 		}
 		
