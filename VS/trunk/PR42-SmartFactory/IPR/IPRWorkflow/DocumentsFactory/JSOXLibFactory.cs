@@ -41,7 +41,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     public override decimal GetOutboundQuantity( Entities entities, JSOXLib parent, out DateTime start, out DateTime end )
     {
       decimal _ret = 0;
-      List<JSOXCustomsSummaryContent> _newEntries = new List<JSOXCustomsSummaryContent>();
+      SummaryContentList = new List<JSOXCustomsSummaryContent>();
       start = LinqIPRExtensions.DateTimeMaxValue;
       end = LinqIPRExtensions.DateTimeMinValue;
       foreach ( Disposal _dspx in Disposal.GetEntries4JSOX( entities, parent ) )
@@ -60,8 +60,8 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           Procedure = _dspx.CustomsProcedure,
         };
         _ret += _dspx.SettledQuantityDec;
-        // TODO new model required _dspx.JSOXCustomsSummaryIndex = _newItem;
-        _newEntries.Add( _new );
+        _dspx.JSOXReportID = parent.Id.Value;
+        SummaryContentList.Add( _new );
       }
       return _ret;
     }
