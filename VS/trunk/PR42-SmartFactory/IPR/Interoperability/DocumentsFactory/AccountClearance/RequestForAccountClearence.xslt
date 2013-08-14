@@ -349,6 +349,9 @@
         <td align="center" valign="top">
           Rodzaj wysyłanego towaru kompensa-cyjnego
         </td>
+        <td align="center" valign="top">
+          Sad Consignment No
+        </td>
       </tr>
       <tr>
         <td valign="top">
@@ -389,6 +392,9 @@
         </td>
         <td align="center" valign="top">
           [kg]
+        </td>
+        <td valign="top">
+          &#160;
         </td>
         <td valign="top">
           &#160;
@@ -447,6 +453,9 @@
               <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:DutyAndVAT), $FoarmatOfFloat, 'pl')"/>
             </b>
           </p>
+        </td>
+        <td valign="top">
+          &#160;
         </td>
         <td valign="top">
           &#160;
@@ -531,6 +540,9 @@
       </td>
       <td align="center">
         <xsl:value-of select="cas:ProductCodeNumber"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="cas:SadConsignmentNo"/>
       </td>
     </tr>
   </xsl:template>
