@@ -16,39 +16,24 @@
           <SHWasteOveruseCSNotStarted>1</SHWasteOveruseCSNotStarted>
           <DustCSNotStarted>1</DustCSNotStarted>
           <TobaccoAvailable>1</TobaccoAvailable>
-          <TobaccoInWarehouse>1</TobaccoInWarehouse>
-          <TobaccoInCigarettesWarehouse>1</TobaccoInCigarettesWarehouse>
-          <TobaccoInCigarettesProduction>1</TobaccoInCigarettesProduction>
-          <TobaccoInCutfillerWarehouse>1</TobaccoInCutfillerWarehouse>
-          <Balance>1</Balance>
         </BalanceIPRContent>
         <BalanceIPRContent>
           <EntryDocumentNo>EntryDocumentNo2</EntryDocumentNo>
           <SKU>SKU2</SKU>
           <Batch>Batch2</Batch>
-          <IPRBook>-1.7976931348623157E+308</IPRBook>
-          <SHWasteOveruseCSNotStarted>-1.7976931348623157E+308</SHWasteOveruseCSNotStarted>
-          <DustCSNotStarted>-1.7976931348623157E+308</DustCSNotStarted>
-          <TobaccoAvailable>-1.7976931348623157E+308</TobaccoAvailable>
-          <TobaccoInWarehouse>-1.7976931348623157E+308</TobaccoInWarehouse>
-          <TobaccoInCigarettesWarehouse>-1.7976931348623157E+308</TobaccoInCigarettesWarehouse>
-          <TobaccoInCigarettesProduction>-1.7976931348623157E+308</TobaccoInCigarettesProduction>
-          <TobaccoInCutfillerWarehouse>-1.7976931348623157E+308</TobaccoInCutfillerWarehouse>
-          <Balance>-1.7976931348623157E+308</Balance>
+          <IPRBook>-79228162514264337593543950335</IPRBook>
+          <SHWasteOveruseCSNotStarted>-79228162514264337593543950335</SHWasteOveruseCSNotStarted>
+          <DustCSNotStarted>-79228162514264337593543950335</DustCSNotStarted>
+          <TobaccoAvailable>-79228162514264337593543950335</TobaccoAvailable>
         </BalanceIPRContent>
         <BalanceIPRContent>
           <EntryDocumentNo>EntryDocumentNo3</EntryDocumentNo>
           <SKU>SKU3</SKU>
           <Batch>Batch3</Batch>
-          <IPRBook>1.7976931348623157E+308</IPRBook>
-          <SHWasteOveruseCSNotStarted>1.7976931348623157E+308</SHWasteOveruseCSNotStarted>
-          <DustCSNotStarted>1.7976931348623157E+308</DustCSNotStarted>
-          <TobaccoAvailable>1.7976931348623157E+308</TobaccoAvailable>
-          <TobaccoInWarehouse>1.7976931348623157E+308</TobaccoInWarehouse>
-          <TobaccoInCigarettesWarehouse>1.7976931348623157E+308</TobaccoInCigarettesWarehouse>
-          <TobaccoInCigarettesProduction>1.7976931348623157E+308</TobaccoInCigarettesProduction>
-          <TobaccoInCutfillerWarehouse>1.7976931348623157E+308</TobaccoInCutfillerWarehouse>
-          <Balance>1.7976931348623157E+308</Balance>
+          <IPRBook>79228162514264337593543950335</IPRBook>
+          <SHWasteOveruseCSNotStarted>79228162514264337593543950335</SHWasteOveruseCSNotStarted>
+          <DustCSNotStarted>79228162514264337593543950335</DustCSNotStarted>
+          <TobaccoAvailable>79228162514264337593543950335</TobaccoAvailable>
         </BalanceIPRContent>
       </BalanceIPR>
       <TotalIPRBook>1</TotalIPRBook>
@@ -67,54 +52,39 @@
           <EntryDocumentNo>EntryDocumentNo4</EntryDocumentNo>
           <SKU>SKU4</SKU>
           <Batch>Batch4</Batch>
-          <IPRBook>-0.10000002384185791</IPRBook>
-          <SHWasteOveruseCSNotStarted>-0.10000002384185791</SHWasteOveruseCSNotStarted>
-          <DustCSNotStarted>-0.10000002384185791</DustCSNotStarted>
-          <TobaccoAvailable>-0.10000002384185791</TobaccoAvailable>
-          <TobaccoInWarehouse>-0.10000002384185791</TobaccoInWarehouse>
-          <TobaccoInCigarettesWarehouse>-0.10000002384185791</TobaccoInCigarettesWarehouse>
-          <TobaccoInCigarettesProduction>-0.10000002384185791</TobaccoInCigarettesProduction>
-          <TobaccoInCutfillerWarehouse>-0.10000002384185791</TobaccoInCutfillerWarehouse>
-          <Balance>-0.10000002384185791</Balance>
+          <IPRBook>0.9</IPRBook>
+          <SHWasteOveruseCSNotStarted>0.9</SHWasteOveruseCSNotStarted>
+          <DustCSNotStarted>0.9</DustCSNotStarted>
+          <TobaccoAvailable>0.9</TobaccoAvailable>
         </BalanceIPRContent>
         <BalanceIPRContent>
           <EntryDocumentNo>EntryDocumentNo5</EntryDocumentNo>
           <SKU>SKU5</SKU>
           <Batch>Batch5</Batch>
-          <IPRBook>2.1000000238418579</IPRBook>
-          <SHWasteOveruseCSNotStarted>2.1000000238418579</SHWasteOveruseCSNotStarted>
-          <DustCSNotStarted>2.1000000238418579</DustCSNotStarted>
-          <TobaccoAvailable>2.1000000238418579</TobaccoAvailable>
-          <TobaccoInWarehouse>2.1000000238418579</TobaccoInWarehouse>
-          <TobaccoInCigarettesWarehouse>2.1000000238418579</TobaccoInCigarettesWarehouse>
-          <TobaccoInCigarettesProduction>2.1000000238418579</TobaccoInCigarettesProduction>
-          <TobaccoInCutfillerWarehouse>2.1000000238418579</TobaccoInCutfillerWarehouse>
-          <Balance>2.1000000238418579</Balance>
+          <IPRBook>1.1</IPRBook>
+          <SHWasteOveruseCSNotStarted>1.1</SHWasteOveruseCSNotStarted>
+          <DustCSNotStarted>1.1</DustCSNotStarted>
+          <TobaccoAvailable>1.1</TobaccoAvailable>
         </BalanceIPRContent>
         <BalanceIPRContent>
           <EntryDocumentNo>EntryDocumentNo6</EntryDocumentNo>
           <SKU>SKU6</SKU>
           <Batch>Batch6</Batch>
-          <IPRBook>-1.7976931348623157E+308</IPRBook>
-          <SHWasteOveruseCSNotStarted>-1.7976931348623157E+308</SHWasteOveruseCSNotStarted>
-          <DustCSNotStarted>-1.7976931348623157E+308</DustCSNotStarted>
-          <TobaccoAvailable>-1.7976931348623157E+308</TobaccoAvailable>
-          <TobaccoInWarehouse>-1.7976931348623157E+308</TobaccoInWarehouse>
-          <TobaccoInCigarettesWarehouse>-1.7976931348623157E+308</TobaccoInCigarettesWarehouse>
-          <TobaccoInCigarettesProduction>-1.7976931348623157E+308</TobaccoInCigarettesProduction>
-          <TobaccoInCutfillerWarehouse>-1.7976931348623157E+308</TobaccoInCutfillerWarehouse>
-          <Balance>-1.7976931348623157E+308</Balance>
+          <IPRBook>-79228162514264337593543950335</IPRBook>
+          <SHWasteOveruseCSNotStarted>-79228162514264337593543950335</SHWasteOveruseCSNotStarted>
+          <DustCSNotStarted>-79228162514264337593543950335</DustCSNotStarted>
+          <TobaccoAvailable>-79228162514264337593543950335</TobaccoAvailable>
         </BalanceIPRContent>
       </BalanceIPR>
-      <TotalIPRBook>-1.7976931348623157E+308</TotalIPRBook>
-      <TotalSHWasteOveruseCSNotStarted>-1.7976931348623157E+308</TotalSHWasteOveruseCSNotStarted>
-      <TotalDustCSNotStarted>-1.7976931348623157E+308</TotalDustCSNotStarted>
-      <TotalTobaccoAvailable>-1.7976931348623157E+308</TotalTobaccoAvailable>
-      <TotalTobaccoInWarehouse>-1.7976931348623157E+308</TotalTobaccoInWarehouse>
-      <TotalTobaccoInCigarettesWarehouse>-1.7976931348623157E+308</TotalTobaccoInCigarettesWarehouse>
-      <TotalTobaccoInCigarettesProduction>-1.7976931348623157E+308</TotalTobaccoInCigarettesProduction>
-      <TotalTobaccoInCutfillerWarehouse>-1.7976931348623157E+308</TotalTobaccoInCutfillerWarehouse>
-      <TotalBalance>-1.7976931348623157E+308</TotalBalance>
+      <TotalIPRBook>-79228162514264337593543950335</TotalIPRBook>
+      <TotalSHWasteOveruseCSNotStarted>-79228162514264337593543950335</TotalSHWasteOveruseCSNotStarted>
+      <TotalDustCSNotStarted>-79228162514264337593543950335</TotalDustCSNotStarted>
+      <TotalTobaccoAvailable>-79228162514264337593543950335</TotalTobaccoAvailable>
+      <TotalTobaccoInWarehouse>-79228162514264337593543950335</TotalTobaccoInWarehouse>
+      <TotalTobaccoInCigarettesWarehouse>-79228162514264337593543950335</TotalTobaccoInCigarettesWarehouse>
+      <TotalTobaccoInCigarettesProduction>-79228162514264337593543950335</TotalTobaccoInCigarettesProduction>
+      <TotalTobaccoInCutfillerWarehouse>-79228162514264337593543950335</TotalTobaccoInCutfillerWarehouse>
+      <TotalBalance>-79228162514264337593543950335</TotalBalance>
     </BalanceBatchContent>
     <BalanceBatchContent>
       <BalanceIPR>
@@ -122,54 +92,39 @@
           <EntryDocumentNo>EntryDocumentNo7</EntryDocumentNo>
           <SKU>SKU7</SKU>
           <Batch>Batch7</Batch>
-          <IPRBook>1.7976931348623157E+308</IPRBook>
-          <SHWasteOveruseCSNotStarted>1.7976931348623157E+308</SHWasteOveruseCSNotStarted>
-          <DustCSNotStarted>1.7976931348623157E+308</DustCSNotStarted>
-          <TobaccoAvailable>1.7976931348623157E+308</TobaccoAvailable>
-          <TobaccoInWarehouse>1.7976931348623157E+308</TobaccoInWarehouse>
-          <TobaccoInCigarettesWarehouse>1.7976931348623157E+308</TobaccoInCigarettesWarehouse>
-          <TobaccoInCigarettesProduction>1.7976931348623157E+308</TobaccoInCigarettesProduction>
-          <TobaccoInCutfillerWarehouse>1.7976931348623157E+308</TobaccoInCutfillerWarehouse>
-          <Balance>1.7976931348623157E+308</Balance>
+          <IPRBook>79228162514264337593543950335</IPRBook>
+          <SHWasteOveruseCSNotStarted>79228162514264337593543950335</SHWasteOveruseCSNotStarted>
+          <DustCSNotStarted>79228162514264337593543950335</DustCSNotStarted>
+          <TobaccoAvailable>79228162514264337593543950335</TobaccoAvailable>
         </BalanceIPRContent>
         <BalanceIPRContent>
           <EntryDocumentNo>EntryDocumentNo8</EntryDocumentNo>
           <SKU>SKU8</SKU>
           <Batch>Batch8</Batch>
-          <IPRBook>-1.2000000476837158</IPRBook>
-          <SHWasteOveruseCSNotStarted>-1.2000000476837158</SHWasteOveruseCSNotStarted>
-          <DustCSNotStarted>-1.2000000476837158</DustCSNotStarted>
-          <TobaccoAvailable>-1.2000000476837158</TobaccoAvailable>
-          <TobaccoInWarehouse>-1.2000000476837158</TobaccoInWarehouse>
-          <TobaccoInCigarettesWarehouse>-1.2000000476837158</TobaccoInCigarettesWarehouse>
-          <TobaccoInCigarettesProduction>-1.2000000476837158</TobaccoInCigarettesProduction>
-          <TobaccoInCutfillerWarehouse>-1.2000000476837158</TobaccoInCutfillerWarehouse>
-          <Balance>-1.2000000476837158</Balance>
+          <IPRBook>0.8</IPRBook>
+          <SHWasteOveruseCSNotStarted>0.8</SHWasteOveruseCSNotStarted>
+          <DustCSNotStarted>0.8</DustCSNotStarted>
+          <TobaccoAvailable>0.8</TobaccoAvailable>
         </BalanceIPRContent>
         <BalanceIPRContent>
           <EntryDocumentNo>EntryDocumentNo9</EntryDocumentNo>
           <SKU>SKU9</SKU>
           <Batch>Batch9</Batch>
-          <IPRBook>3.2000000476837158</IPRBook>
-          <SHWasteOveruseCSNotStarted>3.2000000476837158</SHWasteOveruseCSNotStarted>
-          <DustCSNotStarted>3.2000000476837158</DustCSNotStarted>
-          <TobaccoAvailable>3.2000000476837158</TobaccoAvailable>
-          <TobaccoInWarehouse>3.2000000476837158</TobaccoInWarehouse>
-          <TobaccoInCigarettesWarehouse>3.2000000476837158</TobaccoInCigarettesWarehouse>
-          <TobaccoInCigarettesProduction>3.2000000476837158</TobaccoInCigarettesProduction>
-          <TobaccoInCutfillerWarehouse>3.2000000476837158</TobaccoInCutfillerWarehouse>
-          <Balance>3.2000000476837158</Balance>
+          <IPRBook>1.2</IPRBook>
+          <SHWasteOveruseCSNotStarted>1.2</SHWasteOveruseCSNotStarted>
+          <DustCSNotStarted>1.2</DustCSNotStarted>
+          <TobaccoAvailable>1.2</TobaccoAvailable>
         </BalanceIPRContent>
       </BalanceIPR>
-      <TotalIPRBook>1.7976931348623157E+308</TotalIPRBook>
-      <TotalSHWasteOveruseCSNotStarted>1.7976931348623157E+308</TotalSHWasteOveruseCSNotStarted>
-      <TotalDustCSNotStarted>1.7976931348623157E+308</TotalDustCSNotStarted>
-      <TotalTobaccoAvailable>1.7976931348623157E+308</TotalTobaccoAvailable>
-      <TotalTobaccoInWarehouse>1.7976931348623157E+308</TotalTobaccoInWarehouse>
-      <TotalTobaccoInCigarettesWarehouse>1.7976931348623157E+308</TotalTobaccoInCigarettesWarehouse>
-      <TotalTobaccoInCigarettesProduction>1.7976931348623157E+308</TotalTobaccoInCigarettesProduction>
-      <TotalTobaccoInCutfillerWarehouse>1.7976931348623157E+308</TotalTobaccoInCutfillerWarehouse>
-      <TotalBalance>1.7976931348623157E+308</TotalBalance>
+      <TotalIPRBook>79228162514264337593543950335</TotalIPRBook>
+      <TotalSHWasteOveruseCSNotStarted>79228162514264337593543950335</TotalSHWasteOveruseCSNotStarted>
+      <TotalDustCSNotStarted>79228162514264337593543950335</TotalDustCSNotStarted>
+      <TotalTobaccoAvailable>79228162514264337593543950335</TotalTobaccoAvailable>
+      <TotalTobaccoInWarehouse>79228162514264337593543950335</TotalTobaccoInWarehouse>
+      <TotalTobaccoInCigarettesWarehouse>79228162514264337593543950335</TotalTobaccoInCigarettesWarehouse>
+      <TotalTobaccoInCigarettesProduction>79228162514264337593543950335</TotalTobaccoInCigarettesProduction>
+      <TotalTobaccoInCutfillerWarehouse>79228162514264337593543950335</TotalTobaccoInCutfillerWarehouse>
+      <TotalBalance>79228162514264337593543950335</TotalBalance>
     </BalanceBatchContent>
   </BalanceBatch>
   <JSOX>
@@ -194,8 +149,8 @@
               <InvoiceNo>InvoiceNo2</InvoiceNo>
               <CompensationGood>CompensationGood2</CompensationGood>
               <Procedure>Procedure2</Procedure>
-              <Quantity>-1.7976931348623157E+308</Quantity>
-              <Balance>-1.7976931348623157E+308</Balance>
+              <Quantity>-79228162514264337593543950335</Quantity>
+              <Balance>-79228162514264337593543950335</Balance>
             </JSOXCustomsSummary>
             <JSOXCustomsSummary>
               <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD3</ExportOrFreeCirculationSAD>
@@ -204,8 +159,8 @@
               <InvoiceNo>InvoiceNo3</InvoiceNo>
               <CompensationGood>CompensationGood3</CompensationGood>
               <Procedure>Procedure3</Procedure>
-              <Quantity>1.7976931348623157E+308</Quantity>
-              <Balance>1.7976931348623157E+308</Balance>
+              <Quantity>79228162514264337593543950335</Quantity>
+              <Balance>79228162514264337593543950335</Balance>
             </JSOXCustomsSummary>
           </JSOXCustomsSummaryArray>
           <SubtotalQuantity>1</SubtotalQuantity>
@@ -219,8 +174,8 @@
               <InvoiceNo>InvoiceNo4</InvoiceNo>
               <CompensationGood>CompensationGood4</CompensationGood>
               <Procedure>Procedure4</Procedure>
-              <Quantity>-0.10000002384185791</Quantity>
-              <Balance>-0.10000002384185791</Balance>
+              <Quantity>0.9</Quantity>
+              <Balance>0.9</Balance>
             </JSOXCustomsSummary>
             <JSOXCustomsSummary>
               <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD5</ExportOrFreeCirculationSAD>
@@ -229,8 +184,8 @@
               <InvoiceNo>InvoiceNo5</InvoiceNo>
               <CompensationGood>CompensationGood5</CompensationGood>
               <Procedure>Procedure5</Procedure>
-              <Quantity>2.1000000238418579</Quantity>
-              <Balance>2.1000000238418579</Balance>
+              <Quantity>1.1</Quantity>
+              <Balance>1.1</Balance>
             </JSOXCustomsSummary>
             <JSOXCustomsSummary>
               <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD6</ExportOrFreeCirculationSAD>
@@ -239,11 +194,11 @@
               <InvoiceNo>InvoiceNo6</InvoiceNo>
               <CompensationGood>CompensationGood6</CompensationGood>
               <Procedure>Procedure6</Procedure>
-              <Quantity>-1.7976931348623157E+308</Quantity>
-              <Balance>-1.7976931348623157E+308</Balance>
+              <Quantity>-79228162514264337593543950335</Quantity>
+              <Balance>-79228162514264337593543950335</Balance>
             </JSOXCustomsSummary>
           </JSOXCustomsSummaryArray>
-          <SubtotalQuantity>2</SubtotalQuantity>
+          <SubtotalQuantity>-79228162514264337593543950335</SubtotalQuantity>
         </JSOXCustomsSummaryOGLGroup>
         <JSOXCustomsSummaryOGLGroup>
           <JSOXCustomsSummaryArray>
@@ -254,8 +209,8 @@
               <InvoiceNo>InvoiceNo7</InvoiceNo>
               <CompensationGood>CompensationGood7</CompensationGood>
               <Procedure>Procedure7</Procedure>
-              <Quantity>1.7976931348623157E+308</Quantity>
-              <Balance>1.7976931348623157E+308</Balance>
+              <Quantity>79228162514264337593543950335</Quantity>
+              <Balance>79228162514264337593543950335</Balance>
             </JSOXCustomsSummary>
             <JSOXCustomsSummary>
               <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD8</ExportOrFreeCirculationSAD>
@@ -264,8 +219,8 @@
               <InvoiceNo>InvoiceNo8</InvoiceNo>
               <CompensationGood>CompensationGood8</CompensationGood>
               <Procedure>Procedure8</Procedure>
-              <Quantity>-1.2000000476837158</Quantity>
-              <Balance>-1.2000000476837158</Balance>
+              <Quantity>0.8</Quantity>
+              <Balance>0.8</Balance>
             </JSOXCustomsSummary>
             <JSOXCustomsSummary>
               <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD9</ExportOrFreeCirculationSAD>
@@ -274,11 +229,11 @@
               <InvoiceNo>InvoiceNo9</InvoiceNo>
               <CompensationGood>CompensationGood9</CompensationGood>
               <Procedure>Procedure9</Procedure>
-              <Quantity>3.2000000476837158</Quantity>
-              <Balance>3.2000000476837158</Balance>
+              <Quantity>1.2</Quantity>
+              <Balance>1.2</Balance>
             </JSOXCustomsSummary>
           </JSOXCustomsSummaryArray>
-          <SubtotalQuantity>3</SubtotalQuantity>
+          <SubtotalQuantity>79228162514264337593543950335</SubtotalQuantity>
         </JSOXCustomsSummaryOGLGroup>
       </JSOXCustomsSummaryOGLGroupArray>
       <SubtotalQuantity>1</SubtotalQuantity>

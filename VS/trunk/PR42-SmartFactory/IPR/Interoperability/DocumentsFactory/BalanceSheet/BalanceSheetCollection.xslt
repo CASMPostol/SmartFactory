@@ -256,6 +256,7 @@
         <th>Procedure</th>
         <th>Quantity - change procedures (kg)</th>
         <th>Balance (Introducing –Disposals) (kg)</th>
+        <th>SadConsignmentNo</th>
       </tr>
       <xsl:apply-templates select="cas:JSOXCustomsSummaryList"/>
     </table>
@@ -358,6 +359,9 @@
       <td>
         &#160;
       </td>
+      <td>
+        &#160;
+      </td>
     </tr>
   </xsl:template>
   <xsl:template match="cas:JSOXCustomsSummaryOGLGroupArray">
@@ -383,6 +387,9 @@
       </td>
       <td align="center" bgcolor="#CDCDCD">
         <xsl:value-of select="format-number(cas:SubtotalQuantity, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td bgcolor="#CDCDCD">
+        &#160;
       </td>
       <td bgcolor="#CDCDCD">
         &#160;
@@ -417,6 +424,9 @@
       </td>
       <td align="center">
         <xsl:value-of select="format-number(cas:Balance, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="cas:SadConsignmentNo"/>
       </td>
     </tr>
   </xsl:template>

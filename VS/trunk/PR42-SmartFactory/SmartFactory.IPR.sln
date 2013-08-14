@@ -801,7 +801,6 @@ Global
 		{0FAB4900-9FE2-4CE9-A047-CEEB28920F57}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{0FAB4900-9FE2-4CE9-A047-CEEB28920F57}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 		{0FAB4900-9FE2-4CE9-A047-CEEB28920F57}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0FAB4900-9FE2-4CE9-A047-CEEB28920F57}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
 		{0FAB4900-9FE2-4CE9-A047-CEEB28920F57}.SingleImage|x64.ActiveCfg = Release|Any CPU
 		{0FAB4900-9FE2-4CE9-A047-CEEB28920F57}.SingleImage|x86.ActiveCfg = Release|Any CPU
 		{B9D9FCCA-6132-4BF5-BC17-32EA752D6AD7}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
