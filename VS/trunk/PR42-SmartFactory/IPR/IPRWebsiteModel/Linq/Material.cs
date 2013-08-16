@@ -329,20 +329,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           List<Disposal> _disposalsOfKind = _allDisposals.Where<Disposal>( x => x.DisposalStatus.Value == Entities.GetDisposalStatus( _kind ) ).ToList<Disposal>();
           if ( _disposalsOfKind.Count<Disposal>() > 0 )
           {
-            bool _break = false;
             _toDispose -= _disposalsOfKind.Sum<Disposal>( x => x.SettledQuantityDec );
             _disposalsOfKind = _disposalsOfKind.Where( v => v.CustomsStatus.Value == CustomsStatus.NotStarted ).ToList<Disposal>();
             foreach ( Linq.Disposal _dx in _disposalsOfKind )
-            {
               _dx.Adjust( ref _toDispose );
-              if ( _toDispose <= 0 )
-              {
-                _break = true;
-                break;
-              }
-            }
-            if ( _break )
+            if ( _toDispose == 0 )
               continue;
+            if ( _toDispose <= 0 )
+            {
+              string _toDisposeMessage = "_toDispose < 0 and is of {3} kg: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
+              throw new IPRDataConsistencyException( "Material.UpdateDisposals", String.Format( _toDisposeMessage, this.Batch, parent.Batch0, _kind, _toDispose ), null, "IPR calculation error" );
+            }
           }
           progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _kind, this.Batch ) ) );
           if ( ( ( _kind == DisposalEnum.SHMenthol ) || ( _kind == DisposalEnum.OverusageInKg ) ) && this[ _kind ] <= 0 )
