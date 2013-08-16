@@ -21,6 +21,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="BalanceIPR" type="tns:ArrayOfBalanceIPRContent" />
       <xs:element minOccurs="1" maxOccurs="1" name="TotalIPRBook" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoStarted" type="xs:decimal" />
       <xs:element minOccurs="1" maxOccurs="1" name="TotalSHWasteOveruseCSNotStarted" type="xs:decimal" />
       <xs:element minOccurs="1" maxOccurs="1" name="TotalDustCSNotStarted" type="xs:decimal" />
       <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoAvailable" type="xs:decimal" />
@@ -42,6 +43,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="SKU" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="IPRBook" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="TobaccoStarted" type="xs:decimal" />
       <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="SHWasteOveruseCSNotStarted" type="xs:decimal" />
       <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="DustCSNotStarted" type="xs:decimal" />
       <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="TobaccoAvailable" type="xs:decimal" />
