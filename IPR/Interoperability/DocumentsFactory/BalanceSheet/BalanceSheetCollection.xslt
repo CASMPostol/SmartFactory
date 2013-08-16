@@ -102,7 +102,7 @@
             <td colspan="3">
               &#160;
             </td>
-            <td colspan="4">
+            <td colspan="5">
               ZAPISY SYSTEMU IPR – ilości nierozliczone (kg)
             </td>
             <td colspan="4">
@@ -117,14 +117,15 @@
             <th>SKU TYTONI</th>
             <th>BATCH TYTONI</th>
             <th>KSIEGA IPR SALDO (A)</th>
-            <th>SH, ODPAD, PRZEPAŁ, TYTOŃ (B)</th>
-            <th>PYŁ (C)</th>
-            <th>DOSTĘPNY TYTOŃ (D=A-B-C)</th>
-            <th>TYTONIE (E)</th>
-            <th>PAPIEROSY (F)</th>
-            <th>PRODUKCJA W TOKU (G)</th>
-            <th>KRAJANKA (H)</th>
-            <th>BILANS (D-E-F-G-H=0)</th>
+            <th>TYTOŃ W TRAKCIE ODPRAWY (B)</th>
+            <th>SH, ODPAD, PRZEPAŁ, TYTOŃ (C)</th>
+            <th>PYŁ (D)</th>
+            <th>DOSTĘPNY TYTOŃ (E=A-B-C-D)</th>
+            <th>TYTONIE (F)</th>
+            <th>PAPIEROSY (G)</th>
+            <th>PRODUKCJA W TOKU (H)</th>
+            <th>KRAJANKA (I)</th>
+            <th>BILANS (E-F-G-H-I=0)</th>
           </tr>
             <xsl:apply-templates select="cas:BalanceBatchContent" />
           <tr>
@@ -133,6 +134,9 @@
             </td>
             <td align="center">
               <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalIPRBook), $FoarmatOfFloat, 'pl')"/>
+            </td>
+            <td align="center">
+              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalTobaccoStarted), $FoarmatOfFloat, 'pl')"/>
             </td>
             <td align="center">
               <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalSHWasteOveruseCSNotStarted), $FoarmatOfFloat, 'pl')"/>
@@ -177,6 +181,9 @@
               <b><xsl:value-of select="format-number(cas:TotalIPRBook, $FoarmatOfFloat, 'pl')"/></b>
             </td>
             <td align="center" bgcolor="#CDCDCD">
+              <b><xsl:value-of select="format-number(cas:TotalTobaccoStarted, $FoarmatOfFloat, 'pl')"/></b>
+            </td>
+            <td align="center" bgcolor="#CDCDCD">
               <b><xsl:value-of select="format-number(cas:TotalSHWasteOveruseCSNotStarted, $FoarmatOfFloat, 'pl')"/></b>
             </td>
             <td align="center" bgcolor="#CDCDCD">
@@ -218,6 +225,9 @@
       </td>
       <td align="center">
         <xsl:value-of select="format-number(cas:IPRBook, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="format-number(cas:TobaccoStarted, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td align="center">
         <xsl:value-of select="format-number(cas:SHWasteOveruseCSNotStarted, $FoarmatOfFloat, 'pl')"/>

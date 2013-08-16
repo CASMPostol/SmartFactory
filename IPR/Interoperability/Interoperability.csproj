@@ -441,11 +441,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DocumentsFactory\AccountClearance\RequestContent.xml" />
-    <Content Include="DocumentsFactory\AccountClearance\RequestForAccountClearence.xslt" />
+    <Content Include="DocumentsFactory\AccountClearance\RequestForAccountClearence.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DocumentsFactory\BalanceSheet\BalanceSheetCollection.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentsFactory\BalanceSheet\BalanceSheetContent.xml" />
+    <Content Include="DocumentsFactory\BalanceSheet\BalanceSheetContent.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DocumentsFactory\BalanceSheet\Bilans 0000002.xml" />
     <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.htm" />
     <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xml" />
