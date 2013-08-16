@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using CAS.SmartFactory.Customs;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -317,20 +318,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       if ( this.ProductType.Value != Linq.ProductType.IPRTobacco )
         return;
-      foreach ( WebsiteModel.Linq.DisposalEnum _kind in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
+      List<Disposal> _allDisposals = this.Disposal.ToList<Disposal>();
+      foreach ( Linq.DisposalEnum _kind in Enum.GetValues( typeof( Linq.DisposalEnum ) ) )
       {
         try
         {
           if ( _kind == DisposalEnum.Tobacco || _kind == DisposalEnum.Cartons )
             continue;
           decimal _toDispose = this[ _kind ];
-          IQueryable<Disposal> _disposals = Linq.Disposal.Disposals( this.Disposal, _kind );
-          if ( _disposals.Count<Disposal>() > 0 )
+          List<Disposal> _disposalsOfKind = _allDisposals.Where<Disposal>( x => x.DisposalStatus.Value == Entities.GetDisposalStatus( _kind ) ).ToList<Disposal>();
+          if ( _disposalsOfKind.Count<Disposal>() > 0 )
           {
             bool _break = false;
-            _toDispose -= _disposals.Sum<Disposal>( x => x.SettledQuantityDec );
-            _disposals = _disposals.Where( v => v.CustomsStatus.Value == CustomsStatus.NotStarted );
-            foreach ( Linq.Disposal _dx in _disposals )
+            _toDispose -= _disposalsOfKind.Sum<Disposal>( x => x.SettledQuantityDec );
+            _disposalsOfKind = _disposalsOfKind.Where( v => v.CustomsStatus.Value == CustomsStatus.NotStarted ).ToList<Disposal>();
+            foreach ( Linq.Disposal _dx in _disposalsOfKind )
             {
               _dx.Adjust( ref _toDispose );
               if ( _toDispose <= 0 )
