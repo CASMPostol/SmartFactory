@@ -79,7 +79,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       MaterialQuantity = Convert.ToDouble( contentInfo.TotalTobacco );
       ProductType = contentInfo.Product.ProductType;
       SKUIndex = contentInfo.SKULookup;
-      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Coefficients" ) );
+      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Dependences" ) );
       //Dependences
       Dust DustIndex = Linq.Dust.GetLookup( ProductType.Value, edc );
       BatchDustCooeficiency = DustIndex.DustRatio;
@@ -102,8 +102,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.UsageMin = _usage.UsageMin;
       this.UsageMax = _usage.UsageMax;
       this.UsageVersion = _usage.Version;
-      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
-      //processing
+      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Processing" ) );
+      //Processing
       CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantity.Value, UsageMax.Value, UsageMin.Value );
       MaterialQuantityPrevious = 0;
       double _shmcf = 0;
@@ -115,7 +115,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         shMentholRatio = _shmcf,
         wasteRatio = WasteIndex.WasteRatio.ValueOrException<double>( "Batch", "Material.Ratios", "wasteRatio" )
       };
-      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessDisposals" ) );
+      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessMaterials" ) );
       contentInfo.ProcessMaterials( edc, this, _mr, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
       Dust = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.Dust ] );
       SHMenthol = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.SHMenthol ] );
