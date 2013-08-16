@@ -38,6 +38,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region public
+    /// <summary>
+    /// Gets or sets the settled quantity dec.
+    /// </summary>
+    /// <value>
+    /// The settled quantity as decimal.
+    /// </value>
+    public decimal SettledQuantityDec
+    {
+      get { return Convert.ToDecimal( this.SettledQuantity ).Rount2Decimals(); }
+      set
+      {
+        this.SettledQuantity = Convert.ToDouble( value ).Rount2Decimals();
+        CalculateDutyAndVat();
+      }
+    }
+
+    #region internal
     internal Material Material
     {
       set
@@ -83,7 +100,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="closingBatch">if set to <c>true</c> the batch is to be closed.</param>
     /// <param name="invoiceContent">Content of the invoice.</param>
     /// <exception cref="ApplicationError">if any internal exception has to be catched.</exception>
-    public void Export( Entities entities, ref decimal quantity, bool closingBatch, InvoiceContent invoiceContent )
+    internal void Export( Entities entities, ref decimal quantity, bool closingBatch, InvoiceContent invoiceContent )
     {
       string _at = "Startting";
       try
@@ -153,31 +170,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.Disposal2IPRIndex.AccountBalance = this.RemainingQuantity = Convert.ToDouble( _balance );
       return _balance;
     }
-    internal static IQueryable<Disposal> Disposals( EntitySet<Disposal> disposlas, DisposalEnum _kind )
-    {
-      return disposlas.Where<Disposal>( x => x.DisposalStatus.Value == Entities.GetDisposalStatus( _kind ) );
-    }
     internal void Adjust( ref decimal _toDispose )
     {
       this.SettledQuantityDec += this.Disposal2IPRIndex.Withdraw( ref _toDispose, this.SettledQuantityDec );
       if ( this.CustomsStatus.Value == Linq.CustomsStatus.Finished )
         this.Disposal2IPRIndex.RecalculateClearedRecords( this.No.Value );
     }
-    /// <summary>
-    /// Gets or sets the settled quantity dec.
-    /// </summary>
-    /// <value>
-    /// The settled quantity as decimal.
-    /// </value>
-    public decimal SettledQuantityDec
-    {
-      get { return Convert.ToDecimal( this.SettledQuantity ).Rount2Decimals(); }
-      set
-      {
-        this.SettledQuantity = Convert.ToDouble( value ).Rount2Decimals();
-        CalculateDutyAndVat();
-      }
-    }
+    #endregion
 
     #region static
     /// <summary>
