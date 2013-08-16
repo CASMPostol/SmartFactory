@@ -48,18 +48,24 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
       catch ( InputDataValidationException _ioex )
       {
         _ioex.ReportActionResult( properties.WebUrl, properties.ListItem.File.Name );
-        ActivityLogCT.WriteEntry( m_Title, String.Format( "SKU message {0} import has been stoped because of errors.", properties.ListItem.File.Name ), properties.WebUrl );
+        string _fileName = GetFileName( properties );
+        ActivityLogCT.WriteEntry( m_Title, String.Format( "SKU message {0} import has been stoped because of errors.", _fileName ), properties.WebUrl );
       }
       catch ( Exception ex )
       {
         string _pattern = @"SKU message {2} import has been stoped because of an unexpected fatal error <b>{0}</b> at: <b>{1}</b>";
-        ActivityLogCT.WriteEntry( String.Format( _pattern, ex.Message, At, properties.ListItem.File.Name ), properties.WebUrl );
+        string _fileName = GetFileName( properties );
+        ActivityLogCT.WriteEntry( String.Format( _pattern, ex.Message, At, _fileName ), properties.WebUrl );
       }
       finally
       {
         this.EventFiringEnabled = true;
       }
       base.ItemAdded( properties );
+    }
+    private static string GetFileName( SPItemEventProperties properties )
+    {
+      return properties.ListItem == null || properties.ListItem.File == null ? "-- No File --" : properties.ListItem.File.Name;
     }
     private const string m_Title = "SKU Message Import";
   }
