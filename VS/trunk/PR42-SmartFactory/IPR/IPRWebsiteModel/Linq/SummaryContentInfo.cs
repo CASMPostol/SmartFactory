@@ -102,22 +102,22 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         Dictionary<string, Material> _parentsMaterials = parent.Material.ToDictionary<Material, string>( x => x.GetKey() );
         foreach ( Material _materialX in _copyThis )
         {
-          progressChanged( this, new ProgressChangedEventArgs( 1, "DisposalsAnalisis" ) );
+          progressChanged( this, new ProgressChangedEventArgs( 1, "ProcessMaterials: DisposalsAnalisis" ) );
           Material _material = _materialX.ReplaceByExistingOne( _oldMaterialList, _newMaterialList, _parentsMaterials, parent );
-          progressChanged( this, new ProgressChangedEventArgs( 1, "CalculateCompensationComponents" ) );
+          progressChanged( this, new ProgressChangedEventArgs( 1, "ProcessMaterials: CalculateCompensationComponents" ) );
           if ( !_materialX.IsTobacco )
             continue;
           _material.CalculateCompensationComponents( entities, materialRatios, overusageCoefficient );
           progressChanged( this, new ProgressChangedEventArgs( 1, "if ( _material.ProductType.Value" ) );
           if ( _material.ProductType.Value == ProductType.IPRTobacco )
           {
-            progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
+            progressChanged( this, new ProgressChangedEventArgs( 1, "ProcessMaterials: AccumulatedDisposalsAnalisis" ) );
             AccumulatedDisposalsAnalisis.Accumutate( _material );
           }
         }
         if ( _newMaterialList.Count > 0 )
         {
-          progressChanged( this, new ProgressChangedEventArgs( 1, "InsertAllOnSubmit" ) );
+          progressChanged( this, new ProgressChangedEventArgs( 1, "ProcessMaterials: InsertAllOnSubmit" ) );
           entities.Material.InsertAllOnSubmit( _newMaterialList );
         }
         foreach ( Material _omx in _oldMaterialList )
@@ -156,16 +156,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       if ( Product.ProductType != ProductType.Cigarette )
         return;
-      Dictionary<string, decimal> _materials = ( from _mx in disposals
-                                                 select new { batchId = _mx.Disposal2BatchIndex.Batch0, quantity = _mx.SettledQuantityDec } ).ToDictionary( k => k.batchId, v => v.quantity );
+      Dictionary<string, IGrouping<string, Disposal>> _materials = ( from _mx in disposals.ToList<Disposal>()
+                                                                     group _mx by _mx.Disposal2BatchIndex.Batch0 ).ToDictionary<IGrouping<string, Disposal>, string>( k => k.Key );
       foreach ( Material _qutty in this.Values )
       {
         if ( _qutty.ProductType.Value != Linq.ProductType.IPRTobacco )
           continue;
         decimal _disposed = 0;
-        _materials.TryGetValue( _qutty.Batch, out _disposed );
+        if ( _materials.ContainsKey( _qutty.Batch ) )
+          _disposed = _materials[ _qutty.Batch ].ToList<Disposal>().Sum<Disposal>(x => x.SettledQuantityDec);
         decimal _diff = _qutty.Accounts2Dispose.Sum<IPR>( a => a.TobaccoNotAllocatedDec ) + _disposed - _qutty.TobaccoQuantityDec;
-        if ( _diff < -Settings.MinimalOveruse ) 
+        if ( _diff < -Settings.MinimalOveruse )
         {
           string _mssg = "Cannot find any IPR account to dispose the quantity {3}: Tobacco batch: {0}, fg batch: {1}, quantity to dispose: {2} kg";
           _validationErrors.Add( new Warnning( String.Format( _mssg, _qutty.Batch, Product.Batch, _qutty.TobaccoQuantityDec, -_diff ), true ) );

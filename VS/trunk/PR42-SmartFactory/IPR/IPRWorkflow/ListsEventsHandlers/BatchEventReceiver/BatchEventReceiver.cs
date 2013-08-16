@@ -18,6 +18,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
   /// </summary>
   public class BatchEventReceiver: SPItemEventReceiver
   {
+
     #region public
     /// <summary>
     /// An item was added.
@@ -36,25 +37,15 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           //throw new IPRDataConsistencyException(m_Title, "Wrong library name", null, "Wrong library name");
         }
         this.EventFiringEnabled = false;
-        ErrorsList _warnings = new ErrorsList();
         using ( Entities _edc = new Entities( _properties.WebUrl ) )
         {
           BatchLib _entry = _entry = Element.GetAtIndex<BatchLib>( _edc.BatchLibrary, _properties.ListItemId );
           At = "ImportBatchFromXml";
           BatchXml _xml = default( BatchXml );
           using ( Stream _stream = _properties.ListItem.File.OpenBinaryStream() )
-            _xml = ImportBatchFromXml( _edc, _stream, _properties.ListItem.File.Name, ( object obj, ProgressChangedEventArgs progres ) =>
-                                                                                                                                          {
-                                                                                                                                            if ( progres.UserState is String )
-                                                                                                                                              At = (string)progres.UserState;
-                                                                                                                                            else if ( progres.UserState is Warnning )
-                                                                                                                                              _warnings.Add( progres.UserState as Warnning );
-                                                                                                                                            else
-                                                                                                                                              throw new ArgumentException( "Wrong state reported", "UserState" );
-                                                                                                                                          }
-                                      );
+            _xml = ImportBatchFromXml( _edc, _stream, _properties.ListItem.File.Name, ProgressChange );
           At = "Getting Data";
-          GetXmlContent( _xml, _edc, _entry, ( object obj, ProgressChangedEventArgs progres ) => { At = (string)progres.UserState; } );
+          GetXmlContent( _xml, _edc, _entry, ProgressChange );
           At = "ListItem assign";
           _entry.BatchLibraryOK = true;
           _entry.BatchLibraryComments = "Batch message import succeeded.";
@@ -126,6 +117,15 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     #endregion
 
     #region private
+    private void ProgressChange( object sender, ProgressChangedEventArgs progres )
+    {
+      if ( progres.UserState is String )
+        At = (string)progres.UserState;
+      else if ( progres.UserState is Warnning )
+        _warnings.Add( progres.UserState as Warnning );
+      else
+        throw new ArgumentException( "Wrong state reported", "UserState" );
+    }
     /// <summary>
     /// Gets the content of the XML.
     /// </summary>
@@ -211,6 +211,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           throw new InputDataValidationException( "Unrecognized finished good", "Product", "Wrong Batch XML message", true );
       }
     }
+    private ErrorsList _warnings = new ErrorsList();
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
     private string At { get; set; }
