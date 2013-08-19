@@ -190,10 +190,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       decimal _2remove = 0;
       List<Material> _2Add = new List<Material>();
       foreach ( Material _mx in _tobacco )
-      {
         _2remove += _mx.RemoveOveruseIfPossible( _2Add, materialRatios );
-        AccumulatedDisposalsAnalisis.Accumutate( _mx );
-      }
       if ( _2Add.Count == 0 )
         _2Add.Add( _tobacco.Max<Material, Material>( x => x ) );
       decimal _AddingCff = _2remove / _2Add.Sum<Material>( x => x.TobaccoQuantityDec );
