@@ -155,7 +155,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( Product.ProductType != ProductType.Cigarette )
         return;
       Dictionary<string, IGrouping<string, Disposal>> _disposalGroups = ( from _mx in disposals.ToList<Disposal>()
-                                                                          group _mx by _mx.Disposal2BatchIndex.Batch0 ).ToDictionary<IGrouping<string, Disposal>, string>( k => k.Key );
+                                                                          group _mx by _mx.Disposal2IPRIndex.Batch ).ToDictionary<IGrouping<string, Disposal>, string>( k => k.Key );
       Dictionary<string, decimal> _materials = new Dictionary<string, decimal>();
       foreach ( IGrouping<string, Disposal> _groupX in _disposalGroups.Values )
         _materials.Add( _groupX.Key, _groupX.Sum<Disposal>( x => x.SettledQuantityDec ) );
