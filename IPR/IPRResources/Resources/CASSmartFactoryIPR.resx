@@ -780,4 +780,7 @@
   <data name="CAS_JSOXReportID" xml:space="preserve">
     <value>JSOX Report ID</value>
   </data>
+  <data name="CAS_SadConsignmentNo" xml:space="preserve">
+    <value>SAD consignment no.</value>
+  </data>
 </root>
