@@ -156,20 +156,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       if ( Product.ProductType != ProductType.Cigarette )
         return;
-      Dictionary<string, IGrouping<string, Disposal>> _materials = ( from _mx in disposals.ToList<Disposal>()
-                                                                     group _mx by _mx.Disposal2BatchIndex.Batch0 ).ToDictionary<IGrouping<string, Disposal>, string>( k => k.Key );
-      foreach ( Material _qutty in this.Values )
+      Dictionary<string, IGrouping<string, Disposal>> _disposalGroups = ( from _mx in disposals.ToList<Disposal>()
+                                                                          group _mx by _mx.Disposal2BatchIndex.Batch0 ).ToDictionary<IGrouping<string, Disposal>, string>( k => k.Key );
+      Dictionary<string, decimal> _materials = new Dictionary<string, decimal>();
+      foreach ( IGrouping<string, Disposal> _groupX in _disposalGroups.Values )
+        _materials.Add( _groupX.Key, _groupX.Sum<Disposal>( x => x.SettledQuantityDec ) );
+      foreach ( Material _materialX in this.Values )
       {
-        if ( _qutty.ProductType.Value != Linq.ProductType.IPRTobacco )
+        if ( _materialX.ProductType.Value != Linq.ProductType.IPRTobacco )
           continue;
         decimal _disposed = 0;
-        if ( _materials.ContainsKey( _qutty.Batch ) )
-          _disposed = _materials[ _qutty.Batch ].ToList<Disposal>().Sum<Disposal>(x => x.SettledQuantityDec);
-        decimal _diff = _qutty.Accounts2Dispose.Sum<IPR>( a => a.TobaccoNotAllocatedDec ) + _disposed - _qutty.TobaccoQuantityDec;
+        if ( _materials.ContainsKey( _materialX.Batch ) )
+          _disposed = _materials[ _materialX.Batch ];
+        decimal _diff = _materialX.Accounts2Dispose.Sum<IPR>( a => a.TobaccoNotAllocatedDec ) + _disposed - _materialX.TobaccoQuantityDec;
         if ( _diff < -Settings.MinimalOveruse )
         {
           string _mssg = "Cannot find any IPR account to dispose the quantity {3}: Tobacco batch: {0}, fg batch: {1}, quantity to dispose: {2} kg";
-          _validationErrors.Add( new Warnning( String.Format( _mssg, _qutty.Batch, Product.Batch, _qutty.TobaccoQuantityDec, -_diff ), true ) );
+          _validationErrors.Add( new Warnning( String.Format( _mssg, _materialX.Batch, Product.Batch, _materialX.TobaccoQuantityDec, -_diff ), true ) );
         }
       }
       if ( _validationErrors.Count > 0 )
