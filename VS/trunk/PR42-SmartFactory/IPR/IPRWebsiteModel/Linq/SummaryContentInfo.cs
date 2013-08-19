@@ -50,6 +50,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       internal void Accumutate( Material material )
       {
+        if ( material.ProductType.Value != ProductType.IPRTobacco )
+          return;
         foreach ( Linq.DisposalEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
         {
           if ( _item == DisposalEnum.Tobacco || _item == DisposalEnum.Cartons )
@@ -108,12 +110,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           if ( !_materialX.IsTobacco )
             continue;
           _material.CalculateCompensationComponents( entities, materialRatios, overusageCoefficient );
-          progressChanged( this, new ProgressChangedEventArgs( 1, "if ( _material.ProductType.Value" ) );
-          if ( _material.ProductType.Value == ProductType.IPRTobacco )
-          {
-            progressChanged( this, new ProgressChangedEventArgs( 1, "ProcessMaterials: AccumulatedDisposalsAnalisis" ) );
-            AccumulatedDisposalsAnalisis.Accumutate( _material );
-          }
+          progressChanged( this, new ProgressChangedEventArgs( 1, "ProcessMaterials: AccumulatedDisposalsAnalisis" ) );
+          AccumulatedDisposalsAnalisis.Accumutate( _material );
         }
         if ( _newMaterialList.Count > 0 )
         {
@@ -187,16 +185,22 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void AdjustOveruse( Material.Ratios materialRatios )
     {
+      AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
       List<Material> _tobacco = this.Values.Where<Material>( x => x.ProductType.Value == ProductType.IPRTobacco ).ToList<Material>();
       decimal _2remove = 0;
       List<Material> _2Add = new List<Material>();
       foreach ( Material _mx in _tobacco )
+      {
         _2remove += _mx.RemoveOveruseIfPossible( _2Add, materialRatios );
+        AccumulatedDisposalsAnalisis.Accumutate( _mx );
+      }
       if ( _2Add.Count == 0 )
         _2Add.Add( _tobacco.Max<Material, Material>( x => x ) );
       decimal _AddingCff = _2remove / _2Add.Sum<Material>( x => x.TobaccoQuantityDec );
       foreach ( Material _mx in _2Add )
         _mx.IncreaseOveruse( _AddingCff, materialRatios );
+      foreach ( Material _mx in this.Values )
+        AccumulatedDisposalsAnalisis.Accumutate( _mx );
     }
     #endregion
 
