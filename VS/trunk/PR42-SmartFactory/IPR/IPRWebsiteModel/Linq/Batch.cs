@@ -117,18 +117,19 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       };
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessMaterials" ) );
       contentInfo.ProcessMaterials( edc, this, _mr, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
+      if ( this.BatchStatus.Value != Linq.BatchStatus.Progress )
+      {
+        if ( CalculatedOveruse > 0 )
+          contentInfo.AdjustOveruse( _mr );
+        foreach ( InvoiceContent _ix in this.InvoiceContent )
+          _ix.UpdateExportedDisposals( edc );
+        contentInfo.UpdateNotStartedDisposals( edc, this, progressChanged );
+      }
       Dust = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.Dust ] );
       SHMenthol = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.SHMenthol ] );
       Waste = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.Waste ] );
       Tobacco = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.TobaccoInCigaretess ] );
       Overuse = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.OverusageInKg ] );
-      if ( this.BatchStatus.Value == Linq.BatchStatus.Progress )
-        return;
-      if ( CalculatedOveruse > 0 )
-        contentInfo.AdjustOveruse( _mr );
-      foreach ( InvoiceContent _ix in this.InvoiceContent )
-        _ix.UpdateExportedDisposals( edc );
-      contentInfo.UpdateNotStartedDisposals( edc, this, progressChanged );
     }
     internal string DanglingBatchWarningMessage
     {
