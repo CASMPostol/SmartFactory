@@ -111,15 +111,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw new CAS.SmartFactory.IPR.WebsiteModel.IPRDataConsistencyException( "Material.IncreaseOveruse", "There is not enought tobacco to correct overuse", null, "Operation has benn aborted" );
       CalculateCompensationComponents( ratios, material );
     }
-    internal void AdjustTobaccoQuantity( ref decimal totalQuantity, System.ComponentModel.ProgressChangedEventHandler progressChanged )
+    internal void AdjustTobaccoQuantity( ref decimal totalQuantity, ProgressChangedEventHandler progressChanged )
     {
       if ( Accounts2Dispose.Count != 1 || Math.Abs( Accounts2Dispose[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) > Convert.ToDouble( Settings.MinimalOveruse ) )
         return;
       totalQuantity += Accounts2Dispose[ 0 ].TobaccoNotAllocatedDec - TobaccoQuantityDec;
       this.TobaccoQuantity = Accounts2Dispose[ 0 ].TobaccoNotAllocated;
       string _tmpl = "Adjusted TobaccoQuantity of material: batch {0} IPR: {1}";
-      Warnning _wrning = new Warnning( String.Format( _tmpl, this.Batch, Accounts2Dispose[ 0 ].DocumentNo ), false );
-      progressChanged( this, new ProgressChangedEventArgs( 1, _wrning ) );
+      Warnning _warnning = new Warnning( String.Format( _tmpl, this.Batch, Accounts2Dispose[ 0 ].DocumentNo ), false );
+      progressChanged( this, new ProgressChangedEventArgs( 1, _warnning ) );
     }
     /// <summary>
     /// Gets the <see cref="System.Decimal" /> at the specified index.
@@ -360,6 +360,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       foreach ( IPR _iprx in this.Accounts2Dispose )
       {
+        if ( _iprx.TobaccoNotAllocated <= 0 )
+          continue;
         _iprx.AddDisposal( edc, _kind, ref _toDispose, this );
         if ( _toDispose <= 0 )
           return;
@@ -369,6 +371,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       foreach ( IPR _iprx in this.Accounts2Dispose )
       {
+        if ( _iprx.TobaccoNotAllocated <= 0 )
+          continue;
         _iprx.AddDisposal( edc, _kind, ref _toDispose, this, invoiceContent );
         if ( _toDispose <= 0 )
           break;
