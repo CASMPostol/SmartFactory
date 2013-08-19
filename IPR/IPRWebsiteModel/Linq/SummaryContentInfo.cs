@@ -178,7 +178,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void AdjustMaterialQuantity( bool finalBatch, ProgressChangedEventHandler progressChanged )
     {
-      if ( this.Product.ProductType.Value != ProductType.IPRTobacco || !finalBatch )
+      if ( this.Product.ProductType.Value != ProductType.Cigarette || !finalBatch )
         return;
       foreach ( Material _mx in this.Values )
         _mx.AdjustTobaccoQuantity( ref myTotalTobacco, progressChanged );
