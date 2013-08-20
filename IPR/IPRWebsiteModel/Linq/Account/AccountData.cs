@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using CAS.SharePoint;
 using CAS.SmartFactory.Customs;
@@ -35,45 +36,27 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     /// <param name="edc">The <see cref="Entities" /> object.</param>
     /// <param name="clearence">The clearence.</param>
     /// <param name="messageType">Type of the customs message.</param>
-    /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.IPRDataConsistencyException"></exception>
-    /// <exception cref="IPRDataConsistencyException">There is not attached any consent document with code = 1PG1/C601</exception>
-    /// <exception cref="InputDataValidationException">Syntax errors in the good description.</exception>
-    public virtual void GetAccountData( Entities edc, Clearence clearence, MessageType messageType )
+    /// <param name="ProgressChange">The progress change.</param>
+    public virtual void GetAccountData( Entities edc, Clearence clearence, MessageType messageType, ProgressChangedEventHandler ProgressChange )
     {
-      string _at = "starting";
-      try
-      {
-        this.ClearenceLookup = clearence.Id.Value;
-        DocumentNo = clearence.DocumentNo;
-        DateTime _customsDebtDate = clearence.Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value;
-        this.CustomsDebtDate = _customsDebtDate;
-        AnalizeGood( clearence.Clearence2SadGoodID, messageType );
-        _at = "Invoice";
-        this.Invoice = ( from _dx in clearence.Clearence2SadGoodID.SADRequiredDocuments
-                         let CustomsProcedureCode = _dx.Code.ToUpper()
-                         where CustomsProcedureCode.Contains( "N380" ) || CustomsProcedureCode.Contains( "N935" )
-                         select new { Number = _dx.Number }
-                        ).First().Number;
-        _at = "FindConsentRecord";
-        FindConsentRecord( edc, clearence.Clearence2SadGoodID.SADRequiredDocuments, _customsDebtDate );
-        _at = "AnalizeGoodsDescription";
-        AnalizeGoodsDescription( edc, clearence.Clearence2SadGoodID.GoodsDescription ); //TODO to IPR
-        _at = "PCN lookup filed";
-        PCNTariffCodeLookup = PCNCode.AddOrGet( edc, clearence.Clearence2SadGoodID.PCNTariffCode, TobaccoName ).Id.Value;
-      }
-      catch ( InputDataValidationException )
-      {
-        throw;
-      }
-      catch ( IPRDataConsistencyException )
-      {
-        throw;
-      }
-      catch ( Exception _ex )
-      {
-        string _src = String.Format( "AccountData.GetAccountData unexpected error at {0}", _at );
-        throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
-      }
+      ProgressChange( this, new ProgressChangedEventArgs( 1, "AccountData.GetAccountData.starting" ) );
+      this.ClearenceLookup = clearence.Id.Value;
+      DocumentNo = clearence.DocumentNo;
+      DateTime _customsDebtDate = clearence.Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value;
+      this.CustomsDebtDate = _customsDebtDate;
+      AnalizeGood( clearence.Clearence2SadGoodID, messageType );
+      ProgressChange( this, new ProgressChangedEventArgs( 1, "AccountData.GetAccountData.Invoice" ) );
+      this.Invoice = ( from _dx in clearence.Clearence2SadGoodID.SADRequiredDocuments
+                       let CustomsProcedureCode = _dx.Code.ToUpper()
+                       where CustomsProcedureCode.Contains( "N380" ) || CustomsProcedureCode.Contains( "N935" )
+                       select new { Number = _dx.Number }
+                      ).First().Number;
+      ProgressChange( this, new ProgressChangedEventArgs( 1, "AccountData.GetAccountData.FindConsentRecord" ) );
+      FindConsentRecord( edc, clearence.Clearence2SadGoodID.SADRequiredDocuments, _customsDebtDate, ProgressChange );
+      ProgressChange( this, new ProgressChangedEventArgs( 1, "AccountData.GetAccountData.AnalizeGoodsDescription" ) );
+      AnalizeGoodsDescription( edc, clearence.Clearence2SadGoodID.GoodsDescription ); //TODO to IPR
+      ProgressChange( this, new ProgressChangedEventArgs( 1, "AccountData.GetAccountData.PCNTariffCodeLookup" ) );
+      PCNTariffCodeLookup = PCNCode.AddOrGet( edc, clearence.Clearence2SadGoodID.PCNTariffCode, TobaccoName ).Id.Value;
     }
     /// <summary>
     /// Calls the remote service.
@@ -95,38 +78,25 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     /// </summary>
     /// <param name="good">The good.</param>
     /// <param name="messageType">Type of the _message.</param>
-    /// <exception cref="IPRDataConsistencyException"></exception>
     protected internal virtual void AnalizeGood( SADGood good, MessageType messageType )
     {
-      string _at = "Started";
-      try
+      SADDocumentType _document = good.SADDocumentIndex;
+      switch ( messageType )
       {
-        _at = "GrossMass";
-        SADDocumentType _document = good.SADDocumentIndex;
-        switch ( messageType )
-        {
-          case MessageType.PZC:
-            GrossMass = _document.GrossMass.HasValue ? _document.GrossMass.Value : good.GrossMass.Value;
-            break;
-          case MessageType.SAD:
-            GrossMass = good.GrossMass.HasValue ? good.GrossMass.Value : _document.GrossMass.Value;
-            break;
-        }
-        _at = "SADQuantity";
-        GetNetMass( good );
+        case MessageType.PZC:
+          GrossMass = _document.GrossMass.HasValue ? _document.GrossMass.Value : good.GrossMass.Value;
+          break;
+        case MessageType.SAD:
+          GrossMass = good.GrossMass.HasValue ? good.GrossMass.Value : _document.GrossMass.Value;
+          break;
       }
-      catch ( Exception _ex )
-      {
-        string _src = String.Format( "AnalizeGood error at {0}", _at );
-        throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
-      }
+      GetNetMass( good );
     }
     /// <summary>
     /// Gets the net mass.
     /// </summary>
     /// <param name="good">The good.</param>
     protected internal abstract void GetNetMass( SADGood good );
-    private const string UnrecognizedName = "-- unrecognized name --";
     /// <summary>
     /// Analizes the goods description.
     /// </summary>
@@ -149,8 +119,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         throw new InputDataValidationException( "Syntax errors in the good description.", "AnalizeGoodsDescription", _el );
       }
     }
-    private void FindConsentRecord( Entities edc, EntitySet<SADRequiredDocuments> sadRequiredDocumentsEntitySet, DateTime customsDebtDate )
+    private void FindConsentRecord( Entities edc, EntitySet<SADRequiredDocuments> sadRequiredDocumentsEntitySet, DateTime customsDebtDate, ProgressChangedEventHandler ProgressChange )
     {
+      ProgressChange( this, new ProgressChangedEventArgs( 1, "AccountData.FindConsentRecord" ) );
       SADRequiredDocuments _rd = ( from _dx in sadRequiredDocumentsEntitySet
                                    let CustomsProcedureCode = _dx.Code.ToUpper()
                                    where CustomsProcedureCode.Contains( GlobalDefinitions.CustomsProcedureCodeC600 ) ||
@@ -161,24 +132,24 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
       Linq.Consent _cnst = null;
       if ( _rd == null )
       {
-        m_Warnings.Add( new Customs.Warnning( "There is not attached any consent document with code = C600/C601/1PG1", false ) );
-        _cnst = CreateDefaultConsent( edc, String.Empty.NotAvailable() );
+        ProgressChange( this, new ProgressChangedEventArgs( 1, new Customs.Warnning( "There is not attached any consent document with code = C600/C601/1PG1", false ) ) );
+        _cnst = CreateDefaultConsent( edc, String.Empty.NotAvailable(), ProgressChange );
       }
       else
       {
         string _nr = _rd.Number.Trim();
         _cnst = Consent.Find( edc, _nr );
         if ( _cnst == null )
-          _cnst = CreateDefaultConsent( edc, _nr );
+          _cnst = CreateDefaultConsent( edc, _nr, ProgressChange );
         this.ConsentLookup = _cnst.Id.Value;
       }
       this.SetValidToDate( customsDebtDate, _cnst );
     }
-    private Linq.Consent CreateDefaultConsent( Entities edc, string _nr )
+    private Linq.Consent CreateDefaultConsent( Entities edc, string _nr, ProgressChangedEventHandler ProgressChange )
     {
       Linq.Consent _ret = Consent.DefaultConsent( edc, GetCustomsProcess( Process ), _nr );
-      string _msg = "Cannot find consent document with number: {0}. The Consent period is {1} months";
-      m_Warnings.Add( new Customs.Warnning( String.Format( _msg, _nr, _ret.ConsentPeriod ), false ) );
+      string _msg = "Created default consent document with number: {0}. The Consent period is {1} months";
+      ProgressChange( this, new ProgressChangedEventArgs( 1, new Customs.Warnning( String.Format( _msg, _nr, _ret.ConsentPeriod ), false ) ) );
       return _ret;
     }
     private static Consent.CustomsProcess GetCustomsProcess( CustomsProcess process )

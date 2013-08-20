@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// Adds the specified warnnings.
     /// </summary>
     /// <param name="warnnings">The warnnings.</param>
-    public void Add( List<Warnning> warnnings )
+    public new void AddRange( IEnumerable<Warnning> warnnings )
     {
       foreach ( Warnning _item in warnnings )
         this.Add( _item );

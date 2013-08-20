@@ -84,9 +84,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     {
       if ( m_Errors.Count == 0 )
         return;
-      //try
-      //{
-      //TODO Write to the global log 
       using ( Entities _edc = new Entities( url ) )
       {
         string _title = "Input Data Validation Errors";

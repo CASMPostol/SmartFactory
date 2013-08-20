@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using CAS.SharePoint;
 using CAS.SharePoint.Web;
@@ -26,7 +27,7 @@ namespace CAS.SmartFactory.IPR.Customs
     /// </param>
     public override void ItemAdded( SPItemEventProperties properties )
     {
-      string _at = "beginning";
+      At = "beginning";
       if ( !properties.ListTitle.Contains( CommonDefinition.SADDocumentLibrary ) )
       {
         //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
@@ -51,24 +52,20 @@ namespace CAS.SmartFactory.IPR.Customs
           CustomsDocument _message = null;
           using ( Stream _str = properties.ListItem.File.OpenBinaryStream() )
             _message = CustomsDocument.ImportDocument( _str );
-          int _sad;
+          int _sadIDValue;
           using ( Entities edc = new Entities( properties.WebUrl ) )
           {
-            _at = "GetAtIndex<SADDocumentLib>";
-            SADDocumentLib entry = Element.GetAtIndex<SADDocumentLib>( edc.SADDocumentLibrary, properties.ListItem.ID );
-            _at = "GetSADDocument";
-            SADDocumentType _sadEntity = GetSADDocument( _message, edc, entry );
-            _at = "SubmitChanges";
+            At = "GetAtIndex<SADDocumentLib>";
+            SADDocumentLib _SADLibEntry = Element.GetAtIndex<SADDocumentLib>( edc.SADDocumentLibrary, properties.ListItem.ID );
+            At = "GetSADDocument";
+            SADDocumentType _SADEntity = GetSADDocument( _message, edc, _SADLibEntry );
+            At = "SubmitChanges";
             edc.SubmitChanges();
-            _sad = _sadEntity.Id.Value;
+            _sadIDValue = _SADEntity.Id.Value;
           }
-          _at = "DeclarationProcessing";
+          At = "DeclarationProcessing";
           _entrySADDocumentLibraryComments = "OK";
-          List<Warnning> warnings = new List<Warnning>();
-          ClearenceHelpers.DeclarationProcessing( properties.WebUrl, _sad, _message.MessageRootName(), ref _entrySADDocumentLibraryComments );
-          _at = "WriteEntry";
-          ActivityLogCT.WriteEntry( m_Title, String.Format( "Import of the SAD declaration {0} finished.", properties.ListItem.File.Name ), properties.WebUrl );
-          _entrySADDocumentLibraryOK = true;
+          ClearenceHelpers.DeclarationProcessing( properties.WebUrl, _sadIDValue, _message.MessageRootName(), ref _entrySADDocumentLibraryComments, ProgressChange );
         }
         catch ( InputDataValidationException idve )
         {
@@ -80,13 +77,13 @@ namespace CAS.SmartFactory.IPR.Customs
           if ( ex is CustomsDataException )
           {
             _pattern = "XML import error at {0}.";
-            _at = ( (CustomsDataException)ex ).Source;
+            At = ( (CustomsDataException)ex ).Source;
           }
           else if ( ex is IPRDataConsistencyException )
           {
             IPRDataConsistencyException _iprex = ex as IPRDataConsistencyException;
             _pattern = "SAD analyses error at {0}.";
-            _at = _iprex.Source;
+            At = _iprex.Source;
           }
           else if ( ex is GenericStateMachineEngine.ActionResult )
           {
@@ -95,14 +92,14 @@ namespace CAS.SmartFactory.IPR.Customs
               _pattern = "SAD content validation error at {0}.";
             else
               _pattern = "SAD analyses internal error at {0}.";
-            _at = _ar.Source;
+            At = _ar.Source;
           }
           else
             _pattern = "ItemAdded error at {0}.";
           string _innerMsg = String.Empty;
           if ( ex.InnerException != null )
             _innerMsg = String.Format( " as the result of {0}.", ex.InnerException.Message );
-          ActivityLogCT.WriteEntry( String.Format( _pattern, _at ), String.Format( "Message= {0}; Inner: {1}", ex.Message, _innerMsg ), properties.WebUrl );
+          ActivityLogCT.WriteEntry( String.Format( _pattern, At ), String.Format( "Message= {0}; Inner: {1}", ex.Message, _innerMsg ), properties.WebUrl );
         }
         try
         {
@@ -111,6 +108,11 @@ namespace CAS.SmartFactory.IPR.Customs
             SADDocumentLib _entry = Element.GetAtIndex<SADDocumentLib>( edc.SADDocumentLibrary, properties.ListItem.ID );
             _entry.SADDocumentLibraryOK = _entrySADDocumentLibraryOK;
             _entry.SADDocumentLibraryComments = _entrySADDocumentLibraryComments;
+            _entrySADDocumentLibraryOK = true;
+            At = "m_Warnings";
+            foreach ( Warnning _wrnngx in m_Warnings )
+              ActivityLogCT.WriteEntry( edc, m_Title, String.Format( "Import of the batch warnning: {0}", _wrnngx.Message ) );
+            ActivityLogCT.WriteEntry( edc, m_Title, String.Format( "Import of the SAD declaration {0} finished.", properties.ListItem.File.Name ) );
             edc.SubmitChanges();
           }
         }
@@ -126,6 +128,8 @@ namespace CAS.SmartFactory.IPR.Customs
       }
       base.ItemAdded( properties );
     }
+
+    #region private
 
     #region private get xml
     private static SADDocumentType GetSADDocument( CustomsDocument document, Entities edc, SADDocumentLib lookup )
@@ -309,6 +313,19 @@ namespace CAS.SmartFactory.IPR.Customs
       }
     }
     private const string m_Title = "SAD Document Import";
+    #endregion
+
+    private ErrorsList m_Warnings = new ErrorsList();
+    private string At { get; set; }
+    private void ProgressChange( object sender, ProgressChangedEventArgs progres )
+    {
+      if ( progres.UserState is String )
+        At = (string)progres.UserState;
+      else if ( progres.UserState is Warnning )
+        m_Warnings.Add( progres.UserState as Warnning );
+      else
+        throw new ArgumentException( "Wrong state reported", "UserState" );
+    }
     #endregion
 
   }

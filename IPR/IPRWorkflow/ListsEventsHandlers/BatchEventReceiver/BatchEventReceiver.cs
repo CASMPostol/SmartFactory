@@ -51,7 +51,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           _entry.BatchLibraryComments = "Batch message import succeeded.";
           At = "SubmitChanges";
           _edc.SubmitChanges();
-          foreach ( Warnning _wrnngx in _warnings )
+          foreach ( Warnning _wrnngx in m_Warnings )
             ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( "Import of the batch warnning: {0}", _wrnngx.Message ) );
           ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( "Import of the batch {0} message finished", _properties.ListItem.File.Name ) );
         }
@@ -122,7 +122,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       if ( progres.UserState is String )
         At = (string)progres.UserState;
       else if ( progres.UserState is Warnning )
-        _warnings.Add( progres.UserState as Warnning );
+        m_Warnings.Add( progres.UserState as Warnning );
       else
         throw new ArgumentException( "Wrong state reported", "UserState" );
     }
@@ -211,7 +211,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           throw new InputDataValidationException( "Unrecognized finished good", "Product", "Wrong Batch XML message", true );
       }
     }
-    private ErrorsList _warnings = new ErrorsList();
+    private ErrorsList m_Warnings = new ErrorsList();
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
     private string At { get; set; }
