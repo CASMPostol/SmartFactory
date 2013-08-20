@@ -12,8 +12,9 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
+using System.ComponentModel;
 using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
@@ -32,9 +33,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     /// <param name="edc">The <see cref="Entities" /> object.</param>
     /// <param name="clearence">The clearence.</param>
     /// <param name="messageType">Type of the customs message.</param>
-    public override void GetAccountData( Entities edc, Clearence clearence, Customs.Account.CommonAccountData.MessageType messageType )
+    /// <param name="ProgressChange">Represents the method that will handle an event.
+    /// </param>
+    public override void GetAccountData( Entities edc, Clearence clearence, Customs.Account.CommonAccountData.MessageType messageType, ProgressChangedEventHandler ProgressChange )
     {
-      base.GetAccountData( edc, clearence, messageType );
+      base.GetAccountData( edc, clearence, messageType, ProgressChange );
       Value = clearence.Clearence2SadGoodID.TotalAmountInvoiced.GetValueOrDefault( 0 );
       UnitPrice = Value / NetMass;
       AnalizeDutyAndVAT( clearence.Clearence2SadGoodID );
