@@ -196,34 +196,34 @@
         Suma tytoni z zawieszeń i nie z zawieszeń: <xsl:value-of select="format-number(cas:TobaccoTotal, $FoarmatOfFloat, 'pl')"/> kg.
       </p>
       <h4>Opis procesu technologicznego:</h4>
-      <p>W trakcie procesu technologicznego tytoń jest poddany obróbce w linii przerobu tytoni w JTI Polska Sp. z o.o., Zakład w Gostkowie wg szczegółowej instrukcji technologicznej ustalonej z odbiorcą:</p>
+      <p>W trakcie procesu technologicznego tytoń i żyły tytoniowe są poddane obróbce na linii przerobu tytoniu COMAS-GARBUIO w JTI Polska Sp. z o.o. w Wartkowicach, Zakład w Gostkowie Starym wg następującej instrukcji technologicznej:</p>
       <ol>
-        <li>Rozlistkowanie tytoni</li>
-        <li>Kondycjonowanie</li>
-        <li>Składowanie</li>
-        <li>Krojenie tytoni</li>
-        <li>Suszenie</li>
-        <li>Odbiór krajanki w opakowania</li>
+        <li>Rozlistkowanie tytoniu.</li>
+        <li>Dozowanie dodatków tytoniowych i kondycjonowanie.</li>
+        <li>Składowanie.</li>
+        <li>Krojenie.</li>
+        <li>Suszenie.</li>
+        <li>Dozowanie dodatków tytoniowych.</li>
+        <li>Aromatyzowanie i składowanie.</li>
+        <li>Pakowanie.</li>
+        <li>Przekazanie do produkcji papierosów.</li>
       </ol>
       <h3>
-        2. Wykonanie i spakowanie papierosów za użytkiem materiałów nie objętych procedurą uszlachetniania czynnego.
+        2. Wykonanie i spakowanie papierosów z użyciem materiałów nie objętych procedurą uszlachetniania czynnego. 
       </h3>
-      <p>Z krajanki tytoniowej wymienionej w pkt. 1 oraz innych materiałów uformowany zostaje papieros oraz spakowany w opakowanie jednostkowe i zbiorcze na maszynach znajdujących się w JTI Polska Sp. z o.o., Zakład w Gostkowie.</p>
+      <p>Z krajanki papierosowej wymienionej w pkt. 1 oraz innych materiałów nietytoniowych uformowane zostają papierosy, potem spakowane w opakowania jednostkowe i zbiorcze na maszynach znajdujących się w JTI Polska Sp. z o.o. Zakład w Gostkowie Starym.</p>
       <h2>II.	Określenia parametrów wagowych obrabianego materiału</h2>
       <ol>
         <li>
-          Z wymienionego w pkt.1 materiału wsadowego poddanego obróbce w linii technologicznej uzyskuje się krajankę tytoniową o współczynniku produktywności
-          <xsl:value-of select="format-number(cas:CTFUsageMin, $FoarmatOfFloat, 'pl')"/>%-<xsl:value-of select="format-number(cas:CTFUsageMax, $FoarmatOfFloat, 'pl')"/>%
-          tzn. z 1000 kg tytoniu uzyskuje się
-          <xsl:value-of select="format-number(cas:CTFUsagePerUnitMin * 1000, $FoarmatOfFloat, 'pl')"/>-
-          <xsl:value-of select="format-number(cas:CTFUsagePerUnitMax * 1000, $FoarmatOfFloat, 'pl')"/> kg (krajanki tytoniowej)
-        </li>
-        <li>
-          Na 1 mln. szt. gotowych papierosów zużywa się w trakcie procesu produkcyjnego
-          <xsl:value-of select="format-number(cas:CTFUsagePer1MFinishedGoodsMin, $FoarmatOfFloat, 'pl')"/>-
-          <xsl:value-of select="format-number(cas:CTFUsagePer1MFinishedGoodsMax, $FoarmatOfFloat, 'pl')"/> kg krajanki tytoniowej.
-        </li>
-        <li>
+          Na 1 mln. szt. papierosów format <xsl:value-of select="cas:ProductFormat"/> zużywa się w trakcie procesu produkcyjnego <xsl:value-of select="format-number(cas:CTFUsageMin, $FoarmatOfFloat, 'pl')"/> - <xsl:value-of select="format-number(cas:CTFUsageMax, $FoarmatOfFloat, 'pl')"/>  kg tytoniu. 
+          <br/>
+          Dodatkowo w trakcie procesu technologicznego powstają straty okreslone jako odpady. Skład odpadów:
+          <ul>
+          a.	pył tytoniowy<br/>
+          b.	ścinki żył tytoniowych<br/>
+          c.	pozostały odpad<br/>
+          d.	papierosy aromatyzowane aromatem  mentolowym i owocowym nie spełniajace wymagań jakościowych (odrzut z maszyny).<br/>
+          </ul>
           Dodatkowo przy produkcji 1 mln papierosów powstaje <xsl:value-of select="format-number(cas:WasteCoefficient * 100, $FoarmatOfFloat, 'pl')"/>% odpadów (zużycie tytoniu należy powiększyć o ten współczynnik)
         </li>
       </ol>
