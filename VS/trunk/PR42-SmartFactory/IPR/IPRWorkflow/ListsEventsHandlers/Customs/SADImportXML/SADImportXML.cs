@@ -111,8 +111,11 @@ namespace CAS.SmartFactory.IPR.Customs
             _entrySADDocumentLibraryOK = true;
             At = "m_Warnings";
             foreach ( Warnning _wrnngx in m_Warnings )
-              ActivityLogCT.WriteEntry( edc, m_Title, String.Format( "Import of the batch warnning: {0}", _wrnngx.Message ) );
-            ActivityLogCT.WriteEntry( edc, m_Title, String.Format( "Import of the SAD declaration {0} finished.", properties.ListItem.File.Name ) );
+              ActivityLogCT.WriteEntry( edc, m_Title, String.Format( "Import of the SAD declaration warnning: {0}", _wrnngx.Message ) );
+            if ( m_Warnings.Count == 0 )
+              ActivityLogCT.WriteEntry( edc, m_Title, String.Format( "Import of the SAD declaration {0} finished.", properties.ListItem.File.Name ) );
+            else
+              ActivityLogCT.WriteEntry( edc, m_Title, String.Format( "Import of the SAD declaration {0} finished. {1} warnings have been reported.", properties.ListItem.File.Name, m_Warnings.Count ) );
             edc.SubmitChanges();
           }
         }
