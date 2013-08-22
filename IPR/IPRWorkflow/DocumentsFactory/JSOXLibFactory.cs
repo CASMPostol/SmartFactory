@@ -58,6 +58,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           Quantity = _dspx.SettledQuantityDec,
           Balance = _dspx.RemainingQuantity.Rount2DecimalOrDefault(),
           Procedure = _dspx.CustomsProcedure,
+          SadConsignmentNo = _dspx.SadConsignmentNo
         };
         _ret += _dspx.SettledQuantityDec;
         _dspx.JSOXReportID = parent.Id.Value;
