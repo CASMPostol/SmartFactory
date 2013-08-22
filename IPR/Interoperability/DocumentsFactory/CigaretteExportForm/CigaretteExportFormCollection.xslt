@@ -215,7 +215,7 @@
       <h2>II.	Określenia parametrów wagowych obrabianego materiału</h2>
       <ol>
         <li>
-          Na 1 mln. szt. papierosów format <xsl:value-of select="cas:ProductFormat"/> zużywa się w trakcie procesu produkcyjnego <xsl:value-of select="format-number(cas:CTFUsageMin, $FoarmatOfFloat, 'pl')"/> - <xsl:value-of select="format-number(cas:CTFUsageMax, $FoarmatOfFloat, 'pl')"/>  kg tytoniu. 
+          Na 1 mln. szt. papierosów format <xsl:value-of select="cas:ProductFormat"/> zużywa się w trakcie procesu produkcyjnego <xsl:value-of select="format-number(cas:CTFUsagePer1MFinishedGoodsMin, $FoarmatOfFloat, 'pl')"/> - <xsl:value-of select="format-number(cas:CTFUsagePer1MFinishedGoodsMax, $FoarmatOfFloat, 'pl')"/>  kg tytoniu. 
           <br/>
           Dodatkowo w trakcie procesu technologicznego powstają straty okreslone jako odpady. Skład odpadów:
           <ul>
