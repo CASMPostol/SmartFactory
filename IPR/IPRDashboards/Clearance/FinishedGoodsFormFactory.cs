@@ -15,14 +15,14 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
   internal static class FinishedGoodsFormFactory
   {
     #region public
-    internal static CigaretteExportFormCollection GetFormContent( Entities entities, InvoiceLib invoice, Clearence clearance, string documentName )
+    internal static CigaretteExportFormCollection GetFormContent( Entities entities, InvoiceLib invoice, Clearence clearance, string documentName, int sadConsignmentNumber )
     {
       int _position = 1;
       List<CigaretteExportForm> _consignment = new List<CigaretteExportForm>();
       invoice.ClearenceIndex = clearance;
       invoice.InvoiceLibraryReadOnly = true;
       foreach ( InvoiceContent item in invoice.InvoiceContent )
-        ExportInvoiceEntry( entities, item, _consignment, documentName, ref _position );
+        ExportInvoiceEntry( entities, item, _consignment, documentName, ref _position, sadConsignmentNumber );
       return GetCigaretteExportFormCollection( _consignment, documentName, invoice.BillDoc );
     }
     #endregion
@@ -119,7 +119,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
 
     #region private
     private static void ExportInvoiceEntry
-      ( Entities entities, InvoiceContent invoice, List<CigaretteExportForm> formsList, string documentName, ref int subdocumentNo )
+      ( Entities entities, InvoiceContent invoice, List<CigaretteExportForm> formsList, string documentName, ref int subdocumentNo, int sadConsignmentNumber )
     {
       string _at = "beginning";
       Batch batch = invoice.InvoiceContent2BatchIndex;
@@ -131,7 +131,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         List<Ingredient> _ingredients = new List<Ingredient>();
         _at = "foreach";
         foreach ( Material _materialIdx in batch.Material )
-          ExportMaterial( entities, _materialIdx, _ingredients, _closingBatch, invoice );
+          ExportMaterial( entities, _materialIdx, _ingredients, _closingBatch, invoice, sadConsignmentNumber );
         _at = "_exportConsignment";
         CigaretteExportForm _form = GetCigaretteExportForm( batch, invoice, _ingredients, documentName, ref subdocumentNo, invoice.InvoiceIndex.ClearenceIndex.ClearenceProcedure.Value );
         formsList.Add( _form );
@@ -146,8 +146,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         throw new ApplicationError( "Batch.Export", _at, String.Format( _tmpl, batch.Batch0, _ex.Message ), _ex );
       }
     }
-    private static void ExportMaterial
-      ( Entities entities, Material material, List<Ingredient> formsList, bool closingBatch, InvoiceContent invoiceContent )
+    private static void ExportMaterial( Entities entities, Material material, List<Ingredient> formsList, bool closingBatch, InvoiceContent invoiceContent, int sadConsignmentNumber )
     {
       string _at = "Beginning";
       try
@@ -155,7 +154,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         if ( material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.IPRTobacco )
         {
           List<Disposal> _dspsls = new List<Disposal>();
-          material.Export( entities, closingBatch, invoiceContent, _dspsls );
+          material.Export( entities, closingBatch, invoiceContent, _dspsls, sadConsignmentNumber );
           foreach ( Disposal _dx in _dspsls )
             formsList.Add( GetIPRIngredient( _dx ) );
         }

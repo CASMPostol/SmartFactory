@@ -369,9 +369,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       #endregion
 
     }
-    internal void AddDisposal( Entities edc, DisposalEnum _kind, ref decimal _toDispose, Material material, InvoiceContent invoiceContent )
+    internal void AddDisposal( Entities edc, DisposalEnum kind, ref decimal toDispose, Material material, InvoiceContent invoiceContent )
     {
-      Disposal _dsp = AddDisposal( edc, _kind, ref _toDispose );
+      Disposal _dsp = AddDisposal( edc, kind, ref toDispose );
       _dsp.Material = material;
       _dsp.InvoicEContent = invoiceContent;
       SADGood _sg = invoiceContent.InvoiceIndex.ClearenceIndex.Clearence2SadGoodID;

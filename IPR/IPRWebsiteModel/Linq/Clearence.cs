@@ -96,7 +96,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       SADConsignmentLibraryIndex = sadConsignment;
       foreach ( Disposal _dspsl in Disposal )
-        _dspsl.ClearThroughCustom( this.ClearenceProcedure.Value );
+        _dspsl.ClearThroughCustom( entities, this.ClearenceProcedure.Value, this.SADDocumentNumber );
       UpdateTitle( entities );
     }
     /// <summary>
@@ -126,6 +126,22 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Title = String.Format( _ClearanceTitleFormat, this.ProcedureCode, Entities.ToString( ClearenceProcedure.GetValueOrDefault( Linq.ClearenceProcedure.Invalid ) ),
                              ReferenceNumber.NotAvailable(), _quantity, Id.GetValueOrDefault( -999 ) );
     }
+    /// <summary>
+    /// gets the name of finished good export form file.
+    /// </summary>
+    /// <param name="entities">The entities.</param>
+    /// <returns></returns>
+    public string FinishedGoodsExportFormFileName( Entities entities )
+    {
+      return Settings.FinishedGoodsExportFormFileName( entities, this.Id.Value );
+    }
+    /// <summary>
+    /// Gets the sad document number.
+    /// </summary>
+    /// <value>
+    /// The sad document number.
+    /// </value>
+    public int SADDocumentNumber { get { return this.Id.Value; } }
     #endregion
 
     #region private
@@ -142,6 +158,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return _newClearence;
     }
     #endregion
+
 
   }
 }

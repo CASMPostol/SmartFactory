@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Linq;
 using CAS.SharePoint;
@@ -112,8 +112,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="quantity">The quantity.</param>
     /// <param name="closingBatch">if set to <c>true</c> the batch is to be closed.</param>
     /// <param name="invoiceContent">Content of the invoice.</param>
+    /// <param name="sadConsignmentNumber">The sad consignment number.</param>
     /// <exception cref="ApplicationError">if any internal exception has to be catched.</exception>
-    internal void Export( Entities entities, ref decimal quantity, bool closingBatch, InvoiceContent invoiceContent )
+    internal void Export( Entities entities, ref decimal quantity, bool closingBatch, InvoiceContent invoiceContent, int sadConsignmentNumber )
     {
       string _at = "Startting";
       try
@@ -133,16 +134,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             quantity -= this.SettledQuantityDec;
         _at = "InvoicEContent";
         this.InvoicEContent = invoiceContent;
+        this.SadConsignmentNo = SADConsignment.DocumentNumber( entities, sadConsignmentNumber );
       }
       catch ( Exception _ex )
       {
         throw new ApplicationError( @"CAS.SmartFactory.IPR.WebsiteModel.Linq.Disposal.Export", _at, _ex.Message, _ex );
       }
     }
-    internal void ClearThroughCustom( ClearenceProcedure procedure )
+    internal void ClearThroughCustom( Entities entities, ClearenceProcedure procedure, int sadConsignmentNumber )
     {
       CustomsStatus = Linq.CustomsStatus.Started;
       CustomsProcedure = Entities.ToString( procedure );
+      SadConsignmentNo = SADConsignment.DocumentNumber( entities, sadConsignmentNumber );
     }
     internal void FinishClearingThroughCustoms( Entities edc, SADGood sadGood )
     {
@@ -203,7 +206,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return from _dspx in edc.Disposal
              where ( _dspx.DisposalStatus.Value != Linq.DisposalStatus.Cartons ) &&
                    ( !_dspx.JSOXReportID.HasValue || _dspx.JSOXReportID.Value == parent.Id.Value ) &&
-                   (  _dspx.CustomsStatus.Value == Linq.CustomsStatus.Finished ) 
+                   ( _dspx.CustomsStatus.Value == Linq.CustomsStatus.Finished )
              orderby _dspx.Disposal2IPRIndex.Title
              select _dspx;
     }
