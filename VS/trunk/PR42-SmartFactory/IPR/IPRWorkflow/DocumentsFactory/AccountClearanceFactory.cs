@@ -87,6 +87,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           No = _dx.No.Value,
           ProductCodeNumber = _dx.Disposal2PCNID == null ? String.Empty.NotAvailable() : _dx.Disposal2PCNID.ProductCodeNumber,
           RemainingQuantity = _dx.RemainingQuantity.Value,
+          SadConsignmentNo = _dx.SadConsignmentNo,
           SADDate = _dx.SADDate.Value,
           SADDocumentNo = _dx.SADDocumentNo,
           SettledQuantity = _dx.SettledQuantity.Value,
