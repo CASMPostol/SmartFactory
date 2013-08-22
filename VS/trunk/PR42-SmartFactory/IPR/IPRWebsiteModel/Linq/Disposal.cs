@@ -1,9 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//<summary>
+//  Title   : Disposal Entity partial class.
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Linq;
 using CAS.SharePoint;
 using CAS.SharePoint.Web;
-using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -190,7 +203,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return from _dspx in edc.Disposal
              where ( _dspx.DisposalStatus.Value != Linq.DisposalStatus.Cartons ) &&
                    ( !_dspx.JSOXReportID.HasValue || _dspx.JSOXReportID.Value == parent.Id.Value ) &&
-                   ( ( _dspx.CustomsStatus.Value == Linq.CustomsStatus.Started ) || ( _dspx.CustomsStatus.Value == Linq.CustomsStatus.Finished ) )
+                   (  _dspx.CustomsStatus.Value == Linq.CustomsStatus.Finished ) 
              orderby _dspx.Disposal2IPRIndex.Title
              select _dspx;
     }
@@ -315,5 +328,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
     }
     #endregion
+
   }
 }
