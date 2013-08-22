@@ -5,8 +5,8 @@
 >
   <xsl:output method="html" indent="yes"/>
   <xsl:decimal-format name="pl" decimal-separator=',' grouping-separator='.' />
-  <xsl:variable name="FoarmatOfFloat" >###.##0,00</xsl:variable>
-  <xsl:variable name="FoarmatOfFloatPrices" >###.##0,000</xsl:variable>
+  <xsl:variable name="FoarmatOfFloat" >#####0,00</xsl:variable>
+  <xsl:variable name="FoarmatOfFloatPrices" >#####0,000</xsl:variable>
   <xsl:variable name="FoarmatOfdate" >dd-MM-yyyy</xsl:variable>
   <xsl:template match="/" >
     <html>
