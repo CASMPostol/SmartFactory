@@ -559,7 +559,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       try
       {
         Entities _edc = m_DataContextManagement.DataContext;
-        string _masterDocumentName = CurrentClearence.FinishedGoodsExportFormFileName( _edc ); cc //Settings.FinishedGoodsExportFormFileName( _edc, CurrentClearence.Id.Value );
+        string _masterDocumentName = CurrentClearence.FinishedGoodsExportFormFileName( _edc );
         int _sadConsignmentIdentifier = default( int );
         switch ( ToSelectedGroup( CurrentClearence.ProcedureCode ) )
         {
