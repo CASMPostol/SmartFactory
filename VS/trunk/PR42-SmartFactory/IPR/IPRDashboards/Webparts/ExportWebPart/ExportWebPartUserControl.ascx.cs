@@ -571,8 +571,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       m_ControlState.Invoice.InvoiceLibraryStatus = true;
       Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, "FinishedGoodsExport", ClearenceProcedure._3151 );
-      string _masterDocumentName = Settings.FinishedGoodsExportFormFileName( m_DataContextManagement.DataContext, _newClearance.Id.Value );
-      CigaretteExportFormCollection _cefc = FinishedGoodsFormFactory.GetFormContent( m_DataContextManagement.DataContext, m_ControlState.Invoice, _newClearance, _masterDocumentName );
+      string _masterDocumentName = _newClearance.FinishedGoodsExportFormFileName( m_DataContextManagement.DataContext );
+      CigaretteExportFormCollection _cefc = FinishedGoodsFormFactory.GetFormContent( m_DataContextManagement.DataContext, m_ControlState.Invoice, _newClearance, _masterDocumentName, _newClearance.SADDocumentNumber);
       int _sadConsignmentIdentifier = SPDocumentFactory.Prepare( SPContext.Current.Web, _cefc, _masterDocumentName );
       SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
       _newClearance.SADConsignmentLibraryIndex = _sadConsignment;

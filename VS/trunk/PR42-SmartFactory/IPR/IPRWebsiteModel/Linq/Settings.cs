@@ -48,7 +48,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// The clearance title format
     /// </summary>
-    ClearanceTitleFormat
+    ClearanceTitleFormat,
+    /// <summary>
+    /// The document number format
+    /// </summary>
+    DocumentNumberFormat
   }
   public partial class Settings
   {
@@ -86,6 +90,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return String.Format( GetParameter( edc, SettingsEntry.FinishedGoodsExportFormFileName ), number );
     }
     /// <summary>
+    /// Gets formated string representing the document number.
+    /// </summary>
+    /// <param name="edc">The <see cref="Entities"/>.</param>
+    /// <param name="number">The number.</param>
+    /// <returns></returns>
+    internal static string DocumentNumber( Entities edc, int number )
+    {
+      return String.Format( GetParameter( edc, SettingsEntry.DocumentNumberFormat ), number );
+    }
+    /// <summary>
     /// Requests the name of for account clearence document.
     /// </summary>
     /// <param name="edc">The edc.</param>
@@ -115,18 +129,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
+    private const string c_documentNumberFormat = "{0:D7}";
     private static Dictionary<SettingsEntry, string> m_DefaultSettings = new Dictionary<SettingsEntry, string>()
     {
-       {SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern,  @"(?<=P\w*\b\st\w*\b\s)(\d{7})"},
-       {SettingsEntry.GoodsDescriptionTobaccoNamePattern , @"\b(.*)(?=\sGRADE:)"},
-       {SettingsEntry.GoodsDescriptionWGRADEPattern,  @"(?<=\WGRADE:)\W*\b(\w*)"},
-       {SettingsEntry.GoodsDescriptionSKUPattern,  @"(?<=\WSKU:)\W*\b(\d*)"}, 
-       {SettingsEntry.GoodsDescriptionBatchPattern,  @"(?<=\WBatch:)\W*\b(\d*)"},
-       {SettingsEntry.BatchNumberPattern,   @"\b(000\d{7})"},
-       {SettingsEntry.FinishedGoodsExportFormFileName,   "Proces technologiczny {0:D7}"},
-       {SettingsEntry.RequestForAccountClearenceFormFileName,   "Bilans {0:D7}"},
-       {SettingsEntry.JsoxBalanceReportFormFileName,   "Wniosek o zamknięcie {0:D7}"},
-       {SettingsEntry.ClearanceTitleFormat,   "Nr: {4:D5} {0}/{1} SAD: {2} ilość: {3:F2} kg"}
+       {SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern, @"(?<=P\w*\b\st\w*\b\s)(\d{7})"},
+       {SettingsEntry.GoodsDescriptionTobaccoNamePattern, @"\b(.*)(?=\sGRADE:)"},
+       {SettingsEntry.GoodsDescriptionWGRADEPattern, @"(?<=\WGRADE:)\W*\b(\w*)"},
+       {SettingsEntry.GoodsDescriptionSKUPattern, @"(?<=\WSKU:)\W*\b(\d*)"}, 
+       {SettingsEntry.GoodsDescriptionBatchPattern, @"(?<=\WBatch:)\W*\b(\d*)"},
+       {SettingsEntry.BatchNumberPattern, @"\b(000\d{7})"},
+       {SettingsEntry.FinishedGoodsExportFormFileName, "Proces technologiczny " + c_documentNumberFormat},
+       {SettingsEntry.RequestForAccountClearenceFormFileName, "Bilans " + c_documentNumberFormat},
+       {SettingsEntry.JsoxBalanceReportFormFileName, "Wniosek o zamknięcie " + c_documentNumberFormat},
+       {SettingsEntry.ClearanceTitleFormat, "Nr: {4:D5} {0}/{1} SAD: {2} ilość: {3:F2} kg"},
+       {SettingsEntry.DocumentNumberFormat, c_documentNumberFormat}
     };
     #endregion
 

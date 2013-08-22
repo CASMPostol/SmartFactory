@@ -110,6 +110,7 @@
     <Compile Include="Linq\LinqIPRExtensions.cs" />
     <Compile Include="Linq\Material.cs" />
     <Compile Include="Linq\PCNCode.cs" />
+    <Compile Include="Linq\SADConsignment.cs" />
     <Compile Include="Linq\Settings.cs" />
     <Compile Include="Linq\SHMenthol.cs" />
     <Compile Include="Linq\SKUCigarette.cs" />

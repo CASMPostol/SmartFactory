@@ -216,15 +216,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="closingBatch">if set to <c>true</c> [closing batch].</param>
     /// <param name="invoiceContent">Content of the invoice.</param>
     /// <param name="disposals">The disposals.</param>
+    /// <param name="sadConsignmentNumber">The sad consignment number.</param>
+    /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException">internal error: it is imposible to mark as exported the material;Material export`;false</exception>
     /// <exception cref="CAS">internal error: it is imposible to mark as exported the material;Material export`</exception>
-    public void Export( Entities entities, bool closingBatch, InvoiceContent invoiceContent, List<Disposal> disposals )
+    public void Export( Entities entities, bool closingBatch, InvoiceContent invoiceContent, List<Disposal> disposals, int sadConsignmentNumber )
     {
       decimal _quantity = this.CalculatedQuantity( invoiceContent );
       foreach ( Disposal _disposalX in this.GetListOfDisposals() )
       {
         if ( !closingBatch && _quantity == 0 )
           break;
-        _disposalX.Export( entities, ref _quantity, closingBatch, invoiceContent );
+        _disposalX.Export( entities, ref _quantity, closingBatch, invoiceContent, sadConsignmentNumber );
         disposals.Add( _disposalX );
       }
       if ( closingBatch || _quantity == 0 )
