@@ -113,6 +113,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void AdjustTobaccoQuantity( ref decimal totalQuantity, ProgressChangedEventHandler progressChanged )
     {
+      //TODO Recalculate overuse after adjusting material usage - 1kg http://cassp:11226/sites/awt/Lists/TaskList/DispForm.aspx?ID=3924
       if ( Accounts2Dispose.Count != 1 || Math.Abs( Accounts2Dispose[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) > Convert.ToDouble( Settings.MinimalOveruse ) )
         return;
       totalQuantity += Accounts2Dispose[ 0 ].TobaccoNotAllocatedDec - TobaccoQuantityDec;
