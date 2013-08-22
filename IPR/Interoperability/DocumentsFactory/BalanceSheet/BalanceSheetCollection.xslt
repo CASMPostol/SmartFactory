@@ -5,7 +5,7 @@
 >
   <xsl:output method="html" indent="yes"/>
   <xsl:decimal-format name="pl" decimal-separator=',' grouping-separator='.' />
-  <xsl:variable name="FoarmatOfFloat" >###.##0,00</xsl:variable>
+  <xsl:variable name="FoarmatOfFloat" >#####0,00</xsl:variable>
   <xsl:variable name="FoarmatOfdate" >dd-MM-yyyy</xsl:variable>
   <xsl:variable name="FoarmatOfdateMonthAndYear" >MM/yyyy</xsl:variable>
   <xsl:template match="/" >
@@ -309,7 +309,7 @@
         </tr>
         <tr>
           <td>D</td>
-          <td>Balance (A+B+C)</td>
+          <td>Balance (A+B-C)</td>
           <td>
             [<xsl:value-of select="ms:format-date(cas:BalanceDate, $FoarmatOfdate)"/>]
           </td>
