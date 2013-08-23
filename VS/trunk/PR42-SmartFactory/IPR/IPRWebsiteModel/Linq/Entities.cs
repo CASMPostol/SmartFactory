@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#pragma warning disable 1591
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	using System;
 	
@@ -739,6 +740,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _tobaccoToBeUsedInTheProduction;
 		
+		private System.Nullable<double> _tobaccoStarted;
+		
+		private System.Nullable<bool> _archival;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -1053,6 +1058,34 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 					this.OnPropertyChanging("TobaccoToBeUsedInTheProduction", this._tobaccoToBeUsedInTheProduction);
 					this._tobaccoToBeUsedInTheProduction = value;
 					this.OnPropertyChanged("TobaccoToBeUsedInTheProduction");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TobaccoStarted", Storage="_tobaccoStarted", FieldType="Number")]
+		public System.Nullable<double> TobaccoStarted {
+			get {
+				return this._tobaccoStarted;
+			}
+			set {
+				if ((value != this._tobaccoStarted)) {
+					this.OnPropertyChanging("TobaccoStarted", this._tobaccoStarted);
+					this._tobaccoStarted = value;
+					this.OnPropertyChanged("TobaccoStarted");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -2368,6 +2401,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this._jSOXCustomsSummaryIndex.OnChanged += new System.EventHandler(this.OnJSOXCustomsSummaryIndexChanged);
 			this._jSOXCustomsSummaryIndex.OnChanging += new System.EventHandler(this.OnJSOXCustomsSummaryIndexChanging);
 			this._disposal2BatchIndex = new Microsoft.SharePoint.Linq.EntityRef<Batch>();
+			this._disposal2BatchIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch>>(this.OnDisposal2BatchIndexSync);
 			this._disposal2BatchIndex.OnChanged += new System.EventHandler(this.OnDisposal2BatchIndexChanged);
 			this._disposal2BatchIndex.OnChanging += new System.EventHandler(this.OnDisposal2BatchIndexChanging);
 			this._disposal2IPRIndex = new Microsoft.SharePoint.Linq.EntityRef<IPR>();
@@ -3049,7 +3083,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		private void OnDisposalsDeclaration2BatchIndexChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("DisposalsDeclaration2BatchIndex");
 		}
-		
+
 	}
 	
 	/// <summary>
@@ -8132,3 +8166,4 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		NotEnoughQnt = 4,
 	}
 }
+#pragma warning restore 1591

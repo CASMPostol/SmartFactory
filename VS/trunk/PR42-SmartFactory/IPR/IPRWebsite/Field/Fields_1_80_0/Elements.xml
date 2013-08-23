@@ -22,4 +22,12 @@
     ID="{FB4540E2-A901-42D2-9A0B-F9D5FD5CA5B7}"
     Group="CAS Smart Factory IPR"
     />
+  <Field
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoStarted"
+    Name="TobaccoStarted"
+    Type="Number"
+    Decimals="2"
+    ID="{08D9CFBF-52A6-4755-9B5E-37BBCA95FC30}"
+    Group="CAS Smart Factory IPR"
+    />
 </Elements>
