@@ -783,4 +783,7 @@
   <data name="CAS_SadConsignmentNo" xml:space="preserve">
     <value>Nr SAD consignment</value>
   </data>
+  <data name="CAS_TobaccoStarted" xml:space="preserve">
+    <value>Tytoń w trakcie odprawy</value>
+  </data>
 </root>

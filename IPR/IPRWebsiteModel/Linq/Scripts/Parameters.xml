@@ -463,6 +463,8 @@
     <Column Name="PureTobaccoCSNotStarted" Member="PureTobaccoCSNotStarted" />
     <Column Name="TobaccoUsedInTheProduction" Member="TobaccoUsedInTheProduction" />
     <Column Name="TobaccoToBeUsedInTheProduction" Member="TobaccoToBeUsedInTheProduction" />
+    <Column Name="TobaccoStarted" Member="TobaccoStarted" />
+    <Column Name="Archival" Member="Archival" />
   </ContentType>
   <ContentType Name="BalanceBatch" Class="BalanceBatch">
     <!--<Column Name="ContentType" Member="ContentType" />-->
@@ -495,6 +497,8 @@
     <Column Name="TobaccoInCutfillerWarehouse" Member="TobaccoInCutfillerWarehouse" />
     <Column Name="Balance" Member="Balance" />
     <Column Name="Balance2JSOXLibraryIndex" Member="Balance2JSOXLibraryIndex" />
+    <Column Name="TobaccoStarted" Member="TobaccoStarted" />
+    <Column Name="Archival" Member="Archival" />
   </ContentType>
   <ContentType Name="BalanceIPR" Class="BalanceIPR">
     <!--<Column Name="ContentType" Member="ContentType" />-->
@@ -528,6 +532,8 @@
     <Column Name="BalanceBatchIndex" Member="BalanceBatchIndex" />
     <Column Name="BalanceIPR2JSOXIndex" Member="BalanceIPR2JSOXIndex" />
     <Column Name="IPRIndex" Member="IPRIndex" />
+    <Column Name="TobaccoStarted" Member="TobaccoStarted" />
+    <Column Name="Archival" Member="Archival" />
   </ContentType>
   <ContentType Name="JSOXCustomsSummary" Class="JSOXCustomsSummary">
     <!--<Column Name="ContentType" Member="ContentType" />-->
