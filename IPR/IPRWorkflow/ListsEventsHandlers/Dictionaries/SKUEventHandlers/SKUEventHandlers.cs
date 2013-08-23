@@ -55,7 +55,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
       {
         string _pattern = @"SKU message {2} import has been stoped because of an unexpected fatal error <b>{0}</b> at: <b>{1}</b>";
         string _fileName = GetFileName( properties );
-        ActivityLogCT.WriteEntry( String.Format( _pattern, ex.Message, At, _fileName ), properties.WebUrl );
+        ActivityLogCT.WriteEntry( m_Title, String.Format( _pattern, ex.Message, At, _fileName ), properties.WebUrl );
       }
       finally
       {
