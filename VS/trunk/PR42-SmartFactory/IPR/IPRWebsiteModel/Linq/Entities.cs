@@ -1753,7 +1753,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private void OnBatchLibraryIndexChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("BatchLibraryIndex");
-		}
+		}		
 		
 		private void OnSKUIndexChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("SKUIndex", this._sKUIndex.Clone());
@@ -1761,7 +1761,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private void OnSKUIndexChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("SKUIndex");
-		}
+		}		
 		
 		private void OnDisposalChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Disposal", this._disposal.Clone());
@@ -2024,7 +2024,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private void OnClearence2SadGoodIDChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("Clearence2SadGoodID");
-		}
+		}		
 		
 		private void OnDisposalChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Disposal", this._disposal.Clone());
@@ -2789,7 +2789,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private void OnDisposal2PCNIDChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("Disposal2PCNID");
-		}
+		}		
 		
 		private void OnDisposal2ClearenceIndexChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Disposal2ClearenceIndex", this._disposal2ClearenceIndex.Clone());
@@ -2814,7 +2814,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private void OnJSOXCustomsSummaryIndexChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("JSOXCustomsSummaryIndex");
-		}
+		}		
 		
 		private void OnDisposal2BatchIndexChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Disposal2BatchIndex", this._disposal2BatchIndex.Clone());
@@ -3083,7 +3083,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		private void OnDisposalsDeclaration2BatchIndexChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("DisposalsDeclaration2BatchIndex");
 		}
-
+		
 	}
 	
 	/// <summary>
@@ -4025,7 +4025,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private void OnIPR2ConsentTitleChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("IPR2ConsentTitle");
-		}
+		}		
 		
 		private void OnIPR2PCNPCNChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("IPR2PCNPCN", this._iPR2PCNPCN.Clone());
@@ -4033,7 +4033,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private void OnIPR2PCNPCNChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("IPR2PCNPCN");
-		}
+		}		
 		
 		private void OnIPR2JSOXIndexChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("IPR2JSOXIndex", this._iPR2JSOXIndex.Clone());
@@ -4706,7 +4706,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 					this.OnPropertyChanged("Disposal");
 				}
 			}
-		}
+		}	
 		
 		private void OnDisposal0Changing(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Disposal0", this._disposal0.Clone());
@@ -4943,7 +4943,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private void OnSADDocumenLibrarytIndexChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("SADDocumenLibrarytIndex");
-		}
+		}		
 		
 		private void OnSADGoodChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("SADGood", this._sADGood.Clone());
