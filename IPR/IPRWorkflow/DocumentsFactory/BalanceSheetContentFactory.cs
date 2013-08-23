@@ -174,7 +174,8 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
               TotalTobaccoInCigarettesProduction = _bsx.TobaccoInCigarettesProduction.Rount2DecimalOrDefault(),
               TotalTobaccoInCigarettesWarehouse = _bsx.TobaccoInCigarettesWarehouse.Rount2DecimalOrDefault(),
               TotalTobaccoInCutfillerWarehouse = _bsx.TobaccoInCutfillerWarehouse.Rount2DecimalOrDefault(),
-              TotalTobaccoInWarehouse = _bsx.TobaccoInWarehouse.Rount2DecimalOrDefault()
+              TotalTobaccoInWarehouse = _bsx.TobaccoInWarehouse.Rount2DecimalOrDefault(),
+              TotalTobaccoStarted = _bsx.TobaccoInFGCSStarted.Rount2DecimalOrDefault()
             };
           _ret.Add( _new );
         }
@@ -194,6 +195,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           SHWasteOveruseCSNotStarted = _item.SHWasteOveruseCSNotStarted.Rount2DecimalOrDefault(),
           SKU = _item.SKU,
           TobaccoAvailable = _item.TobaccoAvailable.Rount2DecimalOrDefault(),
+          TobaccoStarted = _item.TobaccoInFGCSStarted.Rount2DecimalOrDefault()
         };
         _iprRows.Add( _new );
       }
