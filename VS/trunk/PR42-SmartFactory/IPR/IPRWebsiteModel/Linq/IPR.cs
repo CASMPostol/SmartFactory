@@ -178,27 +178,34 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #region internal
     internal enum ValueKey
     {
-      DustCSNotStarted,
-      DustCSStarted,
-      OveruseCSNotStarted,
-      OveruseCSStarted,
-      PureTobaccoCSNotStarted,
-      PureTobaccoCSStarted,
-      SHMentholCSNotStarted,
-      SHMentholCSStarted,
-      TobaccoCSFinished,
+      //NotStarted
       TobaccoInFGCSNotStarted,
-      TobaccoInFGCSStarted,
       WasteCSNotStarted,
+      PureTobaccoCSNotStarted,
+      DustCSNotStarted,
+      OveruseCSNotStarted,
+      SHMentholCSNotStarted,
+      //CSStarted
+      DustCSStarted,
+      OveruseCSStarted,
+      PureTobaccoCSStarted,
+      SHMentholCSStarted,
       WasteCSStarted,
+      TobaccoInFGCSStarted,
+      //CSFinished
+      TobaccoCSFinished,
 
       //calculated
+      /// <summary>
+      /// The tobacco started = sum of CSStarted
+      /// </summary>
+      TobaccoStarted,
       IPRBook,
-      SHWasteOveruseCSNotStarted,
       TobaccoAvailable,
       TobaccoEnteredIntoIPR,
+      SHWasteOveruseCSNotStarted,
       TobaccoToBeUsedInTheProduction,
-      TobaccoUsedInTheProduction
+      TobaccoUsedInTheProduction,
     }
     internal class Balance: Dictionary<IPR.ValueKey, decimal>
     {
@@ -297,6 +304,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         #endregion
         base[ ValueKey.TobaccoEnteredIntoIPR ] = record.NetMassDec;
         base[ ValueKey.IPRBook ] = IPRBook;
+        base[ ValueKey.TobaccoStarted ] = TobaccoStarted;
         base[ ValueKey.SHWasteOveruseCSNotStarted ] = SHWasteOveruseCSNotStarted;
         base[ ValueKey.TobaccoAvailable ] = TobaccoAvailable;
         base[ ValueKey.TobaccoUsedInTheProduction ] = TobaccoUsedInTheProduction;
@@ -317,14 +325,19 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         get
         {
+          return base[ ValueKey.TobaccoEnteredIntoIPR ] - base[ ValueKey.TobaccoCSFinished ];
+        }
+      }
+      private decimal TobaccoStarted
+      {
+        get
+        {
           return
-            base[ ValueKey.TobaccoEnteredIntoIPR ] -
-            base[ ValueKey.TobaccoCSFinished ] -
-            base[ ValueKey.TobaccoInFGCSStarted ] -
-            base[ ValueKey.DustCSStarted ] -
-            base[ ValueKey.WasteCSStarted ] -
-            base[ ValueKey.SHMentholCSStarted ] -
-            base[ ValueKey.OveruseCSStarted ] -
+            base[ ValueKey.TobaccoInFGCSStarted ] +
+            base[ ValueKey.DustCSStarted ] +
+            base[ ValueKey.WasteCSStarted ] +
+            base[ ValueKey.SHMentholCSStarted ] +
+            base[ ValueKey.OveruseCSStarted ] +
             base[ ValueKey.PureTobaccoCSStarted ];
         }
       }
@@ -339,12 +352,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             base[ ValueKey.PureTobaccoCSNotStarted ];
         }
       }
-      public decimal TobaccoAvailable
+      private decimal TobaccoAvailable
       {
         get
         {
           return
             base[ ValueKey.IPRBook ] -
+            base[ ValueKey.TobaccoStarted ] -
             base[ ValueKey.SHWasteOveruseCSNotStarted ] -
             base[ ValueKey.DustCSNotStarted ];
         }
@@ -358,12 +372,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             base[ ValueKey.DustCSNotStarted ] +
             base[ ValueKey.SHWasteOveruseCSNotStarted ] +
             base[ ValueKey.TobaccoCSFinished ] +
-            base[ ValueKey.TobaccoInFGCSStarted ] +
-            base[ ValueKey.DustCSStarted ] +
-            base[ ValueKey.WasteCSStarted ] +
-            base[ ValueKey.SHMentholCSStarted ] +
-            base[ ValueKey.OveruseCSStarted ] +
-            base[ ValueKey.PureTobaccoCSStarted ];
+            base[ ValueKey.TobaccoStarted ];
         }
       }
       #endregion

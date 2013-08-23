@@ -4,6 +4,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class BalanceIPR
   {
+    private double TobaccoStarted;
     internal static IPR.Balance Create( Entities edc, IPR _iprAccount, BalanceBatch parent, JSOXLib masterReport )
     {
       BalanceIPR _newItem = new BalanceIPR()
@@ -47,6 +48,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       TobaccoUsedInTheProduction = _balnce[ IPR.ValueKey.TobaccoUsedInTheProduction ];
       WasteCSNotStarted = _balnce[ IPR.ValueKey.WasteCSNotStarted ];
       WasteCSStarted = _balnce[ IPR.ValueKey.WasteCSStarted ];
+      TobaccoStarted = _balnce[ IPR.ValueKey.TobaccoStarted ];
       Balance = this.IPRIndex.TobaccoNotAllocated - _balnce[ IPR.ValueKey.TobaccoToBeUsedInTheProduction ];
       Title = String.Format( "{0}/{1}", this.Batch, this.DocumentNo );
       return _balnce;
