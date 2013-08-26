@@ -190,7 +190,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       this.SettledQuantityDec += this.Disposal2IPRIndex.Withdraw( ref _toDispose, this.SettledQuantityDec );
       if ( this.CustomsStatus.Value == Linq.CustomsStatus.Finished )
-        this.Disposal2IPRIndex.RecalculateClearedRecords( this.No.Value );
+        this.Disposal2IPRIndex.RecalculateClearedRecords();
     }
     #endregion
 
