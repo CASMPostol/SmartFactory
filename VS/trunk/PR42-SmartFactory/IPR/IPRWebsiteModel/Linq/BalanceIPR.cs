@@ -4,7 +4,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class BalanceIPR
   {
-    private double TobaccoStarted;
     internal static IPR.Balance Create( Entities edc, IPR _iprAccount, BalanceBatch parent, JSOXLib masterReport )
     {
       BalanceIPR _newItem = new BalanceIPR()

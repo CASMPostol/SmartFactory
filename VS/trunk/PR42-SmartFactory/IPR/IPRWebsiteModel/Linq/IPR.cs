@@ -410,7 +410,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       quantity -= _toDispose;
       return _toDispose;
     }
-    internal void RecalculateClearedRecords( double startIndex )
+    internal void RecalculateClearedRecords()
     {
       if ( this.AccountClosed.Value )
         throw new ApplicationException( "IPR.RecalculateClearedRecords cannot be excuted for closed account" );
