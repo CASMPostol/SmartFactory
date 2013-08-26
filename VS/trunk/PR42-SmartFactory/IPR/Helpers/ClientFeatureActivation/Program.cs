@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 
 namespace CAS.SmartFactory.IPR.Client.FeatureActivation
@@ -12,23 +9,13 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
     {
       try
       {
-        uint _i = 0;
         using ( Entities edc = new Entities( Properties.Settings.Default.URL ) )
         {
-          foreach ( Disposal _dspx in edc.Disposal )
-          {
-            _i++;
-            if ( _dspx.JSOXCustomsSummaryIndex != null )
-              _dspx.JSOXReportID = _dspx.JSOXCustomsSummaryIndex.JSOXCustomsSummary2JSOXIndex.Id.Value;
-            if ( _i % 10 == 0 )
-              Console.Write( "." );
-            if ( _i % 100 == 0 )
-            {
-              Console.WriteLine();
-              edc.SubmitChanges();
-            }
-          }
+          Activate180.Activate.UpdateDisposals( edc, ProgressChanged );
           edc.SubmitChanges();
+          Activate180.Activate.Go( edc, ProgressChanged );
+          edc.SubmitChanges();
+          Archival.Archive.Go( edc, ProgressChanged );
         }
         Console.WriteLine( "Finished without errors." );
       }
@@ -39,6 +26,36 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
       }
       Console.WriteLine( "Press enter to close the window" );
       Console.ReadLine();
+    }
+    private static void ProgressChanged( object sender, EntitiesChangedEventArgs e )
+    {
+      if ( e != null )
+      {
+        throw new ArgumentNullException( "e" );
+      }
+      WriteDot( e.UserState );
+      if ( sender != null )
+      {
+        //Console.WriteLine( sender.ToString() );
+        return;
+      }
+    }
+    private static uint dotCounter = 0;
+    private static void WriteDot( EntitiesChangedEventArgs.EntitiesState entitiesState )
+    {
+      dotCounter++;
+      if ( dotCounter % 10 == 0 )
+        Console.Write( "." );
+      if ( dotCounter % 100 == 0 )
+      {
+        Console.WriteLine();
+        entitiesState.Entities.SubmitChanges();
+      }
+    }
+    private static void WriteLine()
+    {
+      dotCounter = 0;
+      Console.WriteLine();
     }
   }
 }
