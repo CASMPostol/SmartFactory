@@ -262,11 +262,11 @@
         <th>Introducing SAD</th>
         <th>Date SAD EX or FC</th>
         <th>Invoice No.</th>
+        <th>Sad Consignment No</th>
         <th>Compensation Good Name</th>
         <th>Procedure</th>
         <th>Quantity - change procedures (kg)</th>
         <th>Balance (Introducing –Disposals) (kg)</th>
-        <th>SadConsignmentNo</th>
       </tr>
       <xsl:apply-templates select="cas:JSOXCustomsSummaryList"/>
     </table>
@@ -355,6 +355,9 @@
         &#160;
       </td>
       <td>
+        <td>
+          &#160;
+        </td>
         &#160;
       </td>
       <td>
@@ -365,9 +368,6 @@
       </td>
       <td align="center">
         <xsl:value-of select="format-number(cas:SubtotalQuantity, $FoarmatOfFloat, 'pl')"/>
-      </td>
-      <td>
-        &#160;
       </td>
       <td>
         &#160;
@@ -395,11 +395,11 @@
       <td bgcolor="#CDCDCD">
         &#160;
       </td>
-      <td align="center" bgcolor="#CDCDCD">
-        <xsl:value-of select="format-number(cas:SubtotalQuantity, $FoarmatOfFloat, 'pl')"/>
-      </td>
       <td bgcolor="#CDCDCD">
         &#160;
+      </td>
+      <td align="center" bgcolor="#CDCDCD">
+        <xsl:value-of select="format-number(cas:SubtotalQuantity, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td bgcolor="#CDCDCD">
         &#160;
@@ -424,6 +424,9 @@
         <xsl:value-of select="cas:InvoiceNo"/>
       </td>
       <td align="center">
+        <xsl:value-of select="cas:SadConsignmentNo"/>
+      </td>
+      <td align="center">
         <xsl:value-of select="cas:CompensationGood"/>
       </td>
       <td align="center">
@@ -434,9 +437,6 @@
       </td>
       <td align="center">
         <xsl:value-of select="format-number(cas:Balance, $FoarmatOfFloat, 'pl')"/>
-      </td>
-      <td align="center">
-        <xsl:value-of select="cas:SadConsignmentNo"/>
       </td>
     </tr>
   </xsl:template>

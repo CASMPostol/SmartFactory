@@ -41,6 +41,7 @@
       <RemainingQuantity>1</RemainingQuantity>
       <CustomsProcedure>CustomsProcedure1</CustomsProcedure>
       <ProductCodeNumber>ProductCodeNumber1</ProductCodeNumber>
+      <SadConsignmentNo>SadConsignmentNo1</SadConsignmentNo>
     </DisposalsArray>
     <DisposalsArray>
       <No>-1.7976931348623157E+308</No>
@@ -54,6 +55,7 @@
       <RemainingQuantity>-1.7976931348623157E+308</RemainingQuantity>
       <CustomsProcedure>CustomsProcedure2</CustomsProcedure>
       <ProductCodeNumber>ProductCodeNumber2</ProductCodeNumber>
+      <SadConsignmentNo>SadConsignmentNo2</SadConsignmentNo>
     </DisposalsArray>
     <DisposalsArray>
       <No>1.7976931348623157E+308</No>
@@ -67,6 +69,7 @@
       <RemainingQuantity>1.7976931348623157E+308</RemainingQuantity>
       <CustomsProcedure>CustomsProcedure3</CustomsProcedure>
       <ProductCodeNumber>ProductCodeNumber3</ProductCodeNumber>
+      <SadConsignmentNo>SadConsignmentNo3</SadConsignmentNo>
     </DisposalsArray>
   </DisposalsColection>
   <PCNRecord>

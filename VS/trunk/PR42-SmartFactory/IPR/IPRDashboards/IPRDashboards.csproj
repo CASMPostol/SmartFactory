@@ -222,7 +222,9 @@
     <Content Include="Dashboards\ExportDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Dashboards\IPRBookClosedCustomsOfficeDashboard\Elements.xml" />
+    <Content Include="Dashboards\IPRBookClosedCustomsOfficeDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Dashboards\IPRBookClosedDashboard\Elements.xml" />
     <Content Include="Dashboards\IPRBookCustomsOfficeDashboard\Elements.xml">
       <SubType>Designer</SubType>
