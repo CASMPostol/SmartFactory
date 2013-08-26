@@ -294,7 +294,7 @@
     </h1>
     <table cellspacing="0" cellpadding="0" border="1" width="100%">
       <tr>
-        <td colspan="4" valign="top">
+        <td colspan="5" valign="top">
           Numer zezwolenia<br/>
           <xsl:value-of select="cas:ConsentNo"/>
         </td>
@@ -315,6 +315,9 @@
         </td>
         <td align="center" valign="top">
           Faktura
+        </td>
+        <td align="center" valign="top">
+          Nr SAD Consignment
         </td>
         <td align="center" valign="top">
           Liczba towarów kompensa-cyjnych wywożonych
@@ -349,11 +352,11 @@
         <td align="center" valign="top">
           Rodzaj wysyłanego towaru kompensa-cyjnego
         </td>
-        <td align="center" valign="top">
-          Sad Consignment No
-        </td>
       </tr>
       <tr>
+        <td valign="top">
+          &#160;
+        </td>
         <td valign="top">
           &#160;
         </td>
@@ -399,13 +402,10 @@
         <td valign="top">
           &#160;
         </td>
-        <td valign="top">
-          &#160;
-        </td>
       </tr>
       <xsl:apply-templates select="cas:DisposalsColection" />
       <tr>
-        <td colspan="4" valign="top">
+        <td colspan="5" valign="top">
           <p>
             <b>Razem</b>
           </p>
@@ -463,9 +463,6 @@
         <td valign="top">
           &#160;
         </td>
-        <td valign="top">
-          &#160;
-        </td>
       </tr>
     </table>
     <table border="0" width="100%">
@@ -505,6 +502,9 @@
       <td align="center">
         <xsl:value-of select="cas:InvoiceNo"/>
       </td>
+      <td align="center">
+        <xsl:value-of select="cas:SadConsignmentNo"/>
+      </td>
       <td  align="center">
         <xsl:value-of select="format-number(cas:SettledQuantity, $FoarmatOfFloat, 'pl')"/>
       </td>
@@ -540,9 +540,6 @@
       </td>
       <td align="center">
         <xsl:value-of select="cas:ProductCodeNumber"/>
-      </td>
-      <td align="center">
-        <xsl:value-of select="cas:SadConsignmentNo"/>
       </td>
     </tr>
   </xsl:template>
