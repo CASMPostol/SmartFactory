@@ -99,6 +99,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                             select _btx ).ToList<Batch>();
       foreach ( Batch _bidx in from _btx in _list where !_btx.StockEntry.Any( x => x.StockLibraryIndex == library ) select _btx )
       {
+        if ( _bidx.BatchStatus.Value == BatchStatus.Progress )
+          continue;
         if ( _batches.ContainsKey( _bidx.Batch0 ) )
           continue;
         if ( !_ret.ContainsKey( _bidx.Batch0 ) )

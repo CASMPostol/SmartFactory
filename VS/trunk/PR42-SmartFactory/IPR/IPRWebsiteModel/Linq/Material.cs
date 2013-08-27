@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using CAS.SmartFactory.Customs;
-using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -48,6 +47,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       SHMenthol = 0;
       Waste = 0;
       Tobacco = 0;
+      Disposed = 0;
     }
     #endregion
 
@@ -114,10 +114,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal void AdjustTobaccoQuantity( ref decimal totalQuantity, ProgressChangedEventHandler progressChanged )
     {
       //TODO Recalculate overuse after adjusting material usage - 1kg http://cassp:11226/sites/awt/Lists/TaskList/DispForm.aspx?ID=3924
-      if ( Accounts2Dispose.Count != 1 || Math.Abs( Accounts2Dispose[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) > Convert.ToDouble( Settings.MinimalOveruse ) )
+      decimal _available = Accounts2Dispose.Sum( y => y.TobaccoNotAllocatedDec );
+      if ( Math.Abs( _available - TobaccoQuantityDec ) > Settings.MinimalOveruse )
         return;
-      totalQuantity += Accounts2Dispose[ 0 ].TobaccoNotAllocatedDec - TobaccoQuantityDec;
-      this.TobaccoQuantity = Accounts2Dispose[ 0 ].TobaccoNotAllocated;
+      totalQuantity += _available - TobaccoQuantityDec;
+      this.TobaccoQuantityDec = _available;
       string _tmpl = "Adjusted TobaccoQuantity of material: batch {0} IPR: {1}";
       Warnning _warnning = new Warnning( String.Format( _tmpl, this.Batch, Accounts2Dispose[ 0 ].DocumentNo ), false );
       progressChanged( this, new ProgressChangedEventArgs( 1, _warnning ) );
@@ -297,7 +298,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <value>
     /// The tobacco total.
     /// </value>
-    internal decimal TobaccoQuantityDec { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
+    internal decimal TobaccoQuantityDec
+    {
+      get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); }
+      set { this.TobaccoQuantity = Convert.ToDouble( value ); }
+    }
     internal Material ReplaceByExistingOne( List<Material> oldMaterials, List<Material> newMaterials, Dictionary<string, Material> parentsMaterials, Batch parent )
     {
       Material _old = null;
@@ -313,6 +318,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Debug.Assert( ( (Microsoft.SharePoint.Linq.ITrackEntityState)_old ).EntityState != Microsoft.SharePoint.Linq.EntityState.ToBeInserted, "EntityState is in wrong state: ToBeInserted" );
       oldMaterials.Add( _old );
       _old.FGQuantity = this.FGQuantity;
+      _old.Disposed = _old.TobaccoQuantityDec;
       _old.TobaccoQuantity = this.TobaccoQuantity;
       _old.myVarAccounts2Dispose = this.Accounts2Dispose;
       return _old;
@@ -425,5 +431,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     #endregion
 
+
+    internal decimal Disposed { get; set; }
   }
 }
