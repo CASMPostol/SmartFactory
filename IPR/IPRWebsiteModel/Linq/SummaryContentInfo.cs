@@ -80,7 +80,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <value>
     /// The accumulated disposals analisis.
     /// </value>
-    public DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
+    internal DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
     /// <summary>
     /// Gets the total quantity of the tobacco.
     /// </summary>

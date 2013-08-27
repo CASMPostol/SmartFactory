@@ -1,14 +1,29 @@
-﻿using System;
+﻿//<summary>
+//  Title   : Batch entity partial class
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
 using CAS.SharePoint;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   /// <summary>
-  /// Batch
+  /// Batch entity partial class
   /// </summary>
   public partial class Batch
   {
@@ -79,42 +94,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       MaterialQuantity = Convert.ToDouble( contentInfo.TotalTobacco );
       ProductType = contentInfo.Product.ProductType;
       SKUIndex = contentInfo.SKULookup;
-      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Dependences" ) );
-      //Dependences
-      Dust DustIndex = Linq.Dust.GetLookup( ProductType.Value, edc );
-      BatchDustCooeficiency = DustIndex.DustRatio;
-      DustCooeficiencyVersion = DustIndex.Version;
-      SHMenthol SHMentholIndex = Linq.SHMenthol.GetLookup( ProductType.Value, edc );
-      BatchSHCooeficiency = SHMentholIndex.SHMentholRatio;
-      SHCooeficiencyVersion = SHMentholIndex.Version;
-      Waste WasteIndex = Linq.Waste.GetLookup( ProductType.Value, edc );
-      BatchWasteCooeficiency = WasteIndex.WasteRatio;
-      WasteCooeficiencyVersion = WasteIndex.Version;
-      CutfillerCoefficient _cc = CutfillerCoefficient.GetLookup( edc );
-      this.CFTProductivityNormMax = _cc.CFTProductivityNormMax;
-      this.CFTProductivityNormMin = _cc.CFTProductivityNormMin;
-      this.CFTProductivityRateMax = _cc.CFTProductivityRateMax;
-      this.CFTProductivityRateMin = _cc.CFTProductivityRateMin;
-      this.CFTProductivityVersion = _cc.Version;
-      Usage _usage = Usage.GetLookup( SKUIndex.FormatIndex, edc );
-      this.CTFUsageMax = _usage.CTFUsageMax;
-      this.CTFUsageMin = _usage.CTFUsageMin;
-      this.UsageMin = _usage.UsageMin;
-      this.UsageMax = _usage.UsageMax;
-      this.UsageVersion = _usage.Version;
+      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: GetDependences" ) );
+      Material.Ratios _mr = GetDependences( edc );
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Processing" ) );
       //Processing
       CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantity.Value, UsageMax.Value, UsageMin.Value );
       MaterialQuantityPrevious = 0;
-      double _shmcf = 0;
-      if ( ( SKUIndex is SKUCigarette ) && ( (SKUCigarette)SKUIndex ).MentholMaterial.Value )
-        _shmcf = ( (SKUCigarette)SKUIndex ).MentholMaterial.Value ? SHMentholIndex.SHMentholRatio.Value : 0;
-      Material.Ratios _mr = new Material.Ratios
-      {
-        dustRatio = DustIndex.DustRatio.ValueOrException<double>( "Batch", "Material.Ratios", "dustRatio" ),
-        shMentholRatio = _shmcf,
-        wasteRatio = WasteIndex.WasteRatio.ValueOrException<double>( "Batch", "Material.Ratios", "wasteRatio" )
-      };
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessMaterials" ) );
       contentInfo.ProcessMaterials( edc, this, _mr, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
       if ( this.BatchStatus.Value != Linq.BatchStatus.Progress )
@@ -194,6 +179,40 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( _ret < 0 )
         return _ret / _materialQuantity; //Underusage
       return 0;
+    }
+    private Material.Ratios GetDependences( Entities edc )
+    {
+      //Dependences
+      Dust DustIndex = Linq.Dust.GetLookup( ProductType.Value, edc );
+      BatchDustCooeficiency = DustIndex.DustRatio;
+      DustCooeficiencyVersion = DustIndex.Version;
+      SHMenthol SHMentholIndex = Linq.SHMenthol.GetLookup( ProductType.Value, edc );
+      BatchSHCooeficiency = SHMentholIndex.SHMentholRatio;
+      SHCooeficiencyVersion = SHMentholIndex.Version;
+      Waste WasteIndex = Linq.Waste.GetLookup( ProductType.Value, edc );
+      BatchWasteCooeficiency = WasteIndex.WasteRatio;
+      WasteCooeficiencyVersion = WasteIndex.Version;
+      CutfillerCoefficient _cc = CutfillerCoefficient.GetLookup( edc );
+      this.CFTProductivityNormMax = _cc.CFTProductivityNormMax;
+      this.CFTProductivityNormMin = _cc.CFTProductivityNormMin;
+      this.CFTProductivityRateMax = _cc.CFTProductivityRateMax;
+      this.CFTProductivityRateMin = _cc.CFTProductivityRateMin;
+      this.CFTProductivityVersion = _cc.Version;
+      Usage _usage = Usage.GetLookup( SKUIndex.FormatIndex, edc );
+      this.CTFUsageMax = _usage.CTFUsageMax;
+      this.CTFUsageMin = _usage.CTFUsageMin;
+      this.UsageMin = _usage.UsageMin;
+      this.UsageMax = _usage.UsageMax;
+      this.UsageVersion = _usage.Version;
+      double _shmcf = 0;
+      if ( ( SKUIndex is SKUCigarette ) && ( (SKUCigarette)SKUIndex ).MentholMaterial.Value )
+        _shmcf = ( (SKUCigarette)SKUIndex ).MentholMaterial.Value ? SHMentholIndex.SHMentholRatio.Value : 0;
+      return new Material.Ratios
+      {
+        dustRatio = DustIndex.DustRatio.ValueOrException<double>( "Batch", "Material.Ratios", "dustRatio" ),
+        shMentholRatio = _shmcf,
+        wasteRatio = WasteIndex.WasteRatio.ValueOrException<double>( "Batch", "Material.Ratios", "wasteRatio" )
+      };
     }
     #endregion
 
