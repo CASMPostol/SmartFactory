@@ -30,16 +30,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal void RecalculateClearedRecords( Entities entities, List<Linq.Disposal> _dl, EntitiesChangedEventHandler progress )
     {
       if ( this.AccountClosed.Value )
-        return; 
-      List<Disposal> _2Calculate = ( from _dx in _dl 
-                                     where (_dx.Disposal2IPRIndex == this) && (_dx.CustomsStatus.Value == Linq.CustomsStatus.Finished) 
-                                     orderby _dx.No.Value ascending select _dx ).ToList<Disposal>();
-      this.AccountBalance = this.NetMass;
-      foreach ( Disposal _dx in _2Calculate )
-      {
-        _dx.CalculateRemainingQuantity();
-        progress( this, new Client.FeatureActivation.EntitiesChangedEventArgs( 1, null, entities ) );
-      }
+        return;
+      List<Disposal> _my = ( from _dxAll in _dl where _dxAll.Disposal2IPRIndex == this && _dxAll.DisposalStatus.Value != Linq.DisposalStatus.Cartons select _dxAll ).ToList<Disposal>();
+      this.TobaccoNotAllocated = Convert.ToDouble( Convert.ToDecimal( this.NetMass ) - _my.Sum<Disposal>( x => x.SettledQuantityDec ) );
+      if ( this.TobaccoNotAllocated < 0 )
+        this.TobaccoNotAllocated = 0;
+      this.AccountBalance = Convert.ToDouble( Convert.ToDecimal( this.NetMass ) - _my.Where( y => y.CustomsStatus.Value == Linq.CustomsStatus.Finished ).Sum<Disposal>( y => y.SettledQuantityDec ) );
+      if ( this.AccountBalance < 0 )
+        this.AccountBalance = 0;
+      progress( this, new Client.FeatureActivation.EntitiesChangedEventArgs( 1, null, entities ) );
     }
     #endregion
 
