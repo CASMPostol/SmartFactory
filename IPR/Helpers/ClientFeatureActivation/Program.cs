@@ -11,11 +11,15 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
       {
         using ( Entities edc = new Entities( Properties.Settings.Default.URL ) )
         {
-          Activate180.Activate.UpdateDisposals( edc, ProgressChanged );
+          ProgressChanged(null, new EntitiesChangedEventArgs(1, "Activate.UpdateDisposals", edc));
+          //Activate180.Activate.UpdateDisposals( edc, ProgressChanged );
           edc.SubmitChanges();
-          Activate180.Activate.Go( edc, ProgressChanged );
+          ProgressChanged( null, new EntitiesChangedEventArgs( 1, "Activate.IPRRecalculateClearedRecords", edc ) );
+          Activate180.Activate.IPRRecalculateClearedRecords( edc, ProgressChanged );
           edc.SubmitChanges();
+          ProgressChanged( null, new EntitiesChangedEventArgs( 1, "Archive.Go", edc ) );
           Archival.Archive.Go( edc, ProgressChanged );
+          edc.SubmitChanges();
         }
         Console.WriteLine( "Finished without errors." );
       }
@@ -29,7 +33,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
     }
     private static void ProgressChanged( object sender, EntitiesChangedEventArgs e )
     {
-      if ( e != null )
+      if ( e == null )
       {
         throw new ArgumentNullException( "e" );
       }
@@ -43,6 +47,14 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
     private static uint dotCounter = 0;
     private static void WriteDot( EntitiesChangedEventArgs.EntitiesState entitiesState )
     {
+      if (entitiesState.UserState != null)
+        if ( entitiesState.UserState is String )
+        {
+          
+          Console.WriteLine( (string)entitiesState.UserState );
+          dotCounter = 0;
+          return;
+        }
       dotCounter++;
       if ( dotCounter % 10 == 0 )
         Console.Write( "." );
