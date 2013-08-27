@@ -16,14 +16,13 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
           _dspx.JSOXReportID = _dspx.JSOXCustomsSummaryIndex.JSOXCustomsSummary2JSOXIndex.Id.Value;
         ProgressChanged( null, new EntitiesChangedEventArgs( 1, null, edc ) );
       }
-
     }
-    internal static void Go( Entities entities, EntitiesChangedEventHandler progress )
+    internal static void IPRRecalculateClearedRecords( Entities entities, EntitiesChangedEventHandler progress )
     {
+      List<Disposal> _dl = entities.Disposal.ToList<Disposal>();
+      progress( null, new EntitiesChangedEventArgs( 1, null, entities ) );
       foreach ( IPR.WebsiteModel.Linq.IPR _iprX in entities.IPR )
-      {
-        _iprX.RecalculateClearedRecords();
-      }
+        _iprX.RecalculateClearedRecords( entities, _dl, progress );
     }
   }
 }

@@ -16,6 +16,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CAS.SmartFactory.IPR.Client.FeatureActivation;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -26,14 +27,19 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   {
 
     #region public
-    internal void RecalculateClearedRecords()
+    internal void RecalculateClearedRecords( Entities entities, List<Linq.Disposal> _dl, EntitiesChangedEventHandler progress )
     {
       if ( this.AccountClosed.Value )
-        throw new ApplicationException( "IPR.RecalculateClearedRecords cannot be excuted for closed account" );
-      List<Disposal> _2Calculate = ( from _dx in this.Disposal where _dx.CustomsStatus.Value == Linq.CustomsStatus.Finished orderby _dx.No.Value ascending select _dx ).ToList<Disposal>();
+        return; 
+      List<Disposal> _2Calculate = ( from _dx in _dl 
+                                     where (_dx.Disposal2IPRIndex == this) && (_dx.CustomsStatus.Value == Linq.CustomsStatus.Finished) 
+                                     orderby _dx.No.Value ascending select _dx ).ToList<Disposal>();
       this.AccountBalance = this.NetMass;
       foreach ( Disposal _dx in _2Calculate )
+      {
         _dx.CalculateRemainingQuantity();
+        progress( this, new Client.FeatureActivation.EntitiesChangedEventArgs( 1, null, entities ) );
+      }
     }
     #endregion
 
