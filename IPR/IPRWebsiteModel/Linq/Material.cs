@@ -114,7 +114,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal void AdjustTobaccoQuantity( ref decimal totalQuantity, ProgressChangedEventHandler progressChanged )
     {
       decimal _available = Accounts2Dispose.Sum( y => y.TobaccoNotAllocatedDec );
-      if ( Math.Abs( _available - TobaccoQuantityDec - Disposed ) > Settings.MinimalOveruse )
+      if ( Math.Abs( _available + Disposed - TobaccoQuantityDec  ) > Settings.MinimalOveruse )
         return;
       totalQuantity += _available - TobaccoQuantityDec;
       this.TobaccoQuantityDec = _available;
