@@ -76,18 +76,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="entities">The edc.</param>
     /// <param name="ratios">The ratios.</param>
     /// <param name="overusageRatios">The overusage.</param>
-    internal void CalculateCompensationComponents( Entities entities, Ratios ratios, double overusageRatios )
+    internal void CalculateOveruse( Entities entities, Ratios ratios, double overusageRatios )
     {
-      decimal material = TobaccoQuantityDec;
-      decimal overuseInKg = 0;
       if ( overusageRatios > 0 )
-      {
-        overuseInKg = this[ DisposalEnum.OverusageInKg ] = ( TobaccoQuantityDec * Convert.ToDecimal( overusageRatios ) ).Rount2Decimals();
-        material -= overuseInKg;
-      }
+        this[ DisposalEnum.OverusageInKg ] = ( TobaccoQuantityDec * Convert.ToDecimal( overusageRatios ) ).Rount2Decimals();
       else
         this[ DisposalEnum.OverusageInKg ] = 0;
-      CalculateCompensationComponents( ratios, material );
+    }
+    internal void CalculateCompensationComponents( Ratios ratios )
+    {
+      decimal material = TobaccoQuantityDec - this[ DisposalEnum.OverusageInKg ];
+      decimal dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).Rount2Decimals();
+      decimal shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).Rount2Decimals();
+      decimal waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).Rount2Decimals();
+      this[ DisposalEnum.TobaccoInCigaretess ] = material - shMenthol - waste - dust;
     }
     internal decimal RemoveOveruseIfPossible( List<Material> _2Add, Ratios ratios )
     {
@@ -96,7 +98,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _2Add.Add( this );
       else
       {
-        CalculateCompensationComponents( ratios, this.TobaccoQuantityDec );
         _ret = this[ DisposalEnum.OverusageInKg ];
         this[ DisposalEnum.OverusageInKg ] = 0;
       }
@@ -109,11 +110,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       decimal material = TobaccoQuantityDec - this[ DisposalEnum.OverusageInKg ];
       if ( material < 0 )
         throw new CAS.SmartFactory.IPR.WebsiteModel.IPRDataConsistencyException( "Material.IncreaseOveruse", "There is not enought tobacco to correct overuse", null, "Operation has benn aborted" );
-      CalculateCompensationComponents( ratios, material );
     }
     internal void AdjustTobaccoQuantity( ref decimal totalQuantity, ProgressChangedEventHandler progressChanged )
     {
-      //TODO Recalculate overuse after adjusting material usage - 1kg http://cassp:11226/sites/awt/Lists/TaskList/DispForm.aspx?ID=3924
       decimal _available = Accounts2Dispose.Sum( y => y.TobaccoNotAllocatedDec );
       if ( Math.Abs( _available - TobaccoQuantityDec ) > Settings.MinimalOveruse )
         return;
@@ -303,7 +302,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); }
       set { this.TobaccoQuantity = Convert.ToDouble( value ); }
     }
-    internal Material ReplaceByExistingOne( List<Material> oldMaterials, List<Material> newMaterials, Dictionary<string, Material> parentsMaterials, Batch parent )
+    internal void ReplaceByExistingOne( List<Material> oldMaterials, List<Material> newMaterials, Dictionary<string, Material> parentsMaterials, Batch parent )
     {
       Material _old = null;
       if ( !parentsMaterials.TryGetValue( this.GetKey(), out _old ) )
@@ -311,7 +310,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         Debug.Assert( this.Material2BatchIndex == null, "Material2BatchIndex must be null for new materials" );
         this.Material2BatchIndex = parent;
         newMaterials.Add( this );
-        return this;
       }
       Debug.Assert( this != _old, "this cannot be the same as _old" );
       Debug.Assert( _old.Material2BatchIndex == parent, "Material2BatchIndex must be equl parent for old materials" );
@@ -321,10 +319,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       _old.Disposed = _old.TobaccoQuantityDec;
       _old.TobaccoQuantity = this.TobaccoQuantity;
       _old.myVarAccounts2Dispose = this.Accounts2Dispose;
-      return _old;
     }
-    internal void UpdateDisposals( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged )
+    internal void UpdateDisposals( Entities edc, ProgressChangedEventHandler progressChanged )
     {
+      string _parentBatch = this.Material2BatchIndex.Batch0;
       if ( this.ProductType.Value != Linq.ProductType.IPRTobacco )
         return;
       List<Disposal> _allDisposals = this.Disposal.ToList<Disposal>();
@@ -347,7 +345,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             if ( _toDispose <= 0 )
             {
               string _toDisposeMessage = "_toDispose < 0 and is of {3} kg: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
-              throw new IPRDataConsistencyException( "Material.UpdateDisposals", String.Format( _toDisposeMessage, this.Batch, parent.Batch0, _kind, _toDispose ), null, "IPR calculation error" );
+              throw new IPRDataConsistencyException( "Material.UpdateDisposals", String.Format( _toDisposeMessage, this.Batch, _parentBatch, _kind, _toDispose ), null, "IPR calculation error" );
             }
           }
           progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _kind, this.Batch ) ) );
@@ -357,7 +355,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           if ( _toDispose <= 0 )
             continue;
           string _mssg = "Cannot find IPR account to dispose the tobacco of {3} kg: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
-          throw new IPRDataConsistencyException( "Material.UpdateDisposals", String.Format( _mssg, this.Batch, parent.Batch0, _kind, _toDispose ), null, "IPR unrecognized account" );
+          throw new IPRDataConsistencyException( "Material.UpdateDisposals", String.Format( _mssg, this.Batch, _parentBatch, _kind, _toDispose ), null, "IPR unrecognized account" );
         }
         catch ( IPRDataConsistencyException _ex )
         {
@@ -404,13 +402,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
-    private void CalculateCompensationComponents( Ratios ratios, decimal material )
-    {
-      decimal dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).Rount2Decimals();
-      decimal shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).Rount2Decimals();
-      decimal waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).Rount2Decimals();
-      this[ DisposalEnum.TobaccoInCigaretess ] = material - shMenthol - waste - dust;
-    }
     private const string m_keyForam = "{0}:{1}:{2}";
     private List<IPR> myVarAccounts2Dispose = null;
     #endregion

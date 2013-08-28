@@ -136,14 +136,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     private static void GetXmlContent( BatchXml xml, Entities edc, BatchLib parent, ProgressChangedEventHandler progressChanged )
     {
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: starting" ) );
-      Content _contentInfo = new Content( edc, xml.Material, progressChanged );
+      Content _contentInfo = new Content( edc, xml.Material, xml.Status, progressChanged );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: FindLookup" ) );
       Batch _batch = Batch.FindLookup( edc, _contentInfo.Product.Batch );
       List<string> _warnings = new List<string>();
-      BatchStatus _newBtachStatus = GetBatchStatus( xml.Status );
       bool _newBatch = false;
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: switch" ) );
-      switch ( _newBtachStatus )
+      switch ( _contentInfo.BatchStatus )
       {
         case BatchStatus.Progress:
           if ( _batch != null )
@@ -173,7 +172,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       if ( _newBatch )
         edc.Batch.InsertOnSubmit( _batch );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: BatchProcessing" ) );
-      _batch.BatchProcessing( edc, _newBtachStatus, _contentInfo, parent, progressChanged, _newBatch );
+      _batch.BatchProcessing( edc, _contentInfo, parent, progressChanged, _newBatch );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: SubmitChanges" ) );
       edc.SubmitChanges();
     }
@@ -196,8 +195,9 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     }
     private class Content: SummaryContentInfo
     {
-      internal Content( Entities entities, BatchMaterialXml[] xml, ProgressChangedEventHandler progressChanged )
-        : base()
+
+      internal Content( Entities entities, BatchMaterialXml[] xml, xml.erp.BatchStatus batchStatus, ProgressChangedEventHandler progressChanged )
+        : base(GetBatchStatus( batchStatus ))
       {
         foreach ( BatchMaterialXml item in xml )
         {
@@ -210,6 +210,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         if ( Product == null )
           throw new InputDataValidationException( "Unrecognized finished good", "Product", "Wrong Batch XML message", true );
       }
+
     }
     private ErrorsList m_Warnings = new ErrorsList();
     private const string m_Source = "Batch processing";
