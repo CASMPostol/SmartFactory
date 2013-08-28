@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -64,57 +64,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Batches the processing.
     /// </summary>
     /// <param name="edc">The edc.</param>
-    /// <param name="status">The status.</param>
     /// <param name="contentInfo">The content info.</param>
     /// <param name="parent">The parent.</param>
     /// <param name="progressChanged">The progress changed.</param>
     /// <param name="newBatch">if set to <c>true</c> it is new batch.</param>
-    public void BatchProcessing( Entities edc, BatchStatus status, SummaryContentInfo contentInfo, BatchLib parent, ProgressChangedEventHandler progressChanged, bool newBatch )
+    public void BatchProcessing( Entities edc, SummaryContentInfo contentInfo, BatchLib parent, ProgressChangedEventHandler progressChanged, bool newBatch )
     {
       BatchLibraryIndex = parent;
-      BatchStatus = status;
-      Batch0 = contentInfo.Product.Batch;
-      SKU = contentInfo.Product.SKU;
-      Title = String.Format( "{0} SKU: {1}; Batch: {2}", contentInfo.Product.ProductType, SKU, Batch0 );
-      if ( newBatch )
-        FGQuantityAvailable = contentInfo.Product.FGQuantity;
-      else
-      {
-        double _diff = contentInfo.Product.FGQuantity.Value - FGQuantity.Value;
-        double _available = FGQuantityAvailable.Value;
-        if ( _diff + _available < 0 )
-        {
-          string _ptrn = "The previous batch {0} has quantity of finisched good greater then the new one - it looks like wrong messages sequence. Available={1}, Diff={2}";
-          throw new InputDataValidationException( "wrong status of the input batch", "BatchProcessing", String.Format( _ptrn, contentInfo.Product.Batch, _available, _diff ), true );
-        }
-        FGQuantityAvailable = _diff + _available;
-      }
-      FGQuantity = contentInfo.Product.FGQuantity;
-      contentInfo.AdjustMaterialQuantity( status == Linq.BatchStatus.Final, progressChanged );
-      MaterialQuantity = Convert.ToDouble( contentInfo.TotalTobacco );
-      ProductType = contentInfo.Product.ProductType;
-      SKUIndex = contentInfo.SKULookup;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: GetDependences" ) );
       Material.Ratios _mr = GetDependences( edc );
-      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Processing" ) );
-      //Processing
-      CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantity.Value, UsageMax.Value, UsageMin.Value );
-      MaterialQuantityPrevious = 0;
-      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessMaterials" ) );
-      contentInfo.ProcessMaterials( edc, this, _mr, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
-      if ( this.BatchStatus.Value != Linq.BatchStatus.Progress )
-      {
-        if ( CalculatedOveruse > 0 )
-          contentInfo.AdjustOveruse( _mr );
-        foreach ( InvoiceContent _ix in this.InvoiceContent )
-          _ix.UpdateExportedDisposals( edc );
-        contentInfo.UpdateNotStartedDisposals( edc, this, progressChanged );
-      }
-      Dust = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.Dust ] );
-      SHMenthol = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.SHMenthol ] );
-      Waste = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.Waste ] );
-      Tobacco = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.TobaccoInCigaretess ] );
-      Overuse = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.OverusageInKg ] );
+      contentInfo.Analyze( edc, this, progressChanged, _mr );
+      AssignContentInfo( contentInfo, newBatch );
     }
     internal string DanglingBatchWarningMessage
     {
@@ -162,24 +122,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
     private const string m_LookupFailedAndAddedMessage = "I cannot recognize batch {0} - added preliminary entry to the list that must be uploaded.";
     private string m_noMachingQuantityWarningMessage = "Inconsistent quantity batch: {0} / stock: {1} of the product: {2} batch: {3}/sku: {4} on the stock.";
-    /// <summary>
-    /// Gets the overuse as the ratio of overused tobacco divided by totaly usage of tobacco.
-    /// </summary>
-    /// <param name="_materialQuantity">The _material quantity.</param>
-    /// <param name="_fGQuantity">The finished goods quantity.</param>
-    /// <param name="_usageMax">The cutfiller usage max.</param>
-    /// <param name="_usageMin">The cutfiller usage min.</param>
-    /// <returns></returns>
-    private static double GetOverusage( double _materialQuantity, double _fGQuantity, double _usageMax, double _usageMin )
-    {
-      double _ret = ( _materialQuantity - _fGQuantity * _usageMax / 1000 );
-      if ( _ret > 0 )
-        return _ret / _materialQuantity; // Overusage
-      _ret = ( _materialQuantity - _fGQuantity * _usageMin / 1000 );
-      if ( _ret < 0 )
-        return _ret / _materialQuantity; //Underusage
-      return 0;
-    }
     private Material.Ratios GetDependences( Entities edc )
     {
       //Dependences
@@ -213,6 +155,37 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         shMentholRatio = _shmcf,
         wasteRatio = WasteIndex.WasteRatio.ValueOrException<double>( "Batch", "Material.Ratios", "wasteRatio" )
       };
+    }
+    private void AssignContentInfo( SummaryContentInfo contentInfo, bool newBatch )
+    {
+      if ( newBatch )
+        FGQuantityAvailable = contentInfo.Product.FGQuantity;
+      else
+      {
+        double _diff = contentInfo.Product.FGQuantity.Value - FGQuantity.Value;
+        double _available = FGQuantityAvailable.Value;
+        if ( _diff + _available < 0 )
+        {
+          string _ptrn = "The previous batch {0} has quantity of finisched good greater then the new one - it looks like wrong messages sequence. Available={1}, Diff={2}";
+          throw new InputDataValidationException( "wrong status of the input batch", "BatchProcessing", String.Format( _ptrn, contentInfo.Product.Batch, _available, _diff ), true );
+        }
+        FGQuantityAvailable = _diff + _available;
+      }
+      BatchStatus = contentInfo.BatchStatus;
+      Batch0 = contentInfo.Product.Batch;
+      SKU = contentInfo.Product.SKU;
+      Title = String.Format( "{0} SKU: {1}; Batch: {2}", contentInfo.Product.ProductType, SKU, Batch0 );
+      CalculatedOveruse = contentInfo.CalculatedOveruse;
+      MaterialQuantity = contentInfo.TotalTobacco;
+      FGQuantity = contentInfo.Product.FGQuantity;
+      MaterialQuantityPrevious = 0;
+      SKUIndex = contentInfo.SKULookup;
+      ProductType = contentInfo.Product.ProductType;
+      Dust = contentInfo[ Linq.DisposalEnum.Dust ];
+      SHMenthol = contentInfo[ Linq.DisposalEnum.SHMenthol ];
+      Waste = contentInfo[ Linq.DisposalEnum.Waste ];
+      Tobacco = contentInfo[ Linq.DisposalEnum.TobaccoInCigaretess ];
+      Overuse = contentInfo[ Linq.DisposalEnum.OverusageInKg ];
     }
     #endregion
 

@@ -31,35 +31,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Initializes a new instance of the <see cref="SummaryContentInfo" /> class.
     /// </summary>
-    protected SummaryContentInfo()
+    public SummaryContentInfo( BatchStatus batchStatus )
     {
+      this.BatchStatus = batchStatus;
       AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
     }
     #endregion
 
     #region public
     /// <summary>
-    /// Contains all materials sorted using the following key: SKU,Batch,Location.
+    /// Gets the batch status.
     /// </summary>
-    public class DisposalsAnalisis: SortedList<DisposalEnum, decimal>
-    {
-      internal DisposalsAnalisis()
-      {
-        foreach ( Linq.DisposalEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
-          this.Add( _item, 0 );
-      }
-      internal void Accumutate( Material material )
-      {
-        if ( material.ProductType.Value != ProductType.IPRTobacco )
-          return;
-        foreach ( Linq.DisposalEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
-        {
-          if ( _item == DisposalEnum.Tobacco || _item == DisposalEnum.Cartons )
-            continue;
-          this[ _item ] += material[ _item ];
-        }
-      }
-    } //DisposalsAnalisis
+    /// <value>
+    /// The batch status <see cref="BatchStatus"/>.
+    /// </value>
+    public BatchStatus BatchStatus { get; private set; }
     /// <summary>
     /// Gets the product.
     /// </summary>
@@ -67,74 +53,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The product.
     /// </value>
     public Material Product { get; private set; }
-    /// <summary>
-    /// Gets the SKU lookup.
-    /// </summary>
-    /// <value>
-    /// The SKU lookup.
-    /// </value>
-    public SKUCommonPart SKULookup { get; private set; }
-    /// <summary>
-    /// Gets the accumulated disposals analisis.
-    /// </summary>
-    /// <value>
-    /// The accumulated disposals analisis.
-    /// </value>
-    internal DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
-    /// <summary>
-    /// Gets the total quantity of the tobacco.
-    /// </summary>
-    /// <value>
-    /// The total tobacco.
-    /// </value>
-    internal decimal TotalTobacco
-    {
-      get { return myTotalTobacco; }
-    }
-    internal void ProcessMaterials( Entities entities, Batch parent, Material.Ratios materialRatios, double overusageCoefficient, ProgressChangedEventHandler progressChanged )
-    {
-      if ( Product == null )
-        throw new IPRDataConsistencyException( "SummaryContentInfo.ProcessMaterials", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized." );
-      try
-      {
-        List<Material> _newMaterialList = new List<Material>();
-        List<Material> _oldMaterialList = new List<Material>();
-        List<Material> _copyThis = new List<Material>();
-        _copyThis.AddRange( this.Values );
-        Dictionary<string, Material> _parentsMaterials = parent.Material.ToDictionary<Material, string>( x => x.GetKey() );
-        foreach ( Material _materialX in _copyThis )
-        {
-          progressChanged( this, new ProgressChangedEventArgs( 1, "ProcessMaterials: DisposalsAnalisis" ) );
-          Material _material = _materialX.ReplaceByExistingOne( _oldMaterialList, _newMaterialList, _parentsMaterials, parent );
-          progressChanged( this, new ProgressChangedEventArgs( 1, "ProcessMaterials: CalculateCompensationComponents" ) );
-          if ( !_materialX.IsTobacco )
-            continue;
-          _material.CalculateCompensationComponents( entities, materialRatios, overusageCoefficient );
-          progressChanged( this, new ProgressChangedEventArgs( 1, "ProcessMaterials: AccumulatedDisposalsAnalisis" ) );
-          AccumulatedDisposalsAnalisis.Accumutate( _material );
-        }
-        if ( _newMaterialList.Count > 0 )
-        {
-          progressChanged( this, new ProgressChangedEventArgs( 1, "ProcessMaterials: InsertAllOnSubmit" ) );
-          entities.Material.InsertAllOnSubmit( _newMaterialList );
-        }
-        foreach ( Material _omx in _oldMaterialList )
-        {
-          this.Remove( _omx.GetKey() );
-          this.Add( _omx.GetKey(), _omx );
-        }
-      }
-      catch ( Exception _ex )
-      {
-        throw new IPRDataConsistencyException( "SummaryContentInfo.ProcessMaterials", _ex.Message, _ex, "Disposal processing error" );
-      }
-    }
-    internal void UpdateNotStartedDisposals( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged )
-    {
-      progressChanged( this, new ProgressChangedEventArgs( 1, "UpdateDisposals" ) );
-      foreach ( Material _materialX in this.Values )
-        _materialX.UpdateDisposals( edc, parent, progressChanged );
-    }
     /// <summary>
     /// Validates this instance.
     /// </summary>
@@ -176,17 +94,101 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( _validationErrors.Count > 0 )
         throw new InputDataValidationException( "Batch content validation failed", "XML content validation", _validationErrors );
     }
-    internal void AdjustMaterialQuantity( bool finalBatch, ProgressChangedEventHandler progressChanged )
+    /// <summary>
+    /// Gets the SKU lookup.
+    /// </summary>
+    /// <value>
+    /// The SKU lookup.
+    /// </value>
+    internal SKUCommonPart SKULookup { get; private set; }
+    /// <summary>
+    /// Gets the total quantity of the tobacco.
+    /// </summary>
+    /// <value>
+    /// The total tobacco.
+    /// </value>
+    internal double TotalTobacco
     {
-      if ( this.Product.ProductType.Value != ProductType.Cigarette || !finalBatch )
-        return;
-      foreach ( Material _mx in this.Values )
-        _mx.AdjustTobaccoQuantity( ref myTotalTobacco, progressChanged );
+      get { return Convert.ToDouble( myTotalTobacco ); }
     }
-    internal void AdjustOveruse( Material.Ratios materialRatios )
+    internal double CalculatedOveruse { get; private set; }
+    internal void Analyze( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged, Material.Ratios materialRatios )
     {
-      AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
+      progressChanged( this, new ProgressChangedEventArgs( 1, "Analyze: ProcessMaterials" ) );
+      this.ReplaceMaterials( edc, parent, materialRatios, progressChanged );
+      progressChanged( this, new ProgressChangedEventArgs( 1, "Analyze: AdjustMaterialQuantity" ) );
       List<Material> _tobacco = this.Values.Where<Material>( x => x.ProductType.Value == ProductType.IPRTobacco ).ToList<Material>();
+      if ( this.Product.ProductType.Value == ProductType.Cigarette && this.BatchStatus == Linq.BatchStatus.Final )
+        foreach ( Material _mx in _tobacco )
+          _mx.AdjustTobaccoQuantity( ref myTotalTobacco, progressChanged );
+      progressChanged( this, new ProgressChangedEventArgs( 1, "Analyze: GetOverusage" ) );
+      this.GetOverusage( parent.UsageMax.Value, parent.UsageMin.Value );
+      if ( this.BatchStatus == Linq.BatchStatus.Progress )
+        return;
+      progressChanged( this, new ProgressChangedEventArgs( 1, "Analyze: CalculateOveruse" ) );
+      foreach ( Material _mx in _tobacco )
+        _mx.CalculateOveruse( edc, materialRatios, CalculatedOveruse );
+      this.AdjustOveruse( materialRatios, _tobacco );
+      progressChanged( this, new ProgressChangedEventArgs( 1, "Analyze: AccumulatedDisposalsAnalisis" ) );
+      foreach ( Material _mx in _tobacco )
+        AccumulatedDisposalsAnalisis.Accumutate( _mx );
+      foreach ( InvoiceContent _ix in parent.InvoiceContent )
+        _ix.UpdateExportedDisposals( edc );
+      this.UpdateNotStartedDisposals( edc, progressChanged );
+    }
+    internal double this[ DisposalEnum index ]
+    {
+      get { return Convert.ToDouble( AccumulatedDisposalsAnalisis[ index ] ); }
+    }
+    #endregion
+
+    #region private
+    /// <summary>
+    /// Gets the accumulated disposals analisis.
+    /// </summary>
+    /// <value>
+    /// The accumulated disposals analisis.
+    /// </value>
+    private DisposalsAnalisis AccumulatedDisposalsAnalisis { get; set; }
+    private void ReplaceMaterials( Entities entities, Batch parent, Material.Ratios materialRatios, ProgressChangedEventHandler progressChanged )
+    {
+      if ( Product == null )
+        throw new IPRDataConsistencyException( "SummaryContentInfo.ProcessMaterials", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized." );
+      try
+      {
+        List<Material> _newMaterialList = new List<Material>();
+        List<Material> _oldMaterialList = new List<Material>();
+        List<Material> _copyThis = new List<Material>();
+        _copyThis.AddRange( this.Values );
+        Dictionary<string, Material> _parentsMaterials = parent.Material.ToDictionary<Material, string>( x => x.GetKey() );
+        progressChanged( this, new ProgressChangedEventArgs( 1, "ProcessMaterials: ReplaceByExistingOne" ) );
+        foreach ( Material _materialX in _copyThis )
+          _materialX.ReplaceByExistingOne( _oldMaterialList, _newMaterialList, _parentsMaterials, parent );
+        progressChanged( this, new ProgressChangedEventArgs( 1, "ProcessMaterials: InsertAllOnSubmit" ) );
+        if ( _newMaterialList.Count > 0 )
+          entities.Material.InsertAllOnSubmit( _newMaterialList );
+        foreach ( Material _omx in _oldMaterialList )
+        {
+          this.Remove( _omx.GetKey() );
+          this.Add( _omx.GetKey(), _omx );
+        }
+      }
+      catch ( Exception _ex )
+      {
+        throw new IPRDataConsistencyException( "SummaryContentInfo.ProcessMaterials", _ex.Message, _ex, "Disposal processing error" );
+      }
+    }
+    private void UpdateNotStartedDisposals( Entities edc, ProgressChangedEventHandler progressChanged )
+    {
+      progressChanged( this, new ProgressChangedEventArgs( 1, "UpdateDisposals" ) );
+      foreach ( Material _materialX in this.Values )
+        _materialX.UpdateDisposals( edc, progressChanged );
+    }
+    private void AdjustOveruse( Material.Ratios materialRatios, List<Material> _tobacco )
+    {
+      if ( CalculatedOveruse <= 0 )
+        return;
+      AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
       decimal _2remove = 0;
       List<Material> _2Add = new List<Material>();
       foreach ( Material _mx in _tobacco )
@@ -196,12 +198,40 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       decimal _AddingCff = _2remove / _2Add.Sum<Material>( x => x.TobaccoQuantityDec );
       foreach ( Material _mx in _2Add )
         _mx.IncreaseOveruse( _AddingCff, materialRatios );
-      foreach ( Material _mx in this.Values )
-        AccumulatedDisposalsAnalisis.Accumutate( _mx );
     }
-    #endregion
-
-    #region private
+    private void GetOverusage( double usageMax, double usageMin )
+    {
+      double _fGQuantity = Product.FGQuantity.Value;
+      double _ret = ( this.TotalTobacco - _fGQuantity * usageMax / 1000 );
+      if ( _ret > 0 )
+        CalculatedOveruse = _ret / this.TotalTobacco; // Overusage
+      _ret = ( this.TotalTobacco - _fGQuantity * usageMin / 1000 );
+      if ( _ret < 0 )
+        CalculatedOveruse = _ret / this.TotalTobacco; //Underusage
+      CalculatedOveruse = 0;
+    }
+    /// <summary>
+    /// Contains all materials sorted using the following key: SKU,Batch,Location.
+    /// </summary>
+    private class DisposalsAnalisis: SortedList<DisposalEnum, decimal>
+    {
+      internal DisposalsAnalisis()
+      {
+        foreach ( Linq.DisposalEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
+          this.Add( _item, 0 );
+      }
+      internal void Accumutate( Material material )
+      {
+        if ( material.ProductType.Value != ProductType.IPRTobacco )
+          return;
+        foreach ( Linq.DisposalEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
+        {
+          if ( _item == DisposalEnum.Tobacco || _item == DisposalEnum.Cartons )
+            continue;
+          this[ _item ] += material[ _item ];
+        }
+      }
+    } //DisposalsAnalisis
     private decimal myTotalTobacco = 0;
     /// <summary>
     /// Adds an element with the specified key and value.
@@ -247,5 +277,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       entities.Material.InsertAllOnSubmit( this.Values );
     }
     #endregion
+
   }//SummaryContentInfo
 }
