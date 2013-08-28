@@ -117,7 +117,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       progressChanged( this, new ProgressChangedEventArgs( 1, "Analyze: ProcessMaterials" ) );
       this.ReplaceMaterials( edc, parent, materialRatios, progressChanged );
       progressChanged( this, new ProgressChangedEventArgs( 1, "Analyze: AdjustMaterialQuantity" ) );
-      List<Material> _IPRtobacco = this.Values.Where<Material>( x => x.ProductType.Value == ProductType.IPRTobacco ).ToList<Material>();
+      List<Material> _tobacco = this.Values.Where<Material>(x => x.ProductType.Value == ProductType.IPRTobacco || x.ProductType.Value == ProductType.Tobacco).ToList<Material>();
+      List<Material> _IPRtobacco = _tobacco.Where<Material>(x => x.ProductType.Value == ProductType.IPRTobacco).ToList<Material>();
       if ( this.Product.ProductType.Value == ProductType.Cigarette && this.BatchStatus == Linq.BatchStatus.Final )
         foreach ( Material _mx in _IPRtobacco )
           _mx.AdjustTobaccoQuantity( ref myTotalTobacco, progressChanged );
@@ -130,7 +131,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _mx.CalculateOveruse( edc, materialRatios, CalculatedOveruse );
       this.AdjustOveruse( materialRatios, _IPRtobacco );
       progressChanged( this, new ProgressChangedEventArgs( 1, "Analyze: AccumulatedDisposalsAnalisis" ) );
-      foreach ( Material _mx in _IPRtobacco )
+      foreach (Material _mx in _tobacco)
       {
         _mx.CalculateCompensationComponents( materialRatios );
         AccumulatedDisposalsAnalisis.Accumutate( _mx );
@@ -205,11 +206,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       double _fGQuantity = Product.FGQuantity.Value;
       double _ret = ( this.TotalTobacco - _fGQuantity * usageMax / 1000 );
-      if ( _ret > 0 )
+      if (_ret > 0)
+      {
         CalculatedOveruse = _ret / this.TotalTobacco; // Overusage
+        return;
+      }
       _ret = ( this.TotalTobacco - _fGQuantity * usageMin / 1000 );
-      if ( _ret < 0 )
+      if (_ret < 0)
+      {
         CalculatedOveruse = _ret / this.TotalTobacco; //Underusage
+        return;
+      }
       CalculatedOveruse = 0;
     }
     /// <summary>
