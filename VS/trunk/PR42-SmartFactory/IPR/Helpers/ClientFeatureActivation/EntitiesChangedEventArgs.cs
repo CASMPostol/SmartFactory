@@ -54,9 +54,10 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
     private class EntitiesStateInternal: EntitiesState
     {
       /// <summary>
-      /// Initializes a new instance of the <see cref="EntitiesState"/> class.
+      /// Initializes a new instance of the <see cref="EntitiesState" /> class.
       /// </summary>
       /// <param name="userState">A unique user state.</param>
+      /// <param name="entities">The entities.</param>
       internal EntitiesStateInternal( object userState, Entities entities )
       {
         m_UserState = userState;

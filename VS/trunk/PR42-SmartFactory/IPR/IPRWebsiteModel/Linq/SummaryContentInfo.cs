@@ -117,21 +117,24 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       progressChanged( this, new ProgressChangedEventArgs( 1, "Analyze: ProcessMaterials" ) );
       this.ReplaceMaterials( edc, parent, materialRatios, progressChanged );
       progressChanged( this, new ProgressChangedEventArgs( 1, "Analyze: AdjustMaterialQuantity" ) );
-      List<Material> _tobacco = this.Values.Where<Material>( x => x.ProductType.Value == ProductType.IPRTobacco ).ToList<Material>();
+      List<Material> _IPRtobacco = this.Values.Where<Material>( x => x.ProductType.Value == ProductType.IPRTobacco ).ToList<Material>();
       if ( this.Product.ProductType.Value == ProductType.Cigarette && this.BatchStatus == Linq.BatchStatus.Final )
-        foreach ( Material _mx in _tobacco )
+        foreach ( Material _mx in _IPRtobacco )
           _mx.AdjustTobaccoQuantity( ref myTotalTobacco, progressChanged );
       progressChanged( this, new ProgressChangedEventArgs( 1, "Analyze: GetOverusage" ) );
       this.GetOverusage( parent.UsageMax.Value, parent.UsageMin.Value );
       if ( this.BatchStatus == Linq.BatchStatus.Progress )
         return;
       progressChanged( this, new ProgressChangedEventArgs( 1, "Analyze: CalculateOveruse" ) );
-      foreach ( Material _mx in _tobacco )
+      foreach ( Material _mx in _IPRtobacco )
         _mx.CalculateOveruse( edc, materialRatios, CalculatedOveruse );
-      this.AdjustOveruse( materialRatios, _tobacco );
+      this.AdjustOveruse( materialRatios, _IPRtobacco );
       progressChanged( this, new ProgressChangedEventArgs( 1, "Analyze: AccumulatedDisposalsAnalisis" ) );
-      foreach ( Material _mx in _tobacco )
+      foreach ( Material _mx in _IPRtobacco )
+      {
+        _mx.CalculateCompensationComponents( materialRatios );
         AccumulatedDisposalsAnalisis.Accumutate( _mx );
+      }
       foreach ( InvoiceContent _ix in parent.InvoiceContent )
         _ix.UpdateExportedDisposals( edc );
       this.UpdateNotStartedDisposals( edc, progressChanged );
@@ -184,17 +187,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       foreach ( Material _materialX in this.Values )
         _materialX.UpdateDisposals( edc, progressChanged );
     }
-    private void AdjustOveruse( Material.Ratios materialRatios, List<Material> _tobacco )
+    private void AdjustOveruse( Material.Ratios materialRatios, List<Material> _IPRTobacco )
     {
       if ( CalculatedOveruse <= 0 )
         return;
-      AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
       decimal _2remove = 0;
       List<Material> _2Add = new List<Material>();
-      foreach ( Material _mx in _tobacco )
+      foreach ( Material _mx in _IPRTobacco )
         _2remove += _mx.RemoveOveruseIfPossible( _2Add, materialRatios );
       if ( _2Add.Count == 0 )
-        _2Add.Add( _tobacco.Max<Material, Material>( x => x ) );
+        _2Add.Add( _IPRTobacco.Max<Material, Material>( x => x ) );
       decimal _AddingCff = _2remove / _2Add.Sum<Material>( x => x.TobaccoQuantityDec );
       foreach ( Material _mx in _2Add )
         _mx.IncreaseOveruse( _AddingCff, materialRatios );
