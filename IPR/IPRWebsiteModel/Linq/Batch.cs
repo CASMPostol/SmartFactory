@@ -37,12 +37,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The most recent <see cref="Batch" /> object.
     /// </returns>
     /// <exception cref="System.ArgumentNullException">The source is null.</exception>
-    public static Batch FindLookup( Entities edc, string batch )
+    public static Batch FindLookup(Entities edc, string batch)
     {
-      return ( from _batchX in edc.Batch
-               where _batchX.Batch0.Contains( batch ) && _batchX.BatchStatus != Linq.BatchStatus.Progress
-               orderby _batchX.Id.Value
-               select _batchX ).FirstOrDefault();
+      return (from _batchX in edc.Batch
+              where _batchX.Batch0.Contains(batch) && _batchX.BatchStatus != Linq.BatchStatus.Progress
+              orderby _batchX.Id.Value
+              select _batchX).FirstOrDefault();
     }
     /// <summary>
     /// Gets the lookup.
@@ -53,12 +53,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The most recent <see cref="Batch" /> object.
     /// </returns>
     /// <exception cref="System.ArgumentNullException">The source is null.</exception>
-    public static Batch FindStockToBatchLookup( Entities edc, string batch )
+    public static Batch FindStockToBatchLookup(Entities edc, string batch)
     {
-      return ( from _batchX in edc.Batch
-               where _batchX.Batch0.Contains( batch )
-               orderby _batchX.Id.Value descending
-               select _batchX ).FirstOrDefault();
+      return (from _batchX in edc.Batch
+              where _batchX.Batch0.Contains(batch)
+              orderby _batchX.Id.Value descending
+              select _batchX).FirstOrDefault();
     }
     /// <summary>
     /// Batches the processing.
@@ -68,51 +68,51 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="parent">The parent.</param>
     /// <param name="progressChanged">The progress changed.</param>
     /// <param name="newBatch">if set to <c>true</c> it is new batch.</param>
-    public void BatchProcessing( Entities edc, SummaryContentInfo contentInfo, BatchLib parent, ProgressChangedEventHandler progressChanged, bool newBatch )
+    public void BatchProcessing(Entities edc, SummaryContentInfo contentInfo, BatchLib parent, ProgressChangedEventHandler progressChanged, bool newBatch)
     {
       BatchLibraryIndex = parent;
-      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: GetDependences" ) );
-      Material.Ratios _mr = GetDependences( edc, contentInfo.Product.ProductType.Value );
-      contentInfo.Analyze( edc, this, progressChanged, _mr );
-      AssignContentInfo( contentInfo, newBatch );
+      progressChanged(this, new ProgressChangedEventArgs(1, "BatchProcessing: GetDependences"));
+      Material.Ratios _mr = GetDependences(edc, contentInfo);
+      contentInfo.Analyze(edc, this, progressChanged, _mr);
+      AssignContentInfo(contentInfo, newBatch);
     }
     internal string DanglingBatchWarningMessage
     {
       get
       {
         string _msg = "Stock mismatch; the batch {0} is not reported on the stock. Correct your stock and try again.";
-        return String.Format( _msg, this.Title );
+        return String.Format(_msg, this.Title);
       }
     }
-    internal void GetInventory( StockDictionary balanceStock, StockDictionary.StockValueKey key, double quantityOnStock )
+    internal void GetInventory(StockDictionary balanceStock, StockDictionary.StockValueKey key, double quantityOnStock)
     {
-      switch ( this.BatchStatus.Value )
+      switch (this.BatchStatus.Value)
       {
         case Linq.BatchStatus.Progress:
           double _portion = quantityOnStock / this.FGQuantity.Value;
-          foreach ( Material _mtx in Material )
-            _mtx.GetInventory( balanceStock, key, _portion );
+          foreach (Material _mtx in Material)
+            _mtx.GetInventory(balanceStock, key, _portion);
           break;
         case Linq.BatchStatus.Intermediate:
         case Linq.BatchStatus.Final:
           break;
       }
     }
-    internal void CheckQuantity( List<string> _warnings, StockLib lib )
+    internal void CheckQuantity(List<string> _warnings, StockLib lib)
     {
-      if ( this.ProductType.Value != Linq.ProductType.Cigarette )
+      if (this.ProductType.Value != Linq.ProductType.Cigarette)
         return;
       decimal _onStock = 0;
-      foreach ( StockEntry _stock in this.StockEntry )
+      foreach (StockEntry _stock in this.StockEntry)
       {
-        if ( _stock.StockLibraryIndex != lib )
+        if (_stock.StockLibraryIndex != lib)
           continue;
-        _onStock += Convert.ToDecimal( _stock.Quantity );
+        _onStock += Convert.ToDecimal(_stock.Quantity);
       }
-      if ( Convert.ToDecimal( this.FGQuantityAvailable ) != _onStock )
+      if (Convert.ToDecimal(this.FGQuantityAvailable) != _onStock)
       {
-        string _msg = string.Format( m_noMachingQuantityWarningMessage, Convert.ToDecimal( this.FGQuantityAvailable ), _onStock, this.ProductType, this.Batch0, this.SKU );
-        _warnings.Add( _msg );
+        string _msg = string.Format(m_noMachingQuantityWarningMessage, Convert.ToDecimal(this.FGQuantityAvailable), _onStock, this.ProductType, this.Batch0, this.SKU);
+        _warnings.Add(_msg);
       }
     }
     #endregion
@@ -122,70 +122,71 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
     private const string m_LookupFailedAndAddedMessage = "I cannot recognize batch {0} - added preliminary entry to the list that must be uploaded.";
     private string m_noMachingQuantityWarningMessage = "Inconsistent quantity batch: {0} / stock: {1} of the product: {2} batch: {3}/sku: {4} on the stock.";
-    private Material.Ratios GetDependences( Entities edc, Linq.ProductType producttype )
+    private Material.Ratios GetDependences(Entities edc, SummaryContentInfo contentInfo)
     {
+      Linq.ProductType _producttype = contentInfo.Product.ProductType.Value;
       //Dependences
-      Dust DustIndex = Linq.Dust.GetLookup( producttype, edc );
+      Dust DustIndex = Linq.Dust.GetLookup(_producttype, edc);
       BatchDustCooeficiency = DustIndex.DustRatio;
       DustCooeficiencyVersion = DustIndex.Version;
-      SHMenthol SHMentholIndex = Linq.SHMenthol.GetLookup( producttype, edc );
+      SHMenthol SHMentholIndex = Linq.SHMenthol.GetLookup(_producttype, edc);
       BatchSHCooeficiency = SHMentholIndex.SHMentholRatio;
       SHCooeficiencyVersion = SHMentholIndex.Version;
-      Waste WasteIndex = Linq.Waste.GetLookup( producttype, edc );
+      Waste WasteIndex = Linq.Waste.GetLookup(_producttype, edc);
       BatchWasteCooeficiency = WasteIndex.WasteRatio;
       WasteCooeficiencyVersion = WasteIndex.Version;
-      CutfillerCoefficient _cc = CutfillerCoefficient.GetLookup( edc );
+      CutfillerCoefficient _cc = CutfillerCoefficient.GetLookup(edc);
       this.CFTProductivityNormMax = _cc.CFTProductivityNormMax;
       this.CFTProductivityNormMin = _cc.CFTProductivityNormMin;
       this.CFTProductivityRateMax = _cc.CFTProductivityRateMax;
       this.CFTProductivityRateMin = _cc.CFTProductivityRateMin;
       this.CFTProductivityVersion = _cc.Version;
-      Usage _usage = Usage.GetLookup( SKUIndex.FormatIndex, edc );
+      Usage _usage = Usage.GetLookup(contentInfo.SKULookup.FormatIndex, edc);
       this.CTFUsageMax = _usage.CTFUsageMax;
       this.CTFUsageMin = _usage.CTFUsageMin;
       this.UsageMin = _usage.UsageMin;
       this.UsageMax = _usage.UsageMax;
       this.UsageVersion = _usage.Version;
       double _shmcf = 0;
-      if ( ( SKUIndex is SKUCigarette ) && ( (SKUCigarette)SKUIndex ).MentholMaterial.Value )
-        _shmcf = ( (SKUCigarette)SKUIndex ).MentholMaterial.Value ? SHMentholIndex.SHMentholRatio.Value : 0;
+      if ((contentInfo.SKULookup is SKUCigarette) && ((SKUCigarette)contentInfo.SKULookup).MentholMaterial.Value)
+        _shmcf = ((SKUCigarette)contentInfo.SKULookup).MentholMaterial.Value ? SHMentholIndex.SHMentholRatio.Value : 0;
       return new Material.Ratios
       {
-        dustRatio = DustIndex.DustRatio.ValueOrException<double>( "Batch", "Material.Ratios", "dustRatio" ),
+        dustRatio = DustIndex.DustRatio.ValueOrException<double>("Batch", "Material.Ratios", "dustRatio"),
         shMentholRatio = _shmcf,
-        wasteRatio = WasteIndex.WasteRatio.ValueOrException<double>( "Batch", "Material.Ratios", "wasteRatio" )
+        wasteRatio = WasteIndex.WasteRatio.ValueOrException<double>("Batch", "Material.Ratios", "wasteRatio")
       };
     }
-    private void AssignContentInfo( SummaryContentInfo contentInfo, bool newBatch )
+    private void AssignContentInfo(SummaryContentInfo contentInfo, bool newBatch)
     {
-      if ( newBatch )
+      if (newBatch)
         FGQuantityAvailable = contentInfo.Product.FGQuantity;
       else
       {
         double _diff = contentInfo.Product.FGQuantity.Value - FGQuantity.Value;
         double _available = FGQuantityAvailable.Value;
-        if ( _diff + _available < 0 )
+        if (_diff + _available < 0)
         {
           string _ptrn = "The previous batch {0} has quantity of finisched good greater then the new one - it looks like wrong messages sequence. Available={1}, Diff={2}";
-          throw new InputDataValidationException( "wrong status of the input batch", "BatchProcessing", String.Format( _ptrn, contentInfo.Product.Batch, _available, _diff ), true );
+          throw new InputDataValidationException("wrong status of the input batch", "BatchProcessing", String.Format(_ptrn, contentInfo.Product.Batch, _available, _diff), true);
         }
         FGQuantityAvailable = _diff + _available;
       }
       BatchStatus = contentInfo.BatchStatus;
       Batch0 = contentInfo.Product.Batch;
       SKU = contentInfo.Product.SKU;
-      Title = String.Format( "{0} SKU: {1}; Batch: {2}", contentInfo.Product.ProductType, SKU, Batch0 );
+      Title = String.Format("{0} SKU: {1}; Batch: {2}", contentInfo.Product.ProductType, SKU, Batch0);
       CalculatedOveruse = contentInfo.CalculatedOveruse;
       MaterialQuantity = contentInfo.TotalTobacco;
       FGQuantity = contentInfo.Product.FGQuantity;
       MaterialQuantityPrevious = 0;
       SKUIndex = contentInfo.SKULookup;
       ProductType = contentInfo.Product.ProductType;
-      Dust = contentInfo[ Linq.DisposalEnum.Dust ];
-      SHMenthol = contentInfo[ Linq.DisposalEnum.SHMenthol ];
-      Waste = contentInfo[ Linq.DisposalEnum.Waste ];
-      Tobacco = contentInfo[ Linq.DisposalEnum.TobaccoInCigaretess ];
-      Overuse = contentInfo[ Linq.DisposalEnum.OverusageInKg ];
+      Dust = contentInfo[Linq.DisposalEnum.Dust];
+      SHMenthol = contentInfo[Linq.DisposalEnum.SHMenthol];
+      Waste = contentInfo[Linq.DisposalEnum.Waste];
+      Tobacco = contentInfo[Linq.DisposalEnum.TobaccoInCigaretess];
+      Overuse = contentInfo[Linq.DisposalEnum.OverusageInKg];
     }
     #endregion
 

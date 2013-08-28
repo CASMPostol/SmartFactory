@@ -310,6 +310,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         Debug.Assert( this.Material2BatchIndex == null, "Material2BatchIndex must be null for new materials" );
         this.Material2BatchIndex = parent;
         newMaterials.Add( this );
+        return;
       }
       Debug.Assert( this != _old, "this cannot be the same as _old" );
       Debug.Assert( _old.Material2BatchIndex == parent, "Material2BatchIndex must be equl parent for old materials" );
