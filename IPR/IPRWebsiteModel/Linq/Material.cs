@@ -114,7 +114,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal void AdjustTobaccoQuantity( ref decimal totalQuantity, ProgressChangedEventHandler progressChanged )
     {
       decimal _available = Accounts2Dispose.Sum( y => y.TobaccoNotAllocatedDec );
-      if ( Math.Abs( _available - TobaccoQuantityDec ) > Settings.MinimalOveruse )
+      if ( Math.Abs( _available - TobaccoQuantityDec - Disposed ) > Settings.MinimalOveruse )
         return;
       totalQuantity += _available - TobaccoQuantityDec;
       this.TobaccoQuantityDec = _available;
@@ -402,6 +402,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
+    private decimal Disposed { get; set; }
     private const string m_keyForam = "{0}:{1}:{2}";
     private List<IPR> myVarAccounts2Dispose = null;
     #endregion
@@ -422,7 +423,5 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     #endregion
 
-
-    internal decimal Disposed { get; set; }
   }
 }

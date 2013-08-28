@@ -72,7 +72,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       BatchLibraryIndex = parent;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: GetDependences" ) );
-      Material.Ratios _mr = GetDependences( edc );
+      Material.Ratios _mr = GetDependences( edc, contentInfo.Product.ProductType.Value );
       contentInfo.Analyze( edc, this, progressChanged, _mr );
       AssignContentInfo( contentInfo, newBatch );
     }
@@ -122,16 +122,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
     private const string m_LookupFailedAndAddedMessage = "I cannot recognize batch {0} - added preliminary entry to the list that must be uploaded.";
     private string m_noMachingQuantityWarningMessage = "Inconsistent quantity batch: {0} / stock: {1} of the product: {2} batch: {3}/sku: {4} on the stock.";
-    private Material.Ratios GetDependences( Entities edc )
+    private Material.Ratios GetDependences( Entities edc, Linq.ProductType producttype )
     {
       //Dependences
-      Dust DustIndex = Linq.Dust.GetLookup( ProductType.Value, edc );
+      Dust DustIndex = Linq.Dust.GetLookup( producttype, edc );
       BatchDustCooeficiency = DustIndex.DustRatio;
       DustCooeficiencyVersion = DustIndex.Version;
-      SHMenthol SHMentholIndex = Linq.SHMenthol.GetLookup( ProductType.Value, edc );
+      SHMenthol SHMentholIndex = Linq.SHMenthol.GetLookup( producttype, edc );
       BatchSHCooeficiency = SHMentholIndex.SHMentholRatio;
       SHCooeficiencyVersion = SHMentholIndex.Version;
-      Waste WasteIndex = Linq.Waste.GetLookup( ProductType.Value, edc );
+      Waste WasteIndex = Linq.Waste.GetLookup( producttype, edc );
       BatchWasteCooeficiency = WasteIndex.WasteRatio;
       WasteCooeficiencyVersion = WasteIndex.Version;
       CutfillerCoefficient _cc = CutfillerCoefficient.GetLookup( edc );
