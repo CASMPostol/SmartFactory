@@ -193,10 +193,10 @@
     <value>CFTProductivityRateMin</value>
   </data>
   <data name="CAS_CFTUsageMax" xml:space="preserve">
-    <value>CFT usage (max) [kg]</value>
+    <value>Tobacco usage norm (max) [kg]</value>
   </data>
   <data name="CAS_CFTUsageMin" xml:space="preserve">
-    <value>CFT usage (min) [kg]</value>
+    <value>Tobacco usage norm (min) [kg]</value>
   </data>
   <data name="CAS_CigaretteLenght" xml:space="preserve">
     <value>Cigarette lenght</value>
@@ -781,7 +781,7 @@
     <value>JSOX Report ID</value>
   </data>
   <data name="CAS_SadConsignmentNo" xml:space="preserve">
-    <value>SAD consignment no.</value>
+    <value>Technological process No.</value>
   </data>
   <data name="CAS_TobaccoStarted" xml:space="preserve">
     <value>Tobacco started</value>
