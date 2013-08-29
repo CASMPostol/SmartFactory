@@ -1,9 +1,9 @@
 
-rem//  $LastChangedDate: 2009-10-27 13:31:11 +0100 (Wt, 27 paü 2009) $
-rem//  $Rev: 4116 $
-rem//  $LastChangedBy: mzbrzezny $
-rem//  $URL: svn://svnserver.hq.cas.com.pl/VS/trunk/PR31-DataProviders/Scripts/create_branch.cmd $
-rem//  $Id: create_branch.cmd 4116 2009-10-27 12:31:11Z mzbrzezny $
+rem//  $LastChangedDate$
+rem//  $Rev$
+rem//  $LastChangedBy$
+rem//  $URL$
+rem//  $Id$
 
 
 set branchtype=tags
