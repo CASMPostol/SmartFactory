@@ -27,60 +27,59 @@
 }
 .Button
 {
-    border-width:1px 1px 1px 12px;
+    border-width:1px 1px 1px 1px;
     width:90px;
     height:20px;
-    border-top-color:#addbf7;
-    border-bottom-color:#addbf7;
-    border-left-color:#91cdf2;
-    border-right-color:#91cdf2;
+    border-top-color:#26a0da;
+    border-bottom-color:#26a0da;
+    border-left-color:#26a0da;
+    border-right-color:#26a0da;
     border-style:solid;
-    background-image:url(/_layouts/images/IPRDashboards/button_background.jpg);
+    background-image:url(/_layouts/images/IPRDashboards/button_background_gray.jpg);
     background-color:#FFFFFF;
     font-family:Verdana;
     font-size:8pt; 
 }
 .ButtonAlert
 {
-    border-width:1px 1px 1px 12px;
+    border-width:1px 1px 1px 1px;
     width:90px;
     height:20px;
-    border-top-color:#de4a4b;
-    border-bottom-color:#de4a4b;
-    border-left-color:#ae3638;
-    border-right-color:#ae3638;
+    border-top-color:#26a0da;
+    border-bottom-color:#26a0da;
+    border-left-color:#26a0da;
+    border-right-color:#26a0da;
     border-style:solid;
-    background-image:url(/_layouts/images/IPRDashboards/button_red_background.png);
-    background-color:#FFFFFF;
+    background-color:#a6f4ff;
     font-family:Verdana;
     font-size:8pt; 
 }
 .ButtonLong
 {
-    border-width:1px 1px 1px 12px;
+    border-width:1px 1px 1px 1px;
     width:130px;
     height:20px;
-    border-top-color:#addbf7;
-    border-bottom-color:#addbf7;
-    border-left-color:#91cdf2;
-    border-right-color:#91cdf2;
+    border-top-color:#26a0da;
+    border-bottom-color:#26a0da;
+    border-left-color:#26a0da;
+    border-right-color:#26a0da;
     border-style:solid;
-    background-image:url(/_layouts/images/IPRDashboards/button_background.jpg);
+    background-image:url(/_layouts/images/IPRDashboards/button_background_gray.jpg);
     background-color:#FFFFFF;
     font-family:Verdana;
     font-size:8pt; 
 }
 .Button_TR
 {
-    border-width:1px 1px 1px 12px;
+    border-width:1px 1px 1px 1px;
     width:70px;
     height:20px;
-    border-top-color:#addbf7;
-    border-bottom-color:#addbf7;
-    border-left-color:#91cdf2;
-    border-right-color:#91cdf2;
+    border-top-color:#26a0da;
+    border-bottom-color:#26a0da;
+    border-left-color:#26a0da;
+    border-right-color:#26a0da;
     border-style:solid;
-    background-image:url(/_layouts/images/IPRDashboards/button_background.jpg);
+    background-image:url(/_layouts/images/IPRDashboards/button_background_gray.jpg);
     background-color:#FFFFFF;
     font-family:Verdana;
     font-size:8pt; 
