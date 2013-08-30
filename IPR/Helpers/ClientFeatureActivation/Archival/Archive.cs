@@ -13,8 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
+using System;
 
 namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Archival
 {
@@ -24,11 +24,52 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Archival
   internal static class Archive
   {
 
-    internal static void Go( Entities edc, Action<object, EntitiesChangedEventArgs> ProgressChanged )
+    internal static void Go(Entities edc, Action<object, EntitiesChangedEventArgs> ProgressChanged)
     {
-      //foreach ( CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR _iprX in edc.IPR )
-      //  if (_iprX.AccountClosed.Value == true
-
+      //ProgressChanged(null, new EntitiesChangedEventArgs(1, "Starting 
+      foreach (IPR.WebsiteModel.Linq.IPR _iprX in edc.IPR)
+        if (_iprX.AccountClosed.Value == true && _iprX.ClosingDate.Value + TimeSpan.FromDays(Properties.Settings.Default.IPRAccountArchivalDelay) > DateTime.Today)
+        {
+          _iprX.Archival = true;
+          foreach (Disposal _dspx in _iprX.Disposal)
+            _dspx.Archival = true;
+        }
+        else
+          _iprX.Archival = false;
+      foreach (Batch _batchX in edc.Batch)
+      {
+        if (_batchX.FGQuantityAvailable > 0)
+        {
+          _batchX.Archival = false;
+          continue;
+        }
+        bool _2archive = true;
+        foreach (Material _material in _batchX.Material)
+        {
+          foreach (Disposal _disposalX in _material.Disposal)
+          {
+            if (_disposalX.CustomsStatus.Value != CustomsStatus.Finished || _disposalX.SADDate.Value + TimeSpan.FromDays(Properties.Settings.Default.BatchArchivalDelay) > DateTime.Today)
+            {
+              _2archive = false;
+              break;
+            }
+          }
+          if (!_2archive)
+            break;
+        }
+        if (_2archive)
+        {
+          _batchX.Archival = true;
+          foreach (Material _material in _batchX.Material)
+            _material.Archival = true;
+        }
+        else
+        {
+          _batchX.Archival = true;
+          foreach (Material _material in _batchX.Material)
+            _material.Archival = true;
+        }
+      }
     }
   }
 }
