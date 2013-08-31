@@ -1,5 +1,5 @@
 ﻿//<summary>
-//  Title   : Name of Application
+//  Title   : EntitiesChangedEventArgs class
 //  System  : Microsoft Visual C# .NET 2012
 //  $LastChangedDate$
 //  $Rev$
@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
 {
 
   /// <summary>
-  /// 
+  /// EntitiesChangedEventArgs class provides data for an event.
   /// </summary>
   internal class EntitiesChangedEventArgs: System.ComponentModel.ProgressChangedEventArgs
   {
@@ -66,12 +66,5 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
     }
 
   } //EntitiesChangedEventArgs
-
-  /// <summary>
-  /// Represents the method that will handle an event of underlying functions
-  /// </summary>
-  /// <param name="sender">The source of the event.</param>
-  /// <param name="e">The <see cref="EntitiesChangedEventArgs"/> instance containing the event data.</param>
-  internal delegate void EntitiesChangedEventHandler( object sender, EntitiesChangedEventArgs e );
 
 }
