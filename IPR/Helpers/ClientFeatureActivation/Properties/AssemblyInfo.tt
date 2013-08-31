@@ -1,5 +1,6 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
+
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -7,8 +8,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("IPR Interoperability")]
-[assembly: AssemblyDescription("<#=SFAssemblyProduct#> IPR SAP, CELINE, WMS. Office interconnection helpers")]
+[assembly: AssemblyTitle("IPR Client Feature Activation")]
+[assembly: AssemblyDescription("<#=SFAssemblyProduct#> IPR client site feature activation library")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("<#=AssemblyCompany#>")]
 [assembly: AssemblyProduct("<#=SFAssemblyProduct#>")]
@@ -22,9 +23,8 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3EABDD4B-227C-483A-A855-03C7628286FD")]
+[assembly: Guid("9FDFA43A-CE88-48CF-B1D2-66081FFDE8F8")]
+[assembly: AssemblyVersion("<#=IPRClientAssemblyVersion#>")]
+[assembly: AssemblyFileVersion("<#=IPClientRAssemblyFileVersion#>")]
 
-[assembly: AssemblyVersion("<#=IPRAssemblyVersion#>")]
-[assembly: AssemblyFileVersion("<#=IPRAssemblyFileVersion#>")]
-
-<#@ include file = "..\..\..\..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4" #>
+<#@ include file = "..\..\..\..\..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4" #>
