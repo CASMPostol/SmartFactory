@@ -1,0 +1,25 @@
+﻿<Window x:Class="CAS.SmartFactory.IPR.Client.UserInterface.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CAS SmartFactory IPR" Height="600" Width="800"
+         Loaded="Window_Loaded" >
+    <DockPanel LastChildFill="True">
+        <ToolBar DockPanel.Dock="Bottom" Header="State"  ToolTip="Information about the application and progress.">
+            <Label Name="ToolBarURLLabel" ContentStringFormat="URL: {0}" >unavailable</Label>
+            <ProgressBar Name="ProgressBarApplicationInstallationProgress" Width="300" Maximum="100" Minimum="0" />
+        </ToolBar>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" ></RowDefinition>
+                <RowDefinition ></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0"  Grid.Column="0">Instalation in progress ..</Label>
+            <ProgressBar Name="InstallationProgressBar"  Grid.Row="0" Grid.Column="1"></ProgressBar>
+            <ListBox Name="InstallationListBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></ListBox>
+        </Grid>
+    </DockPanel>
+</Window>
