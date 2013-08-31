@@ -27,18 +27,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   {
 
     #region public
-    internal void RecalculateClearedRecords( Entities entities, List<Linq.Disposal> _dl, EntitiesChangedEventHandler progress )
+    internal void RecalculateClearedRecords(Entities entities, Action<object, EntitiesChangedEventArgs> progress)
     {
-      if ( this.AccountClosed.Value )
+      if (this.AccountClosed.Value)
         return;
-      List<Disposal> _my = ( from _dxAll in _dl where _dxAll.Disposal2IPRIndex == this && _dxAll.DisposalStatus.Value != Linq.DisposalStatus.Cartons select _dxAll ).ToList<Disposal>();
-      this.TobaccoNotAllocated = Convert.ToDouble( Convert.ToDecimal( this.NetMass ) - _my.Sum<Disposal>( x => x.SettledQuantityDec ) );
-      if ( this.TobaccoNotAllocated < 0 )
+      List<Disposal> _my = (from _dxAll in this.Disposal.ToList<Disposal>() where _dxAll.DisposalStatus.Value != Linq.DisposalStatus.Cartons select _dxAll).ToList<Disposal>();
+      this.TobaccoNotAllocated = Convert.ToDouble(Convert.ToDecimal(this.NetMass) - _my.Sum<Disposal>(x => x.SettledQuantityDec));
+      if (this.TobaccoNotAllocated < 0)
         this.TobaccoNotAllocated = 0;
-      this.AccountBalance = Convert.ToDouble( Convert.ToDecimal( this.NetMass ) - _my.Where( y => y.CustomsStatus.Value == Linq.CustomsStatus.Finished ).Sum<Disposal>( y => y.SettledQuantityDec ) );
-      if ( this.AccountBalance < 0 )
+      this.AccountBalance = Convert.ToDouble(Convert.ToDecimal(this.NetMass) - _my.Where(y => y.CustomsStatus.Value == Linq.CustomsStatus.Finished).Sum<Disposal>(y => y.SettledQuantityDec));
+      if (this.AccountBalance < 0)
         this.AccountBalance = 0;
-      progress( this, new Client.FeatureActivation.EntitiesChangedEventArgs( 1, null, entities ) );
+      progress(this, new Client.FeatureActivation.EntitiesChangedEventArgs(1, null, entities));
     }
     #endregion
 
