@@ -18,8 +18,8 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0"  Grid.Column="0">Instalation in progress ..</Label>
-            <ProgressBar Name="InstallationProgressBar"  Grid.Row="0" Grid.Column="1"></ProgressBar>
-            <ListBox Name="InstallationListBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></ListBox>
+            <ProgressBar Name="x_ProgressBar"  Grid.Row="0" Grid.Column="1"></ProgressBar>
+            <ListBox Name="x_ListBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></ListBox>
         </Grid>
     </DockPanel>
 </Window>
