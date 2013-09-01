@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
       /// A unique System.Object indicating the user state.
       /// </value>
       public object UserState { get { return m_UserState; } }
-      internal Entities Entities { get { return m_Entities; } }
+      public Entities Entities { get { return m_Entities; } }
       internal protected object m_UserState = null;
       internal protected Entities m_Entities = null;
     }

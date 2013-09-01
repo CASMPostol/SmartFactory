@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : Name of Application
 //  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2013, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -44,7 +44,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     #endregion
 
-    internal virtual void EnteringState() { }
+    internal virtual void EnteringState()
+    {
+    }
 
     #region IAbstractMachineEvents Members
     public virtual void Previous()
@@ -53,13 +55,16 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     public virtual void Next()
     {
-      throw new NotImplementedException();
+      throw new ApplicationException();
     }
     public virtual void Cancel()
     {
       m_Context.Close();
     }
-    public abstract void RunAsync();
+    public virtual void RunAsync()
+    {
+      throw new ApplicationException();
+    }
     #endregion
 
     #region private
@@ -79,6 +84,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       #region AbstractMachine implementation
       public override void RunAsync()
       {
+        if (m_BackgroundWorker.IsBusy)
+          return;
         m_BackgroundWorker.RunWorkerAsync();
       }
       public override void Cancel()
@@ -88,7 +95,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       }
       internal override Events GetEventMask()
       {
-        return Events.Cancel | Events.RunAsync;
+        return Events.Cancel;
       }
       #endregion
 
@@ -105,7 +112,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       protected abstract void RunWorkerCompleted();
       protected virtual void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
       {
-        m_Context.ProgressChang(this, (EntitiesChangedEventArgs)e);
+        m_Context.ProgressChang(this, (EntitiesChangedEventArgs.EntitiesState)e.UserState);
       }
       protected bool ReportProgress(object source, EntitiesChangedEventArgs progress)
       {
@@ -123,10 +130,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       internal override Events GetEventMask()
       {
         return Events.Cancel | Events.Next;
-      }
-      public override void RunAsync()
-      {
-        throw new ApplicationException();
       }
       public override void Next()
       {
@@ -148,20 +151,11 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 
       internal override Events GetEventMask()
       {
-        return Events.Cancel | base.GetEventMask();
-      }
-      public override void Next()
-      {
-        m_Context.AssignStateMachine(ProcessState.Archiving);
-        m_Context.Machine.RunAsync();
+        return base.GetEventMask();
       }
       #region private
 
       #region BackgroundWorkerMachine implementation
-      protected override void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-      {
-        m_Context.ProgressChang(this, (EntitiesChangedEventArgs)e);
-      }
       protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
       {
         BackgroundWorker _wrkr = (BackgroundWorker)sender;
@@ -169,7 +163,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       }
       protected override void RunWorkerCompleted()
       {
-        this.Next();
+        m_Context.AssignStateMachine(ProcessState.Archiving);
+        m_Context.Machine.RunAsync();
       }
       #endregion
 
@@ -185,11 +180,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       #endregion
       internal override Events GetEventMask()
       {
-        return Events.Next | base.GetEventMask();
-      }
-      public override void Next()
-      {
-        m_Context.AssignStateMachine(ProcessState.Finisched);
+        return base.GetEventMask();
       }
 
       #region private
@@ -199,7 +190,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         FeatureActivation.Archival.Archive.Go(Properties.Settings.Default.SiteURL, ReportProgress);
       }
       protected override void RunWorkerCompleted()
-      { }
+      {
+        m_Context.AssignStateMachine(ProcessState.Finisched);
+      }
       #endregion
     }
     internal class FinishedMachine : AbstractMachine
@@ -208,16 +201,14 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         : base(context)
       { }
       internal override void EnteringState()
+      { }
+      public override void Next()
       {
         m_Context.Close();
       }
       internal override Events GetEventMask()
       {
-        return Events.Cancel;
-      }
-      public override void RunAsync()
-      {
-        m_Context.Close();
+        return Events.Next;
       }
     }
     #endregion

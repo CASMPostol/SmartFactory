@@ -33,10 +33,16 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
       using (Entities edc = new Entities(Properties.Settings.Default.URL))
       {
         Activate180.Activate.UpdateDisposals(edc, progress);
+        progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", edc));
         edc.SubmitChanges();
+        progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", edc));
         IPRRecalculateClearedRecords(edc, progress);
+        progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", edc));
         edc.SubmitChanges();
         Activate180.Activate.ResetArchival(edc, progress);
+        progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", edc));
+        edc.SubmitChanges();
+
       }
     }
     private static void UpdateDisposals(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
