@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 
@@ -20,62 +20,54 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
 {
   class Program
   {
-    static void Main( string[] args )
+    static void Main(string[] args)
     {
       try
       {
-        using ( Entities edc = new Entities( Properties.Settings.Default.URL ) )
-        {
-          Activate180.Activate.UpdateDisposals( edc, ProgressChanged );
-          edc.SubmitChanges();
-          ProgressChanged( null, new EntitiesChangedEventArgs( 1, "Activate.IPRRecalculateClearedRecords", edc ) );
-          //Activate180.Activate.IPRRecalculateClearedRecords( edc, ProgressChanged );
-          edc.SubmitChanges();
-          Activate180.Activate.ResetArchival(edc, ProgressChanged);
-          ProgressChanged( null, new EntitiesChangedEventArgs( 1, "Archive.Go", edc ) );
-          Archival.Archive.Go( edc, ProgressChanged );
-          edc.SubmitChanges();
-        }
-        Console.WriteLine( "Finished without errors." );
+        Activate180.Activate.Go(Properties.Settings.Default.URL, ProgressChanged);
+        Archival.Archive.Go(Properties.Settings.Default.URL, ProgressChanged);
+        Console.WriteLine("Finished without errors.");
       }
-      catch ( Exception ex )
+      catch (Exception ex)
       {
-        Console.WriteLine( "Program stoped by exception: " );
-        Console.WriteLine( ex.ToString() );
+        Console.WriteLine("Program stoped by exception: ");
+        Console.WriteLine(ex.ToString());
       }
-      Console.WriteLine( "Press enter to close the window" );
+      Console.WriteLine("Press enter to close the window");
       Console.ReadLine();
     }
-    private static void ProgressChanged( object sender, EntitiesChangedEventArgs e )
+
+    private static bool ProgressChanged(object sender, EntitiesChangedEventArgs e)
     {
-      if ( e == null )
+      if (e == null)
       {
-        throw new ArgumentNullException( "e" );
+        throw new ArgumentNullException("e");
       }
-      WriteDot( e.UserState );
-      if ( sender != null )
+      WriteDot(e.UserState);
+      if (sender != null)
       {
         //Console.WriteLine( sender.ToString() );
-        return;
+        return true;
       }
+      return true;
     }
     private static uint dotCounter = 0;
-    private static void WriteDot( EntitiesChangedEventArgs.EntitiesState entitiesState )
+    private static void WriteDot(EntitiesChangedEventArgs.EntitiesState entitiesState)
     {
       if (entitiesState.UserState != null)
-        if ( entitiesState.UserState is String )
+        if (entitiesState.UserState is String)
         {
           Console.WriteLine();
-          Console.WriteLine( (string)entitiesState.UserState );
+          Console.WriteLine((string)entitiesState.UserState);
           Console.WriteLine();
           dotCounter = 0;
           entitiesState.Entities.SubmitChanges();
           return;
         }
       dotCounter++;
-      if ( dotCounter % 10 == 0 )
-        Console.Write( "." );
-      if ( dotCounter % 100 == 0 )
+      if (dotCounter % 10 == 0)
+        Console.Write(".");
+      if (dotCounter % 100 == 0)
       {
         Console.WriteLine();
         entitiesState.Entities.SubmitChanges();

@@ -24,18 +24,26 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Archival
   /// <summary>
   /// Archive class contain collection of function supporting archival data management
   /// </summary>
-  internal static class Archive
+  public static class Archive
   {
     #region public
-    internal static void Go(Entities edc, Action<object, EntitiesChangedEventArgs> ProgressChanged)
+    /// <summary>
+    /// Goes the specified edc.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="ProgressChanged">The progress changed.</param>
+    public static void Go(string siteURL, Func<object, EntitiesChangedEventArgs, bool> ProgressChanged)
     {
-      GoIPR(edc, ProgressChanged);
-      GoBatch(edc, ProgressChanged);
+      using (Entities edc = new Entities(siteURL))
+      {
+        GoIPR(edc, ProgressChanged);
+        GoBatch(edc, ProgressChanged);
+      }
     }
     #endregion
 
     #region private
-    private static void GoIPR(Entities edc, Action<object, EntitiesChangedEventArgs> ProgressChanged)
+    private static void GoIPR(Entities edc, Func<object, EntitiesChangedEventArgs, bool> ProgressChanged)
     {
       ProgressChanged(null, new EntitiesChangedEventArgs(1, "Starting Archive GoIPR", edc));
       int _disposalsArchived = 0;
@@ -57,9 +65,10 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Archival
           _iprX.Archival = false;
         ProgressChanged(null, new EntitiesChangedEventArgs(1, null, edc));
       }
+      edc.SubmitChanges();
       ProgressChanged(null, new EntitiesChangedEventArgs(1, String.Format("Archived {0} IPR accounts and {1} disposals.", _iprArchived, _disposalsArchived), edc));
     }
-    private static void GoBatch(Entities edc, Action<object, EntitiesChangedEventArgs> ProgressChanged)
+    private static void GoBatch(Entities edc, Func<object, EntitiesChangedEventArgs, bool> ProgressChanged)
     {
       ProgressChanged(null, new EntitiesChangedEventArgs(1, "Starting Archive GoBatch", edc));
       //TODO progress cig exclude if final or intermidiate exist
@@ -126,6 +135,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Archival
           }
         }
       }// foreach (Batch 
+      edc.SubmitChanges();
       ProgressChanged(null, new EntitiesChangedEventArgs(1, String.Format("Archived {0} Batch final, Batch progress {1} and {2} Material entries.", _batchArchived, _progressBatchArchived, _materialArchived), edc));
     }
     #endregion

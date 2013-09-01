@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   {
 
     #region public
-    internal void RecalculateClearedRecords(Entities entities, Action<object, EntitiesChangedEventArgs> progress)
+    internal void RecalculateClearedRecords(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       if (this.AccountClosed.Value)
         return;

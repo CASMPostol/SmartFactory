@@ -21,9 +21,25 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
   /// <summary>
   /// Activate helper functions
   /// </summary>
-  internal static class Activate
+  public static class Activate
   {
-    internal static void UpdateDisposals(Entities entities, Action<object, EntitiesChangedEventArgs> progress)
+    /// <summary>
+    /// Goes the specified site URL.
+    /// </summary>
+    /// <param name="siteURL">The site URL.</param>
+    /// <param name="progress">The progress.</param>
+    public static void Go(string siteURL, Func<object, EntitiesChangedEventArgs, bool> progress)
+    {
+      using (Entities edc = new Entities(Properties.Settings.Default.URL))
+      {
+        Activate180.Activate.UpdateDisposals(edc, progress);
+        edc.SubmitChanges();
+        IPRRecalculateClearedRecords(edc, progress);
+        edc.SubmitChanges();
+        Activate180.Activate.ResetArchival(edc, progress);
+      }
+    }
+    private static void UpdateDisposals(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       progress(null, new EntitiesChangedEventArgs(1, "Starting Activate.UpdateDisposals", entities));
       foreach (Disposal _dspx in entities.Disposal)
@@ -34,7 +50,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
         progress(null, new EntitiesChangedEventArgs(1, null, entities));
       }
     }
-    internal static void IPRRecalculateClearedRecords(Entities entities, Action<object, EntitiesChangedEventArgs> progress)
+    private static void IPRRecalculateClearedRecords(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       progress(null, new EntitiesChangedEventArgs(1, "Starting Activate.IPRRecalculateClearedRecords", entities));
       foreach (IPR.WebsiteModel.Linq.IPR _iprX in entities.IPR)
@@ -44,7 +60,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
         progress(null, new EntitiesChangedEventArgs(1, null, entities));
       }
     }
-    internal static void ResetArchival(Entities entities, Action<object, EntitiesChangedEventArgs> progress)
+    private static void ResetArchival(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       progress(null, new EntitiesChangedEventArgs(1, "Starting Activate.ResetArchival", entities));
       foreach (Batch _batchItem in entities.Batch)
@@ -58,7 +74,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
         _materialItem.Archival = false;
         progress(null, new EntitiesChangedEventArgs(1, null, entities));
       }
-
     }
+
   }
 }
