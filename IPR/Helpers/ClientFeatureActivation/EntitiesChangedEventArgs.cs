@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
   /// <summary>
   /// EntitiesChangedEventArgs class provides data for an event.
   /// </summary>
-  internal class EntitiesChangedEventArgs: System.ComponentModel.ProgressChangedEventArgs
+  public class EntitiesChangedEventArgs : System.ComponentModel.ProgressChangedEventArgs
   {
     public EntitiesChangedEventArgs( int progressPercentage, object userState, Entities entities )
       : base( progressPercentage, new EntitiesStateInternal( userState, entities ) )
@@ -37,7 +37,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
     /// <summary>
     /// Class retpresenting <see cref="Entities"/> state
     /// </summary>
-    internal abstract class EntitiesState
+    public abstract class EntitiesState
     {
       /// <summary>
       /// Gets a unique user state.
