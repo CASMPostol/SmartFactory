@@ -42,12 +42,15 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
     }
     private class LocalMachine : StateMachine.StateMachineContext
     {
-      private MainWindow m_Parent;
+
+      #region ctor
       public LocalMachine(MainWindow parent)
         : base()
       {
         m_Parent = parent;
       }
+      #endregion
+
       #region StateMachineContext
       internal override void Close()
       {
@@ -60,21 +63,28 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
       internal override void WriteLine()
       {
         m_Parent.WriteLine();
+        m_Parent.UpdateProgressBar(1);
       }
       internal override void WriteLine(string value)
       {
         m_Parent.WriteLine(value);
+        m_Parent.UpdateProgressBar(1);
       }
       internal override void Exception(Exception exception)
       {
         string _mssg = String.Format("Program stoped by exception: {0}", exception.Message);
         MessageBox.Show(_mssg, "Operation error", MessageBoxButton.OK, MessageBoxImage.Error);
-        Close();
+        //Close();
       }
       internal override void EnteringState()
       {
       }
       #endregion
+
+      #region private
+      private MainWindow m_Parent;
+      #endregion
+
     }
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
@@ -85,21 +95,29 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
       m_StateMAchine.Machine.Next();
     }
     private LocalMachine m_StateMAchine;
+
     #region StateMachineContext View Model
+    bool m_UpdateProgressBarBusy = false;
     private void UpdateProgressBar(int progress)
     {
+      if (m_UpdateProgressBarBusy)
+        return;
+      m_UpdateProgressBarBusy = true;
       while (x_ProgressBar.Maximum - x_ProgressBar.Value < progress)
         x_ProgressBar.Maximum *= 2;
       x_ProgressBar.Value += progress;
+      m_UpdateProgressBarBusy = false;
     }
-    internal void WriteLine()
+    private void WriteLine()
     {
       x_ListBox.Items.Add(string.Empty);
     }
-    internal void WriteLine(string value)
+    private void WriteLine(string value)
     {
       x_ListBox.Items.Add(value);
     }
     #endregion
+
   }
+
 }
