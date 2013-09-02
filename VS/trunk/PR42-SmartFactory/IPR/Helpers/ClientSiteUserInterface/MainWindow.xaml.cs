@@ -89,7 +89,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
       AssemblyName _name = Assembly.GetExecutingAssembly().GetName();
-      this.Title = this.Title + String.Format(" Rel {0}.{1}.", _name.Version.Major, _name.Version.MajorRevision);
+      this.Title = this.Title + String.Format(" Rel {0}.{1}.{2}", _name.Version.Major, _name.Version.Minor, _name.Version.Revision );
       this.ToolBarURLLabel.Content = Properties.Settings.Default.SiteURL;
       m_StateMAchine = new LocalMachine(this);
       m_StateMAchine.Machine.Next();
