@@ -28,6 +28,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CAS.SmartFactory.IPR.Client.UserInterface.StateMachine;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface
 {
@@ -48,10 +49,18 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
         : base()
       {
         m_Parent = parent;
+        AssignStateMachine(ProcessState.SetupDataDialog);
       }
       #endregion
 
       #region StateMachineContext
+      internal override void SetupUserInterface(StateMachine.Events allowedEvents)
+      {
+        m_Parent.x_ButtonCancel.IsEnabled = (allowedEvents & StateMachine.Events.Cancel) != 0;
+        m_Parent.x_ButtonGoBackward.IsEnabled = (allowedEvents & StateMachine.Events.Previous) != 0;
+        m_Parent.x_ButtonGoForward.IsEnabled = (allowedEvents & StateMachine.Events.Next) != 0;
+        m_Parent.x_ButtonRun.IsEnabled = (allowedEvents & StateMachine.Events.RunAsync) != 0;
+      }
       internal override void Close()
       {
         m_Parent.Close();
@@ -79,12 +88,19 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
       internal override void EnteringState()
       {
       }
+      internal override void SetSiteURL(string URL)
+      {
+        m_Parent.x_TextBoxURL.Text = URL;
+      }
+      internal override string GetSiteUrl()
+      {
+        return m_Parent.x_TextBoxURL.Text;
+      }
       #endregion
 
       #region private
       private MainWindow m_Parent;
       #endregion
-
     }
     private void Window_Loaded( object sender, RoutedEventArgs e )
     {
@@ -92,7 +108,11 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
       this.Title = this.Title + " Rel " + _name.Version.ToString( 3 );
       this.ToolBarURLLabel.Content = Properties.Settings.Default.SiteURL;
       m_StateMAchine = new LocalMachine( this );
-      m_StateMAchine.Machine.Next();
+      x_ButtonCancel.Click += m_StateMAchine.ButtonCancel_Click;
+      x_ButtonGoBackward.Click += m_StateMAchine.ButtonGoBackward_Click;
+      x_ButtonGoForward.Click += m_StateMAchine.ButtonGoForward_Click;
+      x_ButtonRun.Click += m_StateMAchine.ButtonRun_Click;
+      //x_
     }
     private LocalMachine m_StateMAchine;
 
@@ -119,5 +139,4 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
     #endregion
 
   }
-
 }

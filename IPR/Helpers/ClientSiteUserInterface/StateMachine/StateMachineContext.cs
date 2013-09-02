@@ -14,6 +14,7 @@
 //</summary>
 
 using System;
+using System.Windows;
 using CAS.SmartFactory.IPR.Client.FeatureActivation;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
@@ -28,7 +29,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     #region creator
     internal StateMachineContext()
     {
-      AssignStateMachine(ProcessState.SetupDataDialog);
     }
     #endregion
 
@@ -66,9 +66,10 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     #endregion
 
-
     #region StateMachineContext View Model
-
+    internal abstract void SetSiteURL(string URL);
+    internal abstract string GetSiteUrl();
+    internal abstract void SetupUserInterface(Events allowedEvents);
     internal abstract void Close();
     internal abstract void Progress(int progress);
     internal abstract void WriteLine();
@@ -105,6 +106,24 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     //private static uint dotCounter = 0;
     #endregion
 
+    #region event handlers
+    internal void ButtonGoBackward_Click(object sender, RoutedEventArgs e)
+    {
+      Machine.Previous();
+    }
+    internal void ButtonGoForward_Click(object sender, RoutedEventArgs e)
+    {
+      Machine.Next();
+    }
+    internal void ButtonRun_Click(object sender, RoutedEventArgs e)
+    {
+      Machine.RunAsync();
+    }
+    internal void ButtonCancel_Click(object sender, RoutedEventArgs e)
+    {
+      Machine.Cancel();
+    }
+    #endregion
 
   }
 
