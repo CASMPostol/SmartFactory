@@ -48,11 +48,33 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
     private static void UpdateDisposals(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       progress(null, new EntitiesChangedEventArgs(1, "Starting Activate.UpdateDisposals", entities));
+      int _cl = 0;
       foreach (Disposal _dspx in entities.Disposal)
       {
         _dspx.Archival = false;
         if (_dspx.JSOXCustomsSummaryIndex != null)
           _dspx.JSOXReportID = _dspx.JSOXCustomsSummaryIndex.JSOXCustomsSummary2JSOXIndex.Id.Value;
+        if (String.IsNullOrEmpty(_dspx.SadConsignmentNo))
+          switch (_dspx.CustomsStatus.Value)
+          {
+            case CustomsStatus.NotStarted:
+              break;
+            case CustomsStatus.Started:
+            case CustomsStatus.Finished:
+              if (_dspx.Disposal2ClearenceIndex == null)
+              {
+                progress(null, new EntitiesChangedEventArgs(1, "Wrong Disposal to ClearenceIndex lookup", entities));
+                break;
+              }
+              _dspx.SadConsignmentNo = String.Format("{0:D7}", _dspx.Disposal2ClearenceIndex.Id.Value);
+              break;
+            default:
+              progress(null, new EntitiesChangedEventArgs(1, "Wrong Disposal customs status", entities));
+              break;
+          }
+        _cl++;
+        if (_cl % 100 == 0)
+          SubmitChanges(progress, entities);
         progress(null, new EntitiesChangedEventArgs(1, null, entities));
       }
       SubmitChanges(progress, entities);
