@@ -34,17 +34,17 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
   /// <summary>
   /// Interaction logic for MainWindow.xaml
   /// </summary>
-  public partial class MainWindow : Window
+  public partial class MainWindow: Window
   {
     public MainWindow()
     {
       InitializeComponent();
     }
-    private class LocalMachine : StateMachine.StateMachineContext
+    private class LocalMachine: StateMachine.StateMachineContext
     {
 
       #region ctor
-      public LocalMachine(MainWindow parent)
+      public LocalMachine( MainWindow parent )
         : base()
       {
         m_Parent = parent;
@@ -56,24 +56,24 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
       {
         m_Parent.Close();
       }
-      internal override void Progress(int progress)
+      internal override void Progress( int progress )
       {
-        m_Parent.UpdateProgressBar(progress);
+        m_Parent.UpdateProgressBar( progress );
       }
       internal override void WriteLine()
       {
         m_Parent.WriteLine();
-        m_Parent.UpdateProgressBar(1);
+        m_Parent.UpdateProgressBar( 1 );
       }
-      internal override void WriteLine(string value)
+      internal override void WriteLine( string value )
       {
-        m_Parent.WriteLine(value);
-        m_Parent.UpdateProgressBar(1);
+        m_Parent.WriteLine( value );
+        m_Parent.UpdateProgressBar( 1 );
       }
-      internal override void Exception(Exception exception)
+      internal override void Exception( Exception exception )
       {
-        string _mssg = String.Format("Program stoped by exception: {0}", exception.Message);
-        MessageBox.Show(_mssg, "Operation error", MessageBoxButton.OK, MessageBoxImage.Error);
+        string _mssg = String.Format( "Program stoped by exception: {0}", exception.Message );
+        MessageBox.Show( _mssg, "Operation error", MessageBoxButton.OK, MessageBoxImage.Error );
         //Close();
       }
       internal override void EnteringState()
@@ -86,35 +86,35 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
       #endregion
 
     }
-    private void Window_Loaded(object sender, RoutedEventArgs e)
+    private void Window_Loaded( object sender, RoutedEventArgs e )
     {
       AssemblyName _name = Assembly.GetExecutingAssembly().GetName();
-      this.Title = this.Title + String.Format(" Rel {0}.{1}.{2}", _name.Version.Major, _name.Version.Minor, _name.Version.Revision );
+      this.Title = this.Title + " Rel " + _name.Version.ToString( 3 );
       this.ToolBarURLLabel.Content = Properties.Settings.Default.SiteURL;
-      m_StateMAchine = new LocalMachine(this);
+      m_StateMAchine = new LocalMachine( this );
       m_StateMAchine.Machine.Next();
     }
     private LocalMachine m_StateMAchine;
 
     #region StateMachineContext View Model
     bool m_UpdateProgressBarBusy = false;
-    private void UpdateProgressBar(int progress)
+    private void UpdateProgressBar( int progress )
     {
-      if (m_UpdateProgressBarBusy)
+      if ( m_UpdateProgressBarBusy )
         return;
       m_UpdateProgressBarBusy = true;
-      while (x_ProgressBar.Maximum - x_ProgressBar.Value < progress)
+      while ( x_ProgressBar.Maximum - x_ProgressBar.Value < progress )
         x_ProgressBar.Maximum *= 2;
       x_ProgressBar.Value += progress;
       m_UpdateProgressBarBusy = false;
     }
     private void WriteLine()
     {
-      x_ListBox.Items.Add(string.Empty);
+      x_ListBox.Items.Add( string.Empty );
     }
-    private void WriteLine(string value)
+    private void WriteLine( string value )
     {
-      x_ListBox.Items.Add(value);
+      x_ListBox.Items.Add( value );
     }
     #endregion
 
