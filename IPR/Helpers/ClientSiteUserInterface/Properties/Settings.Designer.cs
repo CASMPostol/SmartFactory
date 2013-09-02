@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://cas_sp:11225/sites/ipr2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://smartfactoryqa.jti.com/sites/IPR")]
         public string SiteURL {
             get {
                 return ((string)(this["SiteURL"]));
