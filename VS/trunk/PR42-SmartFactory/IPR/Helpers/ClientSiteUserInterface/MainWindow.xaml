@@ -6,7 +6,7 @@
     <DockPanel LastChildFill="True">
         <ToolBar DockPanel.Dock="Bottom" Header="State"  ToolTip="Information about the application and progress.">
             <Label Name="ToolBarURLLabel" ContentStringFormat="URL: {0}" >unavailable</Label>
-            <ProgressBar Name="ProgressBarApplicationInstallationProgress" Width="300" Maximum="100" Minimum="0" />
+            <ProgressBar Name="x_ProgressBar" Width="300" Maximum="100" Minimum="0" />
         </ToolBar>
         <Grid>
             <Grid.RowDefinitions>
@@ -17,8 +17,7 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0"  Grid.Column="0">Instalation in progress ..</Label>
-            <ProgressBar Name="x_ProgressBar"  Grid.Row="0" Grid.Column="1"></ProgressBar>
+            <Label Grid.Row="0"  Grid.Column="0">Upgrade in progress (it will take several of minutes ...</Label>
             <ListBox Name="x_ListBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></ListBox>
         </Grid>
     </DockPanel>

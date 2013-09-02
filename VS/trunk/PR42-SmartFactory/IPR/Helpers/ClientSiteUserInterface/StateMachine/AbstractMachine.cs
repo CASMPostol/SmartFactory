@@ -47,11 +47,12 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     internal virtual void EnteringState()
     {
     }
+    internal abstract Events GetEventMask();
 
     #region IAbstractMachineEvents Members
     public virtual void Previous()
     {
-      throw new NotImplementedException();
+      throw new ApplicationException();
     }
     public virtual void Next()
     {
@@ -153,12 +154,10 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       {
         return base.GetEventMask();
       }
-      #region private
 
       #region BackgroundWorkerMachine implementation
       protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
       {
-        BackgroundWorker _wrkr = (BackgroundWorker)sender;
         FeatureActivation.Activate180.Activate.Go(Properties.Settings.Default.SiteURL, ReportProgress);
       }
       protected override void RunWorkerCompleted()
@@ -166,8 +165,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         m_Context.AssignStateMachine(ProcessState.Archiving);
         m_Context.Machine.RunAsync();
       }
-      #endregion
-
       #endregion
 
     }
@@ -178,15 +175,15 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         : base(context)
       { }
       #endregion
+
       internal override Events GetEventMask()
       {
         return base.GetEventMask();
       }
 
-      #region private
+      #region BackgroundWorkerMachine implementation
       protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
       {
-        BackgroundWorker _wrkr = (BackgroundWorker)sender;
         FeatureActivation.Archival.Archive.Go(Properties.Settings.Default.SiteURL, ReportProgress);
       }
       protected override void RunWorkerCompleted()
@@ -215,7 +212,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 
     #region vars
     private StateMachineContext m_Context = null;
-    internal abstract Events GetEventMask();
     #endregion
 
     #endregion

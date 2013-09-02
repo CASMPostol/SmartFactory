@@ -79,16 +79,15 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       if (entitiesState == null)
       {
-        throw new ArgumentNullException("entitiesChangedEventArgs");
+        throw new ArgumentNullException("entitiesState");
       }
-      if (entitiesState.UserState != null)
-        if (entitiesState.UserState is String)
-        {
-          WriteLine((string)entitiesState.UserState);
-          //dotCounter = 0;
-          //entitiesState.Entities.SubmitChanges();
-          return;
-        }
+      if (entitiesState.UserState != null && entitiesState.UserState is String)
+      {
+        WriteLine((string)entitiesState.UserState);
+        //dotCounter = 0;
+        //entitiesState.Entities.SubmitChanges();
+        return;
+      }
       //dotCounter++;
       Progress(1);
       //if (dotCounter % 100 == 0)

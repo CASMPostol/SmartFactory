@@ -23,6 +23,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
   /// </summary>
   public static class Activate
   {
+
     /// <summary>
     /// Goes the specified site URL.
     /// </summary>
@@ -30,20 +31,19 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
     /// <param name="progress">The progress.</param>
     public static void Go(string siteURL, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
-      using (Entities edc = new Entities(Properties.Settings.Default.URL))
+      using (Entities edc = new Entities(siteURL))
       {
-        Activate180.Activate.UpdateDisposals(edc, progress);
-        progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", edc));
-        edc.SubmitChanges();
-        progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", edc));
+        UpdateDisposals(edc, progress);
         IPRRecalculateClearedRecords(edc, progress);
-        progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", edc));
-        edc.SubmitChanges();
-        Activate180.Activate.ResetArchival(edc, progress);
-        progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", edc));
-        edc.SubmitChanges();
-
+        ResetArchival(edc, progress);
       }
+    }
+
+    #region private
+    private static void SubmitChanges(Func<object, EntitiesChangedEventArgs, bool> progress, Entities edc)
+    {
+      progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", edc));
+      edc.SubmitChanges();
     }
     private static void UpdateDisposals(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
@@ -55,6 +55,8 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
           _dspx.JSOXReportID = _dspx.JSOXCustomsSummaryIndex.JSOXCustomsSummary2JSOXIndex.Id.Value;
         progress(null, new EntitiesChangedEventArgs(1, null, entities));
       }
+      SubmitChanges(progress, entities);
+      progress(null, new EntitiesChangedEventArgs(1, "Finished Activate.UpdateDisposals", entities));
     }
     private static void IPRRecalculateClearedRecords(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
@@ -65,22 +67,29 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
         _iprX.RecalculateClearedRecords(entities, progress);
         progress(null, new EntitiesChangedEventArgs(1, null, entities));
       }
+      SubmitChanges(progress, entities);
+      progress(null, new EntitiesChangedEventArgs(1, "Finished Activate.IPRRecalculateClearedRecords", entities));
     }
     private static void ResetArchival(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       progress(null, new EntitiesChangedEventArgs(1, "Starting Activate.ResetArchival", entities));
+      progress(null, new EntitiesChangedEventArgs(1, "Batch archive resetiny", entities));
       foreach (Batch _batchItem in entities.Batch)
       {
         _batchItem.Archival = false;
         progress(null, new EntitiesChangedEventArgs(1, null, entities));
       }
+      SubmitChanges(progress, entities);
       progress(null, new EntitiesChangedEventArgs(1, "Material archive resetiny", entities));
       foreach (Material _materialItem in entities.Material)
       {
         _materialItem.Archival = false;
         progress(null, new EntitiesChangedEventArgs(1, null, entities));
       }
+      SubmitChanges(progress, entities);
+      progress(null, new EntitiesChangedEventArgs(1, "Finished Activate.ResetArchival", entities));
     }
+    #endregion
 
   }
 }
