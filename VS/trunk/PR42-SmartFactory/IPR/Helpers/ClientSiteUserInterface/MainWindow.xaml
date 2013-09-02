@@ -4,10 +4,16 @@
         Title="CAS SmartFactory IPR" Height="600" Width="800"
          Loaded="Window_Loaded" >
     <DockPanel LastChildFill="True">
-        <ToolBar DockPanel.Dock="Bottom" Header="State"  ToolTip="Information about the application and progress.">
+        <ToolBar DockPanel.Dock="Bottom" Header="State: "  ToolTip="Information about the application and progress.">
             <Label Name="ToolBarURLLabel" ContentStringFormat="URL: {0}" >unavailable</Label>
             <ProgressBar Name="x_ProgressBar" Width="300" Maximum="100" Minimum="0" />
         </ToolBar>
+        <StackPanel Name="x_StackPanelButtons" DockPanel.Dock="Bottom" Orientation="Horizontal" >
+            <Button Name="x_ButtonGoBackward" Width="100" Margin="5,0,0,0" Content="&lt;&lt;" ></Button>
+            <Button Name="x_ButtonGoForward" Width="100" Margin="5,0,0,0" Content="&gt;&gt;" ></Button>
+            <Button Name="x_ButtonRun" Width="100" Margin="5,0,0,0" Content="OK" ></Button>
+            <Button Name="x_ButtonCancel" Width="100" Margin="5,0,0,0" Content="Cancel" ></Button>
+        </StackPanel>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" ></RowDefinition>
@@ -17,7 +23,8 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0"  Grid.Column="0">Upgrade in progress (it will take several of minutes ...</Label>
+            <Label Grid.Row="0"  Grid.Column="0" Content="Site URL"></Label>
+            <TextBox Name="x_TextBoxURL" Text="&lt; site URL &gt;" ToolTip="Site Collection URL" Grid.Column="1" Grid.Row="0"/>
             <ListBox Name="x_ListBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></ListBox>
         </Grid>
     </DockPanel>

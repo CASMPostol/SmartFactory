@@ -27,12 +27,9 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
   /// </summary>
   public class EntitiesChangedEventArgs : System.ComponentModel.ProgressChangedEventArgs
   {
-    public EntitiesChangedEventArgs( int progressPercentage, object userState, Entities entities )
-      : base( progressPercentage, new EntitiesStateInternal( userState, entities ) )
-    {
-      if ( entities == null )
-        throw new ArgumentNullException( "entities" );
-    }
+    public EntitiesChangedEventArgs(int progressPercentage, object userState, Entities entities)
+      : base(progressPercentage, new EntitiesStateInternal(userState, entities))
+    { }
     public new EntitiesState UserState { get { return (EntitiesState)base.UserState; } }
     /// <summary>
     /// Class retpresenting <see cref="Entities"/> state
@@ -51,14 +48,14 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
       internal protected Entities m_Entities = null;
     }
     //private
-    private class EntitiesStateInternal: EntitiesState
+    private class EntitiesStateInternal : EntitiesState
     {
       /// <summary>
       /// Initializes a new instance of the <see cref="EntitiesState" /> class.
       /// </summary>
       /// <param name="userState">A unique user state.</param>
       /// <param name="entities">The entities.</param>
-      internal EntitiesStateInternal( object userState, Entities entities )
+      internal EntitiesStateInternal(object userState, Entities entities)
       {
         m_UserState = userState;
         m_Entities = entities;

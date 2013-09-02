@@ -46,9 +46,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 
     internal virtual void EnteringState()
     {
+      m_Context.SetupUserInterface(GetEventMask());
     }
     internal abstract Events GetEventMask();
-
     #region IAbstractMachineEvents Members
     public virtual void Previous()
     {
@@ -128,12 +128,18 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       public SetupDataDialogMachine(StateMachineContext context)
         : base(context)
       { }
+      internal override void EnteringState()
+      {
+        base.EnteringState();
+        m_Context.SetSiteURL(Properties.Settings.Default.SiteURL);
+      }
       internal override Events GetEventMask()
       {
         return Events.Cancel | Events.Next;
       }
       public override void Next()
       {
+        Properties.Settings.Default.SiteURL = m_Context.GetSiteUrl();
         m_Context.AssignStateMachine(ProcessState.Activation);
         m_Context.Machine.RunAsync();
       }
@@ -154,8 +160,13 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       {
         return base.GetEventMask();
       }
-
       #region BackgroundWorkerMachine implementation
+      public override void RunAsync()
+      {
+        m_Context.SetupUserInterface(Events.Cancel);
+        m_Context.ProgressChang(this, new EntitiesChangedEventArgs(1, "Feture activation in progress - it could take several minutes.", null).UserState);
+        base.RunAsync();
+      }
       protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
       {
         FeatureActivation.Activate180.Activate.Go(Properties.Settings.Default.SiteURL, ReportProgress);
@@ -182,6 +193,12 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       }
 
       #region BackgroundWorkerMachine implementation
+      public override void RunAsync()
+      {
+        m_Context.SetupUserInterface(Events.Cancel);
+        m_Context.ProgressChang(this, new EntitiesChangedEventArgs(1, "Data archival in progress - it could take several minutes.", null).UserState);
+        base.RunAsync();
+      }
       protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
       {
         FeatureActivation.Archival.Archive.Go(Properties.Settings.Default.SiteURL, ReportProgress);
