@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="SiteURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://smartfactoryqa.jti.com/sites/IPR</Value>
+      <Value Profile="(Default)">http://cas_sp:11225/sites/ipr2</Value>
     </Setting>
   </Settings>
 </SettingsFile>
