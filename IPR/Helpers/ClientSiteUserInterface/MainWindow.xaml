@@ -14,18 +14,21 @@
             <Button Name="x_ButtonRun" Width="100" Margin="5,0,0,0" Content="OK" ></Button>
             <Button Name="x_ButtonCancel" Width="100" Margin="5,0,0,0" Content="Cancel" ></Button>
         </StackPanel>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" ></RowDefinition>
-                <RowDefinition ></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="0"  Grid.Column="0" Content="Site URL"></Label>
-            <TextBox Name="x_TextBoxURL" Text="&lt; site URL &gt;" ToolTip="Site Collection URL" Grid.Column="1" Grid.Row="0"/>
-            <ListBox Name="x_ListBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></ListBox>
-        </Grid>
+        <TabControl Name="m_ContentTabControl" Margin="0,10,0,0">
+            <TabItem Header="Data" Name="DataDialogPanel" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <DockPanel Name="DataDockPanel" LastChildFill="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="564">
+                    <Label Name="DataLabelReview"  DockPanel.Dock="Top" >Review data:</Label>
+                    <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Height="151" >
+                        <Label Content="Site URL" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Width="88"/>
+                        <TextBox Name="x_TextBoxURL" Text="&lt; site URL &gt;" ToolTip="Site Collection URL" Grid.Row="0" Margin="190,0,0,0" Width="354" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24"/>
+                        <Label Content="Site URL" Margin="0,29,0,0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24"/>
+                        <TextBox Name="x_TextBoxUR2L" Text="&lt; site URL &gt;" ToolTip="Site Collection URL" Margin="190,29,0,0" Width="354" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24"/>
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="ListBox" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <ListBox Name="x_ListBox" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="475" Margin="0,0,0,0" Width="780"/>
+            </TabItem>
+        </TabControl>
     </DockPanel>
 </Window>
