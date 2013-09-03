@@ -76,6 +76,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     internal abstract void WriteLine(string value);
     internal abstract void Exception(Exception exception);
     internal abstract void EnteringState();
+    internal abstract void DisplayStatusURL( string url );
     internal void ProgressChang(AbstractMachine activationMachine, EntitiesChangedEventArgs.EntitiesState entitiesState)
     {
       if (entitiesState == null)
@@ -124,6 +125,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       Machine.Cancel();
     }
     #endregion
+
 
   }
 
