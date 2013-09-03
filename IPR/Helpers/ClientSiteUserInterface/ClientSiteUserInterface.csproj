@@ -33,7 +33,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.html</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationRevision>13</ApplicationRevision>
     <ApplicationVersion>1.80.10.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -75,7 +75,7 @@
     <ManifestCertificateThumbprint>C12982E675A7527F1DB6BB03D6E21921B73493C5</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>Custom</TargetZone>
@@ -85,6 +85,9 @@
     <ApplicationIcon>SharePoint_Setup_Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -142,6 +145,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="cas.snk" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
