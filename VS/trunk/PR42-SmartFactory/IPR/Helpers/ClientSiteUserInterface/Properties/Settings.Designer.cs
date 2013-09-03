@@ -34,5 +34,29 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
                 this["SiteURL"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DoArchive {
+            get {
+                return ((bool)(this["DoArchive"]));
+            }
+            set {
+                this["DoArchive"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DoActivate1800 {
+            get {
+                return ((bool)(this["DoActivate1800"]));
+            }
+            set {
+                this["DoActivate1800"] = value;
+            }
+        }
     }
 }
