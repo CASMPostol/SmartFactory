@@ -5,5 +5,11 @@
     <Setting Name="SiteURL" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://cas_sp:11225/sites/ipr2</Value>
     </Setting>
+    <Setting Name="DoArchive" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DoActivate1800" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
