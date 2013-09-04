@@ -34,7 +34,7 @@
     <WebPage>publish.html</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
     <ApplicationRevision>15</ApplicationRevision>
-    <ApplicationVersion>1.80.10.%2a</ApplicationVersion>
+    <ApplicationVersion>1.81.00.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
