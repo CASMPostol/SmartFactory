@@ -8,21 +8,27 @@
             <Label Name="ToolBarURLLabel" ContentStringFormat="URL: {0}" >unavailable</Label>
             <ProgressBar Name="x_ProgressBar" Width="300" Maximum="100" Minimum="0" />
         </ToolBar>
-        <StackPanel Name="x_StackPanelButtons" DockPanel.Dock="Bottom" Orientation="Horizontal" >
+        <StackPanel Name="x_StackPanelButtons" DockPanel.Dock="Bottom" Orientation="Horizontal">
             <Button Name="x_ButtonGoBackward" Width="100" Margin="5,0,0,0" Content="&lt;&lt;" ></Button>
             <Button Name="x_ButtonGoForward" Width="100" Margin="5,0,0,0" Content="&gt;&gt;" ></Button>
             <Button Name="x_ButtonRun" Width="100" Margin="5,0,0,0" Content="OK" ></Button>
             <Button Name="x_ButtonCancel" Width="100" Margin="5,0,0,0" Content="Cancel" ></Button>
         </StackPanel>
         <TabControl Name="m_ContentTabControl" Margin="0,10,0,0">
-            <TabItem Header="Data" Name="DataDialogPanel" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TabItem Header="Setup" Name="SetupDialogPanel" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <DockPanel Name="DataDockPanel" LastChildFill="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="564">
-                    <Label Name="DataLabelReview"  DockPanel.Dock="Top" >Review data:</Label>
-                    <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Height="151" >
-                        <Label Content="Site URL" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Width="88"/>
-                        <TextBox Name="x_TextBoxURL" Text="&lt; site URL &gt;" ToolTip="Site Collection URL" Grid.Row="0" Margin="190,0,0,0" Width="354" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24"/>
-                        <Label Content="Site URL" Margin="0,29,0,0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24"/>
-                        <TextBox Name="x_TextBoxUR2L" Text="&lt; site URL &gt;" ToolTip="Site Collection URL" Margin="190,29,0,0" Width="354" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24"/>
+                    <Label Name="DataLabelReview"  DockPanel.Dock="Top" >Enter data:</Label>
+                    <Grid VerticalAlignment="Top" Height="151" Margin="0,0,0,0" HorizontalAlignment="Left">
+                        <Label Content="Site URL" Height="26" Width="88" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <TextBox Name="x_TextBoxURL" Text="&lt; site URL &gt;" ToolTip="Site Collection URL" Height="26" Width="354" Margin="190,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Label Content="Archive IPR accounts" Height="26" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Content="Enable" Name="ArchiveIPRAccountsCheckBox" ToolTip="Select to enable archiving of IPR accounts" Height="20" Width="150" Margin="190,36,204,93" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Label Content="Archiving delay (in days)" Height="26" Margin="0,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBox Name="IPRAccountArchivalDelay" Text="&lt; days &gt;" ToolTip="Enter the number of days after the closure of IPR account" Height="26" Width="60" Margin="190,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Label Content="Archive Batch" Height="26" Margin="0,90,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Content="Enable" Name="ArchiveBatchCheckBox" ToolTip="Select to enable archiving of Batch" Height="20" Margin="190,96,189,36"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Label Content="Archiving delay (in days)" Height="26" Margin="0,120,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBox Name="BatchArchivalDelay" Text="&lt; days &gt;" ToolTip="Enter the number of days after last export from Batch" Height="26" Width="60" Margin="190,120,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </Grid>
                 </DockPanel>
             </TabItem>
