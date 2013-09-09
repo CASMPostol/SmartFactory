@@ -381,7 +381,9 @@
     <xsl:apply-templates select="cas:JSOXCustomsSummaryArray" />
     <tr>
       <td colspan="2" bgcolor="#CDCDCD">
-        Subtotal - <xsl:value-of select="cas:JSOXCustomsSummaryArray/cas:JSOXCustomsSummary/cas:ExportOrFreeCirculationSAD"/>
+        <b>
+          Subtotal - <xsl:value-of select="cas:JSOXCustomsSummaryArray/cas:JSOXCustomsSummary/cas:ExportOrFreeCirculationSAD"/>
+        </b>
       </td>
       <td bgcolor="#CDCDCD">
         &#160;
@@ -399,7 +401,9 @@
         &#160;
       </td>
       <td align="center" bgcolor="#CDCDCD">
-        <xsl:value-of select="format-number(cas:SubtotalQuantity, $FormatOfFloat, 'pl')"/>
+        <b>
+          <xsl:value-of select="format-number(cas:SubtotalQuantity, $FormatOfFloat, 'pl')"/>
+        </b>
       </td>
       <td bgcolor="#CDCDCD">
         &#160;
