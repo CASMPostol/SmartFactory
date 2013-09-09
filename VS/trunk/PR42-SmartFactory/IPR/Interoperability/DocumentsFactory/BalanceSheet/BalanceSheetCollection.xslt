@@ -5,9 +5,9 @@
 >
   <xsl:output method="html" indent="yes"/>
   <xsl:decimal-format name="pl" decimal-separator=',' grouping-separator='.' />
-  <xsl:variable name="FoarmatOfFloat" >#####0,00</xsl:variable>
-  <xsl:variable name="FoarmatOfdate" >dd-MM-yyyy</xsl:variable>
-  <xsl:variable name="FoarmatOfdateMonthAndYear" >MM/yyyy</xsl:variable>
+  <xsl:variable name="FormatOfFloat" >#####0,00</xsl:variable>
+  <xsl:variable name="FormatOfdate" >dd-MM-yyyy</xsl:variable>
+  <xsl:variable name="FormatOfdateMonthAndYear" >MM/yyyy</xsl:variable>
   <xsl:template match="/" >
     <html>
       <head>
@@ -37,14 +37,14 @@
               </font>
             </td>
             <td align="right">
-                Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FoarmatOfdate)"/>
+                Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FormatOfdate)"/>
             </td>
           </tr>
         </table>
         <h1>Control JSOX TAXID-2180-10 JTI Polska Sp. z o.o. </h1>
         <h1>Quantity of tobacco kilograms in IPR book and real stock.</h1>
-        <h2>Situation at <xsl:value-of select="ms:format-date(cas:SituationAtDate, $FoarmatOfdate)"/></h2>
-        <h2>Bilans na dzień <xsl:value-of select="ms:format-date(cas:SituationAtDate, $FoarmatOfdate)"/></h2>
+        <h2>Situation at <xsl:value-of select="ms:format-date(cas:SituationAtDate, $FormatOfdate)"/></h2>
+        <h2>Bilans na dzień <xsl:value-of select="ms:format-date(cas:SituationAtDate, $FormatOfdate)"/></h2>
           <xsl:apply-templates select="cas:BalanceBatch" />
         <table width="100%" border="0">
           <tr>
@@ -69,13 +69,13 @@
           </font>
         </td>
         <td align="right">
-          Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FoarmatOfdate)"/>
+          Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FormatOfdate)"/>
         </td>
       </tr>
     </table>
     <h1>Control JSOX TAXID-2180-10 JTI Polska Sp. z o.o.</h1>
     <h1>Export and Free Circulation in the IPR warehouse - information from IPR book</h1>
-    <h2>Situation in <xsl:value-of select="ms:format-date(cas:StartDate, $FoarmatOfdateMonthAndYear)"/> (from <xsl:value-of select="ms:format-date(cas:StartDate, $FoarmatOfdate)"/> to <xsl:value-of select="ms:format-date(cas:EndDate, $FoarmatOfdate)"/>)</h2>
+    <h2>Situation in <xsl:value-of select="ms:format-date(cas:StartDate, $FormatOfdateMonthAndYear)"/> (from <xsl:value-of select="ms:format-date(cas:StartDate, $FormatOfdate)"/> to <xsl:value-of select="ms:format-date(cas:EndDate, $FormatOfdate)"/>)</h2>
     <xsl:apply-templates select="cas:JSOX" />
     <table width="100%" border="0">
       <tr>
@@ -133,34 +133,34 @@
               SUMA
             </td>
             <td align="center">
-              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalIPRBook), $FoarmatOfFloat, 'pl')"/>
+              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalIPRBook), $FormatOfFloat, 'pl')"/>
             </td>
             <td align="center">
-              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalTobaccoStarted), $FoarmatOfFloat, 'pl')"/>
+              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalTobaccoStarted), $FormatOfFloat, 'pl')"/>
             </td>
             <td align="center">
-              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalSHWasteOveruseCSNotStarted), $FoarmatOfFloat, 'pl')"/>
+              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalSHWasteOveruseCSNotStarted), $FormatOfFloat, 'pl')"/>
             </td>
             <td align="center">
-              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalDustCSNotStarted), $FoarmatOfFloat, 'pl')"/>
+              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalDustCSNotStarted), $FormatOfFloat, 'pl')"/>
             </td>
             <td align="center">
-              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalTobaccoAvailable), $FoarmatOfFloat, 'pl')"/>
+              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalTobaccoAvailable), $FormatOfFloat, 'pl')"/>
             </td>
             <td align="center">
-              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalTobaccoInWarehouse), $FoarmatOfFloat, 'pl')"/>
+              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalTobaccoInWarehouse), $FormatOfFloat, 'pl')"/>
             </td>
             <td align="center">
-              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalTobaccoInCigarettesWarehouse), $FoarmatOfFloat, 'pl')"/>
+              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalTobaccoInCigarettesWarehouse), $FormatOfFloat, 'pl')"/>
             </td>
             <td align="center">
-              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalTobaccoInCigarettesProduction), $FoarmatOfFloat, 'pl')"/>
+              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalTobaccoInCigarettesProduction), $FormatOfFloat, 'pl')"/>
             </td>
             <td align="center">
-              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalTobaccoInCutfillerWarehouse), $FoarmatOfFloat, 'pl')"/>
+              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalTobaccoInCutfillerWarehouse), $FormatOfFloat, 'pl')"/>
             </td>
             <td align="center">
-              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalBalance), $FoarmatOfFloat, 'pl')"/>
+              <xsl:value-of select="format-number(sum(cas:BalanceBatchContent/cas:TotalBalance), $FormatOfFloat, 'pl')"/>
             </td>
           </tr>
         </table>
@@ -178,34 +178,34 @@
               <b><xsl:value-of select="cas:BalanceIPR/cas:BalanceIPRContent/cas:Batch"/></b>
             </td>
             <td align="center" bgcolor="#CDCDCD">
-              <b><xsl:value-of select="format-number(cas:TotalIPRBook, $FoarmatOfFloat, 'pl')"/></b>
+              <b><xsl:value-of select="format-number(cas:TotalIPRBook, $FormatOfFloat, 'pl')"/></b>
             </td>
             <td align="center" bgcolor="#CDCDCD">
-              <b><xsl:value-of select="format-number(cas:TotalTobaccoStarted, $FoarmatOfFloat, 'pl')"/></b>
+              <b><xsl:value-of select="format-number(cas:TotalTobaccoStarted, $FormatOfFloat, 'pl')"/></b>
             </td>
             <td align="center" bgcolor="#CDCDCD">
-              <b><xsl:value-of select="format-number(cas:TotalSHWasteOveruseCSNotStarted, $FoarmatOfFloat, 'pl')"/></b>
+              <b><xsl:value-of select="format-number(cas:TotalSHWasteOveruseCSNotStarted, $FormatOfFloat, 'pl')"/></b>
             </td>
             <td align="center" bgcolor="#CDCDCD">
-              <b><xsl:value-of select="format-number(cas:TotalDustCSNotStarted, $FoarmatOfFloat, 'pl')"/></b>
+              <b><xsl:value-of select="format-number(cas:TotalDustCSNotStarted, $FormatOfFloat, 'pl')"/></b>
             </td>
             <td align="center" bgcolor="#CDCDCD">
-              <b><xsl:value-of select="format-number(cas:TotalTobaccoAvailable, $FoarmatOfFloat, 'pl')"/></b>
+              <b><xsl:value-of select="format-number(cas:TotalTobaccoAvailable, $FormatOfFloat, 'pl')"/></b>
             </td>
             <td align="center" bgcolor="#CDCDCD">
-              <b><xsl:value-of select="format-number(cas:TotalTobaccoInWarehouse, $FoarmatOfFloat, 'pl')"/></b>
+              <b><xsl:value-of select="format-number(cas:TotalTobaccoInWarehouse, $FormatOfFloat, 'pl')"/></b>
             </td>
             <td align="center" bgcolor="#CDCDCD">
-              <b><xsl:value-of select="format-number(cas:TotalTobaccoInCigarettesWarehouse, $FoarmatOfFloat, 'pl')"/></b>
+              <b><xsl:value-of select="format-number(cas:TotalTobaccoInCigarettesWarehouse, $FormatOfFloat, 'pl')"/></b>
             </td>
             <td align="center" bgcolor="#CDCDCD">
-              <b><xsl:value-of select="format-number(cas:TotalTobaccoInCigarettesProduction, $FoarmatOfFloat, 'pl')"/></b>
+              <b><xsl:value-of select="format-number(cas:TotalTobaccoInCigarettesProduction, $FormatOfFloat, 'pl')"/></b>
             </td>
             <td align="center" bgcolor="#CDCDCD">
-              <b><xsl:value-of select="format-number(cas:TotalTobaccoInCutfillerWarehouse, $FoarmatOfFloat, 'pl')"/></b>
+              <b><xsl:value-of select="format-number(cas:TotalTobaccoInCutfillerWarehouse, $FormatOfFloat, 'pl')"/></b>
             </td>
             <td align="center" bgcolor="#CDCDCD">
-              <b><xsl:value-of select="format-number(cas:TotalBalance, $FoarmatOfFloat, 'pl')"/></b>
+              <b><xsl:value-of select="format-number(cas:TotalBalance, $FormatOfFloat, 'pl')"/></b>
             </td>
           </tr>
   </xsl:template>
@@ -224,19 +224,19 @@
         <xsl:value-of select="cas:Batch"/>
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:IPRBook, $FoarmatOfFloat, 'pl')"/>
+        <xsl:value-of select="format-number(cas:IPRBook, $FormatOfFloat, 'pl')"/>
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:TobaccoStarted, $FoarmatOfFloat, 'pl')"/>
+        <xsl:value-of select="format-number(cas:TobaccoStarted, $FormatOfFloat, 'pl')"/>
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:SHWasteOveruseCSNotStarted, $FoarmatOfFloat, 'pl')"/>
+        <xsl:value-of select="format-number(cas:SHWasteOveruseCSNotStarted, $FormatOfFloat, 'pl')"/>
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:DustCSNotStarted, $FoarmatOfFloat, 'pl')"/>
+        <xsl:value-of select="format-number(cas:DustCSNotStarted, $FormatOfFloat, 'pl')"/>
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:TobaccoAvailable, $FoarmatOfFloat, 'pl')"/>
+        <xsl:value-of select="format-number(cas:TobaccoAvailable, $FormatOfFloat, 'pl')"/>
       </td>
       <td align="center">
         &#160;
@@ -281,50 +281,50 @@
           <td>A</td>
           <td>Previous month (Stock)</td>
           <td>
-            [<xsl:value-of select="ms:format-date(cas:PreviousMonthDate, $FoarmatOfdate)"/>]
+            [<xsl:value-of select="ms:format-date(cas:PreviousMonthDate, $FormatOfdate)"/>]
           </td>
           <td>
-            <xsl:value-of select="format-number(cas:PreviousMonthQuantity, $FoarmatOfFloat, 'pl')"/>
+            <xsl:value-of select="format-number(cas:PreviousMonthQuantity, $FormatOfFloat, 'pl')"/>
           </td>
         </tr>
         <tr>
           <td>B</td>
           <td>Introducing</td>
           <td>
-            [<xsl:value-of select="ms:format-date(cas:PreviousMonthDate, $FoarmatOfdate)"/> - <xsl:value-of select="ms:format-date(cas:BalanceDate, $FoarmatOfdate)"/>]
+            [<xsl:value-of select="ms:format-date(cas:PreviousMonthDate, $FormatOfdate)"/> - <xsl:value-of select="ms:format-date(cas:BalanceDate, $FormatOfdate)"/>]
           </td>
           <td>
-            <xsl:value-of select="format-number(cas:IntroducingQuantity, $FoarmatOfFloat, 'pl')"/>
+            <xsl:value-of select="format-number(cas:IntroducingQuantity, $FormatOfFloat, 'pl')"/>
           </td>
         </tr>
         <tr>
           <td>C</td>
           <td>Outbound</td>
           <td>
-            [<xsl:value-of select="ms:format-date(cas:PreviousMonthDate, $FoarmatOfdate)"/> - <xsl:value-of select="ms:format-date(cas:BalanceDate, $FoarmatOfdate)"/>]
+            [<xsl:value-of select="ms:format-date(cas:PreviousMonthDate, $FormatOfdate)"/> - <xsl:value-of select="ms:format-date(cas:BalanceDate, $FormatOfdate)"/>]
           </td>
           <td>
-            <xsl:value-of select="format-number(cas:OutboundQuantity, $FoarmatOfFloat, 'pl')"/>
+            <xsl:value-of select="format-number(cas:OutboundQuantity, $FormatOfFloat, 'pl')"/>
           </td>
         </tr>
         <tr>
           <td>D</td>
           <td>Balance (A+B-C)</td>
           <td>
-            [<xsl:value-of select="ms:format-date(cas:BalanceDate, $FoarmatOfdate)"/>]
+            [<xsl:value-of select="ms:format-date(cas:BalanceDate, $FormatOfdate)"/>]
           </td>
           <td>
-            <xsl:value-of select="format-number(cas:BalanceQuantity, $FoarmatOfFloat, 'pl')"/>
+            <xsl:value-of select="format-number(cas:BalanceQuantity, $FormatOfFloat, 'pl')"/>
           </td>
         </tr>
         <tr>
           <td>E</td>
           <td>Situation at</td>
           <td>
-            [<xsl:value-of select="ms:format-date(cas:SituationDate, $FoarmatOfdate)"/>]
+            [<xsl:value-of select="ms:format-date(cas:SituationDate, $FormatOfdate)"/>]
           </td>
           <td>
-            <xsl:value-of select="format-number(cas:SituationQuantity, $FoarmatOfFloat, 'pl')"/>
+            <xsl:value-of select="format-number(cas:SituationQuantity, $FormatOfFloat, 'pl')"/>
           </td>
         </tr>
         <tr>
@@ -339,7 +339,7 @@
           </td>
           <td>
             <b>
-              <xsl:value-of select="format-number(cas:ReassumeQuantity, $FoarmatOfFloat, 'pl')"/>
+              <xsl:value-of select="format-number(cas:ReassumeQuantity, $FormatOfFloat, 'pl')"/>
             </b>
           </td>
         </tr>
@@ -367,7 +367,7 @@
         &#160;
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:SubtotalQuantity, $FoarmatOfFloat, 'pl')"/>
+        <xsl:value-of select="format-number(cas:SubtotalQuantity, $FormatOfFloat, 'pl')"/>
       </td>
       <td>
         &#160;
@@ -399,7 +399,7 @@
         &#160;
       </td>
       <td align="center" bgcolor="#CDCDCD">
-        <xsl:value-of select="format-number(cas:SubtotalQuantity, $FoarmatOfFloat, 'pl')"/>
+        <xsl:value-of select="format-number(cas:SubtotalQuantity, $FormatOfFloat, 'pl')"/>
       </td>
       <td bgcolor="#CDCDCD">
         &#160;
@@ -418,7 +418,7 @@
         <xsl:value-of select="cas:EntryDocumentNo"/>
       </td>
       <td align="center">
-        <xsl:value-of select="ms:format-date(cas:SADDate, $FoarmatOfdate)"/>
+        <xsl:value-of select="ms:format-date(cas:SADDate, $FormatOfdate)"/>
       </td>
       <td align="center">
         <xsl:value-of select="cas:InvoiceNo"/>
@@ -433,10 +433,10 @@
         <xsl:value-of select="cas:Procedure"/>
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:Quantity, $FoarmatOfFloat, 'pl')"/>
+        <xsl:value-of select="format-number(cas:Quantity, $FormatOfFloat, 'pl')"/>
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:Balance, $FoarmatOfFloat, 'pl')"/>
+        <xsl:value-of select="format-number(cas:Balance, $FormatOfFloat, 'pl')"/>
       </td>
     </tr>
   </xsl:template>
