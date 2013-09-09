@@ -125,8 +125,8 @@
     Overwrite="TRUE"
   />
   <Field
-    Name="CWL_CWDisposalRequest2DisposalRequestLibraryID"
-    ID="{8EAF2500-712D-4412-882B-9ABC7FFE4C32}"
+    Name="CWL_CWDisposal2DisposalRequestLibraryID"
+    ID="{C2F4132F-735D-4123-BEDE-79C7FE31954B}"
     Type="Lookup"
     List="Lists/DisposalRequestLibrary"
     ShowField="ID"
