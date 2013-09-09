@@ -417,16 +417,16 @@
       <td>
         <xsl:value-of select="cas:EntryDocumentNo"/>
       </td>
-      <td align="center">
+      <td align="center" nowrap="true">
         <xsl:value-of select="ms:format-date(cas:SADDate, $FormatOfdate)"/>
       </td>
-      <td align="center">
+      <td align="center" nowrap="true">
         <xsl:value-of select="cas:InvoiceNo"/>
       </td>
       <td align="center">
         <xsl:value-of select="cas:SadConsignmentNo"/>
       </td>
-      <td align="center">
+      <td align="center" nowrap="true">
         <xsl:value-of select="cas:CompensationGood"/>
       </td>
       <td align="center">
