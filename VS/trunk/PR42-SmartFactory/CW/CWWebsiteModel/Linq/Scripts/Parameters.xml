@@ -16,7 +16,7 @@
   <!--<List Name="CW" />-->
   <!--<List Name="CW Disposal" />-->
   <!--<List Name="CW Library" />-->
-  <List Name="Disposa Request Content" />
+
   <!--<List Name="Disposal" />-->
   <!--<List Name="Disposal Declaration" />-->
   <List Name="Disposal Request Library" />
@@ -356,6 +356,12 @@
     <Column Name="DutyPerSettledAmount" Member="DutyPerSettledAmount" />
     <Column Name="VATPerSettledAmount" Member="VATPerSettledAmount" />
     <Column Name="DutyAndVAT" Member="DutyAndVAT" />
+    <Column Name="CW_DeclaredToClear" Member="CW_DeclaredToClear" />
+    <Column Name="CW_QuantityAvailable" Member="CW_QuantityAvailable" />
+    <Column Name="CW_PackageAvailable" Member="CW_PackageAvailable" />
+    <Column Name="CW_QuantityToClead" Member="CW_QuantityToClead" />
+    <Column Name="CW_PackageToClead" Member="CW_PackageToClead" />
+    <Column Name="CWL_CWDisposal2DisposalRequestLibraryID" Member="CWL_CWDisposal2DisposalRequestLibraryID" />
   </ContentType>
   <!--<ContentType Name="Format" Class="Format">
     <Column Name="ContentType" Member="ContentType" />
@@ -470,23 +476,7 @@
     <Column Name="DutyAndVAT" Member="DutyAndVAT" />
     <Column Name="CWDisposal2PCNTID" Member="CWDisposal2PCNTID" />
   </ContentType>-->
-  <ContentType Name="DisposalRequestContent" Class="DisposalRequestContent">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="CWC_EntryDate" Member="CWC_EntryDate" />
-    <Column Name="No" Member="No" />
-    <Column Name="SKU" Member="SKU" />
-    <Column Name="SKUDescription" Member="SKUDescription" />
-    <Column Name="Batch" Member="Batch" />
-    <Column Name="CW_DeclaredToClear" Member="CW_DeclaredToClear" />
-    <Column Name="CW_QuantityAvailable" Member="CW_QuantityAvailable" />
-    <Column Name="CW_PackageAvailable" Member="CW_PackageAvailable" />
-    <Column Name="CW_QuantityToClead" Member="CW_QuantityToClead" />
-    <Column Name="CW_PackageToClead" Member="CW_PackageToClead" />
-    <Column Name="CW_AddedKg" Member="CW_AddedKg" />
-    <Column Name="CWL_CWDisposalRequest2DisposalRequestLibraryID" Member="CWL_CWDisposalRequest2DisposalRequestLibraryID" />
-  </ContentType>
-  <!--<ContentType Name="IPR" Class="IPR">
+    <!--<ContentType Name="IPR" Class="IPR">
     <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="IPR2ConsentTitle" Member="IPR2ConsentTitle" />

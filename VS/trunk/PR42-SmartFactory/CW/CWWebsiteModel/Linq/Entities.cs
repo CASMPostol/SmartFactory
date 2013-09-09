@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+#pragma warning disable 1591
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	using System;
 	
@@ -100,16 +100,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		public Microsoft.SharePoint.Linq.EntityList<CustomsWarehouseLib> CustomsWarehouseLibrary {
 			get {
 				return this.GetList<CustomsWarehouseLib>("Customs Warehouse Library");
-			}
-		}
-		
-		/// <summary>
-		/// Disposa Request Content List Instance
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ListAttribute(Name="Disposa Request Content")]
-		public Microsoft.SharePoint.Linq.EntityList<DisposalRequestContent> DisposaRequestContent {
-			get {
-				return this.GetList<DisposalRequestContent>("Disposa Request Content");
 			}
 		}
 		
@@ -245,7 +235,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsUnion))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouse))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouseDisposal))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DisposalRequestContent))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(PCNCode))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDocumentType))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDuties))]
@@ -513,6 +502,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private string _procedureCode;
 		
+		private System.Nullable<bool> _archival;
+		
 		private System.Nullable<ClearenceProcedure> _clearenceProcedure;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SADConsignment> _sADConsignmentLibraryIndex;
@@ -598,6 +589,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this.OnPropertyChanging("ProcedureCode", this._procedureCode);
 					this._procedureCode = value;
 					this.OnPropertyChanged("ProcedureCode");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -1607,6 +1612,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private string _sKU;
 		
+		private string _sKUDescription;
+		
 		private string _batch;
 		
 		private System.Nullable<double> _cW_DeclaredNetMass;
@@ -1641,11 +1648,23 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _dutyAndVAT;
 		
+		private System.Nullable<double> _cW_DeclaredToClear;
+		
+		private System.Nullable<double> _cW_QuantityAvailable;
+		
+		private System.Nullable<double> _cW_PackageAvailable;
+		
+		private System.Nullable<double> _cW_QuantityToClead;
+		
+		private System.Nullable<double> _cW_PackageToClead;
+		
 		private System.Nullable<ClearingType> _clearingType;
 		
 		private System.Nullable<CustomsStatus> _customsStatus;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _cWL_CWDisposal2PCNTID;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<DisposalRequestLib> _cWL_CWDisposal2DisposalRequestLibraryID;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -1658,6 +1677,10 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this._cWL_CWDisposal2PCNTID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnCWL_CWDisposal2PCNTIDSync);
 			this._cWL_CWDisposal2PCNTID.OnChanged += new System.EventHandler(this.OnCWL_CWDisposal2PCNTIDChanged);
 			this._cWL_CWDisposal2PCNTID.OnChanging += new System.EventHandler(this.OnCWL_CWDisposal2PCNTIDChanging);
+			this._cWL_CWDisposal2DisposalRequestLibraryID = new Microsoft.SharePoint.Linq.EntityRef<DisposalRequestLib>();
+			this._cWL_CWDisposal2DisposalRequestLibraryID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DisposalRequestLib>>(this.OnCWL_CWDisposal2DisposalRequestLibraryIDSync);
+			this._cWL_CWDisposal2DisposalRequestLibraryID.OnChanged += new System.EventHandler(this.OnCWL_CWDisposal2DisposalRequestLibraryIDChanged);
+			this._cWL_CWDisposal2DisposalRequestLibraryID.OnChanging += new System.EventHandler(this.OnCWL_CWDisposal2DisposalRequestLibraryIDChanging);
 			this.OnCreated();
 		}
 		
@@ -1755,6 +1778,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this.OnPropertyChanging("SKU", this._sKU);
 					this._sKU = value;
 					this.OnPropertyChanged("SKU");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKUDescription", Storage="_sKUDescription", FieldType="Text")]
+		public string SKUDescription {
+			get {
+				return this._sKUDescription;
+			}
+			set {
+				if ((value != this._sKUDescription)) {
+					this.OnPropertyChanging("SKUDescription", this._sKUDescription);
+					this._sKUDescription = value;
+					this.OnPropertyChanged("SKUDescription");
 				}
 			}
 		}
@@ -1997,176 +2034,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ClearingType", Storage="_clearingType", FieldType="Choice")]
-		public System.Nullable<ClearingType> ClearingType {
-			get {
-				return this._clearingType;
-			}
-			set {
-				if ((value != this._clearingType)) {
-					this.OnPropertyChanging("ClearingType", this._clearingType);
-					this._clearingType = value;
-					this.OnPropertyChanged("ClearingType");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CustomsStatus", Storage="_customsStatus", FieldType="Choice")]
-		public System.Nullable<CustomsStatus> CustomsStatus {
-			get {
-				return this._customsStatus;
-			}
-			set {
-				if ((value != this._customsStatus)) {
-					this.OnPropertyChanging("CustomsStatus", this._customsStatus);
-					this._customsStatus = value;
-					this.OnPropertyChanged("CustomsStatus");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CWDisposal2PCNTID", Storage="_cWL_CWDisposal2PCNTID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="PCN Code")]
-		public PCNCode CWL_CWDisposal2PCNTID {
-			get {
-				return this._cWL_CWDisposal2PCNTID.GetEntity();
-			}
-			set {
-				this._cWL_CWDisposal2PCNTID.SetEntity(value);
-			}
-		}
-		
-		private void OnCWL_CWDisposal2PCNTIDChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("CWL_CWDisposal2PCNTID", this._cWL_CWDisposal2PCNTID.Clone());
-		}
-		
-		private void OnCWL_CWDisposal2PCNTIDChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("CWL_CWDisposal2PCNTID");
-		}
-		
-		private void OnCWL_CWDisposal2PCNTIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CustomsWarehouseDisposal.Add(this);
-			}
-			else {
-				e.Item.CustomsWarehouseDisposal.Remove(this);
-			}
-		}
-	}
-	
-	/// <summary>
-	/// Disposal Request Content Content Type
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DisposalRequestContent", Id="0x0100B15477CF72A241D4B1E147913CB151F1")]
-	public partial class DisposalRequestContent : Element {
-		
-		private System.Nullable<System.DateTime> _cWC_EntryDate;
-		
-		private System.Nullable<double> _no;
-		
-		private string _sKU;
-		
-		private string _sKUDescription;
-		
-		private string _batch;
-		
-		private System.Nullable<double> _cW_DeclaredToClear;
-		
-		private System.Nullable<double> _cW_QuantityAvailable;
-		
-		private System.Nullable<double> _cW_PackageAvailable;
-		
-		private System.Nullable<double> _cW_QuantityToClead;
-		
-		private System.Nullable<double> _cW_PackageToClead;
-		
-		private System.Nullable<double> _cW_AddedKg;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<DisposalRequestLib> _cWL_CWDisposalRequest2DisposalRequestLibraryID;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public DisposalRequestContent() {
-			this._cWL_CWDisposalRequest2DisposalRequestLibraryID = new Microsoft.SharePoint.Linq.EntityRef<DisposalRequestLib>();
-			this._cWL_CWDisposalRequest2DisposalRequestLibraryID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DisposalRequestLib>>(this.OnCWL_CWDisposalRequest2DisposalRequestLibraryIDSync);
-			this._cWL_CWDisposalRequest2DisposalRequestLibraryID.OnChanged += new System.EventHandler(this.OnCWL_CWDisposalRequest2DisposalRequestLibraryIDChanged);
-			this._cWL_CWDisposalRequest2DisposalRequestLibraryID.OnChanging += new System.EventHandler(this.OnCWL_CWDisposalRequest2DisposalRequestLibraryIDChanging);
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWC_EntryDate", Storage="_cWC_EntryDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> CWC_EntryDate {
-			get {
-				return this._cWC_EntryDate;
-			}
-			set {
-				if ((value != this._cWC_EntryDate)) {
-					this.OnPropertyChanging("CWC_EntryDate", this._cWC_EntryDate);
-					this._cWC_EntryDate = value;
-					this.OnPropertyChanged("CWC_EntryDate");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="No", Storage="_no", FieldType="Number")]
-		public System.Nullable<double> No {
-			get {
-				return this._no;
-			}
-			set {
-				if ((value != this._no)) {
-					this.OnPropertyChanging("No", this._no);
-					this._no = value;
-					this.OnPropertyChanged("No");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
-		public string SKU {
-			get {
-				return this._sKU;
-			}
-			set {
-				if ((value != this._sKU)) {
-					this.OnPropertyChanging("SKU", this._sKU);
-					this._sKU = value;
-					this.OnPropertyChanged("SKU");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKUDescription", Storage="_sKUDescription", FieldType="Text")]
-		public string SKUDescription {
-			get {
-				return this._sKUDescription;
-			}
-			set {
-				if ((value != this._sKUDescription)) {
-					this.OnPropertyChanging("SKUDescription", this._sKUDescription);
-					this._sKUDescription = value;
-					this.OnPropertyChanged("SKUDescription");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Batch", Storage="_batch", FieldType="Text")]
-		public string Batch {
-			get {
-				return this._batch;
-			}
-			set {
-				if ((value != this._batch)) {
-					this.OnPropertyChanging("Batch", this._batch);
-					this._batch = value;
-					this.OnPropertyChanged("Batch");
-				}
-			}
-		}
-		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_DeclaredToClear", Storage="_cW_DeclaredToClear", FieldType="Number")]
 		public System.Nullable<double> CW_DeclaredToClear {
 			get {
@@ -2237,44 +2104,85 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_AddedKg", Storage="_cW_AddedKg", FieldType="Number")]
-		public System.Nullable<double> CW_AddedKg {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ClearingType", Storage="_clearingType", FieldType="Choice")]
+		public System.Nullable<ClearingType> ClearingType {
 			get {
-				return this._cW_AddedKg;
+				return this._clearingType;
 			}
 			set {
-				if ((value != this._cW_AddedKg)) {
-					this.OnPropertyChanging("CW_AddedKg", this._cW_AddedKg);
-					this._cW_AddedKg = value;
-					this.OnPropertyChanged("CW_AddedKg");
+				if ((value != this._clearingType)) {
+					this.OnPropertyChanging("ClearingType", this._clearingType);
+					this._clearingType = value;
+					this.OnPropertyChanged("ClearingType");
 				}
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CWDisposalRequest2DisposalRequestLibraryID", Storage="_cWL_CWDisposalRequest2DisposalRequestLibraryID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Disposal Request Library")]
-		public DisposalRequestLib CWL_CWDisposalRequest2DisposalRequestLibraryID {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CustomsStatus", Storage="_customsStatus", FieldType="Choice")]
+		public System.Nullable<CustomsStatus> CustomsStatus {
 			get {
-				return this._cWL_CWDisposalRequest2DisposalRequestLibraryID.GetEntity();
+				return this._customsStatus;
 			}
 			set {
-				this._cWL_CWDisposalRequest2DisposalRequestLibraryID.SetEntity(value);
+				if ((value != this._customsStatus)) {
+					this.OnPropertyChanging("CustomsStatus", this._customsStatus);
+					this._customsStatus = value;
+					this.OnPropertyChanged("CustomsStatus");
+				}
 			}
 		}
 		
-		private void OnCWL_CWDisposalRequest2DisposalRequestLibraryIDChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("CWL_CWDisposalRequest2DisposalRequestLibraryID", this._cWL_CWDisposalRequest2DisposalRequestLibraryID.Clone());
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CWDisposal2PCNTID", Storage="_cWL_CWDisposal2PCNTID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="PCN Code")]
+		public PCNCode CWL_CWDisposal2PCNTID {
+			get {
+				return this._cWL_CWDisposal2PCNTID.GetEntity();
+			}
+			set {
+				this._cWL_CWDisposal2PCNTID.SetEntity(value);
+			}
 		}
 		
-		private void OnCWL_CWDisposalRequest2DisposalRequestLibraryIDChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("CWL_CWDisposalRequest2DisposalRequestLibraryID");
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CWDisposal2DisposalRequestLibraryID", Storage="_cWL_CWDisposal2DisposalRequestLibraryID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Disposal Request Library")]
+		public DisposalRequestLib CWL_CWDisposal2DisposalRequestLibraryID {
+			get {
+				return this._cWL_CWDisposal2DisposalRequestLibraryID.GetEntity();
+			}
+			set {
+				this._cWL_CWDisposal2DisposalRequestLibraryID.SetEntity(value);
+			}
 		}
 		
-		private void OnCWL_CWDisposalRequest2DisposalRequestLibraryIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DisposalRequestLib> e) {
+		private void OnCWL_CWDisposal2PCNTIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CWL_CWDisposal2PCNTID", this._cWL_CWDisposal2PCNTID.Clone());
+		}
+		
+		private void OnCWL_CWDisposal2PCNTIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CWL_CWDisposal2PCNTID");
+		}
+		
+		private void OnCWL_CWDisposal2PCNTIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.DisposalRequestContent.Add(this);
+				e.Item.CustomsWarehouseDisposal.Add(this);
 			}
 			else {
-				e.Item.DisposalRequestContent.Remove(this);
+				e.Item.CustomsWarehouseDisposal.Remove(this);
+			}
+		}
+		
+		private void OnCWL_CWDisposal2DisposalRequestLibraryIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CWL_CWDisposal2DisposalRequestLibraryID", this._cWL_CWDisposal2DisposalRequestLibraryID.Clone());
+		}
+		
+		private void OnCWL_CWDisposal2DisposalRequestLibraryIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CWL_CWDisposal2DisposalRequestLibraryID");
+		}
+		
+		private void OnCWL_CWDisposal2DisposalRequestLibraryIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DisposalRequestLib> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CustomsWarehouseDisposal.Add(this);
+			}
+			else {
+				e.Item.CustomsWarehouseDisposal.Remove(this);
 			}
 		}
 	}
@@ -2432,6 +2340,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private string _systemID;
 		
+		private System.Nullable<bool> _archival;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentLib> _sADDocumenLibrarytIndex;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<SADGood> _sADGood;
@@ -2569,6 +2479,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
+				}
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumenLibrarytIndex", Storage="_sADDocumenLibrarytIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document Library")]
 		public SADDocumentLib SADDocumenLibrarytIndex {
 			get {
@@ -2634,6 +2558,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _amount;
 		
+		private System.Nullable<bool> _archival;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<SADGood> _sADDuties2SADGoodID;
 		
 		#region Extensibility Method Definitions
@@ -2674,6 +2600,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this.OnPropertyChanging("Amount", this._amount);
 					this._amount = value;
 					this.OnPropertyChanged("Amount");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -2725,6 +2665,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		private System.Nullable<double> _totalAmountInvoiced;
 		
 		private System.Nullable<double> _netMass;
+		
+		private System.Nullable<bool> _archival;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Clearence> _clearence;
 		
@@ -2866,6 +2808,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this.OnPropertyChanging("NetMass", this._netMass);
 					this._netMass = value;
 					this.OnPropertyChanged("NetMass");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -3043,6 +2999,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private string _package;
 		
+		private System.Nullable<bool> _archival;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<SADGood> _sADPackage2SADGoodID;
 		
 		#region Extensibility Method Definitions
@@ -3083,6 +3041,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this.OnPropertyChanging("Package", this._package);
 					this._package = value;
 					this.OnPropertyChanged("Package");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -3129,6 +3101,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		private System.Nullable<double> _netMass;
 		
 		private string _units;
+		
+		private System.Nullable<bool> _archival;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SADGood> _sADQuantity2SADGoodID;
 		
@@ -3202,6 +3176,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
+				}
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADQuantity2SADGoodID", Storage="_sADQuantity2SADGoodID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Good")]
 		public SADGood SADQuantity2SADGoodID {
 			get {
@@ -3239,6 +3227,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		private string _code;
 		
 		private string _number;
+		
+		private System.Nullable<bool> _archival;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SADGood> _sADRequiredDoc2SADGoodID;
 		
@@ -3280,6 +3270,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this.OnPropertyChanging("Number", this._number);
 					this._number = value;
 					this.OnPropertyChanged("Number");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -3646,7 +3650,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DisposalRequestLib", Id="0x0101006A3BDDD5D82D4C03B297650EEECA0EF2")]
 	public partial class DisposalRequestLib : Document {
 		
-		private Microsoft.SharePoint.Linq.EntitySet<DisposalRequestContent> _disposalRequestContent;
+		private Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouseDisposal> _customsWarehouseDisposal;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -3655,37 +3659,37 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		#endregion
 		
 		public DisposalRequestLib() {
-			this._disposalRequestContent = new Microsoft.SharePoint.Linq.EntitySet<DisposalRequestContent>();
-			this._disposalRequestContent.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DisposalRequestContent>>(this.OnDisposalRequestContentSync);
-			this._disposalRequestContent.OnChanged += new System.EventHandler(this.OnDisposalRequestContentChanged);
-			this._disposalRequestContent.OnChanging += new System.EventHandler(this.OnDisposalRequestContentChanging);
+			this._customsWarehouseDisposal = new Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouseDisposal>();
+			this._customsWarehouseDisposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CustomsWarehouseDisposal>>(this.OnCustomsWarehouseDisposalSync);
+			this._customsWarehouseDisposal.OnChanged += new System.EventHandler(this.OnCustomsWarehouseDisposalChanged);
+			this._customsWarehouseDisposal.OnChanging += new System.EventHandler(this.OnCustomsWarehouseDisposalChanging);
 			this.OnCreated();
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CWDisposalRequest2DisposalRequestLibraryID", Storage="_disposalRequestContent", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Disposa Request Content")]
-		public Microsoft.SharePoint.Linq.EntitySet<DisposalRequestContent> DisposalRequestContent {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CWDisposal2DisposalRequestLibraryID", Storage="_customsWarehouseDisposal", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Customs Warehouse Disposal")]
+		public Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouseDisposal> CustomsWarehouseDisposal {
 			get {
-				return this._disposalRequestContent;
+				return this._customsWarehouseDisposal;
 			}
 			set {
-				this._disposalRequestContent.Assign(value);
+				this._customsWarehouseDisposal.Assign(value);
 			}
 		}
 		
-		private void OnDisposalRequestContentChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("DisposalRequestContent", this._disposalRequestContent.Clone());
+		private void OnCustomsWarehouseDisposalChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CustomsWarehouseDisposal", this._customsWarehouseDisposal.Clone());
 		}
 		
-		private void OnDisposalRequestContentChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("DisposalRequestContent");
+		private void OnCustomsWarehouseDisposalChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CustomsWarehouseDisposal");
 		}
 		
-		private void OnDisposalRequestContentSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DisposalRequestContent> e) {
+		private void OnCustomsWarehouseDisposalSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CustomsWarehouseDisposal> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CWL_CWDisposalRequest2DisposalRequestLibraryID = this;
+				e.Item.CWL_CWDisposal2DisposalRequestLibraryID = this;
 			}
 			else {
-				e.Item.CWL_CWDisposalRequest2DisposalRequestLibraryID = null;
+				e.Item.CWL_CWDisposal2DisposalRequestLibraryID = null;
 			}
 		}
 	}
@@ -3695,6 +3699,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADConsignment", Id="0x0101002E7FB2D305D04B84ADEEA8E71EBD1561")]
 	public partial class SADConsignment : Document {
+		
+		private System.Nullable<bool> _archival;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Clearence> _clearence;
 		
@@ -3710,6 +3716,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this._clearence.OnChanged += new System.EventHandler(this.OnClearenceChanged);
 			this._clearence.OnChanging += new System.EventHandler(this.OnClearenceChanging);
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
+				}
+			}
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADConsignmentLibraryIndex", Storage="_clearence", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Clearence")]
@@ -3749,6 +3769,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		private System.Nullable<bool> _sADDocumentLibraryOK;
 		
 		private string _sADDocumentLibraryComments;
+		
+		private System.Nullable<bool> _archival;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<SADDocumentType> _sADDocumentType;
 		
@@ -3790,6 +3812,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this.OnPropertyChanging("SADDocumentLibraryComments", this._sADDocumentLibraryComments);
 					this._sADDocumentLibraryComments = value;
 					this.OnPropertyChanged("SADDocumentLibraryComments");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -3932,3 +3968,4 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		Other = 32,
 	}
 }
+#pragma warning restore 1591
