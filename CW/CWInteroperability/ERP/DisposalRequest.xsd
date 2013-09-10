@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:tns="http://cas.eu/schemas/jti/cw/DisposalRequest.xsd"
+  elementFormDefault="qualified"
+  targetNamespace="http://cas.eu/schemas/jti/cw/DisposalRequest.xsd"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DisposalRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="SKU" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="SKUDescription" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="CW_DeclaredToClear" type="xs:decimal" />
+        <xs:element minOccurs="0" maxOccurs="1" name="CW_AddedKg" type="xs:decimal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

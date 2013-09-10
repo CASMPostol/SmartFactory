@@ -54,6 +54,10 @@
     </None>
     <None Include="DocumentsFactory\BinCard\GoCS.ps1" />
     <None Include="DocumentsFactory\BinCard\GoXSD.ps1" />
+    <None Include="ERP\DisposalRequest.xltx" />
+    <None Include="ERP\DisposalRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Features\CWInteroperability\CWInteroperability.feature">
       <FeatureId>{605eb80a-ecf2-420a-8044-8f64d920cd9b}</FeatureId>
     </None>
@@ -93,6 +97,7 @@
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
