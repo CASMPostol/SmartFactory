@@ -40,8 +40,8 @@
       <FieldRef ID="{87F03311-404C-42FE-82F3-D7490CC07496}" Name="CW_DeclaredToClear" />
       <FieldRef ID="{EF50EAD3-E895-4E80-BE1E-9412AEB18D0E}" Name="CW_QuantityAvailable" />
       <FieldRef ID="{6EAB5EE1-9217-4C92-9A69-AD1F0A03F9E0}" Name="CW_PackageAvailable" />
-      <FieldRef ID="{5B18A2BC-F7CE-47DC-B811-96760938BC10}" Name="CW_QuantityToClead" />
-      <FieldRef ID="{61C75289-DC52-4757-8955-D4FA27C0E345}" Name="CW_PackageToClead" />
+      <FieldRef ID="{5278F429-8A4C-4EF7-B083-4C15BDCBE61C}" Name="CW_QuantityToClear" />
+      <FieldRef ID="{41B47893-8755-4878-A827-1C56A8D02945}" Name="CW_PackageToClear" />
       <FieldRef ID="{16D33CFD-B8D1-4843-AA1B-A5155DE5FE6B}" Name="CW_AddedKg" />
       <FieldRef ID="{C2F4132F-735D-4123-BEDE-79C7FE31954B}" Name="CWL_CWDisposal2DisposalRequestLibraryID" />
     </FieldRefs>

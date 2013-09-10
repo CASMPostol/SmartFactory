@@ -7,6 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 #pragma warning disable 1591
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	using System;
@@ -1654,9 +1655,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _cW_PackageAvailable;
 		
-		private System.Nullable<double> _cW_QuantityToClead;
+		private System.Nullable<double> _cW_QuantityToClear;
 		
-		private System.Nullable<double> _cW_PackageToClead;
+		private System.Nullable<double> _cW_PackageToClear;
 		
 		private System.Nullable<ClearingType> _clearingType;
 		
@@ -2076,30 +2077,30 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_QuantityToClead", Storage="_cW_QuantityToClead", FieldType="Number")]
-		public System.Nullable<double> CW_QuantityToClead {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_QuantityToClear", Storage="_cW_QuantityToClear", FieldType="Number")]
+		public System.Nullable<double> CW_QuantityToClear {
 			get {
-				return this._cW_QuantityToClead;
+				return this._cW_QuantityToClear;
 			}
 			set {
-				if ((value != this._cW_QuantityToClead)) {
-					this.OnPropertyChanging("CW_QuantityToClead", this._cW_QuantityToClead);
-					this._cW_QuantityToClead = value;
-					this.OnPropertyChanged("CW_QuantityToClead");
+				if ((value != this._cW_QuantityToClear)) {
+					this.OnPropertyChanging("CW_QuantityToClear", this._cW_QuantityToClear);
+					this._cW_QuantityToClear = value;
+					this.OnPropertyChanged("CW_QuantityToClear");
 				}
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_PackageToClead", Storage="_cW_PackageToClead", FieldType="Number")]
-		public System.Nullable<double> CW_PackageToClead {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_PackageToClear", Storage="_cW_PackageToClear", FieldType="Number")]
+		public System.Nullable<double> CW_PackageToClear {
 			get {
-				return this._cW_PackageToClead;
+				return this._cW_PackageToClear;
 			}
 			set {
-				if ((value != this._cW_PackageToClead)) {
-					this.OnPropertyChanging("CW_PackageToClead", this._cW_PackageToClead);
-					this._cW_PackageToClead = value;
-					this.OnPropertyChanged("CW_PackageToClead");
+				if ((value != this._cW_PackageToClear)) {
+					this.OnPropertyChanging("CW_PackageToClear", this._cW_PackageToClear);
+					this._cW_PackageToClear = value;
+					this.OnPropertyChanged("CW_PackageToClear");
 				}
 			}
 		}
