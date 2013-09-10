@@ -149,15 +149,15 @@
     Type="Number"
     Decimals="2"/>
   <Field
-    ID="{5B18A2BC-F7CE-47DC-B811-96760938BC10}"
-    Name="CW_QuantityToClead"
+    ID="{5278F429-8A4C-4EF7-B083-4C15BDCBE61C}"
+    Name="CW_QuantityToClear"
     DisplayName="Quantity to clear"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number"
     Decimals="2"/>
   <Field
-    ID="{61C75289-DC52-4757-8955-D4FA27C0E345}"
-    Name="CW_PackageToClead"
+    ID="{41B47893-8755-4878-A827-1C56A8D02945}"
+    Name="CW_PackageToClear"
     DisplayName="Package to clear"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number"
