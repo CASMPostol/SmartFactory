@@ -44,11 +44,16 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     #endregion
 
-    internal virtual void EnteringState()
+    internal event EventHandler Entered;
+
+    internal virtual void OnEnteringState()
     {
+      if (Entered != null)
+        Entered(this, new EventArgs());
       m_Context.SetupUserInterface(GetEventMask());
     }
     internal abstract Events GetEventMask();
+
     #region IAbstractMachineEvents Members
     public virtual void Previous()
     {
@@ -99,6 +104,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       }
       #endregion
 
+      #region private
       protected abstract void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e);
       protected virtual void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
       {
@@ -120,29 +126,37 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         return m_BackgroundWorker.CancellationPending;
       }
       private BackgroundWorker m_BackgroundWorker;
+      #endregion
 
     }
     internal class SetupDataDialogMachine : AbstractMachine
     {
       public SetupDataDialogMachine(StateMachineContext context)
         : base(context)
-      { }
-      internal override void EnteringState()
       {
-        base.EnteringState();
-        m_Context.SetSiteURL(Properties.Settings.Default.SiteURL);
+        m_Me = this;
+      }
+      private static SetupDataDialogMachine m_Me;
+      internal static SetupDataDialogMachine Get()
+      {
+        return m_Me;
+      }
+
+      internal override void OnEnteringState()
+      {
+        base.OnEnteringState();
       }
       internal override Events GetEventMask()
       {
         return Events.Cancel | Events.Next;
       }
+
+      #region IAbstractMachineEvents Members
       public override void Next()
       {
-        Properties.Settings.Default.SiteURL = m_Context.GetSiteUrl();
-        Properties.Settings.Default.Save();
         if (Properties.Settings.Default.DoActivate1800)
           m_Context.AssignStateMachine(ProcessState.Activation);
-        else if (Properties.Settings.Default.DoArchive)
+        else if (Properties.Settings.Default.DoArchiveIPR)
           m_Context.AssignStateMachine(ProcessState.Archiving);
         else
           m_Context.AssignStateMachine(ProcessState.Finisched);
@@ -152,13 +166,23 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       {
         m_Context.Close();
       }
+      #endregion
+
     }
     internal class ActivationMachine : BackgroundWorkerMachine
     {
       #region creator
       internal ActivationMachine(StateMachineContext context)
         : base(context)
-      { }
+      {
+        m_Me = this;
+      }
+      private static ActivationMachine m_Me;
+      internal static ActivationMachine Get()
+      {
+        return m_Me;
+      }
+
       #endregion
 
       internal override Events GetEventMask()
@@ -179,7 +203,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       }
       protected override void RunWorkerCompleted()
       {
-        if (Properties.Settings.Default.DoArchive)
+        if (Properties.Settings.Default.DoArchiveIPR)
           m_Context.AssignStateMachine(ProcessState.Archiving);
         else
           m_Context.AssignStateMachine(ProcessState.Finisched);
@@ -193,7 +217,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       #region creator
       internal ArchivingMachine(StateMachineContext context)
         : base(context)
-      { }
+      {
+        m_Me = this;
+      }
       #endregion
 
       internal override Events GetEventMask()
@@ -218,18 +244,32 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         m_Context.AssignStateMachine(ProcessState.Finisched);
       }
       #endregion
+
+      private static ArchivingMachine m_Me;
+      internal static ArchivingMachine Get()
+      {
+        return m_Me;
+      }
+
     }
     internal class FinishedMachine : AbstractMachine
     {
       internal FinishedMachine(StateMachineContext context)
         : base(context)
-      { }
+      {
+        m_Me = this;
+      }
+      private static FinishedMachine m_Me;
+      internal static FinishedMachine Get()
+      {
+        return m_Me;
+      }
       public override void RunAsync()
       {
         m_Context.WriteLine("All operation have been finished, press >> to exit the program");
         base.RunAsync();
       }
-      internal override void EnteringState()
+      internal override void OnEnteringState()
       { }
       public override void Next()
       {
@@ -247,5 +287,14 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     #endregion
 
     #endregion
+
+    internal static void CreateStates(StateMachineContext stateMachineContext)
+    {
+      new AbstractMachine.SetupDataDialogMachine(stateMachineContext);
+      new AbstractMachine.ActivationMachine(stateMachineContext);
+      new AbstractMachine.ArchivingMachine(stateMachineContext);
+      new AbstractMachine.FinishedMachine(stateMachineContext);
+    }
+
   }
 }

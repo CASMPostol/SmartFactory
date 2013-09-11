@@ -5,11 +5,20 @@
     <Setting Name="SiteURL" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://cas_sp:11225/sites/ipr2</Value>
     </Setting>
-    <Setting Name="DoArchive" Type="System.Boolean" Scope="User">
+    <Setting Name="DoArchiveIPR" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="DoActivate1800" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ArchiveBatchDelay" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="ArchiveIPRDelay" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="DoArchiveBatch" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

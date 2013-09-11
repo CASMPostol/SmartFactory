@@ -1,40 +1,52 @@
-﻿<Window x:Class="CAS.SmartFactory.IPR.Client.UserInterface.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="CAS.SmartFactory.IPR.Client.UserInterface.MainWindow"
         Title="CAS SmartFactory IPR" Height="600" Width="800"
          Loaded="Window_Loaded" >
-    <DockPanel LastChildFill="True">
-        <ToolBar DockPanel.Dock="Bottom" Header="State: "  ToolTip="Information about the application and progress.">
-            <Label Name="ToolBarURLLabel" ContentStringFormat="URL: {0}" >unavailable</Label>
-            <ProgressBar Name="x_ProgressBar" Width="300" Maximum="100" Minimum="0" />
-        </ToolBar>
-        <StackPanel Name="x_StackPanelButtons" DockPanel.Dock="Bottom" Orientation="Horizontal">
-            <Button Name="x_ButtonGoBackward" Width="100" Margin="5,0,0,0" Content="&lt;&lt;" ></Button>
-            <Button Name="x_ButtonGoForward" Width="100" Margin="5,0,0,0" Content="&gt;&gt;" ></Button>
-            <Button Name="x_ButtonRun" Width="100" Margin="5,0,0,0" Content="OK" ></Button>
-            <Button Name="x_ButtonCancel" Width="100" Margin="5,0,0,0" Content="Cancel" ></Button>
-        </StackPanel>
-        <TabControl Name="m_ContentTabControl" Margin="0,10,0,0">
-            <TabItem Header="Setup" Name="SetupDialogPanel" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <DockPanel Name="DataDockPanel" LastChildFill="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="564">
-                    <Label Name="DataLabelReview"  DockPanel.Dock="Top" >Enter data:</Label>
-                    <Grid VerticalAlignment="Top" Height="151" Margin="0,0,0,0" HorizontalAlignment="Left">
-                        <Label Content="Site URL" Height="26" Width="88" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                        <TextBox Name="x_TextBoxURL" Text="&lt; site URL &gt;" ToolTip="Site Collection URL" Height="26" Width="354" Margin="190,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <Label Content="Archive IPR accounts" Height="26" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <CheckBox Content="Enable" Name="ArchiveIPRAccountsCheckBox" ToolTip="Select to enable archiving of IPR accounts" Height="20" Width="150" Margin="190,36,204,93" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <Label Content="Archiving delay (in days)" Height="26" Margin="0,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <TextBox Name="IPRAccountArchivalDelay" Text="&lt; days &gt;" ToolTip="Enter the number of days after the closure of IPR account" Height="26" Width="60" Margin="190,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <Label Content="Archive Batch" Height="26" Margin="0,90,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <CheckBox Content="Enable" Name="ArchiveBatchCheckBox" ToolTip="Select to enable archiving of Batch" Height="20" Margin="190,96,189,36"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <Label Content="Archiving delay (in days)" Height="26" Margin="0,120,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <TextBox Name="BatchArchivalDelay" Text="&lt; days &gt;" ToolTip="Enter the number of days after last export from Batch" Height="26" Width="60" Margin="190,120,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    </Grid>
-                </DockPanel>
-            </TabItem>
-            <TabItem Header="ListBox" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <ListBox Name="x_ListBox" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="475" Margin="0,0,0,0" Width="780"/>
-            </TabItem>
-        </TabControl>
-    </DockPanel>
+	<DockPanel LastChildFill="True">
+		<ToolBar DockPanel.Dock="Bottom" Header="State: "  ToolTip="Information about the application and progress.">
+			<Label x:Name="ToolBarURLLabel" ContentStringFormat="URL: {0}" Content="unavailable" />
+			<ProgressBar x:Name="x_ProgressBar" Width="300" Maximum="100" Minimum="0" />
+		</ToolBar>
+		<StackPanel x:Name="x_StackPanelButtons" DockPanel.Dock="Bottom" Orientation="Horizontal">
+			<Button x:Name="x_ButtonGoBackward" Width="100" Margin="5,0,0,0" Content="&lt;&lt;" />
+			<Button x:Name="x_ButtonGoForward" Width="100" Margin="5,0,0,0" Content="&gt;&gt;" />
+			<Button x:Name="x_ButtonRun" Width="100" Margin="5,0,0,0" Content="OK" />
+			<Button x:Name="x_ButtonCancel" Width="100" Margin="5,0,0,0" Content="Cancel" />
+		</StackPanel>
+		<TabControl x:Name="x_TabControlContent" Margin="0" >
+			<TabItem x:Name="x_TabItemSetupDialog" Header="Setup" HorizontalAlignment="Left" VerticalAlignment="Top" >
+				<Grid VerticalAlignment="Top" Margin="0,0,5,0" >
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+					<Label x:Name="DataLabelReview" Content="Enter data:" Margin="0" />
+					<Label Content="Site URL" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" />
+					<TextBox x:Name="x_TextBoxURL" Text="&lt; site URL &gt;" ToolTip="Site Collection URL" Margin="0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"/>
+					<Label Content="Activate Rel 1.82" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Background="{x:Null}"/>
+                    <CheckBox Name="x_CheckBoxActivateRel182" Content="Activation" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="0" Grid.Row="2"/>
+					<Label Content="Archive IPR [days]" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4"/>
+					<TextBox x:Name="x_TextBoxIPRAccountArchivalDelay" Text="&lt; days &gt;" ToolTip="Enter the number of days after the closure of IPR account" Margin="0" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" />
+					<CheckBox x:Name="x_CheckBoxArchiveIPRAccounts" Content="Enable" ToolTip="Select to enable archiving of IPR accounts" Margin="0,-0.001,-0.002,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Grid.Column="2"/>
+					<Label Content="Archive Batch [days]" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="6" Grid.RowSpan="2" Background="{x:Null}"/>
+					<CheckBox x:Name="x_CheckBoxArchiveBatch" Content="Enable" ToolTip="Select to enable archiving of Batch" Height="20" Margin="0"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="6" Grid.Column="2" Padding="1" VerticalContentAlignment="Center"/>
+					<TextBox x:Name="x_BatchArchivalDelay" Text="&lt; days &gt;" ToolTip="Enter the number of days after last export from Batch" Margin="0" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
+				</Grid>
+			</TabItem>
+			<TabItem x:Name="x_TabItemMonitorListBox" Header="ListBox" HorizontalAlignment="Left" VerticalAlignment="Top">
+				<ListBox x:Name="x_ListBox" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="475" Margin="0,0,0,0" Width="780"/>
+			</TabItem>
+		</TabControl>
+	</DockPanel>
 </Window>

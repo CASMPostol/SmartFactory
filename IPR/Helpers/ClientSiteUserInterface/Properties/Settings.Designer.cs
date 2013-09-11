@@ -38,12 +38,12 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool DoArchive {
+        public bool DoArchiveIPR {
             get {
-                return ((bool)(this["DoArchive"]));
+                return ((bool)(this["DoArchiveIPR"]));
             }
             set {
-                this["DoArchive"] = value;
+                this["DoArchiveIPR"] = value;
             }
         }
         
@@ -56,6 +56,42 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
             }
             set {
                 this["DoActivate1800"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
+        public int ArchiveBatchDelay {
+            get {
+                return ((int)(this["ArchiveBatchDelay"]));
+            }
+            set {
+                this["ArchiveBatchDelay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
+        public long ArchiveIPRDelay {
+            get {
+                return ((long)(this["ArchiveIPRDelay"]));
+            }
+            set {
+                this["ArchiveIPRDelay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DoArchiveBatch {
+            get {
+                return ((bool)(this["DoArchiveBatch"]));
+            }
+            set {
+                this["DoArchiveBatch"] = value;
             }
         }
     }
