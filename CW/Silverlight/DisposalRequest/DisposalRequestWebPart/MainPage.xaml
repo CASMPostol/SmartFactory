@@ -56,34 +56,58 @@
         </Style>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White">
-            <Rectangle Fill="#dceef4" HorizontalAlignment="Left" Margin="5,25,0,0" Stroke="#FF3D8AA5" VerticalAlignment="Top" Width="910" Height="205"/>
-            <sdk:Label Content="Disposal request library:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
-            <sdk:DataGrid HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="900" Height="160" AutoGenerateColumns="False" ItemsSource="{Binding Collection}">
-                <sdk:DataGrid.Columns>
-                    <sdk:DataGridTextColumn Binding="{Binding FileName}" Header="File name" IsReadOnly="True"/>
-                    <sdk:DataGridTextColumn Binding="{Binding Created}" Header="Created" IsReadOnly="True"/>
-                    <sdk:DataGridTextColumn Binding="{Binding CreatedBy}" Header="Created By" IsReadOnly="True"/>
-                </sdk:DataGrid.Columns>
-            </sdk:DataGrid>
-            <Button Content="Save changes" HorizontalAlignment="Left" Margin="810,200,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
-            <sdk:Label Content="Disposal request content:" HorizontalAlignment="Left" Margin="10,235,0,0" VerticalAlignment="Top"/>
-            <Rectangle Fill="#dceef4" HorizontalAlignment="Left" Margin="5,255,0,0" Stroke="#FF3D8AA5" VerticalAlignment="Top" Width="910" Height="345"/>
-            <sdk:DataGrid HorizontalAlignment="Left" Margin="10,260,0,0" VerticalAlignment="Top" Width="900" Height="300" AutoGenerateColumns="False" ItemsSource="{Binding Collection}" >
-                <sdk:DataGrid.Columns>
-                    <sdk:DataGridTextColumn Binding="{Binding Material}" Header="Material" IsReadOnly="True"/>
-                    <sdk:DataGridTextColumn Binding="{Binding Description}" Header="Description" IsReadOnly="True"/>
-                    <sdk:DataGridTextColumn Binding="{Binding Batch}" Header="Batch" IsReadOnly="True"/>
-                    <sdk:DataGridTextColumn Binding="{Binding QtToClear}" Header="Qty To Clear" IsReadOnly="True"/>
-                    <sdk:DataGridTextColumn Binding="{Binding QtyToClearSuggested}" Header="Qty To Clear - Suggested" IsReadOnly="False" CellStyle="{StaticResource QtyToClearSuggested}"/>
-                    <sdk:DataGridTextColumn Binding="{Binding QtyToClearSum}" Header="Qty To Clear - Sum" IsReadOnly="True"/>
-                    <sdk:DataGridTextColumn Binding="{Binding TotalStock}" Header="Total Stock" IsReadOnly="True"/>
-                    <sdk:DataGridTextColumn Binding="{Binding RemainingOnStock}" Header="Remaining On Stock" IsReadOnly="True"/>
-                    <sdk:DataGridTextColumn Binding="{Binding Units}" Header="Units" IsReadOnly="True"/>
-                </sdk:DataGrid.Columns>
-            </sdk:DataGrid>
-            <Button Content="Add new" HorizontalAlignment="Left" Margin="480,570,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
-            <Button Content="End of OGL" HorizontalAlignment="Left" Margin="590,570,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
-            <Button Content="End of Batch" HorizontalAlignment="Left" Margin="700,570,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
-            <Button Content="Delete" HorizontalAlignment="Left" Margin="810,570,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
-        </Grid>
+        <Rectangle HorizontalAlignment="Left" Margin="5,25,0,0" Stroke="#FF3D8AA5" VerticalAlignment="Top" Width="910" Height="205" Fill="#FF354B5F"/>
+        <sdk:Label Content="Disposal request library:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+        <sdk:DataGrid HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="900" Height="160" AutoGenerateColumns="False" ItemsSource="{Binding Collection}">
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Binding="{Binding FileName}" Header="File name" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Created}" Header="Created" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding CreatedBy}" Header="Created By" IsReadOnly="True"/>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+        <Button Content="Save changes" HorizontalAlignment="Left" Margin="810,200,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
+        <sdk:Label Content="Disposal request content:" HorizontalAlignment="Left" Margin="10,235,0,0" VerticalAlignment="Top"/>
+        <Rectangle Fill="#FF354B5F" HorizontalAlignment="Left" Margin="5,255,0,0" Stroke="#FF3D8AA5" VerticalAlignment="Top" Width="910" Height="345"/>
+        <sdk:DataGrid HorizontalAlignment="Left" Margin="10,260,0,0" VerticalAlignment="Top" Width="900" Height="300" AutoGenerateColumns="False" ItemsSource="{Binding Collection}" >
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Binding="{Binding Material}" Header="Material" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Description}" Header="Description" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Batch}" Header="Batch" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding QtToClear}" Header="Qty To Clear" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding QtyToClearSuggested}" Header="Qty To Clear - Suggested" IsReadOnly="False" CellStyle="{StaticResource QtyToClearSuggested}"/>
+                <sdk:DataGridTextColumn Binding="{Binding QtyToClearSum}" Header="Qty To Clear - Sum" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding TotalStock}" Header="Total Stock" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding RemainingOnStock}" Header="Remaining On Stock" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Units}" Header="Units" IsReadOnly="True"/>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+        <Button Content="Add new" HorizontalAlignment="Left" Margin="480,570,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
+        <Button Content="End of OGL" HorizontalAlignment="Left" Margin="590,570,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
+        <Button Content="End of Batch" HorizontalAlignment="Left" Margin="700,570,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="810,570,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
+        <Popup Name="m_AddDisposalRequest" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,00,0,0" Height="220" Width="485" OpacityMask="Black">
+            <Border BorderThickness="1" BorderBrush="#FF3D8AA5" Background="#FF354B5F">
+                <Grid Margin="0" Height="220" Width="485">
+                    <sdk:Label Content="Add new disposal request item" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" FontSize="14" Foreground="White" />
+                    <sdk:Label Content="Enter Batch No.:" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,50,0,0" Foreground="White" />
+                    <TextBox Name="m_BatchSearchTextBox" Height="26" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,42,0,0" BorderBrush="#FF3D8AA5"/>
+                    <Button Name="m_BatchSearchButton" Height="26" Width="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,42,0,0">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Imgs/search.png" Width="20" Height="20" ToolTipService.ToolTip="Search for batch" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <sdk:Label Content="Selected Batch No:" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,80,0,0" Foreground="White" />
+                    <TextBox Name="m_SelectedBatchTextBox" IsEnabled="False" Height="26" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,72,0,0" BorderBrush="#FF3D8AA5" />
+                    <sdk:Label Content="Total Stock:" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,110,0,0" Foreground="White" />
+                    <TextBox Name="m_TotalStockTextBox" IsEnabled="False" Height="26" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,102,0,0" BorderBrush="#FF3D8AA5" />
+                    <sdk:Label Content="Qty to clear:" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,140,0,0" Foreground="White" />
+                    <TextBox Name="m_QtyToClearTextBox" Height="26" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,132,0,0" BorderBrush="#FF3D8AA5" />
+                    <Button Content="Save" Name="m_SaveNewDisposalRequestButton" Height="26" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,180,0,0" />
+                    <Button Content="Cancel" Name="m_CancelNewDisposalRequestButton" Height="26" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="242,180,0,0" />
+                </Grid>
+            </Border>
+        </Popup>
+    </Grid>
 </UserControl>

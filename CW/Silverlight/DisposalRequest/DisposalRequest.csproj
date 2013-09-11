@@ -65,11 +65,11 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
-    <None Include="Features\Feature1\Feature1.feature">
+    <None Include="Features\CWSilverlight\CWSilverlight.feature">
       <FeatureId>{4df506d6-40e4-4824-8552-4b9dede5c40e}</FeatureId>
     </None>
-    <None Include="Features\Feature1\Feature1.Template.xml">
-      <DependentUpon>Feature1.feature</DependentUpon>
+    <None Include="Features\CWSilverlight\CWSilverlight.Template.xml">
+      <DependentUpon>CWSilverlight.feature</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
