@@ -58,6 +58,7 @@
     <None Include="ERP\DisposalRequest.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ERP\GoCS.ps1" />
     <None Include="Features\CWInteroperability\CWInteroperability.feature">
       <FeatureId>{605eb80a-ecf2-420a-8044-8f64d920cd9b}</FeatureId>
     </None>
@@ -90,6 +91,9 @@
     <Compile Include="DocumentsFactory\BinCard\BinCard.cs">
       <DependentUpon>BinCard.xsd</DependentUpon>
       <SubType>code</SubType>
+    </Compile>
+    <Compile Include="ERP\DisposalRequest.cs">
+      <DependentUpon>DisposalRequest.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
