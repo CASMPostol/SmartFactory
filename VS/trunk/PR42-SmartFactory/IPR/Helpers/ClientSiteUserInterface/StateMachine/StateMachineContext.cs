@@ -29,6 +29,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     #region creator
     internal StateMachineContext()
     {
+      AbstractMachine.CreateStates(this);
     }
     #endregion
 
@@ -40,9 +41,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     #endregion
 
     #region public
-    internal void OpenEntryState(ProcessState state)
+    internal void OpenEntryState()
     {
-      AssignStateMachine(state);
+      AssignStateMachine(ProcessState.SetupDataDialog);
     }
     internal void AssignStateMachine(ProcessState state)
     {
@@ -50,25 +51,23 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       switch (state)
       {
         case ProcessState.SetupDataDialog:
-          m_Machine = new AbstractMachine.SetupDataDialogMachine(this);
+          m_Machine = AbstractMachine.SetupDataDialogMachine.Get();
           break;
         case ProcessState.Activation:
-          m_Machine = new AbstractMachine.ActivationMachine(this);
+          m_Machine = AbstractMachine.ActivationMachine.Get();
           break;
         case ProcessState.Archiving:
-          m_Machine = new AbstractMachine.ArchivingMachine(this);
+          m_Machine = AbstractMachine.ArchivingMachine.Get();
           break;
         case ProcessState.Finisched:
-          m_Machine = new AbstractMachine.FinishedMachine(this);
+          m_Machine = AbstractMachine.FinishedMachine.Get();
           break;
       }
-      m_Machine.EnteringState();
+      m_Machine.OnEnteringState();
     }
     #endregion
 
     #region StateMachineContext View Model
-    internal abstract void SetSiteURL(string URL);
-    internal abstract string GetSiteUrl();
     internal abstract void SetupUserInterface(Events allowedEvents);
     internal abstract void Close();
     internal abstract void Progress(int progress);
@@ -76,7 +75,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     internal abstract void WriteLine(string value);
     internal abstract void Exception(Exception exception);
     internal abstract void EnteringState();
-    internal abstract void DisplayStatusURL( string url );
+    internal abstract void DisplayStatusURL(string url);
     internal void ProgressChang(AbstractMachine activationMachine, EntitiesChangedEventArgs.EntitiesState entitiesState)
     {
       if (entitiesState == null)
