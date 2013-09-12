@@ -95,6 +95,9 @@
     <Compile Include="ERP\DisposalRequest.cs">
       <DependentUpon>DisposalRequest.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ERP\DisposalRequest.xsd.cs">
+      <DependentUpon>DisposalRequest.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
