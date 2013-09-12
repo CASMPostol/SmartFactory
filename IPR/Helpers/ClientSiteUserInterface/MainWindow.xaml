@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="CAS.SmartFactory.IPR.Client.UserInterface.MainWindow"
         Title="CAS SmartFactory IPR" Height="600" Width="800"
-         Loaded="Window_Loaded" >
+         Loaded="Window_Loaded"  >
 	<DockPanel LastChildFill="True">
 		<ToolBar DockPanel.Dock="Bottom" Header="State: "  ToolTip="Information about the application and progress.">
-			<Label x:Name="ToolBarURLLabel" ContentStringFormat="URL: {0}" Content="unavailable" />
+			<Label x:Name="x_ToolBarURLLabel" ContentStringFormat="URL: {0}" Content="unavailable" />
 			<ProgressBar x:Name="x_ProgressBar" Width="300" Maximum="100" Minimum="0" />
 		</ToolBar>
 		<StackPanel x:Name="x_StackPanelButtons" DockPanel.Dock="Bottom" Orientation="Horizontal">
@@ -41,7 +41,7 @@
 					<CheckBox x:Name="x_CheckBoxArchiveIPRAccounts" Content="Enable" ToolTip="Select to enable archiving of IPR accounts" Margin="0,-0.001,-0.002,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Grid.Column="2"/>
 					<Label Content="Archive Batch [days]" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="6" Grid.RowSpan="2" Background="{x:Null}"/>
 					<CheckBox x:Name="x_CheckBoxArchiveBatch" Content="Enable" ToolTip="Select to enable archiving of Batch" Height="20" Margin="0"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="6" Grid.Column="2" Padding="1" VerticalContentAlignment="Center"/>
-					<TextBox x:Name="x_BatchArchivalDelay" Text="&lt; days &gt;" ToolTip="Enter the number of days after last export from Batch" Margin="0" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
+                    <TextBox x:Name="x_TextBoxBatchArchivalDelay" Text="&lt; days &gt;" ToolTip="Enter the number of days after last export from Batch" Margin="0" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
 				</Grid>
 			</TabItem>
 			<TabItem x:Name="x_TabItemMonitorListBox" Header="ListBox" HorizontalAlignment="Left" VerticalAlignment="Top">

@@ -22,32 +22,5 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://cas_sp:11225/sites/ipr2")]
-        public string URL {
-            get {
-                return ((string)(this["URL"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int IPRAccountArchivalDelay {
-            get {
-                return ((int)(this["IPRAccountArchivalDelay"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int BatchArchivalDelay {
-            get {
-                return ((int)(this["BatchArchivalDelay"]));
-            }
-        }
     }
 }

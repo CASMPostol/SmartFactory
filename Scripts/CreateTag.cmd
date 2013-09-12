@@ -7,8 +7,8 @@ rem//  $Id$
 
 
 set branchtype=tags
-set TagFolder=Rel_1_70_20
-set TagPath=svn://svnserver.hq.cas.com.pl/VS/%branchtype%/SmartFactory/rel_1_70_20
+set TagFolder=Rel_1_81_00
+set TagPath=svn://svnserver.hq.cas.com.pl/VS/%branchtype%/SmartFactory/rel_1_81_00
 set trunkPath=svn://svnserver.hq.cas.com.pl/VS/trunk
 
 svn mkdir %TagPath%  -m "created new %TagPath% (in %branchtype% folder)"

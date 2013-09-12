@@ -26,18 +26,45 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Archival
   /// </summary>
   public static class Archive
   {
+
     #region public
+    /// <summary>
+    /// Archive settings structure
+    /// </summary>
+    public struct ArchiveSettings
+    {
+      /// <summary>
+      /// if <c>true</c> do archive of ipr entries 
+      /// </summary>
+      public bool DoArchiveIPR;
+      /// <summary>
+      /// if <c>true</c> do archive of Batch entries 
+      /// </summary>
+      public bool DoArchiveBatch;
+      /// <summary>
+      /// The archive batch delay
+      /// </summary>
+      public int ArchiveBatchDelay;
+      /// <summary>
+      /// The archive ipr delay
+      /// </summary>
+      public int ArchiveIPRDelay;
+      /// <summary>
+      /// The site URL
+      /// </summary>
+      public string SiteURL;
+    }
     /// <summary>
     /// Goes the specified edc.
     /// </summary>
-    /// <param name="siteURL">The site URL.</param>
+    /// <param name="settings">The settings.</param>
     /// <param name="ProgressChanged">The progress changed.</param>
-    public static void Go(string siteURL, Func<object, EntitiesChangedEventArgs, bool> ProgressChanged)
+    public static void Go(ArchiveSettings settings, Func<object, EntitiesChangedEventArgs, bool> ProgressChanged)
     {
-      using (Entities edc = new Entities(siteURL))
+      using (Entities edc = new Entities(settings.SiteURL))
       {
-        GoIPR(edc, ProgressChanged);
-        GoBatch(edc, ProgressChanged);
+        GoIPR(edc, settings, ProgressChanged);
+        GoBatch(edc, settings, ProgressChanged);
       }
     }
     #endregion
@@ -48,16 +75,21 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Archival
       progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", entities));
       entities.SubmitChanges();
     }
-    private static void GoIPR(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
+    private static void GoIPR(Entities entities, ArchiveSettings settings, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
-      progress(null, new EntitiesChangedEventArgs(1, "Starting Archive GoIPR", entities));
+      if (!settings.DoArchiveIPR)
+      {
+        progress(null, new EntitiesChangedEventArgs(1, "IPR archive skipped", entities));
+        return;
+      }
+      progress(null, new EntitiesChangedEventArgs(1, String.Format("Starting IPR archive-{0} delay. It could take several minutes", settings.ArchiveIPRDelay), entities));
       int _disposalsArchived = 0;
       int _iprArchived = 0;
       progress(null, new EntitiesChangedEventArgs(1, "Buffering Disposal entries", entities));
       List<Disposal> _dspsls = entities.Disposal.ToList<Disposal>();
       foreach (IPR.WebsiteModel.Linq.IPR _iprX in entities.IPR)
       {
-        if (_iprX.AccountClosed.Value == true && _iprX.ClosingDate.IsLatter(Properties.Settings.Default.IPRAccountArchivalDelay))
+        if (_iprX.AccountClosed.Value == true && _iprX.ClosingDate.IsLatter(settings.ArchiveIPRDelay))
         {
           _iprArchived++;
           _iprX.Archival = true;
@@ -75,11 +107,16 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Archival
       SubmitChanges(entities, progress);
       progress(null, new EntitiesChangedEventArgs(1, String.Format("Finished Archive GoIPR; Archived {0} IPR accounts and {1} disposals.", _iprArchived, _disposalsArchived), entities));
     }
-    private static void GoBatch(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
+    private static void GoBatch(Entities entities, ArchiveSettings settings, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
-      progress(null, new EntitiesChangedEventArgs(1, "Starting Archive.GoBatch", entities));
+      if (!settings.DoArchiveBatch)
+      {
+        progress(null, new EntitiesChangedEventArgs(1, "Batch archive skipped", entities));
+        return;
+      }
+      progress(null, new EntitiesChangedEventArgs(1, String.Format("Starting Batch archive - {0} delay. It could take several minutes", settings.ArchiveBatchDelay), entities));
       //TODO progress cig exclude if final or intermidiate exist
-      //TODO progres arch if there is neww 
+      //TODO progres arch if there is new 
       //TODO cuttfiler AD ??
       progress(null, new EntitiesChangedEventArgs(1, "Buffering Material entries", entities));
       List<Material> _mtrl = entities.Material.ToList<Material>();
@@ -121,7 +158,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Archival
           progress(null, new EntitiesChangedEventArgs(1, null, entities));
           foreach (Disposal _disposalX in _material.Disposal)
           {
-            if (_disposalX.CustomsStatus.Value != CustomsStatus.Finished || !_disposalX.SADDate.IsLatter(Properties.Settings.Default.BatchArchivalDelay))
+            if (_disposalX.CustomsStatus.Value != CustomsStatus.Finished || !_disposalX.SADDate.IsLatter(settings.ArchiveBatchDelay))
             {
               _2archive = false;
               break;

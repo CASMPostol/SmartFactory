@@ -45,14 +45,26 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     #endregion
 
     internal event EventHandler Entered;
-
+    internal event EventHandler Exiting;
     internal virtual void OnEnteringState()
     {
       if (Entered != null)
         Entered(this, new EventArgs());
       m_Context.SetupUserInterface(GetEventMask());
     }
+    internal virtual void OnExitingState()
+    {
+      if (Exiting != null)
+        Exiting(this, new EventArgs());
+    }
     internal abstract Events GetEventMask();
+    internal static void CreateStates(StateMachineContext stateMachineContext)
+    {
+      new AbstractMachine.SetupDataDialogMachine(stateMachineContext);
+      new AbstractMachine.ActivationMachine(stateMachineContext);
+      new AbstractMachine.ArchivingMachine(stateMachineContext);
+      new AbstractMachine.FinishedMachine(stateMachineContext);
+    }
 
     #region IAbstractMachineEvents Members
     public virtual void Previous()
@@ -141,11 +153,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       {
         return m_Me;
       }
-
-      internal override void OnEnteringState()
-      {
-        base.OnEnteringState();
-      }
       internal override Events GetEventMask()
       {
         return Events.Cancel | Events.Next;
@@ -154,12 +161,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       #region IAbstractMachineEvents Members
       public override void Next()
       {
-        if (Properties.Settings.Default.DoActivate1800)
-          m_Context.AssignStateMachine(ProcessState.Activation);
-        else if (Properties.Settings.Default.DoArchiveIPR)
-          m_Context.AssignStateMachine(ProcessState.Archiving);
-        else
-          m_Context.AssignStateMachine(ProcessState.Finisched);
+        m_Context.AssignStateMachine(ProcessState.Activation);
         m_Context.Machine.RunAsync();
       }
       public override void Cancel()
@@ -177,40 +179,35 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       {
         m_Me = this;
       }
-      private static ActivationMachine m_Me;
+      #endregion
+
       internal static ActivationMachine Get()
       {
         return m_Me;
       }
-
-      #endregion
-
       internal override Events GetEventMask()
       {
         return base.GetEventMask();
       }
+
       #region BackgroundWorkerMachine implementation
       public override void RunAsync()
       {
         m_Context.SetupUserInterface(Events.Cancel);
-        m_Context.DisplayStatusURL(Properties.Settings.Default.SiteURL + "(Activating)");
-        m_Context.ProgressChang(this, new EntitiesChangedEventArgs(1, "Rel 1.80 feture activation in progress - it could take several minutes.", null).UserState);
         base.RunAsync();
       }
       protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
       {
-        FeatureActivation.Activate180.Activate.Go(Properties.Settings.Default.SiteURL, ReportProgress);
+        FeatureActivation.Activate180.Activate.Go(Properties.Settings.Default.SiteURL, Properties.Settings.Default.DoActivate1800, ReportProgress);
       }
       protected override void RunWorkerCompleted()
       {
-        if (Properties.Settings.Default.DoArchiveIPR)
-          m_Context.AssignStateMachine(ProcessState.Archiving);
-        else
-          m_Context.AssignStateMachine(ProcessState.Finisched);
-        m_Context.Machine.RunAsync(); m_Context.Machine.RunAsync();
+        m_Context.AssignStateMachine(ProcessState.Archiving);
+        m_Context.Machine.RunAsync();
       }
       #endregion
 
+      private static ActivationMachine m_Me;
     }
     internal class ArchivingMachine : BackgroundWorkerMachine
     {
@@ -231,13 +228,19 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       public override void RunAsync()
       {
         m_Context.SetupUserInterface(Events.Cancel);
-        m_Context.DisplayStatusURL(Properties.Settings.Default.SiteURL + "(Archiving)");
-        m_Context.ProgressChang(this, new EntitiesChangedEventArgs(1, "Data archival in progress - it could take several minutes.", null).UserState);
         base.RunAsync();
       }
       protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
       {
-        FeatureActivation.Archival.Archive.Go(Properties.Settings.Default.SiteURL, ReportProgress);
+        FeatureActivation.Archival.Archive.ArchiveSettings _settings = new FeatureActivation.Archival.Archive.ArchiveSettings
+        {
+          ArchiveBatchDelay = Properties.Settings.Default.ArchiveBatchDelay,
+          ArchiveIPRDelay = Properties.Settings.Default.ArchiveIPRDelay,
+          DoArchiveBatch = Properties.Settings.Default.DoArchiveBatch,
+          DoArchiveIPR = Properties.Settings.Default.DoArchiveIPR,
+          SiteURL = Properties.Settings.Default.SiteURL
+        };
+        FeatureActivation.Archival.Archive.Go(_settings, ReportProgress);
       }
       protected override void RunWorkerCompleted()
       {
@@ -269,8 +272,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         m_Context.WriteLine("All operation have been finished, press >> to exit the program");
         base.RunAsync();
       }
-      internal override void OnEnteringState()
-      { }
       public override void Next()
       {
         m_Context.Close();
@@ -288,13 +289,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 
     #endregion
 
-    internal static void CreateStates(StateMachineContext stateMachineContext)
-    {
-      new AbstractMachine.SetupDataDialogMachine(stateMachineContext);
-      new AbstractMachine.ActivationMachine(stateMachineContext);
-      new AbstractMachine.ArchivingMachine(stateMachineContext);
-      new AbstractMachine.FinishedMachine(stateMachineContext);
-    }
 
   }
 }
