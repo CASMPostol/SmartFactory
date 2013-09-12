@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://cas_sp:11225/sites/ipr2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://casas:11227/sites/ipr")]
         public string SiteURL {
             get {
                 return ((string)(this["SiteURL"]));
@@ -49,7 +49,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool DoActivate1800 {
             get {
                 return ((bool)(this["DoActivate1800"]));
@@ -74,9 +74,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("60")]
-        public long ArchiveIPRDelay {
+        public int ArchiveIPRDelay {
             get {
-                return ((long)(this["ArchiveIPRDelay"]));
+                return ((int)(this["ArchiveIPRDelay"]));
             }
             set {
                 this["ArchiveIPRDelay"] = value;

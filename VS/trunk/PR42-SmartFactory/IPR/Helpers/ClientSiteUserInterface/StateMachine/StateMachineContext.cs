@@ -47,7 +47,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     internal void AssignStateMachine(ProcessState state)
     {
-
+      if (m_Machine != null)
+        m_Machine.OnExitingState();
       switch (state)
       {
         case ProcessState.SetupDataDialog:
@@ -75,7 +76,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     internal abstract void WriteLine(string value);
     internal abstract void Exception(Exception exception);
     internal abstract void EnteringState();
-    internal abstract void DisplayStatusURL(string url);
     internal void ProgressChang(AbstractMachine activationMachine, EntitiesChangedEventArgs.EntitiesState entitiesState)
     {
       if (entitiesState == null)
@@ -85,14 +85,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       if (entitiesState.UserState != null && entitiesState.UserState is String)
       {
         WriteLine((string)entitiesState.UserState);
-        //dotCounter = 0;
-        //entitiesState.Entities.SubmitChanges();
         return;
       }
-      //dotCounter++;
       Progress(1);
-      //if (dotCounter % 100 == 0)
-      //  entitiesState.Entities.SubmitChanges();
     }
 
     #endregion
@@ -113,7 +108,15 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     internal void ButtonGoForward_Click(object sender, RoutedEventArgs e)
     {
-      Machine.Next();
+      try
+      {
+        Machine.Next();
+      }
+      catch (Exception ex)
+      {
+        string _mssg = String.Format("Operation interupted by exception: {0}", ex.Message);
+        MessageBox.Show(_mssg, "Operation error", MessageBoxButton.OK, MessageBoxImage.Error);
+      }
     }
     internal void ButtonRun_Click(object sender, RoutedEventArgs e)
     {

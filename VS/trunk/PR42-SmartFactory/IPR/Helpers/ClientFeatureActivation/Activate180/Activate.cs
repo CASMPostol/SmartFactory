@@ -28,11 +28,17 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
     /// Goes the specified site URL.
     /// </summary>
     /// <param name="siteURL">The site URL.</param>
+    /// <param name="doActivate1800">if set to <c>true</c> [document activate1800].</param>
     /// <param name="progress">The progress.</param>
-    public static void Go(string siteURL, Func<object, EntitiesChangedEventArgs, bool> progress)
+    public static void Go(string siteURL, bool doActivate1800, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       using (Entities edc = new Entities(siteURL))
       {
+        if (!doActivate1800)
+        {
+          progress(null, new EntitiesChangedEventArgs(1, "Activation of Rel 1.41 skipped", edc));
+          return;
+        }
         UpdateDisposals(edc, progress);
         IPRRecalculateClearedRecords(edc, progress);
         ResetArchival(edc, progress);

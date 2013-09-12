@@ -49,7 +49,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
         : base()
       {
         m_Parent = parent;
-        AssignStateMachine(ProcessState.SetupDataDialog);
       }
       #endregion
 
@@ -88,10 +87,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
       internal override void EnteringState()
       {
       }
-      internal override void DisplayStatusURL(string url)
-      {
-        m_Parent.ToolBarURLLabel.Content = url;
-      }
       #endregion
 
       #region private
@@ -109,19 +104,22 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
       x_ButtonRun.Click += m_StateMAchine.ButtonRun_Click;
       x_TabControlContent.Items.Clear();
       AbstractMachine.SetupDataDialogMachine.Get().Entered += SetupDataDialogMachine_Entered;
-      AbstractMachine.ActivationMachine.Get().Entered += ActivationMachine_Entered;
+      AbstractMachine.SetupDataDialogMachine.Get().Exiting += SetupDataDialogMachine_Exiting;
       m_StateMAchine.OpenEntryState();
     }
-    private void ActivationMachine_Entered(object sender, EventArgs e)
+    private void SetupDataDialogMachine_Exiting(object sender, EventArgs e)
     {
+      Properties.Settings.Default.DoActivate1800 = x_CheckBoxActivateRel182.IsChecked.GetValueOrDefault(false);
+      Properties.Settings.Default.DoArchiveIPR = x_CheckBoxArchiveIPRAccounts.IsChecked.GetValueOrDefault(false);
+      Properties.Settings.Default.DoArchiveBatch = x_CheckBoxArchiveBatch.IsChecked.GetValueOrDefault(false);
+      Properties.Settings.Default.ArchiveIPRDelay = int.Parse(x_TextBoxIPRAccountArchivalDelay.Text);
+      Properties.Settings.Default.ArchiveBatchDelay = int.Parse(x_TextBoxBatchArchivalDelay.Text);
+      Properties.Settings.Default.Save();
+      x_ToolBarURLLabel.Content = Properties.Settings.Default.SiteURL;
       x_TabControlContent.Items.Clear();
       x_TabControlContent.Items.Add(x_TabItemMonitorListBox);
-      x_TabItemMonitorListBox.Focus();
       x_TextBoxURL.Text = Properties.Settings.Default.SiteURL;
-      //Properties.Settings.Default.DoArchiveIPR = x_ArchiveIPRAccountsCheckBox.IsChecked.GetValueOrDefault(false);
-      //x_IPRAccountArchivalDelay.Text = Properties.Settings.Default.ArchiveIPRDelay.ToString();
-      x_BatchArchivalDelay.Text = Properties.Settings.Default.ArchiveIPRDelay.ToString();
-      Properties.Settings.Default.Save();
+      x_TabItemMonitorListBox.Focus();
     }
     private void SetupDataDialogMachine_Entered(object sender, EventArgs e)
     {
@@ -130,9 +128,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
       x_TextBoxURL.Text = Properties.Settings.Default.SiteURL;
       x_CheckBoxActivateRel182.IsChecked = Properties.Settings.Default.DoActivate1800;
       x_CheckBoxArchiveIPRAccounts.IsChecked = Properties.Settings.Default.DoArchiveIPR;
-      x_TextBoxIPRAccountArchivalDelay.Text = Properties.Settings.Default.ArchiveIPRDelay.ToString();
       x_CheckBoxArchiveBatch.IsChecked = Properties.Settings.Default.DoArchiveBatch;
-      x_BatchArchivalDelay.Text = Properties.Settings.Default.ArchiveIPRDelay.ToString();
+      x_TextBoxIPRAccountArchivalDelay.Text = Properties.Settings.Default.ArchiveIPRDelay.ToString();
+      x_TextBoxBatchArchivalDelay.Text = Properties.Settings.Default.ArchiveBatchDelay.ToString();
       x_TabItemSetupDialog.Focus();
     }
     private LocalMachine m_StateMAchine;
