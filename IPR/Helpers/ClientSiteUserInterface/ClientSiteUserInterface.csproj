@@ -27,13 +27,13 @@
     <InstallUrl>http://www.commsvr.com/COInstal/IPRClientSiteUserInterface/</InstallUrl>
     <SupportUrl>http://jti.cas.eu</SupportUrl>
     <ErrorReportUrl>http://www.cas.eu/Aboutcas/Contact/tabid/440/language/en-US/Default.aspx</ErrorReportUrl>
-    <ProductName>IPR Management Console</ProductName>
+    <ProductName>CAS IPR Management Console</ProductName>
     <PublisherName>CAS</PublisherName>
     <SuiteName>SmartFactory</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.html</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>19</ApplicationRevision>
+    <ApplicationRevision>21</ApplicationRevision>
     <ApplicationVersion>1.81.00.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
