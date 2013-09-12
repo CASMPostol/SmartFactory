@@ -2186,7 +2186,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 				e.Item.CustomsWarehouseDisposal.Remove(this);
 			}
 		}
-	}
+
+  }
 	
 	/// <summary>
 	/// PCN Code List Content Type
