@@ -114,6 +114,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
       Properties.Settings.Default.DoArchiveBatch = x_CheckBoxArchiveBatch.IsChecked.GetValueOrDefault(false);
       Properties.Settings.Default.ArchiveIPRDelay = int.Parse(x_TextBoxIPRAccountArchivalDelay.Text);
       Properties.Settings.Default.ArchiveBatchDelay = int.Parse(x_TextBoxBatchArchivalDelay.Text);
+      Properties.Settings.Default.SiteURL = x_TextBoxURL.Text;
       Properties.Settings.Default.Save();
       x_ToolBarURLLabel.Content = Properties.Settings.Default.SiteURL;
       x_TabControlContent.Items.Clear();

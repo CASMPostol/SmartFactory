@@ -34,7 +34,7 @@
 					<Label x:Name="DataLabelReview" Content="Enter data:" Margin="0" />
 					<Label Content="Site URL" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" />
 					<TextBox x:Name="x_TextBoxURL" Text="&lt; site URL &gt;" ToolTip="Site Collection URL" Margin="0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"/>
-					<Label Content="Activate Rel 1.82" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Background="{x:Null}"/>
+					<Label Content="Activate Rel 1.81" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Background="{x:Null}"/>
                     <CheckBox Name="x_CheckBoxActivateRel182" Content="Activation" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="0" Grid.Row="2"/>
 					<Label Content="Archive IPR [days]" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4"/>
 					<TextBox x:Name="x_TextBoxIPRAccountArchivalDelay" Text="&lt; days &gt;" ToolTip="Enter the number of days after the closure of IPR account" Margin="0" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" />

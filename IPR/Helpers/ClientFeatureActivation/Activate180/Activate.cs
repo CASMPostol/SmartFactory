@@ -36,7 +36,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
       {
         if (!doActivate1800)
         {
-          progress(null, new EntitiesChangedEventArgs(1, "Activation of Rel 1.41 skipped", edc));
+          progress(null, new EntitiesChangedEventArgs(1, "Activation of Rel 1.81 skipped", edc));
           return;
         }
         UpdateDisposals(edc, progress);
