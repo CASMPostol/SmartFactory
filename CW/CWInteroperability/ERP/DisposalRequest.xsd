@@ -7,11 +7,17 @@
   <xs:element name="DisposalRequest">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="1" name="SKU" type="xs:string" />
-        <xs:element minOccurs="0" maxOccurs="1" name="SKUDescription" type="xs:string" />
-        <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
-        <xs:element minOccurs="0" maxOccurs="1" name="CW_DeclaredToClear" type="xs:decimal" />
-        <xs:element minOccurs="0" maxOccurs="1" name="CW_AddedKg" type="xs:decimal" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="DisposalRequestContent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="1" name="SKU" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="SKUDescription" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="CW_DeclaredToClear" type="xs:decimal" />
+              <xs:element minOccurs="0" maxOccurs="1" name="CW_AddedKg" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
