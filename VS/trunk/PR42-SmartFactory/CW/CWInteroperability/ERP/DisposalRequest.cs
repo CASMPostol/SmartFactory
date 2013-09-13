@@ -20,14 +20,14 @@ namespace CAS.SmartFactory.CW.Interoperability.ERP {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/jti/cw/DisposalRequest.xsd")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://cas.eu/schemas/jti/cw/DisposalRequest.xsd", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=true)]
     public partial class DisposalRequest {
         
         private DisposalRequestDisposalRequestContent[] disposalRequestContentField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("DisposalRequestContent")]
+        [System.Xml.Serialization.XmlElementAttribute("DisposalRequestContent", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
         public DisposalRequestDisposalRequestContent[] DisposalRequestContent {
             get {
                 return this.disposalRequestContentField;
@@ -43,92 +43,188 @@ namespace CAS.SmartFactory.CW.Interoperability.ERP {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/jti/cw/DisposalRequest.xsd")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class DisposalRequestDisposalRequestContent {
         
-        private string sKUField;
+        private string materialNoField;
         
-        private string sKUDescriptionField;
+        private string descriptionField;
         
-        private string batchField;
+        private string batchNoField;
         
-        private decimal cW_DeclaredToClearField;
+        private System.Nullable<decimal> qtyToClearField;
         
-        private bool cW_DeclaredToClearFieldSpecified;
+        private bool qtyToClearFieldSpecified;
         
-        private decimal cW_AddedKgField;
+        private System.Nullable<decimal> totalStockField;
         
-        private bool cW_AddedKgFieldSpecified;
+        private bool totalStockFieldSpecified;
+        
+        private System.Nullable<decimal> totalStockToClearField;
+        
+        private bool totalStockToClearFieldSpecified;
+        
+        private System.Nullable<decimal> totalStockOnHandField;
+        
+        private bool totalStockOnHandFieldSpecified;
+        
+        private string uoMField;
+        
+        private System.Nullable<decimal> addedKgField;
+        
+        private bool addedKgFieldSpecified;
         
         /// <remarks/>
-        public string SKU {
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public string MaterialNo {
             get {
-                return this.sKUField;
+                return this.materialNoField;
             }
             set {
-                this.sKUField = value;
+                this.materialNoField = value;
             }
         }
         
         /// <remarks/>
-        public string SKUDescription {
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public string Description {
             get {
-                return this.sKUDescriptionField;
+                return this.descriptionField;
             }
             set {
-                this.sKUDescriptionField = value;
+                this.descriptionField = value;
             }
         }
         
         /// <remarks/>
-        public string Batch {
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public string BatchNo {
             get {
-                return this.batchField;
+                return this.batchNoField;
             }
             set {
-                this.batchField = value;
+                this.batchNoField = value;
             }
         }
         
         /// <remarks/>
-        public decimal CW_DeclaredToClear {
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public System.Nullable<decimal> QtyToClear {
             get {
-                return this.cW_DeclaredToClearField;
+                return this.qtyToClearField;
             }
             set {
-                this.cW_DeclaredToClearField = value;
+                this.qtyToClearField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool CW_DeclaredToClearSpecified {
+        public bool QtyToClearSpecified {
             get {
-                return this.cW_DeclaredToClearFieldSpecified;
+                return this.qtyToClearFieldSpecified;
             }
             set {
-                this.cW_DeclaredToClearFieldSpecified = value;
+                this.qtyToClearFieldSpecified = value;
             }
         }
         
         /// <remarks/>
-        public decimal CW_AddedKg {
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public System.Nullable<decimal> TotalStock {
             get {
-                return this.cW_AddedKgField;
+                return this.totalStockField;
             }
             set {
-                this.cW_AddedKgField = value;
+                this.totalStockField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool CW_AddedKgSpecified {
+        public bool TotalStockSpecified {
             get {
-                return this.cW_AddedKgFieldSpecified;
+                return this.totalStockFieldSpecified;
             }
             set {
-                this.cW_AddedKgFieldSpecified = value;
+                this.totalStockFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public System.Nullable<decimal> TotalStockToClear {
+            get {
+                return this.totalStockToClearField;
+            }
+            set {
+                this.totalStockToClearField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool TotalStockToClearSpecified {
+            get {
+                return this.totalStockToClearFieldSpecified;
+            }
+            set {
+                this.totalStockToClearFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public System.Nullable<decimal> TotalStockOnHand {
+            get {
+                return this.totalStockOnHandField;
+            }
+            set {
+                this.totalStockOnHandField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool TotalStockOnHandSpecified {
+            get {
+                return this.totalStockOnHandFieldSpecified;
+            }
+            set {
+                this.totalStockOnHandFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public string UoM {
+            get {
+                return this.uoMField;
+            }
+            set {
+                this.uoMField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public System.Nullable<decimal> AddedKg {
+            get {
+                return this.addedKgField;
+            }
+            set {
+                this.addedKgField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool AddedKgSpecified {
+            get {
+                return this.addedKgFieldSpecified;
+            }
+            set {
+                this.addedKgFieldSpecified = value;
             }
         }
     }
