@@ -8,7 +8,6 @@
                Inherits="TRUE">
     <Folder TargetName="_cts/CustomsWarehouseDisposal" />
     <FieldRefs>
-      <FieldRef ID="{B304AE65-8CCF-49E8-B1F2-C60D6453753A}" Name="CWC_EntryDate" />
       <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />
       <FieldRef ID="{E94071CD-B982-45CF-9E1F-A28D4C0B0FC1}" Name="SADDocumentNo" />
       <FieldRef ID="{1CBC328D-A936-4125-A6C6-A2E0E956D250}" Name="SADDate" />
@@ -21,7 +20,6 @@
       <FieldRef ID="{FA67A59F-AFCD-4BD1-ADD4-8DA367AB5633}" Name="CW_Wz1" />
       <FieldRef ID="{31F88F12-A058-4966-BE6E-231B15FA97F3}" Name="CW_Wz2" />
       <FieldRef ID="{81011546-BADA-4C37-B5C3-6531335B7E32}" Name="CW_Wz3" />
-      <FieldRef ID="{16D33CFD-B8D1-4843-AA1B-A5155DE5FE6B}" Name="CW_AddedKg" />
       <FieldRef ID="{2E618017-3154-41E8-8C1A-91014C8B1322}" Name="CW_SettledNetMass" />
       <FieldRef ID="{5D90137F-9150-404D-A3EE-91E7BE4D5CA4}" Name="CW_SettledGrossMass" />
       <FieldRef ID="{3F511117-AE6F-40FF-801C-C8765D68E86D}" Name="TobaccoValue" />
@@ -37,12 +35,10 @@
       <FieldRef ID="{9B890369-B6CC-403E-A921-F9E686EF094C}" Name="DutyPerSettledAmount" />
       <FieldRef ID="{6AA3AB04-1DC6-4E5A-8602-BC0B06F9386A}" Name="VATPerSettledAmount" />
       <FieldRef ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}" Name="DutyAndVAT" />
-      <FieldRef ID="{87F03311-404C-42FE-82F3-D7490CC07496}" Name="CW_DeclaredToClear" />
-      <FieldRef ID="{EF50EAD3-E895-4E80-BE1E-9412AEB18D0E}" Name="CW_QuantityAvailable" />
-      <FieldRef ID="{6EAB5EE1-9217-4C92-9A69-AD1F0A03F9E0}" Name="CW_PackageAvailable" />
-      <FieldRef ID="{5278F429-8A4C-4EF7-B083-4C15BDCBE61C}" Name="CW_QuantityToClear" />
       <FieldRef ID="{41B47893-8755-4878-A827-1C56A8D02945}" Name="CW_PackageToClear" />
       <FieldRef ID="{16D33CFD-B8D1-4843-AA1B-A5155DE5FE6B}" Name="CW_AddedKg" />
+      <FieldRef ID="{2291900F-0EE8-4A1D-9FA1-92F8DB60AF41}" Name="AccountClosed" />
+      <FieldRef ID="{3A6EC6FC-81DD-4E39-9A78-B95D198C6938}" Name="Archival" />
       <FieldRef ID="{C2F4132F-735D-4123-BEDE-79C7FE31954B}" Name="CWL_CWDisposal2DisposalRequestLibraryID" />
     </FieldRefs>
   </ContentType>

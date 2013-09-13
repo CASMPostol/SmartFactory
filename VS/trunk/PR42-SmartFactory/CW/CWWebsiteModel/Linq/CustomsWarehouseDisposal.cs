@@ -16,15 +16,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         {
           Batch = account.Batch,
           CWL_CWDisposal2DisposalRequestLibraryID = parent,
-          CW_AddedKg = addedKg,
-          CW_DeclaredToClear = addedKg, // ??
-          CW_QuantityToClear = declaredNetMass, //TODO duplicated
-          CW_DeclaredNetMass = declaredNetMass,
+          CW_AddedKg = addedKg, //dopisuje planista
+          CW_DeclaredNetMass = declaredNetMass, //Ilość z SAP
 
           Currency = account.Currency,
           CustomsStatus = Linq.CustomsStatus.NotStarted,
           CWL_CWDisposal2PCNTID = account.CWL_CW2PCNID,
-          CWC_EntryDate = DateTime.Today, //TODO duplcated creation date
           Grade = account.Grade,
           SKU = account.SKU,
           TobaccoName = account.TobaccoName,
@@ -32,9 +29,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
           Title = "xreating", //TODO
           CW_PackageToClear = 0,// count
           CW_SettledGrossMass = 0, //count
-          CW_SettledNetMass = 0,//count
-          CW_PackageAvailable = 0,//TODO duplicated
-          CW_QuantityAvailable = 0,//TODO duplicated
+          CW_SettledNetMass = 0,//count = CW_DeclaredNetMass + CW_AddedKg
         };
     }
 

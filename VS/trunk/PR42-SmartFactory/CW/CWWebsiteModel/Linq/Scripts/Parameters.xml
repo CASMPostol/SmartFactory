@@ -286,6 +286,8 @@
     <Column Name="CW_COADate" Member="CW_COADate" />
     <Column Name="ValidToDate" Member="ValidToDate" />
     <Column Name="ClosingDate" Member="ClosingDate" />
+    <Column Name="AccountClosed" Member="AccountClosed" />
+    <Column Name="Archival" Member="Archival" />
     <Column Name="CWL_CW2PCNID" Member="CWL_CW2PCNID" />
     <Column Name="CWL_CW2CWLibraryID" Member="CWL_CW2CWLibraryID" />
     <Column Name="CWL_CW2VendorTitle" Member="CWL_CW2VendorTitle" />
@@ -328,7 +330,7 @@
   <ContentType Name="CustomsWarehouseDisposal" Class="CustomsWarehouseDisposal">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
-    <Column Name="CWC_EntryDate" Member="CWC_EntryDate" />
+
     <Column Name="No" Member="No" />
     <Column Name="SADDocumentNo" Member="SADDocumentNo" />
     <Column Name="SADDate" Member="SADDate" />
@@ -341,7 +343,6 @@
     <Column Name="CW_Wz1" Member="CW_Wz1" />
     <Column Name="CW_Wz2" Member="CW_Wz2" />
     <Column Name="CW_Wz3" Member="CW_Wz3" />
-    <Column Name="CW_AddedKg" Member="CW_AddedKg" />
     <Column Name="CW_SettledNetMass" Member="CW_SettledNetMass" />
     <Column Name="CW_SettledGrossMass" Member="CW_SettledGrossMass" />
     <Column Name="TobaccoValue" Member="TobaccoValue" />
@@ -357,11 +358,10 @@
     <Column Name="DutyPerSettledAmount" Member="DutyPerSettledAmount" />
     <Column Name="VATPerSettledAmount" Member="VATPerSettledAmount" />
     <Column Name="DutyAndVAT" Member="DutyAndVAT" />
-    <Column Name="CW_DeclaredToClear" Member="CW_DeclaredToClear" />
-    <Column Name="CW_QuantityAvailable" Member="CW_QuantityAvailable" />
-    <Column Name="CW_PackageAvailable" Member="CW_PackageAvailable" />
-    <Column Name="CW_QuantityToClear" Member="CW_QuantityToClear" />
     <Column Name="CW_PackageToClear" Member="CW_PackageToClear" />
+    <Column Name="CW_AddedKg" Member="CW_AddedKg" />
+    <Column Name="AccountClosed" Member="AccountClosed" />
+    <Column Name="Archival" Member="Archival" />
     <Column Name="CWL_CWDisposal2DisposalRequestLibraryID" Member="CWL_CWDisposal2DisposalRequestLibraryID" />
   </ContentType>
   <!--<ContentType Name="Format" Class="Format">

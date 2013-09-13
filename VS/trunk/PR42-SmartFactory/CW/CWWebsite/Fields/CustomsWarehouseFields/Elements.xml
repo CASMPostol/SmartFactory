@@ -128,38 +128,16 @@
     Type="Number"
     Decimals="3"/>
   <Field
-    ID="{87F03311-404C-42FE-82F3-D7490CC07496}"
-    Name="CW_DeclaredToClear"
-    DisplayName="Declared to clear"
-    Group="CAS Smart Factory Customs Warehouse"
-    Type="Number"
-    Decimals="2"/>
-  <Field
-    ID="{EF50EAD3-E895-4E80-BE1E-9412AEB18D0E}"
-    Name="CW_QuantityAvailable"
-    DisplayName="Quantity available"
-    Group="CAS Smart Factory Customs Warehouse"
-    Type="Number"
-    Decimals="2"/>
-  <Field
-    ID="{6EAB5EE1-9217-4C92-9A69-AD1F0A03F9E0}"
-    Name="CW_PackageAvailable"
-    DisplayName="Package available"
-    Group="CAS Smart Factory Customs Warehouse"
-    Type="Number"
-    Decimals="2"/>
-  <Field
-    ID="{5278F429-8A4C-4EF7-B083-4C15BDCBE61C}"
-    Name="CW_QuantityToClear"
-    DisplayName="Quantity to clear"
-    Group="CAS Smart Factory Customs Warehouse"
-    Type="Number"
-    Decimals="2"/>
-  <Field
     ID="{41B47893-8755-4878-A827-1C56A8D02945}"
     Name="CW_PackageToClear"
     DisplayName="Package to clear"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number"
     Decimals="2"/>
+  <Field
+    ID="{BF7DC931-BF06-4498-A8D7-B8F658B48E58}"
+    Name="CW_MovedToWarehouse"
+    DisplayName="Moved to"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Text"/>
 </Elements>
