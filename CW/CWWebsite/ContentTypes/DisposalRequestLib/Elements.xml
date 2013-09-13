@@ -7,6 +7,7 @@
                Overwrite="TRUE"
                Inherits="TRUE">
     <FieldRefs>
+      <FieldRef ID="{BF7DC931-BF06-4498-A8D7-B8F658B48E58}" Name="CW_MovedToWarehouse"/>
     </FieldRefs>
   </ContentType>
 </Elements>

@@ -98,9 +98,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		/// Customs Warehouse Library Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Customs Warehouse Library")]
-		public Microsoft.SharePoint.Linq.EntityList<CustomsWarehouseLib> CustomsWarehouseLibrary {
+		public Microsoft.SharePoint.Linq.EntityList<DisposalRequestLib> CustomsWarehouseLibrary {
 			get {
-				return this.GetList<CustomsWarehouseLib>("Customs Warehouse Library");
+				return this.GetList<DisposalRequestLib>("Customs Warehouse Library");
 			}
 		}
 		
@@ -424,10 +424,10 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Document", Id="0x0101")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(BinCardLib))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouseLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DisposalRequestLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADConsignment))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDocumentLib))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouseLib))]
 	public partial class Document : Element {
 		
 		private string _name;
@@ -967,6 +967,10 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private System.Nullable<System.DateTime> _closingDate;
 		
+		private System.Nullable<bool> _accountClosed;
+		
+		private System.Nullable<bool> _archival;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<Consent> _cWL_CW2ConsentTitle;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _cWL_CW2PCNID;
@@ -1443,6 +1447,34 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AccountClosed", Storage="_accountClosed", Required=true, FieldType="Boolean")]
+		public System.Nullable<bool> AccountClosed {
+			get {
+				return this._accountClosed;
+			}
+			set {
+				if ((value != this._accountClosed)) {
+					this.OnPropertyChanging("AccountClosed", this._accountClosed);
+					this._accountClosed = value;
+					this.OnPropertyChanged("AccountClosed");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
+				}
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CW2ConsentTitle", Storage="_cWL_CW2ConsentTitle", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Consent")]
 		public Consent CWL_CW2ConsentTitle {
 			get {
@@ -1599,8 +1631,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CustomsWarehouseDisposal", Id="0x0100809C8CF50E9E4E97B2809D1CD4C3F14F")]
 	public partial class CustomsWarehouseDisposal : Element {
 		
-		private System.Nullable<System.DateTime> _cWC_EntryDate;
-		
 		private System.Nullable<double> _no;
 		
 		private string _sADDocumentNo;
@@ -1625,8 +1655,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private string _cW_Wz3;
 		
-		private System.Nullable<double> _cW_AddedKg;
-		
 		private System.Nullable<double> _cW_SettledNetMass;
 		
 		private System.Nullable<double> _cW_SettledGrossMass;
@@ -1649,15 +1677,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _dutyAndVAT;
 		
-		private System.Nullable<double> _cW_DeclaredToClear;
-		
-		private System.Nullable<double> _cW_QuantityAvailable;
-		
-		private System.Nullable<double> _cW_PackageAvailable;
-		
-		private System.Nullable<double> _cW_QuantityToClear;
-		
 		private System.Nullable<double> _cW_PackageToClear;
+		
+		private System.Nullable<double> _cW_AddedKg;
+		
+		private System.Nullable<bool> _accountClosed;
+		
+		private System.Nullable<bool> _archival;
 		
 		private System.Nullable<ClearingType> _clearingType;
 		
@@ -1683,20 +1709,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this._cWL_CWDisposal2DisposalRequestLibraryID.OnChanged += new System.EventHandler(this.OnCWL_CWDisposal2DisposalRequestLibraryIDChanged);
 			this._cWL_CWDisposal2DisposalRequestLibraryID.OnChanging += new System.EventHandler(this.OnCWL_CWDisposal2DisposalRequestLibraryIDChanging);
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWC_EntryDate", Storage="_cWC_EntryDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> CWC_EntryDate {
-			get {
-				return this._cWC_EntryDate;
-			}
-			set {
-				if ((value != this._cWC_EntryDate)) {
-					this.OnPropertyChanging("CWC_EntryDate", this._cWC_EntryDate);
-					this._cWC_EntryDate = value;
-					this.OnPropertyChanged("CWC_EntryDate");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="No", Storage="_no", FieldType="Number")]
@@ -1867,20 +1879,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_AddedKg", Storage="_cW_AddedKg", FieldType="Number")]
-		public System.Nullable<double> CW_AddedKg {
-			get {
-				return this._cW_AddedKg;
-			}
-			set {
-				if ((value != this._cW_AddedKg)) {
-					this.OnPropertyChanging("CW_AddedKg", this._cW_AddedKg);
-					this._cW_AddedKg = value;
-					this.OnPropertyChanged("CW_AddedKg");
-				}
-			}
-		}
-		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_SettledNetMass", Storage="_cW_SettledNetMass", FieldType="Number")]
 		public System.Nullable<double> CW_SettledNetMass {
 			get {
@@ -2035,62 +2033,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_DeclaredToClear", Storage="_cW_DeclaredToClear", FieldType="Number")]
-		public System.Nullable<double> CW_DeclaredToClear {
-			get {
-				return this._cW_DeclaredToClear;
-			}
-			set {
-				if ((value != this._cW_DeclaredToClear)) {
-					this.OnPropertyChanging("CW_DeclaredToClear", this._cW_DeclaredToClear);
-					this._cW_DeclaredToClear = value;
-					this.OnPropertyChanged("CW_DeclaredToClear");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_QuantityAvailable", Storage="_cW_QuantityAvailable", FieldType="Number")]
-		public System.Nullable<double> CW_QuantityAvailable {
-			get {
-				return this._cW_QuantityAvailable;
-			}
-			set {
-				if ((value != this._cW_QuantityAvailable)) {
-					this.OnPropertyChanging("CW_QuantityAvailable", this._cW_QuantityAvailable);
-					this._cW_QuantityAvailable = value;
-					this.OnPropertyChanged("CW_QuantityAvailable");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_PackageAvailable", Storage="_cW_PackageAvailable", FieldType="Number")]
-		public System.Nullable<double> CW_PackageAvailable {
-			get {
-				return this._cW_PackageAvailable;
-			}
-			set {
-				if ((value != this._cW_PackageAvailable)) {
-					this.OnPropertyChanging("CW_PackageAvailable", this._cW_PackageAvailable);
-					this._cW_PackageAvailable = value;
-					this.OnPropertyChanged("CW_PackageAvailable");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_QuantityToClear", Storage="_cW_QuantityToClear", FieldType="Number")]
-		public System.Nullable<double> CW_QuantityToClear {
-			get {
-				return this._cW_QuantityToClear;
-			}
-			set {
-				if ((value != this._cW_QuantityToClear)) {
-					this.OnPropertyChanging("CW_QuantityToClear", this._cW_QuantityToClear);
-					this._cW_QuantityToClear = value;
-					this.OnPropertyChanged("CW_QuantityToClear");
-				}
-			}
-		}
-		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_PackageToClear", Storage="_cW_PackageToClear", FieldType="Number")]
 		public System.Nullable<double> CW_PackageToClear {
 			get {
@@ -2101,6 +2043,48 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this.OnPropertyChanging("CW_PackageToClear", this._cW_PackageToClear);
 					this._cW_PackageToClear = value;
 					this.OnPropertyChanged("CW_PackageToClear");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_AddedKg", Storage="_cW_AddedKg", FieldType="Number")]
+		public System.Nullable<double> CW_AddedKg {
+			get {
+				return this._cW_AddedKg;
+			}
+			set {
+				if ((value != this._cW_AddedKg)) {
+					this.OnPropertyChanging("CW_AddedKg", this._cW_AddedKg);
+					this._cW_AddedKg = value;
+					this.OnPropertyChanged("CW_AddedKg");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AccountClosed", Storage="_accountClosed", Required=true, FieldType="Boolean")]
+		public System.Nullable<bool> AccountClosed {
+			get {
+				return this._accountClosed;
+			}
+			set {
+				if ((value != this._accountClosed)) {
+					this.OnPropertyChanging("AccountClosed", this._accountClosed);
+					this._accountClosed = value;
+					this.OnPropertyChanged("AccountClosed");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -2186,8 +2170,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 				e.Item.CustomsWarehouseDisposal.Remove(this);
 			}
 		}
-
-  }
+	}
 	
 	/// <summary>
 	/// PCN Code List Content Type
@@ -3630,27 +3613,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
-	/// Customs Warehouse Library Content Type
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CustomsWarehouseLib", Id="0x010100719D28821A6F456C8F47FB42F9B33DAA")]
-	public partial class CustomsWarehouseLib : Document {
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public CustomsWarehouseLib() {
-			this.OnCreated();
-		}
-	}
-	
-	/// <summary>
 	/// Disposal Request Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DisposalRequestLib", Id="0x0101006A3BDDD5D82D4C03B297650EEECA0EF2")]
 	public partial class DisposalRequestLib : Document {
+		
+		private string _movedTo;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouseDisposal> _customsWarehouseDisposal;
 		
@@ -3666,6 +3634,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this._customsWarehouseDisposal.OnChanged += new System.EventHandler(this.OnCustomsWarehouseDisposalChanged);
 			this._customsWarehouseDisposal.OnChanging += new System.EventHandler(this.OnCustomsWarehouseDisposalChanging);
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_MovedToWarehouse", Storage="_movedTo", FieldType="Text")]
+		public string MovedTo {
+			get {
+				return this._movedTo;
+			}
+			set {
+				if ((value != this._movedTo)) {
+					this.OnPropertyChanging("MovedTo", this._movedTo);
+					this._movedTo = value;
+					this.OnPropertyChanged("MovedTo");
+				}
+			}
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CWDisposal2DisposalRequestLibraryID", Storage="_customsWarehouseDisposal", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Customs Warehouse Disposal")]
@@ -3857,6 +3839,23 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			else {
 				e.Item.SADDocumenLibrarytIndex = null;
 			}
+		}
+	}
+	
+	/// <summary>
+	/// Customs Warehouse Library Content Type
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CustomsWarehouseLib", Id="0x010100719D28821A6F456C8F47FB42F9B33DAA")]
+	public partial class CustomsWarehouseLib : Document {
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public CustomsWarehouseLib() {
+			this.OnCreated();
 		}
 	}
 	
