@@ -54,6 +54,12 @@
     </None>
     <None Include="DocumentsFactory\BinCard\GoCS.ps1" />
     <None Include="DocumentsFactory\BinCard\GoXSD.ps1" />
+    <None Include="DocumentsFactory\SAD\SADw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DocumentsFactory\SAD\xmldsig-core-schema.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ERP\DisposalRequest.xltx" />
     <None Include="ERP\DisposalRequest.xsd">
       <SubType>Designer</SubType>
@@ -77,6 +83,8 @@
     <Content Include="DocumentsFactory\BinCard\BinCardStylesheet.xslt">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DocumentsFactory\SAD\12SCST1175_4071_SAD.xml" />
+    <Content Include="DocumentsFactory\SAD\12SCST1175_4071_SAD_test.xml" />
     <Content Include="Features\CWInteroperability\CWInteroperability.Template.xml">
       <DependentUpon>CWInteroperability.feature</DependentUpon>
     </Content>
