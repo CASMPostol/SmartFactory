@@ -43,10 +43,40 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     internal Vendor VendorLookup { get; private set; }
     internal PCNCode PCNTariffCodeLookup { get; set; }
     //from good descriptions.
+    /// <summary>
+    /// Gets the precise goods quantity (nett amss) from the description.
+    /// </summary>
+    /// <value>
+    /// The goods quantity in kg.
+    /// </value>
     internal double? CWQuantity { get; private set; }
+    /// <summary>
+    /// Gets the units of mesure - usually kg .
+    /// </summary>
+    /// <value>
+    /// The units.
+    /// </value>
     internal string Units { get; private set; }
+    /// <summary>
+    /// Gets the weight of the boxws.
+    /// </summary>
+    /// <value>
+    /// The boxes weight in kg.
+    /// </value>
     internal double? CWPackageKg { get { return CommonAccountData.GrossMass - CWQuantity; } }
+    /// <summary>
+    /// Gets the number of boxes.
+    /// </summary>
+    /// <value>
+    /// The number of units (boxes).
+    /// </value>
     internal double? CWPackageUnits { get; private set; }
+    /// <summary>
+    /// Gets the mass per package (box).
+    /// </summary>
+    /// <value>
+    /// The mass per package in kg.
+    /// </value>
     internal double? CWMassPerPackage { get { return CWQuantity / CWPackageUnits; } }
     //from required documents.
     internal string CW_CertificateOfOrgin { get; private set; }

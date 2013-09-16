@@ -94,18 +94,27 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     {
       IOrderedEnumerable<CustomsWarehouse> _cwList = grouping.OrderBy(x => x.Id.Value);
       foreach (CustomsWarehouse _cwx in _cwList)
-        _cwx.Create(entities, parent, ref _xmlData);
+      {
+        _cwx.Dispose(entities, parent, ref _xmlData);
+        if (_xmlData.DeclaredQuantity + _xmlData.AdditionalQuantity <= 0)
+          break;
+      }
     }
-
-    private void Create(Entities entities, DisposalRequestLib parent, ref CustomsWarehouseDisposal.XmlData _xmlData)
+    private void Dispose(Entities entities, DisposalRequestLib parent, ref CustomsWarehouseDisposal.XmlData _xmlData)
     {
       double _2Get = 0;
-      double _boxes = 0;
-      double? _AddedKg = 0;
-      double? _DeclaredNetMass = 0;
+      double _AddedKg = 0;
+      double _DeclaredNetMass = 0;
       double _2Dispose = _xmlData.DeclaredQuantity + _xmlData.AdditionalQuantity;
       if (this.TobaccoNotAllocated < _2Dispose)
         _2Dispose = this.TobaccoNotAllocated.Value;
+      double _boxes = Math.Round(_2Dispose / this.CW_MassPerPackage.Value + 0.5, 0);
+      double _2DisposeFromBoxes = _boxes * this.CW_MassPerPackage.Value;
+      if (Math.Abs(_2DisposeFromBoxes - this.TobaccoNotAllocated.Value) < this.CW_MassPerPackage.Value)
+        _2DisposeFromBoxes = this.TobaccoNotAllocated.Value;
+      _DeclaredNetMass = Math.Min(_2DisposeFromBoxes, _xmlData.DeclaredQuantity);
+      _AddedKg = Math.Min(_2DisposeFromBoxes - _DeclaredNetMass, _xmlData.AdditionalQuantity);
+
       CustomsWarehouseDisposal _new = new CustomsWarehouseDisposal()
       {
         AccountClosed = false,
@@ -126,7 +135,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         Title = "ToDo",
         TobaccoName = this.TobaccoName,//TODO secondary lookup
       };
-
     }
 
     private decimal DecVAlue(double? nullable)
