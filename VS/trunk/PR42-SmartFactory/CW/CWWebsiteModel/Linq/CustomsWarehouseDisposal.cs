@@ -56,14 +56,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
           Batch = account.Batch,
           CWL_CWDisposal2DisposalRequestLibraryID = parent,
           CW_AddedKg = xmlData.AdditionalQuantity,
-          CW_DeclaredToClear = xmlData.AdditionalQuantity, // ??
-          CW_QuantityToClear = xmlData.DeclaredQuantity, //TODO duplicated
           CW_DeclaredNetMass = xmlData.DeclaredQuantity,
 
           Currency = account.Currency,
           CustomsStatus = Linq.CustomsStatus.NotStarted,
           CWL_CWDisposal2PCNTID = account.CWL_CW2PCNID,
-          CWC_EntryDate = DateTime.Today, //TODO duplcated creation date
           Grade = account.Grade,
           SKU = account.SKU,
           TobaccoName = account.TobaccoName,
@@ -72,8 +69,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
           CW_PackageToClear = 0,// count
           CW_SettledGrossMass = 0, //count
           CW_SettledNetMass = 0,//count
-          CW_PackageAvailable = 0,//TODO duplicated
-          CW_QuantityAvailable = 0,//TODO duplicated
         };
     }
 
