@@ -28,6 +28,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// <value>
     /// The name of this library.
     /// </value>
-    public static String Name { get { return "Bin Card Library"; } }
+    public static String LibraryName { get { return "Bin Card Library"; } }
   }
 }
