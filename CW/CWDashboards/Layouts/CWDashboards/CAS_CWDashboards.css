@@ -1,0 +1,143 @@
+﻿.TextBox 
+{
+    border-width:1px 1px 1px 1px;
+    border-color:#91cdf2;
+    border-style:solid;
+    font-family:Verdana;
+    font-size:10pt;
+    width:350px;
+}
+.TextBoxLong 
+{
+    border-width:1px 1px 1px 1px;
+    border-color:#91cdf2;
+    border-style:solid;
+    font-family:Verdana;
+    font-size:10pt;
+    width:420px;
+}
+.TextBoxLD 
+{
+    border-width:1px 1px 1px 1px;
+    border-color:#91cdf2;
+    border-style:solid;
+    font-family:Verdana;
+    font-size:10pt;
+    width:200px;
+}
+.Button
+{
+    border-width:1px 1px 1px 1px;
+    width:90px;
+    height:20px;
+    border-top-color:#26a0da;
+    border-bottom-color:#26a0da;
+    border-left-color:#26a0da;
+    border-right-color:#26a0da;
+    border-style:solid;
+    background-image:url(/_layouts/images/IPRDashboards/button_background_gray.jpg);
+    background-color:#FFFFFF;
+    font-family:Verdana;
+    font-size:8pt; 
+}
+.ButtonAlert
+{
+    border-width:1px 1px 1px 1px;
+    width:90px;
+    height:20px;
+    border-top-color:#26a0da;
+    border-bottom-color:#26a0da;
+    border-left-color:#26a0da;
+    border-right-color:#26a0da;
+    border-style:solid;
+    background-color:#a6f4ff;
+    font-family:Verdana;
+    font-size:8pt; 
+}
+.ButtonLong
+{
+    border-width:1px 1px 1px 1px;
+    width:130px;
+    height:20px;
+    border-top-color:#26a0da;
+    border-bottom-color:#26a0da;
+    border-left-color:#26a0da;
+    border-right-color:#26a0da;
+    border-style:solid;
+    background-image:url(/_layouts/images/IPRDashboards/button_background_gray.jpg);
+    background-color:#FFFFFF;
+    font-family:Verdana;
+    font-size:8pt; 
+}
+.Button_TR
+{
+    border-width:1px 1px 1px 1px;
+    width:70px;
+    height:20px;
+    border-top-color:#26a0da;
+    border-bottom-color:#26a0da;
+    border-left-color:#26a0da;
+    border-right-color:#26a0da;
+    border-style:solid;
+    background-image:url(/_layouts/images/IPRDashboards/button_background_gray.jpg);
+    background-color:#FFFFFF;
+    font-family:Verdana;
+    font-size:8pt; 
+}
+.Table
+{
+    width:auto;
+    padding:10px;
+    border:0px;
+}
+.TableInside
+{
+    width:auto;
+    padding:0px;
+    border:0px;
+}
+.Label
+{
+    font-size:8pt;
+    font-family:Verdana;
+    color:#6d6f72;
+}
+.DropDown
+{
+    border-width:1px 1px 1px 1px;
+    border-color:#91cdf2;
+    border-style:solid;
+    background-color:#FFFFFF;
+    font-family:Verdana;
+    font-size:10pt;
+    width:350px;
+}
+.DropDownLD
+{
+    border-width:1px 1px 1px 1px;
+    border-color:#91cdf2;
+    border-style:solid;
+    background-color:#FFFFFF;
+    font-family:Verdana;
+    font-size:8pt;
+    width:200px;
+}
+.ListBox
+{
+    border-width:1px 1px 1px 1px;
+    border-color:#91cdf2;
+    border-style:solid;
+    background-color:#FFFFFF;
+    font-family:Verdana;
+    font-size:8pt;
+}
+.ListBoxInside
+{
+    border-width:1px 1px 1px 1px;
+    border-color:#91cdf2;
+    border-style:solid;
+    background-color:#FFFFFF;
+    font-family:Verdana;
+    font-size:8pt;
+    width:200px;
+}

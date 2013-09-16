@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="DisposalRequestDashboard">
+    <File Path="WebPartPages\WebPageTemplate_DisposalRequest.aspx" Url="WebPartPages/DisposalRequestDashboard.aspx">
+    </File>
+  </Module>
+</Elements>
