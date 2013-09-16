@@ -49,8 +49,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
+    <None Include="Dashboards\DisposalRequestDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8bf86832-68ea-45d1-b7ca-0020531fdc80}</SharePointProjectItemId>
+    </None>
+    <None Include="WebPartPages\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0ef191e5-7a62-4ff4-b3d2-c412b537f0d7}</SharePointProjectItemId>
+    </None>
     <None Include="Features\CWDashboards\CWDashboards.feature">
       <FeatureId>{d02741c0-3c27-40d5-a779-6d96683b9dbd}</FeatureId>
+    </None>
+    <None Include="Images\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{cef33943-6378-4614-8f20-9ebc14c944ae}</SharePointProjectItemId>
+    </None>
+    <None Include="Layouts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bc231858-942b-4782-8281-b03d14a8c0ed}</SharePointProjectItemId>
     </None>
     <None Include="Package\Package.package">
       <PackageId>{70cd31ac-87f9-48bc-9ef4-e244d239c8e8}</PackageId>
@@ -67,9 +79,14 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dashboards\DisposalRequestDashboard\Elements.xml" />
+    <Content Include="WebPartPages\Elements.xml" />
+    <Content Include="WebPartPages\WebPageTemplate_DisposalRequest.aspx" />
     <Content Include="Features\CWDashboards\CWDashboards.Template.xml">
       <DependentUpon>CWDashboards.feature</DependentUpon>
     </Content>
+    <Content Include="Images\CWDashboards\button_background_gray.jpg" />
+    <Content Include="Layouts\CWDashboards\CAS_CWDashboards.css" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -78,6 +95,7 @@
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
