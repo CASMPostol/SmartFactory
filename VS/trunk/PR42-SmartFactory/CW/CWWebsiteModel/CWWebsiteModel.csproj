@@ -114,6 +114,10 @@
       <Project>{0fab4900-9fe2-4ce9-a047-ceeb28920f57}</Project>
       <Name>Microsoft.Practices.SharePoint.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
+      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
+      <Name>SharePoint</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Customs\Customs.csproj">
       <Project>{6c705843-6387-4d2d-a7cf-a66976186ce2}</Project>
       <Name>Customs</Name>

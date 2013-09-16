@@ -55,8 +55,12 @@
     <None Include="DisposalRequest\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e9b75369-5ed0-485c-b137-8d53a429fa9f}</SharePointProjectItemId>
     </None>
-    <None Include="DisposalRequest\DisposalRequest.webpart" />
-    <None Include="DisposalRequest\Elements.xml" />
+    <None Include="DisposalRequest\DisposalRequest.webpart">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DisposalRequest\Elements.xml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Package\Package.package">

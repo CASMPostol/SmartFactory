@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.BinCard
           if ( _cw.CWL_CW2BinCardTitle == null )
           {
             string _documentName = Settings.BinCardDocumentName( _entities, workflowProperties.ItemId );
-            SPFile _newFile = File.CreateXmlFile<BinCardContentType>( workflowProperties.Web, _newBinCard, _documentName, BinCardLib.Name, BinCardContentType.StylesheetNmane );
+            SPFile _newFile = File.CreateXmlFile<BinCardContentType>( workflowProperties.Web, _newBinCard, _documentName, BinCardLib.LibraryName, BinCardContentType.StylesheetNmane );
             BinCardLib _BinCardLibRntry = Element.GetAtIndex<BinCardLib>( _entities.BinCardLibrary, _newFile.Item.ID );
             _cw.CWL_CW2BinCardTitle = _BinCardLibRntry;
             _entities.SubmitChanges();
@@ -35,7 +35,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.BinCard
           else
           {
             int _binCardId = _cw.CWL_CW2BinCardTitle.Id.Value;
-            SPDocumentLibrary _lib = (SPDocumentLibrary)workflowProperties.Web.Lists[ BinCardLib.Name ];
+            SPDocumentLibrary _lib = (SPDocumentLibrary)workflowProperties.Web.Lists[ BinCardLib.LibraryName ];
             SPFile _file = _lib.GetItemByIdSelectedFields( _binCardId ).File;
             File.WriteXmlFile<BinCardContentType>( _file, _newBinCard, BinCardContentType.StylesheetNmane );
           }

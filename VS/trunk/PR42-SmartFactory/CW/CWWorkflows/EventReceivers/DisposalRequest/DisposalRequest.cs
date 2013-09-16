@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -54,7 +54,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
           using (Stream _stream = properties.ListItem.File.OpenBinaryStream())
             _xml = DisposalRequestXml.ImportDocument(_stream);
           At = "GetXmlContent";
-          GetXmlContent(_xml, _edc, _entry, ProgressChange);
+          GetXmlContent(_edc, _xml, _entry, ProgressChange);
           At = "SubmitChanges";
           _edc.SubmitChanges();
           foreach (CAS.SmartFactory.Customs.Warnning _wrnngx in m_Warnings)
@@ -110,10 +110,19 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
     /// <param name="edc">The edc.</param>
     /// <param name="parent">The entry.</param>
     /// <param name="progressChanged">The progress changed.</param>
-    private static void GetXmlContent(DisposalRequestXml xml, Entities edc, DisposalRequestLib parent, ProgressChangedEventHandler progressChanged)
+    private static void GetXmlContent(Entities entities, DisposalRequestXml xml, DisposalRequestLib parent, ProgressChangedEventHandler progressChanged)
     {
-      CustomsWarehouseDisposal _new = CustomsWarehouseDisposal.Create(parent);
-      progressChanged(null, new ProgressChangedEventArgs(1, "GetXmlContent: starting"));
+      foreach (var _xmli in xml.DisposalRequestContent)
+      {
+        CustomsWarehouseDisposal.XmlData _xmlData = new CustomsWarehouseDisposal.XmlData()
+        {
+          AdditionalQuantity = Convert.ToDouble(_xmli.AddedKg),
+          DeclaredQuantity = Convert.ToDouble(_xmli.QtyToClear),
+          SKUDescription = _xmli.Description
+        };
+        CustomsWarehouse.Create(entities, _xmli.BatchNo, parent, _xmlData);
+        progressChanged(null, new ProgressChangedEventArgs(1, "GetXmlContent: starting"));
+      }
     }
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
