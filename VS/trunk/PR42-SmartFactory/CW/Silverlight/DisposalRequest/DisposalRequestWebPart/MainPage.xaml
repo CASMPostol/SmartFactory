@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="800" d:DesignWidth="1000">
+    d:DesignHeight="400" d:DesignWidth="1000">
     <UserControl.Resources>
         <Style x:Key="QtyToClearSuggested" TargetType="sdk:DataGridCell">
             <Setter Property="Background">
@@ -57,24 +57,6 @@
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot">
         <StackPanel Orientation="Vertical">
-    		<Grid HorizontalAlignment="Left" Margin="5" Background="#FF354B5F">
-    			<Grid.RowDefinitions>
-    				<RowDefinition Height="Auto"/>
-    				<RowDefinition Height="Auto"/>
-    				<RowDefinition Height="Auto"/>
-    			</Grid.RowDefinitions>
-    			<sdk:Label Content="Disposal request library:" Foreground="#FFFBF3F3"/>
-    			<sdk:DataGrid Width="980" AutoGenerateColumns="False" ItemsSource="{Binding Collection}" Background="{x:Null}" Grid.Row="1" Height="100">
-    				<sdk:DataGrid.Columns>
-    					<sdk:DataGridTextColumn Binding="{Binding FileName}" Header="File name" IsReadOnly="True"/>
-    					<sdk:DataGridTextColumn Binding="{Binding Created}" Header="Created" IsReadOnly="True"/>
-    					<sdk:DataGridTextColumn Binding="{Binding CreatedBy}" Header="Created By" IsReadOnly="True"/>
-    				</sdk:DataGrid.Columns>
-    			</sdk:DataGrid>
-    			<StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
-    				<Button Content="Save changes" Style="{StaticResource ButtonStyle}" Margin="0"/>
-    			</StackPanel>
-    		</Grid>
     		<Grid HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#FF354B5F" Margin="5">
     			<Grid.RowDefinitions>
     				<RowDefinition Height="Auto"/>
@@ -98,33 +80,11 @@
     			</sdk:DataGrid>
     			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2">
     				<Button x:Name="x_ButtonAddNew" Content="Add new" Style="{StaticResource ButtonStyle}"/>
-    				<Button Content="End of OGL" Style="{StaticResource ButtonStyle}"/>
-    				<Button Content="End of Batch" Style="{StaticResource ButtonStyle}"/>
-    				<Button Content="Delete" Style="{StaticResource ButtonStyle}"/>
+    				<Button x:Name="x_ButtonEndOfOgl" Content="End of OGL" Style="{StaticResource ButtonStyle}"/>
+    				<Button x:Name="x_ButtonEndofBatch" Content="End of Batch" Style="{StaticResource ButtonStyle}"/>
+    				<Button x:Name="x_ButtonDelete" Content="Delete" Style="{StaticResource ButtonStyle}"/>
     			</StackPanel>
     		</Grid>
-    	</StackPanel>
-        <Popup x:Name="m_AddDisposalRequest" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Height="220" Width="485" OpacityMask="Black" Visibility="Collapsed">
-            <Border BorderThickness="1" BorderBrush="#FF3D8AA5" Background="#FF354B5F">
-                <Grid Margin="0" Height="220" Width="485">
-                    <sdk:Label Content="Add new disposal request item" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" FontSize="14" Foreground="White" />
-                    <sdk:Label Content="Enter Batch No.:" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,50,0,0" Foreground="White" />
-                    <TextBox x:Name="m_BatchSearchTextBox" Height="26" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,42,0,0" BorderBrush="#FF3D8AA5"/>
-                    <Button x:Name="m_BatchSearchButton" Height="26" Width="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,42,0,0">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="Imgs/search.png" Width="20" Height="20" ToolTipService.ToolTip="Search for batch" />
-                            </StackPanel>
-                    </Button>
-                    <sdk:Label Content="Selected Batch No:" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,80,0,0" Foreground="White" />
-                    <TextBox x:Name="m_SelectedBatchTextBox" IsEnabled="False" Height="26" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,72,0,0" BorderBrush="#FF3D8AA5" />
-                    <sdk:Label Content="Total Stock:" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,110,0,0" Foreground="White" />
-                    <TextBox x:Name="m_TotalStockTextBox" IsEnabled="False" Height="26" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,102,0,0" BorderBrush="#FF3D8AA5" />
-                    <sdk:Label Content="Qty to clear:" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,140,0,0" Foreground="White" />
-                    <TextBox x:Name="m_QtyToClearTextBox" Height="26" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,132,0,0" BorderBrush="#FF3D8AA5" />
-                    <Button Content="Save" x:Name="m_SaveNewDisposalRequestButton" Height="26" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,180,0,0" />
-                    <Button Content="Cancel" x:Name="m_CancelNewDisposalRequestButton" Height="26" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="242,180,0,0" />
-                </Grid>
-            </Border>
-        </Popup>
+        </StackPanel>
     </Grid>
 </UserControl>
