@@ -333,12 +333,13 @@
 
     <Column Name="No" Member="No" />
     <Column Name="SADDocumentNo" Member="SADDocumentNo" />
+    <Column Name="CWL_CWDisposal2CWDocumentNo_sec" Member="CWL_CWDisposal2CWDocumentNo_sec" />
     <Column Name="SADDate" Member="SADDate" />
-    <Column Name="TobaccoName" Member="TobaccoName" />
-    <Column Name="Grade" Member="Grade" />
-    <Column Name="SKU" Member="SKU" />
+    <Column Name="CWL_CWDisposal2CWTobaccoName_sec" Member="CWL_CWDisposal2CWTobaccoName_sec" />
+    <Column Name="CWL_CWDisposal2CWGrade_sec" Member="CWL_CWDisposal2CWGrade_sec" />
+    <Column Name="CWL_CWDisposal2CWSKU_sec" Member="CWL_CWDisposal2CWSKU_sec" />
     <Column Name="SKUDescription" Member="SKUDescription" />
-    <Column Name="Batch" Member="Batch" />
+    <Column Name="CWL_CWDisposal2CWBatch_sec" Member="CWL_CWDisposal2CWBatch_sec" />
     <Column Name="CW_DeclaredNetMass" Member="CW_DeclaredNetMass" />
     <Column Name="CW_Wz1" Member="CW_Wz1" />
     <Column Name="CW_Wz2" Member="CW_Wz2" />
@@ -346,7 +347,7 @@
     <Column Name="CW_SettledNetMass" Member="CW_SettledNetMass" />
     <Column Name="CW_SettledGrossMass" Member="CW_SettledGrossMass" />
     <Column Name="TobaccoValue" Member="TobaccoValue" />
-    <Column Name="Currency" Member="Currency" />
+    <Column Name="CWL_CWDisposal2CWCurrency_sec" Member="CWL_CWDisposal2CWCurrency_sec" />
     <Column Name="RemainingQuantity" Member="RemainingQuantity" />
     <Column Name="CW_RemainingPackage" Member="CW_RemainingPackage" />
     <Column Name="CW_RemainingTobaccoValue" Member="CW_RemainingTobaccoValue" />
@@ -363,6 +364,7 @@
     <Column Name="AccountClosed" Member="AccountClosed" />
     <Column Name="Archival" Member="Archival" />
     <Column Name="CWL_CWDisposal2DisposalRequestLibraryID" Member="CWL_CWDisposal2DisposalRequestLibraryID" />
+    <Column Name="CWL_CWDisposal2CustomsWarehouseID" Member="CWL_CWDisposal2CustomsWarehouseID" />
   </ContentType>
   <!--<ContentType Name="Format" Class="Format">
     <Column Name="ContentType" Member="ContentType" />
