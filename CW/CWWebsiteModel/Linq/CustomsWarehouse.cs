@@ -72,6 +72,14 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         this.CW_CODate = data.CW_CODate;
       this.CWL_CW2VendorTitle = data.VendorLookup;
     }
+    /// <summary>
+    /// Disposes goods for selected batch.
+    /// </summary>
+    /// <param name="entities">The entities representing SharePoint lists.</param>
+    /// <param name="batch">The batch.</param>
+    /// <param name="parentRequestLib">The parent request library.</param>
+    /// <param name="xmlData">The XML data to be disposed.</param>
+    /// <exception cref="CAS.SharePoint.ApplicationError">CustomsWarehouse.Dispose;ending;null</exception>
     public static void Dispose(Entities entities, string batch, DisposalRequestLib parentRequestLib, CustomsWarehouseDisposal.XmlData xmlData)
     {
       foreach (CustomsWarehouse _cwx in GetOrderedQueryable4Batch(entities, batch))
@@ -83,6 +91,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       string _msg = String.Format("there is enought tobacco {0} to dispose the batch: {1}", xmlData.DeclaredQuantity + xmlData.AdditionalQuantity, batch);
       throw new CAS.SharePoint.ApplicationError("CustomsWarehouse.Dispose", "ending", _msg, null);
     }
+    /// <summary>
+    /// Check if the any records exists.
+    /// </summary>
+    /// <param name="entities">The entities.</param>
+    /// <param name="documentNo">The document no.</param>
+    /// <returns></returns>
     internal static bool RecordExist(Entities entities, string documentNo)
     {
       return (from CustomsWarehouse _cwx in entities.CustomsWarehouse where _cwx.DocumentNo.Contains(documentNo) select _cwx).Any();
@@ -106,45 +120,45 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     }
     private void Dispose(Entities entities, DisposalRequestLib parent, ref CustomsWarehouseDisposal.XmlData _xmlData)
     {
-      double _AddedKg = 0;
-      double _DeclaredNetMass = 0;
-      double _2Dispose = _xmlData.DeclaredQuantity + _xmlData.AdditionalQuantity;
-      double _BoxWeight = this.CW_PackageUnits.Value == 0 ? 0 : (this.GrossMass.Value - this.CW_Quantity.Value) / this.CW_PackageUnits.Value;
-      if (this.TobaccoNotAllocated < _2Dispose)
-        _2Dispose = this.TobaccoNotAllocated.Value;
-      double _boxes = Math.Round(_2Dispose / this.CW_MassPerPackage.Value + 0.5, 0);
-      _2Dispose = _boxes * this.CW_MassPerPackage.Value;
-      Debug.Assert(_2Dispose <= this.TobaccoNotAllocated.Value, "Account overrun");
-      if (Math.Abs(_2Dispose - this.TobaccoNotAllocated.Value) < this.CW_MassPerPackage.Value)
-        _2Dispose = this.TobaccoNotAllocated.Value;
-      _DeclaredNetMass = Math.Min(_2Dispose, _xmlData.DeclaredQuantity);
-      _AddedKg = Math.Max(_2Dispose - _DeclaredNetMass, 0);
-      _AddedKg = Math.Min(_AddedKg, _xmlData.AdditionalQuantity);
-      _xmlData.DeclaredQuantity -= _DeclaredNetMass;
-      _xmlData.AdditionalQuantity -= _AddedKg;
+      decimal _2Dispose = _xmlData.DeclaredQuantity + _xmlData.AdditionalQuantity;
+      if (this.TobaccoNotAllocated.DecimalValue() < _2Dispose)
+        _2Dispose = this.TobaccoNotAllocated.DecimalValue();
+      decimal _Boxes = Math.Round(_2Dispose / Convert.ToDecimal(this.CW_MassPerPackage.Value + 0.5), 0);
+      _2Dispose = _Boxes * this.CW_MassPerPackage.DecimalValue();
+      Debug.Assert(_2Dispose <= this.TobaccoNotAllocated.DecimalValue(), "Account overrun");
+      if (Math.Abs(_2Dispose - this.TobaccoNotAllocated.DecimalValue()) < this.CW_MassPerPackage.DecimalValue())
+        _2Dispose = this.TobaccoNotAllocated.DecimalValue();
+      //DeclaredQntty
+      decimal _DeclaredQntty = Math.Min(_2Dispose, _xmlData.DeclaredQuantity);
+      _xmlData.DeclaredQuantity -= _DeclaredQntty;
+      //AdditionalQntty
+      decimal _AdditionalQntty = 0;
+      _AdditionalQntty = Math.Max(_2Dispose - _DeclaredQntty, 0);
+      _xmlData.AdditionalQuantity -= Math.Min(_AdditionalQntty, _xmlData.AdditionalQuantity);
+      this.TobaccoNotAllocated = Convert.ToDouble(this.TobaccoNotAllocated.DecimalValue() - _2Dispose);
       CustomsWarehouseDisposal _new = new CustomsWarehouseDisposal()
       {
         AccountClosed = false,
         Archival = false,
-        Batch = this.Batch,//TODO secondary
-        Currency = this.Currency,// TODO secondary
         CustomsStatus = CustomsStatus.NotStarted,
-        CW_AddedKg = _AddedKg,
-        CW_DeclaredNetMass = _DeclaredNetMass,
-        CW_SettledNetMass = _2Dispose,
-        CW_SettledGrossMass = _2Dispose + _BoxWeight * _boxes,
-        CW_PackageToClear = _boxes,
+        CW_AddedKg = _AdditionalQntty.DoubleValue(),
+        CW_DeclaredNetMass = _DeclaredQntty.DoubleValue(),
+        CW_SettledNetMass = _2Dispose.DoubleValue(),
+        CW_SettledGrossMass = (_2Dispose + PackageWeight() * _Boxes).DoubleValue(),
+        CW_PackageToClear = _Boxes.DoubleValue(),
         CWL_CWDisposal2DisposalRequestLibraryID = parent,
         CWL_CWDisposal2PCNTID = this.CWL_CW2PCNID,
-        Grade = this.Grade,//TODO secondary
-        SKU = this.SKU,//TODO secondary
         SKUDescription = _xmlData.SKUDescription,
         Title = "ToDo",
-        TobaccoName = this.TobaccoName,//TODO secondary lookup 
       };
       _new.UpdateTitle(this.CWC_EntryDate.Value);
       entities.CustomsWarehouseDisposal.InsertOnSubmit(_new);
     }
+    private decimal PackageWeight()
+    {
+      return this.CW_PackageUnits.Value == 0 ? 0m : (this.GrossMass.DecimalValue() - this.CW_Quantity.DecimalValue()) / this.CW_PackageUnits.DecimalValue();
+    }
     #endregion
+
   }
 }
