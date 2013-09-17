@@ -33,11 +33,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       /// <summary>
       /// Additional quantity declared to dispose
       /// </summary>
-      public double AdditionalQuantity;
+      public decimal AdditionalQuantity;
       /// <summary>
       /// The declared quantity
       /// </summary>
-      public double DeclaredQuantity;
+      public decimal DeclaredQuantity;
       /// <summary>
       /// The sku description
       /// </summary>
