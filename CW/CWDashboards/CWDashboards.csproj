@@ -79,7 +79,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dashboards\DisposalRequestDashboard\Elements.xml" />
+    <Content Include="Dashboards\DisposalRequestDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="WebPartPages\Elements.xml" />
     <Content Include="WebPartPages\WebPageTemplate_DisposalRequest.aspx" />
     <Content Include="Features\CWDashboards\CWDashboards.Template.xml">

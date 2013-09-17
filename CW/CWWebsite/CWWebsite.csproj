@@ -184,7 +184,9 @@
     <Content Include="Lists\DisposalRequestLibraryTemplate\Elements.xml" />
     <Content Include="Lists\DisposalRequestLibraryTemplate\FileDlg.htm" />
     <Content Include="Lists\DisposalRequestLibraryTemplate\Repair.aspx" />
-    <Content Include="Lists\DisposalRequestLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\DisposalRequestLibraryTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\DisposalRequestLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\VendorListTemplate\Elements.xml">
       <SubType>Designer</SubType>

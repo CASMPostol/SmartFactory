@@ -212,7 +212,9 @@
     <Content Include="cas\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Dashboards\BatchDashboard\Elements.xml" />
+    <Content Include="Dashboards\BatchDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Dashboards\ClearenceDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
