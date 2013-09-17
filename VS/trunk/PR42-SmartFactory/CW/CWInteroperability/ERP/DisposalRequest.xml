@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DisposalRequest xmlns="http://cas.eu/schemas/smartfactory/cw/disposalrequest.xsd">
+  <DisposalRequestContent>
+    <MaterialNo>MaterialNo1</MaterialNo>
+    <Description>Description1</Description>
+    <BatchNo>BatchNo1</BatchNo>
+    <QtyToClear>1</QtyToClear>
+    <TotalStock>1</TotalStock>
+    <TotalStockToClear>1</TotalStockToClear>
+    <TotalStockOnHand>1</TotalStockOnHand>
+    <UoM>UoM1</UoM>
+    <AddedKg>1</AddedKg>
+  </DisposalRequestContent>
+  <DisposalRequestContent>
+    <MaterialNo>MaterialNo2</MaterialNo>
+    <Description>Description2</Description>
+    <BatchNo>BatchNo2</BatchNo>
+    <QtyToClear>-79228162514264337593543950335</QtyToClear>
+    <TotalStock>-79228162514264337593543950335</TotalStock>
+    <TotalStockToClear>-79228162514264337593543950335</TotalStockToClear>
+    <TotalStockOnHand>-79228162514264337593543950335</TotalStockOnHand>
+    <UoM>UoM2</UoM>
+    <AddedKg>-79228162514264337593543950335</AddedKg>
+  </DisposalRequestContent>
+  <DisposalRequestContent>
+    <MaterialNo>MaterialNo3</MaterialNo>
+    <Description>Description3</Description>
+    <BatchNo>BatchNo3</BatchNo>
+    <QtyToClear>79228162514264337593543950335</QtyToClear>
+    <TotalStock>79228162514264337593543950335</TotalStock>
+    <TotalStockToClear>79228162514264337593543950335</TotalStockToClear>
+    <TotalStockOnHand>79228162514264337593543950335</TotalStockOnHand>
+    <UoM>UoM3</UoM>
+    <AddedKg>79228162514264337593543950335</AddedKg>
+  </DisposalRequestContent>
+</DisposalRequest>
