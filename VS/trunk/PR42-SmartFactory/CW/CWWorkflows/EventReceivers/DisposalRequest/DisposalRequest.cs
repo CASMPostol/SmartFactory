@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : DisposalRequest List Item Events
 //  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2013, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -29,6 +29,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
   /// </summary>
   public class DisposalRequest : SPItemEventReceiver
   {
+    #region public override
     /// <summary>
     /// An item was added
     /// </summary>
@@ -92,6 +93,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
       }
       base.ItemAdded(properties);
     }
+    #endregion
 
     #region private
     private void ProgressChange(object sender, ProgressChangedEventArgs progres)
@@ -120,7 +122,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
           DeclaredQuantity = Convert.ToDouble(_xmli.QtyToClear),
           SKUDescription = _xmli.Description
         };
-        CustomsWarehouse.Create(entities, _xmli.BatchNo, parent, _xmlData);
+        CustomsWarehouse.Dispose(entities, _xmli.BatchNo, parent, _xmlData);
         progressChanged(null, new ProgressChangedEventArgs(1, "GetXmlContent: starting"));
       }
     }
@@ -129,7 +131,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
     private string At { get; set; }
     private const string m_Title = "Batch Message Import";
     private const string m_Message = "Import of the disposal request message {0} starting.";
-    private List<Warnning> m_Warnings;
+    private List<Warnning> m_Warnings = new List<Warnning>();
     #endregion
 
   }
