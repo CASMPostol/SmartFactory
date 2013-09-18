@@ -35,8 +35,8 @@
                 <TextBox x:Name="x_TextBoxQtyToClear" Height="26" Width="200" Grid.Row="3" Grid.Column="1" Margin="5" BorderBrush="#FF3D8AA5" />
 			</Grid>
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
-				<Button x:Name="CancelButton" Content="Cancel" Click="CancelButton_Click" Style="{StaticResource ButtonStyle}" />
-				<Button x:Name="OKButton" Content="OK" Click="OKButton_Click" Style="{StaticResource ButtonStyle}" />
+				<Button x:Name="x_CancelButton" Content="Cancel" Click="CancelButton_Click" Style="{StaticResource ButtonStyle}" />
+				<Button x:Name="x_OKButton" Content="OK" Click="OKButton_Click" Style="{StaticResource ButtonStyle}" />
 			</StackPanel>
 		</StackPanel>  
     </Grid>
