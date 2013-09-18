@@ -118,8 +118,8 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
       {
         CustomsWarehouseDisposal.XmlData _xmlData = new CustomsWarehouseDisposal.XmlData()
         {
-          AdditionalQuantity = _xmli.AddedKg.Value,
-          DeclaredQuantity = _xmli.QtyToClear.Value,
+          AdditionalQuantity = _xmli.AddedKg,
+          DeclaredQuantity = _xmli.QtyToClear,
           SKUDescription = _xmli.Description
         };
         CustomsWarehouse.Dispose(entities, _xmli.BatchNo, parent, _xmlData);
