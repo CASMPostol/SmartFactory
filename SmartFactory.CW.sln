@@ -18,6 +18,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CWWorkflows", "CW\CWWorkflows\CWWorkflows.csproj", "{52A878E1-45DB-4416-B2C5-1CEDC59BF4B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CWDashboards", "CW\CWDashboards\CWDashboards.csproj", "{19649FCB-22B6-428A-9B59-D53EF86ECE80}"
+	ProjectSection(ProjectDependencies) = postProject
+		{99FC1B00-0242-4E8E-A431-5D8930458BE7} = {99FC1B00-0242-4E8E-A431-5D8930458BE7}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CWInteroperability", "CW\CWInteroperability\CWInteroperability.csproj", "{F0416078-82CD-4F9D-905C-1E346198759A}"
 EndProject
@@ -43,6 +46,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisposalRequest", "CW\Silve
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisposalRequestWebPart", "CW\Silverlight\DisposalRequest\DisposalRequestWebPart\DisposalRequestWebPart.csproj", "{99FC1B00-0242-4E8E-A431-5D8930458BE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDisposalRequest", "CW\Tests\SharePointProjects\TestDisposalRequest\TestDisposalRequest.csproj", "{23461D4D-437C-4663-8B92-38F85398E12A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{99FC1B00-0242-4E8E-A431-5D8930458BE7} = {99FC1B00-0242-4E8E-A431-5D8930458BE7}
+		{8BA48226-1040-4FA2-941D-11A82B11FE78} = {8BA48226-1040-4FA2-941D-11A82B11FE78}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{08691AFE-4E6E-4ADC-A123-1ECDC93D23C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -167,6 +178,16 @@ Global
 		{99FC1B00-0242-4E8E-A431-5D8930458BE7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{99FC1B00-0242-4E8E-A431-5D8930458BE7}.Release|x64.ActiveCfg = Release|Any CPU
 		{99FC1B00-0242-4E8E-A431-5D8930458BE7}.Release|x86.ActiveCfg = Release|Any CPU
+		{23461D4D-437C-4663-8B92-38F85398E12A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23461D4D-437C-4663-8B92-38F85398E12A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23461D4D-437C-4663-8B92-38F85398E12A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{23461D4D-437C-4663-8B92-38F85398E12A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{23461D4D-437C-4663-8B92-38F85398E12A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{23461D4D-437C-4663-8B92-38F85398E12A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23461D4D-437C-4663-8B92-38F85398E12A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23461D4D-437C-4663-8B92-38F85398E12A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{23461D4D-437C-4663-8B92-38F85398E12A}.Release|x64.ActiveCfg = Release|Any CPU
+		{23461D4D-437C-4663-8B92-38F85398E12A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -184,5 +205,6 @@ Global
 		{B9D9FCCA-6132-4BF5-BC17-32EA752D6AD7} = {BE440823-1114-4835-BC08-7850469C754F}
 		{953A4CD9-E444-422D-BFF0-B878A42CC4FC} = {8BA48226-1040-4FA2-941D-11A82B11FE78}
 		{99FC1B00-0242-4E8E-A431-5D8930458BE7} = {8BA48226-1040-4FA2-941D-11A82B11FE78}
+		{23461D4D-437C-4663-8B92-38F85398E12A} = {08691AFE-4E6E-4ADC-A123-1ECDC93D23C7}
 	EndGlobalSection
 EndGlobal
