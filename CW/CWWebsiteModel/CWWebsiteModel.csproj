@@ -91,12 +91,14 @@
       <DependentUpon>CWWebsiteModel.feature</DependentUpon>
     </Compile>
     <Compile Include="Linq\Account\CWAccountData.cs" />
+    <Compile Include="Linq\ActionResult.cs" />
     <Compile Include="Linq\ActivityLogCT.cs" />
     <Compile Include="Linq\BinCardLib.cs" />
     <Compile Include="Linq\CustomsWarehouse.cs" />
     <Compile Include="Linq\CustomsWarehouseDisposal.cs" />
     <Compile Include="Linq\Element.cs" />
     <Compile Include="Linq\Entities.cs" />
+    <Compile Include="Linq\Entities.spmetal.cs" />
     <Compile Include="Linq\Settings.cs" />
     <Compile Include="Linq\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
