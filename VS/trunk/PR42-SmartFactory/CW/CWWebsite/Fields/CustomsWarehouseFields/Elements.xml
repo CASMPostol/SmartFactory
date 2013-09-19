@@ -135,9 +135,18 @@
     Type="Number"
     Decimals="2"/>
   <Field
-    ID="{BF7DC931-BF06-4498-A8D7-B8F658B48E58}"
-    Name="CW_MovedToWarehouse"
-    DisplayName="Moved to"
-    Group="CAS Smart Factory Customs Warehouse"
-    Type="Text"/>
+      Name="CW_DisposalDestination"
+      ID="{F435E944-D6E4-4394-B274-5869D28A1814}"
+      Type="Choice"
+      DisplayName="Disposal destination"
+      Group="CAS Smart Factory Customs Warehouse"
+    >
+    <Default>Production warehouse</Default>
+    <CHOICES>
+      <CHOICE>Production warehouse</CHOICE>
+      <CHOICE>IPR warehouse</CHOICE>
+      <CHOICE>Export</CHOICE>
+      <CHOICE>Other customs warehouse</CHOICE>
+    </CHOICES>
+  </Field>
 </Elements>
