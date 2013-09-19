@@ -7,13 +7,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel
 {
   internal static class WebsiteModelExtensions
   {
-    public static Decimal DecimalValue(this Nullable<double> value)
+    public static Decimal DecimalValue( this Nullable<double> value )
     {
-      return Convert.ToDecimal(value.Value);
+      return Convert.ToDecimal( value.GetValueOrDefault( 0 ) );
     }
-    public static double DoubleValue(this decimal value)
+    public static double DoubleValue( this decimal value )
     {
-      return Convert.ToDouble(value);
+      return Convert.ToDouble( value );
     }
   }
 }
