@@ -104,7 +104,6 @@
     </Content>
     <Content Include="SilverLight\DisposalRequest\Elements.xml" />
     <Content Include="SilverLight\SilverLightModule\Elements.xml" />
-    <Content Include="SilverLight\SilverLightModule\Sample.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
