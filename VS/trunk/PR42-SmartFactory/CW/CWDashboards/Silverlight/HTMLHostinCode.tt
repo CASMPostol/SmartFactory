@@ -1,0 +1,20 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+<div style="overflow-x: hidden; position: relative; width: <#= Width #>; height: <#= Height #>;">
+    <object data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="<#= Width #>" height="<#= Height #>">
+        <param name="source" value="<#= Source #>" />
+        <param name="onError" value="<#= ErrorScript #>Error" />
+        <param name="background" value="white" />
+        <param name="minRuntimeVersion" value="4.0.50401.0" />
+        <param name="initparams" value="<#= Initparams #>" />
+        <param name="autoUpgrade" value="true" />
+        <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=4.0.50401.0" style="text-decoration: none">
+            <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight" style="border-style: none" />
+        </a>
+    </object>
+    <iframe id="_sl_historyFrame" style="visibility: hidden; height: 0px; width: 0px; border: 0px"></iframe>
+</div>
