@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.SharePoint" />
@@ -51,6 +53,21 @@
     <None Include="cas.snk" />
     <None Include="Dashboards\DisposalRequestDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8bf86832-68ea-45d1-b7ca-0020531fdc80}</SharePointProjectItemId>
+    </None>
+    <None Include="Silverlight\DisposalRequestHost\DisposalRequestHost.webpart" />
+    <None Include="Silverlight\DisposalRequestHost\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{fde04b9d-8b63-407a-b699-853515224b99}</SharePointProjectItemId>
+    </None>
+    <None Include="Silverlight\HTMLHostinCode.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>HTMLHostinCode.cs</LastGenOutput>
+    </None>
+    <None Include="Silverlight\SilverlightExceptionScript.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SilverlightExceptionScript.cs</LastGenOutput>
+    </None>
+    <None Include="Silverlight\SilverLightModule\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f35f89ba-9515-49db-81cb-a1d2c94e57ca}</SharePointProjectItemId>
     </None>
     <None Include="WebPartPages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0ef191e5-7a62-4ff4-b3d2-c412b537f0d7}</SharePointProjectItemId>
@@ -82,6 +99,8 @@
     <Content Include="Dashboards\DisposalRequestDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Silverlight\DisposalRequestHost\Elements.xml" />
+    <Content Include="Silverlight\SilverLightModule\Elements.xml" />
     <Content Include="WebPartPages\Elements.xml" />
     <Content Include="WebPartPages\WebPageTemplate_DisposalRequest.aspx" />
     <Content Include="Features\CWDashboards\CWDashboards.Template.xml">
@@ -96,10 +115,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
+    <Compile Include="SharePointLib\ExceptionMessage.cs" />
+    <Compile Include="Silverlight\DisposalRequestHost\DisposalRequestHost.cs" />
+    <Compile Include="Silverlight\HTMLHostinCode.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HTMLHostinCode.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Silverlight\HTMLHostinCode.tt.cs" />
+    <Compile Include="Silverlight\SilverlightControl.cs" />
+    <Compile Include="Silverlight\SilverlightExceptionScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SilverlightExceptionScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Silverlight\SilverlightExceptionScript.tt.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Silverlight\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
