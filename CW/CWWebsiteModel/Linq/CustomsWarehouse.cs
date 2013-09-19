@@ -148,8 +148,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         CW_PackageToClear = _Boxes.DoubleValue(),
         CWL_CWDisposal2DisposalRequestLibraryID = parent,
         CWL_CWDisposal2PCNTID = this.CWL_CW2PCNID,
+        CWL_CWDisposal2CustomsWarehouseID = this,
         SKUDescription = xmlData.SKUDescription,
-        Title = "ToDo",
+        Title = "ToDo", 
       };
       _new.UpdateTitle(this.CWC_EntryDate.Value);
       entities.CustomsWarehouseDisposal.InsertOnSubmit(_new);
