@@ -1,36 +1,131 @@
-<?xml version="1.0" encoding="utf-8"?>
-<DisposalRequest xmlns="http://cas.eu/schemas/smartfactory/cw/disposalrequest.xsd">
-  <DisposalRequestContent>
-    <MaterialNo>MaterialNo1</MaterialNo>
-    <Description>Description1</Description>
-    <BatchNo>BatchNo1</BatchNo>
-    <QtyToClear>1</QtyToClear>
-    <TotalStock>1</TotalStock>
-    <TotalStockToClear>1</TotalStockToClear>
-    <TotalStockOnHand>1</TotalStockOnHand>
-    <UoM>UoM1</UoM>
-    <AddedKg>1</AddedKg>
-  </DisposalRequestContent>
-  <DisposalRequestContent>
-    <MaterialNo>MaterialNo2</MaterialNo>
-    <Description>Description2</Description>
-    <BatchNo>BatchNo2</BatchNo>
-    <QtyToClear>-79228162514264337593543950335</QtyToClear>
-    <TotalStock>-79228162514264337593543950335</TotalStock>
-    <TotalStockToClear>-79228162514264337593543950335</TotalStockToClear>
-    <TotalStockOnHand>-79228162514264337593543950335</TotalStockOnHand>
-    <UoM>UoM2</UoM>
-    <AddedKg>-79228162514264337593543950335</AddedKg>
-  </DisposalRequestContent>
-  <DisposalRequestContent>
-    <MaterialNo>MaterialNo3</MaterialNo>
-    <Description>Description3</Description>
-    <BatchNo>BatchNo3</BatchNo>
-    <QtyToClear>79228162514264337593543950335</QtyToClear>
-    <TotalStock>79228162514264337593543950335</TotalStock>
-    <TotalStockToClear>79228162514264337593543950335</TotalStockToClear>
-    <TotalStockOnHand>79228162514264337593543950335</TotalStockOnHand>
-    <UoM>UoM3</UoM>
-    <AddedKg>79228162514264337593543950335</AddedKg>
-  </DisposalRequestContent>
-</DisposalRequest>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns1:DisposalRequest xmlns:ns1="http://cas.eu/schemas/SmartFactory/xml/ERP/DisposalRequest.xsd">
+	<DisposalRequestContent>
+		<MaterialNo>12718000</MaterialNo>
+		<Description>SG  DTHORGS</Description>
+		<BatchNo>3367012</BatchNo>
+		<QtyToClear>630</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>630</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>13138552</MaterialNo>
+		<Description>SG  HBRBLD</Description>
+		<BatchNo>4127480</BatchNo>
+		<QtyToClear>2470</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>2470</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>13032262</MaterialNo>
+		<Description>SG  HTZFLB</Description>
+		<BatchNo>4223935</BatchNo>
+		<QtyToClear>1000</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>1000</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>13152004</MaterialNo>
+		<Description>SG  WBRBCB</Description>
+		<BatchNo>4196238</BatchNo>
+		<QtyToClear>200</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>200</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>12596371</MaterialNo>
+		<Description>SG  XARFLDR</Description>
+		<BatchNo>4067915</BatchNo>
+		<QtyToClear>1800</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>1800</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>12352149</MaterialNo>
+		<Description>SG  XBRFCB</Description>
+		<BatchNo>4132288</BatchNo>
+		<QtyToClear>760</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>760</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>12567562</MaterialNo>
+		<Description>SG  XBRFLD</Description>
+		<BatchNo>3876616</BatchNo>
+		<QtyToClear>1000</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>1000</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>12567562</MaterialNo>
+		<Description>SG  XBRFLD</Description>
+		<BatchNo>4073312</BatchNo>
+		<QtyToClear>1200</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>1200</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>12567571</MaterialNo>
+		<Description>SG  XBRFLDR</Description>
+		<BatchNo>4068794</BatchNo>
+		<QtyToClear>4200</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>4200</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>12616690</MaterialNo>
+		<Description>SG  XBRFLE</Description>
+		<BatchNo>3278683</BatchNo>
+		<QtyToClear>3400</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>3400</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>12852046</MaterialNo>
+		<Description>SG  XIDFLER</Description>
+		<BatchNo>3786605</BatchNo>
+		<QtyToClear>2800</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>2800</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>13152736</MaterialNo>
+		<Description>SG  XINFLERN</Description>
+		<BatchNo>4225174</BatchNo>
+		<QtyToClear>800</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>800</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>12647857</MaterialNo>
+		<Description>SG  XINFLGRT</Description>
+		<BatchNo>3216627</BatchNo>
+		<QtyToClear>1000</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>1000</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>12568114</MaterialNo>
+		<Description>SG  XMWFLC</Description>
+		<BatchNo>4002946</BatchNo>
+		<QtyToClear>400</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>400</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>12437592</MaterialNo>
+		<Description>SG  XTROIKS</Description>
+		<BatchNo>3829524</BatchNo>
+		<QtyToClear>2730</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>2730</AddedKg>
+	</DisposalRequestContent>
+	<DisposalRequestContent>
+		<MaterialNo>12617119</MaterialNo>
+		<Description>SG  XTROSKS</Description>
+		<BatchNo>3557297</BatchNo>
+		<QtyToClear>2870</QtyToClear>
+		<UoM>KG</UoM>
+		<AddedKg>2870</AddedKg>
+	</DisposalRequestContent>
+</ns1:DisposalRequest>

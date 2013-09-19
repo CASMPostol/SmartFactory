@@ -764,6 +764,7 @@
     <Column Name="Title" Member="Title" />
     <Column Name="Modified_x0020_By" Member="ModifiedBy" />
     <Column Name="Created_x0020_By" Member="CreatedBy" />
+    <Column Name="CW_DisposalDestination" Member="CW_DisposalDestination" />
   </ContentType>
   <ContentType Name="CustomsWarehouseLib" Class="CustomsWarehouseLib">
     <!--<Column Name="ContentType" Member="ContentType" />-->
