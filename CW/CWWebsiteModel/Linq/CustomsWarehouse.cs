@@ -118,9 +118,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
              orderby _cwi.Id.Value ascending
              select _cwi;
     }
-    private void Dispose(Entities entities, DisposalRequestLib parent, ref CustomsWarehouseDisposal.XmlData _xmlData)
+    private void Dispose(Entities entities, DisposalRequestLib parent, ref CustomsWarehouseDisposal.XmlData xmlData)
     {
-      decimal _2Dispose = _xmlData.DeclaredQuantity + _xmlData.AdditionalQuantity;
+      decimal _2Dispose = xmlData.DeclaredQuantity + xmlData.AdditionalQuantity;
       if (this.TobaccoNotAllocated.DecimalValue() < _2Dispose)
         _2Dispose = this.TobaccoNotAllocated.DecimalValue();
       decimal _Boxes = Math.Round(_2Dispose / Convert.ToDecimal(this.CW_MassPerPackage.Value + 0.5), 0);
@@ -129,12 +129,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       if (Math.Abs(_2Dispose - this.TobaccoNotAllocated.DecimalValue()) < this.CW_MassPerPackage.DecimalValue())
         _2Dispose = this.TobaccoNotAllocated.DecimalValue();
       //DeclaredQntty
-      decimal _DeclaredQntty = Math.Min(_2Dispose, _xmlData.DeclaredQuantity);
-      _xmlData.DeclaredQuantity -= _DeclaredQntty;
+      decimal _DeclaredQntty = Math.Min(_2Dispose, xmlData.DeclaredQuantity);
+      xmlData.DeclaredQuantity -= _DeclaredQntty;
       //AdditionalQntty
       decimal _AdditionalQntty = 0;
       _AdditionalQntty = Math.Max(_2Dispose - _DeclaredQntty, 0);
-      _xmlData.AdditionalQuantity -= Math.Min(_AdditionalQntty, _xmlData.AdditionalQuantity);
+      xmlData.AdditionalQuantity -= Math.Min(_AdditionalQntty, xmlData.AdditionalQuantity);
       this.TobaccoNotAllocated = Convert.ToDouble(this.TobaccoNotAllocated.DecimalValue() - _2Dispose);
       CustomsWarehouseDisposal _new = new CustomsWarehouseDisposal()
       {
@@ -148,7 +148,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         CW_PackageToClear = _Boxes.DoubleValue(),
         CWL_CWDisposal2DisposalRequestLibraryID = parent,
         CWL_CWDisposal2PCNTID = this.CWL_CW2PCNID,
-        SKUDescription = _xmlData.SKUDescription,
+        SKUDescription = xmlData.SKUDescription,
         Title = "ToDo",
       };
       _new.UpdateTitle(this.CWC_EntryDate.Value);

@@ -113,6 +113,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
     /// <param name="progressChanged">The progress changed.</param>
     private static void GetXmlContent( Entities entities, DisposalRequestXml xml, DisposalRequestLib parent, ProgressChangedEventHandler progressChanged )
     {
+      progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: starting" ) );
       foreach ( var _xmli in xml.DisposalRequestContent )
       {
         CustomsWarehouseDisposal.XmlData _xmlData = new CustomsWarehouseDisposal.XmlData()
@@ -122,8 +123,8 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
           SKUDescription = _xmli.Description
         };
         CustomsWarehouse.Dispose( entities, _xmli.BatchNo, parent, _xmlData );
-        progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: starting" ) );
       }
+      progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: finished" ) );
     }
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
