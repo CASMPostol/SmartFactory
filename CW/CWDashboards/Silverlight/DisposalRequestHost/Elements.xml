@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/" >
-  <Module Name="DisposalRequestHost" List="113" Url="_catalogs/wp">
-    <File Path="DisposalRequestHost\DisposalRequestHost.webpart" Url="CWDashboards_DisposalRequestHost.webpart" Type="GhostableInLibrary">
-      <Property Name="Group" Value="CAS" />
-    </File>
-  </Module>
-</Elements>
