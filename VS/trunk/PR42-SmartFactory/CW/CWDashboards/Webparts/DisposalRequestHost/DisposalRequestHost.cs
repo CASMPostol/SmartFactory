@@ -44,7 +44,6 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
     }
     #endregion
 
-    private IWebPartRow m_ProvidersDictionary = default(IWebPartRow);
     /// <summary>
     /// Called by the ASP.NET page framework to notify server controls that use composition-based implementation to create any child controls they contain in preparation for posting back or rendering.
     /// </summary>
@@ -72,9 +71,18 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
       SetInterconnectionData( m_ProvidersDictionary );
       base.OnPreRender( e );
     }
-    private void SetInterconnectionData( IWebPartRow m_ProvidersDictionary )
+    private void SetInterconnectionData(IWebPartRow webPartRow)
     {
-      throw new NotImplementedException();
+      new DisposalRequestInterconnectionData().SetRowData(webPartRow, NewDataEventHandler);
     }
+    private void NewDataEventHandler(object sender, DisposalRequestInterconnectionData e)
+    {
+      m_DisposalRequestId = e.ID;
+      m_DisposalRequestTitle = e.Title;
+    }
+    private string m_DisposalRequestId = String.Empty;
+    private IWebPartRow m_ProvidersDictionary = default(IWebPartRow);
+    private string m_DisposalRequestTitle = String.Empty;
+
   }
 }

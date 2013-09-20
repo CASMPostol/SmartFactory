@@ -122,7 +122,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     private static List<CustomsWarehouse> GetOrderedQueryable4Batch(Entities entities, string batch)
     {
       return (from _cwi in entities.CustomsWarehouse
-              where _cwi.TobaccoNotAllocated.Value >= 0 && _cwi.Batch == batch
+              where _cwi.TobaccoNotAllocated.Value > 0 && _cwi.Batch == batch
               orderby _cwi.Id.Value ascending
               select _cwi).ToList<CustomsWarehouse>();
     }
@@ -131,7 +131,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       decimal _2Dispose = xmlData.DeclaredQuantity + xmlData.AdditionalQuantity;
       if (this.TobaccoNotAllocated.DecimalValue() < _2Dispose)
         _2Dispose = this.TobaccoNotAllocated.DecimalValue();
-      decimal _Boxes = Math.Round(_2Dispose / Convert.ToDecimal(this.CW_MassPerPackage.Value) + 0.5m, 0);
+      decimal _Boxes = Math.Round(_2Dispose / Convert.ToDecimal(this.CW_MassPerPackage.Value) + 0.49m, 0);
       _2Dispose = _Boxes * this.CW_MassPerPackage.DecimalValue();
       Debug.Assert(_2Dispose <= this.TobaccoNotAllocated.DecimalValue(), "Account overrun");
       if (Math.Abs(_2Dispose - this.TobaccoNotAllocated.DecimalValue()) < this.CW_MassPerPackage.DecimalValue())
