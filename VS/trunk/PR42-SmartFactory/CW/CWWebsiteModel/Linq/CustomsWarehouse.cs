@@ -36,6 +36,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     public CustomsWarehouse(Linq.Entities edc, Account.CWAccountData data)
       : this()
     {
+      this.Archival = false;
+      this.AccountClosed = false;
       this.AccountBalance = data.CWQuantity;
       this.Batch = data.CommonAccountData.BatchId;
       this.ClosingDate = Extensions.DateTimeNull;
