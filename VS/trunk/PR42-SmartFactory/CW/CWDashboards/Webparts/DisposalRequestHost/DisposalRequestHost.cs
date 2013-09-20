@@ -29,18 +29,18 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
   /// <summary>
   /// Disposal Request SilverLight <see cref="WebPart"/> Host
   /// </summary>
-  [ToolboxItemAttribute( false )]
-  public class DisposalRequestHost: WebPart
+  [ToolboxItemAttribute(false)]
+  public class DisposalRequestHost : WebPart
   {
     #region Interconnections Providers
     /// <summary>
     /// Sets the BatchInterconnection provider.
     /// </summary>
     /// <param name="_provider">The provider interface.</param>
-    [ConnectionConsumer( "Batch list interconnection", "BatchInterconnection", AllowsMultipleConnections = false )]
-    public void SetBatchProvider( IWebPartRow _provider )
+    [ConnectionConsumer("Batch list interconnection", "BatchInterconnection", AllowsMultipleConnections = false)]
+    public void SetBatchProvider(IWebPartRow _provider)
     {
-     m_ProvidersDictionary = _provider;
+      m_ProvidersDictionary = _provider;
     }
     #endregion
 
@@ -55,34 +55,41 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
                                           {
                                             Source = "SiteAssets/TestDisposalRequest/DisposalRequestWebPart/DisposalRequestWebPart.xap",
                                           };
-        Controls.Add( _slwc );
+        Controls.Add(m_SelectedItemTitle);
+        Controls.Add(_slwc);
       }
-      catch ( Exception ex )
+      catch (Exception ex)
       {
-        this.Controls.Add( new ExceptionMessage( ex ) );
+        this.Controls.Add(new ExceptionMessage(ex));
       }
     }
     /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.PreRender" /> event.
     /// </summary>
     /// <param name="e">An <see cref="T:System.EventArgs" /> object that contains the event data.</param>
-    protected override void OnPreRender( EventArgs e )
+    protected override void OnPreRender(EventArgs e)
     {
-      SetInterconnectionData( m_ProvidersDictionary );
-      base.OnPreRender( e );
+      SetInterconnectionData(m_ProvidersDictionary);
+      base.OnPreRender(e);
     }
     private void SetInterconnectionData(IWebPartRow webPartRow)
     {
+      if (webPartRow == null)
+      {
+        m_SelectedItemTitle.Text = "No item selected";
+        return;
+      }
       new DisposalRequestInterconnectionData().SetRowData(webPartRow, NewDataEventHandler);
     }
     private void NewDataEventHandler(object sender, DisposalRequestInterconnectionData e)
     {
       m_DisposalRequestId = e.ID;
       m_DisposalRequestTitle = e.Title;
+      m_SelectedItemTitle.Text = e.Title;
     }
     private string m_DisposalRequestId = String.Empty;
-    private IWebPartRow m_ProvidersDictionary = default(IWebPartRow);
+    private IWebPartRow m_ProvidersDictionary = null;
     private string m_DisposalRequestTitle = String.Empty;
-
+    private LiteralControl m_SelectedItemTitle = new LiteralControl();
   }
 }
