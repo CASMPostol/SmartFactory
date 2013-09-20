@@ -88,7 +88,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         if (xmlData.DeclaredQuantity + xmlData.AdditionalQuantity <= 0)
           return;
       }
-      string _msg = String.Format("there is enought tobacco {0} to dispose the batch: {1}", xmlData.DeclaredQuantity + xmlData.AdditionalQuantity, batch);
+      string _msg = String.Format("there is not enought tobacco {0} to dispose the batch: {1}", xmlData.DeclaredQuantity + xmlData.AdditionalQuantity, batch);
       throw new CAS.SharePoint.ApplicationError("CustomsWarehouse.Dispose", "ending", _msg, null);
     }
     /// <summary>
