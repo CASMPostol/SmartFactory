@@ -116,7 +116,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     private static IOrderedQueryable<CustomsWarehouse> GetOrderedQueryable4Batch(Entities entities, string batch)
     {
       return from _cwi in entities.CustomsWarehouse
-             where _cwi.TobaccoNotAllocated.Value >= 0
+             where _cwi.TobaccoNotAllocated.Value >= 0 && _cwi.Batch == batch
              orderby _cwi.Id.Value ascending
              select _cwi;
     }
@@ -136,7 +136,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       //AdditionalQntty
       decimal _AdditionalQntty = 0;
       _AdditionalQntty = Math.Max(_2Dispose - _DeclaredQntty, 0);
-      xmlData.AdditionalQuantity -= Math.Min(_AdditionalQntty, xmlData.AdditionalQuantity);
+      _AdditionalQntty = Math.Min(_AdditionalQntty, xmlData.AdditionalQuantity);
+      xmlData.AdditionalQuantity -= _AdditionalQntty;
       this.TobaccoNotAllocated = Convert.ToDouble(this.TobaccoNotAllocated.DecimalValue() - _2Dispose);
       CustomsWarehouseDisposal _new = new CustomsWarehouseDisposal()
       {
