@@ -31,9 +31,9 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts
     internal string ID { get { return GetFieldValue( Element.IDColunmName ); } }
     internal string Title { get { return GetFieldValue( Element.TitleColunmName ); } }
   }
-  internal class DisposalRequestnterconnectionData: InterconnectionData<DisposalRequestnterconnectionData>
+  internal class DisposalRequestInterconnectionData: InterconnectionData<DisposalRequestInterconnectionData>
   {
-    internal DisposalRequestnterconnectionData()
+    internal DisposalRequestInterconnectionData()
       : base()
     { }
   }
