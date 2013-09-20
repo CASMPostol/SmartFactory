@@ -48,11 +48,13 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
         using ( Entities _edc = new Entities( properties.WebUrl ) )
         {
           ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( "Import of the Disposal Request {0} XML message started", properties.ListItem.File.Name ) );
-          DisposalRequestLib _entry = _entry = Element.GetAtIndex<DisposalRequestLib>( _edc.DisposalRequestLibrary, properties.ListItemId );
-          At = "ImportDisposalRequestSFromXml";
+          At = "ImportDocument";
           DisposalRequestXml _xml = default( DisposalRequestXml );
           using ( Stream _stream = properties.ListItem.File.OpenBinaryStream() )
             _xml = DisposalRequestXml.ImportDocument( _stream );
+          At = "GetAtIndex - DisposalRequestLib";
+          DisposalRequestLib _entry = _entry = Element.GetAtIndex<DisposalRequestLib>(_edc.DisposalRequestLibrary, properties.ListItemId);
+          _entry.CW_DisposalDestination = Covert2DisposalDestination(_xml.DisposalDestination);
           At = "GetXmlContent";
           GetXmlContent( _edc, _xml, _entry, ProgressChange );
           At = "SubmitChanges";
@@ -95,6 +97,26 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
     #endregion
 
     #region private
+    private CW_DisposalDestination Covert2DisposalDestination(Interoperability.ERP.DisposalDestination disposalDestination)
+    {
+      CW_DisposalDestination _ret = default(CW_DisposalDestination);
+      switch (disposalDestination)
+      {
+        case Interoperability.ERP.DisposalDestination.Productionwarehouse:
+          _ret = CW_DisposalDestination.ProductionWarehouse;
+          break;
+        case Interoperability.ERP.DisposalDestination.IPRwarehouse:
+          _ret = CW_DisposalDestination.ProductionWarehouse;
+          break;
+        case Interoperability.ERP.DisposalDestination.Export:
+          _ret = CW_DisposalDestination.ProductionWarehouse;
+          break;
+        case Interoperability.ERP.DisposalDestination.Othercustomswarehouse:
+          _ret = CW_DisposalDestination.ProductionWarehouse;
+          break;
+      }
+      return _ret;
+    }
     private void ProgressChange( object sender, ProgressChangedEventArgs progres )
     {
       if ( progres.UserState is String )
