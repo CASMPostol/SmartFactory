@@ -84,7 +84,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// <exception cref="CAS.SharePoint.ApplicationError">CustomsWarehouse.Dispose;ending;null</exception>
     public static void Dispose(Entities entities, string batch, DisposalRequestLib parentRequestLib, CustomsWarehouseDisposal.XmlData xmlData)
     {
-      foreach (CustomsWarehouse _cwx in GetOrderedQueryable4Batch(entities, batch))
+      List<CustomsWarehouse> _available = GetOrderedQueryable4Batch(entities, batch);
+      if (_available.Count == 0) 
+      {
+        string _batchMsg = String.Format("I cannot find any account for the batch: {0}", batch);
+        throw new CAS.SharePoint.ApplicationError("CustomsWarehouse.Dispose", "GetOrderedQueryable4Batch", _batchMsg, null);
+      }
+      foreach (CustomsWarehouse _cwx in _available)
       {
         _cwx.Dispose(entities, parentRequestLib, ref xmlData);
         if (xmlData.DeclaredQuantity + xmlData.AdditionalQuantity <= 0)
@@ -113,12 +119,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     #endregion
 
     #region private
-    private static IOrderedQueryable<CustomsWarehouse> GetOrderedQueryable4Batch(Entities entities, string batch)
+    private static List<CustomsWarehouse> GetOrderedQueryable4Batch(Entities entities, string batch)
     {
-      return from _cwi in entities.CustomsWarehouse
-             where _cwi.TobaccoNotAllocated.Value >= 0 && _cwi.Batch == batch
-             orderby _cwi.Id.Value ascending
-             select _cwi;
+      return (from _cwi in entities.CustomsWarehouse
+              where _cwi.TobaccoNotAllocated.Value >= 0 && _cwi.Batch == batch
+              orderby _cwi.Id.Value ascending
+              select _cwi).ToList<CustomsWarehouse>();
     }
     private void Dispose(Entities entities, DisposalRequestLib parent, ref CustomsWarehouseDisposal.XmlData xmlData)
     {
@@ -153,7 +159,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         CWL_CWDisposal2PCNTID = this.CWL_CW2PCNID,
         CWL_CWDisposal2CustomsWarehouseID = this,
         SKUDescription = xmlData.SKUDescription,
-        Title = "ToDo", 
+        Title = "ToDo",
       };
       _new.UpdateTitle(this.CWC_EntryDate.Value);
       entities.CustomsWarehouseDisposal.InsertOnSubmit(_new);
