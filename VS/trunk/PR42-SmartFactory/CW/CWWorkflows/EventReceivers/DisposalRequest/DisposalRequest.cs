@@ -144,7 +144,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
           DeclaredQuantity = _xmli.QtyToClear,
           SKUDescription = _xmli.Description
         };
-        CustomsWarehouse.Dispose( entities, _xmli.BatchNo, parent, _xmlData );
+        CustomsWarehouse.Dispose( entities, _xmli.BatchNo.Trim(), parent, _xmlData );
       }
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: finished" ) );
     }
