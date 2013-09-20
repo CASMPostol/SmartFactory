@@ -2,10 +2,10 @@
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="7344e360-313b-4553-8318-153c7ce49c8d" solutionId="7344e360-313b-4553-8318-153c7ce49c8d" resetWebServer="true" title="CAS SmartFactory IPR Website Model" description="Package containing CAS SmartFactory IPR Website Model" name="CASSmartFactoryIPRModel" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <assemblies>
     <customAssembly location="CAS.Customs.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\..\CommonBinaries\PR42-SmartFactory\CAS.Customs.dll" />
-    <customAssembly location="Microsoft.Practices.ServiceLocation.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\..\CommonBinaries\EX06-SharePointGuidance2010\Microsoft.Practices.ServiceLocation.dll" />
-    <customAssembly location="Microsoft.Practices.SharePoint.Common.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\..\CommonBinaries\EX06-SharePointGuidance2010\Microsoft.Practices.SharePoint.Common.dll" />
-    <customAssembly location="Microsoft.Practices.SharePoint.Common.XmlSerializers.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\..\CommonBinaries\EX06-SharePointGuidance2010\Microsoft.Practices.SharePoint.Common.XmlSerializers.dll" />
     <customAssembly location="CAS.SharePoint.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll" />
+    <customAssembly location="Microsoft.Practices.ServiceLocation.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\..\CommonBinaries\EX06-SharePointGuidance2010\Microsoft.Practices.ServiceLocation.dll" />
+    <customAssembly location="CAS.Microsoft.Practices.SharePoint.Common.XmlSerializers.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\..\CommonBinaries\EX06-SharePointGuidance2010\CAS.Microsoft.Practices.SharePoint.Common.XmlSerializers.dll" />
+    <customAssembly location="CAS.Microsoft.Practices.SharePoint.Common.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\..\CommonBinaries\EX06-SharePointGuidance2010\CAS.Microsoft.Practices.SharePoint.Common.dll" />
   </assemblies>
   <features>
     <featureReference itemId="6157b1a8-2d62-414f-9045-48bfbcf8892e" />
