@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace DisposalRequestWebPart
+namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 {
   public partial class ChildWindow1 : ChildWindow
   {
@@ -18,12 +18,10 @@ namespace DisposalRequestWebPart
     {
       InitializeComponent();
     }
-
     private void OKButton_Click(object sender, RoutedEventArgs e)
     {
       this.DialogResult = true;
     }
-
     private void CancelButton_Click(object sender, RoutedEventArgs e)
     {
       this.DialogResult = false;

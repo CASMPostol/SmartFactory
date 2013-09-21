@@ -52,6 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
+    <None Include="CommonDefinition.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CommonDefinition1.cs</LastGenOutput>
+    </None>
     <None Include="Dashboards\DisposalRequestDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8bf86832-68ea-45d1-b7ca-0020531fdc80}</SharePointProjectItemId>
     </None>
@@ -88,7 +92,13 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </None>
-    <None Include="Webparts\DisposalRequestHost\DisposalRequestHost.webpart" />
+    <None Include="Webparts\DisposalRequestHost\DisposalRequestHost.webpart">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Webparts\DisposalRequestHost\Query.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Query.cs</LastGenOutput>
+    </None>
     <None Include="Webparts\DisposalRequestHost\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{604a5649-bf4f-4eab-acea-14ce06092367}</SharePointProjectItemId>
     </None>
@@ -111,6 +121,12 @@
     <Content Include="Webparts\DisposalRequestHost\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonDefinition.tt.cs" />
+    <Compile Include="CommonDefinition1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonDefinition.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -131,6 +147,12 @@
     </Compile>
     <Compile Include="Silverlight\SilverlightExceptionScript.tt.cs" />
     <Compile Include="Webparts\DisposalRequestHost\DisposalRequestHost.cs" />
+    <Compile Include="Webparts\DisposalRequestHost\Query.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Query.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Webparts\DisposalRequestHost\Query.tt.cs" />
     <Compile Include="Webparts\InterconnectionData.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +165,7 @@
       <Name>CWWebsiteModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

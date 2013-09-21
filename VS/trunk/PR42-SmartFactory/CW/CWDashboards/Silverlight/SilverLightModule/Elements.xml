@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="SilverLightModule">
-    <File Path="SilverLightModule\DisposalRequestWebPart.xap" Url="SiteAssets/TestDisposalRequest/DisposalRequestWebPart/DisposalRequestWebPart.xap" />
-  </Module>
+<File Path="SilverLightModule\CAS.DisposalRequestWebPart.xap" Url="SiteAssets/TestDisposalRequest/DisposalRequestWebPart/CAS.DisposalRequestWebPart.xap" />
+</Module>
 </Elements>
