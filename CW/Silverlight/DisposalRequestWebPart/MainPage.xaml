@@ -1,5 +1,6 @@
 ﻿<UserControl 
-    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  x:Class="DisposalRequestWebPart.MainPage"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+    x:Class="CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -56,39 +57,34 @@
             <Setter Property="Opacity" Value="1"/>
         </Style>
     </UserControl.Resources>
-    <Grid x:Name="LayoutRoot">
-        <StackPanel Orientation="Vertical">
-            <Grid HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#FF354B5F" Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <sdk:Label Content="Disposal request content:" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="2" Foreground="White"/>
-                <sdk:DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Width="980" Height="300" AutoGenerateColumns="False" ItemsSource="{Binding Collection}" Background="#00000000" Grid.Row="1" >
-                    <sdk:DataGrid.Columns>
-                        <sdk:DataGridTextColumn Binding="{Binding Material}" Header="Material" IsReadOnly="True"/>
-                        <sdk:DataGridTextColumn Binding="{Binding Description}" Header="Description" IsReadOnly="True"/>
-                        <sdk:DataGridTextColumn Binding="{Binding Batch}" Header="Batch" IsReadOnly="True"/>
-                        <sdk:DataGridTextColumn Binding="{Binding TotalStock}" Header="Total stock" IsReadOnly="True"/>
-                        <sdk:DataGridTextColumn Binding="{Binding QtToClear}" Header="Qty in package" IsReadOnly="True"/>
-                        <sdk:DataGridTextColumn Binding="{Binding QtToClear}" Header="Qty to clear" IsReadOnly="True"/>
-                        <sdk:DataGridTextColumn Binding="{Binding QtyToClearSuggested}" Header="Qty to clear - added" IsReadOnly="False" CellStyle="{StaticResource QtyToClearSuggested}"/>
-                        <sdk:DataGridTextColumn Binding="{Binding QtyToClearSum}" Header="Qty to clear - sum" IsReadOnly="True"/>
-                        <sdk:DataGridTextColumn Binding="{Binding QtyToClearSum}" Header="Qty to clear - rounded" IsReadOnly="True"/>
-                        <sdk:DataGridTextColumn Binding="{Binding RemainingOnStock}" Header="Remaining on stock" IsReadOnly="True"/>
-                        <sdk:DataGridTextColumn Binding="{Binding Units}" Header="Units" IsReadOnly="True"/>
-                    </sdk:DataGrid.Columns>
-                </sdk:DataGrid>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2">
-                    <TextBlock Name="h_HiddenFieldDataName" Text="N/A" HorizontalAlignment="Stretch"/>
-                    <Button x:Name="x_ButtonAddNew" Content="Add new" Style="{StaticResource ButtonStyle}"/>
-                    <Button x:Name="x_ButtonEndOfOgl" Content="End of OGL" Style="{StaticResource ButtonStyle}"/>
-                    <Button x:Name="x_ButtonEndofBatch" Content="End of Batch" Style="{StaticResource ButtonStyle}"/>
-                    <Button x:Name="x_ButtonDelete" Content="Delete" Style="{StaticResource ButtonStyle}"/>
-                    <Button x:Name="x_ButtonSave" Content="Save" Style="{StaticResource ButtonStyle}"/>
-                </StackPanel>
-            </Grid>
+    <Grid HorizontalAlignment="Stretch" Background="#FF354B5F" Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <sdk:Label Content="Disposal request content:" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="2" Foreground="White"/>
+        <sdk:DataGrid VerticalAlignment="Top" AutoGenerateColumns="False" ItemsSource="{Binding Collection}" Background="#00000000" Grid.Row="1" >
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Binding="{Binding Material}" Header="Material" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Description}" Header="Description" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Batch}" Header="Batch" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding TotalStock}" Header="Total stock" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding QtToClear}" Header="Qty in package" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding QtToClear}" Header="Qty to clear" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding QtyToClearSuggested}" Header="Qty to clear - added" IsReadOnly="False" CellStyle="{StaticResource QtyToClearSuggested}"/>
+                <sdk:DataGridTextColumn Binding="{Binding QtyToClearSum}" Header="Qty to clear - sum" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding QtyToClearSum}" Header="Qty to clear - rounded" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding RemainingOnStock}" Header="Remaining on stock" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Units}" Header="Units" IsReadOnly="True"/>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2">
+            <Button x:Name="x_ButtonAddNew" Content="Add new" Style="{StaticResource ButtonStyle}"/>
+            <Button x:Name="x_ButtonEndOfOgl" Content="End of OGL" Style="{StaticResource ButtonStyle}"/>
+            <Button x:Name="x_ButtonEndofBatch" Content="End of Batch" Style="{StaticResource ButtonStyle}"/>
+            <Button x:Name="x_ButtonDelete" Content="Delete" Style="{StaticResource ButtonStyle}"/>
+            <Button x:Name="x_ButtonSave" Content="Save" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
     </Grid>
 </UserControl>

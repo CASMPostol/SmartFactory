@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace DisposalRequestWebPart
+namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 {
   public partial class App: Application
   {
@@ -25,11 +25,11 @@ namespace DisposalRequestWebPart
     }
     private void Application_Startup( object sender, StartupEventArgs e )
     {
-      if ( !e.InitParams.ContainsKey( ( m_HiddenFieldDataParameterName ) ) )
+      if ( !e.InitParams.ContainsKey( ( CommonDefinition.HiddenFieldDataParameterName ) ) )
         this.RootVisual = new MainPage();
       else
       {
-        string _HiddenFieldDataName = e.InitParams[ m_HiddenFieldDataParameterName ];
+        string _HiddenFieldDataName = e.InitParams[ CommonDefinition.HiddenFieldDataParameterName ];
         this.RootVisual = new MainPage( _HiddenFieldDataName );
       }
     }
@@ -69,6 +69,5 @@ namespace DisposalRequestWebPart
       {
       }
     }
-    private const string m_HiddenFieldDataParameterName = "controlId";
   }
 }

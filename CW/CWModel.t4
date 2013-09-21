@@ -1,0 +1,5 @@
+<#+
+string CustomsWarehouseDisposalTitle = "Customs Warehouse Disposal";
+string DisposalRequestLibraryTitle = "Disposal Request Library";
+string HiddenFieldDataParameterName = "controlId";
+#>

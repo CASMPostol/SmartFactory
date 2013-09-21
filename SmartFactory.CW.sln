@@ -6,10 +6,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CW", "CW", "{9FFAC044-7B6D-45C5-937F-70D14078D0A3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharePointHelpers", "SharePointHelpers", "{BE440823-1114-4835-BC08-7850469C754F}"
-	ProjectSection(SolutionItems) = preProject
-		..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4 = ..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4
-		Model.t4 = Model.t4
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CWWebsiteModel", "CW\CWWebsiteModel\CWWebsiteModel.csproj", "{28191AA2-5BFF-4D48-A7AD-B10C83044E3C}"
 EndProject
@@ -31,6 +27,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{E5B3C924-7BC6-495C-B50F-0617E2CF29F9}"
 	ProjectSection(SolutionItems) = preProject
 		..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4 = ..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4
+		CW\CWModel.t4 = CW\CWModel.t4
 		..\CommonBinaries\take_recent_binaries.cmd = ..\CommonBinaries\take_recent_binaries.cmd
 	EndProjectSection
 EndProject

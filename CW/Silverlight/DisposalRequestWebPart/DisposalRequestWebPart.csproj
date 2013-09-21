@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DisposalRequestWebPart</RootNamespace>
-    <AssemblyName>DisposalRequestWebPart</AssemblyName>
+    <RootNamespace>CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart</RootNamespace>
+    <AssemblyName>CAS.CWDisposalRequestWebPart</AssemblyName>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -19,9 +19,9 @@
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>DisposalRequestWebPart.xap</XapFilename>
+    <XapFilename>CAS.DisposalRequestWebPart.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
-    <SilverlightAppEntry>DisposalRequestWebPart.App</SilverlightAppEntry>
+    <SilverlightAppEntry>CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.App</SilverlightAppEntry>
     <TestPageFileName>DisposalRequestWebPartTestPage.html</TestPageFileName>
     <CreateTestPage>true</CreateTestPage>
     <ValidateXaml>true</ValidateXaml>
@@ -85,6 +85,15 @@
     <Compile Include="AddNew.xaml.cs">
       <DependentUpon>AddNew.xaml</DependentUpon>
     </Compile>
+    <None Include="CommonDefinition.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CommonDefinition1.cs</LastGenOutput>
+    </None>
+    <Compile Include="CommonDefinition1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonDefinition.tt</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -113,6 +122,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imgs\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
