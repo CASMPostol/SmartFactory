@@ -12,5 +12,6 @@ namespace CAS.SmartFactory.CW.Dashboards.Silverlight
     public string Source = String.Empty;
     public string ErrorScript = String.Empty;
     public string Initparams = String.Empty;
+    public bool ForceEnableHTMLAccess = false;
   }
 }

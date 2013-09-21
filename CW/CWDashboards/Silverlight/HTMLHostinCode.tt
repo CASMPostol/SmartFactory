@@ -10,6 +10,9 @@
         <param name="onError" value="<#= ErrorScript #>Error" />
         <param name="background" value="white" />
         <param name="minRuntimeVersion" value="4.0.50401.0" />
+		<# if (ForceEnableHTMLAccess) { #>
+        <param name="enablehtmlaccess" value="bool"/>
+		<# } #>
         <param name="initparams" value="<#= Initparams #>" />
         <param name="autoUpgrade" value="true" />
         <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=4.0.50401.0" style="text-decoration: none">

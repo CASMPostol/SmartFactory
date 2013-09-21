@@ -72,10 +72,23 @@ namespace CAS.SmartFactory.CW.Dashboards.Silverlight
             #line default
             #line hidden
             this.Write("Error\" />\r\n        <param name=\"background\" value=\"white\" />\r\n        <param name" +
-                    "=\"minRuntimeVersion\" value=\"4.0.50401.0\" />\r\n        <param name=\"initparams\" va" +
-                    "lue=\"");
+                    "=\"minRuntimeVersion\" value=\"4.0.50401.0\" />\r\n\t\t");
             
             #line 13 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\CW\CWDashboards\Silverlight\HTMLHostinCode.tt"
+ if (ForceEnableHTMLAccess) { 
+            
+            #line default
+            #line hidden
+            this.Write("        <param name=\"enablehtmlaccess\" value=\"bool\"/>\r\n\t\t");
+            
+            #line 15 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\CW\CWDashboards\Silverlight\HTMLHostinCode.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("        <param name=\"initparams\" value=\"");
+            
+            #line 16 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\CW\CWDashboards\Silverlight\HTMLHostinCode.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Initparams));
             
             #line default
