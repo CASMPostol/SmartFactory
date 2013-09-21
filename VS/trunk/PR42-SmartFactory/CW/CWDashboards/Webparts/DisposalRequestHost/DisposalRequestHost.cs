@@ -51,12 +51,14 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
     {
       try
       {
-        SilverlightWebControl _slwc = new SilverlightWebControl()
+        Controls.Add(m_SelectedItemTitle);
+        Controls.Add( m_HiddenFieldData );
+        m_slwc = new SilverlightWebControl()
                                           {
                                             Source = "SiteAssets/TestDisposalRequest/DisposalRequestWebPart/DisposalRequestWebPart.xap",
                                           };
-        Controls.Add(m_SelectedItemTitle);
-        Controls.Add(_slwc);
+        Controls.Add(m_slwc);
+
       }
       catch (Exception ex)
       {
@@ -70,6 +72,8 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
     protected override void OnPreRender(EventArgs e)
     {
       SetInterconnectionData(m_ProvidersDictionary);
+      m_slwc.InitParameters = m_HiddenFieldDataParameterName+"=" + m_HiddenFieldData.ClientID;
+      m_HiddenFieldData.Value = "hello world";
       base.OnPreRender(e);
     }
     private void SetInterconnectionData(IWebPartRow webPartRow)
@@ -91,5 +95,9 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
     private IWebPartRow m_ProvidersDictionary = null;
     private string m_DisposalRequestTitle = String.Empty;
     private LiteralControl m_SelectedItemTitle = new LiteralControl();
+    private HiddenField m_HiddenFieldData = new HiddenField();
+    SilverlightWebControl m_slwc = null;
+    private const string m_HiddenFieldDataParameterName = "controlId";
+
   }
 }
