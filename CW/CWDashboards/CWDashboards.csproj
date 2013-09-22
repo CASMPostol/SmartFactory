@@ -139,6 +139,7 @@
       <DependentUpon>HTMLHostinCode.tt</DependentUpon>
     </Compile>
     <Compile Include="Silverlight\HTMLHostinCode.tt.cs" />
+    <Compile Include="Silverlight\InitParam.cs" />
     <Compile Include="Silverlight\SilverlightControl.cs" />
     <Compile Include="Silverlight\SilverlightExceptionScript.cs">
       <AutoGen>True</AutoGen>

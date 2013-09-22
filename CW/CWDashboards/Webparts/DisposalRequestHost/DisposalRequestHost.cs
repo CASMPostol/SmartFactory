@@ -55,7 +55,6 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
         Controls.Add( m_HiddenFieldData );
         m_slwc = new SilverlightWebControl() { Source = CommonDefinition.SilverlightDisposalRequestWebPartPath };
         Controls.Add( m_slwc );
-
       }
       catch ( Exception ex )
       {
@@ -74,7 +73,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
       {
         Query _query = new Query() { ID = _id };
         m_HiddenFieldData.Value = _query.TransformText();
-        m_slwc.InitParameters = CommonDefinition.HiddenFieldDataParameterName + "=" + m_HiddenFieldData.ClientID;
+        m_slwc.AddInitParams( new InitParam( CommonDefinition.HiddenFieldDataParameterName, m_HiddenFieldData.ClientID ) );
       }
       base.OnPreRender( e );
     }
@@ -99,6 +98,5 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
     private LiteralControl m_SelectedItemTitle = new LiteralControl();
     private HiddenField m_HiddenFieldData = new HiddenField();
     SilverlightWebControl m_slwc = null;
-
   }
 }

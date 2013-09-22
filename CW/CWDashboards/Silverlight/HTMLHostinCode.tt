@@ -6,14 +6,14 @@
 
 <div style="overflow-x: hidden; position: relative; width: <#= Width #>; height: <#= Height #>;">
     <object data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="<#= Width #>" height="<#= Height #>">
-        <param name="source" value="<#= Source #>" />
+        <param name="source" value="<#= m_Source #>" />
         <param name="onError" value="<#= ErrorScript #>Error" />
         <param name="background" value="white" />
         <param name="minRuntimeVersion" value="4.0.50401.0" />
 		<# if (ForceEnableHTMLAccess) { #>
         <param name="enablehtmlaccess" value="bool"/>
 		<# } #>
-        <param name="initparams" value="<#= Initparams #>" />
+        <param name="initparams" value="MS.SP.url=<#= m_url #>,MS.SP.formDigestTimeoutSeconds=<#= TimeOut #>,<#= m_Initparams #>" />
         <param name="autoUpgrade" value="true" />
         <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=4.0.50401.0" style="text-decoration: none">
             <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight" style="border-style: none" />

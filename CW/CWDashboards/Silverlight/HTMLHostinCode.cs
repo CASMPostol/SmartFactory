@@ -60,7 +60,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Silverlight
             this.Write("\">\r\n        <param name=\"source\" value=\"");
             
             #line 9 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\CW\CWDashboards\Silverlight\HTMLHostinCode.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Source));
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_Source));
             
             #line default
             #line hidden
@@ -86,10 +86,24 @@ namespace CAS.SmartFactory.CW.Dashboards.Silverlight
             
             #line default
             #line hidden
-            this.Write("        <param name=\"initparams\" value=\"");
+            this.Write("        <param name=\"initparams\" value=\"MS.SP.url=");
             
             #line 16 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\CW\CWDashboards\Silverlight\HTMLHostinCode.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Initparams));
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_url));
+            
+            #line default
+            #line hidden
+            this.Write(",MS.SP.formDigestTimeoutSeconds=");
+            
+            #line 16 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\CW\CWDashboards\Silverlight\HTMLHostinCode.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TimeOut));
+            
+            #line default
+            #line hidden
+            this.Write(",");
+            
+            #line 16 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\CW\CWDashboards\Silverlight\HTMLHostinCode.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_Initparams));
             
             #line default
             #line hidden
