@@ -12,13 +12,14 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.ComponentModel;
 using Microsoft.SharePoint;
 using CAS.SmartFactory.CW.Dashboards.SharePointLib;
+using System.Collections.Generic;
 
 namespace CAS.SmartFactory.CW.Dashboards.Silverlight
 {
@@ -47,8 +48,13 @@ namespace CAS.SmartFactory.CW.Dashboards.Silverlight
     /// The initialize parameters.
     /// </value>
     [Category( "CAS Silverlight" ), Bindable( false ), Localizable( false ), DefaultValue( "" ), Description( "Comma separated list of name=value pairs" )]
-    public string InitParameters { get; set; }
+    public string InitParameter { get; set; }
     #endregion
+
+    internal void AddInitParams( InitParam initParam )
+    {
+      m_InitParamList.Add( initParam );
+    }
 
     #region private
     /// <summary>
@@ -73,11 +79,13 @@ namespace CAS.SmartFactory.CW.Dashboards.Silverlight
         HTMLHostinCode _host = new HTMLHostinCode()
         {
           ErrorScript = this.ClientID,
+          m_Source = GetWebPartPath(),
           Height = height,
-          Initparams = InitParameters == null ? String.Empty : InitParameters,
-          Source = GetWebPartPath(),
           Width = width,
         };
+        foreach ( InitParam _imx in m_InitParamList )
+          _host.AddInitParams( _imx );
+        _host.AddInitParams( InitParameter );
         //Reender Silverlight WebPart hosting html
         this.Controls.Add( new LiteralControl( _host.TransformText() ) );
       }
@@ -93,6 +101,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Silverlight
         throw new ApplicationException( this.GetType().Name + " cannot be used outsite the SP Contex." );
       return ( currentSite.ServerRelativeUrl == "/" ? "/" : currentSite.ServerRelativeUrl + "/" ) + Source;
     }
+    private List<InitParam> m_InitParamList = new List<InitParam>();
     #endregion
 
   }

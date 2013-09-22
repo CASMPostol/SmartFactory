@@ -59,18 +59,26 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     private void GetData()
     {
-      if ( String.IsNullOrEmpty( m_HiddenFieldDataName ) )
-        throw new ArgumentNullException( "Disposal Request", "Is not selected." );
-      HtmlDocument doc = HtmlPage.Document;
-      HtmlElement hiddenField = doc.GetElementById( m_HiddenFieldDataName );
-      string _viewXml = hiddenField.GetAttribute( "value" ).ToString();
+      //if ( String.IsNullOrEmpty( m_HiddenFieldDataName ) )
+      //  throw new ArgumentNullException( "Disposal Request", "Is not selected." );
+      //HtmlDocument doc = HtmlPage.Document;
+      //HtmlElement hiddenField = doc.GetElementById( m_HiddenFieldDataName );
+      //string _viewXml = hiddenField.GetAttribute( "value" ).ToString();
+      //CamlQuery _camlQuery = new CamlQuery() { ViewXml = _viewXml };
       ClientContext clientContext = ClientContext.Current;
+      if ( clientContext == null )
+        throw new ArgumentNullException( "clientContext", String.Format( "Cannot get the {0} ", "ClientContext" ) );
       Web _website = clientContext.Web;
+      if ( _website == null )
+        throw new ArgumentNullException( "_cwList", String.Format( "Cannot get the {0} ", "Web" ) );
       List _cwList = _website.Lists.GetByTitle( CommonDefinition.CustomsWarehouseDisposalTitle );
-      CamlQuery _camlQuery = new CamlQuery() { ViewXml = _viewXml };
-      ListItemCollection _itemsCollection = _cwList.GetItems( _camlQuery );
+      if ( _cwList == null )
+        throw new ArgumentNullException( "_cwList", String.Format( "Cannot get the {0} list", CommonDefinition.CustomsWarehouseDisposalTitle ) );
+      ListItemCollection _itemsCollection = _cwList.GetItems( CamlQuery.CreateAllItemsQuery() );
+      clientContext.Load( _cwList );
       clientContext.Load( _itemsCollection );
       clientContext.ExecuteQuery();
+      //x_DataGridListView.ItemsSource = _itemsCollection;
     }
     private readonly string m_HiddenFieldDataName = String.Empty;
 
