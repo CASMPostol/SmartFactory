@@ -21,6 +21,23 @@
          </webParts>
          ]]>
       </View>
+      <AllUsersWebPart WebPartZoneID="DisposalRequestWebPart" WebPartOrder="0">
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost.DisposalRequestHost, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">CAS CW DisposalRequest</property>
+        <property name="Description" type="string">Customs Wrehousing Disposal Request</property>
+        <property name="Url" type="string">~site/_catalogs/masterpage/SilverlightModule/CAS.DisposalRequestWebPart.xap</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
     </File>
   </Module>
 </Elements>

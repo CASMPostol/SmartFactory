@@ -9,6 +9,7 @@
       <properties>
         <property name="Title" type="string">CAS CW DisposalRequest</property>
         <property name="Description" type="string">Customs Wrehousing Disposal Request</property>
+        <property name="Url" type="string">~site/_catalogs/masterpage/SilverlightModule/CAS.DisposalRequestWebPart.xap</property>
       </properties>
     </data>
   </webPart>

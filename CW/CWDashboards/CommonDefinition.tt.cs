@@ -25,6 +25,6 @@ namespace CAS.SmartFactory.CW.Dashboards
   /// </summary>
   internal partial class CommonDefinition
   {
-    internal const string SilverlightDisposalRequestWebPartPath = "SiteAssets/TestDisposalRequest/DisposalRequestWebPart/CAS.DisposalRequestWebPart.xap";
+    internal const string SilverlightDisposalRequestWebPartPath = "_catalogs/masterpage/SilverLightModule/CAS.DisposalRequestWebPart.xap";
   }
 }
