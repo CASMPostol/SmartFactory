@@ -110,7 +110,9 @@
     <Content Include="Dashboards\DisposalRequestDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Silverlight\SilverLightModule\Elements.xml" />
+    <Content Include="Silverlight\SilverLightModule\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="WebPartPages\Elements.xml" />
     <Content Include="WebPartPages\WebPageTemplate_DisposalRequest.aspx" />
     <Content Include="Features\CWDashboards\CWDashboards.Template.xml">
