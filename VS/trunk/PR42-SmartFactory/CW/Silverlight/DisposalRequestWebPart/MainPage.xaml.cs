@@ -51,6 +51,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       try
       {
+        this.x_LabelHeader.Content += "Test 1";
         GetData();
       }
       catch ( Exception ex )
@@ -60,36 +61,41 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     private void GetData()
     {
-      this.Dispatcher.BeginInvoke(
-        () =>
+
+      //if ( String.IsNullOrEmpty( m_HiddenFieldDataName ) )
+      //  throw new ArgumentNullException( "Disposal Request", "Is not selected." );
+      //HtmlDocument doc = HtmlPage.Document;
+      //HtmlElement hiddenField = doc.GetElementById( m_HiddenFieldDataName );
+      //string _viewXml = hiddenField.GetAttribute( "value" ).ToString();
+      //CamlQuery _camlQuery = new CamlQuery() { ViewXml = _viewXml };
+      m_at = "GetData";
+      ClientContext clientContext = ClientContext.Current;
+      if ( clientContext == null )
+        throw new ArgumentNullException( "clientContext", String.Format( "Cannot get the {0} ", "ClientContext" ) );
+      m_at = "clientContext";
+      Web _website = clientContext.Web;
+      if ( _website == null )
+        throw new ArgumentNullException( "_cwList", String.Format( "Cannot get the {0} ", "Web" ) );
+      m_at = "GetByTitle";
+      List _cwList = _website.Lists.GetByTitle( CommonDefinition.CustomsWarehouseDisposalTitle );
+      if ( _cwList == null )
+        throw new ArgumentNullException( "_cwList", String.Format( "Cannot get the {0} list", CommonDefinition.CustomsWarehouseDisposalTitle ) );
+      m_at = "Load cwList ";
+      ListItemCollection _itemsCollection = _cwList.GetItems( CamlQuery.CreateAllItemsQuery() );
+      m_at = "GetItems";
+      clientContext.Load( _cwList );
+      m_at = "Load itemsCollection ";
+      clientContext.Load( _itemsCollection );
+      m_at = "ExecuteQuery";
+      clientContext.ExecuteQueryAsync(
+        ( x, y ) =>
         {
-          //if ( String.IsNullOrEmpty( m_HiddenFieldDataName ) )
-          //  throw new ArgumentNullException( "Disposal Request", "Is not selected." );
-          //HtmlDocument doc = HtmlPage.Document;
-          //HtmlElement hiddenField = doc.GetElementById( m_HiddenFieldDataName );
-          //string _viewXml = hiddenField.GetAttribute( "value" ).ToString();
-          //CamlQuery _camlQuery = new CamlQuery() { ViewXml = _viewXml };
-          m_at = "GetData";
-          ClientContext clientContext = ClientContext.Current;
-          if ( clientContext == null )
-            throw new ArgumentNullException( "clientContext", String.Format( "Cannot get the {0} ", "ClientContext" ) );
-          m_at = "clientContext";
-          Web _website = clientContext.Web;
-          if ( _website == null )
-            throw new ArgumentNullException( "_cwList", String.Format( "Cannot get the {0} ", "Web" ) );
-          m_at = "GetByTitle";
-          List _cwList = _website.Lists.GetByTitle( CommonDefinition.CustomsWarehouseDisposalTitle );
-          if ( _cwList == null )
-            throw new ArgumentNullException( "_cwList", String.Format( "Cannot get the {0} list", CommonDefinition.CustomsWarehouseDisposalTitle ) );
-          m_at = "Load cwList ";
-          ListItemCollection _itemsCollection = _cwList.GetItems( CamlQuery.CreateAllItemsQuery() );
-          m_at = "GetItems";
-          clientContext.Load( _cwList );
-          m_at = "Load itemsCollection ";
-          clientContext.Load( _itemsCollection );
-          m_at = "ExecuteQuery";
-          clientContext.ExecuteQuery();
-          //x_DataGridListView.ItemsSource = _itemsCollection;
+          Deployment.Current.Dispatcher.BeginInvoke( () => x_DataGridListView.ItemsSource = _itemsCollection );
+          x_LabelHeader.Content = x_DataGridListView.ItemsSource == null? "ItemsSource is null" :  String.Format("{} items have been read.", x_DataGridListView. );
+        },
+        ( x, y ) =>
+        {
+          Deployment.Current.Dispatcher.BeginInvoke( () => MessageBox.Show( y.Message + " AT: ExecuteQueryAsync", "Loaded event error", MessageBoxButton.OK ) );
         } );
     }
     private readonly string m_HiddenFieldDataName = String.Empty;

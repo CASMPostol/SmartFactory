@@ -63,7 +63,7 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <sdk:Label Content="Disposal request content:" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="2" Foreground="White"/>
+        <sdk:Label Name="x_LabelHeader" Content="Disposal request content:" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="2" Foreground="White"/>
         <sdk:DataGrid Name="x_DataGridListView" VerticalAlignment="Top" AutoGenerateColumns="False" Background="#00000000" Grid.Row="1" >
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTextColumn Binding="{Binding Path=FieldValues[Material]}" Header="Material" IsReadOnly="True"/>
