@@ -71,7 +71,7 @@
                 <sdk:DataGridTextColumn Binding="{Binding Path=FieldValues[SKUDescription]}" Header="Description" IsReadOnly="True"/>
                 <sdk:DataGridTextColumn Binding="{Binding Path=FieldValues[CWL_CWDisposal2CWBatch_sec].LookupValue}" Header="Batch" IsReadOnly="True"/>
                 <sdk:DataGridTextColumn Binding="{Binding Path=FieldValues[TotalStock]}" Header="Total stock" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding Path=FieldValues[CWL_CWDisposal2CWCW_MassPerPackage_sec].LookupValue}" Header="Qty in package" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Path=FieldValues[CWL_CWDisposal2CWMassPerPackage_sec].LookupValue}"  Header="Qty in package" IsReadOnly="True"/>
                 <sdk:DataGridTextColumn Binding="{Binding Path=FieldValues[CW_DeclaredNetMass]}" Header="Qty to clear" IsReadOnly="True"/>
                 <sdk:DataGridTextColumn Binding="{Binding Path=FieldValues[CW_AddedKg]}" Header="Qty to clear - added" IsReadOnly="False" CellStyle="{StaticResource QtyToClearSuggested}"/>
                 <sdk:DataGridTextColumn Binding="{Binding Path=FieldValues[QtyToClearSum]}" Header="Qty to clear - sum" IsReadOnly="True"/>
