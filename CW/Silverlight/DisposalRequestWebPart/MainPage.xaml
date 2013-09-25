@@ -64,7 +64,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <sdk:Label Name="x_LabelHeader" Content="Disposal request content:" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="2" Foreground="White"/>
-        <sdk:DataGrid Name="x_DataGridListView" VerticalAlignment="Top" AutoGenerateColumns="False" Background="#00000000" Grid.Row="1" >
+        <sdk:DataGrid Name="x_DataGridListView" VerticalAlignment="Top" AutoGenerateColumns="False" Background="#00000000" Grid.Row="1" CellEditEnded="x_DataGridListView_CellEditEnded" >
+            <sdk:DataGrid.CanUserReorderColumns >true</sdk:DataGrid.CanUserReorderColumns>
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTextColumn Binding="{Binding Path=FieldValues[Material]}" Header="Material" IsReadOnly="True"/>
                 <sdk:DataGridTextColumn Binding="{Binding Path=FieldValues[Description]}" Header="Description" IsReadOnly="True"/>
