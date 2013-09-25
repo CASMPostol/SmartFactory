@@ -32,14 +32,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
   /// <summary>
   /// Main page UserControl
   /// </summary>
-  public partial class MainPage: UserControl
+  public partial class MainPage : UserControl
   {
     #region public
     public MainPage()
     {
       InitializeComponent();
+      m_ClientContext = ClientContext.Current;
     }
-    public MainPage( string hiddenFieldDataName )
+    public MainPage(string hiddenFieldDataName)
       : this()
     {
       m_at = "creator";
@@ -47,21 +48,37 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     #endregion
 
-    private void UserControl_Loaded( object sender, RoutedEventArgs e )
+    #region private
+
+    #region private vars
+    private readonly string m_HiddenFieldDataName = String.Empty;
+    private string m_at;
+    private ClientContext m_ClientContext = null;
+    private Dictionary<int, ListItem> m_ItemsEdited = new Dictionary<int, ListItem>();
+    private ListItemCollection m_ItemsCollection = null;
+    private bool b_Edited = false;
+    #endregion
+
+    private bool Edited
     {
-      try
+      get { return b_Edited; }
+      set
       {
-        this.x_LabelHeader.Content += "Test 1";
-        GetData();
+        b_Edited = value;
+        UpdateHeader();
       }
-      catch ( Exception ex )
-      {
-        MessageBox.Show( ex.Message + " AT: " + m_at, "Loaded event error", MessageBoxButton.OK );
-      }
+    }
+    private void UpdateHeader()
+    {
+      string _pattern = "Disposal request content: {0} items; {1}";
+      int _items = 0;
+      string _star = Edited ? "*" : " ";
+      if (m_ItemsCollection == null)
+        _items = m_ItemsCollection.Count;
+      x_LabelHeader.Content = String.Format(_pattern, _items, _star);
     }
     private void GetData()
     {
-
       //if ( String.IsNullOrEmpty( m_HiddenFieldDataName ) )
       //  throw new ArgumentNullException( "Disposal Request", "Is not selected." );
       //HtmlDocument doc = HtmlPage.Document;
@@ -69,45 +86,106 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       //string _viewXml = hiddenField.GetAttribute( "value" ).ToString();
       //CamlQuery _camlQuery = new CamlQuery() { ViewXml = _viewXml };
       m_at = "GetData";
-      ClientContext clientContext = ClientContext.Current;
-      if ( clientContext == null )
-        throw new ArgumentNullException( "clientContext", String.Format( "Cannot get the {0} ", "ClientContext" ) );
+      if (m_ClientContext == null)
+        throw new ArgumentNullException("clientContext", String.Format("Cannot get the {0} ", "ClientContext"));
       m_at = "clientContext";
-      Web _website = clientContext.Web;
-      if ( _website == null )
-        throw new ArgumentNullException( "_cwList", String.Format( "Cannot get the {0} ", "Web" ) );
+      Web _website = m_ClientContext.Web;
+      if (_website == null)
+        throw new ArgumentNullException("_cwList", String.Format("Cannot get the {0} ", "Web"));
       m_at = "GetByTitle";
-      List _cwList = _website.Lists.GetByTitle( CommonDefinition.CustomsWarehouseDisposalTitle );
-      if ( _cwList == null )
-        throw new ArgumentNullException( "_cwList", String.Format( "Cannot get the {0} list", CommonDefinition.CustomsWarehouseDisposalTitle ) );
+      List _cwList = _website.Lists.GetByTitle(CommonDefinition.CustomsWarehouseDisposalTitle);
+      if (_cwList == null)
+        throw new ArgumentNullException("_cwList", String.Format("Cannot get the {0} list", CommonDefinition.CustomsWarehouseDisposalTitle));
       m_at = "Load cwList ";
-      ListItemCollection _itemsCollection = _cwList.GetItems( CamlQuery.CreateAllItemsQuery() );
+      m_ItemsCollection = _cwList.GetItems(CamlQuery.CreateAllItemsQuery());
       m_at = "GetItems";
-      clientContext.Load( _cwList );
+      m_ClientContext.Load(_cwList);
       m_at = "Load itemsCollection ";
-      clientContext.Load( _itemsCollection );
+      m_ClientContext.Load(m_ItemsCollection);
       m_at = "ExecuteQuery";
-      clientContext.ExecuteQueryAsync(
-        ( x, y ) =>
+      m_ClientContext.ExecuteQueryAsync(
+        (x, y) =>
         {
-          Deployment.Current.Dispatcher.BeginInvoke( () =>
+          Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
-              x_DataGridListView.ItemsSource = _itemsCollection;
-              x_LabelHeader.Content = x_DataGridListView.ItemsSource == null ? "ItemsSource is null" : String.Format( "{0} items have been read.", _itemsCollection.Count );
-            } );
+              x_DataGridListView.ItemsSource = m_ItemsCollection;
+              x_LabelHeader.Content = x_DataGridListView.ItemsSource == null ? "ItemsSource is null" : String.Format("{0} items have been read.", m_ItemsCollection.Count);
+            });
         },
-        ( x, y ) =>
+        (x, y) =>
         {
-          Deployment.Current.Dispatcher.BeginInvoke( () => MessageBox.Show( y.Message + " AT: ExecuteQueryAsync", "Loaded event error", MessageBoxButton.OK ) );
-        } );
+          Deployment.Current.Dispatcher.BeginInvoke(() => MessageBox.Show(y.Message + " AT: ExecuteQueryAsync", "Loaded event error", MessageBoxButton.OK));
+        });
     }
-    private readonly string m_HiddenFieldDataName = String.Empty;
-    private string m_at;
 
-    private void x_DataGridListView_CellEditEnded( object sender, DataGridCellEditEndedEventArgs e )
+    #region event handlers
+    private void UserControl_Loaded(object sender, RoutedEventArgs e)
     {
-      x_LabelHeader.Content += " *";
+      try
+      {
+        GetData();
+        UpdateHeader();
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message + " AT: " + m_at, "Loaded event error", MessageBoxButton.OK);
+      }
     }
+    private void x_DataGridListView_CellEditEnded(object sender, DataGridCellEditEndedEventArgs e)
+    {
+      ListItem _selectedItem = (ListItem)x_DataGridListView.SelectedItem;
+      int _Id = (int)_selectedItem[CommonDefinition.ColumnNameId];
+      if (m_ItemsEdited.ContainsKey(_Id))
+        return;
+      m_ItemsEdited.Add(_Id, _selectedItem);
+      Edited = true;
+    }
+    private void x_ButtonAddNew_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+    private void x_ButtonEndofBatch_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+    private void x_ButtonDelete_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+    private void x_ButtonSave_Click(object sender, RoutedEventArgs e)
+    {
+      if (m_ItemsEdited.Count == 0)
+        return;
+      foreach (ListItem _lix in m_ItemsEdited.Values)
+        _lix.Update();
+      m_ItemsEdited.Clear();
+      Edited = false;
+      m_ClientContext.ExecuteQueryAsync
+        (
+        // Succeeded Callback
+          (ss, se) =>
+          {
+            // Execute on the UI thread 
+            Deployment.Current.Dispatcher.BeginInvoke(
+              () =>
+              {
+                // Remember the selected index before refresh
+                int index = x_DataGridListView.SelectedIndex == 0 ? 1 : x_DataGridListView.SelectedIndex - 1;
+                // refresh the databinding to the List Items Collection
+                x_DataGridListView.ItemsSource = null;
+                x_DataGridListView.ItemsSource = m_ItemsCollection;
+                // Set the selected item and show it
+                x_DataGridListView.SelectedIndex = index;
+                x_DataGridListView.UpdateLayout();
+                x_DataGridListView.ScrollIntoView(x_DataGridListView.SelectedItem, x_DataGridListView.Columns[0]);
+              });
+          },
+          (ss, se) => { }
+        );
+    }
+    #endregion
+
+    #endregion
 
   }
 }

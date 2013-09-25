@@ -1,5 +1,5 @@
 ﻿//<summary>
-//  Title   : class CommonDefinition
+//  Title   : partial class CommonDefinition
 //  System  : Microsoft Visual C# .NET 2012
 //  $LastChangedDate:$
 //  $Rev:$
@@ -12,17 +12,14 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-
+      
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 {
   /// <summary>
-  /// CommonDefinition for multiproject environment
+  /// 
   /// </summary>
   internal partial class CommonDefinition
   {
-    internal const string CustomsWarehouseDisposalTitle = "Customs Warehouse Disposal";
-    internal const string DisposalRequestLibraryTitle = "Disposal Request Library";
-    internal const string HiddenFieldDataParameterName = "controlId";
-    internal const string ColumnNameId = "ID";
+
   }
 }
