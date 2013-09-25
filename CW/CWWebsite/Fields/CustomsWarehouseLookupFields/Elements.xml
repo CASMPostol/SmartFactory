@@ -283,4 +283,17 @@
     Name="CWL_CWDisposal2CWUnits_sec"
     Overwrite="TRUE"
   />
+  <Field
+    Type="Lookup"
+    DisplayName="Mass per package"
+    List="Lists/CustomsWarehouseList"
+    ShowField="CW_MassPerPackage"
+    FieldRef="497E4697-AF4C-4910-B007-5ADE6723308E"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory Customs Warehouse"
+    ID="{5D47664F-E2A2-4EB6-8A3F-18922E4E4580}"
+    Name="CWL_CWDisposal2CWCW_MassPerPackage_sec"
+    Overwrite="TRUE"
+  />
 </Elements>

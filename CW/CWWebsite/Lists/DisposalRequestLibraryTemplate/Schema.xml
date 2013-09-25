@@ -4,22 +4,11 @@
     <ContentTypes>
       <ContentType ID="0x0101006A3BDDD5D82D4C03B297650EEECA0EF2" Name="DisposalRequestLib" Group="CAS Smart Factory Customs Warehouse" Description="Disposal Request Library Content Type" Overwrite="TRUE" Inherits="TRUE">
         <FieldRefs>
-          <FieldRef ID="{F435E944-D6E4-4394-B274-5869D28A1814}" Name="CW_DisposalDestination" ShowInNewForm="FALSE" />
+          <FieldRef ID="{F435E944-D6E4-4394-B274-5869D28A1814}" Name="CW_DisposalDestination" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
-    <Fields>
-      <Field Name="CW_DisposalDestination" ID="{F435E944-D6E4-4394-B274-5869D28A1814}" Type="Choice" DisplayName="Disposal destination" Group="CAS Smart Factory Customs Warehouse">
-        <Default>Production warehouse</Default>
-        <CHOICES>
-          <CHOICE>Production warehouse</CHOICE>
-          <CHOICE>IPR warehouse</CHOICE>
-          <CHOICE>Export</CHOICE>
-          <CHOICE>Other customs warehouse</CHOICE>
-        </CHOICES>
-      </Field>
-      <Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" Group="_Hidden" Type="Text" DisplayName="$Resources:core,Title;" Required="TRUE" FromBaseType="TRUE" ShowInEditForm="TRUE" ShowInNewForm="TRUE" />
-    </Fields>
+    <Fields></Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE" FreeForm="TRUE">
         <Toolbar Type="Standard" />
