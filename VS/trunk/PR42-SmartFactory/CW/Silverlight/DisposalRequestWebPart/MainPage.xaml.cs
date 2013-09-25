@@ -90,8 +90,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       clientContext.ExecuteQueryAsync(
         ( x, y ) =>
         {
-          Deployment.Current.Dispatcher.BeginInvoke( () => x_DataGridListView.ItemsSource = _itemsCollection );
-          x_LabelHeader.Content = x_DataGridListView.ItemsSource == null? "ItemsSource is null" :  String.Format("{} items have been read.", x_DataGridListView. );
+          Deployment.Current.Dispatcher.BeginInvoke( () =>
+            {
+              x_DataGridListView.ItemsSource = _itemsCollection;
+              x_LabelHeader.Content = x_DataGridListView.ItemsSource == null ? "ItemsSource is null" : String.Format( "{0} items have been read.", _itemsCollection.Count );
+            } );
         },
         ( x, y ) =>
         {
@@ -100,6 +103,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     private readonly string m_HiddenFieldDataName = String.Empty;
     private string m_at;
+
+    private void x_DataGridListView_CellEditEnded( object sender, DataGridCellEditEndedEventArgs e )
+    {
+      x_LabelHeader.Content += " *";
+    }
 
   }
 }
