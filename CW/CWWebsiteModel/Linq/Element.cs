@@ -3,6 +3,7 @@ using System.Linq;
 using CAS.SharePoint;
 using Microsoft.SharePoint.Linq;
 
+#pragma warning disable 1591
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq
 {
   /// <summary>
@@ -108,3 +109,4 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     }
   } //Element
 }
+#pragma warning restore 1591
