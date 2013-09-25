@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-#pragma warning disable 1591
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	using System;
 	
@@ -503,7 +502,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private string _procedureCode;
 		
-		private System.Nullable<bool> _resourcesCASSmartFactoryIPRCAS_Archival;
+		private System.Nullable<bool> _archival;
 		
 		private System.Nullable<ClearenceProcedure> _clearenceProcedure;
 		
@@ -594,16 +593,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_resourcesCASSmartFactoryIPRCAS_Archival", FieldType="Boolean")]
-		public System.Nullable<bool> ResourcesCASSmartFactoryIPRCAS_Archival {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
 			get {
-				return this._resourcesCASSmartFactoryIPRCAS_Archival;
+				return this._archival;
 			}
 			set {
-				if ((value != this._resourcesCASSmartFactoryIPRCAS_Archival)) {
-					this.OnPropertyChanging("ResourcesCASSmartFactoryIPRCAS_Archival", this._resourcesCASSmartFactoryIPRCAS_Archival);
-					this._resourcesCASSmartFactoryIPRCAS_Archival = value;
-					this.OnPropertyChanged("ResourcesCASSmartFactoryIPRCAS_Archival");
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -872,7 +871,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CustomsUnion", Id="0x0100700A5727DB0A43069A5E0A479E3B80A7")]
 	public partial class CustomsUnion : Element {
 		
-		private string _resourcesCASSmartFactoryIPRCAS_EUPrimeMarket;
+		private string _eUPrimeMarket;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -884,16 +883,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EUPrimeMarket", Storage="_resourcesCASSmartFactoryIPRCAS_EUPrimeMarket", FieldType="Text")]
-		public string ResourcesCASSmartFactoryIPRCAS_EUPrimeMarket {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EUPrimeMarket", Storage="_eUPrimeMarket", FieldType="Text")]
+		public string EUPrimeMarket {
 			get {
-				return this._resourcesCASSmartFactoryIPRCAS_EUPrimeMarket;
+				return this._eUPrimeMarket;
 			}
 			set {
-				if ((value != this._resourcesCASSmartFactoryIPRCAS_EUPrimeMarket)) {
-					this.OnPropertyChanging("ResourcesCASSmartFactoryIPRCAS_EUPrimeMarket", this._resourcesCASSmartFactoryIPRCAS_EUPrimeMarket);
-					this._resourcesCASSmartFactoryIPRCAS_EUPrimeMarket = value;
-					this.OnPropertyChanged("ResourcesCASSmartFactoryIPRCAS_EUPrimeMarket");
+				if ((value != this._eUPrimeMarket)) {
+					this.OnPropertyChanging("EUPrimeMarket", this._eUPrimeMarket);
+					this._eUPrimeMarket = value;
+					this.OnPropertyChanged("EUPrimeMarket");
 				}
 			}
 		}
@@ -2311,7 +2310,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private string _systemID;
 		
-		private System.Nullable<bool> _resourcesCASSmartFactoryIPRCAS_Archival;
+		private System.Nullable<bool> _archival;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentLib> _sADDocumenLibrarytIndex;
 		
@@ -2450,16 +2449,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_resourcesCASSmartFactoryIPRCAS_Archival", FieldType="Boolean")]
-		public System.Nullable<bool> ResourcesCASSmartFactoryIPRCAS_Archival {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
 			get {
-				return this._resourcesCASSmartFactoryIPRCAS_Archival;
+				return this._archival;
 			}
 			set {
-				if ((value != this._resourcesCASSmartFactoryIPRCAS_Archival)) {
-					this.OnPropertyChanging("ResourcesCASSmartFactoryIPRCAS_Archival", this._resourcesCASSmartFactoryIPRCAS_Archival);
-					this._resourcesCASSmartFactoryIPRCAS_Archival = value;
-					this.OnPropertyChanged("ResourcesCASSmartFactoryIPRCAS_Archival");
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -2529,7 +2528,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _amount;
 		
-		private System.Nullable<bool> _resourcesCASSmartFactoryIPRCAS_Archival;
+		private System.Nullable<bool> _archival;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SADGood> _sADDuties2SADGoodID;
 		
@@ -2575,16 +2574,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_resourcesCASSmartFactoryIPRCAS_Archival", FieldType="Boolean")]
-		public System.Nullable<bool> ResourcesCASSmartFactoryIPRCAS_Archival {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
 			get {
-				return this._resourcesCASSmartFactoryIPRCAS_Archival;
+				return this._archival;
 			}
 			set {
-				if ((value != this._resourcesCASSmartFactoryIPRCAS_Archival)) {
-					this.OnPropertyChanging("ResourcesCASSmartFactoryIPRCAS_Archival", this._resourcesCASSmartFactoryIPRCAS_Archival);
-					this._resourcesCASSmartFactoryIPRCAS_Archival = value;
-					this.OnPropertyChanged("ResourcesCASSmartFactoryIPRCAS_Archival");
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -2637,7 +2636,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _netMass;
 		
-		private System.Nullable<bool> _resourcesCASSmartFactoryIPRCAS_Archival;
+		private System.Nullable<bool> _archival;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Clearence> _clearence;
 		
@@ -2783,16 +2782,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_resourcesCASSmartFactoryIPRCAS_Archival", FieldType="Boolean")]
-		public System.Nullable<bool> ResourcesCASSmartFactoryIPRCAS_Archival {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
 			get {
-				return this._resourcesCASSmartFactoryIPRCAS_Archival;
+				return this._archival;
 			}
 			set {
-				if ((value != this._resourcesCASSmartFactoryIPRCAS_Archival)) {
-					this.OnPropertyChanging("ResourcesCASSmartFactoryIPRCAS_Archival", this._resourcesCASSmartFactoryIPRCAS_Archival);
-					this._resourcesCASSmartFactoryIPRCAS_Archival = value;
-					this.OnPropertyChanged("ResourcesCASSmartFactoryIPRCAS_Archival");
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -2970,7 +2969,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private string _package;
 		
-		private System.Nullable<bool> _resourcesCASSmartFactoryIPRCAS_Archival;
+		private System.Nullable<bool> _archival;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SADGood> _sADPackage2SADGoodID;
 		
@@ -3016,16 +3015,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_resourcesCASSmartFactoryIPRCAS_Archival", FieldType="Boolean")]
-		public System.Nullable<bool> ResourcesCASSmartFactoryIPRCAS_Archival {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
 			get {
-				return this._resourcesCASSmartFactoryIPRCAS_Archival;
+				return this._archival;
 			}
 			set {
-				if ((value != this._resourcesCASSmartFactoryIPRCAS_Archival)) {
-					this.OnPropertyChanging("ResourcesCASSmartFactoryIPRCAS_Archival", this._resourcesCASSmartFactoryIPRCAS_Archival);
-					this._resourcesCASSmartFactoryIPRCAS_Archival = value;
-					this.OnPropertyChanged("ResourcesCASSmartFactoryIPRCAS_Archival");
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -3073,7 +3072,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private string _units;
 		
-		private System.Nullable<bool> _resourcesCASSmartFactoryIPRCAS_Archival;
+		private System.Nullable<bool> _archival;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SADGood> _sADQuantity2SADGoodID;
 		
@@ -3147,16 +3146,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_resourcesCASSmartFactoryIPRCAS_Archival", FieldType="Boolean")]
-		public System.Nullable<bool> ResourcesCASSmartFactoryIPRCAS_Archival {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
 			get {
-				return this._resourcesCASSmartFactoryIPRCAS_Archival;
+				return this._archival;
 			}
 			set {
-				if ((value != this._resourcesCASSmartFactoryIPRCAS_Archival)) {
-					this.OnPropertyChanging("ResourcesCASSmartFactoryIPRCAS_Archival", this._resourcesCASSmartFactoryIPRCAS_Archival);
-					this._resourcesCASSmartFactoryIPRCAS_Archival = value;
-					this.OnPropertyChanged("ResourcesCASSmartFactoryIPRCAS_Archival");
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -3199,7 +3198,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private string _number;
 		
-		private System.Nullable<bool> _resourcesCASSmartFactoryIPRCAS_Archival;
+		private System.Nullable<bool> _archival;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SADGood> _sADRequiredDoc2SADGoodID;
 		
@@ -3245,16 +3244,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_resourcesCASSmartFactoryIPRCAS_Archival", FieldType="Boolean")]
-		public System.Nullable<bool> ResourcesCASSmartFactoryIPRCAS_Archival {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
 			get {
-				return this._resourcesCASSmartFactoryIPRCAS_Archival;
+				return this._archival;
 			}
 			set {
-				if ((value != this._resourcesCASSmartFactoryIPRCAS_Archival)) {
-					this.OnPropertyChanging("ResourcesCASSmartFactoryIPRCAS_Archival", this._resourcesCASSmartFactoryIPRCAS_Archival);
-					this._resourcesCASSmartFactoryIPRCAS_Archival = value;
-					this.OnPropertyChanged("ResourcesCASSmartFactoryIPRCAS_Archival");
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -3671,7 +3670,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADConsignment", Id="0x0101002E7FB2D305D04B84ADEEA8E71EBD1561")]
 	public partial class SADConsignment : Document {
 		
-		private System.Nullable<bool> _resourcesCASSmartFactoryIPRCAS_Archival;
+		private System.Nullable<bool> _archival;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Clearence> _clearence;
 		
@@ -3689,16 +3688,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_resourcesCASSmartFactoryIPRCAS_Archival", FieldType="Boolean")]
-		public System.Nullable<bool> ResourcesCASSmartFactoryIPRCAS_Archival {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
 			get {
-				return this._resourcesCASSmartFactoryIPRCAS_Archival;
+				return this._archival;
 			}
 			set {
-				if ((value != this._resourcesCASSmartFactoryIPRCAS_Archival)) {
-					this.OnPropertyChanging("ResourcesCASSmartFactoryIPRCAS_Archival", this._resourcesCASSmartFactoryIPRCAS_Archival);
-					this._resourcesCASSmartFactoryIPRCAS_Archival = value;
-					this.OnPropertyChanged("ResourcesCASSmartFactoryIPRCAS_Archival");
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -3741,7 +3740,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private string _sADDocumentLibraryComments;
 		
-		private System.Nullable<bool> _resourcesCASSmartFactoryIPRCAS_Archival;
+		private System.Nullable<bool> _archival;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<SADDocumentType> _sADDocumentType;
 		
@@ -3787,16 +3786,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_resourcesCASSmartFactoryIPRCAS_Archival", FieldType="Boolean")]
-		public System.Nullable<bool> ResourcesCASSmartFactoryIPRCAS_Archival {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
 			get {
-				return this._resourcesCASSmartFactoryIPRCAS_Archival;
+				return this._archival;
 			}
 			set {
-				if ((value != this._resourcesCASSmartFactoryIPRCAS_Archival)) {
-					this.OnPropertyChanging("ResourcesCASSmartFactoryIPRCAS_Archival", this._resourcesCASSmartFactoryIPRCAS_Archival);
-					this._resourcesCASSmartFactoryIPRCAS_Archival = value;
-					this.OnPropertyChanged("ResourcesCASSmartFactoryIPRCAS_Archival");
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
 				}
 			}
 		}
@@ -4008,4 +4007,3 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		OtherCustomsWarehouse = 16,
 	}
 }
-#pragma warning restore 1591

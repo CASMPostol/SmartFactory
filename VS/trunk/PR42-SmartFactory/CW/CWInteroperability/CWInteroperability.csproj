@@ -84,7 +84,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="DocumentsFactory\SAD\12SCST1175_4071_SAD.xml" />
-    <Content Include="DocumentsFactory\SAD\12SCST1175_4071_SAD_test.xml" />
+    <Content Include="DocumentsFactory\SAD\12SCST1175_4071_SAD_test.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Features\CWInteroperability\CWInteroperability.Template.xml">
       <DependentUpon>CWInteroperability.feature</DependentUpon>
     </Content>

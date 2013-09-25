@@ -270,4 +270,17 @@
     Name="CWL_CWDisposal2CWCurrency_sec"
     Overwrite="TRUE"
   />
+  <Field
+    Type="Lookup"
+    DisplayName="Units"
+    List="Lists/CustomsWarehouseList"
+    ShowField="Units"
+    FieldRef="497E4697-AF4C-4910-B007-5ADE6723308E"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory Customs Warehouse"
+    ID="{76755728-57B2-4977-B111-A4F16289A235}"
+    Name="CWL_CWDisposal2CWUnits_sec"
+    Overwrite="TRUE"
+  />
 </Elements>

@@ -38,6 +38,7 @@
       <FieldRef ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}" Name="DutyAndVAT" />
       <FieldRef ID="{41B47893-8755-4878-A827-1C56A8D02945}" Name="CW_PackageToClear" />
       <FieldRef ID="{16D33CFD-B8D1-4843-AA1B-A5155DE5FE6B}" Name="CW_AddedKg" />
+      <FieldRef ID="{76755728-57B2-4977-B111-A4F16289A235}" Name="CWL_CWDisposal2CWUnits_sec" />
       <FieldRef ID="{2291900F-0EE8-4A1D-9FA1-92F8DB60AF41}" Name="AccountClosed" />
       <FieldRef ID="{3A6EC6FC-81DD-4E39-9A78-B95D198C6938}" Name="Archival" />
       <FieldRef ID="{C2F4132F-735D-4123-BEDE-79C7FE31954B}" Name="CWL_CWDisposal2DisposalRequestLibraryID" />
