@@ -28,7 +28,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
   {
     internal const string CustomsWarehouseDisposalTitle = "<#= CustomsWarehouseDisposalTitle #>";
     internal const string DisposalRequestLibraryTitle = "<#= DisposalRequestLibraryTitle #>";
-	internal const string HiddenFieldDataParameterName = "<#= HiddenFieldDataParameterName #>";
+    internal const string HiddenFieldDataParameterName = "<#= HiddenFieldDataParameterName #>";
+    internal const string ColumnNameId = "<#= ColumnNameId #>";
   }
 }
 <#@ include file = "..\..\CWModel.t4" #>

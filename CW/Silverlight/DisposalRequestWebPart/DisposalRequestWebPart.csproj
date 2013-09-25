@@ -89,6 +89,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CommonDefinition1.cs</LastGenOutput>
     </None>
+    <Compile Include="CommonDefinition.tt.cs" />
     <Compile Include="CommonDefinition1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
