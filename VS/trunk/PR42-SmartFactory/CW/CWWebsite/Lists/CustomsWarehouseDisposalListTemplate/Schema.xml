@@ -35,6 +35,7 @@
           <FieldRef ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}" Name="DutyAndVAT" />
           <FieldRef ID="{41B47893-8755-4878-A827-1C56A8D02945}" Name="CW_PackageToClear" />
           <FieldRef ID="{16D33CFD-B8D1-4843-AA1B-A5155DE5FE6B}" Name="CW_AddedKg" />
+          <FieldRef ID="{5D47664F-E2A2-4EB6-8A3F-18922E4E4580}" Name="CWL_CWDisposal2CWCW_MassPerPackage_sec" />
           <FieldRef ID="{76755728-57B2-4977-B111-A4F16289A235}" Name="CWL_CWDisposal2CWUnits_sec" />
           <FieldRef ID="{2291900F-0EE8-4A1D-9FA1-92F8DB60AF41}" Name="AccountClosed" />
           <FieldRef ID="{3A6EC6FC-81DD-4E39-9A78-B95D198C6938}" Name="Archival" />
@@ -89,6 +90,7 @@
       <Field DisplayName="Duty and VAT [PLN]" Decimals="2" Type="Number" ID="{e7d69ae8-aeac-4a9f-a597-87a7957950b8}" Name="DutyAndVAT" Group="CAS Smart Factory IPR" SourceID="{9320c9de-14fb-4730-a06a-e103d1dccdf3}" StaticName="DutyAndVAT" />
       <Field ID="{41B47893-8755-4878-A827-1C56A8D02945}" Name="CW_PackageToClear" DisplayName="Package to clear" Group="CAS Smart Factory Customs Warehouse" Type="Number" Decimals="2" />
       <Field ID="{16D33CFD-B8D1-4843-AA1B-A5155DE5FE6B}" Name="CW_AddedKg" DisplayName="Added [kg]" Group="CAS Smart Factory Customs Warehouse" Type="Number" Decimals="2" />
+      <Field Type="Lookup" DisplayName="Mass per package" List="Lists/CustomsWarehouseList" ShowField="CW_MassPerPackage" FieldRef="497E4697-AF4C-4910-B007-5ADE6723308E" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Customs Warehouse" ID="{5D47664F-E2A2-4EB6-8A3F-18922E4E4580}" Name="CWL_CWDisposal2CWCW_MassPerPackage_sec" Overwrite="TRUE" />
       <Field Type="Lookup" DisplayName="Units" List="Lists/CustomsWarehouseList" ShowField="Units" FieldRef="497E4697-AF4C-4910-B007-5ADE6723308E" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Customs Warehouse" ID="{76755728-57B2-4977-B111-A4F16289A235}" Name="CWL_CWDisposal2CWUnits_sec" Overwrite="TRUE" />
       <Field DisplayName="Account closed" Name="AccountClosed" Type="Boolean" ID="{2291900f-0ee8-4a1d-9fa1-92f8db60af41}" Group="CAS Smart Factory IPR" Required="TRUE" SourceID="{9320c9de-14fb-4730-a06a-e103d1dccdf3}" StaticName="AccountClosed" />
       <Field DisplayName="Archival" Name="Archival" Type="Boolean" ID="{3a6ec6fc-81dd-4e39-9a78-b95d198c6938}" Group="CAS Smart Factory IPR" SourceID="{9320c9de-14fb-4730-a06a-e103d1dccdf3}" StaticName="Archival" />
@@ -151,6 +153,7 @@
           <FieldRef Name="DutyAndVAT" />
           <FieldRef Name="CW_PackageToClear" />
           <FieldRef Name="CW_AddedKg" />
+          <FieldRef Name="CWL_CWDisposal2CWCW_MassPerPackage_sec" />
           <FieldRef Name="CWL_CWDisposal2CWUnits_sec" />
           <FieldRef Name="AccountClosed" />
           <FieldRef Name="Archival" />
