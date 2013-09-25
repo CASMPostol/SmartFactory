@@ -361,6 +361,7 @@
     <Column Name="DutyAndVAT" Member="DutyAndVAT" />
     <Column Name="CW_PackageToClear" Member="CW_PackageToClear" />
     <Column Name="CW_AddedKg" Member="CW_AddedKg" />
+    <Column Name="CWL_CWDisposal2CWUnits_sec" Member="CWL_CWDisposal2CWUnits_sec" />
     <Column Name="AccountClosed" Member="AccountClosed" />
     <Column Name="Archival" Member="Archival" />
     <Column Name="CWL_CWDisposal2DisposalRequestLibraryID" Member="CWL_CWDisposal2DisposalRequestLibraryID" />
