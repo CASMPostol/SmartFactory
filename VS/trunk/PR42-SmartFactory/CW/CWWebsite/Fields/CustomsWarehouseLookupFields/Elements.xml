@@ -293,7 +293,7 @@
     UnlimitedLengthInDocumentLibrary="FALSE"
     Group="CAS Smart Factory Customs Warehouse"
     ID="{5D47664F-E2A2-4EB6-8A3F-18922E4E4580}"
-    Name="CWL_CWDisposal2CWCW_MassPerPackage_sec"
+    Name="CWL_CWDisposal2CWMassPerPackage_sec"
     Overwrite="TRUE"
   />
 </Elements>

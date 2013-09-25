@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-#pragma warning disable 1591
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	using System;
 	
@@ -88,9 +87,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		/// Customs Warehouse Disposal List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Customs Warehouse Disposal")]
-		public Microsoft.SharePoint.Linq.EntityList<CustomsWarehouseDisposalCustomsWarehouseDisposal> CustomsWarehouseDisposal {
+		public Microsoft.SharePoint.Linq.EntityList<CustomsWarehouseDisposal> CustomsWarehouseDisposal {
 			get {
-				return this.GetList<CustomsWarehouseDisposalCustomsWarehouseDisposal>("Customs Warehouse Disposal");
+				return this.GetList<CustomsWarehouseDisposal>("Customs Warehouse Disposal");
 			}
 		}
 		
@@ -1662,7 +1661,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	/// Customs Warehouse Disposal Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CustomsWarehouseDisposal", Id="0x0100809C8CF50E9E4E97B2809D1CD4C3F14F")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouseDisposalCustomsWarehouseDisposal))]
 	public partial class CustomsWarehouseDisposal : Element {
 		
 		private System.Nullable<double> _no;
@@ -3848,23 +3846,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
-	/// Customs Warehouse Disposal Content Type
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CustomsWarehouseDisposal", Id="0x0100809C8CF50E9E4E97B2809D1CD4C3F14F", List="Customs Warehouse Disposal")]
-	public partial class CustomsWarehouseDisposalCustomsWarehouseDisposal : CustomsWarehouseDisposal {
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public CustomsWarehouseDisposalCustomsWarehouseDisposal() {
-			this.OnCreated();
-		}
-	}
-	
-	/// <summary>
 	/// SAD Quantity List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADQuantity", Id="0x010016BC5B99EA5169458266BB52B8784B3F", List="SAD Quantity")]
@@ -4026,4 +4007,3 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		OtherCustomsWarehouse = 16,
 	}
 }
-#pragma warning restore 1591
