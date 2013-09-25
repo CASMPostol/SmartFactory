@@ -32,7 +32,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
   /// <summary>
   /// Main page UserControl
   /// </summary>
-  public partial class MainPage : UserControl
+  public partial class MainPage: UserControl
   {
     #region public
     public MainPage()
@@ -40,7 +40,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       InitializeComponent();
       m_ClientContext = ClientContext.Current;
     }
-    public MainPage(string hiddenFieldDataName)
+    public MainPage( string hiddenFieldDataName )
       : this()
     {
       m_at = "creator";
@@ -71,11 +71,22 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private void UpdateHeader()
     {
       string _pattern = "Disposal request content: {0} items; {1}";
-      int _items = 0;
+      int _items = m_ItemsCollection != null ? m_ItemsCollection.Count : 0;
       string _star = Edited ? "*" : " ";
-      if (m_ItemsCollection == null)
-        _items = m_ItemsCollection.Count;
-      x_LabelHeader.Content = String.Format(_pattern, _items, _star);
+      x_LabelHeader.Content = String.Format( _pattern, _items, _star );
+    }
+    private void UpdateDataGrid()
+    {
+      // Remember the selected index before refresh
+      int index = x_DataGridListView.SelectedIndex == 0 ? 1 : x_DataGridListView.SelectedIndex - 1;
+      // refresh the databinding to the List Items Collection
+      x_DataGridListView.ItemsSource = null;
+      x_DataGridListView.ItemsSource = m_ItemsCollection;
+      // Set the selected item and show it
+      x_DataGridListView.SelectedIndex = index;
+      x_DataGridListView.UpdateLayout();
+      x_DataGridListView.ScrollIntoView( x_DataGridListView.SelectedItem, x_DataGridListView.Columns[ 0 ] );
+      Edited = false;
     }
     private void GetData()
     {
@@ -86,144 +97,122 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       //string _viewXml = hiddenField.GetAttribute( "value" ).ToString();
       //CamlQuery _camlQuery = new CamlQuery() { ViewXml = _viewXml };
       m_at = "GetData";
-      if (m_ClientContext == null)
-        throw new ArgumentNullException("clientContext", String.Format("Cannot get the {0} ", "ClientContext"));
+      if ( m_ClientContext == null )
+        throw new ArgumentNullException( "clientContext", String.Format( "Cannot get the {0} ", "ClientContext" ) );
       m_at = "clientContext";
       Web _website = m_ClientContext.Web;
-      if (_website == null)
-        throw new ArgumentNullException("_cwList", String.Format("Cannot get the {0} ", "Web"));
+      if ( _website == null )
+        throw new ArgumentNullException( "_cwList", String.Format( "Cannot get the {0} ", "Web" ) );
       m_at = "GetByTitle";
-      List _cwList = _website.Lists.GetByTitle(CommonDefinition.CustomsWarehouseDisposalTitle);
-      if (_cwList == null)
-        throw new ArgumentNullException("_cwList", String.Format("Cannot get the {0} list", CommonDefinition.CustomsWarehouseDisposalTitle));
+      List _cwList = _website.Lists.GetByTitle( CommonDefinition.CustomsWarehouseDisposalTitle );
+      if ( _cwList == null )
+        throw new ArgumentNullException( "_cwList", String.Format( "Cannot get the {0} list", CommonDefinition.CustomsWarehouseDisposalTitle ) );
       m_at = "Load cwList ";
-      m_ItemsCollection = _cwList.GetItems(CamlQuery.CreateAllItemsQuery());
+      m_ItemsCollection = _cwList.GetItems( CamlQuery.CreateAllItemsQuery() );
       m_at = "GetItems";
-      m_ClientContext.Load(_cwList);
+      m_ClientContext.Load( _cwList );
       m_at = "Load itemsCollection ";
-      m_ClientContext.Load(m_ItemsCollection);
+      m_ClientContext.Load( m_ItemsCollection );
       m_at = "ExecuteQuery";
       m_ClientContext.ExecuteQueryAsync(
-        (x, y) =>
+        ( x, y ) => { Deployment.Current.Dispatcher.BeginInvoke( UpdateDataGrid ); },
+        ( x, y ) =>
         {
-          Deployment.Current.Dispatcher.BeginInvoke(() =>
-            {
-              x_DataGridListView.ItemsSource = m_ItemsCollection;
-              x_LabelHeader.Content = x_DataGridListView.ItemsSource == null ? "ItemsSource is null" : String.Format("{0} items have been read.", m_ItemsCollection.Count);
-            });
-        },
-        (x, y) =>
-        {
-          Deployment.Current.Dispatcher.BeginInvoke(() => MessageBox.Show(y.Message + " AT: ExecuteQueryAsync", "Loaded event error", MessageBoxButton.OK));
-        });
+          Deployment.Current.Dispatcher.BeginInvoke( () => MessageBox.Show( y.Message + " AT: ExecuteQueryAsync", "Loaded event error", MessageBoxButton.OK ) );
+        } );
     }
-    private void ExceptionHandling(Exception ex)
+    private void ExceptionHandling( Exception ex )
     {
-      MessageBox.Show(ex.Message + " AT: " + m_at, "Loaded event error", MessageBoxButton.OK);
+      MessageBox.Show( ex.Message + " AT: " + m_at, "Loaded event error", MessageBoxButton.OK );
     }
 
     #region event handlers
-    private void UserControl_Loaded(object sender, RoutedEventArgs e)
+    private void UserControl_Loaded( object sender, RoutedEventArgs e )
     {
       try
       {
         GetData();
         UpdateHeader();
       }
-      catch (Exception ex)
+      catch ( Exception ex )
       {
-        ExceptionHandling(ex);
+        ExceptionHandling( ex );
       }
     }
-
-    private void x_DataGridListView_CellEditEnded(object sender, DataGridCellEditEndedEventArgs e)
+    private void x_DataGridListView_CellEditEnded( object sender, DataGridCellEditEndedEventArgs e )
     {
       try
       {
         ListItem _selectedItem = (ListItem)x_DataGridListView.SelectedItem;
-        int _Id = (int)_selectedItem[CommonDefinition.ColumnNameId];
-        if (m_ItemsEdited.ContainsKey(_Id))
+        int _Id = (int)_selectedItem[ CommonDefinition.ColumnNameId ];
+        if ( m_ItemsEdited.ContainsKey( _Id ) )
           return;
-        m_ItemsEdited.Add(_Id, _selectedItem);
+        m_ItemsEdited.Add( _Id, _selectedItem );
         Edited = true;
-
       }
-      catch (Exception _ex)
+      catch ( Exception _ex )
       {
-        ExceptionHandling(_ex);
+        ExceptionHandling( _ex );
       }
     }
-    private void x_ButtonAddNew_Click(object sender, RoutedEventArgs e)
+    private void x_ButtonAddNew_Click( object sender, RoutedEventArgs e )
     {
       try
       {
 
       }
-      catch (Exception _ex)
+      catch ( Exception _ex )
       {
-        ExceptionHandling(_ex);
+        ExceptionHandling( _ex );
       }
     }
-    private void x_ButtonEndofBatch_Click(object sender, RoutedEventArgs e)
+    private void x_ButtonEndofBatch_Click( object sender, RoutedEventArgs e )
     {
       try
       {
 
       }
-      catch (Exception _ex)
+      catch ( Exception _ex )
       {
-        ExceptionHandling(_ex);
+        ExceptionHandling( _ex );
       }
 
     }
-    private void x_ButtonDelete_Click(object sender, RoutedEventArgs e)
+    private void x_ButtonDelete_Click( object sender, RoutedEventArgs e )
     {
       try
       {
 
       }
-      catch (Exception _ex)
+      catch ( Exception _ex )
       {
-        ExceptionHandling(_ex);
+        ExceptionHandling( _ex );
       }
     }
-    private void x_ButtonSave_Click(object sender, RoutedEventArgs e)
+    private void x_ButtonSave_Click( object sender, RoutedEventArgs e )
     {
       try
       {
-        if (m_ItemsEdited.Count == 0)
+        if ( m_ItemsEdited.Count == 0 )
           return;
-        foreach (ListItem _lix in m_ItemsEdited.Values)
+        foreach ( ListItem _lix in m_ItemsEdited.Values )
           _lix.Update();
         m_ItemsEdited.Clear();
-        Edited = false;
         m_ClientContext.ExecuteQueryAsync
           (
           // Succeeded Callback
-            (ss, se) =>
+            ( ss, se ) =>
             {
               // Execute on the UI thread 
-              Deployment.Current.Dispatcher.BeginInvoke(
-                () =>
-                {
-                  // Remember the selected index before refresh
-                  int index = x_DataGridListView.SelectedIndex == 0 ? 1 : x_DataGridListView.SelectedIndex - 1;
-                  // refresh the databinding to the List Items Collection
-                  x_DataGridListView.ItemsSource = null;
-                  x_DataGridListView.ItemsSource = m_ItemsCollection;
-                  // Set the selected item and show it
-                  x_DataGridListView.SelectedIndex = index;
-                  x_DataGridListView.UpdateLayout();
-                  x_DataGridListView.ScrollIntoView(x_DataGridListView.SelectedItem, x_DataGridListView.Columns[0]);
-                });
+              Deployment.Current.Dispatcher.BeginInvoke( UpdateDataGrid );
             },
-            (ss, se) => { }
+            ( ss, se ) => { }
           );
 
       }
-      catch (Exception _ex)
+      catch ( Exception _ex )
       {
-        ExceptionHandling(_ex);
+        ExceptionHandling( _ex );
       }
     }
     #endregion
