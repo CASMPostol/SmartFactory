@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="DisposalRequestDashboard">
-    <File Path="WebPartPages\WebPageTemplate_DisposalRequest.aspx" Url="WebPartPages/DisposalRequestDashboard.aspx">
+    <File Path="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" Url="WebPartPagesCW/DisposalRequestDashboard.aspx">
       <View List="Lists/DisposalRequestLibrary" BaseViewID="10" WebPartZoneID="DisposalRequestLibrary" WebPartOrder="0" >
         <![CDATA[
          <webParts>

@@ -59,6 +59,7 @@
     <None Include="Dashboards\DisposalRequestDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8bf86832-68ea-45d1-b7ca-0020531fdc80}</SharePointProjectItemId>
     </None>
+    <None Include="SharePointProjectItem.spdata" />
     <None Include="Silverlight\HTMLHostinCode.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>HTMLHostinCode.cs</LastGenOutput>
@@ -69,9 +70,6 @@
     </None>
     <None Include="Silverlight\SilverLightModule\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f35f89ba-9515-49db-81cb-a1d2c94e57ca}</SharePointProjectItemId>
-    </None>
-    <None Include="WebPartPages\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0ef191e5-7a62-4ff4-b3d2-c412b537f0d7}</SharePointProjectItemId>
     </None>
     <None Include="Features\CWDashboards\CWDashboards.feature">
       <FeatureId>{d02741c0-3c27-40d5-a779-6d96683b9dbd}</FeatureId>
@@ -91,6 +89,9 @@
     <None Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
+    </None>
+    <None Include="WebPartPagesCW\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4ef00c73-8bff-4e68-b475-c3cfbd290aeb}</SharePointProjectItemId>
     </None>
     <None Include="Webparts\DisposalRequestHost\DisposalRequestHost.webpart">
       <SubType>Designer</SubType>
@@ -113,13 +114,13 @@
     <Content Include="Silverlight\SilverLightModule\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="WebPartPages\Elements.xml" />
-    <Content Include="WebPartPages\WebPageTemplate_DisposalRequest.aspx" />
     <Content Include="Features\CWDashboards\CWDashboards.Template.xml">
       <DependentUpon>CWDashboards.feature</DependentUpon>
     </Content>
     <Content Include="Images\CWDashboards\button_background_gray.jpg" />
     <Content Include="Layouts\CWDashboards\CAS_CWDashboards.css" />
+    <Content Include="WebPartPagesCW\Elements.xml" />
+    <Content Include="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" />
     <Content Include="Webparts\DisposalRequestHost\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
