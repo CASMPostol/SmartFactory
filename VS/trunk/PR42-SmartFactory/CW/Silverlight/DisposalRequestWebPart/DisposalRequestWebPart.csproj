@@ -95,6 +95,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CommonDefinition.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\AssociationAttribute.cs" />
+    <Compile Include="Data\AssociationType.cs" />
+    <Compile Include="Data\ColumnAttribute.cs" />
+    <Compile Include="Data\Entities\Class1.cs" />
+    <Compile Include="Data\Entities\CustomsWarehouse.cs" />
+    <Compile Include="Data\Entities\CustomsWarehouseDisposalRowData.cs" />
+    <Compile Include="Data\DataAttribute.cs" />
+    <Compile Include="Data\Entities\CustomsWarehouseDisposalRowData.entity.cs" />
+    <Compile Include="Data\Element.cs" />
+    <Compile Include="Data\EntityState.cs" />
+    <Compile Include="Data\ITrackEntityState.cs" />
+    <Compile Include="Data\ITrackOriginalValues.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
