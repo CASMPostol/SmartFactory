@@ -24,7 +24,26 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
       // TODO: Complete member initialization
       this._lix = _lix;
     }
-    public string Batch { get; set; }
+    public string SKU
+    {
+      get { return GetSecondaryLookup<string>("CWL_CWDisposal2CWSKU_sec"); }
+    }
+    public string Batch
+    {
+      get { return GetSecondaryLookup<string>("CWL_CWDisposal2CWBatch_sec"); }
+    }
+    public string MassPerPackage
+    {
+      get { return GetSecondaryLookup<string>("MassPerPackage"); }
+    }
+    public string Units
+    {
+      get { return GetSecondaryLookup<string>("CWL_CWDisposal2CWUnits_sec"); }
+    }
+    private string GetSecondaryLookup<T>(string p)
+    {
+      return ((FieldLookupValue)_lix[p]).LookupValue;
+    }
     internal static PagedCollectionView GetDataContext(ListItemCollection itemsCollection)
     {
       ObservableCollection<CustomsWarehouseDisposalRowData> _oc = new ObservableCollection<CustomsWarehouseDisposalRowData>();
