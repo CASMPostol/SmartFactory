@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data"
     xmlns:System="clr-namespace:System;assembly=mscorlib" 
-    xmlns:Data="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data"  
     x:Class="CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.MainPage"
     mc:Ignorable="d"
     d:DesignHeight="400" d:DesignWidth="1200"
@@ -60,7 +59,7 @@
             <Setter Property="Opacity" Value="1"/>
         </Style>
     </UserControl.Resources>
-    <Grid HorizontalAlignment="Stretch" Background="#FF354B5F" Margin="5" d:DataContext="{d:DesignInstance Type=data:DisposalListBase}">
+    <Grid HorizontalAlignment="Stretch" Background="#FF354B5F" Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -81,13 +80,13 @@
                 </Style>
             </sdk:DataGrid.RowGroupHeaderStyles>
             <sdk:DataGrid.Columns>
-                <sdk:DataGridTextColumn Binding="{Binding FieldValues[CWL_CWDisposal2CWSKU_sec].LookupValue}" Header="Material" IsReadOnly="True"  />
-                <sdk:DataGridTextColumn Binding="{Binding FieldValues[SKUDescription]}" Header="Description" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding FieldValues[CWL_CWDisposal2CWBatch_sec].LookupValue}" Header="Batch" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding FieldValues[TotalStock]}" Header="Total stock" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding FieldValues[CWL_CWDisposal2CWMassPerPackage_sec].LookupValue}"  Header="Qty in package" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding FieldValues[CW_DeclaredNetMass]}" Header="Qty to clear" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding FieldValues[CW_AddedKg], Mode=TwoWay, UpdateSourceTrigger=Explicit}" Header="Qty to clear - added" IsReadOnly="False" CellStyle="{StaticResource QtyToClearSuggested}"/>
+                <sdk:DataGridTextColumn Binding="{Binding  SKU }" Header="Material" IsReadOnly="True"  />
+                <sdk:DataGridTextColumn Binding="{Binding SKUDescription}" Header="Description" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Batch}" Header="Batch" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding TotalStock}" Header="Total stock" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding MassPerPackage}"  Header="Qty in package" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding DeclaredNetMass}" Header="Qty to clear" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding AddedKg], Mode=TwoWay, UpdateSourceTrigger=Explicit}" Header="Qty to clear - added" IsReadOnly="False" CellStyle="{StaticResource QtyToClearSuggested}"/>
                 <sdk:DataGridTextColumn Binding="{Binding FieldValues[QtyToClearSum]}" Header="Qty to clear - sum" IsReadOnly="True"/>
                 <sdk:DataGridTextColumn Binding="{Binding FieldValues[QtyToClearSum]}" Header="Qty to clear - rounded" IsReadOnly="True"/>
                 <sdk:DataGridTextColumn Binding="{Binding FieldValues[RemainingOnStock]}" Header="Remaining on stock" IsReadOnly="True"/>
