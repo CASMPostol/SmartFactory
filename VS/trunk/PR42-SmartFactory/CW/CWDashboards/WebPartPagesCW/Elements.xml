@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <Module Name="WebPartPages">
-  <File Path="WebPartPages\WebPageTemplate_DisposalRequest.aspx" Url="WebPartPages/WebPageTemplate_DisposalRequest.aspx" />
+  <Module Name="WebPartPagesCW">
+  <File Path="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" Url="WebPartPagesCW/WebPageTemplate_DisposalRequest.aspx" />
 </Module>
 </Elements>
