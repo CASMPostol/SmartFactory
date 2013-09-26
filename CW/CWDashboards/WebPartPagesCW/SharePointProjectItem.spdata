@@ -3,5 +3,6 @@
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="WebPartPagesCW\" Type="ElementManifest" />
     <ProjectItemFile Source="WebPageTemplate_DisposalRequest.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_CWBook.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
   </Files>
 </ProjectItem>
