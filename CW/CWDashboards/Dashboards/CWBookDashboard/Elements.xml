@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="CWBookDashboard">
+    <File Path="WebPartPagesCW\WebPageTemplate_CWBook.aspx" Url="WebPartPagesCW/CWBookDashboard.aspx">
+      <View List="Lists/CustomsWarehouseList" BaseViewID="2" WebPartZoneID="CWBook" WebPartOrder="0" >
+        <![CDATA[
+         <webParts>
+         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+         <metaData>
+         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+         </metaData>
+         <data>
+         <properties>
+         <property name="Title" type="string">KSIĘGA SKŁADU CELNEGO</property>
+         <property name="TitleUrl" type="string">CWBookDashboard.aspx</property>
+         <property name="AllowConnect" type="bool">True</property>
+         </properties>
+         </data>
+         </webPart>
+         </webParts>
+         ]]>
+      </View> 
+      <View List="Lists/CustomsWarehouseList" BaseViewID="3" WebPartZoneID="CWBookAll" WebPartOrder="0" >
+        <![CDATA[
+         <webParts>
+         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+         <metaData>
+         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+         </metaData>
+         <data>
+         <properties>
+         <property name="Title" type="string">KSIĘGA SKŁADU CELNEGO - WPROWADZENIA</property>
+         <property name="TitleUrl" type="string">CWBookDashboard.aspx</property>
+         <property name="AllowConnect" type="bool">True</property>
+         </properties>
+         </data>
+         </webPart>
+         </webParts>
+         ]]>
+      </View>
+    </File>
+  </Module>
+</Elements>
