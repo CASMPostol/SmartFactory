@@ -14,6 +14,7 @@
 //</summary>
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
@@ -315,12 +316,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
       }
     }
     #endregion
-    internal static PagedCollectionView GetDataContext(ListItemCollection itemsCollection)
+
+    internal static PagedCollectionView GetDataContext(EntityList<CustomsWarehouseDisposalRowData> _list)
     {
-      ObservableCollection<CustomsWarehouseDisposalRowData> _oc = new ObservableCollection<CustomsWarehouseDisposalRowData>();
+      ObservableCollection<DisposalRequest> _oc = new ObservableCollection<DisposalRequest>();
       // Generate some task data and add it to the task list.
-      foreach (ListItem _lix in itemsCollection)
-        _oc.Add(new CustomsWarehouseDisposalRowData(_lix));
+      List<DisposalRequest> _data = GetDisposalRequestList(_list);
+      foreach (DisposalRequest _drx in _data)
+        _oc.Add(_drx);
       PagedCollectionView _return = new PagedCollectionView(_oc);
       //if (_return.CanGroup == true)
       //{
@@ -333,6 +336,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
         _return.SortDescriptions.Add(new SortDescription("Batch", ListSortDirection.Ascending));
       }
       return _return;
+    }
+
+    private static List<DisposalRequest> GetDisposalRequestList(EntityList<CustomsWarehouseDisposalRowData> _list)
+    {
+      throw new NotImplementedException();
     }
 
     #region backing fields
@@ -350,6 +358,5 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
     private double _remainingPackages;
     private double _packagesToClear;
     #endregion
-
   }
 }
