@@ -96,17 +96,34 @@
       <DependentUpon>CommonDefinition.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\AssociationAttribute.cs" />
+    <Compile Include="Data\AssociationChangedEventArgs.cs" />
     <Compile Include="Data\AssociationType.cs" />
+    <Compile Include="Data\BindingEditableObject.cs" />
+    <Compile Include="Data\ChangeConflictCollection.cs" />
+    <Compile Include="Data\ChoiceAttribute.cs" />
     <Compile Include="Data\ColumnAttribute.cs" />
+    <Compile Include="Data\ConflictMode.cs" />
+    <Compile Include="Data\ContentTypeAttribute.cs" />
+    <Compile Include="Data\DataContext.cs" />
+    <Compile Include="Data\DerivedEntityClassAttribute.cs" />
     <Compile Include="Data\Entities\CustomsWarehouse.cs" />
     <Compile Include="Data\Entities\CustomsWarehouseDisposalRowData.cs" />
     <Compile Include="Data\DataAttribute.cs" />
     <Compile Include="Data\Entities\CustomsWarehouseDisposalRowData.entity.cs" />
     <Compile Include="Data\Element.cs" />
     <Compile Include="Data\Entities\DisposalRequest.cs" />
+    <Compile Include="Data\EntityList.cs" />
+    <Compile Include="Data\EntityListData.cs" />
+    <Compile Include="Data\EntityRef.cs" />
+    <Compile Include="Data\EntitySet.cs" />
     <Compile Include="Data\EntityState.cs" />
     <Compile Include="Data\ITrackEntityState.cs" />
     <Compile Include="Data\ITrackOriginalValues.cs" />
+    <Compile Include="Data\ListAttribute.cs" />
+    <Compile Include="Data\MemberChangeConflict.cs" />
+    <Compile Include="Data\ObjectChangeConflict.cs" />
+    <Compile Include="Data\RefreshMode.cs" />
+    <Compile Include="Data\RemovedColumnAttribute.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
