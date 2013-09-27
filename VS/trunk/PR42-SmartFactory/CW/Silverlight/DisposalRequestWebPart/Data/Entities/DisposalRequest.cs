@@ -12,15 +12,19 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Data;
+using Microsoft.SharePoint.Client;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
 {
   /// <summary>
   /// DisposalRequest class
   /// </summary>
-  public class DisposalRequest : Element
+  public class DisposalRequest : BindingEditableObject
   {
 
     #region public
@@ -311,6 +315,25 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
       }
     }
     #endregion
+    internal static PagedCollectionView GetDataContext(ListItemCollection itemsCollection)
+    {
+      ObservableCollection<CustomsWarehouseDisposalRowData> _oc = new ObservableCollection<CustomsWarehouseDisposalRowData>();
+      // Generate some task data and add it to the task list.
+      foreach (ListItem _lix in itemsCollection)
+        _oc.Add(new CustomsWarehouseDisposalRowData(_lix));
+      PagedCollectionView _return = new PagedCollectionView(_oc);
+      //if (_return.CanGroup == true)
+      //{
+      //  // Group tasks by 
+      //  _return.GroupDescriptions.Add(new PropertyGroupDescription("Batch"));
+      //}
+      if (_return.CanSort == true)
+      {
+        // By default, sort by ProjectName.
+        _return.SortDescriptions.Add(new SortDescription("Batch", ListSortDirection.Ascending));
+      }
+      return _return;
+    }
 
     #region backing fields
     private string _sKU;

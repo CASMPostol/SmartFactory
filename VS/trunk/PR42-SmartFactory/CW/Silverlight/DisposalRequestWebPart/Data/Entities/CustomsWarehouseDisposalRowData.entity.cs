@@ -12,10 +12,9 @@ using System.Windows.Shapes;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
 {
-  internal partial class CustomsWarehouseDisposalRowData : Element, INotifyPropertyChanged, IEditableObject
+  internal partial class CustomsWarehouseDisposalRowData : BindingEditableObject
   {
 
-    private System.Nullable<double> _no;
     private string _sADDocumentNo;
     private System.Nullable<System.DateTime> _sADDate;
     private string _sKUDescription;
@@ -438,47 +437,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
     {
       get;
       set;
-    }
-
-    #region INotifyPropertyChanged Members
-    public event PropertyChangedEventHandler PropertyChanged;
-    #endregion
-
-    private bool m_Editing;
-    private CustomsWarehouseDisposalRowData temp_Task;
-
-    #region IEditableObject Members
-    public void BeginEdit()
-    {
-      if (m_Editing == false)
-      {
-        temp_Task = this.MemberwiseClone() as CustomsWarehouseDisposalRowData;
-        m_Editing = true;
-      }
-    }
-    public void CancelEdit()
-    {
-      if (!m_Editing)
-        return;
-      m_Editing = false;
-      throw new NotImplementedException();
-    }
-    public void EndEdit()
-    {
-      if (!m_Editing)
-        return;
-      temp_Task = null;
-      m_Editing = false;
-    }
-    #endregion
-
-    protected override void OnPropertyChanged(string propertyName)
-    {
-      if (PropertyChanged != null)
-      {
-        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-      }
-      base.OnPropertyChanged(propertyName);
     }
 
   }
