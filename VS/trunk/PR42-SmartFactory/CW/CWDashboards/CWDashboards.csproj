@@ -56,6 +56,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CommonDefinition1.cs</LastGenOutput>
     </None>
+    <None Include="Dashboards\CWBookDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b929c35f-5671-44b3-8ae1-8d9968d01895}</SharePointProjectItemId>
+    </None>
     <None Include="Dashboards\DisposalRequestDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8bf86832-68ea-45d1-b7ca-0020531fdc80}</SharePointProjectItemId>
     </None>
@@ -108,6 +111,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dashboards\CWBookDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Dashboards\DisposalRequestDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -120,6 +126,7 @@
     <Content Include="Images\CWDashboards\button_background_gray.jpg" />
     <Content Include="Layouts\CWDashboards\CAS_CWDashboards.css" />
     <Content Include="WebPartPagesCW\Elements.xml" />
+    <Content Include="WebPartPagesCW\WebPageTemplate_CWBook.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" />
     <Content Include="Webparts\DisposalRequestHost\Elements.xml" />
   </ItemGroup>

@@ -29,8 +29,8 @@
         <tr>
             <td valign="top">
                         <WebPartPages:WebpartZone
-                        ID="CWBook_All" runat="server"
-                        Title="CWBook_All Web Part Zone"
+                        ID="CWBookAll" runat="server"
+                        Title="CWBook All Web Part Zone"
                         FrameType="TitleBarOnly" />
             </td>
         </tr>
