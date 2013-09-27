@@ -80,17 +80,17 @@
                 </Style>
             </sdk:DataGrid.RowGroupHeaderStyles>
             <sdk:DataGrid.Columns>
-                <sdk:DataGridTextColumn Binding="{Binding  SKU }" Header="Material" IsReadOnly="True"  />
-                <sdk:DataGridTextColumn Binding="{Binding SKUDescription}" Header="Description" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding Batch}" Header="Batch" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding TotalStock}" Header="Total stock" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding MassPerPackage}"  Header="Qty in package" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding DeclaredNetMass}" Header="Qty to clear" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding AddedKg], Mode=TwoWay, UpdateSourceTrigger=Explicit}" Header="Qty to clear - added" IsReadOnly="False" CellStyle="{StaticResource QtyToClearSuggested}"/>
-                <sdk:DataGridTextColumn Binding="{Binding FieldValues[QtyToClearSum]}" Header="Qty to clear - sum" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding FieldValues[QtyToClearSum]}" Header="Qty to clear - rounded" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding FieldValues[RemainingOnStock]}" Header="Remaining on stock" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding FieldValues[CWL_CWDisposal2CWUnits_sec].LookupValue}" Header="Units" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding SKU, FallbackValue=N/A }" Header="Material" IsReadOnly="True"  />
+                <sdk:DataGridTextColumn Binding="{Binding SKUDescription, FallbackValue=N/A}" Header="Description" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Batch, FallbackValue=N/A}" Header="Batch" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding TotalStock, FallbackValue=N/A}" Header="Total stock" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding MassPerPackage, FallbackValue=N/A}"  Header="Qty in package" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding DeclaredNetMass, FallbackValue=N/A}" Header="Qty to clear" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding AddedKg, FallbackValue=N/A], Mode=TwoWay, UpdateSourceTrigger=Explicit}" Header="Qty to clear - added" IsReadOnly="False" CellStyle="{StaticResource QtyToClearSuggested}"/>
+                <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSum, FallbackValue=N/A}" Header="Qty to clear-sum" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSumRounded, FallbackValue=N/A}" Header="Qty to clear-rounded" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding RemainingOnStock, FallbackValue=N/A}" Header="Remaining on stock" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Units, FallbackValue=N/A}" Header="Units" IsReadOnly="True"/>
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2">
