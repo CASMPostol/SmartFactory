@@ -37,17 +37,17 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       PagedCollectionView _npc = new PagedCollectionView(new Data.Entities.DisposalRequestObservable());
       _npc.PropertyChanged += RequestCollection_PropertyChanged;
       _npc.CollectionChanged += RequestCollection_CollectionChanged;
-      if (_npc.CanGroup == true)
-      {
-        // Group by 
-        _npc.GroupDescriptions.Add(new PropertyGroupDescription("Batch"));
-      }
-      if (_npc.CanSort == true)
-      {
-        // By default, sort by Batch.
-        _npc.SortDescriptions.Add(new SortDescription("Batch", ListSortDirection.Ascending));
-      }
       RequestCollection = _npc;
+      //if (_npc.CanGroup == true)
+      //{
+      //  // Group by 
+      //  _npc.GroupDescriptions.Add(new PropertyGroupDescription("Batch"));
+      //}
+      //if (_npc.CanSort == true)
+      //{
+      //  // By default, sort by Batch.
+      //  _npc.SortDescriptions.Add(new SortDescription("Batch", ListSortDirection.Ascending));
+      //}
       m_Singleton = this;
     }
     #endregion
