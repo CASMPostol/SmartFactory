@@ -162,6 +162,8 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">1</RowLimit>
         <ViewFields>
+          <FieldRef Name="CWL_CW2ConsentTitle" />
+          <FieldRef Name="CWL_CW2ConsentDate_sec" />
           <FieldRef Name="DocumentNo" />
           <FieldRef Name="CustomsDebtDate" />
           <FieldRef Name="TobaccoName" />
