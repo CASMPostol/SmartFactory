@@ -6,99 +6,101 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data"
     xmlns:System="clr-namespace:System;assembly=mscorlib" 
+    xmlns:local="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart" 
     x:Class="CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.MainPage"
     mc:Ignorable="d"
     d:DesignHeight="400" d:DesignWidth="1200"
      Loaded="UserControl_Loaded">
     <UserControl.Resources>
+    	<local:MainPageData x:Key="MainPageDataDataSource" d:IsDataSource="True"/>
         <Style x:Key="QtyToClearSuggested" TargetType="sdk:DataGridCell">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <SolidColorBrush Color="#FFDCEEF4" Opacity="0.5"/>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-            <Setter Property="IsTabStop" Value="False"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="sdk:DataGridCell">
-                        <Grid x:Name="Root" Background="{TemplateBinding Background}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CurrentStates">
-                                    <VisualState x:Name="Regular"/>
-                                    <VisualState x:Name="Current">
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisual"/>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                                <VisualStateGroup x:Name="ValidationStates">
-                                    <VisualState x:Name="Valid"/>
-                                    <VisualState x:Name="Invalid">
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="InvalidVisualElement"/>
-                                            <ColorAnimation Duration="0" To="#FFFFFFFF" Storyboard.TargetProperty="(Fill).Color" Storyboard.TargetName="FocusVisual"/>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Rectangle x:Name="FocusVisual" Fill="#66FFFFFF" HorizontalAlignment="Stretch" IsHitTestVisible="false" Opacity="0" Stroke="#FF6DBDD1" StrokeThickness="1" VerticalAlignment="Stretch"/>
-                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            <Rectangle x:Name="InvalidVisualElement" HorizontalAlignment="Stretch" IsHitTestVisible="False" Opacity="0" Stroke="#FFDC000C" StrokeThickness="1" VerticalAlignment="Stretch"/>
-                            <Rectangle x:Name="RightGridLine" Grid.Column="1" VerticalAlignment="Stretch" Width="1"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Opacity" Value="1"/>
+        	<Setter Property="Background">
+        		<Setter.Value>
+        			<SolidColorBrush Color="#FFDCEEF4" Opacity="0.5"/>
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        	<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        	<Setter Property="IsTabStop" Value="False"/>
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="sdk:DataGridCell">
+        				<Grid x:Name="Root" Background="{TemplateBinding Background}">
+        					<Grid.ColumnDefinitions>
+        						<ColumnDefinition/>
+        						<ColumnDefinition Width="Auto"/>
+        					</Grid.ColumnDefinitions>
+        					<VisualStateManager.VisualStateGroups>
+        						<VisualStateGroup x:Name="CurrentStates">
+        							<VisualState x:Name="Regular"/>
+        							<VisualState x:Name="Current">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisual"/>
+        								</Storyboard>
+        							</VisualState>
+        						</VisualStateGroup>
+        						<VisualStateGroup x:Name="ValidationStates">
+        							<VisualState x:Name="Valid"/>
+        							<VisualState x:Name="Invalid">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="InvalidVisualElement"/>
+        									<ColorAnimation Duration="0" To="#FFFFFFFF" Storyboard.TargetProperty="(Fill).Color" Storyboard.TargetName="FocusVisual"/>
+        								</Storyboard>
+        							</VisualState>
+        						</VisualStateGroup>
+        					</VisualStateManager.VisualStateGroups>
+        					<Rectangle x:Name="FocusVisual" Fill="#66FFFFFF" HorizontalAlignment="Stretch" IsHitTestVisible="false" Opacity="0" Stroke="#FF6DBDD1" StrokeThickness="1" VerticalAlignment="Stretch"/>
+        					<ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+        					<Rectangle x:Name="InvalidVisualElement" HorizontalAlignment="Stretch" IsHitTestVisible="False" Opacity="0" Stroke="#FFDC000C" StrokeThickness="1" VerticalAlignment="Stretch"/>
+        					<Rectangle x:Name="RightGridLine" Grid.Column="1" VerticalAlignment="Stretch" Width="1"/>
+        				</Grid>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="Foreground" Value="Black"/>
+        	<Setter Property="Opacity" Value="1"/>
         </Style>
     </UserControl.Resources>
-    <Grid HorizontalAlignment="Stretch" Background="#FF354B5F" Margin="5">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <sdk:Label x:Name="x_LabelHeader" Content="Disposal request content:" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="2" Foreground="White"/>
-        <sdk:DataGrid x:Name="x_DataGridListView" VerticalAlignment="Top" AutoGenerateColumns="False" Background="#00000000" Grid.Row="1" >
-            <sdk:DataGrid.CanUserReorderColumns >
-                <System:Boolean>true</System:Boolean>
-            </sdk:DataGrid.CanUserReorderColumns>
-            <sdk:DataGrid.RowGroupHeaderStyles>
-                <!-- Style for groups at top level -->
-                <Style TargetType="sdk:DataGridRowGroupHeader">
-                    <Setter Property="PropertyNameVisibility" Value="Collapsed" />
-                    <Setter Property="Background" Value="#FF112255" />
-                    <Setter Property="Foreground" Value="#FFEEEEEE" />
-                    <Setter Property="SublevelIndent" Value="15" />
-                </Style>
-            </sdk:DataGrid.RowGroupHeaderStyles>
-            <sdk:DataGrid.Columns>
-                <sdk:DataGridTextColumn Binding="{Binding SKU, FallbackValue=N/A }" Header="Material" IsReadOnly="True"  />
-                <sdk:DataGridTextColumn Binding="{Binding SKUDescription, FallbackValue=N/A}" Header="Description" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding Batch, FallbackValue=N/A}" Header="Batch" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding TotalStock, FallbackValue=N/A}" Header="Total stock" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding MassPerPackage, FallbackValue=N/A}"  Header="Qty in package" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding DeclaredNetMass, FallbackValue=N/A}" Header="Qty to clear" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding AddedKg, FallbackValue=N/A], Mode=TwoWay, UpdateSourceTrigger=Explicit}" Header="Qty to clear - added" IsReadOnly="False" CellStyle="{StaticResource QtyToClearSuggested}"/>
-                <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSum, FallbackValue=N/A}" Header="Qty to clear-sum" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSumRounded, FallbackValue=N/A}" Header="Qty to clear-rounded" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding RemainingOnStock, FallbackValue=N/A}" Header="Remaining on stock" IsReadOnly="True"/>
-                <sdk:DataGridTextColumn Binding="{Binding Units, FallbackValue=N/A}" Header="Units" IsReadOnly="True"/>
-            </sdk:DataGrid.Columns>
-        </sdk:DataGrid>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2">
-            <Button x:Name="x_ButtonAddNew" Content="Add new" Style="{StaticResource ButtonStyle}" Click="x_ButtonAddNew_Click"/>
-            <Button x:Name="x_ButtonEndOfOgl" Content="End of OGL" Style="{StaticResource ButtonStyle}" Click="x_ButtonAddNew_Click"/>
-            <Button x:Name="x_ButtonEndofBatch" Content="End of Batch" Style="{StaticResource ButtonStyle}" Click="x_ButtonEndofBatch_Click"/>
-            <Button x:Name="x_ButtonDelete" Content="Delete" Style="{StaticResource ButtonStyle}" Click="x_ButtonDelete_Click"/>
-            <Button x:Name="x_ButtonSave" Content="Save" Style="{StaticResource ButtonStyle}" Click="x_ButtonSave_Click"/>
-        </StackPanel>
-    </Grid>
+	<Grid HorizontalAlignment="Stretch" Background="#FF354B5F" Margin="5" DataContext="{Binding Source={StaticResource MainPageDataDataSource}}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<sdk:Label x:Name="x_LabelHeader" Content="{Binding HeaderLabel, FallbackValue=N/A, TargetNullValue=Is null}" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="2" Foreground="White"/>
+		<sdk:DataGrid x:Name="x_DataGridListView" VerticalAlignment="Top" AutoGenerateColumns="False" Background="#00000000" Grid.Row="1" ItemsSource="{Binding RequestCollection}" >
+			<sdk:DataGrid.CanUserReorderColumns >
+				<System:Boolean>true</System:Boolean>
+			</sdk:DataGrid.CanUserReorderColumns>
+			<sdk:DataGrid.RowGroupHeaderStyles>
+				<!-- Style for groups at top level -->
+				<Style TargetType="sdk:DataGridRowGroupHeader">
+					<Setter Property="PropertyNameVisibility" Value="Collapsed" />
+					<Setter Property="Background" Value="#FF112255" />
+					<Setter Property="Foreground" Value="#FFEEEEEE" />
+					<Setter Property="SublevelIndent" Value="15" />
+				</Style>
+			</sdk:DataGrid.RowGroupHeaderStyles>
+			<sdk:DataGrid.Columns>
+				<sdk:DataGridTextColumn Binding="{Binding SKU, FallbackValue=N/A}" Header="Material" IsReadOnly="True"  />
+				<sdk:DataGridTextColumn Binding="{Binding SKUDescription, FallbackValue=N/A}" Header="Description" IsReadOnly="True"/>
+				<sdk:DataGridTextColumn Binding="{Binding Batch, FallbackValue=N/A}" Header="Batch" IsReadOnly="True"/>
+				<sdk:DataGridTextColumn Binding="{Binding TotalStock, FallbackValue=N/A}" Header="Total stock" IsReadOnly="True"/>
+				<sdk:DataGridTextColumn Binding="{Binding MassPerPackage, FallbackValue=N/A}"  Header="Qty in package" IsReadOnly="True"/>
+				<sdk:DataGridTextColumn Binding="{Binding DeclaredNetMass, FallbackValue=N/A}" Header="Qty to clear" IsReadOnly="True"/>
+				<sdk:DataGridTextColumn Binding="{Binding AddedKg, FallbackValue=N/A], Mode=TwoWay, UpdateSourceTrigger=Explicit}" Header="Qty to clear - added" IsReadOnly="False" CellStyle="{StaticResource QtyToClearSuggested}"/>
+				<sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSum, FallbackValue=N/A}" Header="Qty to clear-sum" IsReadOnly="True"/>
+				<sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSumRounded, FallbackValue=N/A}" Header="Qty to clear-rounded" IsReadOnly="True"/>
+				<sdk:DataGridTextColumn Binding="{Binding RemainingOnStock, FallbackValue=N/A}" Header="Remaining on stock" IsReadOnly="True"/>
+				<sdk:DataGridTextColumn Binding="{Binding Units, FallbackValue=N/A}" Header="Units" IsReadOnly="True"/>
+			</sdk:DataGrid.Columns>
+		</sdk:DataGrid>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2">
+			<Button x:Name="x_ButtonAddNew" Content="Add new" Style="{StaticResource ButtonStyle}" Click="x_ButtonAddNew_Click"/>
+			<Button x:Name="x_ButtonEndOfOgl" Content="End of OGL" Style="{StaticResource ButtonStyle}" Click="x_ButtonAddNew_Click"/>
+			<Button x:Name="x_ButtonEndofBatch" Content="End of Batch" Style="{StaticResource ButtonStyle}" Click="x_ButtonEndofBatch_Click"/>
+			<Button x:Name="x_ButtonDelete" Content="Delete" Style="{StaticResource ButtonStyle}" Click="x_ButtonDelete_Click"/>
+			<Button x:Name="x_ButtonSave" Content="Save" Style="{StaticResource ButtonStyle}" Click="x_ButtonSave_Click"/>
+		</StackPanel>
+	</Grid>
 </UserControl>
