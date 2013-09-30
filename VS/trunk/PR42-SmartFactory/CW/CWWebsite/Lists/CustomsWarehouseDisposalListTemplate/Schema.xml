@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="CustomsWarehouseDisposalListTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/CustomsWarehouseDisposalListTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/" EnableContentTypes="TRUE">
+<List xmlns:ows="Microsoft SharePoint" Title="CustomsWarehouseDisposalListTemplate" VersioningEnabled="TRUE" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/CustomsWarehouseDisposalListTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/" EnableContentTypes="TRUE">
   <MetaData>
     <ContentTypes>
       <ContentType ID="0x0100809C8CF50E9E4E97B2809D1CD4C3F14F" Name="CustomsWarehouseDisposal" Group="CAS Smart Factory Customs Warehouse" Description="Customs Warehouse Disposal Content Type" Overwrite="TRUE" Inherits="TRUE">
@@ -159,6 +159,36 @@
           <FieldRef Name="Archival" />
           <FieldRef Name="CWL_CWDisposal2DisposalRequestLibraryID" />
           <FieldRef Name="CWL_CWDisposal2CustomsWarehouseID" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Customs Warehouse Disposals" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="CustomsWarehouseDisposals.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="No" />
+          <FieldRef Name="SADDocumentNo" />
+          <FieldRef Name="CWL_CWDisposal2CWDocumentNo_sec" />
+          <FieldRef Name="SADDate" />
+          <FieldRef Name="CWL_CWDisposal2CWTobaccoName_sec" />
+          <FieldRef Name="CW_SettledNetMass" />
+          <FieldRef Name="CW_SettledGrossMass" />
+          <FieldRef Name="TobaccoValue" />
+          <FieldRef Name="CWL_CWDisposal2CWCurrency_sec" />
+          <FieldRef Name="CW_PackageToClear" />
+          <FieldRef Name="CW_Wz3" />
+          <FieldRef Name="CW_RemainingPackage" />        
+          <FieldRef Name="CWL_CWDisposal2PCNPCN_sec" />
+          <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
           <OrderBy>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="ClearenceDashboard">
-    <File Path="WebPartPages\WebPageTemplate_Clearence.aspx" Url="WebPartPages/ClearenceDashboard.aspx">
+    <File Path="WebPartPages\WebPageTemplate_Clearence.aspx" Url="WebPartPages/ClearenceDashboard.aspx" NavBarHome="True">
       <View List="Lists/ClearenceList" BaseViewID="2" WebPartZoneID="Clearence" WebPartOrder="0" >
         <![CDATA[
          <webParts>
