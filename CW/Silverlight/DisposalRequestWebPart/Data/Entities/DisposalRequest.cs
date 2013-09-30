@@ -23,11 +23,21 @@ using Microsoft.SharePoint.Client;
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
 {
   /// <summary>
-  /// DisposalRequest class
+  /// DisposalRequest class 
   /// </summary>
   public class DisposalRequest : BindingEditableObject
   {
 
+    public DisposalRequest()
+    {
+      Disposals = new ObservableCollection<CustomsWarehouseDisposalRowData>();
+    }
+
+    //public DisposalRequest(System.Linq.IGrouping<string, CustomsWarehouseDisposalRowData> _grx)
+    //{
+    //  // TODO: Complete member initialization
+    //  this._grx = _grx;
+    //}
     #region public
     /// <summary>
     /// Gets or sets the SKU.
@@ -317,30 +327,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
     }
     #endregion
 
-    internal static PagedCollectionView GetDataContext(EntityList<CustomsWarehouseDisposalRowData> _list)
+    private ObservableCollection<CustomsWarehouseDisposalRowData>  b_Disposals;
+    internal ObservableCollection<CustomsWarehouseDisposalRowData> Disposals
     {
-      ObservableCollection<DisposalRequest> _oc = new ObservableCollection<DisposalRequest>();
-      // Generate some task data and add it to the task list.
-      List<DisposalRequest> _data = GetDisposalRequestList(_list);
-      foreach (DisposalRequest _drx in _data)
-        _oc.Add(_drx);
-      PagedCollectionView _return = new PagedCollectionView(_oc);
-      //if (_return.CanGroup == true)
-      //{
-      //  // Group tasks by 
-      //  _return.GroupDescriptions.Add(new PropertyGroupDescription("Batch"));
-      //}
-      if (_return.CanSort == true)
-      {
-        // By default, sort by ProjectName.
-        _return.SortDescriptions.Add(new SortDescription("Batch", ListSortDirection.Ascending));
-      }
-      return _return;
-    }
-
-    private static List<DisposalRequest> GetDisposalRequestList(EntityList<CustomsWarehouseDisposalRowData> _list)
-    {
-      throw new NotImplementedException();
+      get { return b_Disposals; }
+      set { b_Disposals = value; }
     }
 
     #region backing fields
@@ -357,6 +348,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
     private string _units;
     private double _remainingPackages;
     private double _packagesToClear;
+    private System.Linq.IGrouping<string, CustomsWarehouseDisposalRowData> _grx;
     #endregion
+
+    internal void GetDataContext(CustomsWarehouseDisposalRowData _cwdrdx)
+    {
+      Disposals.Add(_cwdrdx);
+      //TODO Calculate content;
+    }
   }
 }
