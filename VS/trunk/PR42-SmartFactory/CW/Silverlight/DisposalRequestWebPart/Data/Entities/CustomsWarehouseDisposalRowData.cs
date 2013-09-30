@@ -40,28 +40,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
     {
       get { return GetSecondaryLookup<string>("CWL_CWDisposal2CWUnits_sec"); }
     }
+
     private string GetSecondaryLookup<T>(string p)
     {
       return ((FieldLookupValue)_lix[p]).LookupValue;
-    }
-    internal static PagedCollectionView GetDataContext(ListItemCollection itemsCollection)
-    {
-      ObservableCollection<CustomsWarehouseDisposalRowData> _oc = new ObservableCollection<CustomsWarehouseDisposalRowData>();
-      // Generate some task data and add it to the task list.
-      foreach (ListItem _lix in itemsCollection)
-        _oc.Add(new CustomsWarehouseDisposalRowData(_lix));
-      PagedCollectionView _return = new PagedCollectionView(_oc);
-      //if (_return.CanGroup == true)
-      //{
-      //  // Group tasks by 
-      //  _return.GroupDescriptions.Add(new PropertyGroupDescription("Batch"));
-      //}
-      if (_return.CanSort == true)
-      {
-        // By default, sort by ProjectName.
-        _return.SortDescriptions.Add(new SortDescription("Batch", ListSortDirection.Ascending));
-      }
-      return _return;
     }
   }
 }

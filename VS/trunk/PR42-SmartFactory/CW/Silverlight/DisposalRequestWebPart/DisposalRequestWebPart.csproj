@@ -85,6 +85,12 @@
     <Compile Include="AddNew.xaml.cs">
       <DependentUpon>AddNew.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\DisposalRequestObservable.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
     <None Include="CommonDefinition.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CommonDefinition1.cs</LastGenOutput>
@@ -106,7 +112,6 @@
     <Compile Include="Data\ContentTypeAttribute.cs" />
     <Compile Include="Data\DataContext.cs" />
     <Compile Include="Data\DerivedEntityClassAttribute.cs" />
-    <Compile Include="Data\Entities\CustomsWarehouse.cs" />
     <Compile Include="Data\Entities\CustomsWarehouseDisposalRowData.cs" />
     <Compile Include="Data\DataAttribute.cs" />
     <Compile Include="Data\Entities\CustomsWarehouseDisposalRowData.entity.cs" />
@@ -127,7 +132,11 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MainPageData.cs" />
+    <None Include="Properties\AssemblyInfo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -155,6 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SampleData\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
