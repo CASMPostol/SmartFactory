@@ -1,5 +1,6 @@
 ﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
              x:Class="CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.App"
              >
     <Application.Resources>
@@ -7,6 +8,53 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ResourceDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+        	<Style x:Key="LabelStyle" TargetType="sdk:Label">
+        		<Setter Property="IsTabStop" Value="False"/>
+        		<Setter Property="HorizontalContentAlignment" Value="Left"/>
+        		<Setter Property="Template">
+        			<Setter.Value>
+        				<ControlTemplate TargetType="sdk:Label">
+        					<Grid>
+        						<VisualStateManager.VisualStateGroups>
+        							<VisualStateGroup x:Name="CommonStates">
+        								<VisualState x:Name="Normal"/>
+        								<VisualState x:Name="Disabled"/>
+        							</VisualStateGroup>
+        							<VisualStateGroup x:Name="ValidationStates">
+        								<VisualState x:Name="Valid"/>
+        								<VisualState x:Name="Invalid">
+        									<Storyboard>
+        										<ObjectAnimationUsingKeyFrames Duration="0:0:1.5" Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentControl">
+        											<DiscreteObjectKeyFrame KeyTime="0">
+        												<DiscreteObjectKeyFrame.Value>
+        													<SolidColorBrush Color="Red"/>
+        												</DiscreteObjectKeyFrame.Value>
+        											</DiscreteObjectKeyFrame>
+        										</ObjectAnimationUsingKeyFrames>
+        									</Storyboard>
+        								</VisualState>
+        							</VisualStateGroup>
+        							<VisualStateGroup x:Name="RequiredStates">
+        								<VisualState x:Name="NotRequired"/>
+        								<VisualState x:Name="Required">
+        									<Storyboard>
+        										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="FontWeight" Storyboard.TargetName="ContentControl">
+        											<DiscreteObjectKeyFrame KeyTime="0" Value="SemiBold"/>
+        										</ObjectAnimationUsingKeyFrames>
+        									</Storyboard>
+        								</VisualState>
+        							</VisualStateGroup>
+        						</VisualStateManager.VisualStateGroups>
+        						<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="2" Padding="{TemplateBinding Padding}">
+        							<ContentControl x:Name="ContentControl" Cursor="{TemplateBinding Cursor}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" FontWeight="{TemplateBinding FontWeight}" FontStretch="{TemplateBinding FontStretch}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsTabStop="False" VerticalAlignment="{TemplateBinding VerticalAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+        						</Border>
+        					</Grid>
+        				</ControlTemplate>
+        			</Setter.Value>
+        		</Setter>
+        		<Setter Property="Foreground" Value="#FFEBF0F9"/>
+        		<Setter Property="Background" Value="{x:Null}"/>
+        	</Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
