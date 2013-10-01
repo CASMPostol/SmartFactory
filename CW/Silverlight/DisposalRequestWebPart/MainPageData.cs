@@ -38,16 +38,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       _npc.PropertyChanged += RequestCollection_PropertyChanged;
       _npc.CollectionChanged += RequestCollection_CollectionChanged;
       RequestCollection = _npc;
-      //if (_npc.CanGroup == true)
-      //{
-      //  // Group by 
-      //  _npc.GroupDescriptions.Add(new PropertyGroupDescription("Batch"));
-      //}
-      //if (_npc.CanSort == true)
-      //{
-      //  // By default, sort by Batch.
-      //  _npc.SortDescriptions.Add(new SortDescription("Batch", ListSortDirection.Ascending));
-      //}
       m_Singleton = this;
     }
     #endregion
@@ -125,6 +115,16 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         ((DisposalRequestObservable)this.RequestCollection.SourceCollection).GetDataContext(_list);
         m_Edited = false;
         UpdateHeader();
+        //if (_npc.CanGroup == true)
+        //{
+        //  // Group by 
+        //  _npc.GroupDescriptions.Add(new PropertyGroupDescription("Batch"));
+        //}
+        if (this.RequestCollection.CanSort == true)
+        {
+          // By default, sort by Batch.
+          this.RequestCollection.SortDescriptions.Add(new SortDescription("Batch", ListSortDirection.Ascending));
+        }
       }
       catch (Exception ex)
       {

@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,18 +33,28 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
       IEnumerable<IGrouping<string, CustomsWarehouseDisposalRowData>> _requests = _list.ToList<CustomsWarehouseDisposalRowData>().GroupBy<CustomsWarehouseDisposalRowData, string>(x => x.Batch);
       foreach (IGrouping<string, CustomsWarehouseDisposalRowData> _grx in _requests)
       {
-        DisposalRequest _oc = new DisposalRequest();
-        foreach (CustomsWarehouseDisposalRowData _cwdrdx in _grx)
+        CustomsWarehouseDisposalRowData _first = _grx.First<CustomsWarehouseDisposalRowData>();
+        DisposalRequest _oc = new DisposalRequest()
         {
+          AddedKg = 0,
+          DeclaredNetMass = 0,
+          Batch = _first.Batch,
+          MassPerPackage = 0,
+          PackagesToClear = 0,
+          QuantityyToClearSum = 0,
+          QuantityyToClearSumRounded = 0,
+          RemainingOnStock = 0,
+          RemainingPackages = 0,
+          SKUDescription = _first.SKUDescription,
+          Title = "Title TBD",
+          TotalStock = 0,
+          Units = _first.Units,
+          SKU = _first.SKU,
+        };
+        foreach (CustomsWarehouseDisposalRowData _cwdrdx in _grx)
           _oc.GetDataContext(_cwdrdx);
-        }
-        //TODO get data from _grx
         this.Add(_oc);
       }
-    }
-    private static List<DisposalRequest> GetDisposalRequestList(EntityList<CustomsWarehouseDisposalRowData> _list)
-    {
-      throw new NotImplementedException();
     }
   }
 }
