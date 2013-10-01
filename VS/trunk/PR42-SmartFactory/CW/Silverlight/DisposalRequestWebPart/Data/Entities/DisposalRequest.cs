@@ -327,12 +327,25 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
     }
     #endregion
 
-    private ObservableCollection<CustomsWarehouseDisposalRowData>  b_Disposals;
+    #region internal
     internal ObservableCollection<CustomsWarehouseDisposalRowData> Disposals
     {
       get { return b_Disposals; }
       set { b_Disposals = value; }
     }
+    internal void GetDataContext(CustomsWarehouseDisposalRowData rowData)
+    {
+      DeclaredNetMass += rowData.CW_DeclaredNetMass.Value;
+      AddedKg += rowData.CW_AddedKg.Value;
+      QuantityyToClearSum += rowData.CW_SettledNetMass.Value;
+      QuantityyToClearSumRounded = QuantityyToClearSum;
+      PackagesToClear = Math.Round(QuantityyToClearSumRounded / MassPerPackage, 0);
+      Update();
+      Disposals.Add(rowData);
+    }
+    #endregion
+
+    #region private
 
     #region backing fields
     private string _sKU;
@@ -348,13 +361,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities
     private string _units;
     private double _remainingPackages;
     private double _packagesToClear;
-    private System.Linq.IGrouping<string, CustomsWarehouseDisposalRowData> _grx;
+    private ObservableCollection<CustomsWarehouseDisposalRowData> b_Disposals;
     #endregion
 
-    internal void GetDataContext(CustomsWarehouseDisposalRowData _cwdrdx)
+    private void Update()
     {
-      Disposals.Add(_cwdrdx);
-      //TODO Calculate content;
+
     }
+
+    #endregion
+
   }
 }
