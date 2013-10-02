@@ -196,7 +196,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       m_Edited = true;
       UpdateHeader();
     }
-    void RequestCollection_PropertyChanged( object sender, PropertyChangedEventArgs e )
+    private void RequestCollection_PropertyChanged( object sender, PropertyChangedEventArgs e )
     {
       m_Edited = true;
       UpdateHeader();
