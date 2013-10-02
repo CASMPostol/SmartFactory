@@ -18,7 +18,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
-using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.Entities;
+using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq;
 using Microsoft.SharePoint.Client;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
@@ -35,7 +35,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     /// </summary>
     public MainPageData()
     {
-      PagedCollectionView _npc = new PagedCollectionView( new Data.Entities.DisposalRequestObservable() );
+      PagedCollectionView _npc = new PagedCollectionView( new DisposalRequestObservable() );
       _npc.PropertyChanged += RequestCollection_PropertyChanged;
       _npc.CollectionChanged += RequestCollection_CollectionChanged;
       RequestCollection = _npc;
@@ -118,7 +118,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 
     private static MainPageData m_Singleton = null;
     private bool m_Edited = false;
-    private DataContext m_DataContext;
+    private Entities m_DataContext;
     /// <summary>
     /// Called whena property value changes.
     /// </summary>
@@ -136,9 +136,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         Log = "GetData starting";
         UpdateHeader();
         Log = String.Format( "GetData new DataContext for url={0}.", url );
-        m_DataContext = new DataContext( (string)url );
+        m_DataContext = new Entities( (string)url );
         Log = "GetData GetList " + CommonDefinition.CustomsWarehouseDisposalTitle;
-        EntityList<Data.Entities.CustomsWarehouseDisposalRowData> _list = m_DataContext.GetList<Data.Entities.CustomsWarehouseDisposalRowData>( CommonDefinition.CustomsWarehouseDisposalTitle, CamlQuery.CreateAllItemsQuery() );
+        EntityList<CustomsWarehouseDisposal> _list = m_DataContext.CustomsWarehouseDisposal;
         Deployment.Current.Dispatcher.BeginInvoke( () =>
         {
           Log = "GetData DisposalRequestObservable.GetDataContext  " + CommonDefinition.CustomsWarehouseDisposalTitle;
