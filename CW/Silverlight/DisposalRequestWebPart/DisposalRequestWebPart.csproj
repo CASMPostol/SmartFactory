@@ -85,7 +85,8 @@
     <Compile Include="AddNew.xaml.cs">
       <DependentUpon>AddNew.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data\Entities\DisposalRequestObservable.cs" />
+    <Compile Include="Linq\DisposalRequest.cs" />
+    <Compile Include="Linq\DisposalRequestObservable.cs" />
     <Compile Include="Linq\Entities.cs" />
     <Compile Include="Linq\Element.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -107,7 +108,6 @@
     <Compile Include="Data\AssociationAttribute.cs" />
     <Compile Include="Data\AssociationChangedEventArgs.cs" />
     <Compile Include="Data\AssociationType.cs" />
-    <Compile Include="Data\BindingEditableObject.cs" />
     <Compile Include="Data\ChangeConflictCollection.cs" />
     <Compile Include="Data\ChoiceAttribute.cs" />
     <Compile Include="Data\ColumnAttribute.cs" />
@@ -115,11 +115,8 @@
     <Compile Include="Data\ContentTypeAttribute.cs" />
     <Compile Include="Data\DataContext.cs" />
     <Compile Include="Data\DerivedEntityClassAttribute.cs" />
-    <Compile Include="Data\Entities\CustomsWarehouseDisposalRowData.cs" />
     <Compile Include="Data\DataAttribute.cs" />
-    <Compile Include="Data\Entities\CustomsWarehouseDisposalRowData.entity.cs" />
     <Compile Include="Data\Element.cs" />
-    <Compile Include="Data\Entities\DisposalRequest.cs" />
     <Compile Include="Data\EntityList.cs" />
     <Compile Include="Data\EntityListData.cs" />
     <Compile Include="Data\EntityRef.cs" />

@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 #pragma warning disable 1591
-namespace CAS.SmartFactory.CW.DiposalRequestWebPart.Linq {
+namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq {
 	using System;
   using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 	
