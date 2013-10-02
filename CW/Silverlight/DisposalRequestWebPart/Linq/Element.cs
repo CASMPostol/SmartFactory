@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   /// <summary>
   /// partial class Entities
   /// </summary>
-  public partial class Entities: IEditableObject
+  public partial class Element: IEditableObject
   {
 
     #region IEditableObject Members

@@ -361,7 +361,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private string _units;
     private double _remainingPackages;
     private double _packagesToClear;
-    private ObservableCollection<CustomsWarehouseDisposalRowData> b_Disposals;
+    private ObservableCollection<CustomsWarehouseDisposal> b_Disposals;
     #endregion
 
     private void Update()
