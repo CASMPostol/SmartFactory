@@ -12,6 +12,7 @@
     d:DesignHeight="400" d:DesignWidth="1200"
      Loaded="UserControl_Loaded">
     <UserControl.Resources>
+    	<local:Double2StringConverter x:Key="Double2StringConverter"/>
     	<local:MainPageData x:Key="MainPageDataDataSource" d:IsDataSource="True"/>
         <Style x:Key="QtyToClearSuggested" TargetType="sdk:DataGridCell">
         	<Setter Property="Background">
@@ -89,7 +90,7 @@
 				<sdk:DataGridTextColumn Binding="{Binding TotalStock, FallbackValue=N/A}" Header="Total stock" IsReadOnly="True"/>
 				<sdk:DataGridTextColumn Binding="{Binding MassPerPackage, FallbackValue=N/A}"  Header="Qty in package" IsReadOnly="True"/>
 				<sdk:DataGridTextColumn Binding="{Binding DeclaredNetMass, FallbackValue=N/A}" Header="Qty to clear" IsReadOnly="True"/>
-				<sdk:DataGridTextColumn Binding="{Binding AddedKg, FallbackValue=N/A], Mode=TwoWay, UpdateSourceTrigger=Explicit}" Header="Qty to clear - added" IsReadOnly="False" CellStyle="{StaticResource QtyToClearSuggested}"/>
+				<sdk:DataGridTextColumn Binding="{Binding AddedKg, Converter={StaticResource Double2StringConverter}, FallbackValue=N/A], Mode=TwoWay}" Header="Qty to clear - added" IsReadOnly="False" CellStyle="{StaticResource QtyToClearSuggested}"/>
 				<sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSum, FallbackValue=N/A}" Header="Qty to clear-sum" IsReadOnly="True"/>
 				<sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSumRounded, FallbackValue=N/A}" Header="Qty to clear-rounded" IsReadOnly="True"/>
 				<sdk:DataGridTextColumn Binding="{Binding RemainingOnStock, FallbackValue=N/A}" Header="Remaining on stock" IsReadOnly="True"/>

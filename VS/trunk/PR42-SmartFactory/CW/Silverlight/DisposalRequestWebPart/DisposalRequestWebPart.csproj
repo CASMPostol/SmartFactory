@@ -91,6 +91,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
+    <Compile Include="String2DoubleConverter.cs" />
     <None Include="CommonDefinition.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CommonDefinition1.cs</LastGenOutput>
