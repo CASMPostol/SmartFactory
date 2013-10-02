@@ -58,7 +58,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
       foreach (Disposal _dspx in entities.Disposal)
       {
         _dspx.Archival = false;
-        if (_dspx.JSOXCustomsSummaryIndex != null)
+        if (!_dspx.JSOXReportID.HasValue && _dspx.JSOXCustomsSummaryIndex != null)
           _dspx.JSOXReportID = _dspx.JSOXCustomsSummaryIndex.JSOXCustomsSummary2JSOXIndex.Id.Value;
         if (String.IsNullOrEmpty(_dspx.SadConsignmentNo))
           switch (_dspx.CustomsStatus.Value)
