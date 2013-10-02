@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#pragma warning disable 1591
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	using System;
 	
@@ -4007,3 +4008,4 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		OtherCustomsWarehouse = 16,
 	}
 }
+#pragma warning restore 1591
