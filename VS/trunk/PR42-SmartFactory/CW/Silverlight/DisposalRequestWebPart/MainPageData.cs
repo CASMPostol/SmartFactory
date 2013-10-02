@@ -139,21 +139,24 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         m_DataContext = new DataContext( (string)url );
         Log = "GetData GetList " + CommonDefinition.CustomsWarehouseDisposalTitle;
         EntityList<Data.Entities.CustomsWarehouseDisposalRowData> _list = m_DataContext.GetList<Data.Entities.CustomsWarehouseDisposalRowData>( CommonDefinition.CustomsWarehouseDisposalTitle, CamlQuery.CreateAllItemsQuery() );
-        Log = "GetData DisposalRequestObservable.GetDataContext  " + CommonDefinition.CustomsWarehouseDisposalTitle;
-        ( (DisposalRequestObservable)this.RequestCollection.SourceCollection ).GetDataContext( _list );
-        m_Edited = false;
-        Log = "GetData UpdateHeader";
-        UpdateHeader();
-        //if (_npc.CanGroup == true)
-        //{
-        //  // Group by 
-        //  _npc.GroupDescriptions.Add(new PropertyGroupDescription("Batch"));
-        //}
-        if ( this.RequestCollection.CanSort == true )
+        Deployment.Current.Dispatcher.BeginInvoke( () =>
         {
-          // By default, sort by Batch.
-          this.RequestCollection.SortDescriptions.Add( new SortDescription( "Batch", ListSortDirection.Ascending ) );
-        }
+          Log = "GetData DisposalRequestObservable.GetDataContext  " + CommonDefinition.CustomsWarehouseDisposalTitle;
+          ( (DisposalRequestObservable)this.RequestCollection.SourceCollection ).GetDataContext( _list );
+          m_Edited = false;
+          Log = "GetData UpdateHeader";
+          UpdateHeader();
+          //if (_npc.CanGroup == true)
+          //{
+          //  // Group by 
+          //  _npc.GroupDescriptions.Add(new PropertyGroupDescription("Batch"));
+          //}
+          if ( this.RequestCollection.CanSort == true )
+          {
+            // By default, sort by Batch.
+            this.RequestCollection.SortDescriptions.Add( new SortDescription( "Batch", ListSortDirection.Ascending ) );
+          }
+        } );
       }
       catch ( Exception ex )
       {
