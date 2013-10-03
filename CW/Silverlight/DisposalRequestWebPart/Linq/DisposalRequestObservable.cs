@@ -29,7 +29,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   /// </summary>
   public class DisposalRequestObservable: ObservableCollection<DisposalRequest>
   {
-    internal void GetDataContext( EntityList<CustomsWarehouseDisposal> _list )
+    internal void GetDataContext( List<CustomsWarehouseDisposal> _list )
     {
       IEnumerable<IGrouping<string, CustomsWarehouseDisposal>> _requests = _list.ToList<CustomsWarehouseDisposal>().GroupBy<CustomsWarehouseDisposal, string>( x => x.CWL_CWDisposal2CustomsWarehouseID.Batch );
       foreach ( IGrouping<string, CustomsWarehouseDisposal> _grx in _requests )

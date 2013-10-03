@@ -14,12 +14,14 @@
 //</summary>
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq;
 using Microsoft.SharePoint.Client;
+using System.Linq;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 {
@@ -127,7 +129,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       if ( ( null == this.PropertyChanged ) )
         return;
-      Deployment.Current.Dispatcher.BeginInvoke( () => this.PropertyChanged( this, new PropertyChangedEventArgs( propertyName ) ) );
+      this.PropertyChanged( this, new PropertyChangedEventArgs( propertyName ) );
     }
     private void GetData( object url )
     {
@@ -138,7 +140,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         Log = String.Format( "GetData new DataContext for url={0}.", url );
         m_DataContext = new Entities( (string)url );
         Log = "GetData GetList " + CommonDefinition.CustomsWarehouseDisposalTitle;
-        EntityList<CustomsWarehouseDisposal> _list = m_DataContext.CustomsWarehouseDisposal;
+        List<CustomsWarehouseDisposal> _list = m_DataContext.CustomsWarehouseDisposal.Filter( CamlQuery.CreateAllItemsQuery() ).ToList();
         Deployment.Current.Dispatcher.BeginInvoke( () =>
         {
           Log = "GetData DisposalRequestObservable.GetDataContext  " + CommonDefinition.CustomsWarehouseDisposalTitle;
@@ -196,12 +198,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     private void RequestCollection_CollectionChanged( object sender, EventArgs e )
     {
-      m_Edited = true;
       UpdateHeader();
     }
     private void RequestCollection_PropertyChanged( object sender, PropertyChangedEventArgs e )
     {
-      m_Edited = true;
       UpdateHeader();
     }
     #endregion

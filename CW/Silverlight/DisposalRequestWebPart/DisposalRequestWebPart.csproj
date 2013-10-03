@@ -60,6 +60,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SharePoint.Client.Silverlight, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SharePoint.Client.Silverlight.Runtime, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
@@ -85,6 +91,7 @@
     <Compile Include="AddNew.xaml.cs">
       <DependentUpon>AddNew.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\Linq.cs" />
     <Compile Include="Linq\DisposalRequest.cs" />
     <Compile Include="Linq\DisposalRequestObservable.cs" />
     <Compile Include="Linq\Entities.cs" />
@@ -95,6 +102,7 @@
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
     <Compile Include="String2DoubleConverter.cs" />
+    <None Include="cas.snk" />
     <None Include="CommonDefinition.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CommonDefinition1.cs</LastGenOutput>

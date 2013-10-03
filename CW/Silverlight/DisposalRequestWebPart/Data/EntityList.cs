@@ -24,32 +24,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       this.m_DataContext = dataContext;
       this.m_ListName = listName;
-      // Prepare a reference to the list
-      m_list = dataContext.m_RootWeb.Lists.GetByTitle( listName );
-      dataContext.m_ClientContext.Load( m_list );
-      // Execute the prepared commands against the target ClientContext
-      dataContext.m_ClientContext.ExecuteQuery();
-      // Prepare a query for all items in the list
-      CamlQuery query = new CamlQuery();
-      query.ViewXml = "<View/>";
-      ListItemCollection m_ListItemCollection = m_list.GetItems( query );
-      dataContext.m_ClientContext.Load( m_ListItemCollection );
-      // Execute the prepared command against the target ClientContext
-      dataContext.m_ClientContext.ExecuteQuery();
-      foreach ( ListItem _listItemx in m_ListItemCollection )
-      {
-        TEntity _newEntity = new TEntity();
-        m_EntitieAssociations.Add( _newEntity, _listItemx );
-        AddMetadata( dataContext, _newEntity );
-        AssignValues2Entity( _newEntity, _listItemx.FieldValues );
-        _newEntity.PropertyChanging += _newEntity_PropertyChanging;
-        _newEntity.PropertyChanged += _newEntity_PropertyChanged;
-        _newEntity.EntityState = EntityState.Unchanged;
-      }
+      this.Query = CamlQuery.CreateAllItemsQuery();
     }
     #endregion
 
-    #region public    
+    #region public
     /// <summary>
     /// Registers a disconnected or "detached" entity with the object tracking system 
     /// of the Microsoft.SharePoint.Linq.DataContext object associated with the list.
@@ -60,7 +39,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     ///     object.- or -entity is not of the same type as the list items.- or -entity
     ///     has been deleted.- or -There is a problem with the internal ID of entity
     ///     that is used by the object tracking system.</exception>
-    public void Attach( TEntity entity ) { throw new NotImplementedException(); }     
+    public void Attach( TEntity entity ) { throw new NotImplementedException(); }
     /// <summary>
     /// Marks the specified entities for deletion on the next call of Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges.
     /// </summary>
@@ -69,7 +48,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// <exception cref="System.InvalidOperationException">Object tracking is not enabled for the Microsoft.SharePoint.Linq.DataContext
     ///     object.- or -At least one member of entities is not of the same type as the
     ///     list items.</exception>
-    public void DeleteAllOnSubmit( IEnumerable<TEntity> entities ) { throw new NotImplementedException(); }   
+    public void DeleteAllOnSubmit( IEnumerable<TEntity> entities ) { throw new NotImplementedException(); }
     /// <summary>
     /// Marks the specified entity for deletion on the next call of Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges.
     /// </summary>
@@ -122,10 +101,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       m_EntitieAssociations.Add( entity, null );
       AddMetadata( m_DataContext, entity );
       entity.EntityState = EntityState.ToBeInserted;
-      entity.PropertyChanging += _newEntity_PropertyChanging;
-      entity.PropertyChanged += _newEntity_PropertyChanged;
+      entity.PropertyChanging += PropertyChanging;
+      entity.PropertyChanged += PropertyChanged;
       Unchaged = false;
-    }     
+    }
     /// <summary>
     /// Marks the specified entities to be put in the Recycle Bin on the next call
     /// of Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges.
@@ -135,7 +114,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// <exception cref=" System.InvalidOperationException">Object tracking is not enabled for the Microsoft.SharePoint.Linq.DataContext
     ///     object.- or -At least one member of entities is not of the same type as the
     ///     list items.</exception>
-    public void RecycleAllOnSubmit( IEnumerable<TEntity> entities ) { throw new NotImplementedException(); }    
+    public void RecycleAllOnSubmit( IEnumerable<TEntity> entities ) { throw new NotImplementedException(); }
     /// <summary>
     /// Marks the specified entity to be put in the Recycle Bin on the next call
     /// of Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges.
@@ -144,7 +123,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// <exception cref="System.ArgumentNullException">entity is null.</exception>
     /// <exception cref="System.InvalidOperationException">Object tracking is not enabled for the Microsoft.SharePoint.Linq.DataContext
     ///     object.- or -entity is not of the same type as the list items.</exception>
-    public void RecycleOnSubmit( TEntity entity ) { throw new NotImplementedException(); }   
+    public void RecycleOnSubmit( TEntity entity ) { throw new NotImplementedException(); }
     /// <summary>
     /// Gets the subset of the Microsoft.SharePoint.Linq.EntityList<TEntity> that
     ///     consists of all and only the list items that belong to a particular folder,
@@ -154,6 +133,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// <param name="recursive">true to include items in subfolders; false to exclude them.</param>
     /// <returns>An System.Linq.IQueryable<T> object that can be cast to Microsoft.SharePoint.Linq.EntityList<TEntity>.</returns>
     public IQueryable<TEntity> ScopeToFolder( string folderUrl, bool recursive ) { throw new NotImplementedException(); }
+
+    #region internal
     internal FieldLookupValue GetFieldLookupValue( TEntity entity )
     {
       FieldLookupValue _ret = new FieldLookupValue()
@@ -173,6 +154,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         return null;
       return (TEntity)_idDictionary[ fieldLookupValue.LookupId ].Key;
     }
+    internal CamlQuery Query { private get; set; }
+    #endregion
+
     #endregion
 
     #region IQueryable Members
@@ -212,6 +196,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// <returns>An <see cref="System.Collections.Generic.IEnumerator<TEntity>"/>  that can be used to iterate the list.</returns>
     public IEnumerator<TEntity> GetEnumerator()
     {
+      if ( m_2BeExecuted )
+        GetListItems();
       return ( from _ix in m_EntitieAssociations select _ix.Key ).Cast<TEntity>().GetEnumerator();
     }
     /// <summary>
@@ -222,13 +208,16 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// </returns>
     IEnumerator IEnumerable.GetEnumerator()
     {
+      if ( m_2BeExecuted )
+        GetListItems();
       return ( from _ix in m_EntitieAssociations select _ix.Key ).Cast<TEntity>().GetEnumerator();
     }
     #endregion
 
     #region private
+    private bool m_2BeExecuted = true;
     private string m_ListName = String.Empty;
-    private void _newEntity_PropertyChanged( object sender, PropertyChangedEventArgs e )
+    private void PropertyChanged( object sender, PropertyChangedEventArgs e )
     {
       Unchaged = false;
       ITrackEntityState _entity = sender as ITrackEntityState;
@@ -247,7 +236,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
           break;
       }
     }
-    private void _newEntity_PropertyChanging( object sender, PropertyChangingEventArgs e )
+    private void PropertyChanging( object sender, PropertyChangingEventArgs e )
     {
       //Do nothing
     }
@@ -259,6 +248,30 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         DataContext.IRegister _entityRef = (DataContext.IRegister)_item.Storage.GetValue( _newEntity );
         _entityRef.RegisterInContext( dataContext, _ass );
       }
+    }
+    private void GetListItems()
+    {
+      // Prepare a reference to the list
+      m_list = m_DataContext.m_RootWeb.Lists.GetByTitle( m_ListName );
+      m_DataContext.m_ClientContext.Load( m_list );
+      // Execute the prepared commands against the target ClientContext
+      m_DataContext.m_ClientContext.ExecuteQuery();
+      // Prepare a query
+      ListItemCollection m_ListItemCollection = m_list.GetItems( Query );
+      m_DataContext.m_ClientContext.Load( m_ListItemCollection );
+      // Execute the prepared command against the target ClientContext
+      m_DataContext.m_ClientContext.ExecuteQuery();
+      foreach ( ListItem _listItemx in m_ListItemCollection )
+      {
+        TEntity _newEntity = new TEntity();
+        m_EntitieAssociations.Add( _newEntity, _listItemx );
+        AddMetadata( m_DataContext, _newEntity );
+        AssignValues2Entity( _newEntity, _listItemx.FieldValues );
+        _newEntity.PropertyChanging += PropertyChanging;
+        _newEntity.PropertyChanged += PropertyChanged;
+        _newEntity.EntityState = EntityState.Unchanged;
+      }
+      m_2BeExecuted = false;
     }
     #endregion
   }
