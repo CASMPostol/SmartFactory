@@ -11,7 +11,7 @@
     <html>
       <head>
         <title>
-          BinCard
+          9DK8Template
         </title>
         <style type="text/css">
           p  { font-size:11pt; }
@@ -194,7 +194,7 @@
     <p>
       PozId: <xsl:value-of select="@PozId"/> /
       Jm: <xsl:value-of select="@Jm"/> /
-      Ilosc: <xsl:value-of select="Ilosc"/>
+      Ilosc: <xsl:value-of select="@Ilosc"/>
     </p>
   </xsl:template>
   <xsl:template match="sad:Opakowanie">
