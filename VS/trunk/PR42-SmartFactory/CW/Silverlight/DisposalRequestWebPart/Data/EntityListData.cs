@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : abstract class EntityListData
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -115,11 +130,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         }
       }
     }
-    protected internal List<StorageItem> m_StorageDescription = new List<StorageItem>();
-    internal protected Dictionary<ITrackEntityState, ListItem> m_EntitieAssociations = new Dictionary<ITrackEntityState, ListItem>( new EntityEqualityComparer() );
+    protected List<StorageItem> m_StorageDescription = new List<StorageItem>();
+    protected Dictionary<ITrackEntityState, ListItem> m_EntitieAssociations = new Dictionary<ITrackEntityState, ListItem>( new EntityEqualityComparer() );
     private delegate void Method<T1, T2>( T1 arg1, T2 arg2 );
-    protected internal SPCList m_list = default( SPCList );
-    protected internal DataContext m_DataContext = default( DataContext );
+    protected SPCList m_list = default( SPCList );
+    protected DataContext m_DataContext = default( DataContext );
     private void GetValuesFromEntity( ITrackOriginalValues entity, Method<string, object> assign )
     {
       Dictionary<string, StorageItem> _storageDic = m_StorageDescription.ToDictionary<StorageItem, string>( key => key.PropertyName );
@@ -159,21 +174,32 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
           DataContext.IAssociationAttribute _itemRef = (DataContext.IAssociationAttribute)_storage.Storage.GetValue( _newEntity );
           _itemRef.Lookup = (FieldLookupValue)_item.Value;
         }
-        else if ( ( (ColumnAttribute)_storage.Description ).IsLookupId )
-        {
-          if ( _item.Value == null )
-            continue;
-          _storage.Storage.SetValue( _newEntity, ( (Microsoft.SharePoint.Client.FieldUserValue)_item.Value ).LookupId );
-        }
-        else if ( ( (ColumnAttribute)_storage.Description ).FieldType.Contains( "Choice" ) )
-        {
-          Dictionary<string, string> _values = new Dictionary<string, string>();
-          Type _type = GetEnumValues( _storage, _values, false );
-          object _enumValue = Enum.Parse( _type, _values[ (string)_item.Value ], true );
-          _storage.Storage.SetValue( _newEntity, _enumValue );
-        }
         else
-          _storage.Storage.SetValue( _newEntity, _item.Value );
+        {
+          ColumnAttribute _column = _storage.Description as ColumnAttribute;
+          if ( _column == null )
+            throw new NotImplementedException( "Only ColumnAttribute is supported." );
+          if ( _column.FieldType == "Lookup" )
+          {
+            if ( _item.Value == null )
+              continue;
+            if ( _column.IsLookupId )
+            {
+              _storage.Storage.SetValue( _newEntity, ( (Microsoft.SharePoint.Client.FieldLookupValue)_item.Value ).LookupId );
+            }
+            else
+              throw new NotImplementedException( "IsLookupId must true for lookup field." );
+          }
+          else if ( _column.FieldType == "Choice" )
+          {
+            Dictionary<string, string> _values = new Dictionary<string, string>();
+            Type _type = GetEnumValues( _storage, _values, false );
+            object _enumValue = Enum.Parse( _type, _values[ (string)_item.Value ], true );
+            _storage.Storage.SetValue( _newEntity, _enumValue );
+          }
+          else
+            _storage.Storage.SetValue( _newEntity, _item.Value );
+        }
       }
     }
     private static Type GetEnumValues( StorageItem _storage, Dictionary<string, string> _values, bool fildNameIsKey )
@@ -212,7 +238,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
             continue;
           ColumnAttribute _columnAttribute = _cax as ColumnAttribute;
           if ( _columnAttribute != null && _columnAttribute.IsLookupValue )
-            continue;
+            continue; //TODOD should be implemented
           StorageItem _newStorageItem = new StorageItem( _ax.Name, _dataAttribute, _mmbrs[ _dataAttribute.Storage ] as FieldInfo );
           m_StorageDescription.Add( _newStorageItem );
         }

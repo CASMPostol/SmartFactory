@@ -62,7 +62,6 @@
     <None Include="Dashboards\DisposalRequestDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8bf86832-68ea-45d1-b7ca-0020531fdc80}</SharePointProjectItemId>
     </None>
-    <None Include="SharePointProjectItem.spdata" />
     <None Include="Silverlight\HTMLHostinCode.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>HTMLHostinCode.cs</LastGenOutput>
