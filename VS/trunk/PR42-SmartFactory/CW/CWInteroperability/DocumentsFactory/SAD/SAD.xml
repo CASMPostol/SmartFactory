@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="WINDOWS-1250" ?> 
 <SAD xmlns="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/SADw2r0.xsd" EmailPodmiotu="gstmaan@jti.com">
-<Zgloszenie NrWlasny="13SXX0000" P1a="XX" P1b="X" LiczbaPozycji="1" LiczbaOpakowan="1" KrajWysylki="XX" KrajPrzeznaczenia="XX" Kontenery="0" RodzajTransakcji="11" MasaBrutto="250" >
+<Zgloszenie NrWlasny="13SXX0000" P1a="XX" P1b="X" LiczbaPozycji="1" LiczbaOpakowan="1" KrajWysylki="XX" KrajPrzeznaczenia="XX" Kontenery="0" RodzajTransakcji="11" MasaBrutto="205" >
 <Rodzaj Typ="H" Podtyp="A" Powiadomienie="0" />
 <UC  UCZgloszenia="PL362010" UCGraniczny="PL362010" >
 <Lokalizacja  Miejsce="PL360000SC0002" />
