@@ -29,6 +29,18 @@
     <xsl:apply-templates select="sad:Zgloszenie" />
   </xsl:template>
   <xsl:template match="sad:Zgloszenie">
+    <p>Dokument:
+        <xsl:choose>
+          <xsl:when test="sad:Towar/sad:DokumentWymagany/@Kod='9DK8'"><xsl:value-of select="sad:Towar/sad:DokumentWymagany/@Nr"/></xsl:when>
+          <xsl:when test="not(sad:Towar/sad:DokumentWymagany/@Kod='9DK8')">&#160;</xsl:when>
+        </xsl:choose>     
+    </p>
+        <p>Data utworzenia:
+        <xsl:choose>
+          <xsl:when test="sad:Towar/sad:DokumentWymagany/@Kod='9DK8'"><xsl:value-of select="sad:Towar/sad:DokumentWymagany/@Uwagi"/></xsl:when>
+          <xsl:when test="not(sad:Towar/sad:DokumentWymagany/@Kod='9DK8')">&#160;</xsl:when>
+        </xsl:choose>     
+    </p>
     <p>
       <b>ZGŁOSZENIE:</b>
     </p>
