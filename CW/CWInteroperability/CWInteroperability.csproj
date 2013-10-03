@@ -83,8 +83,10 @@
     <Content Include="DocumentsFactory\BinCard\BinCardStylesheet.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentsFactory\SAD\12SCST1175_4071_SAD.xml" />
-    <Content Include="DocumentsFactory\SAD\12SCST1175_4071_SAD_test.xml">
+    <Content Include="DocumentsFactory\SAD\9DK8Stylesheet.xslt">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DocumentsFactory\SAD\SAD.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\CWInteroperability\CWInteroperability.Template.xml">
