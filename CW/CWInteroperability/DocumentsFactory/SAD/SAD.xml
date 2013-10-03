@@ -15,7 +15,7 @@
 <IloscTowaru PozId="1" Jm="KGM" Ilosc="190.00000" />
 <Opakowanie PozId="1" Rodzaj="" Znaki="." LiczbaOpakowan="1" />
 <DokumentPoprzedni PozId="1" Kategoria="Z" Kod="" Nr="OGL/362010/00/999999/2012" NrCelina="OGL/362010/00/999999/2012" />
-<DokumentWymagany PozId="1" Kod="9DK8" />
+<DokumentWymagany PozId="1" Kod="9DK8" Nr="9DK8_123456789" Uwagi="03.10.2013" />
 <DokumentWymagany PozId="2" Kod="N935" Nr="82131901" />
 <DokumentWymagany PozId="3" Kod="5DK5" Nr="12PL360000G000259" Uwagi="PL8280001819-1111" />
 <WartoscTowaru WartoscPozycji="3574.47" MetodaWartosciowania="1" WartoscStatystyczna="3574" >
