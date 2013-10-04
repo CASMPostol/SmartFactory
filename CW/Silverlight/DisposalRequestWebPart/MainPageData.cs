@@ -75,6 +75,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         OnPropertyChanged( "Log" );
       }
     }
+    /// <summary>
+    /// Gets or sets the request collection.
+    /// </summary>
+    /// <value>
+    /// The request collection.
+    /// </value>
     public PagedCollectionView RequestCollection
     {
       get { return b_RequestCollection; }
@@ -100,9 +106,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     #region internal
     internal static void GetData( string url )
     {
-      m_Singleton.Log = "Starting QueueUserWorkItem to get remore data;";
-      System.Threading.ThreadPool.QueueUserWorkItem( m_Singleton.GetData, url );
-      m_Singleton.Log = "Returned from QueueUserWorkItem";
+      m_Singleton.RunWorkerAsync( url );
     }
     internal static void SubmitChanges()
     {
@@ -130,40 +134,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       if ( ( null == this.PropertyChanged ) )
         return;
       this.PropertyChanged( this, new PropertyChangedEventArgs( propertyName ) );
-    }
-    private void GetData( object url )
-    {
-      try
-      {
-        Log = "GetData starting";
-        UpdateHeader();
-        Log = String.Format( "GetData new DataContext for url={0}.", url );
-        m_DataContext = new Entities( (string)url );
-        Log = "GetData GetList " + CommonDefinition.CustomsWarehouseDisposalTitle;
-        List<CustomsWarehouseDisposal> _list = m_DataContext.CustomsWarehouseDisposal.Filter( CamlQuery.CreateAllItemsQuery() ).ToList();
-        Deployment.Current.Dispatcher.BeginInvoke( () =>
-        {
-          Log = "GetData DisposalRequestObservable.GetDataContext  " + CommonDefinition.CustomsWarehouseDisposalTitle;
-          ( (DisposalRequestObservable)this.RequestCollection.SourceCollection ).GetDataContext( _list );
-          m_Edited = false;
-          Log = "GetData UpdateHeader";
-          UpdateHeader();
-          //if (_npc.CanGroup == true)
-          //{
-          //  // Group by 
-          //  _npc.GroupDescriptions.Add(new PropertyGroupDescription("Batch"));
-          //}
-          if ( this.RequestCollection.CanSort == true )
-          {
-            // By default, sort by Batch.
-            this.RequestCollection.SortDescriptions.Add( new SortDescription( "Batch", ListSortDirection.Ascending ) );
-          }
-        } );
-      }
-      catch ( Exception ex )
-      {
-        ExceptionHandling( ex );
-      }
     }
     private void SubmitChangesLoc()
     {
@@ -204,6 +174,62 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       UpdateHeader();
     }
+
+    #region Worker
+    private BackgroundWorker m_Worker = new BackgroundWorker();
+    private void RunWorkerAsync( string url )
+    {
+      m_Worker.DoWork += Worker_DoWork;
+      m_Worker.ProgressChanged += Worker_ProgressChanged;
+      m_Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+      m_Worker.WorkerReportsProgress = true;
+      m_Worker.WorkerSupportsCancellation = false;
+      m_Singleton.Log = "GetData RunWorkerAsync";
+      m_Worker.RunWorkerAsync( url );
+    }
+    private void Worker_RunWorkerCompleted( object sender, RunWorkerCompletedEventArgs e )
+    {
+      if ( e.Error != null )
+      {
+        ExceptionHandling( e.Error );
+        return;
+      }
+      if ( e.Cancelled )
+      {
+        Log = "GetData has been canceled";
+        return;
+      }
+      List<CustomsWarehouseDisposal> _list = (List<CustomsWarehouseDisposal>)e.Result;
+      Log = "GetData DisposalRequestObservable.GetDataContext  " + CommonDefinition.CustomsWarehouseDisposalTitle;
+      ( (DisposalRequestObservable)this.RequestCollection.SourceCollection ).GetDataContext( _list );
+      m_Edited = false;
+      //if (_npc.CanGroup == true)
+      //{
+      //  // Group by 
+      //  _npc.GroupDescriptions.Add(new PropertyGroupDescription("Batch"));
+      //}
+      if ( this.RequestCollection.CanSort == true )
+      {
+        // By default, sort by Batch.
+        this.RequestCollection.SortDescriptions.Add( new SortDescription( "Batch", ListSortDirection.Ascending ) );
+      }
+      UpdateHeader();
+      Log = "GetData RunWorker Completed";
+    }
+    private void Worker_ProgressChanged( object sender, ProgressChangedEventArgs e )
+    {
+      Log = (String)e.UserState;
+    }
+    private void Worker_DoWork( object sender, DoWorkEventArgs e )
+    {
+      BackgroundWorker _mq = (BackgroundWorker)sender;
+      _mq.ReportProgress( 1, String.Format( "GetData DoWork: new DataContext for url={0}.", e.Argument ) );
+      m_DataContext = new Entities( (string)e.Argument );
+      _mq.ReportProgress( 1, "GetData DoWork: GetList " + CommonDefinition.CustomsWarehouseDisposalTitle );
+      e.Result = m_DataContext.CustomsWarehouseDisposal.Filter( CamlQuery.CreateAllItemsQuery() ).ToList();
+    }
+    #endregion
+
     #endregion
 
   }
