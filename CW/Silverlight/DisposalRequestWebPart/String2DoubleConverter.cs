@@ -41,6 +41,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       return Double.Parse( _stringValue, culture );
     }
     #endregion
+
   }
 
 }

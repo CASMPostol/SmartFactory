@@ -70,7 +70,7 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<sdk:Label x:Name="x_LabelHeader" Content="{Binding HeaderLabel, FallbackValue=N/A, TargetNullValue=Is null}" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="2" Foreground="White" Style="{StaticResource LabelStyle}"/>
-		<sdk:DataGrid x:Name="x_DataGridListView" VerticalAlignment="Top" AutoGenerateColumns="False" Background="#00000000" Grid.Row="1" ItemsSource="{Binding RequestCollection}" >
+		<sdk:DataGrid x:Name="x_DataGridListView" AutoGenerateColumns="False" Background="#00000000" Grid.Row="1" ItemsSource="{Binding RequestCollection}" Foreground="#FFFDFDFD" >
 			<sdk:DataGrid.CanUserReorderColumns >
 				<System:Boolean>true</System:Boolean>
 			</sdk:DataGrid.CanUserReorderColumns>
@@ -103,7 +103,9 @@
 			<Button x:Name="x_ButtonEndofBatch" Content="End of Batch" Style="{StaticResource ButtonStyle}" Click="x_ButtonEndofBatch_Click"/>
 			<Button x:Name="x_ButtonDelete" Content="Delete" Style="{StaticResource ButtonStyle}" Click="x_ButtonDelete_Click"/>
 			<Button x:Name="x_ButtonSave" Content="Save" Style="{StaticResource ButtonStyle}" Click="x_ButtonSave_Click"/>
+			<Button x:Name="x_ButtonCancel" Content="Cancel" Style="{StaticResource ButtonStyle}" ToolTipService.ToolTip="Cancel editing"/>
+			<sdk:DescriptionViewer Margin="1" Description="Press Cancel to reload data." Target="{Binding Target, ElementName=x_labelLog}"/>
 		</StackPanel>
-		<sdk:Label Margin="5" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="3" Content="{Binding Log, TargetNullValue=Null}" Style="{StaticResource LabelStyle}"/>
+		<sdk:Label x:Name="x_labelLog" Margin="5" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="3" Content="{Binding Log, TargetNullValue=Null}" Style="{StaticResource LabelStyle}"/>
 	</Grid>
 </UserControl>
