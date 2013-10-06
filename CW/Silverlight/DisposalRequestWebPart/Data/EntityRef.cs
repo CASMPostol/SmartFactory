@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class EntityRef<TEntity>
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
 using System.ComponentModel;
 using Microsoft.SharePoint.Client;
 
@@ -8,39 +23,40 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
   ///  Provides for deferred loading and relationship maintenance for the singleton side of a one-to-many relationship.
   /// </summary>
   /// <typeparam name="TEntity"> The type of the entity on the singleton side of the relationship.</typeparam>
-  public class EntityRef<TEntity>: DataContext.IAssociationAttribute, DataContext.IRegister
+  public class EntityRef<TEntity>
     where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
   {
 
-    #region ctor    
+    #region ctor
     /// <summary>
     /// Initializes a new instance of the Microsoft.SharePoint.Linq.EntityRef class.
     /// </summary>
     public EntityRef() { }
     #endregion
-    #region public    
+
+    #region public
     /// <summary>
-    /// Raised after a change to this Microsoft.SharePoint.Linq.EntityRef object.
+    /// Raised after a change to this <see cref="EntityRef"/> object.
     /// </summary>
-    public event EventHandler OnChanged;    
+    public event EventHandler OnChanged;
     /// <summary>
-    /// Raised before a change to this Microsoft.SharePoint.Linq.EntityRef object.
+    /// Raised before a change to this  <see cref="EntityRef"/> object.
     /// </summary>
-    public event EventHandler OnChanging;    
+    public event EventHandler OnChanging;
     /// <summary>
-    /// Raised when the Microsoft.SharePoint.Linq.EntityRef object is synchronized with the entity it represents.
+    /// Raised when the <see cref="EntityRef"/> object is synchronized with the entity it represents.
     /// </summary>
-    public event EventHandler<AssociationChangedEventArgs<TEntity>> OnSync;    
+    public event EventHandler<AssociationChangedEventArgs<TEntity>> OnSync;
     /// <summary>
     /// Creates a shallow copy of the Microsoft.SharePoint.Linq.EntityRef.
     /// </summary>
-    /// <returns>A System.Object (castable Microsoft.SharePoint.Linq.EntityRef) whose
-    ///     property values refer to the same objects as the property values of this
-    ///     Microsoft.SharePoint.Linq.EntityRef.</returns>
+    /// <returns>
+    /// A <see cref="Object"/> (<see cref="EntityRef"/>) whose property values refer to the same objects as the property values of this <see cref="EntityRef"/>EntityRef.
+    ///</returns>
     public object Clone()
     {
       return MemberwiseClone();
-    }    
+    }
     /// <summary>
     /// Returns the entity that is wrapped by this Microsoft.SharePoint.Linq.EntityRef object.
     /// </summary>
@@ -62,44 +78,28 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       if ( OnChanging != null )
         OnChanging( this, new EventArgs() );
       if ( OnSync != null && m_Lookup != null )
-        OnSync( this, new AssociationChangedEventArgs<TEntity>( entity, AssociationChangedState.Removed ) );
+        OnSync( this, new AssociationChangedEventArgs<TEntity>( m_Lookup, AssociationChangedState.Removed ) );
       m_Lookup = entity;
       if ( OnSync != null && m_Lookup != null )
-        OnSync( this, new AssociationChangedEventArgs<TEntity>( entity, AssociationChangedState.Added ) );
+        OnSync( this, new AssociationChangedEventArgs<TEntity>( m_Lookup, AssociationChangedState.Added ) );
       if ( OnChanged != null )
         OnChanged( this, new EventArgs() );
     }
     #endregion
-
     #region IAssociationAttribute Members
-    FieldLookupValue DataContext.IAssociationAttribute.Lookup
+    internal FieldLookupValue GetLookup( DataContext dataContext, string listName )
     {
-      get
-      {
-        return m_DataContext.GetFieldLookupValue<TEntity>( m_AssociationAttribute.List, m_Lookup );
-      }
-      set
-      {
-        TEntity _entity = m_DataContext.GetFieldLookupValue<TEntity>( m_AssociationAttribute.List, value );
-        SetEntity( _entity );
-      }
+      return dataContext.GetFieldLookupValue<TEntity>( listName, m_Lookup );
     }
-    #endregion
-
-    #region IRegister Members
-    void DataContext.IRegister.RegisterInContext( DataContext dataContext, AssociationAttribute associationAttribute )
+    internal void SetLookup( FieldLookupValue value, DataContext dataContext, string listName )
     {
-      m_DataContext = dataContext;
-      m_AssociationAttribute = associationAttribute;
-      m_InContext = true;
+      TEntity _entity = dataContext.GetFieldLookupValue<TEntity>( listName, value );
+      SetEntity( _entity );
     }
     #endregion
 
     #region private
-    private bool m_InContext = false;
     private TEntity m_Lookup = default( TEntity );
-    private DataContext m_DataContext = default( DataContext );
-    private AssociationAttribute m_AssociationAttribute = default( AssociationAttribute );
     #endregion
 
   }

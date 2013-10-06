@@ -11,7 +11,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
   /// <summary>
   ///  Provides client site LINQ (Language Integrated Query) access to, and change tracking for, the lists and document libraries of a Windows SharePoint Services "14" Web site.
   /// </summary>
-  public class DataContext : IDisposable
+  public class DataContext: IDisposable
   {
 
     #region public
@@ -19,14 +19,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// Initializes a new instance of the <see cref="DataContext" /> class.
     /// </summary>
     /// <param name="requestUrl">The URL of a Windows SharePoint Services "14" Web site that provides client site access and change tracking for the specified Web site..</param>
-    public DataContext(string requestUrl)
+    public DataContext( string requestUrl )
     {
       // Open the current ClientContext
-      m_ClientContext = new ClientContext(requestUrl);
+      m_ClientContext = new ClientContext( requestUrl );
       m_site = m_ClientContext.Site;
-      m_ClientContext.Load<Site>(m_site);
+      m_ClientContext.Load<Site>( m_site );
       m_RootWeb = m_site.RootWeb;
-      m_ClientContext.Load<Web>(m_RootWeb);
+      m_ClientContext.Load<Web>( m_RootWeb );
       this.ObjectTrackingEnabled = true;
     }
     /// <summary>
@@ -70,19 +70,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// <typeparam name="T">The content type of the list items.</typeparam>
     /// <param name="listName">The name of the list.</param>
     /// <returns>An Microsoft.SharePoint.Linq.EntityList<TEntity> that represents the list.</returns>
-    public virtual EntityList<T> GetList<T>(string listName)
-       where T : class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
+    public virtual EntityList<T> GetList<T>( string listName )
+       where T: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
-      return GetList<T>(listName, CamlQuery.CreateAllItemsQuery());
-    }
-    internal virtual EntityList<T> GetList<T>(string listName, CamlQuery camlQuery)
-       where T : class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
-    {
-      if (m_AllLists.ContainsKey(listName))
-        return (EntityList<T>)m_AllLists[listName];
-      EntityList<T> _ret = new EntityList<T>(this, listName);
-      m_AllLists.Add(listName, _ret);
-      return _ret;
+      IEntityListItemsCollection _nwLst = null;
+      if ( !m_AllLists.TryGetValue( listName, out _nwLst ) )
+        _nwLst = new EntityListItemsCollection<T>( this, listName );
+      m_AllLists.Add( listName, _nwLst );
+      return ((EntityListItemsCollection<T>)_nwLst).GetList();
     }
     /// <summary>
     /// Refreshes a collection of entities with the latest data from the content database according to the specified mode.
@@ -90,28 +85,28 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// <param name="mode">A value that specifies how to resolve differences between the current client values and the database values.</param>
     /// <param name="entities"> The entities that are refreshed.</param>
     /// <exception cref="System.NotImplementedException"></exception>
-    public void Refresh(RefreshMode mode, IEnumerable entities) { throw new NotImplementedException(); }
+    public void Refresh( RefreshMode mode, IEnumerable entities ) { throw new NotImplementedException(); }
     /// <summary>
     /// Refreshes the specified entity with the latest data from the content database according to the specified mode.
     /// </summary>
     /// <param name="mode">A value that specifies how to resolve differences between the current client values and the database values.</param>
     /// <param name="entity">The object that is refreshed.</param>
     /// <exception cref="System.NotImplementedException"></exception>
-    public void Refresh(RefreshMode mode, object entity) { throw new NotImplementedException(); }
+    public void Refresh( RefreshMode mode, object entity ) { throw new NotImplementedException(); }
     /// <summary>
     /// Refreshes an array of entities with the latest data from the content database according to the specified mode.
     /// </summary>
     /// <param name="mode">A value that specifies how to resolve differences between the current client values and the database values.</param>
     /// <param name="entities">The entities that are refreshed.</param>
     /// <exception cref="System.NotImplementedException"></exception>
-    public void Refresh(RefreshMode mode, params object[] entities) { throw new NotImplementedException(); }
+    public void Refresh( RefreshMode mode, params object[] entities ) { throw new NotImplementedException(); }
     /// <summary>
     /// Enables continued reading and writing to an Microsoft.SharePoint.Linq.EntityList even after it has been renamed.
     /// </summary>
     /// <typeparam name="T">The type of the list items.</typeparam>
     /// <param name="newListName">The new name of the list.</param>
     /// <param name="oldListName">The old name of the list.</param>
-    public void RegisterList<T>(string newListName, string oldListName) { throw new NotImplementedException(); }
+    public void RegisterList<T>( string newListName, string oldListName ) { throw new NotImplementedException(); }
     /// <summary>
     /// Enables continued reading and writing to an Microsoft.SharePoint.Linq.EntityList even after it has been moved to another Web site.
     /// </summary>
@@ -119,7 +114,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// <param name="newListName">The new name of the list.</param>
     /// <param name="newWebUrl">The URL of the Web site to which the list was moved.</param>
     /// <param name="oldListName">The old name of the list.</param>
-    public void RegisterList<T>(string newListName, string newWebUrl, string oldListName) { throw new NotImplementedException(); }
+    public void RegisterList<T>( string newListName, string newWebUrl, string oldListName ) { throw new NotImplementedException(); }
     /// <summary>
     /// Persists to the content database changes made by the current user to one
     /// or more lists using the specified failure mode; or, if a concurrency conflict
@@ -128,7 +123,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// </summary>
     public void SubmitChanges()
     {
-      foreach (EntityListData _elx in m_AllLists.Values)
+      foreach ( IEntityListItemsCollection _elx in m_AllLists.Values )
         _elx.SubmitingChanges();
     }
     /// <summary>
@@ -142,7 +137,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     ///     -At least one conflict in Microsoft.SharePoint.Linq.DataContext.ChangeConflicts
     ///     from the last time Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges
     ///     was called is not yet resolved.</exception>
-    public void SubmitChanges(ConflictMode failureMode) { throw new NotImplementedException(); }
+    public void SubmitChanges( ConflictMode failureMode ) { throw new NotImplementedException(); }
     /// <summary>
     /// Persists, to the content database, changes made by the current user to one
     /// or more lists using the specified failure mode and the specified indication
@@ -157,43 +152,35 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     ///     -At least one conflict in Microsoft.SharePoint.Linq.DataContext.ChangeConflicts
     ///     from the last time Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges
     ///     was called is not yet resolved.</exception>
-    public void SubmitChanges(ConflictMode failureMode, bool systemUpdate) { throw new NotImplementedException(); }
+    public void SubmitChanges( ConflictMode failureMode, bool systemUpdate ) { throw new NotImplementedException(); }
     #endregion
 
     #region internal
-    internal void SubmitChanges(string listName)
+    internal void SubmitChanges( string listName )
     {
-      if (m_AllLists.ContainsKey(listName))
-        m_AllLists[listName].SubmitingChanges();
+      if ( m_AllLists.ContainsKey( listName ) )
+        m_AllLists[ listName ].SubmitingChanges();
     }
-    internal interface IRegister
+    internal FieldLookupValue GetFieldLookupValue<TEntity>( string listName, TEntity entity )
+      where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
-      void RegisterInContext(DataContext DataContext, AssociationAttribute AssociationAttribute);
+      return ((EntityListItemsCollection<TEntity>) m_AllLists[listName]).GetFieldLookupValue( entity );
     }
-    internal interface IAssociationAttribute
+    internal TEntity GetFieldLookupValue<TEntity>( string listName, FieldLookupValue fieldLookupValue )
+      where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
-      FieldLookupValue Lookup { get; set; }
+      return ( (EntityListItemsCollection<TEntity>)m_AllLists[ listName ] ).GetFieldLookupValue( fieldLookupValue );
     }
-    internal FieldLookupValue GetFieldLookupValue<TEntity>(string listName, TEntity entity)
-      where TEntity : class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
-    {
-      return GetList<TEntity>(listName).GetFieldLookupValue(entity);
-    }
-    internal TEntity GetFieldLookupValue<TEntity>(string listName, FieldLookupValue fieldLookupValue)
-      where TEntity : class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
-    {
-      return GetList<TEntity>(listName).GetFieldLookupValue(fieldLookupValue);
-    }
-    internal ClientContext m_ClientContext = default(ClientContext);
+    internal ClientContext m_ClientContext = default( ClientContext );
     internal Site m_site { get; set; }
     internal Web m_RootWeb { get; set; }
     internal void ExecuteQuery()
     {
       m_ClientContext.ExecuteQuery();
     }
-    internal void ReloadNewListItem(ListItem _newListItem)
+    internal void ReloadNewListItem( ListItem _newListItem )
     {
-      m_ClientContext.Load(_newListItem);
+      m_ClientContext.Load( _newListItem );
       m_ClientContext.ExecuteQuery();
     }
     #endregion
@@ -204,13 +191,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// </summary>
     public void Dispose()
     {
-      Dispose(true);
+      Dispose( true );
       // This object will be cleaned up by the Dispose method. 
       // Therefore, you should call GC.SupressFinalize to 
       // take this object off the finalization queue 
       // and prevent finalization code for this object 
       // from executing a second time.
-      GC.SuppressFinalize(this);
+      GC.SuppressFinalize( this );
     }
 
     //
@@ -221,14 +208,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// and you should not reference other objects. Only unmanaged resources can be disposed. 
     /// </summary>
     /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-    protected virtual void Dispose(bool disposing)
+    protected virtual void Dispose( bool disposing )
     {
       // Check to see if Dispose has already been called. 
-      if (!this.disposed)
+      if ( !this.disposed )
       {
         // If disposing equals true, dispose all managed 
         // and unmanaged resources. 
-        if (disposing)
+        if ( disposing )
         {
           // Dispose managed resources.
           m_ClientContext.Dispose();
@@ -247,16 +234,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       // Do not re-create Dispose clean-up code here. 
       // Calling Dispose(false) is optimal in terms of 
       // readability and maintainability.
-      Dispose(false);
+      Dispose( false );
     }
     // Track whether Dispose has been called. 
     private bool disposed = false;
     #endregion
 
     #region private
-    private Dictionary<string, EntityListData> m_AllLists = new Dictionary<string, EntityListData>();
+    private Dictionary<string, IEntityListItemsCollection> m_AllLists = new Dictionary<string, IEntityListItemsCollection>();
     #endregion
-
 
   }
 }
