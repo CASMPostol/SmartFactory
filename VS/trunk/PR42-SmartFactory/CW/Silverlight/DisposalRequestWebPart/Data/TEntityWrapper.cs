@@ -22,7 +22,7 @@ using Microsoft.SharePoint.Client;
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
 {
   /// <summary>
-  /// class TEntityWrapper<TEntity>
+  /// TEntityWrapper class
   /// </summary>
   /// <typeparam name="TEntity">The type of the entity.</typeparam>
   internal class TEntityWrapper<TEntity>

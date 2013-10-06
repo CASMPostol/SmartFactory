@@ -1,9 +1,23 @@
-﻿using System;
+﻿//<summary>
+//  Title   : public class DataContext
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Reflection;
 using Microsoft.SharePoint.Client;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
@@ -27,20 +41,22 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       m_ClientContext.Load<Site>( m_site );
       m_RootWeb = m_site.RootWeb;
       m_ClientContext.Load<Web>( m_RootWeb );
+      m_ClientContext.ExecuteQuery();
       this.ObjectTrackingEnabled = true;
+      this.DeferredLoadingEnabled = true;
     }
     /// <summary>
     /// Gets a collection of objects that represent discrepancies between the current client value and the current database value of a field in a list item.
     /// </summary>
     /// <value>
-    ///  A Microsoft.SharePoint.Linq.ChangeConflictCollection each of whose members represents a discrepancy.
+    ///  A <see cref="ChangeConflictCollection"/> each of whose members represents a discrepancy.
     /// </value>
     public ChangeConflictCollection ChangeConflicts { get; internal set; }
     /// <summary>
-    /// Gets or sets a value indicating whether the LINQ to SharePoint provider should allow delay loading of Microsoft.SharePoint.Linq.EntityRef and Microsoft.SharePoint.Linq.EntitySet objects.
+    /// Gets or sets a value indicating whether the LINQ to SharePoint provider should allow delay loading of <see cref="EntityRef"/> and <see cref="EntitySet"/> objects.
     /// </summary>
     /// <value>
-    /// true if [deferred loading enabled]; otherwise, false.
+    /// true if deferred loading enabled, otherwise, false.
     /// </value>
     public bool DeferredLoadingEnabled { get; set; }
     /// <summary>
@@ -77,7 +93,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       if ( !m_AllLists.TryGetValue( listName, out _nwLst ) )
         _nwLst = new EntityListItemsCollection<T>( this, listName );
       m_AllLists.Add( listName, _nwLst );
-      return ((EntityListItemsCollection<T>)_nwLst).GetList();
+      return ( (EntityListItemsCollection<T>)_nwLst ).GetList();
     }
     /// <summary>
     /// Refreshes a collection of entities with the latest data from the content database according to the specified mode.
@@ -161,15 +177,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       if ( m_AllLists.ContainsKey( listName ) )
         m_AllLists[ listName ].SubmitingChanges();
     }
-    internal FieldLookupValue GetFieldLookupValue<TEntity>( string listName, TEntity entity )
-      where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
+    internal FieldLookupValue GetFieldLookupValue<TEntity>( string listName, Object entity )
     {
-      return ((EntityListItemsCollection<TEntity>) m_AllLists[listName]).GetFieldLookupValue( entity );
+      return m_AllLists[ listName ].GetFieldLookupValue( entity );
     }
-    internal TEntity GetFieldLookupValue<TEntity>( string listName, FieldLookupValue fieldLookupValue )
-      where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
+    internal Object GetFieldLookupValue<TEntity>( string listName, FieldLookupValue fieldLookupValue )
     {
-      return ( (EntityListItemsCollection<TEntity>)m_AllLists[ listName ] ).GetFieldLookupValue( fieldLookupValue );
+      return m_AllLists[ listName ].GetFieldLookupValue( fieldLookupValue );
     }
     internal ClientContext m_ClientContext = default( ClientContext );
     internal Site m_site { get; set; }
