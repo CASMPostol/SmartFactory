@@ -71,7 +71,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// </summary>
     /// <param name="entity">The entity to which the <see cref="Microsoft.SharePoint.Linq.EntityRef<TEntity>"/> is being pointed.</param>
     /// <exception cref="System.InvalidOperationException">The object is not registered in the context.</exception>
-    public void SetEntity( TEntity entity )
+    public void SetEntity( Object entity )
     {
       if ( entity == m_Lookup )
         return;
@@ -79,7 +79,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         OnChanging( this, new EventArgs() );
       if ( OnSync != null && m_Lookup != null )
         OnSync( this, new AssociationChangedEventArgs<TEntity>( m_Lookup, AssociationChangedState.Removed ) );
-      m_Lookup = entity;
+      m_Lookup = (TEntity)entity;
       if ( OnSync != null && m_Lookup != null )
         OnSync( this, new AssociationChangedEventArgs<TEntity>( m_Lookup, AssociationChangedState.Added ) );
       if ( OnChanged != null )
@@ -93,7 +93,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     }
     internal void SetLookup( FieldLookupValue value, DataContext dataContext, string listName )
     {
-      TEntity _entity = dataContext.GetFieldLookupValue<TEntity>( listName, value );
+      Object _entity = dataContext.GetFieldLookupValue<TEntity>( listName, value );
       SetEntity( _entity );
     }
     #endregion

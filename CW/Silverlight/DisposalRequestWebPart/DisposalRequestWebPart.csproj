@@ -91,9 +91,6 @@
     <Compile Include="AddNew.xaml.cs">
       <DependentUpon>AddNew.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data\EntityListData.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Data\EntityListItemsCollection.cs" />
     <Compile Include="Data\IEntityListItemsCollection.cs" />
     <Compile Include="Data\Linq.cs" />

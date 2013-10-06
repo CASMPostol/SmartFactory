@@ -9,7 +9,7 @@ using SPCList = Microsoft.SharePoint.Client.List;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
 {
-  internal class EntityListItemsCollection<TEntity>: EntityListData, IEntityListItemsCollection
+  internal class EntityListItemsCollection<TEntity>: IEntityListItemsCollection
     where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
   {
     internal EntityListItemsCollection( DataContext dataContext, string listName )
@@ -74,17 +74,17 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     #endregion
 
     #region internal
-    internal FieldLookupValue GetFieldLookupValue( TEntity entity )
+    public FieldLookupValue GetFieldLookupValue( Object entity )
     {
       Dictionary<TEntity, TEntityWrapper<TEntity>> m_EntitieAssociations = m_Collection.ToDictionary( key => key.Value.TEntityGetter, val => val.Value, new EqualityComparer() );
       FieldLookupValue _ret = new FieldLookupValue()
       {
-        LookupId = entity == null ? -1 : m_EntitieAssociations[ entity ].Index
+        LookupId = entity == null ? -1 : m_EntitieAssociations[ (TEntity) entity ].Index
       };
       Debug.Assert( _ret.LookupId > 0, "Unexpected null reference to existing Entity" );
       return _ret;
     }
-    internal TEntity GetFieldLookupValue( FieldLookupValue fieldLookupValue )
+    public Object GetFieldLookupValue( FieldLookupValue fieldLookupValue )
     {
       if ( fieldLookupValue.LookupId < 0 )
         return null;
