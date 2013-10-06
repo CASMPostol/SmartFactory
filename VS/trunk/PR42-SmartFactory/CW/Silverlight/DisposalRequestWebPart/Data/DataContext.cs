@@ -67,7 +67,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// </value>
     public TextWriter Log { get; set; }
     /// <summary>
-    /// Gets or sets a value that indicates whether changes in objects are tracked..
+    /// Gets or sets a value that indicates whether changes in objects are tracked.
     /// </summary>
     /// <value>
     /// true, if changes are tracked; false otherwise.
@@ -91,9 +91,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       IEntityListItemsCollection _nwLst = null;
       if ( !m_AllLists.TryGetValue( listName, out _nwLst ) )
-        _nwLst = new EntityListItemsCollection<T>( this, listName );
+      {
+        List _list = m_RootWeb.Lists.GetByTitle( listName );
+        m_ClientContext.Load( _list );
+        // Execute the prepared commands against the target ClientContext
+        m_ClientContext.ExecuteQuery();
+        _nwLst = new EntityListItemsCollection<T>( this, _list );
+      }
       m_AllLists.Add( listName, _nwLst );
-      return ( (EntityListItemsCollection<T>)_nwLst ).GetList();
+      return new EntityList<T>( this, (EntityListItemsCollection<T>)_nwLst );
     }
     /// <summary>
     /// Refreshes a collection of entities with the latest data from the content database according to the specified mode.
@@ -117,7 +123,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// <exception cref="System.NotImplementedException"></exception>
     public void Refresh( RefreshMode mode, params object[] entities ) { throw new NotImplementedException(); }
     /// <summary>
-    /// Enables continued reading and writing to an Microsoft.SharePoint.Linq.EntityList even after it has been renamed.
+    /// Enables continued reading and writing to an <see cref="EntityList"/>EntityList even after it has been renamed.
     /// </summary>
     /// <typeparam name="T">The type of the list items.</typeparam>
     /// <param name="newListName">The new name of the list.</param>
@@ -149,10 +155,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// property.
     /// </summary>
     /// <param name="failureMode">A value that specifies when a concurrency conflict should stop the attempt to persist changes and roll back any changes already made.</param>
-    /// <exception cref="System.NotImplementedException">Microsoft.SharePoint.Linq.DataContext.ObjectTrackingEnabled is false- or
-    ///     -At least one conflict in Microsoft.SharePoint.Linq.DataContext.ChangeConflicts
+    /// <exception cref="System.NotImplementedException">
+    /// Microsoft.SharePoint.Linq.DataContext.ObjectTrackingEnabled is false- or
+    ///-At least one conflict in Microsoft.SharePoint.Linq.DataContext.ChangeConflicts
     ///     from the last time Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges
-    ///     was called is not yet resolved.</exception>
+    ///     was called is not yet resolved.
+    ///     </exception>
     public void SubmitChanges( ConflictMode failureMode ) { throw new NotImplementedException(); }
     /// <summary>
     /// Persists, to the content database, changes made by the current user to one
@@ -185,16 +193,20 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       return m_AllLists[ listName ].GetFieldLookupValue( fieldLookupValue );
     }
-    internal ClientContext m_ClientContext = default( ClientContext );
-    internal Site m_site { get; set; }
-    internal Web m_RootWeb { get; set; }
-    internal void ExecuteQuery()
-    {
-      m_ClientContext.ExecuteQuery();
-    }
     internal void ReloadNewListItem( ListItem _newListItem )
     {
       m_ClientContext.Load( _newListItem );
+      m_ClientContext.ExecuteQuery();
+    }
+    internal void GetListItemCollection( ListItemCollection m_ListItemCollection )
+    {
+      m_ClientContext.Load( m_ListItemCollection );
+      // Execute the prepared command against the target ClientContext
+      m_ClientContext.ExecuteQuery();
+    }
+    internal void ListItemUpdate( ListItem listItem )
+    {
+      listItem.Update();
       m_ClientContext.ExecuteQuery();
     }
     #endregion
@@ -255,6 +267,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     #endregion
 
     #region private
+    private ClientContext m_ClientContext = default( ClientContext );
+    private Site m_site { get; set; }
+    private Web m_RootWeb { get; set; }
     private Dictionary<string, IEntityListItemsCollection> m_AllLists = new Dictionary<string, IEntityListItemsCollection>();
     #endregion
 
