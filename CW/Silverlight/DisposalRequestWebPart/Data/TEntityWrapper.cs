@@ -43,10 +43,16 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       MyListItem = listItem;
       m_Index = listItem.Id;
     }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TEntityWrapper{TEntity}"/> class.
+    /// </summary>
+    /// <param name="dataContext">The data context.</param>
+    /// <param name="entity">The new entity to be inserted.</param>
+    /// <param name="handler">The <see cref="PropertyChangedEventHandler"/> handler.</param>
     internal TEntityWrapper( DataContext dataContext, TEntity entity, PropertyChangedEventHandler handler )
       : this( dataContext )
     {
-      entity.EntityState = EntityState.Unchanged;
+      entity.EntityState = EntityState.ToBeInserted;
       entity.PropertyChanged += handler;
       this.TEntityGetter = entity;
       this.MyListItem = null;
@@ -145,7 +151,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     private DataContext m_DataContext = default( DataContext );
     private int m_Index = -1;
     private static int b_indexCounter = -1;
-    private ListItem listItem;
     #endregion
 
   }

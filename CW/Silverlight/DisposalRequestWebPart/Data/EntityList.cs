@@ -98,10 +98,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       if ( entity == null )
         throw new ArgumentNullException( "entity", "entity is null." );
       m_LocalItemsCollection.Add( entity );
-      m_AllItemsCollection.Add( m_DataContext, entity );
-      Unchaged = false;
+      m_AllItemsCollection.Add( entity, m_DataContext );
     }
-
     /// <summary>
     /// Marks the specified entities to be put in the Recycle Bin on the next call
     /// of Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges.
@@ -193,19 +191,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     #endregion
 
     #region private
-    private bool Unchaged { get; set; }
     private DataContext m_DataContext = null;
-
-    private EntityListItemsCollection<TEntity> m_AllItemsCollection = null; //TODO assign it 
+    private EntityListItemsCollection<TEntity> m_AllItemsCollection = null;
     private List<TEntity> m_LocalItemsCollection = new List<TEntity>();
     private bool m_2BeExecuted = true;
     private void GetListItems()
     {
-      // Prepare a query
-      ListItemCollection m_ListItemCollection = m_AllItemsCollection.GetItems( Query );
-      m_DataContext.m_ClientContext.Load( m_ListItemCollection );
-      // Execute the prepared command against the target ClientContext
-      m_DataContext.m_ClientContext.ExecuteQuery();
+      ListItemCollection m_ListItemCollection = m_AllItemsCollection.MyList.GetItems( Query );
+      m_DataContext.GetListItemCollection( m_ListItemCollection );
       foreach ( ListItem _listItemx in m_ListItemCollection )
         Add( _listItemx );
       m_2BeExecuted = false;
@@ -220,7 +213,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       }
       else
       {
-        _newEntity = m_AllItemsCollection.Add( m_DataContext, listItem );
+        _newEntity = m_AllItemsCollection.Add( listItem, m_DataContext );
         m_LocalItemsCollection.Add( _newEntity );
       }
     }

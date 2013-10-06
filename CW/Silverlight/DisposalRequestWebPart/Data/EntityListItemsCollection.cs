@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class EntityListItemsCollection
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -12,17 +27,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
   internal class EntityListItemsCollection<TEntity>: IEntityListItemsCollection
     where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
   {
-    internal EntityListItemsCollection( DataContext dataContext, string listName )
+
+    #region creator
+    internal EntityListItemsCollection( DataContext dataContext, SPCList list )
     {
-      CreateStorageDescription( typeof( TEntity ) );
-      // TODO: Complete member initialization
-      // Prepare a reference to the list
-      m_list = dataContext.m_RootWeb.Lists.GetByTitle( listName );
-      m_DataContext.m_ClientContext.Load( m_list );
-      // Execute the prepared commands against the target ClientContext
-      m_DataContext.m_ClientContext.ExecuteQuery();
+      this.m_list = list;
       this.m_DataContext = dataContext;
+      CreateStorageDescription( typeof( TEntity ) );
     }
+    #endregion
 
     #region IEntityListItemsCollection Members
     public void SubmitingChanges()
@@ -54,8 +67,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
           case EntityState.ToBeUpdated:
             Debug.Assert( _listItem != null, "VAlue", "Inconsistent content of association table, ToBeUpdated should has associated ListItem" );
             _itemX.GetValuesFromEntity( _entityDictionary );
-            _listItem.Update();
-            m_DataContext.ExecuteQuery();
+            m_DataContext.ListItemUpdate( _listItem );
             _cntrUpdt++;
             break;
           case EntityState.Unchanged:
@@ -69,17 +81,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       //TODO Add trace 
       m_Unchaged = true;
     }
-
-
-    #endregion
-
-    #region internal
     public FieldLookupValue GetFieldLookupValue( Object entity )
     {
-      Dictionary<TEntity, TEntityWrapper<TEntity>> m_EntitieAssociations = m_Collection.ToDictionary( key => key.Value.TEntityGetter, val => val.Value, new EqualityComparer() );
+      Dictionary<TEntity, TEntityWrapper<TEntity>> m_EntitieAssociations =
+        m_Collection.ToDictionary<KeyValuePair<int, TEntityWrapper<TEntity>>, TEntity, TEntityWrapper<TEntity>>( key => key.Value.TEntityGetter, val => val.Value, new EqualityComparer() );
       FieldLookupValue _ret = new FieldLookupValue()
       {
-        LookupId = entity == null ? -1 : m_EntitieAssociations[ (TEntity) entity ].Index
+        LookupId = entity == null ? -1 : m_EntitieAssociations[ (TEntity)entity ].Index
       };
       Debug.Assert( _ret.LookupId > 0, "Unexpected null reference to existing Entity" );
       return _ret;
@@ -92,21 +100,28 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         return null; //TODO read ListItem
       return m_Collection[ fieldLookupValue.LookupId ].TEntityGetter;
     }
-    internal EntityList<TEntity> GetList()
-    {
-      return new EntityList<TEntity>( m_DataContext, this );
-    }
-    internal ListItemCollection GetItems( CamlQuery query )
-    {
-      return m_list.GetItems( query );
-    }
-    internal void Add( DataContext dataContext, TEntity entity )
+    #endregion
+
+    #region internal
+    internal List MyList { get { return m_list; } }
+    /// <summary>
+    /// Adds new entiti to be inserted
+    /// </summary>
+    /// <param name="entity">The entity.</param>
+    /// <param name="dataContext">The data context.</param>
+    internal void Add( TEntity entity, DataContext dataContext )
     {
       TEntityWrapper<TEntity> _wrpr = new TEntityWrapper<TEntity>( m_DataContext, entity, PropertyChanged );
-      entity.PropertyChanged += PropertyChanged;
       m_Collection.Add( _wrpr.Index, _wrpr );
+      m_Unchaged = false;
     }
-    internal TEntity Add( DataContext dataContext, ListItem listItem )
+    /// <summary>
+    /// Adds an entity for the the specified list item.
+    /// </summary>
+    /// <param name="listItem">The list item.</param>
+    /// <param name="dataContext">The data context.</param>
+    /// <returns></returns>
+    internal TEntity Add( ListItem listItem, DataContext dataContext )
     {
       Dictionary<string, StorageItem> _storageDic = m_StorageDescription.ToDictionary<StorageItem, string>( storageItem => storageItem.Description.Name );
       TEntityWrapper<TEntity> _erp = new TEntityWrapper<TEntity>( m_DataContext, listItem, _storageDic, PropertyChanged );
@@ -140,8 +155,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     }
     #endregion
 
-
+    private DataContext m_DataContext = default( DataContext );
+    private SPCList m_list = default( SPCList );
     private bool m_Unchaged = true;
+    private List<StorageItem> m_StorageDescription = new List<StorageItem>();
     private Dictionary<int, TEntityWrapper<TEntity>> m_Collection = new Dictionary<int, TEntityWrapper<TEntity>>();
     private void CreateStorageDescription( Type type )
     {
@@ -173,9 +190,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
                                                 select _midx ).ToDictionary<MemberInfo, string>( _mi => _mi.Name );
       return _mmbrs;
     }
-    private SPCList m_list = default( SPCList );
-    private DataContext m_DataContext = default( DataContext );
-    protected List<StorageItem> m_StorageDescription = new List<StorageItem>();
     private void SubmitingChanges4Parents()
     {
       foreach ( StorageItem _si in m_StorageDescription )
@@ -205,9 +219,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       }
     }
 
-
     #endregion
-
 
   }
 }
