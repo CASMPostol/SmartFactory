@@ -15,16 +15,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
   /// Represents a Windows SharePoint Services "14" list that can be queried with Language Integrated Query (LINQ).
   /// </summary>
   /// <typeparam name="TEntity">The content type of the list items.</typeparam>
-  public sealed class EntityList<TEntity>: EntityListData, IOrderedQueryable<TEntity>, IQueryable<TEntity>, IEnumerable<TEntity>, IOrderedQueryable, IQueryable, IEnumerable
+  public sealed class EntityList<TEntity>: IOrderedQueryable<TEntity>, IQueryable<TEntity>, IEnumerable<TEntity>, IOrderedQueryable, IQueryable, IEnumerable
     where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
   {
     #region ctor
-    internal EntityList( DataContext dataContext, string listName )
-      : base( typeof( TEntity ) )
+    internal EntityList( DataContext dataContext, EntityListItemsCollection<TEntity> itemsCollection )
     {
-      this.m_DataContext = dataContext;
-      this.m_ListName = listName;
       this.Query = CamlQuery.CreateAllItemsQuery();
+      this.m_AllItemsCollection = itemsCollection;
+      this.m_DataContext = dataContext;
     }
     #endregion
 
@@ -98,13 +97,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         throw new InvalidOperationException( "Object tracking is not enabled for the DataContext object" );
       if ( entity == null )
         throw new ArgumentNullException( "entity", "entity is null." );
-      m_EntitieAssociations.Add( entity, null );
-      AddMetadata( m_DataContext, entity );
-      entity.EntityState = EntityState.ToBeInserted;
-      entity.PropertyChanging += PropertyChanging;
-      entity.PropertyChanged += PropertyChanged;
+      m_LocalItemsCollection.Add( entity );
+      m_AllItemsCollection.Add( m_DataContext, entity );
       Unchaged = false;
     }
+
     /// <summary>
     /// Marks the specified entities to be put in the Recycle Bin on the next call
     /// of Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges.
@@ -135,25 +132,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     public IQueryable<TEntity> ScopeToFolder( string folderUrl, bool recursive ) { throw new NotImplementedException(); }
 
     #region internal
-    internal FieldLookupValue GetFieldLookupValue( TEntity entity )
-    {
-      FieldLookupValue _ret = new FieldLookupValue()
-      {
-        LookupId = entity == null ? -1 : m_EntitieAssociations[ entity ].Id
-      };
-      Debug.Assert( _ret.LookupId > 0, "Unexpected null reference to existing Entity" );
-      return _ret;
-    }
-    internal TEntity GetFieldLookupValue( FieldLookupValue fieldLookupValue )
-    {
-      if ( fieldLookupValue.LookupId < 0 )
-        return null;
-      int _dumyKey = -1;
-      Dictionary<int, KeyValuePair<ITrackEntityState, ListItem>> _idDictionary = m_EntitieAssociations.ToDictionary( key => key.Value == null ? _dumyKey-- : key.Value.Id );
-      if ( !_idDictionary.ContainsKey( fieldLookupValue.LookupId ) )
-        return null;
-      return (TEntity)_idDictionary[ fieldLookupValue.LookupId ].Key;
-    }
     internal CamlQuery Query { private get; set; }
     #endregion
 
@@ -198,7 +176,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       if ( m_2BeExecuted )
         GetListItems();
-      return ( from _ix in m_EntitieAssociations select _ix.Key ).Cast<TEntity>().GetEnumerator();
+      return m_LocalItemsCollection.GetEnumerator();
     }
     /// <summary>
     /// Returns an enumerator that iterates through a collection.
@@ -210,69 +188,44 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       if ( m_2BeExecuted )
         GetListItems();
-      return ( from _ix in m_EntitieAssociations select _ix.Key ).Cast<TEntity>().GetEnumerator();
+      return m_LocalItemsCollection.GetEnumerator();
     }
     #endregion
 
     #region private
+    private bool Unchaged { get; set; }
+    private DataContext m_DataContext = null;
+
+    private EntityListItemsCollection<TEntity> m_AllItemsCollection = null; //TODO assign it 
+    private List<TEntity> m_LocalItemsCollection = new List<TEntity>();
     private bool m_2BeExecuted = true;
-    private string m_ListName = String.Empty;
-    private void PropertyChanged( object sender, PropertyChangedEventArgs e )
-    {
-      Unchaged = false;
-      ITrackEntityState _entity = sender as ITrackEntityState;
-      if ( _entity == null )
-        throw new ArgumentNullException( "sender", "PropertyChanged must be called from ITrackEntityState" );
-      switch ( _entity.EntityState )
-      {
-        case EntityState.Unchanged:
-          _entity.EntityState = EntityState.ToBeUpdated;
-          break;
-        case EntityState.ToBeInserted:
-        case EntityState.ToBeUpdated:
-        case EntityState.ToBeRecycled:
-        case EntityState.ToBeDeleted:
-        case EntityState.Deleted:
-          break;
-      }
-    }
-    private void PropertyChanging( object sender, PropertyChangingEventArgs e )
-    {
-      //Do nothing
-    }
-    private void AddMetadata( DataContext dataContext, TEntity _newEntity )
-    {
-      foreach ( StorageItem _item in from _six in m_StorageDescription where _six.IsLookup select _six )
-      {
-        AssociationAttribute _ass = (AssociationAttribute)_item.Description;
-        DataContext.IRegister _entityRef = (DataContext.IRegister)_item.Storage.GetValue( _newEntity );
-        _entityRef.RegisterInContext( dataContext, _ass );
-      }
-    }
     private void GetListItems()
     {
-      // Prepare a reference to the list
-      m_list = m_DataContext.m_RootWeb.Lists.GetByTitle( m_ListName );
-      m_DataContext.m_ClientContext.Load( m_list );
-      // Execute the prepared commands against the target ClientContext
-      m_DataContext.m_ClientContext.ExecuteQuery();
       // Prepare a query
-      ListItemCollection m_ListItemCollection = m_list.GetItems( Query );
+      ListItemCollection m_ListItemCollection = m_AllItemsCollection.GetItems( Query );
       m_DataContext.m_ClientContext.Load( m_ListItemCollection );
       // Execute the prepared command against the target ClientContext
       m_DataContext.m_ClientContext.ExecuteQuery();
       foreach ( ListItem _listItemx in m_ListItemCollection )
-      {
-        TEntity _newEntity = new TEntity();
-        m_EntitieAssociations.Add( _newEntity, _listItemx );
-        AddMetadata( m_DataContext, _newEntity );
-        AssignValues2Entity( _newEntity, _listItemx.FieldValues );
-        _newEntity.PropertyChanging += PropertyChanging;
-        _newEntity.PropertyChanged += PropertyChanged;
-        _newEntity.EntityState = EntityState.Unchanged;
-      }
+        Add( _listItemx );
       m_2BeExecuted = false;
     }
+    private void Add( ListItem listItem )
+    {
+      TEntity _newEntity = null;
+      if ( m_AllItemsCollection.ContainsKey( listItem.Id ) )
+      {
+        _newEntity = m_AllItemsCollection[ listItem.Id ];
+        m_LocalItemsCollection.Add( _newEntity );
+      }
+      else
+      {
+        _newEntity = m_AllItemsCollection.Add( m_DataContext, listItem );
+        m_LocalItemsCollection.Add( _newEntity );
+      }
+    }
+
     #endregion
+
   }
 }

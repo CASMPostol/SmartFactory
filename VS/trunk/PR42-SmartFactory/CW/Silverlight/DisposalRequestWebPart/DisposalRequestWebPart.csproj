@@ -91,7 +91,14 @@
     <Compile Include="AddNew.xaml.cs">
       <DependentUpon>AddNew.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\EntityListData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\EntityListItemsCollection.cs" />
+    <Compile Include="Data\IEntityListItemsCollection.cs" />
     <Compile Include="Data\Linq.cs" />
+    <Compile Include="Data\StorageItem.cs" />
+    <Compile Include="Data\TEntityWrapper.cs" />
     <Compile Include="Linq\DisposalRequest.cs" />
     <Compile Include="Linq\DisposalRequestObservable.cs" />
     <Compile Include="Linq\Entities.cs" />
@@ -126,7 +133,6 @@
     <Compile Include="Data\DataAttribute.cs" />
     <Compile Include="Data\Element.cs" />
     <Compile Include="Data\EntityList.cs" />
-    <Compile Include="Data\EntityListData.cs" />
     <Compile Include="Data\EntityRef.cs" />
     <Compile Include="Data\EntitySet.cs" />
     <Compile Include="Data\EntityState.cs" />
