@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     #endregion
 
     #region IEntityListItemsCollection Members
-    public void SubmitingChanges( System.EventHandler executeQuery )
+    public void SubmitingChanges( ProgressChangedEventHandler executeQuery )
     {
       if ( m_Unchaged )
       {
@@ -57,29 +57,32 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         _toBeInsertedItem.GetValuesFromEntity( _entityDictionary );
         _cntrNew++;
         if ( _cntrNew % 10 == 0 )
-          executeQuery( this, new EventArgs() );
+          executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Excute query ListItem to be inserted # {0}", _cntrNew ) ) );
       }
-      executeQuery( this, new EventArgs() );
+      executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Excute query ListItem to be inserted # {0}", _cntrNew ) ) );
       _cntrNew = 0;
       foreach ( TEntityWrapper<TEntity> _toBeInsertedItem in _toBeInsertedCollection )
       {
         _toBeInsertedItem.MyListItem.RefreshLoad();
         _cntrNew++;
         if ( _cntrNew % 10 == 0 )
-          executeQuery( this, new EventArgs() );
+          executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Excute query ListItem RefreshLoad # {0}", _cntrNew ) ) );
       }
-      executeQuery( this, new EventArgs() );
+      executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Excute query ListItem RefreshLoad # {0}", _cntrNew ) ) );
       foreach ( TEntityWrapper<TEntity> _toBeInsertedItem in _toBeInsertedCollection )
+      {
         _toBeInsertedItem.AssignValues2Entity( ListItemPropertiesDictionary() );
+        this.m_Collection.Add( _toBeInsertedItem.Index, _toBeInsertedItem );
+      }
       List<TEntityWrapper<TEntity>> _toBeUpdatedCollection = ( from _tewx in m_Collection.Values where _tewx.EntityState == EntityState.ToBeInserted select _tewx ).ToList();
       foreach ( TEntityWrapper<TEntity> _itemX in _toBeUpdatedCollection )
       {
         _itemX.GetValuesFromEntity( _entityDictionary );
         _cntrUpdt++;
         if ( _cntrUpdt % 10 == 0 )
-          executeQuery( this, new EventArgs() );
+          executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Excute query ListItem Update # {0}", _cntrUpdt ) ) );
       }
-      executeQuery( this, new EventArgs() );
+      executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Excute query ListItem Update # {0}", _cntrUpdt ) ) );
       m_Unchaged = true;
     }
     /// <summary>
