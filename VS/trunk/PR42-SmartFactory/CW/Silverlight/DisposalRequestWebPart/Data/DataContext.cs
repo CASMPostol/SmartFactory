@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : public class DataContext
 //  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2013, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -146,7 +146,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     public void SubmitChanges()
     {
       foreach ( IEntityListItemsCollection _elx in m_AllLists.Values )
-        _elx.SubmitingChanges();
+        _elx.SubmitingChanges( this.ExecuteQuery );
     }
     /// <summary>
     /// Persists to the content database changes made by the current user to one
@@ -183,9 +183,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     internal void SubmitChanges( string listName )
     {
       if ( m_AllLists.ContainsKey( listName ) )
-        m_AllLists[ listName ].SubmitingChanges();
+        m_AllLists[ listName ].SubmitingChanges( ExecuteQuery );
     }
-    internal FieldLookupValue GetFieldLookupValue<TEntity>( string listName, Object entity )
+    internal FieldLookupValue GetFieldLookupValue( string listName, Object entity )
     {
       return m_AllLists[ listName ].GetFieldLookupValue( entity );
     }
@@ -193,21 +193,33 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       return m_AllLists[ listName ].GetFieldLookupValue( fieldLookupValue );
     }
-    internal void ReloadNewListItem( ListItem _newListItem )
+    internal void ListItemLoad( ListItem _newListItem )
     {
       m_ClientContext.Load( _newListItem );
-      m_ClientContext.ExecuteQuery();
-    }
-    internal void GetListItemCollection( ListItemCollection m_ListItemCollection )
-    {
-      m_ClientContext.Load( m_ListItemCollection );
-      // Execute the prepared command against the target ClientContext
       m_ClientContext.ExecuteQuery();
     }
     internal void ListItemUpdate( ListItem listItem )
     {
       listItem.Update();
       m_ClientContext.ExecuteQuery();
+    }
+    internal ListItemCollection GetListItemCollection( List list, CamlQuery Query )
+    {
+      ListItemCollection m_ListItemCollection = list.GetItems( Query );
+      m_ClientContext.Load( m_ListItemCollection );
+      // Execute the prepared command against the target ClientContext
+      m_ClientContext.ExecuteQuery();
+      return m_ListItemCollection;
+    }
+    internal bool LoadListItem<TEntity>( FieldLookupValue fieldLookupValue, EntityListItemsCollection<TEntity> entityListItemsCollection )
+       where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
+    {
+      if ( !DeferredLoadingEnabled )
+        return true;
+      ListItemCollection m_ListItemCollection = GetListItemCollection( entityListItemsCollection.MyList, CamlQuery.CreateAllItemsQuery() );
+      foreach ( ListItem _listItemx in m_ListItemCollection )
+        entityListItemsCollection.Add( _listItemx );
+      return true;
     }
     #endregion
 
@@ -271,6 +283,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     private Site m_site { get; set; }
     private Web m_RootWeb { get; set; }
     private Dictionary<string, IEntityListItemsCollection> m_AllLists = new Dictionary<string, IEntityListItemsCollection>();
+    private void ExecuteQuery( object sender, EventArgs e )
+    {
+      m_ClientContext.ExecuteQuery();
+      //TODO add log.
+    }
+
     #endregion
 
   }
