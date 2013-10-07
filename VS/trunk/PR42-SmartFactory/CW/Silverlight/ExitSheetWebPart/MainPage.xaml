@@ -1,12 +1,86 @@
-﻿<UserControl x:Class="ExitSheetWebPart.MainPage"
+﻿<UserControl 
+	xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data"
+    xmlns:System="clr-namespace:System;assembly=mscorlib" 
+    xmlns:local="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart" 
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="400">
-
-    <Grid x:Name="LayoutRoot" Background="White">
-
+    d:DesignHeight="800" d:DesignWidth="1000">
+    <Grid  Name="LayoutRoot" Background="White" HorizontalAlignment="Stretch" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid Background="White" Grid.Row="0" Grid.Column="0" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition MinWidth="60" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <sdk:Label Name="x_LabelOGLNumber" Grid.Row="0" Grid.Column="0" Content="OGL" HorizontalAlignment="Right" FontFamily="Arial" FontSize="16" />
+            <sdk:Label Name="LabelZDdnia" Grid.Row="0" Grid.Column="1" Content="z dnia" HorizontalAlignment="Center" FontFamily="Arial" FontSize="16" />
+            <sdk:Label Name="x_LabelOGLDate" Grid.Row="0" Grid.Column="2" Content="DATA OGL" HorizontalAlignment="Left" FontFamily="Arial" FontSize="16" />
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <sdk:Label Content="Nazwa tytoniu" Grid.Row="0" Grid.Column="0" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Name="x_LabelNazwaTytoniu" Content="[nazwa tytoniu]" Grid.Row="1" Grid.Column="0" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Content="Typ tytoniu" Grid.Row="2" Grid.Column="0" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Name="x_LabelTypTytoniu" Content="[Typ tytoniu]" Grid.Row="3" Grid.Column="0" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Content="SKU" Grid.Row="2" Grid.Column="1" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Name="x_LabelSKU" Content="[SKU]" Grid.Row="3" Grid.Column="1" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Content="Batch" Grid.Row="2" Grid.Column="2" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Name="x_LabelBatch" Content="[SKU]" Grid.Row="3" Grid.Column="2" FontFamily="Arial" FontSize="16" Margin="10" />
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <sdk:Label Content="WYPROWADZENIE" Grid.Row="0" Grid.Column="0" FontFamily="Arial" FontSize="18" Margin="10" />
+            <sdk:Label Content="Waga netto (kg)" Grid.Row="1" Grid.Column="0" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Name="x_LabelWagaNetto" Content="[Waga netto]" Grid.Row="2" Grid.Column="0" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Content="Ilość opakowań (szt)" Grid.Row="1" Grid.Column="1" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Name="x_LabelIloscOpakowan" Content="[Ilosc opakowan]" Grid.Row="2" Grid.Column="1" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Content="Nr SAD" Grid.Row="1" Grid.Column="2" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Name="x_LabelSAD" Content="[NumerSAD]" Grid.Row="2" Grid.Column="2" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Content="STAN NA S.C ." Grid.Row="0" Grid.Column="3" FontFamily="Arial" FontSize="18" Margin="10" />
+            <sdk:Label Content="Waga netto" Grid.Row="1" Grid.Column="3" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Name="x_LabelWagaNettoSC" Content="[NumerSAD]" Grid.Row="2" Grid.Column="3" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Content="Ilość opakowań (szt)" Grid.Row="1" Grid.Column="4" FontFamily="Arial" FontSize="16" Margin="10" />
+            <sdk:Label Name="x_LabelIloscOpakowanSC" Content="[NumerSAD]" Grid.Row="2" Grid.Column="4" FontFamily="Arial" FontSize="16" Margin="10" />
+        </Grid>
+        <sdk:Label Name="x_LableWarehouseNo" Content="39" Grid.Row="3" Grid.Column="0" FontFamily="Arial" FontSize="250" HorizontalAlignment="Center" Margin="10" />
+        <sdk:Label Name="x_LableWarehouseName" Content="PRODUKCYJNY" Grid.Row="4" Grid.Column="0" FontFamily="Arial" FontSize="100" HorizontalAlignment="Center" Margin="10" />
     </Grid>
 </UserControl>
