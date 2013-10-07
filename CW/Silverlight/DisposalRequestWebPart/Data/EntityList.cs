@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : public sealed class EntityList
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -97,8 +112,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         throw new InvalidOperationException( "Object tracking is not enabled for the DataContext object" );
       if ( entity == null )
         throw new ArgumentNullException( "entity", "entity is null." );
-      m_LocalItemsCollection.Add( entity );
-      m_AllItemsCollection.Add( entity, m_DataContext );
+      Add( entity );
     }
     /// <summary>
     /// Marks the specified entities to be put in the Recycle Bin on the next call
@@ -197,11 +211,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     private bool m_2BeExecuted = true;
     private void GetListItems()
     {
-      ListItemCollection m_ListItemCollection = m_AllItemsCollection.MyList.GetItems( Query );
-      m_DataContext.GetListItemCollection( m_ListItemCollection );
+      ListItemCollection m_ListItemCollection = m_DataContext.GetListItemCollection( m_AllItemsCollection.MyList, Query );
       foreach ( ListItem _listItemx in m_ListItemCollection )
         Add( _listItemx );
       m_2BeExecuted = false;
+    }
+    private void Add( TEntity entity )
+    {
+      m_AllItemsCollection.Add( entity );
+      m_LocalItemsCollection.Add( entity );
     }
     private void Add( ListItem listItem )
     {
@@ -213,7 +231,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       }
       else
       {
-        _newEntity = m_AllItemsCollection.Add( listItem, m_DataContext );
+        _newEntity = m_AllItemsCollection.Add( listItem );
         m_LocalItemsCollection.Add( _newEntity );
       }
     }

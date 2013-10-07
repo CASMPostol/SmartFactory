@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : class EntityListItemsCollection
 //  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2013, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     #endregion
 
     #region IEntityListItemsCollection Members
-    public void SubmitingChanges()
+    public void SubmitingChanges( System.EventHandler executeQuery )
     {
       if ( m_Unchaged )
       {
@@ -50,37 +50,43 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       int _cntrNew = 0;
       int _cntrUpdt = 0;
       Dictionary<string, StorageItem> _entityDictionary = m_StorageDescription.ToDictionary<StorageItem, string>( storageItem => storageItem.PropertyName );
-      foreach ( var _itemX in m_Collection.Values )
+      List<TEntityWrapper<TEntity>> _toBeInsertedCollection = ( from _tewx in m_Collection.Values where _tewx.EntityState == EntityState.ToBeInserted select _tewx ).ToList();
+      foreach ( TEntityWrapper<TEntity> _toBeInsertedItem in _toBeInsertedCollection )
       {
-        ITrackEntityState _entity = _itemX.TEntityGetter;
-        ListItem _listItem = _itemX.MyListItem;
-        switch ( _entity.EntityState )
-        {
-          case EntityState.ToBeInserted:
-            Debug.Assert( _listItem == null, "Value is not null: Inconsistent content of association table, ToBeInserted should not has associated ListItem" );
-            _listItem = m_list.AddItem( new ListItemCreationInformation() );
-            _itemX.GetValuesFromEntity( _entityDictionary );
-            _listItem.Update();
-            m_DataContext.ReloadNewListItem( _listItem );
-            _cntrNew++;
-            break;
-          case EntityState.ToBeUpdated:
-            Debug.Assert( _listItem != null, "VAlue", "Inconsistent content of association table, ToBeUpdated should has associated ListItem" );
-            _itemX.GetValuesFromEntity( _entityDictionary );
-            m_DataContext.ListItemUpdate( _listItem );
-            _cntrUpdt++;
-            break;
-          case EntityState.Unchanged:
-          case EntityState.ToBeRecycled:
-          case EntityState.ToBeDeleted:
-          case EntityState.Deleted:
-            break;
-        }
-        _entity.EntityState = EntityState.Unchanged;
+        m_Collection.Remove( _toBeInsertedItem.Index );
+        _toBeInsertedItem.GetValuesFromEntity( _entityDictionary );
+        _cntrNew++;
+        if ( _cntrNew % 10 == 0 )
+          executeQuery( this, new EventArgs() );
       }
-      //TODO Add trace 
+      executeQuery( this, new EventArgs() );
+      _cntrNew = 0;
+      foreach ( TEntityWrapper<TEntity> _toBeInsertedItem in _toBeInsertedCollection )
+      {
+        _toBeInsertedItem.MyListItem.RefreshLoad();
+        _cntrNew++;
+        if ( _cntrNew % 10 == 0 )
+          executeQuery( this, new EventArgs() );
+      }
+      executeQuery( this, new EventArgs() );
+      foreach ( TEntityWrapper<TEntity> _toBeInsertedItem in _toBeInsertedCollection )
+        _toBeInsertedItem.AssignValues2Entity( ListItemPropertiesDictionary() );
+      List<TEntityWrapper<TEntity>> _toBeUpdatedCollection = ( from _tewx in m_Collection.Values where _tewx.EntityState == EntityState.ToBeInserted select _tewx ).ToList();
+      foreach ( TEntityWrapper<TEntity> _itemX in _toBeUpdatedCollection )
+      {
+        _itemX.GetValuesFromEntity( _entityDictionary );
+        _cntrUpdt++;
+        if ( _cntrUpdt % 10 == 0 )
+          executeQuery( this, new EventArgs() );
+      }
+      executeQuery( this, new EventArgs() );
       m_Unchaged = true;
     }
+    /// <summary>
+    /// Gets the field lookup value.
+    /// </summary>
+    /// <param name="entity">The entity.</param>
+    /// <returns>An <see cref="FieldLookupValue"/> object containing reference to the entity</returns>
     public FieldLookupValue GetFieldLookupValue( Object entity )
     {
       Dictionary<TEntity, TEntityWrapper<TEntity>> m_EntitieAssociations =
@@ -96,7 +102,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       if ( fieldLookupValue.LookupId < 0 )
         return null;
-      if ( !this.ContainsKey( fieldLookupValue.LookupId ) )
+      if ( !this.ContainsKey( fieldLookupValue.LookupId ) && m_DataContext.LoadListItem( fieldLookupValue, this ) )
         return null; //TODO read ListItem
       return m_Collection[ fieldLookupValue.LookupId ].TEntityGetter;
     }
@@ -108,10 +114,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// Adds new entiti to be inserted
     /// </summary>
     /// <param name="entity">The entity.</param>
-    /// <param name="dataContext">The data context.</param>
-    internal void Add( TEntity entity, DataContext dataContext )
+    internal void Add( TEntity entity )
     {
-      TEntityWrapper<TEntity> _wrpr = new TEntityWrapper<TEntity>( m_DataContext, entity, PropertyChanged );
+      TEntityWrapper<TEntity> _wrpr = new TEntityWrapper<TEntity>( m_DataContext, entity, PropertyChanged, MyList );
       m_Collection.Add( _wrpr.Index, _wrpr );
       m_Unchaged = false;
     }
@@ -121,9 +126,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// <param name="listItem">The list item.</param>
     /// <param name="dataContext">The data context.</param>
     /// <returns></returns>
-    internal TEntity Add( ListItem listItem, DataContext dataContext )
+    internal TEntity Add( ListItem listItem )
     {
-      Dictionary<string, StorageItem> _storageDic = m_StorageDescription.ToDictionary<StorageItem, string>( storageItem => storageItem.Description.Name );
+      Dictionary<string, StorageItem> _storageDic = ListItemPropertiesDictionary();
       TEntityWrapper<TEntity> _erp = new TEntityWrapper<TEntity>( m_DataContext, listItem, _storageDic, PropertyChanged );
       TEntity _newEntity = _erp.TEntityGetter;
       m_Collection.Add( _erp.Index, _erp );
@@ -160,6 +165,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     private bool m_Unchaged = true;
     private List<StorageItem> m_StorageDescription = new List<StorageItem>();
     private Dictionary<int, TEntityWrapper<TEntity>> m_Collection = new Dictionary<int, TEntityWrapper<TEntity>>();
+    private Dictionary<string, StorageItem> ListItemPropertiesDictionary()
+    {
+      return m_StorageDescription.ToDictionary<StorageItem, string>( storageItem => storageItem.Description.Name );
+    }
     private void CreateStorageDescription( Type type )
     {
       Dictionary<string, MemberInfo> _mmbrs = GetMembers( type );

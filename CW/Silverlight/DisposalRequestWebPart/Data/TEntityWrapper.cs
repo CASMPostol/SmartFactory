@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : class TEntityWrapper<TEntity>
 //  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2013, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -25,11 +25,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
   /// TEntityWrapper class
   /// </summary>
   /// <typeparam name="TEntity">The type of the entity.</typeparam>
-  internal class TEntityWrapper<TEntity>
+  internal class TEntityWrapper<TEntity>: ITrackEntityState
     where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
   {
 
-    #region internal
+    #region creators
     internal TEntityWrapper( DataContext dataContext, ListItem listItem, Dictionary<string, StorageItem> _storageDic, PropertyChangedEventHandler handler )
       : this( dataContext )
     {
@@ -49,25 +49,23 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// <param name="dataContext">The data context.</param>
     /// <param name="entity">The new entity to be inserted.</param>
     /// <param name="handler">The <see cref="PropertyChangedEventHandler"/> handler.</param>
-    internal TEntityWrapper( DataContext dataContext, TEntity entity, PropertyChangedEventHandler handler )
+    internal TEntityWrapper( DataContext dataContext, TEntity entity, PropertyChangedEventHandler handler, List list )
       : this( dataContext )
     {
       entity.EntityState = EntityState.ToBeInserted;
       entity.PropertyChanged += handler;
       this.TEntityGetter = entity;
-      this.MyListItem = null;
+      this.MyListItem = list.AddItem( new ListItemCreationInformation() );
       m_Index = b_indexCounter--;
     }
-    private TEntityWrapper( DataContext dataContext )
-    {
-      m_DataContext = dataContext;
-    }
+    #endregion
+    
+    #region internal
     /// <summary>
     /// Assigns the values to entity.
     /// </summary>
-    /// <param name="storageDictionary">The storage dictionary containing field name and <see cref="StorageItem" pairs/>.</param>
-    /// <exception cref="System.NotImplementedException">
-    /// Only ColumnAttribute is supported.
+    /// <param name="storageDictionary">The storage dictionary containing field name and <see cref="StorageItem" /> pairs.</param>
+    /// <exception cref="System.NotImplementedException">Only ColumnAttribute is supported.
     /// or
     /// IsLookupId must be true for lookup field.
     /// </exception>
@@ -139,11 +137,27 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         }
         MyListItem[ _storage.Description.Name ] = _value;
       }
+      MyListItem.Update();
       _entity.OriginalValues.Clear();
+      EntityState = Data.EntityState.Unchanged;
     }
     internal int Index { get { return m_Index; } }
     internal ListItem MyListItem { get; private set; }
     internal TEntity TEntityGetter { get; private set; }
+    #region ITrackEntityState Members
+    public EntityState EntityState
+    {
+      get
+      {
+        return TEntityGetter.EntityState;
+      }
+      set
+      {
+        TEntityGetter.EntityState = value;
+      }
+    }
+    #endregion
+
     #endregion
 
 
@@ -151,6 +165,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     private DataContext m_DataContext = default( DataContext );
     private int m_Index = -1;
     private static int b_indexCounter = -1;
+    private TEntityWrapper( DataContext dataContext )
+    {
+      m_DataContext = dataContext;
+    }
     #endregion
 
   }

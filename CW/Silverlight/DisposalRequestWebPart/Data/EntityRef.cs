@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : class EntityRef<TEntity>
 //  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2013, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -89,7 +89,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     #region IAssociationAttribute Members
     internal FieldLookupValue GetLookup( DataContext dataContext, string listName )
     {
-      return dataContext.GetFieldLookupValue<TEntity>( listName, m_Lookup );
+      return dataContext.GetFieldLookupValue( listName, m_Lookup );
     }
     internal void SetLookup( FieldLookupValue value, DataContext dataContext, string listName )
     {
