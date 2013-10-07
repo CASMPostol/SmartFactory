@@ -7,10 +7,10 @@
     xmlns:data="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data"
     xmlns:System="clr-namespace:System;assembly=mscorlib" 
     xmlns:local="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart" 
-    mc:Ignorable="d"
-    d:DesignHeight="800" d:DesignWidth="1000">
+    mc:Ignorable="d" d:DesignWidth="1000" Height="911">
     <Grid  Name="LayoutRoot" Background="White" HorizontalAlignment="Stretch" Margin="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -82,5 +82,6 @@
         </Grid>
         <sdk:Label Name="x_LableWarehouseNo" Content="39" Grid.Row="3" Grid.Column="0" FontFamily="Arial" FontSize="250" HorizontalAlignment="Center" Margin="10" />
         <sdk:Label Name="x_LableWarehouseName" Content="PRODUKCYJNY" Grid.Row="4" Grid.Column="0" FontFamily="Arial" FontSize="100" HorizontalAlignment="Center" Margin="10" />
+        <Button Name="x_ButtonPrint" Grid.Row="5" Grid.Column="0" Content="Print exit sheet" />    
     </Grid>
 </UserControl>
