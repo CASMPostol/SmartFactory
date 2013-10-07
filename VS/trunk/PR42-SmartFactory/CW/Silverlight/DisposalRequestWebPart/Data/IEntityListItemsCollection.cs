@@ -12,8 +12,9 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
+using System.ComponentModel;
 using Microsoft.SharePoint.Client;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
@@ -21,7 +22,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
   interface IEntityListItemsCollection
   {
 
-    void SubmitingChanges( System.EventHandler executeQuery );
+    void SubmitingChanges( ProgressChangedEventHandler executeQuery );
     object GetFieldLookupValue( Microsoft.SharePoint.Client.FieldLookupValue fieldLookupValue );
     FieldLookupValue GetFieldLookupValue( Object entity );
 

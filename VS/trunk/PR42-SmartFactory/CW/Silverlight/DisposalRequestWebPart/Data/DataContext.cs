@@ -35,15 +35,18 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// <param name="requestUrl">The URL of a Windows SharePoint Services "14" Web site that provides client site access and change tracking for the specified Web site..</param>
     public DataContext( string requestUrl )
     {
+#if DEBUG
+      Log = new StringWriter();
+#endif
+      this.ObjectTrackingEnabled = true;
+      this.DeferredLoadingEnabled = true;
       // Open the current ClientContext
       m_ClientContext = new ClientContext( requestUrl );
       m_site = m_ClientContext.Site;
       m_ClientContext.Load<Site>( m_site );
       m_RootWeb = m_site.RootWeb;
       m_ClientContext.Load<Web>( m_RootWeb );
-      m_ClientContext.ExecuteQuery();
-      this.ObjectTrackingEnabled = true;
-      this.DeferredLoadingEnabled = true;
+      ExecuteQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Loaded Size={} Web={1}", m_site.Url, m_RootWeb.Title ) ) );
     }
     /// <summary>
     /// Gets a collection of objects that represent discrepancies between the current client value and the current database value of a field in a list item.
@@ -95,7 +98,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         List _list = m_RootWeb.Lists.GetByTitle( listName );
         m_ClientContext.Load( _list );
         // Execute the prepared commands against the target ClientContext
-        m_ClientContext.ExecuteQuery();
+        ExecuteQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Loading list = {0}", listName ) ) );
         _nwLst = new EntityListItemsCollection<T>( this, _list );
       }
       m_AllLists.Add( listName, _nwLst );
@@ -193,23 +196,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       return m_AllLists[ listName ].GetFieldLookupValue( fieldLookupValue );
     }
-    internal void ListItemLoad( ListItem _newListItem )
-    {
-      m_ClientContext.Load( _newListItem );
-      m_ClientContext.ExecuteQuery();
-    }
-    internal void ListItemUpdate( ListItem listItem )
-    {
-      listItem.Update();
-      m_ClientContext.ExecuteQuery();
-    }
     internal ListItemCollection GetListItemCollection( List list, CamlQuery Query )
     {
-      ListItemCollection m_ListItemCollection = list.GetItems( Query );
-      m_ClientContext.Load( m_ListItemCollection );
+      ListItemCollection _ListItemCollection = list.GetItems( Query );
+      m_ClientContext.Load( _ListItemCollection );
       // Execute the prepared command against the target ClientContext
-      m_ClientContext.ExecuteQuery();
-      return m_ListItemCollection;
+      ExecuteQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Loading ListItemCollection items = {0} for list {1}.", _ListItemCollection.Count, list.Title ) ) );
+      return _ListItemCollection;
     }
     internal bool LoadListItem<TEntity>( FieldLookupValue fieldLookupValue, EntityListItemsCollection<TEntity> entityListItemsCollection )
        where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
@@ -283,12 +276,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     private Site m_site { get; set; }
     private Web m_RootWeb { get; set; }
     private Dictionary<string, IEntityListItemsCollection> m_AllLists = new Dictionary<string, IEntityListItemsCollection>();
-    private void ExecuteQuery( object sender, EventArgs e )
+    private void ExecuteQuery( object sender, ProgressChangedEventArgs e )
     {
+      if ( Log != null )
+        Log.WriteLine( String.Format( "{0};{1}", DateTime.Now, e.UserState ) );
       m_ClientContext.ExecuteQuery();
-      //TODO add log.
     }
-
     #endregion
 
   }
