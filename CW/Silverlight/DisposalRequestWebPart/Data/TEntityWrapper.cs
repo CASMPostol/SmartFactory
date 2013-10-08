@@ -35,13 +35,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       if ( listItem == null )
         throw new ArgumentNullException( "listItem" );
+      MyListItem = listItem;
+      m_Index = listItem.Id;
       TEntity _newEntity = new TEntity();
       _newEntity.EntityState = EntityState.Unchanged;
       _newEntity.PropertyChanged += handler;
       this.TEntityGetter = _newEntity;
       AssignValues2Entity( _storageDic );
-      MyListItem = listItem;
-      m_Index = listItem.Id;
     }
     /// <summary>
     /// Initializes a new instance of the <see cref="TEntityWrapper{TEntity}"/> class.
@@ -82,7 +82,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
           Debug.Assert( _storage.IsLookup, "Unexpected assignment to reverse lookup" );
           if ( _item.Value == null )
             continue;
-          EntityRef<TEntity> _itemRef = (EntityRef<TEntity>)_storage.Storage.GetValue( _entity );
+          IEntityRef _itemRef = (IEntityRef)_storage.Storage.GetValue( _entity );
           _itemRef.SetLookup( (FieldLookupValue)_item.Value, m_DataContext, ( (AssociationAttribute)_storage.Description ).List );
         }
         else

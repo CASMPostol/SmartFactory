@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       // Open the current ClientContext
       m_ClientContext = new ClientContext( requestUrl );
       m_site = m_ClientContext.Site;
-      m_ClientContext.Load<Site>( m_site, s=> s.Url );
+      m_ClientContext.Load<Site>( m_site, s => s.Url );
       m_RootWeb = m_site.RootWeb;
       m_ClientContext.Load<Web>( m_RootWeb, w => w.Title );
       ExecuteQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Loading Site={0}", requestUrl ) ) );
@@ -85,25 +85,16 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// </value>
     public string Web { get { return m_ClientContext.Url; } }
     /// <summary>
-    /// Returns an object that represents the specified list and is queryable by LINQ (Language Integrated Query).
+    /// Gets the list.
     /// </summary>
-    /// <typeparam name="T">The content type of the list items.</typeparam>
-    /// <param name="listName">The name of the list.</param>
-    /// <returns>An Microsoft.SharePoint.Linq.EntityList<TEntity> that represents the list.</returns>
-    public virtual EntityList<T> GetList<T>( string listName )
-       where T: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
+    /// <typeparam name="TEntity">The type of the entity.</typeparam>
+    /// <param name="listName">Name of the list.</param>
+    /// <returns></returns>
+    public virtual EntityList<TEntity> GetList<TEntity>( string listName )
+       where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
-      IEntityListItemsCollection _nwLst = null;
-      if ( !m_AllLists.TryGetValue( listName, out _nwLst ) )
-      {
-        List _list = m_RootWeb.Lists.GetByTitle( listName );
-        m_ClientContext.Load( _list );
-        // Execute the prepared commands against the target ClientContext
-        ExecuteQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Loading list = {0}", listName ) ) );
-        _nwLst = new EntityListItemsCollection<T>( this, _list );
-      }
-      m_AllLists.Add( listName, _nwLst );
-      return new EntityList<T>( this, (EntityListItemsCollection<T>)_nwLst );
+      IEntityListItemsCollection _nwLst = GetOrCreateListEntry<TEntity>( listName );
+      return new EntityList<TEntity>( this, (EntityListItemsCollection<TEntity>)_nwLst );
     }
     /// <summary>
     /// Refreshes a collection of entities with the latest data from the content database according to the specified mode.
@@ -194,8 +185,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       return m_AllLists[ listName ].GetFieldLookupValue( entity );
     }
     internal Object GetFieldLookupValue<TEntity>( string listName, FieldLookupValue fieldLookupValue )
+      where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
-      return m_AllLists[ listName ].GetFieldLookupValue( fieldLookupValue );
+      IEntityListItemsCollection _newList = GetOrCreateListEntry<TEntity>( listName );
+      return _newList.GetFieldLookupValue( fieldLookupValue );
     }
     internal ListItemCollection GetListItemCollection( List list, CamlQuery Query )
     {
@@ -282,6 +275,23 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       if ( Log != null )
         Log.WriteLine( String.Format( "{0};{1}", DateTime.Now, e.UserState ) );
       m_ClientContext.ExecuteQuery();
+    }
+    private IEntityListItemsCollection GetOrCreateListEntry<TEntity>( string listName )
+      where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
+    {
+      IEntityListItemsCollection _nwLst = null;
+      if ( !m_AllLists.TryGetValue( listName, out _nwLst ) )
+      {
+        List _list = m_RootWeb.Lists.GetByTitle( listName );
+        m_ClientContext.Load( _list );
+        // Execute the prepared commands against the target ClientContext
+        ExecuteQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Loading list = {0}", listName ) ) );
+        _nwLst = new EntityListItemsCollection<TEntity>( this, _list );
+        m_AllLists.Add( listName, _nwLst );
+      }
+      else
+        _nwLst = m_AllLists[ listName ];
+      return _nwLst;
     }
     #endregion
 
