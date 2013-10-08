@@ -43,10 +43,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       // Open the current ClientContext
       m_ClientContext = new ClientContext( requestUrl );
       m_site = m_ClientContext.Site;
-      m_ClientContext.Load<Site>( m_site );
+      m_ClientContext.Load<Site>( m_site, s=> s.Url );
       m_RootWeb = m_site.RootWeb;
-      m_ClientContext.Load<Web>( m_RootWeb );
-      ExecuteQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Loaded Size={} Web={1}", m_site.Url, m_RootWeb.Title ) ) );
+      m_ClientContext.Load<Web>( m_RootWeb, w => w.Title );
+      ExecuteQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Loading Site={0}", requestUrl ) ) );
+      Log.WriteLine( String.Format( "Loaded site={0} Web={1}", m_site.Url, m_RootWeb.Title ) );
     }
     /// <summary>
     /// Gets a collection of objects that represent discrepancies between the current client value and the current database value of a field in a list item.
@@ -201,7 +202,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       ListItemCollection _ListItemCollection = list.GetItems( Query );
       m_ClientContext.Load( _ListItemCollection );
       // Execute the prepared command against the target ClientContext
-      ExecuteQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Loading ListItemCollection items = {0} for list {1}.", _ListItemCollection.Count, list.Title ) ) );
+      ExecuteQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Loading ListItemCollection for list {0}.", list.Title ) ) );
       return _ListItemCollection;
     }
     internal bool LoadListItem<TEntity>( FieldLookupValue fieldLookupValue, EntityListItemsCollection<TEntity> entityListItemsCollection )
