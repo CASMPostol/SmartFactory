@@ -2,6 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="WebPartPagesCW">
   <File Path="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" Url="WebPartPagesCW/WebPageTemplate_DisposalRequest.aspx" />
-  <File Path="WebPartPagesCW\WebPageTemplate_CWBook.aspx" Url="WebPartPagesCW/WebPageTemplate_CWBook.aspx" />
+<File Path="WebPartPagesCW\WebPageTemplate_ExitSheet.aspx" Url="WebPartPagesCW/WebPageTemplate_ExitSheet.aspx" />
+<File Path="WebPartPagesCW\WebPageTemplate_CWBook.aspx" Url="WebPartPagesCW/WebPageTemplate_CWBook.aspx" />
 </Module>
 </Elements>
