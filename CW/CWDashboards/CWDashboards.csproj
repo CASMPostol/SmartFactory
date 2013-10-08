@@ -127,6 +127,7 @@
     <Content Include="WebPartPagesCW\Elements.xml" />
     <Content Include="WebPartPagesCW\WebPageTemplate_CWBook.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" />
+    <Content Include="WebPartPagesCW\WebPageTemplate_ExitSheet.aspx" />
     <Content Include="Webparts\DisposalRequestHost\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
