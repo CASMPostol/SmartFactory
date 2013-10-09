@@ -3,13 +3,10 @@
   <MetaData>
     <Views>
       <View>
-        <ViewFields>
-          <FieldRef Key="ID" ></FieldRef>
-        </ViewFields>
         <Query>
           <Eq>
-            <FieldRef ID="{0}"></FieldRef>
-            <Value Type="Counter">{0}</Value>
+            <FieldRef Name='ID'></FieldRef>
+            <Value Type='Counter'>{0}</Value>
           </Eq>
         </Query>
       </View>

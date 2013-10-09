@@ -105,7 +105,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       if ( fieldLookupValue.LookupId < 0 )
         return null;
-      if ( !this.ContainsKey( fieldLookupValue.LookupId ) && !m_DataContext.LoadListItem( fieldLookupValue, this ) )
+      if ( !this.ContainsKey( fieldLookupValue.LookupId ) && !m_DataContext.LoadListItem( fieldLookupValue.LookupId, this ) )
         return null;
       return m_Collection[ fieldLookupValue.LookupId ].TEntityGetter;
     }
