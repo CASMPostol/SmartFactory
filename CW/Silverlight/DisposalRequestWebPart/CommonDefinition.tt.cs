@@ -12,14 +12,27 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
+using Microsoft.SharePoint.Client;
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 {
   /// <summary>
-  /// 
+  /// CommonDefinition 
   /// </summary>
   internal partial class CommonDefinition
   {
-
+    internal static CamlQuery GetCAMLSelectedID( int id )
+    {
+      return new CamlQuery () { ViewXml = string.Format( CAMLSelectedID, id ) };
+    }
+    private static string CAMLSelectedID = @"
+      <View>
+        <Query>
+          <Eq>
+            <FieldRef Name='ID'></FieldRef>
+            <Value Type='Counter'>{0}</Value>
+          </Eq>
+        </Query>
+      </View>";
   }
 }

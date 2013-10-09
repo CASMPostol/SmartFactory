@@ -198,12 +198,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       ExecuteQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Loading ListItemCollection for list {0}.", list.Title ) ) );
       return _ListItemCollection;
     }
-    internal bool LoadListItem<TEntity>( FieldLookupValue fieldLookupValue, EntityListItemsCollection<TEntity> entityListItemsCollection )
+    internal bool LoadListItem<TEntity>( int fieldLookupValue, EntityListItemsCollection<TEntity> entityListItemsCollection )
        where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
       if ( !DeferredLoadingEnabled )
         return true;
-      ListItemCollection m_ListItemCollection = GetListItemCollection( entityListItemsCollection.MyList, CamlQuery.CreateAllItemsQuery() );
+      ListItemCollection m_ListItemCollection = GetListItemCollection( entityListItemsCollection.MyList, CommonDefinition.GetCAMLSelectedID( fieldLookupValue ) );
       foreach ( ListItem _listItemx in m_ListItemCollection )
         entityListItemsCollection.Add( _listItemx );
       return true;
