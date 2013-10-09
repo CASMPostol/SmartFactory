@@ -22,6 +22,7 @@ using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq;
 using Microsoft.SharePoint.Client;
 using System.Linq;
+using System.IO;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 {
@@ -75,6 +76,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         OnPropertyChanged( "Log" );
       }
     }
+    public TextWriter LogList { get; set; }
     /// <summary>
     /// Gets or sets the request collection.
     /// </summary>
