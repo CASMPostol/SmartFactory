@@ -246,7 +246,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       _mq.ReportProgress( 1, String.Format( "GetData DoWork: new DataContext for url={0}.", e.Argument ) );
       m_DataContext = new Entities( (string)e.Argument );
       _mq.ReportProgress( 1, "GetData DoWork: GetList " + CommonDefinition.CustomsWarehouseDisposalTitle );
-      e.Result = m_DataContext.CustomsWarehouseDisposal.Filter( CamlQuery.CreateAllItemsQuery() ).ToList();
+      e.Result = m_DataContext.CustomsWarehouseDisposal.Filter( CommonDefinition.GetCAMLSelectedID( 1, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID ) ).ToList();
     }
     #endregion
 
