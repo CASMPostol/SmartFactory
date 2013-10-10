@@ -69,7 +69,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         ClientContext _ClientContext = ClientContext.Current;
         if (_ClientContext == null)
           throw new ArgumentNullException("clientContext", String.Format("Cannot get the {0} ", "ClientContext"));
-        MainPageData.GetData(_ClientContext.Url);
+        MainPageData.MainPageDataInstance.GetData( _ClientContext.Url );
       }
       catch (Exception ex)
       {
@@ -112,7 +112,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     private void x_ButtonSave_Click(object sender, RoutedEventArgs e)
     {
-      MainPageData.SubmitChanges();
+      MainPageData.MainPageDataInstance.SubmitChanges();
+    }
+    private void x_ButtonCancel_Click( object sender, RoutedEventArgs e )
+    {
+      MainPageData.MainPageDataInstance.ReloadData();
     }
     #endregion
 
