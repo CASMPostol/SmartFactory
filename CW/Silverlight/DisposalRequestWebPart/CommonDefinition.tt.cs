@@ -21,16 +21,18 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
   /// </summary>
   internal partial class CommonDefinition
   {
-    internal static CamlQuery GetCAMLSelectedID( int id )
+    internal static CamlQuery GetCAMLSelectedID( int id, string fieldName )
     {
-      return new CamlQuery () { ViewXml = string.Format( CAMLSelectedID, id ) };
+      return new CamlQuery() { ViewXml = string.Format( CAMLSelectedID, id, fieldName ) };
     }
+    internal static string FieldID = "ID";
+    internal static string FieldCWDisposal2DisposalRequestLibraryID = "CWL_CWDisposal2DisposalRequestLibraryID";
     private static string CAMLSelectedID = @"
       <View>
         <Query>
           <Where>
             <Eq>
-              <FieldRef Name='ID'></FieldRef>
+              <FieldRef Name='{1}'></FieldRef>
               <Value Type='Number'>{0}</Value>
             </Eq>
           </Where>
