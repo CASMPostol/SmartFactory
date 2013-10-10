@@ -65,6 +65,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
     /// Raises the <see cref="E:System.Web.UI.Control.PreRender" /> event.
     /// </summary>
     /// <param name="e">An <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+
     protected override void OnPreRender( EventArgs e )
     {
       SetInterconnectionData( m_ProvidersDictionary );
