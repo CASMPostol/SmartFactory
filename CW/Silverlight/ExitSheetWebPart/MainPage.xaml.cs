@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
     #region handlers
     private void PrintDocument_PrintPageEventHandler( object sender, PrintPageEventArgs e )
     {
-      e.PageVisual = x_LayoutRoot;
+      e.PageVisual = x_GridToBePrinted;
       e.HasMorePages = false;
     }
     private void x_ButtonPrint_Click( object sender, RoutedEventArgs e )
