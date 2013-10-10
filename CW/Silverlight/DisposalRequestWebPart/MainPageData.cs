@@ -16,12 +16,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows;
+using System.Linq;
 using System.Windows.Data;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq;
 using Microsoft.SharePoint.Client;
-using System.Linq;
 using System.IO;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
@@ -42,8 +41,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       _npc.PropertyChanged += RequestCollection_PropertyChanged;
       _npc.CollectionChanged += RequestCollection_CollectionChanged;
       RequestCollection = _npc;
-      m_Singleton = this;
       Log = "MainPageData created.";
+      m_Singleton = this;
     }
     #endregion
 
@@ -106,11 +105,25 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     #endregion
 
     #region internal
-    internal static void GetData( string url )
+    internal static MainPageData MainPageDataInstance
     {
-      m_Singleton.RunWorkerAsync( url );
+      get
+      {
+        if ( m_Singleton == null )
+          m_Singleton = new MainPageData();
+        return m_Singleton;
+      }
     }
-    internal static void SubmitChanges()
+    internal void GetData( string url )
+    {
+      m_URL = url;
+      m_Singleton.RunWorkerAsync( m_URL );
+    }
+    internal void ReloadData()
+    {
+      m_Singleton.RunWorkerAsync( m_URL );
+    }
+    internal void SubmitChanges()
     {
       m_Singleton.SubmitChangesLoc();
     }
@@ -125,6 +138,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     #endregion
 
     private static MainPageData m_Singleton = null;
+    private static string m_URL = String.Empty;
     private bool m_Edited = false;
     private Entities m_DataContext;
     /// <summary>
@@ -201,6 +215,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         Log = "GetData has been canceled";
         return;
       }
+      ////PagedCollectionView _npc = new PagedCollectionView( new DisposalRequestObservable() );
+      ////_npc.PropertyChanged += RequestCollection_PropertyChanged;
+      ////_npc.CollectionChanged += RequestCollection_CollectionChanged;
+      ////RequestCollection = _npc;
       List<CustomsWarehouseDisposal> _list = (List<CustomsWarehouseDisposal>)e.Result;
       Log = "GetData DisposalRequestObservable.GetDataContext  " + CommonDefinition.CustomsWarehouseDisposalTitle;
       ( (DisposalRequestObservable)this.RequestCollection.SourceCollection ).GetDataContext( _list );

@@ -28,10 +28,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private static string CAMLSelectedID = @"
       <View>
         <Query>
-          <Eq>
-            <FieldRef Name='ID'></FieldRef>
-            <Value Type='Counter'>{0}</Value>
-          </Eq>
+          <Where>
+            <Eq>
+              <FieldRef Name='ID'></FieldRef>
+              <Value Type='Number'>{0}</Value>
+            </Eq>
+          </Where>
         </Query>
       </View>";
   }

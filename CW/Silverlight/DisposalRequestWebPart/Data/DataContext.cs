@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       m_RootWeb = m_site.RootWeb;
       m_ClientContext.Load<Web>( m_RootWeb, w => w.Title );
       ExecuteQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Loading Site={0}", requestUrl ) ) );
-      Log.WriteLine( String.Format( "Loaded site={0} Web={1}", m_site.Url, m_RootWeb.Title ) );
+      Trace( new ProgressChangedEventArgs( 1, String.Format( "Loaded site={0} Web={1}", m_site.Url, m_RootWeb.Title ) ) );
     }
     /// <summary>
     /// Gets a collection of objects that represent discrepancies between the current client value and the current database value of a field in a list item.
@@ -190,23 +190,21 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       IEntityListItemsCollection _newList = GetOrCreateListEntry<TEntity>( listName );
       return _newList.GetFieldLookupValue( fieldLookupValue );
     }
-    internal ListItemCollection GetListItemCollection( List list, CamlQuery Query )
+    internal ListItemCollection GetListItemCollection( List list, CamlQuery query )
     {
-      ListItemCollection _ListItemCollection = list.GetItems( Query );
+      ListItemCollection _ListItemCollection = list.GetItems( query );
       m_ClientContext.Load( _ListItemCollection );
       // Execute the prepared command against the target ClientContext
       ExecuteQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Loading ListItemCollection for list {0}.", list.Title ) ) );
+      Trace( new ProgressChangedEventArgs( 1, String.Format( "Loaded Items = {0}.", _ListItemCollection.Count ) ) );
       return _ListItemCollection;
     }
-    internal bool LoadListItem<TEntity>( int fieldLookupValue, EntityListItemsCollection<TEntity> entityListItemsCollection )
+    internal void LoadListItem<TEntity>( int fieldLookupValue, EntityListItemsCollection<TEntity> entityListItemsCollection )
        where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
-      if ( !DeferredLoadingEnabled )
-        return true;
       ListItemCollection m_ListItemCollection = GetListItemCollection( entityListItemsCollection.MyList, CommonDefinition.GetCAMLSelectedID( fieldLookupValue ) );
       foreach ( ListItem _listItemx in m_ListItemCollection )
         entityListItemsCollection.Add( _listItemx );
-      return true;
     }
     #endregion
 
@@ -270,11 +268,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     private Site m_site { get; set; }
     private Web m_RootWeb { get; set; }
     private Dictionary<string, IEntityListItemsCollection> m_AllLists = new Dictionary<string, IEntityListItemsCollection>();
-    private void ExecuteQuery( object sender, ProgressChangedEventArgs e )
+    private void ExecuteQuery( object sender, ProgressChangedEventArgs args )
+    {
+      m_ClientContext.ExecuteQuery();
+      Trace( args );
+    }
+    private void Trace( ProgressChangedEventArgs e )
     {
       if ( Log != null )
         Log.WriteLine( String.Format( "{0};{1}", DateTime.Now, e.UserState ) );
-      m_ClientContext.ExecuteQuery();
     }
     private IEntityListItemsCollection GetOrCreateListEntry<TEntity>( string listName )
       where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
