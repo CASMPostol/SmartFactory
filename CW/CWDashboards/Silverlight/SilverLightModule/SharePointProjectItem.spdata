@@ -3,5 +3,6 @@
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="SilverLightModule\" Type="ElementManifest" />
     <ProjectOutputFile ProjectId="99fc1b00-0242-4e8e-a431-5d8930458be7" ProjectPath="..\Silverlight\DisposalRequestWebPart\DisposalRequestWebPart.csproj" Target="SilverLightModule\" Type="ElementFile" />
+    <ProjectOutputFile ProjectId="22ac8bd1-c6d3-4368-a15d-898cef4661ad" ProjectPath="..\Silverlight\ExitSheetWebPart\ExitSheetWebPart.csproj" Target="SilverLightModule\" Type="ElementFile" />
   </Files>
 </ProjectItem>
