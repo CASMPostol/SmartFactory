@@ -9,60 +9,60 @@
     xmlns:local="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart" 
     x:Class="CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.MainPage"
     mc:Ignorable="d"
-    d:DesignHeight="400" d:DesignWidth="1200"
-     Loaded="UserControl_Loaded">
+    d:DesignHeight="600" d:DesignWidth="1200"
+    Loaded="UserControl_Loaded">
     <UserControl.Resources>
-    	<local:Double2StringConverter x:Key="Double2StringConverter"/>
-    	<local:MainPageData x:Key="MainPageDataDataSource" d:IsDataSource="True"/>
+        <local:Double2StringConverter x:Key="Double2StringConverter"/>
+        <local:MainPageData x:Key="MainPageDataDataSource" d:IsDataSource="True"/>
         <Style x:Key="QtyToClearSuggested" TargetType="sdk:DataGridCell">
-        	<Setter Property="Background">
-        		<Setter.Value>
-        			<SolidColorBrush Color="#FFDCEEF4" Opacity="0.5"/>
-        		</Setter.Value>
-        	</Setter>
-        	<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        	<Setter Property="VerticalContentAlignment" Value="Stretch"/>
-        	<Setter Property="IsTabStop" Value="False"/>
-        	<Setter Property="Template">
-        		<Setter.Value>
-        			<ControlTemplate TargetType="sdk:DataGridCell">
-        				<Grid x:Name="Root" Background="{TemplateBinding Background}">
-        					<Grid.ColumnDefinitions>
-        						<ColumnDefinition/>
-        						<ColumnDefinition Width="Auto"/>
-        					</Grid.ColumnDefinitions>
-        					<VisualStateManager.VisualStateGroups>
-        						<VisualStateGroup x:Name="CurrentStates">
-        							<VisualState x:Name="Regular"/>
-        							<VisualState x:Name="Current">
-        								<Storyboard>
-        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisual"/>
-        								</Storyboard>
-        							</VisualState>
-        						</VisualStateGroup>
-        						<VisualStateGroup x:Name="ValidationStates">
-        							<VisualState x:Name="Valid"/>
-        							<VisualState x:Name="Invalid">
-        								<Storyboard>
-        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="InvalidVisualElement"/>
-        									<ColorAnimation Duration="0" To="#FFFFFFFF" Storyboard.TargetProperty="(Fill).Color" Storyboard.TargetName="FocusVisual"/>
-        								</Storyboard>
-        							</VisualState>
-        						</VisualStateGroup>
-        					</VisualStateManager.VisualStateGroups>
-        					<Rectangle x:Name="FocusVisual" Fill="#66FFFFFF" HorizontalAlignment="Stretch" IsHitTestVisible="false" Opacity="0" Stroke="#FF6DBDD1" StrokeThickness="1" VerticalAlignment="Stretch"/>
-        					<ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-        					<Rectangle x:Name="InvalidVisualElement" HorizontalAlignment="Stretch" IsHitTestVisible="False" Opacity="0" Stroke="#FFDC000C" StrokeThickness="1" VerticalAlignment="Stretch"/>
-        					<Rectangle x:Name="RightGridLine" Grid.Column="1" VerticalAlignment="Stretch" Width="1"/>
-        				</Grid>
-        			</ControlTemplate>
-        		</Setter.Value>
-        	</Setter>
-        	<Setter Property="Foreground" Value="Black"/>
-        	<Setter Property="Opacity" Value="1"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FFDCEEF4" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="sdk:DataGridCell">
+                        <Grid x:Name="Root" Background="{TemplateBinding Background}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CurrentStates">
+                                    <VisualState x:Name="Regular"/>
+                                    <VisualState x:Name="Current">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisual"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ValidationStates">
+                                    <VisualState x:Name="Valid"/>
+                                    <VisualState x:Name="Invalid">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="InvalidVisualElement"/>
+                                            <ColorAnimation Duration="0" To="#FFFFFFFF" Storyboard.TargetProperty="(Fill).Color" Storyboard.TargetName="FocusVisual"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="FocusVisual" Fill="#66FFFFFF" HorizontalAlignment="Stretch" IsHitTestVisible="false" Opacity="0" Stroke="#FF6DBDD1" StrokeThickness="1" VerticalAlignment="Stretch"/>
+                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Rectangle x:Name="InvalidVisualElement" HorizontalAlignment="Stretch" IsHitTestVisible="False" Opacity="0" Stroke="#FFDC000C" StrokeThickness="1" VerticalAlignment="Stretch"/>
+                            <Rectangle x:Name="RightGridLine" Grid.Column="1" VerticalAlignment="Stretch" Width="1"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Opacity" Value="1"/>
         </Style>
     </UserControl.Resources>
-    <sdk:TabControl Height="400" VerticalAlignment="Top" Width="1200">
+    <sdk:TabControl Height="600" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1200" MinHeight="600" MinWidth="1200" MaxHeight="600" MaxWidth="1200">
         <sdk:TabItem Header="MainPage">
             <Grid HorizontalAlignment="Stretch" Background="#FF354B5F" Margin="5" DataContext="{Binding Source={StaticResource MainPageDataDataSource}}">
                 <Grid.RowDefinitions>
