@@ -34,14 +34,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
   /// <summary>
   /// Main page UserControl
   /// </summary>
-  public partial class MainPage : UserControl
+  public partial class MainPage: UserControl
   {
     #region public
     public MainPage()
     {
       InitializeComponent();
     }
-    public MainPage(string hiddenFieldDataName)
+    public MainPage( string hiddenFieldDataName )
       : this()
     {
       m_at = "creator";
@@ -61,71 +61,96 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private int? m_SelectedID = new Nullable<int>();
     private readonly string m_HiddenFieldDataName = String.Empty;
     private string m_at;
+    private string m_URL = string.Empty;
     #endregion
 
-    private void ExceptionHandling(Exception ex)
+    private void ExceptionHandling( Exception ex )
     {
-      MessageBox.Show(ex.Message + " AT: " + m_at, "Loaded event error", MessageBoxButton.OK);
+      MessageBox.Show( ex.Message + " AT: " + m_at, "Loaded event error", MessageBoxButton.OK );
     }
 
     #region event handlers
-    private void UserControl_Loaded(object sender, RoutedEventArgs e)
+    private void UserControl_Loaded( object sender, RoutedEventArgs e )
     {
       try
       {
         ClientContext _ClientContext = ClientContext.Current;
-        if (_ClientContext == null)
-          throw new ArgumentNullException("clientContext", String.Format("Cannot get the {0} ", "ClientContext"));
-        MainPageData.MainPageDataInstance.GetData( _ClientContext.Url, m_SelectedID );
+        if ( _ClientContext == null )
+          throw new ArgumentNullException( "clientContext", String.Format( "Cannot get the {0} ", "ClientContext" ) );
+        m_URL = _ClientContext.Url;
+        this.MainPageData.GetData( m_URL, m_SelectedID );
       }
-      catch (Exception ex)
+      catch ( Exception ex )
       {
-        ExceptionHandling(ex);
+        ExceptionHandling( ex );
       }
     }
-    private void x_ButtonAddNew_Click(object sender, RoutedEventArgs e)
+    private void UserControl_Unloaded( object sender, RoutedEventArgs e )
+    {
+      DisposeMainPageData();
+    }
+    private MainPageData MainPageData
+    {
+      get { return ( (MainPageData)x_GridMainPageData.DataContext ); }
+      set { x_GridMainPageData.DataContext = value; this.UpdateLayout(); }
+    }
+    private void DisposeMainPageData()
+    {
+      if ( this.MainPageData == null )
+        return;
+      MainPageData _MainPageData = MainPageData;
+      MainPageData = null;
+      _MainPageData.Dispose();
+    }
+
+    private void x_ButtonAddNew_Click( object sender, RoutedEventArgs e )
     {
       try
       {
 
       }
-      catch (Exception _ex)
+      catch ( Exception _ex )
       {
-        ExceptionHandling(_ex);
+        ExceptionHandling( _ex );
       }
     }
-    private void x_ButtonEndofBatch_Click(object sender, RoutedEventArgs e)
+    private void x_ButtonEndofBatch_Click( object sender, RoutedEventArgs e )
     {
       try
       {
 
       }
-      catch (Exception _ex)
+      catch ( Exception _ex )
       {
-        ExceptionHandling(_ex);
+        ExceptionHandling( _ex );
       }
 
     }
-    private void x_ButtonDelete_Click(object sender, RoutedEventArgs e)
+    private void x_ButtonDelete_Click( object sender, RoutedEventArgs e )
     {
       try
       {
 
       }
-      catch (Exception _ex)
+      catch ( Exception _ex )
       {
-        ExceptionHandling(_ex);
+        ExceptionHandling( _ex );
       }
     }
-    private void x_ButtonSave_Click(object sender, RoutedEventArgs e)
+    private void x_ButtonSave_Click( object sender, RoutedEventArgs e )
     {
-      MainPageData.MainPageDataInstance.SubmitChanges();
+      this.MainPageData.SubmitChanges();
     }
     private void x_ButtonCancel_Click( object sender, RoutedEventArgs e )
     {
-      MainPageData.MainPageDataInstance.ReloadData();
+      if ( MessageBox.Show( "All modification will be discarded", "Request Editor", MessageBoxButton.OKCancel ) != MessageBoxResult.OK )
+        return;
+      DisposeMainPageData();
+      this.MainPageData = new MainPageData();
+      this.MainPageData.GetData( m_URL, m_SelectedID );
     }
     #endregion
+
 
     #endregion
 

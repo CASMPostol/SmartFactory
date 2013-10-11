@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       double _doubleValue = (double)value;
       if ( typeof( String ) != targetType )
         throw new ArgumentOutOfRangeException( String.Format( "targetType", "Vrong target type {0} but expected String", targetType.Name ) );
-      return _doubleValue.ToString("E2", culture );
+      return _doubleValue.ToString("F2", culture );
     }
 
     public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
