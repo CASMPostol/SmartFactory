@@ -12,16 +12,30 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-
+//<summary>
+//  Title   : public class MainPageData
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Windows.Data;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq;
 using Microsoft.SharePoint.Client;
-using System.IO;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 {
@@ -114,9 +128,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         return m_Singleton;
       }
     }
-    internal void GetData( string url )
+    internal void GetData( string url, int? selectedID )
     {
       m_URL = url;
+      m_SelectedID = selectedID;
+      if ( !selectedID.HasValue )
+        return;
       m_Singleton.RunWorkerAsync( m_URL );
     }
     internal void ReloadData()
@@ -139,6 +156,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 
     private static MainPageData m_Singleton = null;
     private static string m_URL = String.Empty;
+    private static int? m_SelectedID = new Nullable<int>();
     private bool m_Edited = false;
     private Entities m_DataContext;
     /// <summary>
@@ -173,8 +191,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       try
       {
         int items = RequestCollection == null ? -1 : RequestCollection.TotalItemCount;
-        string _pattern = "Disposal request content: {0} items; {1}";
+        string _pattern = "Disposal request {0} content: {1} items; {2}";
         string _star = m_Edited ? "*" : " ";
+        string _rid = m_SelectedID.HasValue ? m_SelectedID.ToString() : "Not connected";
         this.HeaderLabel = String.Format( _pattern, items, _star );
       }
       catch ( Exception ex )

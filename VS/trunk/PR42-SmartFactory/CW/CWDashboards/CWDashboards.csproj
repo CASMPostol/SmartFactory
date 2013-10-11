@@ -101,10 +101,6 @@
     <None Include="Webparts\DisposalRequestHost\DisposalRequestHost.webpart">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Webparts\DisposalRequestHost\Query.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>Query.cs</LastGenOutput>
-    </None>
     <None Include="Webparts\DisposalRequestHost\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{604a5649-bf4f-4eab-acea-14ce06092367}</SharePointProjectItemId>
     </None>
@@ -166,11 +162,6 @@
     </Compile>
     <Compile Include="Silverlight\SilverlightExceptionScript.tt.cs" />
     <Compile Include="Webparts\DisposalRequestHost\DisposalRequestHost.cs" />
-    <Compile Include="Webparts\DisposalRequestHost\Query.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Query.tt</DependentUpon>
-    </Compile>
     <Compile Include="Webparts\DisposalRequestHost\Query.tt.cs" />
     <Compile Include="Webparts\InterconnectionData.cs" />
   </ItemGroup>
