@@ -15,13 +15,28 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <sdk:DataGrid Name="x_DataGridToBePrinted">
-            <sdk:DataGrid.Columns>
-                <sdk:DataGridTextColumn Header="Numer OGL" />
-                <sdk:DataGridTextColumn Header="Z dnia" />
-                <sdk:DataGridTextColumn Header="Liczba kartonów" />
-            </sdk:DataGrid.Columns>
-        </sdk:DataGrid>
-        <Button Name="x_ButtonPrint" Content="Print" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Width="Auto" Click="x_ButtonPrint_Click"/>
+        <Grid Name="x_GridToBePrinted" Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <sdk:Label Grid.Row="0" Grid.Column="0" Content="Dokument z dnia:" HorizontalAlignment="Right" />
+            <sdk:DatePicker Grid.Row="0" Grid.Column="1" DisplayDate="" />
+            <sdk:DataGrid Name="x_DataGridCheckListContent" ItemsSource="{Binding RequestCollection}" Grid.Row="1" Grid.ColumnSpan="2" AutoGenerateColumns="False" Background="#00000000">
+                <sdk:DataGrid.CanUserReorderColumns >
+                    <System:Boolean>false</System:Boolean>
+                </sdk:DataGrid.CanUserReorderColumns>
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Binding="{Binding OGL, FallbackValue=N/A}" Header="Numer OGL" CanUserSort="True" IsReadOnly="True" />
+                    <sdk:DataGridTextColumn Binding="{Binding SADDate, FallbackValue=N/A}" Header="Z dnia" CanUserSort="True" IsReadOnly="True" />
+                    <sdk:DataGridTextColumn Binding="{Binding RemainingPackage, FallbackValue=N/A}" Header="Liczba kartonów" CanUserSort="True" IsReadOnly="True" />
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+        </Grid>
+        <Button Name="x_ButtonPrint" Content="Print" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Width="Auto" Click="x_ButtonPrint_Click"/>
     </Grid>
 </UserControl>
