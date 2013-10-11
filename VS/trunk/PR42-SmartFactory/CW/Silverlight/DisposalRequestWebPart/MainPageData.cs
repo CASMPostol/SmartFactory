@@ -57,7 +57,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       _npc.CollectionChanged += RequestCollection_CollectionChanged;
       RequestCollection = _npc;
       Log = "MainPageData created.";
-      m_Singleton = this;
     }
     #endregion
 
@@ -116,34 +115,26 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       if ( m_DataContext != null )
         m_DataContext.Dispose();
+      m_Disposed = true;
     }
     #endregion
 
     #region internal
-    internal static MainPageData MainPageDataInstance
-    {
-      get
-      {
-        if ( m_Singleton == null )
-          m_Singleton = new MainPageData();
-        return m_Singleton;
-      }
-    }
     internal void GetData( string url, int? selectedID )
     {
+      if ( m_Disposed )
+        throw new ObjectDisposedException( typeof( MainPageData ).Name );
       m_URL = url;
       m_SelectedID = selectedID;
-      if ( !selectedID.HasValue )
+      if ( !m_SelectedID.HasValue )
         return;
-      m_Singleton.RunWorkerAsync( m_URL );
-    }
-    internal void ReloadData()
-    {
-      m_Singleton.RunWorkerAsync( m_URL );
+      GetDataAsync( m_URL );
     }
     internal void SubmitChanges()
     {
-      m_Singleton.SubmitChangesLoc();
+      if ( m_Disposed )
+        throw new ObjectDisposedException( typeof( MainPageData ).Name );
+      SubmitChangesLoc();
     }
     #endregion
 
@@ -155,9 +146,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private string b_Log = "Log before starting";
     #endregion
 
-    private static MainPageData m_Singleton = null;
-    private static string m_URL = String.Empty;
-    private static int? m_SelectedID = new Nullable<int>();
+    private bool m_Disposed = false;
+    private string m_URL = String.Empty;
+    private int? m_SelectedID = new Nullable<int>();
     private bool m_Edited = false;
     private Entities m_DataContext;
     /// <summary>
@@ -213,15 +204,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 
     #region Worker
     private BackgroundWorker m_Worker = new BackgroundWorker();
-    private void RunWorkerAsync( string url )
+    private void GetDataAsync( string url )
     {
       m_Worker.DoWork += Worker_DoWork;
       m_Worker.ProgressChanged += Worker_ProgressChanged;
       m_Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
       m_Worker.WorkerReportsProgress = true;
       m_Worker.WorkerSupportsCancellation = false;
-      m_Singleton.Log = "GetData RunWorkerAsync";
-      m_Worker.RunWorkerAsync( url );
+      m_Worker.RunWorkerAsync();
     }
     private void Worker_RunWorkerCompleted( object sender, RunWorkerCompletedEventArgs e )
     {
@@ -263,8 +253,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private void Worker_DoWork( object sender, DoWorkEventArgs e )
     {
       BackgroundWorker _mq = (BackgroundWorker)sender;
-      _mq.ReportProgress( 1, String.Format( "GetData DoWork: new DataContext for url={0}.", e.Argument ) );
-      m_DataContext = new Entities( (string)e.Argument );
+      _mq.ReportProgress( 1, String.Format( "GetData DoWork: new DataContext for url={0}.", m_URL ) );
+      m_DataContext = new Entities( m_URL );
       _mq.ReportProgress( 1, "GetData DoWork: GetList " + CommonDefinition.CustomsWarehouseDisposalTitle );
       Debug.Assert( m_SelectedID.HasValue, "m_SelectedID must have value" );
       e.Result = m_DataContext.CustomsWarehouseDisposal.Filter( CommonDefinition.GetCAMLSelectedID( m_SelectedID.Value, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID ) ).ToList();
