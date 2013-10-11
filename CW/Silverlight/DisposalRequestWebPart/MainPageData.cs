@@ -26,10 +26,11 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Data;
@@ -194,7 +195,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         string _pattern = "Disposal request {0} content: {1} items; {2}";
         string _star = m_Edited ? "*" : " ";
         string _rid = m_SelectedID.HasValue ? m_SelectedID.ToString() : "Not connected";
-        this.HeaderLabel = String.Format( _pattern, items, _star );
+        this.HeaderLabel = String.Format( _pattern, _rid, items, _star );
       }
       catch ( Exception ex )
       {
@@ -265,7 +266,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       _mq.ReportProgress( 1, String.Format( "GetData DoWork: new DataContext for url={0}.", e.Argument ) );
       m_DataContext = new Entities( (string)e.Argument );
       _mq.ReportProgress( 1, "GetData DoWork: GetList " + CommonDefinition.CustomsWarehouseDisposalTitle );
-      e.Result = m_DataContext.CustomsWarehouseDisposal.Filter( CommonDefinition.GetCAMLSelectedID( 1, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID ) ).ToList();
+      Debug.Assert( m_SelectedID.HasValue, "m_SelectedID must have value" );
+      e.Result = m_DataContext.CustomsWarehouseDisposal.Filter( CommonDefinition.GetCAMLSelectedID( m_SelectedID.Value, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID ) ).ToList();
     }
     #endregion
 
