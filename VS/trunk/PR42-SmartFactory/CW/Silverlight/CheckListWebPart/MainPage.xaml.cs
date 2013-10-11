@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
     #region handlers
     private void PrintDocument_PrintPageEventHandler( object sender, PrintPageEventArgs e)
     {
-      e.PageVisual = x_DataGridToBePrinted;
+      e.PageVisual = x_GridToBePrinted;
       e.HasMorePages = false;
     }
     private void x_ButtonPrint_Click(object sender, RoutedEventArgs e)
