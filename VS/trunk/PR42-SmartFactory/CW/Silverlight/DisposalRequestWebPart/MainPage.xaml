@@ -10,7 +10,10 @@
     x:Class="CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.MainPage"
     mc:Ignorable="d"
     d:DesignHeight="600" d:DesignWidth="1200"
-    Loaded="UserControl_Loaded">
+    Loaded="UserControl_Loaded"
+    Height="600"
+    Width="1200"
+    ScrollViewer.VerticalScrollBarVisibility="Disabled">
     <UserControl.Resources>
         <local:Double2StringConverter x:Key="Double2StringConverter"/>
         <local:MainPageData x:Key="MainPageDataDataSource" d:IsDataSource="True"/>
@@ -62,7 +65,7 @@
             <Setter Property="Opacity" Value="1"/>
         </Style>
     </UserControl.Resources>
-    <sdk:TabControl Height="600" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1200" MinHeight="600" MinWidth="1200" MaxHeight="600" MaxWidth="1200">
+    <sdk:TabControl Height="600" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1200" MinHeight="600" MinWidth="1200" MaxHeight="600" MaxWidth="1200" ScrollViewer.VerticalScrollBarVisibility="Disabled">
         <sdk:TabItem Header="MainPage">
             <Grid HorizontalAlignment="Stretch" Background="#FF354B5F" Margin="5" DataContext="{Binding Source={StaticResource MainPageDataDataSource}}">
                 <Grid.RowDefinitions>

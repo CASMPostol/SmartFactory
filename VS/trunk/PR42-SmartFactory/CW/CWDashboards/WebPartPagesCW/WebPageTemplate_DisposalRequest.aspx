@@ -33,9 +33,7 @@
                     <WebPartPages:WebPartZone
                         ID="DisposalRequestWebPart" runat="server"
                         Title="Disposal Request Web Part Zone"
-                        FrameType="TitleBarOnly"
-                        Height="800 px"
-                        Width="1200 px" />
+                        FrameType="TitleBarOnly" Height="700" />
                 </td>
             </tr>
         </table>
