@@ -22,6 +22,6 @@ namespace CAS.SmartFactory.CW.Dashboards
   {
     internal const string CustomsWarehouseDisposalTitle = "Customs Warehouse Disposal";
     internal const string DisposalRequestLibraryTitle = "Disposal Request Library";
-	internal const string HiddenFieldDataParameterName = "controlId";
+    internal const string HiddenFieldDataParameterName = "controlId";
   }
 }

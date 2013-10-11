@@ -46,12 +46,19 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       m_at = "creator";
       m_HiddenFieldDataName = hiddenFieldDataName;
+      HtmlDocument doc = HtmlPage.Document;
+      HtmlElement hiddenField = doc.GetElementById( hiddenFieldDataName );
+      string message = hiddenField.GetAttribute( "value" ).ToString();
+      int _id = 0;
+      if ( Int32.TryParse( message, out _id ) )
+        m_SelectedID = _id;
     }
     #endregion
 
     #region private
 
     #region private vars
+    private int? m_SelectedID = new Nullable<int>();
     private readonly string m_HiddenFieldDataName = String.Empty;
     private string m_at;
     #endregion
@@ -69,7 +76,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         ClientContext _ClientContext = ClientContext.Current;
         if (_ClientContext == null)
           throw new ArgumentNullException("clientContext", String.Format("Cannot get the {0} ", "ClientContext"));
-        MainPageData.MainPageDataInstance.GetData( _ClientContext.Url );
+        MainPageData.MainPageDataInstance.GetData( _ClientContext.Url, m_SelectedID );
       }
       catch (Exception ex)
       {

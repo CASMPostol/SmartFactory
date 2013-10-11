@@ -37,7 +37,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
     /// Sets the BatchInterconnection provider.
     /// </summary>
     /// <param name="_provider">The provider interface.</param>
-    [ConnectionConsumer( "Batch list interconnection", "BatchInterconnection", AllowsMultipleConnections = false )]
+    [ConnectionConsumer( "Disposal Request list interconnection", "DisposalInterconnection", AllowsMultipleConnections = false )]
     public void SetBatchProvider( IWebPartRow _provider )
     {
       m_ProvidersDictionary = _provider;
@@ -69,13 +69,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
     protected override void OnPreRender( EventArgs e )
     {
       SetInterconnectionData( m_ProvidersDictionary );
-      int _id;
-      if ( int.TryParse( m_DisposalRequestId, out _id ) )
-      {
-        Query _query = new Query() { ID = _id };
-        m_HiddenFieldData.Value = _query.TransformText();
-        m_slwc.AddInitParams( new InitParam( CommonDefinition.HiddenFieldDataParameterName, m_HiddenFieldData.ClientID ) );
-      }
+      m_slwc.AddInitParams( new InitParam( CommonDefinition.HiddenFieldDataParameterName, m_HiddenFieldData.ClientID ) );
       base.OnPreRender( e );
     }
     private void SetInterconnectionData( IWebPartRow webPartRow )
@@ -89,15 +83,13 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
     }
     private void NewDataEventHandler( object sender, DisposalRequestInterconnectionData e )
     {
-      m_DisposalRequestId = e.ID;
-      m_DisposalRequestTitle = e.Title;
+      EnsureChildControls();
       m_SelectedItemTitle.Text = e.Title;
+      m_HiddenFieldData.Value = e.ID;
     }
-    private string m_DisposalRequestId = String.Empty;
     private IWebPartRow m_ProvidersDictionary = null;
-    private string m_DisposalRequestTitle = String.Empty;
     private LiteralControl m_SelectedItemTitle = new LiteralControl();
     private HiddenField m_HiddenFieldData = new HiddenField();
-    SilverlightWebControl m_slwc = null;
+    private SilverlightWebControl m_slwc = null;
   }
 }
