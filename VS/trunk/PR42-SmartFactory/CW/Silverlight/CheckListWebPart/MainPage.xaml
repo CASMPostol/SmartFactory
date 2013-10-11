@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="CAS.SmartFactory.CW.Dashboards.CheckListWebPart.MainPage"
+	xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    mc:Ignorable="d"
+    d:DesignHeight="1000" d:DesignWidth="400">
+    <Grid x:Name="x_LayoutRoot"  Background="White" HorizontalAlignment="Stretch" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <sdk:DataGrid Name="x_DataGridToBePrinted">
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Header="Numer OGL" />
+                <sdk:DataGridTextColumn Header="Z dnia" />
+                <sdk:DataGridTextColumn Header="Liczba kartonów" />
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+        <Button Name="x_ButtonPrint" Content="Print" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Width="Auto" Click="x_ButtonPrint_Click"/>
+    </Grid>
+</UserControl>
