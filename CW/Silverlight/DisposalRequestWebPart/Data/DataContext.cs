@@ -202,7 +202,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     internal void LoadListItem<TEntity>( int fieldLookupValue, EntityListItemsCollection<TEntity> entityListItemsCollection )
        where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
-      ListItemCollection m_ListItemCollection = GetListItemCollection( entityListItemsCollection.MyList, CommonDefinition.GetCAMLSelectedID( fieldLookupValue, CommonDefinition.FieldID ) );
+      ListItemCollection m_ListItemCollection = GetListItemCollection( entityListItemsCollection.MyList, CommonDefinition.GetCAMLSelectedID( fieldLookupValue, CommonDefinition.FieldID, CommonDefinition.CAMLTypeNumber ) );
       foreach ( ListItem _listItemx in m_ListItemCollection )
         entityListItemsCollection.Add( _listItemx );
     }

@@ -113,13 +113,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     #region IDisposable Members
     public void Dispose()
     {
-      if ( m_DataContext != null )
-        m_DataContext.Dispose();
+      if ( Entities != null )
+        Entities.Dispose();
       m_Disposed = true;
     }
     #endregion
 
     #region internal
+    internal Entities Entities { get; private set; }
     internal void GetData( string url, int? selectedID )
     {
       if ( m_Disposed )
@@ -150,7 +151,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private string m_URL = String.Empty;
     private int? m_SelectedID = new Nullable<int>();
     private bool m_Edited = false;
-    private Entities m_DataContext;
     /// <summary>
     /// Called whena property value changes.
     /// </summary>
@@ -165,7 +165,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       try
       {
-        m_DataContext.SubmitChanges();
+        Entities.SubmitChanges();
         m_Edited = false;
         UpdateHeader();
       }
@@ -254,10 +254,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       BackgroundWorker _mq = (BackgroundWorker)sender;
       _mq.ReportProgress( 1, String.Format( "GetData DoWork: new DataContext for url={0}.", m_URL ) );
-      m_DataContext = new Entities( m_URL );
+      Entities = new Entities( m_URL );
       _mq.ReportProgress( 1, "GetData DoWork: GetList " + CommonDefinition.CustomsWarehouseDisposalTitle );
       Debug.Assert( m_SelectedID.HasValue, "m_SelectedID must have value" );
-      e.Result = m_DataContext.CustomsWarehouseDisposal.Filter( CommonDefinition.GetCAMLSelectedID( m_SelectedID.Value, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID ) ).ToList();
+      e.Result = Entities.CustomsWarehouseDisposal.Filter( CommonDefinition.GetCAMLSelectedID( m_SelectedID.Value, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID, CommonDefinition.CAMLTypeNumber ) ).ToList();
     }
     #endregion
 
