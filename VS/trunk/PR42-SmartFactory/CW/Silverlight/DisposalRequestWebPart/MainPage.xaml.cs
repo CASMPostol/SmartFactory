@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       m_HiddenFieldDataName = hiddenFieldDataName;
       HtmlDocument doc = HtmlPage.Document;
       HtmlElement hiddenField = doc.GetElementById( hiddenFieldDataName );
-      string message = hiddenField.GetAttribute( "value" ).ToString();
+      string message = hiddenField.GetAttribute( "value" );
       int _id = 0;
       if ( Int32.TryParse( message, out _id ) )
         m_SelectedID = _id;
@@ -102,17 +102,25 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       MainPageData = null;
       _MainPageData.Dispose();
     }
-
     private void x_ButtonAddNew_Click( object sender, RoutedEventArgs e )
     {
       try
       {
-
+        AddNew _newChildWondow = new AddNew(this.MainPageData.Entities);
+        _newChildWondow.Closed += _newChildWondow_Closed;
+        _newChildWondow.Show();
       }
       catch ( Exception _ex )
       {
         ExceptionHandling( _ex );
       }
+    }
+    private void _newChildWondow_Closed( object sender, EventArgs e )
+    {
+      AddNew _childWondow = (AddNew)sender;
+      if ( !_childWondow.DialogResult.HasValue || !_childWondow.DialogResult.Value )
+        return;
+      MessageBox.Show( "OK" );
     }
     private void x_ButtonEndofBatch_Click( object sender, RoutedEventArgs e )
     {
@@ -124,7 +132,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       {
         ExceptionHandling( _ex );
       }
-
     }
     private void x_ButtonDelete_Click( object sender, RoutedEventArgs e )
     {
@@ -150,7 +157,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       this.MainPageData.GetData( m_URL, m_SelectedID );
     }
     #endregion
-
 
     #endregion
 
