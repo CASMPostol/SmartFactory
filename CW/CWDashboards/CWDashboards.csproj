@@ -62,9 +62,6 @@
     <None Include="Dashboards\DisposalRequestDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8bf86832-68ea-45d1-b7ca-0020531fdc80}</SharePointProjectItemId>
     </None>
-    <None Include="Dashboards\ExitSheetDashboard\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{e40f4274-e56d-4376-b783-8dfb4f351619}</SharePointProjectItemId>
-    </None>
     <None Include="Silverlight\HTMLHostinCode.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>HTMLHostinCode.cs</LastGenOutput>
@@ -115,9 +112,6 @@
     <Content Include="Dashboards\DisposalRequestDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Dashboards\ExitSheetDashboard\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Silverlight\SilverLightModule\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -127,9 +121,9 @@
     <Content Include="Images\CWDashboards\button_background_gray.jpg" />
     <Content Include="Layouts\CWDashboards\CAS_CWDashboards.css" />
     <Content Include="WebPartPagesCW\Elements.xml" />
+    <Content Include="WebPartPagesCW\WebPageTemplate_CheckListExitSheet.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_CWBook.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" />
-    <Content Include="WebPartPagesCW\WebPageTemplate_ExitSheet.aspx" />
     <Content Include="Webparts\DisposalRequestHost\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
