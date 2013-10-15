@@ -215,34 +215,12 @@
           <FieldRef Name="CWL_CWDisposal2CWTobaccoName_sec" />
           <FieldRef Name="CWL_CWDisposal2CWGrade_sec" />
           <FieldRef Name="CWL_CWDisposal2CWSKU_sec" />
-          <FieldRef Name="SKUDescription" />
           <FieldRef Name="CWL_CWDisposal2CWBatch_sec" />
-          <FieldRef Name="CW_DeclaredNetMass" />
-          <FieldRef Name="CW_Wz1" />
-          <FieldRef Name="CW_Wz2" />
-          <FieldRef Name="CW_Wz3" />
           <FieldRef Name="CW_SettledNetMass" />
-          <FieldRef Name="CW_SettledGrossMass" />
-          <FieldRef Name="TobaccoValue" />
-          <FieldRef Name="CWL_CWDisposal2CWCurrency_sec" />
           <FieldRef Name="RemainingQuantity" />
           <FieldRef Name="CW_RemainingPackage" />
           <FieldRef Name="CW_RemainingTobaccoValue" />
-          <FieldRef Name="ClearingType" />
-          <FieldRef Name="CustomsProcedure" />
-          <FieldRef Name="CWL_CWDisposal2PCNTID" />
-          <FieldRef Name="CWL_CWDisposal2PCNPCN_sec" />
-          <FieldRef Name="CustomsStatus" />
-          <FieldRef Name="DutyPerSettledAmount" />
-          <FieldRef Name="VATPerSettledAmount" />
-          <FieldRef Name="DutyAndVAT" />
           <FieldRef Name="CW_PackageToClear" />
-          <FieldRef Name="CW_AddedKg" />
-          <FieldRef Name="CWL_CWDisposal2CWMassPerPackage_sec" />
-          <FieldRef Name="CWL_CWDisposal2CWUnits_sec" />
-          <FieldRef Name="AccountClosed" />
-          <FieldRef Name="Archival" />
-          <FieldRef Name="CWL_CWDisposal2DisposalRequestLibraryID" />
           <FieldRef Name="CWL_CWDisposal2CustomsWarehouseID" />
         </ViewFields>
         <Query>

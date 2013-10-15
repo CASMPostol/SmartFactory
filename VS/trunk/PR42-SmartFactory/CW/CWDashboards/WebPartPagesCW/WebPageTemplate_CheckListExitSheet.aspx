@@ -37,8 +37,8 @@
             <tr>
                 <td valign="top">
                     <WebPartPages:WebPartZone
-                        ID="DisposalRequestWebPart" runat="server"
-                        Title="Disposal Request Web Part Zone"
+                        ID="Disposals" runat="server"
+                        Title="Disposals Web Part Zone"
                         FrameType="TitleBarOnly" Height="700" />
                 </td>
                 <td valign="top">
@@ -54,9 +54,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-    <asp:Literal ID="m_PageTitle" runat="server" Text="Disposal Requests" />
+    <asp:Literal ID="m_PageTitle" runat="server" Text="Print Check List or Exit Sheet" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server">
-    <asp:Literal ID="m_PageTitleInTitleArea" runat="server" Text="Disposal Requests" />
+    <asp:Literal ID="m_PageTitleInTitleArea" runat="server" Text="Print Check List or Exit Sheet" />
 </asp:Content>
