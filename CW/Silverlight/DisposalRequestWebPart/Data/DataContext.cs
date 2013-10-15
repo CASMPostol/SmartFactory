@@ -18,6 +18,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Threading;
 using Microsoft.SharePoint.Client;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
@@ -38,6 +39,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
 #if DEBUG
       Log = new StringWriter();
 #endif
+      InitializeDelegates();
       this.ObjectTrackingEnabled = true;
       this.DeferredLoadingEnabled = true;
       // Open the current ClientContext
@@ -84,6 +86,32 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// A System.String that represents the full URL of the Web site.
     /// </value>
     public string Web { get { return m_ClientContext.Url; } }
+    public event ProgressChangedEventHandler GetListAsyncProgressChange;
+    public event GetListAsyncCompletedEventHandler GetListCompleted;
+    public delegate void GetListAsyncCompletedEventHandler( object siurce, GetListAsyncCompletedEventArgs e );
+    /// <summary>
+    /// Gets the list.
+    /// </summary>
+    /// <typeparam name="TEntity">The type of the entity.</typeparam>
+    /// <param name="listName">Name of the list.</param>
+    public void GetListAsync<TEntity>( string listName )
+       where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
+    {
+      //IEntityListItemsCollection _nwLst = GetOrCreateListEntry<TEntity>( listName );
+      //return new EntityList<TEntity>( this, (EntityListItemsCollection<TEntity>)_nwLst );
+    }
+    /// <summary>
+    /// Gets the list.
+    /// </summary>
+    /// <typeparam name="TEntity">The type of the entity.</typeparam>
+    /// <param name="listName">Name of the list.</param>
+    /// <param name="userState">State of the user object.</param>
+    public void GetListAsync<TEntity>( string listName, object userState )
+       where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
+    {
+      //IEntityListItemsCollection _nwLst = GetOrCreateListEntry<TEntity>( listName );
+      //return new EntityList<TEntity>( this, (EntityListItemsCollection<TEntity>)_nwLst );
+    }
     /// <summary>
     /// Gets the list.
     /// </summary>
@@ -95,6 +123,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       IEntityListItemsCollection _nwLst = GetOrCreateListEntry<TEntity>( listName );
       return new EntityList<TEntity>( this, (EntityListItemsCollection<TEntity>)_nwLst );
+    }
+    /// <summary>
+    /// Cancels the asynchronous.
+    /// </summary>
+    /// <param name="userState">State of the user.</param>
+    public void CancelAsync( object userState )
+    {
     }
     /// <summary>
     /// Refreshes a collection of entities with the latest data from the content database according to the specified mode.
@@ -295,6 +330,94 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         _nwLst = m_AllLists[ listName ];
       return _nwLst;
     }
+
+    #region Event-based Asynchronous Pattern
+
+    private SendOrPostCallback onProgressReportDelegate;
+    private SendOrPostCallback onCompletedDelegate;
+    private delegate void WorkerEventHandler( string list2Read, AsyncOperation asyncOp );
+    private Dictionary<object, object> m_UserStateToLifetime = new Dictionary<object, object>();
+    // This method is invoked via the AsyncOperation object, 
+    // so it is guaranteed to be executed on the correct thread. 
+    private void CalculateCompleted( object operationState )
+    {
+      GetListAsyncCompletedEventArgs e = operationState as GetListAsyncCompletedEventArgs;
+      GetListAsyncCompleted( e );
+    }
+    // This method is invoked via the AsyncOperation object, 
+    // so it is guaranteed to be executed on the correct thread. 
+    private void ReportProgress( object state )
+    {
+      ProgressChangedEventArgs e = state as ProgressChangedEventArgs;
+      OnProgressChanged( e );
+    }
+    protected void GetListAsyncCompleted( GetListAsyncCompletedEventArgs e )
+    {
+      if ( GetListCompleted != null )
+        GetListCompleted( this, e );
+    }
+    protected void OnProgressChanged( ProgressChangedEventArgs e )
+    {
+      if ( GetListAsyncProgressChange != null )
+        GetListAsyncProgressChange( this, e );
+    }
+    protected virtual void InitializeDelegates()
+    {
+      onProgressReportDelegate += ReportProgress;
+      onCompletedDelegate += CalculateCompleted;
+    }
+    /// <summary>
+    /// This is the method that the underlying, free-threaded asynchronous behavior will invoke.
+    /// This will happen on an arbitrary thread.
+    /// </summary>
+    /// <param name="result">The result.</param>
+    /// <param name="exception">The exception.</param>
+    /// <param name="canceled">if set to <c>true</c> [canceled].</param>
+    /// <param name="asyncOp">The asynchronous property.</param>
+    private void CompletionMethod( object result, Exception exception, bool canceled, AsyncOperation asyncOp )
+    {
+      // If the task was not previously canceled, remove the task from the lifetime collection. 
+      if ( !canceled )
+      {
+        lock ( m_UserStateToLifetime )
+        {
+          m_UserStateToLifetime.Remove( asyncOp.UserSuppliedState );
+        }
+      }
+      // Package the results of the operation in a  GetListAsyncCompletedEventArgs.
+      GetListAsyncCompletedEventArgs e = new GetListAsyncCompletedEventArgs( result, exception, canceled, asyncOp.UserSuppliedState );
+      // End the task. The asyncOp object is responsible for marshaling the call.
+      asyncOp.PostOperationCompleted( onCompletedDelegate, e );
+      // Note that after the call to OperationCompleted, asyncOp is no longer usable, and any attempt to use it 
+      // will cause an exception to be thrown.
+    }
+    // Utility method for determining if a task has been canceled. 
+    private bool TaskCanceled( object taskId )
+    {
+      return ( m_UserStateToLifetime[ taskId ] == null );
+    }
+    // This method performs the actual prime number computation. It is executed on the worker thread. 
+    private void CalculateWorker( string listToRead, AsyncOperation asyncOp )
+    {
+      Exception e = null;
+      object _result = null;
+      // Check that the task is still active. The operation may have been canceled before the thread was scheduled. 
+      if ( !TaskCanceled( asyncOp.UserSuppliedState ) )
+      {
+        try
+        {
+        }
+        catch ( Exception ex )
+        {
+          e = ex;
+        }
+      }
+      this.CompletionMethod( _result, e, TaskCanceled( asyncOp.UserSuppliedState ), asyncOp );
+      //completionMethodDelegate(calcState);
+    }
+
+    #endregion
+
     #endregion
 
   }
