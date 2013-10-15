@@ -2,8 +2,8 @@
 <ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="WebPartPagesCW\" Type="ElementManifest" />
-    <ProjectItemFile Source="WebPageTemplate_DisposalRequest.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
-    <ProjectItemFile Source="WebPageTemplate_ExitSheet.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_CWBook.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_CheckListExitSheet.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_DisposalRequest.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
   </Files>
 </ProjectItem>
