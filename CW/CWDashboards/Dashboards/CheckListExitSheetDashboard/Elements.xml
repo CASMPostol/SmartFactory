@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="CheckListExitSheetDashboard">
     <File Path="WebPartPagesCW\WebPageTemplate_CheckListExitSheet.aspx" Url="WebPartPagesCW/CheckListExitSheetDashboard.aspx">
-      <View List="Lists/DisposalRequestLibrary" BaseViewID="10" WebPartZoneID="DisposalRequestLibrary" WebPartOrder="0" >
+      <View List="Lists/DisposalRequestLibrary" BaseViewID="11" WebPartZoneID="DisposalRequestLibrary" WebPartOrder="0" >
         <![CDATA[
          <webParts>
          <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
