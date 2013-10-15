@@ -52,6 +52,7 @@
                         <sdk:DataGridTextColumn Binding="{Binding AddedKg, Converter={StaticResource Double2StringConverter}, FallbackValue=N/A], Mode=TwoWay}" Header="Qty to clear - added" IsReadOnly="False" CellStyle="{StaticResource EditableCell}"/>
                         <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSum, FallbackValue=N/A}" Header="Qty to clear-sum" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                         <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSumRounded, FallbackValue=N/A}" Header="Qty to clear-rounded" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <sdk:DataGridTextColumn Binding="{Binding PackagesToClear, FallbackValue=N/A}" Header="Packages to clear" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                         <sdk:DataGridTextColumn Binding="{Binding RemainingOnStock, FallbackValue=N/A}" Header="Remaining on stock" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                         <sdk:DataGridTextColumn Binding="{Binding Units, FallbackValue=N/A}" Header="Units" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                     </sdk:DataGrid.Columns>
