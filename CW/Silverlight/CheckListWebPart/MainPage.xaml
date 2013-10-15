@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
-    d:DesignHeight="1000" d:DesignWidth="400">
+    d:DesignHeight="400" d:DesignWidth="400">
     <Grid x:Name="x_LayoutRoot"  Background="White" HorizontalAlignment="Stretch" Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -25,8 +25,8 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <sdk:Label Grid.Row="0" Grid.Column="0" Content="Dokument z dnia:" HorizontalAlignment="Right" />
-            <sdk:DatePicker Grid.Row="0" Grid.Column="1" DisplayDate="" />
-            <sdk:DataGrid Name="x_DataGridCheckListContent" ItemsSource="{Binding RequestCollection}" Grid.Row="1" Grid.ColumnSpan="2" AutoGenerateColumns="False" Background="#00000000">
+            <sdk:DatePicker Name="x_DatePickerCurrentDate" Grid.Row="0" Grid.Column="1" DisplayDate="" />
+            <sdk:DataGrid Name="x_DataGridCheckListContent" Style="{StaticResource DataGridStyle}" Foreground="Black" ItemsSource="{Binding RequestCollection}" Grid.Row="1" Grid.ColumnSpan="2" AutoGenerateColumns="False" Background="#00000000">
                 <sdk:DataGrid.CanUserReorderColumns >
                     <System:Boolean>false</System:Boolean>
                 </sdk:DataGrid.CanUserReorderColumns>
@@ -37,6 +37,6 @@
                 </sdk:DataGrid.Columns>
             </sdk:DataGrid>
         </Grid>
-        <Button Name="x_ButtonPrint" Content="Print" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Width="Auto" Click="x_ButtonPrint_Click"/>
+        <Button Name="x_ButtonPrint" Style="{StaticResource ButtonStyle}" Content="Print" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Click="x_ButtonPrint_Click"/>
     </Grid>
 </UserControl>
