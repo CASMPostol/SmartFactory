@@ -35,12 +35,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       foreach ( IGrouping<string, CustomsWarehouseDisposal> _grx in _requests )
       {
         CustomsWarehouseDisposal _first = _grx.First<CustomsWarehouseDisposal>();
-        CustomsWarehouse _cw = _first.CWL_CWDisposal2CustomsWarehouseID != null ? _first.CWL_CWDisposal2CustomsWarehouseID : new CustomsWarehouse() { Units = "N/A", SKU = "N/A" };
+        CustomsWarehouse _cw = _first.CWL_CWDisposal2CustomsWarehouseID != null ? _first.CWL_CWDisposal2CustomsWarehouseID : new CustomsWarehouse() { Units = "N/A", SKU = "N/A", CW_MassPerPackage = 0 };
         DisposalRequest _oc = new DisposalRequest()
         {
           AddedKg = 0,
           DeclaredNetMass = 0,
           Batch = _grx.Key,
+          MassPerPackage = _cw.CW_MassPerPackage.Value,
           PackagesToClear = 0,
           QuantityyToClearSum = 0,
           QuantityyToClearSumRounded = 0,
@@ -54,7 +55,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         };
         foreach ( CustomsWarehouseDisposal _cwdrdx in _grx )
           _oc.GetDataContext( _cwdrdx );
+        _oc.Update();
         this.Add( _oc );
+        _oc.AutoCalculation = true;
       }
     }
   }
