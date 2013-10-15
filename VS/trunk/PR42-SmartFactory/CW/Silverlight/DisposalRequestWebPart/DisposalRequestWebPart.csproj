@@ -93,6 +93,7 @@
       <DependentUpon>AddNew.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\EntityListItemsCollection.cs" />
+    <Compile Include="Data\GetListCompletedEventHandler.cs" />
     <Compile Include="Data\IEntityListItemsCollection.cs" />
     <Compile Include="Data\IEntityRef.cs" />
     <Compile Include="Data\Linq.cs" />
