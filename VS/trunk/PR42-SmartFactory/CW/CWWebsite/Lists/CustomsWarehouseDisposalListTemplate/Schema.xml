@@ -207,8 +207,6 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">15</RowLimit>
         <ViewFields>
-          <FieldRef Name="LinkTitle"></FieldRef>
-          <FieldRef Name="No" />
           <FieldRef Name="SADDocumentNo" />
           <FieldRef Name="CWL_CWDisposal2CWDocumentNo_sec" />
           <FieldRef Name="SADDate" />
@@ -219,9 +217,7 @@
           <FieldRef Name="CW_SettledNetMass" />
           <FieldRef Name="RemainingQuantity" />
           <FieldRef Name="CW_RemainingPackage" />
-          <FieldRef Name="CW_RemainingTobaccoValue" />
           <FieldRef Name="CW_PackageToClear" />
-          <FieldRef Name="CWL_CWDisposal2CustomsWarehouseID" />
         </ViewFields>
         <Query>
           <OrderBy>
