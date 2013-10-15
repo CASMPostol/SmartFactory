@@ -56,6 +56,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CommonDefinition1.cs</LastGenOutput>
     </None>
+    <None Include="Dashboards\CheckListExitSheetDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{69062d07-cf18-4715-b37d-e2eb1fe83905}</SharePointProjectItemId>
+    </None>
     <None Include="Dashboards\CWBookDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b929c35f-5671-44b3-8ae1-8d9968d01895}</SharePointProjectItemId>
     </None>
@@ -106,6 +109,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dashboards\CheckListExitSheetDashboard\Elements.xml" />
     <Content Include="Dashboards\CWBookDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

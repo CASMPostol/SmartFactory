@@ -175,6 +175,12 @@
           <OrderBy>
             <FieldRef Name="ID" Ascending="FALSE" />
           </OrderBy>
+          <Where>
+            <Neq>
+              <FieldRef Name="Archival" />
+              <Value Type="Boolean">Yes</Value>
+            </Neq>
+          </Where>
         </Query>
       </View>
       <View BaseViewID="40" Type="HTML" WebPartZoneID="Main" DisplayName="assetLibTemp" DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/Thumbnails.aspx" Hidden="TRUE">
