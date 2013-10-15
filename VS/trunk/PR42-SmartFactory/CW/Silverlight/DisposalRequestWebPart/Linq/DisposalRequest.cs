@@ -25,12 +25,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   /// <summary>
   /// DisposalRequest class 
   /// </summary>
-  public class DisposalRequest : Element
+  public class DisposalRequest: Element
   {
 
     public DisposalRequest()
     {
       Disposals = new ObservableCollection<CustomsWarehouseDisposal>();
+      AutoCalculation = false;
     }
 
     //public DisposalRequest(System.Linq.IGrouping<string, CustomsWarehouseDisposalRowData> _grx)
@@ -38,6 +39,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     //  // TODO: Complete member initialization
     //  this._grx = _grx;
     //}
+
     #region public
     /// <summary>
     /// Gets or sets the SKU.
@@ -53,11 +55,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       set
       {
-        if ((value != this._sKU))
+        if ( ( value != this._sKU ) )
         {
-          this.OnPropertyChanging("SKU", this._sKU);
+          this.OnPropertyChanging( "SKU", this._sKU );
           this._sKU = value;
-          this.OnPropertyChanged("SKU");
+          this.OnPropertyChanged( "SKU" );
         }
       }
     }
@@ -75,11 +77,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       set
       {
-        if ((value != this._sKUDescription))
+        if ( ( value != this._sKUDescription ) )
         {
-          this.OnPropertyChanging("SKUDescription", this._sKUDescription);
+          this.OnPropertyChanging( "SKUDescription", this._sKUDescription );
           this._sKUDescription = value;
-          this.OnPropertyChanged("SKUDescription");
+          this.OnPropertyChanged( "SKUDescription" );
         }
       }
     }
@@ -97,11 +99,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       set
       {
-        if ((value != this._Batch))
+        if ( ( value != this._Batch ) )
         {
-          this.OnPropertyChanging("Batch", this._Batch);
+          this.OnPropertyChanging( "Batch", this._Batch );
           this._Batch = value;
-          this.OnPropertyChanged("Batch");
+          this.OnPropertyChanged( "Batch" );
         }
       }
     }
@@ -119,11 +121,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       set
       {
-        if ((value != this._totalStock))
+        if ( ( value != this._totalStock ) )
         {
-          this.OnPropertyChanging("TotalStock", this._totalStock);
+          this.OnPropertyChanging( "TotalStock", this._totalStock );
           this._totalStock = value;
-          this.OnPropertyChanged("TotalStock");
+          this.OnPropertyChanged( "TotalStock" );
         }
       }
     }
@@ -141,11 +143,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       set
       {
-        if ((value != this._massPerPackage))
+        if ( ( value != this._massPerPackage ) )
         {
-          this.OnPropertyChanging("MassPerPackage", this._massPerPackage);
+          this.OnPropertyChanging( "MassPerPackage", this._massPerPackage );
           this._massPerPackage = value;
-          this.OnPropertyChanged("MassPerPackage");
+          this.OnPropertyChanged( "MassPerPackage" );
         }
       }
     }
@@ -163,11 +165,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       set
       {
-        if ((value != this._declaredNetMass))
+        if ( ( value != this._declaredNetMass ) )
         {
-          this.OnPropertyChanging("CW_SettledNetMass", this._declaredNetMass);
+          this.OnPropertyChanging( "CW_SettledNetMass", this._declaredNetMass );
           this._declaredNetMass = value;
-          this.OnPropertyChanged("CW_SettledNetMass");
+          this.OnPropertyChanged( "CW_SettledNetMass" );
         }
       }
     }
@@ -185,11 +187,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       set
       {
-        if ((value != this._addedKg))
+        if ( ( value != this._addedKg ) )
         {
-          this.OnPropertyChanging("AddedKg", this._addedKg);
+          this.OnPropertyChanging( "AddedKg", this._addedKg );
           this._addedKg = value;
-          this.OnPropertyChanged("AddedKg");
+          this.OnPropertyChanged( "AddedKg" );
         }
       }
     }
@@ -207,11 +209,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       set
       {
-        if ((value != this._quantityyToClearSum))
+        if ( ( value != this._quantityyToClearSum ) )
         {
-          this.OnPropertyChanging("QuantityyToClearSum", this._quantityyToClearSum);
+          this.OnPropertyChanging( "QuantityyToClearSum", this._quantityyToClearSum );
           this._quantityyToClearSum = value;
-          this.OnPropertyChanged("QuantityyToClearSum");
+          this.OnPropertyChanged( "QuantityyToClearSum" );
         }
       }
     }
@@ -229,11 +231,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       set
       {
-        if ((value != this._quantityyToClearSumRounded))
+        if ( ( value != this._quantityyToClearSumRounded ) )
         {
-          this.OnPropertyChanging("QuantityyToClearSumRounded", this._quantityyToClearSumRounded);
+          this.OnPropertyChanging( "QuantityyToClearSumRounded", this._quantityyToClearSumRounded );
           this._quantityyToClearSumRounded = value;
-          this.OnPropertyChanged("QuantityyToClearSumRounded");
+          this.OnPropertyChanged( "QuantityyToClearSumRounded" );
         }
       }
     }
@@ -251,11 +253,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       set
       {
-        if ((value != this._remainingOnStock))
+        if ( ( value != this._remainingOnStock ) )
         {
-          this.OnPropertyChanging("RemainingOnStock", this._remainingOnStock);
+          this.OnPropertyChanging( "RemainingOnStock", this._remainingOnStock );
           this._remainingOnStock = value;
-          this.OnPropertyChanged("RemainingOnStock");
+          this.OnPropertyChanged( "RemainingOnStock" );
         }
       }
     }
@@ -273,11 +275,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       set
       {
-        if ((value != this._units))
+        if ( ( value != this._units ) )
         {
-          this.OnPropertyChanging("Units", this._units);
+          this.OnPropertyChanging( "Units", this._units );
           this._units = value;
-          this.OnPropertyChanged("Units");
+          this.OnPropertyChanged( "Units" );
         }
       }
     }
@@ -295,11 +297,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       set
       {
-        if ((value != this._remainingPackages))
+        if ( ( value != this._remainingPackages ) )
         {
-          this.OnPropertyChanging("RemainingPackages", this._remainingPackages);
+          this.OnPropertyChanging( "RemainingPackages", this._remainingPackages );
           this._remainingPackages = value;
-          this.OnPropertyChanged("RemainingPackages");
+          this.OnPropertyChanged( "RemainingPackages" );
         }
       }
     }
@@ -317,11 +319,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       set
       {
-        if ((value != this._packagesToClear))
+        if ( ( value != this._packagesToClear ) )
         {
-          this.OnPropertyChanging("PackagesToClear", this._packagesToClear);
+          this.OnPropertyChanging( "PackagesToClear", this._packagesToClear );
           this._packagesToClear = value;
-          this.OnPropertyChanged("PackagesToClear");
+          this.OnPropertyChanged( "PackagesToClear" );
         }
       }
     }
@@ -333,15 +335,25 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       get { return b_Disposals; }
       set { b_Disposals = value; }
     }
-    internal void GetDataContext(CustomsWarehouseDisposal rowData)
+    public bool AutoCalculation { get; set; }
+    internal void GetDataContext( CustomsWarehouseDisposal rowData )
     {
       DeclaredNetMass += rowData.CW_DeclaredNetMass.Value;
       AddedKg += rowData.CW_AddedKg.Value;
       QuantityyToClearSum += rowData.CW_SettledNetMass.Value;
-      QuantityyToClearSumRounded = QuantityyToClearSum;
-      PackagesToClear = Math.Round(QuantityyToClearSumRounded / MassPerPackage, 0);
-      Update();
-      Disposals.Add(rowData);
+      RemainingOnStock += rowData.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value;
+      TotalStock += RemainingOnStock + QuantityyToClearSum;
+      Disposals.Add( rowData );
+    }
+    internal void Update()
+    {
+      bool _ac = AutoCalculation;
+      AutoCalculation = false;
+      QuantityyToClearSum = DeclaredNetMass + AddedKg;
+      PackagesToClear = Math.Round( QuantityyToClearSum / this.MassPerPackage + 0.499999, 0 );
+      QuantityyToClearSumRounded = PackagesToClear * this.MassPerPackage;
+      RemainingOnStock = TotalStock - QuantityyToClearSumRounded;
+      AutoCalculation = _ac;
     }
     #endregion
 
@@ -363,12 +375,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private double _packagesToClear;
     private ObservableCollection<CustomsWarehouseDisposal> b_Disposals;
     #endregion
-
-    private void Update()
+    protected override void OnPropertyChanged( string propertyName )
     {
-
+      base.OnPropertyChanged( propertyName );
+      if ( !AutoCalculation )
+        return;
+      Update();
     }
-
     #endregion
 
   }
