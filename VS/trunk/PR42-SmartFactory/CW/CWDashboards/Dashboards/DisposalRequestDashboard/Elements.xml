@@ -33,8 +33,7 @@
               <property name="Title" type="string">CAS CW DisposalRequest</property>
               <property name="Description" type="string">Customs Wrehousing Disposal Request</property>
               <property name="Url" type="string">~site/_catalogs/masterpage/SilverlightModule/CAS.DisposalRequestWebPart.xap</property>
-              <property name="Height" type="unit">650px</property>
-              <property name="ScrollBars" type="string">None</property>
+              <property name="Height" type="unit">700px</property>
             </properties>
           </data>
         </webPart>

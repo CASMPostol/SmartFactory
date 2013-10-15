@@ -25,8 +25,8 @@ namespace CAS.SmartFactory.CW.Dashboards.Silverlight
       string _prefix = String.IsNullOrEmpty( m_Initparams ) ? String.Empty : ",";
       m_Initparams += _prefix + initParam;
     }
-    public string Width = "100%";
-    public string Height = "100%";
+    public string Width = "95%";
+    public string Height = "95%";
     public string ErrorScript = String.Empty;
     public int TimeOut = 1800;
     public bool ForceEnableHTMLAccess = false;
