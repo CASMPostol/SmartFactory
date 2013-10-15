@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.SharePoint.Client;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
@@ -34,7 +35,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// Initializes a new instance of the <see cref="DataContext" /> class.
     /// </summary>
     /// <param name="requestUrl">The URL of a Windows SharePoint Services "14" Web site that provides client site access and change tracking for the specified Web site..</param>
-    public DataContext( string requestUrl )
+    public DataContext()
     {
 #if DEBUG
       Log = new StringWriter();
@@ -43,6 +44,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       this.ObjectTrackingEnabled = true;
       this.DeferredLoadingEnabled = true;
       // Open the current ClientContext
+    }
+    public DataContext( string requestUrl )
+      : this()
+    {
+      CreateContext( requestUrl );
+    }
+    internal virtual void CreateContext( string requestUrl )
+    {
       m_ClientContext = new ClientContext( requestUrl );
       m_site = m_ClientContext.Site;
       m_ClientContext.Load<Site>( m_site, s => s.Url );
@@ -109,8 +118,23 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     public void GetListAsync<TEntity>( string listName, object userState )
        where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
-      //IEntityListItemsCollection _nwLst = GetOrCreateListEntry<TEntity>( listName );
-      //return new EntityList<TEntity>( this, (EntityListItemsCollection<TEntity>)_nwLst );
+      // Create an AsyncOperation for taskId.
+      AsyncOperation asyncOp = AsyncOperationManager.CreateOperation( userState );
+      // Multiple threads will access the task dictionary, 
+      // so it must be locked to serialize access. 
+      lock ( m_UserStateToLifetime )
+      {
+        if ( m_UserStateToLifetime.ContainsKey( userState ) )
+        {
+          throw new ArgumentException( "Task ID parameter must be unique", "taskId" );
+        }
+        m_UserStateToLifetime[ userState ] = asyncOp;
+      }
+      new Thread( () => { GetList( listName, asyncOp ); } ).Start();
+
+      // Start the asynchronous operation.
+      WorkerEventHandler workerDelegate = new WorkerEventHandler( GetList );
+      workerDelegate.BeginInvoke( listName, asyncOp, null, null );
     }
     /// <summary>
     /// Gets the list.
@@ -397,7 +421,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       return ( m_UserStateToLifetime[ taskId ] == null );
     }
     // This method performs the actual prime number computation. It is executed on the worker thread. 
-    private void CalculateWorker( string listToRead, AsyncOperation asyncOp )
+    private void GetList( string listToRead, AsyncOperation asyncOp )
     {
       Exception e = null;
       object _result = null;
@@ -415,7 +439,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       this.CompletionMethod( _result, e, TaskCanceled( asyncOp.UserSuppliedState ), asyncOp );
       //completionMethodDelegate(calcState);
     }
-
+    // This method starts an asynchronous calculation.  
+    // First, it checks the supplied task ID for uniqueness. 
+    // If taskId is unique, it creates a new WorkerEventHandler  
+    // and calls its BeginInvoke method to start the calculation. 
+    public virtual void CalculatePrimeAsync( string listName, object taskId )
+    {
+    }
     #endregion
 
     #endregion
