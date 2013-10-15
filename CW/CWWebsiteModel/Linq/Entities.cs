@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-#pragma warning disable 1591
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	using System;
 	
@@ -3605,6 +3604,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouseLibraryDisposalRequestLib))]
 	public partial class DisposalRequestLib : Document {
 		
+		private System.Nullable<bool> _archival;
+		
 		private System.Nullable<CW_DisposalDestination> _cW_DisposalDestination;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouseDisposal> _customsWarehouseDisposal;
@@ -3621,6 +3622,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this._customsWarehouseDisposal.OnChanged += new System.EventHandler(this.OnCustomsWarehouseDisposalChanged);
 			this._customsWarehouseDisposal.OnChanging += new System.EventHandler(this.OnCustomsWarehouseDisposalChanging);
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
+				}
+			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_DisposalDestination", Storage="_cW_DisposalDestination", FieldType="Choice")]
@@ -4008,4 +4023,3 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		OtherCustomsWarehouse = 16,
 	}
 }
-#pragma warning restore 1591
