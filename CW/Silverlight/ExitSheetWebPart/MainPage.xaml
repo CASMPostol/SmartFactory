@@ -10,13 +10,14 @@
     >
     <Grid  Name="x_LayoutRoot" Background="White" HorizontalAlignment="Stretch" Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="200" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Grid Name="x_GridToBePrinted" Grid.Row="0" Grid.Column="0" Background="White" HorizontalAlignment="Stretch" Margin="10">
+        <Button Name="x_ButtonPrint" Grid.Row="0" Grid.Column="0" Content="Print exit sheet" VerticalAlignment="Top" HorizontalAlignment="Left" Click="x_ButtonPrint_Click" Style="{StaticResource ButtonStyle}" />
+        <Grid Name="x_GridToBePrinted" Grid.Row="1" Grid.Column="0" Background="White" HorizontalAlignment="Stretch" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -89,8 +90,7 @@
                 <sdk:Label Name="x_LabelRemainingPackage" Content="[NumerSAD]" Grid.Row="2" Grid.Column="4" FontFamily="Arial" FontSize="16" Margin="10" />
             </Grid>
             <sdk:Label Name="x_LablePackageQuantity" Content="[PQ]" Grid.Row="3" Grid.Column="0" FontFamily="Arial" FontSize="200" HorizontalAlignment="Center" Margin="10" />
-            <sdk:Label Name="x_LableWarehouseName" Content="PRODUKCYJNY" Grid.Row="4" Grid.Column="0" FontFamily="Arial" FontSize="750" HorizontalAlignment="Center" Margin="10" />
+            <sdk:Label Name="x_LableWarehouseName" Content="PRODUKCYJNY" Grid.Row="4" Grid.Column="0" FontFamily="Arial" FontSize="75" HorizontalAlignment="Center" Margin="10" />
         </Grid>
-        <Button Name="x_ButtonPrint" Grid.Row="5" Grid.Column="0" Content="Print exit sheet" Click="x_ButtonPrint_Click" />
     </Grid>
 </UserControl>

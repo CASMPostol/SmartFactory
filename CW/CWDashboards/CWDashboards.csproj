@@ -104,6 +104,10 @@
     <None Include="Webparts\DisposalRequestHost\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{604a5649-bf4f-4eab-acea-14ce06092367}</SharePointProjectItemId>
     </None>
+    <None Include="Webparts\ExitSheetHost\ExitSheetHost.webpart" />
+    <None Include="Webparts\ExitSheetHost\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e6ca536a-b7bc-464a-8e8e-f1d91614cd85}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -131,6 +135,7 @@
     <Content Include="Webparts\DisposalRequestHost\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Webparts\ExitSheetHost\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonDefinition.tt.cs" />
@@ -161,6 +166,7 @@
     <Compile Include="Silverlight\SilverlightExceptionScript.tt.cs" />
     <Compile Include="Webparts\DisposalRequestHost\DisposalRequestHost.cs" />
     <Compile Include="Webparts\DisposalRequestHost\Query.tt.cs" />
+    <Compile Include="Webparts\ExitSheetHost\ExitSheetHost.cs" />
     <Compile Include="Webparts\InterconnectionData.cs" />
   </ItemGroup>
   <ItemGroup>

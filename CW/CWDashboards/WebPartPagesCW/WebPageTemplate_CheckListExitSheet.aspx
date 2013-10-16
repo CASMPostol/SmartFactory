@@ -19,32 +19,32 @@
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
 
     <div id="Body">
-        <table border="0" width="100%">
+        <table border="0">
             <tr>
-                <td valign="top">
-                    <WebPartPages:WebPartZone
-                        ID="DisposalRequestLibrary" runat="server"
-                        Title="Disposal Request Library Web Part Zone"
-                        FrameType="TitleBarOnly" />
-                </td>
                 <td valign="top">
                     <WebPartPages:WebPartZone
                         ID="CheckListWebPart" runat="server"
                         Title="Check List Web Part Zone"
                         FrameType="TitleBarOnly" />
                 </td>
+                <td valign="top">
+                    <WebPartPages:WebPartZone
+                        ID="DisposalRequestLibrary" runat="server"
+                        Title="Disposal Request Library Web Part Zone"
+                        FrameType="TitleBarOnly" />
+                </td>
             </tr>
             <tr>
                 <td valign="top">
                     <WebPartPages:WebPartZone
-                        ID="Disposals" runat="server"
-                        Title="Disposals Web Part Zone"
-                        FrameType="TitleBarOnly" Height="700" />
+                        ID="ExitSheetWebPartZone" runat="server"
+                        Title="Exit Sheet Web Part Zone"
+                        FrameType="TitleBarOnly" />
                 </td>
                 <td valign="top">
                     <WebPartPages:WebPartZone
-                        ID="ExitSheetWebPartZone" runat="server"
-                        Title="Exit Sheet Web Part Zone"
+                        ID="Disposals" runat="server"
+                        Title="Disposals Web Part Zone"
                         FrameType="TitleBarOnly" />
                 </td>
             </tr>
