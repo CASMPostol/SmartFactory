@@ -98,6 +98,10 @@
     <None Include="WebPartPagesCW\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4ef00c73-8bff-4e68-b475-c3cfbd290aeb}</SharePointProjectItemId>
     </None>
+    <None Include="Webparts\CheckListHost\CheckListHost.webpart" />
+    <None Include="Webparts\CheckListHost\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4b6fe768-cc05-4829-83ba-b9364fdd3e22}</SharePointProjectItemId>
+    </None>
     <None Include="Webparts\DisposalRequestHost\DisposalRequestHost.webpart">
       <SubType>Designer</SubType>
     </None>
@@ -132,6 +136,7 @@
     <Content Include="WebPartPagesCW\WebPageTemplate_CheckListExitSheet.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_CWBook.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" />
+    <Content Include="Webparts\CheckListHost\Elements.xml" />
     <Content Include="Webparts\DisposalRequestHost\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -164,6 +169,7 @@
       <DependentUpon>SilverlightExceptionScript.tt</DependentUpon>
     </Compile>
     <Compile Include="Silverlight\SilverlightExceptionScript.tt.cs" />
+    <Compile Include="Webparts\CheckListHost\CheckListHost.cs" />
     <Compile Include="Webparts\DisposalRequestHost\DisposalRequestHost.cs" />
     <Compile Include="Webparts\DisposalRequestHost\Query.tt.cs" />
     <Compile Include="Webparts\ExitSheetHost\ExitSheetHost.cs" />

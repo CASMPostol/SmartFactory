@@ -2,6 +2,26 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="CheckListExitSheetDashboard">
     <File Path="WebPartPagesCW\WebPageTemplate_CheckListExitSheet.aspx" Url="WebPartPagesCW/CheckListExitSheetDashboard.aspx">
+      <AllUsersWebPart WebPartZoneID="CheckListWebPart" WebPartOrder="0">
+        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost.CheckListHost, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Check List</property>
+        <property name="Description" type="string">CAS CW Check List Web Part</property>
+        <property name="ScrollBars" type="string">Auto</property>
+        <property name="Width" type="unit">200px</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>
+]]>
+      </AllUsersWebPart>
       <View List="Lists/DisposalRequestLibrary" BaseViewID="11" WebPartZoneID="DisposalRequestLibrary" WebPartOrder="0" >
         <![CDATA[
          <webParts>

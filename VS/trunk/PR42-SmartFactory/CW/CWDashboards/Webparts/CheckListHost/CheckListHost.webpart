@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost.CheckListHost, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">CAS CW Check List</property>
+        <property name="Description" type="string">CAS CW Check List Web Part</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>
