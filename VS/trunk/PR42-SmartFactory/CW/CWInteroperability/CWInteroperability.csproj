@@ -89,6 +89,7 @@
     <Content Include="DocumentsFactory\SAD\SAD.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DocumentsFactory\Statement\StatementStylesheet.xslt" />
     <Content Include="Features\CWInteroperability\CWInteroperability.Template.xml">
       <DependentUpon>CWInteroperability.feature</DependentUpon>
     </Content>
