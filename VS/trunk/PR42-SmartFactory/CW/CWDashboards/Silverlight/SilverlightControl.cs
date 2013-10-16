@@ -69,7 +69,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Silverlight
           return;
         // Ensure we have set the height and width
         string width = ( this.Width == Unit.Empty ) ? "95%" : this.Width.ToString();
-        string height = ( this.Height == Unit.Empty ) ? "95%" : this.Height.ToString();
+        string height = (this.Height == Unit.Empty) ? "95%" : this.Height.ToString();
         SilverlightExceptionScript _exceptionScript = new SilverlightExceptionScript()
         {
           ClientID = this.ClientID

@@ -21,6 +21,26 @@
          </webParts>
          ]]>
       </View>
+      <AllUsersWebPart WebPartZoneID="ExitSheetWebPartZone" WebPartOrder="0">
+        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost.ExitSheetHost, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Exit Sheet</property>
+        <property name="Description" type="string">CAS CW Exit Sheet Web Part</property>
+        <property name="ScrollBars" type="string">Auto</property>
+        <property name="Width" type="unit">200px</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>
+]]>
+      </AllUsersWebPart>
       <View List="Lists/CustomsWarehouseDisposalList" BaseViewID="3" WebPartZoneID="Disposals" WebPartOrder="0" >
         <![CDATA[
          <webParts>
