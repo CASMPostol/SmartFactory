@@ -45,7 +45,7 @@
   <!--<List Name="SKU" />-->
   <!--<List Name="SKU Library" />-->
   <!--<List Name="Solution Gallery" />-->
-  <!--<List Name="Stock Entry" />-->
+  <List Name="Statement Library" />
   <!--<List Name="Stock Library" />-->
   <!--<List Name="Style Library" />-->
   <!--<List Name="Theme Gallery" />-->
@@ -769,12 +769,22 @@
     <Column Name="CW_DisposalDestination" Member="CW_DisposalDestination" />
     <Column Name="Archival" Member="Archival" />
   </ContentType>
+  <ContentType Name="StatementLib" Class="StatementLib">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="CWL_Statement2DisposalRequestID" Member="CWL_Statement2DisposalRequestID" />
+    <Column Name="Archival" Member="Archival" />
+  </ContentType>
   <ContentType Name="CustomsWarehouseLib" Class="CustomsWarehouseLib">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
     <Column Name="Modified_x0020_By" Member="ModifiedBy" />
     <Column Name="Created_x0020_By" Member="CreatedBy" />
+    <Column Name="Archival" Member="Archival" />
   </ContentType>
   <!--<ContentType Name="CWLib" Class="CWLib">
     <Column Name="ContentType" Member="ContentType" />
@@ -789,6 +799,7 @@
     <Column Name="Title" Member="Title" />
     <Column Name="Modified_x0020_By" Member="ModifiedBy" />
     <Column Name="Created_x0020_By" Member="CreatedBy" />
+    <Column Name="Archival" Member="Archival" />
   </ContentType>
   <ContentType Name="ActivityLogCT" Class="ActivityLogCT">
     <!--<Column Name="ContentType" Member="ContentType" />-->

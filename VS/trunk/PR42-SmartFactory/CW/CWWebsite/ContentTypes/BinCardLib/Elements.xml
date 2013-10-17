@@ -7,6 +7,7 @@
                Overwrite="TRUE"
                Inherits="TRUE">
     <FieldRefs>
+      <FieldRef ID="{3A6EC6FC-81DD-4E39-9A78-B95D198C6938}" Name="Archival" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />
     </FieldRefs>
   </ContentType>
 </Elements>
