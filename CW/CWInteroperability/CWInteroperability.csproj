@@ -60,6 +60,11 @@
     <None Include="DocumentsFactory\SAD\xmldsig-core-schema.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="DocumentsFactory\Statement\GoCS.ps1" />
+    <None Include="DocumentsFactory\Statement\GoXSD.ps1" />
+    <None Include="DocumentsFactory\Statement\Statement.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ERP\DisposalRequest.xltx" />
     <None Include="ERP\DisposalRequest.xsd">
       <SubType>Designer</SubType>
@@ -89,6 +94,7 @@
     <Content Include="DocumentsFactory\SAD\SAD.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DocumentsFactory\Statement\StatementContent.xml" />
     <Content Include="DocumentsFactory\Statement\StatementStylesheet.xslt" />
     <Content Include="Features\CWInteroperability\CWInteroperability.Template.xml">
       <DependentUpon>CWInteroperability.feature</DependentUpon>
