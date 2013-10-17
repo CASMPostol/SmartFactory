@@ -19,6 +19,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
 using Microsoft.SharePoint.Client;
+using System.Linq;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 {
@@ -341,9 +342,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       DeclaredNetMass += rowData.CW_DeclaredNetMass.Value;
       AddedKg += rowData.CW_AddedKg.Value;
       QuantityyToClearSum += rowData.CW_SettledNetMass.Value;
-      RemainingOnStock += rowData.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value;
-      TotalStock += RemainingOnStock + QuantityyToClearSum;
+      TotalStock += QuantityyToClearSum;
       Disposals.Add( rowData );
+    }
+    internal void GetDataContext( List<CustomsWarehouse> list )
+    {
+      m_ListOfCustomsWarehouse = list;
+      RemainingOnStock = m_ListOfCustomsWarehouse.Sum( x => x.TobaccoNotAllocated.Value );
     }
     internal void Update()
     {
@@ -374,6 +379,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private double _remainingPackages;
     private double _packagesToClear;
     private ObservableCollection<CustomsWarehouseDisposal> b_Disposals;
+    private List<CustomsWarehouse> m_ListOfCustomsWarehouse = null;
     #endregion
     protected override void OnPropertyChanged( string propertyName )
     {
@@ -383,6 +389,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       Update();
     }
     #endregion
+
 
   }
 }

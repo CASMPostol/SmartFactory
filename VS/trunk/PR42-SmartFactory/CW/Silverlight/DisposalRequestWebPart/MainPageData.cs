@@ -253,7 +253,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       }
       Log = "GetListCompleted .GetDataContext  " + CommonDefinition.CustomsWarehouseDisposalTitle;
       List<CustomsWarehouseDisposal> _list = e.Result<CustomsWarehouseDisposal>().ToList<CustomsWarehouseDisposal>();
-      ( (DisposalRequestObservable)this.RequestCollection.SourceCollection ).GetDataContext( _list );
+      ( (DisposalRequestObservable)this.RequestCollection.SourceCollection ).GetDataContext( _list, m_Context );
       m_Edited = false;
       if ( this.RequestCollection.CanSort == true )
       {

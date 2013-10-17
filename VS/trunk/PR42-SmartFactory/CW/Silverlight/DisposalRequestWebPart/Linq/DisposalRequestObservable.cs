@@ -29,36 +29,53 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   /// </summary>
   public class DisposalRequestObservable: ObservableCollection<DisposalRequest>
   {
-    internal void GetDataContext( List<CustomsWarehouseDisposal> _list )
+    internal void GetDataContext( List<CustomsWarehouseDisposal> _list, DataContextAsync context )
     {
-      IEnumerable<IGrouping<string, CustomsWarehouseDisposal>> _requests = _list.ToList<CustomsWarehouseDisposal>().GroupBy<CustomsWarehouseDisposal, string>( x => x.CWL_CWDisposal2CustomsWarehouseID.Batch );
+      IEnumerable<IGrouping<string, CustomsWarehouseDisposal>> _requests = _list.GroupBy<CustomsWarehouseDisposal, string>( x => x.CWL_CWDisposal2CustomsWarehouseID.Batch );
       foreach ( IGrouping<string, CustomsWarehouseDisposal> _grx in _requests )
       {
-        CustomsWarehouseDisposal _first = _grx.First<CustomsWarehouseDisposal>();
+        CraeteRequest _creator = new CraeteRequest( context, this, _grx );
+        _creator.DoAsync();
+      }
+    }
+    private class CraeteRequest
+    {
+      internal CraeteRequest( DataContextAsync context, DisposalRequestObservable parent, IGrouping<string, CustomsWarehouseDisposal> grouping )
+      {
+        m_DataContext = context;
+        m_Grouping = grouping;
+      }
+      internal void DoAsync()
+      {
+        m_DataContext.GetListCompleted += context_GetListCompleted;
+        m_DataContext.GetListAsync<CustomsWarehouse>( CommonDefinition.CustomsWarehouseTitle,
+                                                      CommonDefinition.GetCAMLSelectedID( m_Grouping.Key, CommonDefinition.FieldBatch, CommonDefinition.CAMLTypeText )
+                                                     );
+      }
+      private DataContextAsync m_DataContext = null;
+      private DisposalRequestObservable m_Parent;
+      private IGrouping<string, CustomsWarehouseDisposal> m_Grouping = null;
+      private void context_GetListCompleted( object siurce, GetListAsyncCompletedEventArgs e )
+      {
+        m_DataContext.GetListCompleted -= context_GetListCompleted;
+        if ( e.Cancelled )
+          return;
+        if ( e.Error != null )
+          m_Parent.Trace( "GetDataContext", e.Error );
+        CustomsWarehouseDisposal _first = m_Grouping.First<CustomsWarehouseDisposal>();
         CustomsWarehouse _cw = _first.CWL_CWDisposal2CustomsWarehouseID != null ? _first.CWL_CWDisposal2CustomsWarehouseID : new CustomsWarehouse() { Units = "N/A", SKU = "N/A", CW_MassPerPackage = 0 };
-        DisposalRequest _oc = new DisposalRequest()
-        {
-          AddedKg = 0,
-          DeclaredNetMass = 0,
-          Batch = _grx.Key,
-          MassPerPackage = _cw.CW_MassPerPackage.Value,
-          PackagesToClear = 0,
-          QuantityyToClearSum = 0,
-          QuantityyToClearSumRounded = 0,
-          RemainingOnStock = 0,
-          RemainingPackages = 0,
-          SKUDescription = _first.SKUDescription,
-          Title = "Title TBD",
-          TotalStock = 0,
-          Units = _first.CWL_CWDisposal2CustomsWarehouseID.Units,
-          SKU = _first.CWL_CWDisposal2CustomsWarehouseID.SKU,
-        };
-        foreach ( CustomsWarehouseDisposal _cwdrdx in _grx )
+        DisposalRequest _oc = DefaultDisposalRequestnew( m_Grouping.Key, _first.SKUDescription, _cw );
+        _oc.GetDataContext( e.Result<CustomsWarehouse>() );
+        foreach ( CustomsWarehouseDisposal _cwdrdx in m_Grouping )
           _oc.GetDataContext( _cwdrdx );
         _oc.Update();
-        this.Add( _oc );
+        m_Parent.Add( _oc );
         _oc.AutoCalculation = true;
       }
+    }
+    private void Trace( string p, Exception exception )
+    {
+      throw new NotImplementedException();
     }
     internal void AddDisposal( List<CustomsWarehouse> list, double toDispose )
     {
@@ -70,6 +87,26 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         _firs.AddedKg += toDispose;
       else
         ;
+    }
+    private static DisposalRequest DefaultDisposalRequestnew( string batch, string skuDescription, CustomsWarehouse cw )
+    {
+      return new DisposalRequest()
+       {
+         AddedKg = 0,
+         DeclaredNetMass = 0,
+         Batch = batch,
+         MassPerPackage = cw.CW_MassPerPackage.Value,
+         PackagesToClear = 0,
+         QuantityyToClearSum = 0,
+         QuantityyToClearSumRounded = 0,
+         RemainingOnStock = 0,
+         RemainingPackages = 0,
+         SKUDescription = skuDescription,
+         Title = "Title TBD",
+         TotalStock = 0,
+         Units = cw.Units,
+         SKU = cw.SKU,
+       };
     }
   }
 }
