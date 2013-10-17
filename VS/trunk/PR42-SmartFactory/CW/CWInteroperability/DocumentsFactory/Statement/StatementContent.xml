@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StatementContent xmlns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/StatementContent.xsd">
+  <DocumentDate>1900-01-01</DocumentDate>
+  <SADDocuments>
+    <SADDeclarations>
+      <No>1</No>
+      <IntroducingSADNo>IntroducingSADNo1</IntroducingSADNo>
+      <IntroducingSADDate>1900-01-01</IntroducingSADDate>
+      <SADDocumentNo>SADDocumentNo1</SADDocumentNo>
+      <SADDocumentDate>1900-01-01</SADDocumentDate>
+    </SADDeclarations>
+    <SADDeclarations>
+      <No>-1.7976931348623157E+308</No>
+      <IntroducingSADNo>IntroducingSADNo2</IntroducingSADNo>
+      <IntroducingSADDate>0001-01-01</IntroducingSADDate>
+      <SADDocumentNo>SADDocumentNo2</SADDocumentNo>
+      <SADDocumentDate>0001-01-01</SADDocumentDate>
+    </SADDeclarations>
+    <SADDeclarations>
+      <No>1.7976931348623157E+308</No>
+      <IntroducingSADNo>IntroducingSADNo3</IntroducingSADNo>
+      <IntroducingSADDate>9999-12-31</IntroducingSADDate>
+      <SADDocumentNo>SADDocumentNo3</SADDocumentNo>
+      <SADDocumentDate>9999-12-31</SADDocumentDate>
+    </SADDeclarations>
+  </SADDocuments>
+</StatementContent>

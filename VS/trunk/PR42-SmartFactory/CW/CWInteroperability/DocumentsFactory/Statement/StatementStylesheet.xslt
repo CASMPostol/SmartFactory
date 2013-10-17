@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:ms="urn:schemas-microsoft-com:xslt"
-    xmlns:cas="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/StatementContent.xsd"
+    xmlns:cas="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/StatementContent.xsd"
 >
   <xsl:output method="html" indent="yes"/>
   <xsl:decimal-format name="pl" decimal-separator=',' grouping-separator='.' />
@@ -44,6 +44,32 @@
     <h1>WNIOSEK</h1>
     <h2>Wnioskujemy o całkowitą likwidację następujących zgłoszeń celnych:</h2>
     <h2>Skład Celny nr C-0042-01</h2>
-    <xsl:apply-templates select="cas:aa"/>
+    <xsl:apply-templates select="cas:SADDocuments"/>
+    <p>Załączniki:</p>
+    <p>1. Kopie SAD-ostatnie wyprowadzenie.</p>
+    <p>2. Karty rozliczeniowe.</p>
+  </xsl:template>
+  <xsl:template match="cas:SADDocuments">
+    <table border="1" width="100%">
+      <tr>
+        <th>Lp.</th>
+        <th>Nr SAD wprowadzającego</th>
+        <th>Nr SAD wyprowadzajacego</th>
+      </tr>
+      <xsl:apply-templates select="cas:SADDeclarations" />
+    </table>
+  </xsl:template>
+  <xsl:template match="cas:SADDeclarations">
+    <tr>
+      <td>
+        <xsl:value-of select="cas:No"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:IntroducingSADNo"/> z dnia <xsl:value-of select="ms:format-date(cas:IntroducingSADDate, $FormatOfdate)"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:SADDocumentNo"/> z dnia <xsl:value-of select="ms:format-date(cas:SADDocumentDate, $FormatOfdate)"/>
+      </td>
+    </tr>
   </xsl:template>
 </xsl:stylesheet>

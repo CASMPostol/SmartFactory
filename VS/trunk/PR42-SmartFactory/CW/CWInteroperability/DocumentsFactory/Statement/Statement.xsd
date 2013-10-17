@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/StatementContent.xsd"
+           elementFormDefault="qualified"
+           targetNamespace="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/StatementContent.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="StatementContent" type="tns:StatementContent" />
+  <xs:complexType name="StatementContent">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SADDocuments" type="tns:ArrayOfSADDocuments" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfSADDocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SADDeclarations" nillable="false" type="tns:OneSADDeclaration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OneSADDeclaration">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="No" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IntroducingSADNo" type="xs:string" />
+      <xs:element maxOccurs="1" minOccurs="1" name="IntroducingSADDate" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SADDocumentNo" type="xs:string" />
+      <xs:element maxOccurs="1" minOccurs="1" name="SADDocumentDate" type="xs:date" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
