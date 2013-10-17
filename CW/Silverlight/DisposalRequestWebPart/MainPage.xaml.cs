@@ -119,7 +119,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       AddNew _childWondow = (AddNew)sender;
       if ( !_childWondow.DialogResult.HasValue || !_childWondow.DialogResult.Value )
-        MainPageData.AddDisposal( _childWondow.Accounts, _childWondow.ToDispose );
+        return;
+      MainPageData.AddDisposal( _childWondow.Accounts, _childWondow.ToDispose );
     }
     private void x_ButtonEndofBatch_Click( object sender, RoutedEventArgs e )
     {
