@@ -37,13 +37,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     public event AsyncCompletedEventHandler CreateContextAsyncCompletedEvent;
     public void CreateContextAsync( string requestUrl )
     {
-      if ( m_busy )
-        throw new InvalidOperationException( "Context is busy" );
+      EntryCheck();
       m_busy = true;
       m_OnCompletedDelegate += CreateContextAsynCompleted;
       AsyncOperation m_AsyncOp = AsyncOperationManager.CreateOperation( m_Counter++ );
       m_processor.Do( () => { CreateContextAsyncWorker( requestUrl, m_AsyncOp ); } );
     }
+
     #endregion
 
     #region GetListAsync
@@ -56,8 +56,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     public void GetListAsync<TEntity>( string listName, CamlQuery camlQuery )
        where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
-      if ( m_busy )
-        throw new InvalidOperationException( "Context is busy" );
+      EntryCheck();
       m_busy = true;
       m_OnCompletedDelegate += GetListAsyncCompleted;
       // Create an AsyncOperation for taskId.
@@ -70,8 +69,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     public event AsyncCompletedEventHandler SubmitChangesCompleted;
     public void SubmitChangesAsyn()
     {
-      if ( m_busy )
-        throw new InvalidOperationException( "Context is busy" );
+      EntryCheck();
       m_busy = true;
       m_OnCompletedDelegate += SubmitChangesAsynCompleted;
       AsyncOperation _AsyncOp = AsyncOperationManager.CreateOperation( m_Counter++ );
@@ -224,6 +222,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     private DataContext m_Context = null;
     private Processor m_processor = new Processor();
     private bool m_Disposed = false;
+    private void EntryCheck()
+    {
+      if ( m_busy )
+        throw new InvalidOperationException( "Context is busy" );
+      if ( m_Disposed )
+        throw new ObjectDisposedException( typeof( DataContextAsync ).Name );
+    }
 
     #endregion
 

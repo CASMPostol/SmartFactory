@@ -14,6 +14,7 @@
 //</summary>
 
 using Microsoft.SharePoint.Client;
+
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 {
   /// <summary>
@@ -33,6 +34,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     internal static string CAMLTypeText = "Text";
     internal static string FieldID = "ID";
     internal static string FieldCWDisposal2DisposalRequestLibraryID = "CWL_CWDisposal2DisposalRequestLibraryID";
+    internal static string CustomsWarehouseTitle = "Customs Warehouse";
     internal static string FieldBatch = "Batch";
     private static string CAMLQueryString = @"
       <View>

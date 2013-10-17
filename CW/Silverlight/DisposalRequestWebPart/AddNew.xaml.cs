@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : Name of Application
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -24,8 +39,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     internal Exception LastExeption { get; private set; }
     internal double ToDispose = 0;
     internal List<CustomsWarehouse> Accounts { get; private set; }
+
+    #region private
     private DataContextAsync m_DataContext;
-    private BackgroundWorker m_Worker = new BackgroundWorker();
     private void OKButton_Click( object sender, RoutedEventArgs e )
     {
       this.DialogResult = true;
@@ -40,46 +56,45 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     private void x_ButtonBatchSearch_Click( object sender, RoutedEventArgs e )
     {
-      m_Worker.DoWork += Worker_DoWork;
-      m_Worker.ProgressChanged += Worker_ProgressChanged;
-      m_Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-      m_Worker.WorkerReportsProgress = false;
-      m_Worker.WorkerSupportsCancellation = false;
-      m_Worker.RunWorkerAsync();
+      m_DataContext.GetListCompleted += m_DataContext_GetListCompleted;
+      m_DataContext.GetListAsync<CustomsWarehouse>( CommonDefinition.CustomsWarehouseTitle,
+                                                    CommonDefinition.GetCAMLSelectedID( x_TextBoxBatchSearch.Text, CommonDefinition.FieldBatch, CommonDefinition.CAMLTypeText )
+                                                   );
     }
-    private void Worker_RunWorkerCompleted( object sender, RunWorkerCompletedEventArgs e )
+    private void m_DataContext_GetListCompleted( object siurce, GetListAsyncCompletedEventArgs e )
     {
-      if ( e.Error != null )
+      try
       {
-        LastExeption = e.Error;
-        DialogResult = false;
-        return;
+        m_DataContext.GetListCompleted -= m_DataContext_GetListCompleted;
+        if ( e.Error != null )
+        {
+          LastExeption = e.Error;
+          x_TextBoxSelectedBatch.Text = "Not found";
+          x_TextBoxTotalStock.Text = e.Error.Message;
+        }
+        if ( e.Cancelled )
+        {
+          LastExeption = null;
+          x_TextBoxSelectedBatch.Text = "Not found";
+          x_TextBoxTotalStock.Text = "Cancelled";
+        }
+        Accounts = e.Result<CustomsWarehouse>();
+        if ( Accounts.Count == 0 )
+        {
+          x_TextBoxSelectedBatch.Text = "Not found";
+          x_TextBoxTotalStock.Text = "N/A";
+          return;
+        }
+        x_TextBoxSelectedBatch.Text = Accounts.First<CustomsWarehouse>().Batch;
+        x_TextBoxTotalStock.Text = Accounts.Sum( x => x.TobaccoNotAllocated.Value ).ToString();
       }
-      if ( e.Cancelled )
+      catch ( Exception ex )
       {
-        LastExeption = null;
-        DialogResult = false;
-        return;
+        global::System.Windows.MessageBox.Show( ex.Message, "Serach exception", MessageBoxButton.OK );
       }
-      Accounts = (List<CustomsWarehouse>)e.Result;
-      if ( Accounts.Count == 0 )
-      {
-        x_TextBoxSelectedBatch.Text = "Not found";
-        x_TextBoxTotalStock.Text = "N/A";
-        return;
-      }
-      x_TextBoxSelectedBatch.Text = Accounts.First<CustomsWarehouse>().Batch;
-      x_TextBoxTotalStock.Text = Accounts.Sum( x => x.TobaccoNotAllocated.Value ).ToString();
     }
-    private void Worker_ProgressChanged( object sender, ProgressChangedEventArgs e )
-    {
-      throw new NotImplementedException();
-    }
-    private void Worker_DoWork( object sender, DoWorkEventArgs e )
-    {
-      //BackgroundWorker _mq = (BackgroundWorker)sender;
-      //e.Result = m_DataContext.CustomsWarehouse.Filter( CommonDefinition.GetCAMLSelectedID( x_TextBoxBatchSearch.Text, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID, CommonDefinition.CAMLTypeNumber ) ).ToList();
-    }
+    #endregion
+
   }
 }
 
