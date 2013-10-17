@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#pragma warning disable 1591
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	using System;
 	
@@ -210,6 +211,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		public Microsoft.SharePoint.Linq.EntityList<Settings> Settings {
 			get {
 				return this.GetList<Settings>("Settings");
+			}
+		}
+		
+		/// <summary>
+		/// Statement Library Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Statement Library")]
+		public Microsoft.SharePoint.Linq.EntityList<Document> StatementLibrary {
+			get {
+				return this.GetList<Document>("Statement Library");
 			}
 		}
 		
@@ -426,6 +437,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DisposalRequestLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADConsignment))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDocumentLib))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(StatementLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouseLib))]
 	public partial class Document : Element {
 		
@@ -3553,6 +3565,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="BinCardLib", Id="0x010100F4691A6A293E458E8EF97B775DBAE861")]
 	public partial class BinCardLib : Document {
 		
+		private System.Nullable<bool> _archival;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouse> _customsWarehouse;
 		
 		#region Extensibility Method Definitions
@@ -3567,6 +3581,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this._customsWarehouse.OnChanged += new System.EventHandler(this.OnCustomsWarehouseChanged);
 			this._customsWarehouse.OnChanging += new System.EventHandler(this.OnCustomsWarehouseChanging);
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
+				}
+			}
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CW2BinCardTitle", Storage="_customsWarehouse", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Customs Warehouse")]
@@ -3845,10 +3873,72 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
+	/// Statement Library Content Type
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="StatementLib", Id="0x010100709EEFB1549C4CDFAC37B5B79896E979")]
+	public partial class StatementLib : Document {
+		
+		private System.Nullable<bool> _archival;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<DisposalRequestLib> _cWL_Statement2DisposalRequestID;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public StatementLib() {
+			this._cWL_Statement2DisposalRequestID = new Microsoft.SharePoint.Linq.EntityRef<DisposalRequestLib>();
+			this._cWL_Statement2DisposalRequestID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DisposalRequestLib>>(this.OnCWL_Statement2DisposalRequestIDSync);
+			this._cWL_Statement2DisposalRequestID.OnChanged += new System.EventHandler(this.OnCWL_Statement2DisposalRequestIDChanged);
+			this._cWL_Statement2DisposalRequestID.OnChanging += new System.EventHandler(this.OnCWL_Statement2DisposalRequestIDChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_Statement2DisposalRequestID", Storage="_cWL_Statement2DisposalRequestID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Disposal Request Library")]
+		public DisposalRequestLib CWL_Statement2DisposalRequestID {
+			get {
+				return this._cWL_Statement2DisposalRequestID.GetEntity();
+			}
+			set {
+				this._cWL_Statement2DisposalRequestID.SetEntity(value);
+			}
+		}
+		
+		private void OnCWL_Statement2DisposalRequestIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CWL_Statement2DisposalRequestID", this._cWL_Statement2DisposalRequestID.Clone());
+		}
+		
+		private void OnCWL_Statement2DisposalRequestIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CWL_Statement2DisposalRequestID");
+		}
+		
+		private void OnCWL_Statement2DisposalRequestIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DisposalRequestLib> e) {
+		}
+	}
+	
+	/// <summary>
 	/// Customs Warehouse Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CustomsWarehouseLib", Id="0x010100719D28821A6F456C8F47FB42F9B33DAA")]
 	public partial class CustomsWarehouseLib : Document {
+		
+		private System.Nullable<bool> _archival;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -3858,6 +3948,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		public CustomsWarehouseLib() {
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
+				}
+			}
 		}
 	}
 	
@@ -4023,3 +4127,4 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		OtherCustomsWarehouse = 16,
 	}
 }
+#pragma warning restore 1591

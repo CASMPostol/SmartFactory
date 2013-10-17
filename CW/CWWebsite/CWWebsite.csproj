@@ -63,6 +63,9 @@
     <None Include="ContentTypes\DisposalRequestLib\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ed137059-c5be-4d36-bac7-73833b54c7b8}</SharePointProjectItemId>
     </None>
+    <None Include="ContentTypes\StatementLib\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c884a6eb-d480-46f0-8cdd-b2fac8b2391a}</SharePointProjectItemId>
+    </None>
     <None Include="ContentTypes\Vendor\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{85f101fc-b1b2-4c48-a4f6-0e336545790f}</SharePointProjectItemId>
     </None>
@@ -108,6 +111,12 @@
     <None Include="Lists\DisposalRequestLibraryTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fcc2de45-59b7-4bd0-8953-ff665f6eb012}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\StatementLibraryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{56e01339-4235-4b28-9bd8-6453168c6ef6}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\StatementLibraryTemplate\StatementLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0bc68502-4eb1-4616-855e-c8937e5792f4}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\VendorListTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f98f1835-abcf-4265-923d-bffdeda82b37}</SharePointProjectItemId>
     </None>
@@ -138,6 +147,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ContentTypes\DisposalRequestLib\Elements.xml" />
+    <Content Include="ContentTypes\StatementLib\Elements.xml" />
     <Content Include="ContentTypes\Vendor\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -188,6 +198,13 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\DisposalRequestLibraryTemplate\Upload.aspx" />
+    <Content Include="Lists\StatementLibraryTemplate\EditDlg.htm" />
+    <Content Include="Lists\StatementLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\StatementLibraryTemplate\FileDlg.htm" />
+    <Content Include="Lists\StatementLibraryTemplate\Repair.aspx" />
+    <Content Include="Lists\StatementLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\StatementLibraryTemplate\StatementLibrary\Elements.xml" />
+    <Content Include="Lists\StatementLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\VendorListTemplate\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ContentType ID="0x010100719D28821A6F456C8F47FB42F9B33DAA"
-               Name="CustomsWarehouseLib"
+  <ContentType ID="0x010100709EEFB1549C4CDFAC37B5B79896E979"
+               Name="StatementLib"
                Group="CAS Smart Factory Customs Warehouse"
-               Description="Customs Warehouse Library Content Type"
+               Description="Statement Library Content Type"
                Overwrite="TRUE"
                Inherits="TRUE">
     <FieldRefs>
+      <FieldRef ID="{AFF53819-6B5F-45F5-B22D-8BCE8AE94AD7}" Name="CWL_Statement2DisposalRequestID" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />
       <FieldRef ID="{3A6EC6FC-81DD-4E39-9A78-B95D198C6938}" Name="Archival" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />
     </FieldRefs>
   </ContentType>

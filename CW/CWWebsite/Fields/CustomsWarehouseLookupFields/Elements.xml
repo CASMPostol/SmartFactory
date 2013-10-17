@@ -296,4 +296,21 @@
     Name="CWL_CWDisposal2CWMassPerPackage_sec"
     Overwrite="TRUE"
   />
+  <Field
+  Name="CWL_Statement2DisposalRequestID"
+  ID="{AFF53819-6B5F-45F5-B22D-8BCE8AE94AD7}"
+  Type="Lookup"
+  List="Lists/DisposalRequestLibrary"
+  ShowField="ID"
+  UnlimitedLengthInDocumentLibrary="False"
+  Indexed="True"
+  RelationshipDeleteBehavior="None"
+  DisplayName="Disposal request ID"
+  Group="CAS Smart Factory Customs Warehouse"
+  Required="False"
+  Hidden="False"
+  DisplaceOnUpgrade="True"
+  EnforceUniqueValues="False"
+  ReadOnly="False"
+    />
 </Elements>
