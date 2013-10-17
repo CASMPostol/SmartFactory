@@ -15,7 +15,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,21 +28,29 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     public AddNew()
     {
       InitializeComponent();
-      LastExeption = null;
     }
     public AddNew( DataContextAsync context )
       : this()
     {
       m_DataContext = context;
     }
-    internal Exception LastExeption { get; private set; }
-    internal double ToDispose = 0;
+    internal double ToDispose { get; private set; }
     internal List<CustomsWarehouse> Accounts { get; private set; }
 
     #region private
     private DataContextAsync m_DataContext;
     private void OKButton_Click( object sender, RoutedEventArgs e )
     {
+      double _2dsps = 0;
+      if ( !Double.TryParse( x_TextBoxQtyToClear.Text, out _2dsps ) )
+        MessageBox.Show( (string)this.Title, "Wrong qty to dispose", MessageBoxButton.OK );
+      ToDispose = _2dsps;
+      if ( Accounts.Count == 0 )
+      {
+        if ( MessageBox.Show( (string)this.Title, "No account found. Are you sure to close the window.", MessageBoxButton.OKCancel ) != MessageBoxResult.OK )
+          this.DialogResult = false;
+          return;
+      }
       this.DialogResult = true;
     }
     private void CancelButton_Click( object sender, RoutedEventArgs e )
@@ -56,6 +63,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     private void x_ButtonBatchSearch_Click( object sender, RoutedEventArgs e )
     {
+      if ( m_DataContext == null )
+      {
+        this.DialogResult = false;
+        return;
+      }
       m_DataContext.GetListCompleted += m_DataContext_GetListCompleted;
       m_DataContext.GetListAsync<CustomsWarehouse>( CommonDefinition.CustomsWarehouseTitle,
                                                     CommonDefinition.GetCAMLSelectedID( x_TextBoxBatchSearch.Text, CommonDefinition.FieldBatch, CommonDefinition.CAMLTypeText )
@@ -68,13 +80,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         m_DataContext.GetListCompleted -= m_DataContext_GetListCompleted;
         if ( e.Error != null )
         {
-          LastExeption = e.Error;
           x_TextBoxSelectedBatch.Text = "Not found";
           x_TextBoxTotalStock.Text = e.Error.Message;
         }
         if ( e.Cancelled )
         {
-          LastExeption = null;
           x_TextBoxSelectedBatch.Text = "Not found";
           x_TextBoxTotalStock.Text = "Cancelled";
         }
@@ -85,12 +95,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
           x_TextBoxTotalStock.Text = "N/A";
           return;
         }
-        x_TextBoxSelectedBatch.Text = Accounts.First<CustomsWarehouse>().Batch;
+        x_TextBoxSelectedBatch.Text = String.Format( "{0}/{1} accounts", Accounts.First<CustomsWarehouse>().Batch, Accounts.Count );
         x_TextBoxTotalStock.Text = Accounts.Sum( x => x.TobaccoNotAllocated.Value ).ToString();
       }
       catch ( Exception ex )
       {
-        global::System.Windows.MessageBox.Show( ex.Message, "Serach exception", MessageBoxButton.OK );
+        MessageBox.Show( ex.Message, "Serach exception", MessageBoxButton.OK );
       }
     }
     #endregion

@@ -60,5 +60,16 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         _oc.AutoCalculation = true;
       }
     }
+    internal void AddDisposal( List<CustomsWarehouse> list, double toDispose )
+    {
+      if ( list.Count == 0 )
+        throw new AggregateException( "list must contain at least one element" );
+      string _ntc = list.First<CustomsWarehouse>().Batch;
+      DisposalRequest _firs = this.FirstOrDefault( ( x ) => { return x.Batch == _ntc; } );
+      if ( _firs != null )
+        _firs.AddedKg += toDispose;
+      else
+        ;
+    }
   }
 }

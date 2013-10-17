@@ -129,7 +129,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       m_SelectedID = selectedID;
       if ( !m_SelectedID.HasValue )
         return;
-      GetDataAsync( m_URL );
+      m_Context.CreateContextAsyncCompletedEvent += m_Context_CreateContextAsyncCompletedEvent;
+      Log = String.Format( "GetDataAsync: CreateContextAsync for url={0}.", m_URL );
+      m_Context.CreateContextAsync( m_URL );
+    }
+    internal void AddDisposal( List<CustomsWarehouse> list, double toDispose )
+    {
+      if ( m_Disposed )
+        throw new ObjectDisposedException( typeof( MainPageData ).Name );
+      ( (DisposalRequestObservable)this.RequestCollection.SourceCollection ).AddDisposal( list, toDispose );
     }
     internal void SubmitChanges()
     {
@@ -211,12 +219,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     #region Worker
     private BackgroundWorker m_Worker = new BackgroundWorker();
     private DataContextAsync m_Context = new DataContextAsync();
-    private void GetDataAsync( string url )
-    {
-      m_Context.CreateContextAsyncCompletedEvent += m_Context_CreateContextAsyncCompletedEvent;
-      Log = String.Format( "GetDataAsync: CreateContextAsync for url={0}.", m_URL );
-      m_Context.CreateContextAsync( m_URL );
-    }
     private void m_Context_CreateContextAsyncCompletedEvent( object sender, AsyncCompletedEventArgs e )
     {
       m_Context.CreateContextAsyncCompletedEvent -= m_Context_CreateContextAsyncCompletedEvent;
@@ -264,6 +266,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     #endregion
 
     #endregion
+
 
   }
 }
