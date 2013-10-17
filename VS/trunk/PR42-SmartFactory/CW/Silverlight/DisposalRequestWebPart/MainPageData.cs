@@ -101,6 +101,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       get { return b_RequestCollection; }
       set { b_RequestCollection = value; }
     }
+    internal DataContextAsync DataContextAsync { get { return m_Context; } }
     #endregion
 
     #region INotifyPropertyChanged Members
@@ -113,14 +114,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     #region IDisposable Members
     public void Dispose()
     {
-      if ( Entities != null )
-        Entities.Dispose();
+      if ( m_Context != null )
+        m_Context.Dispose();
       m_Disposed = true;
     }
     #endregion
 
     #region internal
-    internal Entities Entities { get; private set; }
     internal void GetData( string url, int? selectedID )
     {
       if ( m_Disposed )
@@ -165,7 +165,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       try
       {
-        Entities.SubmitChanges();
+        m_Context.SubmitChangesCompleted += m_Context_SubmitChangesCompleted;
+        m_Context.SubmitChangesAsyn();
         m_Edited = false;
         UpdateHeader();
       }
@@ -173,6 +174,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       {
         ExceptionHandling( _ex );
       }
+    }
+    private void m_Context_SubmitChangesCompleted( object sender, AsyncCompletedEventArgs e )
+    {
+      m_Context.SubmitChangesCompleted -= m_Context_SubmitChangesCompleted;
+      Log = "SubmitChangesCompleted";
     }
     private void ExceptionHandling( Exception ex )
     {
@@ -204,40 +210,49 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 
     #region Worker
     private BackgroundWorker m_Worker = new BackgroundWorker();
+    private DataContextAsync m_Context = new DataContextAsync();
     private void GetDataAsync( string url )
     {
-      m_Worker.DoWork += Worker_DoWork;
-      m_Worker.ProgressChanged += Worker_ProgressChanged;
-      m_Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-      m_Worker.WorkerReportsProgress = true;
-      m_Worker.WorkerSupportsCancellation = false;
-      m_Worker.RunWorkerAsync();
+      m_Context.CreateContextAsyncCompletedEvent += m_Context_CreateContextAsyncCompletedEvent;
+      Log = String.Format( "GetDataAsync: CreateContextAsync for url={0}.", m_URL );
+      m_Context.CreateContextAsync( m_URL );
     }
-    private void Worker_RunWorkerCompleted( object sender, RunWorkerCompletedEventArgs e )
+    private void m_Context_CreateContextAsyncCompletedEvent( object sender, AsyncCompletedEventArgs e )
     {
+      m_Context.CreateContextAsyncCompletedEvent -= m_Context_CreateContextAsyncCompletedEvent;
+      Log = String.Format( "GetData DoWork: new DataContext for url={0}.", m_URL );
+      if ( e.Cancelled )
+      {
+        Log = "CreateContextAsync Cancelled";
+        return;
+      }
       if ( e.Error != null )
       {
         ExceptionHandling( e.Error );
         return;
       }
+      Log = String.Format( ": new DataContext for url={0}.", m_URL );
+      Debug.Assert( m_SelectedID.HasValue, "m_SelectedID must have value" );
+      m_Context.GetListCompleted += m_Context_GetListCompleted;
+      m_Context.GetListAsync<CustomsWarehouseDisposal>( CommonDefinition.CustomsWarehouseDisposalTitle, CommonDefinition.GetCAMLSelectedID( m_SelectedID.Value, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID, CommonDefinition.CAMLTypeNumber ) );
+    }
+    private void m_Context_GetListCompleted( object siurce, GetListAsyncCompletedEventArgs e )
+    {
+      m_Context.GetListCompleted -= m_Context_GetListCompleted;
       if ( e.Cancelled )
       {
-        Log = "GetData has been canceled";
+        Log = "GetList has been canceled";
         return;
       }
-      ////PagedCollectionView _npc = new PagedCollectionView( new DisposalRequestObservable() );
-      ////_npc.PropertyChanged += RequestCollection_PropertyChanged;
-      ////_npc.CollectionChanged += RequestCollection_CollectionChanged;
-      ////RequestCollection = _npc;
-      List<CustomsWarehouseDisposal> _list = (List<CustomsWarehouseDisposal>)e.Result;
-      Log = "GetData DisposalRequestObservable.GetDataContext  " + CommonDefinition.CustomsWarehouseDisposalTitle;
+      if ( e.Error != null )
+      {
+        ExceptionHandling( e.Error );
+        return;
+      }
+      Log = "GetListCompleted .GetDataContext  " + CommonDefinition.CustomsWarehouseDisposalTitle;
+      List<CustomsWarehouseDisposal> _list = e.Result<CustomsWarehouseDisposal>().ToList<CustomsWarehouseDisposal>();
       ( (DisposalRequestObservable)this.RequestCollection.SourceCollection ).GetDataContext( _list );
       m_Edited = false;
-      //if (_npc.CanGroup == true)
-      //{
-      //  // Group by 
-      //  _npc.GroupDescriptions.Add(new PropertyGroupDescription("Batch"));
-      //}
       if ( this.RequestCollection.CanSort == true )
       {
         // By default, sort by Batch.
@@ -245,19 +260,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       }
       UpdateHeader();
       Log = "GetData RunWorker Completed";
-    }
-    private void Worker_ProgressChanged( object sender, ProgressChangedEventArgs e )
-    {
-      Log = (String)e.UserState;
-    }
-    private void Worker_DoWork( object sender, DoWorkEventArgs e )
-    {
-      BackgroundWorker _mq = (BackgroundWorker)sender;
-      _mq.ReportProgress( 1, String.Format( "GetData DoWork: new DataContext for url={0}.", m_URL ) );
-      Entities = new Entities( m_URL );
-      _mq.ReportProgress( 1, "GetData DoWork: GetList " + CommonDefinition.CustomsWarehouseDisposalTitle );
-      Debug.Assert( m_SelectedID.HasValue, "m_SelectedID must have value" );
-      e.Result = Entities.CustomsWarehouseDisposal.Filter( CommonDefinition.GetCAMLSelectedID( m_SelectedID.Value, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID, CommonDefinition.CAMLTypeNumber ) ).ToList();
     }
     #endregion
 

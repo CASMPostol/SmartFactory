@@ -16,7 +16,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       InitializeComponent();
       LastExeption = null;
     }
-    public AddNew( Entities context )
+    public AddNew( DataContextAsync context )
       : this()
     {
       m_DataContext = context;
@@ -24,7 +24,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     internal Exception LastExeption { get; private set; }
     internal double ToDispose = 0;
     internal List<CustomsWarehouse> Accounts { get; private set; }
-    private Entities m_DataContext;
+    private DataContextAsync m_DataContext;
     private BackgroundWorker m_Worker = new BackgroundWorker();
     private void OKButton_Click( object sender, RoutedEventArgs e )
     {
@@ -77,8 +77,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     private void Worker_DoWork( object sender, DoWorkEventArgs e )
     {
-      BackgroundWorker _mq = (BackgroundWorker)sender;
-      e.Result = m_DataContext.CustomsWarehouse.Filter( CommonDefinition.GetCAMLSelectedID( x_TextBoxBatchSearch.Text, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID, CommonDefinition.CAMLTypeNumber ) ).ToList();
+      //BackgroundWorker _mq = (BackgroundWorker)sender;
+      //e.Result = m_DataContext.CustomsWarehouse.Filter( CommonDefinition.GetCAMLSelectedID( x_TextBoxBatchSearch.Text, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID, CommonDefinition.CAMLTypeNumber ) ).ToList();
     }
   }
 }

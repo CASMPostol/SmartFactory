@@ -106,7 +106,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       try
       {
-        AddNew _newChildWondow = new AddNew(this.MainPageData.Entities);
+        AddNew _newChildWondow = new AddNew(MainPageData.DataContextAsync);
         _newChildWondow.Closed += _newChildWondow_Closed;
         _newChildWondow.Show();
       }
