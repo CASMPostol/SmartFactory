@@ -14,8 +14,11 @@
 //</summary>
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading;
+using Microsoft.SharePoint.Client;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
 {
@@ -23,17 +26,18 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
   /// DataContextAsync
   /// </summary>
   /// <typeparam name="TContext">The type of the context.</typeparam>
-  public class DataContextAsync
+  public class DataContextAsync: IDisposable
   {
     #region public
+
     public bool Busy { get { return m_busy; } }
+    public DataContextAsync() { }
 
     #region CreateContextAsync
-    public event CreateContextAsyncCompletedEventHandler CreateContextAsyncCompletedEvent;
-    public delegate void CreateContextAsyncCompletedEventHandler( object sender, CreateContextAsyncCompletedEventArgs e );
+    public event AsyncCompletedEventHandler CreateContextAsyncCompletedEvent;
     public void CreateContextAsync( string requestUrl )
     {
-      if ( Busy )
+      if ( m_busy )
         throw new InvalidOperationException( "Context is busy" );
       m_busy = true;
       m_OnCompletedDelegate += CreateContextAsynCompleted;
@@ -49,22 +53,24 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// Gets the list.
     /// </summary>
     /// <param name="listName">Name of the list.</param>
-    public void GetListAsync<TEntity>( string listName )
+    public void GetListAsync<TEntity>( string listName, CamlQuery camlQuery )
        where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
-      if ( Busy )
+      if ( m_busy )
         throw new InvalidOperationException( "Context is busy" );
       m_busy = true;
       m_OnCompletedDelegate += GetListAsyncCompleted;
       // Create an AsyncOperation for taskId.
       AsyncOperation _AsyncOp = AsyncOperationManager.CreateOperation( m_Counter++ );
-      m_processor.Do( () => { GetListAsyncWorker<TEntity>( listName, _AsyncOp ); } );
+      m_processor.Do( () => { GetListAsyncWorker<TEntity>( listName, camlQuery, _AsyncOp ); } );
     }
     #endregion
+
+    #region SubmitChanges
     public event AsyncCompletedEventHandler SubmitChangesCompleted;
     public void SubmitChangesAsyn()
     {
-      if ( Busy )
+      if ( m_busy )
         throw new InvalidOperationException( "Context is busy" );
       m_busy = true;
       m_OnCompletedDelegate += SubmitChangesAsynCompleted;
@@ -73,39 +79,44 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     }
     #endregion
 
+    #endregion
+
+    #region IDisposable Members
+    public void Dispose()
+    {
+      m_Disposed = true;
+      if ( m_Context != null )
+        m_Context.Dispose();
+    }
+    #endregion
+
     #region private
 
     #region CreateContext
     private void CreateContextAsynCompleted( object state )
     {
+      m_busy = false;
       if ( CreateContextAsyncCompletedEvent == null )
         return;
-      CreateContextAsyncCompletedEventArgs e = state as CreateContextAsyncCompletedEventArgs;
-      m_busy = false;
+      AsyncCompletedEventArgs e = state as AsyncCompletedEventArgs;
       CreateContextAsyncCompletedEvent( this, e );
     }
     private void CreateContextAsyncWorker( string requestUrl, AsyncOperation asyncOp )
     {
-      Exception exception = null;
+      Exception _Exception = null;
+      DataContext _Context = new DataContext();
       try
       {
-        m_Context.CreateContext( requestUrl );
+        _Context.CreateContext( requestUrl );
       }
-      catch ( Exception ex )
+      catch ( Exception _Ex )
       {
-        exception = ex;
+        _Exception = _Ex;
       }
+      m_Context = _Context;
       // Package the results of the operation in a  CreateContextAsyncCompletedEventArgs.
-      CreateContextAsyncCompletedEventArgs e = new CreateContextAsyncCompletedEventArgs( m_Context, exception, false, asyncOp.UserSuppliedState );
-      OperationCompleted( asyncOp, e );
-    }
-    private void OperationCompleted( AsyncOperation asyncOp, object e )
-    {
-      // End the task. The asyncOp object is responsible for marshaling the call.
-      m_busy = false;
-      asyncOp.PostOperationCompleted( m_OnCompletedDelegate, e );
-      // Note that after the call to OperationCompleted, asyncOp is no longer usable, and any attempt to use it 
-      // will cause an exception to be thrown.
+      AsyncCompletedEventArgs _EventArgs = new AsyncCompletedEventArgs( _Exception, false, asyncOp.UserSuppliedState );
+      asyncOp.PostOperationCompleted( m_OnCompletedDelegate, _EventArgs );
     }
     #endregion
 
@@ -123,14 +134,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// </summary>
     /// <param name="listName">Name of the list.</param>
     /// <param name="asyncOp">The _ asynchronous property.</param>
-    private void GetListAsyncWorker<TEntity>( string listName, AsyncOperation asyncOp )
+    private void GetListAsyncWorker<TEntity>( string listName, CamlQuery camlQuery, AsyncOperation asyncOp )
        where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
       Exception _Exception = null;
-      EntityList<TEntity> _Result = null;
+      List<TEntity> _Result = null;
       try
       {
-        _Result = m_Context.GetList<TEntity>( listName );
+        _Result = m_Context.GetList<TEntity>( listName ).Filter<TEntity>( camlQuery ).ToList<TEntity>();
       }
       catch ( Exception ex )
       {
@@ -146,10 +157,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     #region SubmitChangesAsyn
     private void SubmitChangesAsynCompleted( object state )
     {
-      if ( GetListCompleted == null )
+      if ( SubmitChangesCompleted == null )
         return;
-      GetListAsyncCompletedEventArgs _EventArgs = (GetListAsyncCompletedEventArgs)state;
-      GetListCompleted( this, _EventArgs );
+      AsyncCompletedEventArgs _EventArgs = (AsyncCompletedEventArgs)state;
+      SubmitChangesCompleted( this, _EventArgs );
     }
     private void SubmitChangesAsynWorker( AsyncOperation asyncOp )
     {
@@ -169,31 +180,52 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     }
     #endregion
 
+    private class Processor
+    {
+      public Processor()
+      {
+        m_thred = new Thread( Worker );
+        m_thred.Name = "Processor";
+        m_thred.Start();
+      }
+      internal void Do( Action opration )
+      {
+        lock ( this )
+        {
+          if ( m_Action != null )
+            throw new InvalidOperationException( "The processot is busy." );
+          m_Action = opration;
+          m_Signal.Set();
+        }
+      }
+      private Thread m_thred = null;
+      private Action m_Action = null;
+      private AutoResetEvent m_Signal = new AutoResetEvent( false );
+      private void Worker( object obj )
+      {
+        while ( true )
+        {
+          Action _actn;
+          m_Signal.WaitOne();
+          lock ( this )
+          {
+            _actn = m_Action;
+            m_Action = null;
+          }
+          if ( _actn == null )
+            continue;
+          _actn();
+        }
+      }
+    }
     private SendOrPostCallback m_OnCompletedDelegate;
     private bool m_busy = false;
     private int m_Counter = 0;
-    private DataContextAsync() { }
-    private DataContext m_Context = new DataContext();
+    private DataContext m_Context = null;
     private Processor m_processor = new Processor();
-    private class Processor
-    {
-      internal void Do( Action opration )
-      {
-      }
-    }
+    private bool m_Disposed = false;
 
     #endregion
-
-  }
-  public class CreateContextAsyncCompletedEventArgs: AsyncCompletedEventArgs
-  {
-
-    public CreateContextAsyncCompletedEventArgs( DataContext context, Exception e, bool canceled, object state )
-      : base( e, canceled, state )
-    {
-      Result = context;
-    }
-    internal DataContext Result { get; private set; }
 
   }
 }
