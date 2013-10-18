@@ -38,12 +38,20 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         _creator.DoAsync();
       }
     }
+    internal event ProgressChangedEventHandler ProgressChanged;
+    internal void OnProgressChanged( ProgressChangedEventArgs args )
+    {
+      if ( ProgressChanged == null )
+        return;
+      ProgressChanged( this, args );
+    }
     private class CraeteRequest
     {
       internal CraeteRequest( DataContextAsync context, DisposalRequestObservable parent, IGrouping<string, CustomsWarehouseDisposal> grouping )
       {
         m_DataContext = context;
         m_Grouping = grouping;
+        m_Parent = parent;
       }
       internal void DoAsync()
       {
@@ -57,26 +65,29 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       private IGrouping<string, CustomsWarehouseDisposal> m_Grouping = null;
       private void context_GetListCompleted( object siurce, GetListAsyncCompletedEventArgs e )
       {
-        m_DataContext.GetListCompleted -= context_GetListCompleted;
-        if ( e.Cancelled )
-          return;
-        if ( e.Error != null )
-          m_Parent.Trace( "GetDataContext", e.Error );
-        CustomsWarehouseDisposal _first = m_Grouping.First<CustomsWarehouseDisposal>();
-        CustomsWarehouse _cw = _first.CWL_CWDisposal2CustomsWarehouseID != null ? _first.CWL_CWDisposal2CustomsWarehouseID : new CustomsWarehouse() { Units = "N/A", SKU = "N/A", CW_MassPerPackage = 0 };
-        DisposalRequest _oc = DefaultDisposalRequestnew( m_Grouping.Key, _first.SKUDescription, _cw );
-        _oc.GetDataContext( e.Result<CustomsWarehouse>() );
-        foreach ( CustomsWarehouseDisposal _cwdrdx in m_Grouping )
-          _oc.GetDataContext( _cwdrdx );
-        _oc.Update();
-        m_Parent.Add( _oc );
-        _oc.AutoCalculation = true;
+        try
+        {
+          m_DataContext.GetListCompleted -= context_GetListCompleted;
+          if ( e.Cancelled )
+            return;
+          if ( e.Error != null )
+            m_Parent.OnProgressChanged( new ProgressChangedEventArgs( 0, String.Format( "Exception {0} at m_DataContext.GetListAsync", e.Error.Message ) ) );
+          CustomsWarehouseDisposal _first = m_Grouping.First<CustomsWarehouseDisposal>();
+          CustomsWarehouse _cw = _first.CWL_CWDisposal2CustomsWarehouseID != null ? _first.CWL_CWDisposal2CustomsWarehouseID : new CustomsWarehouse() { Units = "N/A", SKU = "N/A", CW_MassPerPackage = 0 };
+          DisposalRequest _oc = DefaultDisposalRequestnew( m_Grouping.Key, _first.SKUDescription, _cw );
+          _oc.GetDataContext( e.Result<CustomsWarehouse>() );
+          foreach ( CustomsWarehouseDisposal _cwdrdx in m_Grouping )
+            _oc.GetDataContext( _cwdrdx );
+          _oc.Update();
+          m_Parent.Add( _oc );
+          _oc.AutoCalculation = true;
+        }
+        catch ( Exception _ex )
+        {
+          m_Parent.OnProgressChanged( new ProgressChangedEventArgs( 0, String.Format( "Exception {0} at context_GetListCompleted", _ex ) ) );
+        }
       }
-    }
-    private void Trace( string p, Exception exception )
-    {
-      throw new NotImplementedException();
-    }
+    }//class CraeteRequest
     internal void AddDisposal( List<CustomsWarehouse> list, double toDispose )
     {
       if ( list.Count == 0 )

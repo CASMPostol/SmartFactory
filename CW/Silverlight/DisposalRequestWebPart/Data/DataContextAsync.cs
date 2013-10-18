@@ -125,7 +125,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       if ( GetListCompleted == null )
         return;
       GetListAsyncCompletedEventArgs _EventArgs = (GetListAsyncCompletedEventArgs)state;
-      GetListCompleted( this, _EventArgs );
+      try
+      {
+        GetListCompleted( this, _EventArgs );
+      }
+      catch ( Exception ex )
+      {
+        m_Context.Log.WriteLine( String.Format( "Exception {0} at GetListAsyncCompleted", ex.Message ) );
+      }
+      finally { m_busy = false; }
     }
     /// <summary>
     /// This method performs the actual workload to gets the list.
