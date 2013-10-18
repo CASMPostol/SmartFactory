@@ -3,6 +3,7 @@
   <Module Name="WebPartPagesCW">
 <File Path="WebPartPagesCW\WebPageTemplate_CWBook.aspx" Url="WebPartPagesCW/WebPageTemplate_CWBook.aspx" />
 <File Path="WebPartPagesCW\WebPageTemplate_CheckListExitSheet.aspx" Url="WebPartPagesCW/WebPageTemplate_CheckListExitSheet.aspx" />
+<File Path="WebPartPagesCW\WebPageTemplate_Statement.aspx" Url="WebPartPagesCW/WebPageTemplate_Statement.aspx" />
 <File Path="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" Url="WebPartPagesCW/WebPageTemplate_DisposalRequest.aspx" />
 </Module>
 </Elements>
