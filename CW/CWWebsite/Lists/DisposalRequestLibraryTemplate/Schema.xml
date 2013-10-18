@@ -157,7 +157,7 @@
           </Where>
         </Query>
       </View>
-      <View BaseViewID="10" Type="HTML" WebPartZoneID="Main" DisplayName="Disposal Request View" DefaultView="TRUE" MobileView="True" MobileDefaultView="True" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/DisposalRequest.aspx">
+      <View BaseViewID="10" Type="HTML" WebPartZoneID="Main" DisplayName="Disposal Request View" DefaultView="FALSE" MobileView="True" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/DisposalRequest.aspx">
         <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">15</RowLimit>
@@ -183,7 +183,7 @@
           </Where>
         </Query>
       </View>
-      <View BaseViewID="11" Type="HTML" WebPartZoneID="Main" DisplayName="Exit Sheet Dashboard View" DefaultView="TRUE" MobileView="True" MobileDefaultView="True" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/ExitSheet.aspx">
+      <View BaseViewID="11" Type="HTML" WebPartZoneID="Main" DisplayName="Exit Sheet Dashboard View" DefaultView="FALSE" MobileView="True" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/ExitSheet.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">15</RowLimit>

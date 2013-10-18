@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="StatementDashboard">
+    <File Path="WebPartPagesCW\WebPageTemplate_Statement.aspx" Url="WebPartPagesCW/StatementDashboard.aspx">
+      <View List="Lists/DisposalRequestLibrary" BaseViewID="10" WebPartZoneID="DisposalRequestLibrary" WebPartOrder="0">
+        <![CDATA[
+         <webParts>
+         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+         <metaData>
+         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+         </metaData>
+         <data>
+         <properties>
+         <property name="Title" type="string">Disposal Request Library</property>
+         <property name="TitleUrl" type="string">StatementDashboard.aspx</property>
+         <property name="AllowConnect" type="bool">True</property>
+         </properties>
+         </data>
+         </webPart>
+         </webParts>
+         ]]>
+      </View>
+      <View List="Lists/CustomsWarehouseList" BaseViewID="2" WebPartZoneID="CW" WebPartOrder="0">
+        <![CDATA[
+         <webParts>
+         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+         <metaData>
+         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+         </metaData>
+         <data>
+         <properties>
+         <property name="Title" type="string">CWy</property>
+         <property name="TitleUrl" type="string">StatementDashboard.aspx</property>
+         <property name="AllowConnect" type="bool">True</property>
+         </properties>
+         </data>
+         </webPart>
+         </webParts>
+         ]]>
+      </View>
+      <View List="Lists/CustomsWarehouseDisposalList" BaseViewID="2" WebPartZoneID="DisposalWebPart" WebPartOrder="0">
+        <![CDATA[
+         <webParts>
+         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+         <metaData>
+         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+         </metaData>
+         <data>
+         <properties>
+         <property name="Title" type="string">Disposal</property>
+         <property name="TitleUrl" type="string">StatementDashboard.aspx</property>
+         <property name="AllowConnect" type="bool">True</property>
+         </properties>
+         </data>
+         </webPart>
+         </webParts>
+         ]]>
+      </View>
+      <View List="Lists/StatementLibrary" BaseViewID="1" WebPartZoneID="StatementLibrary" WebPartOrder="0">
+        <![CDATA[
+         <webParts>
+         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+         <metaData>
+         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+         </metaData>
+         <data>
+         <properties>
+         <property name="Title" type="string">Statement</property>
+         <property name="TitleUrl" type="string">StatementDashboard.aspx</property>
+         <property name="AllowConnect" type="bool">True</property>
+         </properties>
+         </data>
+         </webPart>
+         </webParts>
+         ]]>
+      </View>
+    </File>
+  </Module>
+</Elements>
