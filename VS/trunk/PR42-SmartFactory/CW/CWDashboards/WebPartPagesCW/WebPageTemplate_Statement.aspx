@@ -31,16 +31,24 @@
             <tr>
                 <td valign="top">
                     <WebPartPages:WebPartZone
-                        ID="CW" runat="server"
-                        Title="CW Web Part Zone"
+                        ID="CWBook" runat="server"
+                        Title="CWBook Web Part Zone"
                         FrameType="TitleBarOnly" />
                 </td>
             </tr>
             <tr>
                 <td valign="top">
                     <WebPartPages:WebPartZone
-                        ID="DisposalWebPart" runat="server"
-                        Title="Disposal Web Part Zone"
+                        ID="CWBookAll" runat="server"
+                        Title="CWBook All Web Part Zone"
+                        FrameType="TitleBarOnly" />
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <WebPartPages:WebPartZone
+                        ID="Disposals" runat="server"
+                        Title="Disposals Web Part Zone"
                         FrameType="TitleBarOnly" />
                 </td>
             </tr>
