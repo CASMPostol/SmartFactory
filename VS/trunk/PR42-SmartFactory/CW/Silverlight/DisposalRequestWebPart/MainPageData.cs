@@ -12,20 +12,6 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-//<summary>
-//  Title   : public class MainPageData
-//  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
-//
-//  Copyright (C) 2013, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
 
 using System;
 using System.Collections.Generic;
@@ -56,6 +42,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       _npc.PropertyChanged += RequestCollection_PropertyChanged;
       _npc.CollectionChanged += RequestCollection_CollectionChanged;
       RequestCollection = _npc;
+      this.DisposalRequestObservable.ProgressChanged += DisposalRequestObservable_ProgressChanged;
       Log = "MainPageData created.";
     }
     #endregion
@@ -137,7 +124,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       if ( m_Disposed )
         throw new ObjectDisposedException( typeof( MainPageData ).Name );
-      ( (DisposalRequestObservable)this.RequestCollection.SourceCollection ).AddDisposal( list, toDispose );
+      this.DisposalRequestObservable.AddDisposal( list, toDispose );
     }
     internal void SubmitChanges()
     {
@@ -215,9 +202,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       UpdateHeader();
     }
-
-    #region Worker
-    private BackgroundWorker m_Worker = new BackgroundWorker();
+    private void DisposalRequestObservable_ProgressChanged( object sender, ProgressChangedEventArgs e )
+    {
+      Log = e.UserState as string;
+    }
     private DataContextAsync m_Context = new DataContextAsync();
     private void m_Context_CreateContextAsyncCompletedEvent( object sender, AsyncCompletedEventArgs e )
     {
@@ -253,7 +241,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       }
       Log = "GetListCompleted .GetDataContext  " + CommonDefinition.CustomsWarehouseDisposalTitle;
       List<CustomsWarehouseDisposal> _list = e.Result<CustomsWarehouseDisposal>().ToList<CustomsWarehouseDisposal>();
-      ( (DisposalRequestObservable)this.RequestCollection.SourceCollection ).GetDataContext( _list, m_Context );
+      this.DisposalRequestObservable.GetDataContext( _list, m_Context );
       m_Edited = false;
       if ( this.RequestCollection.CanSort == true )
       {
@@ -263,10 +251,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       UpdateHeader();
       Log = "GetData RunWorker Completed";
     }
-    #endregion
+    private DisposalRequestObservable DisposalRequestObservable { get { return (DisposalRequestObservable)this.RequestCollection.SourceCollection; } }
 
-    #endregion
-
+    #endregion //private
 
   }
 }
