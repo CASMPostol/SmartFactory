@@ -329,6 +329,26 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
     }
     #endregion
+    internal static DisposalRequest DefaultDisposalRequestnew( string skuDescription, CustomsWarehouse cw )
+    {
+      return new DisposalRequest()
+      {
+        AddedKg = 0,
+        DeclaredNetMass = 0,
+        Batch = cw.Batch,
+        MassPerPackage = cw.CW_MassPerPackage.Value,
+        PackagesToClear = 0,
+        QuantityyToClearSum = 0,
+        QuantityyToClearSumRounded = 0,
+        RemainingOnStock = 0,
+        RemainingPackages = 0,
+        SKUDescription = skuDescription,
+        Title = "Title TBD",
+        TotalStock = 0,
+        Units = cw.Units,
+        SKU = cw.SKU,
+      };
+    }
 
     #region internal
     internal ObservableCollection<CustomsWarehouseDisposal> Disposals
@@ -337,28 +357,20 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       set { b_Disposals = value; }
     }
     public bool AutoCalculation { get; set; }
-    internal void GetDataContext( CustomsWarehouseDisposal rowData )
-    {
-      DeclaredNetMass += rowData.CW_DeclaredNetMass.Value;
-      AddedKg += rowData.CW_AddedKg.Value;
-      QuantityyToClearSum += rowData.CW_SettledNetMass.Value;
-      TotalStock += QuantityyToClearSum;
-      Disposals.Add( rowData );
-    }
-    internal void GetDataContext( List<CustomsWarehouse> list )
+    internal void GetDataContext( List<CustomsWarehouse> list, IGrouping<string, CustomsWarehouseDisposal> m_Grouping )
     {
       m_ListOfCustomsWarehouse = list;
       RemainingOnStock = m_ListOfCustomsWarehouse.Sum( x => x.TobaccoNotAllocated.Value );
+      foreach ( CustomsWarehouseDisposal _cwdrdx in m_Grouping )
+        GetDataContext( _cwdrdx );
+      Update();
     }
-    internal void Update()
+    internal void GetDataContext( List<CustomsWarehouse> list, double toDispose )
     {
-      bool _ac = AutoCalculation;
-      AutoCalculation = false;
-      QuantityyToClearSum = DeclaredNetMass + AddedKg;
-      PackagesToClear = Math.Round( QuantityyToClearSum / this.MassPerPackage + 0.499999, 0 );
-      QuantityyToClearSumRounded = PackagesToClear * this.MassPerPackage;
-      RemainingOnStock = TotalStock - QuantityyToClearSumRounded;
-      AutoCalculation = _ac;
+      list.Sort( new CWComparer() );
+      m_ListOfCustomsWarehouse = list;
+      RemainingOnStock = m_ListOfCustomsWarehouse.Sum( x => x.TobaccoNotAllocated.Value );
+
     }
     #endregion
 
@@ -381,12 +393,37 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private ObservableCollection<CustomsWarehouseDisposal> b_Disposals;
     private List<CustomsWarehouse> m_ListOfCustomsWarehouse = null;
     #endregion
+    private class CWComparer: Comparer<CustomsWarehouse>
+    {
+      public override int Compare( CustomsWarehouse x, CustomsWarehouse y )
+      {
+        return x.Id.Value.CompareTo( y.Id.Value );
+      }
+    }
     protected override void OnPropertyChanged( string propertyName )
     {
       base.OnPropertyChanged( propertyName );
       if ( !AutoCalculation )
         return;
       Update();
+    }
+    private void GetDataContext( CustomsWarehouseDisposal rowData )
+    {
+      DeclaredNetMass += rowData.CW_DeclaredNetMass.Value;
+      AddedKg += rowData.CW_AddedKg.Value;
+      QuantityyToClearSum += rowData.CW_SettledNetMass.Value;
+      TotalStock += QuantityyToClearSum;
+      Disposals.Add( rowData );
+    }
+    private void Update()
+    {
+      bool _ac = AutoCalculation;
+      AutoCalculation = false;
+      QuantityyToClearSum = DeclaredNetMass + AddedKg;
+      PackagesToClear = Math.Round( QuantityyToClearSum / this.MassPerPackage + 0.499999, 0 );
+      QuantityyToClearSumRounded = PackagesToClear * this.MassPerPackage;
+      RemainingOnStock = TotalStock - QuantityyToClearSumRounded;
+      AutoCalculation = _ac;
     }
     #endregion
 

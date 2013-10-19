@@ -17,8 +17,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Windows.Data;
-using Microsoft.SharePoint.Client;
 using System.Linq;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 
@@ -29,95 +27,137 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   /// </summary>
   public class DisposalRequestObservable: ObservableCollection<DisposalRequest>
   {
+
+    #region internal
     internal void GetDataContext( List<CustomsWarehouseDisposal> _list, DataContextAsync context )
     {
       IEnumerable<IGrouping<string, CustomsWarehouseDisposal>> _requests = _list.GroupBy<CustomsWarehouseDisposal, string>( x => x.CWL_CWDisposal2CustomsWarehouseID.Batch );
-      foreach ( IGrouping<string, CustomsWarehouseDisposal> _grx in _requests )
-      {
-        CraeteRequest _creator = new CraeteRequest( context, this, _grx );
-        _creator.DoAsync();
-      }
+      RequestsQueue _gu = new RequestsQueue( this, context );
+      _gu.DoAsync( _requests );
     }
-    internal event ProgressChangedEventHandler ProgressChanged;
-    internal void OnProgressChanged( ProgressChangedEventArgs args )
+    internal void AddDisposal( List<CustomsWarehouse> list, double toDispose )
+    {
+      if ( list.Count == 0 )
+        throw new AggregateException( "list must contain at least one element" );
+      CustomsWarehouse _fcw = list.First<CustomsWarehouse>();
+      DisposalRequest _fDspRqs = this.FirstOrDefault( ( x ) => { return x.Batch == _fcw.Batch; } );
+      if ( _fDspRqs != null )
+        _fDspRqs.AddedKg += toDispose;
+      else
+      {
+        DisposalRequest _oc = DisposalRequest.DefaultDisposalRequestnew( "N/A", _fcw );
+        _oc.GetDataContext( list, toDispose );
+        this.Add( _oc );
+        _oc.AutoCalculation = true;
+      }
+
+    }
+    internal event ProgressChangedEventHandler ProgressChanged;  //TODO report progress
+    internal virtual void OnProgressChanged( ProgressChangedEventArgs args )
     {
       if ( ProgressChanged == null )
         return;
       ProgressChanged( this, args );
     }
-    private class CraeteRequest
+    #endregion
+
+    #region private
+    private class RequestsQueue: Queue<CraeteRequestBase>
     {
-      internal CraeteRequest( DataContextAsync context, DisposalRequestObservable parent, IGrouping<string, CustomsWarehouseDisposal> grouping )
+
+      #region internal
+      internal RequestsQueue( DisposalRequestObservable parent, DataContextAsync context )
       {
-        m_DataContext = context;
-        m_Grouping = grouping;
         m_Parent = parent;
+        m_DataContext = context;
       }
-      internal void DoAsync()
+      internal void DoAsync( IEnumerable<IGrouping<string, CustomsWarehouseDisposal>> requests )
       {
-        m_DataContext.GetListCompleted += context_GetListCompleted;
-        m_DataContext.GetListAsync<CustomsWarehouse>( CommonDefinition.CustomsWarehouseTitle,
-                                                      CommonDefinition.GetCAMLSelectedID( m_Grouping.Key, CommonDefinition.FieldBatch, CommonDefinition.CAMLTypeText )
-                                                     );
+        foreach ( IGrouping<string, CustomsWarehouseDisposal> _grx in requests )
+          AddRequest2Queue( _grx );
+        DoAsync();
+      }
+      #endregion
+
+      #region private
+      private class CraeteRequest: CraeteRequestBase
+      {
+        public CraeteRequest( RequestsQueue requestsQueue, IGrouping<string, CustomsWarehouseDisposal> grouping ) :
+          base( grouping )
+        {
+          m_RequestsQueue = requestsQueue;
+        }
+        private RequestsQueue m_RequestsQueue = null;
+        protected override void DoNext()
+        {
+          m_RequestsQueue.DoAsync();
+        }
+        protected override DisposalRequestObservable Parent
+        {
+          get { return m_RequestsQueue.m_Parent; }
+        }
+        protected override DataContextAsync DataContext
+        {
+          get { return m_RequestsQueue.m_DataContext; }
+        }
+      }
+      private void DoAsync()
+      {
+        if ( this.Count == 0 )
+          return;
+        CraeteRequestBase _rqs = this.Dequeue();
+        _rqs.DoAsync();
+      }
+      private void AddRequest2Queue( IGrouping<string, CustomsWarehouseDisposal> grouping )
+      {
+        CraeteRequestBase _creator = new CraeteRequest( this, grouping );
+        this.Enqueue( _creator );
       }
       private DataContextAsync m_DataContext = null;
       private DisposalRequestObservable m_Parent;
+      #endregion
+
+    }
+    private abstract class CraeteRequestBase
+    {
+      internal CraeteRequestBase( IGrouping<string, CustomsWarehouseDisposal> grouping )
+      {
+        m_Grouping = grouping;
+      }
+      internal void DoAsync()
+      {
+        DataContext.GetListCompleted += context_GetListCompleted;
+        DataContext.GetListAsync<CustomsWarehouse>( CommonDefinition.CustomsWarehouseTitle,
+                                                    CommonDefinition.GetCAMLSelectedID( m_Grouping.Key, CommonDefinition.FieldBatch, CommonDefinition.CAMLTypeText ) );
+      }
+      protected abstract DataContextAsync DataContext { get; }
+      protected abstract DisposalRequestObservable Parent { get; }
+      protected abstract void DoNext();
       private IGrouping<string, CustomsWarehouseDisposal> m_Grouping = null;
       private void context_GetListCompleted( object siurce, GetListAsyncCompletedEventArgs e )
       {
         try
         {
-          m_DataContext.GetListCompleted -= context_GetListCompleted;
+          DataContext.GetListCompleted -= context_GetListCompleted;
           if ( e.Cancelled )
             return;
           if ( e.Error != null )
-            m_Parent.OnProgressChanged( new ProgressChangedEventArgs( 0, String.Format( "Exception {0} at m_DataContext.GetListAsync", e.Error.Message ) ) );
+            Parent.OnProgressChanged( new ProgressChangedEventArgs( 0, String.Format( "Exception {0} at m_DataContext.GetListAsync", e.Error.Message ) ) );
           CustomsWarehouseDisposal _first = m_Grouping.First<CustomsWarehouseDisposal>();
           CustomsWarehouse _cw = _first.CWL_CWDisposal2CustomsWarehouseID != null ? _first.CWL_CWDisposal2CustomsWarehouseID : new CustomsWarehouse() { Units = "N/A", SKU = "N/A", CW_MassPerPackage = 0 };
-          DisposalRequest _oc = DefaultDisposalRequestnew( m_Grouping.Key, _first.SKUDescription, _cw );
-          _oc.GetDataContext( e.Result<CustomsWarehouse>() );
-          foreach ( CustomsWarehouseDisposal _cwdrdx in m_Grouping )
-            _oc.GetDataContext( _cwdrdx );
-          _oc.Update();
-          m_Parent.Add( _oc );
+          DisposalRequest _oc = DisposalRequest.DefaultDisposalRequestnew( _first.SKUDescription, _cw );
+          _oc.GetDataContext( e.Result<CustomsWarehouse>(), m_Grouping );
+          Parent.Add( _oc );
           _oc.AutoCalculation = true;
         }
         catch ( Exception _ex )
         {
-          m_Parent.OnProgressChanged( new ProgressChangedEventArgs( 0, String.Format( "Exception {0} at context_GetListCompleted", _ex ) ) );
+          Parent.OnProgressChanged( new ProgressChangedEventArgs( 0, String.Format( "Exception {0} at context_GetListCompleted", _ex ) ) );
         }
+        DoNext();
       }
     }//class CraeteRequest
-    internal void AddDisposal( List<CustomsWarehouse> list, double toDispose )
-    {
-      if ( list.Count == 0 )
-        throw new AggregateException( "list must contain at least one element" );
-      string _ntc = list.First<CustomsWarehouse>().Batch;
-      DisposalRequest _firs = this.FirstOrDefault( ( x ) => { return x.Batch == _ntc; } );
-      if ( _firs != null )
-        _firs.AddedKg += toDispose;
-      else
-        ;
-    }
-    private static DisposalRequest DefaultDisposalRequestnew( string batch, string skuDescription, CustomsWarehouse cw )
-    {
-      return new DisposalRequest()
-       {
-         AddedKg = 0,
-         DeclaredNetMass = 0,
-         Batch = batch,
-         MassPerPackage = cw.CW_MassPerPackage.Value,
-         PackagesToClear = 0,
-         QuantityyToClearSum = 0,
-         QuantityyToClearSumRounded = 0,
-         RemainingOnStock = 0,
-         RemainingPackages = 0,
-         SKUDescription = skuDescription,
-         Title = "Title TBD",
-         TotalStock = 0,
-         Units = cw.Units,
-         SKU = cw.SKU,
-       };
-    }
+    #endregion
+
   }
 }
