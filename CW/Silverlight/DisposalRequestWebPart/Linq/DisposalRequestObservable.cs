@@ -29,13 +29,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   {
 
     #region internal
-    internal void GetDataContext( List<CustomsWarehouseDisposal> _list, DataContextAsync context )
+    internal void GetDataContext(int disposalRequestLibId, List<CustomsWarehouseDisposal> _list, DataContextAsync context )
     {
+      m_DisposalRequestLibId = disposalRequestLibId;
       IEnumerable<IGrouping<string, CustomsWarehouseDisposal>> _requests = _list.GroupBy<CustomsWarehouseDisposal, string>( x => x.CWL_CWDisposal2CustomsWarehouseID.Batch );
       RequestsQueue _gu = new RequestsQueue( this, context );
       _gu.DoAsync( _requests );
     }
-    internal void AddDisposal( List<CustomsWarehouse> list, double toDispose )
+    internal void AddDisposal( int disposalRequestLibId, List<CustomsWarehouse> list, double toDispose )
     {
       if ( list.Count == 0 )
         throw new AggregateException( "list must contain at least one element" );
@@ -46,7 +47,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       else
       {
         DisposalRequest _oc = DisposalRequest.DefaultDisposalRequestnew( "N/A", _fcw );
-        _oc.GetDataContext( list, toDispose );
+        _oc.GetDataContext(disposalRequestLibId, list, toDispose );
         this.Add( _oc );
         _oc.AutoCalculation = true;
       }
@@ -62,6 +63,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     #endregion
 
     #region private
+    private int m_DisposalRequestLibId;
     private class RequestsQueue: Queue<CraeteRequestBase>
     {
 

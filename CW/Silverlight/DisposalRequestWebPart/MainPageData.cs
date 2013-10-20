@@ -113,8 +113,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       if ( m_Disposed )
         throw new ObjectDisposedException( typeof( MainPageData ).Name );
       m_URL = url;
-      m_SelectedID = selectedID;
-      if ( !m_SelectedID.HasValue )
+      m_DisposalRequestLibId = selectedID;
+      if ( !m_DisposalRequestLibId.HasValue )
         return;
       m_Context.CreateContextAsyncCompletedEvent += m_Context_CreateContextAsyncCompletedEvent;
       Log = String.Format( "GetDataAsync: CreateContextAsync for url={0}.", m_URL );
@@ -124,7 +124,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       if ( m_Disposed )
         throw new ObjectDisposedException( typeof( MainPageData ).Name );
-      this.DisposalRequestObservable.AddDisposal( list, toDispose );
+      this.DisposalRequestObservable.AddDisposal( m_DisposalRequestLibId.Value, list, toDispose );
     }
     internal void SubmitChanges()
     {
@@ -144,7 +144,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 
     private bool m_Disposed = false;
     private string m_URL = String.Empty;
-    private int? m_SelectedID = new Nullable<int>();
+    private int? m_DisposalRequestLibId = new Nullable<int>();
     private bool m_Edited = false;
     /// <summary>
     /// Called whena property value changes.
@@ -186,7 +186,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         int items = RequestCollection == null ? -1 : RequestCollection.TotalItemCount;
         string _pattern = "Disposal request {0} content: {1} items; {2}";
         string _star = m_Edited ? "*" : " ";
-        string _rid = m_SelectedID.HasValue ? m_SelectedID.ToString() : "Not connected";
+        string _rid = m_DisposalRequestLibId.HasValue ? m_DisposalRequestLibId.ToString() : "Not connected";
         this.HeaderLabel = String.Format( _pattern, _rid, items, _star );
       }
       catch ( Exception ex )
@@ -222,9 +222,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         return;
       }
       Log = String.Format( ": new DataContext for url={0}.", m_URL );
-      Debug.Assert( m_SelectedID.HasValue, "m_SelectedID must have value" );
+      Debug.Assert( m_DisposalRequestLibId.HasValue, "m_SelectedID must have value" );
       m_Context.GetListCompleted += m_Context_GetListCompleted;
-      m_Context.GetListAsync<CustomsWarehouseDisposal>( CommonDefinition.CustomsWarehouseDisposalTitle, CommonDefinition.GetCAMLSelectedID( m_SelectedID.Value, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID, CommonDefinition.CAMLTypeNumber ) );
+      m_Context.GetListAsync<CustomsWarehouseDisposal>( CommonDefinition.CustomsWarehouseDisposalTitle, CommonDefinition.GetCAMLSelectedID( m_DisposalRequestLibId.Value, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID, CommonDefinition.CAMLTypeNumber ) );
     }
     private void m_Context_GetListCompleted( object siurce, GetListAsyncCompletedEventArgs e )
     {
@@ -240,8 +240,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         return;
       }
       Log = "GetListCompleted .GetDataContext  " + CommonDefinition.CustomsWarehouseDisposalTitle;
-      List<CustomsWarehouseDisposal> _list = e.Result<CustomsWarehouseDisposal>().ToList<CustomsWarehouseDisposal>();
-      this.DisposalRequestObservable.GetDataContext( _list, m_Context );
+      List<CustomsWarehouseDisposal> _list = e.Result<CustomsWarehouseDisposal>();
+      this.DisposalRequestObservable.GetDataContext( m_DisposalRequestLibId.Value, _list, m_Context );
       m_Edited = false;
       if ( this.RequestCollection.CanSort == true )
       {
