@@ -35,13 +35,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       AutoCalculation = false;
     }
 
-    //public DisposalRequest(System.Linq.IGrouping<string, CustomsWarehouseDisposalRowData> _grx)
-    //{
-    //  // TODO: Complete member initialization
-    //  this._grx = _grx;
-    //}
-
-    #region public
+    #region public properties
     /// <summary>
     /// Gets or sets the SKU.
     /// </summary>
@@ -328,7 +322,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         }
       }
     }
+
     #endregion
+
     internal static DisposalRequest DefaultDisposalRequestnew( string skuDescription, CustomsWarehouse cw )
     {
       return new DisposalRequest()
@@ -365,12 +361,17 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         GetDataContext( _cwdrdx );
       Update();
     }
-    internal void GetDataContext( List<CustomsWarehouse> list, double toDispose )
+    internal void GetDataContext(int disposalRequestLibId, List<CustomsWarehouse> list, double toDispose )
     {
       list.Sort( new CWComparer() );
       m_ListOfCustomsWarehouse = list;
       RemainingOnStock = m_ListOfCustomsWarehouse.Sum( x => x.TobaccoNotAllocated.Value );
-
+      int _cwx = 0;
+      List<CustomsWarehouseDisposal> _newDisposals = new List<CustomsWarehouseDisposal>();
+      while ( toDispose >= 0 )
+      {
+        list[ _cwx ].CreateDisposal( disposalRequestLibId, _newDisposals, ref toDispose );
+      }
     }
     #endregion
 
@@ -393,6 +394,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private ObservableCollection<CustomsWarehouseDisposal> b_Disposals;
     private List<CustomsWarehouse> m_ListOfCustomsWarehouse = null;
     #endregion
+
     private class CWComparer: Comparer<CustomsWarehouse>
     {
       public override int Compare( CustomsWarehouse x, CustomsWarehouse y )
@@ -426,7 +428,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       AutoCalculation = _ac;
     }
     #endregion
-
 
   }
 }
