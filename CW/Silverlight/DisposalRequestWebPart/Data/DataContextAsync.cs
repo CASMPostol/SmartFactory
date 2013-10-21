@@ -63,6 +63,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       AsyncOperation _AsyncOp = AsyncOperationManager.CreateOperation( m_Counter++ );
       m_processor.Do( () => { GetListAsyncWorker<TEntity>( listName, camlQuery, _AsyncOp ); } );
     }
+    public EntityList<TEntity> GetList<TEntity>( string listName )
+       where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
+    {
+      return m_Context.GetList<TEntity>( listName );
+    }
     #endregion
 
     #region SubmitChanges
@@ -239,6 +244,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     }
 
     #endregion
+
 
   }
 }

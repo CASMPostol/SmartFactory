@@ -29,29 +29,28 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   {
 
     #region internal
-    internal void GetDataContext(int disposalRequestLibId, List<CustomsWarehouseDisposal> _list, DataContextAsync context )
+    internal void GetDataContext( int disposalRequestLibId, List<CustomsWarehouseDisposal> _list, DataContextAsync context )
     {
       m_DisposalRequestLibId = disposalRequestLibId;
       IEnumerable<IGrouping<string, CustomsWarehouseDisposal>> _requests = _list.GroupBy<CustomsWarehouseDisposal, string>( x => x.CWL_CWDisposal2CustomsWarehouseID.Batch );
       RequestsQueue _gu = new RequestsQueue( this, context );
       _gu.DoAsync( _requests );
     }
-    internal void AddDisposal( int disposalRequestLibId, List<CustomsWarehouse> list, double toDispose )
+    internal void CreateDisposalRequest( int disposalRequestLibId, List<CustomsWarehouse> list, double toDispose, DataContextAsync context )
     {
       if ( list.Count == 0 )
         throw new AggregateException( "list must contain at least one element" );
       CustomsWarehouse _fcw = list.First<CustomsWarehouse>();
-      DisposalRequest _fDspRqs = this.FirstOrDefault( ( x ) => { return x.Batch == _fcw.Batch; } );
+      DisposalRequest _fDspRqs = this.FirstOrDefault <DisposalRequest>( ( x ) => { return x.Batch == _fcw.Batch; } );
       if ( _fDspRqs != null )
         _fDspRqs.AddedKg += toDispose;
       else
       {
         DisposalRequest _oc = DisposalRequest.DefaultDisposalRequestnew( "N/A", _fcw );
-        _oc.GetDataContext(disposalRequestLibId, list, toDispose );
+        _oc.GetDataContext( disposalRequestLibId, list, toDispose, context );
         this.Add( _oc );
         _oc.AutoCalculation = true;
       }
-
     }
     internal event ProgressChangedEventHandler ProgressChanged;  //TODO report progress
     internal virtual void OnProgressChanged( ProgressChangedEventArgs args )
