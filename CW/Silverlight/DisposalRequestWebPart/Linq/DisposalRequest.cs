@@ -419,7 +419,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       DeclaredNetMass += rowData.CW_DeclaredNetMass.Value;
       AddedKg += rowData.CW_AddedKg.Value;
       QuantityyToClearSum += rowData.CW_SettledNetMass.Value;
-      TotalStock += QuantityyToClearSum;
       Disposals.Add( rowData );
     }
     private void Update()
@@ -429,7 +428,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       QuantityyToClearSum = DeclaredNetMass + AddedKg;
       PackagesToClear = Math.Round( QuantityyToClearSum / this.MassPerPackage + 0.499999, 0 );
       QuantityyToClearSumRounded = PackagesToClear * this.MassPerPackage;
-      RemainingOnStock = TotalStock - QuantityyToClearSumRounded;
+      TotalStock = RemainingOnStock + QuantityyToClearSumRounded;
       AutoCalculation = _ac;
     }
     #endregion
