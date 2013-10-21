@@ -20,6 +20,7 @@ using System.ComponentModel;
 using System.Windows.Data;
 using Microsoft.SharePoint.Client;
 using System.Linq;
+using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 {
@@ -325,6 +326,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 
     #endregion
 
+    #region internal
     internal static DisposalRequest DefaultDisposalRequestnew( string skuDescription, CustomsWarehouse cw )
     {
       return new DisposalRequest()
@@ -345,14 +347,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         SKU = cw.SKU,
       };
     }
-
-    #region internal
     internal ObservableCollection<CustomsWarehouseDisposal> Disposals
     {
       get { return b_Disposals; }
       set { b_Disposals = value; }
     }
-    public bool AutoCalculation { get; set; }
+    internal bool AutoCalculation { get; set; }
     internal void GetDataContext( List<CustomsWarehouse> list, IGrouping<string, CustomsWarehouseDisposal> m_Grouping )
     {
       m_ListOfCustomsWarehouse = list;
@@ -361,16 +361,19 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         GetDataContext( _cwdrdx );
       Update();
     }
-    internal void GetDataContext(int disposalRequestLibId, List<CustomsWarehouse> list, double toDispose )
+    internal void GetDataContext( int disposalRequestLibId, List<CustomsWarehouse> list, double toDispose, DataContextAsync context )
     {
-      list.Sort( new CWComparer() );
+      list.Sort( new CWComparerOnId() );
       m_ListOfCustomsWarehouse = list;
       RemainingOnStock = m_ListOfCustomsWarehouse.Sum( x => x.TobaccoNotAllocated.Value );
       int _cwx = 0;
-      List<CustomsWarehouseDisposal> _newDisposals = new List<CustomsWarehouseDisposal>();
-      while ( toDispose >= 0 )
+      while ( toDispose > 0 )
       {
-        list[ _cwx ].CreateDisposal( disposalRequestLibId, _newDisposals, ref toDispose );
+        CustomsWarehouseDisposal _newDisposal = list[ _cwx++ ].CreateDisposal( disposalRequestLibId, ref toDispose );
+        if ( _cwx >= list.Count )
+          throw new ArgumentOutOfRangeException( "toDispose", "Cannot dispose - tobacco not available." );
+        context.GetList<CustomsWarehouseDisposal>( CommonDefinition.CustomsWarehouseTitle ).InsertOnSubmit( _newDisposal );
+        GetDataContext( _newDisposal );
       }
     }
     #endregion
@@ -395,7 +398,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private List<CustomsWarehouse> m_ListOfCustomsWarehouse = null;
     #endregion
 
-    private class CWComparer: Comparer<CustomsWarehouse>
+    private class CWComparerOnId: Comparer<CustomsWarehouse>
     {
       public override int Compare( CustomsWarehouse x, CustomsWarehouse y )
       {

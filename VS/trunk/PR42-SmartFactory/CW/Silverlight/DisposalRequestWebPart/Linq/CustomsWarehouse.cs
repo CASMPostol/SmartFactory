@@ -13,6 +13,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
+
 using System;
 using System.Collections.Generic;
 
@@ -21,10 +22,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   public partial class CustomsWarehouse
   {
 
-    internal void CreateDisposal( int disposalRequestId, List<CustomsWarehouseDisposal> _newDisposals, ref double toDispose )
+    internal CustomsWarehouseDisposal CreateDisposal( int disposalRequestId, ref double toDispose )
     {
       double _Tdspse = Math.Min( this.TobaccoNotAllocated.Value, toDispose );
-      CustomsWarehouseDisposal _new = new CustomsWarehouseDisposal()
+      CustomsWarehouseDisposal _NewDisposal = new CustomsWarehouseDisposal()
       {
         CustomsStatus = CustomsStatus.NotStarted,
         CW_AddedKg = _Tdspse,
@@ -34,8 +35,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         SKUDescription = "N/A",
         DisposalRequestId = disposalRequestId
       };
-      _newDisposals.Add( _new );
       toDispose -= _Tdspse;
+      return _NewDisposal;
     }
   }
 }

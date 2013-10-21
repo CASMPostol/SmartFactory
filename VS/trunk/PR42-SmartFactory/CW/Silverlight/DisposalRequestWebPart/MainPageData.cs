@@ -110,8 +110,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     #region internal
     internal void GetData( string url, int? selectedID )
     {
-      if ( m_Disposed )
-        throw new ObjectDisposedException( typeof( MainPageData ).Name );
+      CheckDisposed();
       m_URL = url;
       m_DisposalRequestLibId = selectedID;
       if ( !m_DisposalRequestLibId.HasValue )
@@ -120,16 +119,19 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       Log = String.Format( "GetDataAsync: CreateContextAsync for url={0}.", m_URL );
       m_Context.CreateContextAsync( m_URL );
     }
-    internal void AddDisposal( List<CustomsWarehouse> list, double toDispose )
+    /// <summary>
+    /// Creates the disposal request.
+    /// </summary>
+    /// <param name="list">The list of <see cref="CustomsWarehouse"/> with the same batch.</param>
+    /// <param name="toDispose">The tobacco to dispose.</param>
+    internal void CreateDisposalRequest( List<CustomsWarehouse> list, double toDispose )
     {
-      if ( m_Disposed )
-        throw new ObjectDisposedException( typeof( MainPageData ).Name );
-      this.DisposalRequestObservable.AddDisposal( m_DisposalRequestLibId.Value, list, toDispose );
+      CheckDisposed();
+      this.DisposalRequestObservable.CreateDisposalRequest( m_DisposalRequestLibId.Value, list, toDispose, m_Context );
     }
     internal void SubmitChanges()
     {
-      if ( m_Disposed )
-        throw new ObjectDisposedException( typeof( MainPageData ).Name );
+      CheckDisposed();
       SubmitChangesLoc();
     }
     #endregion
@@ -252,6 +254,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       Log = "GetData RunWorker Completed";
     }
     private DisposalRequestObservable DisposalRequestObservable { get { return (DisposalRequestObservable)this.RequestCollection.SourceCollection; } }
+    private void CheckDisposed()
+    {
+      if ( m_Disposed )
+        throw new ObjectDisposedException( typeof( MainPageData ).Name );
+    }
 
     #endregion //private
 

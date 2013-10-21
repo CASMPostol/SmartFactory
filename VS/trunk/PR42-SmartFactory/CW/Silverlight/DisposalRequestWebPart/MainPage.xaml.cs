@@ -107,7 +107,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       try
       {
         AddNew _newChildWondow = new AddNew( MainPageData.DataContextAsync );
-        _newChildWondow.Closed += _newChildWondow_Closed;
+        _newChildWondow.Closed += AddNewChildWondow_Closed;
         _newChildWondow.Show();
       }
       catch ( Exception _ex )
@@ -115,12 +115,19 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         ExceptionHandling( _ex );
       }
     }
-    private void _newChildWondow_Closed( object sender, EventArgs e )
+    private void AddNewChildWondow_Closed( object sender, EventArgs e )
     {
-      AddNew _childWondow = (AddNew)sender;
-      if ( !_childWondow.DialogResult.HasValue || !_childWondow.DialogResult.Value )
-        return;
-      MainPageData.AddDisposal( _childWondow.Accounts, _childWondow.ToDispose );
+      try
+      {
+        AddNew _childWondow = (AddNew)sender;
+        if ( !_childWondow.DialogResult.HasValue || !_childWondow.DialogResult.Value )
+          return;
+        MainPageData.CreateDisposalRequest( _childWondow.Accounts, _childWondow.ToDispose );
+      }
+      catch ( Exception _ex )
+      {
+        ExceptionHandling( _ex );
+      }
     }
     private void x_ButtonEndofBatch_Click( object sender, RoutedEventArgs e )
     {
