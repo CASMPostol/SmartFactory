@@ -231,7 +231,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     }
     private SendOrPostCallback m_OnCompletedDelegate;
     private bool m_busy = false;
-    private int m_Counter = 0;
+    private static int m_Counter = 0;
     private DataContext m_Context = null;
     private Processor m_processor = new Processor();
     private bool m_Disposed = false;
