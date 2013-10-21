@@ -367,14 +367,16 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       m_ListOfCustomsWarehouse = list;
       RemainingOnStock = m_ListOfCustomsWarehouse.Sum( x => x.TobaccoNotAllocated.Value );
       int _cwx = 0;
+      EntityList<CustomsWarehouseDisposal> _Entity = context.GetList<CustomsWarehouseDisposal>( CommonDefinition.CustomsWarehouseDisposalTitle );
       while ( toDispose > 0 )
       {
-        CustomsWarehouseDisposal _newDisposal = list[ _cwx++ ].CreateDisposal( disposalRequestLibId, ref toDispose );
         if ( _cwx >= list.Count )
           throw new ArgumentOutOfRangeException( "toDispose", "Cannot dispose - tobacco not available." );
-        context.GetList<CustomsWarehouseDisposal>( CommonDefinition.CustomsWarehouseTitle ).InsertOnSubmit( _newDisposal );
+        CustomsWarehouseDisposal _newDisposal = list[ _cwx++ ].CreateDisposal( disposalRequestLibId, ref toDispose );
         GetDataContext( _newDisposal );
+        _Entity.InsertOnSubmit( _newDisposal );
       }
+      Update();
     }
     #endregion
 

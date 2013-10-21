@@ -29,12 +29,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   {
 
     #region internal
-    internal void GetDataContext( int disposalRequestLibId, List<CustomsWarehouseDisposal> _list, DataContextAsync context )
+    internal void GetDataContext( int disposalRequestLibId, List<CustomsWarehouseDisposal> list, DataContextAsync context )
     {
       m_DisposalRequestLibId = disposalRequestLibId;
-      IEnumerable<IGrouping<string, CustomsWarehouseDisposal>> _requests = _list.GroupBy<CustomsWarehouseDisposal, string>( x => x.CWL_CWDisposal2CustomsWarehouseID.Batch );
-      RequestsQueue _gu = new RequestsQueue( this, context );
-      _gu.DoAsync( _requests );
+      IEnumerable<IGrouping<string, CustomsWarehouseDisposal>> _requests = list.GroupBy<CustomsWarehouseDisposal, string>( x => x.CWL_CWDisposal2CustomsWarehouseID.Batch );
+      RequestsQueue _Queue = new RequestsQueue( this, context );
+      _Queue.DoAsync( _requests );
     }
     internal void CreateDisposalRequest( int disposalRequestLibId, List<CustomsWarehouse> list, double toDispose, DataContextAsync context )
     {
@@ -145,11 +145,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
           if ( e.Error != null )
             Parent.OnProgressChanged( new ProgressChangedEventArgs( 0, String.Format( "Exception {0} at m_DataContext.GetListAsync", e.Error.Message ) ) );
           CustomsWarehouseDisposal _first = m_Grouping.First<CustomsWarehouseDisposal>();
-          CustomsWarehouse _cw = _first.CWL_CWDisposal2CustomsWarehouseID != null ? _first.CWL_CWDisposal2CustomsWarehouseID : new CustomsWarehouse() { Units = "N/A", SKU = "N/A", CW_MassPerPackage = 0 };
-          DisposalRequest _oc = DisposalRequest.DefaultDisposalRequestnew( _first.SKUDescription, _cw );
-          _oc.GetDataContext( e.Result<CustomsWarehouse>(), m_Grouping );
-          Parent.Add( _oc );
-          _oc.AutoCalculation = true;
+          CustomsWarehouse _Cw = _first.CWL_CWDisposal2CustomsWarehouseID != null ? _first.CWL_CWDisposal2CustomsWarehouseID : new CustomsWarehouse() { Units = "N/A", SKU = "N/A", CW_MassPerPackage = 0 };
+          DisposalRequest _Dr = DisposalRequest.DefaultDisposalRequestnew( _first.SKUDescription, _Cw );
+          _Dr.GetDataContext( e.Result<CustomsWarehouse>(), m_Grouping );
+          Parent.Add( _Dr );
+          _Dr.AutoCalculation = true;
         }
         catch ( Exception _ex )
         {

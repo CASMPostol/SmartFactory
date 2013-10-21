@@ -30,6 +30,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         CustomsStatus = CustomsStatus.NotStarted,
         CW_AddedKg = _Tdspse,
         CWL_CWDisposal2CustomsWarehouseID = this,
+        CW_DeclaredNetMass = 0,
         CW_SettledNetMass = 0,
         Title = "TBD",
         SKUDescription = "N/A",
