@@ -16,9 +16,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Data;
-using Microsoft.SharePoint.Client;
 using System.Linq;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 
@@ -307,7 +304,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     /// <value>
     /// The packages automatic clear.
     /// </value>
-    public double PackagesToClear
+    public int PackagesToDispose
     {
       get
       {
@@ -335,7 +332,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         DeclaredNetMass = 0,
         Batch = cw.Batch,
         MassPerPackage = cw.CW_MassPerPackage.Value,
-        PackagesToClear = 0,
+        PackagesToDispose = 0,
         QuantityyToClearSum = 0,
         QuantityyToClearSumRounded = 0,
         RemainingOnStock = 0,
@@ -355,13 +352,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     internal bool AutoCalculation { get; set; }
     internal void GetDataContext( List<CustomsWarehouse> list, IGrouping<string, CustomsWarehouseDisposal> m_Grouping )
     {
+      list.Sort( new CWComparerOnId() );
       m_ListOfCustomsWarehouse = list;
       RemainingOnStock = m_ListOfCustomsWarehouse.Sum( x => x.TobaccoNotAllocated.Value );
       foreach ( CustomsWarehouseDisposal _cwdrdx in m_Grouping )
         GetDataContext( _cwdrdx );
       UpdateOnInit();
     }
-    internal void GetDataContext( int disposalRequestLibId, List<CustomsWarehouse> list, double toDispose, DataContextAsync context )
+    internal void GetDataContext( List<CustomsWarehouse> list, double toDispose )
     {
       list.Sort( new CWComparerOnId() );
       m_ListOfCustomsWarehouse = list;
@@ -369,15 +367,23 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       AddedKg = toDispose;
       UpdateOnChange();
     }
-    private void CreateDisposals( int disposalRequestLibId, List<CustomsWarehouse> list, ref double toDispose, DataContextAsync context )
+    internal void RecalculateDisposals( int disposalRequestLibId, DataContextAsync context )
     {
+      List<CustomsWarehouse> _listCopy = new List<CustomsWarehouse>( m_ListOfCustomsWarehouse );
+      int _packagesToDispose = PackagesToDispose;
+      foreach ( CustomsWarehouseDisposal _cwdx in b_Disposals )
+      {
+        _cwdx.Dispose( ref _packagesToDispose, _listCopy );
+        if ( this.PackagesToDispose == 0 )
+          return;
+      }
       int _cwx = 0;
       EntityList<CustomsWarehouseDisposal> _Entity = context.GetList<CustomsWarehouseDisposal>( CommonDefinition.CustomsWarehouseDisposalTitle );
-      while ( toDispose > 0 )
+      while ( _packagesToDispose > 0 )
       {
-        if ( _cwx >= list.Count )
+        if ( _cwx >= _listCopy.Count )
           throw new ArgumentOutOfRangeException( "toDispose", "Cannot dispose - tobacco not available." );
-        CustomsWarehouseDisposal _newDisposal = list[ _cwx++ ].CreateDisposal( disposalRequestLibId, ref toDispose );
+        CustomsWarehouseDisposal _newDisposal = _listCopy[ _cwx++ ].CreateDisposal( disposalRequestLibId, ref _packagesToDispose );
         GetDataContext( _newDisposal );
         _Entity.InsertOnSubmit( _newDisposal );
       }
@@ -399,7 +405,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private double _remainingOnStock;
     private string _units;
     private double _remainingPackages;
-    private double _packagesToClear;
+    private int _packagesToClear;
     private ObservableCollection<CustomsWarehouseDisposal> b_Disposals;
     private List<CustomsWarehouse> m_ListOfCustomsWarehouse = null;
     #endregion
@@ -443,10 +449,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       AutoCalculation = false;
       QuantityyToClearSum = DeclaredNetMass + AddedKg;
-      PackagesToClear = Math.Round( QuantityyToClearSum / this.MassPerPackage + 0.499999, 0 );
-      QuantityyToClearSumRounded = PackagesToClear * this.MassPerPackage;
+      PackagesToDispose = Convert.ToInt32( Math.Round( QuantityyToClearSum / this.MassPerPackage + 0.499999, 0 ) );
+      QuantityyToClearSumRounded = PackagesToDispose * this.MassPerPackage;
     }
     #endregion
+
 
   }
 }

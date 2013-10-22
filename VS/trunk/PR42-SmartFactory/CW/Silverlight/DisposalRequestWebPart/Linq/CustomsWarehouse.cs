@@ -39,5 +39,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       toDispose -= _Tdspse;
       return _NewDisposal;
     }
+
+    internal CustomsWarehouseDisposal CreateDisposal( int disposalRequestLibId, ref int _packagesToDispose )
+    {
+      throw new NotImplementedException();
+    }
   }
 }
