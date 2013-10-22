@@ -359,7 +359,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       RemainingOnStock = m_ListOfCustomsWarehouse.Sum( x => x.TobaccoNotAllocated.Value );
       foreach ( CustomsWarehouseDisposal _cwdrdx in m_Grouping )
         GetDataContext( _cwdrdx );
-      Update();
+      UpdateOnInit();
     }
     internal void GetDataContext( int disposalRequestLibId, List<CustomsWarehouse> list, double toDispose, DataContextAsync context )
     {
@@ -376,7 +376,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         GetDataContext( _newDisposal );
         _Entity.InsertOnSubmit( _newDisposal );
       }
-      Update();
+      UpdateOnInit();
     }
     #endregion
 
@@ -412,7 +412,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       base.OnPropertyChanged( propertyName );
       if ( !AutoCalculation )
         return;
-      Update();
+      UpdateOnChange();
     }
     private void GetDataContext( CustomsWarehouseDisposal rowData )
     {
@@ -421,15 +421,26 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       QuantityyToClearSum += rowData.CW_SettledNetMass.Value;
       Disposals.Add( rowData );
     }
-    private void Update()
+    private void UpdateOnInit()
     {
       bool _ac = AutoCalculation;
+      Recalculate();
+      TotalStock = RemainingOnStock + QuantityyToClearSumRounded;
+      AutoCalculation = _ac;
+    }
+    private void UpdateOnChange()
+    {
+      bool _ac = AutoCalculation;
+      Recalculate();
+      RemainingOnStock = TotalStock - QuantityyToClearSumRounded;
+      AutoCalculation = _ac;
+    }
+    private void Recalculate()
+    {
       AutoCalculation = false;
       QuantityyToClearSum = DeclaredNetMass + AddedKg;
       PackagesToClear = Math.Round( QuantityyToClearSum / this.MassPerPackage + 0.499999, 0 );
       QuantityyToClearSumRounded = PackagesToClear * this.MassPerPackage;
-      TotalStock = RemainingOnStock + QuantityyToClearSumRounded;
-      AutoCalculation = _ac;
     }
     #endregion
 
