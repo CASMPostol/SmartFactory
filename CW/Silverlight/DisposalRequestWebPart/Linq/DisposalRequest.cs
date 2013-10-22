@@ -365,7 +365,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       list.Sort( new CWComparerOnId() );
       m_ListOfCustomsWarehouse = list;
-      RemainingOnStock = m_ListOfCustomsWarehouse.Sum( x => x.TobaccoNotAllocated.Value );
+      TotalStock = m_ListOfCustomsWarehouse.Sum( x => x.TobaccoNotAllocated.Value );
+      AddedKg = toDispose;
+      UpdateOnChange();
+    }
+    private void CreateDisposals( int disposalRequestLibId, List<CustomsWarehouse> list, ref double toDispose, DataContextAsync context )
+    {
       int _cwx = 0;
       EntityList<CustomsWarehouseDisposal> _Entity = context.GetList<CustomsWarehouseDisposal>( CommonDefinition.CustomsWarehouseDisposalTitle );
       while ( toDispose > 0 )
@@ -376,7 +381,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         GetDataContext( _newDisposal );
         _Entity.InsertOnSubmit( _newDisposal );
       }
-      UpdateOnChange();
     }
     #endregion
 
