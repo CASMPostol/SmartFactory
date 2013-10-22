@@ -36,20 +36,20 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       RequestsQueue _Queue = new RequestsQueue( this, context );
       _Queue.DoAsync( _requests );
     }
-    internal void CreateDisposalRequest( int disposalRequestLibId, List<CustomsWarehouse> list, double toDispose, DataContextAsync context )
+    internal void CreateDisposalRequest( List<CustomsWarehouse> list, double toDispose )
     {
       if ( list.Count == 0 )
         throw new AggregateException( "list must contain at least one element" );
       CustomsWarehouse _fcw = list.First<CustomsWarehouse>();
-      DisposalRequest _fDspRqs = this.FirstOrDefault <DisposalRequest>( ( x ) => { return x.Batch == _fcw.Batch; } );
+      DisposalRequest _fDspRqs = this.FirstOrDefault<DisposalRequest>( ( x ) => { return x.Batch == _fcw.Batch; } );
       if ( _fDspRqs != null )
         _fDspRqs.AddedKg += toDispose;
       else
       {
-        DisposalRequest _oc = DisposalRequest.DefaultDisposalRequestnew( "N/A", _fcw );
-        _oc.GetDataContext( disposalRequestLibId, list, toDispose, context );
-        this.Add( _oc );
-        _oc.AutoCalculation = true;
+        DisposalRequest _dr = DisposalRequest.DefaultDisposalRequestnew( "N/A", _fcw );
+        _dr.GetDataContext( list, toDispose );
+        this.Add( _dr );
+        _dr.AutoCalculation = true;
       }
     }
     internal event ProgressChangedEventHandler ProgressChanged;  //TODO report progress
@@ -58,6 +58,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       if ( ProgressChanged == null )
         return;
       ProgressChanged( this, args );
+    }
+    internal void RecalculateDisposals( int disposalRequestLibId, DataContextAsync context )
+    {
+      foreach ( DisposalRequest _drx in this )
+        _drx.RecalculateDisposals( disposalRequestLibId, context );
     }
     #endregion
 

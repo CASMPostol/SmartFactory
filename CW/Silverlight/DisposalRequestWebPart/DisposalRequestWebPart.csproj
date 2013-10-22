@@ -101,6 +101,7 @@
     <Compile Include="Data\StorageItem.cs" />
     <Compile Include="Data\TEntityWrapper.cs" />
     <Compile Include="Linq\CustomsWarehouse.cs" />
+    <Compile Include="Linq\CustomsWarehouseDisposal.cs" />
     <Compile Include="Linq\DisposalRequest.cs" />
     <Compile Include="Linq\DisposalRequestObservable.cs" />
     <Compile Include="Linq\Entities.cs" />

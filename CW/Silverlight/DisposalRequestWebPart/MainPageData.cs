@@ -127,12 +127,23 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     internal void CreateDisposalRequest( List<CustomsWarehouse> list, double toDispose )
     {
       CheckDisposed();
-      this.DisposalRequestObservable.CreateDisposalRequest( m_DisposalRequestLibId.Value, list, toDispose, m_Context );
+      this.DisposalRequestObservable.CreateDisposalRequest( list, toDispose );
     }
     internal void SubmitChanges()
     {
       CheckDisposed();
-      SubmitChangesLoc();
+      try
+      {
+        this.DisposalRequestObservable.RecalculateDisposals( m_DisposalRequestLibId.Value, m_Context );
+        m_Context.SubmitChangesCompleted += m_Context_SubmitChangesCompleted;
+        m_Context.SubmitChangesAsyn();
+        m_Edited = false;
+        UpdateHeader();
+      }
+      catch ( Exception _ex )
+      {
+        ExceptionHandling( _ex );
+      }
     }
     #endregion
 
@@ -157,20 +168,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       if ( ( null == this.PropertyChanged ) )
         return;
       this.PropertyChanged( this, new PropertyChangedEventArgs( propertyName ) );
-    }
-    private void SubmitChangesLoc()
-    {
-      try
-      {
-        m_Context.SubmitChangesCompleted += m_Context_SubmitChangesCompleted;
-        m_Context.SubmitChangesAsyn();
-        m_Edited = false;
-        UpdateHeader();
-      }
-      catch ( Exception _ex )
-      {
-        ExceptionHandling( _ex );
-      }
     }
     private void m_Context_SubmitChangesCompleted( object sender, AsyncCompletedEventArgs e )
     {
