@@ -376,7 +376,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         GetDataContext( _newDisposal );
         _Entity.InsertOnSubmit( _newDisposal );
       }
-      UpdateOnInit();
+      UpdateOnChange();
     }
     #endregion
 
