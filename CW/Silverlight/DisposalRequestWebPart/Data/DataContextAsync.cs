@@ -39,9 +39,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       EntryCheck();
       m_busy = true;
-      m_OnCompletedDelegate += CreateContextAsynCompleted;
       AsyncOperation m_AsyncOp = AsyncOperationManager.CreateOperation( m_Counter++ );
-      m_processor.Do( () => { CreateContextAsyncWorker( requestUrl, m_AsyncOp ); } );
+      m_processor.Do( () => { CreateContextAsyncWorker( requestUrl, m_AsyncOp, CreateContextAsynCompleted ); } );
     }
 
     #endregion
@@ -58,10 +57,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       EntryCheck();
       m_busy = true;
-      m_OnCompletedDelegate += GetListAsyncCompleted;
       // Create an AsyncOperation for taskId.
       AsyncOperation _AsyncOp = AsyncOperationManager.CreateOperation( m_Counter++ );
-      m_processor.Do( () => { GetListAsyncWorker<TEntity>( listName, camlQuery, _AsyncOp ); } );
+      m_processor.Do( () => { GetListAsyncWorker<TEntity>( listName, camlQuery, _AsyncOp, GetListAsyncCompleted ); } );
     }
     public EntityList<TEntity> GetList<TEntity>( string listName )
        where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
@@ -76,9 +74,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       EntryCheck();
       m_busy = true;
-      m_OnCompletedDelegate += SubmitChangesAsynCompleted;
       AsyncOperation _AsyncOp = AsyncOperationManager.CreateOperation( m_Counter++ );
-      m_processor.Do( () => { SubmitChangesAsynWorker( _AsyncOp ); } );
+      m_processor.Do( () => { SubmitChangesAsynWorker( _AsyncOp, SubmitChangesAsynCompleted ); } );
     }
     #endregion
 
@@ -104,7 +101,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       AsyncCompletedEventArgs e = state as AsyncCompletedEventArgs;
       CreateContextAsyncCompletedEvent( this, e );
     }
-    private void CreateContextAsyncWorker( string requestUrl, AsyncOperation asyncOp )
+    private void CreateContextAsyncWorker( string requestUrl, AsyncOperation asyncOp, SendOrPostCallback onCompletedDelegate )
     {
       Exception _Exception = null;
       DataContext _Context = new DataContext();
@@ -119,7 +116,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       m_Context = _Context;
       // Package the results of the operation in a  CreateContextAsyncCompletedEventArgs.
       AsyncCompletedEventArgs _EventArgs = new AsyncCompletedEventArgs( _Exception, false, asyncOp.UserSuppliedState );
-      asyncOp.PostOperationCompleted( m_OnCompletedDelegate, _EventArgs );
+      asyncOp.PostOperationCompleted( onCompletedDelegate, _EventArgs );
     }
     #endregion
 
@@ -145,7 +142,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// </summary>
     /// <param name="listName">Name of the list.</param>
     /// <param name="asyncOp">The _ asynchronous property.</param>
-    private void GetListAsyncWorker<TEntity>( string listName, CamlQuery camlQuery, AsyncOperation asyncOp )
+    private void GetListAsyncWorker<TEntity>( string listName, CamlQuery camlQuery, AsyncOperation asyncOp, SendOrPostCallback onCompletedDelegate )
        where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
       Exception _Exception = null;
@@ -161,7 +158,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       // Package the results of the operation in a  GetListAsyncCompletedEventArgs.
       GetListAsyncCompletedEventArgs e = new GetListAsyncCompletedEventArgs( _Result, _Exception, false, asyncOp.UserSuppliedState );
       // End the task. The asyncOp object is responsible for marshaling the call.
-      asyncOp.PostOperationCompleted( m_OnCompletedDelegate, e );
+      asyncOp.PostOperationCompleted( onCompletedDelegate, e );
     }
     #endregion
 
@@ -173,7 +170,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       AsyncCompletedEventArgs _EventArgs = (AsyncCompletedEventArgs)state;
       SubmitChangesCompleted( this, _EventArgs );
     }
-    private void SubmitChangesAsynWorker( AsyncOperation asyncOp )
+    private void SubmitChangesAsynWorker( AsyncOperation asyncOp, SendOrPostCallback onCompletedDelegate )
     {
       Exception _Exception = null;
       try
@@ -187,11 +184,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       // Package the results of the operation in a  GetListAsyncCompletedEventArgs.
       AsyncCompletedEventArgs e = new AsyncCompletedEventArgs( _Exception, false, asyncOp.UserSuppliedState );
       // End the task. The asyncOp object is responsible for marshaling the call.
-      asyncOp.PostOperationCompleted( m_OnCompletedDelegate, e );
+      asyncOp.PostOperationCompleted( onCompletedDelegate, e );
     }
     #endregion
 
-    private class Processor
+    private class Processor: IDisposable
     {
       public Processor()
       {
@@ -211,6 +208,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       }
       private Thread m_thred = null;
       private Action m_Action = null;
+      private bool m_DIsposed = false;
       private AutoResetEvent m_Signal = new AutoResetEvent( false );
       private void Worker( object obj )
       {
@@ -218,6 +216,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         {
           Action _actn;
           m_Signal.WaitOne();
+          if ( m_DIsposed == true )
+            return;
           lock ( this )
           {
             _actn = m_Action;
@@ -228,8 +228,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
           _actn();
         }
       }
+
+      #region IDisposable Members
+      public void Dispose()
+      {
+        m_DIsposed = true;
+        m_Signal.Set();
+      }
+      #endregion
     }
-    private SendOrPostCallback m_OnCompletedDelegate;
     private bool m_busy = false;
     private static int m_Counter = 0;
     private DataContext m_Context = null;
