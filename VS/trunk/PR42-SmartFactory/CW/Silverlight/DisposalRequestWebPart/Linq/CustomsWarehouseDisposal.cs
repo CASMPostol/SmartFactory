@@ -28,7 +28,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       this.CW_PackageToClear = _2DisposePackages;
       this.CW_SettledNetMass = Quantity( _2DisposePackages );
       this.CW_AddedKg = this.CW_DeclaredNetMass - this.CW_SettledNetMass;
-      Debug.Assert( this.CW_AddedKg > 0, "CW_AddedKg < 0" );
+      Debug.Assert( this.CW_AddedKg > 0, "CW_AddedKg <= 0" );
       listCopy.Remove( this.CWL_CWDisposal2CustomsWarehouseID );
       packagesToDispose -= _2DisposePackages;
     }
