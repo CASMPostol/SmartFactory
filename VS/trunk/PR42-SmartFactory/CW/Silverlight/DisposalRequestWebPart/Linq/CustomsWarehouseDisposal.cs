@@ -36,13 +36,17 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       return this.CWL_CWDisposal2CustomsWarehouseID.CW_MassPerPackage.Value * packages;
     }
-    internal int Packages( double quantityyToClearSum )
+    internal int Packages( double quantity )
     {
-      return Packages( quantityyToClearSum, this.CWL_CWDisposal2CustomsWarehouseID.CW_MassPerPackage.Value );
+      return Packages( quantity, this.CWL_CWDisposal2CustomsWarehouseID.CW_MassPerPackage.Value );
     }
     internal static int Packages( double quantityyToClearSum, double massPerPackage )
     {
       return Convert.ToInt32( Math.Round( quantityyToClearSum / massPerPackage + 0.499999, 0 ) );
+    }
+    internal void DeleteDisposal()
+    {
+      this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated += this.CW_SettledNetMass;
     }
   }
 }

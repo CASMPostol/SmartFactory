@@ -369,23 +369,31 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     }
     internal void RecalculateDisposals( int disposalRequestLibId, DataContextAsync context )
     {
-      List<CustomsWarehouse> _listCopy = new List<CustomsWarehouse>( m_ListOfCustomsWarehouse );
+      List<CustomsWarehouse> _CWListCopy = new List<CustomsWarehouse>( m_ListOfCustomsWarehouse );
       int _packagesToDispose = PackagesToDispose;
-      foreach ( CustomsWarehouseDisposal _cwdx in b_Disposals )
+      List<CustomsWarehouseDisposal> _2Delete = new List<CustomsWarehouseDisposal>();
+      foreach ( CustomsWarehouseDisposal _cwItem in b_Disposals )
       {
-        _cwdx.DisposeMaterial( ref _packagesToDispose, _listCopy );
-        if ( this.PackagesToDispose == 0 )
-          return;
+        if ( this.PackagesToDispose > 0 )
+          _cwItem.DisposeMaterial( ref _packagesToDispose, _CWListCopy );
+        else
+        {
+          _cwItem.DeleteDisposal();
+          _2Delete.Add( _cwItem );
+        }
       }
-      int _cwx = 0;
-      EntityList<CustomsWarehouseDisposal> _Entity = context.GetList<CustomsWarehouseDisposal>( CommonDefinition.CustomsWarehouseDisposalTitle );
-      while ( _packagesToDispose > 0 )
+      if ( this.PackagesToDispose > 0 )
       {
-        if ( _cwx >= _listCopy.Count )
-          throw new ArgumentOutOfRangeException( "toDispose", "Cannot dispose - tobacco not available." );
-        CustomsWarehouseDisposal _newDisposal = _listCopy[ _cwx++ ].CreateDisposal( disposalRequestLibId, ref _packagesToDispose );
-        GetDataContext( _newDisposal );
-        _Entity.InsertOnSubmit( _newDisposal );
+        int _cwx = 0;
+        EntityList<CustomsWarehouseDisposal> _Entity = context.GetList<CustomsWarehouseDisposal>( CommonDefinition.CustomsWarehouseDisposalTitle );
+        while ( _packagesToDispose > 0 )
+        {
+          if ( _cwx >= _CWListCopy.Count )
+            throw new ArgumentOutOfRangeException( "toDispose", "Cannot dispose - tobacco not available." );
+          CustomsWarehouseDisposal _newDisposal = _CWListCopy[ _cwx++ ].CreateDisposal( disposalRequestLibId, ref _packagesToDispose );
+          GetDataContext( _newDisposal );
+          _Entity.InsertOnSubmit( _newDisposal );
+        }
       }
     }
     #endregion
