@@ -314,9 +314,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       {
         if ( ( value != this._packagesToClear ) )
         {
-          this.OnPropertyChanging( "PackagesToClear", this._packagesToClear );
+          this.OnPropertyChanging( "PackagesToDispose", this._packagesToClear );
           this._packagesToClear = value;
-          this.OnPropertyChanged( "PackagesToClear" );
+          this.OnPropertyChanged( "PackagesToDispose" );
         }
       }
     }
@@ -370,22 +370,20 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     internal void RecalculateDisposals( int disposalRequestLibId, DataContextAsync context )
     {
       List<CustomsWarehouse> _CWListCopy = new List<CustomsWarehouse>( m_ListOfCustomsWarehouse );
-      int _packagesToDispose = PackagesToDispose;
       List<CustomsWarehouseDisposal> _2Delete = new List<CustomsWarehouseDisposal>();
+      int _packagesToDispose = PackagesToDispose;
       foreach ( CustomsWarehouseDisposal _cwItem in b_Disposals )
-      {
-        if ( this.PackagesToDispose > 0 )
+        if ( _packagesToDispose > 0 )
           _cwItem.DisposeMaterial( ref _packagesToDispose, _CWListCopy );
         else
         {
           _cwItem.DeleteDisposal();
           _2Delete.Add( _cwItem );
-        }
-      }
-      if ( this.PackagesToDispose > 0 )
+        };
+      EntityList<CustomsWarehouseDisposal> _Entity = context.GetList<CustomsWarehouseDisposal>( CommonDefinition.CustomsWarehouseDisposalTitle );
+      if ( _packagesToDispose > 0 )
       {
         int _cwx = 0;
-        EntityList<CustomsWarehouseDisposal> _Entity = context.GetList<CustomsWarehouseDisposal>( CommonDefinition.CustomsWarehouseDisposalTitle );
         while ( _packagesToDispose > 0 )
         {
           if ( _cwx >= _CWListCopy.Count )
@@ -395,6 +393,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
           _Entity.InsertOnSubmit( _newDisposal );
         }
       }
+      else
+        _Entity.DeleteAllOnSubmit( _2Delete );
     }
     #endregion
 
