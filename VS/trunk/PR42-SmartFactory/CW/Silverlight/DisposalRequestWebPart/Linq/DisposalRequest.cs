@@ -373,7 +373,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       int _packagesToDispose = PackagesToDispose;
       foreach ( CustomsWarehouseDisposal _cwdx in b_Disposals )
       {
-        _cwdx.Dispose( ref _packagesToDispose, _listCopy );
+        _cwdx.DisposeMaterial( ref _packagesToDispose, _listCopy );
         if ( this.PackagesToDispose == 0 )
           return;
       }
@@ -449,9 +449,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       AutoCalculation = false;
       QuantityyToClearSum = DeclaredNetMass + AddedKg;
-      PackagesToDispose = Convert.ToInt32( Math.Round( QuantityyToClearSum / this.MassPerPackage + 0.499999, 0 ) );
+      PackagesToDispose = CustomsWarehouseDisposal.Packages( QuantityyToClearSum, this.MassPerPackage );
       QuantityyToClearSumRounded = PackagesToDispose * this.MassPerPackage;
     }
+
     #endregion
 
 
