@@ -165,6 +165,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     #region SubmitChangesAsyn
     private void SubmitChangesAsynCompleted( object state )
     {
+      m_busy = false;
       if ( SubmitChangesCompleted == null )
         return;
       AsyncCompletedEventArgs _EventArgs = (AsyncCompletedEventArgs)state;
