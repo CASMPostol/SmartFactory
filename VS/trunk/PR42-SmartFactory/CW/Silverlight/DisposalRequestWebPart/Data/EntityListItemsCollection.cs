@@ -74,7 +74,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         _toBeInsertedItem.AssignValues2Entity( ListItemPropertiesDictionary() );
         this.m_Collection.Add( _toBeInsertedItem.Index, _toBeInsertedItem );
       }
-      List<TEntityWrapper<TEntity>> _toBeUpdatedCollection = ( from _tewx in m_Collection.Values where _tewx.EntityState == EntityState.ToBeInserted select _tewx ).ToList();
+      List<TEntityWrapper<TEntity>> _toBeUpdatedCollection = ( from _tewx in m_Collection.Values where _tewx.EntityState == EntityState.ToBeUpdated select _tewx ).ToList();
       foreach ( TEntityWrapper<TEntity> _itemX in _toBeUpdatedCollection )
       {
         _itemX.GetValuesFromEntity( _entityDictionary );
