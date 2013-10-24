@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
   ///  Provides for deferred loading and relationship maintenance for the singleton side of a one-to-many relationship.
   /// </summary>
   /// <typeparam name="TEntity"> The type of the entity on the singleton side of the relationship.</typeparam>
-  public class EntityRef<TEntity> : CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data.IEntityRef
+  public class EntityRef<TEntity> : IEntityRef
     where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
   {
 
@@ -66,6 +66,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       return m_Lookup;
     }
+    #endregion
+
+    #region IEntityRef Members
     /// <summary>
     /// Sets the entity to which this <see cref="Microsoft.SharePoint.Linq.EntityRef<TEntity>"/> refers.
     /// </summary>
@@ -85,9 +88,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       if ( OnChanged != null )
         OnChanged( this, new EventArgs() );
     }
-    #endregion
-
-    #region IEntityRef Members
     public FieldLookupValue GetLookup( DataContext dataContext, string listName )
     {
       return dataContext.GetFieldLookupValue( listName, m_Lookup );

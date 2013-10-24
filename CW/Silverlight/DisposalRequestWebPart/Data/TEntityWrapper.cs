@@ -127,7 +127,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         if ( _storage.Association )
         {
           Debug.Assert( _storage.IsLookup, "Unexpected MultivalueType in the GetValuesFromEntity. Expected is lookup, but the filde is reverse lookup" );
-          _value = ( (EntityRef<TEntity>)_value ).GetLookup( m_DataContext, ( (AssociationAttribute)_storage.Description ).List );
+          _value = ( (IEntityRef)_value ).GetLookup( m_DataContext, ( (AssociationAttribute)_storage.Description ).List );
         }
         else if ( ( (ColumnAttribute)_storage.Description ).FieldType.Contains( "Choice" ) )
         {
