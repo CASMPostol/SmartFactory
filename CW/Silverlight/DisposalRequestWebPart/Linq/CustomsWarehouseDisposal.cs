@@ -36,9 +36,30 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
           this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated -= _diff;
           this.CW_AddedKg = this.CW_SettledNetMass - this.CW_DeclaredNetMass;
           Debug.Assert( this.CW_AddedKg >= 0, "CW_AddedKg <= 0" );
+          CW_SettledGrossMass = _2DisposePackages * CWL_CWDisposal2CustomsWarehouseID.PackageWeight() + CW_SettledNetMass.Value;
         }
       }
       listCopy.Remove( this.CWL_CWDisposal2CustomsWarehouseID );
+    }
+    internal static CustomsWarehouseDisposal Create( int disposalRequestLibId, int _TdspsePackages, double _Tdspsekg, double packageWeight, CustomsWarehouse cw )
+    {
+      CustomsWarehouseDisposal _newItem = new CustomsWarehouseDisposal()
+      {
+        CNIDId = cw.CNIDId,
+        CustomsStatus = Linq.CustomsStatus.NotStarted,
+        // TODO DisposalRequestWebPart regenerate the model  http://casas:11227/sites/awt/Lists/TaskList/DispForm.aspx?ID=4020 
+        CW_AddedKg = _Tdspsekg,
+        CW_DeclaredNetMass = 0,
+        CW_SettledNetMass = _Tdspsekg,
+        CW_SettledGrossMass = _TdspsePackages * packageWeight + _Tdspsekg,
+        CW_PackageToClear = _TdspsePackages,
+        CWL_CWDisposal2CustomsWarehouseID = cw,
+        Title = "TBD",
+        SKUDescription = "N/A",
+        DisposalRequestId = disposalRequestLibId,
+      };
+      _newItem.UpdateTitle( DateTime.Today );
+      return _newItem;
     }
     internal double Quantity( int packages )
     {
@@ -56,5 +77,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated += this.CW_SettledNetMass;
     }
+    /// <summary>
+    /// Updates the title.
+    /// </summary>
+    internal void UpdateTitle( DateTime dateTime )
+    {
+      Title = String.Format( "CW-{0:D4}{1:D6}", dateTime.Year, "XXXXXX" ); //TODO Id.Value);
+    }
+
   }
 }

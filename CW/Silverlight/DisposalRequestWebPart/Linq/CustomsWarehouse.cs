@@ -26,21 +26,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       int _TdspsePackages = Math.Min( CustomsWarehouseDisposal.Packages( this.TobaccoNotAllocated.Value, this.CW_MassPerPackage.Value ), packagesToDispose );
       double _Tdspsekg = this.CW_MassPerPackage.Value * _TdspsePackages;
-      CustomsWarehouseDisposal _NewDisposal = new CustomsWarehouseDisposal()
-      {
-        CustomsStatus = CustomsStatus.NotStarted,
-        CW_AddedKg = _Tdspsekg,
-        CW_DeclaredNetMass = 0,
-        CW_SettledNetMass = _Tdspsekg,
-        CW_PackageToClear = _TdspsePackages,
-        CWL_CWDisposal2CustomsWarehouseID = this,
-        Title = "TBD",
-        SKUDescription = "N/A",
-        DisposalRequestId = disposalRequestLibId
-      };
+      CustomsWarehouseDisposal _NewDisposal = CustomsWarehouseDisposal.Create( disposalRequestLibId, _TdspsePackages, _Tdspsekg, PackageWeight(), this );
       this.TobaccoNotAllocated -= _Tdspsekg;
       packagesToDispose -= _TdspsePackages;
       return _NewDisposal;
+    }
+    internal double PackageWeight()
+    {
+      return this.CW_PackageUnits.Value == 0 ? 0 : ( this.GrossMass.Value - this.CW_Quantity.Value ) / this.CW_PackageUnits.Value;
     }
 
   }
