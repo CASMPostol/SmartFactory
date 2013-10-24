@@ -23,14 +23,22 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   {
     internal void DisposeMaterial( ref int packagesToDispose, List<CustomsWarehouse> listCopy )
     {
-      double _Available = this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value + this.CW_SettledNetMass.Value;
-      int _2DisposePackages = Math.Min( Packages( _Available ), packagesToDispose );
-      this.CW_PackageToClear = _2DisposePackages;
-      this.CW_SettledNetMass = Quantity( _2DisposePackages );
-      this.CW_AddedKg = this.CW_SettledNetMass - this.CW_DeclaredNetMass;
-      Debug.Assert( this.CW_AddedKg >= 0, "CW_AddedKg <= 0" );
+      if ( this.CustomsStatus.Value == Linq.CustomsStatus.NotStarted )
+      {
+        double _Available = this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value + this.CW_SettledNetMass.Value;
+        int _2DisposePackages = Math.Min( Packages( _Available ), packagesToDispose );
+        packagesToDispose -= _2DisposePackages;
+        if ( CW_PackageToClear != _2DisposePackages )
+        {
+          this.CW_PackageToClear = _2DisposePackages;
+          double _diff = Quantity( _2DisposePackages ) - this.CW_SettledNetMass.Value;
+          this.CW_SettledNetMass += _diff;
+          this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated -= _diff;
+          this.CW_AddedKg = this.CW_SettledNetMass - this.CW_DeclaredNetMass;
+          Debug.Assert( this.CW_AddedKg >= 0, "CW_AddedKg <= 0" );
+        }
+      }
       listCopy.Remove( this.CWL_CWDisposal2CustomsWarehouseID );
-      packagesToDispose -= _2DisposePackages;
     }
     internal double Quantity( int packages )
     {

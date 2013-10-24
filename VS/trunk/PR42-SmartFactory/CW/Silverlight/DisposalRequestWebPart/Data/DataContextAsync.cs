@@ -208,7 +208,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       }
       private Thread m_thred = null;
       private Action m_Action = null;
-      private bool m_DIsposed = false;
+      private bool m_Disposing = false;
       private AutoResetEvent m_Signal = new AutoResetEvent( false );
       private void Worker( object obj )
       {
@@ -216,7 +216,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         {
           Action _actn;
           m_Signal.WaitOne();
-          if ( m_DIsposed == true )
+          if ( m_Disposing )
             return;
           lock ( this )
           {
@@ -232,7 +232,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       #region IDisposable Members
       public void Dispose()
       {
-        m_DIsposed = true;
+        m_Disposing = true;
         m_Signal.Set();
       }
       #endregion
