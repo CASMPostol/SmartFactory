@@ -24,7 +24,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 
     internal CustomsWarehouseDisposal CreateDisposal( int disposalRequestLibId, ref int packagesToDispose )
     {
-      int _TdspsePackages = Math.Min( CustomsWarehouseDisposal.Packages(this.TobaccoNotAllocated.Value, this.CW_MassPerPackage.Value), packagesToDispose);
+      int _TdspsePackages = Math.Min( CustomsWarehouseDisposal.Packages( this.TobaccoNotAllocated.Value, this.CW_MassPerPackage.Value ), packagesToDispose );
       double _Tdspsekg = this.CW_MassPerPackage.Value * _TdspsePackages;
       CustomsWarehouseDisposal _NewDisposal = new CustomsWarehouseDisposal()
       {
@@ -36,8 +36,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         CWL_CWDisposal2CustomsWarehouseID = this,
         Title = "TBD",
         SKUDescription = "N/A",
-        DisposalRequestId = disposalRequestLibId 
+        DisposalRequestId = disposalRequestLibId
       };
+      this.TobaccoNotAllocated -= _Tdspsekg;
       packagesToDispose -= _TdspsePackages;
       return _NewDisposal;
     }
