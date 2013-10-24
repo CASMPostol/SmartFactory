@@ -286,8 +286,8 @@
     <Column Name="CW_COADate" Member="CW_COADate" />
     <Column Name="ValidToDate" Member="ValidToDate" />
     <Column Name="ClosingDate" Member="ClosingDate" />
-    <!--<Column Name="AccountClosed" Member="AccountClosed" />-->
-    <!--<Column Name="Archival" Member="Archival" />-->
+    <Column Name="AccountClosed" Member="AccountClosed" />
+    <Column Name="Archival" Member="Archival" />
     <!--<Column Name="CWL_CW2PCNID" Member="CWL_CW2PCNID" />-->
     <!--<Column Name="CWL_CW2CWLibraryID" Member="CWL_CW2CWLibraryID" />-->
     <!--<Column Name="CWL_CW2VendorTitle" Member="CWL_CW2VendorTitle" />-->
