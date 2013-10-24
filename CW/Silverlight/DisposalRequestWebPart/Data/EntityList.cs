@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -59,10 +59,16 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// </summary>
     /// <param name="entities">The entities to be marked for deletion.</param>
     /// <exception cref="System.ArgumentNullException">At least one member of entities is null.</exception>
-    /// <exception cref="System.InvalidOperationException">Object tracking is not enabled for the Microsoft.SharePoint.Linq.DataContext
-    ///     object.- or -At least one member of entities is not of the same type as the
-    ///     list items.</exception>
-    public void DeleteAllOnSubmit( IEnumerable<TEntity> entities ) { throw new NotImplementedException(); }
+    /// <exception cref="System.InvalidOperationException">
+    /// Object tracking is not enabled for the <see cref="DataContext"/> object.
+    /// - or -
+    /// At least one member of entities is not of the same type as the list items.
+    /// </exception>
+    public void DeleteAllOnSubmit( IEnumerable<TEntity> entities )
+    {
+      foreach ( TEntity item in entities )
+        DeleteOnSubmit( item );
+    }
     /// <summary>
     /// Marks the specified entity for deletion on the next call of Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges.
     /// </summary>
