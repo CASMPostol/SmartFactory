@@ -76,6 +76,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     internal void DeleteDisposal()
     {
       this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated += this.CW_SettledNetMass;
+      this.CW_SettledGrossMass = 0;
+      this.CW_SettledNetMass = 0;
+      this.CW_AddedKg = 0;
+      Debug.Assert( this.CW_DeclaredNetMass.Value == 0, "I expect Value of this.CW_DeclaredNetMass == 0 while deleting." );
+      this.CW_DeclaredNetMass = 0;
+      this.CW_PackageToClear = 0;
     }
     /// <summary>
     /// Updates the title.
