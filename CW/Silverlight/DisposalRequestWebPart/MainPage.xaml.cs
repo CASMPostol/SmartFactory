@@ -64,10 +64,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private string m_URL = string.Empty;
     #endregion
 
-    private void ExceptionHandling( Exception ex )
-    {
-      MessageBox.Show( ex.Message + " AT: " + m_at, "Loaded event error", MessageBoxButton.OK );
-    }
 
     #region event handlers
     private void UserControl_Loaded( object sender, RoutedEventArgs e )
@@ -88,19 +84,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private void UserControl_Unloaded( object sender, RoutedEventArgs e )
     {
       DisposeMainPageData();
-    }
-    private MainPageData MainPageData
-    {
-      get { return ( (MainPageData)x_GridMainPageData.DataContext ); }
-      set { x_GridMainPageData.DataContext = value; this.UpdateLayout(); }
-    }
-    private void DisposeMainPageData()
-    {
-      if ( this.MainPageData == null )
-        return;
-      MainPageData _MainPageData = MainPageData;
-      MainPageData = null;
-      _MainPageData.Dispose();
     }
     private void x_ButtonAddNew_Click( object sender, RoutedEventArgs e )
     {
@@ -164,6 +147,24 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       this.MainPageData.GetData( m_URL, m_SelectedID );
     }
     #endregion
+
+    private void ExceptionHandling( Exception ex )
+    {
+      MessageBox.Show( ex.Message + " AT: " + m_at, "Loaded event error", MessageBoxButton.OK );
+    }
+    private MainPageData MainPageData
+    {
+      get { return ( (MainPageData)x_GridMainPageData.DataContext ); }
+      set { x_GridMainPageData.DataContext = value; this.UpdateLayout(); }
+    }
+    private void DisposeMainPageData()
+    {
+      if ( this.MainPageData == null )
+        return;
+      MainPageData _MainPageData = MainPageData;
+      MainPageData = null;
+      _MainPageData.Dispose();
+    }
 
     #endregion
 
