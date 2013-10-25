@@ -78,23 +78,22 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       if ( entity == m_Lookup )
         return;
-      if ( !m_Creating && OnChanging != null )
+      if ( OnChanging != null )
         OnChanging( this, new EventArgs() );
       if ( OnSync != null && m_Lookup != null )
         OnSync( this, new AssociationChangedEventArgs<TEntity>( m_Lookup, AssociationChangedState.Removed ) );
       m_Lookup = (TEntity)entity;
       if ( OnSync != null && m_Lookup != null )
         OnSync( this, new AssociationChangedEventArgs<TEntity>( m_Lookup, AssociationChangedState.Added ) );
-      if ( !m_Creating && OnChanged != null )
+      if ( OnChanged != null )
         OnChanged( this, new EventArgs() );
     }
-    public FieldLookupValue GetLookup( DataContext dataContext, string listName )
+    FieldLookupValue IEntityRef.GetLookup( DataContext dataContext, string listName )
     {
       return dataContext.GetFieldLookupValue( listName, m_Lookup );
     }
-    public void SetLookup( FieldLookupValue value, DataContext dataContext, string listName )
+    void IEntityRef.SetLookup( FieldLookupValue value, DataContext dataContext, string listName )
     {
-      m_Creating = false;
       if ( value == null )
         return;
       Object _entity = dataContext.GetFieldLookupValue<TEntity>( listName, value );
@@ -104,7 +103,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
 
     #region private
     private TEntity m_Lookup = default( TEntity );
-    private bool m_Creating = true;
     #endregion
 
   }
