@@ -389,12 +389,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
           if ( _cwx >= _CWListCopy.Count )
             throw new ArgumentOutOfRangeException( "toDispose", "Cannot dispose - tobacco not available." );
           CustomsWarehouseDisposal _newDisposal = _CWListCopy[ _cwx++ ].CreateDisposal( disposalRequestLibId, ref _packagesToDispose );
+          if ( _newDisposal == null )
+            continue;
           GetDataContext( _newDisposal );
           _Entity.InsertOnSubmit( _newDisposal );
         }
       }
-      else
-        _Entity.DeleteAllOnSubmit( _2Delete );
+      //else
+      //  _Entity.DeleteAllOnSubmit( _2Delete );
     }
     #endregion
 

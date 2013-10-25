@@ -38,19 +38,30 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     internal List<CustomsWarehouse> Accounts { get; private set; }
 
     #region private
+    private const string c_DoubleFormat = "F2";
+    private double m_Available = 0;
     private DataContextAsync m_DataContext;
     private void OKButton_Click( object sender, RoutedEventArgs e )
     {
       double _2dsps = 0;
       if ( !Double.TryParse( x_TextBoxQtyToClear.Text, out _2dsps ) )
-        MessageBox.Show( (string)this.Title, "Wrong qty to dispose", MessageBoxButton.OK );
-      ToDispose = _2dsps;
+      {
+        MessageBox.Show( "Wrong qty to dispose", (string)this.Title, MessageBoxButton.OK );
+        return;
+      }
+      if ( _2dsps > m_Available || _2dsps < 0 )
+      {
+        x_TextBoxQtyToClear.Text = x_TextBoxTotalStock.Text;
+        string _msg = String.Format( "The entered qty is not available, {0} kg is available.", m_Available.ToString( c_DoubleFormat ) );
+        MessageBox.Show( _msg, (string)this.Title, MessageBoxButton.OK );
+        return;
+      }
       if ( Accounts.Count == 0 )
       {
-        if ( MessageBox.Show( (string)this.Title, "No account found. Are you sure to close the window.", MessageBoxButton.OKCancel ) != MessageBoxResult.OK )
-          this.DialogResult = false;
-          return;
+        MessageBox.Show( "No account found. Are you sure to close the window.", (string)this.Title, MessageBoxButton.OK );
+        return;
       }
+      ToDispose = _2dsps;
       this.DialogResult = true;
     }
     private void CancelButton_Click( object sender, RoutedEventArgs e )
@@ -96,7 +107,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
           return;
         }
         x_TextBoxSelectedBatch.Text = String.Format( "{0}/{1} accounts", Accounts.First<CustomsWarehouse>().Batch, Accounts.Count );
-        x_TextBoxTotalStock.Text = Accounts.Sum( x => x.TobaccoNotAllocated.Value ).ToString();
+        m_Available = Accounts.Sum( x => x.TobaccoNotAllocated.Value );
+        x_TextBoxTotalStock.Text = m_Available.ToString( c_DoubleFormat );
+        x_TextBoxQtyToClear.Text = 0.0.ToString( c_DoubleFormat );
       }
       catch ( Exception ex )
       {
