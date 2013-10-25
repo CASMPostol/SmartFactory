@@ -391,7 +391,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
           CustomsWarehouseDisposal _newDisposal = _CWListCopy[ _cwx++ ].CreateDisposal( disposalRequestLibId, ref _packagesToDispose );
           if ( _newDisposal == null )
             continue;
-          GetDataContext( _newDisposal );
+          Disposals.Add( _newDisposal );
           _Entity.InsertOnSubmit( _newDisposal );
         }
       }
