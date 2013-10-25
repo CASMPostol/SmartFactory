@@ -27,6 +27,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
+using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq;
 using Microsoft.SharePoint.Client;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
@@ -116,7 +117,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       try
       {
-
+        DisposalRequest _request = this.x_DataGridListView.SelectedItem as DisposalRequest;
+        if ( _request == null )
+          return;
+        _request.EndOfBatch();
       }
       catch ( Exception _ex )
       {
@@ -136,7 +140,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     private void x_ButtonSave_Click( object sender, RoutedEventArgs e )
     {
-      this.MainPageData.SubmitChanges();
+      try
+      {
+        this.MainPageData.SubmitChanges();
+      }
+      catch ( Exception _ex )
+      {
+        ExceptionHandling( _ex );
+      }
     }
     private void x_ButtonCancel_Click( object sender, RoutedEventArgs e )
     {

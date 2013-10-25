@@ -398,6 +398,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       //else
       //  _Entity.DeleteAllOnSubmit( _2Delete );
     }
+    internal void EndOfBatch()
+    {
+      this.AddedKg += this.RemainingOnStock;
+    }
     #endregion
 
     #region private
@@ -464,6 +468,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     }
 
     #endregion
+
 
   }
 }
