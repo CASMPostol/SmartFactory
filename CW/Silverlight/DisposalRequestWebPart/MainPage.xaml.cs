@@ -179,5 +179,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 
     #endregion
 
+    private void x_ButtonEndOfOgl_Click( object sender, RoutedEventArgs e )
+    {
+
+    }
+
   }
 }
