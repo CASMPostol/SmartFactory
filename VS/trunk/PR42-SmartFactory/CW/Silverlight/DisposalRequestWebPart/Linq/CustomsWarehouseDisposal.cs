@@ -41,18 +41,18 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       listCopy.Remove( this.CWL_CWDisposal2CustomsWarehouseID );
     }
-    internal static CustomsWarehouseDisposal Create( int disposalRequestLibId, int _TdspsePackages, double _Tdspsekg, double packageWeight, CustomsWarehouse cw )
+    internal static CustomsWarehouseDisposal Create( int disposalRequestLibId, int toDisposePackages, double toDisposeKg, double packageWeight, CustomsWarehouse cw )
     {
       CustomsWarehouseDisposal _newItem = new CustomsWarehouseDisposal()
       {
         CNIDId = cw.CNIDId,
         CustomsStatus = Linq.CustomsStatus.NotStarted,
         // TODO DisposalRequestWebPart regenerate the model  http://casas:11227/sites/awt/Lists/TaskList/DispForm.aspx?ID=4020 
-        CW_AddedKg = _Tdspsekg,
+        CW_AddedKg = toDisposeKg,
         CW_DeclaredNetMass = 0,
-        CW_SettledNetMass = _Tdspsekg,
-        CW_SettledGrossMass = _TdspsePackages * packageWeight + _Tdspsekg,
-        CW_PackageToClear = _TdspsePackages,
+        CW_SettledNetMass = toDisposeKg,
+        CW_SettledGrossMass = toDisposePackages * packageWeight + toDisposeKg,
+        CW_PackageToClear = toDisposePackages,
         CWL_CWDisposal2CustomsWarehouseID = cw,
         Title = "TBD",
         SKUDescription = "N/A",

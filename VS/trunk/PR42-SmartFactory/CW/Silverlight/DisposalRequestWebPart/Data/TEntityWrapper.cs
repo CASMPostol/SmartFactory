@@ -38,9 +38,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       MyListItem = listItem;
       m_Index = listItem.Id;
       TEntity _newEntity = new TEntity();
-      _newEntity.EntityState = EntityState.Unchanged;
       this.TEntityGetter = _newEntity;
       AssignValues2Entity( _storageDic );
+      _newEntity.EntityState = EntityState.Unchanged;
+      _newEntity.OriginalValues.Clear(); 
       _newEntity.PropertyChanged += handler;
     }
     /// <summary>
