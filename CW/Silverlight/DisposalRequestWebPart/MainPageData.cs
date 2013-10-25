@@ -258,6 +258,5 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
 
     #endregion //private
-
   }
 }
