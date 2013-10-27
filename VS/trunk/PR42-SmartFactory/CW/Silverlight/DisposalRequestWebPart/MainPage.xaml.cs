@@ -127,6 +127,20 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         ExceptionHandling( _ex );
       }
     }
+    private void x_ButtonEndOfOgl_Click( object sender, RoutedEventArgs e )
+    {
+      try
+      {
+        DisposalRequest _request = this.x_DataGridListView.SelectedItem as DisposalRequest;
+        if ( _request == null )
+          return;
+        _request.EndOfOgl();
+      }
+      catch ( Exception _ex )
+      {
+        ExceptionHandling( _ex );
+      }
+    }
     private void x_ButtonDelete_Click( object sender, RoutedEventArgs e )
     {
       try
@@ -179,10 +193,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 
     #endregion
 
-    private void x_ButtonEndOfOgl_Click( object sender, RoutedEventArgs e )
-    {
-
-    }
 
   }
 }

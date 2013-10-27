@@ -402,6 +402,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       this.AddedKg += this.RemainingOnStock;
     }
+    internal void EndOfOgl()
+    {
+      this.AddedKg = 0;
+      foreach ( CustomsWarehouseDisposal _cwix in b_Disposals )
+        this.AddedKg += _cwix.CW_AddedKg.Value + _cwix.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value;
+    }
     #endregion
 
     #region private
@@ -468,6 +474,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     }
 
     #endregion
+
 
 
   }
