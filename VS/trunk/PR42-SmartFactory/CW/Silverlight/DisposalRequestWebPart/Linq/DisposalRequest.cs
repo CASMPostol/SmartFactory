@@ -442,6 +442,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       base.OnPropertyChanged( propertyName );
       if ( !AutoCalculation )
         return;
+      AddedKg = Math.Max( AddedKg, 0 );
+      AddedKg = Math.Min( AddedKg, TotalStock - DeclaredNetMass );
       UpdateOnChange();
     }
     private void GetDataContext( CustomsWarehouseDisposal rowData )
