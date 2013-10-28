@@ -127,7 +127,9 @@
     <Content Include="Dashboards\DisposalRequestDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Dashboards\StatementDashboard\Elements.xml" />
+    <Content Include="Dashboards\StatementDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Silverlight\SilverLightModule\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
