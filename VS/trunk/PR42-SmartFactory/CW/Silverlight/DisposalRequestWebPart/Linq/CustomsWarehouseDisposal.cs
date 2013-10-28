@@ -47,7 +47,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       {
         CNIDId = cw.CNIDId,
         CustomsStatus = Linq.CustomsStatus.NotStarted,
-        // TODO DisposalRequestWebPart regenerate the model  http://casas:11227/sites/awt/Lists/TaskList/DispForm.aspx?ID=4020 
+        Archival = false,
+        AccountClosed = false,
         CW_AddedKg = toDisposeKg,
         CW_DeclaredNetMass = 0,
         CW_SettledNetMass = toDisposeKg,
