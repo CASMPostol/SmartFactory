@@ -58,6 +58,9 @@
     <None Include="CustomsWarehouseList\BinCard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{53bfc9ea-327b-4fea-b711-db3417396c9d}</SharePointProjectItemId>
     </None>
+    <None Include="DisposalRequestLibrary\ClearThroughCustoms\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6be75cdc-f5fe-4540-b5f8-259441f3f01e}</SharePointProjectItemId>
+    </None>
     <None Include="EventReceivers\DisposalRequest\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{41cff4b7-1569-42c5-862b-bfb7242f33f9}</SharePointProjectItemId>
     </None>
@@ -77,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CustomsWarehouseList\BinCard\Elements.xml" />
+    <Content Include="DisposalRequestLibrary\ClearThroughCustoms\Elements.xml" />
     <Content Include="EventReceivers\DisposalRequest\Elements.xml" />
     <Content Include="Features\CWWorkflows\CWWorkflows.Template.xml">
       <DependentUpon>CWWorkflows.feature</DependentUpon>
@@ -111,6 +115,12 @@
       <DependentUpon>BinCard.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomsWarehouseList\BinCard\Factory.cs" />
+    <Compile Include="DisposalRequestLibrary\ClearThroughCustoms\ClearThroughCustoms.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DisposalRequestLibrary\ClearThroughCustoms\ClearThroughCustoms.Designer.cs">
+      <DependentUpon>ClearThroughCustoms.cs</DependentUpon>
+    </Compile>
     <Compile Include="EventReceivers\DisposalRequest\DisposalRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
