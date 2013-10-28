@@ -61,7 +61,6 @@
                     <Button x:Name="x_ButtonAddNew" Content="Add new" Style="{StaticResource ButtonStyle}" Click="x_ButtonAddNew_Click"/>
                     <Button x:Name="x_ButtonEndOfOgl" Content="End of OGL" Style="{StaticResource ButtonStyle}" Click="x_ButtonEndOfOgl_Click"/>
                     <Button x:Name="x_ButtonEndofBatch" Content="End of Batch" Style="{StaticResource ButtonStyle}" Click="x_ButtonEndofBatch_Click"/>
-                    <Button x:Name="x_ButtonDelete" Content="Delete" Style="{StaticResource ButtonStyle}" Click="x_ButtonDelete_Click"/>
                     <Button x:Name="x_ButtonSave" Content="Save" Style="{StaticResource ButtonStyle}" Click="x_ButtonSave_Click"/>
                     <Button x:Name="x_ButtonCancel" Content="Cancel" Style="{StaticResource ButtonStyle}" ToolTipService.ToolTip="Cancel editing" Click="x_ButtonCancel_Click"/>
                 </StackPanel>
