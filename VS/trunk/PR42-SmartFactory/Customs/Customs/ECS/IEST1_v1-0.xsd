@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.mf.gov.pl/xsd/ECS/IEST1_v1-0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.mf.gov.pl/xsd/ECS/IEST1_v1-0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="IEST1">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Zapytanie">
+          <xs:complexType>
+            <xs:attribute name="MRN" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="35" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="EmailPodmiotu" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="35" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

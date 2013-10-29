@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.mf.gov.pl/xsd/PWK/PWK3_v1-0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.mf.gov.pl/xsd/PWK/PWK3_v1-0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation source="doc">Komunikat PWK3 zwraca wynik walidacji przesłanego przez podmiot komunikatu XML. Używany jako komunikat zwrotny w aplikacji (http://e-clo.pl/EcsWebInterface/).</xs:documentation>
+	</xs:annotation>
+	<xs:element name="PWK3">
+		<xs:annotation>
+			<xs:documentation source="doc">Element główny.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="WynikWalidacji">
+					<xs:annotation>
+						<xs:documentation source="doc">Wynik walidacji. Element grupujący wyniki walidacji.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Dokument">
+								<xs:annotation>
+									<xs:documentation source="doc">Sprawdzony dokument.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Zawartosc" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Zawartość sprawdzonego dokumentu XML.</xs:documentation>
+											<xs:documentation source="rule">RW1</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="ZawartoscB64" type="xs:base64Binary" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Zawartość sprawdzonego dokumentu w formacie Base64 - stosowany jeśli w wyniku walidacji sprawdzony dokument nie został zidentyfikowany jako XML.</xs:documentation>
+											<xs:documentation source="rule">RW1</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Ostrzezenie" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation source="doc">Ostrzeżenie. Występowanie ostrzeżeń nie musi świadczyć o nieprawidłowościach w sprawdzanym dokumencie - dokument pomimo ostrzeżeń będzie mógł być przyjęty.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Wskaznik" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Ścieżka XPath do miejsca w dokumencie XML, którego ostrzeżenie dotyczy.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Tekst" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Test ostrzeżenia.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Blad" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation source="doc">Błąd. Występowanie błędów świadczy o nieprawidłowościach w sprawdzanym dokumencie - dokument nie będzie mógł być przyjęty.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Wskaznik" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Ścieżka XPath do miejsca w dokumencie XML, którego błąd dotyczy.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Tekst" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Test błędu.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Data" type="xs:date" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Data, według której dokonano walidacji dokumentu XML.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="NrWlasny" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Numer własny przyjętego dokumentu, jeśli udało się go odczytać.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="40"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

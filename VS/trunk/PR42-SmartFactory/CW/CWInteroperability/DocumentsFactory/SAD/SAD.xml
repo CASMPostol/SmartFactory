@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="WINDOWS-1250" ?> 
+<?xml version="1.0" encoding="WINDOWS-1250" ?>
 <SAD xmlns="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/SADw2r0.xsd" EmailPodmiotu="gstmaan@jti.com">
-<Zgloszenie NrWlasny="13SXX0000" P1a="XX" P1b="X" LiczbaPozycji="1" LiczbaOpakowan="1" KrajWysylki="XX" KrajPrzeznaczenia="XX" Kontenery="0" RodzajTransakcji="11" MasaBrutto="205" >
-<Rodzaj Typ="H" Podtyp="A" Powiadomienie="0" />
-<UC  UCZgloszenia="PL362010" UCGraniczny="PL362010" >
-<Lokalizacja  Miejsce="PL360000SC0002" />
-<SkladCelny  Typ="C" Miejsce="PL360000SC0002" Kraj="PL" />
-</UC>
-<Nadawca PozId="1" Nazwa="JT INTERNATIONAL SA A MEMBER OF THE" UlicaNumer="1,RUE DE LA GABELLE" KodPocztowy="1211" Miejscowosc="GENEVA" Kraj="CH" />
-<Odbiorca PozId="1" Nazwa="JTI  POLSKA  SP. Z O.O." UlicaNumer="GOSTKOW STARY 42" KodPocztowy="99-220" Miejscowosc="WARTKOWICE" Kraj="PL" TIN="PL8280001819" Regon="00130199100000" EORI="PL828000181900000" />
-<TransportNaGranicy />
-<WarunkiDostawy Kod="XXX" Miejsce="XXX" MiejsceKod="X" />
-<WartoscTowarow Wartosc="3574.47" Waluta="PLN" KursWaluty="1.0000" />
-<Towar PozId="1" OpisTowaru="TYTON ODZYLOWANY CHINA FLUE CURED VIRGINIA STRIPS                          GRADE:XCNFCBY SKU:12567625 Batch:0003740659                                            CALKOWITA LIKWIDACJA OGL/362010/00/999999/2012" KodTowarowy="24012085" KodTaric="90" MasaBrutto="205" Procedura="4071" MasaNetto="190" >
-<IloscTowaru PozId="1" Jm="KGM" Ilosc="190.00000" />
-<Opakowanie PozId="1" Rodzaj="" Znaki="." LiczbaOpakowan="1" />
-<DokumentPoprzedni PozId="1" Kategoria="Z" Kod="" Nr="OGL/362010/00/999999/2012" NrCelina="OGL/362010/00/999999/2012" />
-<DokumentWymagany PozId="1" Kod="9DK8" Nr="9DK8_123456789" Uwagi="03.10.2013" />
-<DokumentWymagany PozId="2" Kod="N935" Nr="82131901" />
-<DokumentWymagany PozId="3" Kod="5DK5" Nr="12PL360000G000259" Uwagi="PL8280001819-1111" />
-<WartoscTowaru WartoscPozycji="3574.47" MetodaWartosciowania="1" WartoscStatystyczna="3574" >
-<SzczegolyWartosci PozId="1" Kod="B00PL" />
-</WartoscTowaru>
-  <Oplata PozId="1" Typ="XXX" Podstawa="0" Kwota="0" MP="X" />
-  <Oplata PozId="2" Typ="XXX" Podstawa="0" Stawka="0" Kwota="0" MP="X" />
-</Towar>
-<MiejsceData />
-</Zgloszenie>
+  <Zgloszenie NrWlasny="13SXX0000" P1a="XX" P1b="X" LiczbaPozycji="1" LiczbaOpakowan="1" KrajWysylki="XX" KrajPrzeznaczenia="XX" Kontenery="0" RodzajTransakcji="11" MasaBrutto="205" >
+    <Rodzaj Typ="H" Podtyp="A" Powiadomienie="0" />
+    <UC  UCZgloszenia="PL362010" UCGraniczny="PL362010" >
+      <Lokalizacja  Miejsce="PL360000SC0002" />
+      <SkladCelny  Typ="C" Miejsce="PL360000SC0002" Kraj="PL" />
+    </UC>
+    <Nadawca PozId="1" Nazwa="JT INTERNATIONAL SA A MEMBER OF THE" UlicaNumer="1,RUE DE LA GABELLE" KodPocztowy="1211" Miejscowosc="GENEVA" Kraj="CH" />
+    <Odbiorca PozId="1" Nazwa="JTI  POLSKA  SP. Z O.O." UlicaNumer="GOSTKOW STARY 42" KodPocztowy="99-220" Miejscowosc="WARTKOWICE" Kraj="PL" TIN="PL8280001819" Regon="00130199100000" EORI="PL828000181900000" />
+    <TransportNaGranicy />
+    <WarunkiDostawy Kod="XXX" Miejsce="XXX" MiejsceKod="X" />
+    <WartoscTowarow Wartosc="3574.47" Waluta="PLN" KursWaluty="1.0000" />
+    <Towar PozId="1" OpisTowaru="TYTON ODZYLOWANY CHINA FLUE CURED VIRGINIA STRIPS                          GRADE:XCNFCBY SKU:12567625 Batch:0003740659                                            CALKOWITA LIKWIDACJA OGL/362010/00/999999/2012" KodTowarowy="24012085" KodTaric="90" MasaBrutto="205" Procedura="4071" MasaNetto="190" >
+      <IloscTowaru PozId="1" Jm="KGM" Ilosc="190.00000" />
+      <Opakowanie PozId="1" Rodzaj="" Znaki="." LiczbaOpakowan="1" />
+      <DokumentPoprzedni PozId="1" Kategoria="Z" Kod="" Nr="OGL/362010/00/999999/2012" NrCelina="OGL/362010/00/999999/2012" />
+      <DokumentWymagany PozId="1" Kod="9DK8" Nr="9DK8_123456789" Uwagi="03.10.2013" />
+      <DokumentWymagany PozId="2" Kod="N935" Nr="82131901" />
+      <DokumentWymagany PozId="3" Kod="5DK5" Nr="12PL360000G000259" Uwagi="PL8280001819-1111" />
+      <WartoscTowaru WartoscPozycji="3574.47" MetodaWartosciowania="1" WartoscStatystyczna="3574" >
+        <SzczegolyWartosci PozId="1" Kod="B00PL" />
+      </WartoscTowaru>
+      <Oplata PozId="1" Typ="XXX" Podstawa="0" Kwota="0" MP="X" />
+      <Oplata PozId="2" Typ="XXX" Podstawa="0" Stawka="0" Kwota="0" MP="X" />
+    </Towar>
+    <MiejsceData />
+  </Zgloszenie>
 </SAD>

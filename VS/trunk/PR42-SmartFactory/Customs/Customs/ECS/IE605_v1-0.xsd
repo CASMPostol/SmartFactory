@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.mf.gov.pl/xsd/ECS/IE605_v1-0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.mf.gov.pl/xsd/ECS/IE605_v1-0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation source="doc">Odrzucenie sprostowania wywozowej deklaracji skróconej.</xs:documentation>
+		<xs:documentation source="doc">Komunikat zawiera informacje o odrzuceniu sprostowania wywozowej deklaracji skróconej. Jest przekazywany zwrotnie składającemu lub przedstawicielowi podmiotu.</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:element name="IE605">
+		<xs:annotation>
+			<xs:documentation source="doc">IE605.</xs:documentation>
+			<xs:documentation source="rule">-</xs:documentation>
+			<xs:documentation source="doc">Główny element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="OdrzucenieSprostowania">
+					<xs:annotation>
+						<xs:documentation source="doc">Odrzucenie sprostowania wyjścia deklaracji skróconej.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Skladajacy" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation source="doc">Osoba składająca deklarację.</xs:documentation>
+									<xs:documentation source="rule">-</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="TIN" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer identyfikacyjny podmiotu (Trader Identification Number).</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="17"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Nazwa" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Nazwa firmy lub nazwisko i imię.</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="UlicaNumer" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Ulica, numer domu.</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="KodPocztowy" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod pocztowy.</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Miejscowosc" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Miejscowość.</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Kraj" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod kraju.</xs:documentation>
+											<xs:documentation source="list">007</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="PrzedstawicielPodmiotu" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation source="doc">Przedstawiciel Podmiotu.</xs:documentation>
+									<xs:documentation source="rule">-</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="TIN" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer identyfikacyjny podmiotu (Trader Identification Number).</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="17"/>
+												<xs:minLength value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Nazwa" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Nazwa firmy lub nazwisko i imię.</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="UlicaNumer" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Ulica, numer domu.</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="KodPocztowy" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod pocztowy.</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Miejscowosc" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Miejscowość.</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Kraj" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod kraju.</xs:documentation>
+											<xs:documentation source="list">007</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Blad" minOccurs="0" maxOccurs="999">
+								<xs:annotation>
+									<xs:documentation source="doc">Błąd.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Typ" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Typ błędu.</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:whiteSpace value="collapse"/>
+												<xs:minLength value="1"/>
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Wskaznik" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Wskazanie na miejsce błędu w odrzucanej deklaracji. Wyrażenie XPath.</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Przyczyna" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer reguły, której błąd dotyczy.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="6"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="BlednaWartosc" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Błędna wartość.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="140"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Opis" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Tekst opisujący błąd.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="255"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="NrWlasny" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Numer własny sprostowania deklaracji.</xs:documentation>
+								<xs:documentation source="rule">-</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="22"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="MRN" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Numer ewidencyjny deklaracji podany w sprostowaniu.</xs:documentation>
+								<xs:documentation source="rule">-</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="18"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="UCWyprowadzenia" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Kod deklarowanego Urzędu Celnego Wyprowadzenia.</xs:documentation>
+								<xs:documentation source="list">001</xs:documentation>
+								<xs:documentation source="rule">-</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="8"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="KodOdrzucenia" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Kod odrzucenia sprostowania.</xs:documentation>
+								<xs:documentation source="list">235</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="PowodOdrzucenia" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Powód odrzucenia sprostowania.</xs:documentation>
+								<xs:documentation source="rule">RW1</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="350"/>
+									<xs:whiteSpace value="collapse"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="DataOdrzucenia" type="xs:date" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Data odrzucenia sprostowania.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="DataSprostowania" type="xs:date" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Data sprostowania deklaracji (podana w sprostowaniu).</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="NrWlasny" use="required">
+				<xs:annotation>
+					<xs:documentation source="doc">Numer własny nadawany przez System.</xs:documentation>
+					<xs:documentation source="rule">G21</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="22"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="EmailPodmiotu" use="optional">
+				<xs:annotation>
+					<xs:documentation source="doc">Adres email, na który jest przesyłany ten komunikat (tylko jeśli był podany w sprostowaniu deklaracji).</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="PlacowkaPodmiotu" use="optional">
+				<xs:annotation>
+					<xs:documentation source="doc">Identyfikator placówki podmiotu. Atrybut używany jest do identyfikacji placówki podmiotu przy wysyłaniu i odbieraniu komunikatów poprzez interfejs niewizualny.</xs:documentation>
+					<xs:documentation source="rule">G26</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="2"/>
+						<xs:pattern value="[A-Z0-9]{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
