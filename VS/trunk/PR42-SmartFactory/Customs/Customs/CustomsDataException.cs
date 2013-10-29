@@ -15,7 +15,7 @@
       
 using System;
 
-namespace CAS.SmartFactory.xml.Customs
+namespace CAS.SmartFactory.Customs.Messages
 {
   /// <summary>
   /// public class CustomsDataException

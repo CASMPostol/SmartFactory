@@ -12,12 +12,16 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Xml;
 using System.Xml.Serialization;
+using CAS.SmartFactory.Customs.Messages.CELINA.CLNE;
+using CAS.SmartFactory.Customs.Messages.CELINA.PZC;
+using CAS.SmartFactory.Customs.Messages.CELINA.SAD;
+using CAS.SmartFactory.Customs.Messages.ECS;
 
-namespace CAS.SmartFactory.xml.Customs
+namespace CAS.SmartFactory.Customs.Messages
 {
   /// <summary>
   /// Represents any custom document from xml file.
@@ -43,13 +47,13 @@ namespace CAS.SmartFactory.xml.Customs
         if ( reader.MoveToContent() != XmlNodeType.Element )
           throw new ApplicationException( "The file does not contain valid xml file." );
         if ( reader.Name.Contains( "SAD" ) )
-          type = typeof( SAD.SAD );
+          type = typeof( SAD );
         else if ( reader.Name.Contains( "IE529" ) )
-          type = typeof( IE529.IE529 );
+          type = typeof( IE529 );
         else if ( reader.Name.Contains( "CLNE" ) )
-          type = typeof( CLNE.CLNE );
+          type = typeof( CLNE );
         else if ( reader.Name.Contains( "PZC" ) )
-          type = typeof( PZC.PZC );
+          type = typeof( PZC );
       }
       if ( type == null )
         throw new ApplicationException( "The file does not contain a valid customs declaration xml document" );

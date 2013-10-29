@@ -15,7 +15,7 @@
       
 using System;
 
-namespace CAS.SmartFactory.xml
+namespace CAS.SmartFactory.Customs
 {
   /// <summary>
   /// public static class Extensions

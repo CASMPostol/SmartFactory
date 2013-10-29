@@ -13,7 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
-namespace CAS.SmartFactory.xml.Customs
+namespace CAS.SmartFactory.Customs.Messages
 {
   /// <summary>
   /// public abstract class DutiesDescription
