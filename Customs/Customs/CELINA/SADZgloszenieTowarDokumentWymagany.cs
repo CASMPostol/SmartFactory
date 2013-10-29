@@ -12,8 +12,8 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
-namespace CAS.SmartFactory.xml.Customs.SAD
+
+namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD 
 {
   /// <summary>
   /// partial class SADZgloszenieTowarDokumentWymagany

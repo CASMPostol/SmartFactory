@@ -15,7 +15,7 @@
       
 using System;
 
-namespace CAS.SmartFactory.xml.Customs.CLNE
+namespace CAS.SmartFactory.Customs.Messages.CELINA.CLNE 
 {
   /// <summary>
   /// partial class CLNE

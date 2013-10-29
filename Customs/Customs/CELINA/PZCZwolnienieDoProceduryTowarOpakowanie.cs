@@ -15,7 +15,7 @@
       
 using System;
 
-namespace CAS.SmartFactory.xml.Customs.PZC
+namespace CAS.SmartFactory.Customs.Messages.CELINA.PZC 
 {
   /// <summary>
   /// partial class PZCZwolnienieDoProceduryTowarOpakowanie

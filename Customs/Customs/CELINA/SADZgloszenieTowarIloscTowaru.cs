@@ -15,7 +15,7 @@
 
 using System;
 
-namespace CAS.SmartFactory.xml.Customs.SAD
+namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD 
 {
   /// <summary>
   /// partial class SADZgloszenieTowarIloscTowaru

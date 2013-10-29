@@ -15,7 +15,7 @@
       
 using System;
 
-namespace CAS.SmartFactory.xml.Customs.IE529
+namespace CAS.SmartFactory.Customs.Messages.ECS
 {
   /// <summary>
   /// Import of the XPath: IE529/Zwolnienie/Towar

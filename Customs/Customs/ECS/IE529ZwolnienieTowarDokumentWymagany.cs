@@ -12,8 +12,8 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
-namespace CAS.SmartFactory.xml.Customs.IE529
+
+namespace CAS.SmartFactory.Customs.Messages.ECS
 {
   /// <summary>
   /// partial class IE529ZwolnienieTowarDokumentWymagany

@@ -12,8 +12,8 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
-namespace CAS.SmartFactory.xml.Customs
+
+namespace CAS.SmartFactory.Customs.Messages
 {
   /// <summary>
   /// abstract class RequiredDocumentsDescription
