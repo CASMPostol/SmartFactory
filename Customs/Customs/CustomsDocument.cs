@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : public abstract class CustomsDocument
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -10,29 +25,39 @@ namespace CAS.SmartFactory.xml.Customs
   [Serializable()]
   public abstract class CustomsDocument
   {
-    static public CustomsDocument ImportDocument(System.IO.Stream documetStream)
+    /// <summary>
+    /// Imports the document.
+    /// </summary>
+    /// <param name="documetStream">The documet stream.</param>
+    /// <returns></returns>
+    /// <exception cref="System.ApplicationException">
+    /// The file does not contain valid xml file.
+    /// or
+    /// The file does not contain a valid customs declaration xml document
+    /// </exception>
+    static public CustomsDocument ImportDocument( System.IO.Stream documetStream )
     {
       Type type = null;
-      using (XmlReader reader = XmlReader.Create(documetStream))
+      using ( XmlReader reader = XmlReader.Create( documetStream ) )
       {
-        if (reader.MoveToContent() != XmlNodeType.Element)
-          throw new ApplicationException("The file does not contain valid xml file.");
-        if (reader.Name.Contains("SAD"))
-          type = typeof(SAD.SAD);
-        else if (reader.Name.Contains("IE529"))
-          type = typeof(IE529.IE529);
-        else if (reader.Name.Contains("CLNE"))
-          type = typeof(CLNE.CLNE);
-        else if (reader.Name.Contains("PZC"))
-          type = typeof(PZC.PZC);
+        if ( reader.MoveToContent() != XmlNodeType.Element )
+          throw new ApplicationException( "The file does not contain valid xml file." );
+        if ( reader.Name.Contains( "SAD" ) )
+          type = typeof( SAD.SAD );
+        else if ( reader.Name.Contains( "IE529" ) )
+          type = typeof( IE529.IE529 );
+        else if ( reader.Name.Contains( "CLNE" ) )
+          type = typeof( CLNE.CLNE );
+        else if ( reader.Name.Contains( "PZC" ) )
+          type = typeof( PZC.PZC );
       }
-      if (type == null)
-        throw new ApplicationException("The file does not contain a valid customs declaration xml document");
-      documetStream.Seek(0, System.IO.SeekOrigin.Begin);
-      using (XmlReader reader = XmlReader.Create(documetStream, new XmlReaderSettings() { }))
+      if ( type == null )
+        throw new ApplicationException( "The file does not contain a valid customs declaration xml document" );
+      documetStream.Seek( 0, System.IO.SeekOrigin.Begin );
+      using ( XmlReader reader = XmlReader.Create( documetStream, new XmlReaderSettings() { } ) )
       {
-        XmlSerializer invoice = new XmlSerializer(type);
-        return (CustomsDocument)invoice.Deserialize(reader);
+        XmlSerializer invoice = new XmlSerializer( type );
+        return (CustomsDocument)invoice.Deserialize( reader );
       }
     }
 
@@ -40,7 +65,25 @@ namespace CAS.SmartFactory.xml.Customs
     /// <summary>
     /// Document Type - rrot element
     /// </summary>
-    public enum DocumentType { SAD, IE529, CLNE, PZC }
+    public enum DocumentType
+    {
+      /// <summary>
+      /// The sad customs message
+      /// </summary>
+      SAD,
+      /// <summary>
+      /// The IE529 customs message
+      /// </summary>
+      IE529,
+      /// <summary>
+      /// The CLNE customs message
+      /// </summary>
+      CLNE,
+      /// <summary>
+      /// The PZC customs message
+      /// </summary>
+      PZC
+    }
     /// <summary>
     /// Gets the SAD good.
     /// </summary>
