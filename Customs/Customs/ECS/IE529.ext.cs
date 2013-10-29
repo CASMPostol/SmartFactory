@@ -1,10 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿//<summary>
+//  Title   : partial class IE529
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 
 namespace CAS.SmartFactory.xml.Customs.IE529
 {
+  /// <summary>
+  /// partial class IE529
+  /// </summary>
   public partial class IE529 : CustomsDocument
   {
     #region CustomsDocument
@@ -40,6 +55,10 @@ namespace CAS.SmartFactory.xml.Customs.IE529
     {
       return String.Empty;
     }
+    /// <summary>
+    /// Gets the customs debt date.
+    /// </summary>
+    /// <returns></returns>
     public override DateTime? GetCustomsDebtDate()
     {
       return this.Zwolnienie.DataPrzyjecia;

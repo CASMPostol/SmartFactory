@@ -23,6 +23,10 @@ namespace CAS.SmartFactory.xml.Customs.PZC
   public partial class PZC : CustomsDocument
   {
     #region CustomsDocument
+    /// <summary>
+    /// Gets the reference number.
+    /// </summary>
+    /// <returns></returns>
     public override string GetReferenceNumber()
     {
       return this.ZwolnienieDoProcedury.NrWlasny;
