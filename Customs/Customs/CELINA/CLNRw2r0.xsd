@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by RSzwarga (Systemy Komputerowe Glowka SA) -->
+<xs:schema targetNamespace="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/CLNRw2r0.xsd" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/CLNRw2r0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd" />
+  <xs:element name="CLNR">
+    <xs:annotation>
+      <xs:documentation source="rule">-</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="DecyzjaOKontroli" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="rule">RW1</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UC">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="UCZgloszenia" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">1</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="8" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Podmiot">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="TIN" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="17" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Informacja" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="PozId" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="3" />
+                        <xs:fractionDigits value="0" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="CzasKontroli" type="xs:dateTime" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Uwagi" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="NrWlasny" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">-</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="10" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="NrCelina" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">-</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="40" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="CzasKontroli" type="xs:dateTime" use="optional">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">-</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Uwagi" use="optional">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">-</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                  <xs:minLength value="1" />
+                  <xs:whiteSpace value="collapse" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="KorektaZgloszenia" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="rule">RW1</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UC">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="UCZgloszenia" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">1</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="8" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Podmiot">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="TIN" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="17" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Korekta" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Zmiana" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Atrybut" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="Nazwa" use="required">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="255" />
+                                    <xs:minLength value="1" />
+                                    <xs:whiteSpace value="collapse" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Przed" use="optional">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="1024" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Po" use="optional">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="1024" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="XQLPath" use="required">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="1024" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Dodano" type="xs:anyType" minOccurs="0" maxOccurs="unbounded">
+                    </xs:element>
+                    <xs:element name="Skasowano" type="xs:anyType" minOccurs="0" maxOccurs="unbounded">
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Data" type="xs:dateTime" use="optional">
+                  </xs:attribute>
+                  <xs:attribute name="Uwagi" type="xs:string" use="optional">
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="NrWlasny" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">-</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="10" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="NrCelina" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">-</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="40" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature" minOccurs="0" />
+      </xs:sequence>
+      <xs:attribute name="EmailPodmiotu" use="optional">
+        <xs:annotation>
+          <xs:documentation source="list">-</xs:documentation>
+          <xs:documentation source="rule">-</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="35" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

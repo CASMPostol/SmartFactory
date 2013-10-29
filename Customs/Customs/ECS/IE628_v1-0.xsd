@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.mf.gov.pl/xsd/ECS/IE628_v1-0.xsd" xmlns="http://www.mf.gov.pl/xsd/ECS/IE628_v1-0.xsd" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation source="doc">Nadanie numeru ewidencyjnego.</xs:documentation>
+		<xs:documentation source="doc">Komunikat zawiera informacje o nadaniu numeru ewidencyjnego MRN deklaracji. Jest przekazywany zwrotnie podmiotowi składającemu deklarację.</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:element name="IE628">
+		<xs:annotation>
+			<xs:documentation source="doc">IE628.</xs:documentation>
+			<xs:documentation source="rule">-</xs:documentation>
+			<xs:documentation source="doc">Główny element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="NadanieNumeruEwidencyjnego">
+					<xs:annotation>
+						<xs:documentation source="doc">Nadanie numeru ewidencyjnego.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Skladajacy">
+								<xs:annotation>
+									<xs:documentation source="doc">Składający.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="TIN" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer identyfikacyjny podmiotu (Trader Identification Number). </xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="17"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Nazwa" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Nazwa firmy lub nazwisko i imię.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="UlicaNumer" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Ulica, numer domu.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="KodPocztowy" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod pocztowy.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Miejscowosc" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Miejscowość.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Kraj" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod kraju.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="list">007</xs:documentation>
+											<xs:documentation source="rule">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="NrWlasny" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Numer własny deklaracji.</xs:documentation>
+								<xs:documentation source="rule">-</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="22"/>
+									<xs:minLength value="1"/>
+									<xs:whiteSpace value="collapse"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="MRN" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Numer ewidencyjny deklaracji. (Numer ewidencyjny [MRN] składa się z 18 znaków o następującej konstrukcji: rrPL999999W999999k
+gdzie:
+- rr to dwie ostatnie cyfry roku, w którym nadano numer ewidencyjny
+- PL999999 to identyfikator urzędu celnego, w którym nadano numer ewidencyjny
+- I to znak "W" dla rozróżnienia od innych numerów ewidencyjnych o analogicznej konstrukcji
+- 999999 to kolejny numer ewidencyjny zgłoszenia nadany w urzędzie celnym o podanym identyfikatorze w danym roku
+- k to cyfra kontrolna obliczana według algorytmu)
+przykład: 08PL351010W0000016.</xs:documentation>
+								<xs:documentation source="rule">-</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="18"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="UCZlozenia" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Kod Urzędu Celnego Złożenia. (Do momentu uruchomienia obsługi w urzędzie złożenia Kod Urzędu Celnego Złożenia nie może być podawany).</xs:documentation>
+								<xs:documentation source="list">001</xs:documentation>
+								<xs:documentation source="rule">-</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="8"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="UCWyprowadzenia" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Kod deklarowanego Urzędu Celnego Wyprowadzenia.</xs:documentation>
+								<xs:documentation source="list">001</xs:documentation>
+								<xs:documentation source="rule">-</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="8"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="DataPrzyjecia" type="xs:dateTime" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Data przyjęcia deklaracji (tj. nadania numeru ewidencyjnego).</xs:documentation>
+								<xs:documentation source="rule">-</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="NrWlasny" use="required">
+				<xs:annotation>
+					<xs:documentation source="doc">Numer własny nadawany przez System.</xs:documentation>
+					<xs:documentation source="rule">G21</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="22"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="EmailPodmiotu" use="optional">
+				<xs:annotation>
+					<xs:documentation source="doc">Adres email, na który jest przesyłany ten komunikat (tylko jeśli był podany w deklaracji).</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="PlacowkaPodmiotu" use="optional">
+				<xs:annotation>
+					<xs:documentation source="doc">Identyfikator placówki podmiotu. Atrybut używany jest do identyfikacji placówki podmiotu przy wysyłaniu i odbieraniu komunikatów poprzez interfejs niewizualny.</xs:documentation>
+					<xs:documentation source="rule">G26</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="2"/>
+						<xs:pattern value="[A-Z0-9]{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

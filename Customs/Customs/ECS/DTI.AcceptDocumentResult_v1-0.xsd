@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.mf.gov.pl/xsd/ECS/DTI.AcceptDocumentResult_v1-0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.mf.gov.pl/xsd/ECS/DTI.AcceptDocumentResult_v1-0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="AcceptDocumentResult">
+    <xs:complexType>
+      <xs:attribute name="resultCode" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:decimal">
+            <xs:totalDigits value="3" />
+            <xs:fractionDigits value="0" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="resultDescription" use="optional">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="1024" />
+            <xs:minLength value="1" />
+            <xs:whiteSpace value="collapse" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="token" use="optional">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="collapse" />
+            <xs:maxLength value="40" />
+            <xs:minLength value="1" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

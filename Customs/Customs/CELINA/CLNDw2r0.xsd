@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by S³awomir Kubis (Systemy Komputerowe Glowka SA) -->
+<xs:schema targetNamespace="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/CLNDw2r0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/CLNDw2r0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="CLND">
+    <xs:annotation>
+      <xs:documentation source="rule">-</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Dokument">
+          <xs:annotation>
+            <xs:documentation source="rule">-</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="NrWlasny" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="10" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="NrEwidencyjny" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">-</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="KodUC" type="xs:string" use="required">
+            </xs:attribute>
+            <xs:attribute name="CzasAR" type="xs:dateTime" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">-</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Profil">
+          <xs:annotation>
+            <xs:documentation source="rule">-</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="Nr" use="required">
+              <xs:annotation>
+                <xs:documentation source="rule">-</xs:documentation>
+                <xs:documentation source="list">-</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="35" />
+                  <xs:minLength value="1" />
+                  <xs:whiteSpace value="collapse" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="Autor" use="optional">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="40" />
+                  <xs:whiteSpace value="collapse" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="EmailPodmiotu" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="70" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

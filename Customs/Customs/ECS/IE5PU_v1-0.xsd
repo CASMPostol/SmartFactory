@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.mf.gov.pl/xsd/ECS/IE5PU_v1-0.xsd" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.mf.gov.pl/xsd/ECS/IE5PU_v1-0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:element name="IE5PU">
+		<xs:annotation>
+			<xs:documentation source="rule">-</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="PotwierdzeniePowiazania">
+					<xs:annotation>
+						<xs:documentation source="doc">Potwierdzenie powiązania.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="MRNUzupelnianego" maxOccurs="999">
+								<xs:annotation>
+									<xs:documentation source="doc">Potwierdzenie powiązania.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="MRN" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer ewidencyjny zgłoszenia uzupełnionego.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="18"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+							<xs:element name="ZglaszajacyPrzedstawiciel">
+								<xs:annotation>
+									<xs:documentation source="doc">Zgłaszający/przedstawiciel podany w zgłoszenia uzupełniającym.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="TIN" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer identyfikacyjny podmiotu (Trader Identification Number).</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="17"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Nazwa" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Nazwa firmy lub nazwisko i imię.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="UlicaNumer" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Ulica, numer domu.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="KodPocztowy" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod pocztowy.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Miejscowosc" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Miejscowość.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Kraj" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod kraju.</xs:documentation>
+											<xs:documentation source="list">007</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="EORI" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer identyfikacyjny podmiotu zarejestrowanego w EORI.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="17"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						<xs:attribute name="NrWlasny" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Numer własny potwierdzenia.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="22"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="MRN" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Numer ewidencyjny zgłoszenia.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="18"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="UCWywozu" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Kod urzędu celnego wywozu, podany w zgłoszeniu.</xs:documentation>
+								<xs:documentation source="list">001</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="8"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="DataPowiazania" type="xs:dateTime" use="required"/>
+							<xs:annotation>
+								<xs:documentation source="doc">Data i czas powiązania zgłoszenia.</xs:documentation>
+							</xs:annotation>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="NrWlasny" use="required">
+				<xs:annotation>
+					<xs:documentation source="doc">Numer własny tego komunikatu.</xs:documentation>
+					<xs:documentation source="rule">G21</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="22"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="EmailPodmiotu" use="optional">
+				<xs:annotation>
+					<xs:documentation source="doc">Adres email, na który jest przesyłany ten komunikat.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="PlacowkaPodmiotu" use="optional">
+				<xs:annotation>
+					<xs:documentation source="doc">Identyfikator placówki podmiotu. Atrybut używany jest do identyfikacji placówki podmiotu przy wysyłaniu i odbieraniu komunikatów poprzez interfejs niewizualny.</xs:documentation>
+					<xs:documentation source="rule">G26</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="2"/>
+						<xs:pattern value="[A-Z0-9]{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
