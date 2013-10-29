@@ -12,16 +12,31 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 
-namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD 
+namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
 {
   /// <summary>
   /// partial class SAD
   /// </summary>
-  public partial class SAD : CustomsDocument
+  public partial class SAD: CustomsDocument
   {
+    /// <summary>
+    /// Creates the specified email podmiotu.
+    /// </summary>
+    /// <param name="emailPodmiotu">The email podmiotu.</param>
+    /// <param name="zgloszenie">The zgloszenie.</param>
+    /// <returns></returns>
+    public static SAD Create( string emailPodmiotu, SADZgloszenie zgloszenie )
+    {
+      SAD _new = new SAD()
+      {
+        EmailPodmiotu = emailPodmiotu,
+        Zgloszenie = zgloszenie
+      };
+      return _new;
+    }
 
     #region CustomsDocument
     /// <summary>
@@ -78,9 +93,9 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// <returns></returns>
     public override double? GetExchangeRate()
     {
-      if (Wartosc == null)
+      if ( Wartosc == null )
         return null;
-      return Wartosc.KursWaluty.ConvertToDouble( Wartosc.KursWalutySpecified);
+      return Wartosc.KursWaluty.ConvertToDouble( Wartosc.KursWalutySpecified );
     }
     /// <summary>
     /// Gets the gross mass.
