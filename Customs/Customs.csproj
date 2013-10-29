@@ -57,6 +57,7 @@
     <Compile Include="Messages\CELINA\PZCZwolnienieDoProceduryTowarOplata.cs" />
     <Compile Include="Messages\CELINA\SAD.ext..cs" />
     <Compile Include="Messages\CELINA\SADw2r0_xmldsig-core-schema.cs" />
+    <Compile Include="Messages\CELINA\SADZgloszenie.xsd.cs" />
     <Compile Include="Messages\CELINA\SADZgloszenieTowar.cs" />
     <Compile Include="Messages\CELINA\SADZgloszenieTowarDokumentWymagany.cs" />
     <Compile Include="Messages\CELINA\SADZgloszenieTowarIloscTowaru.cs" />

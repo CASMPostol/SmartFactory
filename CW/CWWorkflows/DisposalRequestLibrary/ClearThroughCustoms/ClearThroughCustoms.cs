@@ -15,6 +15,7 @@ using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint.WorkflowActions;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
+using CAS.SmartFactory.Customs.Messages.CELINA.SAD;
 
 namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCustoms
 {
@@ -38,7 +39,8 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
           IQueryable<IGrouping<String, CustomsWarehouseDisposal>> _clearances = from _cdx in _dr.CustomsWarehouseDisposal group _cdx by _cdx.CWL_CWDisposal2CustomsWarehouseID.Batch;
           foreach ( var item in _clearances )
           {
-
+            SADZgloszenie _zglszn = SADZgloszenie.Create();
+            SAD _sad = SAD.Create( Settings.GetParameter(_entities, SettingsEntry.OrganizationEmail), _zglszn);
           }
         }
 

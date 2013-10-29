@@ -63,6 +63,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
        { SettingsEntry.DefaultValidToDatePeriod, "730" },
        { SettingsEntry.LooselyFormatedDate, @"(?<=/)\D*(\d{1,2}).(\d{1,2}).(\d{4})" },
        { SettingsEntry.BinCardFileName, "Bin Card {0:D7}" },
+       { SettingsEntry.OrganizationEmail, "gstmaan@jti.com" },
     };
   }
   public enum SettingsEntry
@@ -74,6 +75,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     GoodsDescription_CertificateOfOrgin_Pattern,
     DefaultValidToDatePeriod,
     LooselyFormatedDate,
-    BinCardFileName
+    BinCardFileName,
+    OrganizationEmail
   }
 }
