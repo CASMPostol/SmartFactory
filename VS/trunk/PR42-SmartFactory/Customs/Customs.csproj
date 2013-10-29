@@ -45,38 +45,38 @@
   <ItemGroup>
     <Compile Include="Account\CommonAccountData.cs" />
     <Compile Include="Account\ICWAccountFactory.cs" />
-    <Compile Include="Customs\CELINA\CLNE.ext.cs" />
-    <Compile Include="Customs\CELINA\CLNEw2r0_xmldsig-core-schema.cs" />
-    <Compile Include="Customs\CELINA\PZC.ext.cs" />
-    <Compile Include="Customs\CELINA\PZCw2r0_xmldsig-core-schema.cs" />
-    <Compile Include="Customs\CELINA\PZCZwolnienieDoProceduryTowar.cs" />
-    <Compile Include="Customs\CELINA\PZCZwolnienieDoProceduryTowarDokumentWymagany.cs" />
-    <Compile Include="Customs\CELINA\PZCZwolnienieDoProceduryTowarIloscTowaru.cs" />
-    <Compile Include="Customs\CELINA\PZCZwolnienieDoProceduryTowarOpakowanie.cs" />
-    <Compile Include="Customs\CELINA\PZCZwolnienieDoProceduryTowarOplata.cs" />
-    <Compile Include="Customs\CELINA\SAD.ext..cs" />
-    <Compile Include="Customs\CELINA\SADw2r0_xmldsig-core-schema.cs" />
-    <Compile Include="Customs\CELINA\SADZgloszenieTowar.cs" />
-    <Compile Include="Customs\CELINA\SADZgloszenieTowarDokumentWymagany.cs" />
-    <Compile Include="Customs\CELINA\SADZgloszenieTowarIloscTowaru.cs" />
-    <Compile Include="Customs\CELINA\SADZgloszenieTowarOpakowanie.cs" />
-    <Compile Include="Customs\CELINA\SADZgloszenieTowarOplata.cs" />
-    <Compile Include="Customs\CustomsDataException.cs" />
-    <Compile Include="Customs\CustomsDocument.cs" />
-    <Compile Include="Customs\CustomsProcedureCodes.cs" />
-    <Compile Include="Customs\DutiesDescription.cs" />
-    <Compile Include="Customs\ECS\IE529.ext.cs" />
-    <Compile Include="Customs\ECS\IE529ZwolnienieTowar.cs" />
-    <Compile Include="Customs\ECS\IE529ZwolnienieTowarDokumentWymagany.cs" />
-    <Compile Include="Customs\ECS\IE529ZwolnienieTowarIloscTowaru.cs" />
-    <Compile Include="Customs\ECS\IE529ZwolnienieTowarOpakowanie.cs" />
-    <Compile Include="Customs\ECS\IE529ZwolnienieTowarOplata.cs" />
-    <Compile Include="Customs\ECS\IE529_v1-0_xmldsig-core-schema.cs" />
-    <Compile Include="Customs\GoodDescription.cs" />
-    <Compile Include="Customs\PackageDescription.cs" />
-    <Compile Include="Customs\QuantityDescription.cs" />
-    <Compile Include="Customs\RequiredDocumentsDescription.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Messages\CELINA\CLNE.ext.cs" />
+    <Compile Include="Messages\CELINA\CLNEw2r0_xmldsig-core-schema.cs" />
+    <Compile Include="Messages\CELINA\PZC.ext.cs" />
+    <Compile Include="Messages\CELINA\PZCw2r0_xmldsig-core-schema.cs" />
+    <Compile Include="Messages\CELINA\PZCZwolnienieDoProceduryTowar.cs" />
+    <Compile Include="Messages\CELINA\PZCZwolnienieDoProceduryTowarDokumentWymagany.cs" />
+    <Compile Include="Messages\CELINA\PZCZwolnienieDoProceduryTowarIloscTowaru.cs" />
+    <Compile Include="Messages\CELINA\PZCZwolnienieDoProceduryTowarOpakowanie.cs" />
+    <Compile Include="Messages\CELINA\PZCZwolnienieDoProceduryTowarOplata.cs" />
+    <Compile Include="Messages\CELINA\SAD.ext..cs" />
+    <Compile Include="Messages\CELINA\SADw2r0_xmldsig-core-schema.cs" />
+    <Compile Include="Messages\CELINA\SADZgloszenieTowar.cs" />
+    <Compile Include="Messages\CELINA\SADZgloszenieTowarDokumentWymagany.cs" />
+    <Compile Include="Messages\CELINA\SADZgloszenieTowarIloscTowaru.cs" />
+    <Compile Include="Messages\CELINA\SADZgloszenieTowarOpakowanie.cs" />
+    <Compile Include="Messages\CELINA\SADZgloszenieTowarOplata.cs" />
+    <Compile Include="Messages\CustomsDataException.cs" />
+    <Compile Include="Messages\CustomsDocument.cs" />
+    <Compile Include="Messages\CustomsProcedureCodes.cs" />
+    <Compile Include="Messages\DutiesDescription.cs" />
+    <Compile Include="Messages\ECS\IE529.ext.cs" />
+    <Compile Include="Messages\ECS\IE529ZwolnienieTowar.cs" />
+    <Compile Include="Messages\ECS\IE529ZwolnienieTowarDokumentWymagany.cs" />
+    <Compile Include="Messages\ECS\IE529ZwolnienieTowarIloscTowaru.cs" />
+    <Compile Include="Messages\ECS\IE529ZwolnienieTowarOpakowanie.cs" />
+    <Compile Include="Messages\ECS\IE529ZwolnienieTowarOplata.cs" />
+    <Compile Include="Messages\ECS\IE529_v1-0_xmldsig-core-schema.cs" />
+    <Compile Include="Messages\GoodDescription.cs" />
+    <Compile Include="Messages\PackageDescription.cs" />
+    <Compile Include="Messages\QuantityDescription.cs" />
+    <Compile Include="Messages\RequiredDocumentsDescription.cs" />
     <Compile Include="Warnning.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
@@ -92,213 +92,211 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
-    <None Include="Customs\CELINA\CLNBw2r0.xsd">
+    <None Include="Messages\CELINA\CLNBw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\CLNDw2r0.xsd">
+    <None Include="Messages\CELINA\CLNDw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\CLNEw2r0.xsd">
+    <None Include="Messages\CELINA\CLNEw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\CLNNw2r0.xsd">
+    <None Include="Messages\CELINA\CLNNw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\CLNRw2r0.xsd">
+    <None Include="Messages\CELINA\CLNRw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\CLNTw2r0.xsd">
+    <None Include="Messages\CELINA\CLNTw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\CLNWw2r0.xsd">
+    <None Include="Messages\CELINA\CLNWw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\CLNZw2r0.xsd">
+    <None Include="Messages\CELINA\CLNZw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\DSw2r0.xsd">
+    <None Include="Messages\CELINA\DSw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\IPTw2r0.xsd">
+    <None Include="Messages\CELINA\IPTw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\PODw2r0.xsd">
+    <None Include="Messages\CELINA\PODw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\PWDw2r0.xsd">
+    <None Include="Messages\CELINA\PWDw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\PZCw2r0.xsd">
+    <None Include="Messages\CELINA\PZCw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\SADw2r0.xsd">
+    <None Include="Messages\CELINA\SADw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\WOUw2r0.xsd">
+    <None Include="Messages\CELINA\WOUw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\CELINA\xmldsig-core-schema.xsd">
+    <None Include="Messages\CELINA\xmldsig-core-schema.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\DTI.AcceptDocumentResult_v1-0.xsd">
+    <None Include="Messages\ECS\DTI.AcceptDocumentResult_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\DTI.AcceptDocument_v1-0.xsd">
+    <None Include="Messages\ECS\DTI.AcceptDocument_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\DTI.GetAcceptDocumentStatusResult_v1-0.xsd">
+    <None Include="Messages\ECS\DTI.GetAcceptDocumentStatusResult_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\DTI.GetAcceptDocumentStatus_v1-0.xsd">
+    <None Include="Messages\ECS\DTI.GetAcceptDocumentStatus_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\DTI.GetDocumentsResult_v1-0.xsd">
+    <None Include="Messages\ECS\DTI.GetDocumentsResult_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\DTI.GetDocuments_v1-0.xsd">
+    <None Include="Messages\ECS\DTI.GetDocuments_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\DTI.GetLostDocumentsResult_v1-0.xsd">
+    <None Include="Messages\ECS\DTI.GetLostDocumentsResult_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\DTI.GetLostDocuments_v1-0.xsd">
+    <None Include="Messages\ECS\DTI.GetLostDocuments_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\DTI.SendDocumentResult_v1-0.xsd">
+    <None Include="Messages\ECS\DTI.SendDocumentResult_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\DTI.SendDocument_v1-0.xsd">
+    <None Include="Messages\ECS\DTI.SendDocument_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE504_v1-0.xsd">
+    <None Include="Messages\ECS\IE504_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE505_v1-0.xsd">
+    <None Include="Messages\ECS\IE505_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE507_v1-0.xsd">
+    <None Include="Messages\ECS\IE507_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE508_v1-0.xsd">
+    <None Include="Messages\ECS\IE508_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE509_v1-0.xsd">
+    <None Include="Messages\ECS\IE509_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE513B_v1-0.xsd">
+    <None Include="Messages\ECS\IE513B_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE513C_v1-0.xsd">
+    <None Include="Messages\ECS\IE513C_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE513_v1-0.xsd">
+    <None Include="Messages\ECS\IE513_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE514_v1-0.xsd">
+    <None Include="Messages\ECS\IE514_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE515B_v1-0.xsd">
+    <None Include="Messages\ECS\IE515B_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE515C_v1-0.xsd">
+    <None Include="Messages\ECS\IE515C_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE515XY_v1-0.xsd">
+    <None Include="Messages\ECS\IE515XY_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE515_v1-0.xsd">
+    <None Include="Messages\ECS\IE515_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE516_v1-0.xsd">
+    <None Include="Messages\ECS\IE516_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE521_v1-0.xsd">
+    <None Include="Messages\ECS\IE521_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE522_v1-0.xsd">
+    <None Include="Messages\ECS\IE522_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE525_v1-0.xsd">
+    <None Include="Messages\ECS\IE525_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE528_v1-0.xsd">
+    <None Include="Messages\ECS\IE528_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE529_v1-0.xsd">
+    <None Include="Messages\ECS\IE529_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE547_v1-0.xsd">
+    <None Include="Messages\ECS\IE547_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE548_v1-0.xsd">
+    <None Include="Messages\ECS\IE548_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE551_v1-0.xsd">
+    <None Include="Messages\ECS\IE551_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE560_v1-0.xsd">
+    <None Include="Messages\ECS\IE560_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE561_v1-0.xsd">
+    <None Include="Messages\ECS\IE561_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE582_v1-0.xsd">
+    <None Include="Messages\ECS\IE582_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE583_v1-0.xsd">
+    <None Include="Messages\ECS\IE583_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE590_v1-0.xsd">
+    <None Include="Messages\ECS\IE590_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE591_v1-0.xsd">
+    <None Include="Messages\ECS\IE591_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE599_v1-0.xsd">
+    <None Include="Messages\ECS\IE599_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE5PU_v1-0.xsd">
+    <None Include="Messages\ECS\IE5PU_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE604_v1-0.xsd">
+    <None Include="Messages\ECS\IE604_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE605_v1-0.xsd">
+    <None Include="Messages\ECS\IE605_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE613_v1-0.xsd">
+    <None Include="Messages\ECS\IE613_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE615_v1-0.xsd">
+    <None Include="Messages\ECS\IE615_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE616_v1-0.xsd">
+    <None Include="Messages\ECS\IE616_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IE628_v1-0.xsd">
+    <None Include="Messages\ECS\IE628_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IEST1_v1-0.xsd">
+    <None Include="Messages\ECS\IEST1_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\IEST2_v1-0.xsd">
+    <None Include="Messages\ECS\IEST2_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\PWK1_v2-0.xsd">
+    <None Include="Messages\ECS\PWK1_v2-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\PWK2_v2-0.xsd">
+    <None Include="Messages\ECS\PWK2_v2-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\PWK3_v1-0.xsd">
+    <None Include="Messages\ECS\PWK3_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\ECS\xmldsig-core-schema.xsd">
+    <None Include="Messages\ECS\xmldsig-core-schema.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Customs\Scripts\CreateBatchSchema.ps1" />
-    <None Include="Customs\Scripts\CreateInvoiceSchema.ps1" />
-    <None Include="Customs\Scripts\goxsd.ps1" />
+    <None Include="Messages\Scripts\gocs.ps1" />
     <None Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
