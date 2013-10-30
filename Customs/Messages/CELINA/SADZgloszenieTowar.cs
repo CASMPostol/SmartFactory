@@ -12,16 +12,44 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 
-namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD 
+namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
 {
   /// <summary>
   /// Import ofthe XPath: SAD/Zgloszenie/Towar
   /// </summary>
-  partial class SADZgloszenieTowar : GoodDescription
+  partial class SADZgloszenieTowar: GoodDescription
   {
+
+    /// <summary>
+    /// Creates the instance of <see cref="SADZgloszenieTowar"/> with some default values.
+    /// </summary>
+    /// <param name="quantity">The quantity.</param>
+    /// <param name="packages">The packages.</param>
+    /// <param name="reference">The reference.</param>
+    /// <param name="attachements">The attachements.</param>
+    /// <param name="value">The value.</param>
+    /// <returns></returns>
+    public static SADZgloszenieTowar Create( decimal quantity, decimal packages, string reference, SADZgloszenieTowarDokumentWymagany[] attachements, decimal value )
+    {
+      return new SADZgloszenieTowar()
+      {
+        IloscTowaru = new SADZgloszenieTowarIloscTowaru[] { new SADZgloszenieTowarIloscTowaru() { PozId = 1, Jm = "KGM", Ilosc = quantity } },
+        Opakowanie = new SADZgloszenieTowarOpakowanie[] { new SADZgloszenieTowarOpakowanie() { PozId = 1, Rodzaj = "", Znaki = ".", LiczbaOpakowan = packages } },
+        DokumentPoprzedni = new SADZgloszenieTowarDokumentPoprzedni[] { new SADZgloszenieTowarDokumentPoprzedni() { PozId = 1, Kategoria = "Z", Kod = "", Nr = reference, NrCelina = reference } },
+        DokumentWymagany = attachements,
+        WartoscTowaru = new SADZgloszenieTowarWartoscTowaru()
+        {
+          WartoscPozycji = value,
+          MetodaWartosciowania = "1",
+          WartoscStatystyczna = Math.Round( value, 0 ),
+          SzczegolyWartosci = new SADZgloszenieTowarWartoscTowaruSzczegolyWartosci[] { new SADZgloszenieTowarWartoscTowaruSzczegolyWartosci() { PozId = 1, Kod = "B00PL" } }
+        }
+      };
+    }// Create
+
     #region GoodDescription implementation
     /// <summary>
     /// Gets the description.
@@ -37,7 +65,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// <returns></returns>
     public override double? GetNetMass()
     {
-      return this.MasaNetto.ConvertToDouble(this.MasaNettoSpecified);
+      return this.MasaNetto.ConvertToDouble( this.MasaNettoSpecified );
     }
     /// <summary>
     /// Gets the units.
@@ -45,9 +73,9 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// <returns></returns>
     public override string GetUnits()
     {
-      if (this.IloscTowaru.NullOrEmpty<SADZgloszenieTowarIloscTowaru>())
+      if ( this.IloscTowaru.NullOrEmpty<SADZgloszenieTowarIloscTowaru>() )
         return String.Empty;
-      return this.IloscTowaru[0].Jm;
+      return this.IloscTowaru[ 0 ].Jm;
     }
     /// <summary>
     /// Gets the PCN tariff code.
@@ -63,7 +91,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// <returns></returns>
     public override double? GetGrossMass()
     {
-      return this.MasaBrutto.ConvertToDouble(masaBruttoFieldSpecified);
+      return this.MasaBrutto.ConvertToDouble( masaBruttoFieldSpecified );
     }
     /// <summary>
     /// Gets the procedure.
@@ -79,9 +107,9 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// <returns></returns>
     public override string GetPackage()
     {
-      if (this.Opakowanie.NullOrEmpty<SADZgloszenieTowarOpakowanie>())
+      if ( this.Opakowanie.NullOrEmpty<SADZgloszenieTowarOpakowanie>() )
         return String.Empty;
-      return Opakowanie[0].Rodzaj;
+      return Opakowanie[ 0 ].Rodzaj;
     }
     /// <summary>
     /// Gets the total amount invoiced.
@@ -89,9 +117,9 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// <returns></returns>
     public override double? GetTotalAmountInvoiced()
     {
-      if (WartoscTowaru == null)
+      if ( WartoscTowaru == null )
         return null;
-      return this.WartoscTowaru.WartoscPozycji.ConvertToDouble(WartoscTowaru.WartoscPozycjiSpecified);
+      return this.WartoscTowaru.WartoscPozycji.ConvertToDouble( WartoscTowaru.WartoscPozycjiSpecified );
     }
     /// <summary>
     /// Gets the cartons in kg.
@@ -107,7 +135,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// <returns></returns>
     public override double? GetItemNo()
     {
-      return Convert.ToDouble(this.PozId);
+      return Convert.ToDouble( this.PozId );
     }
     /// <summary>
     /// Gets the SAD duties.
