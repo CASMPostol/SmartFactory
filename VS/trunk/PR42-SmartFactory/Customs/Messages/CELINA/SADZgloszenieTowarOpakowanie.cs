@@ -23,6 +23,17 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
   public partial class SADZgloszenieTowarOpakowanie: PackageDescription
   {
     /// <summary>
+    /// Calculates number of packages.
+    /// </summary>
+    /// <param name="sADZgloszenieTowarOpakowanie">The arguments ad zgloszenie towar opakowanie.</param>
+    internal static decimal Packages( SADZgloszenieTowarOpakowanie[] sADZgloszenieTowarOpakowanie )
+    {
+      decimal _ret = 0;
+      foreach ( SADZgloszenieTowarOpakowanie _pckIx in sADZgloszenieTowarOpakowanie )
+        _ret += _pckIx.LiczbaOpakowanSpecified ? _pckIx.LiczbaOpakowan : 0;
+      return _ret;
+    }
+    /// <summary>
     /// Gets the item no.
     /// </summary>
     /// <returns></returns>

@@ -63,6 +63,9 @@
     <Compile Include="Messages\CELINA\SADZgloszenieTowarIloscTowaru.cs" />
     <Compile Include="Messages\CELINA\SADZgloszenieTowarOpakowanie.cs" />
     <Compile Include="Messages\CELINA\SADZgloszenieTowarOplata.cs" />
+    <Compile Include="Messages\CELINA\SADZgloszenieTowarWartoscTowaru.xsd.cs" />
+    <Compile Include="Messages\CELINA\SADZgloszenieUC.xsd.cs" />
+    <Compile Include="Messages\CELINA\SADZgloszenieWartoscTowarow.xsd.cs" />
     <Compile Include="Messages\CustomsDataException.cs" />
     <Compile Include="Messages\CustomsDocument.cs" />
     <Compile Include="Messages\CustomsProcedureCodes.cs" />
