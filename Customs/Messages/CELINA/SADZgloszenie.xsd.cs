@@ -45,7 +45,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
         NrWlasny = "13SXX0000",
         P1a = "XX",
         P1b = "X",
-        LiczbaPozycji = 1,
+        LiczbaPozycji = goods.Length,
         LiczbaOpakowan = _pckgs,
         KrajWysylki = "XX",
         KrajPrzeznaczenia = "XX",
