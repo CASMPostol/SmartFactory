@@ -24,6 +24,14 @@ namespace CAS.SmartFactory.Customs
   {
     #region Private
     /// <summary>
+    /// Converts double to decimal.
+    /// </summary>
+    /// <param name="val">The value.</param>
+    public static decimal ConvertToDecimal( this double? val )
+    {
+      return Convert.ToDecimal( val.Value ) ;
+    }
+    /// <summary>
     /// Converts decimal to  double.
     /// </summary>
     /// <param name="val">The value.</param>

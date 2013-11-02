@@ -37,6 +37,13 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
       };
       return _new;
     }
+    /// <summary>
+    /// Gets the stylesheet nmane.
+    /// </summary>
+    /// <value>
+    /// The stylesheet nmane.
+    /// </value>
+    public static string StylesheetNmane { get { return "SADStylesheet"; } }
 
     #region CustomsDocument
     /// <summary>

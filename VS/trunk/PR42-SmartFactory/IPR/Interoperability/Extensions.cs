@@ -16,10 +16,10 @@ namespace CAS.SmartFactory.xml
     {
       return specified ? new Nullable<Double>(Convert.ToDouble(val)) : new Nullable<Double>();
     }
-    public static bool NullOrEmpty<type>(this type[] val)
-    {
-      return val == null || val.Length == 0;
-    }
+    //public static bool NullOrEmpty<type>(this type[] val)
+    //{
+    //  return val == null || val.Length == 0;
+    //}
     #endregion
   }
 }

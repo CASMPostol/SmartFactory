@@ -28,15 +28,18 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// <param name="goods">The goods.</param>
     /// <param name="customsOffice">The .</param>
     /// <returns></returns>
-    public static SADZgloszenie Create( SADZgloszenieWartoscTowarow value, SADZgloszenieTowar[] goods, SADZgloszenieUC customsOffice )
+    public static SADZgloszenie Create(  SADZgloszenieTowar[] goods, SADZgloszenieUC customsOffice )
     {
       decimal _grossMas = 0;
       decimal _pckgs = 0;
+      decimal _value = 0;
       foreach ( SADZgloszenieTowar _gdsIx in goods )
       {
         _grossMas += _gdsIx.MasaBruttoSpecified ? _gdsIx.MasaBrutto : 0;
         _pckgs += SADZgloszenieTowarOpakowanie.Packages( _gdsIx.Opakowanie );
+        _value += _gdsIx.WartoscTowaru.WartoscPozycji;
       }
+      SADZgloszenieWartoscTowarow _valueTotal = SADZgloszenieWartoscTowarow.Create( _value );
       SADZgloszenie _new = new SADZgloszenie()
       {
         NrWlasny = "13SXX0000",
@@ -56,7 +59,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
         Odbiorca = new SADZgloszenieOdbiorca[] { new SADZgloszenieOdbiorca() { PozId = 1, Nazwa = "JTI  POLSKA  SP. Z O.O.", UlicaNumer = "GOSTKOW STARY 42", KodPocztowy = "99-220", Miejscowosc = "WARTKOWICE", Kraj = "PL", TIN = "PL8280001819", Regon = "00130199100000", EORI = "PL828000181900000" } },
         TransportNaGranicy = null,
         WarunkiDostawy = new SADZgloszenieWarunkiDostawy() { Kod = "XXX", Miejsce = "XXX", MiejsceKod = "X" },
-        WartoscTowarow = value,
+        WartoscTowarow = _valueTotal,
         Towar = goods,
         MiejsceData = null
       };

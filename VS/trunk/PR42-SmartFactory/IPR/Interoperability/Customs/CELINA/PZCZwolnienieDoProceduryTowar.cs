@@ -1,4 +1,5 @@
 ﻿using System;
+using CAS.SmartFactory.Customs;
 
 namespace CAS.SmartFactory.xml.Customs.PZC
 {
