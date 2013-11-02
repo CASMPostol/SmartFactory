@@ -24,6 +24,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
   /// </summary>
   public partial class Settings
   {
+
+    #region public
     /// <summary>
     /// Gets the parameter.
     /// </summary>
@@ -45,14 +47,31 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       }
       return _ret.Title;
     }
+    /// <summary>
+    /// Bins the name of the card document.
+    /// </summary>
+    /// <param name="entities">The entities.</param>
+    /// <param name="itemId">The item unique identifier.</param>
     public static string BinCardDocumentName( Entities entities, int itemId )
     {
       return String.Format( GetParameter( entities, SettingsEntry.BinCardFileName ), itemId );
     }
+    /// <summary>
+    /// Finisheds the name of the goods export form file.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="number">The number.</param>
+    public static string SADTemplateDocumentNameFileName( Entities edc, int number )
+    {
+      return String.Format( GetParameter( edc, SettingsEntry.SADTemplateDocumentNamePattern ), number );
+    }
     public static string CustomsProcedureCodeA004 = "A004";
     public static string CustomsProcedureCodeN865 = "N865";
     public static string CustomsProcedureCodeN954 = "N954";
+    public static string CustomsProcedureCode9DK8 = "9DK8";
+    #endregion
 
+    private const string c_documentNumberFormat = "{0:D7}";
     private static Dictionary<SettingsEntry, string> m_DefaultSettings = new Dictionary<SettingsEntry, string>()
     {
        { SettingsEntry.GoodsDescription_CWQuantity_Pattern,  @"(?<=\bBATCH:)\D*\d*\D*(\d*[.,,]\d*)\W*\w*\D*\d*\W*CT" },
@@ -64,6 +83,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
        { SettingsEntry.LooselyFormatedDate, @"(?<=/)\D*(\d{1,2}).(\d{1,2}).(\d{4})" },
        { SettingsEntry.BinCardFileName, "Bin Card {0:D7}" },
        { SettingsEntry.OrganizationEmail, "gstmaan@jti.com" },
+       { SettingsEntry.SADTemplateDocumentNamePattern, "SAD_" + c_documentNumberFormat },
+       { SettingsEntry.ClearanceTitleFormat, "Nr: {3:D5} {0}/{1} SAD: {2} " }
     };
   }
   public enum SettingsEntry
@@ -76,6 +97,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     DefaultValidToDatePeriod,
     LooselyFormatedDate,
     BinCardFileName,
-    OrganizationEmail
+    OrganizationEmail,
+    SADTemplateDocumentNamePattern,
+    ClearanceTitleFormat
   }
 }

@@ -28,17 +28,17 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// </summary>
     /// <param name="quantity">The quantity.</param>
     /// <param name="packages">The packages.</param>
-    /// <param name="reference">The reference.</param>
+    /// <param name="referencePrevious">The reference.</param>
     /// <param name="attachements">The attachements.</param>
     /// <param name="value">The value.</param>
     /// <returns></returns>
-    public static SADZgloszenieTowar Create( decimal quantity, decimal packages, string reference, SADZgloszenieTowarDokumentWymagany[] attachements, decimal value )
+    public static SADZgloszenieTowar Create( decimal quantity, decimal packages, string referencePrevious, SADZgloszenieTowarDokumentWymagany[] attachements, decimal value )
     {
       return new SADZgloszenieTowar()
       {
         IloscTowaru = new SADZgloszenieTowarIloscTowaru[] { new SADZgloszenieTowarIloscTowaru() { PozId = 1, Jm = "KGM", Ilosc = quantity } },
         Opakowanie = new SADZgloszenieTowarOpakowanie[] { new SADZgloszenieTowarOpakowanie() { PozId = 1, Rodzaj = "", Znaki = ".", LiczbaOpakowan = packages } },
-        DokumentPoprzedni = new SADZgloszenieTowarDokumentPoprzedni[] { new SADZgloszenieTowarDokumentPoprzedni() { PozId = 1, Kategoria = "Z", Kod = "", Nr = reference, NrCelina = reference } },
+        DokumentPoprzedni = new SADZgloszenieTowarDokumentPoprzedni[] { new SADZgloszenieTowarDokumentPoprzedni() { PozId = 1, Kategoria = "Z", Kod = "", Nr = referencePrevious, NrCelina = referencePrevious } },
         DokumentWymagany = attachements,
         WartoscTowaru = new SADZgloszenieTowarWartoscTowaru()
         {
