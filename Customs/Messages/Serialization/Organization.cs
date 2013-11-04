@@ -224,14 +224,7 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
     /// <returns></returns>
     public string Serialize()
     {
-      DataContractJsonSerializer _Srlzr = new DataContractJsonSerializer( typeof( Organization ) );
-      using ( System.IO.MemoryStream _writer = new System.IO.MemoryStream() )
-      {
-        _Srlzr.WriteObject( _writer, this );
-        ASCIIEncoding _encoding = new ASCIIEncoding();
-        _writer.Flush();
-        return ( _encoding.GetString( _writer.GetBuffer(), 0, Convert.ToInt32( _writer.Length ) ) );
-      }
+      return JsonSerializer.Serialize<Organization>( this );
     }
     /// <summary>
     /// Deserializes the specified serialized object.
@@ -240,16 +233,7 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
     /// <returns></returns>
     public static Organization Deserialize( string serializedObject )
     {
-      DataContractJsonSerializer _Srlzr = new DataContractJsonSerializer( typeof( Organization ) );
-      using ( System.IO.MemoryStream _writer = new System.IO.MemoryStream() )
-      {
-        ASCIIEncoding _encoding = new ASCIIEncoding();
-        byte[] _string = _encoding.GetBytes( serializedObject );
-        _writer.Write( _string, 0, _string.Length );
-        _writer.Flush();
-        _writer.Position = 0;
-        return (Organization)_Srlzr.ReadObject( _writer );
-      }
+      return JsonSerializer.Deserialize<Organization>( serializedObject );
     }
     #endregion
 
