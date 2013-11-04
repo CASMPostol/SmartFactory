@@ -8,10 +8,10 @@ namespace CAS.SmartFactory.xml
   public static class Extensions
   {
     #region Private
-    public static double? ConvertToDouble(this decimal? val)
-    {
-      return val.HasValue ? new Nullable<Double>(Convert.ToDouble(val)) : new Nullable<Double>();
-    }
+    ////public static double? ConvertToDouble(this decimal? val)
+    ////{
+    ////  return val.HasValue ? new Nullable<Double>(Convert.ToDouble(val)) : new Nullable<Double>();
+    ////}
     public static double? ConvertToDouble(this Decimal val, bool specified)
     {
       return specified ? new Nullable<Double>(Convert.ToDouble(val)) : new Nullable<Double>();
