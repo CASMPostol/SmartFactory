@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : public partial class SADZgloszenie
 //  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2013, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SmartFactory.Customs.Messages.Serialization;
 namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
 {
   /// <summary>
@@ -28,7 +29,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// <param name="goods">The goods.</param>
     /// <param name="customsOffice">The .</param>
     /// <returns></returns>
-    public static SADZgloszenie Create(  SADZgloszenieTowar[] goods, SADZgloszenieUC customsOffice )
+    public static SADZgloszenie Create( SADZgloszenieTowar[] goods, SADZgloszenieUC customsOffice, string recipientOrganizationJson, string senderOrganizationJson )
     {
       decimal _grossMas = 0;
       decimal _pckgs = 0;
@@ -55,8 +56,8 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
         Rodzaj = new SADZgloszenieRodzaj() { Typ = "H", Podtyp = "A", Powiadomienie = false },
         UC = customsOffice,
         //TODO using Vendor associated to CW
-        Nadawca = new SADZgloszenieNadawca[] { new SADZgloszenieNadawca() { PozId = 1, Nazwa = "JT INTERNATIONAL SA A MEMBER OF THE", UlicaNumer = "1,RUE DE LA GABELLE", KodPocztowy = "1211", Miejscowosc = "GENEVA", Kraj = "CH" } },
-        Odbiorca = new SADZgloszenieOdbiorca[] { new SADZgloszenieOdbiorca() { PozId = 1, Nazwa = "JTI  POLSKA  SP. Z O.O.", UlicaNumer = "GOSTKOW STARY 42", KodPocztowy = "99-220", Miejscowosc = "WARTKOWICE", Kraj = "PL", TIN = "PL8280001819", Regon = "00130199100000", EORI = "PL828000181900000" } },
+        Nadawca = new SADZgloszenieNadawca[] { CreateSADZgloszenieNadawca( senderOrganizationJson ) },
+        Odbiorca = new SADZgloszenieOdbiorca[] { CreateSADZgloszenieOdbiorca( recipientOrganizationJson ) },
         TransportNaGranicy = null,
         WarunkiDostawy = new SADZgloszenieWarunkiDostawy() { Kod = "XXX", Miejsce = "XXX", MiejsceKod = "X" },
         WartoscTowarow = _valueTotal,
@@ -65,6 +66,40 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
       };
       return _new;
     }
-
+    private static SADZgloszenieNadawca CreateSADZgloszenieNadawca( string stringJson )
+    {
+      Organization _copy = Organization.Deserialize( stringJson );
+      return new SADZgloszenieNadawca()
+      {
+        CRP = string.Empty,
+        EORI = _copy.EORI,
+        KodPocztowy = _copy.Kod,
+        Kraj = _copy.Kraj,
+        Miejscowosc = _copy.Miejscowosc,
+        Nazwa = _copy.Nazwa,
+        Pesel = _copy.Nazwa,
+        PozId = _copy.Id,
+        Regon = _copy.Regon,
+        TIN = _copy.TIN,
+        UlicaNumer = _copy.UlicaNr
+      };
+    }
+    private static SADZgloszenieOdbiorca CreateSADZgloszenieOdbiorca( string stringJson )
+    {
+      Organization _copy = Organization.Deserialize( stringJson );
+      return new SADZgloszenieOdbiorca()
+      {
+        EORI = _copy.EORI,
+        KodPocztowy = _copy.Kod,
+        Kraj = _copy.Kraj,
+        Miejscowosc = _copy.Miejscowosc,
+        Nazwa = _copy.Nazwa,
+        Pesel = _copy.Nazwa,
+        PozId = _copy.Id,
+        Regon = _copy.Regon,
+        TIN = _copy.TIN,
+        UlicaNumer = _copy.UlicaNr
+      };
+    }
   }
 }
