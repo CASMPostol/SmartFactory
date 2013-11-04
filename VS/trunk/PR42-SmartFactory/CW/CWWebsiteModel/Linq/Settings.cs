@@ -84,7 +84,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
        { SettingsEntry.BinCardFileName, "Bin Card {0:D7}" },
        { SettingsEntry.OrganizationEmail, "gstmaan@jti.com" },
        { SettingsEntry.SADTemplateDocumentNamePattern, "SAD_" + c_documentNumberFormat },
-       { SettingsEntry.ClearanceTitleFormat, "Nr: {3:D5} {0}/{1} SAD: {2} " }
+       { SettingsEntry.ClearanceTitleFormat, "Nr: {3:D5} {0}/{1} SAD: {2} " },
+       { SettingsEntry.RecipientOrganization, 
+           @"{""EORI"":""PL828000181900000"",""Id"":1,""Kod"":""99-220"",""Kraj"":""PL"",""Miejscowosc"":""WARTKOWICE"",""Nazwa"":""JTI POLSKA SP. Z O.O."",""Pesel"":null,""Regon"":""00130199100000"",""TIN"":""PL8280001819"",""UlicaNr"":""GOSTKOW STARY 42""}"},
+       { SettingsEntry.SenderOrganization, 
+           @"{""EORI"":null,""Id"":1,""Kod"":""1211"",""Kraj"":""CH"",""Miejscowosc"":""GENEVA"",""Nazwa"":""JT INTERNATIONAL SA A MEMBER OF THE"",""Pesel"":null,""Regon"":null,""TIN"":null,""UlicaNr"":""1,RUE DE LA GABELLE""}"}
+
     };
   }
   public enum SettingsEntry
@@ -99,6 +104,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     BinCardFileName,
     OrganizationEmail,
     SADTemplateDocumentNamePattern,
-    ClearanceTitleFormat
+    ClearanceTitleFormat,
+    RecipientOrganization,
+    SenderOrganization
   }
 }

@@ -83,6 +83,8 @@
     <Compile Include="Messages\PackageDescription.cs" />
     <Compile Include="Messages\QuantityDescription.cs" />
     <Compile Include="Messages\RequiredDocumentsDescription.cs" />
+    <Compile Include="Messages\Serialization\CustomsOffice.cs" />
+    <Compile Include="Messages\Serialization\JsonSerializer.cs" />
     <Compile Include="Messages\Serialization\Organization.cs" />
     <Compile Include="Warnning.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
