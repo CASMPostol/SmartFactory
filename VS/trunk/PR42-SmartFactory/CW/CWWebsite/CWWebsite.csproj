@@ -147,7 +147,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ContentTypes\DisposalRequestLib\Elements.xml" />
-    <Content Include="ContentTypes\StatementLib\Elements.xml" />
+    <Content Include="ContentTypes\StatementLib\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ContentTypes\Vendor\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -60,17 +60,17 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   public partial class Element : ITrackEntityState, ITrackOriginalValues, System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.INotifyPropertyChanging
   {
 
-    private System.Nullable<int> _id;
+    public System.Nullable<int> _id;
 
-    private System.Nullable<int> _version;
+    public System.Nullable<int> _version;
 
-    private string _path;
+    public string _path;
 
-    private EntityState _entityState;
+    public EntityState _entityState;
 
-    private System.Collections.Generic.IDictionary<string, object> _originalValues;
+    public System.Collections.Generic.IDictionary<string, object> _originalValues;
 
-    private string _title;
+    public string _title;
 
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -218,91 +218,91 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   public partial class CustomsWarehouse : Element
   {
 
-    private System.Nullable<System.DateTime> _cWC_EntryDate;
+    public System.Nullable<System.DateTime> _cWC_EntryDate;
 
-    private string _documentNo;
+    public string _documentNo;
 
-    private System.Nullable<System.DateTime> _customsDebtDate;
+    public System.Nullable<System.DateTime> _customsDebtDate;
 
-    private string _tobaccoName;
+    public string _tobaccoName;
 
-    private string _grade;
+    public string _grade;
 
-    private string _sKU;
+    public string _sKU;
 
-    private string _batch;
+    public string _batch;
 
-    private System.Nullable<double> _cW_Quantity;
+    public System.Nullable<double> _cW_Quantity;
 
-    private string _units;
+    public string _units;
 
-    private System.Nullable<double> _netMass;
+    public System.Nullable<double> _netMass;
 
-    private System.Nullable<double> _grossMass;
+    public System.Nullable<double> _grossMass;
 
-    private System.Nullable<double> _cW_PackageUnits;
+    public System.Nullable<double> _cW_PackageUnits;
 
-    private System.Nullable<double> _cW_PackageKg;
+    public System.Nullable<double> _cW_PackageKg;
 
-    private System.Nullable<double> _cW_MassPerPackage;
+    public System.Nullable<double> _cW_MassPerPackage;
 
-    private System.Nullable<double> _value;
+    public System.Nullable<double> _value;
 
-    private string _currency;
+    public string _currency;
 
-    private System.Nullable<double> _cW_UnitPrice;
+    public System.Nullable<double> _cW_UnitPrice;
 
-    private string _dutyName;
+    public string _dutyName;
 
-    private System.Nullable<double> _duty;
+    public System.Nullable<double> _duty;
 
-    private string _vATName;
+    public string _vATName;
 
-    private System.Nullable<double> _vAT;
+    public System.Nullable<double> _vAT;
 
-    private string _cW_PzNo;
+    public string _cW_PzNo;
 
-    private string _invoiceNo;
+    public string _invoiceNo;
 
-    private System.Nullable<double> _accountBalance;
+    public System.Nullable<double> _accountBalance;
 
-    private System.Nullable<double> _tobaccoNotAllocated;
+    public System.Nullable<double> _tobaccoNotAllocated;
 
-    private string _cW_CertificateOfOrgin;
+    public string _cW_CertificateOfOrgin;
 
-    private System.Nullable<System.DateTime> _cW_CODate;
+    public System.Nullable<System.DateTime> _cW_CODate;
 
-    private string _cW_CertificateOfAuthenticity;
+    public string _cW_CertificateOfAuthenticity;
 
-    private System.Nullable<System.DateTime> _cW_COADate;
+    public System.Nullable<System.DateTime> _cW_COADate;
 
-    private System.Nullable<System.DateTime> _validToDate;
+    public System.Nullable<System.DateTime> _validToDate;
 
-    private System.Nullable<System.DateTime> _closingDate;
+    public System.Nullable<System.DateTime> _closingDate;
 
-    private System.Nullable<bool> _accountClosed;
+    public System.Nullable<bool> _accountClosed;
 
-    private System.Nullable<bool> _archival;
+    public System.Nullable<bool> _archival;
 
-    private System.Nullable<int> _consentId;
+    public System.Nullable<int> _consentId;
 
-    private string _consentTitle;
+    public string _consentTitle;
 
-    private System.Nullable<int> _cNIDId;
+    public System.Nullable<int> _cNIDId;
 
-    private System.Nullable<int> _cWLibraryIDId;
+    public System.Nullable<int> _cWLibraryIDId;
 
-    private System.Nullable<int> _vendorId;
+    public System.Nullable<int> _vendorId;
 
-    private string _vendorTitle;
+    public string _vendorTitle;
 
-    private System.Nullable<int> _clearenceId;
+    public System.Nullable<int> _clearenceId;
 
-    private System.Nullable<int> _binCardId;
+    public System.Nullable<int> _binCardId;
 
-    private string _binCardTitle;
+    public string _binCardTitle;
 
-    private EntitySet<CustomsWarehouseDisposal> _customsWarehouseDisposal;
+    public EntitySet<CustomsWarehouseDisposal> _customsWarehouseDisposal;
 
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1118,59 +1118,59 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   public partial class CustomsWarehouseDisposal : Element
   {
 
-    private System.Nullable<double> _no;
+      public System.Nullable<double> _no;
 
-    private string _sADDocumentNo;
+      public string _sADDocumentNo;
 
-    private System.Nullable<System.DateTime> _sADDate;
+      public System.Nullable<System.DateTime> _sADDate;
 
-    private string _sKUDescription;
+      public string _sKUDescription;
 
-    private System.Nullable<double> _cW_DeclaredNetMass;
+      public System.Nullable<double> _cW_DeclaredNetMass;
 
-    private string _cW_Wz1;
+      public string _cW_Wz1;
 
-    private string _cW_Wz2;
+      public string _cW_Wz2;
 
-    private string _cW_Wz3;
+      public string _cW_Wz3;
 
-    private System.Nullable<double> _cW_SettledNetMass;
+      public System.Nullable<double> _cW_SettledNetMass;
 
-    private System.Nullable<double> _cW_SettledGrossMass;
+      public System.Nullable<double> _cW_SettledGrossMass;
 
-    private System.Nullable<double> _tobaccoValue;
+      public System.Nullable<double> _tobaccoValue;
 
-    private System.Nullable<double> _remainingQuantity;
+      public System.Nullable<double> _remainingQuantity;
 
-    private System.Nullable<double> _cW_RemainingPackage;
+      public System.Nullable<double> _cW_RemainingPackage;
 
-    private System.Nullable<double> _cW_RemainingTobaccoValue;
+      public System.Nullable<double> _cW_RemainingTobaccoValue;
 
-    private string _customsProcedure;
+      public string _customsProcedure;
 
-    private System.Nullable<double> _dutyPerSettledAmount;
+      public System.Nullable<double> _dutyPerSettledAmount;
 
-    private System.Nullable<double> _vATPerSettledAmount;
+      public System.Nullable<double> _vATPerSettledAmount;
 
-    private System.Nullable<double> _dutyAndVAT;
+      public System.Nullable<double> _dutyAndVAT;
 
-    private System.Nullable<double> _cW_PackageToClear;
+      public System.Nullable<double> _cW_PackageToClear;
 
-    private System.Nullable<double> _cW_AddedKg;
+      public System.Nullable<double> _cW_AddedKg;
 
-    private System.Nullable<bool> _accountClosed;
+      public System.Nullable<bool> _accountClosed;
 
-    private System.Nullable<bool> _archival;
+      public System.Nullable<bool> _archival;
 
-    private System.Nullable<ClearingType> _clearingType;
+      public System.Nullable<ClearingType> _clearingType;
 
-    private System.Nullable<CustomsStatus> _customsStatus;
+      public System.Nullable<CustomsStatus> _customsStatus;
 
-    private System.Nullable<int> _cNIDId;
+      public System.Nullable<int> _cNIDId;
 
-    private System.Nullable<int> _disposalRequestId;
+      public System.Nullable<int> _disposalRequestId;
 
-    private EntityRef<CustomsWarehouse> _cWL_CWDisposal2CustomsWarehouseID;
+      public EntityRef<CustomsWarehouse> _cWL_CWDisposal2CustomsWarehouseID;
 
     #region Extensibility Method Definitions
     partial void OnLoaded();
