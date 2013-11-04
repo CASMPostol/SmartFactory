@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : Name of Application
 //  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2013, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
     /// </value>
     /// <uwagi />
     [DataMember]
-    public decimal PozId
+    public decimal Id
     {
       get
       {
@@ -84,7 +84,7 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
     /// The ulica numer.
     /// </value>
     [DataMember]
-    public string UlicaNumer
+    public string UlicaNr
     {
       get
       {
@@ -102,7 +102,7 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
     /// The kod pocztowy.
     /// </value>
     [DataMember]
-    public string KodPocztowy
+    public string Kod
     {
       get
       {
@@ -131,7 +131,6 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
         this.miejscowoscField = value;
       }
     }
-
     /// <summary>
     /// Gets or sets the kraj.
     /// </summary>
@@ -150,7 +149,6 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
         this.krajField = value;
       }
     }
-
     /// <summary>
     /// Gets or sets the tin.
     /// </summary>
@@ -230,7 +228,7 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
       using ( System.IO.MemoryStream _writer = new System.IO.MemoryStream() )
       {
         _Srlzr.WriteObject( _writer, this );
-        UnicodeEncoding _encoding = new UnicodeEncoding();
+        ASCIIEncoding _encoding = new ASCIIEncoding();
         _writer.Flush();
         return ( _encoding.GetString( _writer.GetBuffer(), 0, Convert.ToInt32( _writer.Length ) ) );
       }
@@ -245,10 +243,11 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
       DataContractJsonSerializer _Srlzr = new DataContractJsonSerializer( typeof( Organization ) );
       using ( System.IO.MemoryStream _writer = new System.IO.MemoryStream() )
       {
-        UnicodeEncoding _encoding = new UnicodeEncoding();
+        ASCIIEncoding _encoding = new ASCIIEncoding();
         byte[] _string = _encoding.GetBytes( serializedObject );
         _writer.Write( _string, 0, _string.Length );
         _writer.Flush();
+        _writer.Position = 0;
         return (Organization)_Srlzr.ReadObject( _writer );
       }
     }
