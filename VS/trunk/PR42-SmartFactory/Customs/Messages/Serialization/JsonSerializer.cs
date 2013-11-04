@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
     /// <returns></returns>
     public static Type Deserialize<Type>( string serializedObject )
     {
-      DataContractJsonSerializer _Srlzr = new DataContractJsonSerializer( typeof( Organization ) );
+      DataContractJsonSerializer _Srlzr = new DataContractJsonSerializer( typeof( Type ) );
       using ( System.IO.MemoryStream _writer = new System.IO.MemoryStream() )
       {
         ASCIIEncoding _encoding = new ASCIIEncoding();
