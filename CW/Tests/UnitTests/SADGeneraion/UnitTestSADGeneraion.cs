@@ -2,7 +2,7 @@
 using CAS.SmartFactory.Customs.Messages.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CAS.UnitTests.SADGeneraion
+namespace CAS.CW.UnitTests.SADGeneraion
 {
   [TestClass]
   public class UnitTestSADGeneraion
