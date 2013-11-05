@@ -343,7 +343,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Title", Storage="_title", Required=true, FieldType="Text")]
-		public string Title {
+		public virtual string Title {
 			get {
 				return this._title;
 			}
@@ -524,6 +524,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouse> _customsWarehouse;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouseDisposal> _customsWarehouseDisposal;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -543,6 +545,10 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this._customsWarehouse.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CustomsWarehouse>>(this.OnCustomsWarehouseSync);
 			this._customsWarehouse.OnChanged += new System.EventHandler(this.OnCustomsWarehouseChanged);
 			this._customsWarehouse.OnChanging += new System.EventHandler(this.OnCustomsWarehouseChanging);
+			this._customsWarehouseDisposal = new Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouseDisposal>();
+			this._customsWarehouseDisposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CustomsWarehouseDisposal>>(this.OnCustomsWarehouseDisposalSync);
+			this._customsWarehouseDisposal.OnChanged += new System.EventHandler(this.OnCustomsWarehouseDisposalChanged);
+			this._customsWarehouseDisposal.OnChanging += new System.EventHandler(this.OnCustomsWarehouseDisposalChanging);
 			this.OnCreated();
 		}
 		
@@ -663,6 +669,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CWDisposal2ClearanceID", Storage="_customsWarehouseDisposal", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Customs Warehouse Disposal")]
+		public Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouseDisposal> CustomsWarehouseDisposal {
+			get {
+				return this._customsWarehouseDisposal;
+			}
+			set {
+				this._customsWarehouseDisposal.Assign(value);
+			}
+		}
+		
 		private void OnSADConsignmentLibraryIndexChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("SADConsignmentLibraryIndex", this._sADConsignmentLibraryIndex.Clone());
 		}
@@ -711,6 +727,23 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 			else {
 				e.Item.CWL_CW2ClearenceID = null;
+			}
+		}
+		
+		private void OnCustomsWarehouseDisposalChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CustomsWarehouseDisposal", this._customsWarehouseDisposal.Clone());
+		}
+		
+		private void OnCustomsWarehouseDisposalChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CustomsWarehouseDisposal");
+		}
+		
+		private void OnCustomsWarehouseDisposalSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CustomsWarehouseDisposal> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CWL_CWDisposal2ClearanceID = this;
+			}
+			else {
+				e.Item.CWL_CWDisposal2ClearanceID = null;
 			}
 		}
 	}
@@ -1729,6 +1762,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<CustomsWarehouse> _cWL_CWDisposal2CustomsWarehouseID;
 		
+		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _cWL_CWDisposal2ClearanceID;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -1748,6 +1783,10 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this._cWL_CWDisposal2CustomsWarehouseID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CustomsWarehouse>>(this.OnCWL_CWDisposal2CustomsWarehouseIDSync);
 			this._cWL_CWDisposal2CustomsWarehouseID.OnChanged += new System.EventHandler(this.OnCWL_CWDisposal2CustomsWarehouseIDChanged);
 			this._cWL_CWDisposal2CustomsWarehouseID.OnChanging += new System.EventHandler(this.OnCWL_CWDisposal2CustomsWarehouseIDChanging);
+			this._cWL_CWDisposal2ClearanceID = new Microsoft.SharePoint.Linq.EntityRef<Clearence>();
+			this._cWL_CWDisposal2ClearanceID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence>>(this.OnCWL_CWDisposal2ClearanceIDSync);
+			this._cWL_CWDisposal2ClearanceID.OnChanged += new System.EventHandler(this.OnCWL_CWDisposal2ClearanceIDChanged);
+			this._cWL_CWDisposal2ClearanceID.OnChanging += new System.EventHandler(this.OnCWL_CWDisposal2ClearanceIDChanging);
 			this.OnCreated();
 		}
 		
@@ -2117,6 +2156,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CWDisposal2ClearanceID", Storage="_cWL_CWDisposal2ClearanceID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Clearence")]
+		public Clearence CWL_CWDisposal2ClearanceID {
+			get {
+				return this._cWL_CWDisposal2ClearanceID.GetEntity();
+			}
+			set {
+				this._cWL_CWDisposal2ClearanceID.SetEntity(value);
+			}
+		}
+		
 		private void OnCWL_CWDisposal2PCNTIDChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CWL_CWDisposal2PCNTID", this._cWL_CWDisposal2PCNTID.Clone());
 		}
@@ -2160,6 +2209,23 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		}
 		
 		private void OnCWL_CWDisposal2CustomsWarehouseIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CustomsWarehouse> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CustomsWarehouseDisposal.Add(this);
+			}
+			else {
+				e.Item.CustomsWarehouseDisposal.Remove(this);
+			}
+		}
+		
+		private void OnCWL_CWDisposal2ClearanceIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CWL_CWDisposal2ClearanceID", this._cWL_CWDisposal2ClearanceID.Clone());
+		}
+		
+		private void OnCWL_CWDisposal2ClearanceIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CWL_CWDisposal2ClearanceID");
+		}
+		
+		private void OnCWL_CWDisposal2ClearanceIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.CustomsWarehouseDisposal.Add(this);
 			}
