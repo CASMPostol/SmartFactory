@@ -81,9 +81,9 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
       {
         SADZgloszenieTowar.Create( item.CW_SettledNetMass.ConvertToDecimal(), item.CW_RemainingPackage.ConvertToDecimal(), reference, _dcsList.ToArray(), value )
       };
-      SADZgloszenieUC customsOffice = null;
-      SADZgloszenie _application = SADZgloszenie.Create( _good, customsOffice, 
-                                                         Settings.GetParameter( entities, SettingsEntry.RecipientOrganization ), 
+      SADZgloszenieUC customsOffice = SADZgloszenieUC.Create( Settings.GetParameter( entities, SettingsEntry.DefaultCustomsOffice ) );
+      SADZgloszenie _application = SADZgloszenie.Create( _good, customsOffice,
+                                                         Settings.GetParameter( entities, SettingsEntry.RecipientOrganization ),
                                                          Settings.GetParameter( entities, SettingsEntry.SenderOrganization ) );
       return SAD.Create( Settings.GetParameter( entities, SettingsEntry.OrganizationEmail ), _application );
     }
