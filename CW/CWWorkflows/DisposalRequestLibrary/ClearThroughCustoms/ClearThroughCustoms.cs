@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
           foreach ( CustomsWarehouseDisposal _cwdx in _Dr.CustomsWarehouseDisposal )
           {
             Clearence _newClearance = Clearence.CreataClearence( _entities, "Customs Warehouse Withdraw", ClearenceProcedure._5171 ); //TODO Allow selection of ClearenceProcedure http://casas:11227/sites/awt/Lists/TaskList/DispForm.aspx?ID=4023
-            _cwdx.CWL_CWDisposal2Clearance = _newClearance;
+            _cwdx.CWL_CWDisposal2ClearanceID = _newClearance;
             _MasterDocumentName = _newClearance.SADTemplateDocumentNameFileName( _entities );
             SAD _sad = CraeteSAD( _entities, _cwdx, _MasterDocumentName );
             SPFile _newFile = File.CreateXmlFile<SAD>( workflowProperties.Web, _sad, _MasterDocumentName, SADConsignment.IDPropertyName, SAD.StylesheetNmane );
