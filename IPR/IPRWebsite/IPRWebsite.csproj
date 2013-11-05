@@ -581,7 +581,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Reports\BalanceBatch\Elements.xml" />
-    <Content Include="Content types\Reports\BalanceIPR\Elements.xml" />
+    <Content Include="Content types\Reports\BalanceIPR\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Reports\JSOXCustomsSummary\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

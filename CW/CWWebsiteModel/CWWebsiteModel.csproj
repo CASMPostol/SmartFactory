@@ -40,10 +40,6 @@
     <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CAS.SharePoint, Version=1.60.40.23943, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\CommonBinaries\EX06-SharePointGuidance2010\Microsoft.Practices.ServiceLocation.dll</HintPath>
