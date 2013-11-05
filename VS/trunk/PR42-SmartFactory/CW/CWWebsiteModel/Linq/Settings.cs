@@ -81,7 +81,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
        { SettingsEntry.GoodsDescription_CertificateOfOrgin_Pattern, @"\b([\w\d\s\.,-]*)/.*" },
        { SettingsEntry.DefaultValidToDatePeriod, "730" },
        { SettingsEntry.LooselyFormatedDate, @"(?<=/)\D*(\d{1,2}).(\d{1,2}).(\d{4})" },
-       { SettingsEntry.BinCardFileName, "Bin Card {0:D7}" },
+       { SettingsEntry.BinCardFileName, "Bin Card "+ c_documentNumberFormat },
        { SettingsEntry.OrganizationEmail, "gstmaan@jti.com" },
        { SettingsEntry.SADTemplateDocumentNamePattern, "SAD_" + c_documentNumberFormat },
        { SettingsEntry.ClearanceTitleFormat, "Nr: {3:D5} {0}/{1} SAD: {2} " },

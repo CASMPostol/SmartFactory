@@ -55,8 +55,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       //else
       //  _quantity = " --- ";
       string _ClearanceTitleFormat = Settings.GetParameter( entities, SettingsEntry.ClearanceTitleFormat );
-      Title = String.Format( _ClearanceTitleFormat, this.ProcedureCode, Entities.ToString( ClearenceProcedure.GetValueOrDefault( Linq.ClearenceProcedure.Invalid ) ),
-                             ReferenceNumber.NotAvailable(), Id.GetValueOrDefault( -999 ) );
+      Title = String.Format( _ClearanceTitleFormat, 
+                             this.ProcedureCode, //0
+                             Entities.ToString( ClearenceProcedure.GetValueOrDefault( Linq.ClearenceProcedure.Invalid ) ), //1
+                             ReferenceNumber.NotAvailable(), //2
+                             Id.GetValueOrDefault( -999 ) ); //3
     }
     public string SADTemplateDocumentNameFileName( Entities entities )
     {

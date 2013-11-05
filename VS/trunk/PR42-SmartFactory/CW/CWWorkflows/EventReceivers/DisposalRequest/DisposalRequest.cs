@@ -61,7 +61,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
           _edc.SubmitChanges();
           foreach ( CAS.SmartFactory.Customs.Warnning _wrnngx in m_Warnings )
             ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( "Import warnning: {0}", _wrnngx.Message ) );
-          ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( "Import of the Disposal Request {0} XML message  {0} message finished - document imported", properties.ListItem.File.Name ) );
+          ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( "Import of the Disposal Request {0} XML message message finished - document imported", properties.ListItem.File.Name ) );
         }
       }
       //catch (InputDataValidationException _idve)
