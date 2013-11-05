@@ -44,6 +44,7 @@
       <FieldRef ID="{3A6EC6FC-81DD-4E39-9A78-B95D198C6938}" Name="Archival" />
       <FieldRef ID="{C2F4132F-735D-4123-BEDE-79C7FE31954B}" Name="CWL_CWDisposal2DisposalRequestLibraryID" />
       <FieldRef ID="{497E4697-AF4C-4910-B007-5ADE6723308E}" Name="CWL_CWDisposal2CustomsWarehouseID" />
+      <FieldRef ID="{880D0442-622A-4E89-A59F-F3DD1EC9D947}" Name="CWL_CWDisposal2ClearanceID" />
     </FieldRefs>
   </ContentType>
 </Elements>

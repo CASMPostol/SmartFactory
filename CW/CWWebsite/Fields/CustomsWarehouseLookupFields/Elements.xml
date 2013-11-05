@@ -313,4 +313,21 @@
   EnforceUniqueValues="False"
   ReadOnly="False"
     />
+  <Field
+  Name="CWL_CWDisposal2ClearanceID"
+  ID="{880D0442-622A-4E89-A59F-F3DD1EC9D947}"
+  Type="Lookup"
+  List="Lists/ClearenceList"
+  ShowField="ID"
+  UnlimitedLengthInDocumentLibrary="False"
+  Indexed="True"
+  RelationshipDeleteBehavior="None"
+  DisplayName="Clearance ID"
+  Group="CAS Smart Factory Customs Warehouse"
+  Required="False"
+  Hidden="False"
+  DisplaceOnUpgrade="True"
+  EnforceUniqueValues="False"
+  ReadOnly="False"
+    />
 </Elements>

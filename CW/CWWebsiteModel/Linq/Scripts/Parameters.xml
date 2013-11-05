@@ -367,6 +367,7 @@
     <Column Name="Archival" Member="Archival" />
     <Column Name="CWL_CWDisposal2DisposalRequestLibraryID" Member="CWL_CWDisposal2DisposalRequestLibraryID" />
     <Column Name="CWL_CWDisposal2CustomsWarehouseID" Member="CWL_CWDisposal2CustomsWarehouseID" />
+    <Column Name="CWL_CWDisposal2ClearanceID" Member="CWL_CWDisposal2ClearanceID" />
   </ContentType>
   <!--<ContentType Name="Format" Class="Format">
     <Column Name="ContentType" Member="ContentType" />
