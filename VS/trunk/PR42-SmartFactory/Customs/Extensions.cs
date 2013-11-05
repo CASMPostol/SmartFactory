@@ -29,7 +29,7 @@ namespace CAS.SmartFactory.Customs
     /// <param name="val">The value.</param>
     public static decimal ConvertToDecimal( this double? val )
     {
-      return Convert.ToDecimal( val.Value ) ;
+      return Convert.ToDecimal( val.GetValueOrDefault(0) ) ;
     }
     /// <summary>
     /// Converts decimal to  double.
