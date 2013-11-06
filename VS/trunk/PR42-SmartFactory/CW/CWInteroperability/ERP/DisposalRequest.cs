@@ -26,7 +26,7 @@ namespace CAS.SmartFactory.CW.Interoperability.ERP {
         
         private DisposalRequestDisposalRequestContent[] disposalRequestContentField;
         
-        private DisposalDestination disposalDestinationField;
+        private ClearenceProcedure clearenceProcedureField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("DisposalRequestContent")]
@@ -40,12 +40,12 @@ namespace CAS.SmartFactory.CW.Interoperability.ERP {
         }
         
         /// <remarks/>
-        public DisposalDestination DisposalDestination {
+        public ClearenceProcedure ClearenceProcedure {
             get {
-                return this.disposalDestinationField;
+                return this.clearenceProcedureField;
             }
             set {
-                this.disposalDestinationField = value;
+                this.clearenceProcedureField = value;
             }
         }
     }
@@ -171,21 +171,22 @@ namespace CAS.SmartFactory.CW.Interoperability.ERP {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.17929")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/smartfactory/cw/disposalrequest.xsd")]
-    public enum DisposalDestination {
+    public enum ClearenceProcedure {
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("Production warehouse")]
-        Productionwarehouse,
+        [System.Xml.Serialization.XmlEnumAttribute("4071")]
+        Item4071,
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("IPR warehouse")]
-        IPRwarehouse,
+        [System.Xml.Serialization.XmlEnumAttribute("5171")]
+        Item5171,
         
         /// <remarks/>
-        Export,
+        [System.Xml.Serialization.XmlEnumAttribute("3171")]
+        Item3171,
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("Other customs warehouse")]
-        Othercustomswarehouse,
+        [System.Xml.Serialization.XmlEnumAttribute("7171")]
+        Item7171,
     }
 }

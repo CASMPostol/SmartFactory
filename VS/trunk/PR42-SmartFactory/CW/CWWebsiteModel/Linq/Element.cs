@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// <summary>
     /// The ID property name
     /// </summary>
-    public const string IDPropertyName = "Identyfikator";
+    public const string IDPropertyName = "ID";
     /// <summary>
     /// The title property name
     /// </summary>
