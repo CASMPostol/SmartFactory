@@ -3700,7 +3700,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private System.Nullable<bool> _archival;
 		
-		private System.Nullable<CW_DisposalDestination> _cW_DisposalDestination;
+		private System.Nullable<ClearenceProcedure> _clearenceProcedure;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouseDisposal> _customsWarehouseDisposal;
 		
@@ -3732,16 +3732,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_DisposalDestination", Storage="_cW_DisposalDestination", FieldType="Choice")]
-		public System.Nullable<CW_DisposalDestination> CW_DisposalDestination {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ClearenceProcedure", Storage="_clearenceProcedure", FieldType="Choice")]
+		public System.Nullable<ClearenceProcedure> ClearenceProcedure {
 			get {
-				return this._cW_DisposalDestination;
+				return this._clearenceProcedure;
 			}
 			set {
-				if ((value != this._cW_DisposalDestination)) {
-					this.OnPropertyChanging("CW_DisposalDestination", this._cW_DisposalDestination);
-					this._cW_DisposalDestination = value;
-					this.OnPropertyChanged("CW_DisposalDestination");
+				if ((value != this._clearenceProcedure)) {
+					this.OnPropertyChanging("ClearenceProcedure", this._clearenceProcedure);
+					this._clearenceProcedure = value;
+					this.OnPropertyChanged("ClearenceProcedure");
 				}
 			}
 		}
@@ -4172,25 +4172,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Other")]
 		Other = 32,
-	}
-	
-	public enum CW_DisposalDestination : int {
-		
-		None = 0,
-		
-		Invalid = 1,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Production warehouse")]
-		ProductionWarehouse = 2,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="IPR warehouse")]
-		IPRWarehouse = 4,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Export")]
-		Export = 8,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Other customs warehouse")]
-		OtherCustomsWarehouse = 16,
 	}
 }
 #pragma warning restore 1591

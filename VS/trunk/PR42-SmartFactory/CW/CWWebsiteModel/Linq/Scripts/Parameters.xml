@@ -767,7 +767,7 @@
     <Column Name="Title" Member="Title" />
     <Column Name="Modified_x0020_By" Member="ModifiedBy" />
     <Column Name="Created_x0020_By" Member="CreatedBy" />
-    <Column Name="CW_DisposalDestination" Member="CW_DisposalDestination" />
+    <Column Name="ClearenceProcedure" Member="ClearenceProcedure" />
     <Column Name="Archival" Member="Archival" />
   </ContentType>
   <ContentType Name="StatementLib" Class="StatementLib">

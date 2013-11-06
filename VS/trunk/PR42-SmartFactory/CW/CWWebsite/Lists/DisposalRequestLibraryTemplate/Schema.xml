@@ -4,22 +4,26 @@
     <ContentTypes>
       <ContentType ID="0x0101006A3BDDD5D82D4C03B297650EEECA0EF2" Name="DisposalRequestLib" Group="CAS Smart Factory Customs Warehouse" Description="Disposal Request Library Content Type" Overwrite="TRUE" Inherits="TRUE">
         <FieldRefs>
-          <FieldRef ID="{F435E944-D6E4-4394-B274-5869D28A1814}" Name="CW_DisposalDestination" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />
+          <FieldRef ID="{7D196321-5D5D-4D55-908C-125A2E694670}" Name="ClearenceProcedure" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />
           <FieldRef ID="{3A6EC6FC-81DD-4E39-9A78-B95D198C6938}" Name="Archival" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="CW_DisposalDestination" ID="{F435E944-D6E4-4394-B274-5869D28A1814}" Type="Choice" DisplayName="Disposal destination" Group="CAS Smart Factory Customs Warehouse" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
-        <Default>Production warehouse</Default>
+      <Field Name="ClearenceProcedure" ID="{7d196321-5d5d-4d55-908c-125a2e694670}" Type="Choice" DisplayName="$Resources:CASSmartFactoryIPR,CAS_Procedure;" Group="CAS Smart Factory IPR Customs" SourceID="{4980ddea-5535-43bf-b6dd-ce8a5723e0d8}" StaticName="ClearenceProcedure" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
+        <Default>4051</Default>
         <CHOICES>
-          <CHOICE>Production warehouse</CHOICE>
-          <CHOICE>IPR warehouse</CHOICE>
-          <CHOICE>Export</CHOICE>
-          <CHOICE>Other customs warehouse</CHOICE>
+          <CHOICE>3151</CHOICE>
+          <CHOICE>3171</CHOICE>
+          <CHOICE>4051</CHOICE>
+          <CHOICE>4071</CHOICE>
+          <CHOICE>5100</CHOICE>
+          <CHOICE>5171</CHOICE>
+          <CHOICE>7100</CHOICE>
+          <CHOICE>7171</CHOICE>
         </CHOICES>
       </Field>
-      <Field DisplayName="Archival" Name="Archival" Type="Boolean" ID="{3a6ec6fc-81dd-4e39-9a78-b95d198c6938}" Group="CAS Smart Factory IPR" SourceID="{46d73ed6-de09-46d7-8fc8-a84c8fab82cb}" StaticName="Archival" ShowInEditForm="FALSE" ShowInNewForm="FALSE" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_Archival;" Name="Archival" Type="Boolean" ID="{3a6ec6fc-81dd-4e39-9a78-b95d198c6938}" Group="CAS Smart Factory IPR" SourceID="{4980ddea-5535-43bf-b6dd-ce8a5723e0d8}" StaticName="Archival" ShowInEditForm="FALSE" ShowInNewForm="FALSE" />
       <Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" Group="_Hidden" Type="Text" DisplayName="$Resources:core,Title;" Required="TRUE" FromBaseType="TRUE" ShowInEditForm="TRUE" ShowInNewForm="TRUE" />
     </Fields>
     <Views>
@@ -53,7 +57,7 @@
           <FieldRef Name="LinkFilename"></FieldRef>
           <FieldRef Name="Modified"></FieldRef>
           <FieldRef Name="Editor"></FieldRef>
-          <FieldRef Name="CW_DisposalDestination" />
+          <FieldRef Name="ClearenceProcedure" />
           <FieldRef Name="Archival" />
           <FieldRef Name="Title" />
         </ViewFields>
