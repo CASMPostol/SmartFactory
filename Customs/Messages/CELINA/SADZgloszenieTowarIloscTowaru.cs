@@ -15,13 +15,24 @@
 
 using System;
 
-namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD 
+namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
 {
   /// <summary>
   /// partial class SADZgloszenieTowarIloscTowaru
   /// </summary>
   public partial class SADZgloszenieTowarIloscTowaru: QuantityDescription
   {
+    public static SADZgloszenieTowarIloscTowaru Create( ref decimal pozId, decimal netMass, decimal grossMas )
+    {
+      return new SADZgloszenieTowarIloscTowaru()
+      {
+        PozId = pozId,
+        Jm = "KGM",
+        Ilosc = netMass,
+        GrossMas = grossMas
+      };
+    }
+    public decimal GrossMas { get; private set; }
     /// <summary>
     /// Gets the item no.
     /// </summary>

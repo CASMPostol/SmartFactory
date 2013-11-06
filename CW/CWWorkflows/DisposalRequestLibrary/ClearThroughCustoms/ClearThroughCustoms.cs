@@ -77,9 +77,14 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
       }
       decimal value = item.CWL_CWDisposal2CustomsWarehouseID.Value.ConvertToDecimal();
       string reference = item.CWL_CWDisposal2CustomsWarehouseID.DocumentNo;
+      decimal _IloscTowaruId = 1;
+      SADZgloszenieTowarIloscTowaru[] _IloscTowaruArray = new SADZgloszenieTowarIloscTowaru[]
+      {
+         SADZgloszenieTowarIloscTowaru.Create(ref _IloscTowaruId, item.CW_SettledNetMass.ConvertToDecimal(), item.CW_SettledGrossMass.ConvertToDecimal() )
+      };
       SADZgloszenieTowar[] _good = new SADZgloszenieTowar[] 
       {
-        SADZgloszenieTowar.Create( item.CW_SettledNetMass.ConvertToDecimal(), item.CW_RemainingPackage.ConvertToDecimal(), reference, _dcsList.ToArray(), value )
+        SADZgloszenieTowar.Create( _IloscTowaruArray, item.GoodsName() , item.CW_PackageToClear.ConvertToDecimal(), reference, _dcsList.ToArray(), value )
       };
       SADZgloszenieUC customsOffice = SADZgloszenieUC.Create( Settings.GetParameter( entities, SettingsEntry.DefaultCustomsOffice ) );
       SADZgloszenie _application = SADZgloszenie.Create( _good, customsOffice,

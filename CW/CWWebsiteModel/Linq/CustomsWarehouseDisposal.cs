@@ -46,10 +46,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// <summary>
     /// Updates the title.
     /// </summary>
-    internal void UpdateTitle(DateTime dateTime)
+    internal void UpdateTitle( DateTime dateTime )
     {
-      Title = String.Format("CW-{0:D4}{1:D6}", dateTime.Year, "XXXXXX"); //TODO Id.Value);
+      Title = String.Format( "CW-{0:D4}{1:D6}", dateTime.Year, "XXXXXX" ); //TODO Id.Value);
     }
-
+    public string GoodsName( Entities entities )
+    {
+      return Settings.FormatGoodsName( entities, CWL_CWDisposal2CustomsWarehouseID.TobaccoName, CWL_CWDisposal2CustomsWarehouseID.Grade, CWL_CWDisposal2CustomsWarehouseID.SKU, CWL_CWDisposal2CustomsWarehouseID.Batch );
+    }
   }
 }
