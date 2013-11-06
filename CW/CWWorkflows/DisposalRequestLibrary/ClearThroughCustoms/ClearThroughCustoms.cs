@@ -49,7 +49,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
             _cwdx.CWL_CWDisposal2ClearanceID = _newClearance;
             _MasterDocumentName = _newClearance.SADTemplateDocumentNameFileName( _entities );
             SAD _sad = CraeteSAD( _entities, _cwdx, _MasterDocumentName );
-            SPFile _newFile = File.CreateXmlFile<SAD>( workflowProperties.Web, _sad, _MasterDocumentName, SADConsignment.IDPropertyName, SAD.StylesheetNmane );
+            SPFile _newFile = File.CreateXmlFile<SAD>( workflowProperties.Web, _sad, _MasterDocumentName, SADConsignment.IPRSADConsignmentLibraryTitle, SAD.StylesheetNmane );
             SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( _entities.SADConsignment, _newFile.Item.ID );
             _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
             _entities.SubmitChanges();
