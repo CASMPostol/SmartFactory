@@ -7,7 +7,7 @@
                Overwrite="TRUE"
                Inherits="TRUE">
     <FieldRefs>
-      <FieldRef ID="{F435E944-D6E4-4394-B274-5869D28A1814}" Name="CW_DisposalDestination" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />
+      <FieldRef ID="{7D196321-5D5D-4D55-908C-125A2E694670}" Name="ClearenceProcedure" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />
       <FieldRef ID="{3A6EC6FC-81DD-4E39-9A78-B95D198C6938}" Name="Archival" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />
     </FieldRefs>
   </ContentType>
