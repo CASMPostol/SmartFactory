@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : public class CustomsOffice
 //  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2013, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -25,10 +25,10 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
   {
 
     #region private backing filds
-    private SADZgloszenieUCLokalizacja lokalizacjaField;
-    private SADZgloszenieUCUCKontrolny uCKontrolnyField;
-    private SADZgloszenieUCSkladCelny skladCelnyField;
-    private SADZgloszenieUCUCTranzytowy[] uCTranzytowyField;
+    private CustomsOfficeUCLokalizacja lokalizacjaField;
+    private CustomsOfficeUCUCKontrolny uCKontrolnyField;
+    private CustomsOfficeUCSkladCelny skladCelnyField;
+    private CustomsOfficeUCUCTranzytowy[] uCTranzytowyField;
     private string uCZgloszeniaField;
     private string uCGranicznyField;
     private string uCPrzeznaczeniaField;
@@ -36,7 +36,7 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
 
     #region public DataMember fields
     [DataMember]
-    public SADZgloszenieUCLokalizacja Lokalizacja
+    public CustomsOfficeUCLokalizacja Lokalizacja
     {
       get
       {
@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
       }
     }
     [DataMember]
-    public SADZgloszenieUCUCKontrolny UCKontrolny
+    public CustomsOfficeUCUCKontrolny UCKontrolny
     {
       get
       {
@@ -60,7 +60,7 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
       }
     }
     [DataMember]
-    public SADZgloszenieUCSkladCelny SkladCelny
+    public CustomsOfficeUCSkladCelny SkladCelny
     {
       get
       {
@@ -72,7 +72,7 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
       }
     }
     [DataMember]
-    public SADZgloszenieUCUCTranzytowy[] UCTranzytowy
+    public CustomsOfficeUCUCTranzytowy[] UCTranzytowy
     {
       get
       {
@@ -141,10 +141,10 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
 
   }
   /// <summary>
-  /// partial class SADZgloszenieUCLokalizacja
+  /// partial class CustomsOfficeUCLokalizacja
   /// </summary>
   [DataContract]
-  public partial class SADZgloszenieUCLokalizacja
+  public partial class CustomsOfficeUCLokalizacja
   {
 
     #region private backing filds
@@ -195,10 +195,10 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
     #endregion
   }
   /// <summary>
-  /// partial class SADZgloszenieUCUCKontrolny
+  /// partial class CustomsOfficeUCUCKontrolny
   /// </summary>
   [DataContract]
-  public partial class SADZgloszenieUCUCKontrolny
+  public partial class CustomsOfficeUCUCKontrolny
   {
 
     #region private backing filds
@@ -292,10 +292,10 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
 
   }
   /// <summary>
-  /// public partial class SADZgloszenieUCSkladCelny
+  /// public partial class CustomsOfficeUCSkladCelny
   /// </summary>
   [DataContract]
-  public partial class SADZgloszenieUCSkladCelny
+  public partial class CustomsOfficeUCSkladCelny
   {
 
     #region private backing filds
@@ -347,10 +347,10 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
 
   }
   /// <summary>
-  /// public partial class SADZgloszenieUCUCTranzytowy
+  /// public partial class CustomsOfficeUCUCTranzytowy
   /// </summary>
   [DataContract]
-  public partial class SADZgloszenieUCUCTranzytowy
+  public partial class CustomsOfficeUCUCTranzytowy
   {
 
     #region private backing filds

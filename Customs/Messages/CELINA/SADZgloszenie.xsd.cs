@@ -66,7 +66,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
       };
       return _new;
     }
-    private static SADZgloszenieNadawca CreateSADZgloszenieNadawca( string stringJson )
+    public static SADZgloszenieNadawca CreateSADZgloszenieNadawca( string stringJson )
     {
       Organization _copy = Organization.Deserialize( stringJson );
       return new SADZgloszenieNadawca()
@@ -84,7 +84,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
         UlicaNumer = _copy.UlicaNr
       };
     }
-    private static SADZgloszenieOdbiorca CreateSADZgloszenieOdbiorca( string stringJson )
+    public static SADZgloszenieOdbiorca CreateSADZgloszenieOdbiorca( string stringJson )
     {
       Organization _copy = Organization.Deserialize( stringJson );
       return new SADZgloszenieOdbiorca()

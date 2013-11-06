@@ -12,8 +12,8 @@ namespace CAS.CW.UnitTests.SADGeneraion
 
       UCZgloszenia = "PL362010",
       UCGraniczny = "PL362010",
-      Lokalizacja = new SADZgloszenieUCLokalizacja() { Miejsce = "PL360000SC0002" },
-      SkladCelny = new SADZgloszenieUCSkladCelny() { Typ = "C", Miejsce = "PL360000SC0002", Kraj = "PL" }
+      Lokalizacja = new CustomsOfficeUCLokalizacja() { Miejsce = "PL360000SC0002" },
+      SkladCelny = new CustomsOfficeUCSkladCelny() { Typ = "C", Miejsce = "PL360000SC0002", Kraj = "PL" }
     };
     string SerializedObject =
       @"{""Lokalizacja"":{""Miejsce"":""PL360000SC0002"",""Opis"":null,""UC"":null},""SkladCelny"":{""Kraj"":""PL"",""Miejsce"":""PL360000SC0002"",""Typ"":""C""},""UCGraniczny"":""PL362010"",""UCKontrolny"":null,""UCPrzeznaczenia"":null,""UCTranzytowy"":null,""UCZgloszenia"":""PL362010""}";
@@ -29,6 +29,11 @@ namespace CAS.CW.UnitTests.SADGeneraion
     {
       string _out = NewObject.Serialize();
       Assert.AreEqual<string>( SerializedObject, _out, "Serialization failed - object are not the same." );
+    }
+    [TestMethod]
+    public void SADZgloszenieUCTestMethod()
+    {
+      CAS.SmartFactory.Customs.Messages.CELINA.SAD.SADZgloszenieUC customsOffice = CAS.SmartFactory.Customs.Messages.CELINA.SAD.SADZgloszenieUC.Create( SerializedObject );
     }
   }
 }

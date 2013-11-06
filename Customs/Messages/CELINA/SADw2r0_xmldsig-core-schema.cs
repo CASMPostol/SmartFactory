@@ -1605,7 +1605,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD {
     /// <uwagi/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
     [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    //[System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/SADw2r0.xsd")]
     public partial class SADZgloszenieUC {
