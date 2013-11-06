@@ -54,7 +54,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
             _xml = DisposalRequestXml.ImportDocument( _stream );
           At = "GetAtIndex - DisposalRequestLib";
           DisposalRequestLib _entry = _entry = Element.GetAtIndex<DisposalRequestLib>(_edc.DisposalRequestLibrary, properties.ListItemId);
-          _entry.CW_DisposalDestination = Covert2DisposalDestination(_xml.DisposalDestination);
+          _entry.ClearenceProcedure = Covert2ClearenceProcedure(_xml.ClearenceProcedure);
           At = "GetXmlContent";
           GetXmlContent( _edc, _xml, _entry, ProgressChange );
           At = "SubmitChanges";
@@ -97,22 +97,22 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
     #endregion
 
     #region private
-    private CW_DisposalDestination Covert2DisposalDestination(Interoperability.ERP.DisposalDestination disposalDestination)
+    private ClearenceProcedure Covert2ClearenceProcedure(Interoperability.ERP.ClearenceProcedure clearanceProcedure)
     {
-      CW_DisposalDestination _ret = default(CW_DisposalDestination);
-      switch (disposalDestination)
+      ClearenceProcedure _ret = default(ClearenceProcedure);
+      switch (clearanceProcedure)
       {
-        case Interoperability.ERP.DisposalDestination.Productionwarehouse:
-          _ret = CW_DisposalDestination.ProductionWarehouse;
+        case Interoperability.ERP.ClearenceProcedure.Item4071:
+          _ret = ClearenceProcedure._4071;
           break;
-        case Interoperability.ERP.DisposalDestination.IPRwarehouse:
-          _ret = CW_DisposalDestination.ProductionWarehouse;
+        case Interoperability.ERP.ClearenceProcedure.Item5171:
+          _ret = ClearenceProcedure._5171;
           break;
-        case Interoperability.ERP.DisposalDestination.Export:
-          _ret = CW_DisposalDestination.ProductionWarehouse;
+        case Interoperability.ERP.ClearenceProcedure.Item3171:
+          _ret = ClearenceProcedure._3171;
           break;
-        case Interoperability.ERP.DisposalDestination.Othercustomswarehouse:
-          _ret = CW_DisposalDestination.ProductionWarehouse;
+        case Interoperability.ERP.ClearenceProcedure.Item7171:
+          _ret = ClearenceProcedure._7171;
           break;
       }
       return _ret;
