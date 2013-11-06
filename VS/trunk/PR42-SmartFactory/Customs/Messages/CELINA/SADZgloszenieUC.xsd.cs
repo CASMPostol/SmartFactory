@@ -29,18 +29,31 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     public static SADZgloszenieUC Create( string customsOfficeJson )
     {
       CustomsOffice _co = CustomsOffice.Deserialize( customsOfficeJson );
-      List<SADZgloszenieUCUCTranzytowy> _uct = new List<SADZgloszenieUCUCTranzytowy>();
-      foreach ( var _couct in _co.UCTranzytowy )
-        _uct.Add( new SADZgloszenieUCUCTranzytowy() { PozId = _couct.PozId, UCTranzytowy = _couct.UCTranzytowy } );
+      SADZgloszenieUCUCTranzytowy[] _uctArray = null;
+      if ( _co.UCTranzytowy != null )
+      {
+        List<SADZgloszenieUCUCTranzytowy> _uct = new List<SADZgloszenieUCUCTranzytowy>();
+        foreach ( var _couct in _co.UCTranzytowy )
+          _uct.Add( new SADZgloszenieUCUCTranzytowy() { PozId = _couct.PozId, UCTranzytowy = _couct.UCTranzytowy } );
+        _uctArray = _uct.ToArray();
+      }
       return new SADZgloszenieUC()
       {
         UCZgloszenia = _co.UCZgloszenia,
         UCGraniczny = _co.UCGraniczny,
-        Lokalizacja = new SADZgloszenieUCLokalizacja() { Miejsce = _co.Lokalizacja.Miejsce, Opis = _co.Lokalizacja.Opis, UC = _co.Lokalizacja.UC },
+        Lokalizacja = _co.Lokalizacja == null ? null : new SADZgloszenieUCLokalizacja() { Miejsce = _co.Lokalizacja.Miejsce, Opis = _co.Lokalizacja.Opis, UC = _co.Lokalizacja.UC },
         SkladCelny = new SADZgloszenieUCSkladCelny() { Typ = _co.SkladCelny.Typ, Miejsce = _co.SkladCelny.Miejsce, Kraj = _co.SkladCelny.Kraj },
-        UCKontrolny = new SADZgloszenieUCUCKontrolny() { KodPocztowy = _co.UCKontrolny.KodPocztowy, Kraj = _co.UCKontrolny.Kraj, Miejscowosc = _co.UCKontrolny.Miejscowosc, Nazwa = _co.UCKontrolny.Nazwa, UCKontrolny = _co.UCKontrolny.UCKontrolny, UlicaNumer = _co.UCKontrolny.UlicaNumer },
+        UCKontrolny = _co.UCKontrolny == null ? null : new SADZgloszenieUCUCKontrolny()
+                                                              {
+                                                                KodPocztowy = _co.UCKontrolny.KodPocztowy,
+                                                                Kraj = _co.UCKontrolny.Kraj,
+                                                                Miejscowosc = _co.UCKontrolny.Miejscowosc,
+                                                                Nazwa = _co.UCKontrolny.Nazwa,
+                                                                UCKontrolny = _co.UCKontrolny.UCKontrolny,
+                                                                UlicaNumer = _co.UCKontrolny.UlicaNumer
+                                                              },
         UCPrzeznaczenia = _co.UCPrzeznaczenia,
-        UCTranzytowy = _uct.ToArray(),
+        UCTranzytowy = _uctArray,
       };
     }
   }

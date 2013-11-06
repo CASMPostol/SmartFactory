@@ -42,7 +42,7 @@ namespace CAS.CW.UnitTests.SADGeneraion
       Organization _copy = Organization.Deserialize( _out );
       Assert.AreEqual<string>( _new.Nazwa, _copy.Nazwa, "Serialization failed - object are not the same." );
     }
-    private string ObjectSerialized = @"{""EORI"":""PL828000181900000"",""Id"":1,""Kod"":""99-220"",""Kraj"":""PL"",""Miejscowosc"":""WARTKOWICE"",""Nazwa"":""JTI POLSKA SP. Z O.O."",""Pesel"":null,""Regon"":""00130199100000"",""TIN"":""PL8280001819"",""UlicaNr"":""GOSTKOW STARY 42""}";
+    private string SerializedObject = @"{""EORI"":""PL828000181900000"",""Id"":1,""Kod"":""99-220"",""Kraj"":""PL"",""Miejscowosc"":""WARTKOWICE"",""Nazwa"":""JTI POLSKA SP. Z O.O."",""Pesel"":null,""Regon"":""00130199100000"",""TIN"":""PL8280001819"",""UlicaNr"":""GOSTKOW STARY 42""}";
     private Organization ObjectNotSerialized = new Organization()
       {
         Id = 1,
@@ -59,8 +59,13 @@ namespace CAS.CW.UnitTests.SADGeneraion
     public void CheckStringContent()
     {
       string _out = ObjectNotSerialized.Serialize();
-      Organization _copy = Organization.Deserialize( ObjectSerialized );
+      Organization _copy = Organization.Deserialize( SerializedObject );
       Assert.AreEqual<string>( ObjectNotSerialized.Nazwa, _copy.Nazwa, "Serialization failed - object are not the same." );
+    }
+    [TestMethod]
+    public void SADZgloszenieNadawcaTestMethod()
+    {
+      CAS.SmartFactory.Customs.Messages.CELINA.SAD.SADZgloszenieNadawca _zo = CAS.SmartFactory.Customs.Messages.CELINA.SAD.SADZgloszenie.CreateSADZgloszenieNadawca( SerializedObject );
     }
   }
 }
