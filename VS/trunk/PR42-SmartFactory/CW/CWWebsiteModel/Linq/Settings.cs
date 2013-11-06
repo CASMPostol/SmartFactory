@@ -71,6 +71,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     public static string CustomsProcedureCode9DK8 = "9DK8";
     #endregion
 
+    internal static string FormatGoodsName( Entities entities, string name, string grade, string sku, string batch )
+    {
+      return String.Format( GetParameter( entities, SettingsEntry.GoodsDescription_Format ), name, grade, sku, batch );
+    }
+
+    #region private
     private const string c_documentNumberFormat = "{0:D7}";
     private static Dictionary<SettingsEntry, string> m_DefaultSettings = new Dictionary<SettingsEntry, string>()
     {
@@ -78,6 +84,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
        { SettingsEntry.GoodsDescription_CWPackageUnits_Pattern, @"(?<=\bBATCH:)\D*\d*\D*\d*[.,,]\d*\W*\w*\D*(\d*)\W*CT" },
        { SettingsEntry.GoodsDescription_Units_Pattern,  @"(?<=\bBATCH:)\D*\d*\D*\d*[.,,]\d*\W*(\w*)\D*\d*\W*CT" },
        { SettingsEntry.GoodsDescription_CertificateOfAuthenticity_Pattern,  @"\b([\w\d\s\.,-]*)/.*" },
+       { SettingsEntry.GoodsDescription_Format, @"{0} GRADE:{1} SKU:{2} Batch:{3}"},
        { SettingsEntry.GoodsDescription_CertificateOfOrgin_Pattern, @"\b([\w\d\s\.,-]*)/.*" },
        { SettingsEntry.DefaultValidToDatePeriod, "730" },
        { SettingsEntry.LooselyFormatedDate, @"(?<=/)\D*(\d{1,2}).(\d{1,2}).(\d{4})" },
@@ -92,6 +99,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
        {SettingsEntry.DefaultCustomsOffice, 
           @"{""Lokalizacja"":{""Miejsce"":""PL360000SC0002"",""Opis"":null,""UC"":null},""SkladCelny"":{""Kraj"":""PL"",""Miejsce"":""PL360000SC0002"",""Typ"":""C""},""UCGraniczny"":""PL362010"",""UCKontrolny"":null,""UCPrzeznaczenia"":null,""UCTranzytowy"":null,""UCZgloszenia"":""PL362010""}" }
     };
+    #endregion
   }
   public enum SettingsEntry
   {
@@ -100,6 +108,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     GoodsDescription_Units_Pattern,
     GoodsDescription_CertificateOfAuthenticity_Pattern,
     GoodsDescription_CertificateOfOrgin_Pattern,
+    GoodsDescription_Format,
     DefaultValidToDatePeriod,
     LooselyFormatedDate,
     BinCardFileName,
