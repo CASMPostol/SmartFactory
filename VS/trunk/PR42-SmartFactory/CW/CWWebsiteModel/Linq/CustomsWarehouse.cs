@@ -33,7 +33,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// <param name="data">The data.</param>
     /// <param name="clearence">The clearence.</param>
     /// <param name="declaration">The declaration.</param>
-    public CustomsWarehouse(Linq.Entities edc, Account.CWAccountData data)
+    public CustomsWarehouse( Linq.Entities edc, Account.CWAccountData data )
       : this()
     {
       this.Archival = false;
@@ -68,9 +68,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       //Certificate
       this.CW_CertificateOfOrgin = data.CW_CertificateOfOrgin;
       this.CW_CertificateOfAuthenticity = data.CW_CertificateOfAuthenticity;
-      if (data.CW_COADate.HasValue)
+      if ( data.CW_COADate.HasValue )
         this.CW_COADate = data.CW_COADate;
-      if (data.CW_CODate.HasValue)
+      if ( data.CW_CODate.HasValue )
         this.CW_CODate = data.CW_CODate;
       this.CWL_CW2VendorTitle = data.VendorLookup;
     }
@@ -82,22 +82,22 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// <param name="parentRequestLib">The parent request library.</param>
     /// <param name="xmlData">The XML data to be disposed.</param>
     /// <exception cref="CAS.SharePoint.ApplicationError">CustomsWarehouse.Dispose;ending;null</exception>
-    public static void Dispose(Entities entities, string batch, DisposalRequestLib parentRequestLib, CustomsWarehouseDisposal.XmlData xmlData)
+    public static void Dispose( Entities entities, string batch, DisposalRequestLib parentRequestLib, CustomsWarehouseDisposal.XmlData xmlData )
     {
-      List<CustomsWarehouse> _available = GetOrderedQueryable4Batch(entities, batch);
-      if (_available.Count == 0) 
+      List<CustomsWarehouse> _available = GetOrderedQueryable4Batch( entities, batch );
+      if ( _available.Count == 0 )
       {
-        string _batchMsg = String.Format("I cannot find any account for the batch: {0}", batch);
-        throw new CAS.SharePoint.ApplicationError("CustomsWarehouse.Dispose", "GetOrderedQueryable4Batch", _batchMsg, null);
+        string _batchMsg = String.Format( "I cannot find any account for the batch: {0}", batch );
+        throw new CAS.SharePoint.ApplicationError( "CustomsWarehouse.Dispose", "GetOrderedQueryable4Batch", _batchMsg, null );
       }
-      foreach (CustomsWarehouse _cwx in _available)
+      foreach ( CustomsWarehouse _cwx in _available )
       {
-        _cwx.Dispose(entities, parentRequestLib, ref xmlData);
-        if (xmlData.DeclaredQuantity + xmlData.AdditionalQuantity <= 0)
+        _cwx.Dispose( entities, parentRequestLib, ref xmlData );
+        if ( xmlData.DeclaredQuantity + xmlData.AdditionalQuantity <= 0 )
           return;
       }
-      string _msg = String.Format("there is not enought tobacco {0} to dispose the batch: {1}", xmlData.DeclaredQuantity + xmlData.AdditionalQuantity, batch);
-      throw new CAS.SharePoint.ApplicationError("CustomsWarehouse.Dispose", "ending", _msg, null);
+      string _msg = String.Format( "there is not enought tobacco {0} to dispose the batch: {1}", xmlData.DeclaredQuantity + xmlData.AdditionalQuantity, batch );
+      throw new CAS.SharePoint.ApplicationError( "CustomsWarehouse.Dispose", "ending", _msg, null );
     }
     /// <summary>
     /// Check if the any records exists.
@@ -105,46 +105,46 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// <param name="entities">The entities.</param>
     /// <param name="documentNo">The document no.</param>
     /// <returns></returns>
-    internal static bool RecordExist(Entities entities, string documentNo)
+    internal static bool RecordExist( Entities entities, string documentNo )
     {
-      return (from CustomsWarehouse _cwx in entities.CustomsWarehouse where _cwx.DocumentNo.Contains(documentNo) select _cwx).Any();
+      return ( from CustomsWarehouse _cwx in entities.CustomsWarehouse where _cwx.DocumentNo.Contains( documentNo ) select _cwx ).Any();
     }
     /// <summary>
     /// Updates the title.
     /// </summary>
     internal void UpdateTitle()
     {
-      Title = String.Format("CW-{0:D4}{1:D6}", this.CWC_EntryDate.Value.Year, Id.Value);
+      Title = String.Format( "CW-{0:D4}{1:D6}", this.CWC_EntryDate.Value.Year, Id.Value );
     }
     #endregion
 
     #region private
-    private static List<CustomsWarehouse> GetOrderedQueryable4Batch(Entities entities, string batch)
+    private static List<CustomsWarehouse> GetOrderedQueryable4Batch( Entities entities, string batch )
     {
-      return (from _cwi in entities.CustomsWarehouse
-              where _cwi.TobaccoNotAllocated.Value > 0 && _cwi.Batch == batch
-              orderby _cwi.Id.Value ascending
-              select _cwi).ToList<CustomsWarehouse>();
+      return ( from _cwi in entities.CustomsWarehouse
+               where _cwi.TobaccoNotAllocated.Value > 0 && _cwi.Batch == batch
+               orderby _cwi.Id.Value ascending
+               select _cwi ).ToList<CustomsWarehouse>();
     }
-    private void Dispose(Entities entities, DisposalRequestLib parent, ref CustomsWarehouseDisposal.XmlData xmlData)
+    private void Dispose( Entities entities, DisposalRequestLib parent, ref CustomsWarehouseDisposal.XmlData xmlData )
     {
       decimal _2Dispose = xmlData.DeclaredQuantity + xmlData.AdditionalQuantity;
-      if (this.TobaccoNotAllocated.DecimalValue() < _2Dispose)
+      if ( this.TobaccoNotAllocated.DecimalValue() < _2Dispose )
         _2Dispose = this.TobaccoNotAllocated.DecimalValue();
-      decimal _Boxes = Math.Round(_2Dispose / Convert.ToDecimal(this.CW_MassPerPackage.Value) + 0.49m, 0);
+      decimal _Boxes = Math.Round( _2Dispose / Convert.ToDecimal( this.CW_MassPerPackage.Value ) + 0.49m, 0 );
       _2Dispose = _Boxes * this.CW_MassPerPackage.DecimalValue();
-      Debug.Assert(_2Dispose <= this.TobaccoNotAllocated.DecimalValue(), "Account overrun");
-      if (Math.Abs(_2Dispose - this.TobaccoNotAllocated.DecimalValue()) < this.CW_MassPerPackage.DecimalValue())
+      Debug.Assert( _2Dispose <= this.TobaccoNotAllocated.DecimalValue(), "Account overrun" );
+      if ( Math.Abs( _2Dispose - this.TobaccoNotAllocated.DecimalValue() ) < this.CW_MassPerPackage.DecimalValue() )
         _2Dispose = this.TobaccoNotAllocated.DecimalValue();
       //DeclaredQntty
-      decimal _DeclaredQntty = Math.Min(_2Dispose, xmlData.DeclaredQuantity);
+      decimal _DeclaredQntty = Math.Min( _2Dispose, xmlData.DeclaredQuantity );
       xmlData.DeclaredQuantity -= _DeclaredQntty;
       //AdditionalQntty
       decimal _AdditionalQntty = 0;
-      _AdditionalQntty = Math.Max(_2Dispose - _DeclaredQntty, 0);
-      _AdditionalQntty = Math.Min(_AdditionalQntty, xmlData.AdditionalQuantity);
+      _AdditionalQntty = Math.Max( _2Dispose - _DeclaredQntty, 0 );
+      _AdditionalQntty = Math.Min( _AdditionalQntty, xmlData.AdditionalQuantity );
       xmlData.AdditionalQuantity -= _AdditionalQntty;
-      this.TobaccoNotAllocated = Convert.ToDouble(this.TobaccoNotAllocated.DecimalValue() - _2Dispose);
+      this.TobaccoNotAllocated = Convert.ToDouble( this.TobaccoNotAllocated.DecimalValue() - _2Dispose );
       CustomsWarehouseDisposal _new = new CustomsWarehouseDisposal()
       {
         AccountClosed = false,
@@ -153,20 +153,21 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         CW_AddedKg = _AdditionalQntty.DoubleValue(),
         CW_DeclaredNetMass = _DeclaredQntty.DoubleValue(),
         CW_SettledNetMass = _2Dispose.DoubleValue(),
-        CW_SettledGrossMass = (_2Dispose + PackageWeight() * _Boxes).DoubleValue(),
+        CW_SettledGrossMass = ( _2Dispose + PackageWeight() * _Boxes ).DoubleValue(),
         CW_PackageToClear = _Boxes.DoubleValue(),
         CWL_CWDisposal2DisposalRequestLibraryID = parent,
         CWL_CWDisposal2PCNTID = this.CWL_CW2PCNID,
         CWL_CWDisposal2CustomsWarehouseID = this,
+        SADDate = CAS.SharePoint.Extensions.DateTimeNull,
         SKUDescription = xmlData.SKUDescription,
         Title = "ToDo",
       };
-      _new.UpdateTitle(this.CWC_EntryDate.Value);
-      entities.CustomsWarehouseDisposal.InsertOnSubmit(_new);
+      _new.UpdateTitle( this.CWC_EntryDate.Value );
+      entities.CustomsWarehouseDisposal.InsertOnSubmit( _new );
     }
     private decimal PackageWeight()
     {
-      return this.CW_PackageUnits.Value == 0 ? 0m : (this.GrossMass.DecimalValue() - this.CW_Quantity.DecimalValue()) / this.CW_PackageUnits.DecimalValue();
+      return this.CW_PackageUnits.Value == 0 ? 0m : ( this.GrossMass.DecimalValue() - this.CW_Quantity.DecimalValue() ) / this.CW_PackageUnits.DecimalValue();
     }
     #endregion
 
