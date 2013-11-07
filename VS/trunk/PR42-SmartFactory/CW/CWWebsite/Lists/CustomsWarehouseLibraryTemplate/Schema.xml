@@ -2,14 +2,15 @@
 <List xmlns:ows="Microsoft SharePoint" Title="CustomsWarehouseLibraryTemplate" Direction="$Resources:Direction;" Url="CustomsWarehouseLibraryTemplate" BaseType="1" xmlns="http://schemas.microsoft.com/sharepoint/" EnableContentTypes="TRUE">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0101006A3BDDD5D82D4C03B297650EEECA0EF2" Name="DisposalRequestLib" Group="CAS Smart Factory Customs Warehouse" Description="Disposal Request Library Content Type" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x010100719D28821A6F456C8F47FB42F9B33DAA" Name="CustomsWarehouseLib" Group="CAS Smart Factory Customs Warehouse" Description="Customs Warehouse Library Content Type" Overwrite="TRUE" Inherits="TRUE">
         <FieldRefs>
-          <FieldRef ID="{BF7DC931-BF06-4498-A8D7-B8F658B48E58}" Name="CW_MovedToWarehouse" />
+          <FieldRef ID="{3A6EC6FC-81DD-4E39-9A78-B95D198C6938}" Name="Archival" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field ID="{BF7DC931-BF06-4498-A8D7-B8F658B48E58}" Name="CW_MovedToWarehouse" DisplayName="Moved to" Group="CAS Smart Factory Customs Warehouse" Type="Text" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_Archival;" Name="Archival" Type="Boolean" ID="{3a6ec6fc-81dd-4e39-9a78-b95d198c6938}" Group="CAS Smart Factory IPR" SourceID="{4980ddea-5535-43bf-b6dd-ce8a5723e0d8}" StaticName="Archival" ShowInEditForm="FALSE" ShowInNewForm="FALSE" />
+      <Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" Group="_Hidden" Type="Text" DisplayName="$Resources:core,Title;" Required="TRUE" FromBaseType="TRUE" ShowInEditForm="TRUE" ShowInNewForm="TRUE" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE" FreeForm="TRUE">
@@ -42,7 +43,8 @@
           <FieldRef Name="LinkFilename"></FieldRef>
           <FieldRef Name="Modified"></FieldRef>
           <FieldRef Name="Editor"></FieldRef>
-          <FieldRef Name="CW_MovedToWarehouse" />
+          <FieldRef Name="Archival" />
+          <FieldRef Name="Title" />
         </ViewFields>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />
@@ -141,6 +143,62 @@
               <FieldRef Name="xd_Signature" />
               <Value Type="Boolean">1</Value>
             </Neq>
+          </Where>
+        </Query>
+      </View>
+      <View BaseViewID="10" Type="HTML" WebPartZoneID="Main" DisplayName="Active" DefaultView="FALSE" MobileView="True" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/Active.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="DocIcon"></FieldRef>
+          <FieldRef Name="LinkFilename"></FieldRef>
+          <FieldRef Name="Modified"></FieldRef>
+          <FieldRef Name="Editor"></FieldRef>
+          <FieldRef Name="Archival" />
+          <FieldRef Name="Title" />
+        </ViewFields>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noitemsinview_doclibrary_howto2)" />
+        </ParameterBindings>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="FileLeafRef" />
+          </OrderBy>
+          <Where>
+            <Neq>
+              <FieldRef Name="Archival" />
+              <Value Type="Boolean">Yes</Value>
+            </Neq>
+          </Where>
+        </Query>
+      </View>
+      <View BaseViewID="11" Type="HTML" WebPartZoneID="Main" DisplayName="Archives" DefaultView="FALSE" MobileView="True" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/Archives.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="DocIcon"></FieldRef>
+          <FieldRef Name="LinkFilename"></FieldRef>
+          <FieldRef Name="Modified"></FieldRef>
+          <FieldRef Name="Editor"></FieldRef>
+          <FieldRef Name="Archival" />
+          <FieldRef Name="Title" />
+        </ViewFields>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noitemsinview_doclibrary_howto2)" />
+        </ParameterBindings>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="FileLeafRef" />
+          </OrderBy>
+          <Where>
+            <Eq>
+              <FieldRef Name="Archival" />
+              <Value Type="Boolean">Yes</Value>
+            </Eq>
           </Where>
         </Query>
       </View>
