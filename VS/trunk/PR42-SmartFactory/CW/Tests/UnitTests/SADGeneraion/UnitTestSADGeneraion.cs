@@ -63,9 +63,9 @@ namespace CAS.CW.UnitTests.SADGeneraion
       Assert.AreEqual<string>( ObjectNotSerialized.Nazwa, _copy.Nazwa, "Serialization failed - object are not the same." );
     }
     [TestMethod]
-    public void SADZgloszenieNadawcaTestMethod()
+    public void SADZgloszenieOdbiorcaTestMethod()
     {
-      CAS.SmartFactory.Customs.Messages.CELINA.SAD.SADZgloszenieNadawca _zo = CAS.SmartFactory.Customs.Messages.CELINA.SAD.SADZgloszenie.CreateSADZgloszenieNadawca( SerializedObject );
+      CAS.SmartFactory.Customs.Messages.CELINA.SAD.SADZgloszenieOdbiorca _zo = CAS.SmartFactory.Customs.Messages.CELINA.SAD.SADZgloszenie.CreateSADZgloszenieOdbiorca( SerializedObject );
     }
   }
 }

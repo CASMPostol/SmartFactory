@@ -52,17 +52,22 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
         KodTowarowy = productCode,
         KodTaric = ProductCodeTaric,
         MasaBrutto = _MasaBrutto,
+        MasaBruttoSpecified = true,
         Procedura = customsProcedure,
         MasaNetto = _MasaNetto,
+        MasaNettoSpecified = true,
         IloscTowaru = quantity,
-        Opakowanie = new SADZgloszenieTowarOpakowanie[] { new SADZgloszenieTowarOpakowanie() { PozId = 1, Rodzaj = "", Znaki = ".", LiczbaOpakowan = packages } },
+        Opakowanie = new SADZgloszenieTowarOpakowanie[] { new SADZgloszenieTowarOpakowanie() { PozId = 1, Rodzaj = "", Znaki = ".", LiczbaOpakowan = packages, LiczbaOpakowanSpecified = true, IloscSztukSpecified = false } },
         DokumentPoprzedni = new SADZgloszenieTowarDokumentPoprzedni[] { new SADZgloszenieTowarDokumentPoprzedni() { PozId = 1, Kategoria = "Z", Kod = "", Nr = referencePrevious, NrCelina = referencePrevious } },
         DokumentWymagany = attachements,
         WartoscTowaru = new SADZgloszenieTowarWartoscTowaru()
         {
+          Korekta = null,
           WartoscPozycji = value,
+          WartoscPozycjiSpecified = true,
           MetodaWartosciowania = "1",
           WartoscStatystyczna = Math.Round( value, 0 ),
+          WartoscStatystycznaSpecified = true,
           SzczegolyWartosci = new SADZgloszenieTowarWartoscTowaruSzczegolyWartosci[] { new SADZgloszenieTowarWartoscTowaruSzczegolyWartosci() { PozId = 1, Kod = "B00PL" } }
         }
       };

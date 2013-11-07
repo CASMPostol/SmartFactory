@@ -43,10 +43,9 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
         using ( Entities _entities = new Entities( workflowProperties.WebUrl ) )
         {
           DisposalRequestLib _Dr = Element.GetAtIndex<DisposalRequestLib>( _entities.DisposalRequestLibrary, workflowProperties.ItemId );
-
           foreach ( CustomsWarehouseDisposal _cwdx in _Dr.CustomsWarehouseDisposal )
           {
-            Clearence _newClearance = Clearence.CreataClearence( _entities, "Customs Warehouse Withdraw", _Dr.ClearenceProcedure.Value ); //TODO Allow selection of ClearenceProcedure http://casas:11227/sites/awt/Lists/TaskList/DispForm.aspx?ID=4023
+            Clearence _newClearance = Clearence.CreataClearence( _entities, "Customs Warehouse Withdraw", _Dr.ClearenceProcedure.Value );
             _cwdx.CWL_CWDisposal2ClearanceID = _newClearance;
             _MasterDocumentName = _newClearance.SADTemplateDocumentNameFileName( _entities );
             SAD _sad = CraeteSAD( _entities, _cwdx, _MasterDocumentName, _Dr.ClearenceProcedure.Value );
@@ -73,7 +72,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
       _dcsList.Add( SADZgloszenieTowarDokumentWymagany.Create( _Pos++, Settings.CustomsProcedureCode9DK8, masterDocumentName, String.Empty ) );
       foreach ( SADRequiredDocuments _rdx in _entrySAD.SADRequiredDocuments )
       {
-        if ( _rdx.Code == Settings.CustomsProcedureCodeA004 || _rdx.Code == Settings.CustomsProcedureCodeN865 || _rdx.Code == Settings.CustomsProcedureCodeN954 )
+        if ( Required( _rdx.Code ) )
           _dcsList.Add( SADZgloszenieTowarDokumentWymagany.Create( _Pos++, _rdx.Code, _rdx.Number, _rdx.Title ) );
       }
       decimal _IloscTowaruId = 1;
@@ -96,6 +95,11 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
                                                          Settings.GetParameter( entities, SettingsEntry.RecipientOrganization ),
                                                          Vendor.SenderOrganization( entities ) );
       return SAD.Create( Settings.GetParameter( entities, SettingsEntry.OrganizationEmail ), _application );
+    }
+    private static bool Required( string Code )
+    {
+      return Code.Contains( Settings.CustomsProcedureCodeA004 ) || Code.Contains( Settings.CustomsProcedureCodeN865 ) ||
+             Code.Contains( Settings.CustomsProcedureCodeN954 ) || Code.Contains( Settings.CustomsProcedureCodeN935 );
     }
 
     public String logToHistoryListActivity_HistoryDescription = default( System.String );
