@@ -43,12 +43,13 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
         using ( Entities _entities = new Entities( workflowProperties.WebUrl ) )
         {
           DisposalRequestLib _Dr = Element.GetAtIndex<DisposalRequestLib>( _entities.DisposalRequestLibrary, workflowProperties.ItemId );
+
           foreach ( CustomsWarehouseDisposal _cwdx in _Dr.CustomsWarehouseDisposal )
           {
-            Clearence _newClearance = Clearence.CreataClearence( _entities, "Customs Warehouse Withdraw", ClearenceProcedure._5171 ); //TODO Allow selection of ClearenceProcedure http://casas:11227/sites/awt/Lists/TaskList/DispForm.aspx?ID=4023
+            Clearence _newClearance = Clearence.CreataClearence( _entities, "Customs Warehouse Withdraw", _Dr.ClearenceProcedure.Value ); //TODO Allow selection of ClearenceProcedure http://casas:11227/sites/awt/Lists/TaskList/DispForm.aspx?ID=4023
             _cwdx.CWL_CWDisposal2ClearanceID = _newClearance;
             _MasterDocumentName = _newClearance.SADTemplateDocumentNameFileName( _entities );
-            SAD _sad = CraeteSAD( _entities, _cwdx, _MasterDocumentName );
+            SAD _sad = CraeteSAD( _entities, _cwdx, _MasterDocumentName, _Dr.ClearenceProcedure.Value );
             SPFile _newFile = File.CreateXmlFile<SAD>( workflowProperties.Web, _sad, _MasterDocumentName, SADConsignment.IPRSADConsignmentLibraryTitle, SAD.StylesheetNmane );
             SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( _entities.SADConsignment, _newFile.Item.ID );
             _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
@@ -64,7 +65,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
         logToHistoryListActivity_HistoryDescription = _ex.Message;
       }
     }
-    private static SAD CraeteSAD( Entities entities, CustomsWarehouseDisposal item, string masterDocumentName )
+    private static SAD CraeteSAD( Entities entities, CustomsWarehouseDisposal item, string masterDocumentName, ClearenceProcedure clearenceProcedure )
     {
       SADGood _entrySAD = item.CWL_CWDisposal2CustomsWarehouseID.CWL_CW2ClearenceID.Clearence2SadGoodID;
       List<SADZgloszenieTowarDokumentWymagany> _dcsList = new List<SADZgloszenieTowarDokumentWymagany>();
@@ -83,17 +84,17 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
       decimal _Value = item.CWL_CWDisposal2CustomsWarehouseID.Value.ConvertToDecimal();
       decimal _SADZgloszenieTowarId = 1;
       string _CWDocumentNo = item.CWL_CWDisposal2CustomsWarehouseID.DocumentNo;
-      string _customsProcedure = "sasasasa"; //TODO
+      string _CustomsProcedure = Entities.ToString( clearenceProcedure );
       SADZgloszenieTowar[] _good = new SADZgloszenieTowar[]
       {
         SADZgloszenieTowar.Create
-          ( item.GoodsName(entities), item.CW_PackageToClear.ConvertToDecimal(), _CWDocumentNo, _Value, ref _SADZgloszenieTowarId, item.ProductCode, item.ProductCodeTaric,  customsProcedure, _dcsList.ToArray(), 
+          ( item.GoodsName(entities), item.CW_PackageToClear.ConvertToDecimal(), _CWDocumentNo, _Value, ref _SADZgloszenieTowarId, item.ProductCode, item.ProductCodeTaric,  _CustomsProcedure, _dcsList.ToArray(), 
            _IloscTowaruArray)
       };
       SADZgloszenieUC _CustomsOffice = SADZgloszenieUC.Create( Settings.GetParameter( entities, SettingsEntry.DefaultCustomsOffice ) );
       SADZgloszenie _application = SADZgloszenie.Create( _good, _CustomsOffice,
                                                          Settings.GetParameter( entities, SettingsEntry.RecipientOrganization ),
-                                                          Vendor.SenderOrganization( entities ) );
+                                                         Vendor.SenderOrganization( entities ) );
       return SAD.Create( Settings.GetParameter( entities, SettingsEntry.OrganizationEmail ), _application );
     }
 
