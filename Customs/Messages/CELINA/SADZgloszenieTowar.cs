@@ -42,8 +42,8 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
       decimal _MasaNetto = 0;
       foreach ( SADZgloszenieTowarIloscTowaru _qunttyx in quantity )
       {
-        _MasaBrutto += _qunttyx.Ilosc;
-        _MasaNetto += _qunttyx.GrossMas;
+        _MasaBrutto += _qunttyx.GrossMas;
+        _MasaNetto += _qunttyx.Ilosc;
       }
       return new SADZgloszenieTowar()
       {
@@ -51,10 +51,10 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
         OpisTowaru = description,
         KodTowarowy = productCode,
         KodTaric = ProductCodeTaric,
-        MasaBrutto = _MasaBrutto,
+        MasaBrutto = Math.Round( _MasaBrutto, 0 ),
         MasaBruttoSpecified = true,
         Procedura = customsProcedure,
-        MasaNetto = _MasaNetto,
+        MasaNetto = Math.Round( _MasaNetto, 0 ),
         MasaNettoSpecified = true,
         IloscTowaru = quantity,
         Opakowanie = new SADZgloszenieTowarOpakowanie[] { new SADZgloszenieTowarOpakowanie() { PozId = 1, Rodzaj = "", Znaki = ".", LiczbaOpakowan = packages, LiczbaOpakowanSpecified = true, IloscSztukSpecified = false } },
