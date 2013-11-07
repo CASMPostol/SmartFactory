@@ -75,21 +75,25 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
         if ( _rdx.Code == Settings.CustomsProcedureCodeA004 || _rdx.Code == Settings.CustomsProcedureCodeN865 || _rdx.Code == Settings.CustomsProcedureCodeN954 )
           _dcsList.Add( SADZgloszenieTowarDokumentWymagany.Create( _Pos++, _rdx.Code, _rdx.Number, _rdx.Title ) );
       }
-      decimal value = item.CWL_CWDisposal2CustomsWarehouseID.Value.ConvertToDecimal();
-      string reference = item.CWL_CWDisposal2CustomsWarehouseID.DocumentNo;
       decimal _IloscTowaruId = 1;
       SADZgloszenieTowarIloscTowaru[] _IloscTowaruArray = new SADZgloszenieTowarIloscTowaru[]
       {
          SADZgloszenieTowarIloscTowaru.Create(ref _IloscTowaruId, item.CW_SettledNetMass.ConvertToDecimal(), item.CW_SettledGrossMass.ConvertToDecimal() )
       };
-      SADZgloszenieTowar[] _good = new SADZgloszenieTowar[] 
+      decimal _Value = item.CWL_CWDisposal2CustomsWarehouseID.Value.ConvertToDecimal();
+      decimal _SADZgloszenieTowarId = 1;
+      string _CWDocumentNo = item.CWL_CWDisposal2CustomsWarehouseID.DocumentNo;
+      string _customsProcedure = "sasasasa"; //TODO
+      SADZgloszenieTowar[] _good = new SADZgloszenieTowar[]
       {
-        SADZgloszenieTowar.Create( _IloscTowaruArray, item.GoodsName() , item.CW_PackageToClear.ConvertToDecimal(), reference, _dcsList.ToArray(), value )
+        SADZgloszenieTowar.Create
+          ( item.GoodsName(entities), item.CW_PackageToClear.ConvertToDecimal(), _CWDocumentNo, _Value, ref _SADZgloszenieTowarId, item.ProductCode, item.ProductCodeTaric,  customsProcedure, _dcsList.ToArray(), 
+           _IloscTowaruArray)
       };
-      SADZgloszenieUC customsOffice = SADZgloszenieUC.Create( Settings.GetParameter( entities, SettingsEntry.DefaultCustomsOffice ) );
-      SADZgloszenie _application = SADZgloszenie.Create( _good, customsOffice,
+      SADZgloszenieUC _CustomsOffice = SADZgloszenieUC.Create( Settings.GetParameter( entities, SettingsEntry.DefaultCustomsOffice ) );
+      SADZgloszenie _application = SADZgloszenie.Create( _good, _CustomsOffice,
                                                          Settings.GetParameter( entities, SettingsEntry.RecipientOrganization ),
-                                                         Settings.GetParameter( entities, SettingsEntry.SenderOrganization ) );
+                                                          Vendor.SenderOrganization( entities ) );
       return SAD.Create( Settings.GetParameter( entities, SettingsEntry.OrganizationEmail ), _application );
     }
 

@@ -29,9 +29,12 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     {
       return new SADZgloszenieWartoscTowarow()
       {
-        Wartosc = value,
+        KursWaluty = 1.0m,
+        KursWalutySpecified = true,
+        SzczegolyWartosci = string.Empty,
         Waluta = "PLN",
-        KursWaluty = 1.0m
+        Wartosc = value,
+        WartoscSpecified = true,
       };
     }
   }
