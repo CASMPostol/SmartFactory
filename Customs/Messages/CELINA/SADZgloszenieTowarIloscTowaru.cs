@@ -20,9 +20,9 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
   /// <summary>
   /// partial class SADZgloszenieTowarIloscTowaru
   /// </summary>
-  public partial class SADZgloszenieTowarIloscTowaru: QuantityDescription
+  public partial class SADZgloszenieTowarIloscTowaru : QuantityDescription
   {
-    public static SADZgloszenieTowarIloscTowaru Create( ref decimal pozId, decimal netMass, decimal grossMas )
+    public static SADZgloszenieTowarIloscTowaru Create(ref decimal pozId, decimal netMass, decimal grossMas)
     {
       return new SADZgloszenieTowarIloscTowaru()
       {
@@ -32,6 +32,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
         GrossMas = grossMas
       };
     }
+    [System.Xml.Serialization.XmlIgnore()]
     public decimal GrossMas { get; private set; }
     /// <summary>
     /// Gets the item no.
@@ -39,7 +40,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// <returns></returns>
     public override double? GetItemNo()
     {
-      return Convert.ToDouble( this.PozId );
+      return Convert.ToDouble(this.PozId);
     }
     /// <summary>
     /// Gets the net mass.
@@ -47,7 +48,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// <returns></returns>
     public override double? GetNetMass()
     {
-      return Convert.ToDouble( this.Ilosc );
+      return Convert.ToDouble(this.Ilosc);
     }
     /// <summary>
     /// Gets the units.

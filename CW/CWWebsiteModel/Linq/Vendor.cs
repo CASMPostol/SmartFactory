@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         TIN = string.Empty,
         UlicaNr = _Def.WorkAddress
       };
-      return null;
+      return _ret;
     }
 
   }
