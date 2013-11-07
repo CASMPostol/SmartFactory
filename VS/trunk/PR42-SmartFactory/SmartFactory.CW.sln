@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 	ProjectSection(SolutionItems) = preProject
 		..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4 = ..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4
 		CW\CWModel.t4 = CW\CWModel.t4
+		CW\CWWorkflows\bin\Debug\SAD_0000145.xml = CW\CWWorkflows\bin\Debug\SAD_0000145.xml
 		..\CommonBinaries\take_recent_binaries.cmd = ..\CommonBinaries\take_recent_binaries.cmd
 	EndProjectSection
 EndProject
