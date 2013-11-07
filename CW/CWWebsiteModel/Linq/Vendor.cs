@@ -12,11 +12,9 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
-using System;
-using System.Collections.Generic;
+
 using System.Linq;
-using System.Text;
+using CAS.SmartFactory.Customs.Messages.Serialization;
 
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq
 {
@@ -29,6 +27,24 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     internal static Vendor FirstOrDefault( Entities entities )
     {
       return ( from _vx in entities.Vendor orderby _vx.Id ascending select _vx ).FirstOrDefault<Vendor>();
+    }
+    public static Organization SenderOrganization( Entities entities )
+    {
+      Vendor _Def = Element.GetAtIndex<Vendor>( entities.Vendor, 1 );
+      Organization _ret = new Organization()
+      {
+        EORI = string.Empty,
+        Id = 1,
+        Kod = _Def.WorkZip,
+        Kraj = _Def.WorkCountry,
+        Miejscowosc = _Def.WorkCity,
+        Nazwa = _Def.Title,
+        Pesel = string.Empty,
+        Regon = string.Empty,
+        TIN = string.Empty,
+        UlicaNr = _Def.WorkAddress
+      };
+      return null;
     }
 
   }

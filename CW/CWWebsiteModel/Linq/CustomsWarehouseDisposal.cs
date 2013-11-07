@@ -14,9 +14,6 @@
 //</summary>
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq
 {
@@ -52,7 +49,36 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     }
     public string GoodsName( Entities entities )
     {
-      return Settings.FormatGoodsName( entities, CWL_CWDisposal2CustomsWarehouseID.TobaccoName, CWL_CWDisposal2CustomsWarehouseID.Grade, CWL_CWDisposal2CustomsWarehouseID.SKU, CWL_CWDisposal2CustomsWarehouseID.Batch );
+      CustomsWarehouse _cw = CWL_CWDisposal2CustomsWarehouseID;
+      return Settings.FormatGoodsName( entities, _cw.TobaccoName, _cw.Grade, _cw.SKU, _cw.Batch, _cw.DocumentNo );
+    }
+    /// <summary>
+    /// Gets the goods code.
+    /// </summary>
+    /// <value>
+    /// The goods code.
+    /// </value>
+    public string ProductCode
+    {
+      get
+      {
+        string _code = this.CWL_CWDisposal2CustomsWarehouseID.CWL_CW2PCNID.ProductCodeNumber;
+        return _code.Substring( _code.Length - 2, 2 );
+      }
+    }
+    /// <summary>
+    /// Gets the taric.
+    /// </summary>
+    /// <value>
+    /// The taric.
+    /// </value>
+    public string ProductCodeTaric
+    {
+      get
+      {
+        string _code = this.CWL_CWDisposal2CustomsWarehouseID.CWL_CW2PCNID.ProductCodeNumber;
+        return _code.Substring( 0, _code.Length - 2 );
+      }
     }
   }
 }

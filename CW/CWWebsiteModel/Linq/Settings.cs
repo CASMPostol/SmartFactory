@@ -71,9 +71,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     public static string CustomsProcedureCode9DK8 = "9DK8";
     #endregion
 
-    internal static string FormatGoodsName( Entities entities, string name, string grade, string sku, string batch )
+    internal static string FormatGoodsName( Entities entities, string tobaccoName, string grade, string sku, string batch, string documentNo )
     {
-      return String.Format( GetParameter( entities, SettingsEntry.GoodsDescription_Format ), name, grade, sku, batch );
+      return String.Format( GetParameter( entities, SettingsEntry.GoodsDescription_Format ), tobaccoName, grade, sku, batch, documentNo );
     }
 
     #region private
@@ -84,7 +84,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
        { SettingsEntry.GoodsDescription_CWPackageUnits_Pattern, @"(?<=\bBATCH:)\D*\d*\D*\d*[.,,]\d*\W*\w*\D*(\d*)\W*CT" },
        { SettingsEntry.GoodsDescription_Units_Pattern,  @"(?<=\bBATCH:)\D*\d*\D*\d*[.,,]\d*\W*(\w*)\D*\d*\W*CT" },
        { SettingsEntry.GoodsDescription_CertificateOfAuthenticity_Pattern,  @"\b([\w\d\s\.,-]*)/.*" },
-       { SettingsEntry.GoodsDescription_Format, @"{0} GRADE:{1} SKU:{2} Batch:{3}"},
+       { SettingsEntry.GoodsDescription_Format, @"{0} GRADE:{1} SKU:{2} Batch:{3} {4}" },
        { SettingsEntry.GoodsDescription_CertificateOfOrgin_Pattern, @"\b([\w\d\s\.,-]*)/.*" },
        { SettingsEntry.DefaultValidToDatePeriod, "730" },
        { SettingsEntry.LooselyFormatedDate, @"(?<=/)\D*(\d{1,2}).(\d{1,2}).(\d{4})" },

@@ -29,7 +29,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// <param name="goods">The goods.</param>
     /// <param name="customsOffice">The .</param>
     /// <returns></returns>
-    public static SADZgloszenie Create( SADZgloszenieTowar[] goods, SADZgloszenieUC customsOffice, string recipientOrganizationJson, string senderOrganizationJson )
+    public static SADZgloszenie Create( SADZgloszenieTowar[] goods, SADZgloszenieUC customsOffice, string recipientOrganizationJson, Serialization.Organization senderOrganizationJson )
     {
       decimal _grossMas = 0;
       decimal _pckgs = 0;
@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
         NrWlasny = "13SXX0000",
         P1a = "XX",
         P1b = "X",
-        LiczbaPozycji = goods.Length,
+        LiczbaPozycji = goods.Length, 
         LiczbaOpakowan = _pckgs,
         KrajWysylki = "XX",
         KrajPrzeznaczenia = "XX",
@@ -66,22 +66,21 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
       };
       return _new;
     }
-    public static SADZgloszenieNadawca CreateSADZgloszenieNadawca( string stringJson )
+    public static SADZgloszenieNadawca CreateSADZgloszenieNadawca( Organization stringJson )
     {
-      Organization _copy = Organization.Deserialize( stringJson );
       return new SADZgloszenieNadawca()
       {
         CRP = string.Empty,
-        EORI = _copy.EORI,
-        KodPocztowy = _copy.Kod,
-        Kraj = _copy.Kraj,
-        Miejscowosc = _copy.Miejscowosc,
-        Nazwa = _copy.Nazwa,
-        Pesel = _copy.Nazwa,
-        PozId = _copy.Id,
-        Regon = _copy.Regon,
-        TIN = _copy.TIN,
-        UlicaNumer = _copy.UlicaNr
+        EORI = stringJson.EORI,
+        KodPocztowy = stringJson.Kod,
+        Kraj = stringJson.Kraj,
+        Miejscowosc = stringJson.Miejscowosc,
+        Nazwa = stringJson.Nazwa,
+        Pesel = stringJson.Nazwa,
+        PozId = stringJson.Id,
+        Regon = stringJson.Regon,
+        TIN = stringJson.TIN,
+        UlicaNumer = stringJson.UlicaNr
       };
     }
     public static SADZgloszenieOdbiorca CreateSADZgloszenieOdbiorca( string stringJson )

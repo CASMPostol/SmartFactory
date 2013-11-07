@@ -26,15 +26,17 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// <summary>
     /// Creates the instance of <see cref="SADZgloszenieTowar" /> with some default values.
     /// </summary>
-    /// <param name="quantity">The quantity.</param>
     /// <param name="description">The description.</param>
     /// <param name="packages">The packages.</param>
     /// <param name="referencePrevious">The reference.</param>
-    /// <param name="attachements">The attachements.</param>
     /// <param name="value">The value.</param>
     /// <param name="pozId">The poz unique identifier.</param>
+    /// <param name="attachements">The attachements.</param>
+    /// <param name="quantity">The quantity.</param>
     /// <returns></returns>
-    public static SADZgloszenieTowar Create( SADZgloszenieTowarIloscTowaru[] quantity, string description, decimal packages, string referencePrevious, SADZgloszenieTowarDokumentWymagany[] attachements, decimal value, ref decimal pozId )
+    public static SADZgloszenieTowar Create
+      ( string description, decimal packages, string referencePrevious, decimal value, ref decimal pozId, string productCode, string ProductCodeTaric, string customsProcedure,
+        SADZgloszenieTowarDokumentWymagany[] attachements, SADZgloszenieTowarIloscTowaru[] quantity )
     {
       decimal _MasaBrutto = 0;
       decimal _MasaNetto = 0;
@@ -47,11 +49,11 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
       {
         PozId = pozId++,
         OpisTowaru = description,
-        KodTowarowy = "24012085",
-        KodTaric = "90",
-        MasaBrutto = 205,
-        Procedura = "4071",
-        MasaNetto = 190,
+        KodTowarowy = productCode,
+        KodTaric = ProductCodeTaric,
+        MasaBrutto = _MasaBrutto,
+        Procedura = customsProcedure,
+        MasaNetto = _MasaNetto,
         IloscTowaru = quantity,
         Opakowanie = new SADZgloszenieTowarOpakowanie[] { new SADZgloszenieTowarOpakowanie() { PozId = 1, Rodzaj = "", Znaki = ".", LiczbaOpakowan = packages } },
         DokumentPoprzedni = new SADZgloszenieTowarDokumentPoprzedni[] { new SADZgloszenieTowarDokumentPoprzedni() { PozId = 1, Kategoria = "Z", Kod = "", Nr = referencePrevious, NrCelina = referencePrevious } },
@@ -187,5 +189,6 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
       return this.DokumentWymagany;
     }
     #endregion
+
   }
 }
