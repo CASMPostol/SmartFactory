@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using System;
 using CAS.SmartFactory.Customs.Messages.Serialization;
 namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
 {
@@ -46,7 +47,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
         NrWlasny = "13SXX0000",
         P1a = "XX",
         P1b = "X",
-        LiczbaPozycji = goods.Length, 
+        LiczbaPozycji = goods.Length,
         LiczbaOpakowan = _pckgs,
         KrajWysylki = "XX",
         KrajPrzeznaczenia = "XX",
@@ -62,7 +63,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
         WarunkiDostawy = new SADZgloszenieWarunkiDostawy() { Kod = "XXX", Miejsce = "XXX", MiejsceKod = "X" },
         WartoscTowarow = _valueTotal,
         Towar = goods,
-        MiejsceData = null
+        MiejsceData = new SADZgloszenieMiejsceData() { Data = DateTime.Today, DataSpecified = true, Miejsce = "LODZ" }
       };
       return _new;
     }
