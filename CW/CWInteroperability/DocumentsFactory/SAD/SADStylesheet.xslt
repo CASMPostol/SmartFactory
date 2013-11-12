@@ -45,12 +45,7 @@
         <td align="right">
           <p>
             Gostków Stary,
-            <xsl:choose>
-              <xsl:when test="sad:Towar/sad:DokumentWymagany/@Kod='9DK8'">
-                <xsl:value-of select="sad:Towar/sad:DokumentWymagany/@Uwagi"/>
-              </xsl:when>
-              <xsl:when test="not(sad:Towar/sad:DokumentWymagany/@Kod='9DK8')">&#160;</xsl:when>
-            </xsl:choose>
+            <xsl:value-of select="sad:MiejsceData/@Data"/>
           </p>
         </td>
       </tr>
@@ -61,9 +56,7 @@
     <p>
       <xsl:apply-templates select="sad:Odbiorca"/>
     </p>
-    <p>
-      <b>ZGŁOSZENIE:</b>
-    </p>
+      <h2>ZGŁOSZENIE:</h2>
     <p>
       <xsl:apply-templates select="sad:WartoscTowarow" />
     </p>
@@ -83,8 +76,7 @@
             <br />
             <xsl:value-of select="@UlicaNumer"/>
             <br />
-            <xsl:value-of select="@KodPocztowy"/>
-            <xsl:value-of select="@Miejscowosc"/>
+            <xsl:value-of select="@KodPocztowy"/>&#160;<xsl:value-of select="@Miejscowosc"/>
             <br />
             <xsl:choose>
               <xsl:when test="@Kraj='CH'">
@@ -107,7 +99,7 @@
           <p>
             <xsl:value-of select="@Nazwa"/><br />
             <xsl:value-of select="@UlicaNumer"/><br />
-            <xsl:value-of select="@KodPocztowy"/> <xsl:value-of select="@Miejscowosc"/><br />
+            <xsl:value-of select="@KodPocztowy"/>&#160;<xsl:value-of select="@Miejscowosc"/><br />
             <xsl:choose>
               <xsl:when test="@Kraj='PL'">
                 POLSKA
@@ -153,8 +145,8 @@
         <th>Poz</th>
         <th>Opis</th>
         <th>Kod towarowy</th>
-        <th>Wartosc pozycji</th>
-        <th>Wartosc statystyczna</th>
+        <th>Wartość pozycji</th>
+        <th>Wartość statystyczna</th>
         <th>Kod taric</th>
         <th>Masa brutto</th>
         <th>Procedura</th>
@@ -207,5 +199,53 @@
         </td>
       </tr>
     </table>
+    <p>
+      <b>Dokument poprzedni</b>
+    </p>
+    <table cellspacing="0" cellpadding="0" border="1" width="100%">
+      <tr>
+        <th>Poz.</th>
+        <th>Nr</th>
+      </tr>
+      <xsl:apply-templates select="sad:DokumentPoprzedni" />
+    </table>
+    <p>
+      <b>Dokument wymagany</b>
+    </p>
+    <table cellspacing="0" cellpadding="0" border="1" width="100%">
+      <tr>
+        <th>Poz.</th>
+        <th>Kod</th>
+        <th>Nr</th>
+        <th>Uwagi</th>
+      </tr>
+        <xsl:apply-templates select="sad:DokumentWymagany" />
+    </table>
+  </xsl:template>
+  <xsl:template match="sad:DokumentWymagany">
+    <tr>
+      <td>
+        <xsl:value-of select="@PozId"/>
+      </td>
+      <td>
+        <xsl:value-of select="@Kod"/>
+      </td>
+      <td>
+        <xsl:value-of select="@Nr"/>
+      </td>
+      <td>
+        <xsl:value-of select="@Uwagi"/>
+      </td>
+    </tr>
+  </xsl:template>
+  <xsl:template match="sad:DokumentPoprzedni">
+    <tr>
+      <td>
+        <xsl:value-of select="@PozId"/>
+      </td>
+      <td>
+        <xsl:value-of select="@Nr"/>
+      </td>
+    </tr>
   </xsl:template>
 </xsl:stylesheet>
