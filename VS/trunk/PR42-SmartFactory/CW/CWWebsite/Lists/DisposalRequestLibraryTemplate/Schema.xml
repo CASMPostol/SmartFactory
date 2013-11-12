@@ -213,7 +213,7 @@
           </Where>
         </Query>
       </View>
-      <View BaseViewID="12" Type="HTML" WebPartZoneID="Main" DisplayName="Active" DefaultView="FALSE" MobileView="True" MobileDefaultView="True" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/Active.aspx">
+      <View BaseViewID="12" Type="HTML" WebPartZoneID="Main" DisplayName="Active" DefaultView="FALSE" MobileView="True" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/Active.aspx">
         <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
@@ -241,7 +241,7 @@
           </Where>
         </Query>
       </View>
-      <View BaseViewID="13" Type="HTML" WebPartZoneID="Main" DisplayName="Archives" DefaultView="FALSE" MobileView="True" MobileDefaultView="True" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/Archives.aspx">
+      <View BaseViewID="13" Type="HTML" WebPartZoneID="Main" DisplayName="Archives" DefaultView="FALSE" MobileView="True" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/Archives.aspx">
         <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
