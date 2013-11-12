@@ -1,10 +1,24 @@
-﻿using System;
+﻿//<summary>
+//  Title   : static class ClearenceHelpers
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Customs;
-using CAS.SmartFactory.Customs.Account;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.Account;
@@ -18,42 +32,42 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
   {
 
     #region public
-    internal static void DeclarationProcessing(string url, int _sad, CustomsDocument.DocumentType documentType, ref string comments, ProgressChangedEventHandler ProgressChange)
+    internal static void DeclarationProcessing(string webUrl, int sadDocumentTypeId, CustomsDocument.DocumentType documentType, ref string comments, ProgressChangedEventHandler ProgressChange)
     {
       comments = "Clearance association error";
       switch (documentType)
       {
         case CustomsDocument.DocumentType.SAD:
         case CustomsDocument.DocumentType.PZC:
-          SADPZCProcessing(url, documentType, _sad, ref comments, ProgressChange);
+          SADPZCProcessing(webUrl, documentType, sadDocumentTypeId, ref comments, ProgressChange);
           break;
         case CustomsDocument.DocumentType.IE529:
-          IE529Processing(url, _sad, ref comments);
+          IE529Processing(webUrl, sadDocumentTypeId, ref comments);
           break;
         case CustomsDocument.DocumentType.CLNE:
-          CLNEProcessing(url, _sad, ref comments, ProgressChange);
+          CLNEProcessing(webUrl, sadDocumentTypeId, ref comments, ProgressChange);
           break;
       }//switch (_documentType
     }
     #endregion
 
     #region private
-    private static void IE529Processing(string WebUrl, int sadDocumentTypeId, ref string _comments)
+    private static void IE529Processing(string webUrl, int sadDocumentTypeId, ref string comments)
     {
-      _comments = "Reexport of goods failed";
-      using (Entities _entities = new Entities(WebUrl))
+      comments = "Reexport of goods failed";
+      using (Entities _entities = new Entities(webUrl))
       {
         SADDocumentType _sad = Element.GetAtIndex<SADDocumentType>(_entities.SADDocument, sadDocumentTypeId);
         foreach (SADGood _gdx in _sad.SADGood)
           ClearThroughCustoms(_entities, _gdx);
-        _comments = "Reexport of goods";
+        comments = "Reexport of goods";
         _entities.SubmitChanges();
       }
     }
-    private static void CLNEProcessing(string WebUrl, int sadDocumentTypeId, ref string comments, ProgressChangedEventHandler ProgressChange)
+    private static void CLNEProcessing(string webUrl, int sadDocumentTypeId, ref string comments, ProgressChangedEventHandler progressChange)
     {
       List<CWAccountData> _tasksList = new List<CWAccountData>();
-      using (Entities _entities = new Entities(WebUrl))
+      using (Entities _entities = new Entities(webUrl))
       {
         SADDocumentType _sad = Element.GetAtIndex<SADDocumentType>(_entities.SADDocument, sadDocumentTypeId);
         IQueryable<Clearence> _clrncs = Clearence.GetClearence(_entities, _sad.ReferenceNumber);
@@ -71,13 +85,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
               _cx.FinishClearingThroughCustoms(_entities);
               break;
             case CustomsProcedureCodes.InwardProcessing:
-              CreateIPRAccount(_entities, _cx, CustomsDocument.DocumentType.SAD, out comments, ProgressChange);
+              CreateIPRAccount(_entities, _cx, CustomsDocument.DocumentType.SAD, out comments, progressChange);
               break;
             case CustomsProcedureCodes.CustomsWarehousingProcedure:
               comments = "CW account creation error";
               CWAccountData _accountData = new CWAccountData();
-              _accountData.GetAccountData(_entities, _cx, ImportXMLCommon.Convert2MessageType(CustomsDocument.DocumentType.SAD), ProgressChange);
-              CreateCWAccount(_accountData, WebUrl, out comments);
+              _accountData.GetAccountData(_entities, _cx, ImportXMLCommon.Convert2MessageType(CustomsDocument.DocumentType.SAD), progressChange);
+              CreateCWAccount(_accountData, webUrl, out comments);
               break;
             case CustomsProcedureCodes.ReExport:
             case CustomsProcedureCodes.NoProcedure:
@@ -88,16 +102,21 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         _entities.SubmitChanges();
       }
       foreach (CWAccountData _accountData in _tasksList)
-        CreateCWAccount(_accountData, WebUrl, out comments);
+        CreateCWAccount(_accountData, webUrl, out comments);
     }
-    private static void SADPZCProcessing(string WebUrl, CustomsDocument.DocumentType messageType, int sadDocumentTypeId, ref string comments, ProgressChangedEventHandler ProgressChange)
+    private static void SADPZCProcessing(string webUrl, CustomsDocument.DocumentType messageType, int sadDocumentTypeId, ref string comments, ProgressChangedEventHandler ProgressChange)
     {
       List<CWAccountData> _tasksList = new List<CWAccountData>();
-      using (Entities entities = new Entities(WebUrl))
+      using (Entities entities = new Entities(webUrl))
       {
         SADDocumentType sad = Element.GetAtIndex<SADDocumentType>(entities.SADDocument, sadDocumentTypeId);
         foreach (SADGood _sgx in sad.SADGood)
         {
+          if (messageType == CustomsDocument.DocumentType.SAD)
+          {
+            comments = "Document added";
+            continue;
+          }
           switch (_sgx.Procedure.RequestedProcedure())
           {
             case CustomsProcedureCodes.FreeCirculation:
@@ -136,7 +155,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         entities.SubmitChanges();
       } //using ( Entities entities
       foreach (CWAccountData _accountData in _tasksList)
-        CreateCWAccount(_accountData, WebUrl, out comments);
+        CreateCWAccount(_accountData, webUrl, out comments);
     }
     /// <summary>
     /// Creates the IPR account.
@@ -273,7 +292,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
           throw new CustomsDataException("Extensions.RequestedProcedure", "Unsupported requested procedure");
       }
     }
-
     private const string _wrongProcedure = "Wrong customs procedure";
     #endregion
 
