@@ -178,6 +178,21 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
+          <FieldRef Name="No" />
+          <FieldRef Name="SADDocumentNo" />
+          <FieldRef Name="CWL_CWDisposal2CWDocumentNo_sec" />
+          <FieldRef Name="SADDate" />
+          <FieldRef Name="CWL_CWDisposal2CWTobaccoName_sec" />
+          <FieldRef Name="CW_SettledNetMass" />
+          <FieldRef Name="CW_SettledGrossMass" />
+          <FieldRef Name="TobaccoValue" />
+          <FieldRef Name="CWL_CWDisposal2CWCurrency_sec" />
+          <FieldRef Name="CW_PackageToClear" />
+          <FieldRef Name="CW_Wz1" />
+          <FieldRef Name="CW_Wz2" />
+          <FieldRef Name="CW_Wz3" />
+          <FieldRef Name="CW_RemainingPackage" />
+          <FieldRef Name="CWL_CWDisposal2PCNPCN_sec" />
           <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
