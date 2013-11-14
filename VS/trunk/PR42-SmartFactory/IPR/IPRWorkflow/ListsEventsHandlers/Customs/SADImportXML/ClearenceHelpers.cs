@@ -122,20 +122,27 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
                 continue;
               }
               if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure)
-                CWClearThroughCustoms(entities, _sgx, out comments);
+                CWClearThroughCustoms(entities, _sgx, out comments); //Procedure 4071
               else if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.InwardProcessing)
-                ClearThroughCustoms(entities, _sgx);
+                ClearThroughCustoms(entities, _sgx); //Procedure 4051
               else
                 throw new IPRDataConsistencyException
                   ("SADPZCProcessing.FreeCirculation", string.Format("Unexpected previous procedure code {1}for the {0} message", messageType, _sgx.Procedure.PreviousProcedure()), null, _wrongProcedure);
               break;
             case CustomsProcedureCodes.InwardProcessing:
               {
-                Clearence _newClearance = Clearence.CreataClearence(entities, "InwardProcessing", ClearenceProcedure._5171, _sgx);
-                if (messageType == CustomsDocument.DocumentType.PZC)
-                  CreateIPRAccount(entities, _newClearance, CustomsDocument.DocumentType.PZC, out comments, ProgressChange);
-                else
+                if (messageType == CustomsDocument.DocumentType.SAD)
+                {
                   comments = "Document added";
+                  continue;
+                }
+                if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure)
+                  ;
+                else if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.NoProcedure)
+                {
+                  Clearence _newClearance = Clearence.CreataClearence(entities, "InwardProcessing", ClearenceProcedure._5171, _sgx);
+                  CreateIPRAccount(entities, _newClearance, CustomsDocument.DocumentType.PZC, out comments, ProgressChange);
+                }
                 break;
               }
             case CustomsProcedureCodes.CustomsWarehousingProcedure:
