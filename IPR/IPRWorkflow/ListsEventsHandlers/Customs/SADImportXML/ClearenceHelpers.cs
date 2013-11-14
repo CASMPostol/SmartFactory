@@ -137,9 +137,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
                   continue;
                 }
                 if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure)
+                  // Procedure 5171 
                   ;
                 else if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.NoProcedure)
                 {
+                  // Procedure 5100 
                   Clearence _newClearance = Clearence.CreataClearence(entities, "InwardProcessing", ClearenceProcedure._5171, _sgx);
                   CreateIPRAccount(entities, _newClearance, CustomsDocument.DocumentType.PZC, out comments, ProgressChange);
                 }
