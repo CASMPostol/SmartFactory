@@ -147,6 +147,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
         warnings.Add(_wrn);
       }
     }
+    /// <summary>
+    /// Clear through customs.
+    /// </summary>
+    /// <param name="commonClearanceData">The common clearance data.</param>
+    /// <param name="warnings">The warnings.</param>
+    /// <param name="requestedUrl">The requested URL.</param>
     void ICWAccountFactory.ClearThroughCustoms(CommonClearanceData commonClearanceData, List<Warnning> warnings, string requestedUrl)
     {
       string _at = "Beginning";
