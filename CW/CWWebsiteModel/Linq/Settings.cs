@@ -32,17 +32,17 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// <param name="entities">The edc.</param>
     /// <param name="index">The parameter index.</param>
     /// <returns></returns>
-    public static string GetParameter( Entities entities, SettingsEntry index )
+    public static string GetParameter(Entities entities, SettingsEntry index)
     {
-      Settings _ret = ( from _sx in entities.Settings where _sx.KeyValue.Contains( index.ToString() ) select _sx ).FirstOrDefault();
-      if ( _ret == null )
+      Settings _ret = (from _sx in entities.Settings where _sx.KeyValue.Contains(index.ToString()) select _sx).FirstOrDefault();
+      if (_ret == null)
       {
         _ret = new Settings()
         {
           KeyValue = index.ToString(),
-          Title = m_DefaultSettings[ index ]
+          Title = m_DefaultSettings[index]
         };
-        entities.Settings.InsertOnSubmit( _ret );
+        entities.Settings.InsertOnSubmit(_ret);
         entities.SubmitChanges();
       }
       return _ret.Title;
@@ -52,18 +52,18 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// </summary>
     /// <param name="entities">The entities.</param>
     /// <param name="itemId">The item unique identifier.</param>
-    public static string BinCardDocumentName( Entities entities, int itemId )
+    public static string BinCardDocumentName(Entities entities, int itemId)
     {
-      return String.Format( GetParameter( entities, SettingsEntry.BinCardFileName ), itemId );
+      return String.Format(GetParameter(entities, SettingsEntry.BinCardFileName), itemId);
     }
     /// <summary>
     /// Finisheds the name of the goods export form file.
     /// </summary>
     /// <param name="edc">The edc.</param>
     /// <param name="number">The number.</param>
-    public static string SADTemplateDocumentNameFileName( Entities edc, int number )
+    public static string SADTemplateDocumentNameFileName(Entities edc, int number)
     {
-      return String.Format( GetParameter( edc, SettingsEntry.SADTemplateDocumentNamePattern ), number );
+      return String.Format(GetParameter(edc, SettingsEntry.SADTemplateDocumentNamePattern), number);
     }
     public static string CustomsProcedureCodeA004 = "A004";
     public static string CustomsProcedureCodeN865 = "N865";
@@ -72,9 +72,25 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     public static string CustomsProcedureCodeN935 = "N935";
     #endregion
 
-    internal static string FormatGoodsName( Entities entities, string tobaccoName, string grade, string sku, string batch, string documentNo )
+    internal enum DutyKindEnum
     {
-      return String.Format( GetParameter( entities, SettingsEntry.GoodsDescription_Format ), tobaccoName, grade, sku, batch, documentNo );
+      VAT,
+      Duty,
+      ExciseDuty
+    }
+    internal static DutyKindEnum DutyKind(string dutyKind)
+    {
+      Dictionary<string, DutyKindEnum> _dctnry = new Dictionary<string, DutyKindEnum>() 
+        { 
+          { "A10", DutyKindEnum.Duty }, { "A00", DutyKindEnum.Duty }, { "A20", DutyKindEnum.Duty },
+          { "1A1", DutyKindEnum.ExciseDuty },
+          { "B00", DutyKindEnum.VAT }, { "B10", DutyKindEnum.VAT }, { "B20", DutyKindEnum.VAT }
+        };
+      return _dctnry[dutyKind];
+    }
+    internal static string FormatGoodsName(Entities entities, string tobaccoName, string grade, string sku, string batch, string documentNo)
+    {
+      return String.Format(GetParameter(entities, SettingsEntry.GoodsDescription_Format), tobaccoName, grade, sku, batch, documentNo);
     }
 
     #region private

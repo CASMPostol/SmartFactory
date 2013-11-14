@@ -80,7 +80,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
       {
          SADZgloszenieTowarIloscTowaru.Create(ref _IloscTowaruId, item.CW_SettledNetMass.ConvertToDecimal(), item.CW_SettledGrossMass.ConvertToDecimal() )
       };
-      decimal _Value = item.CWL_CWDisposal2CustomsWarehouseID.Value.ConvertToDecimal();
+      decimal _Value = item.TobaccoValue.ConvertToDecimal();
       decimal _SADZgloszenieTowarId = 1;
       string _CWDocumentNo = item.CWL_CWDisposal2CustomsWarehouseID.DocumentNo;
       string _CustomsProcedure = Entities.ToString( clearenceProcedure );

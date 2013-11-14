@@ -27,9 +27,18 @@ namespace CAS.SmartFactory.Customs.Account
     /// Creates the Customs Warehousing account.
     /// </summary>
     /// <param name="accountData">The account data.</param>
-    /// <param name="warning">The warnings collection.</param>
+    /// <param name="warnings">The warnings collection.</param>
     /// <param name="requestUrl">The The URL of a Windows SharePoint Services "14" Web site.</param>
-    void CreateCWAccount( CommonAccountData accountData, List<Warnning> warning, string requestUrl );
+    void CreateCWAccount(CommonAccountData accountData, List<Warnning> warnings, string requestUrl);
+
+
+    /// <summary>
+    /// Clear through customs.
+    /// </summary>
+    /// <param name="commonClearanceData">The common clearance data.</param>
+    /// <param name="warnings">The warnings.</param>
+    /// <param name="requestedUrl">The requested URL.</param>
+    void ClearThroughCustoms(CommonClearanceData commonClearanceData, List<Warnning> warnings, string requestedUrl);
 
   }
 }

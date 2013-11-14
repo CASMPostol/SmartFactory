@@ -17,7 +17,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 
-namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
 {
 
   /// <summary>

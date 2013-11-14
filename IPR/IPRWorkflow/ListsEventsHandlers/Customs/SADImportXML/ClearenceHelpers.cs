@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +21,7 @@ using CAS.SharePoint.Web;
 using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
-using CAS.SmartFactory.IPR.WebsiteModel.Linq.Account;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection;
 using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.Customs;
 using IPRClass = CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR;
@@ -88,6 +88,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
               CreateIPRAccount(_entities, _cx, CustomsDocument.DocumentType.SAD, out comments, progressChange);
               break;
             case CustomsProcedureCodes.CustomsWarehousingProcedure:
+              throw new NotImplementedException("CLNEProcessing - CustomsWarehousingProcedure"); //TODO http://casas:11227/sites/awt/Lists/RequirementsList/_cts/Requirements/displayifs.aspx?List=e1cf335a
               comments = "CW account creation error";
               CWAccountData _accountData = new CWAccountData();
               _accountData.GetAccountData(_entities, _cx, ImportXMLCommon.Convert2MessageType(CustomsDocument.DocumentType.SAD), progressChange);
@@ -112,18 +113,21 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         SADDocumentType sad = Element.GetAtIndex<SADDocumentType>(entities.SADDocument, sadDocumentTypeId);
         foreach (SADGood _sgx in sad.SADGood)
         {
-          if (messageType == CustomsDocument.DocumentType.SAD)
-          {
-            comments = "Document added";
-            continue;
-          }
           switch (_sgx.Procedure.RequestedProcedure())
           {
             case CustomsProcedureCodes.FreeCirculation:
-              if (messageType == CustomsDocument.DocumentType.PZC)
+              if (messageType == CustomsDocument.DocumentType.SAD)
+              {
+                comments = "Document added";
+                continue;
+              }
+              if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure)
+                CWClearThroughCustoms(entities, _sgx, out comments);
+              else if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.InwardProcessing)
                 ClearThroughCustoms(entities, _sgx);
               else
-                comments = "Document added";
+                throw new IPRDataConsistencyException
+                  ("SADPZCProcessing.FreeCirculation", string.Format("Unexpected previous procedure code {1}for the {0} message", messageType, _sgx.Procedure.PreviousProcedure()), null, _wrongProcedure);
               break;
             case CustomsProcedureCodes.InwardProcessing:
               {
@@ -149,7 +153,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
             case CustomsProcedureCodes.NoProcedure:
             case CustomsProcedureCodes.ReExport:
             default:
-              throw new IPRDataConsistencyException("Clearence.Associate", string.Format("Unexpected procedure code for the {0} message", messageType), null, _wrongProcedure);
+              throw new IPRDataConsistencyException("SADPZCProcessing.RequestedProcedure", string.Format("Unexpected procedure code for the {0} message", messageType), null, _wrongProcedure);
           }//switch ( _sgx.Procedure.RequestedProcedure() )
         }//foreach ( SADGood _sgx in sad.SADGood )
         entities.SubmitChanges();
@@ -203,6 +207,20 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     {
       List<Warnning> _lw = new List<Warnning>();
       _accountData.CallService(requestUrl, _lw);
+      if (_lw.Count == 0)
+      {
+        comments = "CW account created";
+        return;
+      }
+      ErrorsList _el = new ErrorsList();
+      _el.AddRange(_lw);
+      throw new InputDataValidationException("Create CW Account Failed", "CreateCWAccount", _el);
+    }
+    private static void CWClearThroughCustoms(Entities entities, SADGood _sgx, out string comments)
+    {
+      List<Warnning> _lw = new List<Warnning>();
+      CWClearanceData _ClearanceData = new CWClearanceData();
+      _ClearanceData.CallService(entities.Web, _lw);
       if (_lw.Count == 0)
       {
         comments = "CW account created";
