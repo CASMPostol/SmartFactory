@@ -59,7 +59,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       {
         SADDocumentType _sad = Element.GetAtIndex<SADDocumentType>(_entities.SADDocument, sadDocumentTypeId);
         foreach (SADGood _gdx in _sad.SADGood)
-          ClearThroughCustoms(_entities, _gdx);
+          IPRClearThroughCustoms(_entities, _gdx);
         comments = "Reexport of goods";
         _entities.SubmitChanges();
       }
@@ -124,7 +124,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
               if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure)
                 CWClearThroughCustoms(entities, _sgx, out comments); //Procedure 4071
               else if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.InwardProcessing)
-                ClearThroughCustoms(entities, _sgx); //Procedure 4051
+                IPRClearThroughCustoms(entities, _sgx); //Procedure 4051
               else
                 throw new IPRDataConsistencyException
                   ("SADPZCProcessing.FreeCirculation", string.Format("Unexpected previous procedure code {1}for the {0} message", messageType, _sgx.Procedure.PreviousProcedure()), null, _wrongProcedure);
@@ -225,7 +225,14 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       _el.AddRange(_lw);
       throw new InputDataValidationException("Create CW Account Failed", "CreateCWAccount", _el);
     }
-    private static void CWClearThroughCustoms(Entities entities, SADGood _sgx, out string comments)
+    /// <summary>
+    /// Clear through customs according 4071 procudure.
+    /// </summary>
+    /// <param name="entities">The entities.</param>
+    /// <param name="sadGood">The message gontent.</param>
+    /// <param name="comments">The comments.</param>
+    /// <exception cref="InputDataValidationException">Create CW Account Failed;CreateCWAccount</exception>
+    private static void CWClearThroughCustoms(Entities entities, SADGood sadGood, out string comments)
     {
       List<Warnning> _lw = new List<Warnning>();
       CWClearanceData _ClearanceData = new CWClearanceData();
@@ -239,7 +246,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       _el.AddRange(_lw);
       throw new InputDataValidationException("Create CW Account Failed", "CreateCWAccount", _el);
     }
-    private static void ClearThroughCustoms(Entities entities, SADGood good)
+    /// <summary>
+    /// Clear through customs according procedure 4051.
+    /// </summary>
+    /// <param name="entities">The entities.</param>
+    /// <param name="good">The good.</param>
+    /// <exception cref="InputDataValidationException">SAD Required Documents;clear through castoms fatal error;true</exception>
+    private static void IPRClearThroughCustoms(Entities entities, SADGood good)
     {
       bool _ifAny = false;
       foreach (SADRequiredDocuments _rdx in good.SADRequiredDocuments)
