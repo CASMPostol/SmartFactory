@@ -12,9 +12,9 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
-using CAS.SmartFactory.IPR.WebsiteModel.Linq.Account;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection;
 using CAS.SmartFactory.xml.Customs;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML

@@ -15,6 +15,7 @@
 
 using System;
 using CAS.SmartFactory.Customs.Messages.Serialization;
+
 namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
 {
   /// <summary>
@@ -67,6 +68,11 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
       };
       return _new;
     }
+    /// <summary>
+    /// Creates the sad zgloszenie nadawca.
+    /// </summary>
+    /// <param name="stringJson">The string json.</param>
+    /// <returns></returns>
     public static SADZgloszenieNadawca CreateSADZgloszenieNadawca( Organization stringJson )
     {
       return new SADZgloszenieNadawca()
@@ -84,6 +90,11 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
         UlicaNumer = stringJson.UlicaNr
       };
     }
+    /// <summary>
+    /// Creates the sad zgloszenie odbiorca.
+    /// </summary>
+    /// <param name="stringJson">The string json.</param>
+    /// <returns></returns>
     public static SADZgloszenieOdbiorca CreateSADZgloszenieOdbiorca( string stringJson )
     {
       Organization _copy = Organization.Deserialize( stringJson );

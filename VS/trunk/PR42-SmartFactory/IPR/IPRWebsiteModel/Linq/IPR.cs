@@ -15,7 +15,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="iprdata">The _iprdata.</param>
     /// <param name="clearence">The clearence.</param>
     /// <param name="declaration">The declaration.</param>
-    public IPR( Entities entities, Account.IPRAccountData iprdata, Clearence clearence, SADDocumentType declaration )
+    public IPR( Entities entities, CWInterconnection.IPRAccountData iprdata, Clearence clearence, SADDocumentType declaration )
       : this()
     {
       Linq.Consent _consentLookup = GetAtIndex<Consent>( entities.Consent, iprdata.ConsentLookup );

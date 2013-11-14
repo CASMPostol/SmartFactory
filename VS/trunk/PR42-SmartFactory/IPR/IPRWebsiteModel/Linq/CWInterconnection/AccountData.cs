@@ -22,7 +22,7 @@ using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.Customs.Account;
 using Microsoft.SharePoint.Linq;
 
-namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
 {
   /// <summary>
   /// Account Data abstract common part

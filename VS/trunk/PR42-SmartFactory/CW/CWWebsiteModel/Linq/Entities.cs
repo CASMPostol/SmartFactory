@@ -3395,7 +3395,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 				}
 			}
 		}
-	}
+
+  }
 	
 	/// <summary>
 	/// Vendor Content Type

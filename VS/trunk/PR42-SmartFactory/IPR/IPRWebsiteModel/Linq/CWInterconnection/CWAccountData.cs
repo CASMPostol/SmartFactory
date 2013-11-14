@@ -19,7 +19,7 @@ using CAS.SmartFactory.Customs.Account;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.SharePoint.Common.ServiceLocation;
 
-namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
 {
   /// <summary>
   /// Customs Warehouse Account Record Data

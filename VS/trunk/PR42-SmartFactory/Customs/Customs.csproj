@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\CommonClearanceData.cs" />
     <Compile Include="Account\CommonAccountData.cs" />
     <Compile Include="Account\ICWAccountFactory.cs" />
     <Compile Include="Extensions.cs" />
