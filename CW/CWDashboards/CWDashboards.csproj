@@ -120,7 +120,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dashboards\CheckListExitSheetDashboard\Elements.xml" />
+    <Content Include="Dashboards\CheckListExitSheetDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Dashboards\CWBookDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -143,6 +145,7 @@
     <Content Include="WebPartPagesCW\WebPageTemplate_CWBook.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_Statement.aspx" />
+    <Content Include="WebPartPagesCW\WebPageTemplate_SupplementCWBook.aspx" />
     <Content Include="Webparts\CheckListHost\Elements.xml" />
     <Content Include="Webparts\DisposalRequestHost\Elements.xml">
       <SubType>Designer</SubType>
