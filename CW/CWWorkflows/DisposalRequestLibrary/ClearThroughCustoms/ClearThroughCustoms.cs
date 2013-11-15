@@ -22,6 +22,7 @@ using CAS.SmartFactory.Customs.Messages.CELINA.SAD;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
+using CAS.SmartFactory.CW.WebsiteModel;
 
 namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCustoms
 {
@@ -49,7 +50,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
             _cwdx.CWL_CWDisposal2ClearanceID = _newClearance;
             _cwdx.CustomsStatus = CustomsStatus.Started;
             _MasterDocumentName = _newClearance.SADTemplateDocumentNameFileName(_entities);
-            SAD _sad = CraeteSAD(_entities, _cwdx, _MasterDocumentName, _Dr.ClearenceProcedure.Value);
+            SAD _sad = CraeteSAD(_entities, _cwdx, _MasterDocumentName);
             SPFile _newFile = File.CreateXmlFile<SAD>(workflowProperties.Web, _sad, _MasterDocumentName, SADConsignment.IPRSADConsignmentLibraryTitle, SAD.StylesheetNmane);
             SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>(_entities.SADConsignment, _newFile.Item.ID);
             _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
@@ -65,7 +66,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
         logToHistoryListActivity_HistoryDescription = _ex.Message;
       }
     }
-    private static SAD CraeteSAD(Entities entities, CustomsWarehouseDisposal disposal, string masterDocumentName, ClearenceProcedure clearenceProcedure)
+    private static SAD CraeteSAD(Entities entities, CustomsWarehouseDisposal disposal, string masterDocumentName)
     {
       SADGood _entrySAD = disposal.CWL_CWDisposal2CustomsWarehouseID.CWL_CW2ClearenceID.Clearence2SadGoodID;
       List<SADZgloszenieTowarDokumentWymagany> _dcsList = new List<SADZgloszenieTowarDokumentWymagany>();
@@ -84,7 +85,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
       decimal _Value = disposal.TobaccoValue.ConvertToDecimal();
       decimal _SADZgloszenieTowarId = 1;
       string _CWDocumentNo = disposal.CWL_CWDisposal2CustomsWarehouseID.DocumentNo;
-      string _CustomsProcedure = Entities.ToString(clearenceProcedure);
+      string _CustomsProcedure = String.IsNullOrEmpty(disposal.CustomsProcedure) ? disposal.CWL_CWDisposal2DisposalRequestLibraryID.ClearenceProcedure.Value.Convert2String() : disposal.CustomsProcedure;
       SADZgloszenieTowar[] _good = new SADZgloszenieTowar[]
       {
         SADZgloszenieTowar.Create

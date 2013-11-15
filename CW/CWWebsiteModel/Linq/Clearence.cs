@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CAS.SharePoint;
+using CAS.SmartFactory.CW.WebsiteModel;
 
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq
 {
@@ -57,7 +58,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       string _ClearanceTitleFormat = Settings.GetParameter(entities, SettingsEntry.ClearanceTitleFormat);
       Title = String.Format(_ClearanceTitleFormat,
                              this.ProcedureCode, //0
-                             Entities.ToString(ClearenceProcedure.GetValueOrDefault(Linq.ClearenceProcedure.Invalid)), //1
+                             ClearenceProcedure.GetValueOrDefault(Linq.ClearenceProcedure.Invalid).Convert2String(), //1
                              ReferenceNumber.NotAvailable(), //2
                              Id.GetValueOrDefault(-999)); //3
     }
