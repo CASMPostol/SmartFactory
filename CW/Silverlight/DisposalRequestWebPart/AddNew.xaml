@@ -18,6 +18,7 @@
     				<RowDefinition Height="Auto"/>
     				<RowDefinition Height="Auto"/>
     				<RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
     			</Grid.RowDefinitions>
 				<sdk:Label Content="Enter Batch No.:" Height="26" Foreground="White" Grid.Row="0" Grid.Column="0" />
@@ -33,7 +34,18 @@
                 <TextBox x:Name="x_TextBoxTotalStock" IsEnabled="False" Height="26" Width="200" Grid.Row="2" Grid.Column="1" Margin="5" BorderBrush="#FF3D8AA5" />
                 <sdk:Label Content="Qty to clear:" Height="26" Foreground="White" Grid.Row="3" Grid.Column="0" />
                 <TextBox x:Name="x_TextBoxQtyToClear" Height="26" Width="200" Grid.Row="3" Grid.Column="1" Margin="5" BorderBrush="#FF3D8AA5" />
-			</Grid>
+                <sdk:Label Content="Procedure:" Height="26" Foreground="White" Grid.Row="4" Grid.Column="0" />
+                <ComboBox x:Name="x_ComboBoxProcedure" Height="26" Width="200" Grid.Row="4" Grid.Column="1" Margin="5" BorderBrush="#FF3D8AA5" >
+                    <ComboBoxItem Name="x_3151">3151</ComboBoxItem>
+                    <ComboBoxItem Name="x_3171">3171</ComboBoxItem>
+                    <ComboBoxItem Name="x_4051">4051</ComboBoxItem>
+                    <ComboBoxItem Name="x_4071" IsSelected="True">4071</ComboBoxItem>
+                    <ComboBoxItem Name="x_5100">5100</ComboBoxItem>
+                    <ComboBoxItem Name="x_5171">5171</ComboBoxItem>
+                    <ComboBoxItem Name="x_7100">7100</ComboBoxItem>
+                    <ComboBoxItem Name="x_7171">7171</ComboBoxItem>
+                </ComboBox>
+            </Grid>
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
 				<Button x:Name="x_CancelButton" Content="Cancel" Click="CancelButton_Click" Style="{StaticResource ButtonStyle}" />
 				<Button x:Name="x_OKButton" Content="OK" Click="OKButton_Click" Style="{StaticResource ButtonStyle}" />
