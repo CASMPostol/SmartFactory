@@ -91,47 +91,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         throw new ApplicationException( String.Format( _frmt, _cp, ex.Message ) );
       }
     }
-    /// <summary>
-    /// Returns a <see cref="System.String" /> that represents this instance.
-    /// </summary>
-    /// <param name="procedureCode">The procedure code.</param>
-    /// <returns>
-    /// A <see cref="System.String" /> that represents procedure code.
-    /// </returns>
-    public static string ToString( ClearenceProcedure procedureCode )
-    {
-      string _value = String.Empty.NotAvailable();
-      switch ( procedureCode )
-      {
-        case ClearenceProcedure._3151:
-          _value = "3151";
-          break;
-        case ClearenceProcedure._3171:
-          _value = "3171";
-          break;
-        case ClearenceProcedure._4051:
-          _value = "4051";
-          break;
-        case ClearenceProcedure._4071:
-          _value = "4071";
-          break;
-        case ClearenceProcedure._5100:
-          _value = "5100";
-          break;
-        case ClearenceProcedure._5171:
-          _value = "5171";
-          break;
-        case ClearenceProcedure._7100:
-          _value = "7100";
-          break;
-        case ClearenceProcedure._7171:
-          _value = "7171";
-          break;
-        default:
-          break;
-      }
-      return _value;
-    }
     #endregion
   }
 }

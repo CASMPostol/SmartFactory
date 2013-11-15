@@ -150,6 +150,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         AccountClosed = false,
         Archival = false,
         CustomsStatus = CustomsStatus.NotStarted,
+        CustomsProcedure = parent.ClearenceProcedure.Value.Convert2String(),
         CW_AddedKg = _AdditionalQntty.DoubleValue(),
         CW_DeclaredNetMass = _DeclaredQntty.DoubleValue(),
         CW_SettledNetMass = _2Dispose.DoubleValue(),
