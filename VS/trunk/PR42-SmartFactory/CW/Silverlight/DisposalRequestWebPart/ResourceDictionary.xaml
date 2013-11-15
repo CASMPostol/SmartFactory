@@ -79,7 +79,7 @@
                 <SolidColorBrush Color="White" Opacity="0.5"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="Foreground" Value="Black"/>
@@ -91,6 +91,8 @@
                 <SolidColorBrush Color="#FFDCEEF4" Opacity="0.5"/>
             </Setter.Value>
         </Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Opacity" Value="1"/>
     </Style>
