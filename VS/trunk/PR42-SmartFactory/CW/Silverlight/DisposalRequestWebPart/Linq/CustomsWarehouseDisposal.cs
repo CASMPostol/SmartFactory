@@ -47,6 +47,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       {
         CNIDId = cw.CNIDId,
         CustomsStatus = Linq.CustomsStatus.NotStarted,
+        CustomsProcedure = "XX71", //TODO get from UI 
         Archival = false,
         AccountClosed = false,
         CW_AddedKg = toDisposeKg,
