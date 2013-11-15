@@ -146,10 +146,8 @@
         </ViewFields>
         <Query>
           <OrderBy>
-            <FieldRef Name="CustomsDebtDate" Ascending="TRUE">
-            </FieldRef>
-            <FieldRef Name="AccountClosed" Ascending="TRUE">
-            </FieldRef>
+            <FieldRef Name="CustomsDebtDate" Ascending="TRUE"></FieldRef>
+            <FieldRef Name="AccountClosed" Ascending="TRUE"></FieldRef>
           </OrderBy>
         </Query>
         <ParameterBindings>
@@ -319,6 +317,38 @@
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
+      </View>
+      <View BaseViewID="6" Name="Supplement CW Book" DisplayName="Supplement CW book" Type="GRID" WebPartZoneID="Main" SetupPath="pages\viewpage.aspx" Url="SupplementCWBook.aspx" MobileDefaultView="FALSE" MobileView="FALSE">
+        <ViewFields>
+          <FieldRef Name="Value" />
+          <FieldRef Name="CW_UnitPrice" />
+          <FieldRef Name="CW_PzNo" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID"></FieldRef>
+          </OrderBy>
+          <Where>
+            <Or>
+              <Or>
+                <Eq>
+                  <FieldRef Name="Value" />
+                  <Value Type="Number"></Value>
+                </Eq>
+                <Eq>
+                  <FieldRef Name="CW_UnitPrice" />
+                  <Value Type="Number"></Value>
+                </Eq>
+              </Or>
+              <Eq>
+                <FieldRef Name="CW_PzNo" />
+                <Value Type="Text"></Value>
+              </Eq>
+            </Or>
+          </Where>
+        </Query>
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
       </View>
     </Views>
     <Forms>
