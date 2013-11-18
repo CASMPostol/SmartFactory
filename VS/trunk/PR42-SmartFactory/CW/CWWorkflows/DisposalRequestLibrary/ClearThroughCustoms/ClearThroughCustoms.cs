@@ -19,13 +19,16 @@ using System.Workflow.Activities;
 using CAS.SharePoint.DocumentsFactory;
 using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.Customs.Messages.CELINA.SAD;
+using CAS.SmartFactory.CW.WebsiteModel;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
-using CAS.SmartFactory.CW.WebsiteModel;
 
 namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCustoms
 {
+  /// <summary>
+  /// partial class ClearThroughCustoms as <see cref="SequentialWorkflowActivity"/>
+  /// </summary>
   public sealed partial class ClearThroughCustoms : SequentialWorkflowActivity
   {
     public ClearThroughCustoms()
@@ -46,6 +49,8 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
           DisposalRequestLib _Dr = Element.GetAtIndex<DisposalRequestLib>(_entities.DisposalRequestLibrary, workflowProperties.ItemId);
           foreach (CustomsWarehouseDisposal _cwdx in _Dr.CustomsWarehouseDisposal)
           {
+            if (_cwdx.CustomsStatus.Value != CustomsStatus.NotStarted)
+              continue;
             Clearence _newClearance = Clearence.CreataClearence(_entities, "Customs Warehouse Withdraw", _Dr.ClearenceProcedure.Value);
             _cwdx.CWL_CWDisposal2ClearanceID = _newClearance;
             _cwdx.CustomsStatus = CustomsStatus.Started;
