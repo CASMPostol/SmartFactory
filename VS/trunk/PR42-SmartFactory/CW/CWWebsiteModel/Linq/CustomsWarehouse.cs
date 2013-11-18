@@ -123,7 +123,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     {
       return ( from _cwi in entities.CustomsWarehouse
                where _cwi.TobaccoNotAllocated.Value > 0 && _cwi.Batch == batch
-               orderby _cwi.Id.Value ascending
+               orderby _cwi.CustomsDebtDate.Value ascending, _cwi.DocumentNo ascending
                select _cwi ).ToList<CustomsWarehouse>();
     }
     private void Dispose( Entities entities, DisposalRequestLib parent, ref CustomsWarehouseDisposal.XmlData xmlData )
