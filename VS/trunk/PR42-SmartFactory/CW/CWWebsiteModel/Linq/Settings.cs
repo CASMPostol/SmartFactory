@@ -108,7 +108,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
        { SettingsEntry.BinCardFileName, "Bin Card "+ c_documentNumberFormat },
        { SettingsEntry.OrganizationEmail, "gstmaan@jti.com" },
        { SettingsEntry.SADTemplateDocumentNamePattern, "CW Wyprowadzenie " + c_documentNumberFormat },
-       { SettingsEntry.ClearanceTitleFormat, "Nr: {3:D5} {0}/{1} SAD: {2} " },
+       { SettingsEntry.ClearanceTitleFormatCW, "Nr: {3:D5} {0}/{1} SAD: {2} " },
        { SettingsEntry.RecipientOrganization, 
           @"{""EORI"":""PL828000181900000"",""Id"":1,""Kod"":""99-220"",""Kraj"":""PL"",""Miejscowosc"":""WARTKOWICE"",""Nazwa"":""JTI POLSKA SP. Z O.O."",""Pesel"":null,""Regon"":""00130199100000"",""TIN"":""PL8280001819"",""UlicaNr"":""GOSTKOW STARY 42""}"},
        {SettingsEntry.DefaultCustomsOffice, 
@@ -129,7 +129,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     BinCardFileName,
     OrganizationEmail,
     SADTemplateDocumentNamePattern,
-    ClearanceTitleFormat,
+    ClearanceTitleFormatCW,
     RecipientOrganization,
     DefaultCustomsOffice
   }

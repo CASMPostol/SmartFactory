@@ -55,7 +55,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       //  _quantity = this.Disposal.Sum<Disposal>( x => x.SettledQuantity.Value ).ToString( "F2" );
       //else
       //  _quantity = " --- ";
-      string _ClearanceTitleFormat = Settings.GetParameter(entities, SettingsEntry.ClearanceTitleFormat);
+      string _ClearanceTitleFormat = Settings.GetParameter(entities, SettingsEntry.ClearanceTitleFormatCW);
       Title = String.Format(_ClearanceTitleFormat,
                              this.ProcedureCode, //0
                              ClearenceProcedure.GetValueOrDefault(Linq.ClearenceProcedure.Invalid).Convert2String(), //1
