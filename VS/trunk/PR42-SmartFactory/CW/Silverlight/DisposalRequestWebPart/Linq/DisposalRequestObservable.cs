@@ -36,7 +36,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       RequestsQueue _Queue = new RequestsQueue( this, context );
       _Queue.DoAsync( _requests );
     }
-    internal void CreateDisposalRequest( List<CustomsWarehouse> list, double toDispose )
+    internal void CreateDisposalRequest( List<CustomsWarehouse> list, double toDispose, string customsProcedure )
     {
       if ( list.Count == 0 )
         throw new AggregateException( "list must contain at least one element" );
@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       else
       {
         DisposalRequest _dr = DisposalRequest.DefaultDisposalRequestnew( "N/A", _fcw );
-        _dr.GetDataContext( list, toDispose );
+        _dr.GetDataContext( list, toDispose, customsProcedure );
         this.Add( _dr );
         _dr.AutoCalculation = true;
       }

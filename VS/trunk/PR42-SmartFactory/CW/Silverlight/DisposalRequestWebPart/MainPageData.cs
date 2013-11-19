@@ -124,10 +124,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     /// </summary>
     /// <param name="list">The list of <see cref="CustomsWarehouse"/> with the same batch.</param>
     /// <param name="toDispose">The tobacco to dispose.</param>
-    internal void CreateDisposalRequest( List<CustomsWarehouse> list, double toDispose )
+    internal void CreateDisposalRequest(List<CustomsWarehouse> list, double toDispose, string customsProcedure)
     {
       CheckDisposed();
-      this.DisposalRequestObservable.CreateDisposalRequest( list, toDispose );
+      this.DisposalRequestObservable.CreateDisposalRequest( list, toDispose, customsProcedure );
     }
     internal void SubmitChanges()
     {
@@ -223,7 +223,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       Log = String.Format( ": new DataContext for url={0}.", m_URL );
       Debug.Assert( m_DisposalRequestLibId.HasValue, "m_SelectedID must have value" );
       m_Context.GetListCompleted += m_Context_GetListCompleted;
-      m_Context.GetListAsync<CustomsWarehouseDisposal>( CommonDefinition.CustomsWarehouseDisposalTitle, CommonDefinition.GetCAMLSelectedID( m_DisposalRequestLibId.Value, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID, CommonDefinition.CAMLTypeNumber ) );
+      m_Context.GetListAsync<CustomsWarehouseDisposal>
+        ( CommonDefinition.CustomsWarehouseDisposalTitle, CommonDefinition.GetCAMLSelectedID( m_DisposalRequestLibId.Value, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID, CommonDefinition.CAMLTypeNumber ) );
     }
     private void m_Context_GetListCompleted( object siurce, GetListAsyncCompletedEventArgs e )
     {
@@ -256,7 +257,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       if ( m_Disposed )
         throw new ObjectDisposedException( typeof( MainPageData ).Name );
     }
-
     #endregion //private
+
   }
 }
