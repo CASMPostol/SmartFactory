@@ -22,13 +22,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   public partial class CustomsWarehouse
   {
 
-    internal CustomsWarehouseDisposal CreateDisposal(int disposalRequestLibId, ref int packagesToDispose)
+    internal CustomsWarehouseDisposal CreateDisposal(int disposalRequestLibId, ref int packagesToDispose, string customsProcedure)
     {
       int _TdspsePackages = Math.Min(Linq.CustomsWarehouseDisposal.Packages(this.TobaccoNotAllocated.Value, this.CW_MassPerPackage.Value), packagesToDispose);
       if (_TdspsePackages == 0)
         return null;
       double _Tdspsekg = this.CW_MassPerPackage.Value * _TdspsePackages;
-      CustomsWarehouseDisposal _NewDisposal = Linq.CustomsWarehouseDisposal.Create(disposalRequestLibId, _TdspsePackages, _Tdspsekg, PackageWeight(), this);
+      CustomsWarehouseDisposal _NewDisposal = Linq.CustomsWarehouseDisposal.Create(disposalRequestLibId, _TdspsePackages, _Tdspsekg, PackageWeight(), this, customsProcedure);
       this.TobaccoNotAllocated -= _Tdspsekg;
       packagesToDispose -= _TdspsePackages;
       return _NewDisposal;

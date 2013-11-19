@@ -25,9 +25,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 {
   public partial class AddNew : ChildWindow
   {
+    #region public
     public AddNew()
     {
       InitializeComponent();
+      CustomsProcedure = string.Empty;
     }
     public AddNew(DataContextAsync context)
       : this()
@@ -36,6 +38,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     internal double ToDispose { get; private set; }
     internal List<CustomsWarehouse> Accounts { get; private set; }
+    internal string CustomsProcedure { get; private set; }
+    #endregion
 
     #region private
     private const string c_DoubleFormat = "F2";
@@ -49,6 +53,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         MessageBox.Show("Wrong qty to dispose", (string)this.Title, MessageBoxButton.OK);
         return;
       }
+      if (Accounts.Count == 0)
+      {
+        MessageBox.Show("No account found. Are you sure to close the window.", (string)this.Title, MessageBoxButton.OK);
+        return;
+      }
       if (_2dsps > m_Available || _2dsps < 0)
       {
         x_TextBoxQtyToClear.Text = x_TextBoxTotalStock.Text;
@@ -56,11 +65,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         MessageBox.Show(_msg, (string)this.Title, MessageBoxButton.OK);
         return;
       }
-      if (Accounts.Count == 0)
-      {
-        MessageBox.Show("No account found. Are you sure to close the window.", (string)this.Title, MessageBoxButton.OK);
-        return;
-      }
+      CustomsProcedure = ((ComboBoxItem)x_ComboBoxProcedure.SelectedItem).Content as string;
       ToDispose = _2dsps;
       this.DialogResult = true;
     }

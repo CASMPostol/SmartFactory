@@ -106,7 +106,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         AddNew _childWondow = (AddNew)sender;
         if ( !_childWondow.DialogResult.HasValue || !_childWondow.DialogResult.Value )
           return;
-        MainPageData.CreateDisposalRequest( _childWondow.Accounts, _childWondow.ToDispose );
+        MainPageData.CreateDisposalRequest( _childWondow.Accounts, _childWondow.ToDispose, _childWondow.CustomsProcedure );
       }
       catch ( Exception _ex )
       {

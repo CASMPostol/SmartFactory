@@ -41,13 +41,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       listCopy.Remove( this.CWL_CWDisposal2CustomsWarehouseID );
     }
-    internal static CustomsWarehouseDisposal Create( int disposalRequestLibId, int toDisposePackages, double toDisposeKg, double packageWeight, CustomsWarehouse cw )
+    internal static CustomsWarehouseDisposal Create(int disposalRequestLibId, int toDisposePackages, double toDisposeKg, double packageWeight, CustomsWarehouse cw, string customsProcedure)
     {
       CustomsWarehouseDisposal _newItem = new CustomsWarehouseDisposal()
       {
         CNIDId = cw.CNIDId,
         CustomsStatus = Linq.CustomsStatus.NotStarted,
-        CustomsProcedure = "XX71", //TODO get from UI 
+        CustomsProcedure = customsProcedure,
         Archival = false,
         AccountClosed = false,
         CW_AddedKg = toDisposeKg,
