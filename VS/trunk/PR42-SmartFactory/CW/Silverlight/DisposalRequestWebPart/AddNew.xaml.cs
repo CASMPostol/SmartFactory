@@ -111,6 +111,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
           x_TextBoxTotalStock.Text = "N/A";
           return;
         }
+        CustomsWarehouse _noValue = Accounts.FirstOrDefault<CustomsWarehouse>(x => !x.Value.HasValue);
+        if (_noValue != null)
+        {
+          x_TextBoxSelectedBatch.Text = "No Value";
+          x_TextBoxTotalStock.Text = "N/A";
+          return;
+        }
         Accounts.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
         x_TextBoxSelectedBatch.Text = String.Format("{0}/{1} accounts", Accounts.First<CustomsWarehouse>().Batch, Accounts.Count);
         m_Available = Accounts.Sum(x => x.TobaccoNotAllocated.Value);
