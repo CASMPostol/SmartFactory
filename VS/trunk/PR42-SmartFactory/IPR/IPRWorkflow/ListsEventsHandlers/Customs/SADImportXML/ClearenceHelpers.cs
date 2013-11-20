@@ -254,19 +254,19 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     /// <exception cref="InputDataValidationException">SAD Required Documents;clear through castoms fatal error;true</exception>
     private static void IPRClearThroughCustoms(Entities entities, SADGood good)
     {
-      bool _ifAny = false;
+      Clearence _clearance = null;
+      int? _cleranceInt = new Nullable<int>();
       foreach (SADRequiredDocuments _rdx in good.SADRequiredDocuments)
       {
         if (_rdx.Code != XMLResources.RequiredDocumentConsignmentCode)
           continue;
-        int? _cleranceInt = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber(_rdx.Number, Settings.GetParameter(entities, SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern));
-        if (!_cleranceInt.HasValue)
-          continue;
-        Clearence _clearance = Element.GetAtIndex<Clearence>(entities.Clearence, _cleranceInt.Value);
-        _clearance.FinishClearingThroughCustoms(entities, good);
-        _ifAny = true;
+        _cleranceInt = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber(_rdx.Number, Settings.GetParameter(entities, SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern));
+        if (_cleranceInt.HasValue)
+          break;
       }// foreach 
-      if (!_ifAny)
+      if (_cleranceInt.HasValue)
+        _clearance = Element.GetAtIndex<Clearence>(entities.Clearence, _cleranceInt.Value);
+      else
       {
         string _template = "Cannot find required document code={0} for customs document = {1}/ref={2}";
         throw new InputDataValidationException(
@@ -274,6 +274,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
           "SAD Required Documents",
           "clear through castoms fatal error", true);
       }
+      _clearance.FinishClearingThroughCustoms(entities, good);
     }
     /// <summary>
     /// Get requested customs procedure code

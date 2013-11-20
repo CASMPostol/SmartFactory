@@ -21,6 +21,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
 {
   internal static class ImportXMLCommon
   {
+
     internal static CAS.SmartFactory.Customs.Account.CommonAccountData.MessageType Convert2MessageType( CustomsDocument.DocumentType type )
     {
       AccountData.MessageType _ret = default( AccountData.MessageType );
