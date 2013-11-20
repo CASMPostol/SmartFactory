@@ -22,6 +22,13 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
   /// </summary>
   public partial class SADZgloszenieTowarIloscTowaru : QuantityDescription
   {
+    /// <summary>
+    /// Creates the an object of <see cref="SADZgloszenieTowarIloscTowaru"/>.
+    /// </summary>
+    /// <param name="pozId">The poz unique identifier.</param>
+    /// <param name="netMass">The net mass.</param>
+    /// <param name="grossMas">The gross mas.</param>
+    /// <returns></returns>
     public static SADZgloszenieTowarIloscTowaru Create(ref decimal pozId, decimal netMass, decimal grossMas)
     {
       return new SADZgloszenieTowarIloscTowaru()
@@ -32,6 +39,12 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
         GrossMas = grossMas
       };
     }
+    /// <summary>
+    /// Gets the gross mas.
+    /// </summary>
+    /// <value>
+    /// The gross mas.
+    /// </value>
     [System.Xml.Serialization.XmlIgnore()]
     public decimal GrossMas { get; private set; }
     /// <summary>

@@ -21,12 +21,20 @@ namespace CAS.SmartFactory.Customs.Account
   public class CommonClearanceData
   {
     /// <summary>
+    /// Initializes a new instance of the <see cref="CommonClearanceData"/> class.
+    /// </summary>
+    /// <param name="clearenceLookup">The clearence lookup.</param>
+    public CommonClearanceData(int clearenceLookup)
+    {
+      ClearenceLookup = clearenceLookup;
+    }
+    /// <summary>
     /// Gets or sets the clearence lookup.
     /// </summary>
     /// <value>
     /// The clearence lookup.
     /// </value>
-    public int ClearenceLookup { get; protected set; }
+    public int ClearenceLookup { get; private set; }
 
   }
 }

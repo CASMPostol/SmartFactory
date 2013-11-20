@@ -59,19 +59,45 @@ namespace IPRExternalDataTest
     //}
     //
     #endregion
-    private const string m_Pattern = @"\bP\w+\s+t\w+\s+(\d{7})";
     /// <summary>
     ///A test for FinishedGoodsExportFormFileName
     ///</summary>
     [TestMethod()]
     public void FinishedGoodsExportFormFileNameTest()
     {
-      int number = new Random().Next( 1, 9999999 ); 
-      string documentName = "Proces technologiczny {0:D7}"; // Settings.FinishedGoodsExportFormFileName( number );
-      Nullable<int> actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( documentName, m_Pattern );
-      Assert.AreEqual( number, actual );
-      actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( "sasa sasasa sasasa", m_Pattern );
-      Assert.IsFalse( actual.HasValue );
+      string m_Pattern = @"\bP\w+\st\w+\s+(\d{7})";
+      int number = new Random().Next(1, 9999999);
+      string _pattern = "Proces technologiczny {0:D7}"; // Settings.FinishedGoodsExportFormFileName( number );
+      string _documentName = String.Format(_pattern, number);
+      Nullable<int> actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber(_documentName, m_Pattern);
+      Assert.AreEqual(number, actual);
+      actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber("Proces xechnologiczny 1234567", m_Pattern);
+      Assert.IsFalse(actual.HasValue);
+      actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber("Proces Technologiczny 123456", m_Pattern);
+      Assert.IsFalse(actual.HasValue);
+    }
+    /// <summary>
+    ///A test for FinishedGoodsExportFormFileName
+    ///</summary>
+    [TestMethod()]
+    public void CWWyprowadzenieFileNameTest()
+    {
+      string m_Pattern = @"\bC\w+\sW\w+\s+(\d{7})";
+      int number = new Random().Next(1, 9999999);
+      string _pattern = "CW Wyprowadzenie {0:D7}"; // Settings.FinishedGoodsExportFormFileName( number );
+      string _documentName = String.Format(_pattern, number);
+      Nullable<int> actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber(_documentName, m_Pattern);
+      Assert.AreEqual(number, actual);
+      _pattern = "CW    Wyprowadzenie     {0:D7}"; // Settings.FinishedGoodsExportFormFileName( number );
+      _documentName = String.Format(_pattern, number);
+      actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber(_documentName, m_Pattern);
+      Assert.AreEqual(number, actual);
+      actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber("CW xyprowadzenie 1234567", m_Pattern);
+      Assert.IsFalse(actual.HasValue);
+      actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber("CW xyprowadzenie 123456", m_Pattern);
+      Assert.IsFalse(actual.HasValue);
+      actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber("CW xyprowadzenie1234567", m_Pattern);
+      Assert.IsFalse(actual.HasValue);
     }
   }
 }
