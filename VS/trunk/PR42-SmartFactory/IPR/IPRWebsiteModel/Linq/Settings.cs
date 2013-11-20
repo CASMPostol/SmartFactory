@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : partial class Settings
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,6 +28,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The required document finished good export consignment pattern
     /// </summary>
     RequiredDocumentFinishedGoodExportConsignmentPattern,
+    /// <summary>
+    /// The required document sad template document name pattern
+    /// </summary>
+    RequiredDocumentSADTemplateDocumentNamePattern,
     /// <summary>
     /// The goods description tobacco name pattern
     /// </summary>
@@ -132,7 +151,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private const string c_documentNumberFormat = "{0:D7}";
     private static Dictionary<SettingsEntry, string> m_DefaultSettings = new Dictionary<SettingsEntry, string>()
     {
-       {SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern, @"(?<=P\w*\b\st\w*\b\s)(\d{7})"},
+       {SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern, @"\bP\w+\st\w+\s+(\d{7})"},
+       {SettingsEntry.RequiredDocumentSADTemplateDocumentNamePattern,       @"\bC\w+\sW\w+\s+(\d{7})"},
        {SettingsEntry.GoodsDescriptionTobaccoNamePattern, @"\b(.*)(?=\sGRADE:)"},
        {SettingsEntry.GoodsDescriptionWGRADEPattern, @"(?<=\WGRADE:)\W*\b(\w*)"},
        {SettingsEntry.GoodsDescriptionSKUPattern, @"(?<=\WSKU:)\W*\b(\d*)"}, 

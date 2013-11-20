@@ -28,7 +28,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
   /// </summary>
   public class CWClearanceData : CommonClearanceData
   {
-
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CWClearanceData"/> class.
+    /// </summary>
+    /// <param name="clearenceLookup">The clearence lookup.</param>
+    public CWClearanceData(int clearenceLookup)
+      : base(clearenceLookup)
+    { }
     /// <summary>
     /// Calls the service.
     /// </summary>

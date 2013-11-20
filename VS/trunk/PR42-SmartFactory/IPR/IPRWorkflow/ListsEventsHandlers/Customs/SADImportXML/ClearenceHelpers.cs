@@ -137,7 +137,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
                   continue;
                 }
                 if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure)
-                  // Procedure 5171 
+                  // TODO Procedure 5171 
                   ;
                 else if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.NoProcedure)
                 {
@@ -229,13 +229,14 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     /// Clear through customs according 4071 procudure.
     /// </summary>
     /// <param name="entities">The entities.</param>
-    /// <param name="sadGood">The message gontent.</param>
+    /// <param name="good">The good.</param>
     /// <param name="comments">The comments.</param>
     /// <exception cref="InputDataValidationException">Create CW Account Failed;CreateCWAccount</exception>
-    private static void CWClearThroughCustoms(Entities entities, SADGood sadGood, out string comments)
+    private static void CWClearThroughCustoms(Entities entities, SADGood good, out string comments)
     {
       List<Warnning> _lw = new List<Warnning>();
-      CWClearanceData _ClearanceData = new CWClearanceData();
+      Clearence _clearance = GetClearanceId(entities, good, Settings.GetParameter(entities, SettingsEntry.RequiredDocumentSADTemplateDocumentNamePattern));
+      CWClearanceData _ClearanceData = new CWClearanceData(_clearance.Id.Value);
       _ClearanceData.CallService(entities.Web, _lw);
       if (_lw.Count == 0)
       {
@@ -254,16 +255,21 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     /// <exception cref="InputDataValidationException">SAD Required Documents;clear through castoms fatal error;true</exception>
     private static void IPRClearThroughCustoms(Entities entities, SADGood good)
     {
-      Clearence _clearance = null;
+      Clearence _clearance = GetClearanceId(entities, good, Settings.GetParameter(entities, SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern));
+      _clearance.FinishClearingThroughCustoms(entities, good);
+    }
+    private static Clearence GetClearanceId(Entities entities, SADGood good, string pattern)
+    {
       int? _cleranceInt = new Nullable<int>();
       foreach (SADRequiredDocuments _rdx in good.SADRequiredDocuments)
       {
         if (_rdx.Code != XMLResources.RequiredDocumentConsignmentCode)
           continue;
-        _cleranceInt = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber(_rdx.Number, Settings.GetParameter(entities, SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern));
+        _cleranceInt = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber(_rdx.Number, pattern);
         if (_cleranceInt.HasValue)
           break;
       }// foreach 
+      Clearence _clearance = null;
       if (_cleranceInt.HasValue)
         _clearance = Element.GetAtIndex<Clearence>(entities.Clearence, _cleranceInt.Value);
       else
@@ -274,7 +280,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
           "SAD Required Documents",
           "clear through castoms fatal error", true);
       }
-      _clearance.FinishClearingThroughCustoms(entities, good);
+      return _clearance;
     }
     /// <summary>
     /// Get requested customs procedure code
