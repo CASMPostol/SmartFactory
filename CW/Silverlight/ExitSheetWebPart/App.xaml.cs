@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : partial class App
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Windows;
 
 namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
@@ -16,7 +31,13 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
 
     private void Application_Startup(object sender, StartupEventArgs e)
     {
-      this.RootVisual = new MainPage();
+      if (!e.InitParams.ContainsKey((CommonDefinition.HiddenFieldDataParameterName)))
+        this.RootVisual = new MainPage();
+      else
+      {
+        string _HiddenFieldDataName = e.InitParams[CommonDefinition.HiddenFieldDataParameterName];
+        this.RootVisual = new MainPage(_HiddenFieldDataName);
+      }
     }
 
     private void Application_Exit(object sender, EventArgs e)
