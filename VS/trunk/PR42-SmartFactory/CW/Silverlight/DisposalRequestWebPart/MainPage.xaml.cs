@@ -46,7 +46,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       : this()
     {
       m_at = "creator";
-      m_HiddenFieldDataName = hiddenFieldDataName;
       HtmlDocument doc = HtmlPage.Document;
       HtmlElement hiddenField = doc.GetElementById( hiddenFieldDataName );
       string message = hiddenField.GetAttribute( "value" );
@@ -60,11 +59,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 
     #region private vars
     private int? m_SelectedID = new Nullable<int>();
-    private readonly string m_HiddenFieldDataName = String.Empty;
     private string m_at;
     private string m_URL = string.Empty;
     #endregion
-
 
     #region event handlers
     private void UserControl_Loaded( object sender, RoutedEventArgs e )
