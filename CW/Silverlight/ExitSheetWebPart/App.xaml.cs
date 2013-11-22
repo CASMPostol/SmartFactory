@@ -28,7 +28,6 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
       this.UnhandledException += this.Application_UnhandledException;
       InitializeComponent();
     }
-
     private void Application_Startup(object sender, StartupEventArgs e)
     {
       if (!e.InitParams.ContainsKey((CommonDefinition.HiddenFieldDataParameterName)))
@@ -39,7 +38,6 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
         this.RootVisual = new MainPage(_HiddenFieldDataName);
       }
     }
-
     private void Application_Exit(object sender, EventArgs e)
     {
 
