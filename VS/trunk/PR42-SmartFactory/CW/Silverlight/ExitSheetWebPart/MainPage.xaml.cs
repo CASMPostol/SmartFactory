@@ -13,9 +13,12 @@
 //  http://www.cas.eu
 //</summary>
 
+using System;
 using System.Windows;
+using System.Windows.Browser;
 using System.Windows.Controls;
 using System.Windows.Printing;
+using Microsoft.SharePoint.Client;
 
 namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
 {
@@ -23,7 +26,7 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
   /// <summary>
   /// class MainPage 
   /// </summary>
-  public partial class MainPage: UserControl
+  public partial class MainPage : UserControl
   {
     public MainPage()
     {
@@ -32,27 +35,62 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
       m_PrintDocument.PrintPage += PrintDocument_PrintPageEventHandler;
     }
 
+    public MainPage(string hiddenFieldDataName)
+      : this()
+    {
+      HtmlDocument doc = HtmlPage.Document;
+      HtmlElement hiddenField = doc.GetElementById(hiddenFieldDataName);
+      string message = hiddenField.GetAttribute("value");
+      int _id = 0;
+      if (Int32.TryParse(message, out _id))
+        m_SelectedID = _id;
+    }
+
     #region private
     private PrintDocument m_PrintDocument = null;
+    private int? m_SelectedID = new Nullable<int>();
+    private string m_at;
+    private string m_URL = string.Empty;
+
+    private void UserControl_Loaded(object sender, RoutedEventArgs e)
+    {
+      try
+      {
+        ClientContext _ClientContext = ClientContext.Current;
+        if (_ClientContext == null)
+          throw new ArgumentNullException("clientContext", String.Format("Cannot get the {0} ", "ClientContext"));
+        m_URL = _ClientContext.Url;
+        //TODO this.MainPageData.GetData(m_URL, m_SelectedID);
+      }
+      catch (Exception ex)
+      {
+        ExceptionHandling(ex);
+      }
+    }
 
     #region handlers
-    private void PrintDocument_PrintPageEventHandler( object sender, PrintPageEventArgs e )
+    private void PrintDocument_PrintPageEventHandler(object sender, PrintPageEventArgs e)
     {
       e.PageVisual = x_GridToBePrinted;
       e.HasMorePages = false;
     }
-    private void x_ButtonPrint_Click( object sender, RoutedEventArgs e )
+    private void x_ButtonPrint_Click(object sender, RoutedEventArgs e)
     {
       try
       {
-        m_PrintDocument.Print( "Exit Sheet" );
+        m_PrintDocument.Print("Exit Sheet");
       }
-      catch ( System.Exception ex )
+      catch (System.Exception ex)
       {
-        MessageBox.Show( ex.Message, "Print Exception", MessageBoxButton.OK );
+        MessageBox.Show(ex.Message, "Print Exception", MessageBoxButton.OK);
       }
     }
     #endregion
+
+    private void ExceptionHandling(Exception ex)
+    {
+      MessageBox.Show(ex.Message + " AT: " + m_at, "Loaded event error", MessageBoxButton.OK);
+    }
 
     #endregion
   }
