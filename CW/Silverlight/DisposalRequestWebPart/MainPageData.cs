@@ -155,10 +155,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private string b_Log = "Log before starting";
     #endregion
 
+    #region vars
     private bool m_Disposed = false;
     private string m_URL = String.Empty;
     private int? m_DisposalRequestLibId = new Nullable<int>();
     private bool m_Edited = false;
+    private DataContextAsync m_Context = new DataContextAsync();
+    #endregion
+
     /// <summary>
     /// Called whena property value changes.
     /// </summary>
@@ -205,7 +209,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       Log = e.UserState as string;
     }
-    private DataContextAsync m_Context = new DataContextAsync();
     private void m_Context_CreateContextAsyncCompletedEvent( object sender, AsyncCompletedEventArgs e )
     {
       m_Context.CreateContextAsyncCompletedEvent -= m_Context_CreateContextAsyncCompletedEvent;
