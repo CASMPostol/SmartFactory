@@ -23,25 +23,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
   /// <summary>
   /// Invard Processing Account Record Data
   /// </summary>
-  public class IPRAccountData: AccountData
+  public class IPRAccountData : AccountData
   {
 
     #region ctor
-    /// <summary>
-    /// Initializes a new instance of the <see cref="AccountData" /> class.
-    /// </summary>
-    /// <param name="edc">The <see cref="Entities" /> object.</param>
-    /// <param name="clearence">The clearence.</param>
-    /// <param name="messageType">Type of the customs message.</param>
-    /// <param name="ProgressChange">Represents the method that will handle an event.
-    /// </param>
-    public override void GetAccountData( Entities edc, Clearence clearence, Customs.Account.CommonAccountData.MessageType messageType, ProgressChangedEventHandler ProgressChange )
-    {
-      base.GetAccountData( edc, clearence, messageType, ProgressChange );
-      Value = clearence.Clearence2SadGoodID.TotalAmountInvoiced.GetValueOrDefault( 0 );
-      UnitPrice = Value / NetMass;
-      AnalizeDutyAndVAT( clearence.Clearence2SadGoodID );
-    }
+    public IPRAccountData(int clearenceLookup)
+      : base(clearenceLookup)
+    { }
     #endregion
 
     #region IPR Data
@@ -59,11 +47,26 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
 
     #region public
     /// <summary>
+    /// Initializes a new instance of the <see cref="AccountData" /> class.
+    /// </summary>
+    /// <param name="edc">The <see cref="Entities" /> object.</param>
+    /// <param name="clearence">The clearence.</param>
+    /// <param name="messageType">Type of the customs message.</param>
+    /// <param name="ProgressChange">Represents the method that will handle an event.
+    /// </param>
+    public override void GetAccountData(Entities edc, Clearence clearence, Customs.Account.CommonAccountData.MessageType messageType, ProgressChangedEventHandler ProgressChange)
+    {
+      base.GetAccountData(edc, clearence, messageType, ProgressChange);
+      Value = clearence.Clearence2SadGoodID.TotalAmountInvoiced.GetValueOrDefault(0);
+      UnitPrice = Value / NetMass;
+      AnalizeDutyAndVAT(clearence.Clearence2SadGoodID);
+    }
+    /// <summary>
     /// Calls the remote service.
     /// </summary>
     /// <param name="requestUrl">The The URL of a Windows SharePoint Services "14" Web site.</param>
     /// <param name="warnningList">The warnning list.</param>
-    public override void CallService( string requestUrl, System.Collections.Generic.List<Customs.Warnning> warnningList )
+    public override void CallService(string requestUrl, System.Collections.Generic.List<Customs.Warnning> warnningList)
     {
       //throw new NotImplementedException();
     }
@@ -71,7 +74,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
 
     #region private
     private static int m_DaysPerMath = 30;
-    private void AnalizeDutyAndVAT( SADGood good )
+    private void AnalizeDutyAndVAT(SADGood good)
     {
       string _at = "Started";
       try
@@ -80,10 +83,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
         VAT = 0;
         DutyName = string.Empty;
         VATName = string.Empty;
-        foreach ( SADDuties _duty in good.SADDuties )
+        foreach (SADDuties _duty in good.SADDuties)
         {
           _at = "switch " + _duty.DutyType;
-          switch ( _duty.DutyType )
+          switch (_duty.DutyType)
           {
             //Duty
             case "A10":
@@ -91,7 +94,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
             case "A20":
               Duty += _duty.Amount.Value;
               _at = "DutyName";
-              DutyName += String.Format( "{0}={1:F2}; ", _duty.DutyType, _duty.Amount.Value );
+              DutyName += String.Format("{0}={1:F2}; ", _duty.DutyType, _duty.Amount.Value);
               break;
             //VAT
             case "B00":
@@ -99,7 +102,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
             case "B20":
               VAT += _duty.Amount.Value;
               _at = "VATName";
-              VATName += String.Format( "{0}={1:F2}; ", _duty.DutyType, _duty.Amount.Value );
+              VATName += String.Format("{0}={1:F2}; ", _duty.DutyType, _duty.Amount.Value);
               break;
             default:
               break;
@@ -110,10 +113,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
         _at = "VATPerUnit";
         VATPerUnit = VAT / NetMass;
       }
-      catch ( Exception _ex )
+      catch (Exception _ex)
       {
-        string _src = String.Format( "AnalizeDutyAndVAT error at {0}", _at );
-        throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
+        string _src = String.Format("AnalizeDutyAndVAT error at {0}", _at);
+        throw new IPRDataConsistencyException(_src, _ex.Message, _ex, _src);
       }
     }
     /// <summary>
@@ -121,11 +124,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
     /// </summary>
     /// <param name="good">The good.</param>
     /// <param name="_messageType">Type of the _message.</param>
-    protected internal override void AnalizeGood( SADGood good, MessageType _messageType )
+    protected internal override void AnalizeGood(SADGood good, MessageType _messageType)
     {
-      base.AnalizeGood( good, _messageType );
+      base.AnalizeGood(good, _messageType);
       SADPackage _packagex = good.SADPackage.First();
-      if ( _packagex.Package.ToUpper().Contains( "CT" ) )
+      if (_packagex.Package.ToUpper().Contains("CT"))
         CartonsMass = GrossMass - NetMass;
       else
         CartonsMass = 0;
@@ -144,19 +147,19 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
     /// Gets the net mass.
     /// </summary>
     /// <param name="good">The good.</param>
-    protected internal override void GetNetMass( SADGood good )
+    protected internal override void GetNetMass(SADGood good)
     {
       SADQuantity _quantity = good.SADQuantity.FirstOrDefault();
-      NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault( 0 );
+      NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault(0);
     }
     /// <summary>
     /// Sets the valid to date.
     /// </summary>
     /// <param name="customsDebtDate"></param>
     /// <param name="consent"></param>
-    protected internal override void SetValidToDate( DateTime customsDebtDate, Consent consent )
+    protected internal override void SetValidToDate(DateTime customsDebtDate, Consent consent)
     {
-      ValidToDate = customsDebtDate + TimeSpan.FromDays( consent.ConsentPeriod.Value * m_DaysPerMath );
+      ValidToDate = customsDebtDate + TimeSpan.FromDays(consent.ConsentPeriod.Value * m_DaysPerMath);
     }
     #endregion
 

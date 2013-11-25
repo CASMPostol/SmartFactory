@@ -21,8 +21,16 @@ namespace CAS.SmartFactory.Customs.Account
   /// <summary>
   /// CommonAccountData classs
   /// </summary>
-  public abstract class CommonAccountData
+  public abstract class CommonAccountData : CommonClearanceData
   {
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CommonAccountData"/> class.
+    /// </summary>
+    /// <param name="clearenceLookup">The clearence lookup.</param>
+    public CommonAccountData(int clearenceLookup)
+      : base(clearenceLookup)
+    { }
 
     #region private
     /// <summary>
@@ -72,10 +80,10 @@ namespace CAS.SmartFactory.Customs.Account
     /// </summary>
     /// <param name="warnnings">The warnnings.</param>
     /// <returns></returns>
-    public bool Validate( List<Warnning> warnnings )
+    public bool Validate(List<Warnning> warnnings)
     {
       bool _ret = m_Warnings.Count == 0;
-      warnnings.AddRange( m_Warnings );
+      warnnings.AddRange(m_Warnings);
       return _ret;
     }
     /// <summary>
@@ -85,13 +93,6 @@ namespace CAS.SmartFactory.Customs.Account
     /// The consent lookup.
     /// </value>
     public int ConsentLookup { get; protected set; }
-    /// <summary>
-    /// Gets or sets the clearence lookup.
-    /// </summary>
-    /// <value>
-    /// The clearence lookup.
-    /// </value>
-    public int ClearenceLookup { get; protected set; }
     /// <summary>
     /// Gets or sets the PCN tariff code lookup.
     /// </summary>
