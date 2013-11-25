@@ -19,6 +19,7 @@ using System.ComponentModel;
 using System.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Customs;
+using CAS.SmartFactory.Customs.Account;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection;
@@ -107,7 +108,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     }
     private static void SADPZCProcessing(string webUrl, CustomsDocument.DocumentType messageType, int sadDocumentTypeId, ref string comments, ProgressChangedEventHandler ProgressChange)
     {
-      List<CWAccountData> _tasksList = new List<CWAccountData>();
+      List<CommonClearanceData> _tasksList = new List<CommonClearanceData>();
       using (Entities entities = new Entities(webUrl))
       {
         SADDocumentType sad = Element.GetAtIndex<SADDocumentType>(entities.SADDocument, sadDocumentTypeId);
@@ -122,7 +123,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
                 continue;
               }
               if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure)
-                CWClearThroughCustoms(entities, _sgx, out comments); //Procedure 4071
+                _tasksList.Add(CWClearThroughCustoms(entities, _sgx)); //Procedure 4071
               else if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.InwardProcessing)
                 IPRClearThroughCustoms(entities, _sgx); //Procedure 4051
               else
@@ -167,8 +168,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         }//foreach ( SADGood _sgx in sad.SADGood )
         entities.SubmitChanges();
       } //using ( Entities entities
-      foreach (CWAccountData _accountData in _tasksList)
-        CreateCWAccount(_accountData, webUrl, out comments);
+      foreach (CommonClearanceData _accountData in _tasksList)
+      {
+        if (_accountData is CWAccountData)
+          CreateCWAccount((CWAccountData)_accountData, webUrl, out comments);
+        else if (_accountData is CWClearanceData)
+          CWClearThroughCustoms((CWClearanceData)_accountData, webUrl, out comments);
+      }
     }
     /// <summary>
     /// Creates the IPR account.
@@ -230,14 +236,16 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     /// </summary>
     /// <param name="entities">The entities.</param>
     /// <param name="good">The good.</param>
-    /// <param name="comments">The comments.</param>
     /// <exception cref="InputDataValidationException">Create CW Account Failed;CreateCWAccount</exception>
-    private static void CWClearThroughCustoms(Entities entities, SADGood good, out string comments)
+    private static CWClearanceData CWClearThroughCustoms(Entities entities, SADGood good)
+    {
+      Clearence _clearance = GetClearanceId(entities, good, Settings.GetParameter(entities, SettingsEntry.RequiredDocumentSADTemplateDocumentNamePattern));
+      return new CWClearanceData(_clearance.Id.Value);
+    }
+    private static void CWClearThroughCustoms(CWClearanceData _accountData, string webUrl, out string comments)
     {
       List<Warnning> _lw = new List<Warnning>();
-      Clearence _clearance = GetClearanceId(entities, good, Settings.GetParameter(entities, SettingsEntry.RequiredDocumentSADTemplateDocumentNamePattern));
-      CWClearanceData _ClearanceData = new CWClearanceData(_clearance.Id.Value);
-      _ClearanceData.CallService(entities.Web, _lw);
+      _accountData.CallService(webUrl, _lw);
       if (_lw.Count == 0)
       {
         comments = "CW account created";
