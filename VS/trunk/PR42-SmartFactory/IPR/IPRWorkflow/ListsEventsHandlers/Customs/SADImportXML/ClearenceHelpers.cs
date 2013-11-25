@@ -240,6 +240,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     private static CWClearanceData CWClearThroughCustoms(Entities entities, SADGood good)
     {
       Clearence _clearance = GetClearanceId(entities, good, Settings.GetParameter(entities, SettingsEntry.RequiredDocumentSADTemplateDocumentNamePattern));
+      _clearance.FinishClearingThroughCustoms(good);
       return new CWClearanceData(_clearance.Id.Value);
     }
     private static void CWClearThroughCustoms(CWClearanceData _accountData, string webUrl, out string comments)

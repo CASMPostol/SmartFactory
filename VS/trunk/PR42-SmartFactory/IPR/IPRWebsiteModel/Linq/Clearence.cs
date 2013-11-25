@@ -44,6 +44,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Clearence2SadGoodID = sadGood;
       FinishClearingThroughCustoms( entities );
     }
+    public void FinishClearingThroughCustoms(SADGood good)
+    {
+      Clearence2SadGoodID = good;
+      SADDocumentType sadDocument = good.SADDocumentIndex;
+      DocumentNo = sadDocument.DocumentNumber;
+      ReferenceNumber = sadDocument.ReferenceNumber;
+      Status = true;
+    }
     /// <summary>
     /// Gets the customs debt date.
     /// </summary>
