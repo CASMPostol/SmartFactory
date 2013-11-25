@@ -90,7 +90,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
             case CustomsProcedureCodes.CustomsWarehousingProcedure:
               throw new NotImplementedException("CLNEProcessing - CustomsWarehousingProcedure"); //TODO http://casas:11227/sites/awt/Lists/RequirementsList/_cts/Requirements/displayifs.aspx?List=e1cf335a
               comments = "CW account creation error";
-              CWAccountData _accountData = new CWAccountData();
+              CWAccountData _accountData = new CWAccountData(_cx.Id.Value);
               _accountData.GetAccountData(_entities, _cx, ImportXMLCommon.Convert2MessageType(CustomsDocument.DocumentType.SAD), progressChange);
               CreateCWAccount(_accountData, webUrl, out comments);
               break;
@@ -152,7 +152,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
               if (messageType == CustomsDocument.DocumentType.PZC)
               {
                 comments = "CW account creation error";
-                CWAccountData _accountData = new CWAccountData();
+                CWAccountData _accountData = new CWAccountData(_newWarehousinClearance.Id.Value);
                 _accountData.GetAccountData(entities, _newWarehousinClearance, ImportXMLCommon.Convert2MessageType(CustomsDocument.DocumentType.SAD), ProgressChange);
                 _tasksList.Add(_accountData);
               }
@@ -192,7 +192,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       }
       ProgressChange(null, new ProgressChangedEventArgs(1, "CreateIPRAccount.newIPRData"));
       comments = "Inconsistent or incomplete data to create IPR account";
-      IPRAccountData _iprdata = new IPRAccountData();
+      IPRAccountData _iprdata = new IPRAccountData(clearence.Id.Value);
       _iprdata.GetAccountData(entities, clearence, ImportXMLCommon.Convert2MessageType(messageType), ProgressChange);
       comments = "Consent lookup filed";
       ProgressChange(null, new ProgressChangedEventArgs(1, "CreateIPRAccount.newIPRClass"));
