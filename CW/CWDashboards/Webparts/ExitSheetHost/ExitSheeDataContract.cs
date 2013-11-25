@@ -17,16 +17,16 @@ using System;
 using System.ComponentModel;
 using CAS.SmartFactory.Customs.Messages.Serialization;
 
-namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
+namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
 {
   /// <summary>
   /// class MainPageData
   /// </summary>
-  internal class MainPageData : INotifyPropertyChanged
+  internal class ExitSheeDataContract
   {
 
     #region ctor
-    public MainPageData()
+    public ExitSheeDataContract()
     {
 
     }
@@ -142,28 +142,25 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
     }
     #endregion    
 
-    #region INotifyPropertyChanged Members
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    #endregion
-
     #region private
 
     #endregion
+
     /// <summary>
     /// Deserializes the specified serialized object.
     /// </summary>
     /// <param name="serializedObject">The serialized object.</param>
-    public static MainPageData Deserialize(string serializedObject)
+    public static ExitSheeDataContract Deserialize( string serializedObject )
     {
-      return JsonSerializer.Deserialize<MainPageData>( serializedObject );
+      return JsonSerializer.Deserialize<ExitSheeDataContract>( serializedObject );
     }
-
-    //TODO
-    internal void GetData(string m_URL, int? m_SelectedID)
+    /// <summary>
+    /// Serializes this instance.
+    /// </summary>
+    /// <returns><see cref="string"/> as serialized this object.</returns>
+    public string Serialize()
     {
-      throw new NotImplementedException();
+      return JsonSerializer.Serialize<ExitSheeDataContract>( this );
     }
   }
 }

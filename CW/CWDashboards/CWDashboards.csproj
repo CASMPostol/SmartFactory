@@ -158,9 +158,6 @@
     <Content Include="Webparts\ExitSheetHost\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Silverlight\ExitSheetWebPart\MainPageData.cs">
-      <Link>Webparts\ExitSheetHost\MainPageData.cs</Link>
-    </Compile>
     <Compile Include="CommonDefinition.tt.cs" />
     <Compile Include="CommonDefinition1.cs">
       <AutoGen>True</AutoGen>
@@ -191,6 +188,7 @@
     <Compile Include="Webparts\DisposalRequestHost\DisposalRequestHost.cs" />
     <Compile Include="Webparts\DisposalRequestHost\Query.tt.cs" />
     <Compile Include="Webparts\ExitSheetHost\ExitSheetHost.cs" />
+    <Compile Include="Webparts\ExitSheetHost\ExitSheeDataContract.cs" />
     <Compile Include="Webparts\InterconnectionData.cs" />
   </ItemGroup>
   <ItemGroup>

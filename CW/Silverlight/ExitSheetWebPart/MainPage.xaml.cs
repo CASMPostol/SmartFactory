@@ -18,7 +18,6 @@ using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Controls;
 using System.Windows.Printing;
-using Microsoft.SharePoint.Client;
 
 namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
 {
