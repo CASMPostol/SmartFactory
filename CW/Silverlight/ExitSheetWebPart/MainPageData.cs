@@ -157,23 +157,7 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
 
     #endregion
 
-    #region IDisposable Members
-
-    public void Dispose()
-    {
-      if (m_Context != null)
-        m_Context.Dispose();
-      m_Disposed = true;
-    }
-
-    #endregion
-
     #region private
-
-    #region vars
-    private bool m_Disposed = false;
-    private DataContextAsync m_Context = new DataContextAsync();
-    #endregion
 
     #endregion
     /// <summary>
