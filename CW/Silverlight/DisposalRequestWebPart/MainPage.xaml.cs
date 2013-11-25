@@ -25,6 +25,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Printing;
 using System.Windows.Shapes;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq;
@@ -32,11 +33,13 @@ using Microsoft.SharePoint.Client;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 {
+
   /// <summary>
   /// Main page UserControl
   /// </summary>
   public partial class MainPage: UserControl
   {
+
     #region public
     public MainPage()
     {
@@ -58,6 +61,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     #region private
 
     #region private vars
+    private PrintDocument m_PrintDocument = null;
     private int? m_SelectedID = new Nullable<int>();
     private string m_at;
     private string m_URL = string.Empty;
@@ -190,6 +194,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 
     #endregion
 
-
   }
+
 }

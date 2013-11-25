@@ -28,13 +28,14 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
   /// </summary>
   public partial class MainPage : UserControl
   {
+
+    #region ctors
     public MainPage()
     {
       InitializeComponent();
       m_PrintDocument = new PrintDocument();
       m_PrintDocument.PrintPage += PrintDocument_PrintPageEventHandler;
     }
-
     public MainPage(string hiddenFieldDataName)
       : this()
     {
@@ -45,13 +46,18 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
       if (Int32.TryParse(message, out _id))
         m_SelectedID = _id;
     }
+    #endregion
 
     #region private
+
+    #region vars
     private PrintDocument m_PrintDocument = null;
     private int? m_SelectedID = new Nullable<int>();
     private string m_at;
     private string m_URL = string.Empty;
+    #endregion
 
+    #region handlers
     private void UserControl_Loaded(object sender, RoutedEventArgs e)
     {
       try
@@ -60,15 +66,17 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
         if (_ClientContext == null)
           throw new ArgumentNullException("clientContext", String.Format("Cannot get the {0} ", "ClientContext"));
         m_URL = _ClientContext.Url;
-        //TODO this.MainPageData.GetData(m_URL, m_SelectedID);
+        this.MainPageData.GetData(m_URL, m_SelectedID);
       }
       catch (Exception ex)
       {
         ExceptionHandling(ex);
       }
     }
-
-    #region handlers
+    private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+    {
+      DisposeMainPageData();
+    }
     private void PrintDocument_PrintPageEventHandler(object sender, PrintPageEventArgs e)
     {
       e.PageVisual = x_GridToBePrinted;
@@ -91,7 +99,22 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
     {
       MessageBox.Show(ex.Message + " AT: " + m_at, "Loaded event error", MessageBoxButton.OK);
     }
+    private MainPageData MainPageData
+    {
+      get { return ((MainPageData)x_GridToBePrinted.DataContext); }
+      set { x_GridToBePrinted.DataContext = value; this.UpdateLayout(); }
+    }
+    private void DisposeMainPageData()
+    {
+      if (this.MainPageData == null)
+        return;
+      MainPageData _MainPageData = MainPageData;
+      MainPageData = null;
+      _MainPageData.Dispose();
+    }
 
     #endregion
+
   }
+
 }

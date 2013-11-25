@@ -34,6 +34,83 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
   internal class MainPageData : INotifyPropertyChanged, IDisposable
   {
 
+    #region ctor
+    public MainPageData()
+    {
+
+    }
+    #endregion
+    private string b_LabelOGLNumber;
+
+    public string LabelOGLNumber
+    {
+      get { return b_LabelOGLNumber; }
+      set { b_LabelOGLNumber = value; }
+    }
+
+    private DateTime b_LabelZDdnia;
+
+    public DateTime LabelZDdnia
+    {
+      get { return b_LabelZDdnia; }
+      set { b_LabelZDdnia = value; }
+    }
+
+    private DateTime b_LabelOGLDate;
+
+    public DateTime LabelOGLDate
+    {
+      get { return b_LabelOGLDate; }
+      set { b_LabelOGLDate = value; }
+    }
+    private string b_LabelTobaccoName;
+
+    public string LabelTobaccoName
+    {
+      get { return b_LabelTobaccoName; }
+      set { b_LabelTobaccoName = value; }
+    }
+    private string b_LabelGrade;
+
+    public string LabelGrade
+    {
+      get { return b_LabelGrade; }
+      set { b_LabelGrade = value; }
+    }
+
+    private string b_LabelSKU;
+
+    public string LabelSKU
+    {
+      get { return b_LabelSKU; }
+      set { b_LabelSKU = value; }
+    }
+
+    private string b_LabelBatch;
+
+    public string LabelBatch
+    {
+      get { return b_LabelBatch; }
+      set { b_LabelBatch = value; }
+    }
+
+    private double b_LabelSettledNetMass;
+
+    public double LabelSettledNetMass
+    {
+      get { return b_LabelSettledNetMass; }
+      set { b_LabelSettledNetMass = value; }
+    }
+
+    private double b_PackageToClear;
+
+    public double PackageToClear
+    {
+      get { return b_PackageToClear; }
+      set { b_PackageToClear = value; }
+    }
+
+
     #region INotifyPropertyChanged Members
 
     public event PropertyChangedEventHandler PropertyChanged;
@@ -60,5 +137,10 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
 
     #endregion
 
+    //TODO
+    internal void GetData(string m_URL, int? m_SelectedID)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
