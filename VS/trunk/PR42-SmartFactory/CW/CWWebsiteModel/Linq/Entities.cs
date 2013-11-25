@@ -98,9 +98,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		/// Customs Warehouse Library Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Customs Warehouse Library")]
-		public Microsoft.SharePoint.Linq.EntityList<CustomsWarehouseLibraryDisposalRequestLib> CustomsWarehouseLibrary {
+		public Microsoft.SharePoint.Linq.EntityList<CustomsWarehouseLib> CustomsWarehouseLibrary {
 			get {
-				return this.GetList<CustomsWarehouseLibraryDisposalRequestLib>("Customs Warehouse Library");
+				return this.GetList<CustomsWarehouseLib>("Customs Warehouse Library");
 			}
 		}
 		
@@ -218,9 +218,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		/// Statement Library Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Statement Library")]
-		public Microsoft.SharePoint.Linq.EntityList<Document> StatementLibrary {
+		public Microsoft.SharePoint.Linq.EntityList<StatementLib> StatementLibrary {
 			get {
-				return this.GetList<Document>("Statement Library");
+				return this.GetList<StatementLib>("Statement Library");
 			}
 		}
 		
@@ -343,7 +343,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Title", Storage="_title", Required=true, FieldType="Text")]
-		public virtual string Title {
+		public string Title {
 			get {
 				return this._title;
 			}
@@ -434,11 +434,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Document", Id="0x0101")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(BinCardLib))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouseLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DisposalRequestLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADConsignment))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDocumentLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(StatementLib))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouseLib))]
 	public partial class Document : Element {
 		
 		private string _name;
@@ -983,14 +983,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _cW_UnitPrice;
 		
-		private string _dutyName;
-		
-		private System.Nullable<double> _duty;
-		
-		private string _vATName;
-		
-		private System.Nullable<double> _vAT;
-		
 		private string _cW_PzNo;
 		
 		private string _invoiceNo;
@@ -1297,62 +1289,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this.OnPropertyChanging("CW_UnitPrice", this._cW_UnitPrice);
 					this._cW_UnitPrice = value;
 					this.OnPropertyChanged("CW_UnitPrice");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DutyName", Storage="_dutyName", FieldType="Text")]
-		public string DutyName {
-			get {
-				return this._dutyName;
-			}
-			set {
-				if ((value != this._dutyName)) {
-					this.OnPropertyChanging("DutyName", this._dutyName);
-					this._dutyName = value;
-					this.OnPropertyChanged("DutyName");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Duty", Storage="_duty", FieldType="Number")]
-		public System.Nullable<double> Duty {
-			get {
-				return this._duty;
-			}
-			set {
-				if ((value != this._duty)) {
-					this.OnPropertyChanging("Duty", this._duty);
-					this._duty = value;
-					this.OnPropertyChanged("Duty");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="VATName", Storage="_vATName", FieldType="Text")]
-		public string VATName {
-			get {
-				return this._vATName;
-			}
-			set {
-				if ((value != this._vATName)) {
-					this.OnPropertyChanging("VATName", this._vATName);
-					this._vATName = value;
-					this.OnPropertyChanged("VATName");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="VAT", Storage="_vAT", FieldType="Number")]
-		public System.Nullable<double> VAT {
-			get {
-				return this._vAT;
-			}
-			set {
-				if ((value != this._vAT)) {
-					this.OnPropertyChanging("VAT", this._vAT);
-					this._vAT = value;
-					this.OnPropertyChanged("VAT");
 				}
 			}
 		}
@@ -3395,8 +3331,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 				}
 			}
 		}
-
-  }
+	}
 	
 	/// <summary>
 	/// Vendor Content Type
@@ -3693,10 +3628,42 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
+	/// Customs Warehouse Library Content Type
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CustomsWarehouseLib", Id="0x010100719D28821A6F456C8F47FB42F9B33DAA")]
+	public partial class CustomsWarehouseLib : Document {
+		
+		private System.Nullable<bool> _archival;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public CustomsWarehouseLib() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
+				}
+			}
+		}
+	}
+	
+	/// <summary>
 	/// Disposal Request Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DisposalRequestLib", Id="0x0101006A3BDDD5D82D4C03B297650EEECA0EF2")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouseLibraryDisposalRequestLib))]
 	public partial class DisposalRequestLib : Document {
 		
 		private System.Nullable<bool> _archival;
@@ -3704,6 +3671,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		private System.Nullable<ClearenceProcedure> _clearenceProcedure;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouseDisposal> _customsWarehouseDisposal;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<StatementLib> _statementLib;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -3716,6 +3685,10 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this._customsWarehouseDisposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CustomsWarehouseDisposal>>(this.OnCustomsWarehouseDisposalSync);
 			this._customsWarehouseDisposal.OnChanged += new System.EventHandler(this.OnCustomsWarehouseDisposalChanged);
 			this._customsWarehouseDisposal.OnChanging += new System.EventHandler(this.OnCustomsWarehouseDisposalChanging);
+			this._statementLib = new Microsoft.SharePoint.Linq.EntitySet<StatementLib>();
+			this._statementLib.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<StatementLib>>(this.OnStatementLibSync);
+			this._statementLib.OnChanged += new System.EventHandler(this.OnStatementLibChanged);
+			this._statementLib.OnChanging += new System.EventHandler(this.OnStatementLibChanging);
 			this.OnCreated();
 		}
 		
@@ -3757,6 +3730,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_Statement2DisposalRequestID", Storage="_statementLib", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Statement Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<StatementLib> StatementLib {
+			get {
+				return this._statementLib;
+			}
+			set {
+				this._statementLib.Assign(value);
+			}
+		}
+		
 		private void OnCustomsWarehouseDisposalChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CustomsWarehouseDisposal", this._customsWarehouseDisposal.Clone());
 		}
@@ -3771,6 +3754,23 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 			else {
 				e.Item.CWL_CWDisposal2DisposalRequestLibraryID = null;
+			}
+		}
+		
+		private void OnStatementLibChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("StatementLib", this._statementLib.Clone());
+		}
+		
+		private void OnStatementLibChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("StatementLib");
+		}
+		
+		private void OnStatementLibSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<StatementLib> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CWL_Statement2DisposalRequestID = this;
+			}
+			else {
+				e.Item.CWL_Statement2DisposalRequestID = null;
 			}
 		}
 	}
@@ -3996,38 +3996,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		}
 		
 		private void OnCWL_Statement2DisposalRequestIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DisposalRequestLib> e) {
-		}
-	}
-	
-	/// <summary>
-	/// Customs Warehouse Library Content Type
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CustomsWarehouseLib", Id="0x010100719D28821A6F456C8F47FB42F9B33DAA")]
-	public partial class CustomsWarehouseLib : Document {
-		
-		private System.Nullable<bool> _archival;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public CustomsWarehouseLib() {
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
-		public System.Nullable<bool> Archival {
-			get {
-				return this._archival;
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.StatementLib.Add(this);
 			}
-			set {
-				if ((value != this._archival)) {
-					this.OnPropertyChanging("Archival", this._archival);
-					this._archival = value;
-					this.OnPropertyChanged("Archival");
-				}
+			else {
+				e.Item.StatementLib.Remove(this);
 			}
 		}
 	}
@@ -4056,39 +4029,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 			set {
 				throw new System.InvalidOperationException("Field ContentType was removed from content type SADQuantity.");
-			}
-		}
-	}
-	
-	/// <summary>
-	/// Disposal Request Library Content Type
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DisposalRequestLib", Id="0x0101006A3BDDD5D82D4C03B297650EEECA0EF2", List="Customs Warehouse Library")]
-	public partial class CustomsWarehouseLibraryDisposalRequestLib : DisposalRequestLib {
-		
-		private string _movedTo;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public CustomsWarehouseLibraryDisposalRequestLib() {
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW_MovedToWarehouse", Storage="_movedTo", FieldType="Text")]
-		public string MovedTo {
-			get {
-				return this._movedTo;
-			}
-			set {
-				if ((value != this._movedTo)) {
-					this.OnPropertyChanging("MovedTo", this._movedTo);
-					this._movedTo = value;
-					this.OnPropertyChanged("MovedTo");
-				}
 			}
 		}
 	}

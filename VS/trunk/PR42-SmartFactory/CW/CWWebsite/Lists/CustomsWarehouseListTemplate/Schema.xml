@@ -25,10 +25,6 @@
           <FieldRef ID="{DE38C643-C8BC-4469-8D2F-266BF236F6D1}" Name="Value" />
           <FieldRef ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Name="Currency" />
           <FieldRef ID="{BD5E3778-B908-48BF-BCB1-8DDB8E9B2701}" Name="CW_UnitPrice" />
-          <FieldRef ID="{30DC9FA3-9E24-479C-AE70-B2C0D194CB36}" Name="DutyName" />
-          <FieldRef ID="{A71AE110-34D7-4468-A64E-00BD0B4A76D5}" Name="Duty" />
-          <FieldRef ID="{BBA456AC-91B9-425D-8DE7-40C311AEB345}" Name="VATName" />
-          <FieldRef ID="{1C4FC96E-0E0C-4DBF-96FB-FEC8E079D18B}" Name="VAT" />
           <FieldRef ID="{F061A643-E22C-46CD-AC9C-C61FAEC1F301}" Name="CW_PzNo" />
           <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
           <FieldRef ID="{6979EFB8-2614-49B7-9482-5869CE4F3108}" Name="AccountBalance" />
@@ -94,10 +90,6 @@
           <FieldRef Name="Value" />
           <FieldRef Name="Currency" />
           <FieldRef Name="CW_UnitPrice" />
-          <FieldRef Name="DutyName" />
-          <FieldRef Name="Duty" />
-          <FieldRef Name="VATName" />
-          <FieldRef Name="VAT" />
           <FieldRef Name="CW_PzNo" />
           <FieldRef Name="InvoiceNo" />
           <FieldRef Name="AccountBalance" />
@@ -216,10 +208,6 @@
           <FieldRef Name="Value" />
           <FieldRef Name="Currency" />
           <FieldRef Name="CW_UnitPrice" />
-          <FieldRef Name="DutyName" />
-          <FieldRef Name="Duty" />
-          <FieldRef Name="VATName" />
-          <FieldRef Name="VAT" />
           <FieldRef Name="CW_PzNo" />
           <FieldRef Name="InvoiceNo" />
           <FieldRef Name="AccountBalance" />
@@ -280,10 +268,6 @@
           <FieldRef Name="Value" />
           <FieldRef Name="Currency" />
           <FieldRef Name="CW_UnitPrice" />
-          <FieldRef Name="DutyName" />
-          <FieldRef Name="Duty" />
-          <FieldRef Name="VATName" />
-          <FieldRef Name="VAT" />
           <FieldRef Name="CW_PzNo" />
           <FieldRef Name="InvoiceNo" />
           <FieldRef Name="AccountBalance" />
@@ -381,10 +365,6 @@
       <Field DisplayName="Value" Name="Value" Type="Number" Decimals="2" ID="{de38c643-c8bc-4469-8d2f-266bf236f6d1}" Group="CAS Smart Factory IPR" SourceID="{28164df5-a5de-45ec-aa7b-9b6e7735d9b0}" StaticName="Value" />
       <Field Name="Currency" ID="{91f0305a-9f13-468a-85ca-1ae1c859dbd7}" Type="Text" DisplayName="Currency" Group="CAS Smart Factory IPR Customs" SourceID="{28164df5-a5de-45ec-aa7b-9b6e7735d9b0}" StaticName="Currency" />
       <Field ID="{BD5E3778-B908-48BF-BCB1-8DDB8E9B2701}" Name="CW_UnitPrice" DisplayName="Unit price" Group="CAS Smart Factory Customs Warehouse" Type="Number" Decimals="2" />
-      <Field DisplayName="Duty [PLN]" Name="DutyName" Type="Text" ID="{30dc9fa3-9e24-479c-ae70-b2c0d194cb36}" Group="CAS Smart Factory IPR" SourceID="{28164df5-a5de-45ec-aa7b-9b6e7735d9b0}" StaticName="DutyName" />
-      <Field DisplayName="Duty value [PLN]" Name="Duty" Type="Number" Decimals="2" ID="{a71ae110-34d7-4468-a64e-00bd0b4a76d5}" Group="CAS Smart Factory IPR Customs" SourceID="{28164df5-a5de-45ec-aa7b-9b6e7735d9b0}" StaticName="Duty" />
-      <Field DisplayName="VAT [PLN]" Name="VATName" Type="Text" ID="{bba456ac-91b9-425d-8de7-40c311aeb345}" Group="CAS Smart Factory IPR" SourceID="{28164df5-a5de-45ec-aa7b-9b6e7735d9b0}" StaticName="VATName" />
-      <Field DisplayName="VAT value [PLN]" Name="VAT" Type="Number" Decimals="2" ID="{1c4fc96e-0e0c-4dbf-96fb-fec8e079d18b}" Group="CAS Smart Factory IPR Customs" SourceID="{28164df5-a5de-45ec-aa7b-9b6e7735d9b0}" StaticName="VAT" />
       <Field ID="{F061A643-E22C-46CD-AC9C-C61FAEC1F301}" Name="CW_PzNo" DisplayName="PZ no." Group="CAS Smart Factory Customs Warehouse" Type="Text" />
       <Field Name="InvoiceNo" ID="{d41c0f0b-a4a9-4d19-bd42-78d3de4a22ec}" Type="Text" DisplayName="Invoice No." Group="CAS Smart Factory IPR Reports" SourceID="{28164df5-a5de-45ec-aa7b-9b6e7735d9b0}" StaticName="InvoiceNo" />
       <Field DisplayName="Account balance [kg]" Name="AccountBalance" Type="Number" Decimals="2" ID="{6979efb8-2614-49b7-9482-5869ce4f3108}" Group="CAS Smart Factory IPR" Required="TRUE" SourceID="{28164df5-a5de-45ec-aa7b-9b6e7735d9b0}" StaticName="AccountBalance" />

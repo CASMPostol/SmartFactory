@@ -272,10 +272,6 @@
     <Column Name="Value" Member="Value" />
     <Column Name="Currency" Member="Currency" />
     <Column Name="CW_UnitPrice" Member="CW_UnitPrice" />
-    <Column Name="DutyName" Member="DutyName" />
-    <Column Name="Duty" Member="Duty" />
-    <Column Name="VATName" Member="VATName" />
-    <Column Name="VAT" Member="VAT" />
     <Column Name="CW_PzNo" Member="CW_PzNo" />
     <Column Name="InvoiceNo" Member="InvoiceNo" />
     <Column Name="AccountBalance" Member="AccountBalance" />

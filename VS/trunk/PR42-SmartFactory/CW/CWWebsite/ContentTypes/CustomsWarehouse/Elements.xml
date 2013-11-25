@@ -28,10 +28,6 @@
       <FieldRef ID="{DE38C643-C8BC-4469-8D2F-266BF236F6D1}" Name="Value" />
       <FieldRef ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Name="Currency" />
       <FieldRef ID="{BD5E3778-B908-48BF-BCB1-8DDB8E9B2701}" Name="CW_UnitPrice" />
-      <FieldRef ID="{30DC9FA3-9E24-479C-AE70-B2C0D194CB36}" Name="DutyName" />
-      <FieldRef ID="{A71AE110-34D7-4468-A64E-00BD0B4A76D5}" Name="Duty" />
-      <FieldRef ID="{BBA456AC-91B9-425D-8DE7-40C311AEB345}" Name="VATName" />
-      <FieldRef ID="{1C4FC96E-0E0C-4DBF-96FB-FEC8E079D18B}" Name="VAT"/>
       <FieldRef ID="{F061A643-E22C-46CD-AC9C-C61FAEC1F301}" Name="CW_PzNo" />
       <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
       <FieldRef ID="{6979EFB8-2614-49B7-9482-5869CE4F3108}" Name="AccountBalance" />
