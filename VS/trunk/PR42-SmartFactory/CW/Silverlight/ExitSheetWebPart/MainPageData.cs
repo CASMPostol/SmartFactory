@@ -40,6 +40,8 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
 
     }
     #endregion
+    
+    #region public properties
     private string b_LabelOGLNumber;
 
     public string LabelOGLNumber
@@ -110,6 +112,44 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
       set { b_PackageToClear = value; }
     }
 
+    private string b_LabelSAD;
+
+    public string SAD
+    {
+      get { return b_LabelSAD; }
+      set { b_LabelSAD = value; }
+    }
+
+    private string b_LabelRemainingQuantity;
+
+    public string RemainingQuantity
+    {
+      get { return b_LabelRemainingQuantity; }
+      set { b_LabelRemainingQuantity = value; }
+    }
+    private string b_LabelRemainingPackage;
+
+    public string RemainingPackage
+    {
+      get { return b_LabelRemainingPackage; }
+      set { b_LabelRemainingPackage = value; }
+    }
+    private int b_LablePackageQuantity;
+
+    public int PackageQuantity
+    {
+      get { return b_LablePackageQuantity; }
+      set { b_LablePackageQuantity = value; }
+    }
+
+    private string b_LableWarehouseName;
+
+    public string WarehouseName
+    {
+      get { return b_LableWarehouseName; }
+      set { b_LableWarehouseName = value; }
+    }
+    #endregion    
 
     #region INotifyPropertyChanged Members
 
@@ -136,6 +176,14 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
     #endregion
 
     #endregion
+    /// <summary>
+    /// Deserializes the specified serialized object.
+    /// </summary>
+    /// <param name="serializedObject">The serialized object.</param>
+    public static MainPageData Deserialize(string serializedObject)
+    {
+      return JsonSerializer.Deserialize<CustomsOffice>(serializedObject);
+    }
 
     //TODO
     internal void GetData(string m_URL, int? m_SelectedID)
