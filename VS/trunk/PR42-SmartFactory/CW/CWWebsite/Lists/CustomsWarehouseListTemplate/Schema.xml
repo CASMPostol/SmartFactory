@@ -304,9 +304,15 @@
       </View>
       <View BaseViewID="6" Name="Supplement CW Book" DisplayName="Supplement CW book" Type="GRID" WebPartZoneID="Main" SetupPath="pages\viewpage.aspx" Url="SupplementCWBook.aspx" MobileDefaultView="FALSE" MobileView="FALSE">
         <ViewFields>
+          <FieldRef Name="LinkTitle" />
+          <FieldRef Name="DocumentNo" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="CW_Quantity" />
+          <FieldRef Name="InvoiceNo" />
           <FieldRef Name="Value" />
           <FieldRef Name="CW_UnitPrice" />
           <FieldRef Name="CW_PzNo" />
+          <FieldRef Name="CWL_CW2VendorTitle" />
         </ViewFields>
         <Query>
           <OrderBy>
