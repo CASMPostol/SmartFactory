@@ -12,14 +12,14 @@
     d:DesignHeight="600" d:DesignWidth="1200"
     Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded"
     Height="600"
-    Width="1200"
+    Width="Auto"
     ScrollViewer.VerticalScrollBarVisibility="Disabled"
     >
     <UserControl.Resources>
         <local:Double2StringConverter x:Key="Double2StringConverter"/>
         <local:MainPageData x:Key="MainPageDataDataSource" d:IsDataSource="True"/>
     </UserControl.Resources>
-    <sdk:TabControl Height="600" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1200" MinHeight="600" MinWidth="1200" MaxHeight="600" MaxWidth="1200" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+    <sdk:TabControl Height="600" VerticalAlignment="Top" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled">
         <sdk:TabItem Header="MainPage">
             <Grid  Name="x_GridMainPageData" HorizontalAlignment="Stretch" Background="#FF1F3B53" Margin="5" DataContext="{Binding Source={StaticResource MainPageDataDataSource}}">
                 <Grid.RowDefinitions>
@@ -48,10 +48,10 @@
                         <sdk:DataGridTextColumn Binding="{Binding Batch, FallbackValue=N/A}" Header="Batch" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                         <sdk:DataGridTextColumn Binding="{Binding TotalStock, FallbackValue=N/A}" Header="Total stock" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                         <sdk:DataGridTextColumn Binding="{Binding MassPerPackage, FallbackValue=N/A}"  Header="Qty in package" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <sdk:DataGridTextColumn Binding="{Binding DeclaredNetMass, FallbackValue=N/A}" Header="Qty to clear" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <sdk:DataGridTextColumn Binding="{Binding AddedKg, Converter={StaticResource Double2StringConverter}, FallbackValue=N/A], Mode=TwoWay}" Header="Qty to clear - added" IsReadOnly="False" CellStyle="{StaticResource EditableCell}"/>
-                        <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSum, FallbackValue=N/A}" Header="Qty to clear-sum" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSumRounded, FallbackValue=N/A}" Header="Qty to clear-rounded" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <sdk:DataGridTextColumn Binding="{Binding DeclaredNetMass, FallbackValue=N/A}" Header="Qty" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <sdk:DataGridTextColumn Binding="{Binding AddedKg, Converter={StaticResource Double2StringConverter}, FallbackValue=N/A], Mode=TwoWay}" Header="Qty- added" IsReadOnly="False" CellStyle="{StaticResource EditableCell}"/>
+                        <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSum, FallbackValue=N/A}" Header="Qty-sum" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSumRounded, FallbackValue=N/A}" Header="Qty-rounded" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                         <sdk:DataGridTextColumn Binding="{Binding PackagesToDispose, FallbackValue=N/A}" Header="Packages to clear" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                         <sdk:DataGridTextColumn Binding="{Binding RemainingOnStock, FallbackValue=N/A}" Header="Remaining on stock" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                         <sdk:DataGridTextColumn Binding="{Binding Units, FallbackValue=N/A}" Header="Units" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
