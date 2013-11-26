@@ -46,6 +46,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -187,18 +188,15 @@
     <Compile Include="Webparts\CheckListHost\CheckListHost.cs" />
     <Compile Include="Webparts\DisposalRequestHost\DisposalRequestHost.cs" />
     <Compile Include="Webparts\DisposalRequestHost\Query.tt.cs" />
-    <Compile Include="Webparts\ExitSheetHost\ExitSheetHost.cs" />
     <Compile Include="Webparts\ExitSheetHost\ExitSheeDataContract.cs" />
+    <Compile Include="Webparts\ExitSheetHost\ExitSheeDataContract.static.cs" />
+    <Compile Include="Webparts\ExitSheetHost\ExitSheetHost.cs" />
     <Compile Include="Webparts\InterconnectionData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
       <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
       <Name>SharePoint</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Customs\Customs.csproj">
-      <Project>{6c705843-6387-4d2d-a7cf-a66976186ce2}</Project>
-      <Name>Customs</Name>
     </ProjectReference>
     <ProjectReference Include="..\CWWebsiteModel\CWWebsiteModel.csproj">
       <Project>{28191aa2-5bff-4d48-a7ad-b10c83044e3c}</Project>

@@ -18,6 +18,7 @@ using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Controls;
 using System.Windows.Printing;
+using CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost;
 
 namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
 {
@@ -59,22 +60,22 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
     #region handlers
     private void UserControl_Loaded(object sender, RoutedEventArgs e)
     {
-      try
-      {
-        ClientContext _ClientContext = ClientContext.Current;
-        if (_ClientContext == null)
-          throw new ArgumentNullException("clientContext", String.Format("Cannot get the {0} ", "ClientContext"));
-        m_URL = _ClientContext.Url;
-        this.MainPageData.GetData(m_URL, m_SelectedID);
-      }
-      catch (Exception ex)
-      {
-        ExceptionHandling(ex);
-      }
+      //TODO 
+      //try
+      //{
+      //  ClientContext _ClientContext = ClientContext.Current;
+      //  if (_ClientContext == null)
+      //    throw new ArgumentNullException("clientContext", String.Format("Cannot get the {0} ", "ClientContext"));
+      //  m_URL = _ClientContext.Url;
+      //  this.MainPageData.GetData(m_URL, m_SelectedID);
+      //}
+      //catch (Exception ex)
+      //{
+      //  ExceptionHandling(ex);
+      //}
     }
     private void UserControl_Unloaded(object sender, RoutedEventArgs e)
     {
-      DisposeMainPageData();
     }
     private void PrintDocument_PrintPageEventHandler(object sender, PrintPageEventArgs e)
     {
@@ -98,18 +99,10 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
     {
       MessageBox.Show(ex.Message + " AT: " + m_at, "Loaded event error", MessageBoxButton.OK);
     }
-    private MainPageData MainPageData
+    private ExitSheeDataContract MainPageData
     {
-      get { return ((MainPageData)x_GridToBePrinted.DataContext); }
+      get { return ( (ExitSheeDataContract)x_GridToBePrinted.DataContext ); }
       set { x_GridToBePrinted.DataContext = value; this.UpdateLayout(); }
-    }
-    private void DisposeMainPageData()
-    {
-      if (this.MainPageData == null)
-        return;
-      MainPageData _MainPageData = MainPageData;
-      MainPageData = null;
-      _MainPageData.Dispose();
     }
 
     #endregion

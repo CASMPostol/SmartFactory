@@ -31,9 +31,6 @@
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
-			<Grid.DataContext>
-				<local:MainPageData/>
-			</Grid.DataContext>
 			<Grid Background="White" Grid.Row="0" Grid.Column="0" Margin="10">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
