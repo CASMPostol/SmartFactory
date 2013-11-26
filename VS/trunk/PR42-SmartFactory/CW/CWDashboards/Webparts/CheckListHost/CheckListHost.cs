@@ -75,9 +75,9 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost
         m_SelectedItemTitle.Text = "No item selected";
         return;
       }
-      new DisposalRequestInterconnectionData().SetRowData(webPartRow, NewDataEventHandler);
+      new DisposalInterconnectionData().SetRowData(webPartRow, NewDataEventHandler);
     }
-    private void NewDataEventHandler(object sender, DisposalRequestInterconnectionData e)
+    private void NewDataEventHandler(object sender, DisposalInterconnectionData e)
     {
       EnsureChildControls();
       m_SelectedItemTitle.Text = e.Title;

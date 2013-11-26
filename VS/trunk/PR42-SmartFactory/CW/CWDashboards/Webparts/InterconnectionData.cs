@@ -12,11 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
 
 namespace CAS.SmartFactory.CW.Dashboards.Webparts
@@ -31,9 +27,9 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts
     internal string ID { get { return GetFieldValue( Element.IDColunmName ); } }
     internal string Title { get { return GetFieldValue( Element.TitleColunmName ); } }
   }
-  internal class DisposalRequestInterconnectionData: InterconnectionData<DisposalRequestInterconnectionData>
+  internal class DisposalInterconnectionData: InterconnectionData<DisposalInterconnectionData>
   {
-    internal DisposalRequestInterconnectionData()
+    internal DisposalInterconnectionData()
       : base()
     { }
   }

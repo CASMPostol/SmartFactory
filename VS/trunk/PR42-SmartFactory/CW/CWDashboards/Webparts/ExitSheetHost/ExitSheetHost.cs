@@ -29,15 +29,16 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
   [ToolboxItemAttribute(false)]
   public class ExitSheetHost : WebPart
   {
+
     #region Interconnections Providers
     /// <summary>
     /// Sets the BatchInterconnection provider.
     /// </summary>
-    /// <param name="_provider">The provider interface.</param>
-    [ConnectionConsumer("Disposal Request list interconnection", "DisposalInterconnection", AllowsMultipleConnections = false)]
-    public void SetBatchProvider(IWebPartRow _provider)
+    /// <param name="provider">The provider interface.</param>
+    [ConnectionConsumer("Disposal list interconnection", "DisposalInterconnection", AllowsMultipleConnections = false)]
+    public void SetBatchProvider(IWebPartRow provider)
     {
-      m_ProvidersDictionary = _provider;
+      m_ProvidersDictionary = provider;
     }
     #endregion
 
@@ -75,9 +76,9 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
         m_SelectedItemTitle.Text = "No item selected";
         return;
       }
-      new DisposalRequestInterconnectionData().SetRowData(webPartRow, NewDataEventHandler);
+      new DisposalInterconnectionData().SetRowData(webPartRow, NewDataEventHandler);
     }
-    private void NewDataEventHandler(object sender, DisposalRequestInterconnectionData e)
+    private void NewDataEventHandler(object sender, DisposalInterconnectionData e)
     {
       EnsureChildControls();
       m_SelectedItemTitle.Text = e.Title;
@@ -87,5 +88,6 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
     private LiteralControl m_SelectedItemTitle = new LiteralControl();
     private HiddenField m_HiddenFieldData = new HiddenField();
     private SilverlightWebControl m_slwc = null;
+
   }
 }

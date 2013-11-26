@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : static class JsonSerializer
 //  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+//  $LastChangedDate: 2013-11-06 09:19:50 +0100 (Śr, 06 lis 2013) $
+//  $Rev: 9920 $
+//  $LastChangedBy: mpostol $
+//  $URL: svn://svnserver.hq.cas.com.pl/VS/trunk/PR42-SmartFactory/Customs/Messages/Serialization/JsonSerializer.cs $
+//  $Id: JsonSerializer.cs 9920 2013-11-06 08:19:50Z mpostol $
 //
 //  Copyright (C) 2013, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -14,10 +14,11 @@
 //</summary>
       
 using System;
+using System.Runtime.Serialization;             // Reference System.Runtime.Serialization
 using System.Runtime.Serialization.Json;        // Reference System.ServiceModel.Web
 using System.Text;
 
-namespace CAS.SmartFactory.Customs.Messages.Serialization
+namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart.Serialization
 {
   /// <summary>
   /// static class JsonSerializer

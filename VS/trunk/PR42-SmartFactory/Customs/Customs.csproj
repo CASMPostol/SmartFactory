@@ -95,12 +95,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
-      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
-      <Name>SharePoint</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="cas.snk" />
     <None Include="Messages\CELINA\CLNBw2r0.xsd">
       <SubType>Designer</SubType>
