@@ -163,6 +163,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
           _at = "ClearenceLookup";
           Clearence _Clearence = Element.GetAtIndex<Clearence>(_edc.Clearence, commonClearanceData.ClearenceLookup);
           _Clearence.FinishClearThroughCustoms(_edc, _Clearence.Clearence2SadGoodID);
+          _edc.SubmitChanges();
         }
       }
       catch (Exception ex)
@@ -269,7 +270,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
       public CreateCWAccountException(string message) : base(message) { }
     }
     #endregion
-
 
     #region ICWAccountFactory Members
 
