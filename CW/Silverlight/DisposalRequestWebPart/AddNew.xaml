@@ -36,13 +36,9 @@
                 <TextBox x:Name="x_TextBoxQtyToClear" Height="26" Width="200" Grid.Row="3" Grid.Column="1" Margin="5" BorderBrush="#FF3D8AA5" />
                 <sdk:Label Content="Procedure:" Height="26" Foreground="White" Grid.Row="4" Grid.Column="0" />
                 <ComboBox x:Name="x_ComboBoxProcedure" Height="26" Width="200" Grid.Row="4" Grid.Column="1" Margin="5" BorderBrush="#FF3D8AA5" HorizontalContentAlignment="Right" >
-                    <ComboBoxItem Name="x_3151" HorizontalAlignment="Right">3151</ComboBoxItem>
                     <ComboBoxItem Name="x_3171" HorizontalAlignment="Right">3171</ComboBoxItem>
-                    <ComboBoxItem Name="x_4051" HorizontalAlignment="Right">4051</ComboBoxItem>
                     <ComboBoxItem Name="x_4071" IsSelected="True" HorizontalAlignment="Right">4071</ComboBoxItem>
-                    <ComboBoxItem Name="x_5100" HorizontalAlignment="Right">5100</ComboBoxItem>
                     <ComboBoxItem Name="x_5171" HorizontalAlignment="Right">5171</ComboBoxItem>
-                    <ComboBoxItem Name="x_7100" HorizontalAlignment="Right">7100</ComboBoxItem>
                     <ComboBoxItem Name="x_7171" HorizontalAlignment="Right">7171</ComboBoxItem>
                 </ComboBox>
             </Grid>
