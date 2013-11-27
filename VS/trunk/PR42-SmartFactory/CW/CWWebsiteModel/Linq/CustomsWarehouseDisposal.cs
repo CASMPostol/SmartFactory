@@ -14,6 +14,7 @@
 //</summary>
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using CAS.SharePoint;
 
@@ -86,9 +87,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         return;
       try
       {
-        IQueryable<CustomsWarehouseDisposal> _Finished = from _dsp in this.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal
-                                                         where _dsp.CustomsStatus.Value == Linq.CustomsStatus.Finished
-                                                         select _dsp;
+        List<CustomsWarehouseDisposal> _Finished = (from _dsp in this.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal
+                                                    where _dsp.CustomsStatus.Value == Linq.CustomsStatus.Finished
+                                                    select _dsp).ToList<CustomsWarehouseDisposal>();
         if (_Finished.Count<CustomsWarehouseDisposal>() == 0)
           this.No = 1;
         else
@@ -96,9 +97,19 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         AssignSADGood(sadGood);
         decimal _balance = CalculateRemainingQuantity();
         if (_balance == 0)
+        {
+          this.CW_RemainingPackage = 0;
+          this.CW_RemainingTobaccoValue = 0;
           this.ClearingType = Linq.ClearingType.TotalWindingUp;
+        }
         else
+        {
+          double _value = _Finished.Sum<CustomsWarehouseDisposal>(x => x.TobaccoValue.Value);
+          double _pckgs = _Finished.Sum<CustomsWarehouseDisposal>(x => x.CW_PackageToClear.Value);
+          this.CW_RemainingPackage = this.CWL_CWDisposal2CustomsWarehouseID.CW_PackageUnits - _pckgs - this.CW_PackageToClear;
+          this.CW_RemainingTobaccoValue = this.CWL_CWDisposal2CustomsWarehouseID.Value - _value - this.TobaccoValue;
           this.ClearingType = Linq.ClearingType.PartialWindingUp;
+        }
         CheckCNCosistency();
         this.CustomsStatus = Linq.CustomsStatus.Finished;
       }
@@ -134,14 +145,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
             throw new NotImplementedException();
         }
       }
-      this.DutyPerSettledAmount = (_duties / this.CW_SettledNetMass.DecimalValue()).DoubleValue();
-      this.VATPerSettledAmount = (_vat / this.CW_SettledNetMass.DecimalValue()).DoubleValue();
+      this.DutyPerSettledAmount = _duties.DoubleValue();
+      this.VATPerSettledAmount = _vat.DoubleValue();
       this.DutyAndVAT = (_vat + _duties).DoubleValue();
-      this.CW_RemainingPackage -= this.CW_PackageToClear;
     }
     private decimal CalculateRemainingQuantity()
     {
-      decimal _balance = _balance = this.CWL_CWDisposal2CustomsWarehouseID.AccountBalance.DecimalValue() - this.CW_SettledNetMass.DecimalValue();
+      decimal _balance = this.CWL_CWDisposal2CustomsWarehouseID.AccountBalance.DecimalValue() - this.CW_SettledNetMass.DecimalValue();
       this.CWL_CWDisposal2CustomsWarehouseID.AccountBalance = this.RemainingQuantity = _balance.DoubleValue();
       return _balance;
     }
