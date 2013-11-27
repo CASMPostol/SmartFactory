@@ -85,6 +85,8 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
         using (Entities _edc = new Entities(properties.WebUrl))
         {
           ActivityLogCT.WriteEntry(_edc, "BatchEventReceiver.ItemAdded" + " at " + At, _ex.Message);
+          DisposalRequestLib _entry = Element.GetAtIndex<DisposalRequestLib>(_edc.DisposalRequestLibrary, properties.ListItemId);
+          _entry.ClearenceProcedure = new Nullable<ClearenceProcedure>();
           _edc.SubmitChanges();
         }
       }
