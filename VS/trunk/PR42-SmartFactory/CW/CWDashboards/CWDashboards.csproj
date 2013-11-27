@@ -138,6 +138,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Dashboards\SupplementCWBookDashboard\Elements.xml" />
+    <Content Include="Images\CWDashboards\CW_feature_32x32.png" />
     <Content Include="Silverlight\SilverLightModule\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
