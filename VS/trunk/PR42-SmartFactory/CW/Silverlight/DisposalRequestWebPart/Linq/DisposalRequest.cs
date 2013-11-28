@@ -371,7 +371,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     internal bool AutoCalculation { get; set; }
     internal void GetDataContext(List<CustomsWarehouse> list, IGrouping<string, CustomsWarehouseDisposal> m_Grouping)
     {
-      list.Sort(new CWComparerOnId());
+      list.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
       CustomsProcedure = m_Grouping.First<CustomsWarehouseDisposal>().CustomsProcedure;
       m_ListOfCustomsWarehouse = list;
       RemainingOnStock = m_ListOfCustomsWarehouse.Sum(x => x.TobaccoNotAllocated.Value);
@@ -382,7 +382,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     internal void GetDataContext(List<CustomsWarehouse> list, double toDispose, string customsProcedure)
     {
       b_customsProcedure = customsProcedure;
-      list.Sort(new CWComparerOnId());
+      list.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
       m_ListOfCustomsWarehouse = list;
       TotalStock = m_ListOfCustomsWarehouse.Sum(x => x.TobaccoNotAllocated.Value);
       AddedKg = toDispose;
@@ -452,13 +452,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private List<CustomsWarehouse> m_ListOfCustomsWarehouse = null;
     #endregion
 
-    private class CWComparerOnId : Comparer<CustomsWarehouse>
-    {
-      public override int Compare(CustomsWarehouse x, CustomsWarehouse y)
-      {
-        return x.Id.Value.CompareTo(y.Id.Value);
-      }
-    }
     protected override void OnPropertyChanged(string propertyName)
     {
       base.OnPropertyChanged(propertyName);
