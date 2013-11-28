@@ -123,7 +123,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
                 continue;
               }
               if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure)
-                _tasksList.Add(CWClearThroughCustoms(entities, _sgx)); //Procedure 4071
+                _tasksList.Add(CWPrepareClearance(entities, _sgx)); //Procedure 4071
               else if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.InwardProcessing)
                 IPRClearThroughCustoms(entities, _sgx); //Procedure 4051
               else
@@ -138,14 +138,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
                   continue;
                 }
                 if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure)
-                  // TODO Procedure 5171 
-                  ;
-                else if (_sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.NoProcedure)
-                {
-                  // Procedure 5100 
-                  Clearence _newClearance = Clearence.CreataClearence(entities, "InwardProcessing", ClearenceProcedure._5171, _sgx);
-                  CreateIPRAccount(entities, _newClearance, CustomsDocument.DocumentType.PZC, out comments, ProgressChange);
-                }
+                  _tasksList.Add(CWPrepareClearance(entities, _sgx)); //Procedure 5071
+                // Procedure 5100 lub 5171
+                Clearence _newClearance = Clearence.CreataClearence(entities, "InwardProcessing", ClearenceProcedure._5171, _sgx);
+                CreateIPRAccount(entities, _newClearance, CustomsDocument.DocumentType.PZC, out comments, ProgressChange);
                 break;
               }
             case CustomsProcedureCodes.CustomsWarehousingProcedure:
@@ -237,7 +233,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     /// <param name="entities">The entities.</param>
     /// <param name="good">The good.</param>
     /// <exception cref="InputDataValidationException">Create CW Account Failed;CreateCWAccount</exception>
-    private static CWClearanceData CWClearThroughCustoms(Entities entities, SADGood good)
+    private static CWClearanceData CWPrepareClearance(Entities entities, SADGood good)
     {
       Clearence _clearance = GetClearanceId(entities, good, Settings.GetParameter(entities, SettingsEntry.RequiredDocumentSADTemplateDocumentNamePattern));
       _clearance.FinishClearingThroughCustoms(good);
