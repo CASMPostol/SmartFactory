@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       return this.CW_PackageUnits.Value == 0 ? 0 : (this.GrossMass.Value - this.CW_Quantity.Value) / this.CW_PackageUnits.Value;
     }
     /// <summary>
-    /// compares asscending two objects of the <see cref="CustomsWarehouse "/> type.
+    /// compares descenfing two objects of the <see cref="CustomsWarehouse "/> type.
     /// </summary>
     /// <param name="x">The first object to compare.</param>
     /// <param name="y">The second object to compare.</param>
@@ -50,9 +50,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     /// </returns>
     internal static int CompareCustomsWarehouse(CustomsWarehouse x, CustomsWarehouse y)
     {
-      int _ret = DateTime.Compare(y.CustomsDebtDate.Value, x.CustomsDebtDate.Value);
+      int _ret = DateTime.Compare(x.CustomsDebtDate.Value, y.CustomsDebtDate.Value);
       if (_ret == 0)
-        _ret = String.Compare(y.DocumentNo, x.DocumentNo);
+        _ret = String.Compare(x.DocumentNo, y.DocumentNo);
       return _ret;
     }
   }
