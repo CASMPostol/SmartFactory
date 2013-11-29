@@ -15,15 +15,12 @@
 
 using System;
 using System.ComponentModel;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SmartFactory.CW.Dashboards.SharePointLib;
 using CAS.SmartFactory.CW.Dashboards.Silverlight;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
-using Microsoft.SharePoint;
-using Microsoft.SharePoint.WebControls;
 
 namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
 {
@@ -43,6 +40,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
     }
     #endregion
 
+    #region private
     /// <summary>
     /// Called by the ASP.NET page framework to notify server controls that use composition-based implementation to create any child controls they contain in preparation for posting back or rendering.
     /// </summary>
@@ -86,7 +84,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
       using (Entities _edx = new Entities())
       {
         CustomsWarehouseDisposal _cwd = Element.GetAtIndex<CustomsWarehouseDisposal>(_edx.CustomsWarehouseDisposal, e.ID);
-        ExitSheeDataContract _dc = ExitSheeDataContract.GetExitSheeDataContract(_cwd);
+        ExitSheeDataContract _dc = ExitSheeDataContract.GetExitSheeDataContract(_edx, _cwd);
         m_HiddenFieldData.Value = _dc.Serialize();
       }
     }
@@ -94,6 +92,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
     private LiteralControl m_SelectedItemTitle = new LiteralControl();
     private HiddenField m_HiddenFieldData = new HiddenField();
     private SilverlightWebControl m_slwc = null;
+    #endregion
 
   }
 }

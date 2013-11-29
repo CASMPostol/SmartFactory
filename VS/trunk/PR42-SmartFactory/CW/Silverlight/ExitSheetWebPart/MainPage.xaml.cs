@@ -40,11 +40,7 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
       : this()
     {
       HtmlDocument doc = HtmlPage.Document;
-      HtmlElement hiddenField = doc.GetElementById(hiddenFieldDataName);
-      string message = hiddenField.GetAttribute("value");
-      int _id = 0;
-      if (Int32.TryParse(message, out _id))
-        m_SelectedID = _id;
+      m_HiddenField = doc.GetElementById(hiddenFieldDataName);
     }
     #endregion
 
@@ -52,27 +48,26 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
 
     #region vars
     private PrintDocument m_PrintDocument = null;
-    private int? m_SelectedID = new Nullable<int>();
+    private HtmlElement m_HiddenField = null;
     private string m_at;
-    private string m_URL = string.Empty;
     #endregion
 
     #region handlers
     private void UserControl_Loaded(object sender, RoutedEventArgs e)
     {
-      //TODO 
-      //try
-      //{
-      //  ClientContext _ClientContext = ClientContext.Current;
-      //  if (_ClientContext == null)
-      //    throw new ArgumentNullException("clientContext", String.Format("Cannot get the {0} ", "ClientContext"));
-      //  m_URL = _ClientContext.Url;
-      //  this.MainPageData.GetData(m_URL, m_SelectedID);
-      //}
-      //catch (Exception ex)
-      //{
-      //  ExceptionHandling(ex);
-      //}
+      try
+      {
+        m_at = "MainPage.UserControl_Loaded";
+        if (m_HiddenField != null)
+        {
+          string message = m_HiddenField.GetAttribute("value");
+          x_GridToBePrinted.DataContext = ExitSheeDataContract.Deserialize(message);
+        }
+      }
+      catch (Exception ex)
+      {
+        ExceptionHandling(ex);
+      }
     }
     private void UserControl_Unloaded(object sender, RoutedEventArgs e)
     {
@@ -86,6 +81,7 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
     {
       try
       {
+        m_at = "MainPage.x_ButtonPrint_Click";
         m_PrintDocument.Print("Exit Sheet");
       }
       catch (System.Exception ex)
@@ -101,7 +97,7 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
     }
     private ExitSheeDataContract MainPageData
     {
-      get { return ( (ExitSheeDataContract)x_GridToBePrinted.DataContext ); }
+      get { return ((ExitSheeDataContract)x_GridToBePrinted.DataContext); }
       set { x_GridToBePrinted.DataContext = value; this.UpdateLayout(); }
     }
 
