@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : class ExitSheeDataContract
 //  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2013, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -16,6 +16,7 @@
 using System;
 using CAS.SharePoint.Serialization;
 using CAS.SharePoint;
+using CAS.SmartFactory.CW.WebsiteModel.Linq;
 
 namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
 {
@@ -31,7 +32,6 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
     /// <param name="serializedObject">The serialized object.</param>
     public static ExitSheeDataContract Deserialize(string serializedObject)
     {
-
       return JsonSerializer.Deserialize<ExitSheeDataContract>(serializedObject);
     }
     /// <summary>
@@ -42,8 +42,10 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
     {
       return JsonSerializer.Serialize<ExitSheeDataContract>(this);
     }
-    internal static ExitSheeDataContract GetExitSheeDataContract(WebsiteModel.Linq.CustomsWarehouseDisposal cwd)
+    internal static ExitSheeDataContract GetExitSheeDataContract(Entities edc, WebsiteModel.Linq.CustomsWarehouseDisposal cwd)
     {
+      Warehouse _wrh = null; //TODO add Warehouse to the model (from _wrhx in edc.Warehouse where _wrhx.Procedure == cwd.CustomsProcedure select _wrhx).FirstOrDefault();
+      string _warehouseName = _wrh == null ? "N/A" : _wrh.WarehouseName;
       ExitSheeDataContract _esdc = new ExitSheeDataContract
       {
         Batch = cwd.CWL_CWDisposal2CustomsWarehouseID.Batch,
@@ -57,7 +59,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
         SettledNetMass = cwd.CW_SettledNetMass.Value,
         SKU = cwd.CWL_CWDisposal2CustomsWarehouseID.SKU,
         TobaccoName = cwd.CWL_CWDisposal2CustomsWarehouseID.TobaccoName,
-        WarehouseName = "??" //TODO jak to znaleść.
+        WarehouseName = _warehouseName
       };
       return _esdc;
     }

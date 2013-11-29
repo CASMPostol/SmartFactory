@@ -52,7 +52,7 @@
   <!--<List Name="Usage" />-->
   <!--<List Name="User Information List" />-->
   <List Name="Vendor" />
-  <!--<List Name="Warehouse" />-->
+  <List Name="Warehouse" />
   <!--<List Name="Waste" />-->
   <ExcludeOtherLists/>
   <!--<List Name="Web Part Gallery" />-->
