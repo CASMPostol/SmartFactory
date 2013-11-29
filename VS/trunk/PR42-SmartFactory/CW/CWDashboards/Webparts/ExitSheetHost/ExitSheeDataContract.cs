@@ -26,84 +26,144 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
   {
 
     #region public properties
+    /// <summary>
+    /// Gets or sets the label ogl number.
+    /// </summary>
+    /// <value>
+    /// The label ogl number.
+    /// </value>
     [DataMember]
-    public string LabelOGLNumber
+    public string OGLNumber
     {
       get { return b_LabelOGLNumber; }
       set { b_LabelOGLNumber = value; }
     }
+    /// <summary>
+    /// Gets or sets the label ogl date.
+    /// </summary>
+    /// <value>
+    /// The label ogl date.
+    /// </value>
     [DataMember]
-    public DateTime LabelZDdnia
-    {
-      get { return b_LabelZDdnia; }
-      set { b_LabelZDdnia = value; }
-    }
-    [DataMember]
-    public DateTime LabelOGLDate
+    public DateTime OGLDate
     {
       get { return b_LabelOGLDate; }
       set { b_LabelOGLDate = value; }
     }
+    /// <summary>
+    /// Gets or sets the name of the label tobacco.
+    /// </summary>
+    /// <value>
+    /// The name of the label tobacco.
+    /// </value>
     [DataMember]
-    public string LabelTobaccoName
+    public string TobaccoName
     {
       get { return b_LabelTobaccoName; }
       set { b_LabelTobaccoName = value; }
     }
+    /// <summary>
+    /// Gets or sets the grade.
+    /// </summary>
+    /// <value>
+    /// The grade.
+    /// </value>
     [DataMember]
-    public string LabelGrade
+    public string Grade
     {
       get { return b_LabelGrade; }
       set { b_LabelGrade = value; }
     }
+    /// <summary>
+    /// Gets or sets the SKU.
+    /// </summary>
+    /// <value>
+    /// The sku.
+    /// </value>
     [DataMember]
-    public string LabelSKU
+    public string SKU
     {
       get { return b_LabelSKU; }
       set { b_LabelSKU = value; }
     }
+    /// <summary>
+    /// Gets or sets the label batch.
+    /// </summary>
+    /// <value>
+    /// The label batch.
+    /// </value>
     [DataMember]
-    public string LabelBatch
+    public string Batch
     {
       get { return b_LabelBatch; }
       set { b_LabelBatch = value; }
     }
+    /// <summary>
+    /// Gets or sets the label settled net mass.
+    /// </summary>
+    /// <value>
+    /// The label settled net mass.
+    /// </value>
     [DataMember]
-    public double LabelSettledNetMass
+    public double SettledNetMass
     {
       get { return b_LabelSettledNetMass; }
       set { b_LabelSettledNetMass = value; }
     }
+    /// <summary>
+    /// Gets or sets the package automatic clear.
+    /// </summary>
+    /// <value>
+    /// The package automatic clear.
+    /// </value>
     [DataMember]
-    public double PackageToClear
+    public int PackageToClear
     {
       get { return b_PackageToClear; }
       set { b_PackageToClear = value; }
     }
+    /// <summary>
+    /// Gets or sets the sad.
+    /// </summary>
+    /// <value>
+    /// The sad.
+    /// </value>
     [DataMember]
     public string SAD
     {
       get { return b_LabelSAD; }
       set { b_LabelSAD = value; }
     }
+    /// <summary>
+    /// Gets or sets the remaining quantity.
+    /// </summary>
+    /// <value>
+    /// The remaining quantity.
+    /// </value>
     [DataMember]
-    public string RemainingQuantity
+    public double RemainingQuantity
     {
       get { return b_LabelRemainingQuantity; }
       set { b_LabelRemainingQuantity = value; }
     }
+    /// <summary>
+    /// Gets or sets the remaining package.
+    /// </summary>
+    /// <value>
+    /// The remaining package.
+    /// </value>
     [DataMember]
-    public string RemainingPackage
+    public int RemainingPackage
     {
       get { return b_LabelRemainingPackage; }
       set { b_LabelRemainingPackage = value; }
     }
-    [DataMember]
-    public int PackageQuantity
-    {
-      get { return b_LablePackageQuantity; }
-      set { b_LablePackageQuantity = value; }
-    }
+    /// <summary>
+    /// Gets or sets the name of the warehouse.
+    /// </summary>
+    /// <value>
+    /// The name of the warehouse.
+    /// </value>
     [DataMember]
     public string WarehouseName
     {
@@ -114,18 +174,16 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
 
     #region private backed fields.
     private string b_LabelOGLNumber;
-    private DateTime b_LabelZDdnia;
     private DateTime b_LabelOGLDate;
     private string b_LabelTobaccoName;
     private string b_LabelGrade;
     private string b_LabelSKU;
     private string b_LabelBatch;
     private double b_LabelSettledNetMass;
-    private double b_PackageToClear;
+    private int b_PackageToClear;
     private string b_LabelSAD;
-    private string b_LabelRemainingQuantity;
-    private string b_LabelRemainingPackage;
-    private int b_LablePackageQuantity;
+    private double b_LabelRemainingQuantity;
+    private int b_LabelRemainingPackage;
     private string b_LableWarehouseName;
     #endregion
 
