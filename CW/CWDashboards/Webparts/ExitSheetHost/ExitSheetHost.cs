@@ -21,6 +21,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SmartFactory.CW.Dashboards.SharePointLib;
 using CAS.SmartFactory.CW.Dashboards.Silverlight;
+using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 
@@ -82,7 +83,12 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
     {
       EnsureChildControls();
       m_SelectedItemTitle.Text = e.Title;
-      m_HiddenFieldData.Value = e.ID;
+      using (Entities _edx = new Entities())
+      {
+        CustomsWarehouseDisposal _cwd = Element.GetAtIndex<CustomsWarehouseDisposal>(_edx.CustomsWarehouseDisposal, e.ID);
+        ExitSheeDataContract _dc = ExitSheeDataContract.GetExitSheeDataContract(_cwd);
+        m_HiddenFieldData.Value = _dc.Serialize();
+      }
     }
     private IWebPartRow m_ProvidersDictionary = null;
     private LiteralControl m_SelectedItemTitle = new LiteralControl();

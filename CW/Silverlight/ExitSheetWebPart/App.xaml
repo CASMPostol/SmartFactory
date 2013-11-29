@@ -1,5 +1,6 @@
 ﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:ExitSheetHost="clr-namespace:CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
              x:Class="CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart.App"
              >
     <Application.Resources>
@@ -8,6 +9,7 @@
     		<ResourceDictionary.MergedDictionaries>
     			<ResourceDictionary Source="ResourceDictionary.xaml"/>
     		</ResourceDictionary.MergedDictionaries>
+    		<ExitSheetHost:ExitSheeDataContract x:Key="ExitSheeDataContractDataSource" d:IsDataSource="True"/>
     	</ResourceDictionary>
 
     </Application.Resources>
