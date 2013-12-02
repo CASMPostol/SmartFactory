@@ -84,14 +84,14 @@
           <FieldRef Name="Units" />
           <FieldRef Name="NetMass" />
           <FieldRef Name="GrossMass" />
-          <FieldRef Name="CW_PackageUnits" />
           <FieldRef Name="CW_PackageKg" />
+          <FieldRef Name="CW_PackageUnits" />
           <FieldRef Name="CW_MassPerPackage" />
-          <FieldRef Name="Value" />
-          <FieldRef Name="Currency" />
           <FieldRef Name="CW_UnitPrice" />
-          <FieldRef Name="CW_PzNo" />
+          <FieldRef Name="Value" />       
+          <FieldRef Name="Currency" />
           <FieldRef Name="InvoiceNo" />
+          <FieldRef Name="CW_PzNo" />
           <FieldRef Name="AccountBalance" />
           <FieldRef Name="TobaccoNotAllocated" />
           <FieldRef Name="CW_CertificateOfOrgin" />
@@ -165,11 +165,14 @@
           <FieldRef Name="NetMass" />
           <FieldRef Name="GrossMass" />
           <FieldRef Name="CW_PackageUnits" />
+          <FieldRef Name="CW_UnitPrice" />
           <FieldRef Name="Value" />
           <FieldRef Name="Currency" />
-          <FieldRef Name="CW_UnitPrice" />
-          <FieldRef Name="CW_PzNo" />
           <FieldRef Name="InvoiceNo" />
+          <FieldRef Name="CW_PzNo" />
+          <FieldRef Name="TobaccoNotAllocated" />
+          <FieldRef Name="CW_CertificateOfOrgin" />
+          <FieldRef Name="CW_CertificateOfAuthenticity" />
           <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
