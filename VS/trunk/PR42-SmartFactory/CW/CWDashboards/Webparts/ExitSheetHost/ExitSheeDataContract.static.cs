@@ -14,8 +14,8 @@
 //</summary>
 
 using System;
+using System.Linq;
 using CAS.SharePoint.Serialization;
-using CAS.SharePoint;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
 
 namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
     }
     internal static ExitSheeDataContract GetExitSheeDataContract(Entities edc, WebsiteModel.Linq.CustomsWarehouseDisposal cwd)
     {
-      Warehouse _wrh = null; //TODO add Warehouse to the model (from _wrhx in edc.Warehouse where _wrhx.Procedure == cwd.CustomsProcedure select _wrhx).FirstOrDefault();
+      Warehouse _wrh = (from _wrhx in edc.Warehouse where _wrhx.Procedure == cwd.CustomsProcedure select _wrhx).FirstOrDefault();
       string _warehouseName = _wrh == null ? "N/A" : _wrh.WarehouseName;
       ExitSheeDataContract _esdc = new ExitSheeDataContract
       {
