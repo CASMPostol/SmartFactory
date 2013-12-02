@@ -1,42 +1,49 @@
-﻿<UserControl x:Class="CAS.SmartFactory.CW.Dashboards.CheckListWebPart.MainPage"
+﻿<UserControl
 	xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:local="clr-namespace:CAS.SmartFactory.CW.Dashboards.CheckListWebPart" x:Class="CAS.SmartFactory.CW.Dashboards.CheckListWebPart.MainPage"
     mc:Ignorable="d"
     d:DesignHeight="400" d:DesignWidth="400">
-    <Grid x:Name="x_LayoutRoot"  Background="White" HorizontalAlignment="Stretch" Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="200" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <Button Name="x_ButtonPrint" Style="{StaticResource ButtonStyle}" Content="Print Check List" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Click="x_ButtonPrint_Click"/>
-        <Grid Name="x_GridToBePrinted" Grid.Row="1" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <sdk:Label Grid.Row="0" Grid.Column="0" Content="Dokument z dnia:" HorizontalAlignment="Right" />
-            <sdk:DatePicker Name="x_DatePickerCurrentDate" Grid.Row="0" Grid.Column="1" DisplayDate="" />
-            <sdk:DataGrid Name="x_DataGridCheckListContent" Style="{StaticResource DataGridStyle}" Foreground="Black" ItemsSource="{Binding RequestCollection}" Grid.Row="1" Grid.ColumnSpan="2" AutoGenerateColumns="False" Background="#00000000">
-                <sdk:DataGrid.CanUserReorderColumns >
-                    <System:Boolean>false</System:Boolean>
-                </sdk:DataGrid.CanUserReorderColumns>
-                <sdk:DataGrid.Columns>
-                    <sdk:DataGridTextColumn Binding="{Binding OGL, FallbackValue=N/A}" Header="Numer OGL" CellStyle="{StaticResource NonEditableCell}" CanUserSort="True" IsReadOnly="True" />
-                    <sdk:DataGridTextColumn Binding="{Binding SADDate, FallbackValue=N/A}" Header="Z dnia" CellStyle="{StaticResource NonEditableCell}" CanUserSort="True" IsReadOnly="True" />
-                    <sdk:DataGridTextColumn Binding="{Binding RemainingPackage, FallbackValue=N/A}" Header="Liczba kartonów" CellStyle="{StaticResource NonEditableCell}" CanUserSort="True" IsReadOnly="True" />
-                </sdk:DataGrid.Columns>
-            </sdk:DataGrid>
-        </Grid>       
-    </Grid>
+	<UserControl.Resources>
+		<local:CheckListWebPartDataContract x:Key="CheckListWebPartDataContractDataSource" d:IsDataSource="True"/>
+	</UserControl.Resources>
+	<Grid x:Name="x_LayoutRoot"  Background="White" HorizontalAlignment="Stretch" Margin="10">
+		<Grid.DataContext>
+			<local:CheckListWebPartDataContract/>
+		</Grid.DataContext>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="200" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<Button x:Name="x_ButtonPrint" Style="{StaticResource ButtonStyle}" Content="Print Check List" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Click="x_ButtonPrint_Click"/>
+		<Grid x:Name="x_GridToBePrinted" Grid.Row="1" Grid.Column="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+			<sdk:Label Grid.Row="0" Grid.Column="0" Content="Dokument z dnia:" HorizontalAlignment="Right" />
+			<sdk:DatePicker x:Name="x_DatePickerCurrentDate" Grid.Row="0" Grid.Column="1" DisplayDate="" Effect="{Binding Today}" />
+			<sdk:DataGrid x:Name="x_DataGridCheckListContent" Style="{StaticResource DataGridStyle}" Foreground="Black" ItemsSource="{Binding RequestCollection}" Grid.Row="1" Grid.ColumnSpan="2" AutoGenerateColumns="False" Background="#00000000" Effect="{Binding DisposalsList}">
+				<sdk:DataGrid.CanUserReorderColumns >
+					<System:Boolean>false</System:Boolean>
+				</sdk:DataGrid.CanUserReorderColumns>
+				<sdk:DataGrid.Columns>
+					<sdk:DataGridTextColumn x:Name="OGLNumber" Binding="{Binding OGL, FallbackValue=N/A}" Header="Numer OGL" CellStyle="{StaticResource NonEditableCell}" CanUserSort="True" IsReadOnly="True" />
+					<sdk:DataGridTextColumn x:Name="OGLDate" Binding="{Binding SADDate, FallbackValue=N/A}" Header="Z dnia" CellStyle="{StaticResource NonEditableCell}" CanUserSort="True" IsReadOnly="True" />
+					<sdk:DataGridTextColumn x:Name="PackageToClear" Binding="{Binding RemainingPackage, FallbackValue=N/A}" Header="Liczba kartonów" CellStyle="{StaticResource NonEditableCell}" CanUserSort="True" IsReadOnly="True" />
+				</sdk:DataGrid.Columns>
+			</sdk:DataGrid>
+		</Grid>       
+	</Grid>
 </UserControl>
