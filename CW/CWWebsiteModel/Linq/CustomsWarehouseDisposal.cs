@@ -51,7 +51,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     public string GoodsName(Entities entities)
     {
       CustomsWarehouse _cw = CWL_CWDisposal2CustomsWarehouseID;
-      return Settings.FormatGoodsName(entities, _cw.TobaccoName, _cw.Grade, _cw.SKU, _cw.Batch, _cw.DocumentNo);
+      return Settings.FormatGoodsName(entities, _cw.TobaccoName, _cw.Grade, _cw.SKU, _cw.Batch, this.ClearingType.Value, _cw.DocumentNo);
     }
     /// <summary>
     /// Gets the goods code.
