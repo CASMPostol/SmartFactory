@@ -88,8 +88,18 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         };
       return _dctnry[dutyKind];
     }
-    internal static string FormatGoodsName(Entities entities, string tobaccoName, string grade, string sku, string batch, string documentNo)
+    internal static string FormatGoodsName(Entities entities, string tobaccoName, string grade, string sku, string batch, ClearingType clearingType, string documentNo)
     {
+      string _ctText = String.Empty;
+      switch (clearingType)
+      {
+        case ClearingType.PartialWindingUp:
+          _ctText = GetParameter(entities, SettingsEntry.ClearingTypePartialWindingUpText);
+          break;
+        case ClearingType.TotalWindingUp:
+          _ctText = GetParameter(entities, SettingsEntry.ClearingTypeTotalWindingUpText);
+          break;
+      }
       return String.Format(GetParameter(entities, SettingsEntry.GoodsDescription_Format), tobaccoName, grade, sku, batch, documentNo);
     }
 
@@ -101,7 +111,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
        { SettingsEntry.GoodsDescription_CWPackageUnits_Pattern, @"(?<=\bBATCH:)\D*\d*\D*\d*[.,,]\d*\W*\w*\D*(\d*)\W*CT" },
        { SettingsEntry.GoodsDescription_Units_Pattern,  @"(?<=\bBATCH:)\D*\d*\D*\d*[.,,]\d*\W*(\w*)\D*\d*\W*CT" },
        { SettingsEntry.GoodsDescription_CertificateOfAuthenticity_Pattern,  @"\b([\w\d\s\.,-]*)/.*" },
-       { SettingsEntry.GoodsDescription_Format, @"{0} GRADE:{1} SKU:{2} Batch:{3} {4}" },
+       { SettingsEntry.GoodsDescription_Format, @"{0} GRADE:{1} SKU:{2} Batch:{3} {4} {5}" },
        { SettingsEntry.GoodsDescription_CertificateOfOrgin_Pattern, @"\b([\w\d\s\.,-]*)/.*" },
        { SettingsEntry.DefaultValidToDatePeriod, "730" },
        { SettingsEntry.LooselyFormatedDate, @"(?<=/)\D*(\d{1,2}).(\d{1,2}).(\d{4})" },
@@ -112,7 +122,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
        { SettingsEntry.RecipientOrganization, 
           @"{""EORI"":""PL828000181900000"",""Id"":1,""Kod"":""99-220"",""Kraj"":""PL"",""Miejscowosc"":""WARTKOWICE"",""Nazwa"":""JTI POLSKA SP. Z O.O."",""Pesel"":null,""Regon"":""00130199100000"",""TIN"":""PL8280001819"",""UlicaNr"":""GOSTKOW STARY 42""}"},
        {SettingsEntry.DefaultCustomsOffice, 
-          @"{""Lokalizacja"":{""Miejsce"":""PL360000SC0002"",""Opis"":null,""UC"":null},""SkladCelny"":{""Kraj"":""PL"",""Miejsce"":""PL360000SC0002"",""Typ"":""C""},""UCGraniczny"":""PL362010"",""UCKontrolny"":null,""UCPrzeznaczenia"":null,""UCTranzytowy"":null,""UCZgloszenia"":""PL362010""}" }
+          @"{""Lokalizacja"":{""Miejsce"":""PL360000SC0002"",""Opis"":null,""UC"":null},""SkladCelny"":{""Kraj"":""PL"",""Miejsce"":""PL360000SC0002"",""Typ"":""C""},""UCGraniczny"":""PL362010"",""UCKontrolny"":null,""UCPrzeznaczenia"":null,""UCTranzytowy"":null,""UCZgloszenia"":""PL362010""}" },
+       {SettingsEntry.ClearingTypePartialWindingUpText, "CZESCIOWA LIKWIDACJA"},
+       {SettingsEntry.ClearingTypeTotalWindingUpText, "CALKOWITA LIKWIDACJA"},
     };
     #endregion
   }
@@ -131,6 +143,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     SADTemplateDocumentNamePattern,
     ClearanceTitleFormatCW,
     RecipientOrganization,
-    DefaultCustomsOffice
+    DefaultCustomsOffice,
+    ClearingTypePartialWindingUpText,
+    ClearingTypeTotalWindingUpText
   }
 }
