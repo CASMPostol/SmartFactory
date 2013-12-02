@@ -209,16 +209,31 @@
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">15</RowLimit>
-        <ViewFields />
+        <ViewFields>
+          <FieldRef Name="LinkTitle"></FieldRef>
+          <FieldRef Name="SADDocumentNo" />
+          <FieldRef Name="CWL_CWDisposal2CWDocumentNo_sec" />
+          <FieldRef Name="SADDate" />
+          <FieldRef Name="CWL_CWDisposal2CWTobaccoName_sec" />
+          <FieldRef Name="CWL_CWDisposal2CWGrade_sec" />
+          <FieldRef Name="CWL_CWDisposal2CWSKU_sec" />
+          <FieldRef Name="CWL_CWDisposal2CWBatch_sec" />
+        </ViewFields>
         <Query>
           <OrderBy>
             <FieldRef Name="ID"></FieldRef>
           </OrderBy>
           <Where>
+            <And>
             <Neq>
               <FieldRef Name="AccountClosed" />
               <Value Type="Boolean">Yes</Value>
             </Neq>
+              <Eq>
+                <FieldRef Name="CustomsStatus" />
+                <Value Type="Choice">Finished</Value>
+              </Eq>
+            </And>
           </Where>
         </Query>
         <ParameterBindings>
