@@ -233,6 +233,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 				return this.GetList<Vendor>("Vendor");
 			}
 		}
+		
+		/// <summary>
+		/// Warehouse List Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Warehouse")]
+		public Microsoft.SharePoint.Linq.EntityList<Warehouse> Warehouse {
+			get {
+				return this.GetList<Warehouse>("Warehouse");
+			}
+		}
 	}
 	
 	/// <summary>
