@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using CAS.SmartFactory.CW.Dashboards.CheckListWebPart;
 
-namespace CheckListWebPart
+namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
 {
   public partial class App : Application
   {
