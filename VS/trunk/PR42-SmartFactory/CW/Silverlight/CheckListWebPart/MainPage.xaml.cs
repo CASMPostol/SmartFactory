@@ -13,7 +13,9 @@
 //  http://www.cas.eu
 //</summary>
 
+using System;
 using System.Windows;
+using System.Windows.Browser;
 using System.Windows.Controls;
 using System.Windows.Printing;
 
@@ -23,8 +25,9 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
   /// <summary>
   /// class MainPage 
   /// </summary>
-  public partial class MainPage: UserControl
+  public partial class MainPage : UserControl
   {
+    #region ctors
     public MainPage()
     {
       InitializeComponent();
@@ -32,11 +35,42 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
       m_PrintDocument.PrintPage += PrintDocument_PrintPageEventHandler;
     }
 
+    public MainPage(string hiddenFieldDataName)
+      : this()
+    {
+      HtmlDocument doc = HtmlPage.Document;
+      m_HiddenField = doc.GetElementById(hiddenFieldDataName);
+    }
+    #endregion
+
     #region private
+    #region vars
     private PrintDocument m_PrintDocument = null;
+    private HtmlElement m_HiddenField = null;
+    private string m_at;
+    #endregion
 
     #region handlers
-    private void PrintDocument_PrintPageEventHandler( object sender, PrintPageEventArgs e)
+    private void UserControl_Loaded(object sender, RoutedEventArgs e)
+    {
+      try
+      {
+        m_at = "MainPage.UserControl_Loaded";
+        if (m_HiddenField != null)
+        {
+          string message = m_HiddenField.GetAttribute("value");
+          x_GridToBePrinted.DataContext = Webparts.CheckListHost.CheckListWebPartDataContract.Deserialize(message);
+        }
+      }
+      catch (Exception ex)
+      {
+        ExceptionHandling(ex);
+      }
+    }
+    private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+    {
+    }
+    private void PrintDocument_PrintPageEventHandler(object sender, PrintPageEventArgs e)
     {
       e.PageVisual = x_GridToBePrinted;
       e.HasMorePages = false;
@@ -45,7 +79,8 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
     {
       try
       {
-        m_PrintDocument.Print("Check List");
+        m_at = "MainPage.x_ButtonPrint_Click";
+        m_PrintDocument.Print("Exit Sheet");
       }
       catch (System.Exception ex)
       {
@@ -54,6 +89,15 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
     }
     #endregion
 
+    private void ExceptionHandling(Exception ex)
+    {
+      MessageBox.Show(ex.Message + " AT: " + m_at, "Loaded event error", MessageBoxButton.OK);
+    }
+    private Webparts.CheckListHost.CheckListWebPartDataContract MainPageData
+    {
+      get { return ((Webparts.CheckListHost.CheckListWebPartDataContract)x_GridToBePrinted.DataContext); }
+      set { x_GridToBePrinted.DataContext = value; this.UpdateLayout(); }
+    }
     #endregion
   }
 }

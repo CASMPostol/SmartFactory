@@ -13,7 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
-namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
+namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
 {
   /// <summary>
   /// CommonDefinition for multiproject environment
