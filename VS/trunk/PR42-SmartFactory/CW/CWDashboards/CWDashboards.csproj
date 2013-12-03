@@ -157,7 +157,9 @@
     <Content Include="Webparts\DisposalRequestHost\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Webparts\ExitSheetHost\Elements.xml" />
+    <Content Include="Webparts\ExitSheetHost\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonDefinition.tt.cs" />
