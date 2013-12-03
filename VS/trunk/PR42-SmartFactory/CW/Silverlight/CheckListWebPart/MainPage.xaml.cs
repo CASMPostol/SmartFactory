@@ -34,7 +34,6 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
       m_PrintDocument = new PrintDocument();
       m_PrintDocument.PrintPage += PrintDocument_PrintPageEventHandler;
     }
-
     public MainPage(string hiddenFieldDataName)
       : this()
     {
