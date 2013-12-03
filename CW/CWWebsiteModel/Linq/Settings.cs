@@ -34,7 +34,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// <returns></returns>
     public static string GetParameter(Entities entities, SettingsEntry index)
     {
-      Settings _ret = (from _sx in entities.Settings where _sx.KeyValue.Contains(index.ToString()) select _sx).FirstOrDefault();
+      Settings _ret = (from _sx in entities.Settings where _sx.KeyValue == (index.ToString()) select _sx).FirstOrDefault();
       if (_ret == null)
       {
         _ret = new Settings()
@@ -100,7 +100,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
           _ctText = GetParameter(entities, SettingsEntry.ClearingTypeTotalWindingUpText);
           break;
       }
-      return String.Format(GetParameter(entities, SettingsEntry.GoodsDescription_Format), tobaccoName, grade, sku, batch, documentNo);
+      return String.Format(GetParameter(entities, SettingsEntry.GoodsDescription_Format), tobaccoName, grade, sku, batch, _ctText, documentNo);
     }
 
     #region private
