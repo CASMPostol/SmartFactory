@@ -55,11 +55,9 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
       try
       {
         m_at = "MainPage.UserControl_Loaded";
-        if (m_HiddenField != null)
-        {
-          string message = m_HiddenField.GetAttribute("value");
-          x_GridToBePrinted.DataContext = Webparts.CheckListHost.CheckListWebPartDataContract.Deserialize(message);
-        }
+        if (m_HiddenField == null) return;
+        string message = m_HiddenField.GetAttribute("value");
+        x_GridToBePrinted.DataContext = Webparts.CheckListHost.CheckListWebPartDataContract.Deserialize(message);
       }
       catch (Exception ex)
       {
