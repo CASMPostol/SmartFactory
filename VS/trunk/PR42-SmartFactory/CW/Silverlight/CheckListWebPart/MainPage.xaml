@@ -8,13 +8,7 @@
     xmlns:local="clr-namespace:CAS.SmartFactory.CW.Dashboards.CheckListWebPart" x:Class="CAS.SmartFactory.CW.Dashboards.CheckListWebPart.MainPage"
     mc:Ignorable="d"
     d:DesignHeight="400" d:DesignWidth="400">
-	<UserControl.Resources>
-		<local:CheckListWebPartDataContract x:Key="CheckListWebPartDataContractDataSource" d:IsDataSource="True"/>
-	</UserControl.Resources>
 	<Grid x:Name="x_LayoutRoot"  Background="White" HorizontalAlignment="Stretch" Margin="10">
-		<Grid.DataContext>
-			<local:CheckListWebPartDataContract/>
-		</Grid.DataContext>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="200" />
 			<RowDefinition Height="Auto" />

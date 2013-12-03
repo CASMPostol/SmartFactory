@@ -82,10 +82,12 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\CWDashboards\Webparts\CheckListHost\CheckListWebPartDataContract.cs">
+      <Link>CheckListWebPartDataContract.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CheckListWebPartDataContract.cs" />
     <Compile Include="CheckListWebPartDataContract.static.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

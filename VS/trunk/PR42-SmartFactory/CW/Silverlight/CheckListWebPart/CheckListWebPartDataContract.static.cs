@@ -13,24 +13,23 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SmartFactory.CW.Dashboards.CheckListWebPart.Serialization;
 
-using CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart.Serialization;
-
-namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
+namespace CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost
 {
 
   /// <summary>
   /// class ExitSheeDataContract
   /// </summary>
-  partial class ExitSheeDataContract
+  partial class CheckListWebPartDataContract
   {
     /// <summary>
     /// Deserializes the specified serialized object.
     /// </summary>
     /// <param name="serializedObject">The serialized object.</param>
-    public static ExitSheeDataContract Deserialize( string serializedObject )
+    public static CheckListWebPartDataContract Deserialize(string serializedObject)
     {
-      return JsonSerializer.Deserialize<ExitSheeDataContract>( serializedObject );
+      return JsonSerializer.Deserialize<CheckListWebPartDataContract>(serializedObject);
     }
     /// <summary>
     /// Serializes this instance.
@@ -38,7 +37,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
     /// <returns><see cref="string"/> as serialized this object.</returns>
     public string Serialize()
     {
-      return JsonSerializer.Serialize<ExitSheeDataContract>( this );
+      return JsonSerializer.Serialize<CheckListWebPartDataContract>(this);
     }
 
   }

@@ -187,6 +187,7 @@
     </Compile>
     <Compile Include="Silverlight\SilverlightExceptionScript.tt.cs" />
     <Compile Include="Webparts\CheckListHost\CheckListHost.cs" />
+    <Compile Include="Webparts\CheckListHost\CheckListWebPartDataContract.cs" />
     <Compile Include="Webparts\DisposalRequestHost\DisposalRequestHost.cs" />
     <Compile Include="Webparts\DisposalRequestHost\Query.tt.cs" />
     <Compile Include="Webparts\ExitSheetHost\ExitSheeDataContract.cs" />
