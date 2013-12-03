@@ -15,14 +15,12 @@
 
 using System;
 using System.ComponentModel;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SmartFactory.CW.Dashboards.SharePointLib;
 using CAS.SmartFactory.CW.Dashboards.Silverlight;
-using Microsoft.SharePoint;
-using Microsoft.SharePoint.WebControls;
+using CAS.SmartFactory.CW.WebsiteModel.Linq;
 
 namespace CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost
 {
@@ -41,6 +39,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost
     }
     #endregion
 
+    #region private
     /// <summary>
     /// Called by the ASP.NET page framework to notify server controls that use composition-based implementation to create any child controls they contain in preparation for posting back or rendering.
     /// </summary>
@@ -81,11 +80,17 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost
     {
       EnsureChildControls();
       m_SelectedItemTitle.Text = e.Title;
-      m_HiddenFieldData.Value = e.ID;
+      using (Entities _edx = new Entities())
+      {
+        DisposalRequestLib _drl = Element.GetAtIndex<DisposalRequestLib>(_edx.DisposalRequestLibrary, e.ID);
+        CheckListWebPartDataContract _dc = CheckListWebPartDataContract.GetCheckListWebPartDataContract(_edx, _drl);
+        m_HiddenFieldData.Value = _dc.Serialize();
+      }
     }
     private IWebPartRow m_ProvidersDictionary = null;
     private LiteralControl m_SelectedItemTitle = new LiteralControl();
     private HiddenField m_HiddenFieldData = new HiddenField();
     private SilverlightWebControl m_slwc = null;
+    #endregion
   }
 }
