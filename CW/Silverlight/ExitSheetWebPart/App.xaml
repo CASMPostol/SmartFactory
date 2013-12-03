@@ -9,8 +9,6 @@
     		<ResourceDictionary.MergedDictionaries>
     			<ResourceDictionary Source="ResourceDictionary.xaml"/>
     		</ResourceDictionary.MergedDictionaries>
-    		<ExitSheetHost:ExitSheeDataContract x:Key="ExitSheeDataContractDataSource" d:IsDataSource="True"/>
     	</ResourceDictionary>
-
     </Application.Resources>
 </Application>
