@@ -23,6 +23,6 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("28191aa2-5bff-4d48-a7ad-b10c83044e3c")]
 [assembly: AssemblyVersion("<#=CWAssemblyVersion#>")]
-[assembly: AssemblyFileVersion("<#=CWSHRAssemblyFileVersion#>")]
+[assembly: AssemblyFileVersion("<#=CWAssemblyFileVersion#>")]
 
 <#@ include file = "..\..\..\..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4" #>
