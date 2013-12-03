@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Runtime.Serialization;
 
@@ -24,7 +24,13 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost
   [DataContract]
   public partial class CheckListWebPartDataContract
   {
-
+    public CheckListWebPartDataContract()
+    {
+      Today = DateTime.Today;
+      DisposalsList = new DisposalDescription[] 
+      { new DisposalDescription() { OGLDate = DateTime.Today, OGLNumber = "N/A", PackageToClear = 0 }, 
+        new DisposalDescription() { OGLDate = DateTime.Today, OGLNumber = "N/A", PackageToClear = 1 } };
+    }
     #region public
     [DataMember]
     public DateTime Today
