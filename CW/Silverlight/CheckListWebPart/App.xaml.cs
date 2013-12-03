@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : partial class App
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,9 +28,13 @@ using CAS.SmartFactory.CW.Dashboards.CheckListWebPart;
 
 namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
 {
+  /// <summary>
+  /// partial class App
+  /// </summary>
   public partial class App : Application
   {
 
+    #region ctor
     public App()
     {
       this.Startup += this.Application_Startup;
@@ -24,17 +43,21 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
 
       InitializeComponent();
     }
+    #endregion
 
+    #region private
     private void Application_Startup(object sender, StartupEventArgs e)
     {
-      this.RootVisual = new MainPage();
+      if (!e.InitParams.ContainsKey((CommonDefinition.HiddenFieldDataParameterName)))
+        this.RootVisual = new MainPage();
+      else
+      {
+        string _HiddenFieldDataName = e.InitParams[CommonDefinition.HiddenFieldDataParameterName];
+        this.RootVisual = new MainPage(_HiddenFieldDataName);
+      }
     }
-
     private void Application_Exit(object sender, EventArgs e)
-    {
-
-    }
-
+    { }
     private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
     {
       // If the app is running outside of the debugger then report the exception using
@@ -51,7 +74,6 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
         Deployment.Current.Dispatcher.BeginInvoke(delegate { ReportErrorToDOM(e); });
       }
     }
-
     private void ReportErrorToDOM(ApplicationUnhandledExceptionEventArgs e)
     {
       try
@@ -65,5 +87,7 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
       {
       }
     }
+    #endregion
+
   }
 }
