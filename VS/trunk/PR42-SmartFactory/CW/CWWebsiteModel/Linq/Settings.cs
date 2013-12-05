@@ -59,19 +59,21 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// <summary>
     /// Finisheds the name of the goods export form file.
     /// </summary>
-    /// <param name="edc">The edc.</param>
+    /// <param name="entities">The edc.</param>
     /// <param name="number">The number.</param>
-    public static string SADTemplateDocumentNameFileName(Entities edc, int number)
+    internal static string SADTemplateDocumentNameFileName(Entities entities, int number)
     {
-      return String.Format(GetParameter(edc, SettingsEntry.SADTemplateDocumentNamePattern), number);
+      return String.Format(GetParameter(entities, SettingsEntry.SADTemplateDocumentNamePattern), number);
+    }
+    internal static string StatementDocumentNameFileName(Entities entities, int number)
+    {
+      return String.Format(GetParameter(entities, SettingsEntry.StatementDocumentNameFileNamePattern), number);
     }
     public static string CustomsProcedureCodeA004 = "A004";
     public static string CustomsProcedureCodeN865 = "N865";
     public static string CustomsProcedureCodeN954 = "N954";
     public static string CustomsProcedureCode9DK8 = "9DK8";
     public static string CustomsProcedureCodeN935 = "N935";
-    #endregion
-
     internal enum DutyKindEnum
     {
       VAT,
@@ -102,6 +104,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       }
       return String.Format(GetParameter(entities, SettingsEntry.GoodsDescription_Format), tobaccoName, grade, sku, batch, _ctText, documentNo);
     }
+    #endregion
 
     #region private
     private const string c_documentNumberFormat = "{0:D7}";
@@ -121,10 +124,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
        { SettingsEntry.ClearanceTitleFormatCW, "Nr: {3:D5} {0}/{1} SAD: {2} " },
        { SettingsEntry.RecipientOrganization, 
           @"{""EORI"":""PL828000181900000"",""Id"":1,""Kod"":""99-220"",""Kraj"":""PL"",""Miejscowosc"":""WARTKOWICE"",""Nazwa"":""JTI POLSKA SP. Z O.O."",""Pesel"":null,""Regon"":""00130199100000"",""TIN"":""PL8280001819"",""UlicaNr"":""GOSTKOW STARY 42""}"},
-       {SettingsEntry.DefaultCustomsOffice, 
+       { SettingsEntry.DefaultCustomsOffice, 
           @"{""Lokalizacja"":{""Miejsce"":""PL360000SC0002"",""Opis"":null,""UC"":null},""SkladCelny"":{""Kraj"":""PL"",""Miejsce"":""PL360000SC0002"",""Typ"":""C""},""UCGraniczny"":""PL362010"",""UCKontrolny"":null,""UCPrzeznaczenia"":null,""UCTranzytowy"":null,""UCZgloszenia"":""PL362010""}" },
-       {SettingsEntry.ClearingTypePartialWindingUpText, "CZESCIOWA LIKWIDACJA"},
-       {SettingsEntry.ClearingTypeTotalWindingUpText, "CALKOWITA LIKWIDACJA"},
+       { SettingsEntry.ClearingTypePartialWindingUpText, "CZESCIOWA LIKWIDACJA"},
+       { SettingsEntry.ClearingTypeTotalWindingUpText, "CALKOWITA LIKWIDACJA"},
+       { SettingsEntry.StatementDocumentNameFileNamePattern, "Zestawienie Naleznosci " + c_documentNumberFormat }
     };
     #endregion
   }
@@ -145,6 +149,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     RecipientOrganization,
     DefaultCustomsOffice,
     ClearingTypePartialWindingUpText,
-    ClearingTypeTotalWindingUpText
+    ClearingTypeTotalWindingUpText,
+    StatementDocumentNameFileNamePattern
   }
 }
