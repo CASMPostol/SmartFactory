@@ -16,6 +16,8 @@ using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint.WorkflowActions;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using CAS.SharePoint.DocumentsFactory;
+using CAS.SmartFactory.CW.Interoperability.DocumentsFactory.Statement;
+using System.Collections.Generic;
 
 namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.CreateStatement
 {
@@ -38,15 +40,11 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.CreateStatement
         {
           DisposalRequestLib _Dr = Element.GetAtIndex<DisposalRequestLib>(_entities.DisposalRequestLibrary, workflowProperties.ItemId);
           _MasterDocumentName = _Dr.StatementDocumentNameFileName(_entities);
-          CAS.SmartFactory.CW.Interoperability.DocumentsFactory.Statement.Statement _sad = CraeteStatement(_entities, _cwdx, _MasterDocumentName);
-          
-          foreach (CustomsWarehouseDisposal _cwdx in _Dr.CustomsWarehouseDisposal)
-          {
-            SPFile _newFile = File.CreateXmlFile<SAD>(workflowProperties.Web, _sad, _MasterDocumentName, SADConsignment.IPRSADConsignmentLibraryTitle, SAD.StylesheetNmane);
-            SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>(_entities.SADConsignment, _newFile.Item.ID);
-            _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
-            _entities.SubmitChanges();
-          }
+          StatementContent _sc = CraeteStatement(_entities, _Dr, _MasterDocumentName);
+          SPFile _newFile = File.CreateXmlFile<StatementContent>(workflowProperties.Web, _sc, _MasterDocumentName, StatementLib.LibraryTitle, StatementContent.StylesheetNmane);
+          StatementLib _StatementLib = Element.GetAtIndex<StatementLib>(_entities.StatementLibrary, _newFile.Item.ID);
+          _StatementLib.CWL_Statement2DisposalRequestID = _Dr;
+          _entities.SubmitChanges();
         }
         logToHistoryListActivity_HistoryOutcome = "Success";
         logToHistoryListActivity_HistoryDescription = String.Format("Document {0} created successfully", _MasterDocumentName);
@@ -56,6 +54,23 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.CreateStatement
         logToHistoryListActivity_HistoryOutcome = "Exeption";
         logToHistoryListActivity_HistoryDescription = _ex.Message;
       }
+    }
+    private StatementContent CraeteStatement(Entities _entities, DisposalRequestLib _Dr, string _MasterDocumentName)
+    {
+      List<OneSADDeclaration> _SADDocuments = new List<OneSADDeclaration>();
+      foreach (CustomsWarehouseDisposal _cwdx in _Dr.CustomsWarehouseDisposal)
+      {
+        OneSADDeclaration _newItem = new OneSADDeclaration
+        {
+
+        };
+      }
+      StatementContent _NewSC = new StatementContent()
+      {
+        DocumentDate = DateTime.Today,
+        SADDocuments = _SADDocuments.ToArray()
+      };
+      return _NewSC;
     }
 
     public String logToHistoryListActivity_HistoryDescription = default(System.String);
