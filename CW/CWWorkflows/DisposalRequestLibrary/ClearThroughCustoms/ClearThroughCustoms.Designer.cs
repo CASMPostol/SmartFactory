@@ -32,32 +32,32 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
       System.Workflow.ComponentModel.ActivityBind activitybind5 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
       System.Workflow.ComponentModel.ActivityBind activitybind4 = new System.Workflow.ComponentModel.ActivityBind();
-      this.logToHistoryListActivity = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+      this.onFinishingLogToHistoryList = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.CreateMessageTemplates = new System.Workflow.Activities.CodeActivity();
       this.onWorkflowActivated = new Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated();
       // 
-      // logToHistoryListActivity
+      // onFinishingLogToHistoryList
       // 
-      this.logToHistoryListActivity.Description = "Logs workflow result";
-      this.logToHistoryListActivity.Duration = System.TimeSpan.Parse( "-10675199.02:48:05.4775808" );
-      this.logToHistoryListActivity.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+      this.onFinishingLogToHistoryList.Description = "Logs workflow result";
+      this.onFinishingLogToHistoryList.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+      this.onFinishingLogToHistoryList.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowStarted;
       activitybind1.Name = "ClearThroughCustoms";
       activitybind1.Path = "logToHistoryListActivity_HistoryDescription";
       activitybind2.Name = "ClearThroughCustoms";
       activitybind2.Path = "logToHistoryListActivity_HistoryOutcome";
-      this.logToHistoryListActivity.Name = "logToHistoryListActivity";
-      this.logToHistoryListActivity.OtherData = "";
+      this.onFinishingLogToHistoryList.Name = "onFinishingLogToHistoryList";
+      this.onFinishingLogToHistoryList.OtherData = "";
       activitybind3.Name = "ClearThroughCustoms";
       activitybind3.Path = "workflowProperties.OriginatorUser.ID";
-      this.logToHistoryListActivity.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind1 ) ) );
-      this.logToHistoryListActivity.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind2 ) ) );
-      this.logToHistoryListActivity.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind3 ) ) );
+      this.onFinishingLogToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind1)));
+      this.onFinishingLogToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind2)));
+      this.onFinishingLogToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind3)));
       // 
       // CreateMessageTemplates
       // 
       this.CreateMessageTemplates.Description = "Creates new clearances ans associated custom messages..";
       this.CreateMessageTemplates.Name = "CreateMessageTemplates";
-      this.CreateMessageTemplates.ExecuteCode += new System.EventHandler( this.onCreateMessageTemplates );
+      this.CreateMessageTemplates.ExecuteCode += new System.EventHandler(this.onCreateMessageTemplates);
       activitybind5.Name = "ClearThroughCustoms";
       activitybind5.Path = "workflowId";
       // 
@@ -70,14 +70,14 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
       this.onWorkflowActivated.Name = "onWorkflowActivated";
       activitybind4.Name = "ClearThroughCustoms";
       activitybind4.Path = "workflowProperties";
-      this.onWorkflowActivated.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind5 ) ) );
-      this.onWorkflowActivated.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind4 ) ) );
+      this.onWorkflowActivated.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind5)));
+      this.onWorkflowActivated.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind4)));
       // 
       // ClearThroughCustoms
       // 
-      this.Activities.Add( this.onWorkflowActivated );
-      this.Activities.Add( this.CreateMessageTemplates );
-      this.Activities.Add( this.logToHistoryListActivity );
+      this.Activities.Add(this.onWorkflowActivated);
+      this.Activities.Add(this.CreateMessageTemplates);
+      this.Activities.Add(this.onFinishingLogToHistoryList);
       this.Name = "ClearThroughCustoms";
       this.CanModifyActivities = false;
 
@@ -85,11 +85,12 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
 
     #endregion
 
-    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity;
+    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity onFinishingLogToHistoryList;
 
     private CodeActivity CreateMessageTemplates;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated onWorkflowActivated;
+
 
 
 

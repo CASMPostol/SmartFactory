@@ -111,6 +111,12 @@
       <DependentUpon>BinCard.xsd</DependentUpon>
       <SubType>code</SubType>
     </Compile>
+    <Compile Include="DocumentsFactory\Statement\Statement.cs">
+      <DependentUpon>Statement.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsFactory\Statement\Statement.xsd.cs">
+      <DependentUpon>Statement.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ERP\DisposalRequest.cs">
       <DependentUpon>DisposalRequest.xsd</DependentUpon>
     </Compile>

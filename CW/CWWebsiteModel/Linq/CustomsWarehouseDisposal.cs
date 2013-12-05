@@ -25,6 +25,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
   /// </summary>
   public partial class CustomsWarehouseDisposal
   {
+    #region public
     /// <summary>
     /// CustomsWarehouseDisposal data obtained from xml message.
     /// </summary>
@@ -118,6 +119,17 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         throw;
       }
     }
+    /// <summary>
+    /// Updates the title.
+    /// </summary>
+    internal void UpdateTitle(DateTime dateTime)
+    {
+      string _numTxt = this.Id.HasValue ? String.Format("{0:D6}", this.Id.Value) : "XXXXXX";
+      Title = String.Format("CW-{0:D4}-{1}", dateTime.Year, _numTxt);
+    }
+    #endregion
+
+    #region private
     private void CheckCNCosistency()
     {
       //TODO CheckCNCosistency NotImplementedException();
@@ -155,12 +167,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.CWL_CWDisposal2CustomsWarehouseID.AccountBalance = this.RemainingQuantity = _balance.DoubleValue();
       return _balance;
     }
-    /// <summary>
-    /// Updates the title.
-    /// </summary>
-    internal void UpdateTitle(DateTime dateTime)
-    {
-      Title = String.Format("CW-{0:D4}{1:D6}", dateTime.Year, "XXXXXX"); //TODO Id.Value);
-    }
+    #endregion
+
   }
 }
