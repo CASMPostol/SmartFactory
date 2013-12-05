@@ -20,8 +20,13 @@ using System.Text;
 
 namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.Statement
 {
+  /// <summary>
+  /// partial class StatementContent
+  /// </summary>
   public partial class StatementContent
   {
+
+    public const string StylesheetNmane = "StatementStylesheet";
 
   }
 }
