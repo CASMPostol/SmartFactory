@@ -4,21 +4,23 @@
   <xs:complexType name="StatementContent">
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:date" />
-      <xs:element minOccurs="0" maxOccurs="1" name="SADDocuments" type="tns:ArrayOfOneSADDeclaration" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CustomsProcedure" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StatementOfDuties" type="tns:ArrayOfStatementOfDuties" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="ArrayOfOneSADDeclaration">
+  <xs:complexType name="ArrayOfStatementOfDuties">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="SADDeclarations" type="tns:OneSADDeclaration" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Statement" type="tns:Statement" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="OneSADDeclaration">
+  <xs:complexType name="Statement">
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="No" type="xs:int" />
-      <xs:element minOccurs="0" maxOccurs="1" name="IntroducingSADNo" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="IntroducingSADDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReferenceNumber" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="SADDocumentNo" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="SADDocumentDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DutyPerSettledAmount" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="VATPerSettledAmount" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DutyAndVAT" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

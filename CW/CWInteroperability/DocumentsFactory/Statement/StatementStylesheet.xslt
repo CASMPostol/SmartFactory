@@ -11,7 +11,7 @@
   <xsl:template match="/" >
     <html>
       <head>
-        <title>Wniosek o całkowitą likwidację zgłoszeń celnych</title>
+        <title>Zestawienie należności</title>
         <style type="text/css">
           td, li { font-size:9pt; }
           p  { font-size:10pt; }
@@ -27,48 +27,91 @@
     </html>
   </xsl:template>
   <xsl:template match="cas:StatementContent">
-    <table width="100%" border="0">
+    <table width="100%" border="1">
       <tr>
-        <td align="left">
-          <font size="+0,25">
-            Urząd Celny II w Łodzi <br />
-            ul. Św. Teresy 106 <br />
-            91-341 Łódź
-          </font>
+        <td align="left" colspan="3">
+          Data: <xsl:value-of select="ms:format-date(cas:DocumentDate, $FormatOfdate)"/>
         </td>
-        <td align="right">
-          Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FormatOfdate)"/>
+        <td align="center" colspan="3">
+          <xsl:value-of select="cas:CustomsProcedure"/>
+        </td>
+        <td align="center" colspan="3">
+          &#160;
+        </td>
+      </tr>
+      <tr>
+        <td align="center" colspan="6">
+          ZGŁASZAJĄCY: Agencja Celna MA-AN PLAEOC360000100003
+        </td>
+        <td align="center" colspan="3">
+          NALEŻNOŚCI:
+        </td>
+      </tr>
+      <tr>
+        <th>L.P</th>
+        <th>nr syst.</th>
+        <th>ident. systemowy</th>
+        <th>nr ewidencji</th>
+        <th>POD</th>
+        <th>PZC</th>
+        <th>cło</th>
+        <th>VAT</th>
+        <th>SUMA</th>
+      </tr>
+      <xsl:apply-templates select="cas:StatementOfDuties" />
+      <tr>
+        <td colspan="6">
+          &#160;
+        </td>
+        <td align="center">
+          <b>
+            <xsl:value-of select="format-number(sum(cas:StatementOfDuties/cas:Statement/cas:DutyPerSettledAmount), $FormatOfFloat, 'pl')"/>
+          </b>
+        </td>
+        <td align="center">
+          <b>
+            <xsl:value-of select="format-number(sum(cas:StatementOfDuties/cas:Statement/cas:VATPerSettledAmount), $FormatOfFloat, 'pl')"/>
+          </b>
+        </td>
+        <td align="center">
+          <b>
+            <xsl:value-of select="format-number(sum(cas:StatementOfDuties/cas:Statement/cas:DutyAndVAT), $FormatOfFloat, 'pl')"/>
+          </b>
         </td>
       </tr>
     </table>
-    <h1>WNIOSEK</h1>
-    <h2>Wnioskujemy o całkowitą likwidację następujących zgłoszeń celnych:</h2>
-    <h2>Skład Celny nr C-0042-01</h2>
-    <xsl:apply-templates select="cas:SADDocuments"/>
-    <p>Załączniki:</p>
-    <p>1. Kopie SAD-ostatnie wyprowadzenie.</p>
-    <p>2. Karty rozliczeniowe.</p>
   </xsl:template>
-  <xsl:template match="cas:SADDocuments">
-    <table border="1" width="100%">
-      <tr>
-        <th>Lp.</th>
-        <th>Nr SAD wprowadzającego</th>
-        <th>Nr SAD wyprowadzajacego</th>
-      </tr>
-      <xsl:apply-templates select="cas:SADDeclarations" />
-    </table>
+  <xsl:template match="cas:StatementOfDuties">
+    <xsl:apply-templates select="cas:Statement" />
   </xsl:template>
-  <xsl:template match="cas:SADDeclarations">
+  <xsl:template match="cas:Statement">
     <tr>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:No"/>
       </td>
-      <td>
-        <xsl:value-of select="cas:IntroducingSADNo"/> z dnia <xsl:value-of select="ms:format-date(cas:IntroducingSADDate, $FormatOfdate)"/>
+      <td align="center">
+        <xsl:value-of select="cas:ReferenceNumber"/>
       </td>
       <td>
-        <xsl:value-of select="cas:SADDocumentNo"/> z dnia <xsl:value-of select="ms:format-date(cas:SADDocumentDate, $FormatOfdate)"/>
+        &#160;
+      </td>
+      <td align="center">
+        <xsl:value-of select="cas:SADDocumentNo"/>
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td align="center">
+        <xsl:value-of select="cas:DutyPerSettledAmount"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="cas:VATPerSettledAmount"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="cas:DutyAndVAT"/>
       </td>
     </tr>
   </xsl:template>
