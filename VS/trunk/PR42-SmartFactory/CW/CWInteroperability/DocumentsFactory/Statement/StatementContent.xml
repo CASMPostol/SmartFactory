@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StatementContent xmlns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/StatementContent.xsd">
   <DocumentDate>1900-01-01</DocumentDate>
-  <SADDocuments>
-    <SADDeclarations>
+  <CustomsProcedure>CustomsProcedure1</CustomsProcedure>
+  <StatementOfDuties>
+    <Statement>
       <No>1</No>
-      <IntroducingSADNo>IntroducingSADNo1</IntroducingSADNo>
-      <IntroducingSADDate>1900-01-01</IntroducingSADDate>
+      <ReferenceNumber>ReferenceNumber1</ReferenceNumber>
       <SADDocumentNo>SADDocumentNo1</SADDocumentNo>
-      <SADDocumentDate>1900-01-01</SADDocumentDate>
-    </SADDeclarations>
-    <SADDeclarations>
-      <No>-1.7976931348623157E+308</No>
-      <IntroducingSADNo>IntroducingSADNo2</IntroducingSADNo>
-      <IntroducingSADDate>0001-01-01</IntroducingSADDate>
+      <DutyPerSettledAmount>1</DutyPerSettledAmount>
+      <VATPerSettledAmount>1</VATPerSettledAmount>
+      <DutyAndVAT>2</DutyAndVAT>
+    </Statement>
+    <Statement>
+      <No>2</No>
+      <ReferenceNumber>ReferenceNumber2</ReferenceNumber>
       <SADDocumentNo>SADDocumentNo2</SADDocumentNo>
-      <SADDocumentDate>0001-01-01</SADDocumentDate>
-    </SADDeclarations>
-    <SADDeclarations>
-      <No>1.7976931348623157E+308</No>
-      <IntroducingSADNo>IntroducingSADNo3</IntroducingSADNo>
-      <IntroducingSADDate>9999-12-31</IntroducingSADDate>
+      <DutyPerSettledAmount>2</DutyPerSettledAmount>
+      <VATPerSettledAmount>2</VATPerSettledAmount>
+      <DutyAndVAT>4</DutyAndVAT>
+    </Statement>
+    <Statement>
+      <No>3</No>
+      <ReferenceNumber>ReferenceNumber3</ReferenceNumber>
       <SADDocumentNo>SADDocumentNo3</SADDocumentNo>
-      <SADDocumentDate>9999-12-31</SADDocumentDate>
-    </SADDeclarations>
-  </SADDocuments>
+      <DutyPerSettledAmount>3</DutyPerSettledAmount>
+      <VATPerSettledAmount>3</VATPerSettledAmount>
+      <DutyAndVAT>6</DutyAndVAT>
+    </Statement>
+  </StatementOfDuties>
 </StatementContent>
