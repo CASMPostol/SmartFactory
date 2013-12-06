@@ -1,26 +1,32 @@
-﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Collections;
-using System.Drawing;
-using System.Linq;
-using System.Workflow.ComponentModel.Compiler;
-using System.Workflow.ComponentModel.Serialization;
-using System.Workflow.ComponentModel;
-using System.Workflow.ComponentModel.Design;
-using System.Workflow.Runtime;
+﻿//<summary>
+//  Title   : sealed partial class CreateStatement
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2013, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
+using System.Collections.Generic;
 using System.Workflow.Activities;
-using System.Workflow.Activities.Rules;
-using Microsoft.SharePoint;
-using Microsoft.SharePoint.Workflow;
-using Microsoft.SharePoint.WorkflowActions;
-using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using CAS.SharePoint.DocumentsFactory;
 using CAS.SmartFactory.CW.Interoperability.DocumentsFactory.Statement;
-using System.Collections.Generic;
+using CAS.SmartFactory.CW.WebsiteModel.Linq;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.Workflow;
 
 namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.CreateStatement
 {
+  /// <summary>
+  /// sealed partial class CreateStatement workflow
+  /// </summary>
   public sealed partial class CreateStatement : SequentialWorkflowActivity
   {
     public CreateStatement()
