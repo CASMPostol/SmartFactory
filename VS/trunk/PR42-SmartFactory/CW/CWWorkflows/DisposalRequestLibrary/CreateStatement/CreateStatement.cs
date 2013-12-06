@@ -60,11 +60,18 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.CreateStatement
       List<OneSADDeclaration> _SADDocuments = new List<OneSADDeclaration>();
       foreach (CustomsWarehouseDisposal _cwdx in _Dr.CustomsWarehouseDisposal)
       {
+        int _ix = 0;
         OneSADDeclaration _newItem = new OneSADDeclaration
         {
-
+          IntroducingSADDate = _cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsDebtDate.Value.Date,
+          IntroducingSADNo = _cwdx.CWL_CWDisposal2CustomsWarehouseID.DocumentNo,
+          No = _ix++,
+          SADDocumentDate = _cwdx.SADDate.Value.Date,
+          SADDocumentNo = _cwdx.SADDocumentNo
         };
+        _SADDocuments.Add(_newItem);
       }
+      _SADDocuments.Sort( (OneSADDeclaration x, OneSADDeclaration y) => { return x.No.CompareTo(y.No); } );
       StatementContent _NewSC = new StatementContent()
       {
         DocumentDate = DateTime.Today,
@@ -72,7 +79,6 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.CreateStatement
       };
       return _NewSC;
     }
-
     public String logToHistoryListActivity_HistoryDescription = default(System.String);
     public String logToHistoryListActivity_HistoryOutcome = default(System.String);
   }
