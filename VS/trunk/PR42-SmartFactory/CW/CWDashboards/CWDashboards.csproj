@@ -67,8 +67,8 @@
     <None Include="Dashboards\DisposalRequestDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8bf86832-68ea-45d1-b7ca-0020531fdc80}</SharePointProjectItemId>
     </None>
-    <None Include="Dashboards\StatementDashboard\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{1e069bc9-8f78-4767-9de8-6541aa0630a2}</SharePointProjectItemId>
+    <None Include="Dashboards\DisposalsViewDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{72fc666b-ec4f-4501-ba08-aff8e6440a10}</SharePointProjectItemId>
     </None>
     <None Include="Dashboards\SupplementCWBookDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a3940adb-0499-45fa-abe6-0e546b458757}</SharePointProjectItemId>
@@ -137,9 +137,7 @@
     <Content Include="Dashboards\DisposalRequestDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Dashboards\StatementDashboard\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Dashboards\DisposalsViewDashboard\Elements.xml" />
     <Content Include="Dashboards\SupplementCWBookDashboard\Elements.xml" />
     <Content Include="Dashboards\SupplementWZNoDashboard\Elements.xml">
       <SubType>Designer</SubType>
@@ -157,7 +155,7 @@
     <Content Include="WebPartPagesCW\WebPageTemplate_CheckListExitSheet.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_CWBook.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" />
-    <Content Include="WebPartPagesCW\WebPageTemplate_Statement.aspx" />
+    <Content Include="WebPartPagesCW\WebPageTemplate_DisposalsView.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_SupplementCWBook.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_SupplementWZNo.aspx" />
     <Content Include="Webparts\CheckListHost\Elements.xml" />
