@@ -362,6 +362,7 @@
     <Column Name="AccountClosed" Member="AccountClosed" />
     <Column Name="Archival" Member="Archival" />
     <Column Name="CWL_CWDisposal2DisposalRequestLibraryID" Member="CWL_CWDisposal2DisposalRequestLibraryID" />
+    <Column Name="CWL_CWDisposal2DisposalRequestLibraryTitle_sec" Member="CWL_CWDisposal2DisposalRequestLibraryTitle_sec" />
     <Column Name="CWL_CWDisposal2CustomsWarehouseID" Member="CWL_CWDisposal2CustomsWarehouseID" />
     <Column Name="CWL_CWDisposal2ClearanceID" Member="CWL_CWDisposal2ClearanceID" />
   </ContentType>

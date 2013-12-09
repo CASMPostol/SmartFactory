@@ -73,6 +73,9 @@
     <None Include="Dashboards\SupplementCWBookDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a3940adb-0499-45fa-abe6-0e546b458757}</SharePointProjectItemId>
     </None>
+    <None Include="Dashboards\SupplementWZNoDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{24bb22d6-4e2c-47c6-b2da-6b673affb080}</SharePointProjectItemId>
+    </None>
     <None Include="Silverlight\HTMLHostinCode.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>HTMLHostinCode.cs</LastGenOutput>
@@ -138,6 +141,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Dashboards\SupplementCWBookDashboard\Elements.xml" />
+    <Content Include="Dashboards\SupplementWZNoDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Images\CWDashboards\CW_feature_32x32.png" />
     <Content Include="Silverlight\SilverLightModule\Elements.xml">
       <SubType>Designer</SubType>
@@ -153,6 +159,7 @@
     <Content Include="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_Statement.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_SupplementCWBook.aspx" />
+    <Content Include="WebPartPagesCW\WebPageTemplate_SupplementWZNo.aspx" />
     <Content Include="Webparts\CheckListHost\Elements.xml" />
     <Content Include="Webparts\DisposalRequestHost\Elements.xml">
       <SubType>Designer</SubType>

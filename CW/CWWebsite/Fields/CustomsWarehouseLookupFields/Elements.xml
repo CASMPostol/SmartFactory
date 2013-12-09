@@ -142,6 +142,19 @@
     ReadOnly="False"
     />
   <Field
+    Type="Lookup"
+    DisplayName="Disposal request"
+    List="Lists/DisposalRequestLibrary"
+    ShowField="Title"
+    FieldRef="C2F4132F-735D-4123-BEDE-79C7FE31954B"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory Customs Warehouse"
+    ID="{B440944F-9966-4E98-8CD2-908755698742}"
+    Name="CWL_CWDisposal2DisposalRequestLibraryTitle_sec"
+    Overwrite="TRUE"
+  />
+  <Field
     Name="CWL_CW2VendorTitle"
     ID="{7B4C1B77-5160-4E59-9BE3-42A39AE9A5D4}"
     Type="Lookup"

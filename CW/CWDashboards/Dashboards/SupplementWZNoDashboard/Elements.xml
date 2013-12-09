@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <Module Name="StatementDashboard">
-    <File Path="WebPartPagesCW\WebPageTemplate_SupplementCWBook.aspx" Url="WebPartPagesCW/SupplementCWBookDashboard.aspx">
-      <View List="Lists/CustomsWarehouseList" BaseViewID="6" WebPartZoneID="CWBookGrid" WebPartOrder="0">
+  <Module Name="SupplementWZNoDashboard">
+    <File Path="WebPartPagesCW\WebPageTemplate_SupplementWZNo.aspx" Url="WebPartPagesCW/SupplementWZNoDashboard.aspx">
+      <View List="Lists/CustomsWarehouseDisposalList" BaseViewID="6" WebPartZoneID="DisposalsGrid" WebPartOrder="0">
         <![CDATA[
          <webParts>
          <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -12,8 +12,8 @@
          </metaData>
          <data>
          <properties>
-         <property name="Title" type="string">Customs Warehouse List</property>
-         <property name="TitleUrl" type="string">SupplementCWBookDashboard.aspx</property>
+         <property name="Title" type="string">Disposals List</property>
+         <property name="TitleUrl" type="string">SupplementWZNoDashboard.aspx</property>
          <property name="AllowConnect" type="bool">True</property>
          <property name="Height" type="string">600px</property>
          </properties>
