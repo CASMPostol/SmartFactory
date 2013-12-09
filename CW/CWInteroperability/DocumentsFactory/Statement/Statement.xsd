@@ -4,11 +4,11 @@
   <xs:complexType name="StatementContent">
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:date" />
-      <xs:element minOccurs="1" maxOccurs="1" name="CustomsProcedure" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="StatementOfDuties" type="tns:ArrayOfStatementOfDuties" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CustomsProcedure" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StatementOfDuties" type="tns:ArrayOfStatement" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="ArrayOfStatementOfDuties">
+  <xs:complexType name="ArrayOfStatement">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Statement" type="tns:Statement" />
     </xs:sequence>
