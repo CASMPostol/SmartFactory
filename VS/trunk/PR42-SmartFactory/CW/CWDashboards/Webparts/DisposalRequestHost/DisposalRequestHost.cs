@@ -15,14 +15,11 @@
 
 using System;
 using System.ComponentModel;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SmartFactory.CW.Dashboards.SharePointLib;
 using CAS.SmartFactory.CW.Dashboards.Silverlight;
-using Microsoft.SharePoint;
-using Microsoft.SharePoint.WebControls;
 
 namespace CAS.SmartFactory.CW.Dashboards.Webparts.DisposalRequestHost
 {
