@@ -18,9 +18,9 @@
       <xs:element minOccurs="1" maxOccurs="1" name="No" type="xs:int" />
       <xs:element minOccurs="0" maxOccurs="1" name="ReferenceNumber" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="SADDocumentNo" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="DutyPerSettledAmount" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="VATPerSettledAmount" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="DutyAndVAT" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DutyPerSettledAmount" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VATPerSettledAmount" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DutyAndVAT" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
