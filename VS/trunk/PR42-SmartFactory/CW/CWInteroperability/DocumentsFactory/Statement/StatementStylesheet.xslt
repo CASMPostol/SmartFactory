@@ -48,7 +48,7 @@
         </td>
       </tr>
       <tr>
-        <th>L.P</th>
+        <th>Lp.</th>
         <th>nr syst.</th>
         <th>ident. systemowy</th>
         <th>nr ewidencji</th>
@@ -105,13 +105,13 @@
         &#160;
       </td>
       <td align="center">
-        <xsl:value-of select="cas:DutyPerSettledAmount"/>
+        <xsl:value-of select="format-number(cas:DutyPerSettledAmount, $FormatOfFloat, 'pl')"/>
       </td>
       <td align="center">
-        <xsl:value-of select="cas:VATPerSettledAmount"/>
+        <xsl:value-of select="format-number(cas:VATPerSettledAmount, $FormatOfFloat, 'pl')"/>
       </td>
       <td align="center">
-        <xsl:value-of select="cas:DutyAndVAT"/>
+        <xsl:value-of select="format-number(cas:DutyAndVAT, $FormatOfFloat, 'pl')"/>
       </td>
     </tr>
   </xsl:template>
