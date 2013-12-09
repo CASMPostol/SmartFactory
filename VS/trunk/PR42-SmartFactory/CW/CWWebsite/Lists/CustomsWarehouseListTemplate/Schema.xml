@@ -324,19 +324,16 @@
           <Where>
             <Or>
               <Or>
-                <Eq>
+                <IsNull>
                   <FieldRef Name="Value" />
-                  <Value Type="Number"></Value>
-                </Eq>
-                <Eq>
+                </IsNull>
+                <IsNull>
                   <FieldRef Name="CW_UnitPrice" />
-                  <Value Type="Number"></Value>
-                </Eq>
+                </IsNull>
               </Or>
-              <Eq>
+              <IsNull>
                 <FieldRef Name="CW_PzNo" />
-                <Value Type="Text"></Value>
-              </Eq>
+              </IsNull>
             </Or>
           </Where>
         </Query>
