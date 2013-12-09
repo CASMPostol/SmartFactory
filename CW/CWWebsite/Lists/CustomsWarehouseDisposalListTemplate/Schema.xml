@@ -401,6 +401,41 @@
         <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
       </View>
+      <View BaseViewID="7" Type="HTML" WebPartZoneID="Main" DisplayName="Disposals View" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="DisposalsView.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Title" />
+          <FieldRef Name="CWL_CWDisposal2CWDocumentNo_sec" />
+          <FieldRef Name="SADDocumentNo" />
+          <FieldRef Name="SADDate" />
+          <FieldRef Name="CWL_CWDisposal2CWTobaccoName_sec" />
+          <FieldRef Name="CustomsStatus" />
+          <FieldRef Name="CW_SettledNetMass" />
+          <FieldRef Name="CW_SettledGrossMass" />
+          <FieldRef Name="TobaccoValue" />
+          <FieldRef Name="CWL_CWDisposal2CWCurrency_sec" />
+          <FieldRef Name="CW_PackageToClear" />
+          <FieldRef Name="CW_Wz1" />
+          <FieldRef Name="CW_Wz2" />
+          <FieldRef Name="CW_Wz3" />
+          <FieldRef Name="CW_RemainingPackage" />
+          <FieldRef Name="CWL_CWDisposal2PCNPCN_sec" />
+          <FieldRef Name="ClearingType" />
+          <FieldRef Name="CustomsProcedure" />
+          <FieldRef Name="_UIVersionString" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
     </Views>
     <Forms>
       <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />

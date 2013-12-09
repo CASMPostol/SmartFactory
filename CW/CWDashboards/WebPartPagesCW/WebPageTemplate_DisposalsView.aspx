@@ -31,32 +31,16 @@
             <tr>
                 <td valign="top">
                     <WebPartPages:WebPartZone
-                        ID="CWBook" runat="server"
-                        Title="CWBook Web Part Zone"
-                        FrameType="TitleBarOnly" />
-                </td>
-            </tr>
-            <tr>
-                <td valign="top">
-                    <WebPartPages:WebPartZone
-                        ID="CWBookAll" runat="server"
-                        Title="CWBook All Web Part Zone"
-                        FrameType="TitleBarOnly" />
-                </td>
-            </tr>
-            <tr>
-                <td valign="top">
-                    <WebPartPages:WebPartZone
-                        ID="Disposals" runat="server"
-                        Title="Disposals Web Part Zone"
-                        FrameType="TitleBarOnly" />
-                </td>
-            </tr>
-            <tr>
-                <td valign="top">
-                    <WebPartPages:WebPartZone
                         ID="StatementLibrary" runat="server"
                         Title="Statement Library Web Part Zone"
+                        FrameType="TitleBarOnly" />
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <WebPartPages:WebPartZone
+                        ID="DisposalsListWebPart" runat="server"
+                        Title="Disposals List Web Part Zone"
                         FrameType="TitleBarOnly" />
                 </td>
             </tr>
@@ -66,9 +50,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-    <asp:Literal ID="m_PageTitle" runat="server" Text="Statement" />
+    <asp:Literal ID="m_PageTitle" runat="server" Text="Disposals View" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server">
-    <asp:Literal ID="m_PageTitleInTitleArea" runat="server" Text="Statement" />
+    <asp:Literal ID="m_PageTitleInTitleArea" runat="server" Text="Disposals View" />
 </asp:Content>

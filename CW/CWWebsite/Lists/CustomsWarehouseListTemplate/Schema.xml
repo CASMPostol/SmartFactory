@@ -312,6 +312,7 @@
           <FieldRef Name="Batch" />
           <FieldRef Name="CW_Quantity" />
           <FieldRef Name="InvoiceNo" />
+          <FieldRef Name="Currency" />
           <FieldRef Name="Value" />
           <FieldRef Name="CW_UnitPrice" />
           <FieldRef Name="CW_PzNo" />
