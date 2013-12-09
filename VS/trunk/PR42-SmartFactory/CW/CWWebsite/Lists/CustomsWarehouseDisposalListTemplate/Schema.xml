@@ -40,6 +40,7 @@
           <FieldRef ID="{2291900F-0EE8-4A1D-9FA1-92F8DB60AF41}" Name="AccountClosed" />
           <FieldRef ID="{3A6EC6FC-81DD-4E39-9A78-B95D198C6938}" Name="Archival" />
           <FieldRef ID="{C2F4132F-735D-4123-BEDE-79C7FE31954B}" Name="CWL_CWDisposal2DisposalRequestLibraryID" />
+          <FieldRef ID="{B440944F-9966-4E98-8CD2-908755698742}" Name="CWL_CWDisposal2DisposalRequestLibraryTitle_sec" />
           <FieldRef ID="{497E4697-AF4C-4910-B007-5ADE6723308E}" Name="CWL_CWDisposal2CustomsWarehouseID" />
           <FieldRef ID="{880D0442-622A-4E89-A59F-F3DD1EC9D947}" Name="CWL_CWDisposal2ClearanceID" />
         </FieldRefs>
@@ -96,6 +97,7 @@
       <Field DisplayName="Account closed" Name="AccountClosed" Type="Boolean" ID="{2291900f-0ee8-4a1d-9fa1-92f8db60af41}" Group="CAS Smart Factory IPR" Required="TRUE" SourceID="{0a732a71-07f1-4e5c-88e2-38d23074d519}" StaticName="AccountClosed" />
       <Field DisplayName="Archival" Name="Archival" Type="Boolean" ID="{3a6ec6fc-81dd-4e39-9a78-b95d198c6938}" Group="CAS Smart Factory IPR" SourceID="{0a732a71-07f1-4e5c-88e2-38d23074d519}" StaticName="Archival" />
       <Field Name="CWL_CWDisposal2DisposalRequestLibraryID" ID="{C2F4132F-735D-4123-BEDE-79C7FE31954B}" Type="Lookup" List="Lists/DisposalRequestLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Disposal request" Group="CAS Smart Factory Customs Warehouse" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Type="Lookup" DisplayName="Disposal request" List="Lists/DisposalRequestLibrary" ShowField="Title" FieldRef="C2F4132F-735D-4123-BEDE-79C7FE31954B" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Customs Warehouse" ID="{B440944F-9966-4E98-8CD2-908755698742}" Name="CWL_CWDisposal2DisposalRequestLibraryTitle_sec" Overwrite="TRUE" />
       <Field Name="CWL_CWDisposal2CustomsWarehouseID" ID="{497E4697-AF4C-4910-B007-5ADE6723308E}" Type="Lookup" List="Lists/CustomsWarehouseList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="CW ID" Group="CAS Smart Factory Customs Warehouse" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="CWL_CWDisposal2ClearanceID" ID="{880D0442-622A-4E89-A59F-F3DD1EC9D947}" Type="Lookup" List="Lists/ClearenceList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Clearance ID" Group="CAS Smart Factory Customs Warehouse" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
@@ -159,6 +161,7 @@
           <FieldRef Name="AccountClosed" />
           <FieldRef Name="Archival" />
           <FieldRef Name="CWL_CWDisposal2DisposalRequestLibraryID" />
+          <FieldRef Name="CWL_CWDisposal2DisposalRequestLibraryTitle_sec" />
           <FieldRef Name="CWL_CWDisposal2CustomsWarehouseID" />
           <FieldRef Name="CWL_CWDisposal2ClearanceID" />
         </ViewFields>
@@ -247,7 +250,7 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
-                    <FieldRef Name="LinkTitle"></FieldRef>
+          <FieldRef Name="LinkTitle"></FieldRef>
           <FieldRef Name="No" />
           <FieldRef Name="CWL_CWDisposal2CWDocumentNo_sec" />
           <FieldRef Name="SADDocumentNo" />
@@ -359,6 +362,44 @@
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
+      </View>
+      <View BaseViewID="6" Type="GRID" WebPartZoneID="Main" DisplayName="SupplementWZ" DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="SupplementWZ.aspx">
+        <ViewFields>
+          <FieldRef Name="CWL_CWDisposal2DisposalRequestLibraryTitle_sec" />
+          <FieldRef Name="Title" />
+          <FieldRef Name="SADDocumentNo" />
+          <FieldRef Name="SADDate" />
+          <FieldRef Name="CustomsStatus" />
+          <FieldRef Name="CWL_CWDisposal2CWTobaccoName_sec" />
+          <FieldRef Name="CWL_CWDisposal2CWGrade_sec" />
+          <FieldRef Name="CWL_CWDisposal2CWSKU_sec" />
+          <FieldRef Name="CWL_CWDisposal2CWBatch_sec" />
+          <FieldRef Name="CW_SettledNetMass" />
+          <FieldRef Name="CW_Wz1" />
+          <FieldRef Name="CW_Wz2" />
+          <FieldRef Name="CW_Wz3" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="CWL_CWDisposal2DisposalRequestLibraryTitle_sec" Ascending="TRUE" />
+          </OrderBy>
+          <GroupBy>
+            <FieldRef Name="CWL_CWDisposal2DisposalRequestLibraryTitle_sec" />
+          </GroupBy>
+          <Where>
+            <And>
+              <IsNull>
+                <FieldRef Name="CW_Wz1" />
+              </IsNull>
+              <Neq>
+                <FieldRef Name="Archival" />
+                <Value Type="Boolean">Yes</Value>
+              </Neq>
+            </And>
+          </Where>
+        </Query>
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
       </View>
     </Views>
     <Forms>
