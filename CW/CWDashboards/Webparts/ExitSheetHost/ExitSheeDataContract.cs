@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
   /// class MainPageData
   /// </summary>
   [DataContract]
-  internal partial class ExitSheeDataContract
+  public partial class ExitSheeDataContract
   {
 
     #region public properties

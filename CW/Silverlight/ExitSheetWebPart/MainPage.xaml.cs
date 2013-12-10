@@ -62,7 +62,7 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
           return;
         string message = m_HiddenField.GetAttribute( "value" );
         if ( ! String.IsNullOrEmpty( message ) )
-          x_GridToBePrinted.DataContext = ExitSheeDataContract.Deserialize( message );
+         MainPageData = ExitSheeDataContract.Deserialize( message );
       }
       catch ( Exception ex )
       {
