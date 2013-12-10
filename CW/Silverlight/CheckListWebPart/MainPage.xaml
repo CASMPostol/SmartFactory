@@ -17,7 +17,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Button x:Name="x_ButtonPrint" Style="{StaticResource ButtonStyle}" Content="Print Check List" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Click="x_ButtonPrint_Click"/>
-        <Grid x:Name="x_GridToBePrinted" Grid.Row="1" Grid.Column="0">
+        <Grid x:Name="x_GridToBePrinted" Grid.Row="1" Grid.Column="0" Margin="20">
             <Grid.DataContext>
                 <CheckListHost:CheckListWebPartDataContract/>
             </Grid.DataContext>
