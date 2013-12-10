@@ -7,7 +7,7 @@
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:local="clr-namespace:CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart" 
     x:Class="CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart.MainPage"
-    mc:Ignorable="d" d:DesignWidth="1000" Height="911"
+    mc:Ignorable="d"  Height="Auto"
     Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded"
     >
     <Grid  x:Name="x_LayoutRoot" Background="White" HorizontalAlignment="Stretch" Margin="10" >
@@ -27,6 +27,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -40,11 +41,22 @@
                     <ColumnDefinition MinWidth="60" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <sdk:Label x:Name="x_LabelOGLNumber" Grid.Row="0" Grid.Column="0" Content="{Binding OGLNumber, FallbackValue=N/A OGL, StringFormat=\{0\}OGL}" HorizontalAlignment="Right" FontFamily="Arial" FontSize="16"  />
-                <sdk:Label Grid.Row="0" Grid.Column="1" Content="z dnia" HorizontalAlignment="Center" FontFamily="Arial" FontSize="16" />
-                <sdk:Label x:Name="x_LabelOGLDate" Grid.Row="0" Grid.Column="2" Content="{Binding OGLDate}" HorizontalAlignment="Left" FontFamily="Arial" FontSize="16"  />
+                <sdk:Label x:Name="x_LabelOGLNumber" Grid.Row="0" Grid.Column="0" Content="{Binding OGLNumber, FallbackValue=N/A OGL, StringFormat=\{0\}OGL}" HorizontalAlignment="Right" FontFamily="Arial" FontSize="14"  />
+                <sdk:Label Grid.Row="0" Grid.Column="1" Content="z dnia" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14" />
+                <sdk:Label x:Name="x_LabelOGLDate" Grid.Row="0" Grid.Column="2" Content="{Binding OGLDate, StringFormat=D}" HorizontalAlignment="Left" FontFamily="Arial" FontSize="14"  />
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <sdk:Label Content="Nazwa tytoniu" Grid.Row="0" Grid.Column="0" FontFamily="Arial" FontSize="14" Margin="10" />
+                <sdk:Label x:Name="x_LabelTobaccoName" Content="{Binding TobaccoName}" Grid.Row="1" Grid.Column="0" FontFamily="Arial" FontSize="18" FontWeight="Bold" Margin="10"  />
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="0" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -56,43 +68,42 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <sdk:Label Content="Nazwa tytoniu" Grid.Row="0" Grid.Column="0" FontFamily="Arial" FontSize="16" Margin="10" />
-                <sdk:Label x:Name="x_LabelTobaccoName" Content="{Binding TobaccoName}" Grid.Row="1" Grid.Column="0" FontFamily="Arial" FontSize="16" Margin="10"  />
-                <sdk:Label Content="Typ tytoniu" Grid.Row="2" Grid.Column="0" FontFamily="Arial" FontSize="16" Margin="10" />
-                <sdk:Label x:Name="x_LabelGrade" Content="{Binding Grade}"  Grid.Row="3" Grid.Column="0" FontFamily="Arial" FontSize="16" Margin="10" />
-                <sdk:Label Content="SKU" Grid.Row="2" Grid.Column="1" FontFamily="Arial" FontSize="16" Margin="10" />
-                <sdk:Label x:Name="x_LabelSKU" Content="{Binding SKU}" Grid.Row="3" Grid.Column="1" FontFamily="Arial" FontSize="16" Margin="10"  />
-                <sdk:Label Content="Batch" Grid.Row="2" Grid.Column="2" FontFamily="Arial" FontSize="16" Margin="10" />
-                <sdk:Label x:Name="x_LabelBatch" Content="{Binding Batch}" Grid.Row="3" Grid.Column="2" FontFamily="Arial" FontSize="16" Margin="10"  />
+                <sdk:Label Content="Typ tytoniu" Grid.Row="2" Grid.Column="0" FontFamily="Arial" FontSize="14" Margin="10" />
+                <sdk:Label x:Name="x_LabelGrade" Content="{Binding Grade}"  Grid.Row="3" Grid.Column="0" FontFamily="Arial" FontSize="20" FontWeight="Bold" Margin="10" />
+                <sdk:Label Content="SKU" Grid.Row="2" Grid.Column="1" FontFamily="Arial" FontSize="14" Margin="10" />
+                <sdk:Label x:Name="x_LabelSKU" Content="{Binding SKU}" Grid.Row="3" Grid.Column="1" FontFamily="Arial" FontSize="20" FontWeight="Bold" Margin="10"  />
+                <sdk:Label Content="Batch" Grid.Row="2" Grid.Column="2" FontFamily="Arial" FontSize="14" Margin="10" />
+                <sdk:Label x:Name="x_LabelBatch" Content="{Binding Batch}" Grid.Row="3" Grid.Column="2" FontFamily="Arial" FontSize="20" FontWeight="Bold" Margin="10"  />
             </Grid>
-            <Grid Grid.Row="2" Grid.Column="0">
+            <Grid Grid.Row="3" Grid.Column="0">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <sdk:Label Content="WYPROWADZENIE" Grid.Row="0" Grid.Column="0" FontFamily="Arial" FontSize="18" Margin="10" />
                 <sdk:Label Content="Waga netto (kg)" Grid.Row="1" Grid.Column="0" FontFamily="Arial" FontSize="16" Margin="10" />
-                <sdk:Label x:Name="x_LabelSettledNetMass" Content="{Binding SettledNetMass}" Grid.Row="2" Grid.Column="0" FontFamily="Arial" FontSize="16" Margin="10"  />
+                <sdk:Label x:Name="x_LabelSettledNetMass" Content="{Binding SettledNetMass}" Grid.Row="2" Grid.Column="0" FontFamily="Arial" FontSize="24" FontWeight="Bold" Margin="10"  />
                 <sdk:Label Content="Ilość opakowań (szt)" Grid.Row="1" Grid.Column="1" FontFamily="Arial" FontSize="16" Margin="10" />
-                <sdk:Label x:Name="x_LabelPackageToClear" Content="{Binding PackageToClear}" Grid.Row="2" Grid.Column="1" FontFamily="Arial" FontSize="16" Margin="10"  />
+                <sdk:Label x:Name="x_LabelPackageToClear" Content="{Binding PackageToClear}" Grid.Row="2" Grid.Column="1" FontFamily="Arial" FontSize="24" FontWeight="Bold" Margin="10"  />
                 <sdk:Label Content="Nr SAD" Grid.Row="1" Grid.Column="2" FontFamily="Arial" FontSize="16" Margin="10" />
-                <sdk:Label x:Name="x_LabelSAD" Content="{Binding SAD}" Grid.Row="2" Grid.Column="2" FontFamily="Arial" FontSize="16" Margin="10"  />
-                <sdk:Label Content="STAN NA S.C ." Grid.Row="0" Grid.Column="3" FontFamily="Arial" FontSize="18" Margin="10" />
-                <sdk:Label Content="Waga netto" Grid.Row="1" Grid.Column="3" FontFamily="Arial" FontSize="16" Margin="10" />
-                <sdk:Label x:Name="x_LabelRemainingQuantity" Content="{Binding RemainingQuantity}" Grid.Row="2" Grid.Column="3" FontFamily="Arial" FontSize="16" Margin="10"  />
-                <sdk:Label Content="Ilość opakowań (szt)" Grid.Row="1" Grid.Column="4" FontFamily="Arial" FontSize="16" Margin="10" />
-                <sdk:Label x:Name="x_LabelRemainingPackage" Content="{Binding RemainingPackage}" Grid.Row="2" Grid.Column="4" FontFamily="Arial" FontSize="16" Margin="10"  />
+                <sdk:Label x:Name="x_LabelSAD" Content="{Binding SAD}" Grid.Row="2" Grid.Column="2" FontFamily="Arial" FontSize="20" FontWeight="Bold" Margin="10"  />
+                <sdk:Label Content="STAN NA S.C ." Grid.Row="3" Grid.Column="0" FontFamily="Arial" FontSize="18" Margin="10" />
+                <sdk:Label Content="Waga netto" Grid.Row="4" Grid.Column="0" FontFamily="Arial" FontSize="16" Margin="10" />
+                <sdk:Label x:Name="x_LabelRemainingQuantity" Content="{Binding RemainingQuantity}" Grid.Row="5" Grid.Column="0" FontFamily="Arial" FontSize="24" FontWeight="Bold" Margin="10"  />
+                <sdk:Label Content="Ilość opakowań (szt)" Grid.Row="4" Grid.Column="1" FontFamily="Arial" FontSize="16" Margin="10" />
+                <sdk:Label x:Name="x_LabelRemainingPackage" Content="{Binding RemainingPackage}" Grid.Row="5" Grid.Column="1" FontFamily="Arial" FontSize="24" FontWeight="Bold" Margin="10"  />
             </Grid>
-            <sdk:Label x:Name="x_LablePackageQuantity" Content="{Binding PackageToClear}" Grid.Row="3" Grid.Column="0" FontFamily="Arial" FontSize="200" HorizontalAlignment="Center" Margin="10"  />
-            <sdk:Label x:Name="x_LableWarehouseName" Content="{Binding WarehouseName}" Grid.Row="4" Grid.Column="0" FontFamily="Arial" FontSize="75" HorizontalAlignment="Center" Margin="10"  />
+            <sdk:Label x:Name="x_LablePackageQuantity" Content="{Binding PackageToClear}" Grid.Row="4" Grid.Column="0" FontFamily="Arial" FontSize="200" HorizontalAlignment="Center" Margin="10"  />
+            <sdk:Label x:Name="x_LableWarehouseName" Content="{Binding WarehouseName}" Grid.Row="5" Grid.Column="0" FontFamily="Arial" FontSize="75" HorizontalAlignment="Center" Margin="10"  />
         </Grid>
     </Grid>
 </UserControl>
