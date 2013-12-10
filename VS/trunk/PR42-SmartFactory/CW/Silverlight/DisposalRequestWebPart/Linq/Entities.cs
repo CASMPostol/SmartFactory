@@ -1158,8 +1158,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 
       public System.Nullable<double> _cW_AddedKg;
 
-      public System.Nullable<bool> _accountClosed;
-
       public System.Nullable<bool> _archival;
 
       public System.Nullable<ClearingType> _clearingType;
@@ -1543,24 +1541,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
           this.OnPropertyChanging("CW_AddedKg", this._cW_AddedKg);
           this._cW_AddedKg = value;
           this.OnPropertyChanged("CW_AddedKg");
-        }
-      }
-    }
-
-    [ColumnAttribute(Name = "AccountClosed", Storage = "_accountClosed", Required = true, FieldType = "Boolean")]
-    public System.Nullable<bool> AccountClosed
-    {
-      get
-      {
-        return this._accountClosed;
-      }
-      set
-      {
-        if ((value != this._accountClosed))
-        {
-          this.OnPropertyChanging("AccountClosed", this._accountClosed);
-          this._accountClosed = value;
-          this.OnPropertyChanged("AccountClosed");
         }
       }
     }

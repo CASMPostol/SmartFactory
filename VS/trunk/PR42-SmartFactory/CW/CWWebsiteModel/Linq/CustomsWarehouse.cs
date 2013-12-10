@@ -153,7 +153,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.TobaccoNotAllocated = Convert.ToDouble(this.TobaccoNotAllocated.DecimalValue() - _2Dispose);
       CustomsWarehouseDisposal _new = new CustomsWarehouseDisposal()
       {
-        AccountClosed = false,
         Archival = false,
         CustomsStatus = CustomsStatus.NotStarted,
         CustomsProcedure = parent.ClearenceProcedure.Value.Convert2String(),

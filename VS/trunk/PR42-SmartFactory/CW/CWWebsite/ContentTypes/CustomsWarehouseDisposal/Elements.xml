@@ -40,7 +40,6 @@
       <FieldRef ID="{16D33CFD-B8D1-4843-AA1B-A5155DE5FE6B}" Name="CW_AddedKg" />
       <FieldRef ID="{5D47664F-E2A2-4EB6-8A3F-18922E4E4580}" Name="CWL_CWDisposal2CWCWMassPerPackage_sec" />
       <FieldRef ID="{76755728-57B2-4977-B111-A4F16289A235}" Name="CWL_CWDisposal2CWUnits_sec" />
-      <FieldRef ID="{2291900F-0EE8-4A1D-9FA1-92F8DB60AF41}" Name="AccountClosed" />
       <FieldRef ID="{3A6EC6FC-81DD-4E39-9A78-B95D198C6938}" Name="Archival" />
       <FieldRef ID="{C2F4132F-735D-4123-BEDE-79C7FE31954B}" Name="CWL_CWDisposal2DisposalRequestLibraryID" />
       <FieldRef ID="{B440944F-9966-4E98-8CD2-908755698742}" Name="CWL_CWDisposal2DisposalRequestLibraryTitle_sec" />
