@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : Name of Application
 //  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2013, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -32,12 +32,24 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost
         new DisposalDescription() { OGLDate = DateTime.Today, OGLNumber = "N/A", PackageToClear = 1 } };
     }
     #region public
+    /// <summary>
+    /// Gets or sets the today.
+    /// </summary>
+    /// <value>
+    /// The today.
+    /// </value>
     [DataMember]
     public DateTime Today
     {
       get { return b_DocumentDate; }
       set { b_DocumentDate = value; }
     }
+    /// <summary>
+    /// Gets or sets the disposals list.
+    /// </summary>
+    /// <value>
+    /// The disposals list.
+    /// </value>
     [DataMember]
     public DisposalDescription[] DisposalsList
     {
@@ -59,16 +71,37 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost
   public class DisposalDescription
   {
     #region public
+    /// <summary>
+    /// Gets or sets the ogl date.
+    /// </summary>
+    /// <value>
+    /// The ogl date.
+    /// </value>
+    [DataMember]
     public DateTime OGLDate
     {
       get { return b_OGLDate; }
       set { b_OGLDate = value; }
     }
+    /// <summary>
+    /// Gets or sets the ogl number.
+    /// </summary>
+    /// <value>
+    /// The ogl number.
+    /// </value>
+    [DataMember]
     public string OGLNumber
     {
       get { return b_OGLNumber; }
       set { b_OGLNumber = value; }
     }
+    /// <summary>
+    /// Gets or sets the number packages to clear.
+    /// </summary>
+    /// <value>
+    /// The number of packages to clear.
+    /// </value>
+    [DataMember]
     public int PackageToClear
     {
       get { return b_PackageToClear; }
