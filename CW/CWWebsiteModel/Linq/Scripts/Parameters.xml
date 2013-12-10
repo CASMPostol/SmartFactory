@@ -326,7 +326,6 @@
   <ContentType Name="CustomsWarehouseDisposal" Class="CustomsWarehouseDisposal">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
-
     <Column Name="No" Member="No" />
     <Column Name="SADDocumentNo" Member="SADDocumentNo" />
     <Column Name="CWL_CWDisposal2CWDocumentNo_sec" Member="CWL_CWDisposal2CWDocumentNo_sec" />
@@ -359,7 +358,6 @@
     <Column Name="CW_AddedKg" Member="CW_AddedKg" />
     <Column Name="CWL_CWDisposal2CWMassPerPackage_sec" Member="CWL_CWDisposal2CWMassPerPackage_sec" />
     <Column Name="CWL_CWDisposal2CWUnits_sec" Member="CWL_CWDisposal2CWUnits_sec" />
-    <Column Name="AccountClosed" Member="AccountClosed" />
     <Column Name="Archival" Member="Archival" />
     <Column Name="CWL_CWDisposal2DisposalRequestLibraryID" Member="CWL_CWDisposal2DisposalRequestLibraryID" />
     <Column Name="CWL_CWDisposal2DisposalRequestLibraryTitle_sec" Member="CWL_CWDisposal2DisposalRequestLibraryTitle_sec" />

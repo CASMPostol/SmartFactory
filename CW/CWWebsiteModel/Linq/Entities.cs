@@ -1694,8 +1694,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _cW_AddedKg;
 		
-		private System.Nullable<bool> _accountClosed;
-		
 		private System.Nullable<bool> _archival;
 		
 		private System.Nullable<ClearingType> _clearingType;
@@ -2012,20 +2010,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this.OnPropertyChanging("CW_AddedKg", this._cW_AddedKg);
 					this._cW_AddedKg = value;
 					this.OnPropertyChanged("CW_AddedKg");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AccountClosed", Storage="_accountClosed", Required=true, FieldType="Boolean")]
-		public System.Nullable<bool> AccountClosed {
-			get {
-				return this._accountClosed;
-			}
-			set {
-				if ((value != this._accountClosed)) {
-					this.OnPropertyChanging("AccountClosed", this._accountClosed);
-					this._accountClosed = value;
-					this.OnPropertyChanged("AccountClosed");
 				}
 			}
 		}

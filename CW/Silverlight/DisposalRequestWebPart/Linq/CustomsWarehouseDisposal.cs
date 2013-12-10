@@ -49,7 +49,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         CustomsStatus = Linq.CustomsStatus.NotStarted,
         CustomsProcedure = customsProcedure,
         Archival = false,
-        AccountClosed = false,
         CW_AddedKg = toDisposeKg,
         CW_DeclaredNetMass = 0,
         CW_SettledNetMass = toDisposeKg,

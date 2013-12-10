@@ -362,7 +362,6 @@
     <Column Name="CW_AddedKg" Member="CW_AddedKg" />
     <Column Name="CWL_CWDisposal2CWMassPerPackage_sec" Member="CWL_CWDisposal2CWMassPerPackage_sec" />
     <Column Name="CWL_CWDisposal2CWUnits_sec" Member="CWL_CWDisposal2CWUnits_sec" />
-    <!--<Column Name="AccountClosed" Member="AccountClosed" />-->
     <!--<Column Name="Archival" Member="Archival" />-->
     <!--<Column Name="CWL_CWDisposal2DisposalRequestLibraryID" Member="CWL_CWDisposal2DisposalRequestLibraryID" />-->
     <Column Name="CWL_CWDisposal2CustomsWarehouseID" Member="CWL_CWDisposal2CustomsWarehouseID" />
