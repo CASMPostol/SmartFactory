@@ -63,7 +63,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
         WartoscTowaru = new SADZgloszenieTowarWartoscTowaru()
         {
           Korekta = null,
-          WartoscPozycji = value,
+          WartoscPozycji = Math.Round(value, 2),
           WartoscPozycjiSpecified = true,
           MetodaWartosciowania = "1",
           WartoscStatystyczna = Math.Round( value, 0 ),
