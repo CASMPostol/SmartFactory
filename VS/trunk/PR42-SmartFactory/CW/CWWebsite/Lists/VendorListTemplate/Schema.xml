@@ -12,7 +12,8 @@
         </FieldRefs>
       </ContentType>
     </ContentTypes>
-    <Fields></Fields>
+    <Fields>      
+    </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
         <Toolbar Type="Standard" />

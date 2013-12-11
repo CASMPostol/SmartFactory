@@ -6,7 +6,7 @@
   Group="CAS Smart Factory Customs Warehouse - Customs"
   Type="DateTime"
   Format="DateOnly"
-  DisplayName="Entry date">
+  DisplayName="$Resources:CASSmartFactoryCW,CAS_EntryDate">
     <Default>[today]</Default>
   </Field>
 </Elements>
