@@ -62,6 +62,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </None>
+    <None Include="Resources\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{47864197-1357-4fee-a26b-c36d8cfbeb52}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\CWResources\CWResources.Template.xml">
@@ -77,6 +80,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Resources\CASSmartFactoryCW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CASSmartFactoryCW.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\CASSmartFactoryCW.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CASSmartFactoryCW.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\CASSmartFactoryCW.en-US.resx" />
+    <Content Include="Resources\CASSmartFactoryCW.pl-PL.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
