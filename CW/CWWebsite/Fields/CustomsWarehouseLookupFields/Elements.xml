@@ -9,7 +9,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="Consent"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_Consent"
     Group="CAS Smart Factory Customs Warehouse"
     Required="False"
     Hidden="False"
@@ -19,7 +19,7 @@
     />
   <Field
     Type="Lookup"
-    DisplayName="Consent date"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_ConsentDate"
     List="Lists/ConsentList"
     ShowField="ConsentDate"
     FieldRef="39DB0101-A722-49AB-9369-6410727F4C97"
@@ -39,7 +39,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="Clearence"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_ClearanceID"
     Group="CAS Smart Factory Customs Warehouse"
     Required="False"
     Hidden="False"
@@ -49,7 +49,7 @@
     />
   <Field
     Type="Lookup"
-    DisplayName="CN tariff code"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_CNTariffCode"
     List="Lists/PCNCodeList"
     ShowField="ProductCodeNumber"
     FieldRef="C13CA3FF-19F6-47FC-9EA3-8365EB8EB07F"
@@ -69,7 +69,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="CN ID"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_CNID"
     Group="CAS Smart Factory Customs Warehouse"
     Required="False"
     Hidden="False"
@@ -86,7 +86,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="CW Library ID"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_CWLibraryID"
     Group="CAS Smart Factory Customs Warehouse"
     Required="False"
     Hidden="False"
@@ -103,7 +103,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="CN ID"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_CNID"
     Group="CAS Smart Factory Customs Warehouse"
     Required="False"
     Hidden="False"
@@ -113,7 +113,7 @@
     />
   <Field
     Type="Lookup"
-    DisplayName="CN tariff code"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_CNTariffCode"
     List="Lists/PCNCodeList"
     ShowField="ProductCodeNumber"
     FieldRef="00C37821-B465-43A9-8F81-7B05F6607143"
@@ -133,7 +133,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="Disposal request"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_DisposalRequestID"
     Group="CAS Smart Factory Customs Warehouse"
     Required="False"
     Hidden="False"
@@ -143,7 +143,7 @@
     />
   <Field
     Type="Lookup"
-    DisplayName="Disposal request"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_DisposalRequest"
     List="Lists/DisposalRequestLibrary"
     ShowField="Title"
     FieldRef="C2F4132F-735D-4123-BEDE-79C7FE31954B"
@@ -163,7 +163,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="Vendor"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_Vendor"
     Group="CAS Smart Factory Customs Warehouse"
     Required="False"
     Hidden="False"
@@ -180,7 +180,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="Bin card"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_BinCard"
     Group="CAS Smart Factory Customs Warehouse"
     Required="False"
     Hidden="False"
@@ -197,7 +197,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="CW ID"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_CWID"
     Group="CAS Smart Factory Customs Warehouse"
     Required="False"
     Hidden="False"
@@ -207,7 +207,7 @@
     />
   <Field
     Type="Lookup"
-    DisplayName="Introducing SAD No."
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_IntroducingSADNo"
     List="Lists/CustomsWarehouseList"
     ShowField="DocumentNo"
     FieldRef="497E4697-AF4C-4910-B007-5ADE6723308E"
@@ -220,7 +220,7 @@
   />
   <Field
     Type="Lookup"
-    DisplayName="Tobacco Name"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_TobaccoName"
     List="Lists/CustomsWarehouseList"
     ShowField="TobaccoName"
     FieldRef="497E4697-AF4C-4910-B007-5ADE6723308E"
@@ -233,7 +233,7 @@
   />
   <Field
     Type="Lookup"
-    DisplayName="Grade"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_Grade"
     List="Lists/CustomsWarehouseList"
     ShowField="Grade"
     FieldRef="497E4697-AF4C-4910-B007-5ADE6723308E"
@@ -246,7 +246,7 @@
   />
   <Field
     Type="Lookup"
-    DisplayName="SKU"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_SKU"
     List="Lists/CustomsWarehouseList"
     ShowField="SKU"
     FieldRef="497E4697-AF4C-4910-B007-5ADE6723308E"
@@ -259,7 +259,7 @@
   />
   <Field
     Type="Lookup"
-    DisplayName="Batch"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_Batch"
     List="Lists/CustomsWarehouseList"
     ShowField="Batch"
     FieldRef="497E4697-AF4C-4910-B007-5ADE6723308E"
@@ -272,7 +272,7 @@
   />
   <Field
     Type="Lookup"
-    DisplayName="Currency"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_Currency"
     List="Lists/CustomsWarehouseList"
     ShowField="Currency"
     FieldRef="497E4697-AF4C-4910-B007-5ADE6723308E"
@@ -285,7 +285,7 @@
   />
   <Field
     Type="Lookup"
-    DisplayName="Units"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_Units"
     List="Lists/CustomsWarehouseList"
     ShowField="Units"
     FieldRef="497E4697-AF4C-4910-B007-5ADE6723308E"
@@ -298,7 +298,7 @@
   />
   <Field
     Type="Lookup"
-    DisplayName="Mass per package"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_MassPerPackage"
     List="Lists/CustomsWarehouseList"
     ShowField="CW_MassPerPackage"
     FieldRef="497E4697-AF4C-4910-B007-5ADE6723308E"
@@ -318,7 +318,7 @@
   UnlimitedLengthInDocumentLibrary="False"
   Indexed="True"
   RelationshipDeleteBehavior="None"
-  DisplayName="Disposal request ID"
+  DisplayName="$Resources:CASSmartFactoryCW,CAS_DisposalRequestID"
   Group="CAS Smart Factory Customs Warehouse"
   Required="False"
   Hidden="False"
@@ -335,7 +335,7 @@
   UnlimitedLengthInDocumentLibrary="False"
   Indexed="True"
   RelationshipDeleteBehavior="None"
-  DisplayName="Clearance ID"
+  DisplayName="$Resources:CASSmartFactoryCW,CAS_ClearanceID"
   Group="CAS Smart Factory Customs Warehouse"
   Required="False"
   Hidden="False"

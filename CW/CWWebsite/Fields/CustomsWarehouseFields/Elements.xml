@@ -3,44 +3,44 @@
   <Field
     ID="{9A6D0500-DE73-41A6-9F9F-99DE8A189491}"
     Name="CW_Quantity"
-    DisplayName="Quantity"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_Quantity"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number" />
   <Field
     ID="{0D659694-3661-4AE1-95ED-4C15C02CD774}"
     Name="CW_PackageUnits"
-    DisplayName="Pakage [units]"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_PackageUnits"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number" />
   <Field
     ID="{0912FC75-ED32-4919-950D-790D0E82B6BC}"
     Name="CW_PackageKg"
-    DisplayName="Pakage [kg]"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_PackageKg"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number" />
   <Field
     ID="{914FFBC3-8F54-43E2-8D29-E1D614CF0975}"
     Name="CW_MassPerPackage"
-    DisplayName="Mass per package"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_MassPerPackage"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number" />
   <Field
     ID="{BD5E3778-B908-48BF-BCB1-8DDB8E9B2701}"
     Name="CW_UnitPrice"
-    DisplayName="Unit price"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_UnitPrice"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number"
     Decimals="2"/>
   <Field
     ID="{F061A643-E22C-46CD-AC9C-C61FAEC1F301}"
     Name="CW_PzNo"
-    DisplayName="PZ no."
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_PZNo"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Text"/>
   <Field
     ID="{D5BEFDD7-BA59-42EE-89F8-EA173C73F8DA}"
     Name="CW_CertificateOfOrgin"
-    DisplayName="Certificate of Orgin"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_CertificateOfOrgin"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Text"/>
   <Field
@@ -49,13 +49,13 @@
     Group="CAS Smart Factory Customs Warehouse"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Date - CO">
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_DateCO">
     <Default>[today]</Default>
   </Field>
   <Field
     ID="{6CA6F676-A1D0-455F-83C0-68AE5173E6BA}"
     Name="CW_CertificateOfAuthenticity"
-    DisplayName="Certificate of Authenticity"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_CertificateOfAuthenticity"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Text"/>
   <Field
@@ -64,89 +64,74 @@
     Group="CAS Smart Factory Customs Warehouse"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Date - COA">
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_COADate">
     <Default>[today]</Default>
   </Field>
   <Field
     ID="{B1AFC3A9-A6AE-4F71-B5EF-168317EB6DA5}"
     Name="CW_DeclaredNetMass"
-    DisplayName="Declared net mass [kg]"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_DeclaredNetMass"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number"
     Decimals="2"/>
   <Field
     ID="{FA67A59F-AFCD-4BD1-ADD4-8DA367AB5633}"
     Name="CW_Wz1"
-    DisplayName="WZ 1"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_Wz1"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Text"/>
   <Field
     ID="{31F88F12-A058-4966-BE6E-231B15FA97F3}"
     Name="CW_Wz2"
-    DisplayName="WZ 2"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_Wz2"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Text"/>
   <Field
     ID="{81011546-BADA-4C37-B5C3-6531335B7E32}"
     Name="CW_Wz3"
-    DisplayName="WZ 3"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_Wz3"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Text"/>
   <Field
     ID="{16D33CFD-B8D1-4843-AA1B-A5155DE5FE6B}"
     Name="CW_AddedKg"
-    DisplayName="Added [kg]"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_AddedKg"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number"
     Decimals="2"/>
   <Field
     ID="{2E618017-3154-41E8-8C1A-91014C8B1322}"
     Name="CW_SettledNetMass"
-    DisplayName="Settled net mass [kg]"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_SettledNetMass"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number"
     Decimals="2"/>
   <Field
     ID="{5D90137F-9150-404D-A3EE-91E7BE4D5CA4}"
     Name="CW_SettledGrossMass"
-    DisplayName="Settled gross mass [kg]"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_SettledGrossMass"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number"
     Decimals="2"/>
   <Field
     ID="{0260B0D5-F932-427E-91B4-B2626BD8BFC3}"
     Name="CW_RemainingPackage"
-    DisplayName="Remaining package"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_RemainingPackage"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number"
     Decimals="2"/>
   <Field
     ID="{7239BCCE-5417-41CF-90E5-54993500A1C4}"
     Name="CW_RemainingTobaccoValue"
-    DisplayName="Remaining tobacco value [PLN]"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_RemainingTobaccoValue"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number"
     Decimals="3"/>
   <Field
     ID="{41B47893-8755-4878-A827-1C56A8D02945}"
     Name="CW_PackageToClear"
-    DisplayName="Package to clear"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_PackageToClear"
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number"
     Decimals="2"/>
-  <Field
-      Name="CW_DisposalDestination"
-      ID="{F435E944-D6E4-4394-B274-5869D28A1814}"
-      Type="Choice"
-      DisplayName="Disposal destination"
-      Group="CAS Smart Factory Customs Warehouse"
-    >
-    <Default>Production warehouse</Default>
-    <CHOICES>
-      <CHOICE>Production warehouse</CHOICE>
-      <CHOICE>IPR warehouse</CHOICE>
-      <CHOICE>Export</CHOICE>
-      <CHOICE>Other customs warehouse</CHOICE>
-    </CHOICES>
-  </Field>
 </Elements>
