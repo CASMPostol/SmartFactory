@@ -32,9 +32,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-<asp:Literal ID="m_PageTitle" runat="server" Text="Supplement WZ No" />
+<asp:Literal ID="m_PageTitle" runat="server" Text="<%$Resources:CASSmartFactoryCW,CAS_ASPX_SupplementWZNoDashboard%>" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
-<asp:Literal ID="m_PageTitleInTitleArea" runat="server" Text="Supplement WZ No" />
+<asp:Literal ID="m_PageTitleInTitleArea" runat="server" Text="<%$Resources:CASSmartFactoryCW,CAS_ASPX_SupplementWZNoDashboard%>" />
 </asp:Content>
