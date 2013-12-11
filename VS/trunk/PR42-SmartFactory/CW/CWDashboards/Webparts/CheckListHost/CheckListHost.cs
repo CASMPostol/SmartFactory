@@ -78,6 +78,8 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost
     }
     private void NewDataEventHandler(object sender, DisposalInterconnectionData e)
     {
+      if (string.IsNullOrEmpty(e.ID))
+        return;
       EnsureChildControls();
       m_SelectedItemTitle.Text = e.Title;
       using (Entities _edx = new Entities())
