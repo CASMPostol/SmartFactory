@@ -46,11 +46,14 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost
       List<DisposalDescription> _dda = new List<DisposalDescription>();
       foreach (CustomsWarehouseDisposal _cwdx in _drl.CustomsWarehouseDisposal)
       {
+        CustomsWarehouse _cw = _cwdx.CWL_CWDisposal2CustomsWarehouseID;
+        if (_cw == null)
+          throw new ArgumentNullException("CWL_CWDisposal2CustomsWarehouseID", "CustomsWarehouseDisposal is not connected to CustomsWarehouse");
         DisposalDescription _new = new DisposalDescription
         {
-          OGLDate = _cwdx.SADDate.GetValueOrDefault(),
-          OGLNumber = _cwdx.SADDocumentNo,
-          PackageToClear = Convert.ToInt32(_cwdx.CW_PackageToClear)
+          OGLDate = _cw.CustomsDebtDate.GetValueOrDefault(),
+          OGLNumber = _cw.DocumentNo,
+          PackageToClear = Convert.ToInt32(_cw.AccountBalance.Value / _cw.CW_MassPerPackage.Value)
         };
         _dda.Add(_new);
       }
