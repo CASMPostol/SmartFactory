@@ -46,16 +46,19 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
     {
       Warehouse _wrh = (from _wrhx in edc.Warehouse where _wrhx.Procedure == cwd.CustomsProcedure select _wrhx).FirstOrDefault();
       string _warehouseName = _wrh == null ? "N/A" : _wrh.WarehouseName;
+      CustomsWarehouse _cw = cwd.CWL_CWDisposal2CustomsWarehouseID;
+      if (_cw == null)
+        throw new ArgumentNullException("CWL_CWDisposal2CustomsWarehouseID", "CustomsWarehouseDisposal is not connected to CustomsWarehouse");
       ExitSheeDataContract _esdc = new ExitSheeDataContract
       {
         Batch = cwd.CWL_CWDisposal2CustomsWarehouseID.Batch,
         Grade = cwd.CWL_CWDisposal2CustomsWarehouseID.Grade,
-        OGLDate = cwd.SADDate.GetValueOrDefault(),
-        OGLNumber = cwd.SADDocumentNo,
+        OGLDate = _cw.CustomsDebtDate.GetValueOrDefault(),
+        OGLNumber = _cw.DocumentNo,
         PackageToClear = Convert.ToInt32(cwd.CW_PackageToClear.GetValueOrDefault()),
         RemainingPackage = Convert.ToInt32(cwd.CW_RemainingPackage.GetValueOrDefault()),
         RemainingQuantity = cwd.RemainingQuantity.GetValueOrDefault(),
-        SAD = cwd.CWL_CWDisposal2ClearanceID == null ? "N/A" : cwd.CWL_CWDisposal2ClearanceID.DocumentNo,
+        SAD = cwd.SADDocumentNo,
         SettledNetMass = cwd.CW_SettledNetMass.GetValueOrDefault(),
         SKU = cwd.CWL_CWDisposal2CustomsWarehouseID.SKU,
         TobaccoName = cwd.CWL_CWDisposal2CustomsWarehouseID.TobaccoName,

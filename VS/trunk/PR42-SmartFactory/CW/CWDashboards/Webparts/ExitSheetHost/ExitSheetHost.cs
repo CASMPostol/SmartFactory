@@ -24,6 +24,9 @@ using CAS.SmartFactory.CW.WebsiteModel.Linq;
 
 namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
 {
+  /// <summary>
+  /// class ExitSheetHost as WebPart
+  /// </summary>
   [ToolboxItemAttribute(false)]
   public class ExitSheetHost : WebPart
   {
