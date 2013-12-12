@@ -21,20 +21,20 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <sdk:Label Content="Enter Batch No.:" Height="26" Foreground="White" Grid.Row="0" Grid.Column="0" />
+                <sdk:Label Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_EnterBatchNoLabel, Source={StaticResource LocalizedStrings }}" Height="26" Foreground="White" Grid.Row="0" Grid.Column="0" />
                 <TextBox x:Name="x_TextBoxBatchSearch" Height="26" Width="200"  BorderBrush="#FF3D8AA5" Grid.Row="0" Grid.Column="1" Margin="5" />
                 <Button x:Name="x_ButtonBatchSearch" Height="26" Width="30" Grid.Row="0" Grid.Column="2" Click="x_ButtonBatchSearch_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="Imgs/search.png" Width="20" Height="20" ToolTipService.ToolTip="Search for batch" />
                     </StackPanel>
                 </Button>
-                <sdk:Label Content="Selected Batch No:" Height="26" Foreground="White" Grid.Row="1" Grid.Column="0" />
+                <sdk:Label Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_SelectedBatchLabel, Source={StaticResource LocalizedStrings }}" Height="26" Foreground="White" Grid.Row="1" Grid.Column="0" />
                 <TextBox x:Name="x_TextBoxSelectedBatch" IsEnabled="False" Height="26" Width="200" BorderBrush="#FF3D8AA5" Grid.Row="1" Grid.Column="1" Margin="5" />
-                <sdk:Label Content="Total Stock:" Height="26" Foreground="White" Grid.Row="2" Grid.Column="0" />
+                <sdk:Label Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_TotalStockLabel, Source={StaticResource LocalizedStrings }}" Height="26" Foreground="White" Grid.Row="2" Grid.Column="0" />
                 <TextBox x:Name="x_TextBoxTotalStock" IsEnabled="False" Height="26" Width="200" Grid.Row="2" Grid.Column="1" Margin="5" BorderBrush="#FF3D8AA5" />
-                <sdk:Label Content="Qty to clear:" Height="26" Foreground="White" Grid.Row="3" Grid.Column="0" />
+                <sdk:Label Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_QtyToClearLablel, Source={StaticResource LocalizedStrings }}" Height="26" Foreground="White" Grid.Row="3" Grid.Column="0" />
                 <TextBox x:Name="x_TextBoxQtyToClear" Height="26" Width="200" Grid.Row="3" Grid.Column="1" Margin="5" BorderBrush="#FF3D8AA5" />
-                <sdk:Label Content="Procedure:" Height="26" Foreground="White" Grid.Row="4" Grid.Column="0" />
+                <sdk:Label Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_ProcedureLabel, Source={StaticResource LocalizedStrings }}" Height="26" Foreground="White" Grid.Row="4" Grid.Column="0" />
                 <ComboBox x:Name="x_ComboBoxProcedure" Height="26" Width="200" Grid.Row="4" Grid.Column="1" Margin="5" BorderBrush="#FF3D8AA5" HorizontalContentAlignment="Right" >
                     <ComboBoxItem Name="x_3171" HorizontalAlignment="Right">3171</ComboBoxItem>
                     <ComboBoxItem Name="x_4071" IsSelected="True" HorizontalAlignment="Right">4071</ComboBoxItem>
@@ -43,8 +43,8 @@
                 </ComboBox>
             </Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
-                <Button x:Name="x_CancelButton" Content="Cancel" Click="CancelButton_Click" Style="{StaticResource ButtonStyle}" />
-                <Button x:Name="x_OKButton" Content="OK" Click="OKButton_Click" Style="{StaticResource ButtonStyle}" />
+                <Button x:Name="x_CancelButton" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_CancelButton, Source={StaticResource LocalizedStrings }}" Click="CancelButton_Click" Style="{StaticResource ButtonStyle}" />
+                <Button x:Name="x_OKButton" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_AddButton, Source={StaticResource LocalizedStrings }}" Click="OKButton_Click" Style="{StaticResource ButtonStyle}" />
             </StackPanel>
         </StackPanel>
     </Grid>
