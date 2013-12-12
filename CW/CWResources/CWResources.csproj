@@ -91,7 +91,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\CASSmartFactoryCW.en-US.resx" />
+    <Content Include="Resources\CASSmartFactoryCW.en-US.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Resources\CASSmartFactoryCW.pl-PL.resx" />
   </ItemGroup>
   <ItemGroup>
