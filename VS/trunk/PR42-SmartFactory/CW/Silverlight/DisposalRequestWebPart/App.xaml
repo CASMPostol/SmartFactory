@@ -55,6 +55,8 @@
         		<Setter Property="Foreground" Value="#FFEBF0F9"/>
         		<Setter Property="Background" Value="{x:Null}"/>
         	</Style>
+            <local:LocalizedStrings xmlns:local ="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart"
+                           x:Key="LocalizedStrings"></local:LocalizedStrings>           
         </ResourceDictionary>
     </Application.Resources>
 </Application>

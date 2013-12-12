@@ -15,8 +15,7 @@
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures>pl;pl-PL;</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>CAS.DisposalRequestWebPart.xap</XapFilename>
@@ -92,6 +91,21 @@
     <Compile Include="AddNew.xaml.cs">
       <DependentUpon>AddNew.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CASSmartFactoryDisposalRequest.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CASSmartFactoryDisposalRequest.resx</DependentUpon>
+    </Compile>
+    <Compile Include="CASSmartFactoryDisposalRequest.en-US.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CASSmartFactoryDisposalRequest.en-US.resx</DependentUpon>
+    </Compile>
+    <Compile Include="CASSmartFactoryDisposalRequest.pl-PL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CASSmartFactoryDisposalRequest.pl-PL.resx</DependentUpon>
+    </Compile>
     <Compile Include="Data\DataContextAsync.cs" />
     <Compile Include="Data\EntityListItemsCollection.cs" />
     <Compile Include="Data\GetListCompletedEventHandler.cs" />
@@ -107,6 +121,7 @@
     <Compile Include="Linq\DisposalRequestObservable.cs" />
     <Compile Include="Linq\Entities.cs" />
     <Compile Include="Linq\Element.cs" />
+    <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -184,7 +199,20 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="CASSmartFactoryDisposalRequest.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CASSmartFactoryDisposalRequest.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CASSmartFactoryDisposalRequest.pl-PL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CASSmartFactoryDisposalRequest.pl-PL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CASSmartFactoryDisposalRequest.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CASSmartFactoryDisposalRequest.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Linq\Scripts\Parameters.xml" />
     <Content Include="SampleData\CAMLGetItem.xml" />
