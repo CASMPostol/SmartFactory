@@ -161,7 +161,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         CW_SettledNetMass = _2Dispose.DoubleValue(),
         CW_SettledGrossMass = (_2Dispose + PackageWeight() * _Boxes).DoubleValue(),
         CW_PackageToClear = _Boxes.DoubleValue(),
-        TobaccoValue = ( this.Value.Value / this.CW_Quantity.Value * _2Dispose.DoubleValue()).RoundCurrency(),
+        TobaccoValue = (this.Value.Value / this.CW_Quantity.Value * _2Dispose.DoubleValue()).RoundCurrency(),
         CWL_CWDisposal2DisposalRequestLibraryID = parent,
         CWL_CWDisposal2PCNTID = this.CWL_CW2PCNID,
         CWL_CWDisposal2CustomsWarehouseID = this,
@@ -169,7 +169,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         SKUDescription = xmlData.SKUDescription,
         Title = "ToDo",
       };
-      _new.UpdateTitle(this.CWC_EntryDate.Value);
+      _new.UpdateTitle();
       entities.CustomsWarehouseDisposal.InsertOnSubmit(_new);
     }
     private decimal PackageWeight()
