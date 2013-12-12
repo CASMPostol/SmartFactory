@@ -54,7 +54,6 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
             Clearence _newClearance = Clearence.CreataClearence(_entities, "Customs Warehouse Withdraw", _Dr.ClearenceProcedure.Value);
             _cwdx.CWL_CWDisposal2ClearanceID = _newClearance;
             _cwdx.CustomsStatus = CustomsStatus.Started;
-            _cwdx.ClearingType = _cwdx.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value == 0 ? ClearingType.TotalWindingUp : ClearingType.PartialWindingUp;
             _MasterDocumentName = _newClearance.SADTemplateDocumentNameFileName(_entities);
             SAD _sad = CraeteSAD(_entities, _cwdx, _MasterDocumentName);
             SPFile _newFile = File.CreateXmlFile<SAD>(workflowProperties.Web, _sad, _MasterDocumentName, SADConsignment.IPRSADConsignmentLibraryTitle, SAD.StylesheetNmane);
