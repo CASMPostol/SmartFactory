@@ -49,6 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
+    <None Include="DocumentsFactory\AccountClearance\GoCS.ps1" />
+    <None Include="DocumentsFactory\AccountClearance\GoXSD.ps1" />
+    <None Include="DocumentsFactory\AccountClearance\RequestContent.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="DocumentsFactory\BinCard\BinCard.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -104,6 +109,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocumentsFactory\AccountClearance\RequestContent.cs">
+      <DependentUpon>RequestContent.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DocumentsFactory\BinCard\BinCard..xsd.cs">
       <SubType>code</SubType>
     </Compile>
