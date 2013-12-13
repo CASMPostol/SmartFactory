@@ -169,7 +169,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         SKUDescription = xmlData.SKUDescription,
         Title = "ToDo",
       };
-      _new.UpdateTitle();
       entities.CustomsWarehouseDisposal.InsertOnSubmit(_new);
     }
     private decimal PackageWeight()
