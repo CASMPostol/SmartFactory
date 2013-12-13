@@ -9,7 +9,10 @@
         </FieldRefs>
       </ContentType>
     </ContentTypes>
-    <Fields>         
+    <Fields>
+      <Field Name="CWL_Statement2DisposalRequestID" ID="{AFF53819-6B5F-45F5-B22D-8BCE8AE94AD7}" Type="Lookup" List="Lists/DisposalRequestLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="$Resources:CASSmartFactoryCW,CAS_DisposalRequestID" Group="CAS Smart Factory Customs Warehouse" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" ShowInEditForm="FALSE" ShowInNewForm="FALSE" />
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_Archival;" Name="Archival" Type="Boolean" ID="{3a6ec6fc-81dd-4e39-9a78-b95d198c6938}" Group="CAS Smart Factory IPR" SourceID="{00c76afc-de8a-4332-9a35-ddccf2c28336}" StaticName="Archival" ShowInEditForm="FALSE" ShowInNewForm="FALSE" />
+      <Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" Group="_Hidden" Type="Text" DisplayName="$Resources:core,Title;" Required="TRUE" FromBaseType="TRUE" ShowInEditForm="TRUE" ShowInNewForm="TRUE" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE" FreeForm="TRUE">
@@ -39,11 +42,12 @@
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
           <FieldRef Name="DocIcon"></FieldRef>
+          <FieldRef Name="Title" />
           <FieldRef Name="LinkFilename"></FieldRef>
           <FieldRef Name="Modified"></FieldRef>
           <FieldRef Name="Editor"></FieldRef>
           <FieldRef Name="CWL_Statement2DisposalRequestID" />
-          <FieldRef Name="Archival" />
+          <FieldRef Name="Archival" />          
         </ViewFields>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />
@@ -105,7 +109,6 @@
         <ViewFields>
           <FieldRef Name="DocIcon"></FieldRef>
           <FieldRef Name="LinkFilename"></FieldRef>
-          <FieldRef Name="Combine"></FieldRef>
           <FieldRef Name="Modified"></FieldRef>
           <FieldRef Name="Editor"></FieldRef>
         </ViewFields>
@@ -126,11 +129,9 @@
         <ViewFields>
           <FieldRef Name="DocIcon"></FieldRef>
           <FieldRef Name="LinkFilenameNoMenu"></FieldRef>
-          <FieldRef Name="RepairDocument"></FieldRef>
           <FieldRef Name="Modified"></FieldRef>
           <FieldRef Name="Editor"></FieldRef>
           <FieldRef Name="ContentType"></FieldRef>
-          <FieldRef Name="TemplateUrl"></FieldRef>
         </ViewFields>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />
