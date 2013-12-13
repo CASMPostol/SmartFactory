@@ -68,10 +68,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       //Certificate
       this.CW_CertificateOfOrgin = data.CW_CertificateOfOrgin;
       this.CW_CertificateOfAuthenticity = data.CW_CertificateOfAuthenticity;
-      if (data.CW_COADate.HasValue)
-        this.CW_COADate = data.CW_COADate;
-      if (data.CW_CODate.HasValue)
-        this.CW_CODate = data.CW_CODate;
+      this.CW_COADate = data.CW_COADate.HasValue ? data.CW_COADate : Extensions.DateTimeNull;
+      this.CW_CODate = data.CW_CODate.HasValue ? data.CW_CODate : Extensions.DateTimeNull;
       this.CWL_CW2VendorTitle = data.VendorLookup;
     }
     /// <summary>
