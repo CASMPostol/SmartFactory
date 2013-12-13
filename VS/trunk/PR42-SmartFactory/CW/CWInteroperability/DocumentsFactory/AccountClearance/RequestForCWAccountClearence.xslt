@@ -145,146 +145,392 @@
         </td>
       </tr>
       <tr>
-        <td>
+        <td valign="middle" align="center">
           Lp.
         </td>
-        <td colspan="4">
+        <td valign="middle" align="center" colspan="4">
           Nazwa towaru
         </td>
-        <td>
+        <td valign="middle" align="center">
           Kod taryfy CN
         </td>
-        <td>
+        <td valign="middle" align="center">
           Pozycja SAD
         </td>
-        <td>
+        <td valign="middle" align="center">
           Ilość towaru
         </td>
-        <td>
+        <td valign="middle" align="center">
           Waga netto [kg]
         </td>
-        <td>
+        <td valign="middle" align="center">
           Waga brutto [kg]
         </td>
-        <td>
+        <td valign="middle" align="center">
           Ilość opakowań [szt]
         </td>
-        <td>
+        <td valign="middle" align="center">
           Wartość celna
         </td>
-        <td>
+        <td valign="middle" align="center">
           Waluta
         </td>
-        <td>
+        <td valign="middle" align="center">
           Cena
         </td>
-        <td>
+        <td valign="middle" align="center">
           PZ nr
         </td>
-        <td>
+        <td valign="middle" align="center">
           Faktura nr
         </td>
       </tr>
       <tr>
-        <td>
+        <td valign="middle" align="center">
           1
         </td>
-        <td>
+        <td valign="middle" align="center">
           Nazwa tytoniu
         </td>
-        <td>
+        <td valign="middle" align="center">
           Typ
         </td>
-        <td>
+        <td valign="middle" align="center">
           SKU
         </td>
-        <td>
+        <td valign="middle" align="center">
           Batch
         </td>
-        <td>
+        <td valign="middle" align="center">
           3
         </td>
-        <td>
+        <td valign="middle" align="center">
           4
         </td>
-        <td>
+        <td valign="middle" align="center">
           x
         </td>
-        <td>
+        <td valign="middle" align="center">
           5
         </td>
-        <td>
+        <td valign="middle" align="center">
           6
         </td>
         <td>
           &#160;
         </td>
-        <td>
+        <td valign="middle" align="center">
           7
         </td>
-        <td>
+        <td valign="middle" align="center">
           x
         </td>
-        <td>
+        <td valign="middle" align="center">
           8
         </td>
-        <td>
+        <td valign="middle" align="center">
           x
         </td>
-        <td>
+        <td valign="middle" align="center">
           10
         </td>
       </tr>
       <tr>
-        <td>
+        <td valign="middle" align="center">
           1
         </td>
-        <td>
+        <td valign="middle" align="center">
           <xsl:value-of select="cas:TobaccoName"/>
         </td>
-        <td>
+        <td valign="middle" align="center">
           <xsl:value-of select="cas:Grade"/>
         </td>
-        <td>
+        <td valign="middle" align="center">
           <xsl:value-of select="cas:SKU"/>
         </td>
-        <td>
+        <td valign="middle" align="center">
           <xsl:value-of select="cas:Batch"/>
         </td>
-        <td>
+        <td valign="middle" align="center">
           <xsl:value-of select="cas:CNTarrifCode"/>
         </td>
-        <td>
+        <td valign="middle" align="center">
           1
         </td>
-        <td>
+        <td valign="middle" align="center">
           <xsl:value-of select="format-number(cas:Quantity, $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td>
+        <td valign="middle" align="center">
           <xsl:value-of select="format-number(cas:NetMass, $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td>
+        <td valign="middle" align="center">
           <xsl:value-of select="format-number(cas:GrossMass, $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td>
+        <td valign="middle" align="center">
           <xsl:value-of select="format-number(cas:PackageUnits, $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td>
+        <td valign="middle" align="center">
           <xsl:value-of select="format-number(cas:Value, $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td>
+        <td valign="middle" align="center">
           <xsl:value-of select="cas:Currency"/>
         </td>
-        <td>
+        <td valign="middle" align="center">
           <xsl:value-of select="format-number(cas:UnitPrice, $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td>
+        <td valign="middle" align="center">
           <xsl:value-of select="cas:PzNo"/>
         </td>
-        <td>
+        <td valign="middle" align="center">
           <xsl:value-of select="cas:InvoiceNo"/>
         </td>
       </tr>
     </table>
+    <br/>
+    <h1>
+      KSIEGA SKŁADU CELNEGO - WYPROWADZENIE
+    </h1>
+    <table cellspacing="0" cellpadding="0" border="1" width="100%">
+      <tr>
+        <td colspan="3">
+          Numer Zezwolenia na korzystanie ze składu celnego <xsl:value-of select="cas:ConsentNo"/>, dokument z dnia <xsl:value-of select="cas:ConsentDate"/>.
+        </td>
+        <td colspan="5" rowspan="3" align="center">
+          <b>Towar odprawiony</b>
+        </td>
+        <td colspan="3" rowspan="3" align="center">
+          <b>Towar wydany</b>
+        </td>
+        <td colspan="2" rowspan="3" align="center">
+          <b>
+            Towar pozostały na składzie
+          </b>
+        </td>
+        <td rowspan="3">
+          &#160;
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          Nazwa tytoniu <xsl:value-of select="cas:TobaccoName"/>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          Typ <xsl:value-of select="cas:Grade"/>, SKU <xsl:value-of select="cas:SKU"/>, Batch <xsl:value-of select="cas:Batch"/>
+        </td>
+      </tr>
+      <tr>
+        <td valign="middle" align="center">
+          Lp.
+        </td>
+        <td valign="middle" align="center">
+          Nr zgłoszenia celnego o objęcie towaru inną procedurą celną
+        </td>
+        <td valign="middle" align="center">
+          Data
+        </td>
+        <td valign="middle" align="center">
+          Ilość towaru
+        </td>
+        <td valign="middle" align="center">
+          Waga netto [kg]
+        </td>
+        <td valign="middle" align="center">
+          Waga brutto [kg]
+        </td>
+        <td valign="middle" align="center">
+          Wartość
+        </td>
+        <td valign="middle" align="center">
+          Waluta
+        </td>
+        <td valign="middle" align="center">
+          Waga netto [kg]
+        </td>
+        <td valign="middle" align="center">
+          Ilość opakowań [szt]
+        </td>
+        <td valign="middle" align="center">
+          WZ nr
+        </td>
+        <td valign="middle" align="center">
+          Waga netto [kg]
+        </td>
+        <td valign="middle" align="center">
+          Ilość opakowań [szt]
+        </td>
+        <td valign="middle" align="center">
+          Kod CN
+        </td>
+      </tr>
+      <tr>
+        <td valign="middle" align="center">
+          12
+        </td>
+        <td valign="middle" align="center">
+          14
+        </td>
+        <td valign="middle" align="center">
+          15
+        </td>
+        <td valign="middle" align="center">
+          x
+        </td>
+        <td valign="middle" align="center">
+          17
+        </td>
+        <td valign="middle" align="center">
+          x
+        </td>
+        <td valign="middle" align="center">
+          18
+        </td>
+        <td>
+          &#160;
+        </td>
+        <td valign="middle" align="center">
+          20
+        </td>
+        <td valign="middle" align="center">
+          21
+        </td>
+        <td valign="middle" align="center">
+          22
+        </td>
+        <td valign="middle" align="center">
+          23
+        </td>
+        <td valign="middle" align="center">
+          24
+        </td>
+        <td valign="middle" align="center">
+          26
+        </td>
+      </tr>
+      <xsl:apply-templates select="cas:DisposalsColection"/>
+      <tr>
+        <td colspan="3">
+          <b valign="middle" align="center">
+            RAZEM
+          </b>
+        </td>
+        <td valign="middle" align="center">
+          <b>
+            <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:SettledNetMass), $FoarmatOfFloat, 'pl')"/>
+          </b>
+        </td>
+        <td>
+          &#160;
+        </td>
+        <td valign="middle" align="center">
+          <b>
+            <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:SettledGrossMass), $FoarmatOfFloat, 'pl')"/>
+          </b>
+        </td>
+        <td>
+          <b>
+            <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:TobaccoValue), $FoarmatOfFloat, 'pl')"/>
+          </b>
+        </td>
+        <td>
+          &#160;
+        </td>
+        <td valign="middle" align="center">
+          <b>
+            <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:SettledNetMass), $FoarmatOfFloat, 'pl')"/>
+          </b>
+        </td>
+        <td valign="middle" align="center">
+          <b>
+            <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:PackageToClear), $FoarmatOfFloat, 'pl')"/>
+          </b>
+        </td>
+        <td>
+          &#160;
+        </td>
+        <td valign="middle" align="center">
+          <b>
+            <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:RemainingQuantity), $FoarmatOfFloat, 'pl')"/>
+          </b>
+        </td>
+        <td valign="middle" align="center">
+          <b>
+            <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:RemainingPackage), $FoarmatOfFloat, 'pl')"/>
+          </b>
+        </td>
+        <td>
+          &#160;
+        </td>
+      </tr>
+    </table>
+    <table border="0" width="100%">
+      <tr>
+        <td align="right" valign="bottom">
+          <br/>
+          <br/>
+          <br/>
+          <p>
+            .............................................
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td align="right">
+          <p>
+            Imię i Nazwisko
+          </p>
+        </td>
+      </tr>
+    </table>
+  </xsl:template>
+  <xsl:template match="cas:DisposalsColection">
+    <xsl:apply-templates select="cas:DisposalsArray"/>
+  </xsl:template>
+  <xsl:template match="cas:DisposalsArray">
+    <tr>
+      <td valign="middle" align="center">
+        <xsl:value-of select="cas:No"/>
+      </td>
+      <td valign="middle" align="center">
+        <xsl:value-of select="cas:SADDocumentNo"/>
+      </td>
+      <td valign="middle" align="center">
+        <xsl:value-of select="ms:format-date(cas:SADDate, $FoarmatOfdate)"/>
+      </td>
+      <td valign="middle" align="center">
+        <xsl:value-of select="format-number(cas:SettledNetMass, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td valign="middle" align="center">
+        <xsl:value-of select="format-number(cas:SettledGrossMass, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td valign="middle" align="center">
+        <xsl:value-of select="format-number(cas:TobaccoValue, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td valign="middle" align="center">
+        <xsl:value-of select="cas:Currency"/>
+      </td>
+      <td valign="middle" align="center">
+        <xsl:value-of select="format-number(cas:SettledNetMass, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td valign="middle" align="center">
+        <xsl:value-of select="format-number(cas:PackageToClear, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td valign="middle" align="center">
+        <xsl:value-of select="cas:WZ"/>
+      </td>
+      <td valign="middle" align="center">
+        <xsl:value-of select="format-number(cas:RemainingQuantity, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td valign="middle" align="center">
+        <xsl:value-of select="format-number(cas:RemainingPackage, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td valign="middle" align="center">
+        <xsl:value-of select="cas:CNTarrifCode"/>
+      </td>
+    </tr>
   </xsl:template>
 </xsl:stylesheet>
