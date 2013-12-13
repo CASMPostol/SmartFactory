@@ -12,8 +12,7 @@
         </FieldRefs>
       </ContentType>
     </ContentTypes>
-    <Fields>      
-    </Fields>
+    <Fields></Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
         <Toolbar Type="Standard" />
@@ -38,7 +37,6 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
-          <FieldRef Name="Attachments"></FieldRef>
           <FieldRef Name="LinkTitle"></FieldRef>
           <FieldRef Name="WorkAddress" />
           <FieldRef Name="WorkCity" />

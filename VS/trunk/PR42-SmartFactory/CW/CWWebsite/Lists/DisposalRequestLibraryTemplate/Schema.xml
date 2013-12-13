@@ -9,7 +9,22 @@
         </FieldRefs>
       </ContentType>
     </ContentTypes>
-    <Fields>      
+    <Fields>
+      <Field Name="ClearenceProcedure" ID="{7d196321-5d5d-4d55-908c-125a2e694670}" Type="Choice" DisplayName="$Resources:CASSmartFactoryIPR,CAS_Procedure;" Group="CAS Smart Factory IPR Customs" SourceID="{00c76afc-de8a-4332-9a35-ddccf2c28336}" StaticName="ClearenceProcedure" ShowInEditForm="FALSE" ShowInNewForm="FALSE">
+        <Default>4051</Default>
+        <CHOICES>
+          <CHOICE>3151</CHOICE>
+          <CHOICE>3171</CHOICE>
+          <CHOICE>4051</CHOICE>
+          <CHOICE>4071</CHOICE>
+          <CHOICE>5100</CHOICE>
+          <CHOICE>5171</CHOICE>
+          <CHOICE>7100</CHOICE>
+          <CHOICE>7171</CHOICE>
+        </CHOICES>
+      </Field>
+      <Field DisplayName="$Resources:CASSmartFactoryIPR,CAS_Archival;" Name="Archival" Type="Boolean" ID="{3a6ec6fc-81dd-4e39-9a78-b95d198c6938}" Group="CAS Smart Factory IPR" SourceID="{00c76afc-de8a-4332-9a35-ddccf2c28336}" StaticName="Archival" ShowInEditForm="FALSE" ShowInNewForm="FALSE" />
+      <Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" Group="_Hidden" Type="Text" DisplayName="$Resources:core,Title;" Required="TRUE" FromBaseType="TRUE" ShowInEditForm="TRUE" ShowInNewForm="TRUE" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE" FreeForm="TRUE">
@@ -263,7 +278,7 @@
           <FieldRef Name="Title" />
           <FieldRef Name="ClearenceProcedure" />
           <FieldRef Name="Modified"></FieldRef>
-          <FieldRef Name="Editor"></FieldRef>   
+          <FieldRef Name="Editor"></FieldRef>
         </ViewFields>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />
