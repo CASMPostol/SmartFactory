@@ -90,6 +90,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DocumentsFactory\AccountClearance\RequestContent.xml" />
+    <Content Include="DocumentsFactory\AccountClearance\RequestForCWAccountClearence.xslt" />
     <Content Include="DocumentsFactory\BinCard\BinCardStylesheet.xslt">
       <SubType>Designer</SubType>
     </Content>
