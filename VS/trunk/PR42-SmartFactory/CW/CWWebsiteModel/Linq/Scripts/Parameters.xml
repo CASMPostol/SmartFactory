@@ -12,6 +12,7 @@
   <List Name="Customs Warehouse" />
   <List Name="Customs Warehouse Disposal" />
   <List Name="Customs Warehouse Library" />
+  <List Name="Customs Warehouse Report Library" />
   <!--<List Name="Cutfiller Coefficient" />-->
   <!--<List Name="CW" />-->
   <!--<List Name="CW Disposal" />-->
@@ -681,6 +682,14 @@
     <Column Name="CTFUsageMax" Member="CTFUsageMax" />
     <Column Name="UsageVersion" Member="UsageVersion" />
   </ContentType>-->
+  <ContentType Name="CustomsWarehouseReportLib" Class="CustomsWarehouseReportLib">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="Archival" Member="Archival" />
+  </ContentType>
   <!--<ContentType Name="StockLib" Class="StockLib">
     <Column Name="ContentType" Member="ContentType" />
     <Column Name="FileLeafRef" Member="FileLeafRef" />

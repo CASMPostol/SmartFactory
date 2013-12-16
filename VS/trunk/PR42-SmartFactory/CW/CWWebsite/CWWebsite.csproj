@@ -57,6 +57,9 @@
     <None Include="ContentTypes\CustomsWarehouseLib\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{87d5f4bf-5eec-419a-948c-f3464f6d711d}</SharePointProjectItemId>
     </None>
+    <None Include="ContentTypes\CustomsWarehouseReportLib\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ae17607e-de4f-4c12-9053-f14e6a28b3fc}</SharePointProjectItemId>
+    </None>
     <None Include="ContentTypes\CustomsWarehouse\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bf691159-0109-40ce-93ae-412c87735f78}</SharePointProjectItemId>
     </None>
@@ -105,6 +108,12 @@
     <None Include="Lists\CustomsWarehouseListTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{392cead2-82a1-40ad-993c-a18a65ce97fb}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\CustomsWarehouseReportLibraryTemplate\CustomsWarehouseReportLibraryTemplateInstance\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b9724670-fbcb-427a-8f61-fa731240cc69}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\CustomsWarehouseReportLibraryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b4cd8ece-174d-4b06-8b14-acd186755361}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\DisposalRequestLibraryTemplate\DisposalRequestLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{7851d9d2-3b8a-4f08-8735-f67ef6fdde3d}</SharePointProjectItemId>
     </None>
@@ -143,6 +152,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ContentTypes\CustomsWarehouseLib\Elements.xml" />
+    <Content Include="ContentTypes\CustomsWarehouseReportLib\Elements.xml" />
     <Content Include="ContentTypes\CustomsWarehouse\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -191,6 +201,13 @@
     <Content Include="Lists\CustomsWarehouseListTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\CustomsWarehouseReportLibraryTemplate\CustomsWarehouseReportLibraryTemplateInstance\Elements.xml" />
+    <Content Include="Lists\CustomsWarehouseReportLibraryTemplate\EditDlg.htm" />
+    <Content Include="Lists\CustomsWarehouseReportLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\CustomsWarehouseReportLibraryTemplate\FileDlg.htm" />
+    <Content Include="Lists\CustomsWarehouseReportLibraryTemplate\Repair.aspx" />
+    <Content Include="Lists\CustomsWarehouseReportLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\CustomsWarehouseReportLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\DisposalRequestLibraryTemplate\DisposalRequestLibrary\Elements.xml" />
     <Content Include="Lists\DisposalRequestLibraryTemplate\EditDlg.htm" />
     <Content Include="Lists\DisposalRequestLibraryTemplate\Elements.xml" />

@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-#pragma warning disable 1591
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	using System;
 	
@@ -101,6 +100,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		public Microsoft.SharePoint.Linq.EntityList<CustomsWarehouseLib> CustomsWarehouseLibrary {
 			get {
 				return this.GetList<CustomsWarehouseLib>("Customs Warehouse Library");
+			}
+		}
+		
+		/// <summary>
+		/// Customs Warehouse Report List Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Customs Warehouse Report Library")]
+		public Microsoft.SharePoint.Linq.EntityList<CustomsWarehouseReportLib> CustomsWarehouseReportLibrary {
+			get {
+				return this.GetList<CustomsWarehouseReportLib>("Customs Warehouse Report Library");
 			}
 		}
 		
@@ -445,6 +454,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Document", Id="0x0101")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(BinCardLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouseLib))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsWarehouseReportLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DisposalRequestLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADConsignment))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDocumentLib))]
@@ -3655,6 +3665,39 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
+	/// Customs Warehouse Report Library Content Type
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CustomsWarehouseReportLib", Id="0x010100028B2374B4A3490099ACBD6ADE48628D")]
+	public partial class CustomsWarehouseReportLib : Document {
+		
+		private System.Nullable<bool> _archival;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public CustomsWarehouseReportLib() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Archival", Storage="_archival", FieldType="Boolean")]
+		public System.Nullable<bool> Archival {
+			get {
+				return this._archival;
+			}
+			set {
+				if ((value != this._archival)) {
+					this.OnPropertyChanging("Archival", this._archival);
+					this._archival = value;
+					this.OnPropertyChanged("Archival");
+				}
+			}
+		}
+	}
+	
+	/// <summary>
 	/// Disposal Request Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DisposalRequestLib", Id="0x0101006A3BDDD5D82D4C03B297650EEECA0EF2")]
@@ -4109,4 +4152,3 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		Other = 32,
 	}
 }
-#pragma warning restore 1591

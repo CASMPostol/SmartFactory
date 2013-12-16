@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <ListTemplate
+        Name="CustomsWarehouseReportLibraryTemplate"
+        Type="10007"
+        BaseType="1"
+        OnQuickLaunch="TRUE"
+        SecurityBits="11"
+        Sequence="110"
+        DisplayName="CustomsWarehouseReportLibraryTemplate"
+        Description="My List Definition"
+        Image="/_layouts/images/itdl.png"
+        DocumentTemplate="121"/>
+</Elements>
