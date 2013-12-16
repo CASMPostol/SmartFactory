@@ -73,10 +73,10 @@
         <td>
           <xsl:value-of select="cas:IntroducingSADDocumentNo"/>
         </td>
-        <td>
+        <td nowrap="true">
           <xsl:value-of select="ms:format-date(cas:IntroducingSADDocumentDate, $FoarmatOfdate)"/>
         </td>
-        <td>
+        <td nowrap="true">
           <xsl:value-of select="cas:WithdrawalSADDcoumentNo"/>
         </td>
         <td>
@@ -495,7 +495,7 @@
       <td valign="middle" align="center">
         <xsl:value-of select="cas:SADDocumentNo"/>
       </td>
-      <td valign="middle" align="center">
+      <td valign="middle" align="center" nowrap="true">
         <xsl:value-of select="ms:format-date(cas:SADDate, $FoarmatOfdate)"/>
       </td>
       <td valign="middle" align="center">
