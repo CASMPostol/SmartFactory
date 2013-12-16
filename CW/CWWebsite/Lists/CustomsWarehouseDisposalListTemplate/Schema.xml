@@ -425,6 +425,7 @@
           <FieldRef Name="CWL_CWDisposal2PCNPCN_sec" />
           <FieldRef Name="ClearingType" />
           <FieldRef Name="CustomsProcedure" />
+          <FieldRef Name="CWL_CWDisposal2ClearanceID" />
           <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
