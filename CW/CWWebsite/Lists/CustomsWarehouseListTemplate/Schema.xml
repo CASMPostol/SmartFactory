@@ -188,7 +188,7 @@
         </ViewFields>
         <Query>
           <OrderBy>
-            <FieldRef Name="CustomsDebtDate" Ascending="TRUE"></FieldRef>
+            <FieldRef Name="ID" Ascending="FALSE"></FieldRef>
           </OrderBy>
           <Where>
             <Neq>
