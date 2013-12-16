@@ -135,4 +135,7 @@
 	<data name="CAS_ASPX_SupplementWZNoDashboard" xml:space="preserve">
     <value>Pulpit - Uzupełnienie numerów WZ</value>
   </data>
+	<data name="CAS_ASPX_CWBookClosedDashboard" xml:space="preserve">
+		<value>Pulpit - Księga Składu Celnego - konta zamknięte</value>
+	</data>
 </root>

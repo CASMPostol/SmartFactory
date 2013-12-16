@@ -3,10 +3,11 @@
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="WebPartPagesCW\" Type="ElementManifest" />
     <ProjectItemFile Source="WebPageTemplate_CheckListExitSheet.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
-    <ProjectItemFile Source="WebPageTemplate_CWBook.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_SupplementWZNo.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_SupplementCWBook.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_DisposalsView.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_DisposalRequest.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_CWBookClosed.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_CWBook.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
   </Files>
 </ProjectItem>

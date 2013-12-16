@@ -135,4 +135,7 @@
 	<data name="CAS_ASPX_SupplementWZNoDashboard" xml:space="preserve">
     <value>Supplement WZ No dashboard</value>
   </data>
+	<data name="CAS_ASPX_CWBookClosedDashboard" xml:space="preserve">
+		<value>Customs Warehouse Book Closed Accounts dashboard</value>
+	</data>
 </root>

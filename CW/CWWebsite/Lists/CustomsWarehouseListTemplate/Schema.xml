@@ -121,7 +121,6 @@
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
           <FieldRef Name="LinkTitle"></FieldRef>
-          <FieldRef Name="_UIVersionString" />
           <FieldRef Name="CWC_EntryDate" />
           <FieldRef Name="CWL_CW2ConsentTitle" />
           <FieldRef Name="CWL_CW2ConsentDate_sec" />
@@ -136,15 +135,16 @@
           <FieldRef Name="Units" />
           <FieldRef Name="NetMass" />
           <FieldRef Name="GrossMass" />
-          <FieldRef Name="CW_PackageUnits" />
           <FieldRef Name="CW_PackageKg" />
+          <FieldRef Name="CW_PackageUnits" />
           <FieldRef Name="CW_MassPerPackage" />
+          <FieldRef Name="CW_UnitPrice" />
           <FieldRef Name="Value" />
           <FieldRef Name="Currency" />
-          <FieldRef Name="CW_UnitPrice" />
-          <FieldRef Name="CW_PzNo" />
           <FieldRef Name="InvoiceNo" />
+          <FieldRef Name="CW_PzNo" />
           <FieldRef Name="AccountBalance" />
+          <FieldRef Name="Archival" />
           <FieldRef Name="TobaccoNotAllocated" />
           <FieldRef Name="CW_CertificateOfOrgin" />
           <FieldRef Name="CW_CODate" />
@@ -153,12 +153,12 @@
           <FieldRef Name="ValidToDate" />
           <FieldRef Name="ClosingDate" />
           <FieldRef Name="AccountClosed" />
-          <FieldRef Name="Archival" />
           <FieldRef Name="CWL_CW2PCNID" />
           <FieldRef Name="CWL_CW2CWLibraryID" />
           <FieldRef Name="CWL_CW2VendorTitle" />
           <FieldRef Name="CWL_CW2ClearenceID" />
           <FieldRef Name="CWL_CW2BinCardTitle" />
+          <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -185,13 +185,17 @@
           <FieldRef Name="AccountBalance" />
           <FieldRef Name="ValidToDate" />
           <FieldRef Name="ClosingDate" />
-          <FieldRef Name="AccountClosed" />
         </ViewFields>
         <Query>
           <OrderBy>
             <FieldRef Name="CustomsDebtDate" Ascending="TRUE"></FieldRef>
-            <FieldRef Name="AccountClosed" Ascending="TRUE"></FieldRef>
           </OrderBy>
+          <Where>
+            <Neq>
+              <FieldRef Name="AccountClosed" />
+              <Value Type="Boolean">Yes</Value>
+            </Neq>
+          </Where>
         </Query>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
@@ -391,6 +395,76 @@
         </Query>
         <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
+      </View>
+      <View BaseViewID="7" Type="HTML" WebPartZoneID="Main" DisplayName="Customs Warehouse - Closed" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="CusotmsWarehouseClosed.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">15</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Title"></FieldRef>
+          <FieldRef Name="CustomsDebtDate" />
+          <FieldRef Name="DocumentNo" />
+          <FieldRef Name="Grade" />
+          <FieldRef Name="SKU" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="NetMass" />
+          <FieldRef Name="AccountBalance" />
+          <FieldRef Name="ValidToDate" />
+          <FieldRef Name="ClosingDate" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="CustomsDebtDate" Ascending="TRUE"></FieldRef>
+          </OrderBy>
+          <Where>
+            <Eq>
+              <FieldRef Name="AccountClosed" />
+              <Value Type="Boolean">Yes</Value>
+            </Eq>
+          </Where>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="8" Type="HTML" WebPartZoneID="Main" DisplayName="Customs Warehouse Closed - Details" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="CustomsWarehouseClosedDetails.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">1</RowLimit>
+        <ViewFields>
+          <FieldRef Name="CWL_CW2ConsentTitle" />
+          <FieldRef Name="CWL_CW2ConsentDate_sec" />
+          <FieldRef Name="DocumentNo" />
+          <FieldRef Name="CustomsDebtDate" />
+          <FieldRef Name="TobaccoName" />
+          <FieldRef Name="Grade" />
+          <FieldRef Name="SKU" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="CWL_CW2PCNPCN_sec" />
+          <FieldRef Name="CW_Quantity" />
+          <FieldRef Name="NetMass" />
+          <FieldRef Name="GrossMass" />
+          <FieldRef Name="CW_PackageUnits" />
+          <FieldRef Name="CW_UnitPrice" />
+          <FieldRef Name="Value" />
+          <FieldRef Name="Currency" />
+          <FieldRef Name="InvoiceNo" />
+          <FieldRef Name="CW_PzNo" />
+          <FieldRef Name="TobaccoNotAllocated" />
+          <FieldRef Name="CW_CertificateOfOrgin" />
+          <FieldRef Name="CW_CertificateOfAuthenticity" />
+          <FieldRef Name="_UIVersionString" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
       </View>
     </Views>
     <Forms>
