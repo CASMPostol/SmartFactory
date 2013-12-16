@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x010100028B2374B4A3490099ACBD6ADE48628D"
+               Name="CustomsWarehouseReportLib"
+               Group="CAS Smart Factory Customs Warehouse"
+               Description="Customs Warehouse Report Library Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
+    <FieldRefs>
+      <FieldRef ID="{3A6EC6FC-81DD-4E39-9A78-B95D198C6938}" Name="Archival" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />
+    </FieldRefs>
+  </ContentType>
+</Elements>

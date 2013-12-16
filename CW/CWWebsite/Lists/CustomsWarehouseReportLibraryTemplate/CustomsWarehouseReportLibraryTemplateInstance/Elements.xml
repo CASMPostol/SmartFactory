@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="Customs Warehouse Report Library" OnQuickLaunch="TRUE" TemplateType="10007" Url="Lists/CustomsWarehouseReportLibrary" Description="Customs Warehouse Report List Instance"></ListInstance>
+</Elements>
