@@ -182,7 +182,7 @@
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
           <FieldRef Name="No" />
-          <FieldRef Name="CWL_CWDisposal2CWDocumentNo_sec" />
+          <FieldRef Name="SADDocumentNo" />
           <FieldRef Name="SADDate" />
           <FieldRef Name="CWL_CWDisposal2CWTobaccoName_sec" />
           <FieldRef Name="CustomsStatus" />
@@ -444,7 +444,7 @@
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
           <FieldRef Name="No" />
-          <FieldRef Name="CWL_CWDisposal2CWDocumentNo_sec" />
+          <FieldRef Name="SADDocumentNo" />
           <FieldRef Name="SADDate" />
           <FieldRef Name="CWL_CWDisposal2CWTobaccoName_sec" />
           <FieldRef Name="CustomsStatus" />
