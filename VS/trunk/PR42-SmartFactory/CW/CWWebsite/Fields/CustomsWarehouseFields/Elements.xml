@@ -139,5 +139,6 @@
     Name="CW_WZNoSupplemented"
     DisplayName="$Resources:CASSmartFactoryCW,CAS_WZNoSupplemented"
     Group="CAS Smart Factory Customs Warehouse"
-    Type="Boolean" />
+    Type="Boolean"
+    Indexed="TRUE"/>
   </Elements>
