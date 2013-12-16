@@ -164,10 +164,12 @@
       <View BaseViewID="10" Type="HTML" WebPartZoneID="Main" DisplayName="Disposal Request View" DefaultView="FALSE" MobileView="True" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/DisposalRequest.aspx">
         <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">15</RowLimit>
+        <RowLimit Paged="TRUE">5</RowLimit>
         <ViewFields>
           <FieldRef Name="DocIcon"></FieldRef>
           <FieldRef Name="LinkFilename"></FieldRef>
+          <FieldRef Name="Title" />
+          <FieldRef Name="ClearenceProcedure" />
           <FieldRef Name="Modified"></FieldRef>
           <FieldRef Name="Editor"></FieldRef>
         </ViewFields>
