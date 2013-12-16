@@ -340,6 +340,7 @@
     <Column Name="CW_Wz1" Member="CW_Wz1" />
     <Column Name="CW_Wz2" Member="CW_Wz2" />
     <Column Name="CW_Wz3" Member="CW_Wz3" />
+    <!--<Column Name="CW_WZNoSupplemented" Member="CW_WZNoSupplemented" />-->
     <Column Name="CW_SettledNetMass" Member="CW_SettledNetMass" />
     <Column Name="CW_SettledGrossMass" Member="CW_SettledGrossMass" />
     <Column Name="TobaccoValue" Member="TobaccoValue" />

@@ -18,6 +18,7 @@
           <FieldRef ID="{FA67A59F-AFCD-4BD1-ADD4-8DA367AB5633}" Name="CW_Wz1" />
           <FieldRef ID="{31F88F12-A058-4966-BE6E-231B15FA97F3}" Name="CW_Wz2" />
           <FieldRef ID="{81011546-BADA-4C37-B5C3-6531335B7E32}" Name="CW_Wz3" />
+          <FieldRef ID="{371CAEC1-6DFC-46AD-8D4C-94FBA3DF4CB8}" Name="CW_WZNoSupplemented" />
           <FieldRef ID="{2E618017-3154-41E8-8C1A-91014C8B1322}" Name="CW_SettledNetMass" />
           <FieldRef ID="{5D90137F-9150-404D-A3EE-91E7BE4D5CA4}" Name="CW_SettledGrossMass" />
           <FieldRef ID="{3F511117-AE6F-40FF-801C-C8765D68E86D}" Name="TobaccoValue" />
@@ -61,6 +62,7 @@
       <Field ID="{FA67A59F-AFCD-4BD1-ADD4-8DA367AB5633}" Name="CW_Wz1" DisplayName="$Resources:CASSmartFactoryCW,CAS_Wz1" Group="CAS Smart Factory Customs Warehouse" Type="Text" />
       <Field ID="{31F88F12-A058-4966-BE6E-231B15FA97F3}" Name="CW_Wz2" DisplayName="$Resources:CASSmartFactoryCW,CAS_Wz2" Group="CAS Smart Factory Customs Warehouse" Type="Text" />
       <Field ID="{81011546-BADA-4C37-B5C3-6531335B7E32}" Name="CW_Wz3" DisplayName="$Resources:CASSmartFactoryCW,CAS_Wz3" Group="CAS Smart Factory Customs Warehouse" Type="Text" />
+      <Field ID="{371CAEC1-6DFC-46AD-8D4C-94FBA3DF4CB8}" Name="CW_WZNoSupplemented" DisplayName="$Resources:CASSmartFactoryCW,CAS_WZNoSupplemented" Group="CAS Smart Factory Customs Warehouse" Type="Boolean" />
       <Field ID="{2E618017-3154-41E8-8C1A-91014C8B1322}" Name="CW_SettledNetMass" DisplayName="$Resources:CASSmartFactoryCW,CAS_SettledNetMass" Group="CAS Smart Factory Customs Warehouse" Type="Number" Decimals="2" />
       <Field ID="{5D90137F-9150-404D-A3EE-91E7BE4D5CA4}" Name="CW_SettledGrossMass" DisplayName="$Resources:CASSmartFactoryCW,CAS_SettledGrossMass" Group="CAS Smart Factory Customs Warehouse" Type="Number" Decimals="2" />
       <Field DisplayName="Tobacco value" Name="TobaccoValue" Type="Number" Decimals="3" ID="{3f511117-ae6f-40ff-801c-c8765d68e86d}" Group="CAS Smart Factory IPR" SourceID="{ee357b93-99ac-4779-b560-748e46f9e313}" StaticName="TobaccoValue" />
@@ -156,6 +158,7 @@
           <FieldRef Name="CW_Wz1" />
           <FieldRef Name="CW_Wz2" />
           <FieldRef Name="CW_Wz3" />
+          <FieldRef Name="CW_WZNoSupplemented" />
           <FieldRef Name="AccountClosed" />
           <FieldRef Name="Archival" />
           <FieldRef Name="CWL_CWDisposal2DisposalRequestLibraryID" />
@@ -374,10 +377,13 @@
           <FieldRef Name="CWL_CWDisposal2CWGrade_sec" />
           <FieldRef Name="CWL_CWDisposal2CWSKU_sec" />
           <FieldRef Name="CWL_CWDisposal2CWBatch_sec" />
+          <FieldRef Name="CW_DeclaredNetMass" />
+          <FieldRef Name="CW_AddedKg" />
           <FieldRef Name="CW_SettledNetMass" />
           <FieldRef Name="CW_Wz1" />
           <FieldRef Name="CW_Wz2" />
           <FieldRef Name="CW_Wz3" />
+          <FieldRef Name="CW_WZNoSupplemented" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -387,15 +393,10 @@
             <FieldRef Name="CWL_CWDisposal2DisposalRequestLibraryTitle_sec" />
           </GroupBy>
           <Where>
-            <And>
-              <IsNull>
-                <FieldRef Name="CW_Wz1" />
-              </IsNull>
-              <Neq>
-                <FieldRef Name="Archival" />
-                <Value Type="Boolean">Yes</Value>
-              </Neq>
-            </And>
+            <Neq>
+              <FieldRef Name="CW_WZNoSupplemented" />
+              <Value Type="Boolean">Yes</Value>
+            </Neq>
           </Where>
         </Query>
         <Toolbar Type="Standard" />

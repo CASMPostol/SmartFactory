@@ -21,6 +21,7 @@
       <FieldRef ID="{FA67A59F-AFCD-4BD1-ADD4-8DA367AB5633}" Name="CW_Wz1" />
       <FieldRef ID="{31F88F12-A058-4966-BE6E-231B15FA97F3}" Name="CW_Wz2" />
       <FieldRef ID="{81011546-BADA-4C37-B5C3-6531335B7E32}" Name="CW_Wz3" />
+      <FieldRef ID="{371CAEC1-6DFC-46AD-8D4C-94FBA3DF4CB8}" Name="CW_WZNoSupplemented" />
       <FieldRef ID="{2E618017-3154-41E8-8C1A-91014C8B1322}" Name="CW_SettledNetMass" />
       <FieldRef ID="{5D90137F-9150-404D-A3EE-91E7BE4D5CA4}" Name="CW_SettledGrossMass" />
       <FieldRef ID="{3F511117-AE6F-40FF-801C-C8765D68E86D}" Name="TobaccoValue" />
