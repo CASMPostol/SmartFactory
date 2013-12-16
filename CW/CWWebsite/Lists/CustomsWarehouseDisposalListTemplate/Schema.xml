@@ -370,8 +370,6 @@
         <ViewFields>
           <FieldRef Name="CWL_CWDisposal2DisposalRequestLibraryTitle_sec" />
           <FieldRef Name="Title" />
-          <FieldRef Name="SADDocumentNo" />
-          <FieldRef Name="SADDate" />
           <FieldRef Name="CustomsStatus" />
           <FieldRef Name="CWL_CWDisposal2CWTobaccoName_sec" />
           <FieldRef Name="CWL_CWDisposal2CWGrade_sec" />
