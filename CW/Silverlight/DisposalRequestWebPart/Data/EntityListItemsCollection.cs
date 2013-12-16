@@ -42,6 +42,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       if ( m_Unchaged )
       {
+        //TODO Wrong Assertion in SubmitingChanges caused by an exception
+        //TODO http://casas:11227/sites/awt/Lists/TaskList/_cts/Tasks/displayifs.aspx?List=72c511b5%2D8b63%2D4dfa%2Dad34%2D133a97eba469&ID=4105
         Debug.Assert( !( from _x in m_Collection where _x.Value.TEntityGetter.EntityState != EntityState.Unchanged select _x ).Any(), "Wrong value of Unchanged in the SubmitingChanges - expected false" );
         return;
       }

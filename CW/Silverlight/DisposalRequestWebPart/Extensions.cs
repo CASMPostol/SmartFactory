@@ -22,6 +22,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     /// <summary>
     /// The minimum date for - to avoid setting today 
     /// </summary>
-    public static DateTime SPMinimum = new DateTime(1900, 1, 1);
+    public static DateTime SPMinimum = new DateTime(1930, 1, 1);
   }
 }
