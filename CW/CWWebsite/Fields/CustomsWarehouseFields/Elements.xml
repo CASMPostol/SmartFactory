@@ -134,4 +134,10 @@
     Group="CAS Smart Factory Customs Warehouse"
     Type="Number"
     Decimals="2"/>
-</Elements>
+  <Field
+    ID="{371CAEC1-6DFC-46AD-8D4C-94FBA3DF4CB8}"
+    Name="CW_WZNoSupplemented"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_WZNoSupplemented"
+    Group="CAS Smart Factory Customs Warehouse"
+    Type="Boolean" />
+  </Elements>
