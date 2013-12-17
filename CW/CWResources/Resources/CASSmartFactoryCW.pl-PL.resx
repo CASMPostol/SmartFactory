@@ -118,7 +118,7 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="CAS_AddedKg" xml:space="preserve">
-    <value>Dodano [kg]</value>
+    <value>Dodana masa netto [kg]</value>
   </data>
 	<data name="CAS_Batch" xml:space="preserve">
     <value>Batch</value>
@@ -133,7 +133,7 @@
     <value>Certyfikat pochodzenia</value>
   </data>
 	<data name="CAS_ClearanceID" xml:space="preserve">
-    <value>ID - odprawa</value>
+    <value>ID - Odprawa</value>
   </data>
 	<data name="CAS_CNID" xml:space="preserve">
     <value>ID - CN</value>
@@ -145,7 +145,7 @@
     <value>Data - CA</value>
   </data>
 	<data name="CAS_Consent" xml:space="preserve">
-    <value>Zezwolenie</value>
+    <value>Zezwolenie nr</value>
   </data>
 	<data name="CAS_ConsentDate" xml:space="preserve">
     <value>Data zezwolenia</value>
@@ -157,7 +157,7 @@
     <value>ID - CW</value>
   </data>
 	<data name="CAS_CWLibraryID" xml:space="preserve">
-    <value>ID - biblioteka CW</value>
+    <value>ID - Biblioteka CW</value>
   </data>
 	<data name="CAS_DateCO" xml:space="preserve">
     <value>Data - CP</value>
@@ -169,7 +169,7 @@
     <value>Dyspozycja</value>
   </data>
 	<data name="CAS_DisposalRequestID" xml:space="preserve">
-    <value>ID - eyspozycja</value>
+    <value>ID - Dyspozycja</value>
   </data>
 	<data name="CAS_EntryDate" xml:space="preserve">
     <value>Data wprowadzenia</value>
@@ -178,37 +178,37 @@
     <value>Typ tytoniu</value>
   </data>
 	<data name="CAS_IntroducingSADNo" xml:space="preserve">
-    <value>Wprowadzenia - SAD nr</value>
+    <value>SAD wprowadzenia nr</value>
   </data>
 	<data name="CAS_MassPerPackage" xml:space="preserve">
-    <value>Masa w opakowaniu</value>
+    <value>Masa w opakowaniu [kg]</value>
   </data>
 	<data name="CAS_PackageKg" xml:space="preserve">
-    <value>Opakowanie [kg]</value>
+    <value>Opakowania [kg]</value>
   </data>
 	<data name="CAS_PackageToClear" xml:space="preserve">
-    <value>Opakowania do likwidacji</value>
+    <value>Opakowania rozliczane [szt.]</value>
   </data>
 	<data name="CAS_PackageUnits" xml:space="preserve">
-    <value>Opakowania [sztuki]</value>
+    <value>Opakowania [szt.]</value>
   </data>
 	<data name="CAS_PZNo" xml:space="preserve">
-    <value>Numer PZ.</value>
+    <value>PZ nr</value>
   </data>
 	<data name="CAS_Quantity" xml:space="preserve">
-    <value>Ilość</value>
+    <value>Ilość [kg]</value>
   </data>
 	<data name="CAS_RemainingPackage" xml:space="preserve">
-    <value>Opakowania do rozliczenia</value>
+    <value>Opakowania do rozliczenia [szt.]</value>
   </data>
 	<data name="CAS_RemainingTobaccoValue" xml:space="preserve">
-    <value>Wartość tytoniu do rozliczenia [PLN]</value>
+    <value>Wartość tytoniu do rozliczenia</value>
   </data>
 	<data name="CAS_SettledGrossMass" xml:space="preserve">
-    <value>Do wyprowadzenia - brutto [kg]</value>
+    <value>Masa brutto rozliczana [kg]</value>
   </data>
 	<data name="CAS_SettledNetMass" xml:space="preserve">
-    <value>Do wyprowadznia - netto [kg]</value>
+    <value>Masa netto rozliczana [kg]</value>
   </data>
 	<data name="CAS_SKU" xml:space="preserve">
     <value>SKU</value>
@@ -226,15 +226,15 @@
     <value>Dostawca</value>
   </data>
 	<data name="CAS_Wz1" xml:space="preserve">
-    <value>WZ 1</value>
+    <value>1. WZ nr</value>
   </data>
 	<data name="CAS_Wz2" xml:space="preserve">
-    <value>WZ 2</value>
+    <value>2. WZ nr</value>
   </data>
 	<data name="CAS_Wz3" xml:space="preserve">
-    <value>WZ 3</value>
+    <value>3. WZ nr</value>
   </data>
 	<data name="CAS_WZNoSupplemented" xml:space="preserve">
-		<value>Nr WZ dodane</value>
+		<value>WZ - dodano</value>
 	</data>
 </root>

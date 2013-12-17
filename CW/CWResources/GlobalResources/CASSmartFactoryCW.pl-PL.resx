@@ -118,24 +118,24 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="CAS_ASPX_CWBookDashboard" xml:space="preserve">
-    <value>Pulpit - Księga Składu Celnego</value>
+    <value>Księgi Składu Celnego</value>
   </data>
 	<data name="CAS_ASPX_DisposalRequestDashboard" xml:space="preserve">
-    <value>Puplit - Dyspozycje</value>
+    <value>Dyspozycje</value>
   </data>
 	<data name="CAS_ASPX_DisposalsViewDashboard" xml:space="preserve">
-    <value>Pulpit - Podgląd dyspozycji</value>
+    <value>Dyspozycje podgląd</value>
   </data>
 	<data name="CAS_ASPX_PrintCheckListAndExitSheetDashboard" xml:space="preserve">
-    <value>Pulpit - Karta wyprowadzenia i lista kontrolna</value>
+    <value>Karta wyprowadzenia i lista kontrolna</value>
   </data>
 	<data name="CAS_ASPX_SupplementCWBookDashboard" xml:space="preserve">
-    <value>Pulpit - Uzupełnienie Księgi Składu Celnego</value>
+    <value>Uzupełnienie Księgi Składu Celnego</value>
   </data>
 	<data name="CAS_ASPX_SupplementWZNoDashboard" xml:space="preserve">
-    <value>Pulpit - Uzupełnienie numerów WZ</value>
+    <value>Uzupełnienie WZ nr</value>
   </data>
 	<data name="CAS_ASPX_CWBookClosedDashboard" xml:space="preserve">
-		<value>Pulpit - Księga Składu Celnego - konta zamknięte</value>
+		<value>Księgi Składu Celnego - zamknięte</value>
 	</data>
 </root>
