@@ -118,7 +118,7 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="CAS_AddedKg" xml:space="preserve">
-    <value>Added [kg]</value>
+    <value>Added net mass [kg]</value>
   </data>
 	<data name="CAS_Batch" xml:space="preserve">
     <value>Batch</value>
@@ -145,7 +145,7 @@
     <value>Date - COA</value>
   </data>
 	<data name="CAS_Consent" xml:space="preserve">
-    <value>Consent</value>
+    <value>Consent No.</value>
   </data>
 	<data name="CAS_ConsentDate" xml:space="preserve">
     <value>Consent date</value>
@@ -181,28 +181,28 @@
     <value>Introducing SAD No.</value>
   </data>
 	<data name="CAS_MassPerPackage" xml:space="preserve">
-    <value>Mass per package</value>
+    <value>Mass per package [kg]</value>
   </data>
 	<data name="CAS_PackageKg" xml:space="preserve">
     <value>Pakage [kg]</value>
   </data>
 	<data name="CAS_PackageToClear" xml:space="preserve">
-    <value>Package to clear</value>
+    <value>Package to clear [szt.]</value>
   </data>
 	<data name="CAS_PackageUnits" xml:space="preserve">
     <value>Pakage [units]</value>
   </data>
 	<data name="CAS_PZNo" xml:space="preserve">
-    <value>PZ no.</value>
+    <value>PZ No.</value>
   </data>
 	<data name="CAS_Quantity" xml:space="preserve">
-    <value>Quantity</value>
+    <value>Quantity [kg]</value>
   </data>
 	<data name="CAS_RemainingPackage" xml:space="preserve">
-    <value>Remaining package</value>
+    <value>Remaining package [szt.]</value>
   </data>
 	<data name="CAS_RemainingTobaccoValue" xml:space="preserve">
-    <value>Remaining tobacco value [PLN]</value>
+    <value>Remaining tobacco value</value>
   </data>
 	<data name="CAS_SettledGrossMass" xml:space="preserve">
     <value>Settled gross mass [kg]</value>
@@ -214,7 +214,7 @@
     <value>SKU</value>
   </data>
 	<data name="CAS_TobaccoName" xml:space="preserve">
-    <value>Tobacco Name</value>
+    <value>Tobacco name</value>
   </data>
 	<data name="CAS_UnitPrice" xml:space="preserve">
     <value>Unit price</value>
@@ -226,15 +226,15 @@
     <value>Vendor</value>
   </data>
 	<data name="CAS_Wz1" xml:space="preserve">
-    <value>WZ 1</value>
+    <value>1. WZ No.</value>
   </data>
 	<data name="CAS_Wz2" xml:space="preserve">
-    <value>WZ 2</value>
+    <value>2. WZ No.</value>
   </data>
 	<data name="CAS_Wz3" xml:space="preserve">
-    <value>WZ 3</value>
+    <value>3. WZ No.</value>
   </data>
 	<data name="CAS_WZNoSupplemented" xml:space="preserve">
-		<value>WZ Added</value>
+		<value>WZ - added</value>
 	</data>
 </root>

@@ -118,24 +118,24 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="CAS_ASPX_CWBookDashboard" xml:space="preserve">
-    <value>Customs Warehouse Book dashboard</value>
+    <value>Customs Warehouse Book</value>
   </data>
 	<data name="CAS_ASPX_DisposalRequestDashboard" xml:space="preserve">
-    <value>Disposal Requests dashboard</value>
+    <value>Disposal Requests</value>
   </data>
 	<data name="CAS_ASPX_DisposalsViewDashboard" xml:space="preserve">
-    <value>Disposals View dashboard</value>
+    <value>Disposals View</value>
   </data>
 	<data name="CAS_ASPX_PrintCheckListAndExitSheetDashboard" xml:space="preserve">
-    <value>Print Check List and Exit Sheet dashboard</value>
+    <value>Check List &amp; Exit Sheet </value>
   </data>
 	<data name="CAS_ASPX_SupplementCWBookDashboard" xml:space="preserve">
-    <value>Supplement CW Book dashboard</value>
+    <value>Supplement CW Book </value>
   </data>
 	<data name="CAS_ASPX_SupplementWZNoDashboard" xml:space="preserve">
-    <value>Supplement WZ No dashboard</value>
+    <value>Supplement WZ No.</value>
   </data>
 	<data name="CAS_ASPX_CWBookClosedDashboard" xml:space="preserve">
-		<value>Customs Warehouse Book Closed Accounts dashboard</value>
+		<value>Customs Warehouse Book  - closed accounts</value>
 	</data>
 </root>
