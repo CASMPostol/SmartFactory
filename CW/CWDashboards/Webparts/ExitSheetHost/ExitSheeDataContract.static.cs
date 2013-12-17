@@ -51,7 +51,6 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
         throw new ArgumentNullException("CWL_CWDisposal2CustomsWarehouseID", "CustomsWarehouseDisposal is not connected to CustomsWarehouse");
       ExitSheeDataContract _esdc = new ExitSheeDataContract
       {
-        Batch = cwd.CWL_CWDisposal2CustomsWarehouseID.Batch,
         Grade = cwd.CWL_CWDisposal2CustomsWarehouseID.Grade,
         OGLDate = _cw.CustomsDebtDate.GetValueOrDefault(),
         OGLNumber = _cw.DocumentNo,
@@ -60,8 +59,6 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
         RemainingQuantity = cwd.RemainingQuantity.GetValueOrDefault(),
         SAD = cwd.SADDocumentNo,
         SettledNetMass = cwd.CW_SettledNetMass.GetValueOrDefault(),
-        SKU = cwd.CWL_CWDisposal2CustomsWarehouseID.SKU,
-        TobaccoName = cwd.CWL_CWDisposal2CustomsWarehouseID.TobaccoName,
         WarehouseName = _warehouseName
       };
       return _esdc;
