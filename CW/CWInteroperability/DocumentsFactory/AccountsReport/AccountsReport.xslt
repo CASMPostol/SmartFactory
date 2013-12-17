@@ -76,13 +76,44 @@
         <th>Waluta</th>
       </tr>
       <xsl:apply-templates select="cas:AccountsColection" />
-      <xsl:apply-templates select="cas:TotalsColection" />
     </table>
   </xsl:template>
   <xsl:template match="cas:AccountsColection">
     <xsl:apply-templates select="cas:AccountsArray" />
   </xsl:template>
   <xsl:template match="cas:AccountsArray">
+    <xsl:apply-templates select="cas:AccountsDetails" />
+    <tr>
+      <td align="center" colspan="6">
+        <b>RAZEM TYTONI [kg]</b>
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td align="center">
+        <b>
+          <xsl:value-of select="format-number(cas:TotalNetMass, $FoarmatOfFloat, 'pl')"/>
+        </b>
+      </td>
+      <td align="center">
+        <b>
+          <xsl:value-of select="format-number(cas:TotalValue, $FoarmatOfFloat, 'pl')"/>
+        </b>
+      </td>
+      <td align="center">
+        <b>
+          <xsl:value-of select="cas:TotalCurrency"/>
+        </b>
+      </td>
+    </tr>
+  </xsl:template>
+  <xsl:template match="cas:AccountsDetails">
+    <xsl:apply-templates select="cas:DetailsOfOneAccount" />
+  </xsl:template>
+  <xsl:template match="cas:DetailsOfOneAccount">
     <tr>
       <td align="center">
         <xsl:value-of select="cas:No"/>
@@ -116,37 +147,6 @@
       </td>
       <td align="center">
         <xsl:value-of select="cas:Currency"/>
-      </td>
-    </tr>
-  </xsl:template>
-  <xsl:template match="cas:TotalsColection">
-    <xsl:apply-templates select="cas:TotalsArray" />
-  </xsl:template>
-  <xsl:template match="cas:TotalsArray">
-    <tr>
-      <td align="center" colspan="6">
-        <b>RAZEM TYTONI [kg]</b>
-      </td>
-      <td>
-        &#160;
-      </td>
-      <td>
-        &#160;
-      </td>
-      <td align="center">
-        <b>
-          <xsl:value-of select="format-number(cas:TotalNetMass, $FoarmatOfFloat, 'pl')"/>
-        </b>
-      </td>
-      <td align="center">
-        <b>
-          <xsl:value-of select="format-number(cas:TotalValue, $FoarmatOfFloat, 'pl')"/>
-        </b>
-      </td>
-      <td align="center">
-        <b>
-          <xsl:value-of select="cas:TotalCurrency"/>
-        </b>
       </td>
     </tr>
   </xsl:template>
