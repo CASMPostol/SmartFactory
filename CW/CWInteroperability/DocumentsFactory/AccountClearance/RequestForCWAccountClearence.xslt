@@ -6,6 +6,7 @@
   <xsl:output method="html" indent="yes"/>
   <xsl:decimal-format name="pl" decimal-separator=',' grouping-separator='.' />
   <xsl:variable name="FoarmatOfFloat" >#####0,00</xsl:variable>
+  <xsl:variable name="FoarmatOfFloatPrice" >#####0,000</xsl:variable>
   <xsl:variable name="FoarmatOfdate" >dd-MM-yyyy</xsl:variable>
   <xsl:template match="/" >
     <html>
@@ -125,7 +126,7 @@
       </tr>
     </table>
     <h1>
-      KSIĘGA SKŁADU CELNEGO - WYPROWADZENIE
+      KSIĘGA SKŁADU CELNEGO - WPROWADZENIE
     </h1>
     <p>
       Numer Zezwolenia na korzystanie ze składu celnego <xsl:value-of select="cas:ConsentNo"/> z dnia <xsl:value-of select="cas:ConsentDate"/>
@@ -276,7 +277,7 @@
           <xsl:value-of select="cas:Currency"/>
         </td>
         <td valign="middle" align="center">
-          <xsl:value-of select="format-number(cas:UnitPrice, $FoarmatOfFloat, 'pl')"/>
+          <xsl:value-of select="format-number(cas:UnitPrice, $FoarmatOfFloatPrice, 'pl')"/>
         </td>
         <td valign="middle" align="center">
           <xsl:value-of select="cas:PzNo"/>
