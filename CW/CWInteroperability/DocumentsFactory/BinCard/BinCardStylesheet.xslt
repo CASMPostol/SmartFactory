@@ -17,6 +17,7 @@
           p  { font-size:11pt; }
           td { font-size:10pt; }
           th { font-size:11pt; }
+          h3 { font-size:14pt; }
           h2 { font-size:14pt; text-align:center; }
         </style>
       </head>
@@ -37,9 +38,9 @@
                 <tr>
                   <td>
                     <p>Typ</p>
-                    <p>
+                    <h3>
                       <xsl:value-of select="cas:BinCardContent/cas:TobaccoType" />
-                    </p>
+                    </h3>
                   </td>
                   <td>
                     <p>SKU</p>
@@ -58,9 +59,9 @@
             </td>
             <td valign="top">
               <p>Nr SAD</p>
-              <p>
+              <h3>
                 <xsl:value-of select="cas:BinCardContent/cas:SAD" />
-              </p>
+              </h3>
               <p>
                 z dnia <xsl:value-of select="ms:format-date(cas:BinCardContent/cas:SADDate, $FoarmatOfdate)"/>
               </p>
