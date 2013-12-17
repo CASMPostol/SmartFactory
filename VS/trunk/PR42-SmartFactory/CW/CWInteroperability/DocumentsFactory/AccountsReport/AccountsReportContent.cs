@@ -38,8 +38,6 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReportCo
         
         private ArrayOfAccountsAccountsArray[] accountsColectionField;
         
-        private ArrayOfTotalsTotalsArray[] totalsColectionField;
-        
         /// <remarks/>
         public string DocumentName {
             get {
@@ -103,15 +101,89 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReportCo
                 this.accountsColectionField = value;
             }
         }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.17929")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsR" +
+        "eportContent.xsd")]
+    public partial class ArrayOfAccountsAccountsArray {
+        
+        private double totalNetMassField;
+        
+        private bool totalNetMassFieldSpecified;
+        
+        private double totalValueField;
+        
+        private bool totalValueFieldSpecified;
+        
+        private string totalCurrencyField;
+        
+        private ArrayOfAccountsDetailsDetailsOfOneAccount[] accountsDetailsField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("TotalsArray", IsNullable=false)]
-        public ArrayOfTotalsTotalsArray[] TotalsColection {
+        public double TotalNetMass {
             get {
-                return this.totalsColectionField;
+                return this.totalNetMassField;
             }
             set {
-                this.totalsColectionField = value;
+                this.totalNetMassField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool TotalNetMassSpecified {
+            get {
+                return this.totalNetMassFieldSpecified;
+            }
+            set {
+                this.totalNetMassFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double TotalValue {
+            get {
+                return this.totalValueField;
+            }
+            set {
+                this.totalValueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool TotalValueSpecified {
+            get {
+                return this.totalValueFieldSpecified;
+            }
+            set {
+                this.totalValueFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TotalCurrency {
+            get {
+                return this.totalCurrencyField;
+            }
+            set {
+                this.totalCurrencyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayItemAttribute("DetailsOfOneAccount", IsNullable=false)]
+        public ArrayOfAccountsDetailsDetailsOfOneAccount[] AccountsDetails {
+            get {
+                return this.accountsDetailsField;
+            }
+            set {
+                this.accountsDetailsField = value;
             }
         }
     }
@@ -123,7 +195,7 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReportCo
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsR" +
         "eportContent.xsd")]
-    public partial class ArrayOfAccountsAccountsArray {
+    public partial class ArrayOfAccountsDetailsDetailsOfOneAccount {
         
         private int noField;
         
@@ -307,78 +379,6 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReportCo
             }
             set {
                 this.currencyField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.17929")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsR" +
-        "eportContent.xsd")]
-    public partial class ArrayOfTotalsTotalsArray {
-        
-        private double totalNetMassField;
-        
-        private bool totalNetMassFieldSpecified;
-        
-        private double totalValueField;
-        
-        private bool totalValueFieldSpecified;
-        
-        private string totalCurrencyField;
-        
-        /// <remarks/>
-        public double TotalNetMass {
-            get {
-                return this.totalNetMassField;
-            }
-            set {
-                this.totalNetMassField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TotalNetMassSpecified {
-            get {
-                return this.totalNetMassFieldSpecified;
-            }
-            set {
-                this.totalNetMassFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        public double TotalValue {
-            get {
-                return this.totalValueField;
-            }
-            set {
-                this.totalValueField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TotalValueSpecified {
-            get {
-                return this.totalValueFieldSpecified;
-            }
-            set {
-                this.totalValueFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string TotalCurrency {
-            get {
-                return this.totalCurrencyField;
-            }
-            set {
-                this.totalCurrencyField = value;
             }
         }
     }
