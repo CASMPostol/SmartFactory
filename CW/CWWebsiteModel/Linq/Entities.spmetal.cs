@@ -26,6 +26,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
   public partial class Entities
   {
     #region public
+    public const string CustomsWarehouseLibName = "Customs Warehouse Library";
     /// <summary>
     /// Initializes a new instance of the <see cref="Entities" /> class.
     /// </summary>
