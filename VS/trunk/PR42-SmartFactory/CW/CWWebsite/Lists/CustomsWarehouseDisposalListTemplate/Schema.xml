@@ -218,11 +218,11 @@
           <FieldRef Name="Title" />
           <FieldRef Name="SADDocumentNo" />
           <FieldRef Name="CWL_CWDisposal2CWDocumentNo_sec" />
-          <FieldRef Name="SADDate" />
-          <FieldRef Name="CWL_CWDisposal2CWTobaccoName_sec" />
-          <FieldRef Name="CustomsStatus" />
-          <FieldRef Name="CWL_CWDisposal2CWSKU_sec" />
-          <FieldRef Name="CWL_CWDisposal2CWBatch_sec" />
+          <FieldRef Name="CWL_CWDisposal2CWGrade_sec" />
+          <FieldRef Name="CW_SettledNetMass" />
+          <FieldRef Name="CW_PackageToClear" />
+          <FieldRef Name="RemainingQuantity" />
+          <FieldRef Name="CW_RemainingPackage" />
         </ViewFields>
         <Query>
           <OrderBy>

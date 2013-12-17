@@ -51,18 +51,6 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
       set { b_LabelOGLDate = value; }
     }
     /// <summary>
-    /// Gets or sets the name of the label tobacco.
-    /// </summary>
-    /// <value>
-    /// The name of the label tobacco.
-    /// </value>
-    [DataMember]
-    public string TobaccoName
-    {
-      get { return b_LabelTobaccoName; }
-      set { b_LabelTobaccoName = value; }
-    }
-    /// <summary>
     /// Gets or sets the grade.
     /// </summary>
     /// <value>
@@ -73,30 +61,6 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
     {
       get { return b_LabelGrade; }
       set { b_LabelGrade = value; }
-    }
-    /// <summary>
-    /// Gets or sets the SKU.
-    /// </summary>
-    /// <value>
-    /// The sku.
-    /// </value>
-    [DataMember]
-    public string SKU
-    {
-      get { return b_LabelSKU; }
-      set { b_LabelSKU = value; }
-    }
-    /// <summary>
-    /// Gets or sets the label batch.
-    /// </summary>
-    /// <value>
-    /// The label batch.
-    /// </value>
-    [DataMember]
-    public string Batch
-    {
-      get { return b_LabelBatch; }
-      set { b_LabelBatch = value; }
     }
     /// <summary>
     /// Gets or sets the label settled net mass.
@@ -175,10 +139,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
     #region private backed fields.
     private string b_LabelOGLNumber;
     private DateTime b_LabelOGLDate;
-    private string b_LabelTobaccoName;
     private string b_LabelGrade;
-    private string b_LabelSKU;
-    private string b_LabelBatch;
     private double b_LabelSettledNetMass;
     private int b_PackageToClear;
     private string b_LabelSAD;
