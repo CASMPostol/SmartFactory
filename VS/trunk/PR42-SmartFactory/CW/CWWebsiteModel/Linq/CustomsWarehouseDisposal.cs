@@ -119,6 +119,19 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         throw;
       }
     }
+    /// <summary>
+    /// Updates the title.
+    /// </summary>
+    internal void UpdateTitle()
+    {
+      try
+      {
+        string _numTxt = this.Id.HasValue ? String.Format("{0:D6}", this.Id.Value) : "XXXXXX";
+        DateTime _entry = this.CWL_CWDisposal2CustomsWarehouseID != null ? this.CWL_CWDisposal2CustomsWarehouseID.CustomsDebtDate.Value : Extensions.DateTimeNull;
+        Title = String.Format("CW-{0:D4}-{1}", _entry.Year, _numTxt);
+      }
+      catch (Exception) { }
+    }
     #endregion
 
     #region private
@@ -129,19 +142,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     private void CustomsWarehouseDisposal_PropertyChanging(object sender, System.ComponentModel.PropertyChangingEventArgs e)
     {
       UpdateTitle();
-    }
-    /// <summary>
-    /// Updates the title.
-    /// </summary>
-    private void UpdateTitle()
-    {
-      try
-      {
-        string _numTxt = this.Id.HasValue ? String.Format("{0:D6}", this.Id.Value) : "XXXXXX";
-        DateTime _entry = this.CWL_CWDisposal2CustomsWarehouseID != null ? this.CWL_CWDisposal2CustomsWarehouseID.CustomsDebtDate.Value : Extensions.DateTimeNull;
-        Title = String.Format("CW-{0:D4}-{1}", _entry.Year, _numTxt);
-      }
-      catch (Exception) { }
     }
     private void CheckCNCosistency()
     {
