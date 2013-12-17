@@ -81,7 +81,7 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
       try
       {
         m_at = "MainPage.x_ButtonPrint_Click";
-        m_PrintDocument.Print( "Exit Sheet" );
+        m_PrintDocument.Print( "Check list" );
       }
       catch ( System.Exception ex )
       {
