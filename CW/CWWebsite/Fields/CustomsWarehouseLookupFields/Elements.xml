@@ -81,7 +81,7 @@
     Name="CWL_CW2CWLibraryID"
     ID="{615855F8-6922-456C-95FB-2DAC71809663}"
     Type="Lookup"
-    List="Lists/CWLibrary"
+    List="Lists/CustomsWarehouseLibrary"
     ShowField="ID"
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"

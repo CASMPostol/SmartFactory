@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.CWL_CW2ClearenceID = data.ClearenceLookup;
       this.CWL_CW2ConsentTitle = data.ConsentLookup;
       this.CWL_CW2PCNID = data.PCNTariffCodeLookup;
-      this.CWL_CW2CWLibraryIDId = null;
+      this.CWL_CW2CWLibraryID = null;
       this.CW_MassPerPackage = data.CWMassPerPackage;
       this.CW_PackageKg = data.CWPackageKg;
       this.CW_PackageUnits = data.CWPackageUnits;
