@@ -3,34 +3,34 @@
   <xs:element name="RequestContent">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="1" maxOccurs="1" name="DocumentName" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="DocumentName" type="xs:string" />
         <xs:element minOccurs="1" maxOccurs="1" name="DocumentNo" type="xs:int" />
         <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:date" />
-        <xs:element minOccurs="1" maxOccurs="1" name="IntroducingSADDocumentNo" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="IntroducingSADDocumentNo" type="xs:string" />
         <xs:element minOccurs="1" maxOccurs="1" name="IntroducingSADDocumentDate" type="xs:date" />
-        <xs:element minOccurs="1" maxOccurs="1" name="WithdrawalSADDcoumentNo" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="WithdrawalSADDcoumentNo" type="xs:string" />
         <xs:element minOccurs="1" maxOccurs="1" name="WithdrawalSADDocumentDate" type="xs:date" />
-        <xs:element minOccurs="1" maxOccurs="1" name="ConsentNo" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="ConsentNo" type="xs:string" />
         <xs:element minOccurs="1" maxOccurs="1" name="ConsentDate" type="xs:date" />
-        <xs:element minOccurs="1" maxOccurs="1" name="TobaccoName" type="xs:string" />
-        <xs:element minOccurs="1" maxOccurs="1" name="Grade" type="xs:string" />
-        <xs:element minOccurs="1" maxOccurs="1" name="SKU" type="xs:string" />
-        <xs:element minOccurs="1" maxOccurs="1" name="Batch" type="xs:string" />
-        <xs:element minOccurs="1" maxOccurs="1" name="CNTarrifCode" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="TobaccoName" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Grade" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="SKU" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="CNTarrifCode" type="xs:string" />
         <xs:element minOccurs="1" maxOccurs="1" name="Quantity" type="xs:double" />
         <xs:element minOccurs="1" maxOccurs="1" name="NetMass" type="xs:double" />
         <xs:element minOccurs="1" maxOccurs="1" name="GrossMass" type="xs:double" />
         <xs:element minOccurs="1" maxOccurs="1" name="PackageUnits" type="xs:double" />
         <xs:element minOccurs="1" maxOccurs="1" name="Value" type="xs:double" />
-        <xs:element minOccurs="1" maxOccurs="1" name="Currency" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Currency" type="xs:string" />
         <xs:element minOccurs="1" maxOccurs="1" name="UnitPrice" type="xs:double" />
-        <xs:element minOccurs="1" maxOccurs="1" name="PzNo" type="xs:string" />
-        <xs:element minOccurs="1" maxOccurs="1" name="InvoiceNo" type="xs:string" />
-        <xs:element minOccurs="0" maxOccurs="1" name="DisposalsColection" type="tns:ArrayOfDIsposals" />
+        <xs:element minOccurs="0" maxOccurs="1" name="PzNo" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="InvoiceNo" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="DisposalsColection" type="tns:ArrayOfDisposal" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:complexType name="ArrayOfDIsposals">
+  <xs:complexType name="ArrayOfDisposal">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="DisposalsArray">
         <xs:complexType>

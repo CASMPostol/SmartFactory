@@ -7,5 +7,5 @@ $env:path += "; C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.
 $cpath = get-location
 Write-host CAS.SmartFactory.xml.dll processing
 set-location ..\..\bin\debug\
-xsd.exe CAS.CWInteroperability.dll /t:CAS.SmartFactory.CW.Interoperability.DocumentsFactory.RequestContent.RequestContentContentType | write-host
+xsd.exe CAS.CWInteroperability.dll /t:CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountClearance.RequestContent | write-host
 set-location $cpath
