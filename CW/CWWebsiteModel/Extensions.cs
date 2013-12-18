@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,11 +27,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel
   {
     internal static Decimal DecimalValue(this Nullable<double> value)
     {
-      return Convert.ToDecimal( value.GetValueOrDefault( 0 ) );
+      return Convert.ToDecimal(value.GetValueOrDefault(0));
     }
     internal static double DoubleValue(this decimal value)
     {
-      return Convert.ToDouble( value );
+      return Convert.ToDouble(value);
     }
     /// <summary>
     /// Convert an <see cref="Linq.ClearenceProcedure"/> instance to the string.
@@ -76,5 +76,17 @@ namespace CAS.SmartFactory.CW.WebsiteModel
     /// </summary>
     /// <param name="value">The _value.</param>
     public static Int32 Convert2Int(this double value) { return Convert.ToInt32(Math.Round(value, 0)); }
+    public static int? GetTargetId<type>(this type _cw)
+      where type : CAS.SmartFactory.CW.WebsiteModel.Linq.Element
+    {
+      try
+      {
+        return _cw == null ? new Nullable<int>() : _cw.Id.Value;
+      }
+      catch (Exception)
+      {
+        return new Nullable<int>();
+      }
+    }
   }
 }

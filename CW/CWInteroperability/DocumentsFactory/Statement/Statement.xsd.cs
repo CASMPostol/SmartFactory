@@ -12,11 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 
 namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.Statement
 {
@@ -26,6 +22,9 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.Statement
   public partial class StatementContent
   {
 
+    /// <summary>
+    /// The stylesheet nmane
+    /// </summary>
     public const string StylesheetNmane = "StatementStylesheet";
 
   }
