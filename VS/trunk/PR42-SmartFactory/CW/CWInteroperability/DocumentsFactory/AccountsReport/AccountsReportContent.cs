@@ -114,11 +114,7 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReportCo
         
         private double totalNetMassField;
         
-        private bool totalNetMassFieldSpecified;
-        
         private double totalValueField;
-        
-        private bool totalValueFieldSpecified;
         
         private string totalCurrencyField;
         
@@ -135,34 +131,12 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReportCo
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TotalNetMassSpecified {
-            get {
-                return this.totalNetMassFieldSpecified;
-            }
-            set {
-                this.totalNetMassFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
         public double TotalValue {
             get {
                 return this.totalValueField;
             }
             set {
                 this.totalValueField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TotalValueSpecified {
-            get {
-                return this.totalValueFieldSpecified;
-            }
-            set {
-                this.totalValueFieldSpecified = value;
             }
         }
         
@@ -205,8 +179,6 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReportCo
         
         private System.DateTime customsDebtDateField;
         
-        private bool customsDebtDateFieldSpecified;
-        
         private string tobaccoNameField;
         
         private string gradeField;
@@ -219,11 +191,7 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReportCo
         
         private double netMassField;
         
-        private bool netMassFieldSpecified;
-        
         private double valueField;
-        
-        private bool valueFieldSpecified;
         
         private string currencyField;
         
@@ -266,17 +234,6 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReportCo
             }
             set {
                 this.customsDebtDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool CustomsDebtDateSpecified {
-            get {
-                return this.customsDebtDateFieldSpecified;
-            }
-            set {
-                this.customsDebtDateFieldSpecified = value;
             }
         }
         
@@ -341,34 +298,12 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReportCo
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool NetMassSpecified {
-            get {
-                return this.netMassFieldSpecified;
-            }
-            set {
-                this.netMassFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
         public double Value {
             get {
                 return this.valueField;
             }
             set {
                 this.valueField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool ValueSpecified {
-            get {
-                return this.valueFieldSpecified;
-            }
-            set {
-                this.valueFieldSpecified = value;
             }
         }
         

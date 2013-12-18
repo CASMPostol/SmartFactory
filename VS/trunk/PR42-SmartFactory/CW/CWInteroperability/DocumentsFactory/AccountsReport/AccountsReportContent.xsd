@@ -17,8 +17,8 @@
         <xs:element minOccurs="0" maxOccurs="unbounded" name="AccountsArray">
           <xs:complexType>
             <xs:sequence>
-              <xs:element minOccurs="0" maxOccurs="1" name="TotalNetMass" type="xs:double" />
-              <xs:element minOccurs="0" maxOccurs="1" name="TotalValue" type="xs:double" />
+              <xs:element minOccurs="1" maxOccurs="1" name="TotalNetMass" type="xs:double" />
+              <xs:element minOccurs="1" maxOccurs="1" name="TotalValue" type="xs:double" />
               <xs:element minOccurs="0" maxOccurs="1" name="TotalCurrency" type="xs:string" />
               <xs:element minOccurs="0" maxOccurs="1" name="AccountsDetails" type="tns:ArrayOfAccountsDetails" />                           
             </xs:sequence>
@@ -33,14 +33,14 @@
           <xs:sequence>
             <xs:element minOccurs="0" maxOccurs="1" name="No" type="xs:int" />
             <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
-            <xs:element minOccurs="0" maxOccurs="1" name="CustomsDebtDate" type="xs:date" />
+            <xs:element minOccurs="1" maxOccurs="1" name="CustomsDebtDate" type="xs:date" />
             <xs:element minOccurs="0" maxOccurs="1" name="TobaccoName" type="xs:string" />
             <xs:element minOccurs="0" maxOccurs="1" name="Grade" type="xs:string" />
             <xs:element minOccurs="0" maxOccurs="1" name="SKU" type="xs:string" />
             <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
             <xs:element minOccurs="0" maxOccurs="1" name="CNTarrifCode" type="xs:string" />
-            <xs:element minOccurs="0" maxOccurs="1" name="NetMass" type="xs:double" />
-            <xs:element minOccurs="0" maxOccurs="1" name="Value" type="xs:double" />
+            <xs:element minOccurs="1" maxOccurs="1" name="NetMass" type="xs:double" />
+            <xs:element minOccurs="1" maxOccurs="1" name="Value" type="xs:double" />
             <xs:element minOccurs="0" maxOccurs="1" name="Currency" type="xs:string" />
           </xs:sequence>
         </xs:complexType>
