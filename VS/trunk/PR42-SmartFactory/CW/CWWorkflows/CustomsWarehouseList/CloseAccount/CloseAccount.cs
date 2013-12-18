@@ -35,6 +35,7 @@ using CAS.SharePoint.DocumentsFactory;
 using CAS.SharePoint;
 using CAS.SmartFactory.CW;
 using System.Collections.Generic;
+using CAS.SmartFactory.CW.WebsiteModel;
 
 namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
 {
@@ -123,14 +124,14 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         {
           CNTarrifCode = _cwdx.CWL_CWDisposal2PCNTID.ProductCodeNumber,
           Currency = _cwdx.CWL_CWDisposal2CustomsWarehouseID.Currency,
-          No = _cwdx.No.GetValueOrDefault(-1),
-          PackageToClear = _cwdx.CW_PackageToClear.GetValueOrDefault(-1),
-          RemainingPackage = _cwdx.CW_RemainingPackage.GetValueOrDefault(-1),
-           RemainingQuantity = _cwdx.RemainingQuantity.GetValueOrDefault(-1).RountMass(),
-            SADDate = _cwdx.SADDate.GetValueOrNull(),
-             SADDocumentNo = _cwdx.SADDocumentNo,
+          No = _cwdx.No.GetValueOrDefault(-1).Convert2Int(),
+          PackageToClear = _cwdx.CW_PackageToClear.GetValueOrDefault(-1).Convert2Int(),
+          RemainingPackage = _cwdx.CW_RemainingPackage.GetValueOrDefault(-1).Convert2Int(),
+          RemainingQuantity = _cwdx.RemainingQuantity.GetValueOrDefault(-1).RountMass().Convert2Int(),
+          SADDate = _cwdx.SADDate.GetValueOrNull(),
+          SADDocumentNo = _cwdx.SADDocumentNo,
 
-           
+
         };
       }
       RequestContent _new = new RequestContent()
