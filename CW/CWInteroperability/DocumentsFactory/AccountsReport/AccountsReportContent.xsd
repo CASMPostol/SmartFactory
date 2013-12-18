@@ -1,37 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="AccountsReportContent" xmlns:tns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReportContent.xsd" elementFormDefault="qualified" targetNamespace="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReportContent.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReportContent.xsd" elementFormDefault="qualified" targetNamespace="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReportContent.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="AccountsReportContent">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="1" maxOccurs="1" name="DocumentName" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="DocumentName" type="xs:string" />
         <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:date" />
-        <xs:element minOccurs="1" maxOccurs="1" name="ConsentNo" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="ConsentNo" type="xs:string" />
         <xs:element minOccurs="1" maxOccurs="1" name="ConsentDate" type="xs:date" />
         <xs:element minOccurs="1" maxOccurs="1" name="ReportDate" type="xs:date" />
-        <xs:element minOccurs="0" maxOccurs="1" name="AccountsColection" type="tns:ArrayOfAccounts" />
+        <xs:element minOccurs="0" maxOccurs="1" name="AccountsColection" type="tns:ArrayOfAccounts4Currency" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-    <xs:complexType name="ArrayOfAccounts">
-      <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="AccountsArray">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element minOccurs="1" maxOccurs="1" name="TotalNetMass" type="xs:double" />
-              <xs:element minOccurs="1" maxOccurs="1" name="TotalValue" type="xs:double" />
-              <xs:element minOccurs="0" maxOccurs="1" name="TotalCurrency" type="xs:string" />
-              <xs:element minOccurs="0" maxOccurs="1" name="AccountsDetails" type="tns:ArrayOfAccountsDetails" />                           
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  <xs:complexType name="ArrayOfAccountsDetails">
+  <xs:complexType name="ArrayOfAccounts4Currency">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="DetailsOfOneAccount">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AccountsArray">
         <xs:complexType>
           <xs:sequence>
-            <xs:element minOccurs="0" maxOccurs="1" name="No" type="xs:int" />
+            <xs:element minOccurs="1" maxOccurs="1" name="TotalNetMass" type="xs:double" />
+            <xs:element minOccurs="1" maxOccurs="1" name="TotalValue" type="xs:double" />
+            <xs:element minOccurs="0" maxOccurs="1" name="TotalCurrency" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="AccountsDetails" type="tns:ArrayOfAccounts" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAccounts">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Details">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="No" type="xs:int" />
             <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
             <xs:element minOccurs="1" maxOccurs="1" name="CustomsDebtDate" type="xs:date" />
             <xs:element minOccurs="0" maxOccurs="1" name="TobaccoName" type="xs:string" />

@@ -131,6 +131,9 @@
     <Compile Include="DocumentsFactory\AccountsReport\AccountsReportContent.cs">
       <DependentUpon>AccountsReportContent.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DocumentsFactory\AccountsReport\AccountsReportContent.xsd.cs">
+      <DependentUpon>AccountsReportContent.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DocumentsFactory\BinCard\BinCard..xsd.cs">
       <SubType>code</SubType>
     </Compile>

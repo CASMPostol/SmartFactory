@@ -4,7 +4,7 @@ $env:path += "; C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.
 #$cpath = get-location
 
 Write-host XSD processing
-xsd.exe AccountsReportContent.xsd /N:CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReportContent /c  |write-host
+xsd.exe AccountsReportContent.xsd /N:CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReport /c  |write-host
 
 #set-location $cpath
 Write-host Done...
