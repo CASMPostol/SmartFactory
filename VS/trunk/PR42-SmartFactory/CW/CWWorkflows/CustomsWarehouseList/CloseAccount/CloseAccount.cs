@@ -73,19 +73,19 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
             _cw.AccountClosed = true;
             _entities.SubmitChanges();
           }
-          int? _binCardId = default(int?);
+          int? __requestId = default(int?);
           try
           {
-            _binCardId = _cw.CWL_CW2BinCardTitle == null ? new Nullable<int>() : _cw.CWL_CW2BinCardTitle.Id.Value;
+            __requestId = _cw.CWL_CW2BinCardTitle == null ? new Nullable<int>() : _cw.CWL_CW2BinCardTitle.Id.Value;
           }
           catch (Exception)
           {
-            _binCardId = new Nullable<int>();
+            __requestId = new Nullable<int>();
           }
-          if (_binCardId.HasValue)
+          if (__requestId.HasValue)
           {
             SPDocumentLibrary _lib = (SPDocumentLibrary)workflowProperties.Web.Lists[BinCardLib.LibraryName];
-            SPFile _file = _lib.GetItemByIdSelectedFields(_binCardId.Value).File;
+            SPFile _file = _lib.GetItemByIdSelectedFields(__requestId.Value).File;
             File.WriteXmlFile<RequestContent>(_file, _newRequestContent, RequestContent.StylesheetNmane);
           }
           else
@@ -114,7 +114,25 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
 
     private RequestContent CreateContent(CustomsWarehouse _cw)
     {
+      string _WithdrawalSADDcoumentNo = String.Empty;
+      DateTime _WithdrawalSADDocumentDate = default(DateTime);
       List<ArrayOfDIsposalsDisposalsArray> _listOfDisposals = new List<ArrayOfDIsposalsDisposalsArray>();
+      foreach (CustomsWarehouseDisposal _cwdx in _cw.CustomsWarehouseDisposal)
+      {
+        ArrayOfDIsposalsDisposalsArray _dispItem = new ArrayOfDIsposalsDisposalsArray()
+        {
+          CNTarrifCode = _cwdx.CWL_CWDisposal2PCNTID.ProductCodeNumber,
+          Currency = _cwdx.CWL_CWDisposal2CustomsWarehouseID.Currency,
+          No = _cwdx.No.GetValueOrDefault(-1),
+          PackageToClear = _cwdx.CW_PackageToClear.GetValueOrDefault(-1),
+          RemainingPackage = _cwdx.CW_RemainingPackage.GetValueOrDefault(-1),
+           RemainingQuantity = _cwdx.RemainingQuantity.GetValueOrDefault(-1).RountMass(),
+            SADDate = _cwdx.SADDate.GetValueOrNull(),
+             SADDocumentNo = _cwdx.SADDocumentNo,
+
+           
+        };
+      }
       RequestContent _new = new RequestContent()
       {
         Batch = _cw.Batch,
@@ -139,8 +157,8 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         TobaccoName = _cw.TobaccoName,
         UnitPrice = _cw.CW_UnitPrice.GetValueOrDefault(-1).RoundCurrency(),
         Value = _cw.Value.GetValueOrDefault(-1).RoundCurrency(),
-        WithdrawalSADDcoumentNo = "TBD",
-        //TODO WithdrawalSADDocumentDate = 
+        WithdrawalSADDcoumentNo = _WithdrawalSADDcoumentNo,
+        WithdrawalSADDocumentDate = _WithdrawalSADDocumentDate
       };
       return _new;
     }
