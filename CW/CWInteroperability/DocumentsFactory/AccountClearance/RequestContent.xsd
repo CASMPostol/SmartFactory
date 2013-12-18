@@ -35,17 +35,17 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="DisposalsArray">
         <xs:complexType>
           <xs:sequence>
-            <xs:element minOccurs="1" maxOccurs="1" name="No" type="xs:double" />
+            <xs:element minOccurs="1" maxOccurs="1" name="No" type="xs:int" />
             <xs:element minOccurs="0" maxOccurs="1" name="SADDocumentNo" type="xs:string" />
             <xs:element minOccurs="1" maxOccurs="1" name="SADDate" type="xs:date" />
             <xs:element minOccurs="1" maxOccurs="1" name="SettledNetMass" type="xs:double" />
             <xs:element minOccurs="1" maxOccurs="1" name="SettledGrossMass" type="xs:double" />
             <xs:element minOccurs="1" maxOccurs="1" name="TobaccoValue" type="xs:double" />
             <xs:element minOccurs="0" maxOccurs="1" name="Currency" type="xs:string" />
-            <xs:element minOccurs="1" maxOccurs="1" name="PackageToClear" type="xs:double" />
+            <xs:element minOccurs="1" maxOccurs="1" name="PackageToClear" type="xs:int" />
             <xs:element minOccurs="0" maxOccurs="1" name="WZ" type="xs:string" />
             <xs:element minOccurs="1" maxOccurs="1" name="RemainingQuantity" type="xs:double" />
-            <xs:element minOccurs="1" maxOccurs="1" name="RemainingPackage" type="xs:double" />
+            <xs:element minOccurs="1" maxOccurs="1" name="RemainingPackage" type="xs:int" />
             <xs:element minOccurs="0" maxOccurs="1" name="CNTarrifCode" type="xs:string" />
           </xs:sequence>
         </xs:complexType>
