@@ -96,7 +96,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
     {
       string _WithdrawalSADDcoumentNo = String.Empty;
       DateTime _WithdrawalSADDocumentDate = default(DateTime);
-      List<ArrayOfDIsposalsDisposalsArray> _listOfDisposals = new List<ArrayOfDIsposalsDisposalsArray>();
+      List<ArrayOfDisposalDisposalsArray> _listOfDisposals = new List<ArrayOfDisposalDisposalsArray>();
       foreach (CustomsWarehouseDisposal _cwdx in _cw.CustomsWarehouseDisposal)
       {
         List<string> _wz = new List<string>();
@@ -106,7 +106,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
           _wz.Add(_cwdx.CW_Wz2);
         if (!_cwdx.CW_Wz3.IsNullOrEmpty())
           _wz.Add(_cwdx.CW_Wz3);
-        ArrayOfDIsposalsDisposalsArray _newItem = new ArrayOfDIsposalsDisposalsArray()
+        ArrayOfDisposalDisposalsArray _newItem = new ArrayOfDisposalDisposalsArray()
         {
           CNTarrifCode = _cwdx.CWL_CWDisposal2PCNTID.ProductCodeNumber,
           Currency = _cwdx.CWL_CWDisposal2CustomsWarehouseID.Currency,
