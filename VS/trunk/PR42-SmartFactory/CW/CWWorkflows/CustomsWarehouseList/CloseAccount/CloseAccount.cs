@@ -14,28 +14,15 @@
 //</summary>
 
 using System;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Collections;
-using System.Drawing;
-using System.Linq;
-using System.Workflow.ComponentModel.Compiler;
-using System.Workflow.ComponentModel.Serialization;
-using System.Workflow.ComponentModel;
-using System.Workflow.ComponentModel.Design;
-using System.Workflow.Runtime;
+using System.Collections.Generic;
 using System.Workflow.Activities;
-using System.Workflow.Activities.Rules;
+using CAS.SharePoint;
+using CAS.SharePoint.DocumentsFactory;
+using CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountClearance;
+using CAS.SmartFactory.CW.WebsiteModel;
+using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
-using Microsoft.SharePoint.WorkflowActions;
-using CAS.SmartFactory.CW.WebsiteModel.Linq;
-using CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountClearance;
-using CAS.SharePoint.DocumentsFactory;
-using CAS.SharePoint;
-using CAS.SmartFactory.CW;
-using System.Collections.Generic;
-using CAS.SmartFactory.CW.WebsiteModel;
 
 namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
 {
@@ -44,17 +31,20 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
   /// </summary>
   public sealed partial class CloseAccount : SequentialWorkflowActivity
   {
+    #region public
     public CloseAccount()
     {
       InitializeComponent();
     }
-
     public Guid workflowId = default(System.Guid);
     public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
-    public String StartingWorkflowLogToHistory_HistoryDescription = default(System.String);
-    public String StartingWorkflowLogToHistory_HistoryOutcome = default(System.String);
-    public String CompletedLogToHistory_HistoryDescription = default(System.String);
-    public String CompletedLogToHistory_HistoryOutcome = default(System.String);
+    public String StartingWorkflowLogToHistory_HistoryDescription = "Starting";
+    public String StartingWorkflowLogToHistory_HistoryOutcome = "Closing account started.";
+    public String CompletedLogToHistory_HistoryDescription = "Document created successfully";
+    public String CompletedLogToHistory_HistoryOutcome = "Success";
+    #endregion
+
+    #region public
     private void CloseAccountActivity_ExecuteCode(object sender, EventArgs e)
     {
       try
@@ -74,32 +64,22 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
             _cw.AccountClosed = true;
             _entities.SubmitChanges();
           }
-          int? __requestId = default(int?);
-          try
+          int? _requestId = _cw.CWL_CW2CWLibraryID.GetTargetId<CustomsWarehouseLib>();
+          if (_requestId.HasValue)
           {
-            __requestId = _cw.CWL_CW2BinCardTitle == null ? new Nullable<int>() : _cw.CWL_CW2BinCardTitle.Id.Value;
-          }
-          catch (Exception)
-          {
-            __requestId = new Nullable<int>();
-          }
-          if (__requestId.HasValue)
-          {
-            SPDocumentLibrary _lib = (SPDocumentLibrary)workflowProperties.Web.Lists[BinCardLib.LibraryName];
-            SPFile _file = _lib.GetItemByIdSelectedFields(__requestId.Value).File;
+            SPDocumentLibrary _lib = (SPDocumentLibrary)workflowProperties.Web.Lists[Entities.CustomsWarehouseLibName];
+            SPFile _file = _lib.GetItemByIdSelectedFields(_requestId.Value).File;
             File.WriteXmlFile<RequestContent>(_file, _newRequestContent, RequestContent.StylesheetNmane);
           }
           else
           {
-            string _documentName = Settings.BinCardDocumentName(_entities, workflowProperties.ItemId);
+            string _documentName = Settings.ClearanceRequestFileName(_entities, workflowProperties.ItemId);
             SPFile _newFile = File.CreateXmlFile<RequestContent>(workflowProperties.Web, _newRequestContent, _documentName, Entities.CustomsWarehouseLibName, RequestContent.StylesheetNmane);
-            BinCardLib _BinCardLibRntry = Element.GetAtIndex<BinCardLib>(_entities.BinCardLibrary, _newFile.Item.ID);
-            _cw.CWL_CW2BinCardTitle = _BinCardLibRntry;
+            CustomsWarehouseLib _BinCardLibRntry = Element.GetAtIndex<CustomsWarehouseLib>(_entities.CustomsWarehouseLibrary, _newFile.Item.ID);
+            _cw.CWL_CW2CWLibraryID = _BinCardLibRntry;
             _entities.SubmitChanges();
           }
         }
-        this.CompletedLogToHistory_HistoryDescription = "Success";
-        this.CompletedLogToHistory_HistoryOutcome = "Document created successfully";
       }
       catch (CAS.SharePoint.ApplicationError _ap)
       {
@@ -112,7 +92,6 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         CompletedLogToHistory_HistoryDescription = _ex.Message;
       }
     }
-
     private RequestContent CreateContent(CustomsWarehouse _cw)
     {
       string _WithdrawalSADDcoumentNo = String.Empty;
@@ -120,7 +99,14 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
       List<ArrayOfDIsposalsDisposalsArray> _listOfDisposals = new List<ArrayOfDIsposalsDisposalsArray>();
       foreach (CustomsWarehouseDisposal _cwdx in _cw.CustomsWarehouseDisposal)
       {
-        ArrayOfDIsposalsDisposalsArray _dispItem = new ArrayOfDIsposalsDisposalsArray()
+        List<string> _wz = new List<string>();
+        if (!_cwdx.CW_Wz1.IsNullOrEmpty())
+          _wz.Add(_cwdx.CW_Wz1);
+        if (!_cwdx.CW_Wz2.IsNullOrEmpty())
+          _wz.Add(_cwdx.CW_Wz2);
+        if (!_cwdx.CW_Wz3.IsNullOrEmpty())
+          _wz.Add(_cwdx.CW_Wz3);
+        ArrayOfDIsposalsDisposalsArray _newItem = new ArrayOfDIsposalsDisposalsArray()
         {
           CNTarrifCode = _cwdx.CWL_CWDisposal2PCNTID.ProductCodeNumber,
           Currency = _cwdx.CWL_CWDisposal2CustomsWarehouseID.Currency,
@@ -130,10 +116,21 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
           RemainingQuantity = _cwdx.RemainingQuantity.GetValueOrDefault(-1).RountMass().Convert2Int(),
           SADDate = _cwdx.SADDate.GetValueOrNull(),
           SADDocumentNo = _cwdx.SADDocumentNo,
-
-
+          SettledGrossMass = _cwdx.CW_SettledGrossMass.GetValueOrDefault(-1).RountMass(),
+          SettledNetMass = _cwdx.CW_SettledNetMass.GetValueOrDefault(-1).RountMass(),
+          TobaccoValue = _cwdx.TobaccoValue.GetValueOrDefault(-1).RoundCurrency(),
+          WZ = String.Join(",", _wz.ToArray())
         };
+        _listOfDisposals.Add(_newItem);
+        if (_cwdx.ClearingType.Value == ClearingType.TotalWindingUp)
+        {
+          _WithdrawalSADDcoumentNo = _cwdx.SADDocumentNo;
+          _WithdrawalSADDocumentDate = _cwdx.SADDate.GetValueOrDefault(Extensions.SPMinimum);
+        }
       }
+      if (_WithdrawalSADDcoumentNo.IsNullOrEmpty())
+        throw new ApplicationError("CreateContent", "RequestContent", "No disposal has status TotalWindingUp", null);
+      _listOfDisposals.Sort((x, y) => { return x.No.CompareTo(y.No); });
       RequestContent _new = new RequestContent()
       {
         Batch = _cw.Batch,
@@ -163,5 +160,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
       };
       return _new;
     }
+    #endregion
+
   }
 }

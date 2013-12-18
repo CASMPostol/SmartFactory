@@ -57,6 +57,16 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       return String.Format(GetParameter(entities, SettingsEntry.BinCardFileName), itemId);
     }
     /// <summary>
+    /// Clearances the name of the clerance request file.
+    /// </summary>
+    /// <param name="entities">The entities.</param>
+    /// <param name="itemId">The item unique identifier.</param>
+    /// <returns></returns>
+    public static string ClearanceRequestFileName(Entities entities, int itemId)
+    {
+      return String.Format(GetParameter(entities, SettingsEntry.ClearanceRequestFileName), itemId);
+    }
+    /// <summary>
     /// Finisheds the name of the goods export form file.
     /// </summary>
     /// <param name="entities">The edc.</param>
@@ -119,6 +129,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
        { SettingsEntry.DefaultValidToDatePeriod, "730" },
        { SettingsEntry.LooselyFormatedDate, @"(?<=/)\D*(\d{1,2}).(\d{1,2}).(\d{4})" },
        { SettingsEntry.BinCardFileName, "Bin Card "+ c_documentNumberFormat },
+       { SettingsEntry.ClearanceRequestFileName, "Wniosek o zamkniecie CW"+ c_documentNumberFormat },
        { SettingsEntry.OrganizationEmail, "gstmaan@jti.com" },
        { SettingsEntry.SADTemplateDocumentNamePattern, "CW Wyprowadzenie " + c_documentNumberFormat },
        { SettingsEntry.ClearanceTitleFormatCW, "Nr: {3:D5} {0}/{1} SAD: {2} " },
@@ -143,6 +154,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     DefaultValidToDatePeriod,
     LooselyFormatedDate,
     BinCardFileName,
+    ClearanceRequestFileName,
     OrganizationEmail,
     SADTemplateDocumentNamePattern,
     ClearanceTitleFormatCW,
