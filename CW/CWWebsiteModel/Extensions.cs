@@ -71,5 +71,10 @@ namespace CAS.SmartFactory.CW.WebsiteModel
       }
       return _ret;
     }
+    /// <summary>
+    /// Convert rounded double to the Int32.
+    /// </summary>
+    /// <param name="value">The _value.</param>
+    public static Int32 Convert2Int(this double value) { return Convert.ToInt32(Math.Round(value, 0)); }
   }
 }
