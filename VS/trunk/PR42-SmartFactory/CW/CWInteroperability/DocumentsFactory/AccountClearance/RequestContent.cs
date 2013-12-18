@@ -329,7 +329,7 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountClearance
         "ntent.xsd")]
     public partial class ArrayOfDIsposalsDisposalsArray {
         
-        private double noField;
+        private int noField;
         
         private string sADDocumentNoField;
         
@@ -343,18 +343,18 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountClearance
         
         private string currencyField;
         
-        private double packageToClearField;
+        private int packageToClearField;
         
         private string wzField;
         
         private double remainingQuantityField;
         
-        private double remainingPackageField;
+        private int remainingPackageField;
         
         private string cNTarrifCodeField;
         
         /// <remarks/>
-        public double No {
+        public int No {
             get {
                 return this.noField;
             }
@@ -425,7 +425,7 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountClearance
         }
         
         /// <remarks/>
-        public double PackageToClear {
+        public int PackageToClear {
             get {
                 return this.packageToClearField;
             }
@@ -455,7 +455,7 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountClearance
         }
         
         /// <remarks/>
-        public double RemainingPackage {
+        public int RemainingPackage {
             get {
                 return this.remainingPackageField;
             }
