@@ -113,12 +113,12 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
           No = _cwdx.No.GetValueOrDefault(-1).Convert2Int(),
           PackageToClear = _cwdx.CW_PackageToClear.GetValueOrDefault(-1).Convert2Int(),
           RemainingPackage = _cwdx.CW_RemainingPackage.GetValueOrDefault(-1).Convert2Int(),
-          RemainingQuantity = _cwdx.RemainingQuantity.GetValueOrDefault(-1).RountMass().Convert2Int(),
+          RemainingQuantity = _cwdx.RemainingQuantity.GetValueOrDefault(-1).Convert2Int(),
           SADDate = _cwdx.SADDate.GetValueOrNull(),
           SADDocumentNo = _cwdx.SADDocumentNo,
-          SettledGrossMass = _cwdx.CW_SettledGrossMass.GetValueOrDefault(-1).RountMass(),
-          SettledNetMass = _cwdx.CW_SettledNetMass.GetValueOrDefault(-1).RountMass(),
-          TobaccoValue = _cwdx.TobaccoValue.GetValueOrDefault(-1).RoundCurrency(),
+          SettledGrossMass = _cwdx.CW_SettledGrossMass.GetValueOrDefault(-1),
+          SettledNetMass = _cwdx.CW_SettledNetMass.GetValueOrDefault(-1),
+          TobaccoValue = _cwdx.TobaccoValue.GetValueOrDefault(-1),
           WZ = String.Join(",", _wz.ToArray())
         };
         _listOfDisposals.Add(_newItem);
@@ -128,8 +128,11 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
           _WithdrawalSADDocumentDate = _cwdx.SADDate.GetValueOrDefault(Extensions.SPMinimum);
         }
       }
-      if (_WithdrawalSADDcoumentNo.IsNullOrEmpty())
-        throw new ApplicationError("CreateContent", "RequestContent", "No disposal has status TotalWindingUp", null);
+      if (_cw.AccountBalance.Value > 0)
+      {
+        _WithdrawalSADDcoumentNo = String.Empty.NotAvailable();
+        _WithdrawalSADDocumentDate = Extensions.SPMinimum;
+      }
       _listOfDisposals.Sort((x, y) => { return x.No.CompareTo(y.No); });
       RequestContent _new = new RequestContent()
       {
@@ -147,14 +150,14 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         IntroducingSADDocumentDate = _cw.CustomsDebtDate.GetValueOrDefault(Extensions.SPMinimum),
         IntroducingSADDocumentNo = _cw.DocumentNo,
         InvoiceNo = _cw.InvoiceNo,
-        NetMass = _cw.NetMass.GetValueOrDefault(-1).RoundCurrency(),
-        PackageUnits = _cw.CW_PackageUnits.GetValueOrDefault(-1).RoundCurrency(),
+        NetMass = _cw.NetMass.GetValueOrDefault(-1),
+        PackageUnits = _cw.CW_PackageUnits.GetValueOrDefault(-1),
         PzNo = _cw.CW_PzNo,
-        Quantity = _cw.CW_Quantity.GetValueOrDefault(-1).RountMass(),
+        Quantity = _cw.CW_Quantity.GetValueOrDefault(-1),
         SKU = _cw.SKU,
         TobaccoName = _cw.TobaccoName,
-        UnitPrice = _cw.CW_UnitPrice.GetValueOrDefault(-1).RoundCurrency(),
-        Value = _cw.Value.GetValueOrDefault(-1).RoundCurrency(),
+        UnitPrice = _cw.CW_UnitPrice.GetValueOrDefault(-1),
+        Value = _cw.Value.GetValueOrDefault(-1),
         WithdrawalSADDcoumentNo = _WithdrawalSADDcoumentNo,
         WithdrawalSADDocumentDate = _WithdrawalSADDocumentDate
       };
