@@ -25,6 +25,15 @@ namespace CAS.SmartFactory.CW.WebsiteModel
   /// </summary>
   public static class WebsiteModelExtensions
   {
+    /// <summary>
+    /// Rounds the currency.
+    /// </summary>
+    /// <param name="value">The value to be rounded.</param>
+    /// <returns>The <paramref name="value"/> rounded; the number of fractional digits in the return value is 2.</returns>
+    public static double RoundValue(this double value)
+    {
+      return Math.Round(value, 2);
+    }
     internal static Decimal DecimalValue(this Nullable<double> value)
     {
       return Convert.ToDecimal(value.GetValueOrDefault(0));

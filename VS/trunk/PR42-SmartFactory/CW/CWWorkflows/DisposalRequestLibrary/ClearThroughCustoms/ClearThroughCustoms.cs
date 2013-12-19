@@ -23,6 +23,7 @@ using CAS.SmartFactory.CW.WebsiteModel;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
+using System.Linq;
 
 namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCustoms
 {
@@ -54,7 +55,15 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
             Clearence _newClearance = Clearence.CreataClearence(_entities, "Customs Warehouse Withdraw", _Dr.ClearenceProcedure.Value);
             _cwdx.CWL_CWDisposal2ClearanceID = _newClearance;
             _cwdx.CustomsStatus = CustomsStatus.Started;
-            _cwdx.ClearingType = _cwdx.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value == 0 ? ClearingType.TotalWindingUp : ClearingType.PartialWindingUp;
+            if (_cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal.Where<CustomsWarehouseDisposal>(x => x.CustomsStatus.Value == CustomsStatus.NotStarted).Any<CustomsWarehouseDisposal>())
+
+              _cwdx.ClearingType = ClearingType.PartialWindingUp;
+            else
+            {
+              _cwdx.ClearingType = ClearingType.TotalWindingUp;
+              _cwdx.TobaccoValue += _cwdx.CWL_CWDisposal2CustomsWarehouseID.Value.Value - _cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal.Sum<CustomsWarehouseDisposal>(x => x.TobaccoValue.Value);
+              _cwdx.TobaccoValue = _cwdx.TobaccoValue.Value.RoundValue();
+            }
             _MasterDocumentName = _newClearance.SADTemplateDocumentNameFileName(_entities);
             SAD _sad = CraeteSAD(_entities, _cwdx, _MasterDocumentName);
             SPFile _newFile = File.CreateXmlFile<SAD>(workflowProperties.Web, _sad, _MasterDocumentName, SADConsignment.IPRSADConsignmentLibraryTitle, SAD.StylesheetNmane);

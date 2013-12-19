@@ -82,7 +82,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions.cs" />
     <Compile Include="Features\CWWebsiteModel\CWWebsiteModel.EventReceiver.cs">
       <DependentUpon>CWWebsiteModel.feature</DependentUpon>
     </Compile>
@@ -111,6 +110,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="WebsiteModelExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\EX06-SharePointGuidance2010\SharePoint 2010\Microsoft.Practices.SharePoint.Common\Source\Microsoft.Practices.SharePoint.Common.csproj">
