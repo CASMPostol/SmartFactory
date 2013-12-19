@@ -55,7 +55,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport.DoReportWorkflow
             return;
           }
           string _documentName = Settings.CustomsWarehouseReportFileName(_entities, workflowProperties.ItemId + 1);
-          AccountsReportContentWithStylesheet _newRequestContent = new AccountsReportContentWithStylesheet(_entities, _documentName);
+          AccountsReportContentWithStylesheet _newRequestContent = AccountsReportContentWithStylesheet.Create(_entities, _documentName);
           //if (_update)
           //  File.WriteXmlFile<AccountsReportContentWithStylesheet>((SPDocumentLibrary)workflowProperties.Web.Lists[Entities.CustomsWarehouseReportLibName], workflowProperties.ItemId, _newRequestContent);
           //else
