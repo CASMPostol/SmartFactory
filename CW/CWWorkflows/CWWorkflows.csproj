@@ -61,6 +61,9 @@
     <None Include="CustomsWarehouseList\CloseAccount\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{9b9235c5-7768-48bf-bc59-abef6847465f}</SharePointProjectItemId>
     </None>
+    <None Include="CustomsWarehouseReport\DoReportWorkflow\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6bfd3e0d-d457-4235-91f6-ecf15ae3e250}</SharePointProjectItemId>
+    </None>
     <None Include="DisposalRequestLibrary\ClearThroughCustoms\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6be75cdc-f5fe-4540-b5f8-259441f3f01e}</SharePointProjectItemId>
     </None>
@@ -87,6 +90,7 @@
   <ItemGroup>
     <Content Include="CustomsWarehouseList\BinCard\Elements.xml" />
     <Content Include="CustomsWarehouseList\CloseAccount\Elements.xml" />
+    <Content Include="CustomsWarehouseReport\DoReportWorkflow\Elements.xml" />
     <Content Include="DisposalRequestLibrary\ClearThroughCustoms\Elements.xml" />
     <Content Include="DisposalRequestLibrary\CreateStatement\Elements.xml" />
     <Content Include="EventReceivers\DisposalRequest\Elements.xml" />
@@ -128,6 +132,12 @@
     </Compile>
     <Compile Include="CustomsWarehouseList\CloseAccount\CloseAccount.Designer.cs">
       <DependentUpon>CloseAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomsWarehouseReport\DoReportWorkflow\DoReportWorkflow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomsWarehouseReport\DoReportWorkflow\DoReportWorkflow.Designer.cs">
+      <DependentUpon>DoReportWorkflow.cs</DependentUpon>
     </Compile>
     <Compile Include="DisposalRequestLibrary\ClearThroughCustoms\ClearThroughCustoms.cs">
       <SubType>Component</SubType>
