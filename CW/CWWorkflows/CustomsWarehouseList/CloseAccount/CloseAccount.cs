@@ -150,7 +150,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         IntroducingSADDocumentDate = _cw.CustomsDebtDate.GetValueOrDefault(Extensions.SPMinimum),
         IntroducingSADDocumentNo = _cw.DocumentNo,
         InvoiceNo = _cw.InvoiceNo,
-        NetMass = _cw.NetMass.GetValueOrDefault(-1),
+        NetMass = _cw.NetMass.GetValueOrDefault(-1), //TODO Clossing the account
         PackageUnits = _cw.CW_PackageUnits.GetValueOrDefault(-1),
         PzNo = _cw.CW_PzNo,
         Quantity = _cw.CW_Quantity.GetValueOrDefault(-1),
