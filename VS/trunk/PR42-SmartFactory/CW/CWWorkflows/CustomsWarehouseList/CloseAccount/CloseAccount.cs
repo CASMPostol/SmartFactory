@@ -69,12 +69,12 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
           {
             SPDocumentLibrary _lib = (SPDocumentLibrary)workflowProperties.Web.Lists[Entities.CustomsWarehouseLibName];
             SPFile _file = _lib.GetItemByIdSelectedFields(_requestId.Value).File;
-            File.WriteXmlFile<RequestContent>(_file, _newRequestContent, RequestContent.StylesheetNmane);
+            File.WriteXmlFile<RequestContent>(_file, _newRequestContent, RequestContent.StylesheetName);
           }
           else
           {
             string _documentName = Settings.ClearanceRequestFileName(_entities, workflowProperties.ItemId);
-            SPFile _newFile = File.CreateXmlFile<RequestContent>(workflowProperties.Web, _newRequestContent, _documentName, Entities.CustomsWarehouseLibName, RequestContent.StylesheetNmane);
+            SPFile _newFile = File.CreateXmlFile<RequestContent>(workflowProperties.Web, _newRequestContent, _documentName, Entities.CustomsWarehouseLibName, RequestContent.StylesheetName);
             CustomsWarehouseLib _BinCardLibRntry = Element.GetAtIndex<CustomsWarehouseLib>(_entities.CustomsWarehouseLibrary, _newFile.Item.ID);
             _cw.CWL_CW2CWLibraryID = _BinCardLibRntry;
             _entities.SubmitChanges();
