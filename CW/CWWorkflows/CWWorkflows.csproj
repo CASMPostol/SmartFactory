@@ -133,6 +133,7 @@
     <Compile Include="CustomsWarehouseList\CloseAccount\CloseAccount.Designer.cs">
       <DependentUpon>CloseAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomsWarehouseReport\AccountsReportContentWithStylesheet.cs" />
     <Compile Include="CustomsWarehouseReport\DoReportWorkflow\DoReportWorkflow.cs">
       <SubType>Component</SubType>
     </Compile>
