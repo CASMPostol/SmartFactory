@@ -18,9 +18,9 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountClearance
   public partial class RequestContent
   {
     /// <summary>
-    /// The stylesheet nmane
+    /// The stylesheet name
     /// </summary>
-    public static string StylesheetNmane = "RequestForCWAccountClearence.xslt";
+    public static string StylesheetName = "RequestForCWAccountClearence";
 
   }
 }
