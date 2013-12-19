@@ -65,7 +65,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       get
       {
         string _code = this.CWL_CWDisposal2PCNTID.ProductCodeNumber;
-        return _code.Substring(_code.Length - 2, 2);
+        return _code.Substring(0, _code.Length - 2);
       }
     }
     /// <summary>
@@ -79,7 +79,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       get
       {
         string _code = this.CWL_CWDisposal2PCNTID.ProductCodeNumber;
-        return _code.Substring(0, _code.Length - 2);
+        return _code.Substring(_code.Length - 2, 2);
       }
     }
     internal void FinishClearThroughCustoms(SADGood sadGood)
