@@ -163,7 +163,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         CWL_CWDisposal2DisposalRequestLibraryID = parent,
         CWL_CWDisposal2PCNTID = this.CWL_CW2PCNID,
         CWL_CWDisposal2CustomsWarehouseID = this,
-        SADDate = CAS.SharePoint.Extensions.DateTimeNull,
+        SADDate = CAS.SharePoint.Extensions.SPMinimum,
         SKUDescription = xmlData.SKUDescription,
         Title = "ToDo",
       };
