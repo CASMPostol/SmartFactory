@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AccountsReportContent xmlns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReportContent.xsd">
+<AccountsReportContent xmlns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReport.xsd">
   <DocumentName>DocumentName1</DocumentName>
   <DocumentDate>1900-01-01</DocumentDate>
-  <ConsentNo>ConsentNo1</ConsentNo>
-  <ConsentDate>1900-01-01</ConsentDate>
+  <Consents>Consents1</Consents>
   <ReportDate>1900-01-01</ReportDate>
   <AccountsColection>
     <AccountsArray>
-      <TotalNetMass>3</TotalNetMass>
-      <TotalValue>3</TotalValue>
-      <TotalCurrency>PLN</TotalCurrency>
+      <TotalNetMass>1</TotalNetMass>
+      <TotalValue>1</TotalValue>
+      <TotalCurrency>TotalCurrency1</TotalCurrency>
       <AccountsDetails>
         <DetailsOfOneAccount>
           <No>1</No>
@@ -22,43 +21,43 @@
           <CNTarrifCode>CNTarrifCode1</CNTarrifCode>
           <NetMass>1</NetMass>
           <Value>1</Value>
-          <Currency>PLN</Currency>
+          <Currency>Currency1</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>2</No>
+          <No>-2147483647</No>
           <DocumentNo>DocumentNo2</DocumentNo>
-          <CustomsDebtDate>2000-01-01</CustomsDebtDate>
+          <CustomsDebtDate>0001-01-01</CustomsDebtDate>
           <TobaccoName>TobaccoName2</TobaccoName>
           <Grade>Grade2</Grade>
           <SKU>SKU2</SKU>
           <Batch>Batch2</Batch>
           <CNTarrifCode>CNTarrifCode2</CNTarrifCode>
-          <NetMass>1</NetMass>
-          <Value>1</Value>
-          <Currency>PLN</Currency>
+          <NetMass>-1.7976931348623157E+308</NetMass>
+          <Value>-1.7976931348623157E+308</Value>
+          <Currency>Currency2</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>3</No>
+          <No>2147483647</No>
           <DocumentNo>DocumentNo3</DocumentNo>
-          <CustomsDebtDate>2010-12-31</CustomsDebtDate>
+          <CustomsDebtDate>9999-12-31</CustomsDebtDate>
           <TobaccoName>TobaccoName3</TobaccoName>
           <Grade>Grade3</Grade>
           <SKU>SKU3</SKU>
           <Batch>Batch3</Batch>
           <CNTarrifCode>CNTarrifCode3</CNTarrifCode>
-          <NetMass>1</NetMass>
-          <Value>1</Value>
-          <Currency>PLN</Currency>
+          <NetMass>1.7976931348623157E+308</NetMass>
+          <Value>1.7976931348623157E+308</Value>
+          <Currency>Currency3</Currency>
         </DetailsOfOneAccount>
       </AccountsDetails>
     </AccountsArray>
     <AccountsArray>
-      <TotalNetMass>6</TotalNetMass>
-      <TotalValue>6</TotalValue>
-      <TotalCurrency>USD</TotalCurrency>
+      <TotalNetMass>-1.7976931348623157E+308</TotalNetMass>
+      <TotalValue>-1.7976931348623157E+308</TotalValue>
+      <TotalCurrency>TotalCurrency2</TotalCurrency>
       <AccountsDetails>
         <DetailsOfOneAccount>
-          <No>4</No>
+          <No>0</No>
           <DocumentNo>DocumentNo4</DocumentNo>
           <CustomsDebtDate>1899-11-30</CustomsDebtDate>
           <TobaccoName>TobaccoName4</TobaccoName>
@@ -66,12 +65,12 @@
           <SKU>SKU4</SKU>
           <Batch>Batch4</Batch>
           <CNTarrifCode>CNTarrifCode4</CNTarrifCode>
-          <NetMass>2</NetMass>
-          <Value>2</Value>
-          <Currency>USD</Currency>
+          <NetMass>-0.10000002384185791</NetMass>
+          <Value>-0.10000002384185791</Value>
+          <Currency>Currency4</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>5</No>
+          <No>2</No>
           <DocumentNo>DocumentNo5</DocumentNo>
           <CustomsDebtDate>1900-02-02</CustomsDebtDate>
           <TobaccoName>TobaccoName5</TobaccoName>
@@ -79,12 +78,12 @@
           <SKU>SKU5</SKU>
           <Batch>Batch5</Batch>
           <CNTarrifCode>CNTarrifCode5</CNTarrifCode>
-          <NetMass>2</NetMass>
-          <Value>2</Value>
-          <Currency>USD</Currency>
+          <NetMass>2.1000000238418579</NetMass>
+          <Value>2.1000000238418579</Value>
+          <Currency>Currency5</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>6</No>
+          <No>-2147483646</No>
           <DocumentNo>DocumentNo6</DocumentNo>
           <CustomsDebtDate>0001-02-02</CustomsDebtDate>
           <TobaccoName>TobaccoName6</TobaccoName>
@@ -92,19 +91,19 @@
           <SKU>SKU6</SKU>
           <Batch>Batch6</Batch>
           <CNTarrifCode>CNTarrifCode6</CNTarrifCode>
-          <NetMass>2</NetMass>
-          <Value>2</Value>
-          <Currency>USD</Currency>
+          <NetMass>-1.7976931348623157E+308</NetMass>
+          <Value>-1.7976931348623157E+308</Value>
+          <Currency>Currency6</Currency>
         </DetailsOfOneAccount>
       </AccountsDetails>
     </AccountsArray>
     <AccountsArray>
-      <TotalNetMass>4</TotalNetMass>
-      <TotalValue>4</TotalValue>
-      <TotalCurrency>EUR</TotalCurrency>
+      <TotalNetMass>1.7976931348623157E+308</TotalNetMass>
+      <TotalValue>1.7976931348623157E+308</TotalValue>
+      <TotalCurrency>TotalCurrency3</TotalCurrency>
       <AccountsDetails>
         <DetailsOfOneAccount>
-          <No>7</No>
+          <No>2147483646</No>
           <DocumentNo>DocumentNo7</DocumentNo>
           <CustomsDebtDate>9999-11-29</CustomsDebtDate>
           <TobaccoName>TobaccoName7</TobaccoName>
@@ -112,12 +111,12 @@
           <SKU>SKU7</SKU>
           <Batch>Batch7</Batch>
           <CNTarrifCode>CNTarrifCode7</CNTarrifCode>
-          <NetMass>1</NetMass>
-          <Value>1</Value>
-          <Currency>EUR</Currency>
+          <NetMass>1.7976931348623157E+308</NetMass>
+          <Value>1.7976931348623157E+308</Value>
+          <Currency>Currency7</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>8</No>
+          <No>-1</No>
           <DocumentNo>DocumentNo8</DocumentNo>
           <CustomsDebtDate>1899-10-29</CustomsDebtDate>
           <TobaccoName>TobaccoName8</TobaccoName>
@@ -125,12 +124,12 @@
           <SKU>SKU8</SKU>
           <Batch>Batch8</Batch>
           <CNTarrifCode>CNTarrifCode8</CNTarrifCode>
-          <NetMass>1</NetMass>
-          <Value>1</Value>
-          <Currency>EUR</Currency>
+          <NetMass>-1.2000000476837158</NetMass>
+          <Value>-1.2000000476837158</Value>
+          <Currency>Currency8</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>9</No>
+          <No>3</No>
           <DocumentNo>DocumentNo9</DocumentNo>
           <CustomsDebtDate>1900-03-06</CustomsDebtDate>
           <TobaccoName>TobaccoName9</TobaccoName>
@@ -138,9 +137,9 @@
           <SKU>SKU9</SKU>
           <Batch>Batch9</Batch>
           <CNTarrifCode>CNTarrifCode9</CNTarrifCode>
-          <NetMass>2</NetMass>
-          <Value>2</Value>
-          <Currency>EUR</Currency>
+          <NetMass>3.2000000476837158</NetMass>
+          <Value>3.2000000476837158</Value>
+          <Currency>Currency9</Currency>
         </DetailsOfOneAccount>
       </AccountsDetails>
     </AccountsArray>

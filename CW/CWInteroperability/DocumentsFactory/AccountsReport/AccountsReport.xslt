@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:ms="urn:schemas-microsoft-com:xslt"
-    xmlns:cas="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReportContent.xsd"
+    xmlns:cas="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReport.xsd"
 >
   <xsl:output method="html" indent="yes"/>
   <xsl:decimal-format name="pl" decimal-separator=',' grouping-separator='.' />
@@ -48,7 +48,7 @@
       Zestawienie ilości towarów na składzie celnym nr C-0042-01
     </h1>
     <h2>
-      Zgodnie z pozwoleniem na korzystanie z procedury składu celnego nr <xsl:value-of select="cas:ConsentNo"/> z dnia <xsl:value-of select="cas:ConsentDate"/>
+      Zgodnie z pozwoleniem na korzystanie z procedury składu celnego nr <xsl:value-of select="cas:Consents"/>
     </h2>
     <h2>
       Stan na dzień <xsl:value-of select="cas:ReportDate"/>
