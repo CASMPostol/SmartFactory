@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +28,9 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
   /// </summary>
   internal class AccountsReportContentWithStylesheet : AccountsReportContent, IStylesheetNameProvider
   {
-    internal AccountsReportContentWithStylesheet(Entities entities, string documentName)
+
+    #region public
+    internal static AccountsReportContentWithStylesheet Create(Entities entities, string documentName)
     {
 
       Dictionary<string, Consent> _ConsentsList = new Dictionary<string, Consent>();
@@ -37,12 +39,19 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
                                                                 let _curr = _grx.Currency.Trim().ToUpper()
                                                                 group _grx by _curr;
       List<ArrayOfAccountsAccountsArray> _AccountsColection = CreateArrayOfAccountsAccountsArray(_groups);
-      AccountsColection = _AccountsColection.ToArray();
-      Consents = String.Join(",", _ConsentsList.Select(x => String.Format("{0}(1:d)", x.Value.Title, x.Value.ConsentDate.Value)).ToArray<string>());
-      DocumentDate = DateTime.Today;
-      DocumentName = documentName;
-      ReportDate = DateTime.Today;
+      AccountsReportContentWithStylesheet _ret = new AccountsReportContentWithStylesheet()
+        {
+          AccountsColection = _AccountsColection.ToArray(),
+          Consents = String.Join(",", _ConsentsList.Select(x => String.Format("{0}(1:d)", x.Value.Title, x.Value.ConsentDate.Value)).ToArray<string>()),
+          DocumentDate = DateTime.Today,
+          DocumentName = documentName,
+          ReportDate = DateTime.Today,
+        };
+      return _ret;
     }
+    #endregion
+
+    #region private
     private static List<ArrayOfAccountsAccountsArray> CreateArrayOfAccountsAccountsArray(IQueryable<IGrouping<string, CustomsWarehouse>> groups)
     {
       List<ArrayOfAccountsAccountsArray> _ret = new List<ArrayOfAccountsAccountsArray>();
@@ -93,5 +102,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
       _ret.Sort((x, y) => x.No.CompareTo(y.No));
       return _ret;
     }
+    #endregion
+
   }
 }
