@@ -24,7 +24,7 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReport
     /// <summary>
     /// The stylesheet nmane
     /// </summary>
-    public string StylesheetNmane { get { return "AccountsReport.xslt"; } }
+    public string StylesheetNmane { get { return "AccountsReport"; } }
 
   }
 }
