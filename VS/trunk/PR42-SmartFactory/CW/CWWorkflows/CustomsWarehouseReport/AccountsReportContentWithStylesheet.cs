@@ -87,7 +87,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
         decimal _mass = 0;
         if (_last.Count > 0)
         {
-          _Value = Convert.ToDecimal(_last[0].TobaccoValue.GetValueOrDefault(-1));
+          _Value = Convert.ToDecimal(_last[0].CW_RemainingTobaccoValue.GetValueOrDefault(-1));
           _mass = Convert.ToDecimal(_last[0].RemainingQuantity.GetValueOrDefault(-1));
         }
         else
