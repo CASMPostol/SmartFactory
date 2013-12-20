@@ -90,25 +90,6 @@
       1. Karta rozliczeniowa konta S.C.<br/>
       2. Kopia SAD - ostatnie wyprowadzenie
     </p>
-    <table border="0" width="100%">
-      <tr>
-        <td align="right" valign="bottom">
-          <br/>
-          <br/>
-          <br/>
-          <p>
-            .............................................
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td align="right">
-          <p>
-            Imię i Nazwisko
-          </p>
-        </td>
-      </tr>
-    </table>
     <!--AccountBallanceReport-->
     <table border="0" width="100%">
       <tr>
@@ -466,25 +447,6 @@
         </td>
         <td>
           &#160;
-        </td>
-      </tr>
-    </table>
-    <table border="0" width="100%">
-      <tr>
-        <td align="right" valign="bottom">
-          <br/>
-          <br/>
-          <br/>
-          <p>
-            .............................................
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td align="right">
-          <p>
-            Imię i Nazwisko
-          </p>
         </td>
       </tr>
     </table>
