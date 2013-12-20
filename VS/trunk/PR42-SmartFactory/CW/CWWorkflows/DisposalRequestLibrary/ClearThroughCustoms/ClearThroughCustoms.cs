@@ -55,14 +55,18 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
             Clearence _newClearance = Clearence.CreataClearence(_entities, "Customs Warehouse Withdraw", _Dr.ClearenceProcedure.Value);
             _cwdx.CWL_CWDisposal2ClearanceID = _newClearance;
             _cwdx.CustomsStatus = CustomsStatus.Started;
-            if (_cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal.Where<CustomsWarehouseDisposal>(x => x.CustomsStatus.Value == CustomsStatus.NotStarted).Any<CustomsWarehouseDisposal>())
-
+            if (_cwdx.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value > 0 ||
+                _cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal.Where<CustomsWarehouseDisposal>(x => x.CustomsStatus.Value == CustomsStatus.NotStarted).Any<CustomsWarehouseDisposal>())
               _cwdx.ClearingType = ClearingType.PartialWindingUp;
             else
             {
               _cwdx.ClearingType = ClearingType.TotalWindingUp;
               _cwdx.TobaccoValue += _cwdx.CWL_CWDisposal2CustomsWarehouseID.Value.Value - _cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal.Sum<CustomsWarehouseDisposal>(x => x.TobaccoValue.Value);
               _cwdx.TobaccoValue = _cwdx.TobaccoValue.Value.RoundValue();
+              _cwdx.CW_SettledNetMass += _cwdx.CWL_CWDisposal2CustomsWarehouseID.CW_Quantity.Value - _cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal.Sum<CustomsWarehouseDisposal>(x => x.CW_SettledNetMass.Value);
+              _cwdx.CW_SettledNetMass = _cwdx.CW_SettledNetMass.Value.RoundValue();
+              _cwdx.CW_SettledGrossMass += _cwdx.CWL_CWDisposal2CustomsWarehouseID.GrossMass.Value - _cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal.Sum<CustomsWarehouseDisposal>(x => x.CW_SettledGrossMass.Value);
+              _cwdx.CW_SettledGrossMass = _cwdx.CW_SettledGrossMass.Value.RoundValue();
             }
             _MasterDocumentName = _newClearance.SADTemplateDocumentNameFileName(_entities);
             SAD _sad = CraeteSAD(_entities, _cwdx, _MasterDocumentName);
