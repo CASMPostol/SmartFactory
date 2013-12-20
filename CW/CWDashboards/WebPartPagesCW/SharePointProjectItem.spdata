@@ -7,7 +7,9 @@
     <ProjectItemFile Source="WebPageTemplate_SupplementCWBook.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_DisposalsView.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_DisposalRequest.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
-    <ProjectItemFile Source="WebPageTemplate_CWBookClosed.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_CWBookCustomsOffice.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_CWBook.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_CWBookClosedCustomsOffice.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_CWBookClosed.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
   </Files>
 </ProjectItem>

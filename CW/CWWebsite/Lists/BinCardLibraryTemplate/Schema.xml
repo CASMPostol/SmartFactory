@@ -52,7 +52,7 @@
         </ParameterBindings>
         <Query>
           <OrderBy>
-            <FieldRef Name="FileLeafRef" />
+            <FieldRef Name="ID" Ascending="False" />
           </OrderBy>
         </Query>
       </View>
@@ -196,6 +196,27 @@
               <Value Type="Boolean">Yes</Value>
             </Eq>
           </Where>
+        </Query>
+      </View>
+      <View BaseViewID="12" Type="HTML" WebPartZoneID="Main" DisplayName="CW Book" DefaultView="FALSE" MobileView="True" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/CWBook.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">1</RowLimit>
+        <ViewFields>
+          <FieldRef Name="DocIcon"></FieldRef>
+          <FieldRef Name="Title" />
+          <FieldRef Name="LinkFilename"></FieldRef>
+          <FieldRef Name="Modified"></FieldRef>
+          <FieldRef Name="Editor"></FieldRef>
+        </ViewFields>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noitemsinview_doclibrary_howto2)" />
+        </ParameterBindings>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="FileLeafRef" />
+          </OrderBy>
         </Query>
       </View>
       <View BaseViewID="40" Type="HTML" WebPartZoneID="Main" DisplayName="assetLibTemp" DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/Thumbnails.aspx" Hidden="TRUE">

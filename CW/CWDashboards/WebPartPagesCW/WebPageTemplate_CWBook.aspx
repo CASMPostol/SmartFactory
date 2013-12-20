@@ -42,6 +42,22 @@
                         FrameType="TitleBarOnly" />
             </td>
         </tr>
+        <tr>
+            <td valign="top">
+                        <WebPartPages:WebpartZone
+                        ID="BinCard" runat="server"
+                        Title="Bin Card Web Part Zone"
+                        FrameType="TitleBarOnly" />
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                        <WebPartPages:WebpartZone
+                        ID="CWLibrary" runat="server"
+                        Title="CW Library Web Part Zone"
+                        FrameType="TitleBarOnly" />
+            </td>
+        </tr>
     </table>
   </div>
 

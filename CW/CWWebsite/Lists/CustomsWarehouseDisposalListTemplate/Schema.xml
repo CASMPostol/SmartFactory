@@ -176,7 +176,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Customs Warehouse Disposals" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="CustomsWarehouseDisposals.aspx">
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="CW Book Disposals" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="CustomsWarehouseDisposals.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
@@ -246,7 +246,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="Active" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Active.aspx">
+      <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="Disposals - Active" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Active.aspx">
         <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
@@ -306,7 +306,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="5" Type="HTML" WebPartZoneID="Main" DisplayName="Archives" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Archives.aspx">
+      <View BaseViewID="5" Type="HTML" WebPartZoneID="Main" DisplayName="Disposals - Archives" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Archives.aspx">
         <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
@@ -366,7 +366,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="6" Type="GRID" WebPartZoneID="Main" DisplayName="SupplementWZ" DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="SupplementWZ.aspx">
+      <View BaseViewID="6" Type="GRID" WebPartZoneID="Main" DisplayName="Supplement WZ No" DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="SupplementWZ.aspx">
         <ViewFields>
           <FieldRef Name="CWL_CWDisposal2DisposalRequestLibraryTitle_sec" />
           <FieldRef Name="Title" />
@@ -436,7 +436,75 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="8" Type="HTML" WebPartZoneID="Main" DisplayName="Customs Warehouse Closed - Disposals" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="CustomsWarehouseClosedDisposals.aspx">
+      <View BaseViewID="8" Type="HTML" WebPartZoneID="Main" DisplayName="CW Book Closed Disposals" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="CustomsWarehouseClosedDisposals.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="No" />
+          <FieldRef Name="SADDocumentNo" />
+          <FieldRef Name="SADDate" />
+          <FieldRef Name="CWL_CWDisposal2CWTobaccoName_sec" />
+          <FieldRef Name="CustomsStatus" />
+          <FieldRef Name="CW_SettledNetMass" />
+          <FieldRef Name="CW_SettledGrossMass" />
+          <FieldRef Name="TobaccoValue" />
+          <FieldRef Name="CWL_CWDisposal2CWCurrency_sec" />
+          <FieldRef Name="CW_PackageToClear" />
+          <FieldRef Name="CW_Wz1" />
+          <FieldRef Name="CW_Wz2" />
+          <FieldRef Name="CW_Wz3" />
+          <FieldRef Name="CW_RemainingPackage" />
+          <FieldRef Name="CWL_CWDisposal2PCNPCN_sec" />
+          <FieldRef Name="ClearingType" />
+          <FieldRef Name="CustomsProcedure" />
+          <FieldRef Name="_UIVersionString" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="9" Type="HTML" WebPartZoneID="Main" DisplayName="CW Book Disposals - Customs Office" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="CustomsWarehouseDisposalsCustomsOffice.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="No" />
+          <FieldRef Name="SADDocumentNo" />
+          <FieldRef Name="SADDate" />
+          <FieldRef Name="CWL_CWDisposal2CWTobaccoName_sec" />
+          <FieldRef Name="CustomsStatus" />
+          <FieldRef Name="CW_SettledNetMass" />
+          <FieldRef Name="CW_SettledGrossMass" />
+          <FieldRef Name="TobaccoValue" />
+          <FieldRef Name="CWL_CWDisposal2CWCurrency_sec" />
+          <FieldRef Name="CW_PackageToClear" />
+          <FieldRef Name="CW_Wz1" />
+          <FieldRef Name="CW_Wz2" />
+          <FieldRef Name="CW_Wz3" />
+          <FieldRef Name="CW_RemainingPackage" />
+          <FieldRef Name="CWL_CWDisposal2PCNPCN_sec" />
+          <FieldRef Name="ClearingType" />
+          <FieldRef Name="CustomsProcedure" />
+          <FieldRef Name="_UIVersionString" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="10" Type="HTML" WebPartZoneID="Main" DisplayName="CW Book Closed Disposals - Customs Office" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="CustomsWarehouseDisposalsCustomsOffice.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
