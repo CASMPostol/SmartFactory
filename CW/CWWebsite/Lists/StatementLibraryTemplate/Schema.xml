@@ -55,7 +55,7 @@
         </ParameterBindings>
         <Query>
           <OrderBy>
-            <FieldRef Name="FileLeafRef" />
+            <FieldRef Name="ID" Ascending="False" />
           </OrderBy>
         </Query>
       </View>
@@ -166,7 +166,7 @@
         </ParameterBindings>
         <Query>
           <OrderBy>
-            <FieldRef Name="FileLeafRef" />
+            <FieldRef Name="ID" Ascending="False" />
           </OrderBy>
           <Where>
             <Neq>
@@ -193,7 +193,7 @@
         </ParameterBindings>
         <Query>
           <OrderBy>
-            <FieldRef Name="FileLeafRef" />
+            <FieldRef Name="ID" Ascending="False" />
           </OrderBy>
           <Where>
             <Eq>
@@ -220,7 +220,7 @@
         </ParameterBindings>
         <Query>
           <OrderBy>
-            <FieldRef Name="ID" Ascending="FALSE" />
+            <FieldRef Name="ID" Ascending="False" />
           </OrderBy>
         </Query>
       </View>
