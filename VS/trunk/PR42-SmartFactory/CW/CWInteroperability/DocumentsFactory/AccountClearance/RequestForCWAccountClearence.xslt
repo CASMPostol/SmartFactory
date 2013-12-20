@@ -421,21 +421,25 @@
             <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:SettledNetMass), $FoarmatOfFloat, 'pl')"/>
           </b>
         </td>
-        <td>
-          &#160;
+        <td valign="middle" align="center">
+          <b>
+            <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:SettledNetMass), $FoarmatOfFloat, 'pl')"/>
+          </b>
         </td>
         <td valign="middle" align="center">
           <b>
             <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:SettledGrossMass), $FoarmatOfFloat, 'pl')"/>
           </b>
         </td>
-        <td>
+        <td align="center">
           <b>
             <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:TobaccoValue), $FoarmatOfFloat, 'pl')"/>
           </b>
         </td>
-        <td>
-          &#160;
+        <td align="center">
+          <b>
+            <xsl:value-of select="cas:DisposalsColection/cas:DisposalsArray/cas:Currency"/>
+          </b>
         </td>
         <td valign="middle" align="center">
           <b>
@@ -452,12 +456,12 @@
         </td>
         <td valign="middle" align="center">
           <b>
-            <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:RemainingQuantity), $FoarmatOfFloat, 'pl')"/>
+            &#160;
           </b>
         </td>
         <td valign="middle" align="center">
           <b>
-            <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:RemainingPackage), $FoarmatOfFloat, 'pl')"/>
+            &#160;
           </b>
         </td>
         <td>
@@ -491,7 +495,12 @@
   <xsl:template match="cas:DisposalsArray">
     <tr>
       <td valign="middle" align="center">
-        <xsl:value-of select="cas:No"/>
+        <xsl:choose>
+          <xsl:when test="cas:No='0'">&#160;</xsl:when>
+          <xsl:when test="not(cas:No='0')">
+            <xsl:value-of select="cas:No"/>
+          </xsl:when>
+        </xsl:choose>
       </td>
       <td valign="middle" align="center">
         <xsl:value-of select="cas:SADDocumentNo"/>
@@ -502,8 +511,8 @@
       <td valign="middle" align="center">
         <xsl:value-of select="format-number(cas:SettledNetMass, $FoarmatOfFloat, 'pl')"/>
       </td>
-      <td>
-        &#160;
+      <td valign="middle" align="center">
+        <xsl:value-of select="format-number(cas:SettledNetMass, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td valign="middle" align="center">
         <xsl:value-of select="format-number(cas:SettledGrossMass, $FoarmatOfFloat, 'pl')"/>
@@ -524,10 +533,20 @@
         <xsl:value-of select="cas:WZ"/>
       </td>
       <td valign="middle" align="center">
-        <xsl:value-of select="format-number(cas:RemainingQuantity, $FoarmatOfFloat, 'pl')"/>
+        <xsl:choose>
+          <xsl:when test="cas:RemainingQuantity='0'">&#160;</xsl:when>
+          <xsl:when test="not(cas:RemainingQuantity='0')">
+            <xsl:value-of select="format-number(cas:RemainingQuantity, $FoarmatOfFloat, 'pl')"/>
+          </xsl:when>
+        </xsl:choose>
       </td>
       <td valign="middle" align="center">
-        <xsl:value-of select="format-number(cas:RemainingPackage, $FoarmatOfFloat, 'pl')"/>
+        <xsl:choose>
+          <xsl:when test="cas:RemainingPackage='0'">&#160;</xsl:when>
+          <xsl:when test="not(cas:RemainingPackage='0')">
+            <xsl:value-of select="format-number(cas:RemainingPackage, $FoarmatOfFloat, 'pl')"/>
+          </xsl:when>
+        </xsl:choose>
       </td>
       <td valign="middle" align="center">
         <xsl:value-of select="cas:CNTarrifCode"/>
