@@ -162,7 +162,7 @@
         </ParameterBindings>
         <Query>
           <OrderBy>
-            <FieldRef Name="FileLeafRef" />
+            <FieldRef Name="ID" Ascending="False" />
           </OrderBy>
           <Where>
             <Neq>
@@ -188,7 +188,7 @@
         </ParameterBindings>
         <Query>
           <OrderBy>
-            <FieldRef Name="FileLeafRef" />
+            <FieldRef Name="ID" Ascending="False" />
           </OrderBy>
           <Where>
             <Eq>
@@ -204,7 +204,6 @@
         <RowLimit Paged="TRUE">1</RowLimit>
         <ViewFields>
           <FieldRef Name="DocIcon"></FieldRef>
-          <FieldRef Name="Title" />
           <FieldRef Name="LinkFilename"></FieldRef>
           <FieldRef Name="Modified"></FieldRef>
           <FieldRef Name="Editor"></FieldRef>
