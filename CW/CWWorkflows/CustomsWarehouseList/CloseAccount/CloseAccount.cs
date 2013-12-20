@@ -110,15 +110,15 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         {
           CNTarrifCode = _cwdx.CWL_CWDisposal2PCNTID.ProductCodeNumber,
           Currency = _cwdx.CWL_CWDisposal2CustomsWarehouseID.Currency,
-          No = _cwdx.No.GetValueOrDefault(-1).Convert2Int(),
-          PackageToClear = _cwdx.CW_PackageToClear.GetValueOrDefault(-1).Convert2Int(),
-          RemainingPackage = _cwdx.CW_RemainingPackage.GetValueOrDefault(-1).Convert2Int(),
-          RemainingQuantity = _cwdx.RemainingQuantity.GetValueOrDefault(-1).Convert2Int(),
+          No = _cwdx.No.GetValueOrDefault().Convert2Int(),
+          PackageToClear = _cwdx.CW_PackageToClear.GetValueOrDefault().Convert2Int(),
+          RemainingPackage = _cwdx.CW_RemainingPackage.GetValueOrDefault().Convert2Int(),
+          RemainingQuantity = _cwdx.RemainingQuantity.GetValueOrDefault().Convert2Int(),
           SADDate = _cwdx.SADDate.GetValueOrNull(),
           SADDocumentNo = _cwdx.SADDocumentNo,
-          SettledGrossMass = _cwdx.CW_SettledGrossMass.GetValueOrDefault(-1),
-          SettledNetMass = _cwdx.CW_SettledNetMass.GetValueOrDefault(-1),
-          TobaccoValue = _cwdx.TobaccoValue.GetValueOrDefault(-1),
+          SettledGrossMass = _cwdx.CW_SettledGrossMass.GetValueOrDefault(),
+          SettledNetMass = _cwdx.CW_SettledNetMass.GetValueOrDefault(),
+          TobaccoValue = _cwdx.TobaccoValue.GetValueOrDefault(),
           WZ = String.Join(",", _wz.ToArray())
         };
         _listOfDisposals.Add(_newItem);
