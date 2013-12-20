@@ -61,8 +61,14 @@
     <None Include="Dashboards\CheckListExitSheetDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{69062d07-cf18-4715-b37d-e2eb1fe83905}</SharePointProjectItemId>
     </None>
+    <None Include="Dashboards\CWBookClosedCustomsOfficeDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6e6da7c8-cb07-4527-9c49-2512e0877bca}</SharePointProjectItemId>
+    </None>
     <None Include="Dashboards\CWBookClosedDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{551953a5-f1c0-45b0-bebd-3daaa207904a}</SharePointProjectItemId>
+    </None>
+    <None Include="Dashboards\CWBookCustomsOfficeDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{86d975dd-106a-4c29-8464-b1331d5ee401}</SharePointProjectItemId>
     </None>
     <None Include="Dashboards\CWBookDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b929c35f-5671-44b3-8ae1-8d9968d01895}</SharePointProjectItemId>
@@ -134,7 +140,11 @@
     <Content Include="Dashboards\CheckListExitSheetDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Dashboards\CWBookClosedCustomsOfficeDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Dashboards\CWBookClosedDashboard\Elements.xml" />
+    <Content Include="Dashboards\CWBookCustomsOfficeDashboard\Elements.xml" />
     <Content Include="Dashboards\CWBookDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -147,6 +157,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Images\CWDashboards\CW_feature_32x32.png" />
+    <Content Include="Layouts\CWDashboards\CAS_CWLayouts.css" />
     <Content Include="Silverlight\SilverLightModule\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -159,6 +170,8 @@
     <Content Include="WebPartPagesCW\WebPageTemplate_CheckListExitSheet.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_CWBook.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_CWBookClosed.aspx" />
+    <Content Include="WebPartPagesCW\WebPageTemplate_CWBookClosedCustomsOffice.aspx" />
+    <Content Include="WebPartPagesCW\WebPageTemplate_CWBookCustomsOffice.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_DisposalsView.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_SupplementCWBook.aspx" />

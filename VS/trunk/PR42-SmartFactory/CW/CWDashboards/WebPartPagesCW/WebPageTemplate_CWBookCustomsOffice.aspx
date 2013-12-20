@@ -12,6 +12,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="CollaborationServer" content="SharePoint Team Web Site" />
 <link href="/_layouts/CWDashboards/CAS_CWDashboards.css" rel="stylesheet" type="text/css" />
+<link href="/_layouts/CWDashboards/CAS_CWLayouts.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderId="PlaceHolderMain" runat="server">
@@ -21,7 +22,7 @@
         <tr>
             <td valign="top">
                         <WebPartPages:WebpartZone
-                        ID="CWBookClosed" runat="server"
+                        ID="CWBook" runat="server"
                         Title="CWBook Web Part Zone"
                         FrameType="TitleBarOnly" />
             </td>
@@ -29,7 +30,7 @@
         <tr>
             <td valign="top">
                         <WebPartPages:WebpartZone
-                        ID="CWBookClosedAll" runat="server"
+                        ID="CWBookAll" runat="server"
                         Title="CWBook All Web Part Zone"
                         FrameType="TitleBarOnly" />
             </td>
@@ -37,28 +38,20 @@
         <tr>
             <td valign="top">
                         <WebPartPages:WebpartZone
-                        ID="DisposalsClosed" runat="server"
+                        ID="Disposals" runat="server"
                         Title="Disposals Web Part Zone"
                         FrameType="TitleBarOnly" />
             </td>
-        </tr>
-        <tr>
-            <td valign="top">
-                        <WebPartPages:WebpartZone
-                        ID="CWLibrary" runat="server"
-                        Title="CW Library Web Part Zone"
-                        FrameType="TitleBarOnly" />
-            </td>
-        </tr>
+        </tr>      
     </table>
   </div>
 
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-<asp:Literal ID="m_PageTitle" runat="server" Text="<%$Resources:CASSmartFactoryCW,CAS_ASPX_CWBookClosedDashboard%>" />
+<asp:Literal ID="m_PageTitle" runat="server" Text="<%$Resources:CASSmartFactoryCW,CAS_ASPX_CWBookCustomsOfficeDashboard%>" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
-<asp:Literal ID="m_PageTitleInTitleArea" runat="server" Text="<%$Resources:CASSmartFactoryCW,CAS_ASPX_CWBookClosedDashboard%>" />
+<asp:Literal ID="m_PageTitleInTitleArea" runat="server" Text="<%$Resources:CASSmartFactoryCW,CAS_ASPX_CWBookCustomsOfficeDashboard%>" />
 </asp:Content>

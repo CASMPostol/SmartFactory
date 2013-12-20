@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <Module Name="CWBookClosedDashboard">
-    <File Path="WebPartPagesCW\WebPageTemplate_CWBookClosed.aspx" Url="WebPartPagesCW/CWBookClosedDashboard.aspx">
-      <View List="Lists/CustomsWarehouseList" BaseViewID="7" WebPartZoneID="CWBookClosed" WebPartOrder="0" >
+  <Module Name="CWBookClosedCustomsOfficeDashboard">
+    <File Path="WebPartPagesCW\WebPageTemplate_CWBookClosedCustomsOffice.aspx" Url="WebPartPagesCW/CWBookClosedCustomsOfficeDashboard.aspx">
+      <View List="Lists/CustomsWarehouseList" BaseViewID="11" WebPartZoneID="CWBookClosed" WebPartOrder="0" >
         <![CDATA[
          <webParts>
          <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -13,7 +13,7 @@
          <data>
          <properties>
          <property name="Title" type="string">KSIĘGA SKŁADU CELNEGO - konta zamknięte</property>
-         <property name="TitleUrl" type="string">CWBookClosedDashboard.aspx</property>
+         <property name="TitleUrl" type="string">CWBookClosedCustomsOfficeDashboard.aspx</property>
          <property name="AllowConnect" type="bool">True</property>
          </properties>
          </data>
@@ -21,7 +21,7 @@
          </webParts>
          ]]>
       </View>
-      <View List="Lists/CustomsWarehouseList" BaseViewID="8" WebPartZoneID="CWBookClosedAll" WebPartOrder="0" >
+      <View List="Lists/CustomsWarehouseList" BaseViewID="12" WebPartZoneID="CWBookClosedAll" WebPartOrder="0" >
         <![CDATA[
          <webParts>
          <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -32,7 +32,7 @@
          <data>
          <properties>
          <property name="Title" type="string">KSIĘGA SKŁADU CELNEGO - WPROWADZENIA</property>
-         <property name="TitleUrl" type="string">CWBookClosedDashboard.aspx</property>
+         <property name="TitleUrl" type="string">CWBookClosedCustomsOfficeDashboard.aspx</property>
          <property name="AllowConnect" type="bool">True</property>
          </properties>
          </data>
@@ -40,7 +40,7 @@
          </webParts>
          ]]>
       </View>
-      <View List="Lists/CustomsWarehouseDisposalList" BaseViewID="8" WebPartZoneID="DisposalsClosed" WebPartOrder="0" >
+      <View List="Lists/CustomsWarehouseDisposalList" BaseViewID="10" WebPartZoneID="DisposalsClosed" WebPartOrder="0" >
         <![CDATA[
          <webParts>
          <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -51,26 +51,7 @@
          <data>
          <properties>
          <property name="Title" type="string">KSIĘGA SKŁADU CELNEGO - WYPROWADZENIA</property>
-         <property name="TitleUrl" type="string">CWBookClosedDashboard.aspx</property>
-         <property name="AllowConnect" type="bool">True</property>
-         </properties>
-         </data>
-         </webPart>
-         </webParts>
-         ]]>
-      </View>
-      <View List="Lists/CustomsWarehouseLibrary" BaseViewID="12" WebPartZoneID="CWLibrary" WebPartOrder="0" >
-        <![CDATA[
-         <webParts>
-         <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-         <metaData>
-         <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
-         <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
-         </metaData>
-         <data>
-         <properties>
-         <property name="Title" type="string">WNIOSEK</property>
-         <property name="TitleUrl" type="string">CWBookDashboard.aspx</property>
+         <property name="TitleUrl" type="string">CWBookClosedCustomsOfficeDashboard.aspx</property>
          <property name="AllowConnect" type="bool">True</property>
          </properties>
          </data>
