@@ -33,7 +33,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
     internal static AccountsReportContentWithStylesheet Create(Entities entities, string documentName)
     {
 
-      Dictionary<string, Consent> _ConsentsList = new Dictionary<string, Consent>();
+      Dictionary<string, Consent> _ConsentsList = new Dictionary<string, Consent>(); //TODO is empty
       IQueryable<IGrouping<string, CustomsWarehouse>> _groups = from _grx in entities.CustomsWarehouse
                                                                 where !_grx.Archival.Value && !_grx.AccountClosed.Value && _grx.AccountBalance.Value > 0
                                                                 let _curr = _grx.Currency.Trim().ToUpper()
@@ -79,10 +79,24 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
       int _No = 0;
       foreach (CustomsWarehouse _cwx in group)
       {
-        decimal _Value = Convert.ToDecimal(_cwx.Value.GetValueOrDefault(-1));
+        List<CustomsWarehouseDisposal> _last = (from _cwdx in _cwx.CustomsWarehouseDisposal
+                                                where _cwdx.CustomsStatus.Value == CustomsStatus.Finished
+                                                orderby _cwdx.No.Value descending
+                                                select _cwdx).ToList<CustomsWarehouseDisposal>();
+        decimal _Value = 0;
+        decimal _mass = 0;
+        if (_last.Count > 0)
+        {
+          _Value = Convert.ToDecimal(_last[0].TobaccoValue.GetValueOrDefault(-1));
+          _mass = Convert.ToDecimal(_last[0].RemainingQuantity.GetValueOrDefault(-1));
+        }
+        else
+        {
+          _Value = Convert.ToDecimal(_cwx.Value.GetValueOrDefault(-1));
+          _mass = Convert.ToDecimal(_cwx.CW_Quantity.GetValueOrDefault(-1));
+        }
         totalValue += _Value;
-        decimal _mass = Convert.ToDecimal(_cwx.AccountBalance.GetValueOrDefault(-1));
-        totalNetMass += totalNetMass;
+        totalNetMass += _mass;
         ArrayOfAccountsDetailsDetailsOfOneAccount _newitem = new ArrayOfAccountsDetailsDetailsOfOneAccount()
         {
           Batch = _cwx.Batch,
