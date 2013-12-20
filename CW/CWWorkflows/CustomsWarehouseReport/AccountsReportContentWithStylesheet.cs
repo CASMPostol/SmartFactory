@@ -81,7 +81,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
       {
         decimal _Value = Convert.ToDecimal(_cwx.Value.GetValueOrDefault(-1));
         totalValue += _Value;
-        decimal _mass = Convert.ToDecimal(_cwx.NetMass.GetValueOrDefault(-1));
+        decimal _mass = Convert.ToDecimal(_cwx.AccountBalance.GetValueOrDefault(-1));
         totalNetMass += totalNetMass;
         ArrayOfAccountsDetailsDetailsOfOneAccount _newitem = new ArrayOfAccountsDetailsDetailsOfOneAccount()
         {
