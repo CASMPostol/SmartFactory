@@ -159,7 +159,6 @@
           <FieldRef Name="CW_Wz2" />
           <FieldRef Name="CW_Wz3" />
           <FieldRef Name="CW_WZNoSupplemented" />
-          <FieldRef Name="AccountClosed" />
           <FieldRef Name="Archival" />
           <FieldRef Name="CWL_CWDisposal2DisposalRequestLibraryID" />
           <FieldRef Name="CWL_CWDisposal2CustomsWarehouseID" />
@@ -284,7 +283,6 @@
           <FieldRef Name="CW_Wz1" />
           <FieldRef Name="CW_Wz2" />
           <FieldRef Name="CW_Wz3" />
-          <FieldRef Name="AccountClosed" />
           <FieldRef Name="CWL_CWDisposal2DisposalRequestLibraryID" />
           <FieldRef Name="CWL_CWDisposal2CustomsWarehouseID" />
           <FieldRef Name="CWL_CWDisposal2ClearanceID" />
@@ -344,7 +342,6 @@
           <FieldRef Name="CW_Wz1" />
           <FieldRef Name="CW_Wz2" />
           <FieldRef Name="CW_Wz3" />
-          <FieldRef Name="AccountClosed" />
           <FieldRef Name="CWL_CWDisposal2DisposalRequestLibraryID" />
           <FieldRef Name="CWL_CWDisposal2CustomsWarehouseID" />
           <FieldRef Name="CWL_CWDisposal2ClearanceID" />
