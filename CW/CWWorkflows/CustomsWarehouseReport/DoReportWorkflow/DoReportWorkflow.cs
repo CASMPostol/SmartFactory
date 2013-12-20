@@ -59,7 +59,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport.DoReportWorkflow
           //if (_update)
           //  File.WriteXmlFile<AccountsReportContentWithStylesheet>((SPDocumentLibrary)workflowProperties.Web.Lists[Entities.CustomsWarehouseReportLibName], workflowProperties.ItemId, _newRequestContent);
           //else
-          File.CreateXmlFile<AccountsReportContentWithStylesheet>(workflowProperties.Web, _newRequestContent, _documentName, Entities.CustomsWarehouseLibName);
+          File.CreateXmlFile<AccountsReportContentWithStylesheet>(workflowProperties.Web, _newRequestContent, _documentName, Entities.CustomsWarehouseReportLibName);
         }
       }
       catch (CAS.SharePoint.ApplicationError _ap)

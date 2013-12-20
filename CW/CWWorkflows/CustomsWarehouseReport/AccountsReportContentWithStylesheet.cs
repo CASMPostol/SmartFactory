@@ -26,7 +26,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
   /// <summary>
   /// class AccountsReportContentWithStylesheet 
   /// </summary>
-  internal class AccountsReportContentWithStylesheet : AccountsReportContent, IStylesheetNameProvider
+  public class AccountsReportContentWithStylesheet : AccountsReportContent, IStylesheetNameProvider
   {
 
     #region public
