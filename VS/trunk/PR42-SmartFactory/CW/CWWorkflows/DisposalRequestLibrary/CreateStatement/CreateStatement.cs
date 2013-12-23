@@ -78,12 +78,12 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.CreateStatement
           throw new ArgumentNullException( "SADDocumentNo", "SAD Document No cannot be empty" );
         Statement _newItem = new Statement
         {
-          DutyAndVAT = _cwdx.DutyAndVAT.GetValueOrDefault().RoundCurrency(),
-          DutyPerSettledAmount = _cwdx.DutyPerSettledAmount.Value.RoundCurrency(),
+          DutyAndVAT = _cwdx.DutyAndVAT.GetValueOrDefault(),
+          DutyPerSettledAmount = _cwdx.DutyPerSettledAmount.Value,
           No = _ix++,
           SADDocumentNo = _cwdx.SADDocumentNo,
           ReferenceNumber = _cwdx.CWL_CWDisposal2ClearanceID.ReferenceNumber,
-          VATPerSettledAmount = _cwdx.VATPerSettledAmount.Value.RoundCurrency(),
+          VATPerSettledAmount = _cwdx.VATPerSettledAmount.Value,
         };
         _SADDocuments.Add( _newItem );
       }

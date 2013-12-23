@@ -96,7 +96,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       }
       foreach (CustomsWarehouse _cwx in _available)
       {
-        _cwx.Dispose(entities, parentRequestLib, ref xmlData);
+        _cwx.Dispose(entities, parentRequestLib, xmlData);
         if (xmlData.DeclaredQuantity + xmlData.AdditionalQuantity <= 0)
           return;
       }
@@ -130,7 +130,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
               orderby _cwi.CustomsDebtDate.Value ascending, _cwi.DocumentNo ascending
               select _cwi).ToList<CustomsWarehouse>();
     }
-    private void Dispose(Entities entities, DisposalRequestLib parent, ref CustomsWarehouseDisposal.XmlData xmlData)
+    private void Dispose(Entities entities, DisposalRequestLib parent, CustomsWarehouseDisposal.XmlData xmlData)
     {
       decimal _2Dispose = xmlData.DeclaredQuantity + xmlData.AdditionalQuantity;
       if (this.TobaccoNotAllocated.DecimalValue() < _2Dispose)
@@ -152,21 +152,23 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       CustomsWarehouseDisposal _new = new CustomsWarehouseDisposal()
       {
         Archival = false,
+        ClearingType = ClearingType.PartialWindingUp,
         CustomsStatus = CustomsStatus.NotStarted,
         CustomsProcedure = parent.ClearenceProcedure.Value.Convert2String(),
         CW_AddedKg = _AdditionalQntty.DoubleValue(),
         CW_DeclaredNetMass = _DeclaredQntty.DoubleValue(),
         CW_SettledNetMass = _2Dispose.DoubleValue(),
-        CW_SettledGrossMass = (_2Dispose + PackageWeight() * _Boxes).DoubleValue(),
+        CW_SettledGrossMass = ((_2Dispose + PackageWeight() * _Boxes).DoubleValue()).RoundValue(),
         CW_PackageToClear = _Boxes.DoubleValue(),
-        TobaccoValue = (this.Value.Value / this.CW_Quantity.Value * _2Dispose.DoubleValue()).RoundValue(),
         CWL_CWDisposal2DisposalRequestLibraryID = parent,
         CWL_CWDisposal2PCNTID = this.CWL_CW2PCNID,
         CWL_CWDisposal2CustomsWarehouseID = this,
         SADDate = CAS.SharePoint.Extensions.SPMinimum,
-        SKUDescription = xmlData.SKUDescription,
+        SKUDescription = xmlData.SKUDescription, 
+        WZAdded = false,
         Title = "ToDo",
       };
+      _new.CalcualateTobaccoValue();
       entities.CustomsWarehouseDisposal.InsertOnSubmit(_new);
       _new.UpdateTitle();
     }
