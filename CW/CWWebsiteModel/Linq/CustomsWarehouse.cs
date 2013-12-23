@@ -26,6 +26,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
   /// </summary>
   public partial class CustomsWarehouse
   {
+
     #region public
     /// <summary>
     /// Initializes a new instance of the <see cref="CW" /> class.
@@ -120,6 +121,10 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     {
       Title = String.Format("CW-{0:D4}{1:D6}", this.CWC_EntryDate.Value.Year, Id.Value);
     }
+    internal double PackageWeight()
+    {
+      return this.CW_PackageUnits.Value == 0 ? 0 : (this.GrossMass.Value - this.CW_Quantity.Value) / this.CW_PackageUnits.Value;
+    }
     #endregion
 
     #region private
@@ -143,11 +148,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       //DeclaredQntty
       decimal _DeclaredQntty = Math.Min(_2Dispose, xmlData.DeclaredQuantity);
       xmlData.DeclaredQuantity -= _DeclaredQntty;
-      //AdditionalQntty
-      decimal _AdditionalQntty = 0;
-      _AdditionalQntty = Math.Max(_2Dispose - _DeclaredQntty, 0);
-      _AdditionalQntty = Math.Min(_AdditionalQntty, xmlData.AdditionalQuantity);
-      xmlData.AdditionalQuantity -= _AdditionalQntty;
       this.TobaccoNotAllocated = Convert.ToDouble(this.TobaccoNotAllocated.DecimalValue() - _2Dispose);
       CustomsWarehouseDisposal _new = new CustomsWarehouseDisposal()
       {
@@ -155,26 +155,20 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         ClearingType = ClearingType.PartialWindingUp,
         CustomsStatus = CustomsStatus.NotStarted,
         CustomsProcedure = parent.ClearenceProcedure.Value.Convert2String(),
-        CW_AddedKg = _AdditionalQntty.DoubleValue(),
         CW_DeclaredNetMass = _DeclaredQntty.DoubleValue(),
-        CW_SettledNetMass = _2Dispose.DoubleValue(),
-        CW_SettledGrossMass = ((_2Dispose + PackageWeight() * _Boxes).DoubleValue()).RoundValue(),
+        SettledNetMass = _2Dispose.DoubleValue(),
         CW_PackageToClear = _Boxes.DoubleValue(),
         CWL_CWDisposal2DisposalRequestLibraryID = parent,
         CWL_CWDisposal2PCNTID = this.CWL_CW2PCNID,
         CWL_CWDisposal2CustomsWarehouseID = this,
         SADDate = CAS.SharePoint.Extensions.SPMinimum,
-        SKUDescription = xmlData.SKUDescription, 
+        SKUDescription = xmlData.SKUDescription,
         WZAdded = false,
         Title = "ToDo",
       };
-      _new.CalcualateTobaccoValue();
+      xmlData.AdditionalQuantity -= Convert.ToDecimal(_new.CW_AddedKg.Value);
       entities.CustomsWarehouseDisposal.InsertOnSubmit(_new);
       _new.UpdateTitle();
-    }
-    private decimal PackageWeight()
-    {
-      return this.CW_PackageUnits.Value == 0 ? 0m : (this.GrossMass.DecimalValue() - this.CW_Quantity.DecimalValue()) / this.CW_PackageUnits.DecimalValue();
     }
     #endregion
 

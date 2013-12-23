@@ -82,6 +82,24 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         return _code.Substring(_code.Length - 2, 2);
       }
     }
+    /// <summary>
+    /// Gets or sets the settled net mass.
+    /// </summary>
+    /// <value>
+    /// The settled net mass.
+    /// </value>
+    public double SettledNetMass
+    {
+      get { return this.CW_SettledNetMass.Value; }
+      set
+      {
+        this.CW_SettledNetMass = value.RoundValue();
+        double _Portion = value / CWL_CWDisposal2CustomsWarehouseID.CW_Quantity.Value;
+        TobaccoValue = (_Portion * CWL_CWDisposal2CustomsWarehouseID.Value.Value).RoundValue();
+        CW_SettledGrossMass = (CW_PackageToClear.Value * CWL_CWDisposal2CustomsWarehouseID.PackageWeight() + value).RoundValue();
+        this.CW_AddedKg = (value - this.CW_DeclaredNetMass.Value).RoundValue();
+      }
+    }
     internal void FinishClearThroughCustoms(SADGood sadGood)
     {
       if (this.CustomsStatus.Value == Linq.CustomsStatus.Finished)
@@ -131,11 +149,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         Title = String.Format("CW-{0:D4}-{1}", _entry.Year, _numTxt);
       }
       catch (Exception) { }
-    }
-    internal void CalcualateTobaccoValue()
-    {
-      double _Portion = CW_SettledNetMass.Value / CWL_CWDisposal2CustomsWarehouseID.CW_Quantity.Value;
-      TobaccoValue = (_Portion * CWL_CWDisposal2CustomsWarehouseID.Value.Value).RoundValue();
     }
     #endregion
 
