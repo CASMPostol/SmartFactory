@@ -132,6 +132,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       }
       catch (Exception) { }
     }
+    internal void CalcualateTobaccoValue()
+    {
+      double _Portion = CW_SettledNetMass.Value / CWL_CWDisposal2CustomsWarehouseID.CW_Quantity.Value;
+      TobaccoValue = (_Portion * CWL_CWDisposal2CustomsWarehouseID.Value.Value).RoundValue();
+    }
     #endregion
 
     #region private

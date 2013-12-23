@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Workflow.Activities;
 using CAS.SharePoint.DocumentsFactory;
 using CAS.SmartFactory.Customs;
@@ -23,7 +24,6 @@ using CAS.SmartFactory.CW.WebsiteModel;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
-using System.Linq;
 
 namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCustoms
 {

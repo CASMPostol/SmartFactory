@@ -24,7 +24,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 
     internal CustomsWarehouseDisposal CreateDisposal(int disposalRequestLibId, ref int packagesToDispose, string customsProcedure)
     {
-      int _TdspsePackages = Math.Min(Linq.CustomsWarehouseDisposal.Packages(this.TobaccoNotAllocated.Value, this.CW_MassPerPackage.Value), packagesToDispose);
+      int _TdspsePackages = Math.Min(Packages(this.TobaccoNotAllocated.Value, this.CW_MassPerPackage.Value), packagesToDispose);
       if (_TdspsePackages == 0)
         return null;
       double _Tdspsekg = this.CW_MassPerPackage.Value * _TdspsePackages;
@@ -33,9 +33,21 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       packagesToDispose -= _TdspsePackages;
       return _NewDisposal;
     }
+    internal double Quantity(int packages)
+    {
+      return this.CW_MassPerPackage.Value * packages;
+    }
     internal double PackageWeight()
     {
       return this.CW_PackageUnits.Value == 0 ? 0 : (this.GrossMass.Value - this.CW_Quantity.Value) / this.CW_PackageUnits.Value;
+    }
+    internal int Packages(double quantity)
+    {
+      return Packages(quantity, this.CW_MassPerPackage.Value);
+    }
+    internal static int Packages(double quantity, double massPerPackage)
+    {
+      return Convert.ToInt32(Math.Round(quantity / massPerPackage + 0.499999, 0));
     }
     /// <summary>
     /// compares descenfing two objects of the <see cref="CustomsWarehouse "/> type.

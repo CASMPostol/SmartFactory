@@ -465,7 +465,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       DeclaredNetMass += rowData.CW_DeclaredNetMass.Value;
       AddedKg += rowData.CW_AddedKg.Value;
-      QuantityyToClearSum += rowData.CW_SettledNetMass.Value;
+      QuantityyToClearSum += rowData.SettledNetMass;
       Disposals.Add(rowData);
     }
     private void UpdateOnInit()
@@ -486,13 +486,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       AutoCalculation = false;
       QuantityyToClearSum = DeclaredNetMass + AddedKg;
-      PackagesToDispose = CustomsWarehouseDisposal.Packages(QuantityyToClearSum, this.MassPerPackage);
+      PackagesToDispose = CustomsWarehouse.Packages(QuantityyToClearSum, this.MassPerPackage);
       QuantityyToClearSumRounded = PackagesToDispose * this.MassPerPackage;
     }
-
     #endregion
-
-
 
   }
 }
