@@ -117,7 +117,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
           SADDate = _cwdx.SADDate.GetValueOrNull(),
           SADDocumentNo = _cwdx.SADDocumentNo,
           SettledGrossMass = _cwdx.CW_SettledGrossMass.GetValueOrDefault(),
-          SettledNetMass = _cwdx.CW_SettledNetMass.GetValueOrDefault(),
+          SettledNetMass = _cwdx.SettledNetMass,
           TobaccoValue = _cwdx.TobaccoValue.GetValueOrDefault(),
           WZ = String.Join(",", _wz.ToArray())
         };
