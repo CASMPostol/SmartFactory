@@ -153,7 +153,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     #endregion
 
     #region private
-    partial void OnLoaded()
+    partial void OnCreated()
     {
       this.PropertyChanging += CustomsWarehouseDisposal_PropertyChanging;
     }
