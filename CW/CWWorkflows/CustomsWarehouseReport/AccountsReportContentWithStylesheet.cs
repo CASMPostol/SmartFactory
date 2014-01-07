@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
       totalNetMass = 0;
       totalValue = 0;
       List<ArrayOfAccountsDetailsDetailsOfOneAccount> _ret = new List<ArrayOfAccountsDetailsDetailsOfOneAccount>();
-      int _No = 0;
+      int _No = 1;
       foreach (CustomsWarehouse _cwx in group)
       {
         if (_cwx.CWL_CW2ConsentTitle == null)
