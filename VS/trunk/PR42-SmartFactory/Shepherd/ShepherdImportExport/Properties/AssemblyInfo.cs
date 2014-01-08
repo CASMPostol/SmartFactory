@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("Smart Factory")]
-[assembly: AssemblyCopyright("Copyright (c) 2000-2013 CAS LODZ POLAND")]
+[assembly: AssemblyCopyright("Copyright (c) 2000-2014 CAS LODZ POLAND")]
 [assembly: AssemblyTrademark("Smart Factory")]
 [assembly: AssemblyCulture("")]
 
@@ -21,6 +21,6 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("2c5f4962-f628-4305-9a62-58ececbbb366")]
-[assembly: AssemblyVersion("1.70.11.*")]
-[assembly: AssemblyFileVersion("1.70.11")]
+[assembly: AssemblyVersion("1.70.12.*")]
+[assembly: AssemblyFileVersion("1.70.12")]
 
