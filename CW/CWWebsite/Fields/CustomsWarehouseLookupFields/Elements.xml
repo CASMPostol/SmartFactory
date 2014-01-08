@@ -189,6 +189,19 @@
     ReadOnly="False"
     />
   <Field
+    Type="Lookup"
+    DisplayName="$Resources:CASSmartFactoryCW,CAS_BinCardID"
+    List="Lists/BinCardLibrary"
+    ShowField="ID"
+    FieldRef="AC784B2F-C1D9-4CA4-A9AB-DB59732DA4D0"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory Customs Warehouse"
+    ID="{AA86CC76-4116-4CA8-9616-746102926801}"
+    Name="CWL_CW2BinCardID_sec"
+    Overwrite="TRUE"
+  />
+  <Field
     Name="CWL_CWDisposal2CustomsWarehouseID"
     ID="{497E4697-AF4C-4910-B007-5ADE6723308E}"
     Type="Lookup"

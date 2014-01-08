@@ -221,7 +221,9 @@
     <Content Include="Lists\StatementLibraryTemplate\Elements.xml" />
     <Content Include="Lists\StatementLibraryTemplate\FileDlg.htm" />
     <Content Include="Lists\StatementLibraryTemplate\Repair.aspx" />
-    <Content Include="Lists\StatementLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\StatementLibraryTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\StatementLibraryTemplate\StatementLibrary\Elements.xml" />
     <Content Include="Lists\StatementLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\VendorListTemplate\Elements.xml">
