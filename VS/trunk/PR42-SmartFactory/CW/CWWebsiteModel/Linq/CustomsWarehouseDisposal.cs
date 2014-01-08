@@ -83,10 +83,10 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       }
     }
     /// <summary>
-    /// Assignes values to CW_SettledNetMass, CW_SettledGrossMass, CW_AddedKg, TobaccoValue
+    /// Calculated and assignes values to CW_SettledNetMass, CW_SettledGrossMass, CW_AddedKg, TobaccoValue
     /// </summary>
-    /// <param name="value">The value.</param>
-    internal void SettledNetMass(double value)
+    /// <param name="value">The net mass.</param>
+    internal void CalculateMassValu(double value)
     {
       this.CW_SettledNetMass = value.RoundValue();
       double _Portion = value / CWL_CWDisposal2CustomsWarehouseID.CW_Quantity.Value;

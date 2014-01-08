@@ -169,7 +169,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         WZAdded = false,
         Title = "ToDo",
       };
-      _new.SettledNetMass(_2Dispose.DoubleValue());
+      _new.CalculateMassValu(_2Dispose.DoubleValue());
       xmlData.AdditionalQuantity -= Convert.ToDecimal(_new.CW_AddedKg.Value);
       entities.CustomsWarehouseDisposal.InsertOnSubmit(_new);
       _new.UpdateTitle();
