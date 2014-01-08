@@ -290,6 +290,7 @@
     <Column Name="CWL_CW2VendorTitle" Member="CWL_CW2VendorTitle" />
     <Column Name="CWL_CW2ClearenceID" Member="CWL_CW2ClearenceID" />
     <Column Name="CWL_CW2BinCardTitle" Member="CWL_CW2BinCardTitle" />
+    <Column Name="CWL_CW2BinCardID_sec" Member="CWL_CW2BinCardID_sec" />
   </ContentType>
   <!--<ContentType Name="DisposalDeclaration" Class="DisposalDeclaration">
     <Column Name="ContentType" Member="ContentType" />

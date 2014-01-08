@@ -42,6 +42,7 @@
           <FieldRef ID="{7B4C1B77-5160-4E59-9BE3-42A39AE9A5D4}" Name="CWL_CW2VendorTitle" />
           <FieldRef ID="{2114C077-3416-4465-AFB8-27B9ADDFDE2F}" Name="CWL_CW2ClearenceID" />
           <FieldRef ID="{AC784B2F-C1D9-4CA4-A9AB-DB59732DA4D0}" Name="CWL_CW2BinCardTitle" />
+          <FieldRef ID="{AA86CC76-4116-4CA8-9616-746102926801}" Name="CWL_CW2BinCardID_sec" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
@@ -95,6 +96,7 @@
       <Field Name="CWL_CW2VendorTitle" ID="{7B4C1B77-5160-4E59-9BE3-42A39AE9A5D4}" Type="Lookup" List="Lists/VendorList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="$Resources:CASSmartFactoryCW,CAS_Vendor" Group="CAS Smart Factory Customs Warehouse" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="CWL_CW2ClearenceID" ID="{2114C077-3416-4465-AFB8-27B9ADDFDE2F}" Type="Lookup" List="Lists/ClearenceList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="$Resources:CASSmartFactoryCW,CAS_ClearanceID" Group="CAS Smart Factory Customs Warehouse" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="CWL_CW2BinCardTitle" ID="{AC784B2F-C1D9-4CA4-A9AB-DB59732DA4D0}" Type="Lookup" List="Lists/BinCardLibrary" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="$Resources:CASSmartFactoryCW,CAS_BinCard" Group="CAS Smart Factory Customs Warehouse" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Type="Lookup" DisplayName="$Resources:CASSmartFactoryCW,CAS_BinCardID" List="Lists/BinCardLibrary" ShowField="ID" FieldRef="AC784B2F-C1D9-4CA4-A9AB-DB59732DA4D0" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Customs Warehouse" ID="{AA86CC76-4116-4CA8-9616-746102926801}" Name="CWL_CW2BinCardID_sec" Overwrite="TRUE" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -158,6 +160,7 @@
           <FieldRef Name="CWL_CW2VendorTitle" />
           <FieldRef Name="CWL_CW2ClearenceID" />
           <FieldRef Name="CWL_CW2BinCardTitle" />
+          <FieldRef Name="CWL_CW2BinCardID_sec" />
           <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
