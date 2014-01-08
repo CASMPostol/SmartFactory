@@ -148,6 +148,11 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       //DeclaredQntty
       decimal _DeclaredQntty = Math.Min(_2Dispose, xmlData.DeclaredQuantity);
       xmlData.DeclaredQuantity -= _DeclaredQntty;
+      //AdditionalQntty
+      decimal _AdditionalQntty = 0;
+      _AdditionalQntty = Math.Max(_2Dispose - _DeclaredQntty, 0);
+      _AdditionalQntty = Math.Min(_AdditionalQntty, xmlData.AdditionalQuantity);
+      xmlData.AdditionalQuantity -= _AdditionalQntty;
       this.TobaccoNotAllocated = Convert.ToDouble(this.TobaccoNotAllocated.DecimalValue() - _2Dispose);
       CustomsWarehouseDisposal _new = new CustomsWarehouseDisposal()
       {
