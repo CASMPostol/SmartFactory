@@ -32,7 +32,7 @@
     <SuiteName>CAS SmartFactory</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>11</ApplicationRevision>
-    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
+    <ApplicationVersion>1.70.20.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -159,9 +159,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="InputData\RoutesCatalog.XML" />
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="Microsoft.SharePoint.Client">

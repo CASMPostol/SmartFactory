@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("Smart Factory")]
-[assembly: AssemblyCopyright("Copyright (c) 2000-2013 CAS LODZ POLAND")]
+[assembly: AssemblyCopyright("Copyright (c) 2000-2014 CAS LODZ POLAND")]
 [assembly: AssemblyTrademark("Smart Factory")]
 [assembly: AssemblyCulture("")]
 
@@ -33,6 +33,6 @@ using System.Windows;
     ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
     ResourceDictionaryLocation.SourceAssembly //where the generic resource dictionary is located
 )]
-[assembly: AssemblyVersion("1.70.11.*")]
-[assembly: AssemblyFileVersion("1.70.11")]
+[assembly: AssemblyVersion("1.70.12.*")]
+[assembly: AssemblyFileVersion("1.70.12")]
 
