@@ -58,7 +58,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
         RemainingPackage = Convert.ToInt32(cwd.CW_RemainingPackage.GetValueOrDefault()),
         RemainingQuantity = cwd.RemainingQuantity.GetValueOrDefault(),
         SAD = cwd.SADDocumentNo,
-        SettledNetMass = cwd.SettledNetMass,
+        SettledNetMass = cwd.CW_SettledNetMass.GetValueOrDefault(),
         WarehouseName = _warehouseName
       };
       return _esdc;
