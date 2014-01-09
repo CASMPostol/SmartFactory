@@ -555,11 +555,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		public Clearence() {
 			this._sADConsignmentLibraryIndex = new Microsoft.SharePoint.Linq.EntityRef<SADConsignment>();
-			this._sADConsignmentLibraryIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADConsignment>>(this.OnSADConsignmentLibraryIndexSync);
 			this._sADConsignmentLibraryIndex.OnChanged += new System.EventHandler(this.OnSADConsignmentLibraryIndexChanged);
 			this._sADConsignmentLibraryIndex.OnChanging += new System.EventHandler(this.OnSADConsignmentLibraryIndexChanging);
 			this._clearence2SadGoodID = new Microsoft.SharePoint.Linq.EntityRef<SADGood>();
-			this._clearence2SadGoodID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood>>(this.OnClearence2SadGoodIDSync);
 			this._clearence2SadGoodID.OnChanged += new System.EventHandler(this.OnClearence2SadGoodIDChanged);
 			this._clearence2SadGoodID.OnChanging += new System.EventHandler(this.OnClearence2SadGoodIDChanging);
 			this._customsWarehouse = new Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouse>();
@@ -678,17 +676,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			set {
 				this._clearence2SadGoodID.SetEntity(value);
 			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CW2ClearenceID", Storage="_customsWarehouse", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Customs Warehouse")]
-		public Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouse> CustomsWarehouse {
-			get {
-				return this._customsWarehouse;
-			}
-			set {
-				this._customsWarehouse.Assign(value);
-			}
-		}
+		}		
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CWDisposal2ClearanceID", Storage="_customsWarehouseDisposal", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Customs Warehouse Disposal")]
 		public Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouseDisposal> CustomsWarehouseDisposal {
@@ -708,30 +696,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this.OnPropertyChanged("SADConsignmentLibraryIndex");
 		}
 		
-		private void OnSADConsignmentLibraryIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADConsignment> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Clearence.Add(this);
-			}
-			else {
-				e.Item.Clearence.Remove(this);
-			}
-		}
-		
 		private void OnClearence2SadGoodIDChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Clearence2SadGoodID", this._clearence2SadGoodID.Clone());
 		}
 		
 		private void OnClearence2SadGoodIDChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("Clearence2SadGoodID");
-		}
-		
-		private void OnClearence2SadGoodIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Clearence.Add(this);
-			}
-			else {
-				e.Item.Clearence.Remove(this);
-			}
 		}
 		
 		private void OnCustomsWarehouseChanging(object sender, System.EventArgs e) {
@@ -901,17 +871,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this.OnPropertyChanged("IsIPR");
 				}
 			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CW2ConsentTitle", Storage="_customsWarehouse", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Customs Warehouse")]
-		public Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouse> CustomsWarehouse {
-			get {
-				return this._customsWarehouse;
-			}
-			set {
-				this._customsWarehouse.Assign(value);
-			}
-		}
+		}		
 		
 		private void OnCustomsWarehouseChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CustomsWarehouse", this._customsWarehouse.Clone());
@@ -1050,27 +1010,21 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		public CustomsWarehouse() {
 			this._cWL_CW2ConsentTitle = new Microsoft.SharePoint.Linq.EntityRef<Consent>();
-			this._cWL_CW2ConsentTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Consent>>(this.OnCWL_CW2ConsentTitleSync);
 			this._cWL_CW2ConsentTitle.OnChanged += new System.EventHandler(this.OnCWL_CW2ConsentTitleChanged);
 			this._cWL_CW2ConsentTitle.OnChanging += new System.EventHandler(this.OnCWL_CW2ConsentTitleChanging);
 			this._cWL_CW2PCNID = new Microsoft.SharePoint.Linq.EntityRef<PCNCode>();
-			this._cWL_CW2PCNID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnCWL_CW2PCNIDSync);
 			this._cWL_CW2PCNID.OnChanged += new System.EventHandler(this.OnCWL_CW2PCNIDChanged);
 			this._cWL_CW2PCNID.OnChanging += new System.EventHandler(this.OnCWL_CW2PCNIDChanging);
 			this._cWL_CW2CWLibraryID = new Microsoft.SharePoint.Linq.EntityRef<CustomsWarehouseLib>();
-			this._cWL_CW2CWLibraryID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CustomsWarehouseLib>>(this.OnCWL_CW2CWLibraryIDSync);
 			this._cWL_CW2CWLibraryID.OnChanged += new System.EventHandler(this.OnCWL_CW2CWLibraryIDChanged);
 			this._cWL_CW2CWLibraryID.OnChanging += new System.EventHandler(this.OnCWL_CW2CWLibraryIDChanging);
 			this._cWL_CW2VendorTitle = new Microsoft.SharePoint.Linq.EntityRef<Vendor>();
-			this._cWL_CW2VendorTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Vendor>>(this.OnCWL_CW2VendorTitleSync);
 			this._cWL_CW2VendorTitle.OnChanged += new System.EventHandler(this.OnCWL_CW2VendorTitleChanged);
 			this._cWL_CW2VendorTitle.OnChanging += new System.EventHandler(this.OnCWL_CW2VendorTitleChanging);
 			this._cWL_CW2ClearenceID = new Microsoft.SharePoint.Linq.EntityRef<Clearence>();
-			this._cWL_CW2ClearenceID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence>>(this.OnCWL_CW2ClearenceIDSync);
 			this._cWL_CW2ClearenceID.OnChanged += new System.EventHandler(this.OnCWL_CW2ClearenceIDChanged);
 			this._cWL_CW2ClearenceID.OnChanging += new System.EventHandler(this.OnCWL_CW2ClearenceIDChanging);
 			this._cWL_CW2BinCardTitle = new Microsoft.SharePoint.Linq.EntityRef<BinCardLib>();
-			this._cWL_CW2BinCardTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<BinCardLib>>(this.OnCWL_CW2BinCardTitleSync);
 			this._cWL_CW2BinCardTitle.OnChanged += new System.EventHandler(this.OnCWL_CW2BinCardTitleChanged);
 			this._cWL_CW2BinCardTitle.OnChanging += new System.EventHandler(this.OnCWL_CW2BinCardTitleChanging);
 			this._customsWarehouseDisposal = new Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouseDisposal>();
@@ -1564,31 +1518,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this.OnPropertyChanged("CWL_CW2ConsentTitle");
 		}
 		
-		private void OnCWL_CW2ConsentTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Consent> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CustomsWarehouse.Add(this);
-			}
-			else {
-				e.Item.CustomsWarehouse.Remove(this);
-			}
-		}
-		
 		private void OnCWL_CW2PCNIDChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CWL_CW2PCNID", this._cWL_CW2PCNID.Clone());
 		}
 		
 		private void OnCWL_CW2PCNIDChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("CWL_CW2PCNID");
-		}
-		
-		private void OnCWL_CW2PCNIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CustomsWarehouse.Add(this);
-			}
-			else {
-				e.Item.CustomsWarehouse.Remove(this);
-			}
-		}
+		}		
 		
 		private void OnCWL_CW2CWLibraryIDChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CWL_CW2CWLibraryID", this._cWL_CW2CWLibraryID.Clone());
@@ -1596,16 +1532,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private void OnCWL_CW2CWLibraryIDChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("CWL_CW2CWLibraryID");
-		}
-		
-		private void OnCWL_CW2CWLibraryIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CustomsWarehouseLib> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CustomsWarehouse.Add(this);
-			}
-			else {
-				e.Item.CustomsWarehouse.Remove(this);
-			}
-		}
+		}		
 		
 		private void OnCWL_CW2VendorTitleChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CWL_CW2VendorTitle", this._cWL_CW2VendorTitle.Clone());
@@ -1615,31 +1542,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this.OnPropertyChanged("CWL_CW2VendorTitle");
 		}
 		
-		private void OnCWL_CW2VendorTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Vendor> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CustomsWarehouse.Add(this);
-			}
-			else {
-				e.Item.CustomsWarehouse.Remove(this);
-			}
-		}
-		
 		private void OnCWL_CW2ClearenceIDChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CWL_CW2ClearenceID", this._cWL_CW2ClearenceID.Clone());
 		}
 		
 		private void OnCWL_CW2ClearenceIDChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("CWL_CW2ClearenceID");
-		}
-		
-		private void OnCWL_CW2ClearenceIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CustomsWarehouse.Add(this);
-			}
-			else {
-				e.Item.CustomsWarehouse.Remove(this);
-			}
-		}
+		}		
 		
 		private void OnCWL_CW2BinCardTitleChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CWL_CW2BinCardTitle", this._cWL_CW2BinCardTitle.Clone());
@@ -1647,16 +1556,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private void OnCWL_CW2BinCardTitleChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("CWL_CW2BinCardTitle");
-		}
-		
-		private void OnCWL_CW2BinCardTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<BinCardLib> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CustomsWarehouse.Add(this);
-			}
-			else {
-				e.Item.CustomsWarehouse.Remove(this);
-			}
-		}
+		}		
 		
 		private void OnCustomsWarehouseDisposalChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CustomsWarehouseDisposal", this._customsWarehouseDisposal.Clone());
@@ -1746,7 +1646,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		public CustomsWarehouseDisposal() {
 			this._cWL_CWDisposal2PCNTID = new Microsoft.SharePoint.Linq.EntityRef<PCNCode>();
-			this._cWL_CWDisposal2PCNTID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnCWL_CWDisposal2PCNTIDSync);
 			this._cWL_CWDisposal2PCNTID.OnChanged += new System.EventHandler(this.OnCWL_CWDisposal2PCNTIDChanged);
 			this._cWL_CWDisposal2PCNTID.OnChanging += new System.EventHandler(this.OnCWL_CWDisposal2PCNTIDChanging);
 			this._cWL_CWDisposal2DisposalRequestLibraryID = new Microsoft.SharePoint.Linq.EntityRef<DisposalRequestLib>();
@@ -2148,15 +2047,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this.OnPropertyChanged("CWL_CWDisposal2PCNTID");
 		}
 		
-		private void OnCWL_CWDisposal2PCNTIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CustomsWarehouseDisposal.Add(this);
-			}
-			else {
-				e.Item.CustomsWarehouseDisposal.Remove(this);
-			}
-		}
-		
 		private void OnCWL_CWDisposal2DisposalRequestLibraryIDChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CWL_CWDisposal2DisposalRequestLibraryID", this._cWL_CWDisposal2DisposalRequestLibraryID.Clone());
 		}
@@ -2283,27 +2173,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this.OnPropertyChanged("Disposal");
 				}
 			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CW2PCNID", Storage="_customsWarehouse", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Customs Warehouse")]
-		public Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouse> CustomsWarehouse {
-			get {
-				return this._customsWarehouse;
-			}
-			set {
-				this._customsWarehouse.Assign(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CWDisposal2PCNTID", Storage="_customsWarehouseDisposal", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Customs Warehouse Disposal")]
-		public Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouseDisposal> CustomsWarehouseDisposal {
-			get {
-				return this._customsWarehouseDisposal;
-			}
-			set {
-				this._customsWarehouseDisposal.Assign(value);
-			}
-		}
+		}		
 		
 		private void OnCustomsWarehouseChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CustomsWarehouse", this._customsWarehouse.Clone());
@@ -2376,7 +2246,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		public SADDocumentType() {
 			this._sADDocumenLibrarytIndex = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentLib>();
-			this._sADDocumenLibrarytIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentLib>>(this.OnSADDocumenLibrarytIndexSync);
 			this._sADDocumenLibrarytIndex.OnChanged += new System.EventHandler(this.OnSADDocumenLibrarytIndexChanged);
 			this._sADDocumenLibrarytIndex.OnChanging += new System.EventHandler(this.OnSADDocumenLibrarytIndexChanging);
 			this._sADGood = new Microsoft.SharePoint.Linq.EntitySet<SADGood>();
@@ -2525,31 +2394,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADGood", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="SAD Good")]
-		public Microsoft.SharePoint.Linq.EntitySet<SADGood> SADGood {
-			get {
-				return this._sADGood;
-			}
-			set {
-				this._sADGood.Assign(value);
-			}
-		}
-		
 		private void OnSADDocumenLibrarytIndexChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("SADDocumenLibrarytIndex", this._sADDocumenLibrarytIndex.Clone());
 		}
 		
 		private void OnSADDocumenLibrarytIndexChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("SADDocumenLibrarytIndex");
-		}
-		
-		private void OnSADDocumenLibrarytIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentLib> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SADDocumentType.Add(this);
-			}
-			else {
-				e.Item.SADDocumentType.Remove(this);
-			}
 		}
 		
 		private void OnSADGoodChanging(object sender, System.EventArgs e) {
@@ -2718,7 +2568,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			this._sADDuties.OnChanged += new System.EventHandler(this.OnSADDutiesChanged);
 			this._sADDuties.OnChanging += new System.EventHandler(this.OnSADDutiesChanging);
 			this._sADDocumentIndex = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentType>();
-			this._sADDocumentIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentIndexSync);
 			this._sADDocumentIndex.OnChanged += new System.EventHandler(this.OnSADDocumentIndexChanged);
 			this._sADDocumentIndex.OnChanging += new System.EventHandler(this.OnSADDocumentIndexChanging);
 			this._sADPackage = new Microsoft.SharePoint.Linq.EntitySet<SADPackage>();
@@ -2848,16 +2697,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Clearence2SadGoodID", Storage="_clearence", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Clearence")]
-		public Microsoft.SharePoint.Linq.EntitySet<Clearence> Clearence {
-			get {
-				return this._clearence;
-			}
-			set {
-				this._clearence.Assign(value);
-			}
-		}
-		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDuties2SADGoodID", Storage="_sADDuties", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="SAD Duties")]
 		public Microsoft.SharePoint.Linq.EntitySet<SADDuties> SADDuties {
 			get {
@@ -2875,26 +2714,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 			set {
 				this._sADDocumentIndex.SetEntity(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADPackage2SADGoodID", Storage="_sADPackage", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="SAD Package")]
-		public Microsoft.SharePoint.Linq.EntitySet<SADPackage> SADPackage {
-			get {
-				return this._sADPackage;
-			}
-			set {
-				this._sADPackage.Assign(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADQuantity2SADGoodID", Storage="_sADQuantity", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="SAD Quantity")]
-		public Microsoft.SharePoint.Linq.EntitySet<SADQuantity> SADQuantity {
-			get {
-				return this._sADQuantity;
-			}
-			set {
-				this._sADQuantity.Assign(value);
 			}
 		}
 		
@@ -2948,15 +2767,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		private void OnSADDocumentIndexChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("SADDocumentIndex");
-		}
-		
-		private void OnSADDocumentIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SADGood.Add(this);
-			}
-			else {
-				e.Item.SADGood.Remove(this);
-			}
 		}
 		
 		private void OnSADPackageChanging(object sender, System.EventArgs e) {
@@ -3033,7 +2843,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		public SADPackage() {
 			this._sADPackage2SADGoodID = new Microsoft.SharePoint.Linq.EntityRef<SADGood>();
-			this._sADPackage2SADGoodID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood>>(this.OnSADPackage2SADGoodIDSync);
 			this._sADPackage2SADGoodID.OnChanged += new System.EventHandler(this.OnSADPackage2SADGoodIDChanged);
 			this._sADPackage2SADGoodID.OnChanging += new System.EventHandler(this.OnSADPackage2SADGoodIDChanging);
 			this.OnCreated();
@@ -3098,15 +2907,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		private void OnSADPackage2SADGoodIDChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("SADPackage2SADGoodID");
 		}
-		
-		private void OnSADPackage2SADGoodIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SADPackage.Add(this);
-			}
-			else {
-				e.Item.SADPackage.Remove(this);
-			}
-		}
+
 	}
 	
 	/// <summary>
@@ -3136,7 +2937,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		public SADQuantity() {
 			this._sADQuantity2SADGoodID = new Microsoft.SharePoint.Linq.EntityRef<SADGood>();
-			this._sADQuantity2SADGoodID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood>>(this.OnSADQuantity2SADGoodIDSync);
 			this._sADQuantity2SADGoodID.OnChanged += new System.EventHandler(this.OnSADQuantity2SADGoodIDChanged);
 			this._sADQuantity2SADGoodID.OnChanging += new System.EventHandler(this.OnSADQuantity2SADGoodIDChanging);
 			this.OnCreated();
@@ -3229,15 +3029,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		private void OnSADQuantity2SADGoodIDChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("SADQuantity2SADGoodID");
 		}
-		
-		private void OnSADQuantity2SADGoodIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SADQuantity.Add(this);
-			}
-			else {
-				e.Item.SADQuantity.Remove(this);
-			}
-		}
+
 	}
 	
 	/// <summary>
@@ -3457,16 +3249,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CW2VendorTitle", Storage="_customsWarehouse", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Customs Warehouse")]
-		public Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouse> CustomsWarehouse {
-			get {
-				return this._customsWarehouse;
-			}
-			set {
-				this._customsWarehouse.Assign(value);
-			}
-		}
-		
 		private void OnCustomsWarehouseChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CustomsWarehouse", this._customsWarehouse.Clone());
 		}
@@ -3637,16 +3419,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CW2BinCardTitle", Storage="_customsWarehouse", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Customs Warehouse")]
-		public Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouse> CustomsWarehouse {
-			get {
-				return this._customsWarehouse;
-			}
-			set {
-				this._customsWarehouse.Assign(value);
-			}
-		}
-		
 		private void OnCustomsWarehouseChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CustomsWarehouse", this._customsWarehouse.Clone());
 		}
@@ -3700,16 +3472,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this._archival = value;
 					this.OnPropertyChanged("Archival");
 				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_CW2CWLibraryID", Storage="_customsWarehouse", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Customs Warehouse")]
-		public Microsoft.SharePoint.Linq.EntitySet<CustomsWarehouse> CustomsWarehouse {
-			get {
-				return this._customsWarehouse;
-			}
-			set {
-				this._customsWarehouse.Assign(value);
 			}
 		}
 		
@@ -3834,16 +3596,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWL_Statement2DisposalRequestID", Storage="_statementLib", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Statement Library")]
-		public Microsoft.SharePoint.Linq.EntitySet<StatementLib> StatementLib {
-			get {
-				return this._statementLib;
-			}
-			set {
-				this._statementLib.Assign(value);
-			}
-		}
-		
 		private void OnCustomsWarehouseDisposalChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CustomsWarehouseDisposal", this._customsWarehouseDisposal.Clone());
 		}
@@ -3914,16 +3666,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 					this._archival = value;
 					this.OnPropertyChanged("Archival");
 				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADConsignmentLibraryIndex", Storage="_clearence", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Clearence")]
-		public Microsoft.SharePoint.Linq.EntitySet<Clearence> Clearence {
-			get {
-				return this._clearence;
-			}
-			set {
-				this._clearence.Assign(value);
 			}
 		}
 		
@@ -4015,16 +3757,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumenLibrarytIndex", Storage="_sADDocumentType", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="SAD Document")]
-		public Microsoft.SharePoint.Linq.EntitySet<SADDocumentType> SADDocumentType {
-			get {
-				return this._sADDocumentType;
-			}
-			set {
-				this._sADDocumentType.Assign(value);
-			}
-		}
-		
 		private void OnSADDocumentTypeChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("SADDocumentType", this._sADDocumentType.Clone());
 		}
@@ -4061,7 +3793,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		
 		public StatementLib() {
 			this._cWL_Statement2DisposalRequestID = new Microsoft.SharePoint.Linq.EntityRef<DisposalRequestLib>();
-			this._cWL_Statement2DisposalRequestID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DisposalRequestLib>>(this.OnCWL_Statement2DisposalRequestIDSync);
 			this._cWL_Statement2DisposalRequestID.OnChanged += new System.EventHandler(this.OnCWL_Statement2DisposalRequestIDChanged);
 			this._cWL_Statement2DisposalRequestID.OnChanging += new System.EventHandler(this.OnCWL_Statement2DisposalRequestIDChanging);
 			this.OnCreated();
@@ -4098,15 +3829,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq {
 		private void OnCWL_Statement2DisposalRequestIDChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("CWL_Statement2DisposalRequestID");
 		}
-		
-		private void OnCWL_Statement2DisposalRequestIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DisposalRequestLib> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.StatementLib.Add(this);
-			}
-			else {
-				e.Item.StatementLib.Remove(this);
-			}
-		}
+
 	}
 	
 	/// <summary>
