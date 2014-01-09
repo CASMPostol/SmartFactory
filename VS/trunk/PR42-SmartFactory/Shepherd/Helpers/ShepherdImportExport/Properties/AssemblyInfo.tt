@@ -26,4 +26,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("<#=SHRAssemblyVersion#>")]
 [assembly: AssemblyFileVersion("<#=SHRAssemblyFileVersion#>")]
 
-<#@ include file = "..\..\..\..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4" #>
+<#@ include file = "..\..\..\..\..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4" #>
