@@ -5,12 +5,24 @@
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="1" name="DocumentName" type="xs:string" />
         <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:date" />
-        <xs:element minOccurs="0" maxOccurs="1" name="Consents" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="ConsentsCollection" type="tns:ArrayOfConsents" />
         <xs:element minOccurs="1" maxOccurs="1" name="ReportDate" type="xs:date" />
         <xs:element minOccurs="0" maxOccurs="1" name="AccountsColection" type="tns:ArrayOfAccounts" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:complexType name="ArrayOfConsents">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConsentsArray">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Consent" type="xs:string" />
+            <xs:element minOccurs="1" maxOccurs="1" name="ConsentDate" type="xs:date" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="ArrayOfAccounts">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="AccountsArray">

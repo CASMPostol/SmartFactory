@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReport {
         
         private System.DateTime documentDateField;
         
-        private string consentsField;
+        private ArrayOfConsentsConsentsArray[] consentsCollectionField;
         
         private System.DateTime reportDateField;
         
@@ -58,12 +58,13 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReport {
         }
         
         /// <remarks/>
-        public string Consents {
+        [System.Xml.Serialization.XmlArrayItemAttribute("ConsentsArray", IsNullable=false)]
+        public ArrayOfConsentsConsentsArray[] ConsentsCollection {
             get {
-                return this.consentsField;
+                return this.consentsCollectionField;
             }
             set {
-                this.consentsField = value;
+                this.consentsCollectionField = value;
             }
         }
         
@@ -86,6 +87,41 @@ namespace CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReport {
             }
             set {
                 this.accountsColectionField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.17929")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsR" +
+        "eport.xsd")]
+    public partial class ArrayOfConsentsConsentsArray {
+        
+        private string consentField;
+        
+        private System.DateTime consentDateField;
+        
+        /// <remarks/>
+        public string Consent {
+            get {
+                return this.consentField;
+            }
+            set {
+                this.consentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
+        public System.DateTime ConsentDate {
+            get {
+                return this.consentDateField;
+            }
+            set {
+                this.consentDateField = value;
             }
         }
     }
