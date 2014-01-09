@@ -25,14 +25,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       if (this.CustomsStatus.Value == Linq.CustomsStatus.NotStarted)
       {
-        double _Available = this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value + this.SettledNetMass;
+        double _Available = this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value + this.CW_SettledNetMass.Value;
         int _2DisposePackages = Math.Min(this.CWL_CWDisposal2CustomsWarehouseID.Packages(_Available), packagesToDispose);
         packagesToDispose -= _2DisposePackages;
         if (CW_PackageToClear != _2DisposePackages)
         {
           this.CW_PackageToClear = _2DisposePackages;
-          double _diff = this.CWL_CWDisposal2CustomsWarehouseID.Quantity(_2DisposePackages) - this.SettledNetMass;
-          this.SettledNetMass += _diff;
+          double _diff = this.CWL_CWDisposal2CustomsWarehouseID.Quantity(_2DisposePackages) - this.CW_SettledNetMass.Value;
+          this.CW_SettledNetMass += _diff;
           this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated -= _diff;
           Debug.Assert(this.CW_AddedKg >= 0, "CW_AddedKg <= 0");
         }
@@ -43,26 +43,31 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       CustomsWarehouseDisposal _newItem = new CustomsWarehouseDisposal()
       {
+        Archival = false,
         CNIDId = cw.CNIDId,
+        ClearingType = Linq.ClearingType.PartialWindingUp,
         CustomsStatus = Linq.CustomsStatus.NotStarted,
         CustomsProcedure = customsProcedure,
-        Archival = false,
+        CW_AddedKg = 0, //Assigned in SettledNetMass
         CW_DeclaredNetMass = 0,
+        CW_SettledNetMass = 0, //Assigned in SettledNetMass
+        CW_SettledGrossMass = 0, //Assigned in SettledNetMass
         CW_PackageToClear = toDisposePackages,
-        SettledNetMass = toDisposeKg,
-        CWL_CWDisposal2CustomsWarehouseID = cw,
-        Title = "TBD",
-        SKUDescription = "N/A",
+        TobaccoValue = 0, //Assigned in SettledNetMass
         DisposalRequestId = disposalRequestLibId,
+        CWL_CWDisposal2CustomsWarehouseID = cw,
+        SKUDescription = "N/A",
+        Title = "ToDo",
         SADDate = Extensions.SPMinimum
       };
+      _newItem.SettledNetMass(toDisposeKg);
       _newItem.UpdateTitle(DateTime.Today);
       return _newItem;
     }
     internal void DeleteDisposal()
     {
-      this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated += this.SettledNetMass;
-      this.SettledNetMass = 0;
+      this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated += this.CW_SettledNetMass.Value;
+      this.SettledNetMass(0);
       Debug.Assert(this.CW_DeclaredNetMass.Value == 0, "I expect Value of this.CW_DeclaredNetMass == 0 while deleting.");
       this.CW_DeclaredNetMass = 0;
       this.CW_PackageToClear = 0;
@@ -74,17 +79,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       Title = String.Format("CW-{0:D4}-{1:D6}", dateTime.Year, "XXXXXX"); //TODO Id.Value);
     }
-    internal double SettledNetMass
+    private void SettledNetMass(double value)
     {
-      get { return this.CW_SettledNetMass.Value; }
-      set
-      {
-        this.CW_SettledNetMass = value.RoundValue();
-        double _Portion = value / CWL_CWDisposal2CustomsWarehouseID.CW_Quantity.Value;
-        TobaccoValue = (_Portion * CWL_CWDisposal2CustomsWarehouseID.Value.Value).RoundValue();
-        CW_SettledGrossMass = (CW_PackageToClear.Value * CWL_CWDisposal2CustomsWarehouseID.PackageWeight() + value).RoundValue();
-        this.CW_AddedKg = (value - this.CW_DeclaredNetMass.Value).RoundValue();
-      }
+      this.CW_SettledNetMass = value.RoundValue();
+      double _Portion = value / CWL_CWDisposal2CustomsWarehouseID.CW_Quantity.Value;
+      TobaccoValue = (_Portion * CWL_CWDisposal2CustomsWarehouseID.Value.Value).RoundValue();
+      CW_SettledGrossMass = (CW_PackageToClear.Value * CWL_CWDisposal2CustomsWarehouseID.PackageWeight() + value).RoundValue();
+      this.CW_AddedKg = (value - this.CW_DeclaredNetMass.Value).RoundValue();
     }
 
   }
