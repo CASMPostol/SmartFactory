@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     /// </summary>
     internal void UpdateTitle(DateTime dateTime)
     {
-      Title = String.Format("CW-{0:D4}-{1:D6}", dateTime.Year, "XXXXXX"); //TODO Id.Value);
+      Title = String.Format("CW-{0:D4}-{1}", dateTime.Year, "XXXXXX"); //TODO Id.Value);
     }
     /// <summary>
     /// Assigns value to: CW_SettledNetMass, TobaccoValue, CW_SettledGrossMass, CW_AddedKg.
