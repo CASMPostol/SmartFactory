@@ -139,8 +139,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       try
       {
         string _numTxt = this.Id.HasValue ? String.Format("{0:D6}", this.Id.Value) : "XXXXXX";
-        DateTime _entry = this.CWL_CWDisposal2CustomsWarehouseID != null ? this.CWL_CWDisposal2CustomsWarehouseID.CustomsDebtDate.Value : Extensions.DateTimeNull;
-        Title = String.Format("CW-{0:D4}-{1}", _entry.Year, _numTxt);
+        Title = String.Format("CW-{0:D4}-{1}", DateTime.Today.Year, _numTxt);
       }
       catch (Exception) { }
     }
