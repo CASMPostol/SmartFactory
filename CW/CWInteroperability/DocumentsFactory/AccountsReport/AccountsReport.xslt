@@ -6,8 +6,8 @@
 >
   <xsl:output method="html" indent="yes"/>
   <xsl:decimal-format name="pl" decimal-separator=',' grouping-separator='.' />
-  <xsl:variable name="FoarmatOfFloat" >#####0,00</xsl:variable>
-  <xsl:variable name="FoarmatOfdate" >dd-MM-yyyy</xsl:variable>
+  <xsl:variable name="FormatOfFloat" >#####0,00</xsl:variable>
+  <xsl:variable name="FormatOfDate" >dd-MM-yyyy</xsl:variable>
   <xsl:template match="/" >
     <html>
       <head>
@@ -41,7 +41,7 @@
           </p>
         </td>
         <td align="right">
-          Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FoarmatOfdate)" />
+          Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, FormatOfDate)" />
         </td>
       </tr>
     </table>
@@ -52,7 +52,7 @@
       Zgodnie z pozwoleniem na korzystanie z procedury składu celnego nr <xsl:value-of select="cas:Consents"/>
     </h2>
     <h2>
-      Stan na dzień <xsl:value-of select="cas:ReportDate"/>
+      Stan na dzień <xsl:value-of select="ms:format-date(cas:ReportDate, FormatOfDate)"/>
     </h2>
     <table border="0" width="100%">
       <tr>
@@ -96,12 +96,12 @@
       </td>
       <td align="center">
         <b>
-          <xsl:value-of select="format-number(cas:TotalNetMass, $FoarmatOfFloat, 'pl')"/>
+          <xsl:value-of select="format-number(cas:TotalNetMass, $FormatOfFloat, 'pl')"/>
         </b>
       </td>
       <td align="center">
         <b>
-          <xsl:value-of select="format-number(cas:TotalValue, $FoarmatOfFloat, 'pl')"/>
+          <xsl:value-of select="format-number(cas:TotalValue, $FormatOfFloat, 'pl')"/>
         </b>
       </td>
       <td align="center">
@@ -123,7 +123,7 @@
         <xsl:value-of select="cas:DocumentNo"/>
       </td>
       <td align="center" nowrap="true">
-        <xsl:value-of select="ms:format-date(cas:CustomsDebtDate, $FoarmatOfdate)"/>
+        <xsl:value-of select="ms:format-date(cas:CustomsDebtDate, $FormatOfDate)"/>
       </td>
       <td align="center">
         <xsl:value-of select="cas:TobaccoName"/>
@@ -141,10 +141,10 @@
         <xsl:value-of select="cas:CNTarrifCode"/>
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:NetMass, $FoarmatOfFloat, 'pl')"/>
+        <xsl:value-of select="format-number(cas:NetMass, $FormatOfFloat, 'pl')"/>
       </td>
       <td align="center">
-        <xsl:value-of select="format-number(cas:Value, $FoarmatOfFloat, 'pl')"/>
+        <xsl:value-of select="format-number(cas:Value, $FormatOfFloat, 'pl')"/>
       </td>
       <td align="center">
         <xsl:value-of select="cas:Currency"/>
