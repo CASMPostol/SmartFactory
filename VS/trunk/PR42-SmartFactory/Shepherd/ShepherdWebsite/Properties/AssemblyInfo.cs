@@ -1,18 +1,17 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Security;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("CAS Shepherd Website Content")]
-[assembly: AssemblyDescription("CAS Smart Factory Shepherd Application Website Contenet")]
+[assembly: AssemblyDescription("Smart Factory CAS Smart Factory Shepherd Application Website Contenet")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
-[assembly: AssemblyProduct("CAS Smart Factory")]
-[assembly: AssemblyCopyright("Copyright © CAS 2012")]
-[assembly: AssemblyTrademark("SmartFactory")]
+[assembly: AssemblyProduct("Smart Factory")]
+[assembly: AssemblyCopyright("Copyright (c) 2000-2014 CAS LODZ POLAND")]
+[assembly: AssemblyTrademark("Smart Factory")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -22,17 +21,6 @@ using System.Security;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("6153760e-3c48-4b25-9212-3100aa870fbf")]
+[assembly: AssemblyVersion("1.81.00.*")]
+[assembly: AssemblyFileVersion("1.81.00")]
 
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.50.00.*")]
-[assembly: AssemblyFileVersion("1.50.00")]
-[assembly: AllowPartiallyTrustedCallers()]
