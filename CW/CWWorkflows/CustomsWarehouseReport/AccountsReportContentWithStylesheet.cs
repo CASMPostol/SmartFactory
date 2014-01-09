@@ -42,7 +42,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
       AccountsReportContentWithStylesheet _ret = new AccountsReportContentWithStylesheet()
         {
           AccountsColection = _AccountsColection.ToArray(),
-          Consents = String.Join(",", _ConsentsList.Select(x => String.Format("{0}(1:d)", x.Value.Title, x.Value.ConsentDate.Value)).ToArray<string>()),
+          Consents = String.Join(",", _ConsentsList.Select(x => String.Format("{0}{1:d}", x.Value.Title, x.Value.ConsentDate.Value.Date)).ToArray<string>()),
           DocumentDate = DateTime.Today,
           DocumentName = documentName,
           ReportDate = DateTime.Today,
