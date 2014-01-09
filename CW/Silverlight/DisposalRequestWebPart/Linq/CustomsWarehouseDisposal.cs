@@ -32,8 +32,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         {
           this.CW_PackageToClear = _2DisposePackages;
           double _diff = this.CWL_CWDisposal2CustomsWarehouseID.Quantity(_2DisposePackages) - this.CW_SettledNetMass.Value;
-          this.CW_SettledNetMass += _diff;
-          this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated -= _diff;
+          SettledNetMass(this.CW_SettledNetMass.Value + _diff);
           Debug.Assert(this.CW_AddedKg >= 0, "CW_AddedKg <= 0");
         }
       }
@@ -79,12 +78,16 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       Title = String.Format("CW-{0:D4}-{1:D6}", dateTime.Year, "XXXXXX"); //TODO Id.Value);
     }
+    /// <summary>
+    /// Assigns value to: CW_SettledNetMass, TobaccoValue, CW_SettledGrossMass, CW_AddedKg.
+    /// </summary>
+    /// <param name="value">The value.</param>
     private void SettledNetMass(double value)
     {
       this.CW_SettledNetMass = value.RoundValue();
       double _Portion = value / CWL_CWDisposal2CustomsWarehouseID.CW_Quantity.Value;
-      TobaccoValue = (_Portion * CWL_CWDisposal2CustomsWarehouseID.Value.Value).RoundValue();
-      CW_SettledGrossMass = (CW_PackageToClear.Value * CWL_CWDisposal2CustomsWarehouseID.PackageWeight() + value).RoundValue();
+      this.TobaccoValue = (_Portion * CWL_CWDisposal2CustomsWarehouseID.Value.Value).RoundValue();
+      this.CW_SettledGrossMass = (CW_PackageToClear.Value * CWL_CWDisposal2CustomsWarehouseID.PackageWeight() + value).RoundValue();
       this.CW_AddedKg = (value - this.CW_DeclaredNetMass.Value).RoundValue();
     }
 
