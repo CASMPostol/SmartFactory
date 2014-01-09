@@ -465,7 +465,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       DeclaredNetMass += rowData.CW_DeclaredNetMass.Value;
       AddedKg += rowData.CW_AddedKg.Value;
-      QuantityyToClearSum += rowData.SettledNetMass;
+      QuantityyToClearSum += rowData.CW_SettledNetMass.Value;
       Disposals.Add(rowData);
     }
     private void UpdateOnInit()
