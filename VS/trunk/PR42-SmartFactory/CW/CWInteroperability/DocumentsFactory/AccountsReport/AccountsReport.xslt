@@ -49,7 +49,7 @@
       Zestawienie ilości towarów na składzie celnym nr C-0042-01
     </h1>
     <h2>
-      Zgodnie z pozwoleniem na korzystanie z procedury składu celnego nr <xsl:value-of select="cas:Consents"/>
+      Zgodnie z pozwoleniem na korzystanie z procedury składu celnego nr <xsl:apply-templates select="cas:ConsentsCollection" />
     </h2>
     <h2>
       Stan na dzień <xsl:value-of select="ms:format-date(cas:ReportDate, FormatOfDate)"/>
@@ -78,6 +78,12 @@
       </tr>
       <xsl:apply-templates select="cas:AccountsColection" />
     </table>
+  </xsl:template>
+  <xsl:template match="cas:ConsentsCollection">
+    <xsl:apply-templates select="cas:ConsentsArray" />
+  </xsl:template>
+  <xsl:template match="cas:ConsentsArray">
+    <xsl:value-of select="cas:Consent"/> z dnia <xsl:value-of select="ms:format-date(cas:ConsentDate, $FormatOfDate)"/>&#160;
   </xsl:template>
   <xsl:template match="cas:AccountsColection">
     <xsl:apply-templates select="cas:AccountsArray" />

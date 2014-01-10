@@ -1,29 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="AccountsReport.xslt"?>
 <AccountsReportContentWithStylesheet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <DocumentName xmlns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReport.xsd">Raport CW0000002</DocumentName>
-  <DocumentDate xmlns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReport.xsd">2013-12-20</DocumentDate>
-  <Consents xmlns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReport.xsd" />
-  <ReportDate xmlns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReport.xsd">2013-12-20</ReportDate>
+  <DocumentName xmlns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReport.xsd">Raport CW0000003</DocumentName>
+  <DocumentDate xmlns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReport.xsd">2014-01-10</DocumentDate>
+  <ConsentsCollection xmlns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReport.xsd">
+    <ConsentsArray>
+      <Consent>07PL362000K0013</Consent>
+      <ConsentDate>2014-01-09</ConsentDate>
+    </ConsentsArray>
+    <ConsentsArray>
+      <Consent>07PL362000W0015</Consent>
+      <ConsentDate>2010-01-10</ConsentDate>
+    </ConsentsArray>
+  </ConsentsCollection>
+  <ReportDate xmlns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReport.xsd">2014-01-10</ReportDate>
   <AccountsColection xmlns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/AccountsReport.xsd">
     <AccountsArray>
-      <TotalNetMass>0</TotalNetMass>
-      <TotalValue>2163456</TotalValue>
+      <TotalNetMass>2273620</TotalNetMass>
+      <TotalValue>3767142.8</TotalValue>
       <TotalCurrency>PLN</TotalCurrency>
       <AccountsDetails>
-        <DetailsOfOneAccount>
-          <No>0</No>
-          <DocumentNo>OGL/362010/00/010253/2013</DocumentNo>
-          <CustomsDebtDate>2013-06-03</CustomsDebtDate>
-          <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
-          <Grade>XINFLERN</Grade>
-          <SKU>13152736</SKU>
-          <Batch>0004225174</Batch>
-          <CNTarrifCode>2401208510</CNTarrifCode>
-          <NetMass>19800</NetMass>
-          <Value>123456</Value>
-          <Currency>PLN</Currency>
-        </DetailsOfOneAccount>
         <DetailsOfOneAccount>
           <No>1</No>
           <DocumentNo>OGL/362010/00/012041/2013</DocumentNo>
@@ -34,7 +30,7 @@
           <Batch>0004096992</Batch>
           <CNTarrifCode>2401203599</CNTarrifCode>
           <NetMass>6080</NetMass>
-          <Value>20000</Value>
+          <Value>22222</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
@@ -47,11 +43,37 @@
           <Batch>0003654848</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>1000</NetMass>
-          <Value>20000</Value>
+          <Value>22222</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
           <No>3</No>
+          <DocumentNo>OGL/362010/00/012043/2013</DocumentNo>
+          <CustomsDebtDate>2013-07-03</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY THAILAND ORIENTAL LEAF</TobaccoName>
+          <Grade>XTHOBAS</Grade>
+          <SKU>12596689</SKU>
+          <Batch>0003358751</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>4200</NetMass>
+          <Value>17543.68</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>4</No>
+          <DocumentNo>OGL/362010/00/012219/2013</DocumentNo>
+          <CustomsDebtDate>2013-07-05</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
+          <Grade>LTROGES</Grade>
+          <SKU>12527641</SKU>
+          <Batch>0002969863</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>3600</NetMass>
+          <Value>15999.84</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>5</No>
           <DocumentNo>OGL/362010/00/012220/2013</DocumentNo>
           <CustomsDebtDate>2013-07-05</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -60,11 +82,11 @@
           <Batch>0003944235</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>6000</NetMass>
-          <Value>20000</Value>
+          <Value>22222</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>4</No>
+          <No>6</No>
           <DocumentNo>OGL/362010/00/012221/2013</DocumentNo>
           <CustomsDebtDate>2013-07-05</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY SERBIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -73,11 +95,11 @@
           <Batch>0004037049</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>3000</NetMass>
-          <Value>20000</Value>
+          <Value>22222</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>5</No>
+          <No>7</No>
           <DocumentNo>OGL/362010/00/012222/2013</DocumentNo>
           <CustomsDebtDate>2013-07-05</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL AIR CURED BURLEY STRIPS</TobaccoName>
@@ -86,11 +108,11 @@
           <Batch>0004137877</Batch>
           <CNTarrifCode>2401203510</CNTarrifCode>
           <NetMass>3990</NetMass>
-          <Value>20000</Value>
+          <Value>22222</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>6</No>
+          <No>8</No>
           <DocumentNo>OGL/362010/00/012227/2013</DocumentNo>
           <CustomsDebtDate>2013-07-05</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY CHINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -99,11 +121,11 @@
           <Batch>0004033805</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>21000</NetMass>
-          <Value>20000</Value>
+          <Value>22222</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>7</No>
+          <No>9</No>
           <DocumentNo>OGL/362010/00/012230/2013</DocumentNo>
           <CustomsDebtDate>2013-07-05</CustomsDebtDate>
           <TobaccoName>TYTON NIEODZYLOWANY INDONESIA SUN AIR CURED LOOSE LEAF</TobaccoName>
@@ -112,11 +134,11 @@
           <Batch>0003803567</Batch>
           <CNTarrifCode>2401109599</CNTarrifCode>
           <NetMass>1980</NetMass>
-          <Value>20000</Value>
+          <Value>22222</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>8</No>
+          <No>10</No>
           <DocumentNo>OGL/362010/00/012265/2013</DocumentNo>
           <CustomsDebtDate>2013-07-08</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY ARGENTINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -125,11 +147,11 @@
           <Batch>0004066567</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>22222</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>9</No>
+          <No>11</No>
           <DocumentNo>OGL/362010/00/012284/2013</DocumentNo>
           <CustomsDebtDate>2013-07-08</CustomsDebtDate>
           <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
@@ -138,11 +160,11 @@
           <Batch>0003557270</Batch>
           <CNTarrifCode>2401106000</CNTarrifCode>
           <NetMass>5460</NetMass>
-          <Value>20000</Value>
+          <Value>22222</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>10</No>
+          <No>12</No>
           <DocumentNo>OGL/362010/00/012285/2013</DocumentNo>
           <CustomsDebtDate>2013-07-08</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -151,11 +173,11 @@
           <Batch>0004133173</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>2000</NetMass>
-          <Value>20000</Value>
+          <Value>22222</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>11</No>
+          <No>13</No>
           <DocumentNo>OGL/362010/00/012286/2013</DocumentNo>
           <CustomsDebtDate>2013-07-08</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY MALAWI AIR CURED BURLEY STRIPS</TobaccoName>
@@ -164,11 +186,11 @@
           <Batch>0004096928</Batch>
           <CNTarrifCode>2401203599</CNTarrifCode>
           <NetMass>1800</NetMass>
-          <Value>20000</Value>
+          <Value>22222</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>12</No>
+          <No>14</No>
           <DocumentNo>OGL/362010/00/012298/2013</DocumentNo>
           <CustomsDebtDate>2013-07-08</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY SERBIA AIR CURED BURLEY STRIPS</TobaccoName>
@@ -177,11 +199,11 @@
           <Batch>0004060818</Batch>
           <CNTarrifCode>2401203599</CNTarrifCode>
           <NetMass>1980</NetMass>
-          <Value>20000</Value>
+          <Value>22222</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>13</No>
+          <No>15</No>
           <DocumentNo>OGL/362010/00/012299/2013</DocumentNo>
           <CustomsDebtDate>2013-07-08</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY CHINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -190,11 +212,11 @@
           <Batch>0004002792</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>6080</NetMass>
-          <Value>20000</Value>
+          <Value>22222</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>14</No>
+          <No>16</No>
           <DocumentNo>OGL/362010/00/012300/2013</DocumentNo>
           <CustomsDebtDate>2013-07-08</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -203,11 +225,11 @@
           <Batch>0003732899</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>5890</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>15</No>
+          <No>17</No>
           <DocumentNo>OGL/362010/00/012302/2013</DocumentNo>
           <CustomsDebtDate>2013-07-08</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -216,11 +238,11 @@
           <Batch>0004068803</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>16</No>
+          <No>18</No>
           <DocumentNo>OGL/362010/00/012317/2013</DocumentNo>
           <CustomsDebtDate>2013-07-08</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY PHILIPPINES AIR CURED BURLEY STRIPS</TobaccoName>
@@ -229,11 +251,11 @@
           <Batch>0004203559</Batch>
           <CNTarrifCode>2401203599</CNTarrifCode>
           <NetMass>20520</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>17</No>
+          <No>19</No>
           <DocumentNo>OGL/362010/00/012332/2013</DocumentNo>
           <CustomsDebtDate>2013-07-09</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -242,11 +264,11 @@
           <Batch>0004075139</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>18</No>
+          <No>20</No>
           <DocumentNo>OGL/362010/00/012504/2013</DocumentNo>
           <CustomsDebtDate>2013-07-11</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -255,11 +277,11 @@
           <Batch>0004068803</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>19</No>
+          <No>21</No>
           <DocumentNo>OGL/362010/00/012509/2013</DocumentNo>
           <CustomsDebtDate>2013-07-11</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -268,11 +290,11 @@
           <Batch>0004068803</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>20</No>
+          <No>22</No>
           <DocumentNo>OGL/362010/00/012640/2013</DocumentNo>
           <CustomsDebtDate>2013-07-15</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -281,11 +303,11 @@
           <Batch>0004075139</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>21</No>
+          <No>23</No>
           <DocumentNo>OGL/362010/00/012641/2013</DocumentNo>
           <CustomsDebtDate>2013-07-15</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -294,11 +316,11 @@
           <Batch>0004068803</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>22</No>
+          <No>24</No>
           <DocumentNo>OGL/362010/00/012652/2013</DocumentNo>
           <CustomsDebtDate>2013-07-15</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -307,11 +329,11 @@
           <Batch>0004225172</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>23</No>
+          <No>25</No>
           <DocumentNo>OGL/362010/00/012696/2013</DocumentNo>
           <CustomsDebtDate>2013-07-15</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -320,11 +342,11 @@
           <Batch>0004259875</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>15800</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>24</No>
+          <No>26</No>
           <DocumentNo>OGL/362010/00/012698/2013</DocumentNo>
           <CustomsDebtDate>2013-07-15</CustomsDebtDate>
           <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
@@ -333,11 +355,11 @@
           <Batch>0003557299</Batch>
           <CNTarrifCode>2401106000</CNTarrifCode>
           <NetMass>4060</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>25</No>
+          <No>27</No>
           <DocumentNo>OGL/362010/00/012712/2013</DocumentNo>
           <CustomsDebtDate>2013-07-15</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -346,11 +368,11 @@
           <Batch>0004223937</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>14400</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>26</No>
+          <No>28</No>
           <DocumentNo>OGL/362010/00/012713/2013</DocumentNo>
           <CustomsDebtDate>2013-07-15</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -359,11 +381,11 @@
           <Batch>0004225174</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>21000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>27</No>
+          <No>29</No>
           <DocumentNo>OGL/362010/00/012768/2013</DocumentNo>
           <CustomsDebtDate>2013-07-16</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -372,11 +394,11 @@
           <Batch>0004259875</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>28</No>
+          <No>30</No>
           <DocumentNo>OGL/362010/00/012868/2013</DocumentNo>
           <CustomsDebtDate>2013-07-17</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY THAILAND AIR CURED BURLEY STRIPS</TobaccoName>
@@ -385,11 +407,11 @@
           <Batch>0004195720</Batch>
           <CNTarrifCode>2401203510</CNTarrifCode>
           <NetMass>9310</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>29</No>
+          <No>31</No>
           <DocumentNo>OGL/362010/00/012869/2013</DocumentNo>
           <CustomsDebtDate>2013-07-17</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY INDONESIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -398,11 +420,11 @@
           <Batch>0004332014</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>7400</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>30</No>
+          <No>32</No>
           <DocumentNo>OGL/362010/00/012978/2013</DocumentNo>
           <CustomsDebtDate>2013-07-19</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -411,11 +433,11 @@
           <Batch>0004259875</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>31</No>
+          <No>33</No>
           <DocumentNo>OGL/362010/00/012981/2013</DocumentNo>
           <CustomsDebtDate>2013-07-19</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY ARGENTINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -424,11 +446,11 @@
           <Batch>0004133170</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>21000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>32</No>
+          <No>34</No>
           <DocumentNo>OGL/362010/00/012986/2013</DocumentNo>
           <CustomsDebtDate>2013-07-19</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -437,11 +459,11 @@
           <Batch>0004225172</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>12400</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>33</No>
+          <No>35</No>
           <DocumentNo>OGL/362010/00/012988/2013</DocumentNo>
           <CustomsDebtDate>2013-07-19</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY CHINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -450,11 +472,11 @@
           <Batch>0004203558</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>4800</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>34</No>
+          <No>36</No>
           <DocumentNo>OGL/362010/00/012989/2013</DocumentNo>
           <CustomsDebtDate>2013-07-19</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -463,11 +485,11 @@
           <Batch>0004098013</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>4400</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>35</No>
+          <No>37</No>
           <DocumentNo>OGL/362010/00/013087/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODZYLOWANY ARGENTINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -476,11 +498,11 @@
           <Batch>0003991516</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>2000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>36</No>
+          <No>38</No>
           <DocumentNo>OGL/362010/00/013089/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -489,11 +511,11 @@
           <Batch>0003968894</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>7200</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>37</No>
+          <No>39</No>
           <DocumentNo>OGL/362010/00/013090/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -502,11 +524,11 @@
           <Batch>0004250152</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>4000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>38</No>
+          <No>40</No>
           <DocumentNo>OGL/362010/00/013091/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODZYLOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -515,11 +537,11 @@
           <Batch>0004193041</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>5320</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>39</No>
+          <No>41</No>
           <DocumentNo>OGL/362010/00/013092/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LOOSE LEAF</TobaccoName>
@@ -528,11 +550,11 @@
           <Batch>0003386963</Batch>
           <CNTarrifCode>2401106000</CNTarrifCode>
           <NetMass>1120</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>40</No>
+          <No>42</No>
           <DocumentNo>OGL/362010/00/013094/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODZYLOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -541,11 +563,11 @@
           <Batch>0004073305</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>5000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>41</No>
+          <No>43</No>
           <DocumentNo>OGL/362010/00/013095/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -554,11 +576,11 @@
           <Batch>0003896367</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>5130</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>42</No>
+          <No>44</No>
           <DocumentNo>OGL/362010/00/013096/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODZYLOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -567,11 +589,11 @@
           <Batch>0003786606</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>1080</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>43</No>
+          <No>45</No>
           <DocumentNo>OGL/362010/00/013097/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODZYLOWANY INDONESIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -580,11 +602,24 @@
           <Batch>0003786605</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>6000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>44</No>
+          <No>46</No>
+          <DocumentNo>OGL/362010/00/013099/2013</DocumentNo>
+          <CustomsDebtDate>2013-07-22</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY THAILAND ORIENTAL LOOSE LEAF</TobaccoName>
+          <Grade>DTHORGS</Grade>
+          <SKU>12718000</SKU>
+          <Batch>0003367012</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>5040</NetMass>
+          <Value>22641.28</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>47</No>
           <DocumentNo>OGL/362010/00/013101/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
@@ -593,11 +628,11 @@
           <Batch>0003557299</Batch>
           <CNTarrifCode>2401106000</CNTarrifCode>
           <NetMass>1820</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>45</No>
+          <No>48</No>
           <DocumentNo>OGL/362010/00/013102/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL BURLEY STRIPS</TobaccoName>
@@ -606,11 +641,11 @@
           <Batch>0004136062</Batch>
           <CNTarrifCode>2401203510</CNTarrifCode>
           <NetMass>10070</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>46</No>
+          <No>49</No>
           <DocumentNo>OGL/362010/00/013103/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTON NIEODZYLOWANY INDONESIA SUN AIR CURED LOOSE LEAF</TobaccoName>
@@ -619,11 +654,11 @@
           <Batch>0003808069</Batch>
           <CNTarrifCode>2401109599</CNTarrifCode>
           <NetMass>7200</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>47</No>
+          <No>50</No>
           <DocumentNo>OGL/362010/00/013104/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -632,11 +667,11 @@
           <Batch>0004075159</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>9310</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>48</No>
+          <No>51</No>
           <DocumentNo>OGL/362010/00/013106/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODZYLOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -645,11 +680,11 @@
           <Batch>0004075053</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>10000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>49</No>
+          <No>52</No>
           <DocumentNo>OGL/362010/00/013109/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODZYLOWANY USA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -658,11 +693,11 @@
           <Batch>0004087131</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>2090</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>50</No>
+          <No>53</No>
           <DocumentNo>OGL/362010/00/013118/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>ZYLA TYTONIOWA</TobaccoName>
@@ -671,11 +706,11 @@
           <Batch>0004075139</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>5200</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>51</No>
+          <No>54</No>
           <DocumentNo>OGL/362010/00/013140/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODZYLOWANY BANGLADESH AIR CURED BURLEY STRIPS</TobaccoName>
@@ -684,11 +719,11 @@
           <Batch>0003930503</Batch>
           <CNTarrifCode>2401203599</CNTarrifCode>
           <NetMass>6000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>52</No>
+          <No>55</No>
           <DocumentNo>OGL/362010/00/013142/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODZYLOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -697,11 +732,11 @@
           <Batch>0004225174</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>8800</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>53</No>
+          <No>56</No>
           <DocumentNo>OGL/362010/00/013144/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODZYLOWANY ARGENTINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -710,11 +745,11 @@
           <Batch>0004066567</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>4400</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>54</No>
+          <No>57</No>
           <DocumentNo>OGL/362010/00/013151/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -723,11 +758,11 @@
           <Batch>0004204540</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>14000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>55</No>
+          <No>58</No>
           <DocumentNo>OGL/362010/00/013152/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY CHINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -736,11 +771,11 @@
           <Batch>0004060811</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>3040</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>56</No>
+          <No>59</No>
           <DocumentNo>OGL/362010/00/013153/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY PHILIPPINES AIR CURED BURLEY STRIPS</TobaccoName>
@@ -749,11 +784,11 @@
           <Batch>0004203559</Batch>
           <CNTarrifCode>2401203599</CNTarrifCode>
           <NetMass>2470</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>57</No>
+          <No>60</No>
           <DocumentNo>OGL/362010/00/013155/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTON NIEODZYLOWANY THAILAND ORIENTAL LOOSE LEAF</TobaccoName>
@@ -762,11 +797,11 @@
           <Batch>0003626744</Batch>
           <CNTarrifCode>2401106000</CNTarrifCode>
           <NetMass>280</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>58</No>
+          <No>61</No>
           <DocumentNo>OGL/362010/00/013160/2013</DocumentNo>
           <CustomsDebtDate>2013-07-22</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY CHINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -775,11 +810,24 @@
           <Batch>0004203558</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>9000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>59</No>
+          <No>62</No>
+          <DocumentNo>OGL/362010/00/013161/2013</DocumentNo>
+          <CustomsDebtDate>2013-07-22</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
+          <Grade>XTRORGS</Grade>
+          <SKU>12668755</SKU>
+          <Batch>0003274836</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>4600</NetMass>
+          <Value>33333</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>63</No>
           <DocumentNo>OGL/362010/00/013207/2013</DocumentNo>
           <CustomsDebtDate>2013-07-23</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY BANGLADESH AIR CURED BURLEY STRIPS</TobaccoName>
@@ -788,11 +836,11 @@
           <Batch>0003930503</Batch>
           <CNTarrifCode>2401203599</CNTarrifCode>
           <NetMass>3000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>60</No>
+          <No>64</No>
           <DocumentNo>OGL/362010/00/013210/2013</DocumentNo>
           <CustomsDebtDate>2013-07-23</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -801,11 +849,11 @@
           <Batch>0003896365</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>2090</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>61</No>
+          <No>65</No>
           <DocumentNo>OGL/362010/00/013211/2013</DocumentNo>
           <CustomsDebtDate>2013-07-23</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY ARGENTINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -814,11 +862,11 @@
           <Batch>0003991516</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>1000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>62</No>
+          <No>66</No>
           <DocumentNo>OGL/362010/00/013212/2013</DocumentNo>
           <CustomsDebtDate>2013-07-23</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -827,11 +875,11 @@
           <Batch>0003815099</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>14800</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>63</No>
+          <No>67</No>
           <DocumentNo>OGL/362010/00/013257/2013</DocumentNo>
           <CustomsDebtDate>2013-07-24</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY USA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -840,11 +888,11 @@
           <Batch>0004273083</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>7200</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>64</No>
+          <No>68</No>
           <DocumentNo>OGL/362010/00/013259/2013</DocumentNo>
           <CustomsDebtDate>2013-07-24</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -853,11 +901,24 @@
           <Batch>0004224541</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>14400</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>65</No>
+          <No>69</No>
+          <DocumentNo>OGL/362010/00/010253/2013</DocumentNo>
+          <CustomsDebtDate>2013-06-03</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XINFLERN</Grade>
+          <SKU>13152736</SKU>
+          <Batch>0004225174</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>19800</NetMass>
+          <Value>33333</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>70</No>
           <DocumentNo>OGL/362010/00/010270/2013</DocumentNo>
           <CustomsDebtDate>2013-06-03</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -866,11 +927,11 @@
           <Batch>0004259875</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>66</No>
+          <No>71</No>
           <DocumentNo>OGL/362010/00/010275/2013</DocumentNo>
           <CustomsDebtDate>2013-06-03</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY ARGENTINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -879,11 +940,11 @@
           <Batch>0004067915</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>11000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>67</No>
+          <No>72</No>
           <DocumentNo>OGL/362010/00/010276/2013</DocumentNo>
           <CustomsDebtDate>2013-06-03</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY CHINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -892,11 +953,11 @@
           <Batch>0004033802</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>10600</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>68</No>
+          <No>73</No>
           <DocumentNo>OGL/362010/00/010284/2013</DocumentNo>
           <CustomsDebtDate>2013-06-03</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY ZIMBABWE FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -905,11 +966,11 @@
           <Batch>0004267571</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>20520</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>69</No>
+          <No>74</No>
           <DocumentNo>OGL/362010/00/010302/2013</DocumentNo>
           <CustomsDebtDate>2013-06-03</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -918,11 +979,11 @@
           <Batch>0004224541</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>18000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>70</No>
+          <No>75</No>
           <DocumentNo>OGL/362010/00/010304/2013</DocumentNo>
           <CustomsDebtDate>2013-06-03</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -931,11 +992,37 @@
           <Batch>0004075140</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21400</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>71</No>
+          <No>76</No>
+          <DocumentNo>OGL/362010/00/010325/2013</DocumentNo>
+          <CustomsDebtDate>2013-06-03</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
+          <Grade>XTROSKS</Grade>
+          <SKU>12617119</SKU>
+          <Batch>0003557299</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>3220</NetMass>
+          <Value>33333</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>77</No>
+          <DocumentNo>OGL/362010/00/010329/2013</DocumentNo>
+          <CustomsDebtDate>2013-06-03</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
+          <Grade>XTRORGS</Grade>
+          <SKU>12668755</SKU>
+          <Batch>0003274836</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>2400</NetMass>
+          <Value>22222</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>78</No>
           <DocumentNo>OGL/362010/00/010341/2013</DocumentNo>
           <CustomsDebtDate>2013-06-03</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -944,11 +1031,11 @@
           <Batch>0004225172</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>20400</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>72</No>
+          <No>79</No>
           <DocumentNo>OGL/362010/00/010345/2013</DocumentNo>
           <CustomsDebtDate>2013-06-03</CustomsDebtDate>
           <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
@@ -957,11 +1044,11 @@
           <Batch>0003557270</Batch>
           <CNTarrifCode>2401106000</CNTarrifCode>
           <NetMass>7350</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>73</No>
+          <No>80</No>
           <DocumentNo>OGL/362010/00/010347/2013</DocumentNo>
           <CustomsDebtDate>2013-06-03</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY FCV UNMFG TOB STRIPS</TobaccoName>
@@ -970,11 +1057,11 @@
           <Batch>0004332008</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>2000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>74</No>
+          <No>81</No>
           <DocumentNo>OGL/362010/00/010349/2013</DocumentNo>
           <CustomsDebtDate>2013-06-03</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY ARGENTINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -983,11 +1070,11 @@
           <Batch>0003991516</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>5600</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>75</No>
+          <No>82</No>
           <DocumentNo>OGL/362010/00/010455/2013</DocumentNo>
           <CustomsDebtDate>2013-06-04</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -996,11 +1083,11 @@
           <Batch>0004075139</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>18000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>76</No>
+          <No>83</No>
           <DocumentNo>OGL/362010/00/010571/2013</DocumentNo>
           <CustomsDebtDate>2013-06-05</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -1009,11 +1096,11 @@
           <Batch>0004116711</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>2000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>77</No>
+          <No>84</No>
           <DocumentNo>OGL/362010/00/010586/2013</DocumentNo>
           <CustomsDebtDate>2013-06-05</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY USA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -1022,11 +1109,11 @@
           <Batch>0004087131</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>2660</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>78</No>
+          <No>85</No>
           <DocumentNo>OGL/362010/00/010589/2013</DocumentNo>
           <CustomsDebtDate>2013-06-05</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -1035,11 +1122,24 @@
           <Batch>0004076066</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>15000</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>79</No>
+          <No>86</No>
+          <DocumentNo>OGL/362010/00/010582/2013</DocumentNo>
+          <CustomsDebtDate>2013-06-05</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
+          <Grade>XTROOES</Grade>
+          <SKU>12682918</SKU>
+          <Batch>0003386963</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>1120</NetMass>
+          <Value>33333</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>87</No>
           <DocumentNo>OGL/362010/00/010667/2013</DocumentNo>
           <CustomsDebtDate>2013-06-06</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -1048,11 +1148,11 @@
           <Batch>0004259875</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>17400</NetMass>
-          <Value>20000</Value>
+          <Value>33333</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>80</No>
+          <No>88</No>
           <DocumentNo>OGL/362010/00/010674/2013</DocumentNo>
           <CustomsDebtDate>2013-06-06</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY ARGENTINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -1061,11 +1161,11 @@
           <Batch>0004066564</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>20000</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>81</No>
+          <No>89</No>
           <DocumentNo>OGL/362010/00/010688/2013</DocumentNo>
           <CustomsDebtDate>2013-06-06</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -1074,11 +1174,11 @@
           <Batch>0004096957</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>9120</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>82</No>
+          <No>90</No>
           <DocumentNo>OGL/362010/00/010689/2013</DocumentNo>
           <CustomsDebtDate>2013-06-06</CustomsDebtDate>
           <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
@@ -1087,11 +1187,11 @@
           <Batch>0004077155</Batch>
           <CNTarrifCode>2401106000</CNTarrifCode>
           <NetMass>5670</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>83</No>
+          <No>91</No>
           <DocumentNo>OGL/362010/00/010732/2013</DocumentNo>
           <CustomsDebtDate>2013-06-07</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY ARGENTINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -1100,11 +1200,11 @@
           <Batch>0004066564</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>3200</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>84</No>
+          <No>92</No>
           <DocumentNo>OGL/362010/00/010734/2013</DocumentNo>
           <CustomsDebtDate>2013-06-07</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -1113,11 +1213,11 @@
           <Batch>0004249707</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>4180</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>85</No>
+          <No>93</No>
           <DocumentNo>OGL/362010/00/010746/2013</DocumentNo>
           <CustomsDebtDate>2013-06-07</CustomsDebtDate>
           <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
@@ -1126,11 +1226,11 @@
           <Batch>0004077155</Batch>
           <CNTarrifCode>2401106000</CNTarrifCode>
           <NetMass>4620</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>86</No>
+          <No>94</No>
           <DocumentNo>OGL/362010/00/010789/2013</DocumentNo>
           <CustomsDebtDate>2013-06-10</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -1139,11 +1239,11 @@
           <Batch>0004075139</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>87</No>
+          <No>95</No>
           <DocumentNo>OGL/362010/00/010834/2013</DocumentNo>
           <CustomsDebtDate>2013-06-10</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -1152,11 +1252,11 @@
           <Batch>0004075139</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>88</No>
+          <No>96</No>
           <DocumentNo>OGL/362010/00/010854/2013</DocumentNo>
           <CustomsDebtDate>2013-06-11</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -1165,11 +1265,11 @@
           <Batch>0004075139</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>89</No>
+          <No>97</No>
           <DocumentNo>OGL/362010/00/011108/2013</DocumentNo>
           <CustomsDebtDate>2013-06-17</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -1178,11 +1278,11 @@
           <Batch>0004075147</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>90</No>
+          <No>98</No>
           <DocumentNo>OGL/362010/00/011109/2013</DocumentNo>
           <CustomsDebtDate>2013-06-17</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -1191,11 +1291,11 @@
           <Batch>0004075147</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>91</No>
+          <No>99</No>
           <DocumentNo>OGL/362010/00/011111/2013</DocumentNo>
           <CustomsDebtDate>2013-06-17</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -1204,11 +1304,11 @@
           <Batch>0004075147</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>21600</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>92</No>
+          <No>100</No>
           <DocumentNo>OGL/362010/00/011120/2013</DocumentNo>
           <CustomsDebtDate>2013-06-17</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -1217,11 +1317,11 @@
           <Batch>0004225172</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>17000</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>93</No>
+          <No>101</No>
           <DocumentNo>OGL/362010/00/011145/2013</DocumentNo>
           <CustomsDebtDate>2013-06-17</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY CHINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -1230,11 +1330,11 @@
           <Batch>0004033802</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>20000</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>94</No>
+          <No>102</No>
           <DocumentNo>OGL/362010/00/011157/2013</DocumentNo>
           <CustomsDebtDate>2013-06-17</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -1243,11 +1343,11 @@
           <Batch>0004076010</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>16530</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>95</No>
+          <No>103</No>
           <DocumentNo>OGL/362010/00/011412/2013</DocumentNo>
           <CustomsDebtDate>2013-06-21</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -1256,11 +1356,11 @@
           <Batch>0004075054</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>21000</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>96</No>
+          <No>104</No>
           <DocumentNo>OGL/362010/00/011425/2013</DocumentNo>
           <CustomsDebtDate>2013-06-21</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -1269,11 +1369,11 @@
           <Batch>0003815098</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>16200</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>97</No>
+          <No>105</No>
           <DocumentNo>OGL/362010/00/011439/2013</DocumentNo>
           <CustomsDebtDate>2013-06-21</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -1282,11 +1382,11 @@
           <Batch>0004073305</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>5600</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>98</No>
+          <No>106</No>
           <DocumentNo>OGL/362010/00/011476/2013</DocumentNo>
           <CustomsDebtDate>2013-06-24</CustomsDebtDate>
           <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
@@ -1295,11 +1395,24 @@
           <Batch>0003557299</Batch>
           <CNTarrifCode>2401106000</CNTarrifCode>
           <NetMass>7000</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>99</No>
+          <No>107</No>
+          <DocumentNo>OGL/362010/00/011477/2013</DocumentNo>
+          <CustomsDebtDate>2013-06-24</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
+          <Grade>XTRORGS</Grade>
+          <SKU>12668755</SKU>
+          <Batch>0003274836</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>4000</NetMass>
+          <Value>44444</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>108</No>
           <DocumentNo>OGL/362010/00/011496/2013</DocumentNo>
           <CustomsDebtDate>2013-06-24</CustomsDebtDate>
           <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
@@ -1308,11 +1421,11 @@
           <Batch>0004133850</Batch>
           <CNTarrifCode>2401300000</CNTarrifCode>
           <NetMass>16000</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>100</No>
+          <No>109</No>
           <DocumentNo>OGL/362010/00/011499/2013</DocumentNo>
           <CustomsDebtDate>2013-06-24</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY THAILAND AIR CURED BURLEY STRIPS</TobaccoName>
@@ -1321,11 +1434,11 @@
           <Batch>0004195720</Batch>
           <CNTarrifCode>2401203510</CNTarrifCode>
           <NetMass>20140</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>101</No>
+          <No>110</No>
           <DocumentNo>OGL/362010/00/011521/2013</DocumentNo>
           <CustomsDebtDate>2013-06-24</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -1334,11 +1447,11 @@
           <Batch>0004223937</Batch>
           <CNTarrifCode>2401208590</CNTarrifCode>
           <NetMass>8000</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
         <DetailsOfOneAccount>
-          <No>102</No>
+          <No>111</No>
           <DocumentNo>OGL/362010/00/011522/2013</DocumentNo>
           <CustomsDebtDate>2013-06-24</CustomsDebtDate>
           <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
@@ -1347,7 +1460,1515 @@
           <Batch>0004225174</Batch>
           <CNTarrifCode>2401208510</CNTarrifCode>
           <NetMass>2000</NetMass>
-          <Value>20000</Value>
+          <Value>44444</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>112</No>
+          <DocumentNo>OGL/362010/00/020434/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-04</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>HBRFLC</Grade>
+          <SKU>12972418</SKU>
+          <Batch>0004212593</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>21000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>113</No>
+          <DocumentNo>OGL/362010/00/020443/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-04</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY USA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XUSFLC</Grade>
+          <SKU>12568261</SKU>
+          <Batch>0004087130</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>7400</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>114</No>
+          <DocumentNo>OGL/362010/00/020444/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-04</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY USA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XUSFLC</Grade>
+          <SKU>12568261</SKU>
+          <Batch>0004087130</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>13600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>115</No>
+          <DocumentNo>OGL/362010/00/020472/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-04</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY INDONESIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XIDFCC</Grade>
+          <SKU>13033357</SKU>
+          <Batch>0004331995</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>4940</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>116</No>
+          <DocumentNo>OGL/362010/00/020474/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-04</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY USA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XUSFCBE</Grade>
+          <SKU>13026634</SKU>
+          <Batch>0004087131</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>2090</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>117</No>
+          <DocumentNo>OGL/362010/00/020475/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-04</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XBRFLER</Grade>
+          <SKU>12802921</SKU>
+          <Batch>0003901697</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>9000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>118</No>
+          <DocumentNo>OGL/362010/00/020483/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-04</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>LINFLDM</Grade>
+          <SKU>13090417</SKU>
+          <Batch>0004056214</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>15000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>119</No>
+          <DocumentNo>OGL/362010/00/020484/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-04</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY ZIMBABEW FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XZWFCC</Grade>
+          <SKU>12593383</SKU>
+          <Batch>0004098857</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>4370</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>120</No>
+          <DocumentNo>OGL/362010/00/020989/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-08</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XTZFLB</Grade>
+          <SKU>12568231</SKU>
+          <Batch>0004097978</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>16000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>121</No>
+          <DocumentNo>OGL/362010/00/021006/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-08</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY SERBIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>HCSFLD</Grade>
+          <SKU>13055752</SKU>
+          <Batch>0004342287</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>1000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>122</No>
+          <DocumentNo>OGL/362010/00/021008/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-08</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XINFCET</Grade>
+          <SKU>12647842</SKU>
+          <Batch>0003851413</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>3780</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>123</No>
+          <DocumentNo>OGL/362010/00/021127/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-12</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XINFPDT</Grade>
+          <SKU>12647860</SKU>
+          <Batch>0003216527</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>1980</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>124</No>
+          <DocumentNo>OGL/362010/00/021129/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-12</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY SERBIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>HCSFME</Grade>
+          <SKU>13077847</SKU>
+          <Batch>0004359390</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>2000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>125</No>
+          <DocumentNo>OGL/362010/00/021149/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-12</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY MALAWI AIR CURED BURLEY STRIPS</TobaccoName>
+          <Grade>XMWBCD</Grade>
+          <SKU>12568441</SKU>
+          <Batch>0004231473</Batch>
+          <CNTarrifCode>2401203599</CNTarrifCode>
+          <NetMass>2340</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>126</No>
+          <DocumentNo>OGL/362010/00/021151/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-12</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XBRFCB</Grade>
+          <SKU>12352149</SKU>
+          <Batch>0004075159</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>14060</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>127</No>
+          <DocumentNo>OGL/362010/00/021167/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-12</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY BANGLADESH AIR CURED BURLEY STRIPS</TobaccoName>
+          <Grade>XBDBLE</Grade>
+          <SKU>13022104</SKU>
+          <Batch>0003993571</Batch>
+          <CNTarrifCode>2401203599</CNTarrifCode>
+          <NetMass>5400</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>128</No>
+          <DocumentNo>OGL/362010/00/021180/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-12</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XTZFLDR</Grade>
+          <SKU>12699565</SKU>
+          <Batch>0004098015</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>7400</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>129</No>
+          <DocumentNo>OGL/362010/00/021181/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-12</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY USA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XUSFLAE</Grade>
+          <SKU>13053628</SKU>
+          <Batch>0004273083</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>14000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>130</No>
+          <DocumentNo>OGL/362010/00/021371/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-14</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZBRSFCL</Grade>
+          <SKU>12365772</SKU>
+          <Batch>0004075146</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>131</No>
+          <DocumentNo>OGL/362010/00/021476/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-15</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XBRFLDR</Grade>
+          <SKU>12567571</SKU>
+          <Batch>0004073314</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>132</No>
+          <DocumentNo>OGL/362010/00/021502/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-15</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY INDONESIA SUN AIR CURED LOOSE LEAF</TobaccoName>
+          <Grade>XIDSME</Grade>
+          <SKU>12607453</SKU>
+          <Batch>0003808069</Batch>
+          <CNTarrifCode>2401109599</CNTarrifCode>
+          <NetMass>7920</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>133</No>
+          <DocumentNo>OGL/362010/00/021503/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-15</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>HTZFLA</Grade>
+          <SKU>13035805</SKU>
+          <Batch>0004249709</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>1000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>134</No>
+          <DocumentNo>OGL/362010/00/021504/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-15</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY CHINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>HCNFLBY</Grade>
+          <SKU>13108261</SKU>
+          <Batch>0004083139</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>1000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>135</No>
+          <DocumentNo>OGL/362010/00/021505/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-15</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL BURLEY STRIPS</TobaccoName>
+          <Grade>4BRBLS1S1</Grade>
+          <SKU>13310911</SKU>
+          <Batch>0004444477</Batch>
+          <CNTarrifCode>2401203510</CNTarrifCode>
+          <NetMass>5320</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>136</No>
+          <DocumentNo>OGL/362010/00/021522/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-15</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZBRSFCL</Grade>
+          <SKU>12365772</SKU>
+          <Batch>0004075146</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>137</No>
+          <DocumentNo>OGL/362010/00/021540/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-15</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XINFLERT</Grade>
+          <SKU>12647851</SKU>
+          <Batch>0004225172</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>138</No>
+          <DocumentNo>OGL/362010/00/021562/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-18</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XBRFLDR</Grade>
+          <SKU>12567571</SKU>
+          <Batch>0004073314</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>139</No>
+          <DocumentNo>OGL/362010/00/021578/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-18</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY PHILIPPINES AIR CURED BURLEY STRIPS</TobaccoName>
+          <Grade>XPHBCDI</Grade>
+          <SKU>12702409</SKU>
+          <Batch>0004199214</Batch>
+          <CNTarrifCode>2401203599</CNTarrifCode>
+          <NetMass>1080</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>140</No>
+          <DocumentNo>OGL/362010/00/021579/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-18</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL BURLEY STRIPS</TobaccoName>
+          <Grade>HBRBLD</Grade>
+          <SKU>13138552</SKU>
+          <Batch>0004127485</Batch>
+          <CNTarrifCode>2401203510</CNTarrifCode>
+          <NetMass>7980</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>141</No>
+          <DocumentNo>OGL/362010/00/021580/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-18</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
+          <Grade>XTROIKS</Grade>
+          <SKU>12437592</SKU>
+          <Batch>0004011559</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>2100</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>142</No>
+          <DocumentNo>OGL/362010/00/021617/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-18</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZBRSFLL</Grade>
+          <SKU>12365775</SKU>
+          <Batch>0004075147</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>143</No>
+          <DocumentNo>OGL/362010/00/022255/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-25</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY MALAWI FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XMWFLER</Grade>
+          <SKU>12592903</SKU>
+          <Batch>0003966664</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>10800</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>144</No>
+          <DocumentNo>OGL/362010/00/022256/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-25</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>WTZFME</Grade>
+          <SKU>13141480</SKU>
+          <Batch>0004133844</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>8170</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>145</No>
+          <DocumentNo>OGL/362010/00/022257/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-25</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY BRAZIL DARK AIR CURED STRIPS</TobaccoName>
+          <Grade>XBRDMEP</Grade>
+          <SKU>12606556</SKU>
+          <Batch>0003995819</Batch>
+          <CNTarrifCode>2401207090</CNTarrifCode>
+          <NetMass>13000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>146</No>
+          <DocumentNo>OGL/362010/00/022276/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-25</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZBRSFCL</Grade>
+          <SKU>12365772</SKU>
+          <Batch>0004075146</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>14600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>147</No>
+          <DocumentNo>OGL/362010/00/022278/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-25</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZMWSBLL</Grade>
+          <SKU>12413589</SKU>
+          <Batch>0004096957</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>6650</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>148</No>
+          <DocumentNo>OGL/362010/00/022280/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-25</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY ARGENTINA BURLEY STRIPS</TobaccoName>
+          <Grade>HARBLDT</Grade>
+          <SKU>13146526</SKU>
+          <Batch>0004139986</Batch>
+          <CNTarrifCode>2401203510</CNTarrifCode>
+          <NetMass>10070</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>149</No>
+          <DocumentNo>OGL/362010/00/022281/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-25</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
+          <Grade>XTROIKS</Grade>
+          <SKU>12437592</SKU>
+          <Batch>0004011559</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>6930</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>150</No>
+          <DocumentNo>OGL/362010/00/022301/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-25</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>HTZFPD</Grade>
+          <SKU>13043257</SKU>
+          <Batch>0004249708</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>3990</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>151</No>
+          <DocumentNo>OGL/362010/00/022302/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-25</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XINFLERN</Grade>
+          <SKU>13152736</SKU>
+          <Batch>0004225169</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>17000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>152</No>
+          <DocumentNo>OGL/362010/00/022303/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-25</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZMWSBLL</Grade>
+          <SKU>12413589</SKU>
+          <Batch>0004096957</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>380</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>153</No>
+          <DocumentNo>OGL/362010/00/022305/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-25</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY INDONESIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XIDFLB</Grade>
+          <SKU>12567769</SKU>
+          <Batch>0004332014</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>5000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>154</No>
+          <DocumentNo>OGL/362010/00/022322/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-25</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY MALAWI AIR CURED BURLEY STRIPS</TobaccoName>
+          <Grade>XMWBCB</Grade>
+          <SKU>12568432</SKU>
+          <Batch>0004096925</Batch>
+          <CNTarrifCode>2401203599</CNTarrifCode>
+          <NetMass>1980</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>155</No>
+          <DocumentNo>OGL/362010/00/022435/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-27</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZBRSFLL</Grade>
+          <SKU>12365775</SKU>
+          <Batch>0004075140</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>156</No>
+          <DocumentNo>OGL/362010/00/022590/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-28</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZBRSFLL</Grade>
+          <SKU>12365775</SKU>
+          <Batch>0004075140</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>157</No>
+          <DocumentNo>OGL/362010/00/022637/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-28</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY CHINA FLUE CURED STRIPS</TobaccoName>
+          <Grade>2CNFCL4SG</Grade>
+          <SKU>13215718</SKU>
+          <Batch>0004318779</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>3040</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>158</No>
+          <DocumentNo>OGL/362010/00/022638/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-28</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY THAILAND ORIENTAL LEAF</TobaccoName>
+          <Grade>XTHOBAS</Grade>
+          <SKU>12596689</SKU>
+          <Batch>0003911938</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>1960</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>159</No>
+          <DocumentNo>OGL/362010/00/022683/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-29</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZBRSFLL</Grade>
+          <SKU>12365775</SKU>
+          <Batch>0004075140</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>160</No>
+          <DocumentNo>OGL/362010/00/022684/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-29</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZBRSFLL</Grade>
+          <SKU>12365775</SKU>
+          <Batch>0004075140</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>161</No>
+          <DocumentNo>OGL/362010/00/022687/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-29</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZBRSFLL</Grade>
+          <SKU>12365775</SKU>
+          <Batch>0004075140</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>162</No>
+          <DocumentNo>OGL/362010/00/022704/2013</DocumentNo>
+          <CustomsDebtDate>2013-11-29</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED STRIPS</TobaccoName>
+          <Grade>XTZFLDR</Grade>
+          <SKU>12699565</SKU>
+          <Batch>0004098013</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>163</No>
+          <DocumentNo>OGL/362010/00/022786/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-02</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZZMSFLL</Grade>
+          <SKU>12365991</SKU>
+          <Batch>0004436032</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>164</No>
+          <DocumentNo>OGL/362010/00/022788/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-02</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZZMSFLL</Grade>
+          <SKU>12365991</SKU>
+          <Batch>0004436032</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>165</No>
+          <DocumentNo>OGL/362010/00/022795/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-02</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED STRIPS</TobaccoName>
+          <Grade>XINFLERN</Grade>
+          <SKU>13152736</SKU>
+          <Batch>0004225169</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>166</No>
+          <DocumentNo>OGL/362010/00/022796/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-02</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED STRIPS</TobaccoName>
+          <Grade>XBRFLDR</Grade>
+          <SKU>12567571</SKU>
+          <Batch>0004073314</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>167</No>
+          <DocumentNo>OGL/362010/00/022829/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-02</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY SERBIA FLUE CURED STRIPS</TobaccoName>
+          <Grade>XCSFLE</Grade>
+          <SKU>12682963</SKU>
+          <Batch>0003387717</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>2000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>168</No>
+          <DocumentNo>OGL/362010/00/022831/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-02</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED STRIPS</TobaccoName>
+          <Grade>XTZFLBR</Grade>
+          <SKU>13026616</SKU>
+          <Batch>0004221117</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>1000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>169</No>
+          <DocumentNo>OGL/362010/00/022833/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-02</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY MALAWI AIR CURED BURLEY STRIPS</TobaccoName>
+          <Grade>HMWBLB</Grade>
+          <SKU>13022329</SKU>
+          <Batch>0004205826</Batch>
+          <CNTarrifCode>2401203599</CNTarrifCode>
+          <NetMass>7980</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>170</No>
+          <DocumentNo>OGL/362010/00/022861/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-02</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY INDIA FLUE CURED STRIPS</TobaccoName>
+          <Grade>XINFLERT</Grade>
+          <SKU>12647851</SKU>
+          <Batch>0004225172</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>171</No>
+          <DocumentNo>OGL/362010/00/022865/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-02</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZARSFCL</Grade>
+          <SKU>12365751</SKU>
+          <Batch>0004390362</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>172</No>
+          <DocumentNo>OGL/362010/00/022874/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-02</CustomsDebtDate>
+          <TobaccoName>ŻYŁA TYTONIOWA</TobaccoName>
+          <Grade>ZARSFCL</Grade>
+          <SKU>12365751</SKU>
+          <Batch>0004390362</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>173</No>
+          <DocumentNo>OGL/362010/00/022928/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-03</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL FLUE CURED STRIPS</TobaccoName>
+          <Grade>XBRFLD</Grade>
+          <SKU>12567562</SKU>
+          <Batch>0004075171</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>18000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>174</No>
+          <DocumentNo>OGL/362010/00/023119/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-05</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY TANZANIA FLUE CURED STRIPS</TobaccoName>
+          <Grade>XTZFLBR</Grade>
+          <SKU>13026616</SKU>
+          <Batch>0004221117</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>2400</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>175</No>
+          <DocumentNo>OGL/362010/00/023122/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-05</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY MALAWI AIR CURED BURLEY STRIPS</TobaccoName>
+          <Grade>HMWBLB</Grade>
+          <SKU>13022329</SKU>
+          <Batch>0004205826</Batch>
+          <CNTarrifCode>2401203599</CNTarrifCode>
+          <NetMass>8930</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>176</No>
+          <DocumentNo>OGL/362010/00/023124/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-05</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LOOSE LEAF</TobaccoName>
+          <Grade>XTROOES</Grade>
+          <SKU>12682918</SKU>
+          <Batch>0003386963</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>1260</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>177</No>
+          <DocumentNo>OGL/362010/00/023125/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-05</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LOOSE LEAF</TobaccoName>
+          <Grade>XTROIG2S</Grade>
+          <SKU>13156888</SKU>
+          <Batch>0004401207</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>7350</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>178</No>
+          <DocumentNo>OGL/362010/00/023175/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-05</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY USA FLUE CURED STRIPS</TobaccoName>
+          <Grade>XUSFLC</Grade>
+          <SKU>12568261</SKU>
+          <Batch>0004087130</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>19000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>179</No>
+          <DocumentNo>OGL/362010/00/023185/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-05</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY USA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XUSFCBE</Grade>
+          <SKU>13026634</SKU>
+          <Batch>0004087131</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>2090</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>180</No>
+          <DocumentNo>OGL/362010/00/023186/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-05</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY SWITZERLAND AIR CURED BURLEY STRIPS</TobaccoName>
+          <Grade>XCHBMD</Grade>
+          <SKU>12596536</SKU>
+          <Batch>0003253429</Batch>
+          <CNTarrifCode>2401203599</CNTarrifCode>
+          <NetMass>1080</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>181</No>
+          <DocumentNo>OGL/362010/00/023187/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-05</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY SWITZERLAND FLUE CURED STRIPS</TobaccoName>
+          <Grade>ICHFMY4S</Grade>
+          <SKU>13284010</SKU>
+          <Batch>0004406405</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>6080</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>182</No>
+          <DocumentNo>OGL/362010/00/023188/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-05</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY INDONESIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XIDFCC</Grade>
+          <SKU>13033357</SKU>
+          <Batch>0004331995</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>4940</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>183</No>
+          <DocumentNo>OGL/362010/00/023189/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-05</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY INDONESIA SUN AIR CURED LOOSE LEAF</TobaccoName>
+          <Grade>XIDSME</Grade>
+          <SKU>12607453</SKU>
+          <Batch>0003808069</Batch>
+          <CNTarrifCode>2401109599</CNTarrifCode>
+          <NetMass>4680</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>184</No>
+          <DocumentNo>OGL/362010/00/023205/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-06</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>3BRFCB4S</Grade>
+          <SKU>13264342</SKU>
+          <Batch>0004385217</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>15960</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>185</No>
+          <DocumentNo>OGL/362010/00/023206/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-06</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY ARGENTINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>4ARFLB3S</Grade>
+          <SKU>13264414</SKU>
+          <Batch>0004384013</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>12000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>186</No>
+          <DocumentNo>OGL/362010/00/023337/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XINFLEGT</Grade>
+          <SKU>12647863</SKU>
+          <Batch>0004225173</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>7000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>187</No>
+          <DocumentNo>OGL/362010/00/023339/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY BRASILIAN FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XBRFLEG</Grade>
+          <SKU>12600037</SKU>
+          <Batch>0004073315</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>3000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>188</No>
+          <DocumentNo>OGL/362010/00/023341/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XBRFLDR</Grade>
+          <SKU>12567571</SKU>
+          <Batch>0004073314</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>6000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>189</No>
+          <DocumentNo>OGL/362010/00/023348/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY MOZAMBIQUE AIR CURED BURLEY STRIPS</TobaccoName>
+          <Grade>XMZBCB</Grade>
+          <SKU>12600169</SKU>
+          <Batch>0004096990</Batch>
+          <CNTarrifCode>2401203599</CNTarrifCode>
+          <NetMass>1980</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>190</No>
+          <DocumentNo>OGL/362010/00/023349/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY MALAWI AIR CURED BURLEY STRIPS</TobaccoName>
+          <Grade>XMWBCD</Grade>
+          <SKU>12568441</SKU>
+          <Batch>0004096928</Batch>
+          <CNTarrifCode>2401203599</CNTarrifCode>
+          <NetMass>2880</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>191</No>
+          <DocumentNo>OGL/362010/00/023350/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XBRFLDR</Grade>
+          <SKU>12567571</SKU>
+          <Batch>0004073314</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>7200</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>192</No>
+          <DocumentNo>OGL/362010/00/023351/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>LINFLDM</Grade>
+          <SKU>13090417</SKU>
+          <Batch>0004056214</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>6000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>193</No>
+          <DocumentNo>OGL/362010/00/023358/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY BRAZIL DARK AIR CURED STRIPS</TobaccoName>
+          <Grade>XBRDMEP</Grade>
+          <SKU>12606556</SKU>
+          <Batch>0003995819</Batch>
+          <CNTarrifCode>2401207090</CNTarrifCode>
+          <NetMass>18000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>194</No>
+          <DocumentNo>OGL/362010/00/023364/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
+          <Grade>XTROIAS</Grade>
+          <SKU>12437586</SKU>
+          <Batch>0003784859</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>9030</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>195</No>
+          <DocumentNo>OGL/362010/00/023365/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>HINFCET</Grade>
+          <SKU>13041247</SKU>
+          <Batch>0003964707</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>2090</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>196</No>
+          <DocumentNo>OGL/362010/00/023367/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XINFLERT</Grade>
+          <SKU>12647851</SKU>
+          <Batch>0004225172</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>10800</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>197</No>
+          <DocumentNo>OGL/362010/00/023376/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY BRAZIL FLUE CURED STRIPS</TobaccoName>
+          <Grade>4BRFLB3S</Grade>
+          <SKU>13301842</SKU>
+          <Batch>0004431868</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>6000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>198</No>
+          <DocumentNo>OGL/362010/00/023377/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY ZIMBABWE FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XZWFCC</Grade>
+          <SKU>12593383</SKU>
+          <Batch>0004098857</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>5130</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>199</No>
+          <DocumentNo>OGL/362010/00/023378/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>HBRFME</Grade>
+          <SKU>13006840</SKU>
+          <Batch>0004267307</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>4000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>200</No>
+          <DocumentNo>OGL/362010/00/023379/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-09</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY CHINA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XCNFCDS</Grade>
+          <SKU>12678388</SKU>
+          <Batch>0004002798</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>3040</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>201</No>
+          <DocumentNo>OGL/362010/00/023456/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-10</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>HTZFLC</Grade>
+          <SKU>13032280</SKU>
+          <Batch>0004224546</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>20000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>202</No>
+          <DocumentNo>OGL/362010/00/023653/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-11</CustomsDebtDate>
+          <TobaccoName>ZYLA TYTONIOWA</TobaccoName>
+          <Grade>ZTZSFLL</Grade>
+          <SKU>12365958</SKU>
+          <Batch>0004089185</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>21600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>203</No>
+          <DocumentNo>OGL/362010/00/023698/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-11</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
+          <Grade>XTRORES</Grade>
+          <SKU>12596695</SKU>
+          <Batch>0003567537</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>7000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>204</No>
+          <DocumentNo>OGL/362010/00/023857/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-13</CustomsDebtDate>
+          <TobaccoName>ZYLA TYTONIOWA</TobaccoName>
+          <Grade>ZBRSFCL</Grade>
+          <SKU>12365772</SKU>
+          <Batch>0004363171</Batch>
+          <CNTarrifCode>2401300000</CNTarrifCode>
+          <NetMass>20000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>205</No>
+          <DocumentNo>OGL/362010/00/023932/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-13</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY MALAWI AIR CURED BURLEY STRIPS</TobaccoName>
+          <Grade>XMWBCE</Grade>
+          <SKU>12851731</SKU>
+          <Batch>0003710326</Batch>
+          <CNTarrifCode>2401203599</CNTarrifCode>
+          <NetMass>3600</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>206</No>
+          <DocumentNo>OGL/362010/00/023933/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-13</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
+          <Grade>TRX</Grade>
+          <SKU>12515269</SKU>
+          <Batch>0003111416</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>4060</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>207</No>
+          <DocumentNo>OGL/362010/00/023935/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-13</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY ZAMBIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XZMFCB</Grade>
+          <SKU>12568273</SKU>
+          <Batch>0003628812</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>3990</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>208</No>
+          <DocumentNo>OGL/362010/00/023936/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-13</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY MALAWI FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XMWFLE</Grade>
+          <SKU>12639439</SKU>
+          <Batch>0003654800</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>2000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>209</No>
+          <DocumentNo>OGL/362010/00/023986/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-16</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XINFCET</Grade>
+          <SKU>12647842</SKU>
+          <Batch>0003786606</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>3960</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>210</No>
+          <DocumentNo>OGL/362010/00/024045/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-16</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
+          <Grade>XTROVGS</Grade>
+          <SKU>12596353</SKU>
+          <Batch>0003386967</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>3000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>211</No>
+          <DocumentNo>OGL/362010/00/024047/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-16</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY INDONESIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XIDFLB</Grade>
+          <SKU>12567769</SKU>
+          <Batch>0004332014</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>14000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>212</No>
+          <DocumentNo>OGL/362010/00/024048/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-16</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XTZFLER</Grade>
+          <SKU>12593320</SKU>
+          <Batch>0004265823</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>3400</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>213</No>
+          <DocumentNo>OGL/362010/00/024051/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-16</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY ZAMBIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XZMFCC</Grade>
+          <SKU>12568276</SKU>
+          <Batch>0004098262</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>3040</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>214</No>
+          <DocumentNo>OGL/362010/00/024053/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-16</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>HBRFLC</Grade>
+          <SKU>12972418</SKU>
+          <Batch>0004212593</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>13000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>215</No>
+          <DocumentNo>OGL/362010/00/024059/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-16</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY USA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XUSFLAE</Grade>
+          <SKU>13053628</SKU>
+          <Batch>0004273083</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>15200</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>216</No>
+          <DocumentNo>OGL/362010/00/024060/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-16</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XINFPD</Grade>
+          <SKU>12567937</SKU>
+          <Batch>0003204666</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>1800</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>217</No>
+          <DocumentNo>OGL/362010/00/024208/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-17</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY INDIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>LINFLDM</Grade>
+          <SKU>13090417</SKU>
+          <Batch>0004056214</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>10000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>218</No>
+          <DocumentNo>OGL/362010/00/024210/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-17</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY INDONESIA SUN AIR CURED LOOSE LEAF</TobaccoName>
+          <Grade>XIDSME</Grade>
+          <SKU>12607453</SKU>
+          <Batch>0003808069</Batch>
+          <CNTarrifCode>2401109599</CNTarrifCode>
+          <NetMass>7380</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>219</No>
+          <DocumentNo>OGL/362010/00/024362/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-18</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY BRAZIL BURLEY STRIPS</TobaccoName>
+          <Grade>HBRBLD</Grade>
+          <SKU>13138552</SKU>
+          <Batch>0004127485</Batch>
+          <CNTarrifCode>2401203510</CNTarrifCode>
+          <NetMass>9880</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>220</No>
+          <DocumentNo>OGL/362010/00/024393/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-19</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XBRFLD</Grade>
+          <SKU>12567562</SKU>
+          <Batch>0004075171</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>9800</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>221</No>
+          <DocumentNo>OGL/362010/00/024394/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-19</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY BANGLADESH AIR CURED BURLEY STRIPS</TobaccoName>
+          <Grade>XBDBLE</Grade>
+          <SKU>13022104</SKU>
+          <Batch>0003993571</Batch>
+          <CNTarrifCode>2401203599</CNTarrifCode>
+          <NetMass>9000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>222</No>
+          <DocumentNo>OGL/362010/00/024401/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-19</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY TANZANIA FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XTZFLDR</Grade>
+          <SKU>12699565</SKU>
+          <Batch>0004098013</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>9400</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>223</No>
+          <DocumentNo>OGL/362010/00/024402/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-19</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY MALAWI FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XMWFLER</Grade>
+          <SKU>12592903</SKU>
+          <Batch>0003966664</Batch>
+          <CNTarrifCode>2401208590</CNTarrifCode>
+          <NetMass>11000</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>224</No>
+          <DocumentNo>OGL/362010/00/024419/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-19</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY THAILAND ORIENTAL LEAF</TobaccoName>
+          <Grade>XTHOBAS</Grade>
+          <SKU>12596689</SKU>
+          <Batch>0003911938</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>2660</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>225</No>
+          <DocumentNo>OGL/362010/00/024422/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-19</CustomsDebtDate>
+          <TobaccoName>TYTOŃ ODŻYŁOWANY BRAZIL BURLEY STRIPS</TobaccoName>
+          <Grade>4BRBLS1S1</Grade>
+          <SKU>13310911</SKU>
+          <Batch>0004444477</Batch>
+          <CNTarrifCode>2401203510</CNTarrifCode>
+          <NetMass>6080</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>226</No>
+          <DocumentNo>OGL/362010/00/024423/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-19</CustomsDebtDate>
+          <TobaccoName>TYTON ODZYLOWANY BRAZIL FLUE CURED VIRGINIA STRIPS</TobaccoName>
+          <Grade>XBRFLER</Grade>
+          <SKU>12802921</SKU>
+          <Batch>0003901697</Batch>
+          <CNTarrifCode>2401208510</CNTarrifCode>
+          <NetMass>4400</NetMass>
+          <Value>-1</Value>
+          <Currency>PLN</Currency>
+        </DetailsOfOneAccount>
+        <DetailsOfOneAccount>
+          <No>227</No>
+          <DocumentNo>OGL/362010/00/024424/2013</DocumentNo>
+          <CustomsDebtDate>2013-12-19</CustomsDebtDate>
+          <TobaccoName>TYTON NIEODZYLOWANY TURKEY ORIENTAL LEAF</TobaccoName>
+          <Grade>LTROGES</Grade>
+          <SKU>12527641</SKU>
+          <Batch>0002969863</Batch>
+          <CNTarrifCode>2401106000</CNTarrifCode>
+          <NetMass>4000</NetMass>
+          <Value>-1</Value>
           <Currency>PLN</Currency>
         </DetailsOfOneAccount>
       </AccountsDetails>
