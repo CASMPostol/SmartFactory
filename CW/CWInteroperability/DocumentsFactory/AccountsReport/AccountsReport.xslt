@@ -41,7 +41,7 @@
           </p>
         </td>
         <td align="right">
-          Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, FormatOfDate)" />
+          Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FormatOfDate)" />
         </td>
       </tr>
     </table>
@@ -52,7 +52,7 @@
       Zgodnie z pozwoleniem na korzystanie z procedury składu celnego nr <xsl:apply-templates select="cas:ConsentsCollection" />
     </h2>
     <h2>
-      Stan na dzień <xsl:value-of select="ms:format-date(cas:ReportDate, FormatOfDate)"/>
+      Stan na dzień <xsl:value-of select="ms:format-date(cas:ReportDate, $FormatOfDate)"/>
     </h2>
     <table border="0" width="100%">
       <tr>
