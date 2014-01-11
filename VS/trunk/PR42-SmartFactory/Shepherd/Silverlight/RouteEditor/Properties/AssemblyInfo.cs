@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle( "Silverlight Route Editor of Shepherd" )]
-[assembly: AssemblyDescription( "CAS SmartFactory Shepherd Route Editor - Silverlight Webpart" )]
+[assembly: AssemblyDescription( "CAS SmartFactory Shepherd Route Editor Silverlight Webpart" )]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("Smart Factory")]
@@ -19,6 +19,6 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 [assembly: Guid("889da8e5-cdfb-4866-868d-70695e6c5d96")]
-[assembly: AssemblyVersion("1.70.12.*")]
-[assembly: AssemblyFileVersion("1.70.12")]
+[assembly: AssemblyVersion("2.00.00.*")]
+[assembly: AssemblyFileVersion("2.00.00")]
 
