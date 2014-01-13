@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("Smart Factory")]
-[assembly: AssemblyCopyright("Copyright (c) CAS 2013")]
+[assembly: AssemblyCopyright("Copyright (c) CAS 2014")]
 [assembly: AssemblyTrademark("Smart Factory")]
 [assembly: AssemblyCulture("")]
 
