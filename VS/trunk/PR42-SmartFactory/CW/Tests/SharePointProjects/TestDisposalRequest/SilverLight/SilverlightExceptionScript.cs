@@ -18,7 +18,7 @@ namespace TestDisposalRequest.SilverLight
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\mpostol\Documents\Visual Studio 2012\SmartFactory\PR42-SmartFactory\CW\Tests\SharePointProjects\TestDisposalRequest\SilverLight\SilverlightExceptionScript.tt"
+    #line 1 "C:\Users\bwojciechowski\Repozytorium\VS\PR42-SmartFactory\CW\Tests\SharePointProjects\TestDisposalRequest\SilverLight\SilverlightExceptionScript.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "11.0.0.0")]
     public partial class SilverlightExceptionScript : SilverlightExceptionScriptBase
     {
@@ -30,7 +30,7 @@ namespace TestDisposalRequest.SilverLight
         {
             this.Write("<script type=\"text/javascript\">\r\n    function ");
             
-            #line 7 "C:\Users\mpostol\Documents\Visual Studio 2012\SmartFactory\PR42-SmartFactory\CW\Tests\SharePointProjects\TestDisposalRequest\SilverLight\SilverlightExceptionScript.tt"
+            #line 7 "C:\Users\bwojciechowski\Repozytorium\VS\PR42-SmartFactory\CW\Tests\SharePointProjects\TestDisposalRequest\SilverLight\SilverlightExceptionScript.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ClientID));
             
             #line default
