@@ -163,6 +163,7 @@
     </Content>
     <Content Include="Features\CWDashboards\CWDashboards.Template.xml">
       <DependentUpon>CWDashboards.feature</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Images\CWDashboards\button_background_gray.jpg" />
     <Content Include="Layouts\CWDashboards\CAS_CWDashboards.css" />

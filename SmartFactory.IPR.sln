@@ -768,7 +768,6 @@ Global
 		{6C705843-6387-4D2D-A7CF-A66976186CE2}.DVD-5|x86.ActiveCfg = Debug|Any CPU
 		{6C705843-6387-4D2D-A7CF-A66976186CE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C705843-6387-4D2D-A7CF-A66976186CE2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{6C705843-6387-4D2D-A7CF-A66976186CE2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{6C705843-6387-4D2D-A7CF-A66976186CE2}.Release|x64.ActiveCfg = Release|Any CPU
 		{6C705843-6387-4D2D-A7CF-A66976186CE2}.Release|x86.ActiveCfg = Release|Any CPU
 		{6C705843-6387-4D2D-A7CF-A66976186CE2}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
