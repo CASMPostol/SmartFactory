@@ -29,10 +29,10 @@
   <xsl:template match="cas:StatementContent">
     <table width="100%" border="1">
       <tr>
-        <td align="left" colspan="3">
+        <td align="left" colspan="2">
           Data: <xsl:value-of select="ms:format-date(cas:DocumentDate, $FormatOfdate)"/>
         </td>
-        <td align="center" colspan="3">
+        <td align="center" colspan="1">
           <xsl:value-of select="cas:CustomsProcedure"/>
         </td>
         <td align="center" colspan="3">
@@ -40,7 +40,7 @@
         </td>
       </tr>
       <tr>
-        <td align="center" colspan="6">
+        <td align="center" colspan="3">
           ZGŁASZAJĄCY: Agencja Celna MA-AN PLAEOC360000100003
         </td>
         <td align="center" colspan="3">
@@ -50,17 +50,14 @@
       <tr>
         <th>Lp.</th>
         <th>nr syst.</th>
-        <th>ident. systemowy</th>
         <th>nr ewidencji</th>
-        <th>POD</th>
-        <th>PZC</th>
         <th>cło</th>
         <th>VAT</th>
         <th>SUMA</th>
       </tr>
       <xsl:apply-templates select="cas:StatementOfDuties" />
       <tr>
-        <td colspan="6">
+        <td colspan="3">
           &#160;
         </td>
         <td align="center">
@@ -92,17 +89,8 @@
       <td align="center">
         <xsl:value-of select="cas:ReferenceNumber"/>
       </td>
-      <td>
-        &#160;
-      </td>
       <td align="center">
         <xsl:value-of select="cas:SADDocumentNo"/>
-      </td>
-      <td>
-        &#160;
-      </td>
-      <td>
-        &#160;
       </td>
       <td align="center">
         <xsl:value-of select="format-number(cas:DutyPerSettledAmount, $FormatOfFloat, 'pl')"/>
