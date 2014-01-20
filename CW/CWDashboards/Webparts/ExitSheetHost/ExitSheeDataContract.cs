@@ -39,18 +39,6 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
       set { b_LabelOGLNumber = value; }
     }
     /// <summary>
-    /// Gets or sets the label ogl date.
-    /// </summary>
-    /// <value>
-    /// The label ogl date.
-    /// </value>
-    [DataMember]
-    public DateTime OGLDate
-    {
-      get { return b_LabelOGLDate; }
-      set { b_LabelOGLDate = value; }
-    }
-    /// <summary>
     /// Gets or sets the grade.
     /// </summary>
     /// <value>
@@ -138,7 +126,6 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
 
     #region private backed fields.
     private string b_LabelOGLNumber;
-    private DateTime b_LabelOGLDate;
     private string b_LabelGrade;
     private double b_LabelSettledNetMass;
     private int b_PackageToClear;
