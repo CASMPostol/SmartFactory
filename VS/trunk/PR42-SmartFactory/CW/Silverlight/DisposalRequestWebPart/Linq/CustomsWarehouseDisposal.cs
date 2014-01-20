@@ -33,6 +33,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
           this.CW_PackageToClear = _2DisposePackages;
           double _diff = this.CWL_CWDisposal2CustomsWarehouseID.Quantity(_2DisposePackages) - this.CW_SettledNetMass.Value;
           SettledNetMass(this.CW_SettledNetMass.Value + _diff);
+          this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated -= _diff;
           Debug.Assert(this.CW_AddedKg >= 0, "CW_AddedKg <= 0");
         }
       }
