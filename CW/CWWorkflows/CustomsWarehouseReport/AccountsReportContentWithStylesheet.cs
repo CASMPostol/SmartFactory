@@ -77,7 +77,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
       totalValue = 0;
       List<ArrayOfAccountsDetailsDetailsOfOneAccount> _ret = new List<ArrayOfAccountsDetailsDetailsOfOneAccount>();
       int _No = 1;
-      foreach (CustomsWarehouse _cwx in group)
+      foreach (CustomsWarehouse _cwx in group.OrderBy<CustomsWarehouse, string>(x => x.DocumentNo))
       {
         if (_cwx.CWL_CW2ConsentTitle == null)
           throw new ArgumentNullException("CWL_CW2ConsentTitle", "Incosistent data content: in AccountsReportContentWithStylesheet.CreateDetails the account must be associated with a consent.");
