@@ -52,7 +52,6 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
       ExitSheeDataContract _esdc = new ExitSheeDataContract
       {
         Grade = cwd.CWL_CWDisposal2CustomsWarehouseID.Grade,
-        OGLDate = _cw.CustomsDebtDate.GetValueOrDefault(),
         OGLNumber = _cw.DocumentNo,
         PackageToClear = Convert.ToInt32(cwd.CW_PackageToClear.GetValueOrDefault()),
         RemainingPackage = Convert.ToInt32(cwd.CW_RemainingPackage.GetValueOrDefault()),
