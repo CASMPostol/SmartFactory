@@ -496,16 +496,16 @@
       </td>
       <td valign="middle" align="center">
         <xsl:choose>
-          <xsl:when test="cas:RemainingQuantity='0'">&#160;</xsl:when>
-          <xsl:when test="not(cas:RemainingQuantity='0')">
+          <xsl:when test="cas:RemainingQuantity='-1'">&#160;</xsl:when>
+          <xsl:when test="not(cas:RemainingQuantity='-1')">
             <xsl:value-of select="format-number(cas:RemainingQuantity, $FoarmatOfFloat, 'pl')"/>
           </xsl:when>
         </xsl:choose>
       </td>
       <td valign="middle" align="center">
         <xsl:choose>
-          <xsl:when test="cas:RemainingPackage='0'">&#160;</xsl:when>
-          <xsl:when test="not(cas:RemainingPackage='0')">
+          <xsl:when test="cas:RemainingPackage='-1'">&#160;</xsl:when>
+          <xsl:when test="not(cas:RemainingPackage='-1')">
             <xsl:value-of select="format-number(cas:RemainingPackage, $FoarmatOfFloat, 'pl')"/>
           </xsl:when>
         </xsl:choose>
