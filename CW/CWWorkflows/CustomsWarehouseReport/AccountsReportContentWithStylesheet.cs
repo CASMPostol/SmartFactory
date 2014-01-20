@@ -45,7 +45,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
           DocumentDate = DateTime.Today,
           DocumentName = documentName,
           ReportDate = DateTime.Today,
-          ConsentsCollection = _ConsentsList.Select(x => new ArrayOfConsentsConsentsArray(){ Consent= x.Value.Title, ConsentDate = x.Value.ConsentDate.Value.Date}).ToArray() 
+          ConsentsCollection = _ConsentsList.Select(x => new ArrayOfConsentsConsentsArray() { Consent = x.Value.Title, ConsentDate = x.Value.ConsentDate.Value.Date }).ToArray()
         };
       return _ret;
     }
@@ -106,7 +106,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
           Batch = _cwx.Batch,
           CNTarrifCode = _cwx.CWL_CW2PCNID.ProductCodeNumber,
           Currency = _cwx.Currency,
-          CustomsDebtDate = _cwx.CustomsDebtDate.GetValueOrDefault(Extensions.SPMinimum),
+          CustomsDebtDate = _cwx.CustomsDebtDate.GetValueOrNull(),
           DocumentNo = _cwx.DocumentNo,
           Grade = _cwx.Grade,
           NetMass = Convert.ToDouble(_mass),

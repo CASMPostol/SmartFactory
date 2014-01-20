@@ -83,7 +83,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     internal string CW_CertificateOfAuthenticity { get; private set; }
     internal DateTime? CW_CODate { get; private set; }
     internal DateTime? CW_COADate { get; private set; }
-    internal DateTime ValidToDate { get; private set; }
+    internal DateTime? ValidToDate { get; private set; }
     #endregion
 
     #region ICWAccountFactory Members
@@ -196,13 +196,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
       Convert2Warnings(warnings, _stringsList, false);
       ValidToDate = CalculateValidToDate(entities, CW_COADate, CW_CODate, warnings);
     }
-    private DateTime CalculateValidToDate(Entities entities, DateTime? CW_COADate, DateTime? CW_CODate, List<Warnning> warnings)
+    private DateTime? CalculateValidToDate(Entities entities, DateTime? CW_COADate, DateTime? CW_CODate, List<Warnning> warnings)
     {
       double _vtdIfNotProvided = 0; // in days
       double _validPeriod = _vtdIfNotProvided;
-      DateTime _ret = DateTime.Today;
       if (!CW_COADate.HasValue && !CW_CODate.HasValue)
-        return _ret + TimeSpan.FromDays(_validPeriod);
+        return new Nullable<DateTime>();
+      DateTime? _ret = DateTime.Today;
       _ret = CW_CODate.GetValueOrDefault(DateTime.Today) < _ret ? CW_CODate.GetValueOrDefault(DateTime.Today) : _ret;
       _ret = CW_COADate.GetValueOrDefault(DateTime.Today) < _ret ? CW_COADate.GetValueOrDefault(DateTime.Today) : _ret;
       if (!Double.TryParse(Settings.GetParameter(entities, SettingsEntry.DefaultValidToDatePeriod), out _validPeriod))

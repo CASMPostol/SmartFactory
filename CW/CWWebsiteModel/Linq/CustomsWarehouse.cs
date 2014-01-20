@@ -41,7 +41,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.AccountClosed = false;
       this.AccountBalance = data.CWQuantity;
       this.Batch = data.CommonAccountData.BatchId;
-      this.ClosingDate = Extensions.DateTimeNull;
+      this.ClosingDate = Extensions.SPMinimum;
       this.Currency = "PLN";
       this.CustomsDebtDate = data.CommonAccountData.CustomsDebtDate;
       this.CWL_CW2ClearenceID = data.ClearenceLookup;
@@ -64,13 +64,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.TobaccoName = data.CommonAccountData.TobaccoName;
       this.Title = "-- creating -- ";
       this.Units = data.Units;
-      this.ValidToDate = data.ValidToDate;
+      this.ValidToDate = data.ValidToDate.GetValueOrNull();
 
       //Certificate
       this.CW_CertificateOfOrgin = data.CW_CertificateOfOrgin;
       this.CW_CertificateOfAuthenticity = data.CW_CertificateOfAuthenticity;
-      this.CW_COADate = data.CW_COADate.HasValue ? data.CW_COADate : Extensions.DateTimeNull;
-      this.CW_CODate = data.CW_CODate.HasValue ? data.CW_CODate : Extensions.DateTimeNull;
+      this.CW_COADate = data.CW_COADate.GetValueOrNull();
+      this.CW_CODate = data.CW_CODate.GetValueOrNull();
       this.CWL_CW2VendorTitle = data.VendorLookup;
     }
     /// <summary>

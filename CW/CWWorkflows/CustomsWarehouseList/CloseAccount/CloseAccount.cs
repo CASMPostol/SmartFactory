@@ -138,7 +138,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
       {
         Batch = _cw.Batch,
         CNTarrifCode = _cw.CWL_CW2PCNID.ProductCodeNumber,
-        ConsentDate = _cw.CWL_CW2ConsentTitle == null ? Extensions.SPMinimum : _cw.CWL_CW2ConsentTitle.ConsentDate.GetValueOrDefault(Extensions.SPMinimum),
+        ConsentDate = _cw.CWL_CW2ConsentTitle == null ? Extensions.SPMinimum : _cw.CWL_CW2ConsentTitle.ConsentDate.GetValueOrNull(),
         ConsentNo = _cw.CWL_CW2ConsentTitle == null ? String.Empty.NotAvailable() : _cw.CWL_CW2ConsentTitle.Title,
         Currency = _cw.Currency,
         DisposalsColection = _listOfDisposals.ToArray(),
@@ -147,7 +147,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         DocumentNo = _cw.Id.Value,
         Grade = _cw.Grade,
         GrossMass = _cw.GrossMass.GetValueOrDefault(-1),
-        IntroducingSADDocumentDate = _cw.CustomsDebtDate.GetValueOrDefault(Extensions.SPMinimum),
+        IntroducingSADDocumentDate = _cw.CustomsDebtDate.GetValueOrNull(),
         IntroducingSADDocumentNo = _cw.DocumentNo,
         InvoiceNo = _cw.InvoiceNo,
         NetMass = _cw.NetMass.GetValueOrDefault(-1), //TODO Clossing the account
