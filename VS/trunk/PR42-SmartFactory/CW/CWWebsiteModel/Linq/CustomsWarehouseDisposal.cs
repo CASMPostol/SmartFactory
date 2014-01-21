@@ -165,7 +165,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.SADDocumentNo = sadGood.SADDocumentIndex.DocumentNumber;
       //TODO check consistency and generate warning.
       this.CustomsProcedure = sadGood.Procedure;
-      this.TobaccoValue = sadGood.TotalAmountInvoiced;
+      if (this.TobaccoValue != sadGood.TotalAmountInvoiced)
+        throw new ArgumentOutOfRangeException("TotalAmountInvoiced", "Total Amount Invoiced value is not equal as requested to clear through customs");
       decimal _vat = 0;
       decimal _duties = 0;
       foreach (SADDuties _sdc in sadGood.SADDuties)
