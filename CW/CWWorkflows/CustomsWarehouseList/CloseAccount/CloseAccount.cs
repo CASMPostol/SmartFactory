@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
     public String CompletedLogToHistory_HistoryOutcome = "Success";
     #endregion
 
-    #region public
+    #region private
     private void CloseAccountActivity_ExecuteCode(object sender, EventArgs e)
     {
       try
@@ -61,7 +61,9 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
           }
           if (_cw.AccountBalance.GetValueOrDefault(-1) == 0)
           {
+            //TODO check packages and valu on last disposal.
             _cw.AccountClosed = true;
+            _cw.ClosingDate = DateTime.Today;
             _entities.SubmitChanges();
           }
           int? _requestId = _cw.CWL_CW2CWLibraryID.GetTargetId<CustomsWarehouseLib>();
