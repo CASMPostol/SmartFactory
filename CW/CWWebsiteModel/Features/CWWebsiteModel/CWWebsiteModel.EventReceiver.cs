@@ -47,6 +47,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Features.CWWebsiteModel
       IServiceLocator _serviceLocator = SharePointServiceLocator.GetCurrent();
       IServiceLocatorConfig _typeMappings = _serviceLocator.GetInstance<IServiceLocatorConfig>();
       _typeMappings.RegisterTypeMapping<CAS.SmartFactory.Customs.Account.ICWAccountFactory, CAS.SmartFactory.CW.WebsiteModel.Linq.Account.CWAccountData>();
+      SharePointServiceLocator.Reset();
     }
     /// <summary>
     /// Occurs when a Feature is uninstalled.
