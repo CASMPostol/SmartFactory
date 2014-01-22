@@ -25,6 +25,10 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// </summary>
   public class ActionResult: List<string>
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ActionResult"/> class.
+    /// </summary>
+    /// <param name="source">The source.</param>
     public ActionResult( string source )
       : base()
     {

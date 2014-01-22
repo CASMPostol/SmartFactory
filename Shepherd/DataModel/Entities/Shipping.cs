@@ -112,8 +112,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <summary>
     /// Releases the booking.
     /// </summary>
-    /// <param name="_newTimeSlot">The _new time slot.</param>
-    /// <returns></returns>
     /// <exception cref="System.ApplicationException"></exception>
     public void ReleaseBooking()
     {
@@ -343,7 +341,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <summary>
     /// Makes the booking.
     /// </summary>
-    /// <param name="timeSlot">The time slot.</param>
+    /// <param name="timeSlotsCollection">The time slots collection.</param>
     /// <param name="isDouble">if set to <c>true</c> [_is double].</param>
     /// <returns></returns>
     /// <exception cref="System.ApplicationException">Time slot has been aleady reserved</exception>

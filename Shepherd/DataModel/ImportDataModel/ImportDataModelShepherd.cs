@@ -47,7 +47,10 @@ namespace CAS.SmartFactory.Shepherd.DataModel.ImportDataModel {
         private PreliminaryDataRoutePartnersRow[] partnersTableField;
         
         private PreliminaryDataRouteRole[] distributionListField;
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PreliminaryDataRoute"/> class.
+        /// </summary>
         public PreliminaryDataRoute() {
             this.testingDataField = true;
             this.fillUpTimeSlotTemplatesField = true;
