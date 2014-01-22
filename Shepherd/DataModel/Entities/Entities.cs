@@ -4787,16 +4787,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingPointLookup", Storage="_timeSlot", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Time Slot")]
-		public Microsoft.SharePoint.Linq.EntitySet<TimeSlot> TimeSlot {
-			get {
-				return this._timeSlot;
-			}
-			set {
-				this._timeSlot.Assign(value);
-			}
-		}
-		
 		private void OnScheduleTemplateChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("ScheduleTemplate", this._scheduleTemplate.Clone());
 		}
@@ -6375,7 +6365,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 			this._timeSlot2ShippingIndex.OnChanged += new System.EventHandler(this.OnTimeSlot2ShippingIndexChanged);
 			this._timeSlot2ShippingIndex.OnChanging += new System.EventHandler(this.OnTimeSlot2ShippingIndexChanging);
 			this._timeSlot2ShippingPointLookup = new Microsoft.SharePoint.Linq.EntityRef<ShippingPoint>();
-			this._timeSlot2ShippingPointLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint>>(this.OnTimeSlot2ShippingPointLookupSync);
 			this._timeSlot2ShippingPointLookup.OnChanged += new System.EventHandler(this.OnTimeSlot2ShippingPointLookupChanged);
 			this._timeSlot2ShippingPointLookup.OnChanging += new System.EventHandler(this.OnTimeSlot2ShippingPointLookupChanging);
 			this.OnCreated();
@@ -6575,15 +6564,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 		private void OnTimeSlot2ShippingPointLookupChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("TimeSlot2ShippingPointLookup");
 		}
-		
-		private void OnTimeSlot2ShippingPointLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TimeSlot.Add(this);
-			}
-			else {
-				e.Item.TimeSlot.Remove(this);
-			}
-		}
+
 	}
 	
 	/// <summary>
