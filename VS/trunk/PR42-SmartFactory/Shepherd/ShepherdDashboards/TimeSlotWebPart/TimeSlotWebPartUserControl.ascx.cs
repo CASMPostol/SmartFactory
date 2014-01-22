@@ -10,9 +10,12 @@ using Microsoft.SharePoint.WebControls;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
 {
-  public partial class TimeSlotWebPartUserControl: UserControl
+  public partial class TimeSlotWebPartUserControl : UserControl
   {
     #region public
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TimeSlotWebPartUserControl"/> class.
+    /// </summary>
     public TimeSlotWebPartUserControl() { }
     internal InterconnectionDataTable<TimeSlotTimeSlot> GetSelectedTimeSlotInterconnectionData()
     {
@@ -22,7 +25,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     {
       set
       {
-        switch ( value )
+        switch (value)
         {
           case GlobalDefinitions.Roles.InboundOwner:
           case GlobalDefinitions.Roles.Vendor:
@@ -46,11 +49,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     #endregion
 
     #region UserControl override
-    protected void Page_Load( object sender, EventArgs e )
+    protected void Page_Load(object sender, EventArgs e)
     {
       try
       {
-        if ( !IsPostBack )
+        if (!IsPostBack)
         {
           m_WarehouseDropDownList.DataSource = from _idx in EDC.Warehouse
                                                orderby _idx.Title ascending
@@ -59,67 +62,67 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
           m_WarehouseDropDownList.DataValueField = "ID";
           m_WarehouseDropDownList.DataBind();
           //This best practice addresses the issue identified by the SharePoint Dispose Checker Tool as SPDisposeCheckID_210
-          SPWeb _currentWeb = SPControl.GetContextWeb( this.Context );
-          Partner _Partner = Partner.FindForUser( EDC, _currentWeb.CurrentUser );
-          if ( _Partner != null )
-            m_WarehouseDropDownList.Select( _Partner.Partner2WarehouseTitle );
+          SPWeb _currentWeb = SPControl.GetContextWeb(this.Context);
+          Partner _Partner = Partner.FindForUser(EDC, _currentWeb.CurrentUser);
+          if (_Partner != null)
+            m_WarehouseDropDownList.Select(_Partner.Partner2WarehouseTitle);
           else
             m_WarehouseDropDownList.SelectedIndex = 0;
           m_Calendar.VisibleDate = DateTime.Today;
           m_Calendar.SelectedDate = DateTime.Today;
         }
-        m_InterconnectionDataTable_TimeSlotTimeSlot = new InterconnectionDataTable<TimeSlotTimeSlot>( typeof( TimeSlot ).Name );
-        m_Calendar.DayRender += new DayRenderEventHandler( m_Calendar_DayRender );
-        m_Calendar.SelectionChanged += new EventHandler( m_Calendar_SelectionChanged );
-        m_Calendar.VisibleMonthChanged += new MonthChangedEventHandler( m_Calendar_VisibleMonthChanged );
-        m_TimeSlotList.SelectedIndexChanged += new EventHandler( m_TimeSlotList_SelectedIndexChanged );
+        m_InterconnectionDataTable_TimeSlotTimeSlot = new InterconnectionDataTable<TimeSlotTimeSlot>(typeof(TimeSlot).Name);
+        m_Calendar.DayRender += new DayRenderEventHandler(m_Calendar_DayRender);
+        m_Calendar.SelectionChanged += new EventHandler(m_Calendar_SelectionChanged);
+        m_Calendar.VisibleMonthChanged += new MonthChangedEventHandler(m_Calendar_VisibleMonthChanged);
+        m_TimeSlotList.SelectedIndexChanged += new EventHandler(m_TimeSlotList_SelectedIndexChanged);
       }
-      catch ( Exception ex )
+      catch (Exception ex)
       {
-        throw new ApplicationException( "Page_Load exception: " + ex.Message, ex );
+        throw new ApplicationException("Page_Load exception: " + ex.Message, ex);
       }
     }
-    protected override void OnPreRender( EventArgs e )
+    protected override void OnPreRender(EventArgs e)
     {
-      PreapareCalendar( m_RoleDirection );
-      base.OnPreRender( e );
+      PreapareCalendar(m_RoleDirection);
+      base.OnPreRender(e);
     }
     #endregion
 
     #region EventHandlers
-    private void m_TimeSlotList_SelectedIndexChanged( object sender, EventArgs e )
+    private void m_TimeSlotList_SelectedIndexChanged(object sender, EventArgs e)
     {
       string _at = "Starting";
       m_TimeSlotSelection = true;
-      if ( m_TimeSlotList.SelectedValue.IsNullOrEmpty() )
+      if (m_TimeSlotList.SelectedValue.IsNullOrEmpty())
         return;
       try
       {
         _at = "TimeSlotTimeSlot";
-        TimeSlotTimeSlot _slctdTmslt = Element.GetAtIndex( EDC.TimeSlot, m_TimeSlotList.SelectedValue );
+        TimeSlotTimeSlot _slctdTmslt = Element.GetAtIndex(EDC.TimeSlot, m_TimeSlotList.SelectedValue);
         _slctdTmslt.IsDouble = m_ShowDoubleTimeSlots.Checked;
         _at = "m_InterconnectionDataTable_TimeSlotTimeSlot";
         m_InterconnectionDataTable_TimeSlotTimeSlot.SetData
-          ( this, new InterconnectionDataTable<TimeSlotTimeSlot>.InterconnectionEventArgs( _slctdTmslt ) );
+          (this, new InterconnectionDataTable<TimeSlotTimeSlot>.InterconnectionEventArgs(_slctdTmslt));
       }
-      catch ( Exception ex )
+      catch (Exception ex)
       {
-        string _msg = String.Format( "TimeSlotList_SelectedIndexChanged at: {0}", _at );
-        Anons.WriteEntry( EDC, _msg, ex.Message );
+        string _msg = String.Format("TimeSlotList_SelectedIndexChanged at: {0}", _at);
+        Anons.WriteEntry(EDC, _msg, ex.Message);
       }
     }
-    private void m_Calendar_VisibleMonthChanged( object sender, MonthChangedEventArgs e ) { }
-    private void m_Calendar_SelectionChanged( object sender, EventArgs e ) { }
-    private void m_Calendar_DayRender( object sender, DayRenderEventArgs e )
+    private void m_Calendar_VisibleMonthChanged(object sender, MonthChangedEventArgs e) { }
+    private void m_Calendar_SelectionChanged(object sender, EventArgs e) { }
+    private void m_Calendar_DayRender(object sender, DayRenderEventArgs e)
     {
-      if ( e.Day.IsOtherMonth )
+      if (e.Day.IsOtherMonth)
         e.Cell.BackColor = Color.LightGray;
       ;
-      if ( m_AvailableDays.ContainsKey( e.Day.Date ) )
+      if (m_AvailableDays.ContainsKey(e.Day.Date))
       {
         e.Cell.BackColor = Color.LightBlue;
-        string _days = String.Format( GlobalDefinitions.NumberOfTimeSLotsFormat, m_AvailableDays[ e.Day.Date ].ToString() );
-        e.Cell.Controls.Add( new LiteralControl() { Text = _days } );
+        string _days = String.Format(GlobalDefinitions.NumberOfTimeSLotsFormat, m_AvailableDays[e.Day.Date].ToString());
+        e.Cell.Controls.Add(new LiteralControl() { Text = _days });
       }
       else
         e.Day.IsSelectable = false;
@@ -127,78 +130,79 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     #endregion
 
     #region private
-    private void PreapareCalendar( Direction _direction )
+    private void PreapareCalendar(Direction _direction)
     {
       try
       {
         DateTime _sd = m_Calendar.SelectedDate.Date;
-        DateTime _strt = new DateTime( m_Calendar.VisibleDate.Year, m_Calendar.VisibleDate.Month, 1 );
-        if ( _strt < DateTime.Now )
+        DateTime _strt = new DateTime(m_Calendar.VisibleDate.Year, m_Calendar.VisibleDate.Month, 1);
+        if (_strt < DateTime.Now)
           _strt = DateTime.Now;
-        DateTime _end = _strt.AddMonths( 1 );
-        if ( m_WarehouseDropDownList.SelectedValue.IsNullOrEmpty() )
+        DateTime _end = _strt.AddMonths(1);
+        if (m_WarehouseDropDownList.SelectedValue.IsNullOrEmpty())
           return;
-        Warehouse _warehouse = Element.GetAtIndex( EDC.Warehouse, m_WarehouseDropDownList.SelectedValue );
+        Warehouse _warehouse = Element.GetAtIndex(EDC.Warehouse, m_WarehouseDropDownList.SelectedValue);
         List<TimeSlot> _2Expose = new List<TimeSlot>();
-        foreach ( var _spoint in ( from _sp in _warehouse.ShippingPoint select _sp ) )
+        List<TimeSlotTimeSlot> _all4Date = (from _tsidx in EDC.TimeSlot
+                                            where _tsidx.Occupied.Value == Occupied.Free && _tsidx.StartTime >= _strt && _tsidx.StartTime < _end
+                                            orderby _tsidx.StartTime ascending
+                                            select _tsidx).ToList<TimeSlotTimeSlot>();
+        foreach (var _spoint in (from _sp in _warehouse.ShippingPoint select _sp))
         {
-          if ( _spoint.Direction != _direction && _spoint.Direction != Direction.BothDirections )
+          if (_spoint.Direction != _direction && _spoint.Direction != Direction.BothDirections)
             continue;
-          List<TimeSlot> _avlblTmslts = ( from _tsidx in _spoint.TimeSlot
-                                          where _tsidx.Occupied.Value == Occupied.Free && _tsidx.StartTime >= _strt && _tsidx.StartTime < _end
-                                          orderby _tsidx.StartTime ascending
-                                          select _tsidx ).ToList<TimeSlot>();
-          if ( m_ShowDoubleTimeSlots.Checked )
+          List<TimeSlotTimeSlot> _avlblTmslts = _all4Date.Where(x => x.TimeSlot2ShippingPointLookup == _spoint).ToList<TimeSlotTimeSlot>();
+          if (m_ShowDoubleTimeSlots.Checked)
           {
-            TimeSpan _spn15min = new TimeSpan( 0, 15, 0 );
-            for ( int _i = 0; _i < _avlblTmslts.Count - 1; _i++ )
+            TimeSpan _spn15min = new TimeSpan(0, 15, 0);
+            for (int _i = 0; _i < _avlblTmslts.Count - 1; _i++)
             {
-              TimeSlot _cts = _avlblTmslts[ _i ];
-              if ( ( _avlblTmslts[ _i + 1 ].StartTime.Value - _cts.EndTime.Value ).Duration() > TimeSlotTimeSlot.Span15min )
+              TimeSlot _cts = _avlblTmslts[_i];
+              if ((_avlblTmslts[_i + 1].StartTime.Value - _cts.EndTime.Value).Duration() > TimeSlotTimeSlot.Span15min)
                 continue;
-              AddToAvailable( _cts );
-              if ( _cts.StartTime.Value.Date != _sd )
+              AddToAvailable(_cts);
+              if (_cts.StartTime.Value.Date != _sd)
                 continue;
-              _2Expose.Add( _cts );
+              _2Expose.Add(_cts);
             }
           }
           else
-            foreach ( TimeSlot _cts in _avlblTmslts )
+            foreach (TimeSlot _cts in _avlblTmslts)
             {
-              AddToAvailable( _cts );
-              if ( _cts.StartTime.Value.Date != _sd )
+              AddToAvailable(_cts);
+              if (_cts.StartTime.Value.Date != _sd)
                 continue;
-              _2Expose.Add( _cts );
+              _2Expose.Add(_cts);
             }
         }
-        ExposeTimeSlots( _2Expose );
+        ExposeTimeSlots(_2Expose);
       }
-      catch ( Exception ex )
+      catch (Exception ex)
       {
-        this.Controls.Add( new LiteralControl( "CannotDisplayTimeSlots" + ex.Message ) );
+        this.Controls.Add(new LiteralControl("CannotDisplayTimeSlots" + ex.Message));
       }
     }
-    private void AddToAvailable( TimeSlot _cts )
+    private void AddToAvailable(TimeSlot _cts)
     {
-      if ( !m_AvailableDays.ContainsKey( _cts.StartTime.Value.Date ) )
-        m_AvailableDays.Add( _cts.StartTime.Value.Date, 1 );
+      if (!m_AvailableDays.ContainsKey(_cts.StartTime.Value.Date))
+        m_AvailableDays.Add(_cts.StartTime.Value.Date, 1);
       else
-        m_AvailableDays[ _cts.StartTime.Value.Date ] += 1;
+        m_AvailableDays[_cts.StartTime.Value.Date] += 1;
     }
-    private void ExposeTimeSlots( List<TimeSlot> availableList )
+    private void ExposeTimeSlots(List<TimeSlot> availableList)
     {
-      if ( m_TimeSlotSelection )
+      if (m_TimeSlotSelection)
         return;
       m_TimeSlotList.Items.Clear();
       HashSet<string> _labels2Display = new HashSet<string>();
-      foreach ( TimeSlot _item in availableList.OrderBy<TimeSlot, DateTime>( x => x.StartTime.Value ) )
+      foreach (TimeSlot _item in availableList.OrderBy<TimeSlot, DateTime>(x => x.StartTime.Value))
       {
-          string _label = String.Format("FormatHourMinutes".GetShepherdLocalizedString(), _item.StartTime.Value);
-        if ( _labels2Display.Contains( _label ) )
+        string _label = String.Format("FormatHourMinutes".GetShepherdLocalizedString(), _item.StartTime.Value);
+        if (_labels2Display.Contains(_label))
           continue;
-        _labels2Display.Add( _label );
-        ListItem _nli = new ListItem( _label, _item.Id.Value.ToString(), true );
-        m_TimeSlotList.Items.Add( _nli );
+        _labels2Display.Add(_label);
+        ListItem _nli = new ListItem(_label, _item.Id.Value.ToString(), true);
+        m_TimeSlotList.Items.Add(_nli);
       }
     }
     private bool m_TimeSlotSelection = false;
@@ -207,8 +211,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     {
       get
       {
-        if ( myDataContextManagement == null )
-          myDataContextManagement = DataContextManagementAutoDispose<EntitiesDataContext>.GetDataContextManagement( this );
+        if (myDataContextManagement == null)
+          myDataContextManagement = DataContextManagementAutoDispose<EntitiesDataContext>.GetDataContextManagement(this);
         return myDataContextManagement.DataContext;
       }
     }

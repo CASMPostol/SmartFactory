@@ -33,7 +33,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <summary>
     /// The span15min
     /// </summary>
-    public static TimeSpan Span15min = new TimeSpan( 0, 15, 0 );
+    public static TimeSpan Span15min = new TimeSpan(0, 15, 0);
     /// <summary>
     /// Gets the warehouse.
     /// </summary>
@@ -43,10 +43,10 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// </exception>
     public Warehouse GetWarehouse()
     {
-      if ( this.TimeSlot2ShippingPointLookup == null )
-        throw new ApplicationException( m_ShippingNotFoundMessage );
-      if ( this.TimeSlot2ShippingPointLookup.WarehouseTitle == null )
-        throw new ApplicationException( "Warehouse not found" );
+      if (this.TimeSlot2ShippingPointLookup == null)
+        throw new ApplicationException(m_ShippingNotFoundMessage);
+      if (this.TimeSlot2ShippingPointLookup.WarehouseTitle == null)
+        throw new ApplicationException("Warehouse not found");
       return this.TimeSlot2ShippingPointLookup.WarehouseTitle;
     }
     /// <summary>
@@ -55,9 +55,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <returns></returns>
     public double? Duration()
     {
-      if ( !EndTime.HasValue || !StartTime.HasValue )
+      if (!EndTime.HasValue || !StartTime.HasValue)
         return null;
-      return ( EndTime.Value - StartTime.Value ).TotalMinutes;
+      return (EndTime.Value - StartTime.Value).TotalMinutes;
     }
     /// <summary>
     /// Books the time slots.
@@ -67,26 +67,27 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <param name="isDouble">if set to <c>true</c> [is double].</param>
     /// <returns></returns>
     /// <exception cref="System.ApplicationException">Time slot has been aleady reserved</exception>
-    public static List<TimeSlotTimeSlot> BookTimeSlots( EntitiesDataContext EDC, string timeSlot, bool isDouble )
+    public static List<TimeSlotTimeSlot> BookTimeSlots(EntitiesDataContext EDC, string timeSlot, bool isDouble)
     {
-      TimeSlotTimeSlot _timeSlot = Element.GetAtIndex<TimeSlotTimeSlot>( EDC.TimeSlot, timeSlot );
-      if ( _timeSlot.Occupied.GetValueOrDefault( Entities.Occupied.None ) == Entities.Occupied.Occupied0 )
-        throw new TimeSlotException( "Time slot has been aleady reserved" );
+      TimeSlotTimeSlot _timeSlot = Element.GetAtIndex<TimeSlotTimeSlot>(EDC.TimeSlot, timeSlot);
+      if (_timeSlot.Occupied.GetValueOrDefault(Entities.Occupied.None) == Entities.Occupied.Occupied0)
+        throw new TimeSlotException("Time slot has been aleady reserved");
       List<TimeSlotTimeSlot> _ret = new List<TimeSlotTimeSlot>();
-      _ret.Add( _timeSlot );
+      _ret.Add(_timeSlot);
       _timeSlot.Occupied = Entities.Occupied.Occupied0;
-      if ( isDouble )
+      if (isDouble)
       {
-        EntitySet<TimeSlot> _tslots = _timeSlot.TimeSlot2ShippingPointLookup.TimeSlot;
-        Debug.Assert( _timeSlot.StartTime.HasValue, "TimeSlot StartTime has to have Value" );
+        Debug.Assert(_timeSlot.StartTime.HasValue, "TimeSlot StartTime has to have Value");
         DateTime _tdy = _timeSlot.StartTime.Value.Date;
-        List<TimeSlotTimeSlot> _avlblTmslts = ( from _tsidx in _tslots
-                                                let _idx = _tsidx.StartTime.Value.Date
-                                                where _tsidx.Occupied.GetValueOrDefault( Entities.Occupied.None ) == Entities.Occupied.Free && _idx >= _tdy && _idx <= _tdy.AddDays( 1 )
-                                                orderby _tsidx.StartTime ascending
-                                                select _tsidx ).Cast<TimeSlotTimeSlot>().ToList<TimeSlotTimeSlot>();
-        TimeSlotTimeSlot _next = FindAdjacent( _avlblTmslts, _timeSlot );
-        _ret.Add( _next );
+        List<TimeSlotTimeSlot> _avlblTmslts = (from _tsidx in EDC.TimeSlot
+                                               let _idx = _tsidx.StartTime.Value.Date
+                                               where _tsidx.Occupied.GetValueOrDefault(Entities.Occupied.None) == Entities.Occupied.Free &&
+                                                     _idx >= _tdy &&
+                                                     _idx <= _tdy.AddDays(1)
+                                               orderby _tsidx.StartTime ascending
+                                               select _tsidx).Where<TimeSlotTimeSlot>(x => x.TimeSlot2ShippingPointLookup == _timeSlot.TimeSlot2ShippingPointLookup).ToList<TimeSlotTimeSlot>();
+        TimeSlotTimeSlot _next = FindAdjacent(_avlblTmslts, _timeSlot);
+        _ret.Add(_next);
         _next.Occupied = Entities.Occupied.Occupied0;
       }
       return _ret;
@@ -95,35 +96,42 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// Deletes all not used time slots.
     /// </summary>
     /// <param name="EDC">The <see cref="EntitiesDataContext "/> object representing Linq entities.</param> DeletesExpired
-    public static void DeleteExpired( EntitiesDataContext EDC )
+    public static void DeleteExpired(EntitiesDataContext EDC)
     {
-      foreach ( Warehouse _wrhx in EDC.Warehouse )
-        foreach ( ShippingPoint _shpx in _wrhx.ShippingPoint )
-        {
-          IEnumerable<TimeSlotTimeSlot> _2Delete = (
-              from _tsx in _shpx.TimeSlot
-              where ( _tsx.StartTime < DateTime.Now - new TimeSpan( 72, 0, 0 ) ) && _tsx.Occupied.Value == Entities.Occupied.Free
-              select _tsx
-            ).Cast<TimeSlotTimeSlot>();
-          EDC.TimeSlot.DeleteAllOnSubmit( _2Delete );
-        }
+      IEnumerable<TimeSlotTimeSlot> _2Delete =
+          from _tsx in EDC.TimeSlot
+          where (_tsx.StartTime < DateTime.Now - new TimeSpan(72, 0, 0)) && _tsx.Occupied.Value == Entities.Occupied.Free
+          select _tsx;
+      EDC.TimeSlot.DeleteAllOnSubmit(_2Delete);
     }
     #region private
+    /// <summary>
+    /// TimeSlotException
+    /// </summary>
     [Serializable]
-    public class TimeSlotException: Exception
+    public class TimeSlotException : Exception
     {
-      public TimeSlotException( string message ) : base( message, null ) { }
-      protected TimeSlotException( System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context )
-        : base( info, context ) { }
+      /// <summary>
+      /// Initializes a new instance of the <see cref="TimeSlotException"/> class.
+      /// </summary>
+      /// <param name="message">The message that describes the error.</param>
+      public TimeSlotException(string message) : base(message, null) { }
+      /// <summary>
+      /// Initializes a new instance of the <see cref="TimeSlotException"/> class.
+      /// </summary>
+      /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+      /// <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+      protected TimeSlotException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
+        : base(info, context) { }
     }
-    private static TimeSlotTimeSlot FindAdjacent( List<TimeSlotTimeSlot> _avlblTmslts, TimeSlotTimeSlot timeSlot )
+    private static TimeSlotTimeSlot FindAdjacent(List<TimeSlotTimeSlot> _avlblTmslts, TimeSlotTimeSlot timeSlot)
     {
-      for ( int _i = 0; _i < _avlblTmslts.Count; _i++ )
+      for (int _i = 0; _i < _avlblTmslts.Count; _i++)
       {
-        if ( ( _avlblTmslts[ _i ].StartTime.Value - timeSlot.EndTime.Value ).Duration() <= TimeSlotTimeSlot.Span15min )
-          return _avlblTmslts[ _i ];
+        if ((_avlblTmslts[_i].StartTime.Value - timeSlot.EndTime.Value).Duration() <= TimeSlotTimeSlot.Span15min)
+          return _avlblTmslts[_i];
       }
-      throw new TimeSlotException( "Cannot find the time slot to make the couple." );
+      throw new TimeSlotException("Cannot find the time slot to make the couple.");
     }
     /// <summary>
     /// The m_ shipping not fpund message

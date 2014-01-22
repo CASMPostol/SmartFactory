@@ -28,6 +28,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// </summary>
   public partial class EntitiesDataContext
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EntitiesDataContext"/> class.
+    /// </summary>
     public EntitiesDataContext()
       : this( SPContext.Current.Web.Url )
     { }
