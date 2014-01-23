@@ -113,10 +113,6 @@
     <Compile Include="WebsiteModelExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\EX06-SharePointGuidance2010\SharePoint 2010\Microsoft.Practices.SharePoint.Common\Source\Microsoft.Practices.SharePoint.Common.csproj">
-      <Project>{0fab4900-9fe2-4ce9-a047-ceeb28920f57}</Project>
-      <Name>Microsoft.Practices.SharePoint.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
       <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
       <Name>SharePoint</Name>
