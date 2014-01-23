@@ -135,7 +135,10 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         _WithdrawalSADDcoumentNo = String.Empty.NotAvailable();
         _WithdrawalSADDocumentDate = Extensions.SPMinimum;
       }
-      _listOfDisposals.Sort((x, y) => { return x.No.CompareTo(y.No); });
+      _listOfDisposals.Sort((x, y) => {
+                                        int _yNo = y.No == 0 ? 9999 : y.No;
+                                        return x.No.CompareTo(_yNo); 
+                                      });
       RequestContent _new = new RequestContent()
       {
         Batch = _cw.Batch,
