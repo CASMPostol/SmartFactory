@@ -16,33 +16,33 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="entities">The entities.</param>
     /// <param name="referenceNumber">The reference number.</param>
     /// <returns></returns>
-    public static IQueryable<Clearence> GetClearence( Entities entities, string referenceNumber )
+    public static IQueryable<Clearence> GetClearence(Entities entities, string referenceNumber)
     {
-      return from _cx in entities.Clearence where referenceNumber.Contains( _cx.ReferenceNumber ) select _cx;
+      return from _cx in entities.Clearence where referenceNumber.Contains(_cx.ReferenceNumber) select _cx;
     }
     /// <summary>
     /// Clears through customs.
     /// </summary>
     /// <param name="entities">The entities.</param>
-    public void FinishClearingThroughCustoms( Entities entities )
+    public void FinishClearingThroughCustoms(Entities entities)
     {
       SADDocumentType sadDocument = Clearence2SadGoodID.SADDocumentIndex;
       DocumentNo = sadDocument.DocumentNumber;
       ReferenceNumber = sadDocument.ReferenceNumber;
       Status = true;
-      foreach ( Disposal _disposal in Disposal )
-        _disposal.FinishClearingThroughCustoms( entities, Clearence2SadGoodID );
-      UpdateTitle( entities );
+      foreach (Disposal _disposal in Disposal)
+        _disposal.FinishClearingThroughCustoms(entities, Clearence2SadGoodID);
+      UpdateTitle(entities);
     }
     /// <summary>
     /// Clears through customs.
     /// </summary>
     /// <param name="entities">The entities.</param>
     /// <param name="sadGood">The sad good.</param>
-    public void FinishClearingThroughCustoms( Entities entities, SADGood sadGood )
+    public void FinishClearingThroughCustoms(Entities entities, SADGood sadGood)
     {
       Clearence2SadGoodID = sadGood;
-      FinishClearingThroughCustoms( entities );
+      FinishClearingThroughCustoms(entities);
     }
     public void FinishClearingThroughCustoms(SADGood good)
     {
@@ -58,7 +58,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <value>
     /// The customs debt date.
     /// </value>
-    public DateTime CustomsDebtDate { get { return Clearence2SadGoodID == null ? Extensions.DateTimeNull : Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value; } }
+    public DateTime CustomsDebtDate { get { return Clearence2SadGoodID == null ? Extensions.SPMinimum : Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value; } }
     /// <summary>
     /// Creatas the clearence.
     /// </summary>
@@ -66,13 +66,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="procedure">The procedure.</param>
     /// <param name="procedureCode">The procedure code.</param>
     /// <returns></returns>
-    public static Clearence CreataClearence( Entities entities, string procedure, ClearenceProcedure procedureCode )
+    public static Clearence CreataClearence(Entities entities, string procedure, ClearenceProcedure procedureCode)
     {
-      Clearence _newClearence = CreateClearance( procedure, procedureCode );
-      entities.Clearence.InsertOnSubmit( _newClearence );
-      _newClearence.UpdateTitle( entities );
+      Clearence _newClearence = CreateClearance(procedure, procedureCode);
+      entities.Clearence.InsertOnSubmit(_newClearence);
+      _newClearence.UpdateTitle(entities);
       entities.SubmitChanges();
-      _newClearence.UpdateTitle( entities );
+      _newClearence.UpdateTitle(entities);
       return _newClearence;
     }
     /// <summary>
@@ -83,16 +83,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="procedureCode">The procedure code.</param>
     /// <param name="good">The good.</param>
     /// <returns></returns>
-    public static Clearence CreataClearence( Entities entities, string procedure, ClearenceProcedure procedureCode, SADGood good )
+    public static Clearence CreataClearence(Entities entities, string procedure, ClearenceProcedure procedureCode, SADGood good)
     {
-      Clearence _newClearence = CreateClearance( procedure, procedureCode );
+      Clearence _newClearence = CreateClearance(procedure, procedureCode);
       _newClearence.Clearence2SadGoodID = good;
       _newClearence.DocumentNo = good.SADDocumentIndex.DocumentNumber;
       _newClearence.ReferenceNumber = good.SADDocumentIndex.ReferenceNumber;
-      _newClearence.UpdateTitle( entities );
-      entities.Clearence.InsertOnSubmit( _newClearence );
+      _newClearence.UpdateTitle(entities);
+      entities.Clearence.InsertOnSubmit(_newClearence);
       entities.SubmitChanges();
-      _newClearence.UpdateTitle( entities );
+      _newClearence.UpdateTitle(entities);
       return _newClearence;
     }
     /// <summary>
@@ -100,12 +100,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="entities">The entities.</param>
     /// <param name="sadConsignment">The _sad consignment.</param>
-    public void ClearThroughCustom( Entities entities, SADConsignment sadConsignment )
+    public void ClearThroughCustom(Entities entities, SADConsignment sadConsignment)
     {
       SADConsignmentLibraryIndex = sadConsignment;
-      foreach ( Disposal _dspsl in Disposal )
-        _dspsl.ClearThroughCustom( entities, this.ClearenceProcedure.Value, this.SADDocumentNumber );
-      UpdateTitle( entities );
+      foreach (Disposal _dspsl in Disposal)
+        _dspsl.ClearThroughCustom(entities, this.ClearenceProcedure.Value, this.SADDocumentNumber);
+      UpdateTitle(entities);
     }
     /// <summary>
     /// Updates the clerance.
@@ -113,35 +113,35 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="entities">The entities.</param>
     /// <param name="procedureDescription">The procedure description.</param>
     /// <param name="clearenceProcedure">The clearence procedure.</param>
-    public void UpdateClerance( Entities entities, string procedureDescription, ClearenceProcedure clearenceProcedure )
+    public void UpdateClerance(Entities entities, string procedureDescription, ClearenceProcedure clearenceProcedure)
     {
       ProcedureCode = procedureDescription;
       ClearenceProcedure = clearenceProcedure;
-      UpdateTitle( entities );
+      UpdateTitle(entities);
     }
     /// <summary>
     /// Updates the title.
     /// </summary>
     /// <param name="entities">The autogenerated <see cref="Microsoft.SharePoint.Linq.DataContext"/> object.</param>
-    public void UpdateTitle( Entities entities )
+    public void UpdateTitle(Entities entities)
     {
       string _quantity = String.Empty;
-      if ( this.Disposal.Any() )
-        _quantity = this.Disposal.Sum<Disposal>( x => x.SettledQuantity.Value ).ToString( "F2" );
+      if (this.Disposal.Any())
+        _quantity = this.Disposal.Sum<Disposal>(x => x.SettledQuantity.Value).ToString("F2");
       else
         _quantity = " --- ";
-      string _ClearanceTitleFormat = Settings.GetParameter( entities, SettingsEntry.ClearanceTitleFormat );
-      Title = String.Format( _ClearanceTitleFormat, this.ProcedureCode, Entities.ToString( ClearenceProcedure.GetValueOrDefault( Linq.ClearenceProcedure.Invalid ) ),
-                             ReferenceNumber.NotAvailable(), _quantity, Id.GetValueOrDefault( -999 ) );
+      string _ClearanceTitleFormat = Settings.GetParameter(entities, SettingsEntry.ClearanceTitleFormat);
+      Title = String.Format(_ClearanceTitleFormat, this.ProcedureCode, Entities.ToString(ClearenceProcedure.GetValueOrDefault(Linq.ClearenceProcedure.Invalid)),
+                             ReferenceNumber.NotAvailable(), _quantity, Id.GetValueOrDefault(-999));
     }
     /// <summary>
     /// gets the name of finished good export form file.
     /// </summary>
     /// <param name="entities">The entities.</param>
     /// <returns></returns>
-    public string FinishedGoodsExportFormFileName( Entities entities )
+    public string FinishedGoodsExportFormFileName(Entities entities)
     {
-      return Settings.FinishedGoodsExportFormFileName( entities, this.Id.Value );
+      return Settings.FinishedGoodsExportFormFileName(entities, this.Id.Value);
     }
     /// <summary>
     /// Gets the sad document number.
@@ -153,7 +153,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
-    private static Clearence CreateClearance( string code, ClearenceProcedure procedure )
+    private static Clearence CreateClearance(string code, ClearenceProcedure procedure)
     {
       Clearence _newClearence = new Clearence()
       {

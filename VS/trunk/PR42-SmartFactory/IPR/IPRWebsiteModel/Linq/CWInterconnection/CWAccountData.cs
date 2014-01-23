@@ -14,10 +14,10 @@
 //</summary>
 
 using System.Collections.Generic;
+using CAS.SharePoint.Common.ServiceLocation;
 using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.Customs.Account;
 using Microsoft.Practices.ServiceLocation;
-using Microsoft.Practices.SharePoint.Common.ServiceLocation;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
 {
