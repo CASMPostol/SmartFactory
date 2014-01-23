@@ -13,13 +13,10 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using CAS.SharePoint.Common.ServiceLocation;
 using CAS.SmartFactory.Customs.Account;
 using Microsoft.Practices.ServiceLocation;
-using Microsoft.Practices.SharePoint.Common.ServiceLocation;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
 {

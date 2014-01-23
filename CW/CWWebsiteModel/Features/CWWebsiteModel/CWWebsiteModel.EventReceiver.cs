@@ -12,11 +12,11 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Runtime.InteropServices;
+using CAS.SharePoint.Common.ServiceLocation;
 using Microsoft.Practices.ServiceLocation;
-using Microsoft.Practices.SharePoint.Common.ServiceLocation;
 using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.CW.WebsiteModel.Features.CWWebsiteModel
