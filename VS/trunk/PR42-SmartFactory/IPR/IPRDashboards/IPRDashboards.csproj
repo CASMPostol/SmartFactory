@@ -250,6 +250,7 @@
     <Content Include="Images\IPRDashboards\IPR_32x32.png" />
     <Content Include="Images\IPRDashboards\IPR_50x50.png" />
     <Content Include="Images\IPRDashboards\ipr_feature_32x32.png" />
+    <Content Include="Images\IPRDashboards\sf_feature_32x32.png" />
     <Content Include="Layouts\CAS_iframe.aspx" />
     <Content Include="Layouts\IPRDashboards\CAS_IPRDashboards.css" />
     <Content Include="Layouts\IPRDashboards\CAS_IPRDefault.css" />
