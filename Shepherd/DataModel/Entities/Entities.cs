@@ -2769,18 +2769,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
     }
 
-    private void OnAlarmsAndEventsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents> e)
-    {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
-      {
-        e.Item.AlarmsAndEventsList2PartnerTitle = this;
-      }
-      else
-      {
-        e.Item.AlarmsAndEventsList2PartnerTitle = null;
-      }
-    }
-
     private void OnCarrierPerformanceReportChanging(object sender, System.EventArgs e)
     {
       this.OnPropertyChanging("CarrierPerformanceReport", this._carrierPerformanceReport.Clone());
@@ -2800,18 +2788,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       else
       {
         e.Item.CPR2PartnerTitle = null;
-      }
-    }
-
-    private void OnShippingCommentsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingComments> e)
-    {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
-      {
-        e.Item.ShippingComments2PartnerTitle = this;
-      }
-      else
-      {
-        e.Item.ShippingComments2PartnerTitle = null;
       }
     }
 
@@ -2837,18 +2813,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
     }
 
-    private void OnLoadDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e)
-    {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
-      {
-        e.Item.LoadDescription2PartnerTitle = this;
-      }
-      else
-      {
-        e.Item.LoadDescription2PartnerTitle = null;
-      }
-    }
-
     private void OnPartner2WarehouseTitleChanging(object sender, System.EventArgs e)
     {
       this.OnPropertyChanging("Partner2WarehouseTitle", this._partner2WarehouseTitle.Clone());
@@ -2857,18 +2821,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     private void OnPartner2WarehouseTitleChanged(object sender, System.EventArgs e)
     {
       this.OnPropertyChanged("Partner2WarehouseTitle");
-    }
-
-    private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e)
-    {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
-      {
-        e.Item.Shipping2PartnerTitle = this;
-      }
-      else
-      {
-        e.Item.Shipping2PartnerTitle = null;
-      }
     }
 
     private void OnTrailerChanging(object sender, System.EventArgs e)
@@ -4885,18 +4837,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       set
       {
         this._timeSlot.Assign(value);
-      }
-    }
-
-    private void OnShippingCommentsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingComments> e)
-    {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
-      {
-        e.Item.ShippingComments2ShippingID = this;
-      }
-      else
-      {
-        e.Item.ShippingComments2ShippingID = null;
       }
     }
 
