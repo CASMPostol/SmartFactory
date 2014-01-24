@@ -346,11 +346,18 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     }
     private StateMachineEngine.ActionResult ShowShipping( ShippingInterconnectionData _interconnectionData )
     {
-      if ( m_ControlState.ShippingID == _interconnectionData.ID )
-        return StateMachineEngine.ActionResult.Success;
-      m_ControlState.ShippingID = _interconnectionData.ID;
-      m_Shipping = null;
-      return ShowShipping( CurrentShipping );
+      try
+      {
+        if (m_ControlState.ShippingID == _interconnectionData.ID)
+          return StateMachineEngine.ActionResult.Success;
+        m_ControlState.ShippingID = _interconnectionData.ID;
+        m_Shipping = null;
+        return ShowShipping(CurrentShipping);
+      }
+      catch (Exception ex)
+      {
+        return new StateMachineEngine.ActionResult(ex);
+      }
     }
     private StateMachineEngine.ActionResult ShowShipping( Shipping _sppng )
     {
