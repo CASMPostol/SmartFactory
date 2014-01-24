@@ -1439,12 +1439,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Commodity", Id="0x01003A76AB24637A7541B0D982B65D5916CE")]
 	public partial class Commodity : Element {
 		
-		private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
-		
-		private Microsoft.SharePoint.Linq.EntitySet<Route> _route;
-		
-		private Microsoft.SharePoint.Linq.EntitySet<Warehouse> _warehouse;
-		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -1452,72 +1446,10 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 		#endregion
 		
 		public Commodity() {
-			this._loadDescription = new Microsoft.SharePoint.Linq.EntitySet<LoadDescription>();
-			this._loadDescription.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription>>(this.OnLoadDescriptionSync);
-			this._loadDescription.OnChanged += new System.EventHandler(this.OnLoadDescriptionChanged);
-			this._loadDescription.OnChanging += new System.EventHandler(this.OnLoadDescriptionChanging);
-			this._route = new Microsoft.SharePoint.Linq.EntitySet<Route>();
-			this._route.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnRouteSync);
-			this._route.OnChanged += new System.EventHandler(this.OnRouteChanged);
-			this._route.OnChanging += new System.EventHandler(this.OnRouteChanging);
-			this._warehouse = new Microsoft.SharePoint.Linq.EntitySet<Warehouse>();
-			this._warehouse.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnWarehouseSync);
-			this._warehouse.OnChanged += new System.EventHandler(this.OnWarehouseChanged);
-			this._warehouse.OnChanging += new System.EventHandler(this.OnWarehouseChanging);
 			this.OnCreated();
 		}
-		
-		private void OnLoadDescriptionChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("LoadDescription", this._loadDescription.Clone());
-		}
-		
-		private void OnLoadDescriptionChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("LoadDescription");
-		}
-		
-		private void OnLoadDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.LoadDescription2Commodity = this;
-			}
-			else {
-				e.Item.LoadDescription2Commodity = null;
-			}
-		}
-		
-		private void OnRouteChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Route", this._route.Clone());
-		}
-		
-		private void OnRouteChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Route");
-		}
-		
-		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Route2Commodity = this;
-			}
-			else {
-				e.Item.Route2Commodity = null;
-			}
-		}
-		
-		private void OnWarehouseChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Warehouse", this._warehouse.Clone());
-		}
-		
-		private void OnWarehouseChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Warehouse");
-		}
-		
-		private void OnWarehouseSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CommodityTitle = this;
-			}
-			else {
-				e.Item.CommodityTitle = null;
-			}
-		}
-	}
+
+  }
 	
 	/// <summary>
 	/// $Resources:CASSmartFactoryShepherd,CAS_CountryListCT;
@@ -2412,23 +2344,15 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 		
 		private System.Nullable<ServiceType> _serviceType;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> _alarmsAndEvents;
-		
 		private Microsoft.SharePoint.Linq.EntitySet<CarrierPerformanceReport> _carrierPerformanceReport;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<ShippingComments> _shippingComments;
-		
 		private Microsoft.SharePoint.Linq.EntitySet<Driver> _driver;
-		
-		private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
 		
 		private System.Nullable<int> _shepherdUserId;
 		
 		private string _shepherdUserTitle;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Warehouse> _partner2WarehouseTitle;
-		
-		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Trailer> _trailer;
 		
@@ -2441,33 +2365,17 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 		#endregion
 		
 		public Partner() {
-			this._alarmsAndEvents = new Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents>();
-			this._alarmsAndEvents.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents>>(this.OnAlarmsAndEventsSync);
-			this._alarmsAndEvents.OnChanged += new System.EventHandler(this.OnAlarmsAndEventsChanged);
-			this._alarmsAndEvents.OnChanging += new System.EventHandler(this.OnAlarmsAndEventsChanging);
 			this._carrierPerformanceReport = new Microsoft.SharePoint.Linq.EntitySet<CarrierPerformanceReport>();
 			this._carrierPerformanceReport.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CarrierPerformanceReport>>(this.OnCarrierPerformanceReportSync);
 			this._carrierPerformanceReport.OnChanged += new System.EventHandler(this.OnCarrierPerformanceReportChanged);
 			this._carrierPerformanceReport.OnChanging += new System.EventHandler(this.OnCarrierPerformanceReportChanging);
-			this._shippingComments = new Microsoft.SharePoint.Linq.EntitySet<ShippingComments>();
-			this._shippingComments.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingComments>>(this.OnShippingCommentsSync);
-			this._shippingComments.OnChanged += new System.EventHandler(this.OnShippingCommentsChanged);
-			this._shippingComments.OnChanging += new System.EventHandler(this.OnShippingCommentsChanging);
 			this._driver = new Microsoft.SharePoint.Linq.EntitySet<Driver>();
 			this._driver.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Driver>>(this.OnDriverSync);
 			this._driver.OnChanged += new System.EventHandler(this.OnDriverChanged);
 			this._driver.OnChanging += new System.EventHandler(this.OnDriverChanging);
-			this._loadDescription = new Microsoft.SharePoint.Linq.EntitySet<LoadDescription>();
-			this._loadDescription.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription>>(this.OnLoadDescriptionSync);
-			this._loadDescription.OnChanged += new System.EventHandler(this.OnLoadDescriptionChanged);
-			this._loadDescription.OnChanging += new System.EventHandler(this.OnLoadDescriptionChanging);
 			this._partner2WarehouseTitle = new Microsoft.SharePoint.Linq.EntityRef<Warehouse>();
 			this._partner2WarehouseTitle.OnChanged += new System.EventHandler(this.OnPartner2WarehouseTitleChanged);
 			this._partner2WarehouseTitle.OnChanging += new System.EventHandler(this.OnPartner2WarehouseTitleChanging);
-			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
-			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
-			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
-			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
 			this._trailer = new Microsoft.SharePoint.Linq.EntitySet<Trailer>();
 			this._trailer.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Trailer>>(this.OnTrailerSync);
 			this._trailer.OnChanged += new System.EventHandler(this.OnTrailerChanged);
@@ -2627,14 +2535,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 			}
 		}
 		
-		private void OnAlarmsAndEventsChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("AlarmsAndEvents", this._alarmsAndEvents.Clone());
-		}
-		
-		private void OnAlarmsAndEventsChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("AlarmsAndEvents");
-		}
-		
 		private void OnAlarmsAndEventsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.AlarmsAndEventsList2PartnerTitle = this;
@@ -2659,14 +2559,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 			else {
 				e.Item.CPR2PartnerTitle = null;
 			}
-		}
-		
-		private void OnShippingCommentsChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ShippingComments", this._shippingComments.Clone());
-		}
-		
-		private void OnShippingCommentsChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ShippingComments");
 		}
 		
 		private void OnShippingCommentsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingComments> e) {
@@ -2695,14 +2587,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 			}
 		}
 		
-		private void OnLoadDescriptionChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("LoadDescription", this._loadDescription.Clone());
-		}
-		
-		private void OnLoadDescriptionChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("LoadDescription");
-		}
-		
 		private void OnLoadDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.LoadDescription2PartnerTitle = this;
@@ -2718,14 +2602,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 		
 		private void OnPartner2WarehouseTitleChanged(object sender, System.EventArgs e) {
 			this.OnPropertyChanged("Partner2WarehouseTitle");
-		}
-		
-		private void OnShippingChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Shipping", this._shipping.Clone());
-		}
-		
-		private void OnShippingChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Shipping");
 		}
 		
 		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
@@ -3621,10 +3497,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 		
 		private System.Nullable<ShippingState2> _shippingState2;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> _alarmsAndEvents;
-		
-		private Microsoft.SharePoint.Linq.EntitySet<ShippingComments> _shippingComments;
-		
 		private Microsoft.SharePoint.Linq.EntitySet<ShippingDriversTeam> _shippingDriversTeam;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
@@ -3676,14 +3548,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 		#endregion
 		
 		public Shipping() {
-			this._alarmsAndEvents = new Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents>();
-			this._alarmsAndEvents.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents>>(this.OnAlarmsAndEventsSync);
-			this._alarmsAndEvents.OnChanged += new System.EventHandler(this.OnAlarmsAndEventsChanged);
-			this._alarmsAndEvents.OnChanging += new System.EventHandler(this.OnAlarmsAndEventsChanging);
-			this._shippingComments = new Microsoft.SharePoint.Linq.EntitySet<ShippingComments>();
-			this._shippingComments.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingComments>>(this.OnShippingCommentsSync);
-			this._shippingComments.OnChanged += new System.EventHandler(this.OnShippingCommentsChanged);
-			this._shippingComments.OnChanging += new System.EventHandler(this.OnShippingCommentsChanging);
 			this._shippingDriversTeam = new Microsoft.SharePoint.Linq.EntitySet<ShippingDriversTeam>();
 			this._shippingDriversTeam.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingDriversTeam>>(this.OnShippingDriversTeamSync);
 			this._shippingDriversTeam.OnChanged += new System.EventHandler(this.OnShippingDriversTeamChanged);
@@ -4483,31 +4347,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 			}
 		}
 		
-		private void OnAlarmsAndEventsChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("AlarmsAndEvents", this._alarmsAndEvents.Clone());
-		}
-		
-		private void OnAlarmsAndEventsChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("AlarmsAndEvents");
-		}
-		
-		private void OnAlarmsAndEventsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.AlarmsAndEventsList2Shipping = this;
-			}
-			else {
-				e.Item.AlarmsAndEventsList2Shipping = null;
-			}
-		}
-		
-		private void OnShippingCommentsChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ShippingComments", this._shippingComments.Clone());
-		}
-		
-		private void OnShippingCommentsChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ShippingComments");
-		}
-		
 		private void OnShippingCommentsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingComments> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.ShippingComments2ShippingID = this;
@@ -4724,8 +4563,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Warehouse> _warehouseTitle;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<TimeSlot> _timeSlot;
-		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -4741,10 +4578,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 			this._warehouseTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnWarehouseTitleSync);
 			this._warehouseTitle.OnChanged += new System.EventHandler(this.OnWarehouseTitleChanged);
 			this._warehouseTitle.OnChanging += new System.EventHandler(this.OnWarehouseTitleChanging);
-			this._timeSlot = new Microsoft.SharePoint.Linq.EntitySet<TimeSlot>();
-			this._timeSlot.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlot>>(this.OnTimeSlotSync);
-			this._timeSlot.OnChanged += new System.EventHandler(this.OnTimeSlotChanged);
-			this._timeSlot.OnChanging += new System.EventHandler(this.OnTimeSlotChanging);
 			this.OnCreated();
 		}
 		
@@ -4823,22 +4656,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 			}
 		}
 		
-		private void OnTimeSlotChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("TimeSlot", this._timeSlot.Clone());
-		}
-		
-		private void OnTimeSlotChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("TimeSlot");
-		}
-		
-		private void OnTimeSlotSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlot> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TimeSlot2ShippingPointLookup = this;
-			}
-			else {
-				e.Item.TimeSlot2ShippingPointLookup = null;
-			}
-		}
 	}
 	
 	/// <summary>
