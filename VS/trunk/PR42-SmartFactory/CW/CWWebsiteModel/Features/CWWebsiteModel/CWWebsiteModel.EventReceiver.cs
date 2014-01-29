@@ -15,9 +15,11 @@
 
 using System;
 using System.Runtime.InteropServices;
+using CAS.SharePoint.Common.Logging;
 using CAS.SharePoint.Common.ServiceLocation;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
 
 namespace CAS.SmartFactory.CW.WebsiteModel.Features.CWWebsiteModel
 {
@@ -43,11 +45,22 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Features.CWWebsiteModel
     /// <param name="properties">An <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties" /> object that represents the properties of the event.</param>
     public override void FeatureInstalled( SPFeatureReceiverProperties properties )
     {
-      // Get the ServiceLocatorConfig service from the service locator.
-      IServiceLocator _serviceLocator = SharePointServiceLocator.GetCurrent();
-      IServiceLocatorConfig _typeMappings = _serviceLocator.GetInstance<IServiceLocatorConfig>();
-      _typeMappings.RegisterTypeMapping<CAS.SmartFactory.Customs.Account.ICWAccountFactory, CAS.SmartFactory.CW.WebsiteModel.Linq.Account.CWAccountData>();
-      SharePointServiceLocator.Reset();
+      try
+      {
+        if ( !System.Diagnostics.EventLog.SourceExists( SourceName ) )
+          System.Diagnostics.EventLog.CreateEventSource( new System.Diagnostics.EventSourceCreationData( SourceName, "Application" ) );
+        IServiceLocator _serviceLocator = SharePointServiceLocator.GetCurrent();
+        ILogger logger = _serviceLocator.GetInstance<ILogger>();
+        logger.TraceToDeveloper( String.Format( "CAS.SmartFactory.CW.WebsiteModel FeatureInstalled: {0}", properties.Definition.DisplayName ), TraceSeverity.High );
+        IServiceLocatorConfig _typeMappings = _serviceLocator.GetInstance<IServiceLocatorConfig>();
+        _typeMappings.RegisterTypeMapping<CAS.SmartFactory.Customs.Account.ICWAccountFactory, CAS.SmartFactory.CW.WebsiteModel.Linq.Account.CWAccountData>();
+        logger.TraceToDeveloper( "CAS.SmartFactory.CW.WebsiteModel TypeMapping registered", TraceSeverity.High );
+      }
+      catch ( Exception  _ex)
+      {
+        System.Diagnostics.EventLog.WriteEvent( SourceName, new System.Diagnostics.EventInstance( 63, 0 ) { EntryType = System.Diagnostics.EventLogEntryType.Error }, _ex );
+        throw;
+      }
     }
     /// <summary>
     /// Occurs when a Feature is uninstalled.
@@ -55,14 +68,25 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Features.CWWebsiteModel
     /// <param name="properties">An <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties" /> object that represents the properties of the event.</param>
     public override void FeatureUninstalling( SPFeatureReceiverProperties properties )
     {
-      // Get the ServiceLocatorConfig service from the service locator.
-      IServiceLocator _serviceLocator = SharePointServiceLocator.GetCurrent();
-      IServiceLocatorConfig _typeMappings = _serviceLocator.GetInstance<IServiceLocatorConfig>();
-      _typeMappings.RemoveTypeMapping<CAS.SmartFactory.Customs.Account.ICWAccountFactory>( null );
+      try
+      {
+        // Get the ServiceLocatorConfig service from the service locator.
+        IServiceLocator _serviceLocator = SharePointServiceLocator.GetCurrent();
+        ILogger logger = _serviceLocator.GetInstance<ILogger>();
+        logger.TraceToDeveloper( String.Format( "CAS.SmartFactory.CW.WebsiteModel FeatureUninstalling: {0}", properties.Definition.DisplayName ), TraceSeverity.Monitorable );
+        IServiceLocatorConfig _typeMappings = _serviceLocator.GetInstance<IServiceLocatorConfig>();
+        _typeMappings.RemoveTypeMapping<CAS.SmartFactory.Customs.Account.ICWAccountFactory>( null );
+        logger.TraceToDeveloper( "CAS.SmartFactory.CW.WebsiteModel TypeMapping removed: ICWAccountFactory", TraceSeverity.High );
+      }
+      catch ( Exception _ex)
+      {
+        System.Diagnostics.EventLog.WriteEvent( SourceName, new System.Diagnostics.EventInstance( 63, 0 ) { EntryType = System.Diagnostics.EventLogEntryType.Error }, _ex );
+        throw;
+      }
     }
-
     //public override void FeatureUpgrading(SPFeatureReceiverProperties properties, string upgradeActionName, System.Collections.Generic.IDictionary<string, string> parameters)
     //{
     //}
+    internal static string SourceName = "CAS.SmartFactory.CW.WebsiteModel";
   }
 }
