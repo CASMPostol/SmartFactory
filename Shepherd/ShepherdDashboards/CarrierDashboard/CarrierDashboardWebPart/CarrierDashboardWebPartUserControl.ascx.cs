@@ -595,12 +595,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _at = "SendShippingData";
         SendShippingData( CurrentShipping );
         TimeSlotTimeSlot _timeSlot = null;
-        _at = "_timeSlot = (TimeSlotTimeSlot)( from";
-        _timeSlot = (TimeSlotTimeSlot)( from _ts in CurrentShipping.TimeSlot
-                                        where _ts.Occupied.GetValueOrDefault( Occupied.Free ) == Occupied.Occupied0
-                                        orderby _ts.StartTime
-                                        ascending
-                                        select _ts ).FirstOrDefault();
+        _at = "_timeSlot = ( from _ts in this.EDC.TimeSlot";
+        _timeSlot = ( from _ts in this.EDC.TimeSlot
+                      let _sid = _ts.TimeSlot2ShippingIndex.Id.Value
+                      where ( CurrentShipping.Id.Value == _sid ) && ( _ts.Occupied.GetValueOrDefault( Occupied.Free ) == Occupied.Occupied0 )
+                      orderby _ts.StartTime
+                      ascending
+                      select _ts ).FirstOrDefault();
         m_ControlState.TimeSlotChanged = false;
         if ( _timeSlot == null )
           m_ControlState.TimeSlotID = String.Empty;
