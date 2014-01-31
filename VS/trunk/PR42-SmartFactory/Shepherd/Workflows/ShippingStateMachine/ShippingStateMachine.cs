@@ -220,10 +220,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           EDC.CarrierPerformanceReport.InsertOnSubmit( _rprt );
         }
         _rprt.CPRNumberOrdered++;
-        _rprt.CPRNumberNotShowingUp += ( from _ts in sp.TimeSlot
+        _rprt.CPRNumberNotShowingUp += ( from _ts in sp.TimeSlots( EDC )
                                          where _ts.Occupied.Value == Occupied.Delayed
                                          select new { } ).Count();
-        EDC.TimeSlot.DeleteAllOnSubmit( sp.TimeSlot.Cast<TimeSlotTimeSlot>() );
+        EDC.TimeSlot.DeleteAllOnSubmit( sp.TimeSlots( EDC ) );
         if ( sp.TrailerCondition.GetValueOrDefault( TrailerCondition.None ) == TrailerCondition._1Unexceptable )
           _rprt.CPRNumberRejectedBadQuality++;
         if ( sp.ShippingState.Value == ShippingState.Completed )

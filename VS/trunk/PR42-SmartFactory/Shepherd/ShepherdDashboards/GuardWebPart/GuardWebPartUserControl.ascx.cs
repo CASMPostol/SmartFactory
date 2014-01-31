@@ -187,10 +187,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
         switch ( CurrentShipping.ShippingState.Value )
         {
           case ShippingState.Underway:
-            TimeSlotTimeSlot _ts = (TimeSlotTimeSlot)( from _tsidx in CurrentShipping.TimeSlot
-                                                       where _tsidx.Occupied.GetValueOrDefault( Occupied.Free ) == Occupied.Occupied0
-                                                       orderby _tsidx.StartTime ascending
-                                                       select _tsidx ).FirstOrDefault();
+            TimeSlotTimeSlot _ts = ( from _tsidx in CurrentShipping.TimeSlots( EDC )
+                                     where _tsidx.Occupied.GetValueOrDefault( Occupied.Free ) == Occupied.Occupied0
+                                     orderby _tsidx.StartTime ascending
+                                     select _tsidx ).FirstOrDefault();
             if ( _ts == null )
               break;
             CurrentShipping.StartTime = _ts.StartTime;
