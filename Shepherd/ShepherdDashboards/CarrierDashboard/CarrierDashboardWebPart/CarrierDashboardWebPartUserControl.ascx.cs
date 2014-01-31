@@ -594,14 +594,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         }
         _at = "SendShippingData";
         SendShippingData( CurrentShipping );
-        TimeSlotTimeSlot _timeSlot = null;
         _at = "_timeSlot = ( from _ts in this.EDC.TimeSlot";
-        _timeSlot = ( from _ts in this.EDC.TimeSlot
-                      let _sid = _ts.TimeSlot2ShippingIndex.Id.Value
-                      where ( CurrentShipping.Id.Value == _sid ) && ( _ts.Occupied.GetValueOrDefault( Occupied.Free ) == Occupied.Occupied0 )
-                      orderby _ts.StartTime
-                      ascending
-                      select _ts ).FirstOrDefault();
+        TimeSlotTimeSlot _timeSlot = CurrentShipping.TimeSlots( EDC ).FirstOrDefault();
         m_ControlState.TimeSlotChanged = false;
         if ( _timeSlot == null )
           m_ControlState.TimeSlotID = String.Empty;
@@ -789,7 +783,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _checkPoint = "UpdateShipping";
         UpdateShipping( CurrentShipping, _rst, EDC );
         _checkPoint = "UpdateTimeSlot";
-        UpdateTimeSlot( CurrentShipping, _rst, EDC.TimeSlot );
+        UpdateTimeSlot( CurrentShipping, _rst );
         _checkPoint = "CurrentShipping";
         CurrentShipping.CalculateState();
         if ( m_ControlState.WarehouseEndTimeChanged )
@@ -875,7 +869,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       _sppng.Shipping2TransportUnitType = Element.GetAtIndex( _EDC.TransportUnitType, m_TransportUnitTypeDropDownList.SelectedValue );
     }
-    private void UpdateTimeSlot( Shipping _shipping, ActionResult _rslt, EntityList<TimeSlotTimeSlot> _tsel )
+    private void UpdateTimeSlot( Shipping _shipping, ActionResult _rslt )
     {
       if ( !m_ControlState.TimeSlotChanged )
         return;
@@ -884,7 +878,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _rslt.AddLabel( m_TimeSlotLabel.Text );
         return;
       }
-      _shipping.ReleaseBooking();
+      _shipping.ReleaseBooking( EDC );
       List<TimeSlotTimeSlot> timeSlots = TimeSlotTimeSlot.BookTimeSlots( EDC, m_ControlState.TimeSlotID, m_ControlState.TimeSlotIsDouble );
       _shipping.MakeBooking( timeSlots, m_ControlState.TimeSlotIsDouble );
     }
@@ -926,7 +920,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           case ShippingState.WaitingForCarrierData:
           case ShippingState.WaitingForConfirmation:
           case ShippingState.Underway:
-            _sppng.ReleaseBooking();
+            _sppng.ReleaseBooking( EDC );
             _sppng.ShippingState = ShippingState.Cancelation;
             break;
           case ShippingState.Completed:

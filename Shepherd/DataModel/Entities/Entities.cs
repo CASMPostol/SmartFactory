@@ -14,15 +14,15 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   using System;
 
 
-  public partial class EntitiesDataContext : Microsoft.SharePoint.Linq.DataContext
+  public partial class EntitiesDataContext: Microsoft.SharePoint.Linq.DataContext
   {
 
     #region Extensibility Method Definitions
     partial void OnCreated();
     #endregion
 
-    public EntitiesDataContext(string requestUrl) :
-      base(requestUrl)
+    public EntitiesDataContext( string requestUrl ) :
+      base( requestUrl )
     {
       this.OnCreated();
     }
@@ -30,420 +30,420 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_DataImportLibrary;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = " Data Import Library")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = " Data Import Library" )]
     public Microsoft.SharePoint.Linq.EntityList<Document> DataImportLibrary
     {
       get
       {
-        return this.GetList<Document>(" Data Import Library");
+        return this.GetList<Document>( " Data Import Library" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_AlarmsAndEventsList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Alarms And Events")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Alarms And Events" )]
     public Microsoft.SharePoint.Linq.EntityList<AlarmsAndEvents> AlarmsAndEvents
     {
       get
       {
-        return this.GetList<AlarmsAndEvents>("Alarms And Events");
+        return this.GetList<AlarmsAndEvents>( "Alarms And Events" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_BusinessDescriptionList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Business Description")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Business Description" )]
     public Microsoft.SharePoint.Linq.EntityList<BusienssDescription> BusinessDescription
     {
       get
       {
-        return this.GetList<BusienssDescription>("Business Description");
+        return this.GetList<BusienssDescription>( "Business Description" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_CarrierList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Carrier")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Carrier" )]
     public Microsoft.SharePoint.Linq.EntityList<CarrierType> Carrier
     {
       get
       {
-        return this.GetList<CarrierType>("Carrier");
+        return this.GetList<CarrierType>( "Carrier" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_CarrierPerformanceReportList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Carrier Performance Report")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Carrier Performance Report" )]
     public Microsoft.SharePoint.Linq.EntityList<CarrierPerformanceReport> CarrierPerformanceReport
     {
       get
       {
-        return this.GetList<CarrierPerformanceReport>("Carrier Performance Report");
+        return this.GetList<CarrierPerformanceReport>( "Carrier Performance Report" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_CityList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "City")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "City" )]
     public Microsoft.SharePoint.Linq.EntityList<CityType> City
     {
       get
       {
-        return this.GetList<CityType>("City");
+        return this.GetList<CityType>( "City" );
       }
     }
 
     /// <summary>
     /// Comments List Instance
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Comments")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Comments" )]
     public Microsoft.SharePoint.Linq.EntityList<ShippingComments> Comments
     {
       get
       {
-        return this.GetList<ShippingComments>("Comments");
+        return this.GetList<ShippingComments>( "Comments" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_CommodityList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Commodity")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Commodity" )]
     public Microsoft.SharePoint.Linq.EntityList<Commodity> Commodity
     {
       get
       {
-        return this.GetList<Commodity>("Commodity");
+        return this.GetList<Commodity>( "Commodity" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_CountryList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Country")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Country" )]
     public Microsoft.SharePoint.Linq.EntityList<CountryType> Country
     {
       get
       {
-        return this.GetList<CountryType>("Country");
+        return this.GetList<CountryType>( "Country" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_CurrencyList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Currency")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Currency" )]
     public Microsoft.SharePoint.Linq.EntityList<Currency> Currency
     {
       get
       {
-        return this.GetList<Currency>("Currency");
+        return this.GetList<Currency>( "Currency" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_DestinationMarketList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Destination Market")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Destination Market" )]
     public Microsoft.SharePoint.Linq.EntityList<DestinationMarket> DestinationMarket
     {
       get
       {
-        return this.GetList<DestinationMarket>("Destination Market");
+        return this.GetList<DestinationMarket>( "Destination Market" );
       }
     }
 
     /// <summary>
     /// Distribution List Instance
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Distribution List")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Distribution List" )]
     public Microsoft.SharePoint.Linq.EntityList<DistributionList> DistributionList
     {
       get
       {
-        return this.GetList<DistributionList>("Distribution List");
+        return this.GetList<DistributionList>( "Distribution List" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_Drivers;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Driver")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Driver" )]
     public Microsoft.SharePoint.Linq.EntityList<Driver> Driver
     {
       get
       {
-        return this.GetList<Driver>("Driver");
+        return this.GetList<Driver>( "Driver" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_DriversTeamList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Drivers Team")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Drivers Team" )]
     public Microsoft.SharePoint.Linq.EntityList<ShippingDriversTeam> DriversTeam
     {
       get
       {
-        return this.GetList<ShippingDriversTeam>("Drivers Team");
+        return this.GetList<ShippingDriversTeam>( "Drivers Team" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_SecurityEscortPOLibrary;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Escort PO Library")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Escort PO Library" )]
     public Microsoft.SharePoint.Linq.EntityList<EscortPO> EscortPOLibrary
     {
       get
       {
-        return this.GetList<EscortPO>("Escort PO Library");
+        return this.GetList<EscortPO>( "Escort PO Library" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_EventLogList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Event Log List")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Event Log List" )]
     public Microsoft.SharePoint.Linq.EntityList<Anons> EventLogList
     {
       get
       {
-        return this.GetList<Anons>("Event Log List");
+        return this.GetList<Anons>( "Event Log List" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_FreightPayerList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Freight Payer")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Freight Payer" )]
     public Microsoft.SharePoint.Linq.EntityList<FreightPayer> FreightPayer
     {
       get
       {
-        return this.GetList<FreightPayer>("Freight Payer");
+        return this.GetList<FreightPayer>( "Freight Payer" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_FreightPOLibrary;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Freight PO Library")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Freight PO Library" )]
     public Microsoft.SharePoint.Linq.EntityList<FreightPO> FreightPOLibrary
     {
       get
       {
-        return this.GetList<FreightPO>("Freight PO Library");
+        return this.GetList<FreightPO>( "Freight PO Library" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_LoadDescriptionList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Load Description")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Load Description" )]
     public Microsoft.SharePoint.Linq.EntityList<LoadDescription> LoadDescription
     {
       get
       {
-        return this.GetList<LoadDescription>("Load Description");
+        return this.GetList<LoadDescription>( "Load Description" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_MarketList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Market")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Market" )]
     public Microsoft.SharePoint.Linq.EntityList<Market> Market
     {
       get
       {
-        return this.GetList<Market>("Market");
+        return this.GetList<Market>( "Market" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_Partner;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Partner")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Partner" )]
     public Microsoft.SharePoint.Linq.EntityList<Partner> Partner
     {
       get
       {
-        return this.GetList<Partner>("Partner");
+        return this.GetList<Partner>( "Partner" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_RouteList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Route")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Route" )]
     public Microsoft.SharePoint.Linq.EntityList<Route> Route
     {
       get
       {
-        return this.GetList<Route>("Route");
+        return this.GetList<Route>( "Route" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_SAPDestPlantList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "SAP Destination Plant")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "SAP Destination Plant" )]
     public Microsoft.SharePoint.Linq.EntityList<SAPDestinationPlant> SAPDestinationPlant
     {
       get
       {
-        return this.GetList<SAPDestinationPlant>("SAP Destination Plant");
+        return this.GetList<SAPDestinationPlant>( "SAP Destination Plant" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_ScheduleTemplateList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Schedule Template")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Schedule Template" )]
     public Microsoft.SharePoint.Linq.EntityList<ScheduleTemplate> ScheduleTemplate
     {
       get
       {
-        return this.GetList<ScheduleTemplate>("Schedule Template");
+        return this.GetList<ScheduleTemplate>( "Schedule Template" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_SecuritySealProtocolLibrary;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Seal Protocol Library")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Seal Protocol Library" )]
     public Microsoft.SharePoint.Linq.EntityList<SealProtocol> SealProtocolLibrary
     {
       get
       {
-        return this.GetList<SealProtocol>("Seal Protocol Library");
+        return this.GetList<SealProtocol>( "Seal Protocol Library" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_SecurityEscortRouteList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Security Escort Route")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Security Escort Route" )]
     public Microsoft.SharePoint.Linq.EntityList<SecurityEscortCatalog> SecurityEscortRoute
     {
       get
       {
-        return this.GetList<SecurityEscortCatalog>("Security Escort Route");
+        return this.GetList<SecurityEscortCatalog>( "Security Escort Route" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_ShipmentTypeList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Shipment Type")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Shipment Type" )]
     public Microsoft.SharePoint.Linq.EntityList<ShipmentType> ShipmentType
     {
       get
       {
-        return this.GetList<ShipmentType>("Shipment Type");
+        return this.GetList<ShipmentType>( "Shipment Type" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_ShippingsList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Shipping")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Shipping" )]
     public Microsoft.SharePoint.Linq.EntityList<Shipping> Shipping
     {
       get
       {
-        return this.GetList<Shipping>("Shipping");
+        return this.GetList<Shipping>( "Shipping" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_ShippingPointList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Shipping Point")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Shipping Point" )]
     public Microsoft.SharePoint.Linq.EntityList<ShippingPoint> ShippingPoint
     {
       get
       {
-        return this.GetList<ShippingPoint>("Shipping Point");
+        return this.GetList<ShippingPoint>( "Shipping Point" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_TimeSlotTemplateList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Time Slot")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Time Slot" )]
     public Microsoft.SharePoint.Linq.EntityList<TimeSlotTimeSlot> TimeSlot
     {
       get
       {
-        return this.GetList<TimeSlotTimeSlot>("Time Slot");
+        return this.GetList<TimeSlotTimeSlot>( "Time Slot" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_TimeSlotTemplateList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "TimeSlots Template")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "TimeSlots Template" )]
     public Microsoft.SharePoint.Linq.EntityList<TimeSlotsTemplate> TimeSlotsTemplate
     {
       get
       {
-        return this.GetList<TimeSlotsTemplate>("TimeSlots Template");
+        return this.GetList<TimeSlotsTemplate>( "TimeSlots Template" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_TrailersList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Trailer")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Trailer" )]
     public Microsoft.SharePoint.Linq.EntityList<Trailer> Trailer
     {
       get
       {
-        return this.GetList<Trailer>("Trailer");
+        return this.GetList<Trailer>( "Trailer" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_TransportUnitTypeList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Transport Unit Type")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Transport Unit Type" )]
     public Microsoft.SharePoint.Linq.EntityList<TranspotUnit> TransportUnitType
     {
       get
       {
-        return this.GetList<TranspotUnit>("Transport Unit Type");
+        return this.GetList<TranspotUnit>( "Transport Unit Type" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_TrucksList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Truck")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Truck" )]
     public Microsoft.SharePoint.Linq.EntityList<Truck> Truck
     {
       get
       {
-        return this.GetList<Truck>("Truck");
+        return this.GetList<Truck>( "Truck" );
       }
     }
 
     /// <summary>
     /// $Resources:CASSmartFactoryShepherd,CAS_WarehouseList;
     /// </summary>
-    [Microsoft.SharePoint.Linq.ListAttribute(Name = "Warehouse")]
+    [Microsoft.SharePoint.Linq.ListAttribute( Name = "Warehouse" )]
     public Microsoft.SharePoint.Linq.EntityList<Warehouse> Warehouse
     {
       get
       {
-        return this.GetList<Warehouse>("Warehouse");
+        return this.GetList<Warehouse>( "Warehouse" );
       }
     }
   }
@@ -451,40 +451,40 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// Create a new list item.
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "Item", Id = "0x01")]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(Document))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(AlarmsAndEvents))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(BusienssDescription))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(CarrierType))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(CarrierPerformanceReport))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(CityType))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(ShippingComments))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(Commodity))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(CountryType))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(Currency))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(DestinationMarket))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(DistributionList))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(Driver))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(ShippingDriversTeam))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(Anons))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(FreightPayer))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(LoadDescription))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(Market))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(Partner))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(Route))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(SAPDestinationPlant))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(ScheduleTemplate))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(SecurityEscortCatalog))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(ShipmentType))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(Shipping))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(ShippingPoint))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(Event))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(TimeSlotsTemplate))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(Trailer))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(TranspotUnit))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(Truck))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(Warehouse))]
-  public partial class Element : Microsoft.SharePoint.Linq.ITrackEntityState, Microsoft.SharePoint.Linq.ITrackOriginalValues, System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.INotifyPropertyChanging
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "Item", Id = "0x01" )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( Document ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( AlarmsAndEvents ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( BusienssDescription ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( CarrierType ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( CarrierPerformanceReport ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( CityType ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( ShippingComments ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( Commodity ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( CountryType ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( Currency ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( DestinationMarket ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( DistributionList ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( Driver ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( ShippingDriversTeam ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( Anons ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( FreightPayer ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( LoadDescription ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( Market ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( Partner ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( Route ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( SAPDestinationPlant ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( ScheduleTemplate ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( SecurityEscortCatalog ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( ShipmentType ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( Shipping ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( ShippingPoint ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( Event ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( TimeSlotsTemplate ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( Trailer ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( TranspotUnit ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( Truck ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( Warehouse ) )]
+  public partial class Element: Microsoft.SharePoint.Linq.ITrackEntityState, Microsoft.SharePoint.Linq.ITrackOriginalValues, System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.INotifyPropertyChanging
   {
 
     private System.Nullable<int> _id;
@@ -513,7 +513,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._entityState))
+        if ( ( value != this._entityState ) )
         {
           this._entityState = value;
         }
@@ -524,7 +524,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     {
       get
       {
-        if ((null == this._originalValues))
+        if ( ( null == this._originalValues ) )
         {
           this._originalValues = new System.Collections.Generic.Dictionary<string, object>();
         }
@@ -537,7 +537,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ID", Storage = "_id", ReadOnly = true, FieldType = "Counter")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ID", Storage = "_id", ReadOnly = true, FieldType = "Counter" )]
     public System.Nullable<int> Id
     {
       get
@@ -546,16 +546,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._id))
+        if ( ( value != this._id ) )
         {
-          this.OnPropertyChanging("Id", this._id);
+          this.OnPropertyChanging( "Id", this._id );
           this._id = value;
-          this.OnPropertyChanged("Id");
+          this.OnPropertyChanged( "Id" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "owshiddenversion", Storage = "_version", ReadOnly = true, FieldType = "Integer")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "owshiddenversion", Storage = "_version", ReadOnly = true, FieldType = "Integer" )]
     public System.Nullable<int> Version
     {
       get
@@ -564,16 +564,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._version))
+        if ( ( value != this._version ) )
         {
-          this.OnPropertyChanging("Version", this._version);
+          this.OnPropertyChanging( "Version", this._version );
           this._version = value;
-          this.OnPropertyChanged("Version");
+          this.OnPropertyChanged( "Version" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FileDirRef", Storage = "_path", ReadOnly = true, FieldType = "Lookup", IsLookupValue = true)]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FileDirRef", Storage = "_path", ReadOnly = true, FieldType = "Lookup", IsLookupValue = true )]
     public string Path
     {
       get
@@ -582,16 +582,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._path))
+        if ( ( value != this._path ) )
         {
-          this.OnPropertyChanging("Path", this._path);
+          this.OnPropertyChanging( "Path", this._path );
           this._path = value;
-          this.OnPropertyChanged("Path");
+          this.OnPropertyChanged( "Path" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Title", Storage = "_title", Required = true, FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Title", Storage = "_title", Required = true, FieldType = "Text" )]
     public virtual string Title
     {
       get
@@ -600,11 +600,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._title))
+        if ( ( value != this._title ) )
         {
-          this.OnPropertyChanging("Title", this._title);
+          this.OnPropertyChanging( "Title", this._title );
           this._title = value;
-          this.OnPropertyChanged("Title");
+          this.OnPropertyChanged( "Title" );
         }
       }
     }
@@ -613,27 +613,27 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 
     public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
 
-    protected virtual void OnPropertyChanged(string propertyName)
+    protected virtual void OnPropertyChanged( string propertyName )
     {
-      if ((null != this.PropertyChanged))
+      if ( ( null != this.PropertyChanged ) )
       {
-        this.PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        this.PropertyChanged( this, new System.ComponentModel.PropertyChangedEventArgs( propertyName ) );
       }
     }
 
-    protected virtual void OnPropertyChanging(string propertyName, object value)
+    protected virtual void OnPropertyChanging( string propertyName, object value )
     {
-      if ((null == this._originalValues))
+      if ( ( null == this._originalValues ) )
       {
         this._originalValues = new System.Collections.Generic.Dictionary<string, object>();
       }
-      if ((false == this._originalValues.ContainsKey(propertyName)))
+      if ( ( false == this._originalValues.ContainsKey( propertyName ) ) )
       {
-        this._originalValues.Add(propertyName, value);
+        this._originalValues.Add( propertyName, value );
       }
-      if ((null != this.PropertyChanging))
+      if ( ( null != this.PropertyChanging ) )
       {
-        this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+        this.PropertyChanging( this, new System.ComponentModel.PropertyChangingEventArgs( propertyName ) );
       }
     }
   }
@@ -641,11 +641,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// Create a new document.
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "Document", Id = "0x0101")]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(EscortPO))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(FreightPO))]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(SealProtocol))]
-  public partial class Document : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "Document", Id = "0x0101" )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( EscortPO ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( FreightPO ) )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( SealProtocol ) )]
+  public partial class Document: Element
   {
 
     private string _name;
@@ -665,7 +665,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FileLeafRef", Storage = "_name", Required = true, FieldType = "File")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FileLeafRef", Storage = "_name", Required = true, FieldType = "File" )]
     public string Name
     {
       get
@@ -674,16 +674,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._name))
+        if ( ( value != this._name ) )
         {
-          this.OnPropertyChanging("Name", this._name);
+          this.OnPropertyChanging( "Name", this._name );
           this._name = value;
-          this.OnPropertyChanged("Name");
+          this.OnPropertyChanged( "Name" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Modified_x0020_By", Storage = "_documentModifiedBy", ReadOnly = true, FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Modified_x0020_By", Storage = "_documentModifiedBy", ReadOnly = true, FieldType = "Text" )]
     public string DocumentModifiedBy
     {
       get
@@ -692,16 +692,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._documentModifiedBy))
+        if ( ( value != this._documentModifiedBy ) )
         {
-          this.OnPropertyChanging("DocumentModifiedBy", this._documentModifiedBy);
+          this.OnPropertyChanging( "DocumentModifiedBy", this._documentModifiedBy );
           this._documentModifiedBy = value;
-          this.OnPropertyChanged("DocumentModifiedBy");
+          this.OnPropertyChanged( "DocumentModifiedBy" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Created_x0020_By", Storage = "_documentCreatedBy", ReadOnly = true, FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Created_x0020_By", Storage = "_documentCreatedBy", ReadOnly = true, FieldType = "Text" )]
     public string DocumentCreatedBy
     {
       get
@@ -710,11 +710,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._documentCreatedBy))
+        if ( ( value != this._documentCreatedBy ) )
         {
-          this.OnPropertyChanging("DocumentCreatedBy", this._documentCreatedBy);
+          this.OnPropertyChanging( "DocumentCreatedBy", this._documentCreatedBy );
           this._documentCreatedBy = value;
-          this.OnPropertyChanged("DocumentCreatedBy");
+          this.OnPropertyChanged( "DocumentCreatedBy" );
         }
       }
     }
@@ -723,8 +723,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// Create a new news item, status or other short piece of information.
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "Announcement", Id = "0x0104")]
-  public partial class Anons : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "Announcement", Id = "0x0104" )]
+  public partial class Anons: Element
   {
 
     private string _body;
@@ -742,7 +742,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Body", Storage = "_body", FieldType = "Note")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Body", Storage = "_body", FieldType = "Note" )]
     public string Body
     {
       get
@@ -751,16 +751,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._body))
+        if ( ( value != this._body ) )
         {
-          this.OnPropertyChanging("Body", this._body);
+          this.OnPropertyChanging( "Body", this._body );
           this._body = value;
-          this.OnPropertyChanged("Body");
+          this.OnPropertyChanged( "Body" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Expires", Storage = "_expires", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Expires", Storage = "_expires", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> Expires
     {
       get
@@ -769,11 +769,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._expires))
+        if ( ( value != this._expires ) )
         {
-          this.OnPropertyChanging("Expires", this._expires);
+          this.OnPropertyChanging( "Expires", this._expires );
           this._expires = value;
-          this.OnPropertyChanged("Expires");
+          this.OnPropertyChanged( "Expires" );
         }
       }
     }
@@ -782,9 +782,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// Create a new meeting, deadline or other event.
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "Event", Id = "0x0102")]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(TimeSlot))]
-  public partial class Event : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "Event", Id = "0x0102" )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( TimeSlot ) )]
+  public partial class Event: Element
   {
 
     private string _location;
@@ -814,7 +814,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Location", Storage = "_location", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Location", Storage = "_location", FieldType = "Text" )]
     public virtual string Location
     {
       get
@@ -823,16 +823,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._location))
+        if ( ( value != this._location ) )
         {
-          this.OnPropertyChanging("Location", this._location);
+          this.OnPropertyChanging( "Location", this._location );
           this._location = value;
-          this.OnPropertyChanged("Location");
+          this.OnPropertyChanged( "Location" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "StartDate", Storage = "_startTime", Required = true, FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "StartDate", Storage = "_startTime", Required = true, FieldType = "DateTime" )]
     public virtual System.Nullable<System.DateTime> StartTime
     {
       get
@@ -841,16 +841,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._startTime))
+        if ( ( value != this._startTime ) )
         {
-          this.OnPropertyChanging("StartTime", this._startTime);
+          this.OnPropertyChanging( "StartTime", this._startTime );
           this._startTime = value;
-          this.OnPropertyChanged("StartTime");
+          this.OnPropertyChanged( "StartTime" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "EndDate", Storage = "_endTime", Required = true, FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "EndDate", Storage = "_endTime", Required = true, FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> EndTime
     {
       get
@@ -859,16 +859,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._endTime))
+        if ( ( value != this._endTime ) )
         {
-          this.OnPropertyChanging("EndTime", this._endTime);
+          this.OnPropertyChanging( "EndTime", this._endTime );
           this._endTime = value;
-          this.OnPropertyChanged("EndTime");
+          this.OnPropertyChanged( "EndTime" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Comments", Storage = "_description", FieldType = "Note")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Comments", Storage = "_description", FieldType = "Note" )]
     public virtual string Description
     {
       get
@@ -877,16 +877,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._description))
+        if ( ( value != this._description ) )
         {
-          this.OnPropertyChanging("Description", this._description);
+          this.OnPropertyChanging( "Description", this._description );
           this._description = value;
-          this.OnPropertyChanged("Description");
+          this.OnPropertyChanged( "Description" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "fAllDayEvent", Storage = "_allDayEvent", FieldType = "AllDayEvent")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "fAllDayEvent", Storage = "_allDayEvent", FieldType = "AllDayEvent" )]
     public virtual System.Nullable<bool> AllDayEvent
     {
       get
@@ -895,16 +895,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._allDayEvent))
+        if ( ( value != this._allDayEvent ) )
         {
-          this.OnPropertyChanging("AllDayEvent", this._allDayEvent);
+          this.OnPropertyChanging( "AllDayEvent", this._allDayEvent );
           this._allDayEvent = value;
-          this.OnPropertyChanged("AllDayEvent");
+          this.OnPropertyChanged( "AllDayEvent" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "fRecurrence", Storage = "_recurrence", FieldType = "Recurrence")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "fRecurrence", Storage = "_recurrence", FieldType = "Recurrence" )]
     public virtual System.Nullable<bool> Recurrence
     {
       get
@@ -913,16 +913,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._recurrence))
+        if ( ( value != this._recurrence ) )
         {
-          this.OnPropertyChanging("Recurrence", this._recurrence);
+          this.OnPropertyChanging( "Recurrence", this._recurrence );
           this._recurrence = value;
-          this.OnPropertyChanged("Recurrence");
+          this.OnPropertyChanged( "Recurrence" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "WorkspaceLink", Storage = "_workspace", FieldType = "CrossProjectLink")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "WorkspaceLink", Storage = "_workspace", FieldType = "CrossProjectLink" )]
     public virtual System.Nullable<bool> Workspace
     {
       get
@@ -931,16 +931,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._workspace))
+        if ( ( value != this._workspace ) )
         {
-          this.OnPropertyChanging("Workspace", this._workspace);
+          this.OnPropertyChanging( "Workspace", this._workspace );
           this._workspace = value;
-          this.OnPropertyChanged("Workspace");
+          this.OnPropertyChanged( "Workspace" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Category", Storage = "_category", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Category", Storage = "_category", FieldType = "Choice" )]
     public virtual System.Nullable<Category> Category
     {
       get
@@ -949,11 +949,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._category))
+        if ( ( value != this._category ) )
         {
-          this.OnPropertyChanging("Category", this._category);
+          this.OnPropertyChanging( "Category", this._category );
           this._category = value;
-          this.OnPropertyChanged("Category");
+          this.OnPropertyChanged( "Category" );
         }
       }
     }
@@ -962,8 +962,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_AlarmsAndEventsListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "AlarmsAndEvents", Id = "0x010049AA7238FCE34BE18336F419AE924845")]
-  public partial class AlarmsAndEvents : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "AlarmsAndEvents", Id = "0x010049AA7238FCE34BE18336F419AE924845" )]
+  public partial class AlarmsAndEvents: Element
   {
 
     private string _alarmAndEventDetails;
@@ -985,15 +985,15 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public AlarmsAndEvents()
     {
       this._alarmsAndEventsList2Shipping = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
-      this._alarmsAndEventsList2Shipping.OnChanged += new System.EventHandler(this.OnAlarmsAndEventsList2ShippingChanged);
-      this._alarmsAndEventsList2Shipping.OnChanging += new System.EventHandler(this.OnAlarmsAndEventsList2ShippingChanging);
+      this._alarmsAndEventsList2Shipping.OnChanged += new System.EventHandler( this.OnAlarmsAndEventsList2ShippingChanged );
+      this._alarmsAndEventsList2Shipping.OnChanging += new System.EventHandler( this.OnAlarmsAndEventsList2ShippingChanging );
       this._alarmsAndEventsList2PartnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
-      this._alarmsAndEventsList2PartnerTitle.OnChanged += new System.EventHandler(this.OnAlarmsAndEventsList2PartnerTitleChanged);
-      this._alarmsAndEventsList2PartnerTitle.OnChanging += new System.EventHandler(this.OnAlarmsAndEventsList2PartnerTitleChanging);
+      this._alarmsAndEventsList2PartnerTitle.OnChanged += new System.EventHandler( this.OnAlarmsAndEventsList2PartnerTitleChanged );
+      this._alarmsAndEventsList2PartnerTitle.OnChanging += new System.EventHandler( this.OnAlarmsAndEventsList2PartnerTitleChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "AlarmAndEventDetails", Storage = "_alarmAndEventDetails", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "AlarmAndEventDetails", Storage = "_alarmAndEventDetails", FieldType = "Text" )]
     public string AlarmAndEventDetails
     {
       get
@@ -1002,16 +1002,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._alarmAndEventDetails))
+        if ( ( value != this._alarmAndEventDetails ) )
         {
-          this.OnPropertyChanging("AlarmAndEventDetails", this._alarmAndEventDetails);
+          this.OnPropertyChanging( "AlarmAndEventDetails", this._alarmAndEventDetails );
           this._alarmAndEventDetails = value;
-          this.OnPropertyChanged("AlarmAndEventDetails");
+          this.OnPropertyChanged( "AlarmAndEventDetails" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "AlarmAndEventOwner", Storage = "_alarmAndEventOwner", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "AlarmAndEventOwner", Storage = "_alarmAndEventOwner", FieldType = "Text" )]
     public string AlarmAndEventOwner
     {
       get
@@ -1020,16 +1020,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._alarmAndEventOwner))
+        if ( ( value != this._alarmAndEventOwner ) )
         {
-          this.OnPropertyChanging("AlarmAndEventOwner", this._alarmAndEventOwner);
+          this.OnPropertyChanging( "AlarmAndEventOwner", this._alarmAndEventOwner );
           this._alarmAndEventOwner = value;
-          this.OnPropertyChanged("AlarmAndEventOwner");
+          this.OnPropertyChanged( "AlarmAndEventOwner" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "AlarmPriority", Storage = "_alarmPriority", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "AlarmPriority", Storage = "_alarmPriority", FieldType = "Choice" )]
     public System.Nullable<AlarmPriority> AlarmPriority
     {
       get
@@ -1038,16 +1038,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._alarmPriority))
+        if ( ( value != this._alarmPriority ) )
         {
-          this.OnPropertyChanging("AlarmPriority", this._alarmPriority);
+          this.OnPropertyChanging( "AlarmPriority", this._alarmPriority );
           this._alarmPriority = value;
-          this.OnPropertyChanged("AlarmPriority");
+          this.OnPropertyChanged( "AlarmPriority" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "AlarmsAndEventsList2Shipping", Storage = "_alarmsAndEventsList2Shipping", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipping")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "AlarmsAndEventsList2Shipping", Storage = "_alarmsAndEventsList2Shipping", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipping" )]
     public Shipping AlarmsAndEventsList2Shipping
     {
       get
@@ -1056,11 +1056,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._alarmsAndEventsList2Shipping.SetEntity(value);
+        this._alarmsAndEventsList2Shipping.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "AlarmsAndEventsList2PartnerTitle", Storage = "_alarmsAndEventsList2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "AlarmsAndEventsList2PartnerTitle", Storage = "_alarmsAndEventsList2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner" )]
     public Partner AlarmsAndEventsList2PartnerTitle
     {
       get
@@ -1069,28 +1069,28 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._alarmsAndEventsList2PartnerTitle.SetEntity(value);
+        this._alarmsAndEventsList2PartnerTitle.SetEntity( value );
       }
     }
 
-    private void OnAlarmsAndEventsList2ShippingChanging(object sender, System.EventArgs e)
+    private void OnAlarmsAndEventsList2ShippingChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("AlarmsAndEventsList2Shipping", this._alarmsAndEventsList2Shipping.Clone());
+      this.OnPropertyChanging( "AlarmsAndEventsList2Shipping", this._alarmsAndEventsList2Shipping.Clone() );
     }
 
-    private void OnAlarmsAndEventsList2ShippingChanged(object sender, System.EventArgs e)
+    private void OnAlarmsAndEventsList2ShippingChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("AlarmsAndEventsList2Shipping");
+      this.OnPropertyChanged( "AlarmsAndEventsList2Shipping" );
     }
 
-    private void OnAlarmsAndEventsList2PartnerTitleChanging(object sender, System.EventArgs e)
+    private void OnAlarmsAndEventsList2PartnerTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("AlarmsAndEventsList2PartnerTitle", this._alarmsAndEventsList2PartnerTitle.Clone());
+      this.OnPropertyChanging( "AlarmsAndEventsList2PartnerTitle", this._alarmsAndEventsList2PartnerTitle.Clone() );
     }
 
-    private void OnAlarmsAndEventsList2PartnerTitleChanged(object sender, System.EventArgs e)
+    private void OnAlarmsAndEventsList2PartnerTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("AlarmsAndEventsList2PartnerTitle");
+      this.OnPropertyChanged( "AlarmsAndEventsList2PartnerTitle" );
     }
 
   }
@@ -1098,8 +1098,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_BusinessDescriptionListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "BusienssDescription", Id = "0x01004370601701A847C99F7609B048824AA9")]
-  public partial class BusienssDescription : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "BusienssDescription", Id = "0x01004370601701A847C99F7609B048824AA9" )]
+  public partial class BusienssDescription: Element
   {
 
     private string _additionalComments;
@@ -1116,7 +1116,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "AdditionalComments", Storage = "_additionalComments", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "AdditionalComments", Storage = "_additionalComments", FieldType = "Text" )]
     public string AdditionalComments
     {
       get
@@ -1125,11 +1125,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._additionalComments))
+        if ( ( value != this._additionalComments ) )
         {
-          this.OnPropertyChanging("AdditionalComments", this._additionalComments);
+          this.OnPropertyChanging( "AdditionalComments", this._additionalComments );
           this._additionalComments = value;
-          this.OnPropertyChanged("AdditionalComments");
+          this.OnPropertyChanged( "AdditionalComments" );
         }
       }
     }
@@ -1139,8 +1139,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_CarriersListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "CarrierType", Id = "0x0100FB94BE01F9B0429F89E6A98EA44AA06E")]
-  public partial class CarrierType : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "CarrierType", Id = "0x0100FB94BE01F9B0429F89E6A98EA44AA06E" )]
+  public partial class CarrierType: Element
   {
 
     #region Extensibility Method Definitions
@@ -1159,8 +1159,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_CarrierPerformanceReportListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "CarrierPerformanceReport", Id = "0x0100BB5037BBD6ED46B98AC227A358889AFA")]
-  public partial class CarrierPerformanceReport : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "CarrierPerformanceReport", Id = "0x0100BB5037BBD6ED46B98AC227A358889AFA" )]
+  public partial class CarrierPerformanceReport: Element
   {
 
     private string _reportPeriod;
@@ -1190,13 +1190,13 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public CarrierPerformanceReport()
     {
       this._cPR2PartnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
-      this._cPR2PartnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnCPR2PartnerTitleSync);
-      this._cPR2PartnerTitle.OnChanged += new System.EventHandler(this.OnCPR2PartnerTitleChanged);
-      this._cPR2PartnerTitle.OnChanging += new System.EventHandler(this.OnCPR2PartnerTitleChanging);
+      this._cPR2PartnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>( this.OnCPR2PartnerTitleSync );
+      this._cPR2PartnerTitle.OnChanged += new System.EventHandler( this.OnCPR2PartnerTitleChanged );
+      this._cPR2PartnerTitle.OnChanging += new System.EventHandler( this.OnCPR2PartnerTitleChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ReportPeriod", Storage = "_reportPeriod", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ReportPeriod", Storage = "_reportPeriod", FieldType = "Text" )]
     public string ReportPeriod
     {
       get
@@ -1205,16 +1205,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._reportPeriod))
+        if ( ( value != this._reportPeriod ) )
         {
-          this.OnPropertyChanging("ReportPeriod", this._reportPeriod);
+          this.OnPropertyChanging( "ReportPeriod", this._reportPeriod );
           this._reportPeriod = value;
-          this.OnPropertyChanged("ReportPeriod");
+          this.OnPropertyChanged( "ReportPeriod" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "CPRDate", Storage = "_cPRDate", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "CPRDate", Storage = "_cPRDate", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> CPRDate
     {
       get
@@ -1223,16 +1223,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._cPRDate))
+        if ( ( value != this._cPRDate ) )
         {
-          this.OnPropertyChanging("CPRDate", this._cPRDate);
+          this.OnPropertyChanging( "CPRDate", this._cPRDate );
           this._cPRDate = value;
-          this.OnPropertyChanged("CPRDate");
+          this.OnPropertyChanged( "CPRDate" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "CPRNumberOrdered", Storage = "_cPRNumberOrdered", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "CPRNumberOrdered", Storage = "_cPRNumberOrdered", FieldType = "Number" )]
     public System.Nullable<double> CPRNumberOrdered
     {
       get
@@ -1241,16 +1241,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._cPRNumberOrdered))
+        if ( ( value != this._cPRNumberOrdered ) )
         {
-          this.OnPropertyChanging("CPRNumberOrdered", this._cPRNumberOrdered);
+          this.OnPropertyChanging( "CPRNumberOrdered", this._cPRNumberOrdered );
           this._cPRNumberOrdered = value;
-          this.OnPropertyChanged("CPRNumberOrdered");
+          this.OnPropertyChanged( "CPRNumberOrdered" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "CPRNumberOnTime", Storage = "_cPRNumberOnTime", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "CPRNumberOnTime", Storage = "_cPRNumberOnTime", FieldType = "Number" )]
     public System.Nullable<double> CPRNumberOnTime
     {
       get
@@ -1259,16 +1259,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._cPRNumberOnTime))
+        if ( ( value != this._cPRNumberOnTime ) )
         {
-          this.OnPropertyChanging("CPRNumberOnTime", this._cPRNumberOnTime);
+          this.OnPropertyChanging( "CPRNumberOnTime", this._cPRNumberOnTime );
           this._cPRNumberOnTime = value;
-          this.OnPropertyChanged("CPRNumberOnTime");
+          this.OnPropertyChanged( "CPRNumberOnTime" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "CPRNumberDelayed", Storage = "_cPRNumberDelayed", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "CPRNumberDelayed", Storage = "_cPRNumberDelayed", FieldType = "Number" )]
     public System.Nullable<double> CPRNumberDelayed
     {
       get
@@ -1277,16 +1277,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._cPRNumberDelayed))
+        if ( ( value != this._cPRNumberDelayed ) )
         {
-          this.OnPropertyChanging("CPRNumberDelayed", this._cPRNumberDelayed);
+          this.OnPropertyChanging( "CPRNumberDelayed", this._cPRNumberDelayed );
           this._cPRNumberDelayed = value;
-          this.OnPropertyChanged("CPRNumberDelayed");
+          this.OnPropertyChanged( "CPRNumberDelayed" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "CPRNumberDelayed1h", Storage = "_cPRNumberDelayed1h", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "CPRNumberDelayed1h", Storage = "_cPRNumberDelayed1h", FieldType = "Number" )]
     public System.Nullable<double> CPRNumberDelayed1h
     {
       get
@@ -1295,16 +1295,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._cPRNumberDelayed1h))
+        if ( ( value != this._cPRNumberDelayed1h ) )
         {
-          this.OnPropertyChanging("CPRNumberDelayed1h", this._cPRNumberDelayed1h);
+          this.OnPropertyChanging( "CPRNumberDelayed1h", this._cPRNumberDelayed1h );
           this._cPRNumberDelayed1h = value;
-          this.OnPropertyChanged("CPRNumberDelayed1h");
+          this.OnPropertyChanged( "CPRNumberDelayed1h" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "CPRNumberNotShowingUp", Storage = "_cPRNumberNotShowingUp", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "CPRNumberNotShowingUp", Storage = "_cPRNumberNotShowingUp", FieldType = "Number" )]
     public System.Nullable<double> CPRNumberNotShowingUp
     {
       get
@@ -1313,16 +1313,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._cPRNumberNotShowingUp))
+        if ( ( value != this._cPRNumberNotShowingUp ) )
         {
-          this.OnPropertyChanging("CPRNumberNotShowingUp", this._cPRNumberNotShowingUp);
+          this.OnPropertyChanging( "CPRNumberNotShowingUp", this._cPRNumberNotShowingUp );
           this._cPRNumberNotShowingUp = value;
-          this.OnPropertyChanged("CPRNumberNotShowingUp");
+          this.OnPropertyChanged( "CPRNumberNotShowingUp" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "CPRNumberRejectedBadQuality", Storage = "_cPRNumberRejectedBadQuality", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "CPRNumberRejectedBadQuality", Storage = "_cPRNumberRejectedBadQuality", FieldType = "Number" )]
     public System.Nullable<double> CPRNumberRejectedBadQuality
     {
       get
@@ -1331,16 +1331,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._cPRNumberRejectedBadQuality))
+        if ( ( value != this._cPRNumberRejectedBadQuality ) )
         {
-          this.OnPropertyChanging("CPRNumberRejectedBadQuality", this._cPRNumberRejectedBadQuality);
+          this.OnPropertyChanging( "CPRNumberRejectedBadQuality", this._cPRNumberRejectedBadQuality );
           this._cPRNumberRejectedBadQuality = value;
-          this.OnPropertyChanged("CPRNumberRejectedBadQuality");
+          this.OnPropertyChanged( "CPRNumberRejectedBadQuality" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "CPR2PartnerTitle", Storage = "_cPR2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "CPR2PartnerTitle", Storage = "_cPR2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner" )]
     public Partner CPR2PartnerTitle
     {
       get
@@ -1349,29 +1349,29 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._cPR2PartnerTitle.SetEntity(value);
+        this._cPR2PartnerTitle.SetEntity( value );
       }
     }
 
-    private void OnCPR2PartnerTitleChanging(object sender, System.EventArgs e)
+    private void OnCPR2PartnerTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("CPR2PartnerTitle", this._cPR2PartnerTitle.Clone());
+      this.OnPropertyChanging( "CPR2PartnerTitle", this._cPR2PartnerTitle.Clone() );
     }
 
-    private void OnCPR2PartnerTitleChanged(object sender, System.EventArgs e)
+    private void OnCPR2PartnerTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("CPR2PartnerTitle");
+      this.OnPropertyChanged( "CPR2PartnerTitle" );
     }
 
-    private void OnCPR2PartnerTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e)
+    private void OnCPR2PartnerTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
-        e.Item.CarrierPerformanceReport.Add(this);
+        e.Item.CarrierPerformanceReport.Add( this );
       }
       else
       {
-        e.Item.CarrierPerformanceReport.Remove(this);
+        e.Item.CarrierPerformanceReport.Remove( this );
       }
     }
   }
@@ -1379,8 +1379,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_CityListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "CityType", Id = "0x01003C7CE387CDAEA94B89FEB3FC6264FB71")]
-  public partial class CityType : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "CityType", Id = "0x01003C7CE387CDAEA94B89FEB3FC6264FB71" )]
+  public partial class CityType: Element
   {
 
     private Microsoft.SharePoint.Linq.EntityRef<CountryType> _countryTitle;
@@ -1397,16 +1397,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public CityType()
     {
       this._countryTitle = new Microsoft.SharePoint.Linq.EntityRef<CountryType>();
-      this._countryTitle.OnChanged += new System.EventHandler(this.OnCountryTitleChanged);
-      this._countryTitle.OnChanging += new System.EventHandler(this.OnCountryTitleChanging);
+      this._countryTitle.OnChanged += new System.EventHandler( this.OnCountryTitleChanged );
+      this._countryTitle.OnChanging += new System.EventHandler( this.OnCountryTitleChanging );
       this._destinationMarket = new Microsoft.SharePoint.Linq.EntitySet<DestinationMarket>();
-      this._destinationMarket.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DestinationMarket>>(this.OnDestinationMarketSync);
-      this._destinationMarket.OnChanged += new System.EventHandler(this.OnDestinationMarketChanged);
-      this._destinationMarket.OnChanging += new System.EventHandler(this.OnDestinationMarketChanging);
+      this._destinationMarket.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DestinationMarket>>( this.OnDestinationMarketSync );
+      this._destinationMarket.OnChanged += new System.EventHandler( this.OnDestinationMarketChanged );
+      this._destinationMarket.OnChanging += new System.EventHandler( this.OnDestinationMarketChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "CountryTitle", Storage = "_countryTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Country")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "CountryTitle", Storage = "_countryTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Country" )]
     public CountryType CountryTitle
     {
       get
@@ -1415,11 +1415,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._countryTitle.SetEntity(value);
+        this._countryTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "DestinationMarket2CityTitle", Storage = "_destinationMarket", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Destination Market")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "DestinationMarket2CityTitle", Storage = "_destinationMarket", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Destination Market" )]
     public Microsoft.SharePoint.Linq.EntitySet<DestinationMarket> DestinationMarket
     {
       get
@@ -1428,33 +1428,33 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._destinationMarket.Assign(value);
+        this._destinationMarket.Assign( value );
       }
     }
 
-    private void OnCountryTitleChanging(object sender, System.EventArgs e)
+    private void OnCountryTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("CountryTitle", this._countryTitle.Clone());
+      this.OnPropertyChanging( "CountryTitle", this._countryTitle.Clone() );
     }
 
-    private void OnCountryTitleChanged(object sender, System.EventArgs e)
+    private void OnCountryTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("CountryTitle");
+      this.OnPropertyChanged( "CountryTitle" );
     }
 
-    private void OnDestinationMarketChanging(object sender, System.EventArgs e)
+    private void OnDestinationMarketChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("DestinationMarket", this._destinationMarket.Clone());
+      this.OnPropertyChanging( "DestinationMarket", this._destinationMarket.Clone() );
     }
 
-    private void OnDestinationMarketChanged(object sender, System.EventArgs e)
+    private void OnDestinationMarketChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("DestinationMarket");
+      this.OnPropertyChanged( "DestinationMarket" );
     }
 
-    private void OnDestinationMarketSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DestinationMarket> e)
+    private void OnDestinationMarketSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DestinationMarket> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
         e.Item.DestinationMarket2CityTitle = this;
       }
@@ -1469,8 +1469,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// Shipping Comments
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "ShippingComments", Id = "0x0100EA883657E6BE40E0991BD77667B1D2FD")]
-  public partial class ShippingComments : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "ShippingComments", Id = "0x0100EA883657E6BE40E0991BD77667B1D2FD" )]
+  public partial class ShippingComments: Element
   {
 
     private string _body;
@@ -1490,15 +1490,15 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public ShippingComments()
     {
       this._shippingComments2PartnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
-      this._shippingComments2PartnerTitle.OnChanged += new System.EventHandler(this.OnShippingComments2PartnerTitleChanged);
-      this._shippingComments2PartnerTitle.OnChanging += new System.EventHandler(this.OnShippingComments2PartnerTitleChanging);
+      this._shippingComments2PartnerTitle.OnChanged += new System.EventHandler( this.OnShippingComments2PartnerTitleChanged );
+      this._shippingComments2PartnerTitle.OnChanging += new System.EventHandler( this.OnShippingComments2PartnerTitleChanging );
       this._shippingComments2ShippingID = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
-      this._shippingComments2ShippingID.OnChanged += new System.EventHandler(this.OnShippingComments2ShippingIDChanged);
-      this._shippingComments2ShippingID.OnChanging += new System.EventHandler(this.OnShippingComments2ShippingIDChanging);
+      this._shippingComments2ShippingID.OnChanged += new System.EventHandler( this.OnShippingComments2ShippingIDChanged );
+      this._shippingComments2ShippingID.OnChanging += new System.EventHandler( this.OnShippingComments2ShippingIDChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Body", Storage = "_body", FieldType = "Note")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Body", Storage = "_body", FieldType = "Note" )]
     public string Body
     {
       get
@@ -1507,16 +1507,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._body))
+        if ( ( value != this._body ) )
         {
-          this.OnPropertyChanging("Body", this._body);
+          this.OnPropertyChanging( "Body", this._body );
           this._body = value;
-          this.OnPropertyChanged("Body");
+          this.OnPropertyChanged( "Body" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ExternalComment", Storage = "_externalComment", FieldType = "Boolean")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ExternalComment", Storage = "_externalComment", FieldType = "Boolean" )]
     public System.Nullable<bool> ExternalComment
     {
       get
@@ -1525,30 +1525,30 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._externalComment))
+        if ( ( value != this._externalComment ) )
         {
-          this.OnPropertyChanging("ExternalComment", this._externalComment);
+          this.OnPropertyChanging( "ExternalComment", this._externalComment );
           this._externalComment = value;
-          this.OnPropertyChanged("ExternalComment");
+          this.OnPropertyChanged( "ExternalComment" );
         }
       }
     }
 
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.ComponentModel.EditorBrowsableAttribute( System.ComponentModel.EditorBrowsableState.Never )]
     [Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
     public override string Title
     {
       get
       {
-        throw new System.InvalidOperationException("Field Title was removed from content type ShippingComments.");
+        throw new System.InvalidOperationException( "Field Title was removed from content type ShippingComments." );
       }
       set
       {
-        throw new System.InvalidOperationException("Field Title was removed from content type ShippingComments.");
+        throw new System.InvalidOperationException( "Field Title was removed from content type ShippingComments." );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "ShippingComments2PartnerTitle", Storage = "_shippingComments2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "ShippingComments2PartnerTitle", Storage = "_shippingComments2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner" )]
     public Partner ShippingComments2PartnerTitle
     {
       get
@@ -1557,11 +1557,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shippingComments2PartnerTitle.SetEntity(value);
+        this._shippingComments2PartnerTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "ShippingComments2ShippingID", Storage = "_shippingComments2ShippingID", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipping")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "ShippingComments2ShippingID", Storage = "_shippingComments2ShippingID", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipping" )]
     public Shipping ShippingComments2ShippingID
     {
       get
@@ -1570,28 +1570,28 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shippingComments2ShippingID.SetEntity(value);
+        this._shippingComments2ShippingID.SetEntity( value );
       }
     }
 
-    private void OnShippingComments2PartnerTitleChanging(object sender, System.EventArgs e)
+    private void OnShippingComments2PartnerTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("ShippingComments2PartnerTitle", this._shippingComments2PartnerTitle.Clone());
+      this.OnPropertyChanging( "ShippingComments2PartnerTitle", this._shippingComments2PartnerTitle.Clone() );
     }
 
-    private void OnShippingComments2PartnerTitleChanged(object sender, System.EventArgs e)
+    private void OnShippingComments2PartnerTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("ShippingComments2PartnerTitle");
+      this.OnPropertyChanged( "ShippingComments2PartnerTitle" );
     }
 
-    private void OnShippingComments2ShippingIDChanging(object sender, System.EventArgs e)
+    private void OnShippingComments2ShippingIDChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("ShippingComments2ShippingID", this._shippingComments2ShippingID.Clone());
+      this.OnPropertyChanging( "ShippingComments2ShippingID", this._shippingComments2ShippingID.Clone() );
     }
 
-    private void OnShippingComments2ShippingIDChanged(object sender, System.EventArgs e)
+    private void OnShippingComments2ShippingIDChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("ShippingComments2ShippingID");
+      this.OnPropertyChanged( "ShippingComments2ShippingID" );
     }
 
   }
@@ -1599,8 +1599,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_CommodityListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "Commodity", Id = "0x01003A76AB24637A7541B0D982B65D5916CE")]
-  public partial class Commodity : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "Commodity", Id = "0x01003A76AB24637A7541B0D982B65D5916CE" )]
+  public partial class Commodity: Element
   {
 
     #region Extensibility Method Definitions
@@ -1619,8 +1619,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_CountryListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "CountryType", Id = "0x0100CE031DC456C86C409854D818EDA7E1F3")]
-  public partial class CountryType : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "CountryType", Id = "0x0100CE031DC456C86C409854D818EDA7E1F3" )]
+  public partial class CountryType: Element
   {
 
     private string _countryGroup;
@@ -1637,7 +1637,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "CountryGroup", Storage = "_countryGroup", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "CountryGroup", Storage = "_countryGroup", FieldType = "Text" )]
     public string CountryGroup
     {
       get
@@ -1646,11 +1646,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._countryGroup))
+        if ( ( value != this._countryGroup ) )
         {
-          this.OnPropertyChanging("CountryGroup", this._countryGroup);
+          this.OnPropertyChanging( "CountryGroup", this._countryGroup );
           this._countryGroup = value;
-          this.OnPropertyChanged("CountryGroup");
+          this.OnPropertyChanged( "CountryGroup" );
         }
       }
     }
@@ -1660,8 +1660,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_CurrencyListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "Currency", Id = "0x010024C2D44B310A47EDB90969B622490CF9")]
-  public partial class Currency : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "Currency", Id = "0x010024C2D44B310A47EDB90969B622490CF9" )]
+  public partial class Currency: Element
   {
 
     private System.Nullable<double> _exchangeRate;
@@ -1680,7 +1680,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <summary>
     /// Exchange Rate
     /// </summary>
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ExchangeRate", Storage = "_exchangeRate", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ExchangeRate", Storage = "_exchangeRate", FieldType = "Number" )]
     public System.Nullable<double> ExchangeRate
     {
       get
@@ -1689,11 +1689,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._exchangeRate))
+        if ( ( value != this._exchangeRate ) )
         {
-          this.OnPropertyChanging("ExchangeRate", this._exchangeRate);
+          this.OnPropertyChanging( "ExchangeRate", this._exchangeRate );
           this._exchangeRate = value;
-          this.OnPropertyChanged("ExchangeRate");
+          this.OnPropertyChanged( "ExchangeRate" );
         }
       }
     }
@@ -1703,8 +1703,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_DestinationMarketListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "DestinationMarket", Id = "0x01002CD380C2A0BC484CAF14A0A71DADEF4E")]
-  public partial class DestinationMarket : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "DestinationMarket", Id = "0x01002CD380C2A0BC484CAF14A0A71DADEF4E" )]
+  public partial class DestinationMarket: Element
   {
 
     private Microsoft.SharePoint.Linq.EntityRef<CityType> _destinationMarket2CityTitle;
@@ -1720,31 +1720,31 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public DestinationMarket()
     {
       this._destinationMarket2CityTitle = new Microsoft.SharePoint.Linq.EntityRef<CityType>();
-      this._destinationMarket2CityTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType>>(this.OnDestinationMarket2CityTitleSync);
-      this._destinationMarket2CityTitle.OnChanged += new System.EventHandler(this.OnDestinationMarket2CityTitleChanged);
-      this._destinationMarket2CityTitle.OnChanging += new System.EventHandler(this.OnDestinationMarket2CityTitleChanging);
+      this._destinationMarket2CityTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType>>( this.OnDestinationMarket2CityTitleSync );
+      this._destinationMarket2CityTitle.OnChanged += new System.EventHandler( this.OnDestinationMarket2CityTitleChanged );
+      this._destinationMarket2CityTitle.OnChanging += new System.EventHandler( this.OnDestinationMarket2CityTitleChanging );
       this._marketTitle = new Microsoft.SharePoint.Linq.EntityRef<Market>();
-      this._marketTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Market>>(this.OnMarketTitleSync);
-      this._marketTitle.OnChanged += new System.EventHandler(this.OnMarketTitleChanged);
-      this._marketTitle.OnChanging += new System.EventHandler(this.OnMarketTitleChanging);
+      this._marketTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Market>>( this.OnMarketTitleSync );
+      this._marketTitle.OnChanged += new System.EventHandler( this.OnMarketTitleChanged );
+      this._marketTitle.OnChanging += new System.EventHandler( this.OnMarketTitleChanging );
       this.OnCreated();
     }
 
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.ComponentModel.EditorBrowsableAttribute( System.ComponentModel.EditorBrowsableState.Never )]
     [Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
     public override string Title
     {
       get
       {
-        throw new System.InvalidOperationException("Field Title was removed from content type DestinationMarket.");
+        throw new System.InvalidOperationException( "Field Title was removed from content type DestinationMarket." );
       }
       set
       {
-        throw new System.InvalidOperationException("Field Title was removed from content type DestinationMarket.");
+        throw new System.InvalidOperationException( "Field Title was removed from content type DestinationMarket." );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "DestinationMarket2CityTitle", Storage = "_destinationMarket2CityTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "City")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "DestinationMarket2CityTitle", Storage = "_destinationMarket2CityTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "City" )]
     public CityType DestinationMarket2CityTitle
     {
       get
@@ -1753,11 +1753,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._destinationMarket2CityTitle.SetEntity(value);
+        this._destinationMarket2CityTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "MarketTitle", Storage = "_marketTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Market")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "MarketTitle", Storage = "_marketTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Market" )]
     public Market MarketTitle
     {
       get
@@ -1766,43 +1766,43 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._marketTitle.SetEntity(value);
+        this._marketTitle.SetEntity( value );
       }
     }
 
-    private void OnDestinationMarket2CityTitleChanging(object sender, System.EventArgs e)
+    private void OnDestinationMarket2CityTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("DestinationMarket2CityTitle", this._destinationMarket2CityTitle.Clone());
+      this.OnPropertyChanging( "DestinationMarket2CityTitle", this._destinationMarket2CityTitle.Clone() );
     }
 
-    private void OnDestinationMarket2CityTitleChanged(object sender, System.EventArgs e)
+    private void OnDestinationMarket2CityTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("DestinationMarket2CityTitle");
+      this.OnPropertyChanged( "DestinationMarket2CityTitle" );
     }
 
-    private void OnDestinationMarket2CityTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType> e)
+    private void OnDestinationMarket2CityTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
-        e.Item.DestinationMarket.Add(this);
+        e.Item.DestinationMarket.Add( this );
       }
       else
       {
-        e.Item.DestinationMarket.Remove(this);
+        e.Item.DestinationMarket.Remove( this );
       }
     }
 
-    private void OnMarketTitleChanging(object sender, System.EventArgs e)
+    private void OnMarketTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("MarketTitle", this._marketTitle.Clone());
+      this.OnPropertyChanging( "MarketTitle", this._marketTitle.Clone() );
     }
 
-    private void OnMarketTitleChanged(object sender, System.EventArgs e)
+    private void OnMarketTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("MarketTitle");
+      this.OnPropertyChanged( "MarketTitle" );
     }
 
-    private void OnMarketTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Market> e)
+    private void OnMarketTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Market> e )
     {
     }
   }
@@ -1810,8 +1810,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_DistributionListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "DistributionList", Id = "0x01009EC30F7F369D427D825C9478610D3E58")]
-  public partial class DistributionList : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "DistributionList", Id = "0x01009EC30F7F369D427D825C9478610D3E58" )]
+  public partial class DistributionList: Element
   {
 
     private string _emailAddress;
@@ -1829,7 +1829,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "EmailAddress", Storage = "_emailAddress", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "EmailAddress", Storage = "_emailAddress", FieldType = "Text" )]
     public string EmailAddress
     {
       get
@@ -1838,16 +1838,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._emailAddress))
+        if ( ( value != this._emailAddress ) )
         {
-          this.OnPropertyChanging("EmailAddress", this._emailAddress);
+          this.OnPropertyChanging( "EmailAddress", this._emailAddress );
           this._emailAddress = value;
-          this.OnPropertyChanged("EmailAddress");
+          this.OnPropertyChanged( "EmailAddress" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ShepherdRole", Storage = "_shepherdRole", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ShepherdRole", Storage = "_shepherdRole", FieldType = "Choice" )]
     public System.Nullable<ShepherdRole> ShepherdRole
     {
       get
@@ -1856,11 +1856,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._shepherdRole))
+        if ( ( value != this._shepherdRole ) )
         {
-          this.OnPropertyChanging("ShepherdRole", this._shepherdRole);
+          this.OnPropertyChanging( "ShepherdRole", this._shepherdRole );
           this._shepherdRole = value;
-          this.OnPropertyChanged("ShepherdRole");
+          this.OnPropertyChanged( "ShepherdRole" );
         }
       }
     }
@@ -1869,8 +1869,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_DriversListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "Driver", Id = "0x0100B0982F01816047B1ABFF933B9F49B5DB")]
-  public partial class Driver : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "Driver", Id = "0x0100B0982F01816047B1ABFF933B9F49B5DB" )]
+  public partial class Driver: Element
   {
 
     private string _identityDocumentNumber;
@@ -1888,13 +1888,13 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public Driver()
     {
       this._driver2PartnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
-      this._driver2PartnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnDriver2PartnerTitleSync);
-      this._driver2PartnerTitle.OnChanged += new System.EventHandler(this.OnDriver2PartnerTitleChanged);
-      this._driver2PartnerTitle.OnChanging += new System.EventHandler(this.OnDriver2PartnerTitleChanging);
+      this._driver2PartnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>( this.OnDriver2PartnerTitleSync );
+      this._driver2PartnerTitle.OnChanged += new System.EventHandler( this.OnDriver2PartnerTitleChanged );
+      this._driver2PartnerTitle.OnChanging += new System.EventHandler( this.OnDriver2PartnerTitleChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "IdentityDocumentNumber", Storage = "_identityDocumentNumber", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "IdentityDocumentNumber", Storage = "_identityDocumentNumber", FieldType = "Text" )]
     public string IdentityDocumentNumber
     {
       get
@@ -1903,16 +1903,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._identityDocumentNumber))
+        if ( ( value != this._identityDocumentNumber ) )
         {
-          this.OnPropertyChanging("IdentityDocumentNumber", this._identityDocumentNumber);
+          this.OnPropertyChanging( "IdentityDocumentNumber", this._identityDocumentNumber );
           this._identityDocumentNumber = value;
-          this.OnPropertyChanged("IdentityDocumentNumber");
+          this.OnPropertyChanged( "IdentityDocumentNumber" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "CellPhone", Storage = "_cellPhone", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "CellPhone", Storage = "_cellPhone", FieldType = "Text" )]
     public string CellPhone
     {
       get
@@ -1921,16 +1921,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._cellPhone))
+        if ( ( value != this._cellPhone ) )
         {
-          this.OnPropertyChanging("CellPhone", this._cellPhone);
+          this.OnPropertyChanging( "CellPhone", this._cellPhone );
           this._cellPhone = value;
-          this.OnPropertyChanged("CellPhone");
+          this.OnPropertyChanged( "CellPhone" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Driver2PartnerTitle", Storage = "_driver2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Driver2PartnerTitle", Storage = "_driver2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner" )]
     public Partner Driver2PartnerTitle
     {
       get
@@ -1939,29 +1939,29 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._driver2PartnerTitle.SetEntity(value);
+        this._driver2PartnerTitle.SetEntity( value );
       }
     }
 
-    private void OnDriver2PartnerTitleChanging(object sender, System.EventArgs e)
+    private void OnDriver2PartnerTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Driver2PartnerTitle", this._driver2PartnerTitle.Clone());
+      this.OnPropertyChanging( "Driver2PartnerTitle", this._driver2PartnerTitle.Clone() );
     }
 
-    private void OnDriver2PartnerTitleChanged(object sender, System.EventArgs e)
+    private void OnDriver2PartnerTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Driver2PartnerTitle");
+      this.OnPropertyChanged( "Driver2PartnerTitle" );
     }
 
-    private void OnDriver2PartnerTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e)
+    private void OnDriver2PartnerTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
-        e.Item.Driver.Add(this);
+        e.Item.Driver.Add( this );
       }
       else
       {
-        e.Item.Driver.Remove(this);
+        e.Item.Driver.Remove( this );
       }
     }
 
@@ -1970,8 +1970,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_DriversTeamListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "ShippingDriversTeam", Id = "0x01000A5D8B5F3F67453882811C27556D5D30")]
-  public partial class ShippingDriversTeam : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "ShippingDriversTeam", Id = "0x01000A5D8B5F3F67453882811C27556D5D30" )]
+  public partial class ShippingDriversTeam: Element
   {
 
     private Microsoft.SharePoint.Linq.EntityRef<Driver> _driverTitle;
@@ -1987,30 +1987,30 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public ShippingDriversTeam()
     {
       this._driverTitle = new Microsoft.SharePoint.Linq.EntityRef<Driver>();
-      this._driverTitle.OnChanged += new System.EventHandler(this.OnDriverTitleChanged);
-      this._driverTitle.OnChanging += new System.EventHandler(this.OnDriverTitleChanging);
+      this._driverTitle.OnChanged += new System.EventHandler( this.OnDriverTitleChanged );
+      this._driverTitle.OnChanging += new System.EventHandler( this.OnDriverTitleChanging );
       this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
-      this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingIndexSync);
-      this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
-      this._shippingIndex.OnChanging += new System.EventHandler(this.OnShippingIndexChanging);
+      this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>( this.OnShippingIndexSync );
+      this._shippingIndex.OnChanged += new System.EventHandler( this.OnShippingIndexChanged );
+      this._shippingIndex.OnChanging += new System.EventHandler( this.OnShippingIndexChanging );
       this.OnCreated();
     }
 
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.ComponentModel.EditorBrowsableAttribute( System.ComponentModel.EditorBrowsableState.Never )]
     [Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
     public override string Title
     {
       get
       {
-        throw new System.InvalidOperationException("Field Title was removed from content type ShippingDriversTeam.");
+        throw new System.InvalidOperationException( "Field Title was removed from content type ShippingDriversTeam." );
       }
       set
       {
-        throw new System.InvalidOperationException("Field Title was removed from content type ShippingDriversTeam.");
+        throw new System.InvalidOperationException( "Field Title was removed from content type ShippingDriversTeam." );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "DriverTitle", Storage = "_driverTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Driver")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "DriverTitle", Storage = "_driverTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Driver" )]
     public Driver DriverTitle
     {
       get
@@ -2019,11 +2019,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._driverTitle.SetEntity(value);
+        this._driverTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "ShippingIndex", Storage = "_shippingIndex", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipping")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "ShippingIndex", Storage = "_shippingIndex", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipping" )]
     public Shipping ShippingIndex
     {
       get
@@ -2032,39 +2032,39 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shippingIndex.SetEntity(value);
+        this._shippingIndex.SetEntity( value );
       }
     }
 
-    private void OnDriverTitleChanging(object sender, System.EventArgs e)
+    private void OnDriverTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("DriverTitle", this._driverTitle.Clone());
+      this.OnPropertyChanging( "DriverTitle", this._driverTitle.Clone() );
     }
 
-    private void OnDriverTitleChanged(object sender, System.EventArgs e)
+    private void OnDriverTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("DriverTitle");
+      this.OnPropertyChanged( "DriverTitle" );
     }
 
-    private void OnShippingIndexChanging(object sender, System.EventArgs e)
+    private void OnShippingIndexChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("ShippingIndex", this._shippingIndex.Clone());
+      this.OnPropertyChanging( "ShippingIndex", this._shippingIndex.Clone() );
     }
 
-    private void OnShippingIndexChanged(object sender, System.EventArgs e)
+    private void OnShippingIndexChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("ShippingIndex");
+      this.OnPropertyChanged( "ShippingIndex" );
     }
 
-    private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e)
+    private void OnShippingIndexSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
-        e.Item.ShippingDriversTeam.Add(this);
+        e.Item.ShippingDriversTeam.Add( this );
       }
       else
       {
-        e.Item.ShippingDriversTeam.Remove(this);
+        e.Item.ShippingDriversTeam.Remove( this );
       }
     }
   }
@@ -2072,8 +2072,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_FreightPayerCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "FreightPayer", Id = "0x01002BD66F0631854603A0815888852526D0")]
-  public partial class FreightPayer : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "FreightPayer", Id = "0x01002BD66F0631854603A0815888852526D0" )]
+  public partial class FreightPayer: Element
   {
 
     private string _payerName;
@@ -2101,7 +2101,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "PayerName", Storage = "_payerName", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "PayerName", Storage = "_payerName", FieldType = "Text" )]
     public string PayerName
     {
       get
@@ -2110,16 +2110,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._payerName))
+        if ( ( value != this._payerName ) )
         {
-          this.OnPropertyChanging("PayerName", this._payerName);
+          this.OnPropertyChanging( "PayerName", this._payerName );
           this._payerName = value;
-          this.OnPropertyChanged("PayerName");
+          this.OnPropertyChanged( "PayerName" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "CompanyAddress", Storage = "_companyAddress", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "CompanyAddress", Storage = "_companyAddress", FieldType = "Text" )]
     public string CompanyAddress
     {
       get
@@ -2128,16 +2128,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._companyAddress))
+        if ( ( value != this._companyAddress ) )
         {
-          this.OnPropertyChanging("CompanyAddress", this._companyAddress);
+          this.OnPropertyChanging( "CompanyAddress", this._companyAddress );
           this._companyAddress = value;
-          this.OnPropertyChanged("CompanyAddress");
+          this.OnPropertyChanged( "CompanyAddress" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "WorkZip", Storage = "_workZip", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "WorkZip", Storage = "_workZip", FieldType = "Text" )]
     public string WorkZip
     {
       get
@@ -2146,16 +2146,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._workZip))
+        if ( ( value != this._workZip ) )
         {
-          this.OnPropertyChanging("WorkZip", this._workZip);
+          this.OnPropertyChanging( "WorkZip", this._workZip );
           this._workZip = value;
-          this.OnPropertyChanged("WorkZip");
+          this.OnPropertyChanged( "WorkZip" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "WorkCity", Storage = "_workCity", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "WorkCity", Storage = "_workCity", FieldType = "Text" )]
     public string WorkCity
     {
       get
@@ -2164,16 +2164,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._workCity))
+        if ( ( value != this._workCity ) )
         {
-          this.OnPropertyChanging("WorkCity", this._workCity);
+          this.OnPropertyChanging( "WorkCity", this._workCity );
           this._workCity = value;
-          this.OnPropertyChanged("WorkCity");
+          this.OnPropertyChanged( "WorkCity" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "WorkCountry", Storage = "_workCountry", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "WorkCountry", Storage = "_workCountry", FieldType = "Text" )]
     public string WorkCountry
     {
       get
@@ -2182,16 +2182,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._workCountry))
+        if ( ( value != this._workCountry ) )
         {
-          this.OnPropertyChanging("WorkCountry", this._workCountry);
+          this.OnPropertyChanging( "WorkCountry", this._workCountry );
           this._workCountry = value;
-          this.OnPropertyChanged("WorkCountry");
+          this.OnPropertyChanged( "WorkCountry" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "NIP", Storage = "_nIP", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "NIP", Storage = "_nIP", FieldType = "Text" )]
     public string NIP
     {
       get
@@ -2200,16 +2200,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._nIP))
+        if ( ( value != this._nIP ) )
         {
-          this.OnPropertyChanging("NIP", this._nIP);
+          this.OnPropertyChanging( "NIP", this._nIP );
           this._nIP = value;
-          this.OnPropertyChanged("NIP");
+          this.OnPropertyChanged( "NIP" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SendInvoiceToMultiline", Storage = "_sendInvoiceToMultiline", FieldType = "Note")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SendInvoiceToMultiline", Storage = "_sendInvoiceToMultiline", FieldType = "Note" )]
     public string SendInvoiceToMultiline
     {
       get
@@ -2218,11 +2218,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sendInvoiceToMultiline))
+        if ( ( value != this._sendInvoiceToMultiline ) )
         {
-          this.OnPropertyChanging("SendInvoiceToMultiline", this._sendInvoiceToMultiline);
+          this.OnPropertyChanging( "SendInvoiceToMultiline", this._sendInvoiceToMultiline );
           this._sendInvoiceToMultiline = value;
-          this.OnPropertyChanged("SendInvoiceToMultiline");
+          this.OnPropertyChanged( "SendInvoiceToMultiline" );
         }
       }
     }
@@ -2231,8 +2231,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_LoadDescriptionListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "LoadDescription", Id = "0x0100F5C0C5AAA44E47B1A7CCFECEE1E8E94E")]
-  public partial class LoadDescription : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "LoadDescription", Id = "0x0100F5C0C5AAA44E47B1A7CCFECEE1E8E94E" )]
+  public partial class LoadDescription: Element
   {
 
     private string _deliveryNumber;
@@ -2264,23 +2264,23 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public LoadDescription()
     {
       this._loadDescription2ShippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
-      this._loadDescription2ShippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnLoadDescription2ShippingIndexSync);
-      this._loadDescription2ShippingIndex.OnChanged += new System.EventHandler(this.OnLoadDescription2ShippingIndexChanged);
-      this._loadDescription2ShippingIndex.OnChanging += new System.EventHandler(this.OnLoadDescription2ShippingIndexChanging);
+      this._loadDescription2ShippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>( this.OnLoadDescription2ShippingIndexSync );
+      this._loadDescription2ShippingIndex.OnChanged += new System.EventHandler( this.OnLoadDescription2ShippingIndexChanged );
+      this._loadDescription2ShippingIndex.OnChanging += new System.EventHandler( this.OnLoadDescription2ShippingIndexChanging );
       this._loadDescription2PartnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
-      this._loadDescription2PartnerTitle.OnChanged += new System.EventHandler(this.OnLoadDescription2PartnerTitleChanged);
-      this._loadDescription2PartnerTitle.OnChanging += new System.EventHandler(this.OnLoadDescription2PartnerTitleChanging);
+      this._loadDescription2PartnerTitle.OnChanged += new System.EventHandler( this.OnLoadDescription2PartnerTitleChanged );
+      this._loadDescription2PartnerTitle.OnChanging += new System.EventHandler( this.OnLoadDescription2PartnerTitleChanging );
       this._marketTitle = new Microsoft.SharePoint.Linq.EntityRef<Market>();
-      this._marketTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Market>>(this.OnMarketTitleSync);
-      this._marketTitle.OnChanged += new System.EventHandler(this.OnMarketTitleChanged);
-      this._marketTitle.OnChanging += new System.EventHandler(this.OnMarketTitleChanging);
+      this._marketTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Market>>( this.OnMarketTitleSync );
+      this._marketTitle.OnChanged += new System.EventHandler( this.OnMarketTitleChanged );
+      this._marketTitle.OnChanging += new System.EventHandler( this.OnMarketTitleChanging );
       this._loadDescription2Commodity = new Microsoft.SharePoint.Linq.EntityRef<Commodity>();
-      this._loadDescription2Commodity.OnChanged += new System.EventHandler(this.OnLoadDescription2CommodityChanged);
-      this._loadDescription2Commodity.OnChanging += new System.EventHandler(this.OnLoadDescription2CommodityChanging);
+      this._loadDescription2Commodity.OnChanged += new System.EventHandler( this.OnLoadDescription2CommodityChanged );
+      this._loadDescription2Commodity.OnChanging += new System.EventHandler( this.OnLoadDescription2CommodityChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "DeliveryNumber", Storage = "_deliveryNumber", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "DeliveryNumber", Storage = "_deliveryNumber", FieldType = "Text" )]
     public string DeliveryNumber
     {
       get
@@ -2289,16 +2289,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._deliveryNumber))
+        if ( ( value != this._deliveryNumber ) )
         {
-          this.OnPropertyChanging("DeliveryNumber", this._deliveryNumber);
+          this.OnPropertyChanging( "DeliveryNumber", this._deliveryNumber );
           this._deliveryNumber = value;
-          this.OnPropertyChanged("DeliveryNumber");
+          this.OnPropertyChanged( "DeliveryNumber" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "GoodsQuantity", Storage = "_goodsQuantity", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "GoodsQuantity", Storage = "_goodsQuantity", FieldType = "Number" )]
     public System.Nullable<double> GoodsQuantity
     {
       get
@@ -2307,16 +2307,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._goodsQuantity))
+        if ( ( value != this._goodsQuantity ) )
         {
-          this.OnPropertyChanging("GoodsQuantity", this._goodsQuantity);
+          this.OnPropertyChanging( "GoodsQuantity", this._goodsQuantity );
           this._goodsQuantity = value;
-          this.OnPropertyChanged("GoodsQuantity");
+          this.OnPropertyChanged( "GoodsQuantity" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "NumberOfPallets", Storage = "_numberOfPallets", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "NumberOfPallets", Storage = "_numberOfPallets", FieldType = "Number" )]
     public System.Nullable<double> NumberOfPallets
     {
       get
@@ -2325,16 +2325,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._numberOfPallets))
+        if ( ( value != this._numberOfPallets ) )
         {
-          this.OnPropertyChanging("NumberOfPallets", this._numberOfPallets);
+          this.OnPropertyChanging( "NumberOfPallets", this._numberOfPallets );
           this._numberOfPallets = value;
-          this.OnPropertyChanged("NumberOfPallets");
+          this.OnPropertyChanged( "NumberOfPallets" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "CMRNumber", Storage = "_cMRNumber", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "CMRNumber", Storage = "_cMRNumber", FieldType = "Text" )]
     public string CMRNumber
     {
       get
@@ -2343,16 +2343,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._cMRNumber))
+        if ( ( value != this._cMRNumber ) )
         {
-          this.OnPropertyChanging("CMRNumber", this._cMRNumber);
+          this.OnPropertyChanging( "CMRNumber", this._cMRNumber );
           this._cMRNumber = value;
-          this.OnPropertyChanged("CMRNumber");
+          this.OnPropertyChanged( "CMRNumber" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "InvoiceNumber", Storage = "_invoiceNumber", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "InvoiceNumber", Storage = "_invoiceNumber", FieldType = "Text" )]
     public string InvoiceNumber
     {
       get
@@ -2361,16 +2361,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._invoiceNumber))
+        if ( ( value != this._invoiceNumber ) )
         {
-          this.OnPropertyChanging("InvoiceNumber", this._invoiceNumber);
+          this.OnPropertyChanging( "InvoiceNumber", this._invoiceNumber );
           this._invoiceNumber = value;
-          this.OnPropertyChanged("InvoiceNumber");
+          this.OnPropertyChanged( "InvoiceNumber" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "PalletType", Storage = "_palletType", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "PalletType", Storage = "_palletType", FieldType = "Choice" )]
     public System.Nullable<PalletType> PalletType
     {
       get
@@ -2379,16 +2379,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._palletType))
+        if ( ( value != this._palletType ) )
         {
-          this.OnPropertyChanging("PalletType", this._palletType);
+          this.OnPropertyChanging( "PalletType", this._palletType );
           this._palletType = value;
-          this.OnPropertyChanged("PalletType");
+          this.OnPropertyChanged( "PalletType" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "LoadDescription2ShippingIndex", Storage = "_loadDescription2ShippingIndex", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipping")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "LoadDescription2ShippingIndex", Storage = "_loadDescription2ShippingIndex", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipping" )]
     public Shipping LoadDescription2ShippingIndex
     {
       get
@@ -2397,11 +2397,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._loadDescription2ShippingIndex.SetEntity(value);
+        this._loadDescription2ShippingIndex.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "LoadDescription2PartnerTitle", Storage = "_loadDescription2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "LoadDescription2PartnerTitle", Storage = "_loadDescription2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner" )]
     public Partner LoadDescription2PartnerTitle
     {
       get
@@ -2410,11 +2410,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._loadDescription2PartnerTitle.SetEntity(value);
+        this._loadDescription2PartnerTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "MarketTitle", Storage = "_marketTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Market")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "MarketTitle", Storage = "_marketTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Market" )]
     public Market MarketTitle
     {
       get
@@ -2423,11 +2423,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._marketTitle.SetEntity(value);
+        this._marketTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "LoadDescription2Commodity", Storage = "_loadDescription2Commodity", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Commodity")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "LoadDescription2Commodity", Storage = "_loadDescription2Commodity", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Commodity" )]
     public Commodity LoadDescription2Commodity
     {
       get
@@ -2436,64 +2436,64 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._loadDescription2Commodity.SetEntity(value);
+        this._loadDescription2Commodity.SetEntity( value );
       }
     }
 
-    private void OnLoadDescription2ShippingIndexChanging(object sender, System.EventArgs e)
+    private void OnLoadDescription2ShippingIndexChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("LoadDescription2ShippingIndex", this._loadDescription2ShippingIndex.Clone());
+      this.OnPropertyChanging( "LoadDescription2ShippingIndex", this._loadDescription2ShippingIndex.Clone() );
     }
 
-    private void OnLoadDescription2ShippingIndexChanged(object sender, System.EventArgs e)
+    private void OnLoadDescription2ShippingIndexChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("LoadDescription2ShippingIndex");
+      this.OnPropertyChanged( "LoadDescription2ShippingIndex" );
     }
 
-    private void OnLoadDescription2ShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e)
+    private void OnLoadDescription2ShippingIndexSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
-        e.Item.LoadDescription.Add(this);
+        e.Item.LoadDescription.Add( this );
       }
       else
       {
-        e.Item.LoadDescription.Remove(this);
+        e.Item.LoadDescription.Remove( this );
       }
     }
 
-    private void OnLoadDescription2PartnerTitleChanging(object sender, System.EventArgs e)
+    private void OnLoadDescription2PartnerTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("LoadDescription2PartnerTitle", this._loadDescription2PartnerTitle.Clone());
+      this.OnPropertyChanging( "LoadDescription2PartnerTitle", this._loadDescription2PartnerTitle.Clone() );
     }
 
-    private void OnLoadDescription2PartnerTitleChanged(object sender, System.EventArgs e)
+    private void OnLoadDescription2PartnerTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("LoadDescription2PartnerTitle");
+      this.OnPropertyChanged( "LoadDescription2PartnerTitle" );
     }
 
-    private void OnMarketTitleChanging(object sender, System.EventArgs e)
+    private void OnMarketTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("MarketTitle", this._marketTitle.Clone());
+      this.OnPropertyChanging( "MarketTitle", this._marketTitle.Clone() );
     }
 
-    private void OnMarketTitleChanged(object sender, System.EventArgs e)
+    private void OnMarketTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("MarketTitle");
+      this.OnPropertyChanged( "MarketTitle" );
     }
 
-    private void OnMarketTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Market> e)
+    private void OnMarketTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Market> e )
     {
     }
 
-    private void OnLoadDescription2CommodityChanging(object sender, System.EventArgs e)
+    private void OnLoadDescription2CommodityChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("LoadDescription2Commodity", this._loadDescription2Commodity.Clone());
+      this.OnPropertyChanging( "LoadDescription2Commodity", this._loadDescription2Commodity.Clone() );
     }
 
-    private void OnLoadDescription2CommodityChanged(object sender, System.EventArgs e)
+    private void OnLoadDescription2CommodityChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("LoadDescription2Commodity");
+      this.OnPropertyChanged( "LoadDescription2Commodity" );
     }
 
   }
@@ -2501,8 +2501,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// Market
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "Market", Id = "0x010002DF2DC592811A4DA07999F3867CDC82")]
-  public partial class Market : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "Market", Id = "0x010002DF2DC592811A4DA07999F3867CDC82" )]
+  public partial class Market: Element
   {
 
     #region Extensibility Method Definitions
@@ -2520,8 +2520,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_PartnersListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "Partner", Id = "0x010017A675502BE747DB9FB9DCB304429EEF")]
-  public partial class Partner : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "Partner", Id = "0x010017A675502BE747DB9FB9DCB304429EEF" )]
+  public partial class Partner: Element
   {
 
     private string _vendorNumber;
@@ -2557,28 +2557,28 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public Partner()
     {
       this._carrierPerformanceReport = new Microsoft.SharePoint.Linq.EntitySet<CarrierPerformanceReport>();
-      this._carrierPerformanceReport.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CarrierPerformanceReport>>(this.OnCarrierPerformanceReportSync);
-      this._carrierPerformanceReport.OnChanged += new System.EventHandler(this.OnCarrierPerformanceReportChanged);
-      this._carrierPerformanceReport.OnChanging += new System.EventHandler(this.OnCarrierPerformanceReportChanging);
+      this._carrierPerformanceReport.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CarrierPerformanceReport>>( this.OnCarrierPerformanceReportSync );
+      this._carrierPerformanceReport.OnChanged += new System.EventHandler( this.OnCarrierPerformanceReportChanged );
+      this._carrierPerformanceReport.OnChanging += new System.EventHandler( this.OnCarrierPerformanceReportChanging );
       this._driver = new Microsoft.SharePoint.Linq.EntitySet<Driver>();
-      this._driver.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Driver>>(this.OnDriverSync);
-      this._driver.OnChanged += new System.EventHandler(this.OnDriverChanged);
-      this._driver.OnChanging += new System.EventHandler(this.OnDriverChanging);
+      this._driver.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Driver>>( this.OnDriverSync );
+      this._driver.OnChanged += new System.EventHandler( this.OnDriverChanged );
+      this._driver.OnChanging += new System.EventHandler( this.OnDriverChanging );
       this._partner2WarehouseTitle = new Microsoft.SharePoint.Linq.EntityRef<Warehouse>();
-      this._partner2WarehouseTitle.OnChanged += new System.EventHandler(this.OnPartner2WarehouseTitleChanged);
-      this._partner2WarehouseTitle.OnChanging += new System.EventHandler(this.OnPartner2WarehouseTitleChanging);
+      this._partner2WarehouseTitle.OnChanged += new System.EventHandler( this.OnPartner2WarehouseTitleChanged );
+      this._partner2WarehouseTitle.OnChanging += new System.EventHandler( this.OnPartner2WarehouseTitleChanging );
       this._trailer = new Microsoft.SharePoint.Linq.EntitySet<Trailer>();
-      this._trailer.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Trailer>>(this.OnTrailerSync);
-      this._trailer.OnChanged += new System.EventHandler(this.OnTrailerChanged);
-      this._trailer.OnChanging += new System.EventHandler(this.OnTrailerChanging);
+      this._trailer.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Trailer>>( this.OnTrailerSync );
+      this._trailer.OnChanged += new System.EventHandler( this.OnTrailerChanged );
+      this._trailer.OnChanging += new System.EventHandler( this.OnTrailerChanging );
       this._truck = new Microsoft.SharePoint.Linq.EntitySet<Truck>();
-      this._truck.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck>>(this.OnTruckSync);
-      this._truck.OnChanged += new System.EventHandler(this.OnTruckChanged);
-      this._truck.OnChanging += new System.EventHandler(this.OnTruckChanging);
+      this._truck.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck>>( this.OnTruckSync );
+      this._truck.OnChanged += new System.EventHandler( this.OnTruckChanged );
+      this._truck.OnChanging += new System.EventHandler( this.OnTruckChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "VendorNumber", Storage = "_vendorNumber", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "VendorNumber", Storage = "_vendorNumber", FieldType = "Text" )]
     public string VendorNumber
     {
       get
@@ -2587,16 +2587,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._vendorNumber))
+        if ( ( value != this._vendorNumber ) )
         {
-          this.OnPropertyChanging("VendorNumber", this._vendorNumber);
+          this.OnPropertyChanging( "VendorNumber", this._vendorNumber );
           this._vendorNumber = value;
-          this.OnPropertyChanged("VendorNumber");
+          this.OnPropertyChanged( "VendorNumber" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "EmailAddress", Storage = "_emailAddress", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "EmailAddress", Storage = "_emailAddress", FieldType = "Text" )]
     public string EmailAddress
     {
       get
@@ -2605,16 +2605,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._emailAddress))
+        if ( ( value != this._emailAddress ) )
         {
-          this.OnPropertyChanging("EmailAddress", this._emailAddress);
+          this.OnPropertyChanging( "EmailAddress", this._emailAddress );
           this._emailAddress = value;
-          this.OnPropertyChanged("EmailAddress");
+          this.OnPropertyChanged( "EmailAddress" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "WorkPhone", Storage = "_workPhone", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "WorkPhone", Storage = "_workPhone", FieldType = "Text" )]
     public string WorkPhone
     {
       get
@@ -2623,16 +2623,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._workPhone))
+        if ( ( value != this._workPhone ) )
         {
-          this.OnPropertyChanging("WorkPhone", this._workPhone);
+          this.OnPropertyChanging( "WorkPhone", this._workPhone );
           this._workPhone = value;
-          this.OnPropertyChanged("WorkPhone");
+          this.OnPropertyChanged( "WorkPhone" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "CellPhone", Storage = "_cellPhone", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "CellPhone", Storage = "_cellPhone", FieldType = "Text" )]
     public string CellPhone
     {
       get
@@ -2641,16 +2641,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._cellPhone))
+        if ( ( value != this._cellPhone ) )
         {
-          this.OnPropertyChanging("CellPhone", this._cellPhone);
+          this.OnPropertyChanging( "CellPhone", this._cellPhone );
           this._cellPhone = value;
-          this.OnPropertyChanged("CellPhone");
+          this.OnPropertyChanged( "CellPhone" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ServiceType", Storage = "_serviceType", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ServiceType", Storage = "_serviceType", FieldType = "Choice" )]
     public System.Nullable<ServiceType> ServiceType
     {
       get
@@ -2659,16 +2659,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._serviceType))
+        if ( ( value != this._serviceType ) )
         {
-          this.OnPropertyChanging("ServiceType", this._serviceType);
+          this.OnPropertyChanging( "ServiceType", this._serviceType );
           this._serviceType = value;
-          this.OnPropertyChanged("ServiceType");
+          this.OnPropertyChanged( "ServiceType" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "CPR2PartnerTitle", Storage = "_carrierPerformanceReport", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Carrier Performance Report")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "CPR2PartnerTitle", Storage = "_carrierPerformanceReport", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Carrier Performance Report" )]
     public Microsoft.SharePoint.Linq.EntitySet<CarrierPerformanceReport> CarrierPerformanceReport
     {
       get
@@ -2677,11 +2677,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._carrierPerformanceReport.Assign(value);
+        this._carrierPerformanceReport.Assign( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Driver2PartnerTitle", Storage = "_driver", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Driver")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Driver2PartnerTitle", Storage = "_driver", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Driver" )]
     public Microsoft.SharePoint.Linq.EntitySet<Driver> Driver
     {
       get
@@ -2690,11 +2690,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._driver.Assign(value);
+        this._driver.Assign( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ShepherdUser", Storage = "_shepherdUserId", Required = true, FieldType = "User", IsLookupId = true)]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ShepherdUser", Storage = "_shepherdUserId", Required = true, FieldType = "User", IsLookupId = true )]
     public System.Nullable<int> ShepherdUserId
     {
       get
@@ -2703,16 +2703,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._shepherdUserId))
+        if ( ( value != this._shepherdUserId ) )
         {
-          this.OnPropertyChanging("ShepherdUserId", this._shepherdUserId);
+          this.OnPropertyChanging( "ShepherdUserId", this._shepherdUserId );
           this._shepherdUserId = value;
-          this.OnPropertyChanged("ShepherdUserId");
+          this.OnPropertyChanged( "ShepherdUserId" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ShepherdUser", Storage = "_shepherdUserTitle", ReadOnly = true, FieldType = "User", IsLookupValue = true)]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ShepherdUser", Storage = "_shepherdUserTitle", ReadOnly = true, FieldType = "User", IsLookupValue = true )]
     public string ShepherdUserTitle
     {
       get
@@ -2721,16 +2721,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._shepherdUserTitle))
+        if ( ( value != this._shepherdUserTitle ) )
         {
-          this.OnPropertyChanging("ShepherdUserTitle", this._shepherdUserTitle);
+          this.OnPropertyChanging( "ShepherdUserTitle", this._shepherdUserTitle );
           this._shepherdUserTitle = value;
-          this.OnPropertyChanged("ShepherdUserTitle");
+          this.OnPropertyChanged( "ShepherdUserTitle" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Partner2WarehouseTitle", Storage = "_partner2WarehouseTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Warehouse")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Partner2WarehouseTitle", Storage = "_partner2WarehouseTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Warehouse" )]
     public Warehouse Partner2WarehouseTitle
     {
       get
@@ -2739,11 +2739,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._partner2WarehouseTitle.SetEntity(value);
+        this._partner2WarehouseTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Trailer2PartnerTitle", Storage = "_trailer", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Trailer")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Trailer2PartnerTitle", Storage = "_trailer", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Trailer" )]
     public Microsoft.SharePoint.Linq.EntitySet<Trailer> Trailer
     {
       get
@@ -2752,11 +2752,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._trailer.Assign(value);
+        this._trailer.Assign( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Truck2PartnerTitle", Storage = "_truck", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Truck")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Truck2PartnerTitle", Storage = "_truck", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Truck" )]
     public Microsoft.SharePoint.Linq.EntitySet<Truck> Truck
     {
       get
@@ -2765,23 +2765,23 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._truck.Assign(value);
+        this._truck.Assign( value );
       }
     }
 
-    private void OnCarrierPerformanceReportChanging(object sender, System.EventArgs e)
+    private void OnCarrierPerformanceReportChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("CarrierPerformanceReport", this._carrierPerformanceReport.Clone());
+      this.OnPropertyChanging( "CarrierPerformanceReport", this._carrierPerformanceReport.Clone() );
     }
 
-    private void OnCarrierPerformanceReportChanged(object sender, System.EventArgs e)
+    private void OnCarrierPerformanceReportChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("CarrierPerformanceReport");
+      this.OnPropertyChanged( "CarrierPerformanceReport" );
     }
 
-    private void OnCarrierPerformanceReportSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CarrierPerformanceReport> e)
+    private void OnCarrierPerformanceReportSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CarrierPerformanceReport> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
         e.Item.CPR2PartnerTitle = this;
       }
@@ -2791,19 +2791,19 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
     }
 
-    private void OnDriverChanging(object sender, System.EventArgs e)
+    private void OnDriverChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Driver", this._driver.Clone());
+      this.OnPropertyChanging( "Driver", this._driver.Clone() );
     }
 
-    private void OnDriverChanged(object sender, System.EventArgs e)
+    private void OnDriverChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Driver");
+      this.OnPropertyChanged( "Driver" );
     }
 
-    private void OnDriverSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Driver> e)
+    private void OnDriverSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Driver> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
         e.Item.Driver2PartnerTitle = this;
       }
@@ -2813,29 +2813,29 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
     }
 
-    private void OnPartner2WarehouseTitleChanging(object sender, System.EventArgs e)
+    private void OnPartner2WarehouseTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Partner2WarehouseTitle", this._partner2WarehouseTitle.Clone());
+      this.OnPropertyChanging( "Partner2WarehouseTitle", this._partner2WarehouseTitle.Clone() );
     }
 
-    private void OnPartner2WarehouseTitleChanged(object sender, System.EventArgs e)
+    private void OnPartner2WarehouseTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Partner2WarehouseTitle");
+      this.OnPropertyChanged( "Partner2WarehouseTitle" );
     }
 
-    private void OnTrailerChanging(object sender, System.EventArgs e)
+    private void OnTrailerChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Trailer", this._trailer.Clone());
+      this.OnPropertyChanging( "Trailer", this._trailer.Clone() );
     }
 
-    private void OnTrailerChanged(object sender, System.EventArgs e)
+    private void OnTrailerChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Trailer");
+      this.OnPropertyChanged( "Trailer" );
     }
 
-    private void OnTrailerSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Trailer> e)
+    private void OnTrailerSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Trailer> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
         e.Item.Trailer2PartnerTitle = this;
       }
@@ -2845,19 +2845,19 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
     }
 
-    private void OnTruckChanging(object sender, System.EventArgs e)
+    private void OnTruckChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Truck", this._truck.Clone());
+      this.OnPropertyChanging( "Truck", this._truck.Clone() );
     }
 
-    private void OnTruckChanged(object sender, System.EventArgs e)
+    private void OnTruckChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Truck");
+      this.OnPropertyChanged( "Truck" );
     }
 
-    private void OnTruckSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck> e)
+    private void OnTruckSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
         e.Item.Truck2PartnerTitle = this;
       }
@@ -2871,8 +2871,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_RoutesListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "Route", Id = "0x0100121B8B770545430A8B59B62D84C02C38")]
-  public partial class Route : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "Route", Id = "0x0100121B8B770545430A8B59B62D84C02C38" )]
+  public partial class Route: Element
   {
 
     private string _materialMaster;
@@ -2918,42 +2918,42 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public Route()
     {
       this._route2CityTitle = new Microsoft.SharePoint.Linq.EntityRef<CityType>();
-      this._route2CityTitle.OnChanged += new System.EventHandler(this.OnRoute2CityTitleChanged);
-      this._route2CityTitle.OnChanging += new System.EventHandler(this.OnRoute2CityTitleChanging);
+      this._route2CityTitle.OnChanged += new System.EventHandler( this.OnRoute2CityTitleChanged );
+      this._route2CityTitle.OnChanging += new System.EventHandler( this.OnRoute2CityTitleChanging );
       this._route2BusinessDescriptionTitle = new Microsoft.SharePoint.Linq.EntityRef<BusienssDescription>();
-      this._route2BusinessDescriptionTitle.OnChanged += new System.EventHandler(this.OnRoute2BusinessDescriptionTitleChanged);
-      this._route2BusinessDescriptionTitle.OnChanging += new System.EventHandler(this.OnRoute2BusinessDescriptionTitleChanging);
+      this._route2BusinessDescriptionTitle.OnChanged += new System.EventHandler( this.OnRoute2BusinessDescriptionTitleChanged );
+      this._route2BusinessDescriptionTitle.OnChanging += new System.EventHandler( this.OnRoute2BusinessDescriptionTitleChanging );
       this._shipmentTypeTitle = new Microsoft.SharePoint.Linq.EntityRef<ShipmentType>();
-      this._shipmentTypeTitle.OnChanged += new System.EventHandler(this.OnShipmentTypeTitleChanged);
-      this._shipmentTypeTitle.OnChanging += new System.EventHandler(this.OnShipmentTypeTitleChanging);
+      this._shipmentTypeTitle.OnChanged += new System.EventHandler( this.OnShipmentTypeTitleChanged );
+      this._shipmentTypeTitle.OnChanging += new System.EventHandler( this.OnShipmentTypeTitleChanging );
       this._freightPayerTitle = new Microsoft.SharePoint.Linq.EntityRef<FreightPayer>();
-      this._freightPayerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer>>(this.OnFreightPayerTitleSync);
-      this._freightPayerTitle.OnChanged += new System.EventHandler(this.OnFreightPayerTitleChanged);
-      this._freightPayerTitle.OnChanging += new System.EventHandler(this.OnFreightPayerTitleChanging);
+      this._freightPayerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer>>( this.OnFreightPayerTitleSync );
+      this._freightPayerTitle.OnChanged += new System.EventHandler( this.OnFreightPayerTitleChanged );
+      this._freightPayerTitle.OnChanging += new System.EventHandler( this.OnFreightPayerTitleChanging );
       this._route2Commodity = new Microsoft.SharePoint.Linq.EntityRef<Commodity>();
-      this._route2Commodity.OnChanged += new System.EventHandler(this.OnRoute2CommodityChanged);
-      this._route2Commodity.OnChanging += new System.EventHandler(this.OnRoute2CommodityChanging);
+      this._route2Commodity.OnChanged += new System.EventHandler( this.OnRoute2CommodityChanged );
+      this._route2Commodity.OnChanging += new System.EventHandler( this.OnRoute2CommodityChanging );
       this._sAPDestinationPlantTitle = new Microsoft.SharePoint.Linq.EntityRef<SAPDestinationPlant>();
-      this._sAPDestinationPlantTitle.OnChanged += new System.EventHandler(this.OnSAPDestinationPlantTitleChanged);
-      this._sAPDestinationPlantTitle.OnChanging += new System.EventHandler(this.OnSAPDestinationPlantTitleChanging);
+      this._sAPDestinationPlantTitle.OnChanged += new System.EventHandler( this.OnSAPDestinationPlantTitleChanged );
+      this._sAPDestinationPlantTitle.OnChanging += new System.EventHandler( this.OnSAPDestinationPlantTitleChanging );
       this._partnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
-      this._partnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnPartnerTitleSync);
-      this._partnerTitle.OnChanged += new System.EventHandler(this.OnPartnerTitleChanged);
-      this._partnerTitle.OnChanging += new System.EventHandler(this.OnPartnerTitleChanging);
+      this._partnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>( this.OnPartnerTitleSync );
+      this._partnerTitle.OnChanged += new System.EventHandler( this.OnPartnerTitleChanged );
+      this._partnerTitle.OnChanging += new System.EventHandler( this.OnPartnerTitleChanging );
       this._carrierTitle = new Microsoft.SharePoint.Linq.EntityRef<CarrierType>();
-      this._carrierTitle.OnChanged += new System.EventHandler(this.OnCarrierTitleChanged);
-      this._carrierTitle.OnChanging += new System.EventHandler(this.OnCarrierTitleChanging);
+      this._carrierTitle.OnChanged += new System.EventHandler( this.OnCarrierTitleChanged );
+      this._carrierTitle.OnChanging += new System.EventHandler( this.OnCarrierTitleChanging );
       this._transportUnitTypeTitle = new Microsoft.SharePoint.Linq.EntityRef<TranspotUnit>();
-      this._transportUnitTypeTitle.OnChanged += new System.EventHandler(this.OnTransportUnitTypeTitleChanged);
-      this._transportUnitTypeTitle.OnChanging += new System.EventHandler(this.OnTransportUnitTypeTitleChanging);
+      this._transportUnitTypeTitle.OnChanged += new System.EventHandler( this.OnTransportUnitTypeTitleChanged );
+      this._transportUnitTypeTitle.OnChanging += new System.EventHandler( this.OnTransportUnitTypeTitleChanging );
       this._currencyTitle = new Microsoft.SharePoint.Linq.EntityRef<Currency>();
-      this._currencyTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency>>(this.OnCurrencyTitleSync);
-      this._currencyTitle.OnChanged += new System.EventHandler(this.OnCurrencyTitleChanged);
-      this._currencyTitle.OnChanging += new System.EventHandler(this.OnCurrencyTitleChanging);
+      this._currencyTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency>>( this.OnCurrencyTitleSync );
+      this._currencyTitle.OnChanged += new System.EventHandler( this.OnCurrencyTitleChanged );
+      this._currencyTitle.OnChanging += new System.EventHandler( this.OnCurrencyTitleChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "MaterialMaster", Storage = "_materialMaster", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "MaterialMaster", Storage = "_materialMaster", FieldType = "Text" )]
     public string MaterialMaster
     {
       get
@@ -2962,16 +2962,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._materialMaster))
+        if ( ( value != this._materialMaster ) )
         {
-          this.OnPropertyChanging("MaterialMaster", this._materialMaster);
+          this.OnPropertyChanging( "MaterialMaster", this._materialMaster );
           this._materialMaster = value;
-          this.OnPropertyChanged("MaterialMaster");
+          this.OnPropertyChanged( "MaterialMaster" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "RemarkMM", Storage = "_remarkMM", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "RemarkMM", Storage = "_remarkMM", FieldType = "Text" )]
     public string RemarkMM
     {
       get
@@ -2980,16 +2980,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._remarkMM))
+        if ( ( value != this._remarkMM ) )
         {
-          this.OnPropertyChanging("RemarkMM", this._remarkMM);
+          this.OnPropertyChanging( "RemarkMM", this._remarkMM );
           this._remarkMM = value;
-          this.OnPropertyChanged("RemarkMM");
+          this.OnPropertyChanged( "RemarkMM" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Incoterm", Storage = "_incoterm", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Incoterm", Storage = "_incoterm", FieldType = "Text" )]
     public string Incoterm
     {
       get
@@ -2998,16 +2998,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._incoterm))
+        if ( ( value != this._incoterm ) )
         {
-          this.OnPropertyChanging("Incoterm", this._incoterm);
+          this.OnPropertyChanging( "Incoterm", this._incoterm );
           this._incoterm = value;
-          this.OnPropertyChanged("Incoterm");
+          this.OnPropertyChanged( "Incoterm" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "DeparturePort", Storage = "_departurePort", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "DeparturePort", Storage = "_departurePort", FieldType = "Text" )]
     public string DeparturePort
     {
       get
@@ -3016,16 +3016,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._departurePort))
+        if ( ( value != this._departurePort ) )
         {
-          this.OnPropertyChanging("DeparturePort", this._departurePort);
+          this.OnPropertyChanging( "DeparturePort", this._departurePort );
           this._departurePort = value;
-          this.OnPropertyChanged("DeparturePort");
+          this.OnPropertyChanged( "DeparturePort" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "DepartureCity", Storage = "_departureCity", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "DepartureCity", Storage = "_departureCity", FieldType = "Text" )]
     public string DepartureCity
     {
       get
@@ -3034,16 +3034,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._departureCity))
+        if ( ( value != this._departureCity ) )
         {
-          this.OnPropertyChanging("DepartureCity", this._departureCity);
+          this.OnPropertyChanging( "DepartureCity", this._departureCity );
           this._departureCity = value;
-          this.OnPropertyChanged("DepartureCity");
+          this.OnPropertyChanged( "DepartureCity" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "TransportCosts", Storage = "_transportCosts", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "TransportCosts", Storage = "_transportCosts", FieldType = "Number" )]
     public System.Nullable<double> TransportCosts
     {
       get
@@ -3052,16 +3052,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._transportCosts))
+        if ( ( value != this._transportCosts ) )
         {
-          this.OnPropertyChanging("TransportCosts", this._transportCosts);
+          this.OnPropertyChanging( "TransportCosts", this._transportCosts );
           this._transportCosts = value;
-          this.OnPropertyChanged("TransportCosts");
+          this.OnPropertyChanged( "TransportCosts" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "GoodsHandlingPO", Storage = "_goodsHandlingPO", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "GoodsHandlingPO", Storage = "_goodsHandlingPO", FieldType = "Text" )]
     public string GoodsHandlingPO
     {
       get
@@ -3070,16 +3070,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._goodsHandlingPO))
+        if ( ( value != this._goodsHandlingPO ) )
         {
-          this.OnPropertyChanging("GoodsHandlingPO", this._goodsHandlingPO);
+          this.OnPropertyChanging( "GoodsHandlingPO", this._goodsHandlingPO );
           this._goodsHandlingPO = value;
-          this.OnPropertyChanged("GoodsHandlingPO");
+          this.OnPropertyChanged( "GoodsHandlingPO" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Route2CityTitle", Storage = "_route2CityTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "City")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Route2CityTitle", Storage = "_route2CityTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "City" )]
     public CityType Route2CityTitle
     {
       get
@@ -3088,11 +3088,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._route2CityTitle.SetEntity(value);
+        this._route2CityTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Route2BusinessDescriptionTitle", Storage = "_route2BusinessDescriptionTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Business Description")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Route2BusinessDescriptionTitle", Storage = "_route2BusinessDescriptionTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Business Description" )]
     public BusienssDescription Route2BusinessDescriptionTitle
     {
       get
@@ -3101,11 +3101,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._route2BusinessDescriptionTitle.SetEntity(value);
+        this._route2BusinessDescriptionTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "ShipmentTypeTitle", Storage = "_shipmentTypeTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipment Type")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "ShipmentTypeTitle", Storage = "_shipmentTypeTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipment Type" )]
     public ShipmentType ShipmentTypeTitle
     {
       get
@@ -3114,11 +3114,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shipmentTypeTitle.SetEntity(value);
+        this._shipmentTypeTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "FreightPayerTitle", Storage = "_freightPayerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Freight Payer")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "FreightPayerTitle", Storage = "_freightPayerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Freight Payer" )]
     public FreightPayer FreightPayerTitle
     {
       get
@@ -3127,11 +3127,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._freightPayerTitle.SetEntity(value);
+        this._freightPayerTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Route2Commodity", Storage = "_route2Commodity", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Commodity")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Route2Commodity", Storage = "_route2Commodity", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Commodity" )]
     public Commodity Route2Commodity
     {
       get
@@ -3140,11 +3140,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._route2Commodity.SetEntity(value);
+        this._route2Commodity.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "SAPDestinationPlantTitle", Storage = "_sAPDestinationPlantTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "SAP Destination Plant")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "SAPDestinationPlantTitle", Storage = "_sAPDestinationPlantTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "SAP Destination Plant" )]
     public SAPDestinationPlant SAPDestinationPlantTitle
     {
       get
@@ -3153,11 +3153,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._sAPDestinationPlantTitle.SetEntity(value);
+        this._sAPDestinationPlantTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "PartnerTitle", Storage = "_partnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "PartnerTitle", Storage = "_partnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner" )]
     public Partner PartnerTitle
     {
       get
@@ -3166,11 +3166,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._partnerTitle.SetEntity(value);
+        this._partnerTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "CarrierTitle", Storage = "_carrierTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Carrier")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "CarrierTitle", Storage = "_carrierTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Carrier" )]
     public CarrierType CarrierTitle
     {
       get
@@ -3179,11 +3179,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._carrierTitle.SetEntity(value);
+        this._carrierTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "TransportUnitTypeTitle", Storage = "_transportUnitTypeTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Transport Unit Type")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "TransportUnitTypeTitle", Storage = "_transportUnitTypeTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Transport Unit Type" )]
     public TranspotUnit TransportUnitTypeTitle
     {
       get
@@ -3192,11 +3192,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._transportUnitTypeTitle.SetEntity(value);
+        this._transportUnitTypeTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "CurrencyTitle", Storage = "_currencyTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Currency")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "CurrencyTitle", Storage = "_currencyTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Currency" )]
     public Currency CurrencyTitle
     {
       get
@@ -3205,119 +3205,119 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._currencyTitle.SetEntity(value);
+        this._currencyTitle.SetEntity( value );
       }
     }
 
-    private void OnRoute2CityTitleChanging(object sender, System.EventArgs e)
+    private void OnRoute2CityTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Route2CityTitle", this._route2CityTitle.Clone());
+      this.OnPropertyChanging( "Route2CityTitle", this._route2CityTitle.Clone() );
     }
 
-    private void OnRoute2CityTitleChanged(object sender, System.EventArgs e)
+    private void OnRoute2CityTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Route2CityTitle");
+      this.OnPropertyChanged( "Route2CityTitle" );
     }
 
-    private void OnRoute2BusinessDescriptionTitleChanging(object sender, System.EventArgs e)
+    private void OnRoute2BusinessDescriptionTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Route2BusinessDescriptionTitle", this._route2BusinessDescriptionTitle.Clone());
+      this.OnPropertyChanging( "Route2BusinessDescriptionTitle", this._route2BusinessDescriptionTitle.Clone() );
     }
 
-    private void OnRoute2BusinessDescriptionTitleChanged(object sender, System.EventArgs e)
+    private void OnRoute2BusinessDescriptionTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Route2BusinessDescriptionTitle");
+      this.OnPropertyChanged( "Route2BusinessDescriptionTitle" );
     }
 
-    private void OnShipmentTypeTitleChanging(object sender, System.EventArgs e)
+    private void OnShipmentTypeTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("ShipmentTypeTitle", this._shipmentTypeTitle.Clone());
+      this.OnPropertyChanging( "ShipmentTypeTitle", this._shipmentTypeTitle.Clone() );
     }
 
-    private void OnShipmentTypeTitleChanged(object sender, System.EventArgs e)
+    private void OnShipmentTypeTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("ShipmentTypeTitle");
+      this.OnPropertyChanged( "ShipmentTypeTitle" );
     }
 
-    private void OnFreightPayerTitleChanging(object sender, System.EventArgs e)
+    private void OnFreightPayerTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("FreightPayerTitle", this._freightPayerTitle.Clone());
+      this.OnPropertyChanging( "FreightPayerTitle", this._freightPayerTitle.Clone() );
     }
 
-    private void OnFreightPayerTitleChanged(object sender, System.EventArgs e)
+    private void OnFreightPayerTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("FreightPayerTitle");
+      this.OnPropertyChanged( "FreightPayerTitle" );
     }
 
-    private void OnFreightPayerTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer> e)
-    {
-    }
-
-    private void OnRoute2CommodityChanging(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanging("Route2Commodity", this._route2Commodity.Clone());
-    }
-
-    private void OnRoute2CommodityChanged(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanged("Route2Commodity");
-    }
-
-    private void OnSAPDestinationPlantTitleChanging(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanging("SAPDestinationPlantTitle", this._sAPDestinationPlantTitle.Clone());
-    }
-
-    private void OnSAPDestinationPlantTitleChanged(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanged("SAPDestinationPlantTitle");
-    }
-
-    private void OnPartnerTitleChanging(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanging("PartnerTitle", this._partnerTitle.Clone());
-    }
-
-    private void OnPartnerTitleChanged(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanged("PartnerTitle");
-    }
-
-    private void OnPartnerTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e)
+    private void OnFreightPayerTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer> e )
     {
     }
 
-    private void OnCarrierTitleChanging(object sender, System.EventArgs e)
+    private void OnRoute2CommodityChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("CarrierTitle", this._carrierTitle.Clone());
+      this.OnPropertyChanging( "Route2Commodity", this._route2Commodity.Clone() );
     }
 
-    private void OnCarrierTitleChanged(object sender, System.EventArgs e)
+    private void OnRoute2CommodityChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("CarrierTitle");
+      this.OnPropertyChanged( "Route2Commodity" );
     }
 
-    private void OnTransportUnitTypeTitleChanging(object sender, System.EventArgs e)
+    private void OnSAPDestinationPlantTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("TransportUnitTypeTitle", this._transportUnitTypeTitle.Clone());
+      this.OnPropertyChanging( "SAPDestinationPlantTitle", this._sAPDestinationPlantTitle.Clone() );
     }
 
-    private void OnTransportUnitTypeTitleChanged(object sender, System.EventArgs e)
+    private void OnSAPDestinationPlantTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("TransportUnitTypeTitle");
+      this.OnPropertyChanged( "SAPDestinationPlantTitle" );
     }
 
-    private void OnCurrencyTitleChanging(object sender, System.EventArgs e)
+    private void OnPartnerTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("CurrencyTitle", this._currencyTitle.Clone());
+      this.OnPropertyChanging( "PartnerTitle", this._partnerTitle.Clone() );
     }
 
-    private void OnCurrencyTitleChanged(object sender, System.EventArgs e)
+    private void OnPartnerTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("CurrencyTitle");
+      this.OnPropertyChanged( "PartnerTitle" );
     }
 
-    private void OnCurrencyTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency> e)
+    private void OnPartnerTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e )
+    {
+    }
+
+    private void OnCarrierTitleChanging( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanging( "CarrierTitle", this._carrierTitle.Clone() );
+    }
+
+    private void OnCarrierTitleChanged( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanged( "CarrierTitle" );
+    }
+
+    private void OnTransportUnitTypeTitleChanging( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanging( "TransportUnitTypeTitle", this._transportUnitTypeTitle.Clone() );
+    }
+
+    private void OnTransportUnitTypeTitleChanged( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanged( "TransportUnitTypeTitle" );
+    }
+
+    private void OnCurrencyTitleChanging( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanging( "CurrencyTitle", this._currencyTitle.Clone() );
+    }
+
+    private void OnCurrencyTitleChanged( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanged( "CurrencyTitle" );
+    }
+
+    private void OnCurrencyTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency> e )
     {
     }
 
@@ -3326,8 +3326,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_SAPDestinationPlantsListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "SAPDestinationPlant", Id = "0x010091A84CFF2DF74C3B847A78E9F9D503D4")]
-  public partial class SAPDestinationPlant : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "SAPDestinationPlant", Id = "0x010091A84CFF2DF74C3B847A78E9F9D503D4" )]
+  public partial class SAPDestinationPlant: Element
   {
 
     #region Extensibility Method Definitions
@@ -3346,8 +3346,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_ScheduleTemplateListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "ScheduleTemplate", Id = "0x010091765907174D4799B44C4DF249630D28")]
-  public partial class ScheduleTemplate : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "ScheduleTemplate", Id = "0x010091765907174D4799B44C4DF249630D28" )]
+  public partial class ScheduleTemplate: Element
   {
 
     private Microsoft.SharePoint.Linq.EntityRef<ShippingPoint> _shippingPointLookupTitle;
@@ -3363,16 +3363,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public ScheduleTemplate()
     {
       this._shippingPointLookupTitle = new Microsoft.SharePoint.Linq.EntityRef<ShippingPoint>();
-      this._shippingPointLookupTitle.OnChanged += new System.EventHandler(this.OnShippingPointLookupTitleChanged);
-      this._shippingPointLookupTitle.OnChanging += new System.EventHandler(this.OnShippingPointLookupTitleChanging);
+      this._shippingPointLookupTitle.OnChanged += new System.EventHandler( this.OnShippingPointLookupTitleChanged );
+      this._shippingPointLookupTitle.OnChanging += new System.EventHandler( this.OnShippingPointLookupTitleChanging );
       this._timeSlotsTemplate = new Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate>();
-      this._timeSlotsTemplate.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlotsTemplate>>(this.OnTimeSlotsTemplateSync);
-      this._timeSlotsTemplate.OnChanged += new System.EventHandler(this.OnTimeSlotsTemplateChanged);
-      this._timeSlotsTemplate.OnChanging += new System.EventHandler(this.OnTimeSlotsTemplateChanging);
+      this._timeSlotsTemplate.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlotsTemplate>>( this.OnTimeSlotsTemplateSync );
+      this._timeSlotsTemplate.OnChanged += new System.EventHandler( this.OnTimeSlotsTemplateChanged );
+      this._timeSlotsTemplate.OnChanging += new System.EventHandler( this.OnTimeSlotsTemplateChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "ShippingPointLookupTitle", Storage = "_shippingPointLookupTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipping Point")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "ShippingPointLookupTitle", Storage = "_shippingPointLookupTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipping Point" )]
     public ShippingPoint ShippingPointLookupTitle
     {
       get
@@ -3381,11 +3381,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shippingPointLookupTitle.SetEntity(value);
+        this._shippingPointLookupTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "ScheduleTemplateTitle", Storage = "_timeSlotsTemplate", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "TimeSlots Template")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "ScheduleTemplateTitle", Storage = "_timeSlotsTemplate", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "TimeSlots Template" )]
     public Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate> TimeSlotsTemplate
     {
       get
@@ -3394,33 +3394,33 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._timeSlotsTemplate.Assign(value);
+        this._timeSlotsTemplate.Assign( value );
       }
     }
 
-    private void OnShippingPointLookupTitleChanging(object sender, System.EventArgs e)
+    private void OnShippingPointLookupTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("ShippingPointLookupTitle", this._shippingPointLookupTitle.Clone());
+      this.OnPropertyChanging( "ShippingPointLookupTitle", this._shippingPointLookupTitle.Clone() );
     }
 
-    private void OnShippingPointLookupTitleChanged(object sender, System.EventArgs e)
+    private void OnShippingPointLookupTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("ShippingPointLookupTitle");
+      this.OnPropertyChanged( "ShippingPointLookupTitle" );
     }
 
-    private void OnTimeSlotsTemplateChanging(object sender, System.EventArgs e)
+    private void OnTimeSlotsTemplateChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("TimeSlotsTemplate", this._timeSlotsTemplate.Clone());
+      this.OnPropertyChanging( "TimeSlotsTemplate", this._timeSlotsTemplate.Clone() );
     }
 
-    private void OnTimeSlotsTemplateChanged(object sender, System.EventArgs e)
+    private void OnTimeSlotsTemplateChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("TimeSlotsTemplate");
+      this.OnPropertyChanged( "TimeSlotsTemplate" );
     }
 
-    private void OnTimeSlotsTemplateSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlotsTemplate> e)
+    private void OnTimeSlotsTemplateSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlotsTemplate> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
         e.Item.ScheduleTemplateTitle = this;
       }
@@ -3434,8 +3434,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_SecurityEscortCatalogListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "SecurityEscortCatalog", Id = "0x01004D883AD19A284D1F826EA7B4E70F0ACA")]
-  public partial class SecurityEscortCatalog : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "SecurityEscortCatalog", Id = "0x01004D883AD19A284D1F826EA7B4E70F0ACA" )]
+  public partial class SecurityEscortCatalog: Element
   {
 
     private string _escortDestination;
@@ -3465,24 +3465,24 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public SecurityEscortCatalog()
     {
       this._securityEscortCatalog2BusinessDescriptionTitle = new Microsoft.SharePoint.Linq.EntityRef<BusienssDescription>();
-      this._securityEscortCatalog2BusinessDescriptionTitle.OnChanged += new System.EventHandler(this.OnSecurityEscortCatalog2BusinessDescriptionTitleChanged);
-      this._securityEscortCatalog2BusinessDescriptionTitle.OnChanging += new System.EventHandler(this.OnSecurityEscortCatalog2BusinessDescriptionTitleChanging);
+      this._securityEscortCatalog2BusinessDescriptionTitle.OnChanged += new System.EventHandler( this.OnSecurityEscortCatalog2BusinessDescriptionTitleChanged );
+      this._securityEscortCatalog2BusinessDescriptionTitle.OnChanging += new System.EventHandler( this.OnSecurityEscortCatalog2BusinessDescriptionTitleChanging );
       this._freightPayerTitle = new Microsoft.SharePoint.Linq.EntityRef<FreightPayer>();
-      this._freightPayerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer>>(this.OnFreightPayerTitleSync);
-      this._freightPayerTitle.OnChanged += new System.EventHandler(this.OnFreightPayerTitleChanged);
-      this._freightPayerTitle.OnChanging += new System.EventHandler(this.OnFreightPayerTitleChanging);
+      this._freightPayerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer>>( this.OnFreightPayerTitleSync );
+      this._freightPayerTitle.OnChanged += new System.EventHandler( this.OnFreightPayerTitleChanged );
+      this._freightPayerTitle.OnChanging += new System.EventHandler( this.OnFreightPayerTitleChanging );
       this._partnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
-      this._partnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnPartnerTitleSync);
-      this._partnerTitle.OnChanged += new System.EventHandler(this.OnPartnerTitleChanged);
-      this._partnerTitle.OnChanging += new System.EventHandler(this.OnPartnerTitleChanging);
+      this._partnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>( this.OnPartnerTitleSync );
+      this._partnerTitle.OnChanged += new System.EventHandler( this.OnPartnerTitleChanged );
+      this._partnerTitle.OnChanging += new System.EventHandler( this.OnPartnerTitleChanging );
       this._currencyTitle = new Microsoft.SharePoint.Linq.EntityRef<Currency>();
-      this._currencyTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency>>(this.OnCurrencyTitleSync);
-      this._currencyTitle.OnChanged += new System.EventHandler(this.OnCurrencyTitleChanged);
-      this._currencyTitle.OnChanging += new System.EventHandler(this.OnCurrencyTitleChanging);
+      this._currencyTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency>>( this.OnCurrencyTitleSync );
+      this._currencyTitle.OnChanged += new System.EventHandler( this.OnCurrencyTitleChanged );
+      this._currencyTitle.OnChanging += new System.EventHandler( this.OnCurrencyTitleChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "EscortDestination", Storage = "_escortDestination", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "EscortDestination", Storage = "_escortDestination", FieldType = "Text" )]
     public string EscortDestination
     {
       get
@@ -3491,16 +3491,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._escortDestination))
+        if ( ( value != this._escortDestination ) )
         {
-          this.OnPropertyChanging("EscortDestination", this._escortDestination);
+          this.OnPropertyChanging( "EscortDestination", this._escortDestination );
           this._escortDestination = value;
-          this.OnPropertyChanged("EscortDestination");
+          this.OnPropertyChanged( "EscortDestination" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "RemarkMM", Storage = "_remarkMM", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "RemarkMM", Storage = "_remarkMM", FieldType = "Text" )]
     public string RemarkMM
     {
       get
@@ -3509,16 +3509,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._remarkMM))
+        if ( ( value != this._remarkMM ) )
         {
-          this.OnPropertyChanging("RemarkMM", this._remarkMM);
+          this.OnPropertyChanging( "RemarkMM", this._remarkMM );
           this._remarkMM = value;
-          this.OnPropertyChanged("RemarkMM");
+          this.OnPropertyChanged( "RemarkMM" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "MaterialMaster", Storage = "_materialMaster", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "MaterialMaster", Storage = "_materialMaster", FieldType = "Text" )]
     public string MaterialMaster
     {
       get
@@ -3527,16 +3527,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._materialMaster))
+        if ( ( value != this._materialMaster ) )
         {
-          this.OnPropertyChanging("MaterialMaster", this._materialMaster);
+          this.OnPropertyChanging( "MaterialMaster", this._materialMaster );
           this._materialMaster = value;
-          this.OnPropertyChanged("MaterialMaster");
+          this.OnPropertyChanged( "MaterialMaster" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SecurityCost", Storage = "_securityCost", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SecurityCost", Storage = "_securityCost", FieldType = "Number" )]
     public System.Nullable<double> SecurityCost
     {
       get
@@ -3545,16 +3545,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._securityCost))
+        if ( ( value != this._securityCost ) )
         {
-          this.OnPropertyChanging("SecurityCost", this._securityCost);
+          this.OnPropertyChanging( "SecurityCost", this._securityCost );
           this._securityCost = value;
-          this.OnPropertyChanged("SecurityCost");
+          this.OnPropertyChanged( "SecurityCost" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SecurityEscrotPO", Storage = "_securityEscrotPO", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SecurityEscrotPO", Storage = "_securityEscrotPO", FieldType = "Text" )]
     public string SecurityEscrotPO
     {
       get
@@ -3563,16 +3563,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._securityEscrotPO))
+        if ( ( value != this._securityEscrotPO ) )
         {
-          this.OnPropertyChanging("SecurityEscrotPO", this._securityEscrotPO);
+          this.OnPropertyChanging( "SecurityEscrotPO", this._securityEscrotPO );
           this._securityEscrotPO = value;
-          this.OnPropertyChanged("SecurityEscrotPO");
+          this.OnPropertyChanged( "SecurityEscrotPO" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "SecurityEscortCatalog2BusinessDescriptionTitle", Storage = "_securityEscortCatalog2BusinessDescriptionTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Business Description")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "SecurityEscortCatalog2BusinessDescriptionTitle", Storage = "_securityEscortCatalog2BusinessDescriptionTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Business Description" )]
     public BusienssDescription SecurityEscortCatalog2BusinessDescriptionTitle
     {
       get
@@ -3581,11 +3581,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._securityEscortCatalog2BusinessDescriptionTitle.SetEntity(value);
+        this._securityEscortCatalog2BusinessDescriptionTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "FreightPayerTitle", Storage = "_freightPayerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Freight Payer")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "FreightPayerTitle", Storage = "_freightPayerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Freight Payer" )]
     public FreightPayer FreightPayerTitle
     {
       get
@@ -3594,11 +3594,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._freightPayerTitle.SetEntity(value);
+        this._freightPayerTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "PartnerTitle", Storage = "_partnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "PartnerTitle", Storage = "_partnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner" )]
     public Partner PartnerTitle
     {
       get
@@ -3607,11 +3607,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._partnerTitle.SetEntity(value);
+        this._partnerTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "CurrencyTitle", Storage = "_currencyTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Currency")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "CurrencyTitle", Storage = "_currencyTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Currency" )]
     public Currency CurrencyTitle
     {
       get
@@ -3620,59 +3620,59 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._currencyTitle.SetEntity(value);
+        this._currencyTitle.SetEntity( value );
       }
     }
 
-    private void OnSecurityEscortCatalog2BusinessDescriptionTitleChanging(object sender, System.EventArgs e)
+    private void OnSecurityEscortCatalog2BusinessDescriptionTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("SecurityEscortCatalog2BusinessDescriptionTitle", this._securityEscortCatalog2BusinessDescriptionTitle.Clone());
+      this.OnPropertyChanging( "SecurityEscortCatalog2BusinessDescriptionTitle", this._securityEscortCatalog2BusinessDescriptionTitle.Clone() );
     }
 
-    private void OnSecurityEscortCatalog2BusinessDescriptionTitleChanged(object sender, System.EventArgs e)
+    private void OnSecurityEscortCatalog2BusinessDescriptionTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("SecurityEscortCatalog2BusinessDescriptionTitle");
+      this.OnPropertyChanged( "SecurityEscortCatalog2BusinessDescriptionTitle" );
     }
 
-    private void OnFreightPayerTitleChanging(object sender, System.EventArgs e)
+    private void OnFreightPayerTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("FreightPayerTitle", this._freightPayerTitle.Clone());
+      this.OnPropertyChanging( "FreightPayerTitle", this._freightPayerTitle.Clone() );
     }
 
-    private void OnFreightPayerTitleChanged(object sender, System.EventArgs e)
+    private void OnFreightPayerTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("FreightPayerTitle");
+      this.OnPropertyChanged( "FreightPayerTitle" );
     }
 
-    private void OnFreightPayerTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer> e)
-    {
-    }
-
-    private void OnPartnerTitleChanging(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanging("PartnerTitle", this._partnerTitle.Clone());
-    }
-
-    private void OnPartnerTitleChanged(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanged("PartnerTitle");
-    }
-
-    private void OnPartnerTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e)
+    private void OnFreightPayerTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer> e )
     {
     }
 
-    private void OnCurrencyTitleChanging(object sender, System.EventArgs e)
+    private void OnPartnerTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("CurrencyTitle", this._currencyTitle.Clone());
+      this.OnPropertyChanging( "PartnerTitle", this._partnerTitle.Clone() );
     }
 
-    private void OnCurrencyTitleChanged(object sender, System.EventArgs e)
+    private void OnPartnerTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("CurrencyTitle");
+      this.OnPropertyChanged( "PartnerTitle" );
     }
 
-    private void OnCurrencyTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency> e)
+    private void OnPartnerTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e )
+    {
+    }
+
+    private void OnCurrencyTitleChanging( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanging( "CurrencyTitle", this._currencyTitle.Clone() );
+    }
+
+    private void OnCurrencyTitleChanged( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanged( "CurrencyTitle" );
+    }
+
+    private void OnCurrencyTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency> e )
     {
     }
 
@@ -3681,8 +3681,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_ShipmentTypeListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "ShipmentType", Id = "0x01009FC484DC88AC45AEBDFEEFEB856EFEE0")]
-  public partial class ShipmentType : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "ShipmentType", Id = "0x01009FC484DC88AC45AEBDFEEFEB856EFEE0" )]
+  public partial class ShipmentType: Element
   {
 
     #region Extensibility Method Definitions
@@ -3701,8 +3701,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_ShippingsListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "Shipping", Id = "0x0100BBD0D4AB58624F5B900FECE61EEC2988")]
-  public partial class Shipping : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "Shipping", Id = "0x0100BBD0D4AB58624F5B900FECE61EEC2988" )]
+  public partial class Shipping: Element
   {
 
     private string _reportPeriod;
@@ -3819,8 +3819,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 
     private string _editor;
 
-    private Microsoft.SharePoint.Linq.EntitySet<TimeSlot> _timeSlot;
-
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate();
@@ -3830,73 +3828,69 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public Shipping()
     {
       this._shippingDriversTeam = new Microsoft.SharePoint.Linq.EntitySet<ShippingDriversTeam>();
-      this._shippingDriversTeam.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingDriversTeam>>(this.OnShippingDriversTeamSync);
-      this._shippingDriversTeam.OnChanged += new System.EventHandler(this.OnShippingDriversTeamChanged);
-      this._shippingDriversTeam.OnChanging += new System.EventHandler(this.OnShippingDriversTeamChanging);
+      this._shippingDriversTeam.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingDriversTeam>>( this.OnShippingDriversTeamSync );
+      this._shippingDriversTeam.OnChanged += new System.EventHandler( this.OnShippingDriversTeamChanged );
+      this._shippingDriversTeam.OnChanging += new System.EventHandler( this.OnShippingDriversTeamChanging );
       this._loadDescription = new Microsoft.SharePoint.Linq.EntitySet<LoadDescription>();
-      this._loadDescription.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription>>(this.OnLoadDescriptionSync);
-      this._loadDescription.OnChanged += new System.EventHandler(this.OnLoadDescriptionChanged);
-      this._loadDescription.OnChanging += new System.EventHandler(this.OnLoadDescriptionChanging);
+      this._loadDescription.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription>>( this.OnLoadDescriptionSync );
+      this._loadDescription.OnChanged += new System.EventHandler( this.OnLoadDescriptionChanged );
+      this._loadDescription.OnChanging += new System.EventHandler( this.OnLoadDescriptionChanging );
       this._partnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
-      this._partnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnPartnerTitleSync);
-      this._partnerTitle.OnChanged += new System.EventHandler(this.OnPartnerTitleChanged);
-      this._partnerTitle.OnChanging += new System.EventHandler(this.OnPartnerTitleChanging);
+      this._partnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>( this.OnPartnerTitleSync );
+      this._partnerTitle.OnChanged += new System.EventHandler( this.OnPartnerTitleChanged );
+      this._partnerTitle.OnChanging += new System.EventHandler( this.OnPartnerTitleChanging );
       this._shipping2WarehouseTitle = new Microsoft.SharePoint.Linq.EntityRef<Warehouse>();
-      this._shipping2WarehouseTitle.OnChanged += new System.EventHandler(this.OnShipping2WarehouseTitleChanged);
-      this._shipping2WarehouseTitle.OnChanging += new System.EventHandler(this.OnShipping2WarehouseTitleChanging);
+      this._shipping2WarehouseTitle.OnChanged += new System.EventHandler( this.OnShipping2WarehouseTitleChanged );
+      this._shipping2WarehouseTitle.OnChanging += new System.EventHandler( this.OnShipping2WarehouseTitleChanging );
       this._truckTitle = new Microsoft.SharePoint.Linq.EntityRef<Truck>();
-      this._truckTitle.OnChanged += new System.EventHandler(this.OnTruckTitleChanged);
-      this._truckTitle.OnChanging += new System.EventHandler(this.OnTruckTitleChanging);
+      this._truckTitle.OnChanged += new System.EventHandler( this.OnTruckTitleChanged );
+      this._truckTitle.OnChanging += new System.EventHandler( this.OnTruckTitleChanging );
       this._trailerTitle = new Microsoft.SharePoint.Linq.EntityRef<Trailer>();
-      this._trailerTitle.OnChanged += new System.EventHandler(this.OnTrailerTitleChanged);
-      this._trailerTitle.OnChanging += new System.EventHandler(this.OnTrailerTitleChanging);
+      this._trailerTitle.OnChanged += new System.EventHandler( this.OnTrailerTitleChanged );
+      this._trailerTitle.OnChanging += new System.EventHandler( this.OnTrailerTitleChanging );
       this._shipping2RouteTitle = new Microsoft.SharePoint.Linq.EntityRef<Route>();
-      this._shipping2RouteTitle.OnChanged += new System.EventHandler(this.OnShipping2RouteTitleChanged);
-      this._shipping2RouteTitle.OnChanging += new System.EventHandler(this.OnShipping2RouteTitleChanging);
+      this._shipping2RouteTitle.OnChanged += new System.EventHandler( this.OnShipping2RouteTitleChanged );
+      this._shipping2RouteTitle.OnChanging += new System.EventHandler( this.OnShipping2RouteTitleChanging );
       this._shipping2PartnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
-      this._shipping2PartnerTitle.OnChanged += new System.EventHandler(this.OnShipping2PartnerTitleChanged);
-      this._shipping2PartnerTitle.OnChanging += new System.EventHandler(this.OnShipping2PartnerTitleChanging);
+      this._shipping2PartnerTitle.OnChanged += new System.EventHandler( this.OnShipping2PartnerTitleChanged );
+      this._shipping2PartnerTitle.OnChanging += new System.EventHandler( this.OnShipping2PartnerTitleChanging );
       this._securityEscortCatalogTitle = new Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog>();
-      this._securityEscortCatalogTitle.OnChanged += new System.EventHandler(this.OnSecurityEscortCatalogTitleChanged);
-      this._securityEscortCatalogTitle.OnChanging += new System.EventHandler(this.OnSecurityEscortCatalogTitleChanging);
+      this._securityEscortCatalogTitle.OnChanged += new System.EventHandler( this.OnSecurityEscortCatalogTitleChanged );
+      this._securityEscortCatalogTitle.OnChanging += new System.EventHandler( this.OnSecurityEscortCatalogTitleChanging );
       this._shipping2TruckTitle = new Microsoft.SharePoint.Linq.EntityRef<Truck>();
-      this._shipping2TruckTitle.OnChanged += new System.EventHandler(this.OnShipping2TruckTitleChanged);
-      this._shipping2TruckTitle.OnChanging += new System.EventHandler(this.OnShipping2TruckTitleChanging);
+      this._shipping2TruckTitle.OnChanged += new System.EventHandler( this.OnShipping2TruckTitleChanged );
+      this._shipping2TruckTitle.OnChanging += new System.EventHandler( this.OnShipping2TruckTitleChanging );
       this._shipping2City = new Microsoft.SharePoint.Linq.EntityRef<CityType>();
-      this._shipping2City.OnChanged += new System.EventHandler(this.OnShipping2CityChanged);
-      this._shipping2City.OnChanging += new System.EventHandler(this.OnShipping2CityChanging);
+      this._shipping2City.OnChanged += new System.EventHandler( this.OnShipping2CityChanged );
+      this._shipping2City.OnChanging += new System.EventHandler( this.OnShipping2CityChanging );
       this._shipping2TransportUnitType = new Microsoft.SharePoint.Linq.EntityRef<TranspotUnit>();
-      this._shipping2TransportUnitType.OnChanged += new System.EventHandler(this.OnShipping2TransportUnitTypeChanged);
-      this._shipping2TransportUnitType.OnChanging += new System.EventHandler(this.OnShipping2TransportUnitTypeChanging);
+      this._shipping2TransportUnitType.OnChanged += new System.EventHandler( this.OnShipping2TransportUnitTypeChanged );
+      this._shipping2TransportUnitType.OnChanging += new System.EventHandler( this.OnShipping2TransportUnitTypeChanging );
       this._shipping2Currency4AddCosts = new Microsoft.SharePoint.Linq.EntityRef<Currency>();
-      this._shipping2Currency4AddCosts.OnChanged += new System.EventHandler(this.OnShipping2Currency4AddCostsChanged);
-      this._shipping2Currency4AddCosts.OnChanging += new System.EventHandler(this.OnShipping2Currency4AddCostsChanging);
+      this._shipping2Currency4AddCosts.OnChanged += new System.EventHandler( this.OnShipping2Currency4AddCostsChanged );
+      this._shipping2Currency4AddCosts.OnChanging += new System.EventHandler( this.OnShipping2Currency4AddCostsChanging );
       this._shipping2CurrencyForFreight = new Microsoft.SharePoint.Linq.EntityRef<Currency>();
-      this._shipping2CurrencyForFreight.OnChanged += new System.EventHandler(this.OnShipping2CurrencyForFreightChanged);
-      this._shipping2CurrencyForFreight.OnChanging += new System.EventHandler(this.OnShipping2CurrencyForFreightChanging);
+      this._shipping2CurrencyForFreight.OnChanged += new System.EventHandler( this.OnShipping2CurrencyForFreightChanged );
+      this._shipping2CurrencyForFreight.OnChanging += new System.EventHandler( this.OnShipping2CurrencyForFreightChanging );
       this._shipping2CurrencyForEscort = new Microsoft.SharePoint.Linq.EntityRef<Currency>();
-      this._shipping2CurrencyForEscort.OnChanged += new System.EventHandler(this.OnShipping2CurrencyForEscortChanged);
-      this._shipping2CurrencyForEscort.OnChanging += new System.EventHandler(this.OnShipping2CurrencyForEscortChanging);
+      this._shipping2CurrencyForEscort.OnChanged += new System.EventHandler( this.OnShipping2CurrencyForEscortChanged );
+      this._shipping2CurrencyForEscort.OnChanging += new System.EventHandler( this.OnShipping2CurrencyForEscortChanging );
       this._shipping2Currency4CostsPerKU = new Microsoft.SharePoint.Linq.EntityRef<Currency>();
-      this._shipping2Currency4CostsPerKU.OnChanged += new System.EventHandler(this.OnShipping2Currency4CostsPerKUChanged);
-      this._shipping2Currency4CostsPerKU.OnChanging += new System.EventHandler(this.OnShipping2Currency4CostsPerKUChanging);
+      this._shipping2Currency4CostsPerKU.OnChanged += new System.EventHandler( this.OnShipping2Currency4CostsPerKUChanged );
+      this._shipping2Currency4CostsPerKU.OnChanging += new System.EventHandler( this.OnShipping2Currency4CostsPerKUChanging );
       this._shipping2FreightPOIndex = new Microsoft.SharePoint.Linq.EntityRef<FreightPO>();
-      this._shipping2FreightPOIndex.OnChanged += new System.EventHandler(this.OnShipping2FreightPOIndexChanged);
-      this._shipping2FreightPOIndex.OnChanging += new System.EventHandler(this.OnShipping2FreightPOIndexChanging);
+      this._shipping2FreightPOIndex.OnChanged += new System.EventHandler( this.OnShipping2FreightPOIndexChanged );
+      this._shipping2FreightPOIndex.OnChanging += new System.EventHandler( this.OnShipping2FreightPOIndexChanging );
       this._shipping2EscortPOIndex = new Microsoft.SharePoint.Linq.EntityRef<EscortPO>();
-      this._shipping2EscortPOIndex.OnChanged += new System.EventHandler(this.OnShipping2EscortPOIndexChanged);
-      this._shipping2EscortPOIndex.OnChanging += new System.EventHandler(this.OnShipping2EscortPOIndexChanging);
+      this._shipping2EscortPOIndex.OnChanged += new System.EventHandler( this.OnShipping2EscortPOIndexChanged );
+      this._shipping2EscortPOIndex.OnChanging += new System.EventHandler( this.OnShipping2EscortPOIndexChanging );
       this._securitySealProtocolIndex = new Microsoft.SharePoint.Linq.EntityRef<SealProtocol>();
-      this._securitySealProtocolIndex.OnChanged += new System.EventHandler(this.OnSecuritySealProtocolIndexChanged);
-      this._securitySealProtocolIndex.OnChanging += new System.EventHandler(this.OnSecuritySealProtocolIndexChanging);
-      this._timeSlot = new Microsoft.SharePoint.Linq.EntitySet<TimeSlot>();
-      this._timeSlot.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlot>>(this.OnTimeSlotSync);
-      this._timeSlot.OnChanged += new System.EventHandler(this.OnTimeSlotChanged);
-      this._timeSlot.OnChanging += new System.EventHandler(this.OnTimeSlotChanging);
+      this._securitySealProtocolIndex.OnChanged += new System.EventHandler( this.OnSecuritySealProtocolIndexChanged );
+      this._securitySealProtocolIndex.OnChanging += new System.EventHandler( this.OnSecuritySealProtocolIndexChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ReportPeriod", Storage = "_reportPeriod", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ReportPeriod", Storage = "_reportPeriod", FieldType = "Text" )]
     public string ReportPeriod
     {
       get
@@ -3905,16 +3899,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._reportPeriod))
+        if ( ( value != this._reportPeriod ) )
         {
-          this.OnPropertyChanging("ReportPeriod", this._reportPeriod);
+          this.OnPropertyChanging( "ReportPeriod", this._reportPeriod );
           this._reportPeriod = value;
-          this.OnPropertyChanged("ReportPeriod");
+          this.OnPropertyChanged( "ReportPeriod" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "DockNumber", Storage = "_dockNumber", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "DockNumber", Storage = "_dockNumber", FieldType = "Text" )]
     public string DockNumber
     {
       get
@@ -3923,16 +3917,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._dockNumber))
+        if ( ( value != this._dockNumber ) )
         {
-          this.OnPropertyChanging("DockNumber", this._dockNumber);
+          this.OnPropertyChanging( "DockNumber", this._dockNumber );
           this._dockNumber = value;
-          this.OnPropertyChanged("DockNumber");
+          this.OnPropertyChanged( "DockNumber" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "StartTime", Storage = "_startTime", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "StartTime", Storage = "_startTime", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> StartTime
     {
       get
@@ -3941,16 +3935,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._startTime))
+        if ( ( value != this._startTime ) )
         {
-          this.OnPropertyChanging("StartTime", this._startTime);
+          this.OnPropertyChanging( "StartTime", this._startTime );
           this._startTime = value;
-          this.OnPropertyChanged("StartTime");
+          this.OnPropertyChanged( "StartTime" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "EndTime", Storage = "_endTime", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "EndTime", Storage = "_endTime", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> EndTime
     {
       get
@@ -3959,16 +3953,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._endTime))
+        if ( ( value != this._endTime ) )
         {
-          this.OnPropertyChanging("EndTime", this._endTime);
+          this.OnPropertyChanging( "EndTime", this._endTime );
           this._endTime = value;
-          this.OnPropertyChanged("EndTime");
+          this.OnPropertyChanged( "EndTime" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ShippingDuration", Storage = "_shippingDuration", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ShippingDuration", Storage = "_shippingDuration", FieldType = "Number" )]
     public System.Nullable<double> ShippingDuration
     {
       get
@@ -3977,16 +3971,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._shippingDuration))
+        if ( ( value != this._shippingDuration ) )
         {
-          this.OnPropertyChanging("ShippingDuration", this._shippingDuration);
+          this.OnPropertyChanging( "ShippingDuration", this._shippingDuration );
           this._shippingDuration = value;
-          this.OnPropertyChanged("ShippingDuration");
+          this.OnPropertyChanged( "ShippingDuration" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "CancelationReason", Storage = "_cancelationReason", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "CancelationReason", Storage = "_cancelationReason", FieldType = "Text" )]
     public string CancelationReason
     {
       get
@@ -3995,16 +3989,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._cancelationReason))
+        if ( ( value != this._cancelationReason ) )
         {
-          this.OnPropertyChanging("CancelationReason", this._cancelationReason);
+          this.OnPropertyChanging( "CancelationReason", this._cancelationReason );
           this._cancelationReason = value;
-          this.OnPropertyChanged("CancelationReason");
+          this.OnPropertyChanged( "CancelationReason" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "BusinessDescription", Storage = "_businessDescription", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "BusinessDescription", Storage = "_businessDescription", FieldType = "Text" )]
     public string BusinessDescription
     {
       get
@@ -4013,16 +4007,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._businessDescription))
+        if ( ( value != this._businessDescription ) )
         {
-          this.OnPropertyChanging("BusinessDescription", this._businessDescription);
+          this.OnPropertyChanging( "BusinessDescription", this._businessDescription );
           this._businessDescription = value;
-          this.OnPropertyChanged("BusinessDescription");
+          this.OnPropertyChanged( "BusinessDescription" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "EstimateDeliveryTime", Storage = "_estimateDeliveryTime", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "EstimateDeliveryTime", Storage = "_estimateDeliveryTime", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> EstimateDeliveryTime
     {
       get
@@ -4031,16 +4025,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._estimateDeliveryTime))
+        if ( ( value != this._estimateDeliveryTime ) )
         {
-          this.OnPropertyChanging("EstimateDeliveryTime", this._estimateDeliveryTime);
+          this.OnPropertyChanging( "EstimateDeliveryTime", this._estimateDeliveryTime );
           this._estimateDeliveryTime = value;
-          this.OnPropertyChanged("EstimateDeliveryTime");
+          this.OnPropertyChanged( "EstimateDeliveryTime" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "IsOutbound", Storage = "_isOutbound", FieldType = "Boolean")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "IsOutbound", Storage = "_isOutbound", FieldType = "Boolean" )]
     public System.Nullable<bool> IsOutbound
     {
       get
@@ -4049,16 +4043,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._isOutbound))
+        if ( ( value != this._isOutbound ) )
         {
-          this.OnPropertyChanging("IsOutbound", this._isOutbound);
+          this.OnPropertyChanging( "IsOutbound", this._isOutbound );
           this._isOutbound = value;
-          this.OnPropertyChanged("IsOutbound");
+          this.OnPropertyChanged( "IsOutbound" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "TruckAwaiting", Storage = "_truckAwaiting", FieldType = "Boolean")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "TruckAwaiting", Storage = "_truckAwaiting", FieldType = "Boolean" )]
     public System.Nullable<bool> TruckAwaiting
     {
       get
@@ -4067,16 +4061,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._truckAwaiting))
+        if ( ( value != this._truckAwaiting ) )
         {
-          this.OnPropertyChanging("TruckAwaiting", this._truckAwaiting);
+          this.OnPropertyChanging( "TruckAwaiting", this._truckAwaiting );
           this._truckAwaiting = value;
-          this.OnPropertyChanged("TruckAwaiting");
+          this.OnPropertyChanged( "TruckAwaiting" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "TrailerConditionComments", Storage = "_trailerConditionComments", FieldType = "Note")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "TrailerConditionComments", Storage = "_trailerConditionComments", FieldType = "Note" )]
     public string TrailerConditionComments
     {
       get
@@ -4085,16 +4079,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._trailerConditionComments))
+        if ( ( value != this._trailerConditionComments ) )
         {
-          this.OnPropertyChanging("TrailerConditionComments", this._trailerConditionComments);
+          this.OnPropertyChanging( "TrailerConditionComments", this._trailerConditionComments );
           this._trailerConditionComments = value;
-          this.OnPropertyChanged("TrailerConditionComments");
+          this.OnPropertyChanged( "TrailerConditionComments" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ContainerNo", Storage = "_containerNo", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ContainerNo", Storage = "_containerNo", FieldType = "Text" )]
     public string ContainerNo
     {
       get
@@ -4103,16 +4097,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._containerNo))
+        if ( ( value != this._containerNo ) )
         {
-          this.OnPropertyChanging("ContainerNo", this._containerNo);
+          this.OnPropertyChanging( "ContainerNo", this._containerNo );
           this._containerNo = value;
-          this.OnPropertyChanged("ContainerNo");
+          this.OnPropertyChanged( "ContainerNo" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ShippingCountryTitle", Storage = "_shippingCountryTitle", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ShippingCountryTitle", Storage = "_shippingCountryTitle", FieldType = "Text" )]
     public string ShippingCountryTitle
     {
       get
@@ -4121,16 +4115,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._shippingCountryTitle))
+        if ( ( value != this._shippingCountryTitle ) )
         {
-          this.OnPropertyChanging("ShippingCountryTitle", this._shippingCountryTitle);
+          this.OnPropertyChanging( "ShippingCountryTitle", this._shippingCountryTitle );
           this._shippingCountryTitle = value;
-          this.OnPropertyChanged("ShippingCountryTitle");
+          this.OnPropertyChanged( "ShippingCountryTitle" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ShippingFreightPayerTitle", Storage = "_shippingFreightPayerTitle", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ShippingFreightPayerTitle", Storage = "_shippingFreightPayerTitle", FieldType = "Text" )]
     public string ShippingFreightPayerTitle
     {
       get
@@ -4139,16 +4133,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._shippingFreightPayerTitle))
+        if ( ( value != this._shippingFreightPayerTitle ) )
         {
-          this.OnPropertyChanging("ShippingFreightPayerTitle", this._shippingFreightPayerTitle);
+          this.OnPropertyChanging( "ShippingFreightPayerTitle", this._shippingFreightPayerTitle );
           this._shippingFreightPayerTitle = value;
-          this.OnPropertyChanged("ShippingFreightPayerTitle");
+          this.OnPropertyChanged( "ShippingFreightPayerTitle" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "EuroPalletsQuantity", Storage = "_euroPalletsQuantity", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "EuroPalletsQuantity", Storage = "_euroPalletsQuantity", FieldType = "Number" )]
     public System.Nullable<double> EuroPalletsQuantity
     {
       get
@@ -4157,16 +4151,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._euroPalletsQuantity))
+        if ( ( value != this._euroPalletsQuantity ) )
         {
-          this.OnPropertyChanging("EuroPalletsQuantity", this._euroPalletsQuantity);
+          this.OnPropertyChanging( "EuroPalletsQuantity", this._euroPalletsQuantity );
           this._euroPalletsQuantity = value;
-          this.OnPropertyChanged("EuroPalletsQuantity");
+          this.OnPropertyChanged( "EuroPalletsQuantity" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "InduPalletsQuantity", Storage = "_induPalletsQuantity", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "InduPalletsQuantity", Storage = "_induPalletsQuantity", FieldType = "Number" )]
     public System.Nullable<double> InduPalletsQuantity
     {
       get
@@ -4175,16 +4169,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._induPalletsQuantity))
+        if ( ( value != this._induPalletsQuantity ) )
         {
-          this.OnPropertyChanging("InduPalletsQuantity", this._induPalletsQuantity);
+          this.OnPropertyChanging( "InduPalletsQuantity", this._induPalletsQuantity );
           this._induPalletsQuantity = value;
-          this.OnPropertyChanged("InduPalletsQuantity");
+          this.OnPropertyChanged( "InduPalletsQuantity" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ShippingRouteDepartureCity", Storage = "_shippingRouteDepartureCity", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ShippingRouteDepartureCity", Storage = "_shippingRouteDepartureCity", FieldType = "Text" )]
     public string ShippingRouteDepartureCity
     {
       get
@@ -4193,16 +4187,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._shippingRouteDepartureCity))
+        if ( ( value != this._shippingRouteDepartureCity ) )
         {
-          this.OnPropertyChanging("ShippingRouteDepartureCity", this._shippingRouteDepartureCity);
+          this.OnPropertyChanging( "ShippingRouteDepartureCity", this._shippingRouteDepartureCity );
           this._shippingRouteDepartureCity = value;
-          this.OnPropertyChanged("ShippingRouteDepartureCity");
+          this.OnPropertyChanged( "ShippingRouteDepartureCity" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ShippingCarrierTitle", Storage = "_shippingCarrierTitle", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ShippingCarrierTitle", Storage = "_shippingCarrierTitle", FieldType = "Text" )]
     public string ShippingCarrierTitle
     {
       get
@@ -4211,16 +4205,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._shippingCarrierTitle))
+        if ( ( value != this._shippingCarrierTitle ) )
         {
-          this.OnPropertyChanging("ShippingCarrierTitle", this._shippingCarrierTitle);
+          this.OnPropertyChanging( "ShippingCarrierTitle", this._shippingCarrierTitle );
           this._shippingCarrierTitle = value;
-          this.OnPropertyChanged("ShippingCarrierTitle");
+          this.OnPropertyChanged( "ShippingCarrierTitle" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ShippingCommodityTitle", Storage = "_shippingCommodityTitle", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ShippingCommodityTitle", Storage = "_shippingCommodityTitle", FieldType = "Text" )]
     public string ShippingCommodityTitle
     {
       get
@@ -4229,16 +4223,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._shippingCommodityTitle))
+        if ( ( value != this._shippingCommodityTitle ) )
         {
-          this.OnPropertyChanging("ShippingCommodityTitle", this._shippingCommodityTitle);
+          this.OnPropertyChanging( "ShippingCommodityTitle", this._shippingCommodityTitle );
           this._shippingCommodityTitle = value;
-          this.OnPropertyChanged("ShippingCommodityTitle");
+          this.OnPropertyChanged( "ShippingCommodityTitle" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "TotalQuantityKU", Storage = "_totalQuantityKU", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "TotalQuantityKU", Storage = "_totalQuantityKU", FieldType = "Number" )]
     public System.Nullable<double> TotalQuantityKU
     {
       get
@@ -4247,16 +4241,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._totalQuantityKU))
+        if ( ( value != this._totalQuantityKU ) )
         {
-          this.OnPropertyChanging("TotalQuantityKU", this._totalQuantityKU);
+          this.OnPropertyChanging( "TotalQuantityKU", this._totalQuantityKU );
           this._totalQuantityKU = value;
-          this.OnPropertyChanged("TotalQuantityKU");
+          this.OnPropertyChanged( "TotalQuantityKU" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "AdditionalCosts", Storage = "_additionalCosts", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "AdditionalCosts", Storage = "_additionalCosts", FieldType = "Number" )]
     public System.Nullable<double> AdditionalCosts
     {
       get
@@ -4265,16 +4259,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._additionalCosts))
+        if ( ( value != this._additionalCosts ) )
         {
-          this.OnPropertyChanging("AdditionalCosts", this._additionalCosts);
+          this.OnPropertyChanging( "AdditionalCosts", this._additionalCosts );
           this._additionalCosts = value;
-          this.OnPropertyChanged("AdditionalCosts");
+          this.OnPropertyChanged( "AdditionalCosts" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ShippingFreightCost", Storage = "_shippingFreightCost", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ShippingFreightCost", Storage = "_shippingFreightCost", FieldType = "Number" )]
     public System.Nullable<double> ShippingFreightCost
     {
       get
@@ -4283,16 +4277,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._shippingFreightCost))
+        if ( ( value != this._shippingFreightCost ) )
         {
-          this.OnPropertyChanging("ShippingFreightCost", this._shippingFreightCost);
+          this.OnPropertyChanging( "ShippingFreightCost", this._shippingFreightCost );
           this._shippingFreightCost = value;
-          this.OnPropertyChanged("ShippingFreightCost");
+          this.OnPropertyChanged( "ShippingFreightCost" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ShippingSecurityCost", Storage = "_shippingSecurityCost", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ShippingSecurityCost", Storage = "_shippingSecurityCost", FieldType = "Number" )]
     public System.Nullable<double> ShippingSecurityCost
     {
       get
@@ -4301,16 +4295,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._shippingSecurityCost))
+        if ( ( value != this._shippingSecurityCost ) )
         {
-          this.OnPropertyChanging("ShippingSecurityCost", this._shippingSecurityCost);
+          this.OnPropertyChanging( "ShippingSecurityCost", this._shippingSecurityCost );
           this._shippingSecurityCost = value;
-          this.OnPropertyChanged("ShippingSecurityCost");
+          this.OnPropertyChanged( "ShippingSecurityCost" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "TotalCostsPerKU", Storage = "_totalCostsPerKU", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "TotalCostsPerKU", Storage = "_totalCostsPerKU", FieldType = "Number" )]
     public System.Nullable<double> TotalCostsPerKU
     {
       get
@@ -4319,16 +4313,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._totalCostsPerKU))
+        if ( ( value != this._totalCostsPerKU ) )
         {
-          this.OnPropertyChanging("TotalCostsPerKU", this._totalCostsPerKU);
+          this.OnPropertyChanging( "TotalCostsPerKU", this._totalCostsPerKU );
           this._totalCostsPerKU = value;
-          this.OnPropertyChanged("TotalCostsPerKU");
+          this.OnPropertyChanged( "TotalCostsPerKU" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Modified", Storage = "_modified", ReadOnly = true, FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Modified", Storage = "_modified", ReadOnly = true, FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> Modified
     {
       get
@@ -4337,16 +4331,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._modified))
+        if ( ( value != this._modified ) )
         {
-          this.OnPropertyChanging("Modified", this._modified);
+          this.OnPropertyChanging( "Modified", this._modified );
           this._modified = value;
-          this.OnPropertyChanged("Modified");
+          this.OnPropertyChanged( "Modified" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "TSStartTime", Storage = "_tSStartTime", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "TSStartTime", Storage = "_tSStartTime", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> TSStartTime
     {
       get
@@ -4355,16 +4349,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._tSStartTime))
+        if ( ( value != this._tSStartTime ) )
         {
-          this.OnPropertyChanging("TSStartTime", this._tSStartTime);
+          this.OnPropertyChanging( "TSStartTime", this._tSStartTime );
           this._tSStartTime = value;
-          this.OnPropertyChanged("TSStartTime");
+          this.OnPropertyChanged( "TSStartTime" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "TSEndTime", Storage = "_tSEndTime", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "TSEndTime", Storage = "_tSEndTime", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> TSEndTime
     {
       get
@@ -4373,16 +4367,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._tSEndTime))
+        if ( ( value != this._tSEndTime ) )
         {
-          this.OnPropertyChanging("TSEndTime", this._tSEndTime);
+          this.OnPropertyChanging( "TSEndTime", this._tSEndTime );
           this._tSEndTime = value;
-          this.OnPropertyChanged("TSEndTime");
+          this.OnPropertyChanged( "TSEndTime" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "WarehouseStartTime", Storage = "_warehouseStartTime", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "WarehouseStartTime", Storage = "_warehouseStartTime", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> WarehouseStartTime
     {
       get
@@ -4391,16 +4385,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._warehouseStartTime))
+        if ( ( value != this._warehouseStartTime ) )
         {
-          this.OnPropertyChanging("WarehouseStartTime", this._warehouseStartTime);
+          this.OnPropertyChanging( "WarehouseStartTime", this._warehouseStartTime );
           this._warehouseStartTime = value;
-          this.OnPropertyChanged("WarehouseStartTime");
+          this.OnPropertyChanged( "WarehouseStartTime" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "WarehouseEndTime", Storage = "_warehouseEndTime", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "WarehouseEndTime", Storage = "_warehouseEndTime", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> WarehouseEndTime
     {
       get
@@ -4409,16 +4403,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._warehouseEndTime))
+        if ( ( value != this._warehouseEndTime ) )
         {
-          this.OnPropertyChanging("WarehouseEndTime", this._warehouseEndTime);
+          this.OnPropertyChanging( "WarehouseEndTime", this._warehouseEndTime );
           this._warehouseEndTime = value;
-          this.OnPropertyChanged("WarehouseEndTime");
+          this.OnPropertyChanged( "WarehouseEndTime" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ArrivalTime", Storage = "_arrivalTime", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ArrivalTime", Storage = "_arrivalTime", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> ArrivalTime
     {
       get
@@ -4427,16 +4421,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._arrivalTime))
+        if ( ( value != this._arrivalTime ) )
         {
-          this.OnPropertyChanging("ArrivalTime", this._arrivalTime);
+          this.OnPropertyChanging( "ArrivalTime", this._arrivalTime );
           this._arrivalTime = value;
-          this.OnPropertyChanged("ArrivalTime");
+          this.OnPropertyChanged( "ArrivalTime" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "PoLastModification", Storage = "_poLastModification", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "PoLastModification", Storage = "_poLastModification", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> PoLastModification
     {
       get
@@ -4445,16 +4439,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._poLastModification))
+        if ( ( value != this._poLastModification ) )
         {
-          this.OnPropertyChanging("PoLastModification", this._poLastModification);
+          this.OnPropertyChanging( "PoLastModification", this._poLastModification );
           this._poLastModification = value;
-          this.OnPropertyChanged("PoLastModification");
+          this.OnPropertyChanged( "PoLastModification" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "PoNumberMultiline", Storage = "_poNumberMultiline", FieldType = "Note")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "PoNumberMultiline", Storage = "_poNumberMultiline", FieldType = "Note" )]
     public string PoNumberMultiline
     {
       get
@@ -4463,16 +4457,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._poNumberMultiline))
+        if ( ( value != this._poNumberMultiline ) )
         {
-          this.OnPropertyChanging("PoNumberMultiline", this._poNumberMultiline);
+          this.OnPropertyChanging( "PoNumberMultiline", this._poNumberMultiline );
           this._poNumberMultiline = value;
-          this.OnPropertyChanged("PoNumberMultiline");
+          this.OnPropertyChanged( "PoNumberMultiline" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ShippingState", Storage = "_shippingState", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ShippingState", Storage = "_shippingState", FieldType = "Choice" )]
     public System.Nullable<ShippingState> ShippingState
     {
       get
@@ -4481,16 +4475,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._shippingState))
+        if ( ( value != this._shippingState ) )
         {
-          this.OnPropertyChanging("ShippingState", this._shippingState);
+          this.OnPropertyChanging( "ShippingState", this._shippingState );
           this._shippingState = value;
-          this.OnPropertyChanged("ShippingState");
+          this.OnPropertyChanged( "ShippingState" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "LoadingType", Storage = "_loadingType", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "LoadingType", Storage = "_loadingType", FieldType = "Choice" )]
     public System.Nullable<LoadingType> LoadingType
     {
       get
@@ -4499,16 +4493,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._loadingType))
+        if ( ( value != this._loadingType ) )
         {
-          this.OnPropertyChanging("LoadingType", this._loadingType);
+          this.OnPropertyChanging( "LoadingType", this._loadingType );
           this._loadingType = value;
-          this.OnPropertyChanged("LoadingType");
+          this.OnPropertyChanged( "LoadingType" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "TrailerCondition", Storage = "_trailerCondition", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "TrailerCondition", Storage = "_trailerCondition", FieldType = "Choice" )]
     public System.Nullable<TrailerCondition> TrailerCondition
     {
       get
@@ -4517,16 +4511,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._trailerCondition))
+        if ( ( value != this._trailerCondition ) )
         {
-          this.OnPropertyChanging("TrailerCondition", this._trailerCondition);
+          this.OnPropertyChanging( "TrailerCondition", this._trailerCondition );
           this._trailerCondition = value;
-          this.OnPropertyChanged("TrailerCondition");
+          this.OnPropertyChanged( "TrailerCondition" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ShippingState2", Storage = "_shippingState2", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ShippingState2", Storage = "_shippingState2", FieldType = "Choice" )]
     public System.Nullable<ShippingState2> ShippingState2
     {
       get
@@ -4535,16 +4529,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._shippingState2))
+        if ( ( value != this._shippingState2 ) )
         {
-          this.OnPropertyChanging("ShippingState2", this._shippingState2);
+          this.OnPropertyChanging( "ShippingState2", this._shippingState2 );
           this._shippingState2 = value;
-          this.OnPropertyChanged("ShippingState2");
+          this.OnPropertyChanged( "ShippingState2" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "ShippingIndex", Storage = "_shippingDriversTeam", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Drivers Team")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "ShippingIndex", Storage = "_shippingDriversTeam", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Drivers Team" )]
     public Microsoft.SharePoint.Linq.EntitySet<ShippingDriversTeam> ShippingDriversTeam
     {
       get
@@ -4553,11 +4547,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shippingDriversTeam.Assign(value);
+        this._shippingDriversTeam.Assign( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "LoadDescription2ShippingIndex", Storage = "_loadDescription", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Load Description")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "LoadDescription2ShippingIndex", Storage = "_loadDescription", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Load Description" )]
     public Microsoft.SharePoint.Linq.EntitySet<LoadDescription> LoadDescription
     {
       get
@@ -4566,11 +4560,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._loadDescription.Assign(value);
+        this._loadDescription.Assign( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "PartnerTitle", Storage = "_partnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "PartnerTitle", Storage = "_partnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner" )]
     public Partner PartnerTitle
     {
       get
@@ -4579,11 +4573,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._partnerTitle.SetEntity(value);
+        this._partnerTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Shipping2WarehouseTitle", Storage = "_shipping2WarehouseTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Warehouse")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Shipping2WarehouseTitle", Storage = "_shipping2WarehouseTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Warehouse" )]
     public Warehouse Shipping2WarehouseTitle
     {
       get
@@ -4592,11 +4586,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shipping2WarehouseTitle.SetEntity(value);
+        this._shipping2WarehouseTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "TruckTitle", Storage = "_truckTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Truck")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "TruckTitle", Storage = "_truckTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Truck" )]
     public Truck TruckTitle
     {
       get
@@ -4605,11 +4599,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._truckTitle.SetEntity(value);
+        this._truckTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "TrailerTitle", Storage = "_trailerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Trailer")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "TrailerTitle", Storage = "_trailerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Trailer" )]
     public Trailer TrailerTitle
     {
       get
@@ -4618,11 +4612,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._trailerTitle.SetEntity(value);
+        this._trailerTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Shipping2RouteTitle", Storage = "_shipping2RouteTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Route")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Shipping2RouteTitle", Storage = "_shipping2RouteTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Route" )]
     public Route Shipping2RouteTitle
     {
       get
@@ -4631,11 +4625,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shipping2RouteTitle.SetEntity(value);
+        this._shipping2RouteTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Shipping2PartnerTitle", Storage = "_shipping2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Shipping2PartnerTitle", Storage = "_shipping2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner" )]
     public Partner Shipping2PartnerTitle
     {
       get
@@ -4644,11 +4638,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shipping2PartnerTitle.SetEntity(value);
+        this._shipping2PartnerTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "SecurityEscortCatalogTitle", Storage = "_securityEscortCatalogTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Security Escort Route")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "SecurityEscortCatalogTitle", Storage = "_securityEscortCatalogTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Security Escort Route" )]
     public SecurityEscortCatalog SecurityEscortCatalogTitle
     {
       get
@@ -4657,11 +4651,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._securityEscortCatalogTitle.SetEntity(value);
+        this._securityEscortCatalogTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Shipping2TruckTitle", Storage = "_shipping2TruckTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Truck")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Shipping2TruckTitle", Storage = "_shipping2TruckTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Truck" )]
     public Truck Shipping2TruckTitle
     {
       get
@@ -4670,11 +4664,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shipping2TruckTitle.SetEntity(value);
+        this._shipping2TruckTitle.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Shipping2City", Storage = "_shipping2City", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "City")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Shipping2City", Storage = "_shipping2City", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "City" )]
     public CityType Shipping2City
     {
       get
@@ -4683,11 +4677,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shipping2City.SetEntity(value);
+        this._shipping2City.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Shipping2TransportUnitType", Storage = "_shipping2TransportUnitType", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Transport Unit Type")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Shipping2TransportUnitType", Storage = "_shipping2TransportUnitType", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Transport Unit Type" )]
     public TranspotUnit Shipping2TransportUnitType
     {
       get
@@ -4696,11 +4690,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shipping2TransportUnitType.SetEntity(value);
+        this._shipping2TransportUnitType.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Shipping2Currency4AddCosts", Storage = "_shipping2Currency4AddCosts", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Currency")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Shipping2Currency4AddCosts", Storage = "_shipping2Currency4AddCosts", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Currency" )]
     public Currency Shipping2Currency4AddCosts
     {
       get
@@ -4709,11 +4703,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shipping2Currency4AddCosts.SetEntity(value);
+        this._shipping2Currency4AddCosts.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Shipping2CurrencyForFreight", Storage = "_shipping2CurrencyForFreight", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Currency")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Shipping2CurrencyForFreight", Storage = "_shipping2CurrencyForFreight", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Currency" )]
     public Currency Shipping2CurrencyForFreight
     {
       get
@@ -4722,11 +4716,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shipping2CurrencyForFreight.SetEntity(value);
+        this._shipping2CurrencyForFreight.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Shipping2CurrencyForEscort", Storage = "_shipping2CurrencyForEscort", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Currency")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Shipping2CurrencyForEscort", Storage = "_shipping2CurrencyForEscort", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Currency" )]
     public Currency Shipping2CurrencyForEscort
     {
       get
@@ -4735,11 +4729,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shipping2CurrencyForEscort.SetEntity(value);
+        this._shipping2CurrencyForEscort.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Shipping2Currency4CostsPerKU", Storage = "_shipping2Currency4CostsPerKU", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Currency")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Shipping2Currency4CostsPerKU", Storage = "_shipping2Currency4CostsPerKU", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Currency" )]
     public Currency Shipping2Currency4CostsPerKU
     {
       get
@@ -4748,11 +4742,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shipping2Currency4CostsPerKU.SetEntity(value);
+        this._shipping2Currency4CostsPerKU.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Shipping2FreightPOIndex", Storage = "_shipping2FreightPOIndex", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Freight PO Library")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Shipping2FreightPOIndex", Storage = "_shipping2FreightPOIndex", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Freight PO Library" )]
     public FreightPO Shipping2FreightPOIndex
     {
       get
@@ -4761,11 +4755,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shipping2FreightPOIndex.SetEntity(value);
+        this._shipping2FreightPOIndex.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Shipping2EscortPOIndex", Storage = "_shipping2EscortPOIndex", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Escort PO Library")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Shipping2EscortPOIndex", Storage = "_shipping2EscortPOIndex", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Escort PO Library" )]
     public EscortPO Shipping2EscortPOIndex
     {
       get
@@ -4774,11 +4768,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shipping2EscortPOIndex.SetEntity(value);
+        this._shipping2EscortPOIndex.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "SecuritySealProtocolIndex", Storage = "_securitySealProtocolIndex", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Seal Protocol Library")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "SecuritySealProtocolIndex", Storage = "_securitySealProtocolIndex", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Seal Protocol Library" )]
     public SealProtocol SecuritySealProtocolIndex
     {
       get
@@ -4787,11 +4781,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._securitySealProtocolIndex.SetEntity(value);
+        this._securitySealProtocolIndex.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Editor", Storage = "_editorId", ReadOnly = true, FieldType = "User", IsLookupId = true)]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Editor", Storage = "_editorId", ReadOnly = true, FieldType = "User", IsLookupId = true )]
     public System.Nullable<int> EditorId
     {
       get
@@ -4800,16 +4794,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._editorId))
+        if ( ( value != this._editorId ) )
         {
-          this.OnPropertyChanging("EditorId", this._editorId);
+          this.OnPropertyChanging( "EditorId", this._editorId );
           this._editorId = value;
-          this.OnPropertyChanged("EditorId");
+          this.OnPropertyChanged( "EditorId" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Editor", Storage = "_editor", ReadOnly = true, FieldType = "User", IsLookupValue = true)]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Editor", Storage = "_editor", ReadOnly = true, FieldType = "User", IsLookupValue = true )]
     public string Editor
     {
       get
@@ -4818,41 +4812,28 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._editor))
+        if ( ( value != this._editor ) )
         {
-          this.OnPropertyChanging("Editor", this._editor);
+          this.OnPropertyChanging( "Editor", this._editor );
           this._editor = value;
-          this.OnPropertyChanged("Editor");
+          this.OnPropertyChanged( "Editor" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "TimeSlot2ShippingIndex", Storage = "_timeSlot", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Time Slot")]
-    public Microsoft.SharePoint.Linq.EntitySet<TimeSlot> TimeSlot
+    private void OnShippingDriversTeamChanging( object sender, System.EventArgs e )
     {
-      get
-      {
-        return this._timeSlot;
-      }
-      set
-      {
-        this._timeSlot.Assign(value);
-      }
+      this.OnPropertyChanging( "ShippingDriversTeam", this._shippingDriversTeam.Clone() );
     }
 
-    private void OnShippingDriversTeamChanging(object sender, System.EventArgs e)
+    private void OnShippingDriversTeamChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("ShippingDriversTeam", this._shippingDriversTeam.Clone());
+      this.OnPropertyChanged( "ShippingDriversTeam" );
     }
 
-    private void OnShippingDriversTeamChanged(object sender, System.EventArgs e)
+    private void OnShippingDriversTeamSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingDriversTeam> e )
     {
-      this.OnPropertyChanged("ShippingDriversTeam");
-    }
-
-    private void OnShippingDriversTeamSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingDriversTeam> e)
-    {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
         e.Item.ShippingIndex = this;
       }
@@ -4862,19 +4843,19 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
     }
 
-    private void OnLoadDescriptionChanging(object sender, System.EventArgs e)
+    private void OnLoadDescriptionChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("LoadDescription", this._loadDescription.Clone());
+      this.OnPropertyChanging( "LoadDescription", this._loadDescription.Clone() );
     }
 
-    private void OnLoadDescriptionChanged(object sender, System.EventArgs e)
+    private void OnLoadDescriptionChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("LoadDescription");
+      this.OnPropertyChanged( "LoadDescription" );
     }
 
-    private void OnLoadDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e)
+    private void OnLoadDescriptionSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
         e.Item.LoadDescription2ShippingIndex = this;
       }
@@ -4884,210 +4865,189 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
     }
 
-    private void OnPartnerTitleChanging(object sender, System.EventArgs e)
+    private void OnPartnerTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("PartnerTitle", this._partnerTitle.Clone());
+      this.OnPropertyChanging( "PartnerTitle", this._partnerTitle.Clone() );
     }
 
-    private void OnPartnerTitleChanged(object sender, System.EventArgs e)
+    private void OnPartnerTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("PartnerTitle");
+      this.OnPropertyChanged( "PartnerTitle" );
     }
 
-    private void OnPartnerTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e)
+    private void OnPartnerTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e )
     {
     }
 
-    private void OnShipping2WarehouseTitleChanging(object sender, System.EventArgs e)
+    private void OnShipping2WarehouseTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Shipping2WarehouseTitle", this._shipping2WarehouseTitle.Clone());
+      this.OnPropertyChanging( "Shipping2WarehouseTitle", this._shipping2WarehouseTitle.Clone() );
     }
 
-    private void OnShipping2WarehouseTitleChanged(object sender, System.EventArgs e)
+    private void OnShipping2WarehouseTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Shipping2WarehouseTitle");
-    }
-
-
-    private void OnTruckTitleChanging(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanging("TruckTitle", this._truckTitle.Clone());
-    }
-
-    private void OnTruckTitleChanged(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanged("TruckTitle");
-    }
-
-    private void OnTrailerTitleChanging(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanging("TrailerTitle", this._trailerTitle.Clone());
-    }
-
-    private void OnTrailerTitleChanged(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanged("TrailerTitle");
-    }
-
-    private void OnShipping2RouteTitleChanging(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanging("Shipping2RouteTitle", this._shipping2RouteTitle.Clone());
-    }
-
-    private void OnShipping2RouteTitleChanged(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanged("Shipping2RouteTitle");
-    }
-
-    private void OnShipping2PartnerTitleChanging(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanging("Shipping2PartnerTitle", this._shipping2PartnerTitle.Clone());
-    }
-
-    private void OnShipping2PartnerTitleChanged(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanged("Shipping2PartnerTitle");
-    }
-
-    private void OnSecurityEscortCatalogTitleChanging(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanging("SecurityEscortCatalogTitle", this._securityEscortCatalogTitle.Clone());
-    }
-
-    private void OnSecurityEscortCatalogTitleChanged(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanged("SecurityEscortCatalogTitle");
-    }
-
-    private void OnShipping2TruckTitleChanging(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanging("Shipping2TruckTitle", this._shipping2TruckTitle.Clone());
-    }
-
-    private void OnShipping2TruckTitleChanged(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanged("Shipping2TruckTitle");
-    }
-
-    private void OnShipping2CityChanging(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanging("Shipping2City", this._shipping2City.Clone());
-    }
-
-    private void OnShipping2CityChanged(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanged("Shipping2City");
-    }
-
-    private void OnShipping2TransportUnitTypeChanging(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanging("Shipping2TransportUnitType", this._shipping2TransportUnitType.Clone());
-    }
-
-    private void OnShipping2TransportUnitTypeChanged(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanged("Shipping2TransportUnitType");
+      this.OnPropertyChanged( "Shipping2WarehouseTitle" );
     }
 
 
-    private void OnShipping2Currency4AddCostsChanging(object sender, System.EventArgs e)
+    private void OnTruckTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Shipping2Currency4AddCosts", this._shipping2Currency4AddCosts.Clone());
+      this.OnPropertyChanging( "TruckTitle", this._truckTitle.Clone() );
     }
 
-    private void OnShipping2Currency4AddCostsChanged(object sender, System.EventArgs e)
+    private void OnTruckTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Shipping2Currency4AddCosts");
+      this.OnPropertyChanged( "TruckTitle" );
     }
 
-    private void OnShipping2CurrencyForFreightChanging(object sender, System.EventArgs e)
+    private void OnTrailerTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Shipping2CurrencyForFreight", this._shipping2CurrencyForFreight.Clone());
+      this.OnPropertyChanging( "TrailerTitle", this._trailerTitle.Clone() );
     }
 
-    private void OnShipping2CurrencyForFreightChanged(object sender, System.EventArgs e)
+    private void OnTrailerTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Shipping2CurrencyForFreight");
+      this.OnPropertyChanged( "TrailerTitle" );
     }
 
-    private void OnShipping2CurrencyForEscortChanging(object sender, System.EventArgs e)
+    private void OnShipping2RouteTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Shipping2CurrencyForEscort", this._shipping2CurrencyForEscort.Clone());
+      this.OnPropertyChanging( "Shipping2RouteTitle", this._shipping2RouteTitle.Clone() );
     }
 
-    private void OnShipping2CurrencyForEscortChanged(object sender, System.EventArgs e)
+    private void OnShipping2RouteTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Shipping2CurrencyForEscort");
+      this.OnPropertyChanged( "Shipping2RouteTitle" );
     }
 
-    private void OnShipping2Currency4CostsPerKUChanging(object sender, System.EventArgs e)
+    private void OnShipping2PartnerTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Shipping2Currency4CostsPerKU", this._shipping2Currency4CostsPerKU.Clone());
+      this.OnPropertyChanging( "Shipping2PartnerTitle", this._shipping2PartnerTitle.Clone() );
     }
 
-    private void OnShipping2Currency4CostsPerKUChanged(object sender, System.EventArgs e)
+    private void OnShipping2PartnerTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Shipping2Currency4CostsPerKU");
+      this.OnPropertyChanged( "Shipping2PartnerTitle" );
     }
 
-    private void OnShipping2FreightPOIndexChanging(object sender, System.EventArgs e)
+    private void OnSecurityEscortCatalogTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Shipping2FreightPOIndex", this._shipping2FreightPOIndex.Clone());
+      this.OnPropertyChanging( "SecurityEscortCatalogTitle", this._securityEscortCatalogTitle.Clone() );
     }
 
-    private void OnShipping2FreightPOIndexChanged(object sender, System.EventArgs e)
+    private void OnSecurityEscortCatalogTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Shipping2FreightPOIndex");
+      this.OnPropertyChanged( "SecurityEscortCatalogTitle" );
     }
 
-    private void OnShipping2EscortPOIndexChanging(object sender, System.EventArgs e)
+    private void OnShipping2TruckTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Shipping2EscortPOIndex", this._shipping2EscortPOIndex.Clone());
+      this.OnPropertyChanging( "Shipping2TruckTitle", this._shipping2TruckTitle.Clone() );
     }
 
-    private void OnShipping2EscortPOIndexChanged(object sender, System.EventArgs e)
+    private void OnShipping2TruckTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Shipping2EscortPOIndex");
+      this.OnPropertyChanged( "Shipping2TruckTitle" );
     }
 
-    private void OnSecuritySealProtocolIndexChanging(object sender, System.EventArgs e)
+    private void OnShipping2CityChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("SecuritySealProtocolIndex", this._securitySealProtocolIndex.Clone());
+      this.OnPropertyChanging( "Shipping2City", this._shipping2City.Clone() );
     }
 
-    private void OnSecuritySealProtocolIndexChanged(object sender, System.EventArgs e)
+    private void OnShipping2CityChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("SecuritySealProtocolIndex");
+      this.OnPropertyChanged( "Shipping2City" );
     }
 
-    private void OnTimeSlotChanging(object sender, System.EventArgs e)
+    private void OnShipping2TransportUnitTypeChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("TimeSlot", this._timeSlot.Clone());
+      this.OnPropertyChanging( "Shipping2TransportUnitType", this._shipping2TransportUnitType.Clone() );
     }
 
-    private void OnTimeSlotChanged(object sender, System.EventArgs e)
+    private void OnShipping2TransportUnitTypeChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("TimeSlot");
+      this.OnPropertyChanged( "Shipping2TransportUnitType" );
     }
 
-    private void OnTimeSlotSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlot> e)
+
+    private void OnShipping2Currency4AddCostsChanging( object sender, System.EventArgs e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
-      {
-        e.Item.TimeSlot2ShippingIndex = this;
-      }
-      else
-      {
-        e.Item.TimeSlot2ShippingIndex = null;
-      }
+      this.OnPropertyChanging( "Shipping2Currency4AddCosts", this._shipping2Currency4AddCosts.Clone() );
     }
+
+    private void OnShipping2Currency4AddCostsChanged( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanged( "Shipping2Currency4AddCosts" );
+    }
+
+    private void OnShipping2CurrencyForFreightChanging( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanging( "Shipping2CurrencyForFreight", this._shipping2CurrencyForFreight.Clone() );
+    }
+
+    private void OnShipping2CurrencyForFreightChanged( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanged( "Shipping2CurrencyForFreight" );
+    }
+
+    private void OnShipping2CurrencyForEscortChanging( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanging( "Shipping2CurrencyForEscort", this._shipping2CurrencyForEscort.Clone() );
+    }
+
+    private void OnShipping2CurrencyForEscortChanged( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanged( "Shipping2CurrencyForEscort" );
+    }
+
+    private void OnShipping2Currency4CostsPerKUChanging( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanging( "Shipping2Currency4CostsPerKU", this._shipping2Currency4CostsPerKU.Clone() );
+    }
+
+    private void OnShipping2Currency4CostsPerKUChanged( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanged( "Shipping2Currency4CostsPerKU" );
+    }
+
+    private void OnShipping2FreightPOIndexChanging( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanging( "Shipping2FreightPOIndex", this._shipping2FreightPOIndex.Clone() );
+    }
+
+    private void OnShipping2FreightPOIndexChanged( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanged( "Shipping2FreightPOIndex" );
+    }
+
+    private void OnShipping2EscortPOIndexChanging( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanging( "Shipping2EscortPOIndex", this._shipping2EscortPOIndex.Clone() );
+    }
+
+    private void OnShipping2EscortPOIndexChanged( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanged( "Shipping2EscortPOIndex" );
+    }
+
+    private void OnSecuritySealProtocolIndexChanging( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanging( "SecuritySealProtocolIndex", this._securitySealProtocolIndex.Clone() );
+    }
+
+    private void OnSecuritySealProtocolIndexChanged( object sender, System.EventArgs e )
+    {
+      this.OnPropertyChanged( "SecuritySealProtocolIndex" );
+    }
+
   }
 
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_ShippingPointListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "ShippingPoint", Id = "0x0100CB62286DE09CE54780611F275F43DB47")]
-  public partial class ShippingPoint : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "ShippingPoint", Id = "0x0100CB62286DE09CE54780611F275F43DB47" )]
+  public partial class ShippingPoint: Element
   {
 
     private string _shippingPointDescription;
@@ -5105,13 +5065,13 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public ShippingPoint()
     {
       this._warehouseTitle = new Microsoft.SharePoint.Linq.EntityRef<Warehouse>();
-      this._warehouseTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnWarehouseTitleSync);
-      this._warehouseTitle.OnChanged += new System.EventHandler(this.OnWarehouseTitleChanged);
-      this._warehouseTitle.OnChanging += new System.EventHandler(this.OnWarehouseTitleChanging);
+      this._warehouseTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>( this.OnWarehouseTitleSync );
+      this._warehouseTitle.OnChanged += new System.EventHandler( this.OnWarehouseTitleChanged );
+      this._warehouseTitle.OnChanging += new System.EventHandler( this.OnWarehouseTitleChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ShippingPointDescription", Storage = "_shippingPointDescription", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ShippingPointDescription", Storage = "_shippingPointDescription", FieldType = "Text" )]
     public string ShippingPointDescription
     {
       get
@@ -5120,11 +5080,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._shippingPointDescription))
+        if ( ( value != this._shippingPointDescription ) )
         {
-          this.OnPropertyChanging("ShippingPointDescription", this._shippingPointDescription);
+          this.OnPropertyChanging( "ShippingPointDescription", this._shippingPointDescription );
           this._shippingPointDescription = value;
-          this.OnPropertyChanged("ShippingPointDescription");
+          this.OnPropertyChanged( "ShippingPointDescription" );
         }
       }
     }
@@ -5132,7 +5092,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <summary>
     /// Direction
     /// </summary>
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Direction", Storage = "_direction", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Direction", Storage = "_direction", FieldType = "Choice" )]
     public System.Nullable<Direction> Direction
     {
       get
@@ -5141,16 +5101,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._direction))
+        if ( ( value != this._direction ) )
         {
-          this.OnPropertyChanging("Direction", this._direction);
+          this.OnPropertyChanging( "Direction", this._direction );
           this._direction = value;
-          this.OnPropertyChanged("Direction");
+          this.OnPropertyChanged( "Direction" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "WarehouseTitle", Storage = "_warehouseTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Warehouse")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "WarehouseTitle", Storage = "_warehouseTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Warehouse" )]
     public Warehouse WarehouseTitle
     {
       get
@@ -5159,29 +5119,29 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._warehouseTitle.SetEntity(value);
+        this._warehouseTitle.SetEntity( value );
       }
     }
 
-    private void OnWarehouseTitleChanging(object sender, System.EventArgs e)
+    private void OnWarehouseTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("WarehouseTitle", this._warehouseTitle.Clone());
+      this.OnPropertyChanging( "WarehouseTitle", this._warehouseTitle.Clone() );
     }
 
-    private void OnWarehouseTitleChanged(object sender, System.EventArgs e)
+    private void OnWarehouseTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("WarehouseTitle");
+      this.OnPropertyChanged( "WarehouseTitle" );
     }
 
-    private void OnWarehouseTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e)
+    private void OnWarehouseTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
-        e.Item.ShippingPoint.Add(this);
+        e.Item.ShippingPoint.Add( this );
       }
       else
       {
-        e.Item.ShippingPoint.Remove(this);
+        e.Item.ShippingPoint.Remove( this );
       }
     }
 
@@ -5190,8 +5150,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_TimeSlotTemplateListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "TimeSlotsTemplate", Id = "0x0100E4381E17DE2049B895B5140F70D7C21C")]
-  public partial class TimeSlotsTemplate : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "TimeSlotsTemplate", Id = "0x0100E4381E17DE2049B895B5140F70D7C21C" )]
+  public partial class TimeSlotsTemplate: Element
   {
 
     private System.Nullable<TimeSlotsTemplateDay> _timeSlotsTemplateDay;
@@ -5215,27 +5175,27 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public TimeSlotsTemplate()
     {
       this._scheduleTemplateTitle = new Microsoft.SharePoint.Linq.EntityRef<ScheduleTemplate>();
-      this._scheduleTemplateTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate>>(this.OnScheduleTemplateTitleSync);
-      this._scheduleTemplateTitle.OnChanged += new System.EventHandler(this.OnScheduleTemplateTitleChanged);
-      this._scheduleTemplateTitle.OnChanging += new System.EventHandler(this.OnScheduleTemplateTitleChanging);
+      this._scheduleTemplateTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate>>( this.OnScheduleTemplateTitleSync );
+      this._scheduleTemplateTitle.OnChanged += new System.EventHandler( this.OnScheduleTemplateTitleChanged );
+      this._scheduleTemplateTitle.OnChanging += new System.EventHandler( this.OnScheduleTemplateTitleChanging );
       this.OnCreated();
     }
 
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.ComponentModel.EditorBrowsableAttribute( System.ComponentModel.EditorBrowsableState.Never )]
     [Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
     public override string Title
     {
       get
       {
-        throw new System.InvalidOperationException("Field Title was removed from content type TimeSlotsTemplate.");
+        throw new System.InvalidOperationException( "Field Title was removed from content type TimeSlotsTemplate." );
       }
       set
       {
-        throw new System.InvalidOperationException("Field Title was removed from content type TimeSlotsTemplate.");
+        throw new System.InvalidOperationException( "Field Title was removed from content type TimeSlotsTemplate." );
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "TimeSlotsTemplateDay", Storage = "_timeSlotsTemplateDay", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "TimeSlotsTemplateDay", Storage = "_timeSlotsTemplateDay", FieldType = "Choice" )]
     public System.Nullable<TimeSlotsTemplateDay> TimeSlotsTemplateDay
     {
       get
@@ -5244,16 +5204,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._timeSlotsTemplateDay))
+        if ( ( value != this._timeSlotsTemplateDay ) )
         {
-          this.OnPropertyChanging("TimeSlotsTemplateDay", this._timeSlotsTemplateDay);
+          this.OnPropertyChanging( "TimeSlotsTemplateDay", this._timeSlotsTemplateDay );
           this._timeSlotsTemplateDay = value;
-          this.OnPropertyChanged("TimeSlotsTemplateDay");
+          this.OnPropertyChanged( "TimeSlotsTemplateDay" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "TimeSlotsTemplateStartHour", Storage = "_timeSlotsTemplateStartHour", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "TimeSlotsTemplateStartHour", Storage = "_timeSlotsTemplateStartHour", FieldType = "Choice" )]
     public System.Nullable<TimeSlotsTemplateStartHour> TimeSlotsTemplateStartHour
     {
       get
@@ -5262,16 +5222,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._timeSlotsTemplateStartHour))
+        if ( ( value != this._timeSlotsTemplateStartHour ) )
         {
-          this.OnPropertyChanging("TimeSlotsTemplateStartHour", this._timeSlotsTemplateStartHour);
+          this.OnPropertyChanging( "TimeSlotsTemplateStartHour", this._timeSlotsTemplateStartHour );
           this._timeSlotsTemplateStartHour = value;
-          this.OnPropertyChanged("TimeSlotsTemplateStartHour");
+          this.OnPropertyChanged( "TimeSlotsTemplateStartHour" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "TimeSlotsTemplateStartMinute", Storage = "_timeSlotsTemplateStartMinute", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "TimeSlotsTemplateStartMinute", Storage = "_timeSlotsTemplateStartMinute", FieldType = "Choice" )]
     public System.Nullable<TimeSlotsTemplateStartMinute> TimeSlotsTemplateStartMinute
     {
       get
@@ -5280,16 +5240,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._timeSlotsTemplateStartMinute))
+        if ( ( value != this._timeSlotsTemplateStartMinute ) )
         {
-          this.OnPropertyChanging("TimeSlotsTemplateStartMinute", this._timeSlotsTemplateStartMinute);
+          this.OnPropertyChanging( "TimeSlotsTemplateStartMinute", this._timeSlotsTemplateStartMinute );
           this._timeSlotsTemplateStartMinute = value;
-          this.OnPropertyChanged("TimeSlotsTemplateStartMinute");
+          this.OnPropertyChanged( "TimeSlotsTemplateStartMinute" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "TimeSlotsTemplateEndHour", Storage = "_timeSlotsTemplateEndHour", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "TimeSlotsTemplateEndHour", Storage = "_timeSlotsTemplateEndHour", FieldType = "Choice" )]
     public System.Nullable<TimeSlotsTemplateEndHour> TimeSlotsTemplateEndHour
     {
       get
@@ -5298,16 +5258,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._timeSlotsTemplateEndHour))
+        if ( ( value != this._timeSlotsTemplateEndHour ) )
         {
-          this.OnPropertyChanging("TimeSlotsTemplateEndHour", this._timeSlotsTemplateEndHour);
+          this.OnPropertyChanging( "TimeSlotsTemplateEndHour", this._timeSlotsTemplateEndHour );
           this._timeSlotsTemplateEndHour = value;
-          this.OnPropertyChanged("TimeSlotsTemplateEndHour");
+          this.OnPropertyChanged( "TimeSlotsTemplateEndHour" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "TimeSlotsTemplateEndMinute", Storage = "_timeSlotsTemplateEndMinute", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "TimeSlotsTemplateEndMinute", Storage = "_timeSlotsTemplateEndMinute", FieldType = "Choice" )]
     public System.Nullable<TimeSlotsTemplateEndMinute> TimeSlotsTemplateEndMinute
     {
       get
@@ -5316,16 +5276,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._timeSlotsTemplateEndMinute))
+        if ( ( value != this._timeSlotsTemplateEndMinute ) )
         {
-          this.OnPropertyChanging("TimeSlotsTemplateEndMinute", this._timeSlotsTemplateEndMinute);
+          this.OnPropertyChanging( "TimeSlotsTemplateEndMinute", this._timeSlotsTemplateEndMinute );
           this._timeSlotsTemplateEndMinute = value;
-          this.OnPropertyChanged("TimeSlotsTemplateEndMinute");
+          this.OnPropertyChanged( "TimeSlotsTemplateEndMinute" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "ScheduleTemplateTitle", Storage = "_scheduleTemplateTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Schedule Template")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "ScheduleTemplateTitle", Storage = "_scheduleTemplateTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Schedule Template" )]
     public ScheduleTemplate ScheduleTemplateTitle
     {
       get
@@ -5334,29 +5294,29 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._scheduleTemplateTitle.SetEntity(value);
+        this._scheduleTemplateTitle.SetEntity( value );
       }
     }
 
-    private void OnScheduleTemplateTitleChanging(object sender, System.EventArgs e)
+    private void OnScheduleTemplateTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("ScheduleTemplateTitle", this._scheduleTemplateTitle.Clone());
+      this.OnPropertyChanging( "ScheduleTemplateTitle", this._scheduleTemplateTitle.Clone() );
     }
 
-    private void OnScheduleTemplateTitleChanged(object sender, System.EventArgs e)
+    private void OnScheduleTemplateTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("ScheduleTemplateTitle");
+      this.OnPropertyChanged( "ScheduleTemplateTitle" );
     }
 
-    private void OnScheduleTemplateTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate> e)
+    private void OnScheduleTemplateTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
-        e.Item.TimeSlotsTemplate.Add(this);
+        e.Item.TimeSlotsTemplate.Add( this );
       }
       else
       {
-        e.Item.TimeSlotsTemplate.Remove(this);
+        e.Item.TimeSlotsTemplate.Remove( this );
       }
     }
   }
@@ -5364,8 +5324,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_TrailersListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "Trailer", Id = "0x01009EF7D9CEE9664A48928AD8C8857ADA95")]
-  public partial class Trailer : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "Trailer", Id = "0x01009EF7D9CEE9664A48928AD8C8857ADA95" )]
+  public partial class Trailer: Element
   {
 
     private string _additionalComments;
@@ -5381,13 +5341,13 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public Trailer()
     {
       this._trailer2PartnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
-      this._trailer2PartnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnTrailer2PartnerTitleSync);
-      this._trailer2PartnerTitle.OnChanged += new System.EventHandler(this.OnTrailer2PartnerTitleChanged);
-      this._trailer2PartnerTitle.OnChanging += new System.EventHandler(this.OnTrailer2PartnerTitleChanging);
+      this._trailer2PartnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>( this.OnTrailer2PartnerTitleSync );
+      this._trailer2PartnerTitle.OnChanged += new System.EventHandler( this.OnTrailer2PartnerTitleChanged );
+      this._trailer2PartnerTitle.OnChanging += new System.EventHandler( this.OnTrailer2PartnerTitleChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "AdditionalComments", Storage = "_additionalComments", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "AdditionalComments", Storage = "_additionalComments", FieldType = "Text" )]
     public string AdditionalComments
     {
       get
@@ -5396,16 +5356,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._additionalComments))
+        if ( ( value != this._additionalComments ) )
         {
-          this.OnPropertyChanging("AdditionalComments", this._additionalComments);
+          this.OnPropertyChanging( "AdditionalComments", this._additionalComments );
           this._additionalComments = value;
-          this.OnPropertyChanged("AdditionalComments");
+          this.OnPropertyChanged( "AdditionalComments" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Trailer2PartnerTitle", Storage = "_trailer2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Trailer2PartnerTitle", Storage = "_trailer2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner" )]
     public Partner Trailer2PartnerTitle
     {
       get
@@ -5414,29 +5374,29 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._trailer2PartnerTitle.SetEntity(value);
+        this._trailer2PartnerTitle.SetEntity( value );
       }
     }
 
-    private void OnTrailer2PartnerTitleChanging(object sender, System.EventArgs e)
+    private void OnTrailer2PartnerTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Trailer2PartnerTitle", this._trailer2PartnerTitle.Clone());
+      this.OnPropertyChanging( "Trailer2PartnerTitle", this._trailer2PartnerTitle.Clone() );
     }
 
-    private void OnTrailer2PartnerTitleChanged(object sender, System.EventArgs e)
+    private void OnTrailer2PartnerTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Trailer2PartnerTitle");
+      this.OnPropertyChanged( "Trailer2PartnerTitle" );
     }
 
-    private void OnTrailer2PartnerTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e)
+    private void OnTrailer2PartnerTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
-        e.Item.Trailer.Add(this);
+        e.Item.Trailer.Add( this );
       }
       else
       {
-        e.Item.Trailer.Remove(this);
+        e.Item.Trailer.Remove( this );
       }
     }
   }
@@ -5444,8 +5404,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_TranspotUnitTypeListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "TranspotUnit", Id = "0x0100017ECA95BFABB941B9E7FE63643FCD7C")]
-  public partial class TranspotUnit : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "TranspotUnit", Id = "0x0100017ECA95BFABB941B9E7FE63643FCD7C" )]
+  public partial class TranspotUnit: Element
   {
 
 
@@ -5465,8 +5425,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_TrucksListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "Truck", Id = "0x01003E7761AEF97A4C619F44D01B53A56568")]
-  public partial class Truck : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "Truck", Id = "0x01003E7761AEF97A4C619F44D01B53A56568" )]
+  public partial class Truck: Element
   {
 
     private string _additionalComments;
@@ -5484,13 +5444,13 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public Truck()
     {
       this._truck2PartnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
-      this._truck2PartnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnTruck2PartnerTitleSync);
-      this._truck2PartnerTitle.OnChanged += new System.EventHandler(this.OnTruck2PartnerTitleChanged);
-      this._truck2PartnerTitle.OnChanging += new System.EventHandler(this.OnTruck2PartnerTitleChanging);
+      this._truck2PartnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>( this.OnTruck2PartnerTitleSync );
+      this._truck2PartnerTitle.OnChanged += new System.EventHandler( this.OnTruck2PartnerTitleChanged );
+      this._truck2PartnerTitle.OnChanging += new System.EventHandler( this.OnTruck2PartnerTitleChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "AdditionalComments", Storage = "_additionalComments", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "AdditionalComments", Storage = "_additionalComments", FieldType = "Text" )]
     public string AdditionalComments
     {
       get
@@ -5499,16 +5459,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._additionalComments))
+        if ( ( value != this._additionalComments ) )
         {
-          this.OnPropertyChanging("AdditionalComments", this._additionalComments);
+          this.OnPropertyChanging( "AdditionalComments", this._additionalComments );
           this._additionalComments = value;
-          this.OnPropertyChanged("AdditionalComments");
+          this.OnPropertyChanged( "AdditionalComments" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "VehicleType", Storage = "_vehicleType", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "VehicleType", Storage = "_vehicleType", FieldType = "Choice" )]
     public System.Nullable<VehicleType> VehicleType
     {
       get
@@ -5517,16 +5477,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._vehicleType))
+        if ( ( value != this._vehicleType ) )
         {
-          this.OnPropertyChanging("VehicleType", this._vehicleType);
+          this.OnPropertyChanging( "VehicleType", this._vehicleType );
           this._vehicleType = value;
-          this.OnPropertyChanged("VehicleType");
+          this.OnPropertyChanged( "VehicleType" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "Truck2PartnerTitle", Storage = "_truck2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "Truck2PartnerTitle", Storage = "_truck2PartnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner" )]
     public Partner Truck2PartnerTitle
     {
       get
@@ -5535,29 +5495,29 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._truck2PartnerTitle.SetEntity(value);
+        this._truck2PartnerTitle.SetEntity( value );
       }
     }
 
-    private void OnTruck2PartnerTitleChanging(object sender, System.EventArgs e)
+    private void OnTruck2PartnerTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("Truck2PartnerTitle", this._truck2PartnerTitle.Clone());
+      this.OnPropertyChanging( "Truck2PartnerTitle", this._truck2PartnerTitle.Clone() );
     }
 
-    private void OnTruck2PartnerTitleChanged(object sender, System.EventArgs e)
+    private void OnTruck2PartnerTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("Truck2PartnerTitle");
+      this.OnPropertyChanged( "Truck2PartnerTitle" );
     }
 
-    private void OnTruck2PartnerTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e)
+    private void OnTruck2PartnerTitleSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
-        e.Item.Truck.Add(this);
+        e.Item.Truck.Add( this );
       }
       else
       {
-        e.Item.Truck.Remove(this);
+        e.Item.Truck.Remove( this );
       }
     }
   }
@@ -5565,8 +5525,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_WarehousesListCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "Warehouse", Id = "0x01001E57547208B49B46B4AA7CB4536B1A55")]
-  public partial class Warehouse : Element
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "Warehouse", Id = "0x01001E57547208B49B46B4AA7CB4536B1A55" )]
+  public partial class Warehouse: Element
   {
 
     private string _warehouseAddress;
@@ -5584,16 +5544,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public Warehouse()
     {
       this._shippingPoint = new Microsoft.SharePoint.Linq.EntitySet<ShippingPoint>();
-      this._shippingPoint.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint>>(this.OnShippingPointSync);
-      this._shippingPoint.OnChanged += new System.EventHandler(this.OnShippingPointChanged);
-      this._shippingPoint.OnChanging += new System.EventHandler(this.OnShippingPointChanging);
+      this._shippingPoint.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint>>( this.OnShippingPointSync );
+      this._shippingPoint.OnChanged += new System.EventHandler( this.OnShippingPointChanged );
+      this._shippingPoint.OnChanging += new System.EventHandler( this.OnShippingPointChanging );
       this._commodityTitle = new Microsoft.SharePoint.Linq.EntityRef<Commodity>();
-      this._commodityTitle.OnChanged += new System.EventHandler(this.OnCommodityTitleChanged);
-      this._commodityTitle.OnChanging += new System.EventHandler(this.OnCommodityTitleChanging);
+      this._commodityTitle.OnChanged += new System.EventHandler( this.OnCommodityTitleChanged );
+      this._commodityTitle.OnChanging += new System.EventHandler( this.OnCommodityTitleChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "WarehouseAddress", Storage = "_warehouseAddress", FieldType = "Note")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "WarehouseAddress", Storage = "_warehouseAddress", FieldType = "Note" )]
     public string WarehouseAddress
     {
       get
@@ -5602,16 +5562,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._warehouseAddress))
+        if ( ( value != this._warehouseAddress ) )
         {
-          this.OnPropertyChanging("WarehouseAddress", this._warehouseAddress);
+          this.OnPropertyChanging( "WarehouseAddress", this._warehouseAddress );
           this._warehouseAddress = value;
-          this.OnPropertyChanged("WarehouseAddress");
+          this.OnPropertyChanged( "WarehouseAddress" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "WarehouseTitle", Storage = "_shippingPoint", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Shipping Point")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "WarehouseTitle", Storage = "_shippingPoint", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Shipping Point" )]
     public Microsoft.SharePoint.Linq.EntitySet<ShippingPoint> ShippingPoint
     {
       get
@@ -5620,11 +5580,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._shippingPoint.Assign(value);
+        this._shippingPoint.Assign( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "CommodityTitle", Storage = "_commodityTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Commodity")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "CommodityTitle", Storage = "_commodityTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Commodity" )]
     public Commodity CommodityTitle
     {
       get
@@ -5633,23 +5593,23 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._commodityTitle.SetEntity(value);
+        this._commodityTitle.SetEntity( value );
       }
     }
 
-    private void OnShippingPointChanging(object sender, System.EventArgs e)
+    private void OnShippingPointChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("ShippingPoint", this._shippingPoint.Clone());
+      this.OnPropertyChanging( "ShippingPoint", this._shippingPoint.Clone() );
     }
 
-    private void OnShippingPointChanged(object sender, System.EventArgs e)
+    private void OnShippingPointChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("ShippingPoint");
+      this.OnPropertyChanged( "ShippingPoint" );
     }
 
-    private void OnShippingPointSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint> e)
+    private void OnShippingPointSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint> e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
+      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
       {
         e.Item.WarehouseTitle = this;
       }
@@ -5659,14 +5619,14 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
     }
 
-    private void OnCommodityTitleChanging(object sender, System.EventArgs e)
+    private void OnCommodityTitleChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("CommodityTitle", this._commodityTitle.Clone());
+      this.OnPropertyChanging( "CommodityTitle", this._commodityTitle.Clone() );
     }
 
-    private void OnCommodityTitleChanged(object sender, System.EventArgs e)
+    private void OnCommodityTitleChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("CommodityTitle");
+      this.OnPropertyChanged( "CommodityTitle" );
     }
 
   }
@@ -5674,8 +5634,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_EscortPOLibraryCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "EscortPO", Id = "0x0101000276600256FA44439B3AA6A5221F14C4")]
-  public partial class EscortPO : Document
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "EscortPO", Id = "0x0101000276600256FA44439B3AA6A5221F14C4" )]
+  public partial class EscortPO: Document
   {
 
     private string _sPOFreightPO;
@@ -5721,7 +5681,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SPOFreightPO", Storage = "_sPOFreightPO", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SPOFreightPO", Storage = "_sPOFreightPO", FieldType = "Text" )]
     public string SPOFreightPO
     {
       get
@@ -5730,16 +5690,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sPOFreightPO))
+        if ( ( value != this._sPOFreightPO ) )
         {
-          this.OnPropertyChanging("SPOFreightPO", this._sPOFreightPO);
+          this.OnPropertyChanging( "SPOFreightPO", this._sPOFreightPO );
           this._sPOFreightPO = value;
-          this.OnPropertyChanged("SPOFreightPO");
+          this.OnPropertyChanged( "SPOFreightPO" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SecurityPOEscortPayerName", Storage = "_securityPOEscortPayerName", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SecurityPOEscortPayerName", Storage = "_securityPOEscortPayerName", FieldType = "Text" )]
     public string SecurityPOEscortPayerName
     {
       get
@@ -5748,16 +5708,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._securityPOEscortPayerName))
+        if ( ( value != this._securityPOEscortPayerName ) )
         {
-          this.OnPropertyChanging("SecurityPOEscortPayerName", this._securityPOEscortPayerName);
+          this.OnPropertyChanging( "SecurityPOEscortPayerName", this._securityPOEscortPayerName );
           this._securityPOEscortPayerName = value;
-          this.OnPropertyChanged("SecurityPOEscortPayerName");
+          this.OnPropertyChanged( "SecurityPOEscortPayerName" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SecurityPOEscortPayerAddress", Storage = "_securityPOEscortPayerAddress", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SecurityPOEscortPayerAddress", Storage = "_securityPOEscortPayerAddress", FieldType = "Text" )]
     public string SecurityPOEscortPayerAddress
     {
       get
@@ -5766,16 +5726,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._securityPOEscortPayerAddress))
+        if ( ( value != this._securityPOEscortPayerAddress ) )
         {
-          this.OnPropertyChanging("SecurityPOEscortPayerAddress", this._securityPOEscortPayerAddress);
+          this.OnPropertyChanging( "SecurityPOEscortPayerAddress", this._securityPOEscortPayerAddress );
           this._securityPOEscortPayerAddress = value;
-          this.OnPropertyChanged("SecurityPOEscortPayerAddress");
+          this.OnPropertyChanged( "SecurityPOEscortPayerAddress" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SecurityPOEscortPayerZip", Storage = "_securityPOEscortPayerZip", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SecurityPOEscortPayerZip", Storage = "_securityPOEscortPayerZip", FieldType = "Text" )]
     public string SecurityPOEscortPayerZip
     {
       get
@@ -5784,16 +5744,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._securityPOEscortPayerZip))
+        if ( ( value != this._securityPOEscortPayerZip ) )
         {
-          this.OnPropertyChanging("SecurityPOEscortPayerZip", this._securityPOEscortPayerZip);
+          this.OnPropertyChanging( "SecurityPOEscortPayerZip", this._securityPOEscortPayerZip );
           this._securityPOEscortPayerZip = value;
-          this.OnPropertyChanged("SecurityPOEscortPayerZip");
+          this.OnPropertyChanged( "SecurityPOEscortPayerZip" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SecurityPOEscortPayerCity", Storage = "_securityPOEscortPayerCity", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SecurityPOEscortPayerCity", Storage = "_securityPOEscortPayerCity", FieldType = "Text" )]
     public string SecurityPOEscortPayerCity
     {
       get
@@ -5802,16 +5762,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._securityPOEscortPayerCity))
+        if ( ( value != this._securityPOEscortPayerCity ) )
         {
-          this.OnPropertyChanging("SecurityPOEscortPayerCity", this._securityPOEscortPayerCity);
+          this.OnPropertyChanging( "SecurityPOEscortPayerCity", this._securityPOEscortPayerCity );
           this._securityPOEscortPayerCity = value;
-          this.OnPropertyChanged("SecurityPOEscortPayerCity");
+          this.OnPropertyChanged( "SecurityPOEscortPayerCity" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SecurityPOEscortPayerNIP", Storage = "_securityPOEscortPayerNIP", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SecurityPOEscortPayerNIP", Storage = "_securityPOEscortPayerNIP", FieldType = "Text" )]
     public string SecurityPOEscortPayerNIP
     {
       get
@@ -5820,16 +5780,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._securityPOEscortPayerNIP))
+        if ( ( value != this._securityPOEscortPayerNIP ) )
         {
-          this.OnPropertyChanging("SecurityPOEscortPayerNIP", this._securityPOEscortPayerNIP);
+          this.OnPropertyChanging( "SecurityPOEscortPayerNIP", this._securityPOEscortPayerNIP );
           this._securityPOEscortPayerNIP = value;
-          this.OnPropertyChanged("SecurityPOEscortPayerNIP");
+          this.OnPropertyChanged( "SecurityPOEscortPayerNIP" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SPODispatchDate", Storage = "_sPODispatchDate", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SPODispatchDate", Storage = "_sPODispatchDate", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> SPODispatchDate
     {
       get
@@ -5838,16 +5798,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sPODispatchDate))
+        if ( ( value != this._sPODispatchDate ) )
         {
-          this.OnPropertyChanging("SPODispatchDate", this._sPODispatchDate);
+          this.OnPropertyChanging( "SPODispatchDate", this._sPODispatchDate );
           this._sPODispatchDate = value;
-          this.OnPropertyChanged("SPODispatchDate");
+          this.OnPropertyChanged( "SPODispatchDate" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SecurityPOEscortCosts", Storage = "_securityPOEscortCosts", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SecurityPOEscortCosts", Storage = "_securityPOEscortCosts", FieldType = "Number" )]
     public System.Nullable<double> SecurityPOEscortCosts
     {
       get
@@ -5856,16 +5816,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._securityPOEscortCosts))
+        if ( ( value != this._securityPOEscortCosts ) )
         {
-          this.OnPropertyChanging("SecurityPOEscortCosts", this._securityPOEscortCosts);
+          this.OnPropertyChanging( "SecurityPOEscortCosts", this._securityPOEscortCosts );
           this._securityPOEscortCosts = value;
-          this.OnPropertyChanged("SecurityPOEscortCosts");
+          this.OnPropertyChanged( "SecurityPOEscortCosts" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SecurityPOEscortCurrency", Storage = "_securityPOEscortCurrency", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SecurityPOEscortCurrency", Storage = "_securityPOEscortCurrency", FieldType = "Text" )]
     public string SecurityPOEscortCurrency
     {
       get
@@ -5874,16 +5834,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._securityPOEscortCurrency))
+        if ( ( value != this._securityPOEscortCurrency ) )
         {
-          this.OnPropertyChanging("SecurityPOEscortCurrency", this._securityPOEscortCurrency);
+          this.OnPropertyChanging( "SecurityPOEscortCurrency", this._securityPOEscortCurrency );
           this._securityPOEscortCurrency = value;
-          this.OnPropertyChanged("SecurityPOEscortCurrency");
+          this.OnPropertyChanged( "SecurityPOEscortCurrency" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SecurityPOEscortProvider", Storage = "_securityPOEscortProvider", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SecurityPOEscortProvider", Storage = "_securityPOEscortProvider", FieldType = "Text" )]
     public string SecurityPOEscortProvider
     {
       get
@@ -5892,16 +5852,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._securityPOEscortProvider))
+        if ( ( value != this._securityPOEscortProvider ) )
         {
-          this.OnPropertyChanging("SecurityPOEscortProvider", this._securityPOEscortProvider);
+          this.OnPropertyChanging( "SecurityPOEscortProvider", this._securityPOEscortProvider );
           this._securityPOEscortProvider = value;
-          this.OnPropertyChanged("SecurityPOEscortProvider");
+          this.OnPropertyChanged( "SecurityPOEscortProvider" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SecurityPOCity", Storage = "_securityPOCity", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SecurityPOCity", Storage = "_securityPOCity", FieldType = "Text" )]
     public string SecurityPOCity
     {
       get
@@ -5910,16 +5870,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._securityPOCity))
+        if ( ( value != this._securityPOCity ) )
         {
-          this.OnPropertyChanging("SecurityPOCity", this._securityPOCity);
+          this.OnPropertyChanging( "SecurityPOCity", this._securityPOCity );
           this._securityPOCity = value;
-          this.OnPropertyChanged("SecurityPOCity");
+          this.OnPropertyChanged( "SecurityPOCity" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SecurityPOCountry", Storage = "_securityPOCountry", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SecurityPOCountry", Storage = "_securityPOCountry", FieldType = "Text" )]
     public string SecurityPOCountry
     {
       get
@@ -5928,16 +5888,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._securityPOCountry))
+        if ( ( value != this._securityPOCountry ) )
         {
-          this.OnPropertyChanging("SecurityPOCountry", this._securityPOCountry);
+          this.OnPropertyChanging( "SecurityPOCountry", this._securityPOCountry );
           this._securityPOCountry = value;
-          this.OnPropertyChanged("SecurityPOCountry");
+          this.OnPropertyChanged( "SecurityPOCountry" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SecurityPOCommodity", Storage = "_securityPOCommodity", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SecurityPOCommodity", Storage = "_securityPOCommodity", FieldType = "Text" )]
     public string SecurityPOCommodity
     {
       get
@@ -5946,16 +5906,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._securityPOCommodity))
+        if ( ( value != this._securityPOCommodity ) )
         {
-          this.OnPropertyChanging("SecurityPOCommodity", this._securityPOCommodity);
+          this.OnPropertyChanging( "SecurityPOCommodity", this._securityPOCommodity );
           this._securityPOCommodity = value;
-          this.OnPropertyChanged("SecurityPOCommodity");
+          this.OnPropertyChanged( "SecurityPOCommodity" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SecurityPOSentInvoiceToMultiline", Storage = "_securityPOSentInvoiceToMultiline", FieldType = "Note")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SecurityPOSentInvoiceToMultiline", Storage = "_securityPOSentInvoiceToMultiline", FieldType = "Note" )]
     public string SecurityPOSentInvoiceToMultiline
     {
       get
@@ -5964,16 +5924,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._securityPOSentInvoiceToMultiline))
+        if ( ( value != this._securityPOSentInvoiceToMultiline ) )
         {
-          this.OnPropertyChanging("SecurityPOSentInvoiceToMultiline", this._securityPOSentInvoiceToMultiline);
+          this.OnPropertyChanging( "SecurityPOSentInvoiceToMultiline", this._securityPOSentInvoiceToMultiline );
           this._securityPOSentInvoiceToMultiline = value;
-          this.OnPropertyChanged("SecurityPOSentInvoiceToMultiline");
+          this.OnPropertyChanged( "SecurityPOSentInvoiceToMultiline" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "EmailAddress", Storage = "_emailAddress", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "EmailAddress", Storage = "_emailAddress", FieldType = "Text" )]
     public string EmailAddress
     {
       get
@@ -5982,16 +5942,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._emailAddress))
+        if ( ( value != this._emailAddress ) )
         {
-          this.OnPropertyChanging("EmailAddress", this._emailAddress);
+          this.OnPropertyChanging( "EmailAddress", this._emailAddress );
           this._emailAddress = value;
-          this.OnPropertyChanged("EmailAddress");
+          this.OnPropertyChanged( "EmailAddress" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FPOWarehouseAddress", Storage = "_fPOWarehouseAddress", FieldType = "Note")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FPOWarehouseAddress", Storage = "_fPOWarehouseAddress", FieldType = "Note" )]
     public string FPOWarehouseAddress
     {
       get
@@ -6000,11 +5960,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._fPOWarehouseAddress))
+        if ( ( value != this._fPOWarehouseAddress ) )
         {
-          this.OnPropertyChanging("FPOWarehouseAddress", this._fPOWarehouseAddress);
+          this.OnPropertyChanging( "FPOWarehouseAddress", this._fPOWarehouseAddress );
           this._fPOWarehouseAddress = value;
-          this.OnPropertyChanged("FPOWarehouseAddress");
+          this.OnPropertyChanged( "FPOWarehouseAddress" );
         }
       }
     }
@@ -6013,8 +5973,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_FreightPOLibraryCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "FreightPO", Id = "0x0101003147BA6CBB014B599BBDD72087081913")]
-  public partial class FreightPO : Document
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "FreightPO", Id = "0x0101003147BA6CBB014B599BBDD72087081913" )]
+  public partial class FreightPO: Document
   {
 
     private string _fPOFreightPO;
@@ -6064,7 +6024,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FPOFreightPO", Storage = "_fPOFreightPO", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FPOFreightPO", Storage = "_fPOFreightPO", FieldType = "Text" )]
     public string FPOFreightPO
     {
       get
@@ -6073,16 +6033,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._fPOFreightPO))
+        if ( ( value != this._fPOFreightPO ) )
         {
-          this.OnPropertyChanging("FPOFreightPO", this._fPOFreightPO);
+          this.OnPropertyChanging( "FPOFreightPO", this._fPOFreightPO );
           this._fPOFreightPO = value;
-          this.OnPropertyChanged("FPOFreightPO");
+          this.OnPropertyChanged( "FPOFreightPO" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FreightPOPayerName", Storage = "_freightPOPayerName", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FreightPOPayerName", Storage = "_freightPOPayerName", FieldType = "Text" )]
     public string FreightPOPayerName
     {
       get
@@ -6091,16 +6051,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._freightPOPayerName))
+        if ( ( value != this._freightPOPayerName ) )
         {
-          this.OnPropertyChanging("FreightPOPayerName", this._freightPOPayerName);
+          this.OnPropertyChanging( "FreightPOPayerName", this._freightPOPayerName );
           this._freightPOPayerName = value;
-          this.OnPropertyChanged("FreightPOPayerName");
+          this.OnPropertyChanged( "FreightPOPayerName" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FreightPOPayerAddress", Storage = "_freightPOPayerAddress", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FreightPOPayerAddress", Storage = "_freightPOPayerAddress", FieldType = "Text" )]
     public string FreightPOPayerAddress
     {
       get
@@ -6109,16 +6069,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._freightPOPayerAddress))
+        if ( ( value != this._freightPOPayerAddress ) )
         {
-          this.OnPropertyChanging("FreightPOPayerAddress", this._freightPOPayerAddress);
+          this.OnPropertyChanging( "FreightPOPayerAddress", this._freightPOPayerAddress );
           this._freightPOPayerAddress = value;
-          this.OnPropertyChanged("FreightPOPayerAddress");
+          this.OnPropertyChanged( "FreightPOPayerAddress" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FreightPOPayerZip", Storage = "_freightPOPayerZip", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FreightPOPayerZip", Storage = "_freightPOPayerZip", FieldType = "Text" )]
     public string FreightPOPayerZip
     {
       get
@@ -6127,16 +6087,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._freightPOPayerZip))
+        if ( ( value != this._freightPOPayerZip ) )
         {
-          this.OnPropertyChanging("FreightPOPayerZip", this._freightPOPayerZip);
+          this.OnPropertyChanging( "FreightPOPayerZip", this._freightPOPayerZip );
           this._freightPOPayerZip = value;
-          this.OnPropertyChanged("FreightPOPayerZip");
+          this.OnPropertyChanged( "FreightPOPayerZip" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FreightPOPayerCity", Storage = "_freightPOPayerCity", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FreightPOPayerCity", Storage = "_freightPOPayerCity", FieldType = "Text" )]
     public string FreightPOPayerCity
     {
       get
@@ -6145,16 +6105,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._freightPOPayerCity))
+        if ( ( value != this._freightPOPayerCity ) )
         {
-          this.OnPropertyChanging("FreightPOPayerCity", this._freightPOPayerCity);
+          this.OnPropertyChanging( "FreightPOPayerCity", this._freightPOPayerCity );
           this._freightPOPayerCity = value;
-          this.OnPropertyChanged("FreightPOPayerCity");
+          this.OnPropertyChanged( "FreightPOPayerCity" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FreightPOPayerNIP", Storage = "_freightPOPayerNIP", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FreightPOPayerNIP", Storage = "_freightPOPayerNIP", FieldType = "Text" )]
     public string FreightPOPayerNIP
     {
       get
@@ -6163,16 +6123,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._freightPOPayerNIP))
+        if ( ( value != this._freightPOPayerNIP ) )
         {
-          this.OnPropertyChanging("FreightPOPayerNIP", this._freightPOPayerNIP);
+          this.OnPropertyChanging( "FreightPOPayerNIP", this._freightPOPayerNIP );
           this._freightPOPayerNIP = value;
-          this.OnPropertyChanged("FreightPOPayerNIP");
+          this.OnPropertyChanged( "FreightPOPayerNIP" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FPOLoadingDate", Storage = "_fPOLoadingDate", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FPOLoadingDate", Storage = "_fPOLoadingDate", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> FPOLoadingDate
     {
       get
@@ -6181,16 +6141,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._fPOLoadingDate))
+        if ( ( value != this._fPOLoadingDate ) )
         {
-          this.OnPropertyChanging("FPOLoadingDate", this._fPOLoadingDate);
+          this.OnPropertyChanging( "FPOLoadingDate", this._fPOLoadingDate );
           this._fPOLoadingDate = value;
-          this.OnPropertyChanged("FPOLoadingDate");
+          this.OnPropertyChanged( "FPOLoadingDate" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FPODispatchDate", Storage = "_fPODispatchDate", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FPODispatchDate", Storage = "_fPODispatchDate", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> FPODispatchDate
     {
       get
@@ -6199,16 +6159,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._fPODispatchDate))
+        if ( ( value != this._fPODispatchDate ) )
         {
-          this.OnPropertyChanging("FPODispatchDate", this._fPODispatchDate);
+          this.OnPropertyChanging( "FPODispatchDate", this._fPODispatchDate );
           this._fPODispatchDate = value;
-          this.OnPropertyChanged("FPODispatchDate");
+          this.OnPropertyChanged( "FPODispatchDate" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FreightPOTransportUnitType", Storage = "_freightPOTransportUnitType", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FreightPOTransportUnitType", Storage = "_freightPOTransportUnitType", FieldType = "Text" )]
     public string FreightPOTransportUnitType
     {
       get
@@ -6217,16 +6177,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._freightPOTransportUnitType))
+        if ( ( value != this._freightPOTransportUnitType ) )
         {
-          this.OnPropertyChanging("FreightPOTransportUnitType", this._freightPOTransportUnitType);
+          this.OnPropertyChanging( "FreightPOTransportUnitType", this._freightPOTransportUnitType );
           this._freightPOTransportUnitType = value;
-          this.OnPropertyChanged("FreightPOTransportUnitType");
+          this.OnPropertyChanged( "FreightPOTransportUnitType" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FreightPOTransportCosts", Storage = "_freightPOTransportCosts", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FreightPOTransportCosts", Storage = "_freightPOTransportCosts", FieldType = "Number" )]
     public System.Nullable<double> FreightPOTransportCosts
     {
       get
@@ -6235,16 +6195,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._freightPOTransportCosts))
+        if ( ( value != this._freightPOTransportCosts ) )
         {
-          this.OnPropertyChanging("FreightPOTransportCosts", this._freightPOTransportCosts);
+          this.OnPropertyChanging( "FreightPOTransportCosts", this._freightPOTransportCosts );
           this._freightPOTransportCosts = value;
-          this.OnPropertyChanged("FreightPOTransportCosts");
+          this.OnPropertyChanged( "FreightPOTransportCosts" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FreightPOCurrency", Storage = "_freightPOCurrency", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FreightPOCurrency", Storage = "_freightPOCurrency", FieldType = "Text" )]
     public string FreightPOCurrency
     {
       get
@@ -6253,16 +6213,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._freightPOCurrency))
+        if ( ( value != this._freightPOCurrency ) )
         {
-          this.OnPropertyChanging("FreightPOCurrency", this._freightPOCurrency);
+          this.OnPropertyChanging( "FreightPOCurrency", this._freightPOCurrency );
           this._freightPOCurrency = value;
-          this.OnPropertyChanged("FreightPOCurrency");
+          this.OnPropertyChanged( "FreightPOCurrency" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FreightPOForwarder", Storage = "_freightPOForwarder", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FreightPOForwarder", Storage = "_freightPOForwarder", FieldType = "Text" )]
     public string FreightPOForwarder
     {
       get
@@ -6271,16 +6231,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._freightPOForwarder))
+        if ( ( value != this._freightPOForwarder ) )
         {
-          this.OnPropertyChanging("FreightPOForwarder", this._freightPOForwarder);
+          this.OnPropertyChanging( "FreightPOForwarder", this._freightPOForwarder );
           this._freightPOForwarder = value;
-          this.OnPropertyChanged("FreightPOForwarder");
+          this.OnPropertyChanged( "FreightPOForwarder" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FreightPOCity", Storage = "_freightPOCity", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FreightPOCity", Storage = "_freightPOCity", FieldType = "Text" )]
     public string FreightPOCity
     {
       get
@@ -6289,16 +6249,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._freightPOCity))
+        if ( ( value != this._freightPOCity ) )
         {
-          this.OnPropertyChanging("FreightPOCity", this._freightPOCity);
+          this.OnPropertyChanging( "FreightPOCity", this._freightPOCity );
           this._freightPOCity = value;
-          this.OnPropertyChanged("FreightPOCity");
+          this.OnPropertyChanged( "FreightPOCity" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FreightPOCountry", Storage = "_freightPOCountry", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FreightPOCountry", Storage = "_freightPOCountry", FieldType = "Text" )]
     public string FreightPOCountry
     {
       get
@@ -6307,16 +6267,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._freightPOCountry))
+        if ( ( value != this._freightPOCountry ) )
         {
-          this.OnPropertyChanging("FreightPOCountry", this._freightPOCountry);
+          this.OnPropertyChanging( "FreightPOCountry", this._freightPOCountry );
           this._freightPOCountry = value;
-          this.OnPropertyChanged("FreightPOCountry");
+          this.OnPropertyChanged( "FreightPOCountry" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FreightPOCommodity", Storage = "_freightPOCommodity", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FreightPOCommodity", Storage = "_freightPOCommodity", FieldType = "Text" )]
     public string FreightPOCommodity
     {
       get
@@ -6325,16 +6285,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._freightPOCommodity))
+        if ( ( value != this._freightPOCommodity ) )
         {
-          this.OnPropertyChanging("FreightPOCommodity", this._freightPOCommodity);
+          this.OnPropertyChanging( "FreightPOCommodity", this._freightPOCommodity );
           this._freightPOCommodity = value;
-          this.OnPropertyChanged("FreightPOCommodity");
+          this.OnPropertyChanged( "FreightPOCommodity" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FreightPOSendInvoiceToMultiline", Storage = "_freightPOSendInvoiceToMultiline", FieldType = "Note")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FreightPOSendInvoiceToMultiline", Storage = "_freightPOSendInvoiceToMultiline", FieldType = "Note" )]
     public string FreightPOSendInvoiceToMultiline
     {
       get
@@ -6343,16 +6303,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._freightPOSendInvoiceToMultiline))
+        if ( ( value != this._freightPOSendInvoiceToMultiline ) )
         {
-          this.OnPropertyChanging("FreightPOSendInvoiceToMultiline", this._freightPOSendInvoiceToMultiline);
+          this.OnPropertyChanging( "FreightPOSendInvoiceToMultiline", this._freightPOSendInvoiceToMultiline );
           this._freightPOSendInvoiceToMultiline = value;
-          this.OnPropertyChanged("FreightPOSendInvoiceToMultiline");
+          this.OnPropertyChanged( "FreightPOSendInvoiceToMultiline" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "EmailAddress", Storage = "_emailAddress", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "EmailAddress", Storage = "_emailAddress", FieldType = "Text" )]
     public string EmailAddress
     {
       get
@@ -6361,16 +6321,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._emailAddress))
+        if ( ( value != this._emailAddress ) )
         {
-          this.OnPropertyChanging("EmailAddress", this._emailAddress);
+          this.OnPropertyChanging( "EmailAddress", this._emailAddress );
           this._emailAddress = value;
-          this.OnPropertyChanged("EmailAddress");
+          this.OnPropertyChanged( "EmailAddress" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "FPOWarehouseAddress", Storage = "_fPOWarehouseAddress", FieldType = "Note")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "FPOWarehouseAddress", Storage = "_fPOWarehouseAddress", FieldType = "Note" )]
     public string FPOWarehouseAddress
     {
       get
@@ -6379,11 +6339,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._fPOWarehouseAddress))
+        if ( ( value != this._fPOWarehouseAddress ) )
         {
-          this.OnPropertyChanging("FPOWarehouseAddress", this._fPOWarehouseAddress);
+          this.OnPropertyChanging( "FPOWarehouseAddress", this._fPOWarehouseAddress );
           this._fPOWarehouseAddress = value;
-          this.OnPropertyChanged("FPOWarehouseAddress");
+          this.OnPropertyChanged( "FPOWarehouseAddress" );
         }
       }
     }
@@ -6393,8 +6353,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// $Resources:CASSmartFactoryShepherd,CAS_SecuritySealProtocolLibraryCT;
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "SealProtocol", Id = "0x010100CCFCCB37046E4ED39C17D28FAE78ED47")]
-  public partial class SealProtocol : Document
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "SealProtocol", Id = "0x010100CCFCCB37046E4ED39C17D28FAE78ED47" )]
+  public partial class SealProtocol: Document
   {
 
     private System.Nullable<System.DateTime> _sealProtocolDispatchDate;
@@ -6442,7 +6402,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocolDispatchDate", Storage = "_sealProtocolDispatchDate", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocolDispatchDate", Storage = "_sealProtocolDispatchDate", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> SealProtocolDispatchDate
     {
       get
@@ -6451,16 +6411,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocolDispatchDate))
+        if ( ( value != this._sealProtocolDispatchDate ) )
         {
-          this.OnPropertyChanging("SealProtocolDispatchDate", this._sealProtocolDispatchDate);
+          this.OnPropertyChanging( "SealProtocolDispatchDate", this._sealProtocolDispatchDate );
           this._sealProtocolDispatchDate = value;
-          this.OnPropertyChanged("SealProtocolDispatchDate");
+          this.OnPropertyChanged( "SealProtocolDispatchDate" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocolCity", Storage = "_sealProtocolCity", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocolCity", Storage = "_sealProtocolCity", FieldType = "Text" )]
     public string SealProtocolCity
     {
       get
@@ -6469,16 +6429,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocolCity))
+        if ( ( value != this._sealProtocolCity ) )
         {
-          this.OnPropertyChanging("SealProtocolCity", this._sealProtocolCity);
+          this.OnPropertyChanging( "SealProtocolCity", this._sealProtocolCity );
           this._sealProtocolCity = value;
-          this.OnPropertyChanged("SealProtocolCity");
+          this.OnPropertyChanged( "SealProtocolCity" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocolCountry", Storage = "_sealProtocolCountry", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocolCountry", Storage = "_sealProtocolCountry", FieldType = "Text" )]
     public string SealProtocolCountry
     {
       get
@@ -6487,16 +6447,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocolCountry))
+        if ( ( value != this._sealProtocolCountry ) )
         {
-          this.OnPropertyChanging("SealProtocolCountry", this._sealProtocolCountry);
+          this.OnPropertyChanging( "SealProtocolCountry", this._sealProtocolCountry );
           this._sealProtocolCountry = value;
-          this.OnPropertyChanged("SealProtocolCountry");
+          this.OnPropertyChanged( "SealProtocolCountry" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocolForwarder", Storage = "_sealProtocolForwarder", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocolForwarder", Storage = "_sealProtocolForwarder", FieldType = "Text" )]
     public string SealProtocolForwarder
     {
       get
@@ -6505,16 +6465,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocolForwarder))
+        if ( ( value != this._sealProtocolForwarder ) )
         {
-          this.OnPropertyChanging("SealProtocolForwarder", this._sealProtocolForwarder);
+          this.OnPropertyChanging( "SealProtocolForwarder", this._sealProtocolForwarder );
           this._sealProtocolForwarder = value;
-          this.OnPropertyChanged("SealProtocolForwarder");
+          this.OnPropertyChanged( "SealProtocolForwarder" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocol1stDriver", Storage = "_sealProtocol1stDriver", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocol1stDriver", Storage = "_sealProtocol1stDriver", FieldType = "Text" )]
     public string SealProtocol1stDriver
     {
       get
@@ -6523,16 +6483,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocol1stDriver))
+        if ( ( value != this._sealProtocol1stDriver ) )
         {
-          this.OnPropertyChanging("SealProtocol1stDriver", this._sealProtocol1stDriver);
+          this.OnPropertyChanging( "SealProtocol1stDriver", this._sealProtocol1stDriver );
           this._sealProtocol1stDriver = value;
-          this.OnPropertyChanged("SealProtocol1stDriver");
+          this.OnPropertyChanged( "SealProtocol1stDriver" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocol2ndDriver", Storage = "_sealProtocol2ndDriver", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocol2ndDriver", Storage = "_sealProtocol2ndDriver", FieldType = "Text" )]
     public string SealProtocol2ndDriver
     {
       get
@@ -6541,16 +6501,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocol2ndDriver))
+        if ( ( value != this._sealProtocol2ndDriver ) )
         {
-          this.OnPropertyChanging("SealProtocol2ndDriver", this._sealProtocol2ndDriver);
+          this.OnPropertyChanging( "SealProtocol2ndDriver", this._sealProtocol2ndDriver );
           this._sealProtocol2ndDriver = value;
-          this.OnPropertyChanged("SealProtocol2ndDriver");
+          this.OnPropertyChanged( "SealProtocol2ndDriver" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocolDriverPhone", Storage = "_sealProtocolDriverPhone", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocolDriverPhone", Storage = "_sealProtocolDriverPhone", FieldType = "Text" )]
     public string SealProtocolDriverPhone
     {
       get
@@ -6559,16 +6519,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocolDriverPhone))
+        if ( ( value != this._sealProtocolDriverPhone ) )
         {
-          this.OnPropertyChanging("SealProtocolDriverPhone", this._sealProtocolDriverPhone);
+          this.OnPropertyChanging( "SealProtocolDriverPhone", this._sealProtocolDriverPhone );
           this._sealProtocolDriverPhone = value;
-          this.OnPropertyChanged("SealProtocolDriverPhone");
+          this.OnPropertyChanged( "SealProtocolDriverPhone" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocolSecurityEscortProvider", Storage = "_sealProtocolSecurityEscortProvider", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocolSecurityEscortProvider", Storage = "_sealProtocolSecurityEscortProvider", FieldType = "Text" )]
     public string SealProtocolSecurityEscortProvider
     {
       get
@@ -6577,16 +6537,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocolSecurityEscortProvider))
+        if ( ( value != this._sealProtocolSecurityEscortProvider ) )
         {
-          this.OnPropertyChanging("SealProtocolSecurityEscortProvider", this._sealProtocolSecurityEscortProvider);
+          this.OnPropertyChanging( "SealProtocolSecurityEscortProvider", this._sealProtocolSecurityEscortProvider );
           this._sealProtocolSecurityEscortProvider = value;
-          this.OnPropertyChanged("SealProtocolSecurityEscortProvider");
+          this.OnPropertyChanged( "SealProtocolSecurityEscortProvider" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocol1stEscort", Storage = "_sealProtocol1stEscort", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocol1stEscort", Storage = "_sealProtocol1stEscort", FieldType = "Text" )]
     public string SealProtocol1stEscort
     {
       get
@@ -6595,16 +6555,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocol1stEscort))
+        if ( ( value != this._sealProtocol1stEscort ) )
         {
-          this.OnPropertyChanging("SealProtocol1stEscort", this._sealProtocol1stEscort);
+          this.OnPropertyChanging( "SealProtocol1stEscort", this._sealProtocol1stEscort );
           this._sealProtocol1stEscort = value;
-          this.OnPropertyChanged("SealProtocol1stEscort");
+          this.OnPropertyChanged( "SealProtocol1stEscort" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocol2ndEscort", Storage = "_sealProtocol2ndEscort", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocol2ndEscort", Storage = "_sealProtocol2ndEscort", FieldType = "Text" )]
     public string SealProtocol2ndEscort
     {
       get
@@ -6613,16 +6573,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocol2ndEscort))
+        if ( ( value != this._sealProtocol2ndEscort ) )
         {
-          this.OnPropertyChanging("SealProtocol2ndEscort", this._sealProtocol2ndEscort);
+          this.OnPropertyChanging( "SealProtocol2ndEscort", this._sealProtocol2ndEscort );
           this._sealProtocol2ndEscort = value;
-          this.OnPropertyChanged("SealProtocol2ndEscort");
+          this.OnPropertyChanged( "SealProtocol2ndEscort" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocolEscortPhone", Storage = "_sealProtocolEscortPhone", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocolEscortPhone", Storage = "_sealProtocolEscortPhone", FieldType = "Text" )]
     public string SealProtocolEscortPhone
     {
       get
@@ -6631,16 +6591,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocolEscortPhone))
+        if ( ( value != this._sealProtocolEscortPhone ) )
         {
-          this.OnPropertyChanging("SealProtocolEscortPhone", this._sealProtocolEscortPhone);
+          this.OnPropertyChanging( "SealProtocolEscortPhone", this._sealProtocolEscortPhone );
           this._sealProtocolEscortPhone = value;
-          this.OnPropertyChanged("SealProtocolEscortPhone");
+          this.OnPropertyChanged( "SealProtocolEscortPhone" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocolEscortCarNo", Storage = "_sealProtocolEscortCarNo", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocolEscortCarNo", Storage = "_sealProtocolEscortCarNo", FieldType = "Text" )]
     public string SealProtocolEscortCarNo
     {
       get
@@ -6649,16 +6609,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocolEscortCarNo))
+        if ( ( value != this._sealProtocolEscortCarNo ) )
         {
-          this.OnPropertyChanging("SealProtocolEscortCarNo", this._sealProtocolEscortCarNo);
+          this.OnPropertyChanging( "SealProtocolEscortCarNo", this._sealProtocolEscortCarNo );
           this._sealProtocolEscortCarNo = value;
-          this.OnPropertyChanged("SealProtocolEscortCarNo");
+          this.OnPropertyChanged( "SealProtocolEscortCarNo" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocolContainersNo", Storage = "_sealProtocolContainersNo", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocolContainersNo", Storage = "_sealProtocolContainersNo", FieldType = "Text" )]
     public string SealProtocolContainersNo
     {
       get
@@ -6667,16 +6627,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocolContainersNo))
+        if ( ( value != this._sealProtocolContainersNo ) )
         {
-          this.OnPropertyChanging("SealProtocolContainersNo", this._sealProtocolContainersNo);
+          this.OnPropertyChanging( "SealProtocolContainersNo", this._sealProtocolContainersNo );
           this._sealProtocolContainersNo = value;
-          this.OnPropertyChanged("SealProtocolContainersNo");
+          this.OnPropertyChanged( "SealProtocolContainersNo" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocolDispatchDateActual", Storage = "_sealProtocolDispatchDateActual", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocolDispatchDateActual", Storage = "_sealProtocolDispatchDateActual", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> SealProtocolDispatchDateActual
     {
       get
@@ -6685,16 +6645,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocolDispatchDateActual))
+        if ( ( value != this._sealProtocolDispatchDateActual ) )
         {
-          this.OnPropertyChanging("SealProtocolDispatchDateActual", this._sealProtocolDispatchDateActual);
+          this.OnPropertyChanging( "SealProtocolDispatchDateActual", this._sealProtocolDispatchDateActual );
           this._sealProtocolDispatchDateActual = value;
-          this.OnPropertyChanged("SealProtocolDispatchDateActual");
+          this.OnPropertyChanged( "SealProtocolDispatchDateActual" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocolWarehouse", Storage = "_sealProtocolWarehouse", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocolWarehouse", Storage = "_sealProtocolWarehouse", FieldType = "Text" )]
     public string SealProtocolWarehouse
     {
       get
@@ -6703,16 +6663,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocolWarehouse))
+        if ( ( value != this._sealProtocolWarehouse ) )
         {
-          this.OnPropertyChanging("SealProtocolWarehouse", this._sealProtocolWarehouse);
+          this.OnPropertyChanging( "SealProtocolWarehouse", this._sealProtocolWarehouse );
           this._sealProtocolWarehouse = value;
-          this.OnPropertyChanged("SealProtocolWarehouse");
+          this.OnPropertyChanged( "SealProtocolWarehouse" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocolTruckNo", Storage = "_sealProtocolTruckNo", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocolTruckNo", Storage = "_sealProtocolTruckNo", FieldType = "Text" )]
     public string SealProtocolTruckNo
     {
       get
@@ -6721,16 +6681,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocolTruckNo))
+        if ( ( value != this._sealProtocolTruckNo ) )
         {
-          this.OnPropertyChanging("SealProtocolTruckNo", this._sealProtocolTruckNo);
+          this.OnPropertyChanging( "SealProtocolTruckNo", this._sealProtocolTruckNo );
           this._sealProtocolTruckNo = value;
-          this.OnPropertyChanged("SealProtocolTruckNo");
+          this.OnPropertyChanged( "SealProtocolTruckNo" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "SealProtocolTrailerNo", Storage = "_sealProtocolTrailerNo", FieldType = "Text")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "SealProtocolTrailerNo", Storage = "_sealProtocolTrailerNo", FieldType = "Text" )]
     public string SealProtocolTrailerNo
     {
       get
@@ -6739,11 +6699,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._sealProtocolTrailerNo))
+        if ( ( value != this._sealProtocolTrailerNo ) )
         {
-          this.OnPropertyChanging("SealProtocolTrailerNo", this._sealProtocolTrailerNo);
+          this.OnPropertyChanging( "SealProtocolTrailerNo", this._sealProtocolTrailerNo );
           this._sealProtocolTrailerNo = value;
-          this.OnPropertyChanged("SealProtocolTrailerNo");
+          this.OnPropertyChanged( "SealProtocolTrailerNo" );
         }
       }
     }
@@ -6753,9 +6713,9 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// Time Slot List CT
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "TimeSlot", Id = "0x0102008B8977AFA9104B18B4B25D7C06A4A3AA")]
-  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type = typeof(TimeSlotTimeSlot))]
-  public partial class TimeSlot : Event
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "TimeSlot", Id = "0x0102008B8977AFA9104B18B4B25D7C06A4A3AA" )]
+  [Microsoft.SharePoint.Linq.DerivedEntityClassAttribute( Type = typeof( TimeSlotTimeSlot ) )]
+  public partial class TimeSlot: Event
   {
 
     private System.Nullable<System.DateTime> _entryTime;
@@ -6781,16 +6741,15 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public TimeSlot()
     {
       this._timeSlot2ShippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
-      this._timeSlot2ShippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnTimeSlot2ShippingIndexSync);
-      this._timeSlot2ShippingIndex.OnChanged += new System.EventHandler(this.OnTimeSlot2ShippingIndexChanged);
-      this._timeSlot2ShippingIndex.OnChanging += new System.EventHandler(this.OnTimeSlot2ShippingIndexChanging);
+      this._timeSlot2ShippingIndex.OnChanged += new System.EventHandler( this.OnTimeSlot2ShippingIndexChanged );
+      this._timeSlot2ShippingIndex.OnChanging += new System.EventHandler( this.OnTimeSlot2ShippingIndexChanging );
       this._timeSlot2ShippingPointLookup = new Microsoft.SharePoint.Linq.EntityRef<ShippingPoint>();
-      this._timeSlot2ShippingPointLookup.OnChanged += new System.EventHandler(this.OnTimeSlot2ShippingPointLookupChanged);
-      this._timeSlot2ShippingPointLookup.OnChanging += new System.EventHandler(this.OnTimeSlot2ShippingPointLookupChanging);
+      this._timeSlot2ShippingPointLookup.OnChanged += new System.EventHandler( this.OnTimeSlot2ShippingPointLookupChanged );
+      this._timeSlot2ShippingPointLookup.OnChanging += new System.EventHandler( this.OnTimeSlot2ShippingPointLookupChanging );
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "EntryTime", Storage = "_entryTime", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "EntryTime", Storage = "_entryTime", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> EntryTime
     {
       get
@@ -6799,16 +6758,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._entryTime))
+        if ( ( value != this._entryTime ) )
         {
-          this.OnPropertyChanging("EntryTime", this._entryTime);
+          this.OnPropertyChanging( "EntryTime", this._entryTime );
           this._entryTime = value;
-          this.OnPropertyChanged("EntryTime");
+          this.OnPropertyChanged( "EntryTime" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "TimeSpan", Storage = "_timeSpan", FieldType = "Number")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "TimeSpan", Storage = "_timeSpan", FieldType = "Number" )]
     public System.Nullable<double> TimeSpan
     {
       get
@@ -6817,16 +6776,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._timeSpan))
+        if ( ( value != this._timeSpan ) )
         {
-          this.OnPropertyChanging("TimeSpan", this._timeSpan);
+          this.OnPropertyChanging( "TimeSpan", this._timeSpan );
           this._timeSpan = value;
-          this.OnPropertyChanged("TimeSpan");
+          this.OnPropertyChanged( "TimeSpan" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "ExitTime", Storage = "_exitTime", FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "ExitTime", Storage = "_exitTime", FieldType = "DateTime" )]
     public System.Nullable<System.DateTime> ExitTime
     {
       get
@@ -6835,16 +6794,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._exitTime))
+        if ( ( value != this._exitTime ) )
         {
-          this.OnPropertyChanging("ExitTime", this._exitTime);
+          this.OnPropertyChanging( "ExitTime", this._exitTime );
           this._exitTime = value;
-          this.OnPropertyChanged("ExitTime");
+          this.OnPropertyChanged( "ExitTime" );
         }
       }
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "IsDouble", Storage = "_isDouble", FieldType = "Boolean")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "IsDouble", Storage = "_isDouble", FieldType = "Boolean" )]
     public System.Nullable<bool> IsDouble
     {
       get
@@ -6853,103 +6812,103 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._isDouble))
+        if ( ( value != this._isDouble ) )
         {
-          this.OnPropertyChanging("IsDouble", this._isDouble);
+          this.OnPropertyChanging( "IsDouble", this._isDouble );
           this._isDouble = value;
-          this.OnPropertyChanged("IsDouble");
+          this.OnPropertyChanged( "IsDouble" );
         }
       }
     }
 
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.ComponentModel.EditorBrowsableAttribute( System.ComponentModel.EditorBrowsableState.Never )]
     [Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
     public override string Title
     {
       get
       {
-        throw new System.InvalidOperationException("Field Title was removed from content type TimeSlot.");
+        throw new System.InvalidOperationException( "Field Title was removed from content type TimeSlot." );
       }
       set
       {
-        throw new System.InvalidOperationException("Field Title was removed from content type TimeSlot.");
+        throw new System.InvalidOperationException( "Field Title was removed from content type TimeSlot." );
       }
     }
 
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.ComponentModel.EditorBrowsableAttribute( System.ComponentModel.EditorBrowsableState.Never )]
     [Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
     public override string Location
     {
       get
       {
-        throw new System.InvalidOperationException("Field Location was removed from content type TimeSlot.");
+        throw new System.InvalidOperationException( "Field Location was removed from content type TimeSlot." );
       }
       set
       {
-        throw new System.InvalidOperationException("Field Location was removed from content type TimeSlot.");
+        throw new System.InvalidOperationException( "Field Location was removed from content type TimeSlot." );
       }
     }
 
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.ComponentModel.EditorBrowsableAttribute( System.ComponentModel.EditorBrowsableState.Never )]
     [Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
     public override string Description
     {
       get
       {
-        throw new System.InvalidOperationException("Field Comments was removed from content type TimeSlot.");
+        throw new System.InvalidOperationException( "Field Comments was removed from content type TimeSlot." );
       }
       set
       {
-        throw new System.InvalidOperationException("Field Comments was removed from content type TimeSlot.");
+        throw new System.InvalidOperationException( "Field Comments was removed from content type TimeSlot." );
       }
     }
 
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.ComponentModel.EditorBrowsableAttribute( System.ComponentModel.EditorBrowsableState.Never )]
     [Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
     public override System.Nullable<bool> AllDayEvent
     {
       get
       {
-        throw new System.InvalidOperationException("Field fAllDayEvent was removed from content type TimeSlot.");
+        throw new System.InvalidOperationException( "Field fAllDayEvent was removed from content type TimeSlot." );
       }
       set
       {
-        throw new System.InvalidOperationException("Field fAllDayEvent was removed from content type TimeSlot.");
+        throw new System.InvalidOperationException( "Field fAllDayEvent was removed from content type TimeSlot." );
       }
     }
 
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.ComponentModel.EditorBrowsableAttribute( System.ComponentModel.EditorBrowsableState.Never )]
     [Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
     public override System.Nullable<bool> Recurrence
     {
       get
       {
-        throw new System.InvalidOperationException("Field fRecurrence was removed from content type TimeSlot.");
+        throw new System.InvalidOperationException( "Field fRecurrence was removed from content type TimeSlot." );
       }
       set
       {
-        throw new System.InvalidOperationException("Field fRecurrence was removed from content type TimeSlot.");
+        throw new System.InvalidOperationException( "Field fRecurrence was removed from content type TimeSlot." );
       }
     }
 
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.ComponentModel.EditorBrowsableAttribute( System.ComponentModel.EditorBrowsableState.Never )]
     [Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
     public override System.Nullable<bool> Workspace
     {
       get
       {
-        throw new System.InvalidOperationException("Field WorkspaceLink was removed from content type TimeSlot.");
+        throw new System.InvalidOperationException( "Field WorkspaceLink was removed from content type TimeSlot." );
       }
       set
       {
-        throw new System.InvalidOperationException("Field WorkspaceLink was removed from content type TimeSlot.");
+        throw new System.InvalidOperationException( "Field WorkspaceLink was removed from content type TimeSlot." );
       }
     }
 
     /// <summary>
     /// Occupied
     /// </summary>
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Occupied", Storage = "_occupied", FieldType = "Choice")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "Occupied", Storage = "_occupied", FieldType = "Choice" )]
     public System.Nullable<Occupied> Occupied
     {
       get
@@ -6958,30 +6917,30 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._occupied))
+        if ( ( value != this._occupied ) )
         {
-          this.OnPropertyChanging("Occupied", this._occupied);
+          this.OnPropertyChanging( "Occupied", this._occupied );
           this._occupied = value;
-          this.OnPropertyChanged("Occupied");
+          this.OnPropertyChanged( "Occupied" );
         }
       }
     }
 
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.ComponentModel.EditorBrowsableAttribute( System.ComponentModel.EditorBrowsableState.Never )]
     [Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
     public override System.Nullable<Category> Category
     {
       get
       {
-        throw new System.InvalidOperationException("Field Category was removed from content type TimeSlot.");
+        throw new System.InvalidOperationException( "Field Category was removed from content type TimeSlot." );
       }
       set
       {
-        throw new System.InvalidOperationException("Field Category was removed from content type TimeSlot.");
+        throw new System.InvalidOperationException( "Field Category was removed from content type TimeSlot." );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "TimeSlot2ShippingIndex", Storage = "_timeSlot2ShippingIndex", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipping")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "TimeSlot2ShippingIndex", Storage = "_timeSlot2ShippingIndex", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipping" )]
     public Shipping TimeSlot2ShippingIndex
     {
       get
@@ -6990,11 +6949,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._timeSlot2ShippingIndex.SetEntity(value);
+        this._timeSlot2ShippingIndex.SetEntity( value );
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute(Name = "TimeSlot2ShippingPointLookup", Storage = "_timeSlot2ShippingPointLookup", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipping Point")]
+    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "TimeSlot2ShippingPointLookup", Storage = "_timeSlot2ShippingPointLookup", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Shipping Point" )]
     public ShippingPoint TimeSlot2ShippingPointLookup
     {
       get
@@ -7003,40 +6962,28 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        this._timeSlot2ShippingPointLookup.SetEntity(value);
+        this._timeSlot2ShippingPointLookup.SetEntity( value );
       }
     }
 
-    private void OnTimeSlot2ShippingIndexChanging(object sender, System.EventArgs e)
+    private void OnTimeSlot2ShippingIndexChanging( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("TimeSlot2ShippingIndex", this._timeSlot2ShippingIndex.Clone());
+      this.OnPropertyChanging( "TimeSlot2ShippingIndex", this._timeSlot2ShippingIndex.Clone() );
     }
 
-    private void OnTimeSlot2ShippingIndexChanged(object sender, System.EventArgs e)
+    private void OnTimeSlot2ShippingIndexChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanged("TimeSlot2ShippingIndex");
+      this.OnPropertyChanged( "TimeSlot2ShippingIndex" );
     }
 
-    private void OnTimeSlot2ShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e)
+    private void OnTimeSlot2ShippingPointLookupChanging( object sender, System.EventArgs e )
     {
-      if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State))
-      {
-        e.Item.TimeSlot.Add(this);
-      }
-      else
-      {
-        e.Item.TimeSlot.Remove(this);
-      }
+      this.OnPropertyChanging( "TimeSlot2ShippingPointLookup", this._timeSlot2ShippingPointLookup.Clone() );
     }
 
-    private void OnTimeSlot2ShippingPointLookupChanging(object sender, System.EventArgs e)
+    private void OnTimeSlot2ShippingPointLookupChanged( object sender, System.EventArgs e )
     {
-      this.OnPropertyChanging("TimeSlot2ShippingPointLookup", this._timeSlot2ShippingPointLookup.Clone());
-    }
-
-    private void OnTimeSlot2ShippingPointLookupChanged(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanged("TimeSlot2ShippingPointLookup");
+      this.OnPropertyChanged( "TimeSlot2ShippingPointLookup" );
     }
 
   }
@@ -7044,8 +6991,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
   /// <summary>
   /// Time Slot List CT
   /// </summary>
-  [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "TimeSlot", Id = "0x0102008B8977AFA9104B18B4B25D7C06A4A3AA", List = "Time Slot")]
-  public partial class TimeSlotTimeSlot : TimeSlot
+  [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "TimeSlot", Id = "0x0102008B8977AFA9104B18B4B25D7C06A4A3AA", List = "Time Slot" )]
+  public partial class TimeSlotTimeSlot: TimeSlot
   {
 
     #region Extensibility Method Definitions
@@ -7059,7 +7006,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.OnCreated();
     }
 
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "EventDate", Storage = "_startTime", Required = true, FieldType = "DateTime")]
+    [Microsoft.SharePoint.Linq.ColumnAttribute( Name = "EventDate", Storage = "_startTime", Required = true, FieldType = "DateTime" )]
     public override System.Nullable<System.DateTime> StartTime
     {
       get
@@ -7068,503 +7015,503 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
       set
       {
-        if ((value != this._startTime))
+        if ( ( value != this._startTime ) )
         {
-          this.OnPropertyChanging("StartTime", this._startTime);
+          this.OnPropertyChanging( "StartTime", this._startTime );
           this._startTime = value;
-          this.OnPropertyChanged("StartTime");
+          this.OnPropertyChanged( "StartTime" );
         }
       }
     }
   }
 
-  public enum Category : int
+  public enum Category: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "(1) Category1")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "(1) Category1" )]
     _1Category1 = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "(2) Category2")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "(2) Category2" )]
     _2Category2 = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "(3) Category3")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "(3) Category3" )]
     _3Category3 = 8,
   }
 
-  public enum AlarmPriority : int
+  public enum AlarmPriority: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Normal")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Normal" )]
     Normal = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "High")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "High" )]
     High = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Warning")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Warning" )]
     Warning = 8,
   }
 
-  public enum ShepherdRole : int
+  public enum ShepherdRole: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Administrator")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Administrator" )]
     Administrator = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "InboundOwner")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "InboundOwner" )]
     InboundOwner = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "OutboundOwner")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "OutboundOwner" )]
     OutboundOwner = 8,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Operator")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Operator" )]
     Operator = 16,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Supervisor")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Supervisor" )]
     Supervisor = 32,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Guard")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Guard" )]
     Guard = 64,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Coordinator")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Coordinator" )]
     Coordinator = 128,
   }
 
-  public enum PalletType : int
+  public enum PalletType: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Euro")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Euro" )]
     Euro = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Industrial")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Industrial" )]
     Industrial = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Other")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Other" )]
     Other = 8,
   }
 
-  public enum ServiceType : int
+  public enum ServiceType: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Vendor")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Vendor" )]
     Vendor = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Forwarder")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Forwarder" )]
     Forwarder = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Vendor and Forwarder")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Vendor and Forwarder" )]
     VendorAndForwarder = 8,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Security Escort Provider")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Security Escort Provider" )]
     SecurityEscortProvider = 16,
   }
 
-  public enum ShippingState : int
+  public enum ShippingState: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Cancelation")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Cancelation" )]
     Cancelation = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Canceled")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Canceled" )]
     Canceled = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Completed")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Completed" )]
     Completed = 8,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Confirmed")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Confirmed" )]
     Confirmed = 16,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Creation")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Creation" )]
     Creation = 32,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Delayed")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Delayed" )]
     Delayed = 64,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "WaitingForCarrierData")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "WaitingForCarrierData" )]
     WaitingForCarrierData = 128,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "WaitingForConfirmation")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "WaitingForConfirmation" )]
     WaitingForConfirmation = 256,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Underway")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Underway" )]
     Underway = 512,
   }
 
-  public enum LoadingType : int
+  public enum LoadingType: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Manual")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Manual" )]
     Manual = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Pallet")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Pallet" )]
     Pallet = 4,
   }
 
-  public enum TrailerCondition : int
+  public enum TrailerCondition: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "5- excellent")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "5- excellent" )]
     _5Excellent = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "4")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "4" )]
     _4 = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "3")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "3" )]
     _3 = 8,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "2")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "2" )]
     _2 = 16,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "1 - unexceptable")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "1 - unexceptable" )]
     _1Unexceptable = 32,
   }
 
-  public enum ShippingState2 : int
+  public enum ShippingState2: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Cancelation")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Cancelation" )]
     Cancelation = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Canceled")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Canceled" )]
     Canceled = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Completed")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Completed" )]
     Completed = 8,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Confirmed")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Confirmed" )]
     Confirmed = 16,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Creation")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Creation" )]
     Creation = 32,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Delayed")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Delayed" )]
     Delayed = 64,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Lack of data")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Lack of data" )]
     LackOfData = 128,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Left")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Left" )]
     Left = 256,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Started")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Started" )]
     Started = 512,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Waiting")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Waiting" )]
     Waiting = 1024,
   }
 
-  public enum Direction : int
+  public enum Direction: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Inbound")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Inbound" )]
     Inbound = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Outbound")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Outbound" )]
     Outbound = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Both directions")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Both directions" )]
     BothDirections = 8,
   }
 
-  public enum TimeSlotsTemplateDay : int
+  public enum TimeSlotsTemplateDay: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Monday")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Monday" )]
     Monday = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Tuesday")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Tuesday" )]
     Tuesday = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Wednesday")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Wednesday" )]
     Wednesday = 8,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Thursday")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Thursday" )]
     Thursday = 16,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Friday")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Friday" )]
     Friday = 32,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Saturday")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Saturday" )]
     Saturday = 64,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Sunday")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Sunday" )]
     Sunday = 128,
   }
 
-  public enum TimeSlotsTemplateStartHour : int
+  public enum TimeSlotsTemplateStartHour: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "0")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "0" )]
     _0 = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "1")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "1" )]
     _1 = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "2")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "2" )]
     _2 = 8,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "3")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "3" )]
     _3 = 16,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "4")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "4" )]
     _4 = 32,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "5")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "5" )]
     _5 = 64,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "6")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "6" )]
     _6 = 128,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "7")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "7" )]
     _7 = 256,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "8")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "8" )]
     _8 = 512,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "9")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "9" )]
     _9 = 1024,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "10")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "10" )]
     _10 = 2048,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "11")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "11" )]
     _11 = 4096,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "12")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "12" )]
     _12 = 8192,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "13")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "13" )]
     _13 = 16384,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "14")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "14" )]
     _14 = 32768,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "15")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "15" )]
     _15 = 65536,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "16")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "16" )]
     _16 = 131072,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "17")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "17" )]
     _17 = 262144,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "18")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "18" )]
     _18 = 524288,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "19")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "19" )]
     _19 = 1048576,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "20")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "20" )]
     _20 = 2097152,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "21")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "21" )]
     _21 = 4194304,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "22")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "22" )]
     _22 = 8388608,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "23")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "23" )]
     _23 = 16777216,
   }
 
-  public enum TimeSlotsTemplateStartMinute : int
+  public enum TimeSlotsTemplateStartMinute: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "0")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "0" )]
     _0 = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "15")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "15" )]
     _15 = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "30")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "30" )]
     _30 = 8,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "45")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "45" )]
     _45 = 16,
   }
 
-  public enum TimeSlotsTemplateEndHour : int
+  public enum TimeSlotsTemplateEndHour: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "0")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "0" )]
     _0 = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "1")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "1" )]
     _1 = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "2")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "2" )]
     _2 = 8,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "3")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "3" )]
     _3 = 16,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "4")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "4" )]
     _4 = 32,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "5")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "5" )]
     _5 = 64,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "6")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "6" )]
     _6 = 128,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "7")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "7" )]
     _7 = 256,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "8")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "8" )]
     _8 = 512,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "9")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "9" )]
     _9 = 1024,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "10")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "10" )]
     _10 = 2048,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "11")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "11" )]
     _11 = 4096,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "12")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "12" )]
     _12 = 8192,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "13")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "13" )]
     _13 = 16384,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "14")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "14" )]
     _14 = 32768,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "15")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "15" )]
     _15 = 65536,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "16")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "16" )]
     _16 = 131072,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "17")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "17" )]
     _17 = 262144,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "18")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "18" )]
     _18 = 524288,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "19")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "19" )]
     _19 = 1048576,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "20")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "20" )]
     _20 = 2097152,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "21")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "21" )]
     _21 = 4194304,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "22")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "22" )]
     _22 = 8388608,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "23")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "23" )]
     _23 = 16777216,
   }
 
-  public enum TimeSlotsTemplateEndMinute : int
+  public enum TimeSlotsTemplateEndMinute: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "0")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "0" )]
     _0 = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "15")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "15" )]
     _15 = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "30")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "30" )]
     _30 = 8,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "45")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "45" )]
     _45 = 16,
   }
 
-  public enum VehicleType : int
+  public enum VehicleType: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Truck")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Truck" )]
     Truck = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Van")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Van" )]
     Van = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Security Escort Car")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Security Escort Car" )]
     SecurityEscortCar = 8,
   }
 
-  public enum Occupied : int
+  public enum Occupied: int
   {
 
     None = 0,
 
     Invalid = 1,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Free")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Free" )]
     Free = 2,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Occupied")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Occupied" )]
     Occupied0 = 4,
 
-    [Microsoft.SharePoint.Linq.ChoiceAttribute(Value = "Delayed")]
+    [Microsoft.SharePoint.Linq.ChoiceAttribute( Value = "Delayed" )]
     Delayed = 8,
   }
 }

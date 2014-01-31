@@ -113,12 +113,12 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// Releases the booking.
     /// </summary>
     /// <exception cref="System.ApplicationException"></exception>
-    public void ReleaseBooking()
+    public void ReleaseBooking(EntitiesDataContext edc)
     {
-      if ( this.TimeSlot == null || this.TimeSlot.Count == 0 )
+      if ( this.TimeSlots(edc) == null || this.TimeSlots(edc).Count == 0 )
         return;
       List<TimeSlot> _2release = new List<TimeSlot>();
-      foreach ( var item in this.TimeSlot )
+      foreach ( var item in this.TimeSlots( edc ) )
       {
         if ( item.Occupied != Entities.Occupied.Occupied0 )
           continue;
@@ -412,9 +412,22 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     {
       m_SheepingSubstateMachineContext.SetEndTime();
     }
+    public List<TimeSlotTimeSlot> TimeSlots( EntitiesDataContext edc )
+    {
+      if ( edc == null )
+        throw new ArgumentNullException( "edc", "calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null" );
+      if ( m_TimeSlots == null )
+        m_TimeSlots = ( from _ts in edc.TimeSlot
+                        let _sid = _ts.TimeSlot2ShippingIndex == null ? new Nullable<int>() : _ts.TimeSlot2ShippingIndex.Id.Value
+                        where ( this.Id.Value == _sid ) && ( _ts.Occupied.GetValueOrDefault( Occupied.Free ) == Occupied.Occupied0 )
+                        orderby _ts.StartTime ascending
+                        select _ts ).ToList();
+      return m_TimeSlots;
+    }
     #endregion
 
     #region private
+    List<TimeSlotTimeSlot> m_TimeSlots = null;
     private SheepingSubstateMachine.Context m_SheepingSubstateMachineContext;
     private TimeSpan _12h = new TimeSpan( 12, 0, 0 );
     private void RemoveDrivers( EntitiesDataContext EDC, Partner partner )
@@ -448,7 +461,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
           m_SheepingSubstateMachineContext.SetShippingState( this.ShippingState.Value );
         else if ( propertyName.Equals( "TruckAwaiting" ) )
           m_SheepingSubstateMachineContext.SetAwaiting( this.TruckAwaiting.Value );
-        else if (propertyName.Equals("PartnerTitle"))
+        else if ( propertyName.Equals( "PartnerTitle" ) )
           m_SheepingSubstateMachineContext.SetPartner( this.PartnerTitle );
       }
       catch ( SheepingSubstateMachine.Context.ContexException )
