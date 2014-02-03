@@ -34,16 +34,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// </summary>
     /// <param name="nr">The nr.</param>
     /// <param name="EDC">The EDC.</param>
-    public void ChangeRout( Route nr, EntitiesDataContext EDC )
+    public void ChangeRout(Route nr, EntitiesDataContext EDC)
     {
-      if ( this.Shipping2RouteTitle == nr )
+      if (this.Shipping2RouteTitle == nr)
         return;
       this.TrailerTitle = null;
       this.TruckTitle = null;
       EDC.SubmitChanges();
-      RemoveDrivers( EDC, this.PartnerTitle );
+      RemoveDrivers(EDC, this.PartnerTitle);
       this.Shipping2RouteTitle = nr;
-      if ( nr == null )
+      if (nr == null)
       {
         this.BusinessDescription = String.Empty;
         this.PartnerTitle = null;
@@ -57,15 +57,15 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// </summary>
     /// <param name="nr">The nr.</param>
     /// <param name="EDC">The EDC.</param>
-    public void ChangeEscort( SecurityEscortCatalog nr, EntitiesDataContext EDC )
+    public void ChangeEscort(SecurityEscortCatalog nr, EntitiesDataContext EDC)
     {
-      if ( this.SecurityEscortCatalogTitle == nr )
+      if (this.SecurityEscortCatalogTitle == nr)
         return;
       this.Shipping2TruckTitle = null;
       EDC.SubmitChanges();
-      RemoveDrivers( EDC, this.Shipping2PartnerTitle );
+      RemoveDrivers(EDC, this.Shipping2PartnerTitle);
       this.SecurityEscortCatalogTitle = nr;
-      if ( nr == null )
+      if (nr == null)
       {
         this.Shipping2PartnerTitle = null;
         return;
@@ -82,7 +82,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <exception cref="System.ApplicationException">Wrong Shipping state</exception>
     public bool IsEditable()
     {
-      switch ( this.ShippingState.Value )
+      switch (this.ShippingState.Value)
       {
         case Entities.ShippingState.Canceled:
         case Entities.ShippingState.Completed:
@@ -98,7 +98,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         case Entities.ShippingState.Invalid:
         case Entities.ShippingState.None:
         default:
-          throw new ApplicationException( "Wrong Shipping state" );
+          throw new ApplicationException("Wrong Shipping state");
       }
     }
     /// <summary>
@@ -115,19 +115,19 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <exception cref="System.ApplicationException"></exception>
     public void ReleaseBooking(EntitiesDataContext edc)
     {
-      if ( this.TimeSlots(edc) == null || this.TimeSlots(edc).Count == 0 )
+      if (this.TimeSlots(edc) == null || this.TimeSlots(edc).Count == 0)
         return;
       List<TimeSlot> _2release = new List<TimeSlot>();
-      foreach ( var item in this.TimeSlots( edc ) )
+      foreach (var item in this.TimeSlots(edc))
       {
-        if ( item.Occupied != Entities.Occupied.Occupied0 )
+        if (item.Occupied != Entities.Occupied.Occupied0)
           continue;
-        _2release.Add( item );
+        _2release.Add(item);
       }
-      foreach ( var item in _2release )
+      foreach (var item in _2release)
       {
         //item.Tytuł = "-- not assigned --";
-        if ( ForFuture() )
+        if (ForFuture())
           item.Occupied = Entities.Occupied.Delayed;
         else
         {
@@ -143,14 +143,14 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public void UpdateTitle()
     {
       string _tf = "{0}{1:D6}";
-      Title = String.Format( _tf, IsOutbound.Value ? "O" : "I", Id.Value );
+      Title = String.Format(_tf, IsOutbound.Value ? "O" : "I", Id.Value);
     }
     /// <summary>
     /// Calculates the state.
     /// </summary>
     public void CalculateState()
     {
-      switch ( this.ShippingState.GetValueOrDefault( Entities.ShippingState.None ) )
+      switch (this.ShippingState.GetValueOrDefault(Entities.ShippingState.None))
       {
         case Entities.ShippingState.Confirmed:
         case Entities.ShippingState.Creation:
@@ -158,23 +158,23 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         case Entities.ShippingState.WaitingForConfirmation:
           int _seDrivers = 0;
           int _crDrivers = 0;
-          foreach ( var _dr in this.ShippingDriversTeam )
-            if ( _dr.DriverTitle.Driver2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider )
+          foreach (var _dr in this.ShippingDriversTeam)
+            if (_dr.DriverTitle.Driver2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider)
               _seDrivers++;
             else
               _crDrivers++;
-          if ( this.PartnerTitle == null )
+          if (this.PartnerTitle == null)
             this.ShippingState = Entities.ShippingState.Creation;
           else
           {
-            if ( _crDrivers > 0 && this.TruckTitle != null )
+            if (_crDrivers > 0 && this.TruckTitle != null)
             {
-              if ( this.SecurityEscortCatalogTitle == null || ( _seDrivers > 0 && this.Shipping2TruckTitle != null ) )
+              if (this.SecurityEscortCatalogTitle == null || (_seDrivers > 0 && this.Shipping2TruckTitle != null))
                 this.ShippingState = Entities.ShippingState.Confirmed;
               else
                 this.ShippingState = Entities.ShippingState.WaitingForConfirmation;
             }
-            else if ( this.SecurityEscortCatalogTitle == null || ( _seDrivers > 0 && this.Shipping2TruckTitle != null ) )
+            else if (this.SecurityEscortCatalogTitle == null || (_seDrivers > 0 && this.Shipping2TruckTitle != null))
               this.ShippingState = Entities.ShippingState.WaitingForCarrierData;
             else
               this.ShippingState = Entities.ShippingState.Creation;
@@ -253,30 +253,30 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <param name="alarm">if set to <c>true</c> [alarm].</param>
     /// <param name="TimeOutExpired">if set to <c>true</c> [time out expired].</param>
     /// <returns></returns>
-    public RequiredOperations CalculateOperations2Do( bool email, bool alarm, bool TimeOutExpired )
+    public RequiredOperations CalculateOperations2Do(bool email, bool alarm, bool TimeOutExpired)
     {
       RequiredOperations _ret = 0;
-      if ( !TimeOutExpired )
+      if (!TimeOutExpired)
         return _ret;
       RequiredOperations _cr = 0;
       RequiredOperations _escrt = 0;
-      if ( alarm )
+      if (alarm)
       {
         //Carrier
-        if ( this.PartnerTitle != null )
+        if (this.PartnerTitle != null)
           _cr = RequiredOperations.AddAlarm2Carrier;
         //Escort
-        if ( this.Shipping2PartnerTitle != null )
+        if (this.Shipping2PartnerTitle != null)
           _escrt = RequiredOperations.AddAlarm2Escort;
       }
-      if ( email )
+      if (email)
       {
-        if ( this.PartnerTitle != null )
+        if (this.PartnerTitle != null)
           _cr |= RequiredOperations.SendEmail2Carrier;
-        if ( this.Shipping2PartnerTitle != null )
+        if (this.Shipping2PartnerTitle != null)
           _escrt |= RequiredOperations.SendEmail2Escort;
       }
-      switch ( this.ShippingState.Value )
+      switch (this.ShippingState.Value)
       {
         case Entities.ShippingState.WaitingForCarrierData:
           _ret = _cr;
@@ -295,28 +295,28 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// </summary>
     /// <param name="ts">The ts.</param>
     /// <returns></returns>
-    public Distance CalculateDistance( out TimeSpan ts )
+    public Distance CalculateDistance(out TimeSpan ts)
     {
-      TimeSpan _2h = new TimeSpan( 2, 0, 0 );
-      TimeSpan _24h = new TimeSpan( 24, 0, 0 );
-      TimeSpan _72h = new TimeSpan( 3, 0, 0, 0 );
+      TimeSpan _2h = new TimeSpan(2, 0, 0);
+      TimeSpan _24h = new TimeSpan(24, 0, 0);
+      TimeSpan _72h = new TimeSpan(3, 0, 0, 0);
       ts = TimeSpan.Zero;
-      if ( this.StartTime.Value > DateTime.Now + _72h )
+      if (this.StartTime.Value > DateTime.Now + _72h)
       {
         ts = this.StartTime.Value - DateTime.Now - _72h;
         return Distance.UpTo72h;
       }
-      else if ( this.StartTime.Value > DateTime.Now + _24h )
+      else if (this.StartTime.Value > DateTime.Now + _24h)
       {
         ts = this.StartTime.Value - DateTime.Now - _24h;
         return Distance.UpTo24h;
       }
-      else if ( this.StartTime.Value > DateTime.Now + _2h )
+      else if (this.StartTime.Value > DateTime.Now + _2h)
       {
         ts = this.StartTime.Value - DateTime.Now - _2h;
         return Distance.UpTo2h;
       }
-      else if ( this.StartTime.Value > DateTime.Now )
+      else if (this.StartTime.Value > DateTime.Now)
       {
         ts = this.StartTime.Value - DateTime.Now;
         return Distance.VeryClose;
@@ -330,14 +330,14 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <param name="set">The set.</param>
     /// <param name="item">The item.</param>
     /// <returns></returns>
-    public static bool InSet( RequiredOperations set, RequiredOperations item )
+    public static bool InSet(RequiredOperations set, RequiredOperations item)
     {
-      return ( set & item ) != 0;
+      return (set & item) != 0;
     }
     /// <summary>
     /// The watch tolerance
     /// </summary>
-    public static TimeSpan WatchTolerance = new TimeSpan( 0, 15, 0 );
+    public static TimeSpan WatchTolerance = new TimeSpan(0, 15, 0);
     /// <summary>
     /// Makes the booking.
     /// </summary>
@@ -345,14 +345,14 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <param name="isDouble">if set to <c>true</c> [_is double].</param>
     /// <returns></returns>
     /// <exception cref="System.ApplicationException">Time slot has been aleady reserved</exception>
-    public List<TimeSlotTimeSlot> MakeBooking( List<TimeSlotTimeSlot> timeSlotsCollection, bool isDouble )
+    public List<TimeSlotTimeSlot> MakeBooking(List<TimeSlotTimeSlot> timeSlotsCollection, bool isDouble)
     {
-      StartTime = timeSlotsCollection[ 0 ].StartTime;
-      TSStartTime = timeSlotsCollection[ 0 ].StartTime;
-      WarehouseStartTime = timeSlotsCollection[ 0 ].StartTime;
-      Shipping2WarehouseTitle = timeSlotsCollection[ 0 ].GetWarehouse();
-      TimeSlotTimeSlot _next = timeSlotsCollection[ 0 ];
-      foreach ( TimeSlotTimeSlot _tsx in timeSlotsCollection )
+      StartTime = timeSlotsCollection[0].StartTime;
+      TSStartTime = timeSlotsCollection[0].StartTime;
+      WarehouseStartTime = timeSlotsCollection[0].StartTime;
+      Shipping2WarehouseTitle = timeSlotsCollection[0].GetWarehouse();
+      TimeSlotTimeSlot _next = timeSlotsCollection[0];
+      foreach (TimeSlotTimeSlot _tsx in timeSlotsCollection)
       {
         _tsx.TimeSlot2ShippingIndex = this;
         _next = _tsx;
@@ -360,7 +360,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       EndTime = _next.EndTime;
       TSEndTime = _next.EndTime;
       WarehouseEndTime = _next.EndTime;
-      ShippingDuration = Convert.ToDouble( ( _next.EndTime.Value - this.StartTime.Value ).TotalMinutes );
+      ShippingDuration = Convert.ToDouble((_next.EndTime.Value - this.StartTime.Value).TotalMinutes);
       LoadingType = isDouble ? Entities.LoadingType.Manual : Entities.LoadingType.Pallet;
       return timeSlotsCollection;
     }
@@ -369,7 +369,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// </summary>
     /// <param name="outbound">if set to <c>true</c> [outbound].</param>
     /// <returns></returns>
-    public static Shipping CreateShipping( bool outbound )
+    public static Shipping CreateShipping(bool outbound)
     {
       return new Shipping()
       {
@@ -393,15 +393,15 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// Updates the purchase order info.
     /// </summary>
     /// <param name="excludedLoadDescription">The <see cref="Entities.LoadDescription"/> object that should be exlided from the list of PO.</param>
-    public void UpdatePOInfo( Entities.LoadDescription excludedLoadDescription )
+    public void UpdatePOInfo(Entities.LoadDescription excludedLoadDescription)
     {
       this.PoLastModification = DateTime.Now;
       StringBuilder _po = new StringBuilder();
-      foreach ( LoadDescription _ldx in LoadDescription )
+      foreach (LoadDescription _ldx in LoadDescription)
       {
-        if ( excludedLoadDescription == _ldx )
+        if (excludedLoadDescription == _ldx)
           continue;
-        _po.AppendLine( SPEncode.HtmlEncode( _ldx.Title ) );
+        _po.AppendLine(SPEncode.HtmlEncode(_ldx.Title));
       }
       this.PoNumberMultiline = _po.ToString();
     }
@@ -412,16 +412,15 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     {
       m_SheepingSubstateMachineContext.SetEndTime();
     }
-    public List<TimeSlotTimeSlot> TimeSlots( EntitiesDataContext edc )
+    public List<TimeSlotTimeSlot> TimeSlots(EntitiesDataContext edc)
     {
-      if ( edc == null )
-        throw new ArgumentNullException( "edc", "calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null" );
-      if ( m_TimeSlots == null )
-        m_TimeSlots = ( from _ts in edc.TimeSlot
-                        let _sid = _ts.TimeSlot2ShippingIndex == null ? new Nullable<int>() : _ts.TimeSlot2ShippingIndex.Id.Value
-                        where ( this.Id.Value == _sid ) && ( _ts.Occupied.GetValueOrDefault( Occupied.Free ) == Occupied.Occupied0 )
-                        orderby _ts.StartTime ascending
-                        select _ts ).ToList();
+      if (edc == null)
+        throw new ArgumentNullException("edc", "calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null");
+      if (m_TimeSlots == null)
+        m_TimeSlots = (from _ts in edc.TimeSlot
+                       where (this == _ts.TimeSlot2ShippingIndex) && (_ts.Occupied.GetValueOrDefault(Occupied.Free) == Occupied.Occupied0)
+                       orderby _ts.StartTime.Value ascending
+                       select _ts).ToList();
       return m_TimeSlots;
     }
     #endregion
@@ -429,16 +428,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     #region private
     List<TimeSlotTimeSlot> m_TimeSlots = null;
     private SheepingSubstateMachine.Context m_SheepingSubstateMachineContext;
-    private TimeSpan _12h = new TimeSpan( 12, 0, 0 );
-    private void RemoveDrivers( EntitiesDataContext EDC, Partner partner )
+    private TimeSpan _12h = new TimeSpan(12, 0, 0);
+    private void RemoveDrivers(EntitiesDataContext EDC, Partner partner)
     {
-      if ( partner == null )
+      if (partner == null)
         return;
       List<ShippingDriversTeam> _2Delete = new List<ShippingDriversTeam>();
-      foreach ( ShippingDriversTeam _drv in this.ShippingDriversTeam )
-        if ( partner == _drv.DriverTitle.Driver2PartnerTitle )
-          _2Delete.Add( _drv );
-      EDC.DriversTeam.DeleteAllOnSubmit( _2Delete );
+      foreach (ShippingDriversTeam _drv in this.ShippingDriversTeam)
+        if (partner == _drv.DriverTitle.Driver2PartnerTitle)
+          _2Delete.Add(_drv);
+      EDC.DriversTeam.DeleteAllOnSubmit(_2Delete);
       EDC.SubmitChanges();
     }
     /// <summary>
@@ -446,25 +445,25 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// </summary>
     partial void OnCreated()
     {
-      m_SheepingSubstateMachineContext = new SheepingSubstateMachine.Context( this );
+      m_SheepingSubstateMachineContext = new SheepingSubstateMachine.Context(this);
     }
     /// <summary>
     /// Called when a selected property value has been changed.
     /// </summary>
     /// <param name="propertyName">Name of the property.</param>
-    protected override void OnPropertyChanged( string propertyName )
+    protected override void OnPropertyChanged(string propertyName)
     {
-      base.OnPropertyChanged( propertyName );
+      base.OnPropertyChanged(propertyName);
       try
       {
-        if ( propertyName.Equals( "ShippingState" ) )
-          m_SheepingSubstateMachineContext.SetShippingState( this.ShippingState.Value );
-        else if ( propertyName.Equals( "TruckAwaiting" ) )
-          m_SheepingSubstateMachineContext.SetAwaiting( this.TruckAwaiting.Value );
-        else if ( propertyName.Equals( "PartnerTitle" ) )
-          m_SheepingSubstateMachineContext.SetPartner( this.PartnerTitle );
+        if (propertyName.Equals("ShippingState"))
+          m_SheepingSubstateMachineContext.SetShippingState(this.ShippingState.Value);
+        else if (propertyName.Equals("TruckAwaiting"))
+          m_SheepingSubstateMachineContext.SetAwaiting(this.TruckAwaiting.Value);
+        else if (propertyName.Equals("PartnerTitle"))
+          m_SheepingSubstateMachineContext.SetPartner(this.PartnerTitle);
       }
-      catch ( SheepingSubstateMachine.Context.ContexException )
+      catch (SheepingSubstateMachine.Context.ContexException)
       {
         throw;
       }

@@ -46,7 +46,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       switch (CurrentMachineState)
       {
         case InterfaceState.ViewState:
-          ShowShipping(_InterconnectionData);
+          ActionResult _ar = ShowShipping(_InterconnectionData);
+          switch (_ar.LastActionResult)
+          {
+            case ActionResult.Result.Success:
+              break;
+            case ActionResult.Result.NotValidated:
+              ExceptionCatched("NewDataEventHandler", "Incorrect value entered");
+              break;
+            case ActionResult.Result.Exception:
+              ExceptionCatched("NewDataEventHandler", _ar.ActionException.Message);
+              break;
+            default:
+              break;
+          }
           break;
         case InterfaceState.EditState:
         case InterfaceState.NewState:
@@ -87,7 +100,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
             case ActionResult.Result.NotValidated:
               break;
             case ActionResult.Result.Exception:
-              ExceptionCatched( "LoadDescriptionWebPart Update exception", _ur.ActionException.Message );
+              ExceptionCatched("LoadDescriptionWebPart Update exception", _ur.ActionException.Message);
               break;
           }
           break;
@@ -103,7 +116,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
             case ActionResult.Result.Exception:
               ClearUserInterface();
               CurrentMachineState = InterfaceState.ViewState;
-              ExceptionCatched( "LoadDescriptionWebPart Create exception", _cr.ActionException.Message );
+              ExceptionCatched("LoadDescriptionWebPart Create exception", _cr.ActionException.Message);
               break;
             default:
               break;
