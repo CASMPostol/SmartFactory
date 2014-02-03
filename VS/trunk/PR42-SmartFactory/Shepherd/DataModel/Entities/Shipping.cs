@@ -418,7 +418,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         throw new ArgumentNullException("edc", "calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null");
       if (m_TimeSlots == null)
         m_TimeSlots = (from _ts in edc.TimeSlot
-                       where (this == _ts.TimeSlot2ShippingIndex) && (_ts.Occupied.GetValueOrDefault(Occupied.Free) == Occupied.Occupied0)
+                       let _sid = _ts.TimeSlot2ShippingIndex == null ? -1 : _ts.TimeSlot2ShippingIndex.Id.Value
+                       where (this.Id.Value == _sid) && (_ts.Occupied.GetValueOrDefault(Occupied.Free) == Occupied.Occupied0)
                        orderby _ts.StartTime.Value ascending
                        select _ts).ToList();
       return m_TimeSlots;
