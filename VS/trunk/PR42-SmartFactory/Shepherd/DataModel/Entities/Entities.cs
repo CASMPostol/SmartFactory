@@ -1990,7 +1990,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this._driverTitle.OnChanged += new System.EventHandler( this.OnDriverTitleChanged );
       this._driverTitle.OnChanging += new System.EventHandler( this.OnDriverTitleChanging );
       this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
-      this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>( this.OnShippingIndexSync );
       this._shippingIndex.OnChanged += new System.EventHandler( this.OnShippingIndexChanged );
       this._shippingIndex.OnChanging += new System.EventHandler( this.OnShippingIndexChanging );
       this.OnCreated();
@@ -2056,17 +2055,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       this.OnPropertyChanged( "ShippingIndex" );
     }
 
-    private void OnShippingIndexSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e )
-    {
-      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
-      {
-        e.Item.ShippingDriversTeam.Add( this );
-      }
-      else
-      {
-        e.Item.ShippingDriversTeam.Remove( this );
-      }
-    }
   }
 
   /// <summary>
@@ -3777,8 +3765,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 
     private System.Nullable<ShippingState2> _shippingState2;
 
-    private Microsoft.SharePoint.Linq.EntitySet<ShippingDriversTeam> _shippingDriversTeam;
-
     private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
 
     private Microsoft.SharePoint.Linq.EntityRef<Partner> _partnerTitle;
@@ -3827,10 +3813,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 
     public Shipping()
     {
-      this._shippingDriversTeam = new Microsoft.SharePoint.Linq.EntitySet<ShippingDriversTeam>();
-      this._shippingDriversTeam.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingDriversTeam>>( this.OnShippingDriversTeamSync );
-      this._shippingDriversTeam.OnChanged += new System.EventHandler( this.OnShippingDriversTeamChanged );
-      this._shippingDriversTeam.OnChanging += new System.EventHandler( this.OnShippingDriversTeamChanging );
       this._loadDescription = new Microsoft.SharePoint.Linq.EntitySet<LoadDescription>();
       this._loadDescription.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription>>( this.OnLoadDescriptionSync );
       this._loadDescription.OnChanged += new System.EventHandler( this.OnLoadDescriptionChanged );
@@ -4538,19 +4520,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "ShippingIndex", Storage = "_shippingDriversTeam", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Drivers Team" )]
-    public Microsoft.SharePoint.Linq.EntitySet<ShippingDriversTeam> ShippingDriversTeam
-    {
-      get
-      {
-        return this._shippingDriversTeam;
-      }
-      set
-      {
-        this._shippingDriversTeam.Assign( value );
-      }
-    }
-
     [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "LoadDescription2ShippingIndex", Storage = "_loadDescription", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Load Description" )]
     public Microsoft.SharePoint.Linq.EntitySet<LoadDescription> LoadDescription
     {
@@ -4818,28 +4787,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
           this._editor = value;
           this.OnPropertyChanged( "Editor" );
         }
-      }
-    }
-
-    private void OnShippingDriversTeamChanging( object sender, System.EventArgs e )
-    {
-      this.OnPropertyChanging( "ShippingDriversTeam", this._shippingDriversTeam.Clone() );
-    }
-
-    private void OnShippingDriversTeamChanged( object sender, System.EventArgs e )
-    {
-      this.OnPropertyChanged( "ShippingDriversTeam" );
-    }
-
-    private void OnShippingDriversTeamSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingDriversTeam> e )
-    {
-      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
-      {
-        e.Item.ShippingIndex = this;
-      }
-      else
-      {
-        e.Item.ShippingIndex = null;
       }
     }
 
