@@ -139,7 +139,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <summary>
     /// Calculates the state.
     /// </summary>
-    public void CalculateState()
+    public void CalculateState(Action<string> at)
     {
       switch (this.ShippingState.GetValueOrDefault(Entities.ShippingState.None))
       {
@@ -149,17 +149,23 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         case Entities.ShippingState.WaitingForConfirmation:
           int _seDrivers = 0;
           int _crDrivers = 0;
+          at("CalculateState.foreach ");
           foreach (var _dr in this.ShippingDriversTeam)
+          {
+            at("CalculateState.L155");
             if (_dr.DriverTitle.Driver2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider)
               _seDrivers++;
             else
               _crDrivers++;
+          }
+          at("CalculateState.L161");
           if (this.PartnerTitle == null)
             this.ShippingState = Entities.ShippingState.Creation;
           else
           {
             if (_crDrivers > 0 && this.TruckTitle != null)
             {
+              at("CalculateState.L168");
               if (this.SecurityEscortCatalogTitle == null || (_seDrivers > 0 && this.Shipping2TruckTitle != null))
                 this.ShippingState = Entities.ShippingState.Confirmed;
               else
@@ -183,6 +189,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
         default:
           break;
       }
+      at("CalculateState.End");
     }
     /// <summary>
     /// RequiredOperations

@@ -192,7 +192,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
               break;
             CurrentShipping.StartTime = _ts.StartTime;
             CurrentShipping.ShippingState = ShippingState.Confirmed;
-            CurrentShipping.CalculateState();
+            CurrentShipping.CalculateState(x => { });
             EDC.SubmitChanges();
             break;
           case ShippingState.Confirmed:
