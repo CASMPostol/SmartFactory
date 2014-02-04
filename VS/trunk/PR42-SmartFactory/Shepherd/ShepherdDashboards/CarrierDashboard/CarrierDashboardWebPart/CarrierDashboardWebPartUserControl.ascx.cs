@@ -595,7 +595,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _at = "SendShippingData";
         SendShippingData(CurrentShipping);
         _at = "_timeSlot = ( from _ts in this.EDC.TimeSlot";
-        TimeSlotTimeSlot _timeSlot = CurrentShipping.TimeSlots(EDC).FirstOrDefault();
+        TimeSlotTimeSlot _timeSlot = CurrentShipping.OccupiedTimeSlots(EDC).FirstOrDefault();
         _at = "m_ControlState.TimeSlotChanged";
         m_ControlState.TimeSlotChanged = false;
         if (_timeSlot == null)
