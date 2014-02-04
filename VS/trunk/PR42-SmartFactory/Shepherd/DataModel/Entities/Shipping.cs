@@ -347,6 +347,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <exception cref="System.ApplicationException">Time slot has been aleady reserved</exception>
     public List<TimeSlotTimeSlot> MakeBooking(List<TimeSlotTimeSlot> timeSlotsCollection, bool isDouble)
     {
+      m_TimeSlots = null;
       StartTime = timeSlotsCollection[0].StartTime;
       TSStartTime = timeSlotsCollection[0].StartTime;
       WarehouseStartTime = timeSlotsCollection[0].StartTime;
@@ -417,11 +418,13 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       if (edc == null)
         throw new ArgumentNullException("edc", "calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null");
       if (m_TimeSlots == null)
+      {
         m_TimeSlots = (from _ts in edc.TimeSlot
-                       let _sid = _ts.TimeSlot2ShippingIndex == null ? -1 : _ts.TimeSlot2ShippingIndex.Id.Value
-                       where (this.Id.Value == _sid) && (_ts.Occupied.GetValueOrDefault(Occupied.Free) == Occupied.Occupied0)
+                       where (this.StartTime.Value.Date == _ts.StartTime.Value.Date) && (_ts.Occupied.GetValueOrDefault(Occupied.Free) == Occupied.Occupied0)
                        orderby _ts.StartTime.Value ascending
                        select _ts).ToList();
+        m_TimeSlots = m_TimeSlots.Where(x => x.TimeSlot2ShippingIndex == this).ToList();
+      }
       return m_TimeSlots;
     }
     #endregion
