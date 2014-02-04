@@ -420,7 +420,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       if (m_TimeSlots == null)
       {
         m_TimeSlots = (from _ts in edc.TimeSlot
-                       where (this.StartTime.Value.Date == _ts.StartTime.Value.Date) && (_ts.Occupied.GetValueOrDefault(Occupied.Free) == Occupied.Occupied0)
+                       where (this.StartTime == _ts.StartTime || this.EndTime == _ts.EndTime) &&
+                             (_ts.Occupied.GetValueOrDefault(Occupied.Free) == Occupied.Occupied0)
                        orderby _ts.StartTime.Value ascending
                        select _ts).ToList();
         m_TimeSlots = m_TimeSlots.Where(x => x.TimeSlot2ShippingIndex == this).ToList();
