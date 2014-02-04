@@ -108,7 +108,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         return;
       ;
       Dictionary<int, Driver> _drivers = _prtn.Driver.ToDictionary(x => x.Id.Value);
-      foreach (ShippingDriversTeam item in from idx in _Shipping.ShippingDriversTeam select idx)
+      foreach (ShippingDriversTeam item in _Shipping.ShippingDriversTeams(EDC))
       {
         Driver _driver = item.DriverTitle;
         if ((Role == TransportResources.RolesSet.SecurityEscort && _driver.Driver2PartnerTitle.ServiceType.Value != ServiceType.SecurityEscortProvider) ||
@@ -181,7 +181,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         _cd.ShippingIndex = null;
         EDC.DriversTeam.DeleteOnSubmit(_cd);
         EDC.SubmitChanges();
-        _sh.CalculateState(x => { });
+        _sh.CalculateState(EDC, x => { });
         EDC.SubmitChanges();
         UpdateUserInterface(EDC);
       }
@@ -204,7 +204,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           };
         EDC.DriversTeam.InsertOnSubmit(_cd);
         EDC.SubmitChanges();
-        _cd.ShippingIndex.CalculateState(x => { });
+        _cd.ShippingIndex.CalculateState(EDC, x => { });
         EDC.SubmitChanges();
         UpdateUserInterface(EDC);
       }
@@ -234,7 +234,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           else
             _sh.Shipping2TruckTitle = _ct;
         }
-        _sh.CalculateState(x => { });
+        _sh.CalculateState(EDC, x => { });
         EDC.SubmitChanges();
       }
       catch (Exception _ex)
@@ -254,7 +254,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           _sh.TrailerTitle = null;
         else
           _sh.TrailerTitle = Element.GetAtIndex<Trailer>(EDC.Trailer, _li.Value);
-        _sh.CalculateState(x => { });
+        _sh.CalculateState(EDC, x => { });
         EDC.SubmitChanges();
       }
       catch (Exception _ex)

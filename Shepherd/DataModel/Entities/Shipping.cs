@@ -139,7 +139,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <summary>
     /// Calculates the state.
     /// </summary>
-    public void CalculateState(Action<string> at)
+    public void CalculateState(EntitiesDataContext edc, Action<string> at)
     {
       switch (this.ShippingState.GetValueOrDefault(Entities.ShippingState.None))
       {
@@ -150,7 +150,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
           int _seDrivers = 0;
           int _crDrivers = 0;
           at("CalculateState.foreach ");
-          foreach (var _dr in this.ShippingDriversTeam)
+          foreach (ShippingDriversTeam _dr in this.ShippingDriversTeams(edc))
           {
             at("CalculateState.L155");
             if (_dr.DriverTitle.Driver2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider)
@@ -190,6 +190,18 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
           break;
       }
       at("CalculateState.End");
+    }
+    /// <summary>
+    /// Shippings the drivers teams.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <returns></returns>
+    public List<ShippingDriversTeam> ShippingDriversTeams(EntitiesDataContext edc)
+    {
+      return (from _dtx in edc.DriversTeam
+              let _sid = _dtx.ShippingIndex.Id.Value
+              where this.Id.Value == _sid
+              select _dtx).ToList();
     }
     /// <summary>
     /// RequiredOperations
@@ -468,7 +480,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       if (partner == null)
         return;
       List<ShippingDriversTeam> _2Delete = new List<ShippingDriversTeam>();
-      foreach (ShippingDriversTeam _drv in this.ShippingDriversTeam)
+      foreach (ShippingDriversTeam _drv in this.ShippingDriversTeams(EDC))
         if (partner == _drv.DriverTitle.Driver2PartnerTitle)
           _2Delete.Add(_drv);
       EDC.DriversTeam.DeleteAllOnSubmit(_2Delete);

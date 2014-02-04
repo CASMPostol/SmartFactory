@@ -753,7 +753,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           _sppng.UpdatePOInfo(null);
           _sppng.UpdateTitle();
           _checkPoint = "CalculateState";
-          _sppng.CalculateState(x => { _checkPoint = x; });
+          _sppng.CalculateState(EDC, x => { _checkPoint = x; });
           _checkPoint = "SubmitChanges #2";
           EDC.SubmitChanges();
           _checkPoint = "SendShippingData";
@@ -786,7 +786,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _checkPoint = "UpdateTimeSlot";
         UpdateTimeSlot(CurrentShipping, _rst);
         _checkPoint = "CurrentShipping";
-        CurrentShipping.CalculateState(x => { _checkPoint = x; });
+        CurrentShipping.CalculateState(EDC, x => { _checkPoint = x; });
         if (m_ControlState.WarehouseEndTimeChanged)
           CurrentShipping.WarehouseEndTime = m_ControlState.WarehouseEndTime;
         if (m_ControlState.WarehouseStartTimeChanged)
