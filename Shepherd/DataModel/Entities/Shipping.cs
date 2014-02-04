@@ -115,16 +115,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <exception cref="System.ApplicationException"></exception>
     public void ReleaseBooking(EntitiesDataContext edc)
     {
-      if (this.TimeSlots(edc) == null || this.TimeSlots(edc).Count == 0)
-        return;
-      List<TimeSlot> _2release = new List<TimeSlot>();
-      foreach (var item in this.TimeSlots(edc))
-      {
-        if (item.Occupied != Entities.Occupied.Occupied0)
-          continue;
-        _2release.Add(item);
-      }
-      foreach (var item in _2release)
+      foreach (var item in this.OccupiedTimeSlots(edc))
       {
         //item.Tytuł = "-- not assigned --";
         if (ForFuture())
@@ -414,12 +405,12 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       m_SheepingSubstateMachineContext.SetEndTime();
     }
     /// <summary>
-    /// Times the slots.
+    /// Get all Occupied <see cref="TimeSlotTimeSlot"/> for this <see cref="Shipping"/>.
     /// </summary>
     /// <param name="edc">The edc.</param>
     /// <returns></returns>
     /// <exception cref="System.ArgumentNullException">edc;calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null</exception>
-    public List<TimeSlotTimeSlot> TimeSlots(EntitiesDataContext edc)
+    public List<TimeSlotTimeSlot> OccupiedTimeSlots(EntitiesDataContext edc)
     {
       if (edc == null)
         throw new ArgumentNullException("edc", "calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null");
@@ -438,6 +429,26 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
                        select _ts).ToList();
       }
       return m_TimeSlots;
+    }
+    /// <summary>
+    /// Get all Delayeds  <see cref="TimeSlotTimeSlot"/> for this <see cref="Shipping"/>.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <returns></returns>
+    /// <exception cref="System.ArgumentNullException">edc;calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null</exception>
+    public List<TimeSlotTimeSlot> DelayedTimeSlots(EntitiesDataContext edc)
+    {
+      if (edc == null)
+        throw new ArgumentNullException("edc", "calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null");
+
+      List<TimeSlotTimeSlot> _retTimeSlots = (from _ts in edc.TimeSlot
+                                              where _ts.Occupied.GetValueOrDefault(Occupied.Free) == Occupied.Delayed
+                                              select _ts).ToList();
+      return (from _ts in _retTimeSlots
+              where (this == _ts.TimeSlot2ShippingIndex)
+              orderby _ts.StartTime.Value ascending
+              select _ts).ToList();
+
     }
     #endregion
 
