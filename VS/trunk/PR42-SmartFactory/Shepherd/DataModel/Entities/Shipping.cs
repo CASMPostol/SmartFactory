@@ -413,18 +413,29 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     {
       m_SheepingSubstateMachineContext.SetEndTime();
     }
+    /// <summary>
+    /// Times the slots.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <returns></returns>
+    /// <exception cref="System.ArgumentNullException">edc;calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null</exception>
     public List<TimeSlotTimeSlot> TimeSlots(EntitiesDataContext edc)
     {
       if (edc == null)
         throw new ArgumentNullException("edc", "calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null");
       if (m_TimeSlots == null)
       {
-        m_TimeSlots = (from _ts in edc.TimeSlot
-                       where (this.StartTime == _ts.StartTime || this.EndTime == _ts.EndTime) &&
-                             (_ts.Occupied.GetValueOrDefault(Occupied.Free) == Occupied.Occupied0)
+        m_TimeSlots = new List<TimeSlotTimeSlot>();
+        m_TimeSlots.AddRange((from _ts in edc.TimeSlot
+                              where this.StartTime == _ts.StartTime
+                              select _ts).ToList());
+        m_TimeSlots.AddRange((from _ts in edc.TimeSlot
+                              where this.EndTime == _ts.EndTime
+                              select _ts).ToList());
+        m_TimeSlots = (from _ts in m_TimeSlots
+                       where (this == _ts.TimeSlot2ShippingIndex) && _ts.Occupied.GetValueOrDefault(Occupied.Free) == Occupied.Occupied0
                        orderby _ts.StartTime.Value ascending
                        select _ts).ToList();
-        m_TimeSlots = m_TimeSlots.Where(x => x.TimeSlot2ShippingIndex == this).ToList();
       }
       return m_TimeSlots;
     }
