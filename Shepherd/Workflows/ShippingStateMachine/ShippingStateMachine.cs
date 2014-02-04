@@ -280,7 +280,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         _sp.EuroPalletsQuantity = 0;
         _sp.InduPalletsQuantity = 0;
         _sp.TotalQuantityKU = 0;
-        foreach (LoadDescription _ld in _sp.LoadDescription)
+        foreach (LoadDescription _ld in _sp.LoadDescriptions(EDC))
         {
           switch (_ld.PalletType.Value)
           {

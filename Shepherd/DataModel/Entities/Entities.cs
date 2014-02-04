@@ -2252,7 +2252,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     public LoadDescription()
     {
       this._loadDescription2ShippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
-      this._loadDescription2ShippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>( this.OnLoadDescription2ShippingIndexSync );
       this._loadDescription2ShippingIndex.OnChanged += new System.EventHandler( this.OnLoadDescription2ShippingIndexChanged );
       this._loadDescription2ShippingIndex.OnChanging += new System.EventHandler( this.OnLoadDescription2ShippingIndexChanging );
       this._loadDescription2PartnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
@@ -2436,18 +2435,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     private void OnLoadDescription2ShippingIndexChanged( object sender, System.EventArgs e )
     {
       this.OnPropertyChanged( "LoadDescription2ShippingIndex" );
-    }
-
-    private void OnLoadDescription2ShippingIndexSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e )
-    {
-      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
-      {
-        e.Item.LoadDescription.Add( this );
-      }
-      else
-      {
-        e.Item.LoadDescription.Remove( this );
-      }
     }
 
     private void OnLoadDescription2PartnerTitleChanging( object sender, System.EventArgs e )
@@ -3765,8 +3752,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 
     private System.Nullable<ShippingState2> _shippingState2;
 
-    private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
-
     private Microsoft.SharePoint.Linq.EntityRef<Partner> _partnerTitle;
 
     private Microsoft.SharePoint.Linq.EntityRef<Warehouse> _shipping2WarehouseTitle;
@@ -3813,10 +3798,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 
     public Shipping()
     {
-      this._loadDescription = new Microsoft.SharePoint.Linq.EntitySet<LoadDescription>();
-      this._loadDescription.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription>>( this.OnLoadDescriptionSync );
-      this._loadDescription.OnChanged += new System.EventHandler( this.OnLoadDescriptionChanged );
-      this._loadDescription.OnChanging += new System.EventHandler( this.OnLoadDescriptionChanging );
       this._partnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
       this._partnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>( this.OnPartnerTitleSync );
       this._partnerTitle.OnChanged += new System.EventHandler( this.OnPartnerTitleChanged );
@@ -4520,19 +4501,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       }
     }
 
-    [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "LoadDescription2ShippingIndex", Storage = "_loadDescription", ReadOnly = true, MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Backward, List = "Load Description" )]
-    public Microsoft.SharePoint.Linq.EntitySet<LoadDescription> LoadDescription
-    {
-      get
-      {
-        return this._loadDescription;
-      }
-      set
-      {
-        this._loadDescription.Assign( value );
-      }
-    }
-
     [Microsoft.SharePoint.Linq.AssociationAttribute( Name = "PartnerTitle", Storage = "_partnerTitle", MultivalueType = Microsoft.SharePoint.Linq.AssociationType.Single, List = "Partner" )]
     public Partner PartnerTitle
     {
@@ -4787,28 +4755,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
           this._editor = value;
           this.OnPropertyChanged( "Editor" );
         }
-      }
-    }
-
-    private void OnLoadDescriptionChanging( object sender, System.EventArgs e )
-    {
-      this.OnPropertyChanging( "LoadDescription", this._loadDescription.Clone() );
-    }
-
-    private void OnLoadDescriptionChanged( object sender, System.EventArgs e )
-    {
-      this.OnPropertyChanged( "LoadDescription" );
-    }
-
-    private void OnLoadDescriptionSync( object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e )
-    {
-      if ( ( Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State ) )
-      {
-        e.Item.LoadDescription2ShippingIndex = this;
-      }
-      else
-      {
-        e.Item.LoadDescription2ShippingIndex = null;
       }
     }
 

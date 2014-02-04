@@ -203,6 +203,14 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
               where this.Id.Value == _sid
               select _dtx).ToList();
     }
+    public List<LoadDescription> LoadDescriptions(EntitiesDataContext edc)
+    {
+      return (from _dtx in edc.LoadDescription
+              let _sid = _dtx.LoadDescription2ShippingIndex.Id.Value
+              where this.Id.Value == _sid
+              select _dtx).ToList();
+    }
+
     /// <summary>
     /// RequiredOperations
     /// </summary>
@@ -404,11 +412,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// Updates the purchase order info.
     /// </summary>
     /// <param name="excludedLoadDescription">The <see cref="Entities.LoadDescription"/> object that should be exlided from the list of PO.</param>
-    public void UpdatePOInfo(Entities.LoadDescription excludedLoadDescription)
+    public void UpdatePOInfo(Entities.EntitiesDataContext edc, Entities.LoadDescription excludedLoadDescription)
     {
       this.PoLastModification = DateTime.Now;
       StringBuilder _po = new StringBuilder();
-      foreach (LoadDescription _ldx in LoadDescription)
+      foreach (LoadDescription _ldx in LoadDescriptions(edc))
       {
         if (excludedLoadDescription == _ldx)
           continue;
