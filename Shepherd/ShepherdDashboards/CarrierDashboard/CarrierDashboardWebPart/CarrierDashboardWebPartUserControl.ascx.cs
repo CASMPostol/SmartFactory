@@ -750,7 +750,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           _checkPoint = "SubmitChanges #1";
           EDC.SubmitChanges();
           _checkPoint = "UpdateTitle";
-          _sppng.UpdatePOInfo(EDC, null);
+          _sppng.UpdateLoadDescriptionInfo(EDC, null);
           _sppng.UpdateTitle();
           _checkPoint = "CalculateState";
           _sppng.CalculateState(EDC, x => { _checkPoint = x; });
