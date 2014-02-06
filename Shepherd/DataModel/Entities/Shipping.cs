@@ -416,10 +416,21 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     {
       this.PoLastModification = DateTime.Now;
       StringBuilder _po = new StringBuilder();
+      this.EuroPalletsQuantity = 0;
+      this.InduPalletsQuantity = 0;
       foreach (LoadDescription _ldx in LoadDescriptions(edc))
       {
         if (excludedLoadDescription == _ldx)
           continue;
+        switch (_ldx.PalletType.Value)
+        {
+          case PalletType.Euro:
+            this.EuroPalletsQuantity += _ldx.NumberOfPallets.GetValueOrDefault(0);
+            break;
+          case PalletType.Industrial:
+            this.InduPalletsQuantity += _ldx.NumberOfPallets.GetValueOrDefault(0);
+            break;
+        }
         _po.AppendLine(SPEncode.HtmlEncode(_ldx.Title));
       }
       this.PoNumberMultiline = _po.ToString();
