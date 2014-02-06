@@ -397,11 +397,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           //ReportAlert("LoadDescription created");
           _ld.LoadDescription2PartnerTitle = CurrentShipping.PartnerTitle;
           EDC.LoadDescription.InsertOnSubmit(_ld);
-          if (m_ControlState.m_POModified)
-          {
-            CurrentShipping.UpdatePOInfo(EDC, null);
-            m_ControlState.m_POModified = false;
-          }
+          CurrentShipping.UpdateLoadDescriptionInfo(EDC, null);
           EDC.SubmitChanges();
           m_ControlState.LoadDescriptionID = _ld.Id.Value.ToString();
           InitLoadDescriptionGridView(CurrentShipping, null);
@@ -420,10 +416,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       try
       {
         LoadDescription _ld = Element.GetAtIndex<LoadDescription>(EDC.LoadDescription, m_ControlState.LoadDescriptionID);
-        //string _msg = String.Format("The {0} load description deleted.", _ld.Title);
         EDC.LoadDescription.DeleteOnSubmit(_ld);
-        CurrentShipping.UpdatePOInfo(EDC, _ld);
-        //ReportAlert(_msg);
+        CurrentShipping.UpdateLoadDescriptionInfo(EDC, _ld);
         EDC.SubmitChanges();
         InitLoadDescriptionGridView(CurrentShipping, _ld);
         return StateMachineEngine.ActionResult.Success;
@@ -447,7 +441,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           //ReportAlert("LoadDescription updated");
           if (m_ControlState.m_POModified)
           {
-            CurrentShipping.UpdatePOInfo(EDC, null);
+            CurrentShipping.UpdateLoadDescriptionInfo(EDC, null);
             m_ControlState.m_POModified = false;
           }
           EDC.SubmitChanges();
