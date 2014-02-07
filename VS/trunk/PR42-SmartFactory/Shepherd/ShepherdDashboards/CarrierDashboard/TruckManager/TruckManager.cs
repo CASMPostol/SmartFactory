@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class TruckManager
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.UI;
@@ -6,6 +21,9 @@ using System.Web.UI.WebControls.WebParts;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
 {
+  /// <summary>
+  /// TruckManager <see cref="WebPart"/> 
+  /// </summary>
   [ToolboxItemAttribute(false)]
   public class TruckManager : WebPart
   {

@@ -573,6 +573,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     }
 
     #region events hanlers
+    /// <summary>
+    /// Handles the TextChanged event of the m_LoadDescriptionNumberTextBox control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     protected void m_LoadDescriptionNumberTextBox_TextChanged(object sender, EventArgs e)
     {
       m_ControlState.m_POModified = true;

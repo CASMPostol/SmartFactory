@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class UserDescriptor
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.ComponentModel;
 using System.Data;
 using System.Web.UI.WebControls.WebParts;
@@ -7,10 +22,21 @@ using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
 {
+  /// <summary>
+  /// UserDescriptor <see cref="DataTable"/>
+  /// </summary>
   public class UserDescriptor : DataTable, IWebPartRow, IUserDescriptor
   {
     #region IWebPartRow
+    /// <summary>
+    /// Gets the schema information for a data row that is used to share data between two <see cref="T:System.Web.UI.WebControls.WebParts.WebPart" /> controls.
+    /// </summary>
+    /// <returns>A <see cref="T:System.ComponentModel.PropertyDescriptorCollection" /> describing the data.</returns>
     public PropertyDescriptorCollection Schema { get; private set; }
+    /// <summary>
+    /// Returns the data for the row that is being used by the interface as the basis of a connection between two <see cref="T:System.Web.UI.WebControls.WebParts.WebPart" /> controls.
+    /// </summary>
+    /// <param name="callback">A <see cref="T:System.Web.UI.WebControls.WebParts.RowCallback" /> delegate that contains the address of a method that receives the data.</param>
     public void GetRowData(RowCallback callback)
     {
       callback(this.Row0);
@@ -58,7 +84,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     }
 
     #region IUserDescriptor
+    /// <summary>
+    /// Gets the user.
+    /// </summary>
+    /// <value>
+    /// The user.
+    /// </value>
     public string User { get; private set; }
+    /// <summary>
+    /// Gets the company.
+    /// </summary>
+    /// <value>
+    /// The company.
+    /// </value>
     public string Company { get; private set; }
     #endregion
 

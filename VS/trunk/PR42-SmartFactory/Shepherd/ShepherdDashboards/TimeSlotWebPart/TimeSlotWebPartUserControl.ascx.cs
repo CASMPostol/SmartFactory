@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : TimeSlotWebPartUserControl UserControl
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,6 +25,9 @@ using Microsoft.SharePoint.WebControls;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
 {
+  /// <summary>
+  /// TimeSlotWebPartUserControl UserControl
+  /// </summary>
   public partial class TimeSlotWebPartUserControl : UserControl
   {
     #region public
@@ -49,6 +67,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     #endregion
 
     #region UserControl override
+    /// <summary>
+    /// Handles the Load event of the Page control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+    /// <exception cref="System.ApplicationException">Page_Load exception:  + ex.Message</exception>
     protected void Page_Load(object sender, EventArgs e)
     {
       try
@@ -82,6 +106,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         throw new ApplicationException("Page_Load exception: " + ex.Message, ex);
       }
     }
+    /// <summary>
+    /// Raises the <see cref="E:System.Web.UI.Control.PreRender" /> event.
+    /// </summary>
+    /// <param name="e">An <see cref="T:System.EventArgs" /> object that contains the event data.</param>
     protected override void OnPreRender(EventArgs e)
     {
       PreapareCalendar(m_RoleDirection);

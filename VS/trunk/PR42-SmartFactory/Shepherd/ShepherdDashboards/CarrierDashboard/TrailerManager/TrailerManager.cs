@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class TrailerManager
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.UI;
@@ -6,9 +21,13 @@ using System.Web.UI.WebControls.WebParts;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
 {
+  /// <summary>
+  /// TrailerManager <see cref="WebPart"/>
+  /// </summary>
   [ToolboxItemAttribute(false)]
   public class TrailerManager : WebPart
   {
+
     #region private
     // Visual Studio might automatically update this path when you change the Visual Web Part project item.
     private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard/TrailerManager/TrailerManagerUserControl.ascx";
@@ -36,6 +55,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     }
 
     #endregion
+
     #region  Interconnections Providers
     /// <summary>
     /// Sets the Trailer list provider.
@@ -44,8 +64,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     [ConnectionConsumer("Trailer list interconnection", "Trailer", AllowsMultipleConnections = false)]
     public void SetShippingProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add( InterconnectionData.ConnectionSelector.TrailerInterconnection, _provider );
+      m_ProvidesDictionary.Add(InterconnectionData.ConnectionSelector.TrailerInterconnection, _provider);
     }
-    #endregion  
+    #endregion
+
   }
 }

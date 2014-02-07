@@ -19,6 +19,7 @@ using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
 {
+  //TODO to be replaced by the equivalent CAS.SharePoint 
   internal class DataContextManagementAutoDispose<type>
     where type: DataContext, new()
   {

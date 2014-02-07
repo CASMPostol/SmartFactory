@@ -36,12 +36,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       string _msg = String.Format( "ReportExceptionTemplate".GetShepherdLocalizedString(), _excptn.Message );
       base.Add( GlobalDefinitions.ErrorMessage( _msg ) );
     }
-    public void AddLabel( string _source )
+    /// <summary>
+    /// Adds the label.
+    /// </summary>
+    /// <param name="_source">The _source.</param>
+    internal void AddLabel(string _source)
     {
       string _msg = _source + "MustBeProvided".GetShepherdLocalizedString();
       base.Add( GlobalDefinitions.ErrorMessage( _msg ) );
     }
-    public void AddMessage( string _message )
+    /// <summary>
+    /// Adds the message.
+    /// </summary>
+    /// <param name="_message">The _message.</param>
+    internal void AddMessage(string _message)
     {
       base.Add( GlobalDefinitions.ErrorMessage( _message ) );
     }

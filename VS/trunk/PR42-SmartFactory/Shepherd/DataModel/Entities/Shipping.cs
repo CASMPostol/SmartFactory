@@ -203,6 +203,11 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
               where this.Id.Value == _sid
               select _dtx).ToList();
     }
+    /// <summary>
+    /// Gets the list of <see cref="LoadDescription"/>.
+    /// </summary>
+    /// <param name="edc">The object <see cref="EntitiesDataContext"/> that extends the <see cref="Microsoft.SharePoint.Linq.DataContext"/></param>
+    /// <returns></returns>
     public List<LoadDescription> LoadDescriptions(EntitiesDataContext edc)
     {
       return (from _dtx in edc.LoadDescription
@@ -210,7 +215,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
               where this.Id.Value == _sid
               select _dtx).ToList();
     }
-
     /// <summary>
     /// RequiredOperations
     /// </summary>
@@ -411,7 +415,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <summary>
     /// Updates the purchase order info.
     /// </summary>
-    /// <param name="excludedLoadDescription">The <see cref="Entities.LoadDescription"/> object that should be exlided from the list of PO.</param>
+    /// <param name="edc">The object <see cref="Entities.EntitiesDataContext"/> containing entities.</param>
+    /// <param name="excludedLoadDescription">The <see cref="Entities.LoadDescription" /> object that should be exluded from the list of PO.</param>
     public void UpdateLoadDescriptionInfo(Entities.EntitiesDataContext edc, Entities.LoadDescription excludedLoadDescription)
     {
       this.PoLastModification = DateTime.Now;

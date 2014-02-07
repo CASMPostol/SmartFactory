@@ -203,6 +203,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
         //m_ExternalCheckBox.Visible = visible;
         //m_ExternalLabel.Visible = visible;
     }
+    /// <summary>
+    /// Handles the Click event of the m_ButtonAddNew control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     protected void m_ButtonAddNew_Click( object sender, EventArgs e )
     {
       try
