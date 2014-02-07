@@ -415,9 +415,10 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <summary>
     /// Updates the purchase order info.
     /// </summary>
-    /// <param name="edc">The object <see cref="Entities.EntitiesDataContext"/> containing entities.</param>
-    /// <param name="excludedLoadDescription">The <see cref="Entities.LoadDescription" /> object that should be exluded from the list of PO.</param>
-    public void UpdateLoadDescriptionInfo(Entities.EntitiesDataContext edc, Entities.LoadDescription excludedLoadDescription)
+    /// <param name="edc">The object <see cref="Entities.EntitiesDataContext" /> containing entities.</param>
+    /// <param name="excludedLoadDescription">The <see cref="Entities.LoadDescription" /> object that should be exluded from the list of of load descriptions</param>
+    /// <param name="includedLoadDescription">The <see cref="Entities.LoadDescription" /> object that should be included from the list of load descriptions</param>
+    public void UpdateLoadDescriptionInfo(Entities.EntitiesDataContext edc, Entities.LoadDescription excludedLoadDescription, Entities.LoadDescription includedLoadDescription)
     {
       this.PoLastModification = DateTime.Now;
       StringBuilder _po = new StringBuilder();
@@ -440,6 +441,12 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
             break;
         }
         _po.AppendLine(SPEncode.HtmlEncode(_ldx.Title));
+      }
+      if (includedLoadDescription != null)
+      {
+        this.EuroPalletsQuantity += includedLoadDescription.PalletType.GetValueOrDefault(PalletType.None) == PalletType.Euro ? includedLoadDescription.NumberOfPallets.GetValueOrDefault(0) : 0;
+        this.InduPalletsQuantity += includedLoadDescription.PalletType.GetValueOrDefault(PalletType.None) == PalletType.Industrial ? includedLoadDescription.NumberOfPallets.GetValueOrDefault(0) : 0;
+        _po.AppendLine(SPEncode.HtmlEncode(includedLoadDescription.Title));
       }
       this.PoNumberMultiline = _po.ToString();
     }
