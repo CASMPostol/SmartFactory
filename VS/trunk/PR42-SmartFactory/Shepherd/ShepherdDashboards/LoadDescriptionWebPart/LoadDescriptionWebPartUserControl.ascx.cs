@@ -397,7 +397,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           //ReportAlert("LoadDescription created");
           _ld.LoadDescription2PartnerTitle = CurrentShipping.PartnerTitle;
           EDC.LoadDescription.InsertOnSubmit(_ld);
-          CurrentShipping.UpdateLoadDescriptionInfo(EDC, null);
+          CurrentShipping.UpdateLoadDescriptionInfo(EDC, null, _ld);
+          m_ControlState.m_POModified = false;
           EDC.SubmitChanges();
           m_ControlState.LoadDescriptionID = _ld.Id.Value.ToString();
           InitLoadDescriptionGridView(CurrentShipping, null);
@@ -417,7 +418,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       {
         LoadDescription _ld = Element.GetAtIndex<LoadDescription>(EDC.LoadDescription, m_ControlState.LoadDescriptionID);
         EDC.LoadDescription.DeleteOnSubmit(_ld);
-        CurrentShipping.UpdateLoadDescriptionInfo(EDC, _ld);
+        CurrentShipping.UpdateLoadDescriptionInfo(EDC, _ld, null);
         EDC.SubmitChanges();
         InitLoadDescriptionGridView(CurrentShipping, _ld);
         return StateMachineEngine.ActionResult.Success;
@@ -441,7 +442,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           //ReportAlert("LoadDescription updated");
           if (m_ControlState.m_POModified)
           {
-            CurrentShipping.UpdateLoadDescriptionInfo(EDC, null);
+            CurrentShipping.UpdateLoadDescriptionInfo(EDC, null, null);
             m_ControlState.m_POModified = false;
           }
           EDC.SubmitChanges();
