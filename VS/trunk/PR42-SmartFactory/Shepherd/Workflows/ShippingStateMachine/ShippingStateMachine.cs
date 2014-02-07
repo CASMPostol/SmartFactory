@@ -27,6 +27,9 @@ using Microsoft.SharePoint.Workflow;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 {
+  /// <summary>
+  /// partial class ShippingStateMachine
+  /// </summary>
   public sealed partial class ShippingStateMachine : SequentialWorkflowActivity
   {
     #region private
@@ -75,6 +78,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #endregion
 
     #region public
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ShippingStateMachine"/> class.
+    /// </summary>
     public ShippingStateMachine()
     {
       InitializeComponent();
@@ -449,6 +455,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     private void MakeDelayed(Shipping _sp, EntitiesDataContext EDC, bool _TimeOutExpired)
     {
+      if (_sp.TruckAwaiting.GetValueOrDefault(false))
+        return;
       _sp.ShippingState = ShippingState.Delayed;
       string _frmt = "TruckLateCallDriver".GetLocalizedString();
       _frmt = String.Format(_frmt, _sp.PartnerTitle != null ? _sp.PartnerTitle.CellPhone : " ?????");
@@ -464,7 +472,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void SetupAlarmsEvents(string _msg, Shipping.RequiredOperations _operations, AlarmPriority _prrty, EntitiesDataContext EDC, Shipping _sh)
     {
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.AddAlarm2Escort))
-        //TODO the messge must depend on the receiver roele http://cas_sp:11225/sites/awt/Lists/RequirementsList/DispForm.aspx?ID=447
+        //TODO the message must depend on the receiver roele http://cas_sp:11225/sites/awt/Lists/RequirementsList/DispForm.aspx?ID=447
         ReportAlarmsAndEvents(_msg, _prrty, ServiceType.SecurityEscortProvider, EDC, _sh);
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.AddAlarm2Carrier))
         ReportAlarmsAndEvents(_msg, _prrty, ServiceType.VendorAndForwarder, EDC, _sh);

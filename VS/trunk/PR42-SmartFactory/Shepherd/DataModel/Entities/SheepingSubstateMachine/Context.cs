@@ -18,12 +18,12 @@ using System;
 namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
 {
   /// <summary>
-  /// Sheeping Substate Machine Context
+  /// Shipment Substrate Machine Context
   /// </summary>
   internal class Context: IContextTrigers
   {
 
-    #region ctor
+    #region creator
     internal Context( Shipping parent )
     {
       m_Parent = parent;
@@ -31,7 +31,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
     #endregion
 
     /// <summary>
-    /// Contex Exception
+    /// Context Exception
     /// </summary>
     public class ContexException: Exception
     {
