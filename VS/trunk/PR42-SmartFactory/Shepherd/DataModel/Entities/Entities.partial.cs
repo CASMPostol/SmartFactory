@@ -1,5 +1,4 @@
-﻿
-//<summary>
+﻿//<summary>
 //  Title   : Entities helper classes.
 //  System  : Microsoft Visual C# .NET 2012
 //  $LastChangedDate$
@@ -8,18 +7,18 @@
 //  $URL$
 //  $Id$
 //
-//  Copyright (C) 2013, CAS LODZ POLAND.
+//  Copyright (C) 2014, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
+
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
-using System.Globalization;
 
 namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 {

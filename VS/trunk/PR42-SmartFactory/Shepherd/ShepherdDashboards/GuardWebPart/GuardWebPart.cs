@@ -51,6 +51,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     private Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow> m_ProvidesDictionary =
       new Dictionary<InterconnectionData.ConnectionSelector, IWebPartRow>();
     #endregion
+
     #region Interconnections Providers
     /// <summary>
     /// Sets the shipping provider.
@@ -62,5 +63,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
       m_ProvidesDictionary.Add( InterconnectionData.ConnectionSelector.ShippingInterconnection, _provider );
     }
     #endregion
+
   }
 }
