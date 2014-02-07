@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : InterconnectionDataTable DataTable
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,23 +25,47 @@ using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
 {
+  /// <summary>
+  /// InterconnectionDataTable DataTable
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
   public class InterconnectionDataTable<T> : DataTable, IWebPartRow
     where T : class
   {
     #region IWebPartRow
+    /// <summary>
+    /// Gets the schema information for a data row that is used to share data between two <see cref="T:System.Web.UI.WebControls.WebParts.WebPart" /> controls.
+    /// </summary>
+    /// <returns>A <see cref="T:System.ComponentModel.PropertyDescriptorCollection" /> describing the data.</returns>
     public PropertyDescriptorCollection Schema { get; private set; }
-    public void GetRowData(RowCallback _callback)
+    /// <summary>
+    /// Gets the row of data.
+    /// </summary>
+    /// <param name="callback">The callback .</param>
+    public void GetRowData(RowCallback callback)
     {
       if (m_DataReadyToSend)
-        _callback(this.Row0);
+        callback(this.Row0);
       else
-        m_callback = _callback;
+        m_callback = callback;
     }
     #endregion
 
     #region public
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InterconnectionDataTable{T}"/> class.
+    /// </summary>
     public InterconnectionDataTable() : this("Schema of " + typeof(T).Name) { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InterconnectionDataTable{T}"/> class.
+    /// </summary>
+    /// <param name="_TableName">Name of the _ table.</param>
     public InterconnectionDataTable(string _TableName) : this(null, _TableName) { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InterconnectionDataTable{T}"/> class.
+    /// </summary>
+    /// <param name="_list">The _list.</param>
+    /// <param name="_tableName">Name of the _table.</param>
     public InterconnectionDataTable(IEnumerable<T> _list, string _tableName)
     {
       CreateSchema(_tableName);
@@ -39,14 +78,32 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
         return;
       SetData(this, new InterconnectionEventArgs(_list.ToList()[0]));
     }
+    /// <summary>
+    /// InterconnectionEventArgs
+    /// </summary>
     public class InterconnectionEventArgs : System.EventArgs
     {
+      /// <summary>
+      /// Gets the data provided by the ecent.
+      /// </summary>
+      /// <value>
+      /// The data to be returned.
+      /// </value>
       public T Data { get; private set; }
+      /// <summary>
+      /// Initializes a new instance of the <see cref="InterconnectionEventArgs"/> class.
+      /// </summary>
+      /// <param name="_data">The _data.</param>
       public InterconnectionEventArgs(T _data)
       {
         Data = _data;
       }
     }
+    /// <summary>
+    /// delegate SetDataEventArg used to represent operations that must be done after receiving new interconnection data. 
+    /// </summary>
+    /// <param name="sender">The sender.</param>
+    /// <param name="_value">The <see cref="InterconnectionEventArgs"/> instance containing the event data.</param>
     public delegate void SetDataEventArg(object sender, InterconnectionEventArgs _value);
     /// <summary>
     /// Sets the data.

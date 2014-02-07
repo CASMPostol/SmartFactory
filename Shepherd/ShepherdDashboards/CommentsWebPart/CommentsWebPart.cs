@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Web.UI;
-//<summary>
+﻿//<summary>
 //  Title   : CommentsWebPart
 //  System  : Microsoft Visual C# .NET
 //  $LastChangedDate$
@@ -17,9 +14,15 @@ using System.Web.UI;
 //</summary>
 
 using System.Web.UI.WebControls.WebParts;
+using System;
+using System.ComponentModel;
+using System.Web.UI;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
 {
+  /// <summary>
+  /// class CommentsWebPart
+  /// </summary>
   [ToolboxItemAttribute( false )]
   public class CommentsWebPart: WebPart
   {
@@ -27,7 +30,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
     // Visual Studio might automatically update this path when you change the Visual Web Part project item.
     private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS.SmartFactory.Shepherd.Dashboards/CommentsWebPart/CommentsWebPartUserControl.ascx";
     private CommentsWebPartUserControl m_Control;
-    IWebPartRow m_Provider = null;
+    private IWebPartRow m_Provider = null;
+    /// <summary>
+    /// Called by the ASP.NET page framework to notify server controls that use composition-based implementation to create any child controls they contain in preparation for posting back or rendering.
+    /// </summary>
     protected override void CreateChildControls()
     {
       object _Ctrl = Page.LoadControl( _ascxPath );
@@ -37,6 +43,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
       if ( m_Provider != null )
         m_Control.SetInterconnectionData( m_Provider );
     }
+    /// <summary>
+    /// Raises the <see cref="E:System.Web.UI.Control.PreRender" /> event.
+    /// </summary>
+    /// <param name="e">An <see cref="T:System.EventArgs" /> object that contains the event data.</param>
     protected override void OnPreRender( EventArgs e )
     {
       base.OnPreRender( e );
@@ -44,6 +54,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CommentsWebPart
     #endregion
 
     #region creator
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CommentsWebPart"/> class.
+    /// </summary>
     public CommentsWebPart()
     {
       Role = GlobalDefinitions.Roles.None;

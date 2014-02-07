@@ -125,6 +125,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       string _frmt = "$Resources:{0}";
       return SPUtility.GetLocalizedString(String.Format(_frmt, val), GlobalDefinitions.ShepherdResourceFileName, (uint)CultureInfo.CurrentCulture.LCID);
     }
+    /// <summary>
+    /// Gets the shepherd localization expresion.
+    /// </summary>
+    /// <param name="val">The value to be localized.</param>
+    /// <returns></returns>
     public static string GetShepherdLocalizationExpresion(this string val)
     {
       string _frmt = "$Resources:{0},{1}";
@@ -171,7 +176,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     /// </summary>
     /// <param name="_val"> A System.String reference.</param>
     /// <returns>
-    ///   true if the value parameter is null or an empty string (""); otherwise, false.</c>.
+    ///   true if the value parameter is null or an empty string (""); otherwise, false.
     /// </returns>
     public static bool IsNullOrEmpty(this string _val)
     {

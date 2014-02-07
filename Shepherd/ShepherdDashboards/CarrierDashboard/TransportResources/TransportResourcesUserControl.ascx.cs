@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class TransportResourcesUserControl
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
@@ -8,6 +23,9 @@ using CAS.SmartFactory.Shepherd.DataModel.Entities;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResources
 {
+  /// <summary>
+  /// TransportResourcesUserControl <see cref="UserControl"/>
+  /// </summary>
   public partial class TransportResourcesUserControl : UserControl
   {
     #region public
@@ -29,14 +47,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     #region private
 
     #region vars
-    private DataContextManagementAutoDispose<EntitiesDataContext> myDataContextManagement = null;
-    public EntitiesDataContext EDC
+    private EntitiesDataContext EDC
     {
       get
       {
-        if (myDataContextManagement == null)
-          myDataContextManagement = DataContextManagementAutoDispose<EntitiesDataContext>.GetDataContextManagement(this);
-        return myDataContextManagement.DataContext;
+        return DataContextManagementAutoDispose<EntitiesDataContext>.GetDataContextManagement(this).DataContext;
       }
     }
     #endregion
@@ -48,11 +63,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       public string ShippingIdx = String.Empty;
     }
     private MyControlState m_ControlState = new MyControlState();
+    /// <summary>
+    /// Raises the <see cref="E:System.Web.UI.Control.Init" /> event.
+    /// </summary>
+    /// <param name="e">An <see cref="T:System.EventArgs" /> object that contains the event data.</param>
     protected override void OnInit(EventArgs e)
     {
       Page.RegisterRequiresControlState(this);
       base.OnInit(e);
     }
+    /// <summary>
+    /// Handles the Load event of the Page control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     protected void Page_Load(object sender, EventArgs e)
     {
       if (Role == TransportResources.RolesSet.SecurityEscort)
@@ -66,11 +90,21 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       m_TrailerDropDown.SelectedIndexChanged += new EventHandler(m_TrailerDropDown_SelectedIndexChanged);
       m_TruckDropDown.SelectedIndexChanged += new EventHandler(m_TruckDropDown_SelectedIndexChanged);
     }
+    /// <summary>
+    /// Loads the state of the control.
+    /// </summary>
+    /// <param name="_state">The _state.</param>
     protected override void LoadControlState(object _state)
     {
       if (_state != null)
         m_ControlState = (MyControlState)_state;
     }
+    /// <summary>
+    /// Saves any server control state changes that have occurred since the time the page was posted back to the server.
+    /// </summary>
+    /// <returns>
+    /// Returns the server control's current state. If there is no state associated with the control, this method returns null.
+    /// </returns>
     protected override object SaveControlState()
     {
       return m_ControlState;

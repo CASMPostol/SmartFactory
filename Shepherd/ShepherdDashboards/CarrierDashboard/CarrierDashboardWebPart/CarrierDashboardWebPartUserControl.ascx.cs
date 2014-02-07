@@ -1182,21 +1182,41 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region EventHandlers
+    /// <summary>
+    /// Handles the DateChanged event of the m_WarehouseEndTimeControl control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     protected void m_WarehouseEndTimeControl_DateChanged(object sender, EventArgs e)
     {
       m_ControlState.WarehouseEndTimeChanged = true;
       m_ControlState.WarehouseEndTime = m_WarehouseEndTimeControl.SelectedDate;
     }
+    /// <summary>
+    /// Handles the DateChanged event of the m_WarehouseStartTimeControl control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     protected void m_WarehouseStartTimeControl_DateChanged(object sender, EventArgs e)
     {
       m_ControlState.WarehouseStartTimeChanged = true;
       m_ControlState.WarehouseStartTime = m_WarehouseStartTimeControl.SelectedDate;
     }
+    /// <summary>
+    /// Handles the DateChanged event of the m_EstimateDeliveryTimeDateTimeControl control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     protected void m_EstimateDeliveryTimeDateTimeControl_DateChanged(object sender, EventArgs e)
     {
       m_ControlState.ETATimeChanged = true;
       m_ControlState.ETATime = m_EstimateDeliveryTimeDateTimeControl.SelectedDate;
     }
+    /// <summary>
+    /// Handles the Click event of the m_WarehouseEndTimeButton control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     protected void m_WarehouseEndTimeButton_Click(object sender, EventArgs e)
     {
       m_ControlState.WarehouseEndTime = DateTime.Now;
@@ -1206,14 +1226,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region Entities management
-    private DataContextManagementAutoDispose<EntitiesDataContext> myDataContextManagement = null;
-    public EntitiesDataContext EDC
+    private EntitiesDataContext EDC
     {
       get
       {
-        if (myDataContextManagement == null)
-          myDataContextManagement = DataContextManagementAutoDispose<EntitiesDataContext>.GetDataContextManagement(this);
-        return myDataContextManagement.DataContext;
+        return DataContextManagementAutoDispose<EntitiesDataContext>.GetDataContextManagement(this).DataContext;
       }
     }
     private Shipping myShipping;

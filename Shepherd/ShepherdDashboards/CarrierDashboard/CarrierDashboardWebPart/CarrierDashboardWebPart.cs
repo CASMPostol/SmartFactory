@@ -123,9 +123,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       m_ProvidesDictionary.Add( InterconnectionData.ConnectionSelector.CityInterconnection, _provider );
     }    /// <summary>
-    /// Gets the connection interface allowing to get selected entry of <see cref="ShippingOperationInbound"/>.
+    /// Gets the connection interface allowing to get selected entry of <see cref="Shipping"/>.
     /// </summary>
-    /// <returns>Returns an instance of the <see cref="IWebPartRow"/> representing <see cref="ShippingOperationInbound"/>.</returns>
+    /// <returns>Returns an instance of the <see cref="IWebPartRow"/> representing <see cref="Shipping"/>.</returns>
     [ConnectionProvider("Shipping Operation", "SelectedShippingOperationProviderPoint", AllowsMultipleConnections = true)]
     public IWebPartRow GetConnectionInterface()
     {
