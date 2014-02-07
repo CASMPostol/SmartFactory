@@ -40,6 +40,14 @@
     <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CAS.Customs, Version=2.0.0.22658, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonBinaries\PR42-SmartFactory\CAS.Customs.dll</HintPath>
+    </Reference>
+    <Reference Include="CAS.SharePoint, Version=1.70.21.26511, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SharePoint.WorkflowActions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -102,14 +110,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
-      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
-      <Name>SharePoint</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Customs\Customs.csproj">
-      <Project>{6c705843-6387-4d2d-a7cf-a66976186ce2}</Project>
-      <Name>Customs</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CWInteroperability\CWInteroperability.csproj">
       <Project>{f0416078-82cd-4f9d-905c-1e346198759a}</Project>
       <Name>CWInteroperability</Name>
