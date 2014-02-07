@@ -427,7 +427,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       {
         if (excludedLoadDescription == _ldx)
           continue;
-        switch (_ldx.PalletType.Value) //TODO - Create Shipping - Nullable object must have a value - no pallet type selected.
+        switch (_ldx.PalletType.Value)
         {
           case PalletType.Euro:
             this.EuroPalletsQuantity += _ldx.NumberOfPallets.GetValueOrDefault(0);
