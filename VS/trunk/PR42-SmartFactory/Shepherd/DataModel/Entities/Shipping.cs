@@ -427,13 +427,16 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       {
         if (excludedLoadDescription == _ldx)
           continue;
-        switch (_ldx.PalletType.Value)
+        switch (_ldx.PalletType.GetValueOrDefault(PalletType.None))
         {
           case PalletType.Euro:
             this.EuroPalletsQuantity += _ldx.NumberOfPallets.GetValueOrDefault(0);
             break;
           case PalletType.Industrial:
             this.InduPalletsQuantity += _ldx.NumberOfPallets.GetValueOrDefault(0);
+            break;
+          case PalletType.None:
+          case PalletType.Other:
             break;
         }
         _po.AppendLine(SPEncode.HtmlEncode(_ldx.Title));
