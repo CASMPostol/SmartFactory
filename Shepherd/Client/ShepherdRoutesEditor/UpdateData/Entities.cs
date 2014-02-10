@@ -9,6 +9,7 @@ using CAS.SmartFactory.Shepherd.RouteEditor.UpdateData;
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#pragma warning disable 1591
 namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
 {
   using System;
@@ -9055,3 +9056,5 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
     Delayed = 8,
   }
 }
+
+#pragma warning restore 1591

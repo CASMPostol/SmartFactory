@@ -61,7 +61,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
           RoutesCatalog _catalog = default(RoutesCatalog);
           using (Stream _file = _mofd.OpenFile())
             _catalog = RoutesCatalog.ImportDocument(_file);
-          ErrorList.Items.Add("Starting data ipdate");
+          ErrorList.Items.Add("Starting data import");
           edc.ImportTable(_catalog.CommodityTable);
           ErrorList.Items.Add("Commodity updated.");
           edc.ImportTable(_catalog.PartnersTable, false);
@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
       catch (Exception _ex)
       {
         MessageBox.Show(_ex.Message, "Exception", MessageBoxButton.OK, MessageBoxImage.Error);
-        ErrorList.Items.Add(String.Format("Catched Exception {0}.", _ex.Message));
+        ErrorList.Items.Add(String.Format("Cached Exception {0}.", _ex.Message));
         this.UpdateLayout();
       }
     }
