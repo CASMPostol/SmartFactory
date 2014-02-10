@@ -46,6 +46,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\CAS.ShepherdRouteEditor.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -108,6 +109,7 @@
     <Compile Include="InputData\RoutesCatalog.xsd.cs">
       <DependentUpon>RoutesCatalog.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ModelView\BaseModelViewBackgroundWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -209,6 +211,10 @@
     <ProjectReference Include="..\..\..\..\PR44-SharePoint\SharePointLinqClient\SharePointLinqClient.csproj">
       <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
       <Name>SharePointLinqClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
+      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
+      <Name>SharePoint</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
