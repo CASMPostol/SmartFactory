@@ -48,7 +48,7 @@
               <asp:Label ID="m_PalletTypesLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,PalletType%>" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-              <asp:DropDownList ID="m_PalletTypesDropDown" CssClass="DropDownLD" runat="server">
+              <asp:DropDownList ID="m_PalletTypesDropDown" CssClass="DropDownLD" runat="server" OnSelectedIndexChanged="m_LoadDescriptionNumberTextBox_TextChanged">
               </asp:DropDownList>
             </asp:TableCell>
           </asp:TableRow>
