@@ -109,7 +109,6 @@
     <Compile Include="InputData\RoutesCatalog.xsd.cs">
       <DependentUpon>RoutesCatalog.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ModelView\BaseModelViewBackgroundWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
