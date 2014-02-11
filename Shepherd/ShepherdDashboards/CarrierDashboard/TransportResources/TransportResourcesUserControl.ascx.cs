@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -141,7 +141,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       if (_prtn == null)
         return;
       ;
-      Dictionary<int, Driver> _drivers = _prtn.Driver.ToDictionary(x => x.Id.Value); //TODO - Drivers and drivers team - sort list items
+      Dictionary<int, Driver> _drivers = _prtn.Driver.OrderBy(x => x.Title).ToDictionary(x => x.Id.Value);
       foreach (ShippingDriversTeam item in _Shipping.ShippingDriversTeams(EDC))
       {
         Driver _driver = item.DriverTitle;
@@ -155,7 +155,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         m_DriversListBox.Items.Add(new ListItem(item.Value.Title, item.Key.ToString()));
       m_ShippingTextBox.Text = _Shipping.Title;
       m_TruckDropDown.Items.Add(new ListItem());
-      foreach (Truck _item in _prtn.Truck)
+      foreach (Truck _item in _prtn.Truck.OrderBy(x => x.Title))
       {
         if ((Role == TransportResources.RolesSet.SecurityEscort && _item.Truck2PartnerTitle.ServiceType.Value != ServiceType.SecurityEscortProvider) ||
           (Role == TransportResources.RolesSet.Carrier && _item.Truck2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider))
@@ -172,7 +172,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
             _li.Selected = true;
       }
       m_TrailerDropDown.Items.Add(new ListItem());
-      foreach (Trailer item in _prtn.Trailer)
+      foreach (Trailer item in _prtn.Trailer.OrderBy(x => x.Title))
       {
         ListItem _li = new ListItem(item.Title, item.Id.Value.ToString());
         m_TrailerDropDown.Items.Add(_li);
