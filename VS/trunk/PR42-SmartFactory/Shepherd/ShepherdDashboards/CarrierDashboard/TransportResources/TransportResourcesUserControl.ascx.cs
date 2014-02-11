@@ -141,7 +141,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       if (_prtn == null)
         return;
       ;
-      Dictionary<int, Driver> _drivers = _prtn.Driver.ToDictionary(x => x.Id.Value);
+      Dictionary<int, Driver> _drivers = _prtn.Driver.ToDictionary(x => x.Id.Value); //TODO - Drivers and drivers team - sort list items
       foreach (ShippingDriversTeam item in _Shipping.ShippingDriversTeams(EDC))
       {
         Driver _driver = item.DriverTitle;
