@@ -194,13 +194,14 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <summary>
     /// Shippings the drivers teams.
     /// </summary>
-    /// <param name="edc">The edc.</param>
+    /// <param name="edc">The object <see cref="EntitiesDataContext"/> that extends the <see cref="Microsoft.SharePoint.Linq.DataContext"/></param>
     /// <returns></returns>
     public List<ShippingDriversTeam> ShippingDriversTeams(EntitiesDataContext edc)
     {
       return (from _dtx in edc.DriversTeam
               let _sid = _dtx.ShippingIndex.Id.Value
               where this.Id.Value == _sid
+              orderby _dtx.Title
               select _dtx).ToList();
     }
     /// <summary>
