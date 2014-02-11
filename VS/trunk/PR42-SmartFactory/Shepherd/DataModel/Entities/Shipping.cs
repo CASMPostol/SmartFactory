@@ -201,7 +201,6 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       return (from _dtx in edc.DriversTeam
               let _sid = _dtx.ShippingIndex.Id.Value
               where this.Id.Value == _sid
-              orderby _dtx.Title
               select _dtx).ToList();
     }
     /// <summary>
