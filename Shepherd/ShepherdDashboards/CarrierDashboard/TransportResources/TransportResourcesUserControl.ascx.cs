@@ -145,6 +145,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       foreach (ShippingDriversTeam item in _Shipping.ShippingDriversTeams(EDC))
       {
         Driver _driver = item.DriverTitle;
+        if (_driver == null)
+          continue;
         if ((Role == TransportResources.RolesSet.SecurityEscort && _driver.Driver2PartnerTitle.ServiceType.Value != ServiceType.SecurityEscortProvider) ||
            (Role == TransportResources.RolesSet.Carrier && _driver.Driver2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider))
           continue;
