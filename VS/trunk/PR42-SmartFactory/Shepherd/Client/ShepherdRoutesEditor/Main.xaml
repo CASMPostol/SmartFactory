@@ -15,6 +15,16 @@
         <Button Name="UpdateRoutesButton" Click="UpdateRoutesButton_Click"
                 Content="Update routes" ToolTip="Import xml file and update existing routes, cities, countries and marekts lists" Grid.Row="2" 
                  VerticalAlignment="Stretch" Margin="3" />
-        <ListBox Name="ErrorList"  Grid.Row="3" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" RenderTransformOrigin="0.455,0.461" Foreground="Black" BorderBrush="#FFC1F7BB" Background="#FFFFFA90" Padding="3" UseLayoutRounding="True" ToolTip="Information abou the upgrade process progress." />
+		<TabControl Grid.Row="3">
+			<TabItem Header="Import log">
+				<ListBox Name="ErrorList" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" RenderTransformOrigin="0.455,0.461" Foreground="Black" Padding="3" UseLayoutRounding="True" ToolTip="Information abou the upgrade process progress." />
+			</TabItem>
+			<TabItem Header="Routs">				
+			</TabItem>
+			<TabItem Header="Markets">				
+			</TabItem>
+			<TabItem Header="Partners">				
+			</TabItem>
+		</TabControl>     
     </Grid>
 </Window>
