@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
 
 
     /// <summary>
-    /// Lista Alarmy & Zdarzenia
+    /// Lista Alarmy Zdarzenia
     /// </summary>
     [Microsoft.SharePoint.Linq.ListAttribute( Name = "Alarms And Events" )]
     public Microsoft.SharePoint.Linq.EntityList<AlarmsAndEvents> AlarmsAndEvents
@@ -965,7 +965,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
   }
 
   /// <summary>
-  /// Content type listy Alarmy & Zdarzenia
+  /// Content type listy Alarmy Zdarzenia
   /// </summary>
   [Microsoft.SharePoint.Linq.ContentTypeAttribute( Name = "AlarmsAndEvents", Id = "0x010049AA7238FCE34BE18336F419AE924845" )]
   public partial class AlarmsAndEvents: Element

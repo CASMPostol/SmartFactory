@@ -113,6 +113,7 @@
     <Compile Include="InputData\RoutesCatalog.xsd.cs">
       <DependentUpon>RoutesCatalog.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MainViewmodel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
