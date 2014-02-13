@@ -86,5 +86,11 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
       this.Title = String.Format("Shepherd Route Editor rel. {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
       this.UpdateLayout();
     }
+
+    private void HelpButton_Click(object sender, RoutedEventArgs e)
+    {
+      var newWindow = new HelpWindow();
+      newWindow.Show();
+    }
   }
 }
