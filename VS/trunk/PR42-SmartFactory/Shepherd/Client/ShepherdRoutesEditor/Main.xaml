@@ -19,7 +19,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Width="Auto">
             <Label Name="m_SiteURLLabel" Content="Shepherd website URL:" Margin="3" Width="150" Foreground="White" />
@@ -33,16 +33,13 @@
             <Button Name="x_ConnectButton" Content="Connect" ToolTip="Connect to Shepherd website and read dictionaries" Style="{StaticResource ButtonStyle}" />
             <Button Name="x_ImportXMLButton" Content="Import XML" ToolTip="Import XML file with new routs" Style="{StaticResource ButtonStyle}" />
             <Button Name="UpdateRoutesButton" Click="UpdateRoutesButton_Click" Content="Update routes" ToolTip="Import xml file and update existing routes, cities, countries and marekts lists" Style="{StaticResource ButtonStyle}" />
-            <Button Name="x_HelpButton" Click="HelpButton_Click" ToolTip="Open help" Height="26" Width="30" Style="{StaticResource ButtonStyle}">
+            <Button Name="x_HelpButton" Click="HelpButton_Click" ToolTip="Open help" Height="26" Width="26" Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Images/help.ico" Width="16" Height="16" ToolTipService.ToolTip="Open help" />
+                    <Image Source="Images/help.png" Width="20" Height="20" ToolTipService.ToolTip="Open help" />
                 </StackPanel>
             </Button>
         </StackPanel>
         <TabControl Grid.Row="3" Height="600" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <TabItem Header="Import log">
-                <ListBox Name="ErrorList" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Foreground="Black" Padding="3" UseLayoutRounding="True" ToolTip="Information abou the upgrade process progress." />
-            </TabItem>
             <TabItem Header="Routs">
                 <DataGrid Width="Auto" Name="x_DataGridRouts" AutoGenerateColumns="False" Style="{StaticResource DataGridStyle}">
                     <DataGrid.Columns>
@@ -71,36 +68,43 @@
             <TabItem Header="Markets">
                 <DataGrid Width="Auto" Name="x_DataGridMarkets" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Market" />
-                        <DataGridTextColumn Header="Area" />
-                        <DataGridTextColumn Header="Destination Countr" />
-                        <DataGridTextColumn Header="Destination City" />
+                        <DataGridTextColumn Header="Market" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Area" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Destination Countr" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Destination City" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Partners">
                 <DataGrid Width="Auto" Name="x_DataGridPartners" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" />
-                        <DataGridTextColumn Header="Number (from SAP)" />
-                        <DataGridTextColumn Header="Service Type" />
-                        <DataGridTextColumn Header="Destination City" />
-                        <DataGridTextColumn Header="Shepherd User" />
-                        <DataGridTextColumn Header="E-Mail" />
-                        <DataGridTextColumn Header="Business Phone" />
-                        <DataGridTextColumn Header="Fax Number" />
-                        <DataGridTextColumn Header="Mobile" />
-                        <DataGridTextColumn Header="Warehouse" />
+                        <DataGridTextColumn Header="Name" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Number (from SAP)" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Service Type" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Destination City" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Shepherd User" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="E-Mail" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Business Phone" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Fax Number" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Mobile" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Warehouse" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Commodity">
                 <DataGrid Width="Auto" Name="x_DataGridCommodity" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Commodity" />
+                        <DataGridTextColumn Header="Commodity" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
+            <TabItem Header="Import log">
+                <ListBox Name="ErrorList" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Foreground="Black" Padding="3" UseLayoutRounding="True" ToolTip="Information abou the upgrade process progress." />
+            </TabItem>
         </TabControl>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Label Name="x_ConnectionLabel" Content="Connection status:" Margin="3" Foreground="White" />
+            <Image Source="Images/status.png" Height="20" Width="20" Name="x_ConnectionStatusImage" />
+        </StackPanel>
     </Grid>
 </Window>
