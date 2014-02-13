@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="URL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://casmp/sites/S43</Value>
+      <Value Profile="(Default)">http://localhost/sites/shepherd</Value>
     </Setting>
   </Settings>
 </SettingsFile>
