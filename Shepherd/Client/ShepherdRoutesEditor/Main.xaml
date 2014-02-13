@@ -21,7 +21,7 @@
 				<ListBox Name="ErrorList" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" RenderTransformOrigin="0.455,0.461" Foreground="Black" Padding="3" UseLayoutRounding="True" ToolTip="Information abou the upgrade process progress." />
 			</TabItem>
 			<TabItem Header="Routs">
-				<DataGrid Width="Auto" Name="x_DataGridListView" AutoGenerateColumns="False">
+				<DataGrid Width="Auto" Name="x_DataGridRouts" AutoGenerateColumns="False">
 					<DataGrid.Columns>
 						<DataGridTextColumn Header="City" />
 						<DataGridTextColumn Header="Business description" />
@@ -44,10 +44,39 @@
 					</DataGrid.Columns>
 				</DataGrid>				
 			</TabItem>
-			<TabItem Header="Markets">				
+			<TabItem Header="Markets">
+                <DataGrid Width="Auto" Name="x_DataGridMarkets" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Market" />
+                        <DataGridTextColumn Header="Area" />
+                        <DataGridTextColumn Header="Destination Countr" />
+                        <DataGridTextColumn Header="Destination City" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+			<TabItem Header="Partners">
+                <DataGrid Width="Auto" Name="x_DataGridPartners" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" />
+                        <DataGridTextColumn Header="Number (from SAP)" />
+                        <DataGridTextColumn Header="Service Type" />
+                        <DataGridTextColumn Header="Destination City" />
+                        <DataGridTextColumn Header="Shepherd User" />
+                        <DataGridTextColumn Header="E-Mail" />
+                        <DataGridTextColumn Header="Business Phone" />
+                        <DataGridTextColumn Header="Fax Number" />
+                        <DataGridTextColumn Header="Mobile" />
+                        <DataGridTextColumn Header="Warehouse" />
+                    </DataGrid.Columns>
+                </DataGrid>
 			</TabItem>
-			<TabItem Header="Partners">				
-			</TabItem>			
-		</TabControl>     
+            <TabItem Header="Commodity">
+                <DataGrid Width="Auto" Name="x_DataGridCommodity" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Commodity" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>     
     </Grid>
 </Window>
