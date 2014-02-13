@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class Main 
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,12 +39,18 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
   /// </summary>
   public partial class Main : Window
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Main"/> class.
+    /// </summary>
     public Main()
     {
       InitializeComponent();
       URLTextBox.Text = Properties.Settings.Default.URL;
     }
-
+    /// <summary>
+    /// Raises the <see cref="E:System.Windows.Window.Closing" /> event.
+    /// </summary>
+    /// <param name="e">A <see cref="T:System.ComponentModel.CancelEventArgs" /> that contains the event data.</param>
     protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
     {
       base.OnClosing(e);
@@ -38,14 +59,11 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     }
     private void UpdateRoutesButton_Click(object sender, RoutedEventArgs e)
     {
-      try
-      {
-        using (EntitiesDataDictionary edc = new EntitiesDataDictionary(this.URLTextBox.Text))
-        {
-          ErrorList.Items.Add("Starting read current data from selected site.");
-          edc.ReadSiteContent();
-          ErrorList.Items.Add("Data from current site has been read");
-          OpenFileDialog _mofd = new OpenFileDialog()
+      m_MainViewmodel.UpdateRoutes();
+    }
+    private void ReadXMLFileButton_Click(object sender, RoutedEventArgs e)
+    {
+      OpenFileDialog _mofd = new OpenFileDialog()
           {
             CheckFileExists = true,
             CheckPathExists = true,
@@ -53,36 +71,17 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
             DefaultExt = ".xml",
             AddExtension = true,
           };
-          if (!_mofd.ShowDialog().GetValueOrDefault(false))
-          {
-            ErrorList.Items.Add("Operation aborted by the user.");
-            return;
-          }
-          RoutesCatalog _catalog = default(RoutesCatalog);
-          using (Stream _file = _mofd.OpenFile())
-            _catalog = RoutesCatalog.ImportDocument(_file);
-          ErrorList.Items.Add("Starting data import");
-          edc.ImportTable(_catalog.CommodityTable);
-          ErrorList.Items.Add("Commodity updated.");
-          edc.ImportTable(_catalog.PartnersTable, false);
-          ErrorList.Items.Add("Partners updated.");
-          edc.ImportTable(_catalog.MarketTable);
-          ErrorList.Items.Add("Market updated.");
-          edc.ImportTable(_catalog.GlobalPricelist, false);
-          edc.SubmitChages();
-          ErrorList.Items.Add("GlobalPricelist updated.");
-        }
-      }
-      catch (Exception _ex)
+      if (!_mofd.ShowDialog().GetValueOrDefault(false))
       {
-        MessageBox.Show(_ex.Message, "Exception", MessageBoxButton.OK, MessageBoxImage.Error);
-        ErrorList.Items.Add(String.Format("Cached Exception {0}.", _ex.Message));
-        this.UpdateLayout();
+        ErrorList.Items.Add("Operation aborted by the user.");
+        return;
       }
+      m_MainViewmodel.ReadXMLFile(_mofd.FileName);
     }
-
+    private MainViewmodel m_MainViewmodel = new MainViewmodel();
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
+      
       this.Title = String.Format("Shepherd Route Editor rel. {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
       this.UpdateLayout();
     }

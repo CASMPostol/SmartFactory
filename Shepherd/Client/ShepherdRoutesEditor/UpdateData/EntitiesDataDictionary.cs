@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class EntitiesDataDictionary
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CAS.SmartFactory.Shepherd.RouteEditor.InputData;
@@ -6,7 +21,7 @@ using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
 {
-  public class EntitiesDataDictionary: IDisposable
+  internal class EntitiesDataDictionary : IDisposable
   {
 
     #region internal

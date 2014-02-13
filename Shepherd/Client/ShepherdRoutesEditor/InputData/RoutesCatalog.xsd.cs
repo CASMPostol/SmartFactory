@@ -9,7 +9,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.InputData
     /// <summary>
     /// Imports the document.
     /// </summary>
-    /// <param name="documetStream">The documet stream.</param>
+    /// <param name="documetStream">The document stream.</param>
     /// <returns></returns>
     static public RoutesCatalog ImportDocument( Stream documetStream )
     {

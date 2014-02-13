@@ -26,7 +26,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     /// </summary>
     /// <param name="_val"> A System.String reference.</param>
     /// <returns>
-    ///   true if the value parameter is null or an empty string (""); otherwise, false.</c>.
+    ///   true if the value parameter is null or an empty string (""); otherwise, false.
     /// </returns>
     public static bool IsNullOrEmpty( this string _val )
     {
