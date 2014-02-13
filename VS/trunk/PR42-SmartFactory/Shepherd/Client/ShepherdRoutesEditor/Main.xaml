@@ -33,9 +33,9 @@
             <Button Name="x_ConnectButton" Content="Connect" ToolTip="Connect to Shepherd website and read dictionaries" Style="{StaticResource ButtonStyle}" />
             <Button Name="x_ImportXMLButton" Content="Import XML" ToolTip="Import XML file with new routs" Style="{StaticResource ButtonStyle}" />
             <Button Name="UpdateRoutesButton" Click="UpdateRoutesButton_Click" Content="Update routes" ToolTip="Import xml file and update existing routes, cities, countries and marekts lists" Style="{StaticResource ButtonStyle}" />
-            <Button Name="x_HelpButton" Click="HelpButton_Click" ToolTip="Open help" Height="26" Width="26" Style="{StaticResource ButtonStyle}">
+            <Button Name="x_HelpButton" Click="HelpButton_Click" ToolTip="View help" Height="26" Width="26" Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Images/help.png" Width="20" Height="20" ToolTipService.ToolTip="Open help" />
+                    <Image Source="Images/help.png" Width="20" Height="20" ToolTipService.ToolTip="View help" />
                 </StackPanel>
             </Button>
         </StackPanel>

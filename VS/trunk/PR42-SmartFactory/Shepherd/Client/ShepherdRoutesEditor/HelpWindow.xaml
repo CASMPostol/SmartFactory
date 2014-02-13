@@ -13,9 +13,14 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Foreground="White">
-            TODO: Help<LineBreak/>
-            File content - user instructions
+        <TextBlock Margin="5" Grid.Row="0" Foreground="White" TextWrapping="Wrap">
+            <Bold>Shepherd Route Editor - Help</Bold><LineBreak/>
+            Here are answers to common questions about Shepherd Route Editor<LineBreak/>
+            <Expander  Header="How to create XML file?" Foreground="White">Copy data required from Global Logistics Price List to the excel file maped with schema. Selece "Developer" and Export option. Save to the xml file.</Expander><LineBreak/>
+            <Expander Header="How to connect to the Shepherd website?" Foreground="White">Enter Shepherd website URL to the text box and press Connect button. When the connection is established and all required dictionary data will be read, green connection status icon will appear.</Expander><LineBreak/>
+            <Expander Header="Is Routs For Year required?" Foreground="White">Title for each route is created as a combination of variables: [Year] To: [City], by: [Partner], of: [Commodity]. [City], [Partner] and [Commodity] are taken directly from route. [Year] must be entered manual - this value will apply to all routes imported.</Expander><LineBreak/>
+            <Expander Header="How to import XML file?" Foreground="White">Press Import XML button and browse for xml file. All data read from selected xml file will be displayed at proper tabs.</Expander><LineBreak/>
+            <Expander Header="How to upload data from XML file to Shepherd website?" Foreground="White">Connect to the Shepherd website. Import xml file and press Uptade routes button. When finished, messege about successful import will be displayed at Import log tab.</Expander>
         </TextBlock>
     </Grid>
 </Window>
