@@ -8,21 +8,31 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Name="m_SiteURLLabel" Content="Site URL:" HorizontalAlignment="Left" Margin="3"  Grid.Row="0" />
-        <TextBox Name="URLTextBox" TextWrapping="Wrap" Text="Site URL" ToolTip="Enter your website URL" 
-                 VerticalAlignment="Stretch" Margin="3" Grid.Row="1"/>
-        <Button Name="UpdateRoutesButton" Click="UpdateRoutesButton_Click"
-                Content="Update routes" ToolTip="Import xml file and update existing routes, cities, countries and marekts lists" Grid.Row="2" 
-                 VerticalAlignment="Stretch" Margin="3" />
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Label Name="m_SiteURLLabel" Content="Shepherd website URL:" Margin="3" Width="150" />
+            <TextBox Name="URLTextBox" TextWrapping="NoWrap" Text="http://localhost/sites/shepherd" ToolTip="Enter your website URL"  VerticalAlignment="Stretch" Margin="3" Width="250"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Label Name="m_YearLabel" Content="Routs for year:" Margin="3" Width="150" />
+            <TextBox Name="m_RoutsYearTextBox" TextWrapping="NoWrap" ToolTip="Enter year" VerticalAlignment="Stretch" Margin="3" Width="250" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button Name="Connect" Content="Connect" ToolTip="Connect to Shepherd website and read dictionaries" />
+            <Button Name="ImportXML" Content="Import XML" ToolTip="Import XML file with new routs" />
+            <Button Name="UpdateRoutesButton" Click="UpdateRoutesButton_Click" Content="Update routes" ToolTip="Import xml file and update existing routes, cities, countries and marekts lists" />
+        </StackPanel>       
 		<TabControl Grid.Row="3">
 			<TabItem Header="Import log">
-				<ListBox Name="ErrorList" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" RenderTransformOrigin="0.455,0.461" Foreground="Black" Padding="3" UseLayoutRounding="True" ToolTip="Information abou the upgrade process progress." />
+				<ListBox Name="ErrorList" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Foreground="Black" Padding="3" UseLayoutRounding="True" ToolTip="Information abou the upgrade process progress." />
 			</TabItem>
 			<TabItem Header="Routs">
 				<DataGrid Width="Auto" Name="x_DataGridRouts" AutoGenerateColumns="False">
 					<DataGrid.Columns>
+                        <DataGridTextColumn Header="Title" />
 						<DataGridTextColumn Header="City" />
 						<DataGridTextColumn Header="Business description" />
 						<DataGridTextColumn Header="Shipment type" />
