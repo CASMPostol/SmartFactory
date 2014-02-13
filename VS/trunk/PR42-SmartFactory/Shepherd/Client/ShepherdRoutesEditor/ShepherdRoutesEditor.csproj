@@ -81,7 +81,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Shepherd_50x50.ico</ApplicationIcon>
+    <ApplicationIcon>SHR_Ico.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -213,9 +213,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Shepherd_50x50.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +224,18 @@
       <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
       <Name>SharePoint</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\help.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SHR_Ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SHR_Ico.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
