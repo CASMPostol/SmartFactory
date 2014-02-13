@@ -1,9 +1,13 @@
 ﻿<Window x:Class="CAS.SmartFactory.Shepherd.RouteEditor.HelpWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Shepherd Route Editor - Help" 
-        Height="300" 
-        Width="300"
+        Title="Shepherd Route Editor - Help"
+        Icon="Images/help.ico" 
+        Height="Auto" 
+        Width="Auto" 
+        MinHeight="400" 
+        MinWidth="500"
+        WindowStyle="ThreeDBorderWindow"
         Background="#FF354B5F">
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
