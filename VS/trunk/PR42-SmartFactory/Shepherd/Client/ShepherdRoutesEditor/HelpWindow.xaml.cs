@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//<summary>
+//  Title   : class HelpWindow
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CAS.SmartFactory.Shepherd.RouteEditor
 {
@@ -19,6 +22,9 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
   /// </summary>
   public partial class HelpWindow : Window
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="HelpWindow"/> class.
+    /// </summary>
     public HelpWindow()
     {
       InitializeComponent();
