@@ -22,7 +22,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Width="Auto">
@@ -43,9 +43,9 @@
                 </StackPanel>
             </Button>
         </StackPanel>
-        <TabControl Grid.Row="3" Height="600" VerticalAlignment="Top">
+        <TabControl Grid.Row="3" VerticalAlignment="Top">
             <TabItem Header="Routs">
-                <DataGrid Width="Auto" x:Name="x_DataGridRouts" AutoGenerateColumns="False" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Route}">
+                <DataGrid Width="Auto" x:Name="x_DataGridRouts" AutoGenerateColumns="False" ItemsSource="{Binding Route}" MinHeight="100" VerticalContentAlignment="Center">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="City" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Dest_City}" />
                         <DataGridTextColumn Header="Business description" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Business_description}" />
@@ -68,7 +68,7 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Markets">
-                <DataGrid Width="Auto" x:Name="x_DataGridMarkets" AutoGenerateColumns="False" ItemsSource="{Binding Market}">
+                <DataGrid Width="Auto" x:Name="x_DataGridMarkets" AutoGenerateColumns="False" ItemsSource="{Binding Market}" MinHeight="100" VerticalContentAlignment="Center">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Market" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Market}" />
                         <DataGridTextColumn Header="Area" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Area}" />
@@ -78,7 +78,7 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Partners">
-                <DataGrid Width="Auto" x:Name="x_DataGridPartners" AutoGenerateColumns="False" ItemsSource="{Binding Partners}">
+                <DataGrid Width="Auto" x:Name="x_DataGridPartners" AutoGenerateColumns="False" ItemsSource="{Binding Partners}" MinHeight="100" VerticalContentAlignment="Center">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Name" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Name}" />
                         <DataGridTextColumn Header="Number (from SAP)" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding NumberFromSAP}" />
@@ -93,7 +93,7 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Commodity">
-                <DataGrid Width="Auto" x:Name="x_DataGridCommodity" AutoGenerateColumns="False" ItemsSource="{Binding Commodity}">
+                <DataGrid Width="Auto" x:Name="x_DataGridCommodity" AutoGenerateColumns="False" ItemsSource="{Binding Commodity}" MinHeight="100" VerticalContentAlignment="Center">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Commodity" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Title}"/>
                     </DataGrid.Columns>
