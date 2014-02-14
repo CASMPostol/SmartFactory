@@ -82,7 +82,10 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     }
     private void x_ConnectButton_Click(object sender, RoutedEventArgs e)
     {
-      m_MainViewmodel.Connect();
+      if (m_MainViewmodel.Connected)
+        if (MessageBox.Show("You are about to reestablish connection. All changes will be lost.", "Closing application", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel) == MessageBoxResult.Cancel)
+          return;
+      m_MainViewmodel.ReadSiteContent();
     }
     private void UpdateRoutesButton_Click(object sender, RoutedEventArgs e)
     {

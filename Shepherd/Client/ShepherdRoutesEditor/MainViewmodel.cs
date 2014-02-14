@@ -100,79 +100,142 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
       }
       set
       {
+        if (value == null)
+        {
+          this.Commodity = null;
+          this.Market = null;
+          this.Partners = null;
+          this.Route = null;
+        }
+        else
+        {
+          this.Commodity = value.CommodityTable != null ? new ObservableCollection<RoutesCatalogCommodityRow>(value.CommodityTable) : null;
+          this.Market = value.MarketTable != null ? new ObservableCollection<RoutesCatalogMarket>(value.MarketTable) : null;
+          this.Partners = value.PartnersTable != null ? new ObservableCollection<RoutesCatalogPartnersRow>(value.PartnersTable) : null;
+          this.Route = value.GlobalPricelist != null ? new ObservableCollection<RoutesCatalogRoute>(value.GlobalPricelist) : null;
+        }
         RaiseHandler<RoutesCatalog>(value, ref b_Routes, "Routes", this);
+      }
+    }
+    private ObservableCollection<RoutesCatalogCommodityRow> b_Commodity;
+    public ObservableCollection<RoutesCatalogCommodityRow> Commodity
+    {
+      get
+      {
+        return b_Commodity;
+      }
+      set
+      {
+        RaiseHandler<ObservableCollection<RoutesCatalogCommodityRow>>(value, ref b_Commodity, "Commodity", this);
+      }
+    }
+    private ObservableCollection<RoutesCatalogMarket> b_Market;
+    public ObservableCollection<RoutesCatalogMarket> Market
+    {
+      get
+      {
+        return b_Market;
+      }
+      set
+      {
+        RaiseHandler<ObservableCollection<RoutesCatalogMarket>>(value, ref b_Market, "Market", this);
+      }
+    }
+    private ObservableCollection<RoutesCatalogPartnersRow> b_Partners;
+    public ObservableCollection<RoutesCatalogPartnersRow> Partners
+    {
+      get
+      {
+        return b_Partners;
+      }
+      set
+      {
+        RaiseHandler<ObservableCollection<RoutesCatalogPartnersRow>>(value, ref b_Partners, "Partners", this);
+      }
+    }
+    private ObservableCollection<RoutesCatalogRoute> b_Route;
+    public ObservableCollection<RoutesCatalogRoute> Route
+    {
+      get
+      {
+        return b_Route;
+      }
+      set
+      {
+        RaiseHandler<ObservableCollection<RoutesCatalogRoute>>(value, ref b_Route, "Route", this);
       }
     }
     #endregion
 
     #region API
 
-    #region Connect
-    internal void Connect()
+    #region ReadSiteContent
+    internal void ReadSiteContent()
     {
-      if (!Connected)
-        return;
-      m_DoWorkEventHandler = DoWorkEventHandler_Connect;
-      m_ProgressChangedEventHandler = ProgressChangedEventHandler_Logger;
-      m_CompletedEventHandler = RunWorkerCompletedEventHandler_Connect;
-      this.StartBackgroundWorker();
+      Uri _uri = default(Uri);
+      try
+      {
+        _uri = new Uri(URL, UriKind.Absolute);
+        m_DoWorkEventHandler = DoWorkEventHandler_ReadSiteContent;
+        m_ProgressChangedEventHandler = ProgressChangedEventHandler_Logger;
+        m_CompletedEventHandler = RunWorkerCompletedEventHandler_ReadSiteContent;
+        this.StartBackgroundWorker(_uri);
+      }
+      catch (Exception _ex)
+      {
+        ExceptionMessageBox(_ex);
+      }
     }
-    private Object DoWorkEventHandler_Connect(object argument, Action<ProgressChangedEventArgs> progress, Func<bool> cancellationPending)
+    private Object DoWorkEventHandler_ReadSiteContent(object argument, Action<ProgressChangedEventArgs> progress, Func<bool> cancellationPending)
     {
-      return new EntitiesDataDictionary(URL);
+      string _url = ((Uri)argument).AbsoluteUri;
+      progress(new ProgressChangedEventArgs(0, String.Format("Trying to establish connection with the site {0}.", _url)));
+      EntitiesDataDictionary _ret = new EntitiesDataDictionary(_url);
+      if (_ret == null)
+        throw new ArgumentException("DoWorkEventHandler UpdateRoutes", "argument");
+      progress(new ProgressChangedEventArgs(0, "Starting read current data from selected site."));
+      int _prc = 0;
+      _ret.ReadSiteContent(x => progress(new ProgressChangedEventArgs(_prc++, x)));
+      progress(new ProgressChangedEventArgs(100, "Finished read current data from selected site."));
+      return _ret;
     }
-    private void RunWorkerCompletedEventHandler_Connect(object sender, RunWorkerCompletedEventArgs e)
+    private void RunWorkerCompletedEventHandler_ReadSiteContent(object sender, RunWorkerCompletedEventArgs e)
     {
       Connected = false;
       DisposeEntitiesDataDictionary();
       if (e.Error != null)
       {
         ExceptionMessageBox(e.Error);
-        Log.Add(String.Format("Operation Connect terminated by exception (0).", e.Error.Message));
+        Log.Add(String.Format("Operation ReadSiteContent terminated by exception {0}.", e.Error.Message));
         return;
       }
       if (e.Cancelled)
-        Log.Add("Operation Connect canceled by the user");
+        Log.Add("Operation ReadSiteContent canceled by the user");
       else
       {
         m_EntitiesDataDictionary = e.Result as EntitiesDataDictionary;
         Connected = true;
-        Log.Add("Operation Connect finished");
+        Log.Add("Operation ReadSiteContent finished");
       }
-    }
-    #endregion
-
-    #region ReadSiteContent
-    internal void ReadSiteContent()
-    {
-      if (!Connected)
-        return;
-      m_DoWorkEventHandler = DoWorkEventHandler_ReadSiteContent;
-      m_ProgressChangedEventHandler = ProgressChangedEventHandler_Logger;
-      m_CompletedEventHandler = RunWorkerCompletedEventHandler_Logger;
-      this.StartBackgroundWorker(m_EntitiesDataDictionary);
-    }
-    private Object DoWorkEventHandler_ReadSiteContent(object argument, Action<ProgressChangedEventArgs> progress, Func<bool> cancellationPending)
-    {
-      EntitiesDataDictionary edc = argument as EntitiesDataDictionary;
-      if (edc == null)
-        throw new ArgumentException("DoWorkEventHandler UpdateRoutes", "argument");
-      progress(new ProgressChangedEventArgs(0, "Starting read current data from selected site."));
-      edc.ReadSiteContent();
-      progress(new ProgressChangedEventArgs(100, "Finished read current data from selected site."));
-      return null;
     }
     #endregion
 
     #region UpdateRoutes
     internal void UpdateRoutes()
     {
-      if (!Connected)
-        return;
-      m_DoWorkEventHandler = DoWorkEventHandler_UpdateRoutes;
-      m_ProgressChangedEventHandler = ProgressChangedEventHandler_Logger;
-      m_CompletedEventHandler = RunWorkerCompletedEventHandler_Logger;
-      this.StartBackgroundWorker(m_EntitiesDataDictionary);
+      try
+      {
+        if (!Connected)
+          throw new ApplicationException("Call to the ReadSiteContent before site connection.");
+        m_DoWorkEventHandler = DoWorkEventHandler_UpdateRoutes;
+        m_ProgressChangedEventHandler = ProgressChangedEventHandler_Logger;
+        m_CompletedEventHandler = RunWorkerCompletedEventHandler_Logger;
+        this.StartBackgroundWorker(m_EntitiesDataDictionary);
+      }
+      catch (Exception _ex)
+      {
+        ExceptionMessageBox(_ex);
+      }
     }
     private Object DoWorkEventHandler_UpdateRoutes(object argument, Action<ProgressChangedEventArgs> progress, Func<bool> cancellationPending)
     {
@@ -265,7 +328,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     private void ExceptionMessageBox(Exception ex)
     {
       MessageBox.Show(ex.Message, "Exception", MessageBoxButton.OK, MessageBoxImage.Error);
-      Log.Add(String.Format("Cached Exception {0}.", ex.Message));
+      Log.Add(String.Format("Caught Exception {0}.", ex.Message));
     }
     private void ProgressChangedEventHandler_Logger(object sender, ProgressChangedEventArgs e)
     {
