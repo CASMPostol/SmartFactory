@@ -47,7 +47,6 @@
                             </td>
                         </tr>
                     </table>
-                    <asp:Panel ID="m_Comments" runat="server" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryShepherd,Comments%>">
                         <table border="0" width="100%">
                             <tr>
                                 <td width="40%" valign="top">
@@ -64,7 +63,6 @@
                                 </td>
                             </tr>
                         </table>
-                    </asp:Panel>
                 </td>
         </table>
     </div>
