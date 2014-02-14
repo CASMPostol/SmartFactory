@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CAS.SmartFactory.Shepherd.RouteEditor" x:Class="CAS.SmartFactory.Shepherd.RouteEditor.Main"
+        xmlns:local="clr-namespace:CAS.SmartFactory.Shepherd.RouteEditor" xmlns:InputData="clr-namespace:CAS.SmartFactory.Shepherd.RouteEditor.InputData" x:Class="CAS.SmartFactory.Shepherd.RouteEditor.Main"
         Title="Shepherd Route Editor" 
         Height="Auto" 
         Width="Auto" 
@@ -14,11 +14,10 @@
         WindowStyle="ThreeDBorderWindow" 
         Loaded="Window_Loaded"
         Background="#FF354B5F">
-    <!--<Window.Resources>
-		<local:MainViewmodel x:Key="MainViewmodelDataSource" />
-	</Window.Resources>-->
-    <Grid Name="x_MainGrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <!--DataContext="{Binding Source={StaticResource MainViewmodelDataSource}}">-->
+    <Window.Resources>
+        <local:MainViewmodel x:Key="MainViewmodelDataSource" />
+    </Window.Resources>
+    <Grid x:Name="x_MainGrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" DataContext="{Binding Source={StaticResource MainViewmodelDataSource}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -44,62 +43,59 @@
                 </StackPanel>
             </Button>
         </StackPanel>
-        <TabControl Grid.Row="3" Height="600" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <TabControl Grid.Row="3" Height="600" VerticalAlignment="Top">
             <TabItem Header="Routs">
-                <DataGrid Width="Auto" x:Name="x_DataGridRouts" AutoGenerateColumns="False" Style="{StaticResource DataGridStyle}" IsSynchronizedWithCurrentItem="False" DataContext="Routes.GlobalPricelist" >
+                <DataGrid Width="Auto" x:Name="x_DataGridRouts" AutoGenerateColumns="False" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Route}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Title" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                         <DataGridTextColumn Header="City" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Dest_City}" />
-                        <DataGridTextColumn Header="Business description" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Shipment type" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Payer" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Material master" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Remark" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Commodity" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Incoterms" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="SAP dest. plant" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Shipment type" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Partner" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Port of departure" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="City of departure" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Carrier" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Transport unit" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Transport costs" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Currency" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Fright PO" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Business description" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Business_description}" />
+                        <DataGridTextColumn Header="Shipment type" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Business_description}" />
+                        <DataGridTextColumn Header="Payer" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Freight_Payer__I_C__MainLeg}" />
+                        <DataGridTextColumn Header="Material master" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Material_Master__Reference}" />
+                        <DataGridTextColumn Header="Remark" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Remark}" />
+                        <DataGridTextColumn Header="Commodity" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Commodity}" />
+                        <DataGridTextColumn Header="Incoterms" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Selling_Incoterm}" />
+                        <DataGridTextColumn Header="SAP dest. plant" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding SAP_Dest_Plant}" />
+                        <DataGridTextColumn Header="Partner" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Vendor}" />
+                        <DataGridTextColumn Header="Port of departure" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Port_of_Dept}" />
+                        <DataGridTextColumn Header="City of departure" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Dept_City}" />
+                        <DataGridTextColumn Header="Carrier" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Carrier}" />
+                        <DataGridTextColumn Header="Transport unit" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Equipment_Type__UoM}" />
+                        <DataGridTextColumn Header="Transport costs" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Total_Cost_per_UoM}" />
+                        <DataGridTextColumn Header="Currency" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Currency}" />
+                        <DataGridTextColumn Header="Fright PO" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding PO_NUMBER}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Markets">
-                <DataGrid Width="Auto" x:Name="x_DataGridMarkets" AutoGenerateColumns="False">
+                <DataGrid Width="Auto" x:Name="x_DataGridMarkets" AutoGenerateColumns="False" ItemsSource="{Binding Market}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Market" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Area" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Destination Country" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Destination City" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Market" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Market}" />
+                        <DataGridTextColumn Header="Area" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Area}" />
+                        <DataGridTextColumn Header="Destination Country" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding DestinationCountry}" />
+                        <DataGridTextColumn Header="Destination City" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding DestinationCity}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Partners">
-                <DataGrid Width="Auto" x:Name="x_DataGridPartners" AutoGenerateColumns="False">
+                <DataGrid Width="Auto" x:Name="x_DataGridPartners" AutoGenerateColumns="False" ItemsSource="{Binding Partners}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Number (from SAP)" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Service Type" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Destination City" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Shepherd User" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="E-Mail" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Business Phone" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Fax Number" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Mobile" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <DataGridTextColumn Header="Warehouse" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Name" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Number (from SAP)" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding NumberFromSAP}" />
+                        <DataGridTextColumn Header="Service Type" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding ServiceType}" />
+                        <DataGridTextColumn Header="Shepherd User" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding ShepherdUser}" />
+                        <DataGridTextColumn Header="E-Mail" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding E_Mail}" />
+                        <DataGridTextColumn Header="Business Phone" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding BusinessPhone}" />
+                        <DataGridTextColumn Header="Fax Number" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding FaxNumber}" />
+                        <DataGridTextColumn Header="Mobile" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Mobile}" />
+                        <DataGridTextColumn Header="Warehouse" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Warehouse}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Commodity">
-                <DataGrid Width="Auto" x:Name="x_DataGridCommodity" AutoGenerateColumns="False">
+                <DataGrid Width="Auto" x:Name="x_DataGridCommodity" AutoGenerateColumns="False" ItemsSource="{Binding Commodity}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Commodity" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        <DataGridTextColumn Header="Commodity" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Title}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
