@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -45,51 +45,65 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     public Main()
     {
       InitializeComponent();
-      URLTextBox.Text = Properties.Settings.Default.URL;
     }
+    private MainViewmodel m_MainViewmodel = null;
     /// <summary>
     /// Raises the <see cref="E:System.Windows.Window.Closing" /> event.
     /// </summary>
     /// <param name="e">A <see cref="T:System.ComponentModel.CancelEventArgs" /> that contains the event data.</param>
     protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
     {
+      if (m_MainViewmodel.Connected)
+        if (MessageBox.Show("You are about to close application. All changes will be lost.", "Closing application", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel) == MessageBoxResult.Cancel)
+        {
+          e.Cancel = true;
+          return;
+        }
+      m_MainViewmodel.Dispose();
+      m_MainViewmodel = null;
       base.OnClosing(e);
-      Properties.Settings.Default.URL = URLTextBox.Text;
-      Properties.Settings.Default.Save();
+    }
+    /// <summary>
+    /// Handles the Loaded event of the Window control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+      this.Title = String.Format("Shepherd Route Editor rel. {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
+      this.m_MainViewmodel = new MainViewmodel();
+      this.x_MainGrid.DataContext = m_MainViewmodel;
+      this.UpdateLayout();
+    }
+    private void HelpButton_Click(object sender, RoutedEventArgs e)
+    {
+      var newWindow = new HelpWindow();
+      newWindow.Show();
+    }
+    private void x_ConnectButton_Click(object sender, RoutedEventArgs e)
+    {
+      m_MainViewmodel.Connect();
     }
     private void UpdateRoutesButton_Click(object sender, RoutedEventArgs e)
     {
       m_MainViewmodel.UpdateRoutes();
     }
-    private void ReadXMLFileButton_Click(object sender, RoutedEventArgs e)
+    private void x_ImportXMLButton_Click(object sender, RoutedEventArgs e)
     {
       OpenFileDialog _mofd = new OpenFileDialog()
-          {
-            CheckFileExists = true,
-            CheckPathExists = true,
-            Filter = "XML Documents|*.XML|XML Documents|*.xml|All files |*.*",
-            DefaultExt = ".xml",
-            AddExtension = true,
-          };
+      {
+        CheckFileExists = true,
+        CheckPathExists = true,
+        Filter = "XML Documents|*.XML|XML Documents|*.xml|All files |*.*",
+        DefaultExt = ".xml",
+        AddExtension = true,
+      };
       if (!_mofd.ShowDialog().GetValueOrDefault(false))
       {
         ErrorList.Items.Add("Operation aborted by the user.");
         return;
       }
       m_MainViewmodel.ReadXMLFile(_mofd.FileName);
-    }
-    private MainViewmodel m_MainViewmodel = new MainViewmodel();
-    private void Window_Loaded(object sender, RoutedEventArgs e)
-    {
-      
-      this.Title = String.Format("Shepherd Route Editor rel. {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
-      this.UpdateLayout();
-    }
-
-    private void HelpButton_Click(object sender, RoutedEventArgs e)
-    {
-      var newWindow = new HelpWindow();
-      newWindow.Show();
     }
   }
 }
