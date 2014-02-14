@@ -33,12 +33,12 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     /// </summary>
     public MainViewmodel()
     {
-      Routes = null;
+      RoutesCatalog = null;
       Log = new ObservableCollection<string>();
       URL = Properties.Settings.Default.URL;
       Connected = false;
       Prefix = DateTime.Today.Year.ToString();
-      Routes = null;
+      RoutesCatalog = null;
     }
     #endregion
 
@@ -92,7 +92,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
       }
     }
     private RoutesCatalog b_Routes;
-    public RoutesCatalog Routes
+    public RoutesCatalog RoutesCatalog
     {
       get
       {
@@ -226,7 +226,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
       try
       {
         if (!Connected)
-          throw new ApplicationException("Call to the ReadSiteContent before site connection.");
+          throw new ApplicationException("Before updating changes you must establish connection.");
         m_DoWorkEventHandler = DoWorkEventHandler_UpdateRoutes;
         m_ProgressChangedEventHandler = ProgressChangedEventHandler_Logger;
         m_CompletedEventHandler = RunWorkerCompletedEventHandler_Logger;
@@ -239,20 +239,20 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     }
     private Object DoWorkEventHandler_UpdateRoutes(object argument, Action<ProgressChangedEventArgs> progress, Func<bool> cancellationPending)
     {
-      EntitiesDataDictionary edc = argument as EntitiesDataDictionary;
-      if (edc == null)
+      EntitiesDataDictionary _edc = argument as EntitiesDataDictionary;
+      if (_edc == null)
         throw new ArgumentException("DoWorkEventHandler UpdateRoutes", "argument");
       progress(new ProgressChangedEventArgs(100, "Start updating the site data."));
-      edc.ImportTable(_catalog.CommodityTable);
+      _edc.ImportTable(RoutesCatalog.CommodityTable);
       progress(new ProgressChangedEventArgs(0, "Commodity updated."));
-      edc.ImportTable(_catalog.PartnersTable, false);
+      _edc.ImportTable(RoutesCatalog.PartnersTable, false);
       progress(new ProgressChangedEventArgs(0, "Partners updated."));
-      edc.ImportTable(_catalog.MarketTable);
+      _edc.ImportTable(RoutesCatalog.MarketTable);
       progress(new ProgressChangedEventArgs(0, "Market updated."));
-      edc.ImportTable(_catalog.GlobalPricelist, false);
+      _edc.ImportTable(RoutesCatalog.GlobalPricelist, false);
       progress(new ProgressChangedEventArgs(0, "GlobalPricelist updated."));
       progress(new ProgressChangedEventArgs(0, "Data from current site has been read"));
-      edc.SubmitChages();
+      _edc.SubmitChages();
       progress(new ProgressChangedEventArgs(0, "Submitted changes."));
       return null;
     }
@@ -278,14 +278,14 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     }
     private void RunWorkerCompletedEventHandler_ReadXMLFile(object sender, RunWorkerCompletedEventArgs e)
     {
-      this.Routes = null;
+      this.RoutesCatalog = null;
       if (e.Error != null)
         ExceptionMessageBox(e.Error);
       if (e.Cancelled)
         Log.Add("Operation canceled by the user");
       else
       {
-        Routes = e.Result as RoutesCatalog;
+        RoutesCatalog = e.Result as RoutesCatalog;
         Log.Add("Operation ReadXMLFile finished");
       }
     }
@@ -323,7 +323,6 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     #endregion
 
     #region private
-    private RoutesCatalog _catalog = default(RoutesCatalog);
     private EntitiesDataDictionary m_EntitiesDataDictionary = null;
     private void ExceptionMessageBox(Exception ex)
     {
