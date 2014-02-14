@@ -198,11 +198,9 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     #region ReadXMLFile
     internal void ReadXMLFile(string path)
     {
-      if (!Connected)
-        return;
-      m_DoWorkEventHandler = DoWorkEventHandler_UpdateRoutes;
+      m_DoWorkEventHandler = DoWorkEventHandler_ReadXMLFile;
       m_ProgressChangedEventHandler = ProgressChangedEventHandler_Logger;
-      m_CompletedEventHandler = RunWorkerCompletedEventHandler_Logger;
+      m_CompletedEventHandler = RunWorkerCompletedEventHandler_ReadXMLFile;
       this.StartBackgroundWorker(path);
     }
     private Object DoWorkEventHandler_ReadXMLFile(object argument, Action<ProgressChangedEventArgs> progress, Func<bool> cancellationPending)
@@ -217,7 +215,6 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     }
     private void RunWorkerCompletedEventHandler_ReadXMLFile(object sender, RunWorkerCompletedEventArgs e)
     {
-
       this.Routes = null;
       if (e.Error != null)
         ExceptionMessageBox(e.Error);
@@ -254,6 +251,8 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     #region Dispose
     protected override void Dispose(bool disposing)
     {
+      Properties.Settings.Default.URL = URL;
+      Properties.Settings.Default.Save();
       if (disposing)
         DisposeEntitiesDataDictionary();
       base.Dispose(disposing);
@@ -270,7 +269,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     }
     private void ProgressChangedEventHandler_Logger(object sender, ProgressChangedEventArgs e)
     {
-      Log.Add((string)e.UserState);
+      Log.Add(e.UserState as string);
     }
     private void RunWorkerCompletedEventHandler_Logger(object sender, RunWorkerCompletedEventArgs e)
     {
