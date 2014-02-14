@@ -114,7 +114,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
           this.Partners = value.PartnersTable != null ? new ObservableCollection<RoutesCatalogPartnersRow>(value.PartnersTable) : null;
           this.Route = value.GlobalPricelist != null ? new ObservableCollection<RoutesCatalogRoute>(value.GlobalPricelist) : null;
         }
-        RaiseHandler<RoutesCatalog>(value, ref b_Routes, "Routes", this);
+        RaiseHandler<RoutesCatalog>(value, ref b_Routes, "RoutesCatalog", this);
       }
     }
     private ObservableCollection<RoutesCatalogCommodityRow> b_Commodity;
