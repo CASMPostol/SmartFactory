@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using CAS.SmartFactory.Shepherd.RouteEditor.InputData;
 using Microsoft.SharePoint.Linq;
@@ -29,41 +30,65 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
     {
       m_EDC = new EntitiesDataContext(_url);
     }
-    internal void ImportTable(RoutesCatalogCommodityRow[] routesCatalogCommodityRow)
+    internal void ImportTable(RoutesCatalogCommodityRow[] routesCatalogCommodityRow, Action<ProgressChangedEventArgs> progress)
     {
       if (routesCatalogCommodityRow == null)
         return;
+      int _poz = 0;
       foreach (RoutesCatalogCommodityRow _CommodityRow in routesCatalogCommodityRow)
-        GetOrAdd<Commodity>(m_EDC.Commodity, m_CommodityCommodity, _CommodityRow.Title, false);
+        try
+        {
+          _poz++;
+          GetOrAdd<Commodity>(m_EDC.Commodity, m_CommodityCommodity, _CommodityRow.Title, false);
+        }
+        catch (Exception _ex)
+        {
+          string _format = "Cannot add RoutesCatalogCommodityRow data Name={0} because of import Error= {1}. The entry is skipped.";
+          progress(new ProgressChangedEventArgs(_poz, String.Format(_format, _CommodityRow.Title, _ex.Message)));
+        }
     }
-    internal void ImportTable(RoutesCatalogPartnersRow[] routesCatalogPartnersRow, bool _testData)
+    internal void ImportTable(RoutesCatalogPartnersRow[] routesCatalogPartnersRow, bool _testData, Action<ProgressChangedEventArgs> progress)
     {
       if (routesCatalogPartnersRow == null)
         return;
+      int _poz = 0;
       foreach (RoutesCatalogPartnersRow _partner in routesCatalogPartnersRow)
       {
-        if (m_Partner.ContainsKey(_partner.Name))
-          return;
-        Partner _prtnr = Create<Partner>(m_EDC.Partner, m_Partner, _partner.Name, _testData);
-        _prtnr.EmailAddress = DummyEmail(_partner.E_Mail, "AdresEMail", _testData);
-        _prtnr.CellPhone = DummyName(_partner.Mobile, "Mobile", _testData);
-        _prtnr.ServiceType = ParseServiceType(_partner.ServiceType);
-        _prtnr.WorkPhone = DummyName(_partner.BusinessPhone, "BusinessPhone", _testData);
-        _prtnr.VendorNumber = DummyName(_partner.NumberFromSAP, "NumberFromSAP", _testData);
-        _prtnr.Partner2WarehouseTitle = GetOrAdd<Warehouse>(m_EDC.Warehouse, m_Warehouse, _partner.Warehouse, false);
+        try
+        {
+          _poz++;
+          if (_partner.Name.IsNullOrEmpty())
+            throw new ArgumentNullException("RoutesCatalogPartnersRow.Name", String.Format("Cannot add empty key to the dictionary {0}", typeof(Partner).Name));
+          if (m_Partner.ContainsKey(_partner.Name))
+            return;
+          Partner _prtnr = Create<Partner>(m_EDC.Partner, m_Partner, _partner.Name, _testData);
+          _prtnr.EmailAddress = DummyEmail(_partner.E_Mail, "AdresEMail", _testData);
+          _prtnr.CellPhone = DummyName(_partner.Mobile, "Mobile", _testData);
+          _prtnr.ServiceType = ParseServiceType(_partner.ServiceType);
+          _prtnr.WorkPhone = DummyName(_partner.BusinessPhone, "BusinessPhone", _testData);
+          _prtnr.VendorNumber = DummyName(_partner.NumberFromSAP, "NumberFromSAP", _testData);
+          _prtnr.Partner2WarehouseTitle = GetOrAdd<Warehouse>(m_EDC.Warehouse, m_Warehouse, _partner.Warehouse, false);
+        }
+        catch (Exception _ex)
+        {
+          string _format = "Cannot add RoutesCatalogPartnersRow data Name={0} NumberFromSAP={1} because of import Error= {2}. The entry is skipped.";
+          progress(new ProgressChangedEventArgs(_poz, String.Format(_format, _partner.Name, _partner.NumberFromSAP, _ex.Message)));
+        }
       }
     }
-    internal void ImportTable(RoutesCatalogRoute[] routesCatalogRoute, bool _testData)
+    internal void ImportTable(RoutesCatalogRoute[] routesCatalogRoute, bool testData, Action<ProgressChangedEventArgs> progress)
     {
       if (routesCatalogRoute == null)
         return;
+      int _poz = 0;
       foreach (RoutesCatalogRoute _route in routesCatalogRoute)
       {
         try
         {
+          _poz++;
           ServiceType _service = GetService(_route);
-          Partner _prtnr = GetOrAddJTIPartner(_service, _route.Vendor.Trim(), _testData);
-          FreightPayer _freightPayer = GetOrAdd<FreightPayer>(m_EDC.FreightPayer, m_FreightPayer, _route.Freight_Payer__I_C__MainLeg.ToString(), _testData);
+          Partner _prtnr = GetOrAddJTIPartner(_service, _route.Vendor.Trim(), testData);
+          FreightPayer _freightPayer = GetOrAdd<FreightPayer>(m_EDC.FreightPayer, m_FreightPayer, _route.Freight_Payer__I_C__MainLeg.ToString(), testData);
           CityType _CityType = GetOrAddCity(_route.Dest_City.Trim(), _route.Dest_Country.Trim(), "Unknown");
           Currency _Currency = GetOrAdd<Currency>(m_EDC.Currency, m_Currency, _route.Currency, false);
           ShipmentType _ShipmentType = GetOrAdd<ShipmentType>(m_EDC.ShipmentType, m_ShipmentType, _route.ShipmentType, false);
@@ -92,7 +117,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
                 SAPDestinationPlantTitle = _SAPDestinationPlant,
                 ShipmentTypeTitle = _ShipmentType,
                 Tytuł = _title,
-                TransportCosts = _testData ? 4567.8 : _route.Total_Cost_per_UoM.String2Double(),
+                TransportCosts = testData ? 4567.8 : _route.Total_Cost_per_UoM.String2Double(),
                 TransportUnitTypeTitle = _TranspotUnit,
                 PartnerTitle = _prtnr,
                 Route2Commodity = _cmdty,
@@ -109,7 +134,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
                 FreightPayerTitle = _freightPayer,
                 MaterialMaster = _sku,
                 RemarkMM = _route.Remarks,
-                SecurityCost = _testData ? 345.6 : _route.Total_Cost_per_UoM.String2Double(),
+                SecurityCost = testData ? 345.6 : _route.Total_Cost_per_UoM.String2Double(),
                 SecurityEscrotPO = _route.PO_NUMBER,
                 Tytuł = _title,
                 PartnerTitle = _prtnr
@@ -123,23 +148,25 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
             default:
               break;
           }
+          m_EDC.SubmitChanges();
         }
         catch (Exception ex)
         {
           string _format = "Cannot add route data SKU={0} Description={1} because of import Error= {2}";
-          throw new ApplicationException(String.Format(_format, _route.Material_Master_Short_Text, _route.Business_description, ex.Message));
+          progress(new ProgressChangedEventArgs(_poz, String.Format(_format, _route.Material_Master_Short_Text, _route.Business_description, ex.Message)));
         }
-        m_EDC.SubmitChanges();
-      }
+      } //foreach (RoutesCatalogRoute 
     }
-    internal void ImportTable(RoutesCatalogMarket[] routesCatalogMarket)
+    internal void ImportTable(RoutesCatalogMarket[] routesCatalogMarket, Action<ProgressChangedEventArgs> progress)
     {
       if (routesCatalogMarket == null)
         return;
+      int _poz = 0;
       foreach (RoutesCatalogMarket _market in routesCatalogMarket)
       {
         try
         {
+          _poz++;
           Market _mrkt = GetOrAdd<Market>(m_EDC.Market, m_MarketMarket, _market.Market, false);
           CityType _CityType = GetOrAddCity(_market.DestinationCity, _market.DestinationCountry, _market.Area);
           string _dstName = DestinationMarketKey(_mrkt, _CityType);
@@ -147,19 +174,18 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
             continue;
           DestinationMarket _DestinationMarket = new DestinationMarket()
             {
-              //Tytuł = _dstName,
               DestinationMarket2CityTitle = _CityType,
               MarketTitle = _mrkt
             };
           m_DestinationMarket.Add(_dstName, _DestinationMarket);
           m_EDC.DestinationMarket.InsertOnSubmit(_DestinationMarket);
+          m_EDC.SubmitChanges();
         }
         catch (Exception ex)
         {
-          string _format = "Cannot add market data DestinationCity={0} Market={1} because of import Error= {2}";
-          throw new ApplicationException(String.Format(_format, _market.DestinationCity, _market.Market, ex.Message));
+          string _format = "Cannot add market data DestinationCity={0} Market={1} because of import Error= {2}. The entry is skipped.";
+          progress(new ProgressChangedEventArgs(_poz, String.Format(_format, _market.DestinationCity, _market.Market, ex.Message)));
         }
-        m_EDC.SubmitChanges();
       }
     }
     internal void ReadSiteContent(Action<string> progress)
@@ -259,13 +285,13 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
     #endregion
 
     #region data management
-    private type Create<type>(EntityList<type> _EDC, Dictionary<string, type> _dictionary, string _key, bool _testData)
+    private type Create<type>(EntityList<type> _EDC, Dictionary<string, type> _dictionary, string key, bool _testData)
       where type : Element, new()
     {
-      type _elmnt = new type() { Tytuł = _testData ? EmptyKey : _key };
-      if (_dictionary.Keys.Contains(_key))
-        _key = String.Format("Duplicated name: {0} [{1}]", _key, EmptyKey);
-      _dictionary.Add(_key, _elmnt);
+      type _elmnt = new type() { Tytuł = _testData ? EmptyKey : key };
+      if (_dictionary.Keys.Contains(key))
+        key = String.Format("Duplicated name: {0} [{1}]", key, EmptyKey);
+      _dictionary.Add(key, _elmnt);
       _EDC.InsertOnSubmit(_elmnt);
       return _elmnt;
     }
@@ -275,43 +301,47 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
         return;
       _dictionary.Add(_key, entity);
     }
-    private type GetOrAdd<type>(EntityList<type> _EDC, Dictionary<string, type> _dictionary, string _key, bool _testData)
+    private type GetOrAdd<type>(EntityList<type> _EDC, Dictionary<string, type> dictionary, string key, bool testData)
       where type : Element, new()
     {
-      //TODO if ( _key.IsNullOrEmpty() )
-      //  _key = EmptyKey;
-      if (_dictionary.ContainsKey(_key))
-        return _dictionary[_key];
+      if (key.IsNullOrEmpty())
+        throw new ArgumentNullException("key", String.Format("Cannot add empty key to the dictionary {0}", typeof(type).Name));
+      if (dictionary.ContainsKey(key))
+        return dictionary[key];
       else
-        return Create<type>(_EDC, _dictionary, _key, _testData);
+        return Create<type>(_EDC, dictionary, key, testData);
     }
-    private Partner GetOrAddJTIPartner(ServiceType _st, string _partner, bool _testData)
+    private Partner GetOrAddJTIPartner(ServiceType service, string partner, bool _testData)
     {
-      if (m_Partner.ContainsKey(_partner))
-        return m_Partner[_partner];
+      if (partner.IsNullOrEmpty())
+        throw new ArgumentNullException("partner", String.Format("Cannot add empty key to the partner dictionary for country service {0}.", service));
+      if (m_Partner.ContainsKey(partner))
+        return m_Partner[partner];
       else
       {
-        Partner _prtnr = Create<Partner>(m_EDC.Partner, m_Partner, _partner, _testData);
-        _prtnr.ServiceType = _st;
+        Partner _prtnr = Create<Partner>(m_EDC.Partner, m_Partner, partner, _testData);
+        _prtnr.ServiceType = service;
         return _prtnr;
       }
     }
-    private CityType GetOrAddCity(string _city, string _country, string _area)
+    private CityType GetOrAddCity(string city, string country, string area)
     {
-      CityType _prtnr = default(CityType);
-      if (m_CityDictionary.ContainsKey(_city))
-        _prtnr = m_CityDictionary[_city];
+      if (city.IsNullOrEmpty())
+        throw new ArgumentNullException("city", String.Format("Cannot add empty key to the city dictionary for country {0}/area {1}.", country, area));
+      CityType _city = default(CityType);
+      if (m_CityDictionary.ContainsKey(city))
+        _city = m_CityDictionary[city];
       else
-        _prtnr = Create<CityType>(m_EDC.City, m_CityDictionary, _city, false);
-      if (_prtnr.CountryTitle != null)
-        return _prtnr;
-      if (_country.IsNullOrEmpty())
-        _country = "Country-" + EmptyKey;
-      CountryType _countryClass = GetOrAdd(m_EDC.Country, m_CountryClass, _country, false);
-      if (_countryClass.CountryGroup.IsNullOrEmpty() && !_area.IsNullOrEmpty())
-        _countryClass.CountryGroup = _area;
-      _prtnr.CountryTitle = _countryClass;
-      return _prtnr;
+        _city = Create<CityType>(m_EDC.City, m_CityDictionary, city, false);
+      if (_city.CountryTitle != null)
+        return _city;
+      if (country.IsNullOrEmpty())
+        country = "Country-" + EmptyKey;
+      CountryType _countryClass = GetOrAdd(m_EDC.Country, m_CountryClass, country, false);
+      if (_countryClass.CountryGroup.IsNullOrEmpty() && !area.IsNullOrEmpty())
+        _countryClass.CountryGroup = area;
+      _city.CountryTitle = _countryClass;
+      return _city;
     }
     private EntitiesDataContext m_EDC;
     private static short m_EmptyKeyIdx = 0;
