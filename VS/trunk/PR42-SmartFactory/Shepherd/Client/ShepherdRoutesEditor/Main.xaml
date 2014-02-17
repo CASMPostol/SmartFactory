@@ -104,8 +104,8 @@
             </TabItem>
         </TabControl>
         <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Label x:Name="x_ConnectionLabel" Content="Connection status:" Margin="3" Foreground="White" />
-            <Image Source="Images/status.png" Height="20" Width="20" x:Name="x_ConnectionStatusImage" />
+            <Label x:Name="x_ConnectionLabel" Content="Connected:" Margin="3" Foreground="White" />
+            <Label x:Name="x_ConnecttionStatusLabel" Content="{Binding Connected}" Margin="3" Foreground="White" />
         </StackPanel>
     </Grid>
 </Window>
