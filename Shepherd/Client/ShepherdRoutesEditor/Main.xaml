@@ -35,8 +35,8 @@
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
             <Button x:Name="x_ConnectButton" Content="Connect" ToolTip="Connect to Shepherd website and read dictionaries" Style="{StaticResource ButtonStyle}" Click="x_ConnectButton_Click"  />
-            <Button x:Name="x_ImportXMLButton" Content="Import XML" ToolTip="Import XML file with new routs" Style="{StaticResource ButtonStyle}" Click="x_ImportXMLButton_Click" />
-            <Button x:Name="UpdateRoutesButton" Click="UpdateRoutesButton_Click" Content="Update routes" ToolTip="Import XML file and update existing routes, cities, countries and markets lists" Style="{StaticResource ButtonStyle}" Height="24" Margin="1,2,4,0" VerticalAlignment="Top" />
+            <Button x:Name="x_ImportXMLButton" Content="Import XML" ToolTip="Import XML file with new routs" Style="{StaticResource ButtonStyle}" Click="x_ImportXMLButton_Click" IsEnabled="{Binding Connected}" />
+            <Button x:Name="UpdateRoutesButton" Click="UpdateRoutesButton_Click" Content="Update routes" ToolTip="Import XML file and update existing routes, cities, countries and markets lists" Style="{StaticResource ButtonStyle}" Height="24" Margin="1,2,4,0" VerticalAlignment="Top" IsEnabled="{Binding Connected}" />
             <Button x:Name="x_HelpButton" Click="HelpButton_Click" ToolTip="View help" Height="26" Width="26" Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="Images/help.png" Width="20" Height="20" ToolTipService.ToolTip="View help" />
@@ -45,7 +45,7 @@
         </StackPanel>
         <TabControl Grid.Row="3" VerticalAlignment="Top">
             <TabItem Header="Routs">
-                <DataGrid Width="Auto" x:Name="x_DataGridRouts" AutoGenerateColumns="False" ItemsSource="{Binding Route}" MinHeight="100" VerticalContentAlignment="Center">
+                <DataGrid Width="Auto" x:Name="x_DataGridRouts" AutoGenerateColumns="False" ItemsSource="{Binding Route}" MinHeight="400" VerticalContentAlignment="Center" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="City" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Dest_City}" />
                         <DataGridTextColumn Header="Business description" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Business_description}" />
@@ -68,7 +68,7 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Markets">
-                <DataGrid Width="Auto" x:Name="x_DataGridMarkets" AutoGenerateColumns="False" ItemsSource="{Binding Market}" MinHeight="100" VerticalContentAlignment="Center">
+                <DataGrid Width="Auto" x:Name="x_DataGridMarkets" AutoGenerateColumns="False" ItemsSource="{Binding Market}" MinHeight="400" VerticalContentAlignment="Center">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Market" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Market}" />
                         <DataGridTextColumn Header="Area" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Area}" />
@@ -78,7 +78,7 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Partners">
-                <DataGrid Width="Auto" x:Name="x_DataGridPartners" AutoGenerateColumns="False" ItemsSource="{Binding Partners}" MinHeight="100" VerticalContentAlignment="Center">
+                <DataGrid Width="Auto" x:Name="x_DataGridPartners" AutoGenerateColumns="False" ItemsSource="{Binding Partners}" MinHeight="400" VerticalContentAlignment="Center">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Name" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Name}" />
                         <DataGridTextColumn Header="Number (from SAP)" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding NumberFromSAP}" />
@@ -93,14 +93,14 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Commodity">
-                <DataGrid Width="Auto" x:Name="x_DataGridCommodity" AutoGenerateColumns="False" ItemsSource="{Binding Commodity}" MinHeight="100" VerticalContentAlignment="Center">
+                <DataGrid Width="Auto" x:Name="x_DataGridCommodity" AutoGenerateColumns="False" ItemsSource="{Binding Commodity}" MinHeight="400" VerticalContentAlignment="Center">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Commodity" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" Binding="{Binding Title}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Import log">
-                <ListBox x:Name="ErrorList" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Foreground="Black" Padding="3" UseLayoutRounding="True" ToolTip="Information abou the upgrade process progress." IsSynchronizedWithCurrentItem="False" ItemsSource="{Binding Log}" />
+                <ListBox x:Name="ErrorList" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Foreground="Black" Padding="3" UseLayoutRounding="True" ToolTip="Information abou the upgrade process progress." IsSynchronizedWithCurrentItem="False" ItemsSource="{Binding Log}" MinHeight="400" />
             </TabItem>
         </TabControl>
         <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left">
