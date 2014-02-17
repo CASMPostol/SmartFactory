@@ -243,13 +243,13 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
       if (_edc == null)
         throw new ArgumentException("DoWorkEventHandler UpdateRoutes", "argument");
       progress(new ProgressChangedEventArgs(100, "Start updating the site data."));
-      _edc.ImportTable(RoutesCatalog.CommodityTable);
+      _edc.ImportTable(RoutesCatalog.CommodityTable, progress);
       progress(new ProgressChangedEventArgs(0, "Commodity updated."));
-      _edc.ImportTable(RoutesCatalog.PartnersTable, false);
+      _edc.ImportTable(RoutesCatalog.PartnersTable, false, progress);
       progress(new ProgressChangedEventArgs(0, "Partners updated."));
-      _edc.ImportTable(RoutesCatalog.MarketTable);
+      _edc.ImportTable(RoutesCatalog.MarketTable, progress);
       progress(new ProgressChangedEventArgs(0, "Market updated."));
-      _edc.ImportTable(RoutesCatalog.GlobalPricelist, false);
+      _edc.ImportTable(RoutesCatalog.GlobalPricelist, false, progress);
       progress(new ProgressChangedEventArgs(0, "GlobalPricelist updated."));
       progress(new ProgressChangedEventArgs(0, "Data from current site has been read"));
       _edc.SubmitChages();
@@ -331,7 +331,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     }
     private void ProgressChangedEventHandler_Logger(object sender, ProgressChangedEventArgs e)
     {
-      Log.Add(e.UserState as string);
+      Log.Add(String.Format("Position: {0:d3}; {1}", e.ProgressPercentage, e.UserState as string));
     }
     private void RunWorkerCompletedEventHandler_Logger(object sender, RunWorkerCompletedEventArgs e)
     {
