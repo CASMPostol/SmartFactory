@@ -388,9 +388,6 @@
     <Compile Include="DocumentsFactory\AccountClearance\RequestContent.cs">
       <DependentUpon>RequestContent.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DocumentsFactory\AccountClearance\RequestContent.xsd.cs">
-      <DependentUpon>RequestContent.xsd</DependentUpon>
-    </Compile>
     <Compile Include="DocumentsFactory\BalanceSheet\BalanceSheetContent.cs">
       <DependentUpon>BalanceSheetContent.xsd</DependentUpon>
     </Compile>
