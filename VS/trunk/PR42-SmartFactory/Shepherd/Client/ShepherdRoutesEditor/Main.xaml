@@ -27,15 +27,15 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Width="Auto">
             <Label x:Name="m_SiteURLLabel" Content="Shepherd website URL:" Margin="3" Width="150" Foreground="White" />
-            <TextBox x:Name="URLTextBox" TextWrapping="NoWrap" Text="{Binding URL}" ToolTip="Enter your website URL"  VerticalAlignment="Stretch" Margin="3" Width="250"/>
+            <TextBox x:Name="URLTextBox" TextWrapping="NoWrap" Text="{Binding URL, Mode=TwoWay}" ToolTip="Enter your website URL"  VerticalAlignment="Stretch" Margin="3" Width="250"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
             <Label x:Name="x_YearLabel" Content="Routs for year:" Margin="3" Width="150" Foreground="White" />
             <TextBox x:Name="x_RoutsYearTextBox" TextWrapping="NoWrap" ToolTip="Enter year" VerticalAlignment="Stretch" Margin="3" Width="250" Text="{Binding Prefix}" />
         </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" IsEnabled="{Binding }">
             <Button x:Name="x_ConnectButton" Content="Connect" ToolTip="Connect to Shepherd website and read dictionaries" Style="{StaticResource ButtonStyle}" Click="x_ConnectButton_Click"  />
-            <Button x:Name="x_ImportXMLButton" Content="Import XML" ToolTip="Import XML file with new routs" Style="{StaticResource ButtonStyle}" Click="x_ImportXMLButton_Click" IsEnabled="{Binding Connected}" />
+            <Button x:Name="x_ImportXMLButton" Content="Import XML" ToolTip="Import XML file with new routs" Style="{StaticResource ButtonStyle}" Click="x_ImportXMLButton_Click" />
             <Button x:Name="UpdateRoutesButton" Click="UpdateRoutesButton_Click" Content="Update routes" ToolTip="Import XML file and update existing routes, cities, countries and markets lists" Style="{StaticResource ButtonStyle}" Height="24" Margin="1,2,4,0" VerticalAlignment="Top" IsEnabled="{Binding Connected}" />
             <Button x:Name="x_HelpButton" Click="HelpButton_Click" ToolTip="View help" Height="26" Width="26" Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">

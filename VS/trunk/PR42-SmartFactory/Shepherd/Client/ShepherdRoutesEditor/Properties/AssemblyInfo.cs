@@ -23,7 +23,7 @@ using System.Windows;
 
 //In order to begin building localizable applications, set 
 //<UICulture>CultureYouAreCodingWith</UICulture> in your .csproj file
-//inside a <PropertyGroup>.  For example, if you are using US english
+//inside a <PropertyGroup>.  For example, if you are using US English
 //in your source files, set the <UICulture> to en-US.  Then uncomment
 //the NeutralResourceLanguage attribute below.  Update the "en-US" in
 //the line below to match the UICulture setting in the project file.
@@ -33,6 +33,6 @@ using System.Windows;
     ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
     ResourceDictionaryLocation.SourceAssembly //where the generic resource dictionary is located
 )]
-[assembly: AssemblyVersion("2.00.00.*")]
-[assembly: AssemblyFileVersion("2.00.00")]
+[assembly: AssemblyVersion("2.00.10.*")]
+[assembly: AssemblyFileVersion("2.00.10")]
 

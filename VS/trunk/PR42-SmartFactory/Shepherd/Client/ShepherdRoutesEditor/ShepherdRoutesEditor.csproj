@@ -28,12 +28,12 @@
     <InstallUrl>http://www.commsvr.com/COInstal/ShepherdClient/</InstallUrl>
     <SupportUrl>http://jti.cas.eu/</SupportUrl>
     <ErrorReportUrl>http://jti.cas.eu/</ErrorReportUrl>
-    <ProductName>CAS Shepherd Client</ProductName>
+    <ProductName>Shepherd Client</ProductName>
     <PublisherName>CAS</PublisherName>
-    <SuiteName>CAS SmartFactory</SuiteName>
+    <SuiteName>SmartFactory</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>12</ApplicationRevision>
-    <ApplicationVersion>1.70.20.%2a</ApplicationVersion>
+    <ApplicationRevision>15</ApplicationRevision>
+    <ApplicationVersion>2.00.10.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
