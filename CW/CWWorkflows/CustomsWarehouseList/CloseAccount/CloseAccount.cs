@@ -61,7 +61,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
           }
           if (_cw.AccountBalance.GetValueOrDefault(-1) == 0)
           {
-            //TODO check packages and valu on last disposal.
+            //TODO check packages and value on last disposal.
             _cw.AccountClosed = true;
             _cw.ClosingDate = DateTime.Today;
             _entities.SubmitChanges();
@@ -69,9 +69,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
           int? _requestId = _cw.CWL_CW2CWLibraryID.GetTargetId<CustomsWarehouseLib>();
           if (_requestId.HasValue)
           {
-            SPDocumentLibrary _lib = (SPDocumentLibrary)workflowProperties.Web.Lists[Entities.CustomsWarehouseLibName];
-            SPFile _file = _lib.GetItemByIdSelectedFields(_requestId.Value).File;
-            File.WriteXmlFile<RequestContent>(_file, _newRequestContent, RequestContent.StylesheetName);
+            File.WriteXmlFile<RequestContent>(workflowProperties.Web, _requestId.Value, Entities.CustomsWarehouseLibName, _newRequestContent, RequestContent.StylesheetName);
           }
           else
           {
@@ -90,7 +88,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
       }
       catch (Exception _ex)
       {
-        CompletedLogToHistory_HistoryOutcome = "Exeption";
+        CompletedLogToHistory_HistoryOutcome = "Exception";
         CompletedLogToHistory_HistoryDescription = _ex.Message;
       }
     }
