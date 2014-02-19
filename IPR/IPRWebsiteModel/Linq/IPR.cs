@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class IPR
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,10 +30,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="iprdata">The _iprdata.</param>
     /// <param name="clearence">The clearence.</param>
     /// <param name="declaration">The declaration.</param>
-    public IPR( Entities entities, CWInterconnection.IPRAccountData iprdata, Clearence clearence, SADDocumentType declaration )
+    public IPR(Entities entities, CWInterconnection.IPRAccountData iprdata, Clearence clearence, SADDocumentType declaration)
       : this()
     {
-      Linq.Consent _consentLookup = GetAtIndex<Consent>( entities.Consent, iprdata.ConsentLookup );
+      Linq.Consent _consentLookup = GetAtIndex<Consent>(entities.Consent, iprdata.ConsentLookup);
       AccountClosed = false;
       AccountBalance = iprdata.NetMass;
       Batch = iprdata.BatchId;
@@ -37,7 +52,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       IPRDutyPerUnit = iprdata.DutyPerUnit;
       IPRLibraryIndex = null;
       IPR2ConsentTitle = _consentLookup;
-      IPR2PCNPCN = GetAtIndex<PCNCode>( entities.PCNCode, iprdata.PCNTariffCodeLookup );
+      IPR2PCNPCN = GetAtIndex<PCNCode>(entities.PCNCode, iprdata.PCNTariffCodeLookup);
       IPRUnitPrice = iprdata.UnitPrice;
       IPRVATPerUnit = iprdata.VATPerUnit;
       this.IPR2JSOXIndex = null;
@@ -54,8 +69,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       VAT = iprdata.VAT;
       ValidFromDate = _consentLookup.ValidFromDate;
       ValidToDate = _consentLookup.ValidToDate;
-      if ( iprdata.CartonsMass > 0 )
-        AddDisposal( entities, Convert.ToDecimal( iprdata.CartonsMass ) );
+      if (iprdata.CartonsMass > 0)
+        AddDisposal(entities, Convert.ToDecimal(iprdata.CartonsMass));
     }
     #endregion
 
@@ -65,14 +80,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     public void UpdateTitle()
     {
-      Title = String.Format( "IPR-{0:D4}{1:D6}", DateTime.Today.Year, Id.Value );
+      Title = String.Format("IPR-{0:D4}{1:D6}", DateTime.Today.Year, Id.Value);
     }
     /// <summary>
     /// Reverts the withdraw.
     /// </summary>
     /// <param name="quantity">The quantity.</param>
     /// <exception cref="System.NotImplementedException"></exception>
-    public void RevertWithdraw( double quantity )
+    public void RevertWithdraw(double quantity)
     {
       this.TobaccoNotAllocated += quantity;
     }
@@ -82,9 +97,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="edc">The edc.</param>
     /// <param name="quantity">The quantity.</param>
     /// <exception cref="CAS">CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal;_qunt > 0;null</exception>
-    public void AddDisposal( Entities edc, decimal quantity )
+    public void AddDisposal(Entities edc, decimal quantity)
     {
-      AddDisposal( edc, DisposalEnum.Cartons, ref quantity );
+      AddDisposal(edc, DisposalEnum.Cartons, ref quantity);
     }
     /// <summary>
     /// Insert on submit the disposal.
@@ -93,15 +108,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="quantity">The quantity.</param>
     /// <param name="clearence">The clearence.</param>
     /// <exception cref="CAS">CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal;_qunt > 0;null</exception>
-    public void AddDisposal( Entities edc, decimal quantity, Clearence clearence )
+    public void AddDisposal(Entities edc, decimal quantity, Clearence clearence)
     {
-      Disposal _dsp = AddDisposal( edc, DisposalEnum.Tobacco, ref quantity );
+      Disposal _dsp = AddDisposal(edc, DisposalEnum.Tobacco, ref quantity);
       _dsp.Clearance = clearence;
-      if ( quantity > 0 )
+      if (quantity > 0)
       {
-        string _msg = String.Format( "Cannot add Disposal to IPR  {0} because because the there is not material on tje IPR.", this.Id.Value );
+        string _msg = String.Format("Cannot add Disposal to IPR  {0} because because the there is not material on tje IPR.", this.Id.Value);
         throw CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult.Exception
-          ( new CAS.SharePoint.ApplicationError( "CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal", "_qunt > 0", _msg, null ), _msg );
+          (new CAS.SharePoint.ApplicationError("CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal", "_qunt > 0", _msg, null), _msg);
       }
     }
     /// <summary>
@@ -110,15 +125,25 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <value>
     /// The VAT.
     /// </value>
-    public decimal VATDec { get { return Convert.ToDecimal( this.VAT.Value ); } }
+    public decimal VATDec { get { return Convert.ToDecimal(this.VAT.Value); } }
     /// <summary>
     /// Gets the duty as decimal value.
     /// </summary>
     /// <value>
     /// The duty.
     /// </value>
-    public decimal DutyDec { get { return Convert.ToDecimal( this.Duty.Value ); } }
-    internal decimal NetMassDec { get { return Convert.ToDecimal( this.NetMass.Value ); } }
+    public decimal DutyDec { get { return Convert.ToDecimal(this.Duty.Value); } }
+    /// <summary>
+    /// Return all Disposals associated with this item.
+    /// </summary>
+    /// <param name="edc">The <see cref="Entities"/> object.</param>
+    /// <returns>All Disposals associated with this item</returns>
+    public List<Disposal> Disposals(Entities edc)
+    {
+      if (m_Disposals == null)
+        m_Disposals = (from _dsx in edc.Disposal where !_dsx.Archival.GetValueOrDefault(false) && (_dsx.Disposal2IPRIndex == this) select _dsx).ToList();
+      return m_Disposals;
+    }
 
     #region static
     /// <summary>
@@ -127,9 +152,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="edc">The <see cref="Entities"/></param>
     /// <param name="documentNo">The document number.</param>
     /// <returns></returns>
-    public static bool RecordExist( Entities edc, string documentNo )
+    public static bool RecordExist(Entities edc, string documentNo)
     {
-      return ( from IPR _iprx in edc.IPR where _iprx.DocumentNo.Contains( documentNo ) select _iprx ).Any();
+      return (from IPR _iprx in edc.IPR where _iprx.DocumentNo.Contains(documentNo) select _iprx).Any();
     }
     /// <summary>
     /// Gets the introducing quantity.
@@ -139,23 +164,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="dateStart">The date start.</param>
     /// <param name="dateEnd">The date end.</param>
     /// <returns></returns>
-    public static decimal GetIntroducingData( Entities edc, JSOXLib parent, out DateTime dateStart, out DateTime dateEnd )
+    public static decimal GetIntroducingData(Entities edc, JSOXLib parent, out DateTime dateStart, out DateTime dateEnd)
     {
       decimal _ret = 0;
       dateEnd = LinqIPRExtensions.DateTimeMinValue;
       dateStart = LinqIPRExtensions.DateTimeMaxValue;
-      foreach ( IPR _iprx in parent.IPR )
+      foreach (IPR _iprx in parent.IPR)
       {
         _ret += _iprx.NetMassDec;
-        dateEnd = LinqIPRExtensions.Max( _iprx.CustomsDebtDate.Value.Date, dateEnd );
-        dateStart = LinqIPRExtensions.Min( _iprx.CustomsDebtDate.Value.Date, dateStart );
+        dateEnd = LinqIPRExtensions.Max(_iprx.CustomsDebtDate.Value.Date, dateEnd);
+        dateStart = LinqIPRExtensions.Min(_iprx.CustomsDebtDate.Value.Date, dateStart);
       }
-      foreach ( IPR _iprx in IPR.GetAllNew4JSOX( edc ) )
+      foreach (IPR _iprx in IPR.GetAllNew4JSOX(edc))
       {
         _iprx.IPR2JSOXIndex = parent;
         _ret += _iprx.NetMassDec;
-        dateEnd = LinqIPRExtensions.Max( _iprx.CustomsDebtDate.Value.Date, dateEnd );
-        dateStart = LinqIPRExtensions.Min( _iprx.CustomsDebtDate.Value.Date, dateStart );
+        dateEnd = LinqIPRExtensions.Max(_iprx.CustomsDebtDate.Value.Date, dateEnd);
+        dateStart = LinqIPRExtensions.Min(_iprx.CustomsDebtDate.Value.Date, dateStart);
       }
       return _ret;
     }
@@ -164,10 +189,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="edc">The edc.</param>
     /// <returns></returns>
-    public static decimal GetCurrentSituationData( Entities edc )
+    public static decimal GetCurrentSituationData(Entities edc)
     {
       decimal _ret = 0;
-      foreach ( IPR _iprx in IPR.GetAllOpen4JSOX( edc ) )
+      foreach (IPR _iprx in IPR.GetAllOpen4JSOX(edc))
         _ret += _iprx.AccountBalanceDec;
       return _ret;
     }
@@ -176,6 +201,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region internal
+    internal decimal NetMassDec { get { return Convert.ToDecimal(this.NetMass.Value); } }
     internal enum ValueKey
     {
       //NotStarted
@@ -207,38 +233,38 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       TobaccoToBeUsedInTheProduction,
       TobaccoUsedInTheProduction,
     }
-    internal class Balance: Dictionary<IPR.ValueKey, decimal>
+    internal class Balance : Dictionary<IPR.ValueKey, decimal>
     {
       #region ctor
-      internal Balance( IPR record )
+      internal Balance(IPR record)
       {
-        foreach ( ValueKey _vkx in Enum.GetValues( typeof( ValueKey ) ) )
-          base[ _vkx ] = 0;
+        foreach (ValueKey _vkx in Enum.GetValues(typeof(ValueKey)))
+          base[_vkx] = 0;
         #region totals
-        foreach ( Disposal _dspx in record.Disposal )
+        foreach (Disposal _dspx in record.Disposal)
         {
-          switch ( _dspx.CustomsStatus.Value )
+          switch (_dspx.CustomsStatus.Value)
           {
             case CustomsStatus.NotStarted:
-              switch ( _dspx.DisposalStatus.Value )
+              switch (_dspx.DisposalStatus.Value)
               {
                 case DisposalStatus.Dust:
-                  base[ ValueKey.DustCSNotStarted ] += _dspx.SettledQuantityDec;
+                  base[ValueKey.DustCSNotStarted] += _dspx.SettledQuantityDec;
                   break;
                 case DisposalStatus.SHMenthol:
-                  base[ ValueKey.SHMentholCSNotStarted ] += _dspx.SettledQuantityDec;
+                  base[ValueKey.SHMentholCSNotStarted] += _dspx.SettledQuantityDec;
                   break;
                 case DisposalStatus.Waste:
-                  base[ ValueKey.WasteCSNotStarted ] += _dspx.SettledQuantityDec;
+                  base[ValueKey.WasteCSNotStarted] += _dspx.SettledQuantityDec;
                   break;
                 case DisposalStatus.Overuse:
-                  base[ ValueKey.OveruseCSNotStarted ] += _dspx.SettledQuantityDec;
+                  base[ValueKey.OveruseCSNotStarted] += _dspx.SettledQuantityDec;
                   break;
                 case DisposalStatus.Tobacco:
-                  base[ ValueKey.PureTobaccoCSNotStarted ] += _dspx.SettledQuantityDec;
+                  base[ValueKey.PureTobaccoCSNotStarted] += _dspx.SettledQuantityDec;
                   break;
                 case DisposalStatus.TobaccoInCigaretes:
-                  base[ ValueKey.TobaccoInFGCSNotStarted ] += _dspx.SettledQuantityDec;
+                  base[ValueKey.TobaccoInFGCSNotStarted] += _dspx.SettledQuantityDec;
                   break;
                 case DisposalStatus.Cartons:
                 case DisposalStatus.TobaccoInCigaretesDestinationEU:
@@ -250,25 +276,25 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
               }
               break;
             case CustomsStatus.Started:
-              switch ( _dspx.DisposalStatus.Value )
+              switch (_dspx.DisposalStatus.Value)
               {
                 case DisposalStatus.Dust:
-                  base[ ValueKey.DustCSStarted ] += _dspx.SettledQuantityDec;
+                  base[ValueKey.DustCSStarted] += _dspx.SettledQuantityDec;
                   break;
                 case DisposalStatus.SHMenthol:
-                  base[ ValueKey.SHMentholCSStarted ] += _dspx.SettledQuantityDec;
+                  base[ValueKey.SHMentholCSStarted] += _dspx.SettledQuantityDec;
                   break;
                 case DisposalStatus.Waste:
-                  base[ ValueKey.WasteCSStarted ] += _dspx.SettledQuantityDec;
+                  base[ValueKey.WasteCSStarted] += _dspx.SettledQuantityDec;
                   break;
                 case DisposalStatus.Overuse:
-                  base[ ValueKey.OveruseCSStarted ] += _dspx.SettledQuantityDec;
+                  base[ValueKey.OveruseCSStarted] += _dspx.SettledQuantityDec;
                   break;
                 case DisposalStatus.Tobacco:
-                  base[ ValueKey.PureTobaccoCSStarted ] += _dspx.SettledQuantityDec;
+                  base[ValueKey.PureTobaccoCSStarted] += _dspx.SettledQuantityDec;
                   break;
                 case DisposalStatus.TobaccoInCigaretes:
-                  base[ ValueKey.TobaccoInFGCSStarted ] += _dspx.SettledQuantityDec;
+                  base[ValueKey.TobaccoInFGCSStarted] += _dspx.SettledQuantityDec;
                   break;
                 case DisposalStatus.Cartons:
                 case DisposalStatus.TobaccoInCigaretesDestinationEU:
@@ -280,7 +306,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
               }
               break;
             case CustomsStatus.Finished:
-              switch ( _dspx.DisposalStatus.Value )
+              switch (_dspx.DisposalStatus.Value)
               {
                 case DisposalStatus.Cartons:
                   break;
@@ -295,27 +321,27 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                 case DisposalStatus.TobaccoInCutfiller:
                 case DisposalStatus.TobaccoInCutfillerDestinationEU:
                 case DisposalStatus.TobaccoInCutfillerProduction:
-                  base[ ValueKey.TobaccoCSFinished ] += _dspx.SettledQuantityDec;
+                  base[ValueKey.TobaccoCSFinished] += _dspx.SettledQuantityDec;
                   break;
               }
               break;
           }
         }
         #endregion
-        base[ ValueKey.TobaccoEnteredIntoIPR ] = record.NetMassDec;
-        base[ ValueKey.IPRBook ] = IPRBook;
-        base[ ValueKey.TobaccoStarted ] = TobaccoStarted;
-        base[ ValueKey.SHWasteOveruseCSNotStarted ] = SHWasteOveruseCSNotStarted;
-        base[ ValueKey.TobaccoAvailable ] = TobaccoAvailable;
-        base[ ValueKey.TobaccoUsedInTheProduction ] = TobaccoUsedInTheProduction;
-        base[ ValueKey.TobaccoToBeUsedInTheProduction ] = base[ ValueKey.TobaccoEnteredIntoIPR ] - base[ ValueKey.TobaccoUsedInTheProduction ];
+        base[ValueKey.TobaccoEnteredIntoIPR] = record.NetMassDec;
+        base[ValueKey.IPRBook] = IPRBook;
+        base[ValueKey.TobaccoStarted] = TobaccoStarted;
+        base[ValueKey.SHWasteOveruseCSNotStarted] = SHWasteOveruseCSNotStarted;
+        base[ValueKey.TobaccoAvailable] = TobaccoAvailable;
+        base[ValueKey.TobaccoUsedInTheProduction] = TobaccoUsedInTheProduction;
+        base[ValueKey.TobaccoToBeUsedInTheProduction] = base[ValueKey.TobaccoEnteredIntoIPR] - base[ValueKey.TobaccoUsedInTheProduction];
       }
       #endregion
 
       #region internal
-      internal new double this[ ValueKey index ]
+      internal new double this[ValueKey index]
       {
-        get { return Convert.ToDouble( base[ index ] ); }
+        get { return Convert.ToDouble(base[index]); }
       }
       internal Dictionary<IPR.ValueKey, decimal> Base { get { return this; } }
       #endregion
@@ -325,7 +351,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         get
         {
-          return base[ ValueKey.TobaccoEnteredIntoIPR ] - base[ ValueKey.TobaccoCSFinished ];
+          return base[ValueKey.TobaccoEnteredIntoIPR] - base[ValueKey.TobaccoCSFinished];
         }
       }
       private decimal TobaccoStarted
@@ -333,12 +359,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         get
         {
           return
-            base[ ValueKey.TobaccoInFGCSStarted ] +
-            base[ ValueKey.DustCSStarted ] +
-            base[ ValueKey.WasteCSStarted ] +
-            base[ ValueKey.SHMentholCSStarted ] +
-            base[ ValueKey.OveruseCSStarted ] +
-            base[ ValueKey.PureTobaccoCSStarted ];
+            base[ValueKey.TobaccoInFGCSStarted] +
+            base[ValueKey.DustCSStarted] +
+            base[ValueKey.WasteCSStarted] +
+            base[ValueKey.SHMentholCSStarted] +
+            base[ValueKey.OveruseCSStarted] +
+            base[ValueKey.PureTobaccoCSStarted];
         }
       }
       private decimal SHWasteOveruseCSNotStarted
@@ -346,10 +372,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         get
         {
           return
-            base[ ValueKey.WasteCSNotStarted ] +
-            base[ ValueKey.SHMentholCSNotStarted ] +
-            base[ ValueKey.OveruseCSNotStarted ] +
-            base[ ValueKey.PureTobaccoCSNotStarted ];
+            base[ValueKey.WasteCSNotStarted] +
+            base[ValueKey.SHMentholCSNotStarted] +
+            base[ValueKey.OveruseCSNotStarted] +
+            base[ValueKey.PureTobaccoCSNotStarted];
         }
       }
       private decimal TobaccoAvailable
@@ -357,10 +383,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         get
         {
           return
-            base[ ValueKey.IPRBook ] -
-            base[ ValueKey.TobaccoStarted ] -
-            base[ ValueKey.SHWasteOveruseCSNotStarted ] -
-            base[ ValueKey.DustCSNotStarted ];
+            base[ValueKey.IPRBook] -
+            base[ValueKey.TobaccoStarted] -
+            base[ValueKey.SHWasteOveruseCSNotStarted] -
+            base[ValueKey.DustCSNotStarted];
         }
       }
       private decimal TobaccoUsedInTheProduction
@@ -368,58 +394,58 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         get
         {
           return
-            base[ ValueKey.TobaccoInFGCSNotStarted ] +
-            base[ ValueKey.DustCSNotStarted ] +
-            base[ ValueKey.SHWasteOveruseCSNotStarted ] +
-            base[ ValueKey.TobaccoCSFinished ] +
-            base[ ValueKey.TobaccoStarted ];
+            base[ValueKey.TobaccoInFGCSNotStarted] +
+            base[ValueKey.DustCSNotStarted] +
+            base[ValueKey.SHWasteOveruseCSNotStarted] +
+            base[ValueKey.TobaccoCSFinished] +
+            base[ValueKey.TobaccoStarted];
         }
       }
       #endregion
 
     }
-    internal void AddDisposal( Entities edc, DisposalEnum kind, ref decimal toDispose, Material material, InvoiceContent invoiceContent )
+    internal void AddDisposal(Entities edc, DisposalEnum kind, ref decimal toDispose, Material material, InvoiceContent invoiceContent)
     {
-      Disposal _dsp = AddDisposal( edc, kind, ref toDispose );
+      Disposal _dsp = AddDisposal(edc, kind, ref toDispose);
       _dsp.Material = material;
       _dsp.InvoicEContent = invoiceContent;
       SADGood _sg = invoiceContent.InvoiceIndex.ClearenceIndex.Clearence2SadGoodID;
-      if ( _sg != null )
-        _dsp.FinishClearingThroughCustoms( edc, _sg );
+      if (_sg != null)
+        _dsp.FinishClearingThroughCustoms(edc, _sg);
     }
-    internal void AddDisposal( Entities edc, DisposalEnum _kind, ref decimal _toDispose, Material material )
+    internal void AddDisposal(Entities edc, DisposalEnum _kind, ref decimal _toDispose, Material material)
     {
-      Disposal _dsp = AddDisposal( edc, _kind, ref _toDispose );
+      Disposal _dsp = AddDisposal(edc, _kind, ref _toDispose);
       _dsp.Material = material;
     }
-    internal decimal TobaccoNotAllocatedDec { get { return Convert.ToDecimal( this.TobaccoNotAllocated.Value ); } set { this.TobaccoNotAllocated = Convert.ToDouble( value ); } }
+    internal decimal TobaccoNotAllocatedDec { get { return Convert.ToDecimal(this.TobaccoNotAllocated.Value); } set { this.TobaccoNotAllocated = Convert.ToDouble(value); } }
     /// <summary>
     /// Withdraws the specified quantity.
     /// </summary>
     /// <param name="quantity">The quantity.</param>
     /// <param name="max">The maximum quantity to be reverted to the record if <paramref name="quantity"/> is less then 0.</param>
     /// <returns></returns>
-    internal decimal Withdraw( ref decimal quantity, decimal max )
+    internal decimal Withdraw(ref decimal quantity, decimal max)
     {
       decimal _toDispose = 0;
-      if ( quantity >= 0 )
-        _toDispose = Math.Min( quantity, this.TobaccoNotAllocatedDec );
+      if (quantity >= 0)
+        _toDispose = Math.Min(quantity, this.TobaccoNotAllocatedDec);
       else
-        _toDispose = Math.Max( quantity, -max );
+        _toDispose = Math.Max(quantity, -max);
       this.TobaccoNotAllocatedDec -= _toDispose;
       quantity -= _toDispose;
       return _toDispose;
     }
     internal void RecalculateClearedRecords()
     {
-      if ( this.AccountClosed.Value )
-        throw new ApplicationException( "IPR.RecalculateClearedRecords cannot be excuted for closed account" );
-      List<Disposal> _2Calculate = ( from _dx in this.Disposal where _dx.CustomsStatus.Value == Linq.CustomsStatus.Finished orderby _dx.No.Value ascending select _dx ).ToList<Disposal>();
+      if (this.AccountClosed.Value)
+        throw new ApplicationException("IPR.RecalculateClearedRecords cannot be excuted for closed account");
+      List<Disposal> _2Calculate = (from _dx in this.Disposal where _dx.CustomsStatus.Value == Linq.CustomsStatus.Finished orderby _dx.No.Value ascending select _dx).ToList<Disposal>();
       this.AccountBalance = this.NetMass;
-      foreach ( Disposal _dx in _2Calculate )
+      foreach (Disposal _dx in _2Calculate)
         _dx.CalculateRemainingQuantity();
     }
-    internal static IQueryable<IGrouping<string, IPR>> GetAllOpen4JSOXGroups( Entities edc )
+    internal static IQueryable<IGrouping<string, IPR>> GetAllOpen4JSOXGroups(Entities edc)
     {
       return from _iprx in edc.IPR
              where !_iprx.AccountClosed.Value
@@ -429,25 +455,26 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
+    List<Disposal> m_Disposals = null;
     /// <summary>
     /// Contains calculated data required to create IPR account
     /// </summary>
-    private Disposal AddDisposal( Entities edc, DisposalEnum status, ref decimal quantity )
+    private Disposal AddDisposal(Entities edc, DisposalEnum status, ref decimal quantity)
     {
-      Linq.DisposalStatus _typeOfDisposal = Entities.GetDisposalStatus( status );
+      Linq.DisposalStatus _typeOfDisposal = Entities.GetDisposalStatus(status);
       decimal _toDispose = 0;
-      if ( status == DisposalEnum.Cartons )
+      if (status == DisposalEnum.Cartons)
       {
         _toDispose = quantity;
         quantity = 0;
       }
       else
-        _toDispose = Withdraw( ref quantity, 0 );
-      Disposal _newDisposal = new Disposal( this, _typeOfDisposal, _toDispose );
-      edc.Disposal.InsertOnSubmit( _newDisposal );
+        _toDispose = Withdraw(ref quantity, 0);
+      Disposal _newDisposal = new Disposal(this, _typeOfDisposal, _toDispose);
+      edc.Disposal.InsertOnSubmit(_newDisposal);
       return _newDisposal;
     }
-    private static IQueryable<IPR> GetAllNew4JSOX( Entities edc )
+    private static IQueryable<IPR> GetAllNew4JSOX(Entities edc)
     {
       return from _iprx in edc.IPR where _iprx.IPR2JSOXIndex == null select _iprx;
     }
@@ -456,14 +483,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="edc">The <see cref="Entities"/>.</param>
     /// <returns></returns>
-    private static IQueryable<IPR> GetAllOpen4JSOX( Entities edc )
+    private static IQueryable<IPR> GetAllOpen4JSOX(Entities edc)
     {
       return from _iprx in edc.IPR
              where !_iprx.AccountClosed.Value
              orderby _iprx.CustomsDebtDate.Value
              select _iprx;
     }
-    private decimal AccountBalanceDec { get { return Convert.ToDecimal( AccountBalance.Value ); } }
+    private decimal AccountBalanceDec { get { return Convert.ToDecimal(AccountBalance.Value); } }
     #endregion
 
   }

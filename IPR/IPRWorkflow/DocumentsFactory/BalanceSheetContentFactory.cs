@@ -1,12 +1,27 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class BalanceSheetContentFactory
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CAS.SharePoint;
+using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet;
 using Microsoft.SharePoint;
-using Microsoft.SharePoint.Linq;
-using CAS.SmartFactory.IPR.WebsiteModel;
+
 namespace CAS.SmartFactory.IPR.DocumentsFactory
 {
   internal static class BalanceSheetContentFactory

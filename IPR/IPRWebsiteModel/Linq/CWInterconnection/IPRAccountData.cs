@@ -1,5 +1,5 @@
 ﻿//<summary>
-//  Title   : Invard Processing Account Record Data
+//  Title   : Inward Processing Account Record Data
 //  System  : Microsoft Visual C# .NET 2012
 //  $LastChangedDate$
 //  $Rev$
@@ -21,14 +21,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
 {
 
   /// <summary>
-  /// Invard Processing Account Record Data
+  /// Inward Processing Account Record Data
   /// </summary>
   public class IPRAccountData : AccountData
   {
 
-    #region ctor
-    public IPRAccountData(int clearenceLookup)
-      : base(clearenceLookup)
+    #region creator
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IPRAccountData"/> class.
+    /// </summary>
+    /// <param name="clearanceLookup">The clearance lookup.</param>
+    public IPRAccountData(int clearanceLookup)
+      : base(clearanceLookup)
     { }
     #endregion
 

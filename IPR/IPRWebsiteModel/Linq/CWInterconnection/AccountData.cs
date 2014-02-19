@@ -29,8 +29,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
   /// </summary>
   public abstract class AccountData : CommonAccountData
   {
-    public AccountData(int clearenceLookup)
-      : base(clearenceLookup)
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AccountData"/> class.
+    /// </summary>
+    /// <param name="clearanceLookup">The clearance lookup.</param>
+    public AccountData(int clearanceLookup)
+      : base(clearanceLookup)
     {
 
     }
