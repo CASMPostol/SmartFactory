@@ -16,6 +16,7 @@
 using System;
 using System.Linq;
 using System.Workflow.Activities;
+using CAS.SharePoint.DocumentsFactory;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.AccountClearance;
@@ -59,7 +60,7 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
             LogFinalMessageToHistory_HistoryOutcome = String.Format(LogWarningTemplate, "AccountBalance must be equal 0");
             Valid = false;
           }
-          bool _notFinished = _record.Disposal.Where<Disposal>(v => v.CustomsStatus.Value != CustomsStatus.Finished).Any<Disposal>();
+          bool _notFinished = _record.Disposals(_edc).Where<Disposal>(v => v.SettledQuantityDec > 0 && v.CustomsStatus.Value != CustomsStatus.Finished).Any<Disposal>();
           if (_notFinished)
           {
             LogFinalMessageToHistory_HistoryOutcome = "Closing error";
@@ -67,9 +68,9 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
             Valid = false;
           }
           string _documentName = Settings.RequestForAccountClearenceDocumentName(_edc, _record.Id.Value);
-          RequestContent _content = DocumentsFactory.AccountClearanceFactory.CreateRequestContent(_record, _record.Id.Value, _documentName);
+          RequestContent _content = DocumentsFactory.AccountClearanceFactory.CreateRequestContent(_edc, _record, _record.Id.Value, _documentName);
           if (_record.IPRLibraryIndex != null)
-            CAS.SharePoint.DocumentsFactory.File.WriteXmlFile<RequestContent>(this.workflowProperties.Web, _record.IPRLibraryIndex.Id.Value, Entities.IPRLibraryName, _content, DocumentNames.RequestForAccountClearenceName);
+            File.WriteXmlFile<RequestContent>(this.workflowProperties.Web, _record.IPRLibraryIndex.Id.Value, Entities.IPRLibraryName, _content, DocumentNames.RequestForAccountClearenceName);
           else
           {
             SPFile _docFile = CAS.SharePoint.DocumentsFactory.File.CreateXmlFile<RequestContent>(this.workflowProperties.Web, _content, _documentName, Entities.IPRLibraryName, DocumentNames.RequestForAccountClearenceName);

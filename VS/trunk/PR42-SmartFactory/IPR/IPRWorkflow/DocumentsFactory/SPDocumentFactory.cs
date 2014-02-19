@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class SPDocumentFactory
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory;
@@ -13,20 +28,6 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
   /// </summary>
   internal static class SPDocumentFactory
   {
-    internal static int Prepare(SPWeb site, RequestContent content, string fileName)
-    {
-      string _stt = "Starting";
-      try
-      {
-        _stt = "AddDocument2Collection";
-        SPFile _docFile = CAS.SharePoint.DocumentsFactory.File.CreateXmlFile<RequestContent>(site, content, fileName, Entities.IPRLibraryName, DocumentNames.RequestForAccountClearenceName);
-        return _docFile.Item.ID;
-      }
-      catch (Exception ex)
-      {
-        throw GetApplicationError(ex, _stt);
-      }
-    }
     internal static SPFile Prepare(SPWeb site, BalanceSheetContent content, string fileName)
     {
       string _stt = "Starting";

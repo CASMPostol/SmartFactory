@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : partial class Entities
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using CAS.SharePoint;
 using Microsoft.SharePoint;
@@ -12,11 +27,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   public enum DisposalEnum
   {
     /// <summary>
-    /// The overusage in kg
+    /// The over-usage in kg
     /// </summary>
     OverusageInKg,
     /// <summary>
-    /// The tobacco in cigaretess
+    /// The tobacco in cigarettes
     /// </summary>
     TobaccoInCigaretess,
     /// <summary>
@@ -40,6 +55,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     Cartons
   };
+  /// <summary>
+  /// class Entities
+  /// </summary>
   public partial class Entities
   {
     #region public
