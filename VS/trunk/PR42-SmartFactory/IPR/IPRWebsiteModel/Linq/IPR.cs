@@ -408,7 +408,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       Disposal _dsp = AddDisposal(edc, kind, ref toDispose);
       _dsp.Material = material;
-      _dsp.InvoicEContent = invoiceContent;
+      _dsp.ClearThroughCustom(invoiceContent);
       SADGood _sg = invoiceContent.InvoiceIndex.ClearenceIndex.Clearence2SadGoodID;
       if (_sg != null)
         _dsp.FinishClearingThroughCustoms(edc, _sg);
