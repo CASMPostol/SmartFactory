@@ -48,18 +48,21 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
     public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
     private void Closeing_ExecuteCode(object sender, EventArgs e)
     {
+      string _at = "Starting";
       try
       {
         bool Valid = true;
         using (Entities _edc = new Entities(workflowProperties.WebUrl))
         {
           IPRClass _record = Element.GetAtIndex<WebsiteModel.Linq.IPR>(_edc.IPR, workflowProperties.ItemId);
+          _at = "if (_record.AccountBalance != 0)";
           if (_record.AccountBalance != 0)
           {
             LogFinalMessageToHistory_HistoryOutcome = "Closing error";
             LogFinalMessageToHistory_HistoryOutcome = String.Format(LogWarningTemplate, "AccountBalance must be equal 0");
             Valid = false;
           }
+          _at = "bool _notFinished";
           bool _notFinished = _record.Disposals(_edc).Where<Disposal>(v => v.SettledQuantityDec > 0 && v.CustomsStatus.Value != CustomsStatus.Finished).Any<Disposal>();
           if (_notFinished)
           {
@@ -68,12 +71,17 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
             Valid = false;
           }
           string _documentName = Settings.RequestForAccountClearenceDocumentName(_edc, _record.Id.Value);
+          _at = "CreateRequestContent";
           RequestContent _content = DocumentsFactory.AccountClearanceFactory.CreateRequestContent(_edc, _record, _record.Id.Value, _documentName);
           if (_record.IPRLibraryIndex != null)
+          {
+            _at = "File.WriteXmlFile";
             File.WriteXmlFile<RequestContent>(this.workflowProperties.Web, _record.IPRLibraryIndex.Id.Value, Entities.IPRLibraryName, _content, DocumentNames.RequestForAccountClearenceName);
+          }
           else
           {
-            SPFile _docFile = CAS.SharePoint.DocumentsFactory.File.CreateXmlFile<RequestContent>(this.workflowProperties.Web, _content, _documentName, Entities.IPRLibraryName, DocumentNames.RequestForAccountClearenceName);
+            _at = "File.CreateXmlFile";
+            SPFile _docFile = File.CreateXmlFile<RequestContent>(this.workflowProperties.Web, _content, _documentName, Entities.IPRLibraryName, DocumentNames.RequestForAccountClearenceName);
             WebsiteModel.Linq.IPRLib _document = Element.GetAtIndex<WebsiteModel.Linq.IPRLib>(_edc.IPRLibrary, _docFile.Item.ID);
             _document.DocumentNo = _record.Title;
             _record.IPRLibraryIndex = _document;
@@ -83,6 +91,7 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
             _record.AccountClosed = true;
             _record.ClosingDate = DateTime.Today.Date;
           }
+          _at = "SubmitChanges";
           _edc.SubmitChanges();
         }
       }
@@ -90,7 +99,7 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
       {
         LogFinalMessageToHistory_HistoryOutcome = "Closing fatal error";
         string _patt = "Cannot close the IPR account because of fatal error {0} at {1}";
-        LogFinalMessageToHistory_HistoryDescription = String.Format(_patt, ex.Message, ex.StackTrace);
+        LogFinalMessageToHistory_HistoryDescription = String.Format(_patt, ex.Message, _at);
       }
     }
     /// <summary>

@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -101,7 +101,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           InvoiceNo = _dx.InvoiceNo,
           No = _dx.No.Value,
           ProductCodeNumber = _dx.Disposal2PCNID == null ? String.Empty.NotAvailable() : _dx.Disposal2PCNID.ProductCodeNumber,
-          RemainingQuantity = _dx.RemainingQuantity.Value,
+          RemainingQuantity = _dx.RemainingQuantity.GetValueOrDefault(-1),
           SadConsignmentNo = _dx.SadConsignmentNo,
           SADDate = _dx.SADDate.Value,
           SADDocumentNo = _dx.SADDocumentNo,
