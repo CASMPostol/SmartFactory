@@ -141,7 +141,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public List<Disposal> Disposals(Entities edc)
     {
       if (m_Disposals == null)
-        m_Disposals = (from _dsx in edc.Disposal where !_dsx.Archival.GetValueOrDefault(false) && (_dsx.Disposal2IPRIndex == this) select _dsx).ToList();
+        m_Disposals = (from _dsx in edc.Disposal
+                       let _idx = _dsx.Disposal2IPRIndex.Id.Value
+                       where !_dsx.Archival.GetValueOrDefault(false) && (_idx == this.Id.Value)
+                       select _dsx).ToList();
       return m_Disposals;
     }
 
