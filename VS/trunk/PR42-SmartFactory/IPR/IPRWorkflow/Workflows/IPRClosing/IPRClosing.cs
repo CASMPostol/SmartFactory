@@ -51,7 +51,7 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
       string _at = "Starting";
       try
       {
-        bool Valid = true;
+        bool _Closing = true;
         using (Entities _edc = new Entities(workflowProperties.WebUrl))
         {
           IPRClass _record = Element.GetAtIndex<WebsiteModel.Linq.IPR>(_edc.IPR, workflowProperties.ItemId);
@@ -60,19 +60,18 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
           {
             LogFinalMessageToHistory_HistoryOutcome = "Closing error";
             LogFinalMessageToHistory_HistoryOutcome = String.Format(LogWarningTemplate, "AccountBalance must be equal 0");
-            Valid = false;
+            _Closing = false;
           }
           _at = "bool _notFinished";
-          bool _notFinished = _record.Disposals(_edc).Where<Disposal>(v => v.SettledQuantityDec > 0 && v.CustomsStatus.Value != CustomsStatus.Finished).Any<Disposal>();
-          if (_notFinished)
+          if (_record.Disposals(_edc).Where<Disposal>(v => v.SettledQuantityDec > 0 && v.CustomsStatus.Value != CustomsStatus.Finished).Any<Disposal>())
           {
             LogFinalMessageToHistory_HistoryOutcome = "Closing error";
-            LogFinalMessageToHistory_HistoryOutcome = String.Format(LogWarningTemplate, "All disposals must be cleared through customs.");
-            Valid = false;
+            LogFinalMessageToHistory_HistoryOutcome = String.Format(LogWarningTemplate, "All disposals must be cleared through customs before closing account.");
+            _Closing = false;
           }
           string _documentName = Settings.RequestForAccountClearenceDocumentName(_edc, _record.Id.Value);
           _at = "CreateRequestContent";
-          RequestContent _content = DocumentsFactory.AccountClearanceFactory.CreateRequestContent(_edc, _record, _record.Id.Value, _documentName);
+          RequestContent _content = DocumentsFactory.AccountClearanceFactory.CreateRequestContent(_edc, _record, _record.Id.Value, _documentName, _Closing);
           if (_record.IPRLibraryIndex != null)
           {
             _at = "File.WriteXmlFile";
@@ -86,7 +85,7 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
             _document.DocumentNo = _record.Title;
             _record.IPRLibraryIndex = _document;
           }
-          if (Valid)
+          if (_Closing)
           {
             _record.AccountClosed = true;
             _record.ClosingDate = DateTime.Today.Date;
