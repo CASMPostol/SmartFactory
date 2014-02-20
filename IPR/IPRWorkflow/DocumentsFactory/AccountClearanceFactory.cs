@@ -99,11 +99,11 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           DutyAndVAT = _dx.DutyAndVAT.GetValueOrDefault(0),
           DutyPerSettledAmount = _dx.DutyPerSettledAmount.GetValueOrDefault(0),
           InvoiceNo = _dx.InvoiceNo,
-          No = _dx.No.Value,
+          No = _dx.No.GetValueOrDefault(-1),
           ProductCodeNumber = _dx.Disposal2PCNID == null ? String.Empty.NotAvailable() : _dx.Disposal2PCNID.ProductCodeNumber,
           RemainingQuantity = _dx.RemainingQuantity.GetValueOrDefault(-1),
           SadConsignmentNo = _dx.SadConsignmentNo,
-          SADDate = _dx.SADDate.Value,
+          SADDate = _dx.SADDate.GetValueOrNull(),
           SADDocumentNo = _dx.SADDocumentNo,
           SettledQuantity = _dx.SettledQuantity.Value,
           VATPerSettledAmount = _dx.VATPerSettledAmount.GetValueOrDefault(0)
