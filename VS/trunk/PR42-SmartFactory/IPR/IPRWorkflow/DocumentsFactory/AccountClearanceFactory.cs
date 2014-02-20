@@ -72,7 +72,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     private static ProductCodeNumberDesscription[] CreateArrayOfProductCodeNumberDesscription(List<Disposal> disposals)
     {
       Dictionary<string, ProductCodeNumberDesscription> _ret = new Dictionary<string, ProductCodeNumberDesscription>();
-      foreach (Disposal _dx in disposals.OrderBy<Disposal, double>(x => x.No.Value))
+      foreach (Disposal _dx in disposals.OrderBy<Disposal, double>(x => x.No.HasValue ? x.No.Value : x.Created.Value.Ticks))
       {
         if (_dx.Disposal2PCNID == null)
           throw new ArgumentNullException("Disposal2PCNID", "PCN code has to be recognized for all disposals");
