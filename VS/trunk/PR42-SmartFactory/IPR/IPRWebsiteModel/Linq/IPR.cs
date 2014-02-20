@@ -408,7 +408,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       Disposal _dsp = AddDisposal(edc, kind, ref toDispose);
       _dsp.Material = material;
-      _dsp.ClearThroughCustom(invoiceContent);
+      _dsp.ClearThroughCustom(invoiceContent, _x => this.RecalculateLastStarted(edc, _x));
       SADGood _sg = invoiceContent.InvoiceIndex.ClearenceIndex.Clearence2SadGoodID;
       if (_sg != null)
         _dsp.FinishClearingThroughCustoms(edc, _sg);
@@ -439,7 +439,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal void RecalculateClearedRecords()
     {
       if (this.AccountClosed.Value)
-        throw new ApplicationException("IPR.RecalculateClearedRecords cannot be excuted for closed account");
+        throw new ApplicationException("IPR.RecalculateClearedRecords cannot be executed for closed account");
       List<Disposal> _2Calculate = (from _dx in this.Disposal where _dx.CustomsStatus.Value == Linq.CustomsStatus.Finished orderby _dx.No.Value ascending select _dx).ToList<Disposal>();
       this.AccountBalance = this.NetMass;
       foreach (Disposal _dx in _2Calculate)
@@ -451,6 +451,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
              where !_iprx.AccountClosed.Value
              orderby _iprx.CustomsDebtDate.Value ascending
              group _iprx by _iprx.Batch;
+    }
+    internal void RecalculateLastStarted(Entities edc, Linq.Disposal disposal)
+    {
+      List<Disposal> _dspsl = Disposals(edc);
+      if (this.TobaccoNotAllocatedDec != 0 || _disposal.Where(x => x.CustomsStatus == CustomsStatus.NotStarted).Any())
+        return;
+      disposal.DutyPerSettledAmount += disposal.DutyPerSettledAmount - GetDutyDiff(_dspsl);
+      disposal.VATPerSettledAmount += disposal.VATPerSettledAmount - GetVATDiff(_dspsl);
+      disposal.TobaccoValue += disposal.TobaccoValue - GetVATDiff(_dspsl);
     }
     #endregion
 
@@ -473,6 +482,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Disposal _newDisposal = new Disposal(this, _typeOfDisposal, _toDispose);
       edc.Disposal.InsertOnSubmit(_newDisposal);
       return _newDisposal;
+    }
+    private double GetDutyDiff(List<Disposal> _dspsl)
+    {
+      return Duty.Value - (from _dec in _disposal where _dec.DutyPerSettledAmount.HasValue select _dec.DutyPerSettledAmount.Value).Sum(itm => itm);
+    }
+    private double GetValueDiff(List<Disposal> _dspsl)
+    {
+      return this.Value.Value - (from _dec in _disposal where _dec.TobaccoValue.HasValue select _dec.TobaccoValue.Value).Sum(itm => itm);
+    }
+    private double GetVATDiff(List<Disposal> _dspsl)
+    {
+      return VAT.Value - (from _dec in _dspsl where _dec.VATPerSettledAmount.HasValue select _dec.VATPerSettledAmount.Value).Sum(itm => itm);
     }
     private static IQueryable<IPR> GetAllNew4JSOX(Entities edc)
     {
