@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Linq;
 using CAS.SharePoint;
@@ -123,7 +123,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       SADConsignmentLibraryIndex = sadConsignment;
       foreach (Disposal _dspsl in Disposal)
-        _dspsl.ClearThroughCustom(entities, this.ClearenceProcedure.Value, this.SADDocumentNumber);
+        _dspsl.ClearThroughCustom(entities, this.ClearenceProcedure.Value, this.SADDocumentNumber, _disposal => _disposal.Disposal2IPRIndex.RecalculateLastStarted(entities, _disposal));
       UpdateTitle(entities);
     }
     /// <summary>

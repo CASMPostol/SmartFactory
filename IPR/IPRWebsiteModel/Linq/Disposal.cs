@@ -93,7 +93,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         this.CustomsProcedure = Entities.ToString(value.ClearenceProcedure.Value);
       }
     }
-    internal void ClearThroughCustom(InvoiceContent value)
+    internal void ClearThroughCustom(InvoiceContent value, Action<Disposal> reCalculate)
     {
       if (value == null)
         throw new ArgumentNullException("InvoicEContent", "InvoicEContent cannot be null");
@@ -101,12 +101,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.Clearance = value.InvoiceIndex.ClearenceIndex;
       this.CustomsStatus = Linq.CustomsStatus.Started;
       this.InvoiceNo = value.InvoiceIndex.BillDoc;
+      reCalculate(this);
     }
-    internal void ClearThroughCustom(Entities entities, ClearenceProcedure procedure, int sadConsignmentNumber)
+    internal void ClearThroughCustom(Entities entities, ClearenceProcedure procedure, int sadConsignmentNumber, Action<Disposal> reCalculate)
     {
       CustomsStatus = Linq.CustomsStatus.Started;
       CustomsProcedure = Entities.ToString(procedure);
       SadConsignmentNo = SADConsignment.DocumentNumber(entities, sadConsignmentNumber);
+      reCalculate(this);
     }
     /// <summary>
     /// Exports the specified entities.
@@ -116,8 +118,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="closingBatch">if set to <c>true</c> the batch is to be closed.</param>
     /// <param name="invoiceContent">Content of the invoice.</param>
     /// <param name="sadConsignmentNumber">The sad consignment number.</param>
+    /// <param name="reCalculate">The recalculate delegate is used to adjust VAT, duty and value for last started disposal.</param>
     /// <exception cref="ApplicationError">if any internal exception has to be cough.</exception>
-    internal void Export(Entities entities, ref decimal quantity, bool closingBatch, InvoiceContent invoiceContent, int sadConsignmentNumber)
+    internal void Export(Entities entities, ref decimal quantity, bool closingBatch, InvoiceContent invoiceContent, int sadConsignmentNumber, Action<Disposal> reCalculate)
     {
       string _at = "Starting";
       try
@@ -136,7 +139,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           else
             quantity -= this.SettledQuantityDec;
         _at = "InvoicEContent";
-        this.ClearThroughCustom(invoiceContent);
+        this.ClearThroughCustom(invoiceContent, reCalculate);
         this.SadConsignmentNo = SADConsignment.DocumentNumber(entities, sadConsignmentNumber);
       }
       catch (Exception _ex)
@@ -195,7 +198,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Gets the entries4 JSOX.
     /// </summary>
-    /// <param name="edc">The edc.</param>
+    /// <param name="edc">The <see cref="Entities"/>.</param>
     /// <param name="parent">The parent.</param>
     /// <returns>The collection of <see cref="Disposal"/> that must be added to JSOX report.</returns>
     public static IQueryable<Disposal> GetEntries4JSOX(Entities edc, JSOXLib parent)
@@ -222,18 +225,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         if (this.DisposalStatus.Value == Linq.DisposalStatus.Cartons)
           return;
         double _portion = SettledQuantity.Value / Disposal2IPRIndex.NetMass.Value;
-        //if ( this.ClearingType.Value == Linq.ClearingType.PartialWindingUp )
-        //{
         DutyPerSettledAmount = (Disposal2IPRIndex.Duty.Value * _portion).Rount2Decimals();
         VATPerSettledAmount = (Disposal2IPRIndex.VAT.Value * _portion).Rount2Decimals();
         TobaccoValue = (Disposal2IPRIndex.Value.Value * _portion).Rount2Decimals();
-        //}
-        //else
-        //{
-        //  DutyPerSettledAmount = GetDutyNotCleared();
-        //  VATPerSettledAmount = GetVATNotCleared();
-        //  TobaccoValue = GetPriceNotCleared();
-        //}
         DutyAndVAT = (DutyPerSettledAmount.Value + VATPerSettledAmount.Value).Rount2Decimals();
       }
       catch (Exception ex)
@@ -287,18 +281,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.JSOXCustomsSummaryIndex.CustomsProcedure = sadGood.Procedure;
       this.JSOXCustomsSummaryIndex.CompensationGood = this.Disposal2PCNID.CompensationGood;
       this.JSOXCustomsSummaryIndex.RemainingQuantity = this.RemainingQuantity;
-    }
-    private double GetDutyNotCleared()
-    {
-      return Disposal2IPRIndex.Duty.Value - (from _dec in Disposal2IPRIndex.Disposal where _dec.DutyPerSettledAmount.HasValue select new { val = _dec.DutyPerSettledAmount.Value }).Sum(itm => itm.val);
-    }
-    private double GetPriceNotCleared()
-    {
-      return Disposal2IPRIndex.IPRUnitPrice.Value - (from _dec in Disposal2IPRIndex.Disposal where _dec.TobaccoValue.HasValue select new { val = _dec.TobaccoValue.Value }).Sum(itm => itm.val);
-    }
-    private double GetVATNotCleared()
-    {
-      return Disposal2IPRIndex.VAT.Value - (from _dec in Disposal2IPRIndex.Disposal where _dec.VATPerSettledAmount.HasValue select new { val = _dec.VATPerSettledAmount.Value }).Sum(itm => itm.val);
     }
     private bool IsDisposal
     {
