@@ -27,9 +27,9 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
   internal static class AccountClearanceFactory
   {
     #region public
-    internal static RequestContent CreateRequestContent(Entities edc, IPRClass ipr, int documentNo, string documentName)
+    internal static RequestContent CreateRequestContent(Entities edc, IPRClass ipr, int documentNo, string documentName, bool closing)
     {
-      ProductCodeNumberDesscription[] _pcnArray = CreateArrayOfProductCodeNumberDesscription(ipr.Disposals(edc));
+      ProductCodeNumberDesscription[] _pcnArray = CreateArrayOfProductCodeNumberDesscription(ipr.Disposals(edc), closing);
       ArrayOfDIsposalsDisposalsArray[] _disposalsColection = CreateArrayOfDIsposalsDisposalsArray(ipr.Disposals(edc));
       RequestContent _ret = new RequestContent()
       {
@@ -69,13 +69,16 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     #endregion
 
     #region private
-    private static ProductCodeNumberDesscription[] CreateArrayOfProductCodeNumberDesscription(List<Disposal> disposals)
+    private static ProductCodeNumberDesscription[] CreateArrayOfProductCodeNumberDesscription(List<Disposal> disposals, bool closing)
     {
       Dictionary<string, ProductCodeNumberDesscription> _ret = new Dictionary<string, ProductCodeNumberDesscription>();
       foreach (Disposal _dx in disposals.OrderBy<Disposal, double>(x => x.No.HasValue ? x.No.Value : x.Created.Value.Ticks))
       {
         if (_dx.Disposal2PCNID == null)
-          throw new ArgumentNullException("Disposal2PCNID", "PCN code has to be recognized for all disposals");
+          if (closing)
+            throw new ArgumentNullException("Disposal2PCNID", "PCN code has not been recognized for all disposals.");
+          else
+            continue;
         if (!_ret.ContainsKey(_dx.Disposal2PCNID.ProductCodeNumber))
         {
           ProductCodeNumberDesscription _new = new ProductCodeNumberDesscription()
