@@ -1,9 +1,9 @@
 using System;
 using System.Runtime.InteropServices;
-using System.Security.Permissions;
-using Microsoft.SharePoint;
+using System.Collections.Generic;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.IPR.Dashboards.WebPartPages;
+using Microsoft.SharePoint;
 using Microsoft.SharePoint.Navigation;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Features.IPRDashboards
@@ -18,8 +18,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Features.IPRDashboards
   [Guid("12ecc775-53b3-433a-a67e-47caaf7f8e82")]
   public class IPRDashboardsEventReceiver : SPFeatureReceiver
   {
-    // Uncomment the method below to handle the event raised after a feature has been activated.
-
+    #region public
+    /// <summary>
+    /// Occurs after a Feature is activated.
+    /// </summary>
+    /// <param name="properties">An <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties" /> object that represents the properties of the event.</param>
+    /// <exception cref="System.ApplicationException">
+    /// In FeatureActivated the Site is null
+    /// or
+    /// </exception>
     public override void FeatureActivated(SPFeatureReceiverProperties properties)
     {
       string _cp = "Starting";
@@ -58,8 +65,30 @@ namespace CAS.SmartFactory.IPR.Dashboards.Features.IPRDashboards
         throw new ApplicationException(String.Format("FeatureActivated exception at {0}: {1}", _cp, ex.Message));
       }
     }
-    private const string m_SourceClass = "DashboardsEventReceiver.";
-    private const string m_SourceFeatureActivated = "FeatureActivated";
+    /// <summary>
+    /// Occurs when a Feature is deactivated.
+    /// </summary>
+    /// <param name="properties">An <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties"/> object that represents the properties of the event.</param>
+    public override void FeatureDeactivating(SPFeatureReceiverProperties properties)
+    {
+      SPSite _site = properties.Feature.Parent as SPSite;
+      if (_site == null)
+        throw new ApplicationException("FeatureDeactivating cannot get access to the Web");
+      using (Entities _edc = new Entities(_site.RootWeb.Url))
+      {
+        ActivityLogCT.WriteEntry(_edc, "FeatureDeactivating", "Feature Deactivation starting.");
+        ActivityLogCT.WriteEntry(_edc, "FeatureDeactivating", "Removing pages.");
+        WebPartPages.ProjectElementManagement.RemovePages(_edc, _site.RootWeb);
+        ActivityLogCT.WriteEntry(_edc, "FeatureDeactivating", "Removing Navigation Entries.");
+        RemoveNavigationEntries(_site.RootWeb);
+        ActivityLogCT.WriteEntry(_edc, "FeatureDeactivating", "Starting deletion of web parts.");
+        DeleteWebParts(_edc, _site.RootWeb);
+        ActivityLogCT.WriteEntry(_edc, "FeatureDeactivating", "Reverting to default master page.");
+        RevertMasterPage(_site);
+        ActivityLogCT.WriteEntry(_edc, "FeatureDeactivating", "Feature Deactivation finished.");
+      }
+    }
+    #endregion
 
     #region private
     private void ReplaceMasterPage(SPSite _siteCollection)
@@ -86,7 +115,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Features.IPRDashboards
           }
           finally
           {
-            if ( _webx != null )
+            if (_webx != null)
               _webx.Dispose();
           }
         }
@@ -96,33 +125,88 @@ namespace CAS.SmartFactory.IPR.Dashboards.Features.IPRDashboards
         throw new ApplicationException(String.Format("ReplaceMasterMage exception: {0}", ex.Message));
       }
     }
-
+    private void RevertMasterPage(SPSite siteCollection)
+    {
+      try
+      {
+        // calculate relative path of site from Web Application root
+        string WebAppRelativePath = siteCollection.RootWeb.ServerRelativeUrl;
+        if (!WebAppRelativePath.EndsWith("/"))
+        {
+          WebAppRelativePath += "/";
+        }
+        // enumerate through each site and remove custom branding
+        foreach (SPWeb site in siteCollection.AllWebs)
+        {
+          //This best practice addresses the issue identified by the SharePoint Dispose Checker Tool as SPDisposeCheckID_130.
+          try
+          {
+            site.MasterUrl = WebAppRelativePath + "_catalogs/masterpage/v4.master";
+            site.CustomMasterUrl = WebAppRelativePath + "_catalogs/masterpage/v4.master";
+            //site.AlternateCssUrl = "";
+            //site.SiteLogoUrl = "";
+            site.Update();
+          }
+          finally
+          {
+            if (site != null)
+              site.Dispose();
+          }
+        }
+      }
+      catch (Exception ex)
+      {
+        throw new ApplicationException(String.Format("RevertMasterPage exception: {0}", ex.Message));
+      }
+    }
+    private static void RemoveNavigationEntries(SPWeb _root)
+    {
+      try
+      {
+        SPNavigationNodeCollection topNav = _root.Navigation.TopNavigationBar;
+        for (int i = topNav.Count - 1; i >= 0; i--)
+          topNav[i].Delete();
+      }
+      catch (Exception ex)
+      {
+        throw new ApplicationException("Cannot remove navigation entries: " + ex.Message);
+      }
+    }
+    private static void DeleteWebParts(Entities _edc, SPWeb _root)
+    {
+      ActivityLogCT.WriteEntry(_edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts strating");
+      try
+      {
+        SPList _wpl = _root.GetCatalog(SPListTemplateType.WebPartCatalog);
+        List<SPFile> _filesToDelete = new List<SPFile>();
+        // figure out which Web Part template files need to be deleted
+        ActivityLogCT.WriteEntry
+        (
+          _edc, m_SourceClass + m_SourceDeleteWebParts,
+          String.Format("Processing of the WebPartCatalog containing {0} items starting ", _wpl.ItemCount)
+        );
+        foreach (SPListItem _li in _wpl.Items)
+        {
+          bool _delete = _li.File.Name.StartsWith("ShepherdDashboards");
+          if (_delete)
+            _filesToDelete.Add(_li.File);
+          string _mess = String.Format("Title: {0}, Name: {1}, File name: {2}, deleted: {3}", _li.Title, _li.Name, _li.File.Name, _delete);
+          ActivityLogCT.WriteEntry(_edc, "Processing Web Part", _mess);
+        }
+        // delete Web Part template files
+        foreach (SPFile file in _filesToDelete)
+          file.Delete();
+      }
+      catch (Exception ex)
+      {
+        ActivityLogCT.WriteEntry(_edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts finished with exception: " + ex.Message);
+      }
+      ActivityLogCT.WriteEntry(_edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts finished");
+    }
+    private const string m_SourceClass = "DashboardsEventReceiver.";
+    private const string m_SourceDeleteWebParts = "DeleteWebParts";
+    private const string m_SourceFeatureActivated = "FeatureActivated";
     #endregion
 
-    // Uncomment the method below to handle the event raised before a feature is deactivated.
-
-    //public override void FeatureDeactivating(SPFeatureReceiverProperties properties)
-    //{
-    //}
-
-
-    // Uncomment the method below to handle the event raised after a feature has been installed.
-
-    //public override void FeatureInstalled(SPFeatureReceiverProperties properties)
-    //{
-    //}
-
-
-    // Uncomment the method below to handle the event raised before a feature is uninstalled.
-
-    //public override void FeatureUninstalling(SPFeatureReceiverProperties properties)
-    //{
-    //}
-
-    // Uncomment the method below to handle the event raised when a feature is upgrading.
-
-    //public override void FeatureUpgrading(SPFeatureReceiverProperties properties, string upgradeActionName, System.Collections.Generic.IDictionary<string, string> parameters)
-    //{
-    //}
   }
 }
