@@ -19,7 +19,6 @@ using System.Linq;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.AccountClearance;
-using Microsoft.SharePoint.Linq;
 using IPRClass = CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR;
 
 namespace CAS.SmartFactory.IPR.DocumentsFactory
@@ -27,11 +26,10 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
   internal static class AccountClearanceFactory
   {
     #region public
-    internal static RequestContent CreateRequestContent(Entities edc, IPRClass ipr, string documentName, bool closing)
+    internal static RequestContent CreateRequestContent(List<Disposal> _Disposals, IPRClass ipr, string documentName)
     {
       int documentNo = ipr.Id.Value;
-      List<Disposal> _Disposals = ipr.Disposals(edc).Where<Disposal>(x => x.CustomsStatus == CustomsStatus.Finished).ToList<Disposal>();
-      ProductCodeNumberDesscription[] _pcnArray = CreateArrayOfProductCodeNumberDesscription(_Disposals, closing);
+      ProductCodeNumberDesscription[] _pcnArray = CreateArrayOfProductCodeNumberDesscription(_Disposals);
       ArrayOfDIsposalsDisposalsArray[] _disposalsColection = CreateArrayOfDIsposalsDisposalsArray(_Disposals);
       RequestContent _ret = new RequestContent()
       {
@@ -71,16 +69,11 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     #endregion
 
     #region private
-    private static ProductCodeNumberDesscription[] CreateArrayOfProductCodeNumberDesscription(List<Disposal> disposals, bool closing)
+    private static ProductCodeNumberDesscription[] CreateArrayOfProductCodeNumberDesscription(List<Disposal> disposals)
     {
       Dictionary<string, ProductCodeNumberDesscription> _ret = new Dictionary<string, ProductCodeNumberDesscription>();
       foreach (Disposal _dx in disposals.OrderBy<Disposal, double>(x => x.No.HasValue ? x.No.Value : x.Created.Value.Ticks))
       {
-        if (_dx.Disposal2PCNID == null)
-          if (closing)
-            throw new ArgumentNullException("Disposal2PCNID", "PCN code has not been recognized for all disposals.");
-          else
-            continue;
         if (!_ret.ContainsKey(_dx.Disposal2PCNID.ProductCodeNumber))
         {
           ProductCodeNumberDesscription _new = new ProductCodeNumberDesscription()
