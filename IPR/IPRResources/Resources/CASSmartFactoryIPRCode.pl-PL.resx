@@ -169,13 +169,13 @@
 		<value>KU</value>
 	</data>
 	<data name="IprBookTitle" xml:space="preserve">
-		<value>Księgi IPR zamknięte</value>
+		<value>Księgi IPR</value>
 	</data>
 	<data name="IprClosedBookTitle" xml:space="preserve">
 		<value>Księgi IPR zamkniete</value>
 	</data>
 	<data name="IPRBookCustomsOfficeTitle" xml:space="preserve">
-		<value>Księgi IPR</value>
+		<value>UC Księgi IPR</value>
 	</data>
 	<data name="IPRClosedBookCustomsOfficeTitle" xml:space="preserve">
 		<value>UC Księgi IPR zamknięte</value>
