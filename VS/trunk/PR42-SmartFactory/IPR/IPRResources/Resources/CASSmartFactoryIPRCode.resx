@@ -168,4 +168,34 @@
 	<data name="kg" xml:space="preserve">
 		<value>kg</value>
 	</data>
+	<data name="IprBookTitle" xml:space="preserve">
+		<value>IPR Book</value>
+	</data>
+	<data name="IprClosedBookTitle" xml:space="preserve">
+		<value>IPR Book - closed</value>
+	</data>
+	<data name="IPRBookCustomsOfficeTitle" xml:space="preserve">
+		<value>CO IPR Book</value>
+	</data>
+	<data name="IPRClosedBookCustomsOfficeTitle" xml:space="preserve">
+		<value>CO IPR Book - closed</value>
+	</data>
+	<data name="ClearanceTitle" xml:space="preserve">
+		<value>Clearance</value>
+	</data>
+	<data name="ClearanceViewTitle" xml:space="preserve">
+		<value>Clearance - view</value>
+	</data>
+	<data name="ExportTitle" xml:space="preserve">
+		<value>Export</value>
+	</data>
+	<data name="BatchTitle" xml:space="preserve">
+		<value>Batch</value>
+	</data>
+	<data name="StocksTitle" xml:space="preserve">
+		<value>Stocks</value>
+	</data>
+	<data name="ReportsTitle" xml:space="preserve">
+		<value>Reports</value>
+	</data>
 </root>

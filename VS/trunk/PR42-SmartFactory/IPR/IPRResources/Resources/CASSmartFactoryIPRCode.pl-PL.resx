@@ -118,7 +118,7 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="CustomsProcedureMustBeSelected" xml:space="preserve">
-    <value>Należy wybrać procedurę celną</value>
+    <value>Eksport</value>
   </data>
 	<data name="ThisClearanceCannotBeEditedItIsNotCompensationGoodClearance" xml:space="preserve">
     <value>Ta odprawa nie może być edytowana - to nie jest odprawa towaru kompensacyjnego</value>
@@ -127,7 +127,7 @@
 		<value>Błąd - wybrano niewłaściwą procedurę celną</value>
 	</data>
 	<data name="SplittingTheItemForTheSelectedGoodsGroupIsNotAllowed" xml:space="preserve">
-		<value>Dzielenie wybranej grupy towarowej jest niedozwolone</value>
+		<value>Magazyn</value>
 	</data>
 	<data name="SplittingEntryIsNotSupportedWhenFiltering" xml:space="preserve">
 		<value>Dzielenie jest zablokowane podczas filtrowania. Należy użyć filtru \"Okres \"</value>
@@ -167,5 +167,29 @@
 	</data>
 	<data name="KU" xml:space="preserve">
 		<value>KU</value>
+	</data>
+	<data name="IprBookTitle" xml:space="preserve">
+		<value>Księgi IPR zamknięte</value>
+	</data>
+	<data name="IprClosedBookTitle" xml:space="preserve">
+		<value>Księgi IPR zamkniete</value>
+	</data>
+	<data name="IPRBookCustomsOfficeTitle" xml:space="preserve">
+		<value>Księgi IPR</value>
+	</data>
+	<data name="IPRClosedBookCustomsOfficeTitle" xml:space="preserve">
+		<value>UC Księgi IPR zamknięte</value>
+	</data>
+	<data name="ClearanceTitle" xml:space="preserve">
+		<value>Odprawa</value>
+	</data>
+	<data name="ClearanceViewTitle" xml:space="preserve">
+		<value>Odprawy podgląd</value>
+	</data>
+	<data name="BatchTitle" xml:space="preserve">
+		<value>Batch</value>
+	</data>
+	<data name="ReportsTitle" xml:space="preserve">
+		<value>Raporty</value>
 	</data>
 </root>

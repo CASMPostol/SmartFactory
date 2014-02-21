@@ -77,6 +77,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CommonDefinitions.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Features\IPRDashboards\IPRDashboards.EventReceiver.cs">
+      <DependentUpon>IPRDashboards.feature</DependentUpon>
+    </Compile>
     <Compile Include="GlobalDefinitions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
@@ -84,6 +88,7 @@
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
     <Compile Include="Resources.cs" />
+    <Compile Include="WebPartPages\ProjectElementManagement.cs" />
     <Compile Include="Webparts\ClearenceWebPart\ClearenceWebPart.cs" />
     <Compile Include="Webparts\ClearenceWebPart\ClearenceWebPartUserControl.ascx.cs">
       <DependentUpon>ClearenceWebPartUserControl.ascx</DependentUpon>
@@ -244,12 +249,8 @@
     <Content Include="Images\IPRDashboards\button_background.jpg" />
     <Content Include="Images\IPRDashboards\button_background_gray.jpg" />
     <Content Include="Images\IPRDashboards\button_red_background.png" />
-    <Content Include="Images\IPRDashboards\FeatureLogo32x32.gif" />
-    <Content Include="Images\IPRDashboards\IPR_16x16.png" />
-    <Content Include="Images\IPRDashboards\IPR_250x250.png" />
-    <Content Include="Images\IPRDashboards\IPR_32x32.png" />
-    <Content Include="Images\IPRDashboards\IPR_50x50.png" />
     <Content Include="Images\IPRDashboards\ipr_feature_32x32.png" />
+    <Content Include="Images\IPRDashboards\ipr_logo_60x60.png" />
     <Content Include="Images\IPRDashboards\sf_feature_32x32.png" />
     <Content Include="Layouts\CAS_iframe.aspx" />
     <Content Include="Layouts\IPRDashboards\CAS_IPRDashboards.css" />
