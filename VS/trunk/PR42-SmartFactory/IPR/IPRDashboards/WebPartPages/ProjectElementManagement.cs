@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.SharePoint;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 
 namespace CAS.SmartFactory.IPR.Dashboards.WebPartPages
 {
@@ -20,7 +22,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.WebPartPages
     internal static string MenuBatchTitle = "BatchTitle".GetIPRLocalizationExpresion();
     internal static string MenuStocksTitle = "StocksTitle".GetIPRLocalizationExpresion();
     internal static string MenuReportsTitle = "ReportsTitle".GetIPRLocalizationExpresion();
-    
+
 
     // DashboardsURL
     internal const string WebPartPagesFolder = "WebPartPages";
@@ -35,5 +37,25 @@ namespace CAS.SmartFactory.IPR.Dashboards.WebPartPages
     internal const string URLStocksDashboard = WebPartPagesFolder + "/StocksDashboard.aspx";
     internal const string URLReportsDashboard = WebPartPagesFolder + "/ReportsDashboard.aspx";
 
+    internal static void RemovePages(Entities _edc, SPWeb _root)
+    {
+      ActivityLogCT.WriteEntry(_edc, m_SourceClass + m_SourceRemovePages, "Remove Pages starting");
+      try
+      {
+        SPFolder WebPartPagesFolder = _root.GetFolder(ProjectElementManagement.WebPartPagesFolder);
+        if (WebPartPagesFolder.Exists)
+          WebPartPagesFolder.Delete();
+        else
+          ActivityLogCT.WriteEntry(_edc, m_SourceClass + m_SourceRemovePages, "Failed, the folder " + WebPartPagesFolder + "dies not exist.");
+      }
+      catch (Exception ex)
+      {
+        ActivityLogCT.WriteEntry(_edc, m_SourceClass + m_SourceRemovePages, "Remove pages failed with exception: " + ex.Message);
+      }
+      ActivityLogCT.WriteEntry(_edc, m_SourceClass + m_SourceRemovePages, "Remove Pages finished");
+    }
+    private const string m_SourceClass = "WebPartPages.ProjectElementManagement.";
+    private const string m_SourceRemovePages = "RemovePages";
   }
+
 }
