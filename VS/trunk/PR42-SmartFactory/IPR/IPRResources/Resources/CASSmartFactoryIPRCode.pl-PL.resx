@@ -118,7 +118,7 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="CustomsProcedureMustBeSelected" xml:space="preserve">
-    <value>Eksport</value>
+    <value>Należy wybrać procedurę celną</value>
   </data>
 	<data name="ThisClearanceCannotBeEditedItIsNotCompensationGoodClearance" xml:space="preserve">
     <value>Ta odprawa nie może być edytowana - to nie jest odprawa towaru kompensacyjnego</value>
@@ -127,7 +127,7 @@
 		<value>Błąd - wybrano niewłaściwą procedurę celną</value>
 	</data>
 	<data name="SplittingTheItemForTheSelectedGoodsGroupIsNotAllowed" xml:space="preserve">
-		<value>Magazyn</value>
+		<value>Dzielenie wybranej grupy towarowej jest niedozwolone</value>
 	</data>
 	<data name="SplittingEntryIsNotSupportedWhenFiltering" xml:space="preserve">
 		<value>Dzielenie jest zablokowane podczas filtrowania. Należy użyć filtru \"Okres \"</value>
@@ -191,5 +191,11 @@
 	</data>
 	<data name="ReportsTitle" xml:space="preserve">
 		<value>Raporty</value>
+	</data>
+	<data name="ExportTitle" xml:space="preserve">
+		<value>Eksport</value>
+	</data>
+	<data name="StocksTitle" xml:space="preserve">
+		<value>Magazyn</value>
 	</data>
 </root>
