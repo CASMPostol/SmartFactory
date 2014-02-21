@@ -27,10 +27,12 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
   internal static class AccountClearanceFactory
   {
     #region public
-    internal static RequestContent CreateRequestContent(Entities edc, IPRClass ipr, int documentNo, string documentName, bool closing)
+    internal static RequestContent CreateRequestContent(Entities edc, IPRClass ipr, string documentName, bool closing)
     {
-      ProductCodeNumberDesscription[] _pcnArray = CreateArrayOfProductCodeNumberDesscription(ipr.Disposals(edc), closing);
-      ArrayOfDIsposalsDisposalsArray[] _disposalsColection = CreateArrayOfDIsposalsDisposalsArray(ipr.Disposals(edc));
+      int documentNo = ipr.Id.Value;
+      List<Disposal> _Disposals = ipr.Disposals(edc).Where<Disposal>(x => x.CustomsStatus == CustomsStatus.Finished).ToList<Disposal>();
+      ProductCodeNumberDesscription[] _pcnArray = CreateArrayOfProductCodeNumberDesscription(_Disposals, closing);
+      ArrayOfDIsposalsDisposalsArray[] _disposalsColection = CreateArrayOfDIsposalsDisposalsArray(_Disposals);
       RequestContent _ret = new RequestContent()
       {
         Batch = ipr.Batch,
