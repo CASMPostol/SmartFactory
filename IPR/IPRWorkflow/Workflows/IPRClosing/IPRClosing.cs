@@ -54,41 +54,41 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
         bool _Closing = true;
         using (Entities _edc = new Entities(workflowProperties.WebUrl))
         {
-          IPRClass _record = Element.GetAtIndex<WebsiteModel.Linq.IPR>(_edc.IPR, workflowProperties.ItemId);
+          IPRClass _iprItem = Element.GetAtIndex<WebsiteModel.Linq.IPR>(_edc.IPR, workflowProperties.ItemId);
           _at = "if (_record.AccountBalance != 0)";
-          if (_record.AccountBalance != 0)
+          if (_iprItem.AccountBalance != 0)
           {
             LogFinalMessageToHistory_HistoryOutcome = "Closing error";
             LogFinalMessageToHistory_HistoryOutcome = String.Format(LogWarningTemplate, "AccountBalance must be equal 0");
             _Closing = false;
           }
           _at = "bool _notFinished";
-          if (_record.Disposals(_edc).Where<Disposal>(v => v.SettledQuantityDec > 0 && v.CustomsStatus.Value != CustomsStatus.Finished).Any<Disposal>())
+          if (_iprItem.Disposals(_edc).Where<Disposal>(v => v.SettledQuantityDec > 0 && v.CustomsStatus.Value != CustomsStatus.Finished).Any<Disposal>())
           {
             LogFinalMessageToHistory_HistoryOutcome = "Closing error";
             LogFinalMessageToHistory_HistoryOutcome = String.Format(LogWarningTemplate, "All disposals must be cleared through customs before closing account.");
             _Closing = false;
           }
-          string _documentName = Settings.RequestForAccountClearenceDocumentName(_edc, _record.Id.Value);
+          string _documentName = Settings.RequestForAccountClearenceDocumentName(_edc, _iprItem.Id.Value);
           _at = "CreateRequestContent";
-          RequestContent _content = DocumentsFactory.AccountClearanceFactory.CreateRequestContent(_edc, _record, _record.Id.Value, _documentName, _Closing);
-          if (_record.IPRLibraryIndex != null)
+          RequestContent _content = DocumentsFactory.AccountClearanceFactory.CreateRequestContent(_edc, _iprItem, _documentName, _Closing);
+          if (_iprItem.IPRLibraryIndex != null)
           {
             _at = "File.WriteXmlFile";
-            File.WriteXmlFile<RequestContent>(this.workflowProperties.Web, _record.IPRLibraryIndex.Id.Value, Entities.IPRLibraryName, _content, DocumentNames.RequestForAccountClearenceName);
+            File.WriteXmlFile<RequestContent>(this.workflowProperties.Web, _iprItem.IPRLibraryIndex.Id.Value, Entities.IPRLibraryName, _content, DocumentNames.RequestForAccountClearenceName);
           }
           else
           {
             _at = "File.CreateXmlFile";
             SPFile _docFile = File.CreateXmlFile<RequestContent>(this.workflowProperties.Web, _content, _documentName, Entities.IPRLibraryName, DocumentNames.RequestForAccountClearenceName);
             WebsiteModel.Linq.IPRLib _document = Element.GetAtIndex<WebsiteModel.Linq.IPRLib>(_edc.IPRLibrary, _docFile.Item.ID);
-            _document.DocumentNo = _record.Title;
-            _record.IPRLibraryIndex = _document;
+            _document.DocumentNo = _iprItem.Title;
+            _iprItem.IPRLibraryIndex = _document;
           }
           if (_Closing)
           {
-            _record.AccountClosed = true;
-            _record.ClosingDate = DateTime.Today.Date;
+            _iprItem.AccountClosed = true;
+            _iprItem.ClosingDate = DateTime.Today.Date;
           }
           _at = "SubmitChanges";
           _edc.SubmitChanges();
