@@ -14,6 +14,7 @@
 //</summary>
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Workflow.Activities;
 using CAS.SharePoint.DocumentsFactory;
@@ -71,7 +72,8 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
           }
           string _documentName = Settings.RequestForAccountClearenceDocumentName(_edc, _iprItem.Id.Value);
           _at = "CreateRequestContent";
-          RequestContent _content = DocumentsFactory.AccountClearanceFactory.CreateRequestContent(_edc, _iprItem, _documentName, _Closing);
+          List<Disposal> _Disposals = _iprItem.Disposals(_edc).Where<Disposal>(x => x.CustomsStatus == CustomsStatus.Finished).ToList<Disposal>();
+          RequestContent _content = DocumentsFactory.AccountClearanceFactory.CreateRequestContent(_Disposals, _iprItem, _documentName);
           if (_iprItem.IPRLibraryIndex != null)
           {
             _at = "File.WriteXmlFile";
