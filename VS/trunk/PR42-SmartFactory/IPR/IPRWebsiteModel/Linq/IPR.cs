@@ -460,9 +460,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       List<Disposal> _dspsl = Disposals(edc);
       if (this.TobaccoNotAllocatedDec != 0 || _disposal.Where(x => x.CustomsStatus == CustomsStatus.NotStarted).Any())
         return;
-      disposal.DutyPerSettledAmount += disposal.DutyPerSettledAmount - GetDutyDiff(_dspsl);
-      disposal.VATPerSettledAmount += disposal.VATPerSettledAmount - GetVATDiff(_dspsl);
-      disposal.TobaccoValue += disposal.TobaccoValue - GetVATDiff(_dspsl);
+      disposal.DutyPerSettledAmount = (disposal.DutyPerSettledAmount + this.Duty.Value - (from _dec in _dspsl where _dec.DutyPerSettledAmount.HasValue select _dec.DutyPerSettledAmount.Value).Sum(itm => itm)).Value.Rount2Decimals();
+      disposal.VATPerSettledAmount = (disposal.VATPerSettledAmount + this.VAT.Value - (from _dec in _dspsl where _dec.VATPerSettledAmount.HasValue select _dec.VATPerSettledAmount.Value).Sum(itm => itm)).Value.Rount2Decimals();
+      disposal.DutyAndVAT = (disposal.DutyPerSettledAmount + disposal.VATPerSettledAmount).Value.Rount2Decimals();
+      disposal.TobaccoValue += this.Value.Value - (from _dec in _dspsl where _dec.TobaccoValue.HasValue select _dec.TobaccoValue.Value).Sum(itm => itm); ;
     }
     #endregion
 
@@ -485,18 +486,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Disposal _newDisposal = new Disposal(this, _typeOfDisposal, _toDispose);
       edc.Disposal.InsertOnSubmit(_newDisposal);
       return _newDisposal;
-    }
-    private double GetDutyDiff(List<Disposal> _dspsl)
-    {
-      return Duty.Value - (from _dec in _disposal where _dec.DutyPerSettledAmount.HasValue select _dec.DutyPerSettledAmount.Value).Sum(itm => itm);
-    }
-    private double GetValueDiff(List<Disposal> _dspsl)
-    {
-      return this.Value.Value - (from _dec in _disposal where _dec.TobaccoValue.HasValue select _dec.TobaccoValue.Value).Sum(itm => itm);
-    }
-    private double GetVATDiff(List<Disposal> _dspsl)
-    {
-      return VAT.Value - (from _dec in _dspsl where _dec.VATPerSettledAmount.HasValue select _dec.VATPerSettledAmount.Value).Sum(itm => itm);
     }
     private static IQueryable<IPR> GetAllNew4JSOX(Entities edc)
     {
