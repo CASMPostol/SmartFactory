@@ -10,11 +10,17 @@
       <xs:element minOccurs="1" maxOccurs="1" name="EndDate" type="xs:date" />
       <xs:element minOccurs="0" maxOccurs="1" name="BalanceBatch" type="tns:ArrayOfBalanceBatchContent" />
       <xs:element minOccurs="0" maxOccurs="1" name="JSOX" type="tns:JSOContent" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BalanceCutfiller" type="tns:ArrayOfBalanceCutfillerContent" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfBalanceBatchContent">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="BalanceBatchContent" nillable="false" type="tns:BalanceBatchContent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBalanceCutfillerContent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BalanceCutfillerContent" nillable="false" type="tns:BalanceCutfillerContent" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="BalanceBatchContent">
@@ -47,6 +53,18 @@
       <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="SHWasteOveruseCSNotStarted" type="xs:decimal" />
       <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="DustCSNotStarted" type="xs:decimal" />
       <xs:element minOccurs="1" maxOccurs="1" nillable="false" name="TobaccoAvailable" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BalanceCutfillerContent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CtfBatch" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CtfSKU" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CtfBatchQuantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CtfOnStock" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TobaccoBatch" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TobaccoSKU" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoBatchQuantity" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoKg" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="JSOContent">
