@@ -12,16 +12,16 @@ namespace CAS.SmartFactory.IPR.Dashboards.WebPartPages
   internal class ProjectElementManagement
   {
     // TopNavigation Elements Title
-    internal static string MenuIPRBookTitle = "IprBookTitle".GetIPRLocalizationExpresion();
-    internal static string MenuIPRClosedBookTitle = "IprClosedBookTitle".GetIPRLocalizationExpresion();
-    internal static string MenuIPRBookCustomsOfficeTitle = "IPRBookCustomsOfficeTitle".GetIPRLocalizationExpresion();
-    internal static string MenuIPRClosedBookCustomsOfficeTitle = "IPRClosedBookCustomsOfficeTitle".GetIPRLocalizationExpresion();
-    internal static string MenuClearanceTitle = "ClearanceTitle".GetIPRLocalizationExpresion();
-    internal static string MenuClearanceViewTitle = "ClearanceViewTitle".GetIPRLocalizationExpresion();
-    internal static string MenuExportTitle = "ExportTitle".GetIPRLocalizationExpresion();
-    internal static string MenuBatchTitle = "BatchTitle".GetIPRLocalizationExpresion();
-    internal static string MenuStocksTitle = "StocksTitle".GetIPRLocalizationExpresion();
-    internal static string MenuReportsTitle = "ReportsTitle".GetIPRLocalizationExpresion();
+    internal static string MenuIPRBookTitle = "IprBookTitle".GetIPRLocalizationExpression();
+    internal static string MenuIPRClosedBookTitle = "IprClosedBookTitle".GetIPRLocalizationExpression();
+    internal static string MenuIPRBookCustomsOfficeTitle = "IPRBookCustomsOfficeTitle".GetIPRLocalizationExpression();
+    internal static string MenuIPRClosedBookCustomsOfficeTitle = "IPRClosedBookCustomsOfficeTitle".GetIPRLocalizationExpression();
+    internal static string MenuClearanceTitle = "ClearanceTitle".GetIPRLocalizationExpression();
+    internal static string MenuClearanceViewTitle = "ClearanceViewTitle".GetIPRLocalizationExpression();
+    internal static string MenuExportTitle = "ExportTitle".GetIPRLocalizationExpression();
+    internal static string MenuBatchTitle = "BatchTitle".GetIPRLocalizationExpression();
+    internal static string MenuStocksTitle = "StocksTitle".GetIPRLocalizationExpression();
+    internal static string MenuReportsTitle = "ReportsTitle".GetIPRLocalizationExpression();
 
 
     // DashboardsURL
