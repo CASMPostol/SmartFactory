@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class ClearenceWebPartUserControl
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -10,7 +25,6 @@ using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.IPR.Dashboards.Clearance;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
-using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
@@ -19,7 +33,7 @@ using IPRClass = CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR;
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
 {
   /// <summary>
-  /// Clearence Web PartUser Control
+  /// Clearance Web PartUser Control
   /// </summary>
   public partial class ClearenceWebPartUserControl: UserControl
   {
