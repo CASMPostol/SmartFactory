@@ -32,7 +32,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Gets the lookup.
     /// </summary>
     /// <param name="edc">The <see cref="Entities" /> instance.</param>
-    /// <param name="batch">The index of the entry we are lookin for.</param>
+    /// <param name="batch">The index of the entry we are looking for.</param>
     /// <returns>
     /// The most recent <see cref="Batch" /> object.
     /// </returns>

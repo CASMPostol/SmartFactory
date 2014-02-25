@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class StockLibraryEventReceiver
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -91,7 +106,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
             case InputDataValidationException.Result.FatalErrors:
               throw _exc;
           }
-          progressChanged( null, new ProgressChangedEventArgs( 1, "Submiting Changes - Warnings" ) );
+          progressChanged( null, new ProgressChangedEventArgs( 1, "Submitting Changes - Warnings" ) );
           _edc.SubmitChanges();
         }
       }
@@ -102,7 +117,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       }
       catch ( Exception ex )
       {
-        ActivityLogCT.WriteEntry( "Stock xml message import fatal error", ex.Message, url );
+        ActivityLogCT.WriteEntry( "Stock XML message import fatal error", ex.Message, url );
       }
       ActivityLogCT.WriteEntry( m_Source, String.Format( "Import of the stock message {0} finished.", fileName ), url );
     }

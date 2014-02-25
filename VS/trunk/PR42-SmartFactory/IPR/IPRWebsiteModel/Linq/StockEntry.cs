@@ -17,10 +17,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       GetBatchLookup( edc, warnings );
     }
     /// <summary>
-    /// Gets the no maching batcg warning message.
+    /// Gets the no matching batch warning message.
     /// </summary>
     /// <value>
-    /// The no maching batcg warning message.
+    /// The no matching batch warning message.
     /// </value>
     public string NoMachingBatchWarningMessage
     {
@@ -30,10 +30,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
     }
     /// <summary>
-    /// Gets the no maching tobacco warning message.
+    /// Gets the no matching tobacco warning message.
     /// </summary>
     /// <value>
-    /// The no maching tobacco warning message.
+    /// The no matching tobacco warning message.
     /// </value>
     public string NoMachingTobaccoWarningMessage
     {
