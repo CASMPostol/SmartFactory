@@ -187,7 +187,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Features.IPRDashboards
         );
         foreach (SPListItem _li in _wpl.Items)
         {
-          bool _delete = _li.File.Name.StartsWith("ShepherdDashboards");
+          bool _delete = _li.File.Name.StartsWith("IPRDashboards");
           if (_delete)
             _filesToDelete.Add(_li.File);
           string _mess = String.Format("Title: {0}, Name: {1}, File name: {2}, deleted: {3}", _li.Title, _li.Name, _li.File.Name, _delete);
