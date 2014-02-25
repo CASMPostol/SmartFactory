@@ -29,6 +29,8 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
   internal class JSOXLibFactory: JSOXLibFactoryBase
   {
 
+    #region public
+
     #region override
     /// <summary>
     /// Gets the outbound quantity.
@@ -38,16 +40,16 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     /// <param name="start">The start.</param>
     /// <param name="end">The end.</param>
     /// <returns></returns>
-    public override decimal GetOutboundQuantity( Entities entities, JSOXLib parent, out DateTime start, out DateTime end )
+    public override decimal GetOutboundQuantity(Entities entities, JSOXLib parent, out DateTime start, out DateTime end)
     {
       decimal _ret = 0;
       SummaryContentList = new List<JSOXCustomsSummaryContent>();
       start = LinqIPRExtensions.DateTimeMaxValue;
       end = LinqIPRExtensions.DateTimeMinValue;
-      foreach ( Disposal _dspx in Disposal.GetEntries4JSOX( entities, parent ) )
+      foreach (Disposal _dspx in Disposal.GetEntries4JSOX(entities, parent))
       {
-        start = LinqIPRExtensions.Min( start, _dspx.SADDate.GetValueOrDefault( LinqIPRExtensions.DateTimeMaxValue ) );
-        end = LinqIPRExtensions.Max( end, _dspx.SADDate.GetValueOrDefault( LinqIPRExtensions.DateTimeMinValue ) );
+        start = LinqIPRExtensions.Min(start, _dspx.SADDate.GetValueOrDefault(LinqIPRExtensions.DateTimeMaxValue));
+        end = LinqIPRExtensions.Max(end, _dspx.SADDate.GetValueOrDefault(LinqIPRExtensions.DateTimeMinValue));
         JSOXCustomsSummaryContent _new = new JSOXCustomsSummaryContent()
         {
           CompensationGood = _dspx.Disposal2PCNID == null ? "TBD" : _dspx.Disposal2PCNID.CompensationGood,
@@ -62,10 +64,11 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         };
         _ret += _dspx.SettledQuantityDec;
         _dspx.JSOXReportID = parent.Id.Value;
-        SummaryContentList.Add( _new );
+        SummaryContentList.Add(_new);
       }
       return _ret;
     }
+    #endregion
     #endregion
 
     #region internal
@@ -81,6 +84,5 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     #region private
     private JSOXLibFactory() { }
     #endregion
-
   }
 }

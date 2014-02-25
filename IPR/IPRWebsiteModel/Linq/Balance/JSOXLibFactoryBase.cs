@@ -14,6 +14,7 @@
 //</summary>
 
 using System;
+using System.Collections.Generic;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance
 {
@@ -27,7 +28,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance
     /// <summary>
     /// Updates the JSOX report.
     /// </summary>
-    /// <param name="edc">The edc.</param>
+    /// <param name="edc">The <see cref="Entities"/> representing data model.</param>
     /// <param name="previous">The previous report.</param>
     /// <returns></returns>
     public bool CreateJSOXReport( Entities edc, JSOXLib previous )
@@ -38,7 +39,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance
     /// <summary>
     /// Updates the balance report.
     /// </summary>
-    /// <param name="edc">The edc.</param>
+    /// <param name="edc">The <see cref="Entities"/> representing data model.</param>
     /// <returns></returns>
     public bool UpdateBalanceReport( Entities edc )
     {
@@ -72,7 +73,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance
       set { JSOXList.JSOXLibraryReadOnly = value; }
     }
     /// <summary>
-    /// Gets the id.
+    /// Gets the id of the associated <see cref="JSOXLib"/> entry.
     /// </summary>
     /// <value>
     /// The associated <see cref="JSOXLib"/> id.
@@ -84,8 +85,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance
     /// <summary>
     /// Gets the JSOX lib.
     /// </summary>
-    /// <param name="edc">The edc.</param>
-    /// <param name="jsoxLibindex">The jsox libindex.</param>
+    /// <param name="edc">The <see cref="Entities"/> representing data model.</param>
+    /// <param name="jsoxLibindex">The jsox library index.</param>
     protected void GetJSOXLib( Entities edc, int jsoxLibindex )
     {
       this.JSOXList = Element.GetAtIndex<JSOXLib>( edc.JSOXLibrary, jsoxLibindex );

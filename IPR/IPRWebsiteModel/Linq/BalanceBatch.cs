@@ -1,11 +1,29 @@
-﻿using System;
+﻿//<summary>
+//  Title   : class BalanceBatch
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
-  partial class BalanceBatch
+  /// <summary>
+  /// class BalanceBatch
+  /// </summary>
+  public partial class BalanceBatch
   {
 
     #region public

@@ -1,4 +1,19 @@
-﻿using System.Collections.Generic;
+﻿//<summary>
+//  Title   : class StockLib
+//  System  : Microsoft Visual C# .NET 2012
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
@@ -6,7 +21,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   public partial class StockLib
   {
 
-    #region internal
+    #region API
     internal static StockLib Find( Entities edc )
     {
       return ( from _stcx in edc.StockLibrary
@@ -17,7 +32,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void GetInventory( Balance.StockDictionary balanceStock )
     {
-      foreach ( StockEntry _sex in StockEntry )
+      foreach ( StockEntry _sex in StockEntriesList() )
         _sex.GetInventory( balanceStock );
     }
     internal bool Validate( Entities edc, Dictionary<string, IGrouping<string, IPR>> _accountGroups, StockLib library )
@@ -64,6 +79,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       ActivityLogCT.WriteEntry( m_ActivityLogEntryName, _mtmplt );
       return _problems == 0;
     }
+    /// <summary>
+    /// Return of list of stock entries..
+    /// </summary>
+    /// <returns> list of stock entries associated with this <see cref="StockLib"/> entry.</returns>
+    public List<StockEntry> StockEntriesList()
+    {
+      if (m_Entries == null)
+        m_Entries = StockEntry.ToList<StockEntry>();
+      return m_Entries;
+    }
     #endregion
 
     #region private
@@ -72,11 +97,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// List of all IPR finished goods that have not batch associated.
     /// </summary>
     /// <returns>The collection of <see cref="StockEntry" /></returns>
-    private IQueryable<StockEntry> AllIPRFinishedGoods
+    private IEnumerable<StockEntry> AllIPRFinishedGoods
     {
       get
       {
-        return from _sex in this.StockEntry
+        return from _sex in this.StockEntriesList()
                where ( ( _sex.ProductType.Value == ProductType.Cigarette ) || ( _sex.ProductType.Value == ProductType.Cutfiller ) ) && _sex.IPRType.Value
                select _sex;
       }
@@ -85,7 +110,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       get
       {
-        return from _sex in this.StockEntry
+        return from _sex in this.StockEntriesList()
                where _sex.ProductType.Value == ProductType.IPRTobacco
                select _sex;
       }
@@ -108,6 +133,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       return _ret.Values;
     }
+    private List<StockEntry> m_Entries = null;
     #endregion
 
   }
