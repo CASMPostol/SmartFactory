@@ -109,7 +109,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this[DisposalEnum.OverusageInKg] += overuseInKg;
       decimal material = TobaccoQuantityDec - this[DisposalEnum.OverusageInKg];
       if (material < 0)
-        throw new CAS.SmartFactory.IPR.WebsiteModel.IPRDataConsistencyException("Material.IncreaseOveruse", "There is not enought tobacco to correct overuse", null, "Operation has benn aborted");
+        throw new CAS.SmartFactory.IPR.WebsiteModel.IPRDataConsistencyException("Material.IncreaseOveruse", "There is not enough tobacco to correct overuse", null, "Operation has been aborted");
     }
     internal void AdjustTobaccoQuantity(ref decimal totalQuantity, ProgressChangedEventHandler progressChanged)
     {
@@ -117,9 +117,19 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if (Math.Abs(_available - TobaccoQuantityDec) > Settings.MinimalOveruse)
         return;
       totalQuantity += _available - TobaccoQuantityDec;
+      decimal _startingTobaccoQuantity = this.TobaccoQuantityDec;
       this.TobaccoQuantityDec = _available;
-      string _tmpl = "Adjusted TobaccoQuantity of material: batch {0} IPR: {1}";
-      Warnning _warnning = new Warnning(String.Format(_tmpl, this.Batch, Accounts2Dispose[0].DocumentNo), false);
+      Warnning _warnning = null;
+      if (Accounts2Dispose.Count > 0)
+      {
+        string _tmpl = "Adjusted TobaccoQuantity of material: batch {0} IPR: {1}";
+        _warnning = new Warnning(String.Format(_tmpl, this.Batch, String.Concat(Accounts2Dispose.Select<IPR, string>(x => x.DocumentNo))), false);
+      }
+      else
+      {
+        string _tmpl = "Cleared TobaccoQuantity of {0} for the material: batch {1} because no account to adjust found.";
+        _warnning = new Warnning(String.Format(_tmpl, _startingTobaccoQuantity, this.Batch), false);
+      }
       progressChanged(this, new ProgressChangedEventArgs(1, _warnning));
     }
     /// <summary>
