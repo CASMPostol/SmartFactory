@@ -52,7 +52,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           At = "SubmitChanges";
           _edc.SubmitChanges();
           foreach ( Warnning _wrnngx in m_Warnings )
-            ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( "Import of the batch warnning: {0}", _wrnngx.Message ) );
+            ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( "Import of the batch warning: {0}", _wrnngx.Message ) );
           ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( "Import of the batch {0} message finished", _properties.ListItem.File.Name ) );
         }
       }
