@@ -103,6 +103,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CASSmartFactoryCW.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Resources\CASSmartFactoryCWCode.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CASSmartFactoryCWCode.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Resources\CASSmartFactoryCWCode.en-US.resx" />
+    <Content Include="Resources\CASSmartFactoryCWCode.pl-PL.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -196,6 +196,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CommonDefinition.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Features\CWDashboards\CWDashboards.EventReceiver.cs">
+      <DependentUpon>CWDashboards.feature</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalDefinitions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -216,6 +221,7 @@
       <DependentUpon>SilverlightExceptionScript.tt</DependentUpon>
     </Compile>
     <Compile Include="Silverlight\SilverlightExceptionScript.tt.cs" />
+    <Compile Include="WebPartPagesCW\ProjectElementManagement.cs" />
     <Compile Include="Webparts\CheckListHost\CheckListHost.cs" />
     <Compile Include="Webparts\CheckListHost\CheckListWebPartDataContract.cs" />
     <Compile Include="Webparts\CheckListHost\CheckListWebPartDataContract.static.cs" />
