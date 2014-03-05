@@ -38,6 +38,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Features.CWDashboards
           _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuCWBookClosedTitle, ProjectElementManagement.URLCWBookClosedDashboard));
           _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuCWBookCustomsOfficeTitle, ProjectElementManagement.URLCWBookCustomsOfficeDashboard));
           _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuCWBookClosedCustomsOfficeTitle, ProjectElementManagement.URLCWBookClosedCustomsOfficeDashboard));
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuCheckListExitSheetTitle, ProjectElementManagement.URLCheckListExitSheetDashboard));
           _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSupplementCWBookTitle, ProjectElementManagement.URLSupplementCWBookDashboard));
           _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSupplementWZNoTitle, ProjectElementManagement.URLSupplementWZNoDashboard));
           _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuDisposalRequestTitle, ProjectElementManagement.URLDisposalRequestDashboard));
