@@ -192,14 +192,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
               break;
             CurrentShipping.StartTime = _ts.StartTime;
             CurrentShipping.ShippingState = ShippingState.Confirmed;
+            CurrentShipping.TruckAwaiting = false;
             CurrentShipping.CalculateState(EDC, x => { });
             EDC.SubmitChanges();
             break;
-          case ShippingState.Confirmed:
           case ShippingState.Creation:
+          case ShippingState.Confirmed:
           case ShippingState.Delayed:
           case ShippingState.WaitingForCarrierData:
           case ShippingState.WaitingForConfirmation:
+            if (CurrentShipping.TruckAwaiting.GetValueOrDefault(true))
+            CurrentShipping.TruckAwaiting = false;
+            CurrentShipping.CalculateState(EDC, x => { });
+            EDC.SubmitChanges();
+            break;          
           case ShippingState.None:
           case ShippingState.Invalid:
           case ShippingState.Canceled:
