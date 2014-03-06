@@ -193,7 +193,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
     {
       form.Ingredients = ingredients.OrderBy(x =>  { 
                                                       IPRIngredient y = x as IPRIngredient;
-                                                      if (x == null)
+                                                      if (y == null)
                                                         return " ";
                                                       else
                                                         return y.DocumentNoumber;
