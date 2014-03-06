@@ -189,10 +189,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         throw new ApplicationError("Material.Export", _at, String.Format(_tmpl, material.Material2BatchIndex.Title, _ex.Message), _ex);
       }
     }
-
     private static void CountExportFormTotals(List<Ingredient> ingredients, CigaretteExportForm form)
     {
-      form.Ingredients = ingredients.OrderBy(x => x.TobaccoBatch).ToArray();
+      form.Ingredients = ingredients.OrderBy(x =>  { 
+                                                      IPRIngredient y = x as IPRIngredient;
+                                                      if (x == null)
+                                                        return " ";
+                                                      else
+                                                        return y.DocumentNoumber;
+                                                    }).ToArray();
       form.IPTMaterialQuantityTotal = 0;
       form.RegularMaterialQuantityTotal = 0;
       form.IPTDutyVatTotals = new TotalAmountOfMoney();
