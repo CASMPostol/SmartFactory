@@ -1,13 +1,12 @@
-﻿
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("IPR Website")]
-[assembly: AssemblyDescription("IPR Website Collection Definitions")]
+[assembly: AssemblyTitle("Common Assembly")]
+[assembly: AssemblyDescription("Smart Factory IPR and CW Common Assembly")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("Smart Factory")]
@@ -21,18 +20,8 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("65cefe18-d7fb-4189-ac46-5acfd7be80d8")]
+[assembly: Guid("a125a86e-1502-4abc-b858-d167f0bd4a13")]
 
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("2.00.20.*")]
 [assembly: AssemblyFileVersion("2.00.20")]
 
