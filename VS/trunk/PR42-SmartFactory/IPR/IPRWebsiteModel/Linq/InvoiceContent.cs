@@ -37,7 +37,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           continue;
         Material _mtrl = _dsp.Disposal2MaterialIndex;
         decimal _2Add = _mtrl.CalculatedQuantity( this ) - _gx.Sum<Disposal>( v => v.SettledQuantityDec );
-        //TODO it could cause the closed accounts will have account balance != 0 
+        //TODO it could cause that the closed IPR accounts will have account balance != 0 
         //TODO if current settled quantity < previous value it could also cause that old account will have holes that makes them difficult to be closed.
         IEnumerable<Disposal> _sorted = from _dx in _gx
                                         orderby _dx.SettledQuantityDec ascending
