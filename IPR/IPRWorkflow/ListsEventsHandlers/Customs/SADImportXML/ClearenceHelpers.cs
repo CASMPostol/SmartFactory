@@ -272,17 +272,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
           continue;
         int? _cleranceInt = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( _rdx.Number, pattern );
         if ( !_cleranceInt.HasValue )
-        {
-          string _template = "Wrong pattern of the required document code={0} for customs document = {1}/ref={2}";
-          throw new InputDataValidationException(
-            String.Format( _template, _rdx.Number, good.SADDocumentIndex.DocumentNumber, good.SADDocumentIndex.ReferenceNumber ),
-            "SAD Required Documents",
-            "clear through customs fatal error", true );
-        }
-        Clearence _clearance = null;
+          continue;
         if ( _cleranceInt.HasValue )
         {
-          _clearance = Element.GetAtIndex<Clearence>( entities.Clearence, _cleranceInt.Value );
+          Clearence _clearance = Element.GetAtIndex<Clearence>( entities.Clearence, _cleranceInt.Value );
           _ret.Add( _clearance );
         }
         else
