@@ -79,7 +79,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       {
         Debug.Assert(_timeSlot.StartTime.HasValue, "TimeSlot StartTime has to have Value");
         DateTime _tdy = _timeSlot.StartTime.Value.Date;
-        List<TimeSlotTimeSlot> _avlblTmslts = (from _tsidx in EDC.TimeSlot
+        List<TimeSlotTimeSlot> _avlblTmslts = (from _tsidx in EDC.TimeSlot.ToList()
                                                let _idx = _tsidx.StartTime.Value.Date
                                                where _tsidx.Occupied.GetValueOrDefault(Entities.Occupied.None) == Entities.Occupied.Free &&
                                                      _idx >= _tdy &&
