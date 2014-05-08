@@ -79,13 +79,13 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       {
         Debug.Assert(_timeSlot.StartTime.HasValue, "TimeSlot StartTime has to have Value");
         DateTime _tdy = _timeSlot.StartTime.Value.Date;
-        List<TimeSlotTimeSlot> _avlblTmslts = (from _tsidx in EDC.TimeSlot.ToList()
+        List<TimeSlotTimeSlot> _avlblTmslts = (from _tsidx in EDC.TimeSlot
                                                let _idx = _tsidx.StartTime.Value.Date
                                                where _tsidx.Occupied.GetValueOrDefault(Entities.Occupied.None) == Entities.Occupied.Free &&
                                                      _idx >= _tdy &&
                                                      _idx <= _tdy.AddDays(1)
                                                orderby _tsidx.StartTime ascending
-                                               select _tsidx).Where<TimeSlotTimeSlot>(x => x.TimeSlot2ShippingPointLookup == _timeSlot.TimeSlot2ShippingPointLookup).ToList<TimeSlotTimeSlot>();
+                                               select _tsidx ).ToList<TimeSlotTimeSlot>().Where<TimeSlotTimeSlot>( x => x.TimeSlot2ShippingPointLookup == _timeSlot.TimeSlot2ShippingPointLookup ).ToList<TimeSlotTimeSlot>();
         TimeSlotTimeSlot _next = FindAdjacent(_avlblTmslts, _timeSlot);
         _ret.Add(_next);
         _next.Occupied = Entities.Occupied.Occupied0;
