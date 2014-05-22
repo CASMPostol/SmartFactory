@@ -49,11 +49,11 @@
   <ItemGroup>
     <Reference Include="CAS.Customs, Version=2.0.0.22658, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\CommonBinaries\PR42-SmartFactory\CAS.Customs.2.0.0.22658\CAS.Customs.dll</HintPath>
+      <HintPath>..\..\..\..\CommonBinaries\PR42-SmartFactory\CAS.Customs.dll</HintPath>
     </Reference>
-    <Reference Include="CAS.SharePoint, Version=1.70.21.26511, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
+    <Reference Include="CAS.SharePoint, Version=2.0.21.13087, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll</HintPath>
+      <HintPath>..\..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
