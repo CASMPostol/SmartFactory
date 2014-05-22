@@ -69,13 +69,9 @@
     <Compile Include="XMLResourcesTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
+    <ProjectReference Include="..\..\..\..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
       <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
       <Name>SharePoint</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Interoperability\Interoperability.csproj">
-      <Project>{bbc177df-cd0c-4fdf-9e78-41f2ce4faf52}</Project>
-      <Name>Interoperability</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
