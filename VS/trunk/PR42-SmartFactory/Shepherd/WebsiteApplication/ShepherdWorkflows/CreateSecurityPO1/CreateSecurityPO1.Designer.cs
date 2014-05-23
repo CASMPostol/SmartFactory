@@ -12,7 +12,7 @@ using System.Workflow.Runtime;
 using System.Workflow.Activities;
 using System.Workflow.Activities.Rules;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO1
+namespace CAS.SmartFactory.Shepherd.Workflows.CreateSecurityPO1
 {
   public sealed partial class CreateSecurityPO1
   {

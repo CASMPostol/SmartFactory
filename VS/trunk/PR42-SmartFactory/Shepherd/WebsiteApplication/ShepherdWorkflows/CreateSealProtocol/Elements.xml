@@ -9,7 +9,7 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
      Name="CreateSealProtocol"
      Description="Create Seal Protocol"
      Id="dddc274f-d1ff-4613-834a-548546f527aa"
-     CodeBesideClass="CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol.CreateSealProtocol"
+     CodeBesideClass="CAS.SmartFactory.Shepherd.Workflows.CreateSealProtocol.CreateSealProtocol"
      CodeBesideAssembly="$assemblyname$">
     <Categories/>
     <MetaData>

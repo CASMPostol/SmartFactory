@@ -1,5 +1,5 @@
 ﻿
-namespace CAS.SmartFactory.Shepherd.SendNotification
+namespace CAS.SmartFactory.Shepherd.Workflows
 {
   internal static class CommonDefinition
   {

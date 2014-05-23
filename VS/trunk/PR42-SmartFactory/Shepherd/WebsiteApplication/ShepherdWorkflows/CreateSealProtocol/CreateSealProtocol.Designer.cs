@@ -12,7 +12,7 @@ using System.Workflow.Runtime;
 using System.Workflow.Activities;
 using System.Workflow.Activities.Rules;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
+namespace CAS.SmartFactory.Shepherd.Workflows.CreateSealProtocol
 {
   public sealed partial class CreateSealProtocol
   {

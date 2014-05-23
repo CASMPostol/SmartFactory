@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots {
+namespace CAS.SmartFactory.Shepherd.Workflows.AddTimeSlots {
     
     
     public partial class AddTimeSlotsInitiationForm {

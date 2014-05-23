@@ -9,7 +9,7 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
      Name="AddTimeSlots"
      Description="Adds Time Slots according to the selected template."
      Id="2e240fb3-f93c-4b87-9170-b5443815793b"
-     CodeBesideClass="CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots.AddTimeSlots"
+     CodeBesideClass="CAS.SmartFactory.Shepherd.Workflows.AddTimeSlots.AddTimeSlots"
      CodeBesideAssembly="$assemblyname$" InstantiationUrl="_layouts/SendNotification/AddTimeSlots/AddTimeSlotsInitiationForm.aspx">
     <Categories/>
     <MetaData>

@@ -5,7 +5,7 @@ using System.Text;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
+namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
 {
   internal interface IPurchaseOrderTemplate : IEmailGrnerator
   {

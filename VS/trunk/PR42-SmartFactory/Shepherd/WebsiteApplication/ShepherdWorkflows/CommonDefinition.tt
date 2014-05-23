@@ -1,7 +1,7 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
 
-namespace CAS.SmartFactory.Shepherd.SendNotification
+namespace CAS.SmartFactory.Shepherd.Workflows
 {
   internal static class CommonDefinition
   {

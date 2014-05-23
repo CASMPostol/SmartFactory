@@ -4,7 +4,7 @@ using System.Web.UI.WebControls;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint.Utilities;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification
+namespace CAS.SmartFactory.Shepherd.Workflows
 {
   public static class Extensions
   {

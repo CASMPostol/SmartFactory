@@ -17,10 +17,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Workflow.Activities;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
-using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
+using CAS.SmartFactory.Shepherd.Workflows.WorkflowData;
 using Microsoft.SharePoint.Workflow;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
+namespace CAS.SmartFactory.Shepherd.Workflows.AddTimeSlots
 {
   /// <summary>
   /// AddTimeSlots workflow

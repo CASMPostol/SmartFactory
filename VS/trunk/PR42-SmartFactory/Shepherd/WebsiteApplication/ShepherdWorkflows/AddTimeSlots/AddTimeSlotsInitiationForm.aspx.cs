@@ -15,13 +15,13 @@
 using System;
 using System.Web;
 using System.Web.UI;
-using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
+using CAS.SmartFactory.Shepherd.Workflows.WorkflowData;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
 using Microsoft.SharePoint.Workflow;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
+namespace CAS.SmartFactory.Shepherd.Workflows.AddTimeSlots
 {
   /// <summary>
   /// AddTimeSlotsInitiationForm

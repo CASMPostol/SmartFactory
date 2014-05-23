@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries
+namespace CAS.SmartFactory.Shepherd.Workflows.ImportDictionaries
 {
   internal static class Definitions
   {

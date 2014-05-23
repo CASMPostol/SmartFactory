@@ -12,7 +12,7 @@ using System.Workflow.Runtime;
 using System.Workflow.Activities;
 using System.Workflow.Activities.Rules;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries
+namespace CAS.SmartFactory.Shepherd.Workflows.ImportDictionaries
 {
   public sealed partial class ImportDictionaries
   {

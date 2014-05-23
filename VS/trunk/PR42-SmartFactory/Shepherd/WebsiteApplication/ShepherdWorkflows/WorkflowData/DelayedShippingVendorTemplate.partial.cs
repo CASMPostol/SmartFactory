@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
+namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
 {
   public partial class DelayedShippingVendorTemplate : IEmailGrnerator
   {

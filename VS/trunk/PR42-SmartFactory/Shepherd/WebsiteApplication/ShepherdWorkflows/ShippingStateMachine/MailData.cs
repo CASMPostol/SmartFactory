@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
+namespace CAS.SmartFactory.Shepherd.Workflows.ShippingStateMachine
 {
   [Serializable]
   internal class MailData
