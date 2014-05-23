@@ -57,7 +57,7 @@
     <Compile Include="CheckListWebPartDataContractUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CWDashboards\CWDashboards.csproj">
+    <ProjectReference Include="..\..\..\..\WebsiteApplication\CWDashboards\CWDashboards.csproj">
       <Project>{19649fcb-22b6-428a-9b59-d53ef86ece80}</Project>
       <Name>CWDashboards</Name>
     </ProjectReference>

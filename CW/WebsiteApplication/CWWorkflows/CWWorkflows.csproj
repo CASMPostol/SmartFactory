@@ -42,11 +42,11 @@
   <ItemGroup>
     <Reference Include="CAS.Customs, Version=2.0.0.22658, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\CommonBinaries\PR42-SmartFactory\CAS.Customs.dll</HintPath>
+      <HintPath>..\..\..\..\CommonBinaries\PR42-SmartFactory\CAS.Customs.dll</HintPath>
     </Reference>
-    <Reference Include="CAS.SharePoint, Version=1.70.21.26511, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
+    <Reference Include="CAS.SharePoint, Version=2.0.21.13087, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll</HintPath>
+      <HintPath>..\..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SharePoint.WorkflowActions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
@@ -110,16 +110,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CWInteroperability\CWInteroperability.csproj">
-      <Project>{f0416078-82cd-4f9d-905c-1e346198759a}</Project>
-      <Name>CWInteroperability</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CWWebsiteModel\CWWebsiteModel.csproj">
-      <Project>{28191aa2-5bff-4d48-a7ad-b10c83044e3c}</Project>
-      <Name>CWWebsiteModel</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="CustomsWarehouseList\BinCard\BinCard.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -159,7 +149,16 @@
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CWInteroperability\CWInteroperability.csproj">
+      <Project>{f0416078-82cd-4f9d-905c-1e346198759a}</Project>
+      <Name>CWInteroperability</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CWWebsiteModel\CWWebsiteModel.csproj">
+      <Project>{28191aa2-5bff-4d48-a7ad-b10c83044e3c}</Project>
+      <Name>CWWebsiteModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
