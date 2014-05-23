@@ -12,7 +12,7 @@ using System.Workflow.Runtime;
 using System.Workflow.Activities;
 using System.Workflow.Activities.Rules;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
+namespace CAS.SmartFactory.Shepherd.Workflows.AddTimeSlots
 {
   public sealed partial class AddTimeSlots
   {

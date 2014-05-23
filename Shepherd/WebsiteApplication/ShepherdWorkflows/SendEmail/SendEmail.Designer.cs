@@ -12,7 +12,7 @@ using System.Workflow.Runtime;
 using System.Workflow.Activities;
 using System.Workflow.Activities.Rules;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
+namespace CAS.SmartFactory.Shepherd.Workflows.SendEmail
 {
   public sealed partial class SendEmail
   {

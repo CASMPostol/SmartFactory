@@ -8,7 +8,7 @@ using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using CAS.SmartFactory.Shepherd.DataModel.ImportDataModel;
 using Microsoft.SharePoint.Workflow;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries
+namespace CAS.SmartFactory.Shepherd.Workflows.ImportDictionaries
 {
   public sealed partial class ImportDictionaries : SequentialWorkflowActivity
   {

@@ -3,11 +3,11 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Xml.Serialization;
-using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
+using CAS.SmartFactory.Shepherd.Workflows.WorkflowData;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.Features
+namespace CAS.SmartFactory.Shepherd.Workflows.Features
 {
   /// <summary>
   /// This class handles events raised during feature activation, deactivation, installation, uninstallation, and upgrade.

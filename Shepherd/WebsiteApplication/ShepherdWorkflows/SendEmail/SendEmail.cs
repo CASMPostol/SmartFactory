@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Workflow.Activities;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
-using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
+using CAS.SmartFactory.Shepherd.Workflows.WorkflowData;
 using Microsoft.SharePoint.Workflow;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
+namespace CAS.SmartFactory.Shepherd.Workflows.SendEmail
 {
   public sealed partial class SendEmail : SequentialWorkflowActivity
   {

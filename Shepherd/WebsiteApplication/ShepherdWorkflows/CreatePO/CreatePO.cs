@@ -5,7 +5,7 @@ using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
+namespace CAS.SmartFactory.Shepherd.Workflows.CreatePO
 {
   public sealed partial class CreatePO: SequentialWorkflowActivity
   {

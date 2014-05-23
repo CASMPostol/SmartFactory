@@ -3,7 +3,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using Microsoft.SharePoint;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification
+namespace CAS.SmartFactory.Shepherd.Workflows
 {
   internal static class OpenXMLHelpers
   {

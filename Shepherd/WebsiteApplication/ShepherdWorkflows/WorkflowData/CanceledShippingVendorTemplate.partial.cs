@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
+namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
 {
   public partial class CanceledShippingVendorTemplate : IEmailGrnerator
   {

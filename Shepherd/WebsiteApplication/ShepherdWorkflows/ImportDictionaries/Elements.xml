@@ -9,7 +9,7 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
      Name="ImportDictionaries"
      Description="Import data to dictionaries."
      Id="889555fc-cf88-4c9c-ba0a-c0f6496cb109"
-     CodeBesideClass="CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries.ImportDictionaries"
+     CodeBesideClass="CAS.SmartFactory.Shepherd.Workflows.ImportDictionaries.ImportDictionaries"
      CodeBesideAssembly="$assemblyname$">
     <Categories/>
     <MetaData>

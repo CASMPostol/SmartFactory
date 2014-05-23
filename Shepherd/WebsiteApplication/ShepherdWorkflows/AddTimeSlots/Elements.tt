@@ -11,7 +11,7 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
      Name="<#= AddTimeSlots_Name #>"
      Description="<#= AddTimeSlots_Description #>"
      Id="<#=AddTimeSlots_ID#>"
-     CodeBesideClass="CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots.AddTimeSlots"
+     CodeBesideClass="CAS.SmartFactory.Shepherd.Workflows.AddTimeSlots.AddTimeSlots"
      CodeBesideAssembly="$assemblyname$" InstantiationUrl="_layouts/SendNotification/AddTimeSlots/AddTimeSlotsInitiationForm.aspx">
     <Categories/>
     <MetaData>

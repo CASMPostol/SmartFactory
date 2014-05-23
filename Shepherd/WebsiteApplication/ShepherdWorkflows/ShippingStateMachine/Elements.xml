@@ -8,7 +8,7 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
      Name="ShippingStateMachine"
      Description="Shipping State Machine Workflow"
      Id="cd61e1a0-3401-40f9-9eb1-c7428f6f2516"
-     CodeBesideClass="CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine"
+     CodeBesideClass="CAS.SmartFactory.Shepherd.Workflows.ShippingStateMachine.ShippingStateMachine"
      CodeBesideAssembly="$assemblyname$">
     <Categories/>
     <MetaData>

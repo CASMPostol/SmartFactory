@@ -11,7 +11,7 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
      Name="<#= ImportDictionaries_Name #>"
      Description="<#= ImportDictionaries_Description #>"
      Id="<#= ImportDictionaries_ID #>"
-     CodeBesideClass="CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries.ImportDictionaries"
+     CodeBesideClass="CAS.SmartFactory.Shepherd.Workflows.ImportDictionaries.ImportDictionaries"
      CodeBesideAssembly="$assemblyname$">
     <Categories/>
     <MetaData>

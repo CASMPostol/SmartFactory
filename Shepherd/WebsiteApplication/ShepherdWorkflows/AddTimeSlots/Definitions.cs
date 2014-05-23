@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
+namespace CAS.SmartFactory.Shepherd.Workflows.AddTimeSlots
 {
   internal static class Definitions
   {

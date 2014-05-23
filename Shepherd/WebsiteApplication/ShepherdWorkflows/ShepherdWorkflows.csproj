@@ -125,8 +125,8 @@
       <DependentUpon>CreateSecurityPO1.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions.cs" />
-    <Compile Include="Features\SendNotification\SendNotification.EventReceiver.cs">
-      <DependentUpon>SendNotification.feature</DependentUpon>
+    <Compile Include="Features\Workflows\Workflows.EventReceiver.cs">
+      <DependentUpon>Workflows.feature</DependentUpon>
     </Compile>
     <Compile Include="ImportDictionaries\Definitions.cs">
       <AutoGen>True</AutoGen>
@@ -230,6 +230,9 @@
     <None Include="CreateSecurityPO1\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{38cea048-1e1a-4e41-8780-7fc16d1f17c0}</SharePointProjectItemId>
     </None>
+    <None Include="Features\Workflows\Workflows.feature">
+      <FeatureId>{ba19c4a6-34af-445e-9709-76d26a7ce2b3}</FeatureId>
+    </None>
     <None Include="ImportDictionaries\Definitions.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Definitions.cs</LastGenOutput>
@@ -299,12 +302,6 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
-    <None Include="Features\SendNotification\SendNotification.feature">
-      <FeatureId>{6473649e-0532-41e9-bd87-e9882dd16c76}</FeatureId>
-    </None>
-    <None Include="Features\SendNotification\SendNotification.Template.xml">
-      <DependentUpon>SendNotification.feature</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddTimeSlots\AddTimeSlotsInitiationForm.aspx">
@@ -325,6 +322,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="CreateSecurityPO1\Elements.xml" />
+    <Content Include="Features\Workflows\Workflows.Template.xml">
+      <DependentUpon>Workflows.feature</DependentUpon>
+    </Content>
     <Content Include="ImportDictionaries\Elements.xml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

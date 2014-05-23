@@ -3,7 +3,7 @@ using System.Linq;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
+namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
 {
   public partial class FreightPurchaseOrderTemplate : IPurchaseOrderTemplate
   {

@@ -6,7 +6,7 @@ using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
+namespace CAS.SmartFactory.Shepherd.Workflows.CreateSealProtocol
 {
   public sealed partial class CreateSealProtocol : SequentialWorkflowActivity
   {

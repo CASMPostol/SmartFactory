@@ -9,7 +9,7 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
      Name="CreatePO"
      Description="Create Freight Purchae Order"
      Id="54732fdd-0178-406a-aae1-7fdfb11ed7e7"
-     CodeBesideClass="CAS.SmartFactory.Shepherd.SendNotification.CreatePO.CreatePO"
+     CodeBesideClass="CAS.SmartFactory.Shepherd.Workflows.CreatePO.CreatePO"
      CodeBesideAssembly="$assemblyname$">
     <Categories/>
     <MetaData>

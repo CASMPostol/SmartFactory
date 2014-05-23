@@ -21,11 +21,11 @@ using System.Linq;
 using System.Workflow.Activities;
 using System.Workflow.ComponentModel;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
-using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
+using CAS.SmartFactory.Shepherd.Workflows.WorkflowData;
 using Microsoft.SharePoint.Linq;
 using Microsoft.SharePoint.Workflow;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
+namespace CAS.SmartFactory.Shepherd.Workflows.ShippingStateMachine
 {
   /// <summary>
   /// partial class ShippingStateMachine
@@ -602,7 +602,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void SendingEmailsReplicator_Initialized(object sender, EventArgs e) { }
 
     #region InitialChildData
-    public static DependencyProperty SendingEmailsReplicator_InitialChildDataProperty = DependencyProperty.Register("SendingEmailsReplicator_InitialChildData", typeof(System.Collections.IList), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
+    public static DependencyProperty SendingEmailsReplicator_InitialChildDataProperty = DependencyProperty.Register("SendingEmailsReplicator_InitialChildData", typeof(System.Collections.IList), typeof(CAS.SmartFactory.Shepherd.Workflows.ShippingStateMachine.ShippingStateMachine));
     [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
     [BrowsableAttribute(true)]
     [CategoryAttribute("Properties")]
@@ -610,11 +610,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       get
       {
-        return ((System.Collections.IList)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.SendingEmailsReplicator_InitialChildDataProperty)));
+        return ((System.Collections.IList)(base.GetValue(CAS.SmartFactory.Shepherd.Workflows.ShippingStateMachine.ShippingStateMachine.SendingEmailsReplicator_InitialChildDataProperty)));
       }
       set
       {
-        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.SendingEmailsReplicator_InitialChildDataProperty, value);
+        base.SetValue(CAS.SmartFactory.Shepherd.Workflows.ShippingStateMachine.ShippingStateMachine.SendingEmailsReplicator_InitialChildDataProperty, value);
       }
     }
     #endregion

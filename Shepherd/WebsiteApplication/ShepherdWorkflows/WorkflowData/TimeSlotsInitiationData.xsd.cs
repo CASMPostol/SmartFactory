@@ -21,7 +21,7 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Xml;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
+namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
 {
   /// <summary>
   /// Time Slots Initiation Data class

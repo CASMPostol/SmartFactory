@@ -20,7 +20,7 @@
 <%@ Page Language="C#" 
     DynamicMasterPageFile="~masterurl/default.master" 
     AutoEventWireup="true" 
-    Inherits="CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots.AddTimeSlotsInitiationForm" 
+    Inherits="CAS.SmartFactory.Shepherd.Workflows.AddTimeSlots.AddTimeSlotsInitiationForm" 
     CodeBehind="AddTimeSlotsInitiationForm.aspx.cs" %>
 
 <asp:Content ID="PageHead" ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
