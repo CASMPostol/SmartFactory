@@ -87,10 +87,6 @@
     <None Include="Test References\CAS.IPRDashboards.accessor" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
-      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
-      <Name>SharePoint</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IPRDashboards\IPRDashboards.csproj">
       <Project>{10dc0388-a989-4061-b680-7fe4ffc711a0}</Project>
       <Name>IPRDashboards</Name>

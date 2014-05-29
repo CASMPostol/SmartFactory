@@ -63,12 +63,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\PR44-SharePoint\SharePointLinqClient\SharePointLinqClient.csproj">
-      <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
-      <Name>SharePointLinqClient</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="cas.snk" />
     <None Include="Properties\AssemblyInfo.tt">
@@ -78,6 +72,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\PR44-SharePoint\Libraries\SharePointLinqClient\SharePointLinqClient.csproj">
+      <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
+      <Name>SharePointLinqClient</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

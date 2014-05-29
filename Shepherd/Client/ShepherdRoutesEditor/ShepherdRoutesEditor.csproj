@@ -217,16 +217,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\PR44-SharePoint\SharePointLinqClient\SharePointLinqClient.csproj">
-      <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
-      <Name>SharePointLinqClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
-      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
-      <Name>SharePoint</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\ico.png" />
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +233,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\PR44-SharePoint\Libraries\SharePointLinqClient\SharePointLinqClient.csproj">
+      <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
+      <Name>SharePointLinqClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\PR44-SharePoint\Libraries\SharePoint\SharePoint.csproj">
+      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
+      <Name>SharePoint</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\PR44-SharePoint\Tools\SPExplorer\SPExplorer.csproj">
+      <Project>{66abd095-6b8f-411d-9bcf-744287833269}</Project>
+      <Name>SPExplorer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
