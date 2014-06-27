@@ -4,8 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="CAS.SmartFactory.IPR.Client.UserInterface.MainWindow"
         Title="CAS SmartFactory IPR" Height="600" Width="800"
          Loaded="Window_Loaded"  >
-	<DockPanel LastChildFill="True">
-		<ToolBar DockPanel.Dock="Bottom" Header="State: "  ToolTip="Information about the application and progress.">
+        
+        <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File" IsEnabled="False">
+                <MenuItem Header="Import data model" Command="{Binding ImportDataModel}" />
+                <MenuItem Header="Save model" Command="{Binding SaveDataModel}" />
+                <MenuItem Header="Save SQL script" Command="{Binding SaveSQLScript}" />
+            </MenuItem>
+            <MenuItem Header="Edit" IsEnabled="False" />
+            <MenuItem Header="Help" IsEnabled="False" />
+        </Menu>          
+        <ToolBar DockPanel.Dock="Bottom" Header="State: "  ToolTip="Information about the application and progress.">
 			<Label x:Name="x_ToolBarURLLabel" ContentStringFormat="URL: {0}" Content="unavailable" />
 			<ProgressBar x:Name="x_ProgressBar" Width="300" Maximum="100" Minimum="0" />
 		</ToolBar>
@@ -15,7 +25,22 @@
 			<Button x:Name="x_ButtonRun" Width="100" Margin="5,0,0,0" Content="OK" />
 			<Button x:Name="x_ButtonCancel" Width="100" Margin="5,0,0,0" Content="Cancel" />
 		</StackPanel>
-		<TabControl x:Name="x_TabControlContent" Margin="0" >
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0">
+                <Label Content="SharePoint webiste:" />
+                <TextBox Text="{Binding URL, Mode=TwoWay}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch"  />
+                <Label Content="SQL Server:" />
+                <TextBox Text="{Binding DatabaseName, Mode=TwoWay}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch"  />
+                <Label Content="Archive IPR [days]" />
+                <TextBox Text="{Binding URL, Mode=TwoWay}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch"  />
+            </StackPanel>
+            <ListView x:Name="x_ListBox" ItemsSource="{Binding Messages}" Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        </Grid>
+        <!--<TabControl x:Name="x_TabControlContent" Margin="0" >
 			<TabItem x:Name="x_TabItemSetupDialog" Header="Setup" HorizontalAlignment="Left" VerticalAlignment="Top" >
 				<Grid VerticalAlignment="Top" Margin="0,0,5,0" >
 					<Grid.RowDefinitions>
@@ -47,6 +72,6 @@
 			<TabItem x:Name="x_TabItemMonitorListBox" Header="ListBox" HorizontalAlignment="Left" VerticalAlignment="Top">
 				<ListBox x:Name="x_ListBox" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="475" Margin="0,0,0,0" Width="780"/>
 			</TabItem>
-		</TabControl>
+		</TabControl>-->
 	</DockPanel>
 </Window>
