@@ -102,37 +102,37 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
       x_ButtonGoBackward.Click += m_StateMAchine.ButtonGoBackward_Click;
       x_ButtonGoForward.Click += m_StateMAchine.ButtonGoForward_Click;
       x_ButtonRun.Click += m_StateMAchine.ButtonRun_Click;
-      x_TabControlContent.Items.Clear();
+      //x_TabControlContent.Items.Clear();
       AbstractMachine.SetupDataDialogMachine.Get().Entered += SetupDataDialogMachine_Entered;
       AbstractMachine.SetupDataDialogMachine.Get().Exiting += SetupDataDialogMachine_Exiting;
       m_StateMAchine.OpenEntryState();
     }
     private void SetupDataDialogMachine_Exiting(object sender, EventArgs e)
     {
-      Properties.Settings.Default.DoActivate1800 = x_CheckBoxActivateRel182.IsChecked.GetValueOrDefault(false);
-      Properties.Settings.Default.DoArchiveIPR = x_CheckBoxArchiveIPRAccounts.IsChecked.GetValueOrDefault(false);
-      Properties.Settings.Default.DoArchiveBatch = x_CheckBoxArchiveBatch.IsChecked.GetValueOrDefault(false);
-      Properties.Settings.Default.ArchiveIPRDelay = int.Parse(x_TextBoxIPRAccountArchivalDelay.Text);
-      Properties.Settings.Default.ArchiveBatchDelay = int.Parse(x_TextBoxBatchArchivalDelay.Text);
-      Properties.Settings.Default.SiteURL = x_TextBoxURL.Text;
+      //Properties.Settings.Default.DoActivate1800 = x_CheckBoxActivateRel182.IsChecked.GetValueOrDefault(false);
+      //Properties.Settings.Default.DoArchiveIPR = x_CheckBoxArchiveIPRAccounts.IsChecked.GetValueOrDefault(false);
+      //Properties.Settings.Default.DoArchiveBatch = x_CheckBoxArchiveBatch.IsChecked.GetValueOrDefault(false);
+      //Properties.Settings.Default.ArchiveIPRDelay = int.Parse(x_TextBoxIPRAccountArchivalDelay.Text);
+      //Properties.Settings.Default.ArchiveBatchDelay = int.Parse(x_TextBoxBatchArchivalDelay.Text);
+      //Properties.Settings.Default.SiteURL = x_TextBoxURL.Text;
       Properties.Settings.Default.Save();
       x_ToolBarURLLabel.Content = Properties.Settings.Default.SiteURL;
-      x_TabControlContent.Items.Clear();
-      x_TabControlContent.Items.Add(x_TabItemMonitorListBox);
-      x_TextBoxURL.Text = Properties.Settings.Default.SiteURL;
-      x_TabItemMonitorListBox.Focus();
+      //x_TabControlContent.Items.Clear();
+      //x_TabControlContent.Items.Add(x_TabItemMonitorListBox);
+      //x_TextBoxURL.Text = Properties.Settings.Default.SiteURL;
+      //x_TabItemMonitorListBox.Focus();
     }
     private void SetupDataDialogMachine_Entered(object sender, EventArgs e)
     {
-      x_TabControlContent.Items.Clear();
-      x_TabControlContent.Items.Add(x_TabItemSetupDialog);
-      x_TextBoxURL.Text = Properties.Settings.Default.SiteURL;
-      x_CheckBoxActivateRel182.IsChecked = Properties.Settings.Default.DoActivate1800;
-      x_CheckBoxArchiveIPRAccounts.IsChecked = Properties.Settings.Default.DoArchiveIPR;
-      x_CheckBoxArchiveBatch.IsChecked = Properties.Settings.Default.DoArchiveBatch;
-      x_TextBoxIPRAccountArchivalDelay.Text = Properties.Settings.Default.ArchiveIPRDelay.ToString();
-      x_TextBoxBatchArchivalDelay.Text = Properties.Settings.Default.ArchiveBatchDelay.ToString();
-      x_TabItemSetupDialog.Focus();
+      //x_TabControlContent.Items.Clear();
+      //x_TabControlContent.Items.Add(x_TabItemSetupDialog);
+      //x_TextBoxURL.Text = Properties.Settings.Default.SiteURL;
+      //x_CheckBoxActivateRel182.IsChecked = Properties.Settings.Default.DoActivate1800;
+      //x_CheckBoxArchiveIPRAccounts.IsChecked = Properties.Settings.Default.DoArchiveIPR;
+      //x_CheckBoxArchiveBatch.IsChecked = Properties.Settings.Default.DoArchiveBatch;
+      //x_TextBoxIPRAccountArchivalDelay.Text = Properties.Settings.Default.ArchiveIPRDelay.ToString();
+      //x_TextBoxBatchArchivalDelay.Text = Properties.Settings.Default.ArchiveBatchDelay.ToString();
+      //x_TabItemSetupDialog.Focus();
     }
     private LocalMachine m_StateMAchine;
 
