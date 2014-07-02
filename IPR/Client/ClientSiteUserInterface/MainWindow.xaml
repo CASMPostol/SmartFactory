@@ -2,10 +2,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="CAS.SmartFactory.IPR.Client.UserInterface.MainWindow"
-        Title="CAS SmartFactory IPR" Height="600" Width="800"
-         Loaded="Window_Loaded"  >
-        
-        <DockPanel LastChildFill="True">
+        Title="CAS SmartFactory IPR"  
+        WindowState="Maximized"
+        Loaded="Window_Loaded" 
+        Background="White" >
+    <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File" IsEnabled="False">
                 <MenuItem Header="Import data model" Command="{Binding ImportDataModel}" />
@@ -14,29 +15,32 @@
             </MenuItem>
             <MenuItem Header="Edit" IsEnabled="False" />
             <MenuItem Header="Help" IsEnabled="False" />
-        </Menu>          
+        </Menu>
         <ToolBar DockPanel.Dock="Bottom" Header="State: "  ToolTip="Information about the application and progress.">
-			<Label x:Name="x_ToolBarURLLabel" ContentStringFormat="URL: {0}" Content="unavailable" />
-			<ProgressBar x:Name="x_ProgressBar" Width="300" Maximum="100" Minimum="0" />
-		</ToolBar>
-		<StackPanel x:Name="x_StackPanelButtons" DockPanel.Dock="Bottom" Orientation="Horizontal">
-			<Button x:Name="x_ButtonGoBackward" Width="100" Margin="5,0,0,0" Content="&lt;&lt;" />
-			<Button x:Name="x_ButtonGoForward" Width="100" Margin="5,0,0,0" Content="&gt;&gt;" />
-			<Button x:Name="x_ButtonRun" Width="100" Margin="5,0,0,0" Content="OK" />
-			<Button x:Name="x_ButtonCancel" Width="100" Margin="5,0,0,0" Content="Cancel" />
-		</StackPanel>
+            <Label x:Name="x_ToolBarURLLabel" ContentStringFormat="URL: {0}" Content="unavailable" />
+            <ProgressBar x:Name="x_ProgressBar" Width="300" Maximum="100" Minimum="0" />
+        </ToolBar>
+        <StackPanel x:Name="x_StackPanelButtons" DockPanel.Dock="Bottom" Orientation="Horizontal">
+            <Button x:Name="x_ButtonGoBackward" Width="100" Margin="5,0,0,0" Content="&lt;&lt;" />
+            <Button x:Name="x_ButtonGoForward" Width="100" Margin="5,0,0,0" Content="&gt;&gt;" />
+            <Button x:Name="x_ButtonRun" Width="100" Margin="5,0,0,0" Content="OK" />
+            <Button x:Name="x_ButtonCancel" Width="100" Margin="5,0,0,0" Content="Cancel" />
+        </StackPanel>
         <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0">
                 <Label Content="SharePoint webiste:" />
-                <TextBox Text="{Binding URL, Mode=TwoWay}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch"  />
+                <TextBox Text="{Binding URL, Mode=TwoWay}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" />
                 <Label Content="SQL Server:" />
-                <TextBox Text="{Binding DatabaseName, Mode=TwoWay}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch"  />
+                <TextBox Text="{Binding DatabaseName, Mode=TwoWay}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" />
                 <Label Content="Archive IPR [days]" />
-                <TextBox Text="{Binding URL, Mode=TwoWay}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch"  />
+                <TextBox Text="{Binding URL, Mode=TwoWay}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" />
             </StackPanel>
             <ListView x:Name="x_ListBox" ItemsSource="{Binding Messages}" Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </Grid>
@@ -73,5 +77,5 @@
 				<ListBox x:Name="x_ListBox" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="475" Margin="0,0,0,0" Width="780"/>
 			</TabItem>
 		</TabControl>-->
-	</DockPanel>
+    </DockPanel>
 </Window>

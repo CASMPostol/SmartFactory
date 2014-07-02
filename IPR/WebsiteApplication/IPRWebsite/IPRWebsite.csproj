@@ -563,7 +563,9 @@
     <Content Include="Content types\Dictionaries\SHMenthol\Elements.xml" />
     <Content Include="Content types\Dictionaries\SKUCigarette\Elements.xml" />
     <Content Include="Content types\Dictionaries\SKUCommonPart\Elements.xml" />
-    <Content Include="Content types\Dictionaries\SKUCutfiller\Elements.xml" />
+    <Content Include="Content types\Dictionaries\SKUCutfiller\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\Usage\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -776,7 +778,9 @@
     </Content>
     <Content Include="Lists\Dictionaries\FormatTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\FormatTemplate\FormatList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\FormatTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\FormatTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\PCNCodeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\PCNCodeTemplate\PCNCodeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\PCNCodeTemplate\Schema.xml" />
