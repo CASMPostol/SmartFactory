@@ -61,4 +61,7 @@
   <ItemGroup>
     <None Include="SelectIPRBookAccount.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="CreateIPRDatabaseTables.sql" />
+  </ItemGroup>
 </Project>
