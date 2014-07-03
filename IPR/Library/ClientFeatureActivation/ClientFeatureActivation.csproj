@@ -65,6 +65,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="cas.snk" />
+    <None Include="Linq\Scripts\GetEntities.ps1" />
     <None Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
@@ -78,6 +79,10 @@
       <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
       <Name>SharePointLinqClient</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Linq\Scripts\Parameters.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
