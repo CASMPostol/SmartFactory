@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SelectIPRBookAccount.sql" />
+    <None Include="DropIPRDatabaseTables.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="CreateIPRDatabaseTables.sql" />
