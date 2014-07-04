@@ -741,8 +741,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(BalanceIPR))]
 	internal partial class ReportsCommonPart : Item {
 		
-		private string _contentType;
-		
 		private string _documentNo;
 		
 		private string _sKU;
@@ -799,20 +797,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public ReportsCommonPart() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DocumentNo", Storage="_documentNo", FieldType="Text")]
@@ -1158,8 +1142,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Batch", Id="0x0100FCF87F15D5BE244EBA39ACA130B1ABDB")]
 	internal partial class Batch : Item {
 		
-		private string _contentType;
-		
 		private string _batch0;
 		
 		private string _sKU;
@@ -1234,20 +1216,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public Batch() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Batch", Storage="_batch0", FieldType="Text")]
@@ -1731,8 +1699,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Clearence", Id="0x010024D8E558C8B92D4094E6420B75D7AEDD")]
 	internal partial class Clearence : Item {
 		
-		private string _contentType;
-		
 		private string _documentNo;
 		
 		private string _referenceNumber;
@@ -1753,20 +1719,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public Clearence() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DocumentNo", Storage="_documentNo", FieldType="Text")]
@@ -1863,8 +1815,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Consent", Id="0x0100A7FE6CFCCADBB7409C1F0FA102B9C573")]
 	internal partial class Consent : Item {
 		
-		private string _contentType;
-		
 		private System.Nullable<System.DateTime> _consentDate;
 		
 		private System.Nullable<System.DateTime> _validFromDate;
@@ -1887,20 +1837,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public Consent() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ConsentDate", Storage="_consentDate", FieldType="DateTime")]
@@ -2008,8 +1944,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CustomsUnion", Id="0x0100700A5727DB0A43069A5E0A479E3B80A7")]
 	internal partial class CustomsUnion : Item {
 		
-		private string _contentType;
-		
 		private string _eUPrimeMarket;
 		
 		#region Extensibility Method Definitions
@@ -2020,20 +1954,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public CustomsUnion() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EUPrimeMarket", Storage="_eUPrimeMarket", FieldType="Text")]
@@ -2138,8 +2058,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Disposal", Id="0x01000FAE27B30BF7FC46886DA88A4D425DEF")]
 	internal partial class Disposal : Item {
 		
-		private string _contentType;
-		
 		private System.Nullable<double> _sPNo;
 		
 		private string _sADDocumentNo;
@@ -2186,20 +2104,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public Disposal() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="No", Storage="_sPNo", FieldType="Number")]
@@ -2524,8 +2428,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Format", Id="0x01008229B51223914BB3B88F3ABDB737237B")]
 	internal partial class Format : Item {
 		
-		private string _contentType;
-		
 		private string _cigaretteLenght;
 		
 		private string _filterLenght;
@@ -2538,20 +2440,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public Format() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CigaretteLenght", Storage="_cigaretteLenght", Required=true, FieldType="Text")]
@@ -2589,8 +2477,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="InvoiceContent", Id="0x010082E2FD28F40C4269AC5C796F220F10C3")]
 	internal partial class InvoiceContent : Item {
 		
-		private string _contentType;
-		
 		private string _sKUDescription;
 		
 		private System.Nullable<double> _quantity;
@@ -2611,20 +2497,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public InvoiceContent() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKUDescription", Storage="_sKUDescription", FieldType="Text")]
@@ -2718,8 +2590,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="IPR", Id="0x0100BB872D605E9F0F49B05D98D6A01655F8")]
 	internal partial class IPR : Item {
 		
-		private string _contentType;
-		
 		private System.Nullable<System.DateTime> _validFromDate;
 		
 		private System.Nullable<System.DateTime> _validToDate;
@@ -2788,20 +2658,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public IPR() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ValidFromDate", Storage="_validFromDate", FieldType="DateTime")]
@@ -3231,8 +3087,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOXCustomsSummary", Id="0x0100C94F6A12898E497EAE5EFEFDC240C3F4")]
 	internal partial class JSOXCustomsSummary : Item {
 		
-		private string _contentType;
-		
 		private string _exportOrFreeCirculationSAD;
 		
 		private System.Nullable<System.DateTime> _sADDate;
@@ -3259,20 +3113,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public JSOXCustomsSummary() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ExportOrFreeCirculationSAD", Storage="_exportOrFreeCirculationSAD", FieldType="Text")]
@@ -3408,8 +3248,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Material", Id="0x01004D0C63D616EA814E8B077CF59ADDB12B")]
 	internal partial class Material : Item {
 		
-		private string _contentType;
-		
 		private string _sKUDescription;
 		
 		private string _sKU;
@@ -3448,20 +3286,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public Material() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKUDescription", Storage="_sKUDescription", FieldType="Text")]
@@ -3693,8 +3517,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="PCNCode", Id="0x01002E9F09B06ACF47F7ADA76C12453C7AF7")]
 	internal partial class PCNCode : Item {
 		
-		private string _contentType;
-		
 		private string _productCodeNumber;
 		
 		private string _compensationGood;
@@ -3709,20 +3531,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public PCNCode() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductCodeNumber", Storage="_productCodeNumber", FieldType="Text")]
@@ -3774,8 +3582,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADDocumentType", Id="0x0100844099FC49B54D30A1516EA17A6883FC")]
 	internal partial class SADDocumentType : Item {
 		
-		private string _contentType;
-		
 		private string _referenceNumber;
 		
 		private System.Nullable<System.DateTime> _customsDebtDate;
@@ -3802,20 +3608,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public SADDocumentType() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		/// <summary>
@@ -3954,8 +3746,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADDuties", Id="0x0100307F2A8F2886D24FBF3393F84E0E616B")]
 	internal partial class SADDuties : Item {
 		
-		private string _contentType;
-		
 		private string _dutyType;
 		
 		private System.Nullable<double> _amount;
@@ -3970,20 +3760,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public SADDuties() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DutyType", Storage="_dutyType", FieldType="Text")]
@@ -4035,8 +3811,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADGood", Id="0x01003016924817E4AF4A9AD790284C0BAE65")]
 	internal partial class SADGood : Item {
 		
-		private string _contentType;
-		
 		private System.Nullable<double> _itemNo;
 		
 		private string _goodsDescription;
@@ -4061,20 +3835,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public SADGood() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ItemNo", Storage="_itemNo", FieldType="Number")]
@@ -4196,8 +3956,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADPackage", Id="0x01007F42F9669FE35A41801B017E1D69C7D9")]
 	internal partial class SADPackage : Item {
 		
-		private string _contentType;
-		
 		private System.Nullable<double> _itemNo;
 		
 		private string _package;
@@ -4212,20 +3970,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public SADPackage() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ItemNo", Storage="_itemNo", FieldType="Number")]
@@ -4277,8 +4021,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADQuantity", Id="0x010016BC5B99EA5169458266BB52B8784B3F")]
 	internal partial class SADQuantity : Item {
 		
-		private string _contentType;
-		
 		private System.Nullable<double> _itemNo;
 		
 		private System.Nullable<double> _netMass;
@@ -4295,20 +4037,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public SADQuantity() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ItemNo", Storage="_itemNo", FieldType="Number")]
@@ -4374,8 +4102,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADRequiredDocuments", Id="0x0100CAF95BD14627B343981DE5345DD0BD37")]
 	internal partial class SADRequiredDocuments : Item {
 		
-		private string _contentType;
-		
 		private string _code;
 		
 		private string _number;
@@ -4390,20 +4116,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public SADRequiredDocuments() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Code", Storage="_code", FieldType="Text")]
@@ -4455,8 +4167,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Settings", Id="0x01007860DD9E4A2C4C28A13C4DD2E6F0B710")]
 	internal partial class Settings : Item {
 		
-		private string _contentType;
-		
 		private string _keyValue;
 		
 		#region Extensibility Method Definitions
@@ -4467,20 +4177,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public Settings() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="KeyValue", Storage="_keyValue", Required=true, FieldType="Text")]
@@ -4555,8 +4251,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SKUCutfiller))]
 	internal partial class SKUCommonPart : Item {
 		
-		private string _contentType;
-		
 		private string _sKU;
 		
 		private System.Nullable<bool> _iPRMaterial;
@@ -4573,20 +4267,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public SKUCommonPart() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
@@ -4652,8 +4332,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="StockEntry", Id="0x0100060FE33D5AAE473ABDC2777AE86FED6C")]
 	internal partial class StockEntry : Item {
 		
-		private string _contentType;
-		
 		private string _sKU;
 		
 		private string _storLoc;
@@ -4686,20 +4364,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public StockEntry() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
@@ -4961,8 +4625,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Warehouse", Id="0x01001E57547208B49B46B4AA7CB4536B1A55")]
 	internal partial class Warehouse : Item {
 		
-		private string _contentType;
-		
 		private string _warehouseName;
 		
 		private string _sPProcedure;
@@ -4977,20 +4639,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public Warehouse() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="WarehouseName", Storage="_warehouseName", Required=true, FieldType="Text")]
@@ -5091,8 +4739,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TobaccoBatchSummary", Id="0x0100A10A60051D134AAC8EA8B57D80FA78F8")]
 	internal partial class TobaccoBatchSummary : Item {
 		
-		private string _contentType;
-		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -5102,20 +4748,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		public TobaccoBatchSummary() {
 			this.OnCreated();
 		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
-		}
 	}
 	
 	/// <summary>
@@ -5123,8 +4755,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ActivityLogCT", Id="0x0104005C85A6C821F245D582FCC9CDC2D3688C")]
 	internal partial class ActivityLogCT : Announcement {
-		
-		private string _contentType;
 		
 		private string _activityPriority;
 		
@@ -5138,20 +4768,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public ActivityLogCT() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ActivityPriority", Storage="_activityPriority", FieldType="Text")]
@@ -5189,8 +4805,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="BatchLib", Id="0x01010057CD1193DB9A48F4B4E6E9B55FBAC70A")]
 	internal partial class BatchLib : Document {
 		
-		private string _contentType;
-		
 		private string _selectFilename;
 		
 		private System.Nullable<System.DateTime> _created;
@@ -5209,20 +4823,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public BatchLib() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SelectFilename", Storage="_selectFilename", ReadOnly=true, FieldType="Computed")]
@@ -5302,8 +4902,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="InvoiceLib", Id="0x0101003054E4EBB5DE4C6391CA389A60DCD926")]
 	internal partial class InvoiceLib : Document {
 		
-		private string _contentType;
-		
 		private string _selectFilename;
 		
 		private System.Nullable<System.DateTime> _created;
@@ -5328,20 +4926,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public InvoiceLib() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SelectFilename", Storage="_selectFilename", ReadOnly=true, FieldType="Computed")]
@@ -5463,8 +5047,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="IPRLib", Id="0x0101001DF8B050E523400BAA45A84C96B5D8AD")]
 	internal partial class IPRLib : Document {
 		
-		private string _contentType;
-		
 		private string _selectFilename;
 		
 		private System.Nullable<System.DateTime> _created;
@@ -5481,20 +5063,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public IPRLib() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SelectFilename", Storage="_selectFilename", ReadOnly=true, FieldType="Computed")]
@@ -5560,8 +5128,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOXLib", Id="0x0101002CFEC8BBC3F440D69B724CC2B95FFF93")]
 	internal partial class JSOXLib : Document {
 		
-		private string _contentType;
-		
 		private string _selectFilename;
 		
 		private System.Nullable<System.DateTime> _created;
@@ -5604,20 +5170,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public JSOXLib() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SelectFilename", Storage="_selectFilename", ReadOnly=true, FieldType="Computed")]
@@ -5865,8 +5417,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADConsignment", Id="0x0101002E7FB2D305D04B84ADEEA8E71EBD1561")]
 	internal partial class SADConsignment : Document {
 		
-		private string _contentType;
-		
 		private string _selectFilename;
 		
 		private System.Nullable<System.DateTime> _created;
@@ -5883,20 +5433,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public SADConsignment() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SelectFilename", Storage="_selectFilename", ReadOnly=true, FieldType="Computed")]
@@ -5962,8 +5498,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADDocumentLib", Id="0x010100475F601A85C84D02B51F765E42311C86")]
 	internal partial class SADDocumentLib : Document {
 		
-		private string _contentType;
-		
 		private string _selectFilename;
 		
 		private System.Nullable<System.DateTime> _created;
@@ -5984,20 +5518,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public SADDocumentLib() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SelectFilename", Storage="_selectFilename", ReadOnly=true, FieldType="Computed")]
@@ -6091,8 +5611,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="StockLib", Id="0x0101001A9445DBA29F4E1DB1813989F34483DF")]
 	internal partial class StockLib : Document {
 		
-		private string _contentType;
-		
 		private string _selectFilename;
 		
 		private System.Nullable<System.DateTime> _created;
@@ -6109,20 +5627,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		public StockLib() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SelectFilename", Storage="_selectFilename", ReadOnly=true, FieldType="Computed")]
