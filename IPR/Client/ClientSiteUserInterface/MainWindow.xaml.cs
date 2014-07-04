@@ -41,71 +41,13 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
     {
       InitializeComponent();
     }
-    private class LocalMachine : StateMachine.StateMachineContext
-    {
-
-      #region ctor
-      public LocalMachine(MainWindow parent)
-        : base()
-      {
-        m_Parent = parent;
-      }
-      #endregion
-
-      #region StateMachineContext
-      internal override void SetupUserInterface(StateMachine.Events allowedEvents)
-      {
-        m_Parent.x_ButtonCancel.IsEnabled = (allowedEvents & StateMachine.Events.Cancel) != 0;
-        m_Parent.x_ButtonGoBackward.IsEnabled = (allowedEvents & StateMachine.Events.Previous) != 0;
-        m_Parent.x_ButtonGoForward.IsEnabled = (allowedEvents & StateMachine.Events.Next) != 0;
-        m_Parent.x_ButtonRun.IsEnabled = (allowedEvents & StateMachine.Events.RunAsync) != 0;
-      }
-      internal override void Close()
-      {
-        m_Parent.Close();
-      }
-      internal override void Progress(int progress)
-      {
-        m_Parent.UpdateProgressBar(progress);
-      }
-      internal override void WriteLine()
-      {
-        m_Parent.WriteLine();
-        m_Parent.UpdateProgressBar(1);
-      }
-      internal override void WriteLine(string value)
-      {
-        m_Parent.WriteLine(value);
-        m_Parent.UpdateProgressBar(1);
-      }
-      internal override void Exception(Exception exception)
-      {
-        string _mssg = String.Format("Program stoped by exception: {0}", exception.Message);
-        MessageBox.Show(_mssg, "Operation error", MessageBoxButton.OK, MessageBoxImage.Error);
-        //Close();
-      }
-      internal override void EnteringState()
-      {
-      }
-      #endregion
-
-      #region private
-      private MainWindow m_Parent;
-      #endregion
-    }
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
       AssemblyName _name = Assembly.GetExecutingAssembly().GetName();
       this.Title = this.Title + " Rel " + _name.Version.ToString(4);
-      m_StateMAchine = new LocalMachine(this);
-      x_ButtonCancel.Click += m_StateMAchine.ButtonCancel_Click;
-      x_ButtonGoBackward.Click += m_StateMAchine.ButtonGoBackward_Click;
-      x_ButtonGoForward.Click += m_StateMAchine.ButtonGoForward_Click;
-      x_ButtonRun.Click += m_StateMAchine.ButtonRun_Click;
       //x_TabControlContent.Items.Clear();
       AbstractMachine.SetupDataDialogMachine.Get().Entered += SetupDataDialogMachine_Entered;
       AbstractMachine.SetupDataDialogMachine.Get().Exiting += SetupDataDialogMachine_Exiting;
-      m_StateMAchine.OpenEntryState();
     }
     private void SetupDataDialogMachine_Exiting(object sender, EventArgs e)
     {
@@ -134,20 +76,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
       //x_TextBoxBatchArchivalDelay.Text = Properties.Settings.Default.ArchiveBatchDelay.ToString();
       //x_TabItemSetupDialog.Focus();
     }
-    private LocalMachine m_StateMAchine;
 
     #region StateMachineContext View Model
-    bool m_UpdateProgressBarBusy = false;
-    private void UpdateProgressBar(int progress)
-    {
-      if (m_UpdateProgressBarBusy)
-        return;
-      m_UpdateProgressBarBusy = true;
-      while (x_ProgressBar.Maximum - x_ProgressBar.Value < progress)
-        x_ProgressBar.Maximum *= 2;
-      x_ProgressBar.Value += progress;
-      m_UpdateProgressBarBusy = false;
-    }
     private void WriteLine()
     {
       x_ListBox.Items.Add(string.Empty);

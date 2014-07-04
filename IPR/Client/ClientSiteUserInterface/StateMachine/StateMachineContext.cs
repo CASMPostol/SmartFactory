@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
   /// <summary>
   /// StateMachineContext class 
   /// </summary>
-  internal abstract class StateMachineContext
+  internal abstract class StateMachineContext: SharePoint.ComponentModel.PropertyChangedBase
   {
 
     #region creator
@@ -98,7 +98,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     private AbstractMachine m_Machine = null;
     #endregion
 
-    //private static uint dotCounter = 0;
     #endregion
 
     #region event handlers
@@ -114,7 +113,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       }
       catch (Exception ex)
       {
-        string _mssg = String.Format("Operation interupted by exception: {0}", ex.Message);
+        string _mssg = String.Format("Operation interrupted by exception: {0}", ex.Message);
         MessageBox.Show(_mssg, "Operation error", MessageBoxButton.OK, MessageBoxImage.Error);
       }
     }
