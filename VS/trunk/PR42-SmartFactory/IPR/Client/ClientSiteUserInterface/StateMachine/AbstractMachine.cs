@@ -148,7 +148,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       {
         m_Me = this;
       }
-      private static SetupDataDialogMachine m_Me;
       internal static SetupDataDialogMachine Get()
       {
         return m_Me;
@@ -169,6 +168,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         m_Context.Close();
       }
       #endregion
+      private static SetupDataDialogMachine m_Me;
 
     }
     internal class ActivationMachine : BackgroundWorkerMachine

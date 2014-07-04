@@ -87,8 +87,8 @@
     <None Include="Test References\CAS.IPRDashboards.accessor" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IPRDashboards\IPRDashboards.csproj">
-      <Project>{10dc0388-a989-4061-b680-7fe4ffc711a0}</Project>
+    <ProjectReference Include="..\..\..\WebsiteApplication\IPRDashboards\IPRDashboards.csproj">
+      <Project>{8ccc9dac-e6f5-4a29-93f8-cb9a1869b08d}</Project>
       <Name>IPRDashboards</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\WebsiteApplication\IPRWebsiteModel\IPRWebsiteModel.csproj">
