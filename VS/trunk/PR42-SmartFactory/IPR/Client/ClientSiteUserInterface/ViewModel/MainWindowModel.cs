@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : class MainWindowModel
 //  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2014, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -22,18 +22,25 @@ using System.Windows.Input;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
 {
-  internal class MainWindowModel : PropertyChangedBase
+  internal class MainWindowModel : PropertyChangedBase, IDisposable
   {
 
     #region public
     //creator
     public MainWindowModel()
     {
-      ProgressBarMaximum = 100;
-      AssemblyName _name = Assembly.GetExecutingAssembly().GetName();
-      this.Title = this.Title + " Rel " + _name.Version.ToString(4);
+      InitializeUI();
       m_StateMAchine = new LocalMachine(this);
       m_StateMAchine.OpenEntryState();
+    }
+    private void InitializeUI()
+    {
+      AssemblyName _name = Assembly.GetExecutingAssembly().GetName();
+      this.Title = this.Title + " Rel " + _name.Version.ToString(4);
+      URL = Properties.Settings.Default.SiteURL;
+      DatabaseName = Properties.Settings.Default.DatabaseName;
+      ProgressBarMaximum = 100;
+      Progress = 0;
     }
     //UI API
     public string Title
@@ -46,7 +53,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       {
         RaiseHandler<string>(value, ref b_Title, "Title", this);
       }
-    } 
+    }
     public string URL
     {
       get
@@ -156,7 +163,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       {
         RaiseHandler<ICommand>(value, ref b_ButtonRun, "ButtonRun", this);
       }
-    } 
+    }
     #endregion
 
     #region private
@@ -295,6 +302,16 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
     private void Close()
     {
       throw new NotImplementedException();
+    }
+    #endregion
+    #region IDisposable
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    /// <exception cref="System.NotImplementedException"></exception>
+    public void Dispose()
+    {
+      ;
     }
     #endregion
 

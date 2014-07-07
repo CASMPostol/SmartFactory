@@ -9,7 +9,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="DoActivate1800" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ArchiveBatchDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">60</Value>
@@ -19,6 +19,9 @@
     </Setting>
     <Setting Name="DoArchiveBatch" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DatabaseName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;enter database name&gt;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -30,18 +30,18 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
     /// <param name="progressPercentage">The progress percentage.</param>
     /// <param name="userState">State of the user.</param>
     /// <param name="entities">The entities.</param>
-    public EntitiesChangedEventArgs(int progressPercentage, object userState, Entities entities)
+    internal EntitiesChangedEventArgs(int progressPercentage, object userState, EntitiesDataContext entities)
       : base(progressPercentage, new EntitiesStateInternal(userState, entities))
     { }
     /// <summary>
     /// Gets a unique user state.
     /// </summary>
     /// <returns>A unique <see cref="T:System.Object" /> indicating the user state.</returns>
-    public new EntitiesState UserState { get { return (EntitiesState)base.UserState; } }
+    internal new EntitiesState UserState { get { return (EntitiesState)base.UserState; } }
     /// <summary>
-    /// Class retpresenting <see cref="Entities"/> state
+    /// Class representing <see cref="EntitiesDataContext"/> state
     /// </summary>
-    public abstract class EntitiesState
+    internal abstract class EntitiesState
     {
       /// <summary>
       /// Gets a unique user state.
@@ -56,7 +56,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
       /// <value>
       /// The entities.
       /// </value>
-      public Entities Entities { get { return m_Entities; } }
+      internal EntitiesDataContext Entities { get { return m_Entities; } }
       /// <summary>
       /// The m_ user state
       /// </summary>
@@ -64,7 +64,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
       /// <summary>
       /// The m_ entities
       /// </summary>
-      internal protected Entities m_Entities = null;
+      internal protected EntitiesDataContext m_Entities = null;
     }
     //private
     private class EntitiesStateInternal : EntitiesState
@@ -74,7 +74,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
       /// </summary>
       /// <param name="userState">A unique user state.</param>
       /// <param name="entities">The entities.</param>
-      internal EntitiesStateInternal(object userState, Entities entities)
+      internal EntitiesStateInternal(object userState, EntitiesDataContext entities)
       {
         m_UserState = userState;
         m_Entities = entities;

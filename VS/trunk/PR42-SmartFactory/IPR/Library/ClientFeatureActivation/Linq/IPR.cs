@@ -23,11 +23,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// <summary>
   /// IPR partial class 
   /// </summary>
-  public sealed partial class IPR
+  internal sealed partial class IPR
   {
 
     #region public
-    internal void RecalculateClearedRecords(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
+    internal void RecalculateClearedRecords(EntitiesDataContext entities, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       if (this.AccountClosed.Value)
         return;
