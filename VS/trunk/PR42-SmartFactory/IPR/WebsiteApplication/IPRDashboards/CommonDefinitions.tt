@@ -14,4 +14,4 @@ namespace CAS.SmartFactory.IPR.Dashboards
   }
 }
 
-<#@ include file = "..\..\Model.T4" #>
+<#@ include file = "..\..\..\Model.T4" #>
