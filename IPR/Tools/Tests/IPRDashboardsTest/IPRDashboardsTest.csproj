@@ -87,9 +87,17 @@
     <None Include="Test References\CAS.IPRDashboards.accessor" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\PR44-SharePoint\Libraries\SharePoint\SharePoint.csproj">
+      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
+      <Name>SharePoint</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\WebsiteApplication\IPRDashboards\IPRDashboards.csproj">
       <Project>{8ccc9dac-e6f5-4a29-93f8-cb9a1869b08d}</Project>
       <Name>IPRDashboards</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\WebsiteApplication\IPRInteroperability\IPRInteroperability.csproj">
+      <Project>{bbc177df-cd0c-4fdf-9e78-41f2ce4faf52}</Project>
+      <Name>IPRInteroperability</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\WebsiteApplication\IPRWebsiteModel\IPRWebsiteModel.csproj">
       <Project>{8920f657-54a3-4376-99a5-c2d823f94038}</Project>

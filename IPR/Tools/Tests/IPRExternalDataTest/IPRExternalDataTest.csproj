@@ -68,6 +68,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XMLResourcesTest.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\WebsiteApplication\IPRInteroperability\IPRInteroperability.csproj">
+      <Project>{bbc177df-cd0c-4fdf-9e78-41f2ce4faf52}</Project>
+      <Name>IPRInteroperability</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
