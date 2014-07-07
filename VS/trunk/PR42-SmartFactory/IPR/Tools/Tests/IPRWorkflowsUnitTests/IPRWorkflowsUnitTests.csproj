@@ -79,6 +79,16 @@
     <Compile Include="ExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\PR44-SharePoint\Libraries\SharePoint\SharePoint.csproj">
+      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
+      <Name>SharePoint</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\WebsiteApplication\IPRInteroperability\IPRInteroperability.csproj">
+      <Project>{bbc177df-cd0c-4fdf-9e78-41f2ce4faf52}</Project>
+      <Name>IPRInteroperability</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
