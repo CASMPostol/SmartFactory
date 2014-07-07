@@ -27,4 +27,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("<#=IPRAssemblyVersion#>")]
 [assembly: AssemblyFileVersion("<#=IPRAssemblyFileVersion#>")]
 
-<#@ include file = "..\..\..\Model.T4" #>
+<#@ include file = "..\..\..\..\Model.T4" #>
