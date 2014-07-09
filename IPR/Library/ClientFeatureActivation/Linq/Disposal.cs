@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// <summary>
   /// Disposal
   /// </summary>
-  internal sealed partial class Disposal
+  public sealed partial class Disposal
   {
     #region public
     /// <summary>

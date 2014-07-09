@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+#pragma warning disable 1591
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	using System;
 	
@@ -8134,3 +8134,4 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		NotEnoughQnt = 4,
 	}
 }
+#pragma warning restore 1591
