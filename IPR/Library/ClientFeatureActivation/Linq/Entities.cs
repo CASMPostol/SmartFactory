@@ -8,18 +8,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-#pragma warning disable 1591
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	using System;
 	
 	
-	internal partial class EntitiesDataContext : Microsoft.SharePoint.Linq.DataContext {
+	public partial class Entities : Microsoft.SharePoint.Linq.DataContext {
 		
 		#region Extensibility Method Definitions
 		partial void OnCreated();
 		#endregion
 		
-		public EntitiesDataContext(string requestUrl) : 
+		public Entities(string requestUrl) : 
 				base(requestUrl) {
 			this.OnCreated();
 		}
@@ -429,7 +428,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Warehouse))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Waste))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TobaccoBatchSummary))]
-	internal partial class Item : Microsoft.SharePoint.Linq.ITrackEntityState, Microsoft.SharePoint.Linq.ITrackOriginalValues, System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.INotifyPropertyChanging {
+	public partial class Item : Microsoft.SharePoint.Linq.ITrackEntityState, Microsoft.SharePoint.Linq.ITrackOriginalValues, System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.INotifyPropertyChanging {
 		
 		private System.Nullable<int> _id;
 		
@@ -557,7 +556,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Announcement", Id="0x0104")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ActivityLogCT))]
-	internal partial class Announcement : Item {
+	public partial class Announcement : Item {
 		
 		private string _body;
 		
@@ -613,7 +612,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADConsignment))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDocumentLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(StockLib))]
-	internal partial class Document : Item {
+	public partial class Document : Item {
 		
 		private string _name;
 		
@@ -680,7 +679,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ReportsCommonPart", Id="0x0100BC0DDC1827F346ED911D777504830C52")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(BalanceBatch))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(BalanceIPR))]
-	internal partial class ReportsCommonPart : Item {
+	public partial class ReportsCommonPart : Item {
 		
 		private string _documentNo;
 		
@@ -1081,7 +1080,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Batch List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Batch", Id="0x0100FCF87F15D5BE244EBA39ACA130B1ABDB")]
-	internal partial class Batch : Item {
+	public partial class Batch : Item {
 		
 		private string _batch0;
 		
@@ -1692,7 +1691,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Clearance List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Clearence", Id="0x010024D8E558C8B92D4094E6420B75D7AEDD")]
-	internal partial class Clearence : Item {
+	public partial class Clearence : Item {
 		
 		private string _documentNo;
 		
@@ -1862,7 +1861,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Consent List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Consent", Id="0x0100A7FE6CFCCADBB7409C1F0FA102B9C573")]
-	internal partial class Consent : Item {
+	public partial class Consent : Item {
 		
 		private System.Nullable<System.DateTime> _consentDate;
 		
@@ -1991,7 +1990,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Customs Union List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CustomsUnion", Id="0x0100700A5727DB0A43069A5E0A479E3B80A7")]
-	internal partial class CustomsUnion : Item {
+	public partial class CustomsUnion : Item {
 		
 		private string _eUPrimeMarket;
 		
@@ -2024,7 +2023,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Cutfiller Coefficient List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CutfillerCoefficient", Id="0x01001D2AFAE51342C546A5F1677134421FD5")]
-	internal partial class CutfillerCoefficient : Item {
+	public partial class CutfillerCoefficient : Item {
 		
 		private System.Nullable<double> _cFTProductivityRateMin;
 		
@@ -2105,7 +2104,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Disposals List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Disposal", Id="0x01000FAE27B30BF7FC46886DA88A4D425DEF")]
-	internal partial class Disposal : Item {
+	public partial class Disposal : Item {
 		
 		private System.Nullable<double> _sPNo;
 		
@@ -2647,7 +2646,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Dust List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Dust", Id="0x0100E2A6EE8469AA524286812782556DFFF0")]
-	internal partial class Dust : Item {
+	public partial class Dust : Item {
 		
 		private System.Nullable<double> _dustRatio;
 		
@@ -2696,7 +2695,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Format List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Format", Id="0x01008229B51223914BB3B88F3ABDB737237B")]
-	internal partial class Format : Item {
+	public partial class Format : Item {
 		
 		private string _cigaretteLenght;
 		
@@ -2745,7 +2744,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Invoice Content List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="InvoiceContent", Id="0x010082E2FD28F40C4269AC5C796F220F10C3")]
-	internal partial class InvoiceContent : Item {
+	public partial class InvoiceContent : Item {
 		
 		private string _sKUDescription;
 		
@@ -2912,7 +2911,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// IPR List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="IPR", Id="0x0100BB872D605E9F0F49B05D98D6A01655F8")]
-	internal partial class IPR : Item {
+	public partial class IPR : Item {
 		
 		private System.Nullable<System.DateTime> _validFromDate;
 		
@@ -3544,7 +3543,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// JSOX Customs Summary List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOXCustomsSummary", Id="0x0100C94F6A12898E497EAE5EFEFDC240C3F4")]
-	internal partial class JSOXCustomsSummary : Item {
+	public partial class JSOXCustomsSummary : Item {
 		
 		private string _exportOrFreeCirculationSAD;
 		
@@ -3732,7 +3731,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Material List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Material", Id="0x01004D0C63D616EA814E8B077CF59ADDB12B")]
-	internal partial class Material : Item {
+	public partial class Material : Item {
 		
 		private string _sKUDescription;
 		
@@ -4028,7 +4027,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// PCN Code List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="PCNCode", Id="0x01002E9F09B06ACF47F7ADA76C12453C7AF7")]
-	internal partial class PCNCode : Item {
+	public partial class PCNCode : Item {
 		
 		private string _productCodeNumber;
 		
@@ -4093,7 +4092,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// SAD Document Type List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADDocumentType", Id="0x0100844099FC49B54D30A1516EA17A6883FC")]
-	internal partial class SADDocumentType : Item {
+	public partial class SADDocumentType : Item {
 		
 		private string _referenceNumber;
 		
@@ -4284,7 +4283,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// SAD Duties List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADDuties", Id="0x0100307F2A8F2886D24FBF3393F84E0E616B")]
-	internal partial class SADDuties : Item {
+	public partial class SADDuties : Item {
 		
 		private string _dutyType;
 		
@@ -4376,7 +4375,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// SAD Good List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADGood", Id="0x01003016924817E4AF4A9AD790284C0BAE65")]
-	internal partial class SADGood : Item {
+	public partial class SADGood : Item {
 		
 		private System.Nullable<double> _itemNo;
 		
@@ -4548,7 +4547,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// SAD Package List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADPackage", Id="0x01007F42F9669FE35A41801B017E1D69C7D9")]
-	internal partial class SADPackage : Item {
+	public partial class SADPackage : Item {
 		
 		private System.Nullable<double> _itemNo;
 		
@@ -4640,7 +4639,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// SAD Quantity List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADQuantity", Id="0x010016BC5B99EA5169458266BB52B8784B3F")]
-	internal partial class SADQuantity : Item {
+	public partial class SADQuantity : Item {
 		
 		private System.Nullable<double> _itemNo;
 		
@@ -4748,7 +4747,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// SAD Required Documents List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADRequiredDocuments", Id="0x0100CAF95BD14627B343981DE5345DD0BD37")]
-	internal partial class SADRequiredDocuments : Item {
+	public partial class SADRequiredDocuments : Item {
 		
 		private string _code;
 		
@@ -4840,7 +4839,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Settings List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Settings", Id="0x01007860DD9E4A2C4C28A13C4DD2E6F0B710")]
-	internal partial class Settings : Item {
+	public partial class Settings : Item {
 		
 		private string _keyValue;
 		
@@ -4873,7 +4872,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// SH Menthol List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SHMenthol", Id="0x010029964D9D2D53F84CB1083741C40FA8D1")]
-	internal partial class SHMenthol : Item {
+	public partial class SHMenthol : Item {
 		
 		private System.Nullable<double> _sHMentholRatio;
 		
@@ -4924,7 +4923,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SKUCommonPart", Id="0x010014C98F440FB04C679F1D9D39ACC92D8A")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SKUCigarette))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SKUCutfiller))]
-	internal partial class SKUCommonPart : Item {
+	public partial class SKUCommonPart : Item {
 		
 		private string _sKU;
 		
@@ -5059,7 +5058,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Stock Entry List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="StockEntry", Id="0x0100060FE33D5AAE473ABDC2777AE86FED6C")]
-	internal partial class StockEntry : Item {
+	public partial class StockEntry : Item {
 		
 		private string _sKU;
 		
@@ -5325,7 +5324,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Usage List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Usage", Id="0x01000E2260EFB66F324B9CC50EEEC274F5FD")]
-	internal partial class Usage : Item {
+	public partial class Usage : Item {
 		
 		private System.Nullable<double> _usageMin;
 		
@@ -5433,7 +5432,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Warehouse List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Warehouse", Id="0x01001E57547208B49B46B4AA7CB4536B1A55")]
-	internal partial class Warehouse : Item {
+	public partial class Warehouse : Item {
 		
 		private string _warehouseName;
 		
@@ -5498,7 +5497,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Waste List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Waste", Id="0x01002D6DCE3B847D5942ACDD176925283176")]
-	internal partial class Waste : Item {
+	public partial class Waste : Item {
 		
 		private System.Nullable<double> _wasteRatio;
 		
@@ -5547,7 +5546,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Tobacco Batch Summary List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TobaccoBatchSummary", Id="0x0100A10A60051D134AAC8EA8B57D80FA78F8")]
-	internal partial class TobaccoBatchSummary : Item {
+	public partial class TobaccoBatchSummary : Item {
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -5564,7 +5563,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Activity Log List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ActivityLogCT", Id="0x0104005C85A6C821F245D582FCC9CDC2D3688C")]
-	internal partial class ActivityLogCT : Announcement {
+	public partial class ActivityLogCT : Announcement {
 		
 		private string _activityPriority;
 		
@@ -5613,7 +5612,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Batch Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="BatchLib", Id="0x01010057CD1193DB9A48F4B4E6E9B55FBAC70A")]
-	internal partial class BatchLib : Document {
+	public partial class BatchLib : Document {
 		
 		private string _selectFilename;
 		
@@ -5710,7 +5709,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Invoice Document Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="InvoiceLib", Id="0x0101003054E4EBB5DE4C6391CA389A60DCD926")]
-	internal partial class InvoiceLib : Document {
+	public partial class InvoiceLib : Document {
 		
 		private string _selectFilename;
 		
@@ -5882,7 +5881,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// IPR Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="IPRLib", Id="0x0101001DF8B050E523400BAA45A84C96B5D8AD")]
-	internal partial class IPRLib : Document {
+	public partial class IPRLib : Document {
 		
 		private string _selectFilename;
 		
@@ -5963,7 +5962,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// JSOX Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOXLib", Id="0x0101002CFEC8BBC3F440D69B724CC2B95FFF93")]
-	internal partial class JSOXLib : Document {
+	public partial class JSOXLib : Document {
 		
 		private string _selectFilename;
 		
@@ -6252,7 +6251,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// SAD Consignment Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADConsignment", Id="0x0101002E7FB2D305D04B84ADEEA8E71EBD1561")]
-	internal partial class SADConsignment : Document {
+	public partial class SADConsignment : Document {
 		
 		private string _selectFilename;
 		
@@ -6333,7 +6332,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// SAD Document Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADDocumentLib", Id="0x010100475F601A85C84D02B51F765E42311C86")]
-	internal partial class SADDocumentLib : Document {
+	public partial class SADDocumentLib : Document {
 		
 		private string _selectFilename;
 		
@@ -6446,7 +6445,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Stock Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="StockLib", Id="0x0101001A9445DBA29F4E1DB1813989F34483DF")]
-	internal partial class StockLib : Document {
+	public partial class StockLib : Document {
 		
 		private string _selectFilename;
 		
@@ -6554,7 +6553,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Balance Batch List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="BalanceBatch", Id="0x0100BC0DDC1827F346ED911D777504830C5200673B96617EA2407484DB22020E9F5289")]
-	internal partial class BalanceBatch : ReportsCommonPart {
+	public partial class BalanceBatch : ReportsCommonPart {
 		
 		private System.Nullable<double> _tobaccoInWarehouse;
 		
@@ -6678,7 +6677,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Balance IPR content type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="BalanceIPR", Id="0x0100BC0DDC1827F346ED911D777504830C520093C91F91096944EAA9091C44F55FA587")]
-	internal partial class BalanceIPR : ReportsCommonPart {
+	public partial class BalanceIPR : ReportsCommonPart {
 		
 		private string _customsProcedure;
 		
@@ -6840,7 +6839,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Cigarette SKU List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SKUCigarette", Id="0x010014C98F440FB04C679F1D9D39ACC92D8A0029E2E9BC132C4633B01B0DF733A64ADA")]
-	internal partial class SKUCigarette : SKUCommonPart {
+	public partial class SKUCigarette : SKUCommonPart {
 		
 		private string _family;
 		
@@ -6969,7 +6968,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Cutfiller SKU List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SKUCutfiller", Id="0x010014C98F440FB04C679F1D9D39ACC92D8A00AE74B7010F534DB980D221D41D0BCBA1")]
-	internal partial class SKUCutfiller : SKUCommonPart {
+	public partial class SKUCutfiller : SKUCommonPart {
 		
 		private string _units;
 		
@@ -7014,7 +7013,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		}
 	}
 	
-	internal enum ProductType : int {
+	public enum ProductType : int {
 		
 		None = 0,
 		
@@ -7036,7 +7035,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		Other = 32,
 	}
 	
-	internal enum BatchStatus : int {
+	public enum BatchStatus : int {
 		
 		None = 0,
 		
@@ -7052,7 +7051,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		Final = 8,
 	}
 	
-	internal enum ClearenceProcedure : int {
+	public enum ClearenceProcedure : int {
 		
 		None = 0,
 		
@@ -7083,7 +7082,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		_7171 = 256,
 	}
 	
-	internal enum DisposalStatus : int {
+	public enum DisposalStatus : int {
 		
 		None = 0,
 		
@@ -7126,7 +7125,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		TobaccoInCutfillerProduction = 4096,
 	}
 	
-	internal enum CustomsStatus : int {
+	public enum CustomsStatus : int {
 		
 		None = 0,
 		
@@ -7142,7 +7141,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		Finished = 8,
 	}
 	
-	internal enum ClearingType : int {
+	public enum ClearingType : int {
 		
 		None = 0,
 		
@@ -7155,7 +7154,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		TotalWindingUp = 4,
 	}
 	
-	internal enum InvoiceContentStatus : int {
+	public enum InvoiceContentStatus : int {
 		
 		None = 0,
 		
@@ -7168,4 +7167,3 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		NotEnoughQnt = 4,
 	}
 }
-#pragma warning restore 1591
