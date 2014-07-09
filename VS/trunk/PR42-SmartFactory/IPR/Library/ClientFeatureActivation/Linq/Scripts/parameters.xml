@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="SPParametersStylesheet.xslt"?>
-<Web xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" AccessModifier="Internal" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal">
+<Web xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Class="Entities" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal">
   <List Name="Activity Log" Member="Activity Log" />
   <List Name="Balance Batch" Member="Balance Batch" />
   <List Name="Balance IPR" Member="Balance IPR" />
@@ -10,12 +9,12 @@
   <List Name="Consent" Member="Consent" />
   <List Name="Customs Union" Member="Customs Union" />
   <List Name="Cutfiller Coefficient" Member="Cutfiller Coefficient" />
-  <List Name="Disposal" Member="Disposal" />
+  <List Name="Disposal" />
   <List Name="Dust" Member="Dust" />
   <List Name="Format" Member="Format" />
   <List Name="Invoice Content" Member="Invoice Content" />
   <List Name="Invoice Library" Member="Invoice Library" />
-  <List Name="IPR" Member="IPR" />
+  <List Name="IPR" />
   <List Name="IPR Library" Member="IPR Library" />
   <List Name="JSOX Customs Summary" Member="JSOX Customs Summary" />
   <List Name="JSOX Library" Member="JSOX Library" />
