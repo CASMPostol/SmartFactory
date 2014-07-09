@@ -32,7 +32,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
     /// <param name="progress">The progress.</param>
     public static void Go(string siteURL, bool doActivate1800, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
-      using (EntitiesDataContext edc = new EntitiesDataContext(siteURL))
+      using (Entities edc = new Entities(siteURL))
       {
         if (!doActivate1800)
         {
@@ -46,12 +46,12 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
     }
 
     #region private
-    private static void SubmitChanges(Func<object, EntitiesChangedEventArgs, bool> progress, EntitiesDataContext edc)
+    private static void SubmitChanges(Func<object, EntitiesChangedEventArgs, bool> progress, Entities edc)
     {
       progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", edc));
       edc.SubmitChanges();
     }
-    private static void UpdateDisposals(EntitiesDataContext entities, Func<object, EntitiesChangedEventArgs, bool> progress)
+    private static void UpdateDisposals(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       progress(null, new EntitiesChangedEventArgs(1, "Starting Activate.UpdateDisposals", entities));
       int _cl = 0;
@@ -86,7 +86,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
       SubmitChanges(progress, entities);
       progress(null, new EntitiesChangedEventArgs(1, "Finished Activate.UpdateDisposals", entities));
     }
-    private static void IPRRecalculateClearedRecords(EntitiesDataContext entities, Func<object, EntitiesChangedEventArgs, bool> progress)
+    private static void IPRRecalculateClearedRecords(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       progress(null, new EntitiesChangedEventArgs(1, "Starting Activate.IPRRecalculateClearedRecords", entities));
       foreach (IPR.WebsiteModel.Linq.IPR _iprX in entities.IPR)
@@ -98,7 +98,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
       SubmitChanges(progress, entities);
       progress(null, new EntitiesChangedEventArgs(1, "Finished Activate.IPRRecalculateClearedRecords", entities));
     }
-    private static void ResetArchival(EntitiesDataContext entities, Func<object, EntitiesChangedEventArgs, bool> progress)
+    private static void ResetArchival(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       progress(null, new EntitiesChangedEventArgs(1, "Starting Activate.ResetArchival", entities));
       progress(null, new EntitiesChangedEventArgs(1, "Batch archive reseting", entities));

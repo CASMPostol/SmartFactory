@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
     /// <param name="progressPercentage">The progress percentage.</param>
     /// <param name="userState">State of the user.</param>
     /// <param name="entities">The entities.</param>
-    internal EntitiesChangedEventArgs(int progressPercentage, object userState, EntitiesDataContext entities)
+    internal EntitiesChangedEventArgs(int progressPercentage, object userState, Entities entities)
       : base(progressPercentage, new EntitiesStateInternal(userState, entities))
     { }
     /// <summary>
@@ -39,7 +39,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
     /// <returns>A unique <see cref="T:System.Object" /> indicating the user state.</returns>
     internal new EntitiesState UserState { get { return (EntitiesState)base.UserState; } }
     /// <summary>
-    /// Class representing <see cref="EntitiesDataContext"/> state
+    /// Class representing <see cref="Entities"/> state
     /// </summary>
     internal abstract class EntitiesState
     {
@@ -56,7 +56,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
       /// <value>
       /// The entities.
       /// </value>
-      internal EntitiesDataContext Entities { get { return m_Entities; } }
+      internal Entities Entities { get { return m_Entities; } }
       /// <summary>
       /// The m_ user state
       /// </summary>
@@ -64,7 +64,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
       /// <summary>
       /// The m_ entities
       /// </summary>
-      internal protected EntitiesDataContext m_Entities = null;
+      internal protected Entities m_Entities = null;
     }
     //private
     private class EntitiesStateInternal : EntitiesState
@@ -74,7 +74,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation
       /// </summary>
       /// <param name="userState">A unique user state.</param>
       /// <param name="entities">The entities.</param>
-      internal EntitiesStateInternal(object userState, EntitiesDataContext entities)
+      internal EntitiesStateInternal(object userState, Entities entities)
       {
         m_UserState = userState;
         m_Entities = entities;

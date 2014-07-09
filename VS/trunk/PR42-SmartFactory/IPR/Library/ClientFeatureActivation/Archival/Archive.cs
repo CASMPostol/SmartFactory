@@ -61,7 +61,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Archival
     /// <param name="ProgressChanged">The progress changed.</param>
     public static void Go(ArchiveSettings settings, Func<object, EntitiesChangedEventArgs, bool> ProgressChanged)
     {
-      using (EntitiesDataContext edc = new EntitiesDataContext(settings.SiteURL))
+      using (Entities edc = new Entities(settings.SiteURL))
       {
         GoIPR(edc, settings, ProgressChanged);
         GoBatch(edc, settings, ProgressChanged);
@@ -70,12 +70,12 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Archival
     #endregion
 
     #region private
-    private static void SubmitChanges(EntitiesDataContext entities, Func<object, EntitiesChangedEventArgs, bool> progress)
+    private static void SubmitChanges(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", entities));
       entities.SubmitChanges();
     }
-    private static void GoIPR(EntitiesDataContext entities, ArchiveSettings settings, Func<object, EntitiesChangedEventArgs, bool> progress)
+    private static void GoIPR(Entities entities, ArchiveSettings settings, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       if (!settings.DoArchiveIPR)
       {
@@ -107,7 +107,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Archival
       SubmitChanges(entities, progress);
       progress(null, new EntitiesChangedEventArgs(1, String.Format("Finished Archive GoIPR; Archived {0} IPR accounts and {1} disposals.", _iprArchived, _disposalsArchived), entities));
     }
-    private static void GoBatch(EntitiesDataContext entities, ArchiveSettings settings, Func<object, EntitiesChangedEventArgs, bool> progress)
+    private static void GoBatch(Entities entities, ArchiveSettings settings, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       if (!settings.DoArchiveBatch)
       {
