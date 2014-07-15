@@ -16,6 +16,7 @@
 using System;
 using System.Windows;
 using CAS.SmartFactory.IPR.Client.DataManagement.Linq;
+using CAS.SmartFactory.IPR.Client.DataManagement;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {

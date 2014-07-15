@@ -41,7 +41,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     /// <summary>
     /// Class representing <see cref="Entities"/> state
     /// </summary>
-    internal abstract class EntitiesState
+    public abstract class EntitiesState
     {
       /// <summary>
       /// Gets a unique user state.
