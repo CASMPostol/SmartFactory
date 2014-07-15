@@ -54,7 +54,6 @@
     <Compile Include="Archival\Archive.cs" />
     <Compile Include="EntitiesChangedEventArgs.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Linq\Class1.cs" />
     <Compile Include="Linq\Disposal.cs" />
     <Compile Include="Linq\Entities.cs" />
     <Compile Include="Linq\IPR.cs" />
@@ -86,6 +85,9 @@
     <Content Include="Linq\Scripts\Parameters.xml">
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Linq2SQL\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

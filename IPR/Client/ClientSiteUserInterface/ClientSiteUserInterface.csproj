@@ -173,9 +173,9 @@
       <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
       <Name>SharePoint</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Library\ClientFeatureActivation\ClientFeatureActivation.csproj">
+    <ProjectReference Include="..\..\Library\ClientDataManagement\ClientDataManagement.csproj">
       <Project>{7ff92139-ea5d-469d-aa7c-a309b2e2fa29}</Project>
-      <Name>ClientFeatureActivation</Name>
+      <Name>ClientDataManagement</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
