@@ -469,15 +469,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
 		private double _Balance;
 		
 		private int _Balance2JSOXLibraryIndex;
 		
 		private string _Batch;
-		
-		private string _ContentType;
 		
 		private System.DateTime _Created;
 		
@@ -551,16 +547,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
     partial void OnBalanceChanging(double value);
     partial void OnBalanceChanged();
     partial void OnBalance2JSOXLibraryIndexChanging(int value);
     partial void OnBalance2JSOXLibraryIndexChanged();
     partial void OnBatchChanging(string value);
     partial void OnBatchChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -634,26 +626,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Balance", DbType="Float NOT NULL")]
 		public double Balance
 		{
@@ -714,26 +686,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Batch = value;
 					this.SendPropertyChanged("Batch");
 					this.OnBatchChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -1464,8 +1416,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
 		private double _Balance;
 		
 		private int _BalanceBatchIndex;
@@ -1473,8 +1423,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private int _BalanceIPR2JSOXIndex;
 		
 		private string _Batch;
-		
-		private string _ContentType;
 		
 		private System.DateTime _Created;
 		
@@ -1550,8 +1498,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
     partial void OnBalanceChanging(double value);
     partial void OnBalanceChanged();
     partial void OnBalanceBatchIndexChanging(int value);
@@ -1560,8 +1506,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnBalanceIPR2JSOXIndexChanged();
     partial void OnBatchChanging(string value);
     partial void OnBatchChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -1634,26 +1578,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			this._IPR = default(EntityRef<IPR>);
 			this._JSOXLibrary = default(EntityRef<JSOXLibrary>);
 			OnCreated();
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Balance", DbType="Float NOT NULL")]
@@ -1740,26 +1664,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Batch = value;
 					this.SendPropertyChanged("Batch");
 					this.OnBatchChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -2537,8 +2441,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
 		private string _Batch1;
 		
 		private double _BatchDustCooeficiency;
@@ -2562,8 +2464,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private double _CFTProductivityRateMin;
 		
 		private double _CFTProductivityVersion;
-		
-		private string _ContentType;
 		
 		private System.DateTime _Created;
 		
@@ -2637,8 +2537,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
     partial void OnBatch1Changing(string value);
     partial void OnBatch1Changed();
     partial void OnBatchDustCooeficiencyChanging(double value);
@@ -2663,8 +2561,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCFTProductivityRateMinChanged();
     partial void OnCFTProductivityVersionChanging(double value);
     partial void OnCFTProductivityVersionChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -2732,26 +2628,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			this._Material = new EntitySet<Material>(new Action<Material>(this.attach_Material), new Action<Material>(this.detach_Material));
 			this._StockEntry = new EntitySet<StockEntry>(new Action<StockEntry>(this.attach_StockEntry), new Action<StockEntry>(this.detach_StockEntry));
 			OnCreated();
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
 		}
 		
 		[Column(Name="Batch", Storage="_Batch1", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
@@ -2994,26 +2870,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CFTProductivityVersion = value;
 					this.SendPropertyChanged("CFTProductivityVersion");
 					this.OnCFTProductivityVersionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -3781,8 +3637,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private bool _BatchLibraryOK;
 		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -3809,8 +3663,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnBatchLibraryCommentsChanged();
     partial void OnBatchLibraryOKChanging(bool value);
     partial void OnBatchLibraryOKChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -3871,26 +3723,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._BatchLibraryOK = value;
 					this.SendPropertyChanged("BatchLibraryOK");
 					this.OnBatchLibraryOKChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -4107,13 +3939,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
 		private int _Clearence2SadGoodID;
 		
 		private string _ClearenceProcedure;
-		
-		private string _ContentType;
 		
 		private System.DateTime _Created;
 		
@@ -4151,14 +3979,10 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
     partial void OnClearence2SadGoodIDChanging(int value);
     partial void OnClearence2SadGoodIDChanged();
     partial void OnClearenceProcedureChanging(string value);
     partial void OnClearenceProcedureChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -4191,26 +4015,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			this._InvoiceLibrary = new EntitySet<InvoiceLibrary>(new Action<InvoiceLibrary>(this.attach_InvoiceLibrary), new Action<InvoiceLibrary>(this.detach_InvoiceLibrary));
 			this._IPR = new EntitySet<IPR>(new Action<IPR>(this.attach_IPR), new Action<IPR>(this.detach_IPR));
 			OnCreated();
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Clearence2SadGoodID", DbType="Int NOT NULL")]
@@ -4253,26 +4057,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ClearenceProcedure = value;
 					this.SendPropertyChanged("ClearenceProcedure");
 					this.OnClearenceProcedureChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -4675,8 +4459,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private double _ConsentPeriod;
 		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -4709,8 +4491,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnConsentDateChanged();
     partial void OnConsentPeriodChanging(double value);
     partial void OnConsentPeriodChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -4777,26 +4557,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ConsentPeriod = value;
 					this.SendPropertyChanged("ConsentPeriod");
 					this.OnConsentPeriodChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -5073,8 +4833,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -5093,8 +4851,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -5114,26 +4870,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		public CustomsUnion()
 		{
 			OnCreated();
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
@@ -5581,13 +5317,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
-		private int _Author;
-		
 		private string _ClearingType;
-		
-		private string _ContentType;
 		
 		private System.DateTime _Created;
 		
@@ -5665,14 +5395,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
-    partial void OnAuthorChanging(int value);
-    partial void OnAuthorChanged();
     partial void OnClearingTypeChanging(string value);
     partial void OnClearingTypeChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -5745,46 +5469,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Author", DbType="Int NOT NULL")]
-		public int Author
-		{
-			get
-			{
-				return this._Author;
-			}
-			set
-			{
-				if ((this._Author != value))
-				{
-					this.OnAuthorChanging(value);
-					this.SendPropertyChanging();
-					this._Author = value;
-					this.SendPropertyChanged("Author");
-					this.OnAuthorChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_ClearingType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
 		public string ClearingType
 		{
@@ -5801,26 +5485,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ClearingType = value;
 					this.SendPropertyChanged("ClearingType");
 					this.OnClearingTypeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -7134,10 +6798,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -7174,10 +6834,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -7212,46 +6868,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			this._Batch = default(EntityRef<Batch>);
 			this._InvoiceLibrary = default(EntityRef<InvoiceLibrary>);
 			OnCreated();
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
@@ -7646,8 +7262,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private int _ClearenceIndex;
 		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -7684,8 +7298,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnBillDocChanged();
     partial void OnClearenceIndexChanging(int value);
     partial void OnClearenceIndexChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -7759,26 +7371,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ClearenceIndex = value;
 					this.SendPropertyChanged("ClearenceIndex");
 					this.OnClearenceIndexChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -8111,10 +7703,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private double _AccountBalance;
 		
-		private bool _AccountClosed;
-		
-		private bool _Archival;
-		
 		private string _Batch;
 		
 		private double _Cartons;
@@ -8124,8 +7712,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.DateTime _ClosingDate;
 		
 		private double _ConsentPeriod;
-		
-		private string _ContentType;
 		
 		private System.DateTime _Created;
 		
@@ -8213,10 +7799,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnAccountBalanceChanging(double value);
     partial void OnAccountBalanceChanged();
-    partial void OnAccountClosedChanging(bool value);
-    partial void OnAccountClosedChanged();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
     partial void OnBatchChanging(string value);
     partial void OnBatchChanged();
     partial void OnCartonsChanging(double value);
@@ -8227,8 +7809,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnClosingDateChanged();
     partial void OnConsentPeriodChanging(double value);
     partial void OnConsentPeriodChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -8325,46 +7905,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._AccountBalance = value;
 					this.SendPropertyChanged("AccountBalance");
 					this.OnAccountBalanceChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_AccountClosed", DbType="Bit NOT NULL")]
-		public bool AccountClosed
-		{
-			get
-			{
-				return this._AccountClosed;
-			}
-			set
-			{
-				if ((this._AccountClosed != value))
-				{
-					this.OnAccountClosedChanging(value);
-					this.SendPropertyChanging();
-					this._AccountClosed = value;
-					this.SendPropertyChanged("AccountClosed");
-					this.OnAccountClosedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
 				}
 			}
 		}
@@ -8469,26 +8009,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ConsentPeriod = value;
 					this.SendPropertyChanged("ConsentPeriod");
 					this.OnConsentPeriodChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -9416,8 +8936,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -9442,8 +8960,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -9468,26 +8984,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		{
 			this._IPR = new EntitySet<IPR>(new Action<IPR>(this.attach_IPR), new Action<IPR>(this.detach_IPR));
 			OnCreated();
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
@@ -9724,8 +9220,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _CompensationGood;
 		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -9766,8 +9260,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnCompensationGoodChanging(string value);
     partial void OnCompensationGoodChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -9823,26 +9315,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CompensationGood = value;
 					this.SendPropertyChanged("CompensationGood");
 					this.OnCompensationGoodChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -10241,8 +9713,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private double _BalanceQuantity;
 		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -10301,8 +9771,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnBalanceDateChanged();
     partial void OnBalanceQuantityChanging(double value);
     partial void OnBalanceQuantityChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -10391,26 +9859,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._BalanceQuantity = value;
 					this.SendPropertyChanged("BalanceQuantity");
 					this.OnBalanceQuantityChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -10967,11 +10415,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
 		private string _Batch;
-		
-		private string _ContentType;
 		
 		private System.DateTime _Created;
 		
@@ -11021,12 +10465,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
     partial void OnBatchChanging(string value);
     partial void OnBatchChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -11076,26 +10516,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Batch", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
 		public string Batch
 		{
@@ -11112,26 +10532,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Batch = value;
 					this.SendPropertyChanged("Batch");
 					this.OnBatchChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -11628,8 +11028,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _CompensationGood;
 		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -11656,8 +11054,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnCompensationGoodChanging(string value);
     partial void OnCompensationGoodChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -11699,26 +11095,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CompensationGood = value;
 					this.SendPropertyChanged("CompensationGood");
 					this.OnCompensationGoodChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -11960,10 +11336,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -11986,10 +11358,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -12012,46 +11380,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		{
 			this._Clearence = new EntitySet<Clearence>(new Action<Clearence>(this.attach_Clearence), new Action<Clearence>(this.detach_Clearence));
 			OnCreated();
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
@@ -12266,10 +11594,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -12308,10 +11632,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -12349,46 +11669,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			this._SADDocumentLibrary = default(EntityRef<SADDocumentLibrary>);
 			this._SADGood = new EntitySet<SADGood>(new Action<SADGood>(this.attach_SADGood), new Action<SADGood>(this.detach_SADGood));
 			OnCreated();
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
@@ -12781,10 +12061,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -12811,10 +12087,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -12841,46 +12113,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		{
 			this._SADDocument = new EntitySet<SADDocument>(new Action<SADDocument>(this.attach_SADDocument), new Action<SADDocument>(this.detach_SADDocument));
 			OnCreated();
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
@@ -13137,10 +12369,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private double _Amount;
 		
-		private bool _Archival;
-		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -13165,10 +12393,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnAmountChanging(double value);
     partial void OnAmountChanged();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -13209,46 +12433,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Amount = value;
 					this.SendPropertyChanged("Amount");
 					this.OnAmountChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -13478,10 +12662,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -13526,10 +12706,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -13569,46 +12745,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			this._SADQuantity = new EntitySet<SADQuantity>(new Action<SADQuantity>(this.attach_SADQuantity), new Action<SADQuantity>(this.detach_SADQuantity));
 			this._SADRequiredDocuments = new EntitySet<SADRequiredDocuments>(new Action<SADRequiredDocuments>(this.attach_SADRequiredDocuments), new Action<SADRequiredDocuments>(this.detach_SADRequiredDocuments));
 			OnCreated();
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
@@ -14081,10 +13217,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -14109,10 +13241,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -14137,46 +13265,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		{
 			this._SADGood = default(EntityRef<SADGood>);
 			OnCreated();
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
@@ -14424,10 +13512,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -14454,10 +13538,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -14484,46 +13564,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		{
 			this._SADGood = default(EntityRef<SADGood>);
 			OnCreated();
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
@@ -14791,11 +13831,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
 		private string _Code;
-		
-		private string _ContentType;
 		
 		private System.DateTime _Created;
 		
@@ -14819,12 +13855,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
     partial void OnCodeChanging(string value);
     partial void OnCodeChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -14849,26 +13881,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Code", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
 		public string Code
 		{
@@ -14885,26 +13897,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Code = value;
 					this.SendPropertyChanged("Code");
 					this.OnCodeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -15134,8 +14126,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -15154,8 +14144,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -15175,26 +14163,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		public Settings()
 		{
 			OnCreated();
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
@@ -15594,15 +14562,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
 		private string _BlendPurpose;
 		
 		private string _Brand;
 		
 		private string _CigaretteLenght;
-		
-		private string _ContentType;
 		
 		private System.DateTime _Created;
 		
@@ -15648,16 +14612,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
     partial void OnBlendPurposeChanging(string value);
     partial void OnBlendPurposeChanged();
     partial void OnBrandChanging(string value);
     partial void OnBrandChanged();
     partial void OnCigaretteLenghtChanging(string value);
     partial void OnCigaretteLenghtChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -15700,26 +14660,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			this._SKULibrary = default(EntityRef<SKULibrary>);
 			this._SPFormat = default(EntityRef<SPFormat>);
 			OnCreated();
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_BlendPurpose", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
@@ -15778,26 +14718,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CigaretteLenght = value;
 					this.SendPropertyChanged("CigaretteLenght");
 					this.OnCigaretteLenghtChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -16270,8 +15190,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -16294,8 +15212,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -16318,26 +15234,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		{
 			this._SKU = new EntitySet<SKU>(new Action<SKU>(this.attach_SKU), new Action<SKU>(this.detach_SKU));
 			OnCreated();
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
@@ -16554,8 +15450,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _CigaretteLenght;
 		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -16580,8 +15474,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnCigaretteLenghtChanging(string value);
     partial void OnCigaretteLenghtChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -16621,26 +15513,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CigaretteLenght = value;
 					this.SendPropertyChanged("CigaretteLenght");
 					this.OnCigaretteLenghtChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -16862,15 +15734,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
 		private string _Batch;
 		
 		private int _BatchIndex;
 		
 		private double _Blocked;
-		
-		private string _ContentType;
 		
 		private System.DateTime _Created;
 		
@@ -16912,16 +15780,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
     partial void OnBatchChanging(string value);
     partial void OnBatchChanged();
     partial void OnBatchIndexChanging(int value);
     partial void OnBatchIndexChanged();
     partial void OnBlockedChanging(double value);
     partial void OnBlockedChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -16961,26 +15825,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			this._BatchIndexBatch = default(EntityRef<Batch>);
 			this._StockLibrary = default(EntityRef<StockLibrary>);
 			OnCreated();
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Batch", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
@@ -17043,26 +15887,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Blocked = value;
 					this.SendPropertyChanged("Blocked");
 					this.OnBlockedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
 				}
 			}
 		}
@@ -17486,10 +16310,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private bool _Archival;
-		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -17516,10 +16336,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnArchivalChanging(bool value);
-    partial void OnArchivalChanged();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -17545,46 +16361,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			this._StockEntry = new EntitySet<StockEntry>(new Action<StockEntry>(this.attach_StockEntry), new Action<StockEntry>(this.detach_StockEntry));
 			this._JSOXLibrary = default(EntityRef<JSOXLibrary>);
 			OnCreated();
-		}
-		
-		[Column(Storage="_Archival", DbType="Bit NOT NULL")]
-		public bool Archival
-		{
-			get
-			{
-				return this._Archival;
-			}
-			set
-			{
-				if ((this._Archival != value))
-				{
-					this.OnArchivalChanging(value);
-					this.SendPropertyChanging();
-					this._Archival = value;
-					this.SendPropertyChanged("Archival");
-					this.OnArchivalChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
@@ -18200,8 +16976,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _ContentType;
-		
 		private System.DateTime _Created;
 		
 		private string _CreatedBy;
@@ -18224,8 +16998,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnContentTypeChanging(string value);
-    partial void OnContentTypeChanged();
     partial void OnCreatedChanging(System.DateTime value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -18249,26 +17021,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		public Warehouse()
 		{
 			OnCreated();
-		}
-		
-		[Column(Storage="_ContentType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
-				}
-			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
