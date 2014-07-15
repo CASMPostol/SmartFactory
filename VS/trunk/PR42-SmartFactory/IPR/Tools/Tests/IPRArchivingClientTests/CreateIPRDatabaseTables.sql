@@ -1,8 +1,7 @@
 ﻿USE IPRDEV
 CREATE TABLE JSOXLibrary (
       BalanceDate datetime NOT NULL,
-      BalanceQuantity float NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+      BalanceQuantity float NOT NULL,     
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       FileLeafRef nvarchar(255) NOT NULL,
@@ -25,12 +24,10 @@ CREATE TABLE JSOXLibrary (
       Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_JSOXLibrary_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
-CREATE TABLE BalanceBatch (
-      Archival bit NOT NULL,
+CREATE TABLE BalanceBatch (      
       Balance float NOT NULL,
       Balance2JSOXLibraryIndex int NOT NULL,
-      Batch nvarchar(255) NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+      Batch nvarchar(255) NOT NULL,    
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       DocumentNo nvarchar(255) NOT NULL,
@@ -66,9 +63,7 @@ CREATE TABLE BalanceBatch (
       CONSTRAINT PK_BalanceBatch_ID PRIMARY KEY CLUSTERED (ID ASC) ,
       CONSTRAINT FK_BalanceBatch_JSOXLibrary FOREIGN KEY (Balance2JSOXLibraryIndex) REFERENCES JSOXLibrary (ID),
 );
-CREATE TABLE SADDocumentLibrary (
-      Archival bit NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE SADDocumentLibrary (          
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       FileLeafRef nvarchar(255) NOT NULL,
@@ -81,9 +76,7 @@ CREATE TABLE SADDocumentLibrary (
       Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_SADDocumentLibrary_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
-CREATE TABLE SADDocument (
-      Archival bit NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE SADDocument (       
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       Currency nvarchar(255) NOT NULL,
@@ -102,9 +95,7 @@ CREATE TABLE SADDocument (
       CONSTRAINT PK_SADDocument_ID PRIMARY KEY CLUSTERED (ID ASC) ,
       CONSTRAINT FK_SADDocument_SADDocumentLibrary FOREIGN KEY (SADDocumenLibrarytIndex) REFERENCES SADDocumentLibrary (ID),
 );
-CREATE TABLE SADGood (
-      Archival bit NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE SADGood (            
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       GoodsDescription nvarchar(255) NOT NULL,
@@ -122,9 +113,7 @@ CREATE TABLE SADGood (
       CONSTRAINT PK_SADGood_ID PRIMARY KEY CLUSTERED (ID ASC) ,
       CONSTRAINT FK_SADGood_SADDocument FOREIGN KEY (SADDocumentIndex) REFERENCES SADDocument (ID),
 );
-CREATE TABLE SADConsignment (
-      Archival bit NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE SADConsignment (        
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       FileLeafRef nvarchar(255) NOT NULL,
@@ -135,11 +124,9 @@ CREATE TABLE SADConsignment (
       Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_SADConsignment_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
-CREATE TABLE Clearence (
-      Archival bit NOT NULL,
+CREATE TABLE Clearence (      
       Clearence2SadGoodID int NOT NULL,
-      ClearenceProcedure nvarchar(255) NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+      ClearenceProcedure nvarchar(255) NOT NULL,    
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       DocumentNo nvarchar(255) NOT NULL,
@@ -157,8 +144,7 @@ CREATE TABLE Clearence (
 );
 CREATE TABLE Consent (
       ConsentDate datetime NOT NULL,
-      ConsentPeriod float NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+      ConsentPeriod float NOT NULL,      
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       ID int NOT NULL,
@@ -173,8 +159,7 @@ CREATE TABLE Consent (
       CONSTRAINT PK_Consent_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
 CREATE TABLE PCNCode (
-      CompensationGood nvarchar(255) NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+      CompensationGood nvarchar(255) NOT NULL,      
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       Disposal bit NOT NULL,
@@ -185,8 +170,7 @@ CREATE TABLE PCNCode (
       Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_PCNCode_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
-CREATE TABLE IPRLibrary (
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE IPRLibrary (     
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       DocumentNo nvarchar(255) NOT NULL,
@@ -199,15 +183,12 @@ CREATE TABLE IPRLibrary (
       CONSTRAINT PK_IPRLibrary_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
 CREATE TABLE IPR (
-      AccountBalance float NOT NULL,
-      AccountClosed bit NOT NULL,
-      Archival bit NOT NULL,
+      AccountBalance float NOT NULL,    
       Batch nvarchar(255) NOT NULL,
       Cartons float NOT NULL,
       ClearenceIndex int NOT NULL,
       ClosingDate datetime NOT NULL,
-      ConsentPeriod float NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+      ConsentPeriod float NOT NULL,     
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       Currency nvarchar(255) NOT NULL,
@@ -248,13 +229,11 @@ CREATE TABLE IPR (
       CONSTRAINT FK_IPR_PCNCode FOREIGN KEY (IPR2PCNPCN) REFERENCES PCNCode (ID),
       CONSTRAINT FK_IPR_IPRLibrary FOREIGN KEY (IPRLibraryIndex) REFERENCES IPRLibrary (ID),
 );
-CREATE TABLE BalanceIPR (
-      Archival bit NOT NULL,
+CREATE TABLE BalanceIPR (      
       Balance float NOT NULL,
       BalanceBatchIndex int NOT NULL,
       BalanceIPR2JSOXIndex int NOT NULL,
-      Batch nvarchar(255) NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+      Batch nvarchar(255) NOT NULL,    
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       CustomsProcedure nvarchar(255) NOT NULL,
@@ -295,7 +274,6 @@ CREATE TABLE BalanceIPR (
 CREATE TABLE BatchLibrary (
       BatchLibraryComments nvarchar(255) NOT NULL,
       BatchLibraryOK bit NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       FileLeafRef nvarchar(255) NOT NULL,
@@ -307,8 +285,7 @@ CREATE TABLE BatchLibrary (
       CONSTRAINT PK_BatchLibrary_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
 CREATE TABLE SPFormat (
-      CigaretteLenght nvarchar(255) NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+      CigaretteLenght nvarchar(255) NOT NULL,      
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       FilterLenght nvarchar(255) NOT NULL,
@@ -318,8 +295,7 @@ CREATE TABLE SPFormat (
       Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_SPFormat_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
-CREATE TABLE SKULibrary (
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE SKULibrary (      
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       FileLeafRef nvarchar(255) NOT NULL,
@@ -330,12 +306,10 @@ CREATE TABLE SKULibrary (
       Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_SKULibrary_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
-CREATE TABLE SKU (
-      Archival bit NOT NULL,
+CREATE TABLE SKU (      
       BlendPurpose nvarchar(255) NOT NULL,
       Brand nvarchar(255) NOT NULL,
-      CigaretteLenght nvarchar(255) NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+      CigaretteLenght nvarchar(255) NOT NULL,      
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       Family nvarchar(255) NOT NULL,
@@ -357,8 +331,7 @@ CREATE TABLE SKU (
       CONSTRAINT FK_SKU_SPFormat FOREIGN KEY (FormatIndex) REFERENCES SPFormat (ID),
       CONSTRAINT FK_SKU_SKULibrary FOREIGN KEY (SKULibraryIndex) REFERENCES SKULibrary (ID),
 );
-CREATE TABLE Batch (
-      Archival bit NOT NULL,
+CREATE TABLE Batch (    
       Batch nvarchar(255) NOT NULL,
       BatchDustCooeficiency float NOT NULL,
       BatchLibraryIndex int NOT NULL,
@@ -370,8 +343,7 @@ CREATE TABLE Batch (
       CFTProductivityNormMin nvarchar(255) NOT NULL,
       CFTProductivityRateMax float NOT NULL,
       CFTProductivityRateMin float NOT NULL,
-      CFTProductivityVersion float NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+      CFTProductivityVersion float NOT NULL,      
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       CTFUsageMax float NOT NULL,
@@ -404,8 +376,7 @@ CREATE TABLE Batch (
       CONSTRAINT FK_Batch_BatchLibrary FOREIGN KEY (BatchLibraryIndex) REFERENCES BatchLibrary (ID),
       CONSTRAINT FK_Batch_SKU FOREIGN KEY (SKUIndex) REFERENCES SKU (ID),
 );
-CREATE TABLE CustomsUnion (
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE CustomsUnion (   
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       EUPrimeMarket nvarchar(255) NOT NULL,
@@ -430,8 +401,7 @@ CREATE TABLE CutfillerCoefficient (
 );
 CREATE TABLE InvoiceLibrary (
       BillDoc nvarchar(255) NOT NULL,
-      ClearenceIndex int NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+      ClearenceIndex int NOT NULL,     
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       FileLeafRef nvarchar(255) NOT NULL,
@@ -447,9 +417,7 @@ CREATE TABLE InvoiceLibrary (
       CONSTRAINT PK_InvoiceLibrary_ID PRIMARY KEY CLUSTERED (ID ASC) ,
       CONSTRAINT FK_InvoiceLibrary_Clearence FOREIGN KEY (ClearenceIndex) REFERENCES Clearence (ID),
 );
-CREATE TABLE InvoiceContent (
-      Archival bit NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE InvoiceContent (          
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       ID int NOT NULL,
@@ -467,10 +435,8 @@ CREATE TABLE InvoiceContent (
       CONSTRAINT FK_InvoiceContent_Batch FOREIGN KEY (InvoiceContent2BatchIndex) REFERENCES Batch (ID),
       CONSTRAINT FK_InvoiceContent_InvoiceLibrary FOREIGN KEY (InvoiceIndex) REFERENCES InvoiceLibrary (ID),
 );
-CREATE TABLE Material (
-      Archival bit NOT NULL,
-      Batch nvarchar(255) NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE Material ( 
+      Batch nvarchar(255) NOT NULL,    
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       Dust float NOT NULL,
@@ -495,8 +461,7 @@ CREATE TABLE Material (
       CONSTRAINT FK_Material_Batch FOREIGN KEY (Material2BatchIndex) REFERENCES Batch (ID),
 );
 CREATE TABLE JSOXCustomsSummary (
-      CompensationGood nvarchar(255) NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+      CompensationGood nvarchar(255) NOT NULL,     
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       CustomsProcedure nvarchar(255) NOT NULL,
@@ -515,11 +480,8 @@ CREATE TABLE JSOXCustomsSummary (
       CONSTRAINT PK_JSOXCustomsSummary_ID PRIMARY KEY CLUSTERED (ID ASC) ,
       CONSTRAINT FK_JSOXCustomsSummary_JSOXLibrary FOREIGN KEY (JSOXCustomsSummary2JSOXIndex) REFERENCES JSOXLibrary (ID),
 );
-CREATE TABLE Disposal (
-      Archival bit NOT NULL,
-      Author int NOT NULL,
-      ClearingType nvarchar(255) NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE Disposal (     
+      ClearingType nvarchar(255) NOT NULL,   
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       CustomsProcedure nvarchar(255) NOT NULL,
@@ -570,9 +532,7 @@ CREATE TABLE Dust (
       CONSTRAINT PK_Dust_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
 CREATE TABLE SADDuties (
-      Amount float NOT NULL,
-      Archival bit NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+      Amount float NOT NULL,           
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       DutyType nvarchar(255) NOT NULL,
@@ -584,9 +544,7 @@ CREATE TABLE SADDuties (
       CONSTRAINT PK_SADDuties_ID PRIMARY KEY CLUSTERED (ID ASC) ,
       CONSTRAINT FK_SADDuties_SADGood FOREIGN KEY (SADDuties2SADGoodID) REFERENCES SADGood (ID),
 );
-CREATE TABLE SADPackage (
-      Archival bit NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE SADPackage (        
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       ID int NOT NULL,
@@ -599,9 +557,7 @@ CREATE TABLE SADPackage (
       CONSTRAINT PK_SADPackage_ID PRIMARY KEY CLUSTERED (ID ASC) ,
       CONSTRAINT FK_SADPackage_SADGood FOREIGN KEY (SADPackage2SADGoodID) REFERENCES SADGood (ID),
 );
-CREATE TABLE SADQuantity (
-      Archival bit NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE SADQuantity (          
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       ID int NOT NULL,
@@ -615,10 +571,8 @@ CREATE TABLE SADQuantity (
       CONSTRAINT PK_SADQuantity_ID PRIMARY KEY CLUSTERED (ID ASC) ,
       CONSTRAINT FK_SADQuantity_SADGood FOREIGN KEY (SADQuantity2SADGoodID) REFERENCES SADGood (ID),
 );
-CREATE TABLE SADRequiredDocuments (
-      Archival bit NOT NULL,
-      Code nvarchar(255) NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE SADRequiredDocuments (   
+      Code nvarchar(255) NOT NULL,   
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       ID int NOT NULL,
@@ -630,8 +584,7 @@ CREATE TABLE SADRequiredDocuments (
       CONSTRAINT PK_SADRequiredDocuments_ID PRIMARY KEY CLUSTERED (ID ASC) ,
       CONSTRAINT FK_SADRequiredDocuments_SADGood FOREIGN KEY (SADRequiredDoc2SADGoodID) REFERENCES SADGood (ID),
 );
-CREATE TABLE Settings (
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE Settings (      
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       ID int NOT NULL,
@@ -652,9 +605,7 @@ CREATE TABLE SHMenthol (
       Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_SHMenthol_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
-CREATE TABLE StockLibrary (
-      Archival bit NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE StockLibrary (            
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       FileLeafRef nvarchar(255) NOT NULL,
@@ -667,12 +618,10 @@ CREATE TABLE StockLibrary (
       CONSTRAINT PK_StockLibrary_ID PRIMARY KEY CLUSTERED (ID ASC) ,
       CONSTRAINT FK_StockLibrary_JSOXLibrary FOREIGN KEY (Stock2JSOXLibraryIndex) REFERENCES JSOXLibrary (ID),
 );
-CREATE TABLE StockEntry (
-      Archival bit NOT NULL,
+CREATE TABLE StockEntry (      
       Batch nvarchar(255) NOT NULL,
       BatchIndex int NOT NULL,
-      Blocked float NOT NULL,
-      ContentType nvarchar(255) NOT NULL,
+      Blocked float NOT NULL,     
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       ID int NOT NULL,
@@ -708,8 +657,7 @@ CREATE TABLE Usage (
       CONSTRAINT PK_Usage_ID PRIMARY KEY CLUSTERED (ID ASC) ,
       CONSTRAINT FK_Usage_SPFormat FOREIGN KEY (FormatIndex) REFERENCES SPFormat (ID),
 );
-CREATE TABLE Warehouse (
-      ContentType nvarchar(255) NOT NULL,
+CREATE TABLE Warehouse (     
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       ID int NOT NULL,
