@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 #pragma warning disable 1591
-namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
+namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq {
 	using System;
 	
 	

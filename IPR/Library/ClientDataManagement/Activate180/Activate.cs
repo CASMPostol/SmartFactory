@@ -14,9 +14,9 @@
 //</summary>
 
 using System;
-using CAS.SmartFactory.IPR.WebsiteModel.Linq;
+using CAS.SmartFactory.IPR.Client.DataManagement.Linq;
 
-namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
+namespace CAS.SmartFactory.IPR.Client.DataManagement.Activate180
 {
   /// <summary>
   /// Activate helper functions
@@ -89,7 +89,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Activate180
     private static void IPRRecalculateClearedRecords(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
     {
       progress(null, new EntitiesChangedEventArgs(1, "Starting Activate.IPRRecalculateClearedRecords", entities));
-      foreach (IPR.WebsiteModel.Linq.IPR _iprX in entities.IPR)
+      foreach (Client.DataManagement.Linq.IPR _iprX in entities.IPR)
       {
         _iprX.Archival = false;
         _iprX.RecalculateClearedRecords(entities, progress);

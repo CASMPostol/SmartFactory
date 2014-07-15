@@ -7,8 +7,8 @@
     <ProjectGuid>{7FF92139-EA5D-469D-AA7C-A309B2E2FA29}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CAS.SmartFactory.IPR.Client.FeatureActivation</RootNamespace>
-    <AssemblyName>CAS.IPRClientFeatureActivation</AssemblyName>
+    <RootNamespace>CAS.SmartFactory.IPR.Client.DataManagement</RootNamespace>
+    <AssemblyName>CAS.IPRClientDataManagement</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\CAS.IPRClientFeatureActivation.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\CAS.IPRClientDataManagement.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -54,6 +54,7 @@
     <Compile Include="Archival\Archive.cs" />
     <Compile Include="EntitiesChangedEventArgs.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Linq\Class1.cs" />
     <Compile Include="Linq\Disposal.cs" />
     <Compile Include="Linq\Entities.cs" />
     <Compile Include="Linq\IPR.cs" />

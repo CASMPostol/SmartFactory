@@ -14,9 +14,9 @@
 //</summary>
 
 using System.ComponentModel;
-using CAS.SmartFactory.IPR.WebsiteModel.Linq;
+using CAS.SmartFactory.IPR.Client.DataManagement.Linq;
 
-namespace CAS.SmartFactory.IPR.Client.FeatureActivation
+namespace CAS.SmartFactory.IPR.Client.DataManagement
 {
 
   /// <summary>
