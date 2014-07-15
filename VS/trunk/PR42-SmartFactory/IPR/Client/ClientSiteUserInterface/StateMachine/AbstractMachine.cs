@@ -15,7 +15,7 @@
 
 using System;
 using System.ComponentModel;
-using CAS.SmartFactory.IPR.Client.FeatureActivation;
+using CAS.SmartFactory.IPR.Client.DataManagement;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
@@ -198,7 +198,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       }
       protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
       {
-        FeatureActivation.Activate180.Activate.Go(Properties.Settings.Default.SiteURL, Properties.Settings.Default.DoActivate1800, ReportProgress);
+        DataManagement.Activate180.Activate.Go(Properties.Settings.Default.SiteURL, Properties.Settings.Default.DoActivate1800, ReportProgress);
       }
       protected override void RunWorkerCompleted()
       {
@@ -232,7 +232,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       }
       protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
       {
-        FeatureActivation.Archival.Archive.ArchiveSettings _settings = new FeatureActivation.Archival.Archive.ArchiveSettings
+        DataManagement.Archival.Archive.ArchiveSettings _settings = new DataManagement.Archival.Archive.ArchiveSettings
         {
           ArchiveBatchDelay = Properties.Settings.Default.ArchiveBatchDelay,
           ArchiveIPRDelay = Properties.Settings.Default.ArchiveIPRDelay,
@@ -240,7 +240,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
           DoArchiveIPR = Properties.Settings.Default.DoArchiveIPR,
           SiteURL = Properties.Settings.Default.SiteURL
         };
-        FeatureActivation.Archival.Archive.Go(_settings, ReportProgress);
+        DataManagement.Archival.Archive.Go(_settings, ReportProgress);
       }
       protected override void RunWorkerCompleted()
       {
