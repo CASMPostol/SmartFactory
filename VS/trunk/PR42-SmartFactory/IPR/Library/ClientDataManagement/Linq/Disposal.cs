@@ -15,10 +15,9 @@
 
 using System;
 using System.Linq;
-using CAS.SmartFactory.IPR.WebsiteModel;
-using CAS.SmartFactory.IPR.Client.FeatureActivation;
+using CAS.SmartFactory.IPR.Client.DataManagement;
 
-namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
+namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
 {
   /// <summary>
   /// Disposal

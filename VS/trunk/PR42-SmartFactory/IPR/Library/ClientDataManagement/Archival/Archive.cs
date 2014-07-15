@@ -17,9 +17,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using CAS.SmartFactory.IPR.WebsiteModel.Linq;
+using CAS.SmartFactory.IPR.Client.DataManagement.Linq;
 
-namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Archival
+namespace CAS.SmartFactory.IPR.Client.DataManagement.Archival
 {
   /// <summary>
   /// Archive class contain collection of function supporting archival data management
@@ -87,7 +87,7 @@ namespace CAS.SmartFactory.IPR.Client.FeatureActivation.Archival
       int _iprArchived = 0;
       progress(null, new EntitiesChangedEventArgs(1, "Buffering Disposal entries", entities));
       List<Disposal> _dspsls = entities.Disposal.ToList<Disposal>();
-      foreach (IPR.WebsiteModel.Linq.IPR _iprX in entities.IPR)
+      foreach (IPR.Client.DataManagement.Linq.IPR _iprX in entities.IPR)
       {
         if (_iprX.AccountClosed.Value == true && _iprX.ClosingDate.IsLatter(settings.ArchiveIPRDelay))
         {

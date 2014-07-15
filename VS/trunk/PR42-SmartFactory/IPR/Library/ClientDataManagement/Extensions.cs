@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CAS.SmartFactory.IPR.Client.FeatureActivation
+namespace CAS.SmartFactory.IPR.Client.DataManagement
 {
   internal static class Extensions
   {

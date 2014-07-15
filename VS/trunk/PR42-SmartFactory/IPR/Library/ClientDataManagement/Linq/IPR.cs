@@ -16,9 +16,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CAS.SmartFactory.IPR.Client.FeatureActivation;
+using CAS.SmartFactory.IPR.Client.DataManagement;
 
-namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
+namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
 {
   /// <summary>
   /// IPR partial class 
@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.AccountBalance = Convert.ToDouble(Convert.ToDecimal(this.NetMass) - _my.Where(y => y.CustomsStatus.Value == Linq.CustomsStatus.Finished).Sum<Disposal>(y => y.SettledQuantityDec));
       if (this.AccountBalance < 0)
         this.AccountBalance = 0;
-      progress(this, new Client.FeatureActivation.EntitiesChangedEventArgs(1, null, entities));
+      progress(this, new Client.DataManagement.EntitiesChangedEventArgs(1, null, entities));
     }
     #endregion
 
