@@ -1,4 +1,5 @@
 ﻿USE IPRDEV
+DROP TABLE History;
 DROP TABLE Waste;
 DROP TABLE Warehouse;
 DROP TABLE Usage;
@@ -35,4 +36,4 @@ DROP TABLE SADDocument;
 DROP TABLE SADDocumentLibrary;
 DROP TABLE BalanceBatch;
 DROP TABLE JSOXLibrary;
-DROP TABLE ActivityLog;
+DROP TABLE History;
