@@ -304,6 +304,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       throw new NotImplementedException();
     }
     #endregion
+
     #region IDisposable
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
