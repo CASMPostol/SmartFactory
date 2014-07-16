@@ -4,7 +4,6 @@ CREATE TABLE JSOXLibrary (
       BalanceQuantity float NOT NULL,     
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
-      FileLeafRef nvarchar(255) NOT NULL,
       ID int NOT NULL,
       IntroducingDateEnd datetime NOT NULL,
       IntroducingDateStart datetime NOT NULL,
@@ -18,7 +17,6 @@ CREATE TABLE JSOXLibrary (
       PreviousMonthDate datetime NOT NULL,
       PreviousMonthQuantity float NOT NULL,
       ReassumeQuantity float NOT NULL,
-      SelectFilename nvarchar(255) NOT NULL,
       SituationDate datetime NOT NULL,
       SituationQuantity float NOT NULL,
       Title nvarchar(255) NOT NULL,
@@ -66,13 +64,11 @@ CREATE TABLE BalanceBatch (
 CREATE TABLE SADDocumentLibrary (          
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
-      FileLeafRef nvarchar(255) NOT NULL,
       ID int NOT NULL,
       Modified datetime NOT NULL,
       ModifiedBy nvarchar(255) NOT NULL,
       SADDocumentLibraryComments nvarchar(255) NOT NULL,
       SADDocumentLibraryOK bit NOT NULL,
-      SelectFilename nvarchar(255) NOT NULL,
       Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_SADDocumentLibrary_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
@@ -116,11 +112,9 @@ CREATE TABLE SADGood (
 CREATE TABLE SADConsignment (        
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
-      FileLeafRef nvarchar(255) NOT NULL,
       ID int NOT NULL,
       Modified datetime NOT NULL,
       ModifiedBy nvarchar(255) NOT NULL,
-      SelectFilename nvarchar(255) NOT NULL,
       Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_SADConsignment_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
@@ -174,11 +168,9 @@ CREATE TABLE IPRLibrary (
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
       DocumentNo nvarchar(255) NOT NULL,
-      FileLeafRef nvarchar(255) NOT NULL,
       ID int NOT NULL,
       Modified datetime NOT NULL,
       ModifiedBy nvarchar(255) NOT NULL,
-      SelectFilename nvarchar(255) NOT NULL,
       Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_IPRLibrary_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
@@ -276,11 +268,9 @@ CREATE TABLE BatchLibrary (
       BatchLibraryOK bit NOT NULL,
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
-      FileLeafRef nvarchar(255) NOT NULL,
       ID int NOT NULL,
       Modified datetime NOT NULL,
       ModifiedBy nvarchar(255) NOT NULL,
-      SelectFilename nvarchar(255) NOT NULL,
       Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_BatchLibrary_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
@@ -298,11 +288,9 @@ CREATE TABLE SPFormat (
 CREATE TABLE SKULibrary (      
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
-      FileLeafRef nvarchar(255) NOT NULL,
       ID int NOT NULL,
       Modified datetime NOT NULL,
       ModifiedBy nvarchar(255) NOT NULL,
-      SelectFilename nvarchar(255) NOT NULL,
       Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_SKULibrary_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
@@ -396,7 +384,6 @@ CREATE TABLE CutfillerCoefficient (
       ID int NOT NULL,
       Modified datetime NOT NULL,
       ModifiedBy nvarchar(255) NOT NULL,
-      Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_CutfillerCoefficient_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
 CREATE TABLE InvoiceLibrary (
@@ -404,7 +391,6 @@ CREATE TABLE InvoiceLibrary (
       ClearenceIndex int NOT NULL,     
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
-      FileLeafRef nvarchar(255) NOT NULL,
       ID int NOT NULL,
       InvoiceCreationDate datetime NOT NULL,
       InvoiceLibraryReadOnly bit NOT NULL,
@@ -412,7 +398,6 @@ CREATE TABLE InvoiceLibrary (
       IsExport bit NOT NULL,
       Modified datetime NOT NULL,
       ModifiedBy nvarchar(255) NOT NULL,
-      SelectFilename nvarchar(255) NOT NULL,
       Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_InvoiceLibrary_ID PRIMARY KEY CLUSTERED (ID ASC) ,
       CONSTRAINT FK_InvoiceLibrary_Clearence FOREIGN KEY (ClearenceIndex) REFERENCES Clearence (ID),
@@ -528,7 +513,6 @@ CREATE TABLE Dust (
       Modified datetime NOT NULL,
       ModifiedBy nvarchar(255) NOT NULL,
       ProductType nvarchar(255) NOT NULL,
-      Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_Dust_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
 CREATE TABLE SADDuties (
@@ -602,17 +586,14 @@ CREATE TABLE SHMenthol (
       ModifiedBy nvarchar(255) NOT NULL,
       ProductType nvarchar(255) NOT NULL,
       SHMentholRatio float NOT NULL,
-      Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_SHMenthol_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );
 CREATE TABLE StockLibrary (            
       Created datetime NOT NULL,
       CreatedBy nvarchar(255) NOT NULL,
-      FileLeafRef nvarchar(255) NOT NULL,
       ID int NOT NULL,
       Modified datetime NOT NULL,
       ModifiedBy nvarchar(255) NOT NULL,
-      SelectFilename nvarchar(255) NOT NULL,
       Stock2JSOXLibraryIndex int NOT NULL,
       Title nvarchar(255) NOT NULL,
       CONSTRAINT PK_StockLibrary_ID PRIMARY KEY CLUSTERED (ID ASC) ,
@@ -651,7 +632,6 @@ CREATE TABLE Usage (
       ID int NOT NULL,
       Modified datetime NOT NULL,
       ModifiedBy nvarchar(255) NOT NULL,
-      Title nvarchar(255) NOT NULL,
       UsageMax float NOT NULL,
       UsageMin float NOT NULL,
       CONSTRAINT PK_Usage_ID PRIMARY KEY CLUSTERED (ID ASC) ,
@@ -676,7 +656,6 @@ CREATE TABLE Waste (
       Modified datetime NOT NULL,
       ModifiedBy nvarchar(255) NOT NULL,
       ProductType nvarchar(255) NOT NULL,
-      Title nvarchar(255) NOT NULL,
       WasteRatio float NOT NULL,
       CONSTRAINT PK_Waste_ID PRIMARY KEY CLUSTERED (ID ASC) 
 );

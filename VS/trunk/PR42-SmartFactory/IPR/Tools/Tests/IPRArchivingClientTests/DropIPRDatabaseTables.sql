@@ -1,5 +1,4 @@
 ﻿USE IPRDEV
-DROP TABLE History;
 DROP TABLE Waste;
 DROP TABLE Warehouse;
 DROP TABLE Usage;
