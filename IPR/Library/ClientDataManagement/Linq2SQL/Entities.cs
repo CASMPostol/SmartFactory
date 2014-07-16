@@ -3641,15 +3641,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _CreatedBy;
 		
-		private string _FileLeafRef;
-		
 		private int _ID;
 		
 		private System.DateTime _Modified;
 		
 		private string _ModifiedBy;
-		
-		private string _SelectFilename;
 		
 		private string _Title;
 		
@@ -3667,16 +3663,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
     partial void OnCreatedByChanged();
-    partial void OnFileLeafRefChanging(string value);
-    partial void OnFileLeafRefChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.DateTime value);
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
-    partial void OnSelectFilenameChanging(string value);
-    partial void OnSelectFilenameChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     #endregion
@@ -3767,26 +3759,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_FileLeafRef", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string FileLeafRef
-		{
-			get
-			{
-				return this._FileLeafRef;
-			}
-			set
-			{
-				if ((this._FileLeafRef != value))
-				{
-					this.OnFileLeafRefChanging(value);
-					this.SendPropertyChanging();
-					this._FileLeafRef = value;
-					this.SendPropertyChanged("FileLeafRef");
-					this.OnFileLeafRefChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int ID
 		{
@@ -3843,26 +3815,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SelectFilename", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string SelectFilename
-		{
-			get
-			{
-				return this._SelectFilename;
-			}
-			set
-			{
-				if ((this._SelectFilename != value))
-				{
-					this.OnSelectFilenameChanging(value);
-					this.SendPropertyChanging();
-					this._SelectFilename = value;
-					this.SendPropertyChanged("SelectFilename");
-					this.OnSelectFilenameChanged();
 				}
 			}
 		}
@@ -5057,8 +5009,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ModifiedBy;
 		
-		private string _Title;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -5081,8 +5031,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
     #endregion
 		
 		public CutfillerCoefficient()
@@ -5266,26 +5214,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
 				}
 			}
 		}
@@ -6376,8 +6304,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ProductType;
 		
-		private string _Title;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -6396,8 +6322,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedByChanged();
     partial void OnProductTypeChanging(string value);
     partial void OnProductTypeChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
     #endregion
 		
 		public Dust()
@@ -6541,26 +6465,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ProductType = value;
 					this.SendPropertyChanged("ProductType");
 					this.OnProductTypeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
 				}
 			}
 		}
@@ -7266,8 +7170,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _CreatedBy;
 		
-		private string _FileLeafRef;
-		
 		private int _ID;
 		
 		private System.DateTime _InvoiceCreationDate;
@@ -7281,8 +7183,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.DateTime _Modified;
 		
 		private string _ModifiedBy;
-		
-		private string _SelectFilename;
 		
 		private string _Title;
 		
@@ -7302,8 +7202,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
     partial void OnCreatedByChanged();
-    partial void OnFileLeafRefChanging(string value);
-    partial void OnFileLeafRefChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnInvoiceCreationDateChanging(System.DateTime value);
@@ -7318,8 +7216,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
-    partial void OnSelectFilenameChanging(string value);
-    partial void OnSelectFilenameChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     #endregion
@@ -7411,26 +7307,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CreatedBy = value;
 					this.SendPropertyChanged("CreatedBy");
 					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_FileLeafRef", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string FileLeafRef
-		{
-			get
-			{
-				return this._FileLeafRef;
-			}
-			set
-			{
-				if ((this._FileLeafRef != value))
-				{
-					this.OnFileLeafRefChanging(value);
-					this.SendPropertyChanging();
-					this._FileLeafRef = value;
-					this.SendPropertyChanged("FileLeafRef");
-					this.OnFileLeafRefChanged();
 				}
 			}
 		}
@@ -7571,26 +7447,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SelectFilename", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string SelectFilename
-		{
-			get
-			{
-				return this._SelectFilename;
-			}
-			set
-			{
-				if ((this._SelectFilename != value))
-				{
-					this.OnSelectFilenameChanging(value);
-					this.SendPropertyChanging();
-					this._SelectFilename = value;
-					this.SendPropertyChanged("SelectFilename");
-					this.OnSelectFilenameChanged();
 				}
 			}
 		}
@@ -8942,15 +8798,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _DocumentNo;
 		
-		private string _FileLeafRef;
-		
 		private int _ID;
 		
 		private System.DateTime _Modified;
 		
 		private string _ModifiedBy;
-		
-		private string _SelectFilename;
 		
 		private string _Title;
 		
@@ -8966,16 +8818,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreatedByChanged();
     partial void OnDocumentNoChanging(string value);
     partial void OnDocumentNoChanged();
-    partial void OnFileLeafRefChanging(string value);
-    partial void OnFileLeafRefChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.DateTime value);
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
-    partial void OnSelectFilenameChanging(string value);
-    partial void OnSelectFilenameChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     #endregion
@@ -9046,26 +8894,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_FileLeafRef", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string FileLeafRef
-		{
-			get
-			{
-				return this._FileLeafRef;
-			}
-			set
-			{
-				if ((this._FileLeafRef != value))
-				{
-					this.OnFileLeafRefChanging(value);
-					this.SendPropertyChanging();
-					this._FileLeafRef = value;
-					this.SendPropertyChanged("FileLeafRef");
-					this.OnFileLeafRefChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int ID
 		{
@@ -9122,26 +8950,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SelectFilename", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string SelectFilename
-		{
-			get
-			{
-				return this._SelectFilename;
-			}
-			set
-			{
-				if ((this._SelectFilename != value))
-				{
-					this.OnSelectFilenameChanging(value);
-					this.SendPropertyChanging();
-					this._SelectFilename = value;
-					this.SendPropertyChanged("SelectFilename");
-					this.OnSelectFilenameChanged();
 				}
 			}
 		}
@@ -9717,8 +9525,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _CreatedBy;
 		
-		private string _FileLeafRef;
-		
 		private int _ID;
 		
 		private System.DateTime _IntroducingDateEnd;
@@ -9744,8 +9550,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private double _PreviousMonthQuantity;
 		
 		private double _ReassumeQuantity;
-		
-		private string _SelectFilename;
 		
 		private System.DateTime _SituationDate;
 		
@@ -9775,8 +9579,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
     partial void OnCreatedByChanged();
-    partial void OnFileLeafRefChanging(string value);
-    partial void OnFileLeafRefChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnIntroducingDateEndChanging(System.DateTime value);
@@ -9803,8 +9605,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnPreviousMonthQuantityChanged();
     partial void OnReassumeQuantityChanging(double value);
     partial void OnReassumeQuantityChanged();
-    partial void OnSelectFilenameChanging(string value);
-    partial void OnSelectFilenameChanged();
     partial void OnSituationDateChanging(System.DateTime value);
     partial void OnSituationDateChanged();
     partial void OnSituationQuantityChanging(double value);
@@ -9899,26 +9699,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CreatedBy = value;
 					this.SendPropertyChanged("CreatedBy");
 					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_FileLeafRef", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string FileLeafRef
-		{
-			get
-			{
-				return this._FileLeafRef;
-			}
-			set
-			{
-				if ((this._FileLeafRef != value))
-				{
-					this.OnFileLeafRefChanging(value);
-					this.SendPropertyChanging();
-					this._FileLeafRef = value;
-					this.SendPropertyChanged("FileLeafRef");
-					this.OnFileLeafRefChanged();
 				}
 			}
 		}
@@ -10179,26 +9959,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ReassumeQuantity = value;
 					this.SendPropertyChanged("ReassumeQuantity");
 					this.OnReassumeQuantityChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SelectFilename", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string SelectFilename
-		{
-			get
-			{
-				return this._SelectFilename;
-			}
-			set
-			{
-				if ((this._SelectFilename != value))
-				{
-					this.OnSelectFilenameChanging(value);
-					this.SendPropertyChanging();
-					this._SelectFilename = value;
-					this.SendPropertyChanged("SelectFilename");
-					this.OnSelectFilenameChanged();
 				}
 			}
 		}
@@ -11340,15 +11100,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _CreatedBy;
 		
-		private string _FileLeafRef;
-		
 		private int _ID;
 		
 		private System.DateTime _Modified;
 		
 		private string _ModifiedBy;
-		
-		private string _SelectFilename;
 		
 		private string _Title;
 		
@@ -11362,16 +11118,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
     partial void OnCreatedByChanged();
-    partial void OnFileLeafRefChanging(string value);
-    partial void OnFileLeafRefChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.DateTime value);
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
-    partial void OnSelectFilenameChanging(string value);
-    partial void OnSelectFilenameChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     #endregion
@@ -11418,26 +11170,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CreatedBy = value;
 					this.SendPropertyChanged("CreatedBy");
 					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_FileLeafRef", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string FileLeafRef
-		{
-			get
-			{
-				return this._FileLeafRef;
-			}
-			set
-			{
-				if ((this._FileLeafRef != value))
-				{
-					this.OnFileLeafRefChanging(value);
-					this.SendPropertyChanging();
-					this._FileLeafRef = value;
-					this.SendPropertyChanged("FileLeafRef");
-					this.OnFileLeafRefChanged();
 				}
 			}
 		}
@@ -11498,26 +11230,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SelectFilename", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string SelectFilename
-		{
-			get
-			{
-				return this._SelectFilename;
-			}
-			set
-			{
-				if ((this._SelectFilename != value))
-				{
-					this.OnSelectFilenameChanging(value);
-					this.SendPropertyChanging();
-					this._SelectFilename = value;
-					this.SendPropertyChanged("SelectFilename");
-					this.OnSelectFilenameChanged();
 				}
 			}
 		}
@@ -12065,8 +11777,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _CreatedBy;
 		
-		private string _FileLeafRef;
-		
 		private int _ID;
 		
 		private System.DateTime _Modified;
@@ -12076,8 +11786,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private string _SADDocumentLibraryComments;
 		
 		private bool _SADDocumentLibraryOK;
-		
-		private string _SelectFilename;
 		
 		private string _Title;
 		
@@ -12091,8 +11799,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
     partial void OnCreatedByChanged();
-    partial void OnFileLeafRefChanging(string value);
-    partial void OnFileLeafRefChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.DateTime value);
@@ -12103,8 +11809,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnSADDocumentLibraryCommentsChanged();
     partial void OnSADDocumentLibraryOKChanging(bool value);
     partial void OnSADDocumentLibraryOKChanged();
-    partial void OnSelectFilenameChanging(string value);
-    partial void OnSelectFilenameChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     #endregion
@@ -12151,26 +11855,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CreatedBy = value;
 					this.SendPropertyChanged("CreatedBy");
 					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_FileLeafRef", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string FileLeafRef
-		{
-			get
-			{
-				return this._FileLeafRef;
-			}
-			set
-			{
-				if ((this._FileLeafRef != value))
-				{
-					this.OnFileLeafRefChanging(value);
-					this.SendPropertyChanging();
-					this._FileLeafRef = value;
-					this.SendPropertyChanged("FileLeafRef");
-					this.OnFileLeafRefChanged();
 				}
 			}
 		}
@@ -12271,26 +11955,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._SADDocumentLibraryOK = value;
 					this.SendPropertyChanged("SADDocumentLibraryOK");
 					this.OnSADDocumentLibraryOKChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SelectFilename", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string SelectFilename
-		{
-			get
-			{
-				return this._SelectFilename;
-			}
-			set
-			{
-				if ((this._SelectFilename != value))
-				{
-					this.OnSelectFilenameChanging(value);
-					this.SendPropertyChanging();
-					this._SelectFilename = value;
-					this.SendPropertyChanged("SelectFilename");
-					this.OnSelectFilenameChanged();
 				}
 			}
 		}
@@ -14346,8 +14010,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private double _SHMentholRatio;
 		
-		private string _Title;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -14366,8 +14028,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnProductTypeChanged();
     partial void OnSHMentholRatioChanging(double value);
     partial void OnSHMentholRatioChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
     #endregion
 		
 		public SHMenthol()
@@ -14511,26 +14171,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._SHMentholRatio = value;
 					this.SendPropertyChanged("SHMentholRatio");
 					this.OnSHMentholRatioChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
 				}
 			}
 		}
@@ -15194,15 +14834,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _CreatedBy;
 		
-		private string _FileLeafRef;
-		
 		private int _ID;
 		
 		private System.DateTime _Modified;
 		
 		private string _ModifiedBy;
-		
-		private string _SelectFilename;
 		
 		private string _Title;
 		
@@ -15216,16 +14852,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
     partial void OnCreatedByChanged();
-    partial void OnFileLeafRefChanging(string value);
-    partial void OnFileLeafRefChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.DateTime value);
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
-    partial void OnSelectFilenameChanging(string value);
-    partial void OnSelectFilenameChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     #endregion
@@ -15272,26 +14904,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CreatedBy = value;
 					this.SendPropertyChanged("CreatedBy");
 					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_FileLeafRef", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string FileLeafRef
-		{
-			get
-			{
-				return this._FileLeafRef;
-			}
-			set
-			{
-				if ((this._FileLeafRef != value))
-				{
-					this.OnFileLeafRefChanging(value);
-					this.SendPropertyChanging();
-					this._FileLeafRef = value;
-					this.SendPropertyChanged("FileLeafRef");
-					this.OnFileLeafRefChanged();
 				}
 			}
 		}
@@ -15352,26 +14964,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SelectFilename", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string SelectFilename
-		{
-			get
-			{
-				return this._SelectFilename;
-			}
-			set
-			{
-				if ((this._SelectFilename != value))
-				{
-					this.OnSelectFilenameChanging(value);
-					this.SendPropertyChanging();
-					this._SelectFilename = value;
-					this.SendPropertyChanged("SelectFilename");
-					this.OnSelectFilenameChanged();
 				}
 			}
 		}
@@ -16314,15 +15906,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _CreatedBy;
 		
-		private string _FileLeafRef;
-		
 		private int _ID;
 		
 		private System.DateTime _Modified;
 		
 		private string _ModifiedBy;
-		
-		private string _SelectFilename;
 		
 		private int _Stock2JSOXLibraryIndex;
 		
@@ -16340,16 +15928,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
     partial void OnCreatedByChanged();
-    partial void OnFileLeafRefChanging(string value);
-    partial void OnFileLeafRefChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.DateTime value);
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
-    partial void OnSelectFilenameChanging(string value);
-    partial void OnSelectFilenameChanged();
     partial void OnStock2JSOXLibraryIndexChanging(int value);
     partial void OnStock2JSOXLibraryIndexChanged();
     partial void OnTitleChanging(string value);
@@ -16399,26 +15983,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CreatedBy = value;
 					this.SendPropertyChanged("CreatedBy");
 					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_FileLeafRef", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string FileLeafRef
-		{
-			get
-			{
-				return this._FileLeafRef;
-			}
-			set
-			{
-				if ((this._FileLeafRef != value))
-				{
-					this.OnFileLeafRefChanging(value);
-					this.SendPropertyChanging();
-					this._FileLeafRef = value;
-					this.SendPropertyChanged("FileLeafRef");
-					this.OnFileLeafRefChanged();
 				}
 			}
 		}
@@ -16479,26 +16043,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SelectFilename", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string SelectFilename
-		{
-			get
-			{
-				return this._SelectFilename;
-			}
-			set
-			{
-				if ((this._SelectFilename != value))
-				{
-					this.OnSelectFilenameChanging(value);
-					this.SendPropertyChanging();
-					this._SelectFilename = value;
-					this.SendPropertyChanged("SelectFilename");
-					this.OnSelectFilenameChanged();
 				}
 			}
 		}
@@ -16649,8 +16193,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ModifiedBy;
 		
-		private string _Title;
-		
 		private double _UsageMax;
 		
 		private double _UsageMin;
@@ -16677,8 +16219,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
     partial void OnUsageMaxChanging(double value);
     partial void OnUsageMaxChanged();
     partial void OnUsageMinChanging(double value);
@@ -16851,26 +16391,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
 				}
 			}
 		}
@@ -17242,8 +16762,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ProductType;
 		
-		private string _Title;
-		
 		private double _WasteRatio;
 		
     #region Extensibility Method Definitions
@@ -17262,8 +16780,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedByChanged();
     partial void OnProductTypeChanging(string value);
     partial void OnProductTypeChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
     partial void OnWasteRatioChanging(double value);
     partial void OnWasteRatioChanged();
     #endregion
@@ -17389,26 +16905,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ProductType = value;
 					this.SendPropertyChanged("ProductType");
 					this.OnProductTypeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
 				}
 			}
 		}
