@@ -13,34 +13,34 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.SharePoint.ComponentModel;
+using CAS.SmartFactory.IPR.Client.UserInterface.StateMachine;
 using System;
 using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Input;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
 {
-  internal class MainWindowModel : PropertyChangedBase, IDisposable
+  internal class MainWindowModel : StateMachine.StateMachineContext, IDisposable
   {
 
     #region public
     //creator
     public MainWindowModel()
     {
-      InitializeUI();
-      m_StateMAchine = new LocalMachine(this);
-      m_StateMAchine.OpenEntryState();
-    }
-    private void InitializeUI()
-    {
+      //InitializeUI();
       AssemblyName _name = Assembly.GetExecutingAssembly().GetName();
       this.Title = this.Title + " Rel " + _name.Version.ToString(4);
       URL = Properties.Settings.Default.SiteURL;
       DatabaseName = Properties.Settings.Default.DatabaseName;
       ProgressBarMaximum = 100;
       Progress = 0;
+      //create state machine
+      new AbstractMachine.SetupDataDialogMachine(this);
+      new AbstractMachine.ActivationMachine(this);
+      new AbstractMachine.ArchivingMachine(this);
+      new AbstractMachine.FinishedMachine(this);
+      this.OpenEntryState();
     }
     //UI API
     public string Title
@@ -120,50 +120,18 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
         RaiseHandler<System.Collections.ObjectModel.ObservableCollection<string>>(value, ref b_ProgressList, "ProgressList", this);
       }
     }
-    public ICommand ButtonCancel
+    public string State
     {
       get
       {
-        return b_ButtonCancel;
+        return b_State;
       }
       set
       {
-        RaiseHandler<ICommand>(value, ref b_ButtonCancel, "ButtonCancel", this);
+        RaiseHandler<string>(value, ref b_State, "State", this);
       }
-    }
-    public ICommand ButtonGoBackward
-    {
-      get
-      {
-        return b_ButtonGoBackward;
-      }
-      set
-      {
-        RaiseHandler<ICommand>(value, ref b_ButtonGoBackward, "ButtonGoBackward", this);
-      }
-    }
-    public ICommand ButtonGoForward
-    {
-      get
-      {
-        return b_ButtonGoForward;
-      }
-      set
-      {
-        RaiseHandler<ICommand>(value, ref b_ButtonGoForward, "ButtonGoForward", this);
-      }
-    }
-    public ICommand ButtonRun
-    {
-      get
-      {
-        return b_ButtonRun;
-      }
-      set
-      {
-        RaiseHandler<ICommand>(value, ref b_ButtonRun, "ButtonRun", this);
-      }
-    }
+    } 
+                
     #endregion
 
     #region private
@@ -175,134 +143,31 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
     private string b_DatabaseName;
     private int b_ProgressBarMaximum;
     private ObservableCollection<string> b_ProgressList;
-    private ICommand b_ButtonCancel;
-    private ICommand b_ButtonGoBackward;
-    private ICommand b_ButtonGoForward;
-    private ICommand b_ButtonRun;
-    //vars
-    private bool m_UpdateProgressBarBusy = false;
-    private LocalMachine m_StateMAchine;
-    //types
-    private class LocalMachine : StateMachine.StateMachineContext
-    {
+    private string b_State;
+    #region StateMachineContext
 
-      #region creator
-      public LocalMachine(MainWindowModel parent)
-        : base()
-      {
-        m_Parent = parent;
-      }
-      #endregion
-      public bool ButtonCancel
-      {
-        get
-        {
-          return b_ButtonCancel;
-        }
-        set
-        {
-          RaiseHandler<bool>(value, ref b_ButtonCancel, "ButtonCancel", this);
-        }
-      }
-      public bool ButtonGoBackward
-      {
-        get
-        {
-          return b_ButtonGoBackward;
-        }
-        set
-        {
-          RaiseHandler<bool>(value, ref b_ButtonGoBackward, "ButtonGoBackward", this);
-        }
-      }
-      public bool ButtonGoForward
-      {
-        get
-        {
-          return b_ButtonGoForward;
-        }
-        set
-        {
-          RaiseHandler<bool>(value, ref b_ButtonGoForward, "ButtonGoForward", this);
-        }
-      }
-      public bool ButtonRun
-      {
-        get
-        {
-          return b_ButtonRun;
-        }
-        set
-        {
-          RaiseHandler<bool>(value, ref b_ButtonRun, "ButtonRun", this);
-        }
-      }
-
-      #region StateMachineContext
-      internal override void SetupUserInterface(StateMachine.Events allowedEvents)
-      {
-        ButtonCancel = (allowedEvents & StateMachine.Events.Cancel) != 0;
-        ButtonGoBackward = (allowedEvents & StateMachine.Events.Previous) != 0;
-        ButtonGoForward = (allowedEvents & StateMachine.Events.Next) != 0;
-        ButtonRun = (allowedEvents & StateMachine.Events.RunAsync) != 0;
-      }
-      internal override void Close()
-      {
-        m_Parent.Close();
-      }
-      internal override void Progress(int progress)
-      {
-        m_Parent.UpdateProgressBar(progress);
-      }
-      internal override void WriteLine()
-      {
-        m_Parent.UpdateProgressBar(1);
-      }
-      internal override void WriteLine(string value)
-      {
-        m_Parent.WriteLine(value);
-        m_Parent.UpdateProgressBar(1);
-      }
-      internal override void Exception(Exception exception)
-      {
-        string _mssg = String.Format("Program stopped by exception: {0}", exception.Message);
-        MessageBox.Show(_mssg, "Operation error", MessageBoxButton.OK, MessageBoxImage.Error);
-        //Close();
-      }
-      internal override void EnteringState()
-      {
-      }
-      #endregion
-
-      #region private
-      //vars backing fields
-      private bool b_ButtonCancel;
-      private bool b_ButtonGoBackward;
-      private bool b_ButtonGoForward;
-      private bool b_ButtonRun;
-      //vars general purpose
-      private MainWindowModel m_Parent;
-      #endregion
-    }
-    //methods
-    private void UpdateProgressBar(int progress)
-    {
-      if (m_UpdateProgressBarBusy)
-        return;
-      m_UpdateProgressBarBusy = true;
-      while (ProgressBarMaximum - Progress < progress)
-        ProgressBarMaximum *= 2;
-      Progress += progress;
-      m_UpdateProgressBarBusy = false;
-    }
-    private void WriteLine(string value)
-    {
-      ProgressList.Add(value);
-    }
-    private void Close()
+    internal override void Close()
     {
       throw new NotImplementedException();
     }
+    internal override void UpdateProgressBar(int progress)
+    {
+      while (ProgressBarMaximum - Progress < progress)
+        ProgressBarMaximum *= 2;
+      Progress += progress;
+    }
+    internal override void WriteLine(string value)
+    {
+      ProgressList.Add(value);
+      UpdateProgressBar(1);
+    }
+    internal override void Exception(Exception exception)
+    {
+      string _mssg = String.Format("Program stopped by exception: {0}", exception.Message);
+      MessageBox.Show(_mssg, "Operation error", MessageBoxButton.OK, MessageBoxImage.Error);
+      //Close();
+    }
+    #endregion
     #endregion
 
     #region IDisposable

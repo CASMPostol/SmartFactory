@@ -13,22 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using CAS.SmartFactory.IPR.Client.UserInterface.ViewModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using CAS.SmartFactory.IPR.Client.UserInterface.StateMachine;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface
 {
@@ -41,22 +27,16 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
     {
       InitializeComponent();
     }
+    private MainWindowModel ThisDatacontext { get { return (MainWindowModel)this.DataContext; } }
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
-      AbstractMachine.SetupDataDialogMachine.Get().Entered += SetupDataDialogMachine_Entered;
-      AbstractMachine.SetupDataDialogMachine.Get().Exiting += SetupDataDialogMachine_Exiting;
+      this.DataContext = new MainWindowModel();
     }
     protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
     {
       Properties.Settings.Default.Save();
+      ThisDatacontext.Dispose();
       base.OnClosing(e);
     }
-    private void SetupDataDialogMachine_Exiting(object sender, EventArgs e)
-    {
-    }
-    private void SetupDataDialogMachine_Entered(object sender, EventArgs e)
-    {
-    }
-
   }
 }
