@@ -36,10 +36,5 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     /// Go to previous step.
     /// </summary>
     void Previous();
-    /// <summary>
-    ///  Starts execution of a background operation.
-    /// </summary>
-    /// <exception cref="System.InvalidOperationException">Background operation is in progress</exception>
-    void RunAsync();
   }
 }

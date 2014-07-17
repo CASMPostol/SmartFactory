@@ -17,6 +17,8 @@ using System;
 using System.Windows;
 using CAS.SmartFactory.IPR.Client.DataManagement.Linq;
 using CAS.SmartFactory.IPR.Client.DataManagement;
+using System.Windows.Input;
+using CAS.SharePoint.ViewModel;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
@@ -24,59 +26,81 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
   /// <summary>
   /// StateMachineContext class 
   /// </summary>
-  internal abstract class StateMachineContext: SharePoint.ComponentModel.PropertyChangedBase
+  //TODO change name => WizardStateMachineContext
+  internal abstract class StateMachineContext : SharePoint.ComponentModel.PropertyChangedBase
   {
 
     #region creator
     internal StateMachineContext()
     {
-      AbstractMachine.CreateStates(this);
+      ButtonCancel = new SynchronousCommandBase<object>(x => Machine.Cancel(), y => this.CanExecuteCancel);
+      ButtonGoBackward = new SynchronousCommandBase<object>(x => Machine.Previous(), y => this.CanExecutePrevious);
+      ButtonGoForward = new SynchronousCommandBase<object>(x => Machine.Next(), y => this.CanExecuteNext);
     }
     #endregion
 
-    #region IAbstractMachineEvents Members
-    internal IAbstractMachineEvents Machine
+    #region View Model
+    public ICommandWithUpdate ButtonCancel
+    {
+      get
+      {
+        return b_ButtonCancel;
+      }
+      set
+      {
+        RaiseHandler(value, ref b_ButtonCancel, "ButtonCancel", this);
+      }
+    }
+    public ICommandWithUpdate ButtonGoBackward
+    {
+      get
+      {
+        return b_ButtonGoBackward;
+      }
+      set
+      {
+        RaiseHandler<ICommandWithUpdate>(value, ref b_ButtonGoBackward, "ButtonGoBackward", this);
+      }
+    }
+    public ICommandWithUpdate ButtonGoForward
+    {
+      get
+      {
+        return b_ButtonGoForward;
+      }
+      set
+      {
+        RaiseHandler<ICommandWithUpdate>(value, ref b_ButtonGoForward, "ButtonGoForward", this);
+      }
+    }
+    #endregion
+
+    #region internal
+    internal AbstractMachine Machine
     {
       get { return this.m_Machine; }
-    }
-    #endregion
-
-    #region public
-    internal void OpenEntryState()
-    {
-      AssignStateMachine(ProcessState.SetupDataDialog);
-    }
-    internal void AssignStateMachine(ProcessState state)
-    {
-      if (m_Machine != null)
-        m_Machine.OnExitingState();
-      switch (state)
+      set
       {
-        case ProcessState.SetupDataDialog:
-          m_Machine = AbstractMachine.SetupDataDialogMachine.Get();
-          break;
-        case ProcessState.Activation:
-          m_Machine = AbstractMachine.ActivationMachine.Get();
-          break;
-        case ProcessState.Archiving:
-          m_Machine = AbstractMachine.ArchivingMachine.Get();
-          break;
-        case ProcessState.Finisched:
-          m_Machine = AbstractMachine.FinishedMachine.Get();
-          break;
+        if (m_Machine != null)
+          m_Machine.OnExitingState();
+        m_Machine = value;
+        m_Machine.OnEnteringState();
       }
-      m_Machine.OnEnteringState();
     }
-    #endregion
-
-    #region StateMachineContext View Model
-    internal abstract void SetupUserInterface(Events allowedEvents);
+    internal Events SetupUserInterface
+    {
+      set
+      {
+        CanExecuteCancel = (value & StateMachine.Events.Cancel) != 0;
+        CanExecutePrevious = (value & StateMachine.Events.Previous) != 0;
+        CanExecuteNext = (value & StateMachine.Events.Next) != 0;
+        RaiseCanExecuteChanged();
+      }
+    }
     internal abstract void Close();
-    internal abstract void Progress(int progress);
-    internal abstract void WriteLine();
+    internal abstract void UpdateProgressBar(int progress);
     internal abstract void WriteLine(string value);
     internal abstract void Exception(Exception exception);
-    internal abstract void EnteringState();
     internal void ProgressChang(AbstractMachine activationMachine, EntitiesChangedEventArgs.EntitiesState entitiesState)
     {
       if (entitiesState == null)
@@ -88,47 +112,58 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         WriteLine((string)entitiesState.UserState);
         return;
       }
-      Progress(1);
+      UpdateProgressBar(1);
     }
-
     #endregion
 
     #region private
 
-    #region vars
+    //vars
     private AbstractMachine m_Machine = null;
+    private ICommandWithUpdate b_ButtonCancel;
+    private ICommandWithUpdate b_ButtonGoBackward;
+    private ICommandWithUpdate b_ButtonGoForward;
+    private bool b_CanExecuteCancel;
+    private bool b_CanExecutePrevious;
+    private bool b_CanExecuteNext;
+    // Summary:
+    //     Occurs when changes occur that affect whether or not the command should execute.
+    private event EventHandler CanExecuteChanged;
+    //procedures
+    private void RaiseCanExecuteChanged()
+    {
+      EventHandler _cec = CanExecuteChanged;
+      if (_cec == null)
+        return;
+      CanExecuteChanged(this, EventArgs.Empty);
+    }
+    private bool RaiseHandler(ICommandWithUpdate value, ref ICommandWithUpdate oldValue, string propertyName, object sender)
+    {
+      bool _ret = base.RaiseHandler<ICommandWithUpdate>(value, ref oldValue, propertyName, sender);
+      if (_ret)
+        this.CanExecuteChanged += (sevder, e) => value.RaiseCanExecuteChanged();
+      return _ret;
+    }
+    protected void OpenEntryState()
+    {
+      Machine = AbstractMachine.SetupDataDialogMachine.Get();
+    }
+    private bool CanExecuteCancel
+    {
+      get { return b_CanExecuteCancel; }
+      set { b_CanExecuteCancel = value; }
+    }
+    private bool CanExecutePrevious
+    {
+      get { return b_CanExecutePrevious; }
+      set { b_CanExecutePrevious = value; }
+    }
+    private bool CanExecuteNext
+    {
+      get { return b_CanExecuteNext; }
+      set { b_CanExecuteNext = value; }
+    }
     #endregion
-
-    #endregion
-
-    #region event handlers
-    internal void ButtonGoBackward_Click(object sender, RoutedEventArgs e)
-    {
-      Machine.Previous();
-    }
-    internal void ButtonGoForward_Click(object sender, RoutedEventArgs e)
-    {
-      try
-      {
-        Machine.Next();
-      }
-      catch (Exception ex)
-      {
-        string _mssg = String.Format("Operation interrupted by exception: {0}", ex.Message);
-        MessageBox.Show(_mssg, "Operation error", MessageBoxButton.OK, MessageBoxImage.Error);
-      }
-    }
-    internal void ButtonRun_Click(object sender, RoutedEventArgs e)
-    {
-      Machine.RunAsync();
-    }
-    internal void ButtonCancel_Click(object sender, RoutedEventArgs e)
-    {
-      Machine.Cancel();
-    }
-    #endregion
-
 
   }
-
 }

@@ -10,9 +10,6 @@
         WindowState="Maximized"
         Loaded="Window_Loaded" 
         Background="White" >
-    <Window.DataContext>
-        <vm:MainWindowModel/>
-    </Window.DataContext>
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File" IsEnabled="False">
@@ -30,7 +27,6 @@
         <StackPanel x:Name="x_StackPanelButtons" DockPanel.Dock="Bottom" Orientation="Horizontal"  >
             <Button x:Name="x_ButtonGoBackward" Width="100" Margin="5,0,0,0" Content="&lt;&lt;" Command="{Binding Path=ButtonGoBackward}" />
             <Button x:Name="x_ButtonGoForward" Width="100" Margin="5,0,0,0" Content="&gt;&gt;" Command="{Binding Path=ButtonGoForward}" />
-            <Button x:Name="x_ButtonRun" Width="100" Margin="5,0,0,0" Content="OK" Command="{Binding Path=ButtonRun}" />
             <Button x:Name="x_ButtonCancel" Width="100" Margin="5,0,0,0" Content="Cancel" Command="{Binding Path=ButtonCancel}" />
         </StackPanel>
         <Grid >
@@ -48,6 +44,8 @@
                 <TextBox Text="{Binding DatabaseName, Mode=TwoWay}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" />
                 <Label Content="Archive IPR [days]" />
                 <TextBox Text="{Binding IPRAccountArchivalDelay, Mode=TwoWay}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" />
+                <Label Content="Phase" />
+                <TextBox Text="{Binding State, Mode=OneTime}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" IsEnabled="False" VerticalAlignment="Stretch" />
             </StackPanel>
             <ListView x:Name="x_ListBox" ItemsSource="{Binding Messages}" Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </Grid>
