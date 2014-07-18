@@ -17,10 +17,10 @@ using System.ComponentModel;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
-  internal class ActivationMachine : BackgroundWorkerVizardMachine
+  internal class ActivationMachine : BackgroundWorkerMachine<ViewModel.MainWindowModel>
   {
     #region creator
-    internal ActivationMachine(StateMachineContext context)
+    internal ActivationMachine(ViewModel.MainWindowModel context)
       : base(context)
     {
       m_Me = this;
@@ -33,15 +33,15 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
 
     #region AbstractMachine
-    internal override void OnEnteringState()
+    public override void OnEnteringState()
     {
       base.OnEnteringState();
       SetEventMask(Events.Cancel);
       base.RunAsync();
     }
-    internal override string State
+    public override string ToString()
     {
-      get { return "Updating"; }
+      return "Updating";
     }
     #endregion
 

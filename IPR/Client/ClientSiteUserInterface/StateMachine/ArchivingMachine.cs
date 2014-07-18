@@ -17,10 +17,10 @@ using System.ComponentModel;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
-  internal class ArchivingMachine : BackgroundWorkerVizardMachine
+  internal class ArchivingMachine : BackgroundWorkerMachine<ViewModel.MainWindowModel>
   {
     #region creator
-    internal ArchivingMachine(StateMachineContext context)
+    internal ArchivingMachine(ViewModel.MainWindowModel context)
       : base(context)
     {
       m_Me = this;
@@ -33,7 +33,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
 
     #region BackgroundWorkerMachine implementation
-    internal override void OnEnteringState()
+    public override void OnEnteringState()
     {
       base.OnEnteringState();
       SetEventMask(Events.Cancel);
@@ -55,9 +55,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       Context.Machine = FinishedMachine.Get();
     }
-    internal override string State
+    public override string ToString()
     {
-      get { return "Archiving"; }
+      return "Archiving";
     }
     #endregion
 

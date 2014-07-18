@@ -13,11 +13,12 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SmartFactory.IPR.Client.UserInterface.ViewModel;
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
-  internal class SetupDataDialogMachine : AbstractMachine
+  internal class SetupDataDialogMachine : AbstractMachineState<MainWindowModel>
   {
-    public SetupDataDialogMachine(StateMachineContext context)
+    public SetupDataDialogMachine(MainWindowModel context)
       : base(context)
     {
       m_Me = this;
@@ -28,7 +29,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
 
     #region AbstractMachine
-    internal override void OnEnteringState()
+    public override void OnEnteringState()
     {
       base.OnEnteringState();
       SetEventMask(Events.Cancel | Events.Next);
@@ -41,9 +42,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       Context.Close();
     }
-    internal override string State
+    public override string ToString()
     {
-      get { return "Setup"; }
+      return "Setup";
     }
     #endregion
 

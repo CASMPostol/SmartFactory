@@ -12,16 +12,17 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using CAS.SmartFactory.IPR.Client.DataManagement;
 using System;
 using System.ComponentModel;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
-  internal abstract class BackgroundWorkerVizardMachine : AbstractMachine, IDisposable
+  internal abstract class BackgroundWorkerMachine<ContextType> : AbstractMachineState<ContextType>, IDisposable
+        where ContextType : StateMachineContext
   {
-    public BackgroundWorkerVizardMachine(StateMachineContext context)
+    public BackgroundWorkerMachine(ContextType context)
       : base(context)
     {
       m_BackgroundWorker = new BackgroundWorker() { WorkerReportsProgress = true, WorkerSupportsCancellation = true };
@@ -66,7 +67,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     protected abstract void RunWorkerCompleted();
     protected virtual void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
     {
-      Context.ProgressChang(this, (EntitiesChangedEventArgs.EntitiesState)e.UserState);
+      Context.ProgressChang(this, e);
     }
     protected bool ReportProgress(object source, EntitiesChangedEventArgs progress)
     {
