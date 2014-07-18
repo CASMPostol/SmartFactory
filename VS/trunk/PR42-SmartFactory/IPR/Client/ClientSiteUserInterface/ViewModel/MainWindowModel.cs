@@ -21,7 +21,7 @@ using System.Windows;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
 {
-  internal class MainWindowModel : StateMachine.StateMachineContext, IDisposable
+  internal class MainWindowModel : StateMachine.StateMachineContext
   {
 
     #region public
@@ -36,10 +36,10 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       ProgressBarMaximum = 100;
       Progress = 0;
       //create state machine
-      new AbstractMachine.SetupDataDialogMachine(this);
-      new AbstractMachine.ActivationMachine(this);
-      new AbstractMachine.ArchivingMachine(this);
-      new AbstractMachine.FinishedMachine(this);
+      new SetupDataDialogMachine(this);
+      Components.Add(new ActivationMachine(this));
+      Components.Add(new ArchivingMachine(this));
+      new FinishedMachine(this);
       this.OpenEntryState();
     }
     //UI API
@@ -130,8 +130,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       {
         RaiseHandler<string>(value, ref b_State, "State", this);
       }
-    } 
-                
+    }
+
     #endregion
 
     #region private
@@ -144,8 +144,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
     private int b_ProgressBarMaximum;
     private ObservableCollection<string> b_ProgressList;
     private string b_State;
-    #region StateMachineContext
 
+    #region StateMachineContext
     internal override void Close()
     {
       throw new NotImplementedException();
@@ -168,17 +168,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       //Close();
     }
     #endregion
-    #endregion
 
-    #region IDisposable
-    /// <summary>
-    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-    /// </summary>
-    /// <exception cref="System.NotImplementedException"></exception>
-    public void Dispose()
-    {
-      ;
-    }
     #endregion
 
   }
