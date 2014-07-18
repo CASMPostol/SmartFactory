@@ -47,7 +47,7 @@
                 <Label Content="Phase" />
                 <TextBox Text="{Binding State, Mode=OneTime}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" IsEnabled="False" VerticalAlignment="Stretch" />
             </StackPanel>
-            <ListView x:Name="x_ListBox" ItemsSource="{Binding Messages}" Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+            <ListView x:Name="x_ListBox" ItemsSource="{Binding ProgressList}" Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </Grid>
         <!--<TabControl x:Name="x_TabControlContent" Margin="0" >
 			<TabItem x:Name="x_TabItemSetupDialog" Header="Setup" HorizontalAlignment="Left" VerticalAlignment="Top" >

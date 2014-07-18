@@ -33,8 +33,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       this.Title = this.Title + " Rel " + _name.Version.ToString(4);
       URL = Properties.Settings.Default.SiteURL;
       DatabaseName = Properties.Settings.Default.DatabaseName;
-      ProgressBarMaximum = 100;
-      Progress = 0;
+      ProgressList = new ObservableCollection<string>();
       //create state machine
       new SetupDataDialogMachine(this);
       Components.Add(new ActivationMachine(this));
@@ -87,28 +86,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
         RaiseHandler<int>(value, ref b_IPRAccountArchivalDelay, "IPRAccountArchivalDelay", this);
       }
     }
-    public int Progress
-    {
-      get
-      {
-        return b_Progress;
-      }
-      set
-      {
-        RaiseHandler<int>(value, ref b_Progress, "Progress", this);
-      }
-    }
-    public int ProgressBarMaximum
-    {
-      get
-      {
-        return b_ProgressBarMaximum;
-      }
-      set
-      {
-        RaiseHandler<int>(value, ref b_ProgressBarMaximum, "ProgressBarMaximum", this);
-      }
-    }
     public ObservableCollection<string> ProgressList
     {
       get
@@ -120,53 +97,29 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
         RaiseHandler<System.Collections.ObjectModel.ObservableCollection<string>>(value, ref b_ProgressList, "ProgressList", this);
       }
     }
-    public string State
-    {
-      get
-      {
-        return b_State;
-      }
-      set
-      {
-        RaiseHandler<string>(value, ref b_State, "State", this);
-      }
-    }
-
     #endregion
 
     #region private
     //backing fields
     private string b_Title;
-    private int b_Progress;
     private int b_IPRAccountArchivalDelay;
     private string b_URL;
     private string b_DatabaseName;
-    private int b_ProgressBarMaximum;
     private ObservableCollection<string> b_ProgressList;
-    private string b_State;
 
     #region StateMachineContext
-    internal override void Close()
+    public override void ProgressChang(IAbstractMachine activationMachine, System.ComponentModel.ProgressChangedEventArgs entitiesState)
     {
-      throw new NotImplementedException();
+      base.ProgressChang(activationMachine, entitiesState);
+      if (entitiesState.UserState is string)
+        ProgressList.Add((String)entitiesState.UserState);
     }
-    internal override void UpdateProgressBar(int progress)
-    {
-      while (ProgressBarMaximum - Progress < progress)
-        ProgressBarMaximum *= 2;
-      Progress += progress;
-    }
-    internal override void WriteLine(string value)
-    {
-      ProgressList.Add(value);
-      UpdateProgressBar(1);
-    }
-    internal override void Exception(Exception exception)
-    {
-      string _mssg = String.Format("Program stopped by exception: {0}", exception.Message);
-      MessageBox.Show(_mssg, "Operation error", MessageBoxButton.OK, MessageBoxImage.Error);
-      //Close();
-    }
+    //internal override void Exception(Exception exception)
+    //{
+    //  string _mssg = String.Format("Program stopped by exception: {0}", exception.Message);
+    //  MessageBox.Show(_mssg, "Operation error", MessageBoxButton.OK, MessageBoxImage.Error);
+    //  //Close();
+    //}
     #endregion
 
     #endregion

@@ -18,17 +18,21 @@ using System;
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
   [Flags]
-  internal enum Events
+  public enum Events
   {
     Previous = 0x1,
     Next = 0x2,
     Cancel = 0x4,
   }
-  internal abstract class AbstractMachine : IAbstractMachineEvents
+  /// <summary>
+  /// It implements basic functionality of the wizard state of the <see cref="StateMachineContext"/>
+  /// </summary>
+  public abstract class AbstractMachineState<ContextType> : IAbstractMachine
+    where ContextType : StateMachineContext
   {
 
     #region constructor
-    public AbstractMachine(StateMachineContext context)
+    public AbstractMachineState(ContextType context)
     {
       Context = context;
     }
@@ -36,17 +40,16 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 
     internal event EventHandler Entered;
     internal event EventHandler Exiting;
-    internal virtual void OnEnteringState()
+    public virtual void OnEnteringState()
     {
       if (Entered != null)
         Entered(this, EventArgs.Empty);
     }
-    internal virtual void OnExitingState()
+    public virtual void OnExitingState()
     {
       if (Exiting != null)
         Exiting(this, EventArgs.Empty);
     }
-    internal abstract string State { get; }
 
     #region IAbstractMachineEvents Members
     public virtual void Previous()
@@ -64,7 +67,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     #endregion
 
     #region private
-    protected StateMachineContext Context { get; private set; }
+    protected ContextType Context { get; private set; }
     protected void SetEventMask(Events events)
     {
       Context.SetupUserInterface = events;

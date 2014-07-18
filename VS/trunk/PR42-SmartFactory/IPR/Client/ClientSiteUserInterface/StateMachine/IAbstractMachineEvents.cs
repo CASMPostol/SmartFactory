@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
   /// <summary>
   /// Abstract Machine Events Interface
   /// </summary>
-  interface IAbstractMachineEvents
+  public interface IAbstractMachine
   {
     /// <summary>
     /// Cancels this instance.
@@ -36,5 +36,14 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     /// Go to previous step.
     /// </summary>
     void Previous();
+    /// <summary>
+    /// Called on state exiting.
+    /// </summary>
+    void OnExitingState();
+    /// <summary>
+    /// Called on entering new state.
+    /// </summary>
+    void OnEnteringState();
+
   }
 }

@@ -14,11 +14,13 @@
 //</summary>
 
 
+using CAS.SmartFactory.IPR.Client.UserInterface.ViewModel;
+
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
-  internal class FinishedMachine : AbstractMachine
+  internal class FinishedMachine : AbstractMachineState<MainWindowModel>
   {
-    internal FinishedMachine(StateMachineContext context)
+    internal FinishedMachine(MainWindowModel context)
       : base(context)
     {
       m_Me = this;
@@ -28,11 +30,11 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       return m_Me;
     }
     //AbstractMachine
-    internal override void OnEnteringState()
+    public override void OnEnteringState()
     {
       base.OnEnteringState();
       SetEventMask(Events.Next & Events.Previous);
-      Context.WriteLine("All operation have been finished, press >> to exit the program");
+      Context.ProgressChang(this, new System.ComponentModel.ProgressChangedEventArgs(0, "All operation have been finished, press >> to exit the program"));
     }
     public override void Previous()
     {
@@ -43,9 +45,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       Context.Close();
     }
-    internal override string State
+    public override string ToString()
     {
-      get { return "Finishing"; }
+      return "Finishing";
     }
 
     private static FinishedMachine m_Me;
