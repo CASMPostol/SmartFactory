@@ -113,12 +113,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       if (entitiesState.UserState is string)
         ProgressList.Add((String)entitiesState.UserState);
     }
-    //internal override void Exception(Exception exception)
-    //{
-    //  string _mssg = String.Format("Program stopped by exception: {0}", exception.Message);
-    //  MessageBox.Show(_mssg, "Operation error", MessageBoxButton.OK, MessageBoxImage.Error);
-    //  //Close();
-    //}
     #endregion
 
     #endregion

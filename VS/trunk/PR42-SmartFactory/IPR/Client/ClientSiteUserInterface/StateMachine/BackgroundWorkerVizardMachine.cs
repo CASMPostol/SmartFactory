@@ -59,9 +59,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     protected virtual void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
     {
       if (e.Cancelled)
-        Context.Close();
+        OnCancelation();
       else if (e.Error != null)
-        Context.Exception(e.Error);
+        OnException(e.Error);
       else
         this.RunWorkerCompleted();
     }
@@ -70,7 +70,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       Context.ProgressChang(this, e);
     }
-    protected bool ReportProgress(object source, EntitiesChangedEventArgs progress)
+    protected bool ReportProgress(object source, ProgressChangedEventArgs progress)
     {
       m_BackgroundWorker.ReportProgress(progress.ProgressPercentage, progress.UserState);
       return m_BackgroundWorker.CancellationPending;

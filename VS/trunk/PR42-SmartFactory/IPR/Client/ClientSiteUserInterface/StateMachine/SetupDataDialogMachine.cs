@@ -47,9 +47,19 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       return "Setup";
     }
+    public override void OnException(System.Exception exception)
+    {
+      Context.Exception(exception);
+      Context.Machine = FinishedMachine.Get();
+    }
+    public override void OnCancelation()
+    {
+      Context.Close();
+    }
     #endregion
 
     private static SetupDataDialogMachine m_Me;
+
 
   }
 }

@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Interactivity.InteractionRequest;
 using CAS.SmartFactory.IPR.Client.UserInterface.ViewModel;
 using System.Windows;
 
@@ -31,6 +32,27 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
       this.DataContext = new MainWindowModel();
+      ThisDatacontext.CloseWindow.Raised += CloseWindow_Raised;
+      ThisDatacontext.CancelConfirmation.Raised += CancelConfirmation_Raised;
+      ThisDatacontext.ExceptionNotification.Raised += ExceptionNotification_Raised;
+    }
+    private void ExceptionNotification_Raised(object sender, InteractionRequestedEventArgs<INotification> e)
+    {
+      MessageBox.Show((string)e.Context.Content, e.Context.Title, MessageBoxButton.OK, MessageBoxImage.Error);
+      e.Callback();
+    }
+    private void CancelConfirmation_Raised(object sender, InteractionRequestedEventArgs<IConfirmation> e)
+    {
+      if (MessageBox.Show((string)e.Context.Content, e.Context.Title, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+        e.Context.Confirmed = true;
+      else
+        e.Context.Confirmed = false;
+      e.Callback();
+    }
+    private void CloseWindow_Raised(object sender, InteractionRequestedEventArgs<INotification> e)
+    {
+      e.Callback();
+      this.Close();
     }
     protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
     {
