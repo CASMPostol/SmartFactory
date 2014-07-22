@@ -51,11 +51,32 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     #region BackgroundWorkerMachine implementation
     protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
     {
+      int _counteri = 0;
+      while (true)
+      {
+        System.Threading.Thread.Sleep(1000);
+        if (ReportProgress(this, new ProgressChangedEventArgs(_counteri, System.String.Format("I am on the {0} round.", _counteri))))
+        {
+          e.Cancel = true;
+          e.Result = null;
+          return;
+        }
+        _counteri++;
+      }
       DataManagement.Activate180.Activate.Go(Properties.Settings.Default.SiteURL, Properties.Settings.Default.DoActivate1800, ReportProgress);
     }
     protected override void RunWorkerCompleted()
     {
       Context.Machine = ArchivingMachine.Get();
+    }
+    public override void OnException(System.Exception exception)
+    {
+      Context.Exception(exception);
+      Context.Machine = FinishedMachine.Get();
+    }
+    public override void OnCancelation()
+    {
+      Context.Machine = FinishedMachine.Get();
     }
     #endregion
 

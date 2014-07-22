@@ -45,7 +45,7 @@
                 <Label Content="Archive IPR [days]" />
                 <TextBox Text="{Binding IPRAccountArchivalDelay, Mode=TwoWay}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" />
                 <Label Content="Phase" />
-                <TextBox Text="{Binding State, Mode=OneTime}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" IsEnabled="False" VerticalAlignment="Stretch" />
+                <Label Content="{Binding MachineState, Mode=OneWay}" MinWidth="100" Width="Auto" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" IsEnabled="False" VerticalAlignment="Stretch" />
             </StackPanel>
             <ListView x:Name="x_ListBox" ItemsSource="{Binding ProgressList}" Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </Grid>

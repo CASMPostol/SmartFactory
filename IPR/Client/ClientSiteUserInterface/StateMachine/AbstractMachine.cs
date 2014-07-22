@@ -14,6 +14,7 @@
 //</summary>
 
 using System;
+using System.ComponentModel;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
@@ -42,27 +43,28 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public event EventHandler Exiting;
     public virtual void OnEnteringState()
     {
+      Context.ProgressChang(this, new ProgressChangedEventArgs(0, String.Format("Entered state {0}", ToString())));
       if (Entered != null)
         Entered(this, EventArgs.Empty);
     }
     public virtual void OnExitingState()
     {
+      Context.ProgressChang(this, new ProgressChangedEventArgs(0, String.Format("Exiting the state {0}", ToString())));
       if (Exiting != null)
         Exiting(this, EventArgs.Empty);
     }
-
+    /// <summary>
+    /// Called when exception has occurred.
+    /// </summary>
+    /// <param name="exception">The exception.</param>
+    public abstract void OnException(Exception exception);
+    public abstract void OnCancelation();
     #region IAbstractMachineEvents Members
-    public virtual void Previous()
-    {
-      throw new ApplicationException();
-    }
-    public virtual void Next()
-    {
-      throw new ApplicationException();
-    }
+    public virtual void Previous() { }
+    public virtual void Next() { }
     public virtual void Cancel()
     {
-      Context.Close();
+      OnCancelation();
     }
     #endregion
 

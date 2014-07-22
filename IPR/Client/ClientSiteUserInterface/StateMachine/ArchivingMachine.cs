@@ -59,9 +59,17 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       return "Archiving";
     }
+    public override void OnException(System.Exception exception)
+    {
+      Context.Exception(exception);
+      Context.Machine = FinishedMachine.Get();
+    }
+    public override void OnCancelation()
+    {
+      Context.Close();
+    }
     #endregion
 
     private static ArchivingMachine m_Me;
-
   }
 }

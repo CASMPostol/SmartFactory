@@ -35,13 +35,13 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override void OnEnteringState()
     {
       base.OnEnteringState();
-      SetEventMask(Events.Next & Events.Previous);
+      SetEventMask(Events.Next | Events.Previous);
       Context.ProgressChang(this, new System.ComponentModel.ProgressChangedEventArgs(0, "All operation have been finished, press >> to exit the program"));
     }
     public override void Previous()
     {
       base.Previous();
-      Context.Machine = ActivationMachine.Get();
+      Context.Machine = SetupDataDialogMachine.Get();
     }
     public override void Next()
     {
@@ -50,6 +50,15 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override string ToString()
     {
       return "Finishing";
+    }
+    public override void OnException(System.Exception exception)
+    {
+      Context.Exception(exception);
+      Context.Close();
+    }
+    public override void OnCancelation()
+    {
+      Context.Close();
     }
     //private
     private static FinishedMachine m_Me;

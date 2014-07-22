@@ -34,8 +34,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       ProgressBarMaximum = ProgressBarMaximumDefault;
       Progress = 0;
       ButtonCancel = new SynchronousCommandBase<object>(x => this.Cancel(), y => this.CanExecuteCancel);
-      ButtonGoBackward = new SynchronousCommandBase<object>(x => Machine.Previous(), y => this.CanExecutePrevious);
-      ButtonGoForward = new SynchronousCommandBase<object>(x => Machine.Next(), y => this.CanExecuteNext);
+      ButtonGoBackward = new SynchronousCommandBase<object>(x => this.Previous(), y => this.CanExecutePrevious);
+      ButtonGoForward = new SynchronousCommandBase<object>(x => this.Next(), y => this.CanExecuteNext);
       CancelConfirmation = new InteractionRequest<IConfirmation>();
       CloseWindow = new InteractionRequest<INotification>();
       ExceptionNotification = new InteractionRequest<INotification>();
@@ -84,7 +84,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       }
       set
       {
-        RaiseHandler<ICommandWithUpdate>(value, ref b_ButtonGoBackward, "ButtonGoBackward", this);
+        RaiseHandler(value, ref b_ButtonGoBackward, "ButtonGoBackward", this);
       }
     }
     public ICommandWithUpdate ButtonGoForward
@@ -95,13 +95,13 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       }
       set
       {
-        RaiseHandler<ICommandWithUpdate>(value, ref b_ButtonGoForward, "ButtonGoForward", this);
+        RaiseHandler(value, ref b_ButtonGoForward, "ButtonGoForward", this);
       }
     }
     public InteractionRequest<IConfirmation> CancelConfirmation { get; private set; }
     public InteractionRequest<INotification> CloseWindow;
     public InteractionRequest<INotification> ExceptionNotification { get; private set; }
-    public string State
+    public string MachineState
     {
       get
       {
@@ -109,7 +109,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       }
       set
       {
-        RaiseHandler<string>(value, ref b_State, "State", this);
+        RaiseHandler<string>(value, ref b_State, "MachineState", this);
       }
     }
     #endregion
@@ -123,8 +123,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         if (m_Machine != null)
           m_Machine.OnExitingState();
         m_Machine = value;
-        State = value.ToString();
-        this.ProgressChang(value, new ProgressChangedEventArgs(0, String.Format("Entered state {0}", State)));
+        MachineState = value.ToString();
         m_Machine.OnEnteringState();
       }
     }
@@ -140,7 +139,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     internal virtual void Close()
     {
-      CancelConfirmation.Raise(new Confirmation() { Title = "Closing confirmation", Content = "The window will be closed? Are you sure?" });
+      CloseWindow.Raise(new Notification() { Title = "Closing confirmation", Content = "The window will be closed? Are you sure?" });
     }
     internal virtual void UpdateProgressBar(int progress)
     {
@@ -156,8 +155,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     internal virtual void Exception(Exception exception)
     {
-      string _msg = String.Format("Exception {0} occurred at state {1}: {2}", exception.GetType().Name, Machine.ToString(), exception.Message);
-      CancelConfirmation.Raise(new Confirmation() { Title = "Cancellation confirmation.", Content = "The operation is canceling. Are you sure?" });
+      string _msg = String.Format("{0} exception occurred at state {1}. Details: {2}.", exception.GetType().Name, Machine.ToString(), exception.Message);
+      ExceptionNotification.Raise(new Confirmation() { Title = "Exception notification.", Content = _msg } );
       ProgressChang(Machine, new ProgressChangedEventArgs(0, _msg));
     }
     public virtual void ProgressChang(IAbstractMachine activationMachine, ProgressChangedEventArgs entitiesState)
@@ -202,6 +201,14 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       Machine = SetupDataDialogMachine.Get();
     }
+    private void Next()
+    {
+      Machine.Next();
+    }
+    private void Previous()
+    {
+      Machine.Previous();
+    }
     private bool CanExecuteCancel
     {
       get { return b_CanExecuteCancel; }
@@ -221,7 +228,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     private void Cancel()
     {
       bool _confirmed = false;
-      CancelConfirmation.Raise(new Confirmation() { Title = "Cancellation confirmation.", Content = "The operation is canceling. Are you sure?" , Confirmed = true }, c => _confirmed = c.Confirmed);
+      CancelConfirmation.Raise(new Confirmation() { Title = "Cancellation confirmation.", Content = "The operation will be canceled. Are you sure?" , Confirmed = true }, c => _confirmed = c.Confirmed);
       if (_confirmed)
         Machine.Cancel();
     }
