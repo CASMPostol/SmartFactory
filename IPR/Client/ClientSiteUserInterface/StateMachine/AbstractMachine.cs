@@ -38,8 +38,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     #endregion
 
-    internal event EventHandler Entered;
-    internal event EventHandler Exiting;
+    public event EventHandler Entered;
+    public event EventHandler Exiting;
     public virtual void OnEnteringState()
     {
       if (Entered != null)

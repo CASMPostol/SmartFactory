@@ -19,6 +19,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
   internal class ActivationMachine : BackgroundWorkerMachine<ViewModel.MainWindowModel>
   {
+
     #region creator
     internal ActivationMachine(ViewModel.MainWindowModel context)
       : base(context)
@@ -45,6 +46,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     #endregion
 
+    #region private
+
     #region BackgroundWorkerMachine implementation
     protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
     {
@@ -57,6 +60,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     #endregion
 
     private static ActivationMachine m_Me;
+
+    #endregion
 
   }
 }

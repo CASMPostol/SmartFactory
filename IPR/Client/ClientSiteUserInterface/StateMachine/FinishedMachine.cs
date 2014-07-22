@@ -20,11 +20,13 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
   internal class FinishedMachine : AbstractMachineState<MainWindowModel>
   {
+    //constructor
     internal FinishedMachine(MainWindowModel context)
       : base(context)
     {
       m_Me = this;
     }
+    //API
     internal static FinishedMachine Get()
     {
       return m_Me;
@@ -49,7 +51,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       return "Finishing";
     }
-
+    //private
     private static FinishedMachine m_Me;
 
   }

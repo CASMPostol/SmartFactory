@@ -17,7 +17,6 @@ using CAS.SmartFactory.IPR.Client.UserInterface.StateMachine;
 using System;
 using System.Collections.ObjectModel;
 using System.Reflection;
-using System.Windows;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
 {

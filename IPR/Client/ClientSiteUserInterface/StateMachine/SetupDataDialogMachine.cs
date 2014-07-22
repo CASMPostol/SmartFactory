@@ -14,6 +14,7 @@
 //</summary>
 
 using CAS.SmartFactory.IPR.Client.UserInterface.ViewModel;
+
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
   internal class SetupDataDialogMachine : AbstractMachineState<MainWindowModel>
