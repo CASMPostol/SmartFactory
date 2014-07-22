@@ -15,7 +15,6 @@
 
 using CAS.SharePoint.Interactivity.InteractionRequest;
 using CAS.SharePoint.ViewModel;
-using CAS.SmartFactory.IPR.Client.DataManagement;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
