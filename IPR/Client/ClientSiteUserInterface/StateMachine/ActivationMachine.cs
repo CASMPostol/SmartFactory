@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.ViewModel.Wizard;
 using System.ComponentModel;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
@@ -51,6 +52,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     #region BackgroundWorkerMachine implementation
     protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
     {
+      //TODO to be removed.
       int _counteri = 0;
       while (true)
       {
@@ -63,7 +65,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         }
         _counteri++;
       }
-      DataManagement.Activate180.Activate.Go(Properties.Settings.Default.SiteURL, Properties.Settings.Default.DoActivate1800, ReportProgress);
+      //DataManagement.Activate180.Activate.Go(Properties.Settings.Default.SiteURL, Properties.Settings.Default.DoActivate1800, ReportProgress);
     }
     protected override void RunWorkerCompleted()
     {
