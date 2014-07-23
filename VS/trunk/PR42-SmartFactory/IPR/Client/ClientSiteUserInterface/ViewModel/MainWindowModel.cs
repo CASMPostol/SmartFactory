@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.ViewModel.Wizard;
 using CAS.SmartFactory.IPR.Client.UserInterface.StateMachine;
 using System;
 using System.Collections.ObjectModel;
@@ -20,7 +21,7 @@ using System.Reflection;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
 {
-  internal class MainWindowModel : StateMachine.StateMachineContext
+  internal class MainWindowModel : StateMachineContext
   {
 
     #region public
@@ -34,11 +35,11 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       DatabaseName = Properties.Settings.Default.DatabaseName;
       ProgressList = new ObservableCollection<string>();
       //create state machine
-      new SetupDataDialogMachine(this);
+      SetupDataDialogMachine _enteringState = new SetupDataDialogMachine(this);
       Components.Add(new ActivationMachine(this));
       Components.Add(new ArchivingMachine(this));
       new FinishedMachine(this);
-      this.OpenEntryState();
+      this.OpenEntryState(_enteringState);
     }
     //UI API
     public string Title

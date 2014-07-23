@@ -109,14 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="StateMachine\AbstractMachine.cs" />
     <Compile Include="StateMachine\ActivationMachine.cs" />
     <Compile Include="StateMachine\ArchivingMachine.cs" />
-    <Compile Include="StateMachine\BackgroundWorkerVizardMachine.cs" />
     <Compile Include="StateMachine\FinishedMachine.cs" />
     <Compile Include="StateMachine\SetupDataDialogMachine.cs" />
-    <Compile Include="StateMachine\StateMachineContext.cs" />
-    <Compile Include="StateMachine\IAbstractMachineEvents.cs" />
     <Compile Include="ViewModel\MainWindowModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

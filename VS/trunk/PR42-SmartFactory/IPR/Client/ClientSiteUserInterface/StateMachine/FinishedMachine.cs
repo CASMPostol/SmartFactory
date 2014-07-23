@@ -14,6 +14,7 @@
 //</summary>
 
 
+using CAS.SharePoint.ViewModel.Wizard;
 using CAS.SmartFactory.IPR.Client.UserInterface.ViewModel;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
