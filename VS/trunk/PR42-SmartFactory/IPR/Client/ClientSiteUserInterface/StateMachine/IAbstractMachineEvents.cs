@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
   public interface IAbstractMachine
   {
     /// <summary>
-    /// Cancels this instance.
+    /// Cancels this operation.
     /// </summary>
     void Cancel();
     /// <summary>

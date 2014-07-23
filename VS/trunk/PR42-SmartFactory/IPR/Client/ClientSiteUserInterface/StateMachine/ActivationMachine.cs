@@ -74,7 +74,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       Context.Exception(exception);
       Context.Machine = FinishedMachine.Get();
     }
-    public override void OnCancelation()
+    public override void OnCancellation()
     {
       Context.Machine = FinishedMachine.Get();
     }

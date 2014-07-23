@@ -58,21 +58,43 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     /// </summary>
     /// <param name="exception">The exception.</param>
     public abstract void OnException(Exception exception);
-    public abstract void OnCancelation();
+    /// <summary>
+    /// Called when cancellation is requested.
+    /// </summary>
+    public abstract void OnCancellation();
     #region IAbstractMachineEvents Members
+    /// <summary>
+    /// Go to previous step.
+    /// </summary>
     public virtual void Previous() { }
+    /// <summary>
+    /// Go to the next step.
+    /// </summary>
     public virtual void Next() { }
+    /// <summary>
+    /// Cancels this operation.
+    /// </summary>
     public virtual void Cancel()
     {
-      OnCancelation();
+      OnCancellation();
     }
     #endregion
 
     #region private
+    /// <summary>
+    /// Gets the current context derived form <see cref="StateMachineContext"/>.
+    /// </summary>
+    /// <value>
+    /// The context.
+    /// </value>
     protected ContextType Context { get; private set; }
+    /// <summary>
+    /// Sets the event mask.
+    /// </summary>
+    /// <param name="events">The active events mask.</param>
     protected void SetEventMask(Events events)
     {
-      Context.SetupUserInterface = events;
+      Context.ActiveEvents = events;
     }
     #endregion
 
