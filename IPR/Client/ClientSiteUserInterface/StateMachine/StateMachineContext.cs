@@ -115,6 +115,12 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     #endregion
 
     #region internal
+    /// <summary>
+    /// Gets or sets the state machine.
+    /// </summary>
+    /// <value>
+    /// The current machine.
+    /// </value>
     public IAbstractMachine Machine
     {
       get { return this.m_Machine; }
@@ -127,7 +133,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         m_Machine.OnEnteringState();
       }
     }
-    internal Events SetupUserInterface
+    internal Events ActiveEvents
     {
       set
       {
@@ -158,10 +164,17 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       string _msg = String.Format("{0} exception occurred at state {1}. Details: {2}.", exception.GetType().Name, Machine.ToString(), exception.Message);
       ExceptionNotification.Raise(new Confirmation() { Title = "Exception notification.", Content = _msg } );
       ProgressChang(Machine, new ProgressChangedEventArgs(0, _msg));
+      //TODO add tracing to log file
     }
+    /// <summary>
+    /// Is called by the event handler of the <see cref="BackgroundWorker.ProgressChanged"/>.
+    /// </summary>
+    /// <param name="activationMachine">The activation machine.</param>
+    /// <param name="entitiesState">The <see cref="ProgressChangedEventArgs"/> instance containing the event data.</param>
     public virtual void ProgressChang(IAbstractMachine activationMachine, ProgressChangedEventArgs entitiesState)
     {
       UpdateProgressBar(entitiesState.ProgressPercentage);
+      //TODO add tracing to log file
     }
     #endregion
 

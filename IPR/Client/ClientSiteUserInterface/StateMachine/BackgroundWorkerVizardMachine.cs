@@ -59,7 +59,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     protected virtual void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
     {
       if (e.Cancelled)
-        OnCancelation();
+        OnCancellation();
       else if (e.Error != null)
         OnException(e.Error);
       else

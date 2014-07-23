@@ -56,7 +56,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       Context.Exception(exception);
       Context.Close();
     }
-    public override void OnCancelation()
+    public override void OnCancellation()
     {
       Context.Close();
     }
