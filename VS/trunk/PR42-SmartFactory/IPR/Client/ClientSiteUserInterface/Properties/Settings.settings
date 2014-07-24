@@ -6,7 +6,7 @@
       <Value Profile="(Default)">http://casas:11227/sites/ipr</Value>
     </Setting>
     <Setting Name="DoArchiveIPR" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="DoActivate1800" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

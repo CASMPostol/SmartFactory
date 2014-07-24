@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Activate180\Activate.cs" />
     <Compile Include="Archival\Archive.cs" />
+    <Compile Include="CleanupContent.cs" />
     <Compile Include="EntitiesChangedEventArgs.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Linq2SQL\Entities.cs" />

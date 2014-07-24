@@ -35,11 +35,12 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       DatabaseName = Properties.Settings.Default.DatabaseName;
       ProgressList = new ObservableCollection<string>();
       //create state machine
-      SetupDataDialogMachine _enteringState = new SetupDataDialogMachine(this);
-      Components.Add(new ActivationMachine(this));
-      Components.Add(new ArchivingMachine(this));
-      new FinishedMachine(this);
-      this.OpenEntryState(_enteringState);
+      this.EnterState<SetupDataDialogMachine>();
+      //SetupDataDialogMachine _enteringState = new SetupDataDialogMachine(this);
+      //Components.Add(new ActivationMachine(this));
+      //Components.Add(new ArchivingMachine(this));
+      //new FinishedMachine(this);
+      //this.OpenEntryState(_enteringState);
     }
     //UI API
     public string Title

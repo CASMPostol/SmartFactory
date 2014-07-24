@@ -16,12 +16,14 @@
 
 using CAS.SharePoint.ViewModel.Wizard;
 using CAS.SmartFactory.IPR.Client.UserInterface.ViewModel;
+using System;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
   internal class FinishedMachine : AbstractMachineState<MainWindowModel>
   {
     //constructor
+    public FinishedMachine() : base() { }
     internal FinishedMachine(MainWindowModel context)
       : base(context)
     {
@@ -30,6 +32,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     //API
     internal static FinishedMachine Get()
     {
+      if (m_Me == null)
+        throw new ApplicationException();
       return m_Me;
     }
     //AbstractMachine

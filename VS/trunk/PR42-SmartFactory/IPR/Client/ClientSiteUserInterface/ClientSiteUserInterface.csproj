@@ -123,6 +123,7 @@
     </Compile>
     <Compile Include="StateMachine\ActivationMachine.cs" />
     <Compile Include="StateMachine\ArchivingMachine.cs" />
+    <Compile Include="StateMachine\CleanupMachine.cs" />
     <Compile Include="StateMachine\FinishedMachine.cs" />
     <Compile Include="StateMachine\SetupDataDialogMachine.cs" />
     <Compile Include="ViewModel\MainWindowModel.cs" />

@@ -37,7 +37,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool DoArchiveIPR {
             get {
                 return ((bool)(this["DoArchiveIPR"]));

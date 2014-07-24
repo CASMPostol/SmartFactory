@@ -15,11 +15,20 @@
 
 using CAS.SharePoint.ViewModel.Wizard;
 using CAS.SmartFactory.IPR.Client.UserInterface.ViewModel;
+using System;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
   internal class SetupDataDialogMachine : AbstractMachineState<MainWindowModel>
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SetupDataDialogMachine"/> class.
+    /// </summary>
+    public SetupDataDialogMachine() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SetupDataDialogMachine"/> class.
+    /// </summary>
+    /// <param name="context">The context.</param>
     public SetupDataDialogMachine(MainWindowModel context)
       : base(context)
     {
@@ -27,6 +36,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     internal static SetupDataDialogMachine Get()
     {
+      if (m_Me == null)
+        throw new ApplicationException("Obsolete - not initialized");
       return m_Me;
     }
 
@@ -38,7 +49,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     public override void Next()
     {
-      Context.Machine = ActivationMachine.Get();
+      Context.Machine = new CleanupMachine(Context);
     }
     public override void Cancel()
     {
