@@ -73,11 +73,11 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override void OnException(System.Exception exception)
     {
       Context.Exception(exception);
-      Context.Machine = FinishedMachine.Get();
+      Context.EnterState<FinishedMachine>();
     }
     public override void OnCancellation()
     {
-      Context.Machine = FinishedMachine.Get();
+      Context.EnterState<FinishedMachine>();
     }
     #endregion
 

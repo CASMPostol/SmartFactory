@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Activate180
     /// <param name="siteURL">The site URL.</param>
     /// <param name="doActivate1800">if set to <c>true</c> [document activate1800].</param>
     /// <param name="progress">The progress.</param>
-    public static void Go(string siteURL, bool doActivate1800, Func<object, EntitiesChangedEventArgs, bool> progress)
+    public static void Go(string siteURL, bool doActivate1800, Action<object, EntitiesChangedEventArgs> progress)
     {
       using (Entities edc = new Entities(siteURL))
       {
@@ -46,12 +46,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Activate180
     }
 
     #region private
-    private static void SubmitChanges(Func<object, EntitiesChangedEventArgs, bool> progress, Entities edc)
+    private static void SubmitChanges(Action<object, EntitiesChangedEventArgs> progress, Entities edc)
     {
       progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", edc));
       edc.SubmitChanges();
     }
-    private static void UpdateDisposals(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
+    private static void UpdateDisposals(Entities entities, Action<object, EntitiesChangedEventArgs> progress)
     {
       progress(null, new EntitiesChangedEventArgs(1, "Starting Activate.UpdateDisposals", entities));
       int _cl = 0;
@@ -86,7 +86,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Activate180
       SubmitChanges(progress, entities);
       progress(null, new EntitiesChangedEventArgs(1, "Finished Activate.UpdateDisposals", entities));
     }
-    private static void IPRRecalculateClearedRecords(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
+    private static void IPRRecalculateClearedRecords(Entities entities, Action<object, EntitiesChangedEventArgs> progress)
     {
       progress(null, new EntitiesChangedEventArgs(1, "Starting Activate.IPRRecalculateClearedRecords", entities));
       foreach (Client.DataManagement.Linq.IPR _iprX in entities.IPR)
@@ -98,7 +98,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Activate180
       SubmitChanges(progress, entities);
       progress(null, new EntitiesChangedEventArgs(1, "Finished Activate.IPRRecalculateClearedRecords", entities));
     }
-    private static void ResetArchival(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
+    private static void ResetArchival(Entities entities, Action<object, EntitiesChangedEventArgs> progress)
     {
       progress(null, new EntitiesChangedEventArgs(1, "Starting Activate.ResetArchival", entities));
       progress(null, new EntitiesChangedEventArgs(1, "Batch archive reseting", entities));
