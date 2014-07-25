@@ -7,7 +7,7 @@
         mc:Ignorable="d" 
         x:Class="CAS.SmartFactory.IPR.Client.UserInterface.MainWindow"
         Title="CAS SmartFactory IPR Archiving Wizard"
-        Loaded="Window_Loaded" Background="#FF1D1D1D" MinWidth="1000" MinHeight="900" d:DesignWidth="1200"  d:DesignHeight="900" WindowStartupLocation="CenterScreen" >
+        Loaded="Window_Loaded" Background="#FF1D1D1D" MinWidth="1000" MinHeight="900" d:DesignWidth="1200"  d:DesignHeight="900" WindowStartupLocation="CenterScreen" Icon="Imgs/IPR_Ico.ico" >
     <DockPanel LastChildFill="True">
         <!--<Menu DockPanel.Dock="Top">
             <MenuItem Header="File" IsEnabled="False">
