@@ -29,6 +29,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertActivitiesLogs(ActivitiesLogs instance);
+    partial void UpdateActivitiesLogs(ActivitiesLogs instance);
+    partial void DeleteActivitiesLogs(ActivitiesLogs instance);
+    partial void InsertArchivingLogs(ArchivingLogs instance);
+    partial void UpdateArchivingLogs(ArchivingLogs instance);
+    partial void DeleteArchivingLogs(ArchivingLogs instance);
     partial void InsertBalanceBatch(BalanceBatch instance);
     partial void UpdateBalanceBatch(BalanceBatch instance);
     partial void DeleteBalanceBatch(BalanceBatch instance);
@@ -164,6 +170,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<ActivitiesLogs> ActivitiesLogs
+		{
+			get
+			{
+				return this.GetTable<ActivitiesLogs>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ArchivingLogs> ArchivingLogs
+		{
+			get
+			{
+				return this.GetTable<ArchivingLogs>();
+			}
 		}
 		
 		public System.Data.Linq.Table<BalanceBatch> BalanceBatch
@@ -459,6 +481,298 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			get
 			{
 				return this.GetTable<Waste>();
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ActivitiesLogs")]
+	public partial class ActivitiesLogs : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Operation;
+		
+		private System.DateTime _Date;
+		
+		private string _UserName;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnOperationChanging(string value);
+    partial void OnOperationChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    #endregion
+		
+		public ActivitiesLogs()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Operation", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Operation
+		{
+			get
+			{
+				return this._Operation;
+			}
+			set
+			{
+				if ((this._Operation != value))
+				{
+					this.OnOperationChanging(value);
+					this.SendPropertyChanging();
+					this._Operation = value;
+					this.SendPropertyChanged("Operation");
+					this.OnOperationChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ArchivingLogs")]
+	public partial class ArchivingLogs : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _ListName;
+		
+		private int _ItemID;
+		
+		private System.DateTime _Date;
+		
+		private string _UserName;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnListNameChanging(string value);
+    partial void OnListNameChanged();
+    partial void OnItemIDChanging(int value);
+    partial void OnItemIDChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    #endregion
+		
+		public ArchivingLogs()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ListName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string ListName
+		{
+			get
+			{
+				return this._ListName;
+			}
+			set
+			{
+				if ((this._ListName != value))
+				{
+					this.OnListNameChanging(value);
+					this.SendPropertyChanging();
+					this._ListName = value;
+					this.SendPropertyChanged("ListName");
+					this.OnListNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ItemID", DbType="Int NOT NULL")]
+		public int ItemID
+		{
+			get
+			{
+				return this._ItemID;
+			}
+			set
+			{
+				if ((this._ItemID != value))
+				{
+					this.OnItemIDChanging(value);
+					this.SendPropertyChanging();
+					this._ItemID = value;
+					this.SendPropertyChanged("ItemID");
+					this.OnItemIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

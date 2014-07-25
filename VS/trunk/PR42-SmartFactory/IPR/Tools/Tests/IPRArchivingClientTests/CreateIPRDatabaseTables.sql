@@ -669,3 +669,18 @@ CREATE TABLE History (
     ModifiedBy nvarchar(255) NOT NULL,
 	CONSTRAINT PK_History_ID PRIMARY KEY CLUSTERED (ID ASC)
 	);
+CREATE TABLE ArchivingLogs (
+	ID int IDENTITY(1,1) NOT NULL,
+	ListName nvarchar(255) NOT NULL,
+	ItemID int NOT NULL,
+	Date datetime NOT NULL,
+	UserName nvarchar(255) NOT NULL,
+	CONSTRAINT PK_ArchivingLogs_ID PRIMARY KEY CLUSTERED (ID ASC)
+	);
+CREATE TABLE ActivitiesLogs (
+	ID int IDENTITY(1,1) NOT NULL,
+	Operation nvarchar(255) NOT NULL,
+	Date datetime NOT NULL,
+	UserName nvarchar(255) NOT NULL,
+	CONSTRAINT PK_ActivitiesLogs_ID PRIMARY KEY CLUSTERED (ID ASC)
+	);
