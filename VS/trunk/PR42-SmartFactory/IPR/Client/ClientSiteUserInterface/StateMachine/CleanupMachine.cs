@@ -31,12 +31,13 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         try
         {
           DataManagement.CleanupContent.Go(Properties.Settings.Default.SiteURL, ReportProgress);
+          break;
         }
         catch (WebException _we)
         {
           ReportProgress(this, new ProgressChangedEventArgs(0, _we.InnerException == null ? _we.Message : _we.InnerException.Message));
         }
-        catch (Exception) 
+        catch (Exception)
         {
           throw;
         }
@@ -44,7 +45,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     protected override void RunWorkerCompleted()
     {
-      Context.Machine = new FinishedMachine(Context);
+      Context.EnterState<FinishedMachine>();
     }
     public override void OnException(Exception exception)
     {
@@ -53,7 +54,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     public override void OnCancellation()
     {
-      Context.Close();
+
+      Context.EnterState<FinishedMachine>();
     }
     #endregion
     public override string ToString()

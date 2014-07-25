@@ -51,10 +51,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       Context.Machine = new CleanupMachine(Context);
     }
-    public override void Cancel()
-    {
-      Context.Close();
-    }
     public override string ToString()
     {
       return "Setup";

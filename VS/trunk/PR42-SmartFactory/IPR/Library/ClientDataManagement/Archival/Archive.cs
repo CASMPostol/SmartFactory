@@ -59,7 +59,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Archival
     /// </summary>
     /// <param name="settings">The settings.</param>
     /// <param name="ProgressChanged">The progress changed.</param>
-    public static void Go(ArchiveSettings settings, Func<object, EntitiesChangedEventArgs, bool> ProgressChanged)
+    public static void Go(ArchiveSettings settings, Action<object, EntitiesChangedEventArgs> ProgressChanged)
     {
       using (Entities edc = new Entities(settings.SiteURL))
       {
@@ -70,12 +70,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Archival
     #endregion
 
     #region private
-    private static void SubmitChanges(Entities entities, Func<object, EntitiesChangedEventArgs, bool> progress)
+    private static void SubmitChanges(Entities entities, Action<object, EntitiesChangedEventArgs> progress)
     {
       progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", entities));
       entities.SubmitChanges();
     }
-    private static void GoIPR(Entities entities, ArchiveSettings settings, Func<object, EntitiesChangedEventArgs, bool> progress)
+    private static void GoIPR(Entities entities, ArchiveSettings settings, Action<object, EntitiesChangedEventArgs> progress)
     {
       if (!settings.DoArchiveIPR)
       {
@@ -107,7 +107,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Archival
       SubmitChanges(entities, progress);
       progress(null, new EntitiesChangedEventArgs(1, String.Format("Finished Archive GoIPR; Archived {0} IPR accounts and {1} disposals.", _iprArchived, _disposalsArchived), entities));
     }
-    private static void GoBatch(Entities entities, ArchiveSettings settings, Func<object, EntitiesChangedEventArgs, bool> progress)
+    private static void GoBatch(Entities entities, ArchiveSettings settings, Action<object, EntitiesChangedEventArgs> progress)
     {
       if (!settings.DoArchiveBatch)
       {
@@ -115,8 +115,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Archival
         return;
       }
       progress(null, new EntitiesChangedEventArgs(1, String.Format("Starting Batch archive - {0} delay. It could take several minutes", settings.ArchiveBatchDelay), entities));
-      //TODO progress cig exclude if final or intermidiate exist
-      //TODO progres arch if there is new 
+      //TODO progress cig exclude if final or intermediate exist
+      //TODO progress arch if there is new 
       //TODO cuttfiler AD ??
       progress(null, new EntitiesChangedEventArgs(1, "Buffering Material entries", entities));
       List<Material> _mtrl = entities.Material.ToList<Material>();

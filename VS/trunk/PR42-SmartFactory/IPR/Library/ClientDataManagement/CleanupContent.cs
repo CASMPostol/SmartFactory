@@ -31,7 +31,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     /// </summary>
     /// <param name="siteURL">The site URL.</param>
     /// <param name="progress">Used to report the progress of the operation.</param>
-    public static void Go(string siteURL, Func<object, ProgressChangedEventArgs, bool> progress)
+    public static void Go(string siteURL, Action<object, ProgressChangedEventArgs> progress)
     {
       using (Entities entities = new Entities(siteURL))
       {
@@ -61,13 +61,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
             _StockEntryArchived++;
             //entities.StockEntry.DeleteOnSubmit(_seix);
           }
-          progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockEntry entries.", _StockEntryArchived)));
         }
+        progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockEntry entries.", _StockEntryArchived)));
         SubmitChanges(entities, progress);
         progress(null, new ProgressChangedEventArgs(1, String.Format("Finished CleanupContent; deleted {0} StockEntry entries and {1} StockEntry.", _StockLibArchived, _StockEntryArchived)));
       }
     }
-    private static void SubmitChanges(Entities entities, Func<object, ProgressChangedEventArgs, bool> progress)
+    private static void SubmitChanges(Entities entities, Action<object, ProgressChangedEventArgs> progress)
     {
       progress(null, new ProgressChangedEventArgs(1, "SubmitChanges"));
       entities.SubmitChanges();
