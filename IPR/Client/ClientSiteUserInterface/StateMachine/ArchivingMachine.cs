@@ -52,9 +52,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       };
       DataManagement.Archival.Archive.Go(_settings, ReportProgress);
     }
-    protected override void RunWorkerCompleted()
+    protected override void RunWorkerCompleted(object result)
     {
-      Context.Machine = FinishedMachine.Get();
+      Context.EnterState<FinishedMachine>();
     }
     public override string ToString()
     {

@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override void Previous()
     {
       base.Previous();
-      Context.Machine = SetupDataDialogMachine.Get();
+      Context.EnterState<SetupDataDialogMachine>();
     }
     public override void Next()
     {
