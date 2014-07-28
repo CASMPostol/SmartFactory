@@ -20,8 +20,11 @@
     <Setting Name="DoArchiveBatch" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="DatabaseName" Type="System.String" Scope="User">
+    <Setting Name="SQLDatabaseName" Type="System.String" Scope="User">
       <Value Profile="(Default)">&lt;enter database name&gt;</Value>
+    </Setting>
+    <Setting Name="SQLServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CASAS\MSSQL_SANDBOX</Value>
     </Setting>
   </Settings>
 </SettingsFile>

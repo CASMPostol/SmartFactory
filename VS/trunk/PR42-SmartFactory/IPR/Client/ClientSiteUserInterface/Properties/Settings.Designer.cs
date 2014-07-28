@@ -98,12 +98,24 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("<enter database name>")]
-        public string DatabaseName {
+        public string SQLDatabaseName {
             get {
-                return ((string)(this["DatabaseName"]));
+                return ((string)(this["SQLDatabaseName"]));
             }
             set {
-                this["DatabaseName"] = value;
+                this["SQLDatabaseName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("CASAS\\MSSQL_SANDBOX")]
+        public string SQLServer {
+            get {
+                return ((string)(this["SQLServer"]));
+            }
+            set {
+                this["SQLServer"] = value;
             }
         }
     }
