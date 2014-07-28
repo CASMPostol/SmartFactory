@@ -41,9 +41,9 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Row="0" Grid.Column="0" x:Name="x_RadioListArchivingOptions" DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Left">
-                            <RadioButton x:Name="x_RadioButtonCleanupOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,55,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1" />
-                            <RadioButton x:Name="x_RadioButtonSyncOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,100,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1" />
-                            <RadioButton x:Name="x_RadioButtonArchiveOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,95,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1"/>
+                            <RadioButton x:Name="x_RadioButtonCleanupOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,55,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding Path=DoCleanupIsChecked, Mode=OneWay}" />
+                            <RadioButton x:Name="x_RadioButtonSyncOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,100,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding Path=DoSynchronizationIsChecked, Mode=OneWay}" />
+                            <RadioButton x:Name="x_RadioButtonArchiveOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,95,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding Path=DoArchivingIsChecked, Mode=OneWay}" />
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
                             <Image HorizontalAlignment="Right" Source="Imgs/CleanupIcon.png" Stretch="Fill" Width="100" Margin="10,10,10,5"/>
@@ -142,7 +142,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Background="#FF3D3D3D" Orientation="Horizontal" DockPanel.Dock="Top" ToolTip="Information about the application and progress" Height="40">
-            <Label x:Name="x_ToolBarURLLabel" ContentStringFormat="URL: {0}" Content="unavailable" Margin="55,5,5,5" Style="{StaticResource CASLabel}"/>
+            <Label x:Name="x_ToolBarURLLabel" ContentStringFormat="URL: {0}" Content="{Binding Path=URL}" Margin="55,5,5,5" Style="{StaticResource CASLabel}"/>
             <ProgressBar x:Name="x_ProgressBar" Value="{Binding Path=Progress}" Width="300"  Minimum="0" Foreground="#FF4617B5" Height="50" />
             <Label Content="Phase: " Margin="5" Style="{StaticResource CASLabel}"/>
             <Label Content="{Binding MachineState, Mode=OneWay}" HorizontalContentAlignment="Left" IsEnabled="False" Margin="5" Style="{StaticResource CASLabel}"/>

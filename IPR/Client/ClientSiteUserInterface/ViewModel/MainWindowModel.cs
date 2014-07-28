@@ -31,9 +31,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       //InitializeUI();
       AssemblyName _name = Assembly.GetExecutingAssembly().GetName();
       this.Title = this.Title + " Rel " + _name.Version.ToString(4);
-      URL = Properties.Settings.Default.SiteURL;
-      DatabaseName = Properties.Settings.Default.DatabaseName;
       ProgressList = new ObservableCollection<string>();
+      RestoreSettings();
       //create state machine
       this.EnterState<SetupDataDialogMachine>();
       //SetupDataDialogMachine _enteringState = new SetupDataDialogMachine(this);
@@ -98,6 +97,100 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
         RaiseHandler<System.Collections.ObjectModel.ObservableCollection<string>>(value, ref b_ProgressList, "ProgressList", this);
       }
     }
+    public string SQLServer
+    {
+      get
+      {
+        return b_SQLServer;
+      }
+      set
+      {
+        RaiseHandler<string>(value, ref b_SQLServer, "SQLServer", this);
+      }
+    }
+    public string SyncLastRunDate
+    {
+      get
+      {
+        return b_SyncLastRunDate;
+      }
+      set
+      {
+        RaiseHandler<string>(value, ref b_SyncLastRunDate, "SyncLastRunDate", this);
+      }
+    }
+
+    public string SyncLastRunBy
+    {
+      get
+      {
+        return b_SyncLastRunBy;
+      }
+      set
+      {
+        RaiseHandler<string>(value, ref b_SyncLastRunBy, "SyncLastRunBy", this);
+      }
+    }
+
+    public string CleanupLastRunDate
+    {
+      get
+      {
+        return b_CleanupLastRunDate;
+      }
+      set
+      {
+        RaiseHandler<string>(value, ref b_CleanupLastRunDate, "CleanupLastRunDate", this);
+      }
+    }
+    public string CleanupLastRunBy
+    {
+      get
+      {
+        return b_CleanupLastRunBy;
+      }
+      set
+      {
+        RaiseHandler<string>(value, ref b_CleanupLastRunBy, "CleanupLastRunBy", this);
+      }
+    }
+    public string ArchivingLastRunDate
+    {
+      get
+      {
+        return b_ArchivingLastRunDate;
+      }
+      set
+      {
+        RaiseHandler<string>(value, ref b_ArchivingLastRunDate, "ArchivingLastRunDate", this);
+      }
+    }
+    public string ArchivingLastRunBy
+    {
+      get
+      {
+        return b_ArchivingLastRunBy;
+      }
+      set
+      {
+        RaiseHandler<string>(value, ref b_ArchivingLastRunBy, "ArchivingLastRunBy", this);
+      }
+    } 
+    #endregion
+
+    #region StateMachineContext
+    public override void ProgressChang(IAbstractMachine activationMachine, System.ComponentModel.ProgressChangedEventArgs entitiesState)
+    {
+      base.ProgressChang(activationMachine, entitiesState);
+      if (entitiesState.UserState is string)
+        ProgressList.Add((String)entitiesState.UserState);
+    }
+    internal void xSaveSettings()
+    {
+      Properties.Settings.Default.SiteURL = URL;
+      Properties.Settings.Default.SQLDatabaseName = DatabaseName;
+      Properties.Settings.Default.SQLServer = SQLServer;
+    }
     #endregion
 
     #region private
@@ -107,16 +200,20 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
     private string b_URL;
     private string b_DatabaseName;
     private ObservableCollection<string> b_ProgressList;
-
-    #region StateMachineContext
-    public override void ProgressChang(IAbstractMachine activationMachine, System.ComponentModel.ProgressChangedEventArgs entitiesState)
+    private string b_SQLServer;
+    private string b_SyncLastRunDate;
+    private string b_SyncLastRunBy;
+    private string b_CleanupLastRunDate;
+    private string b_CleanupLastRunBy;
+    private string b_ArchivingLastRunDate;
+    private string b_ArchivingLastRunBy;
+    //methods
+    private void RestoreSettings()
     {
-      base.ProgressChang(activationMachine, entitiesState);
-      if (entitiesState.UserState is string)
-        ProgressList.Add((String)entitiesState.UserState);
+      URL = Properties.Settings.Default.SiteURL;
+      DatabaseName = Properties.Settings.Default.SQLDatabaseName;
+      SQLServer = Properties.Settings.Default.SQLServer;
     }
-    #endregion
-
     #endregion
 
   }

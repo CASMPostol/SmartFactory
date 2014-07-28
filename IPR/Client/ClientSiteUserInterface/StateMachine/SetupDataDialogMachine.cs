@@ -64,6 +64,11 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       Context.Close();
     }
+    public override void OnExitingState()
+    {
+      base.OnExitingState();
+      Context.SaveSettings();
+    }
     #endregion
 
     private static SetupDataDialogMachine m_Me;
