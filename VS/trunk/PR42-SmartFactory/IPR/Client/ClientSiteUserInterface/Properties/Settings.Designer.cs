@@ -97,7 +97,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<enter database name>")]
+        [global::System.Configuration.DefaultSettingValueAttribute("IPRDEV")]
         public string SQLDatabaseName {
             get {
                 return ((string)(this["SQLDatabaseName"]));
@@ -116,6 +116,39 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
             }
             set {
                 this["SQLServer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
+        public int ReportsArchivalDelay {
+            get {
+                return ((int)(this["ReportsArchivalDelay"]));
+            }
+            set {
+                this["ReportsArchivalDelay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("--- ? ---")]
+        public string RunByUnknown {
+            get {
+                return ((string)(this["RunByUnknown"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("--- ? ---")]
+        public string RunDateUnknown {
+            get {
+                return ((string)(this["RunDateUnknown"]));
+            }
+            set {
+                this["RunDateUnknown"] = value;
             }
         }
     }

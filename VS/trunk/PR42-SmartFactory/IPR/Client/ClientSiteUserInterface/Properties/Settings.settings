@@ -21,10 +21,19 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="SQLDatabaseName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">&lt;enter database name&gt;</Value>
+      <Value Profile="(Default)">IPRDEV</Value>
     </Setting>
     <Setting Name="SQLServer" Type="System.String" Scope="User">
       <Value Profile="(Default)">CASAS\MSSQL_SANDBOX</Value>
+    </Setting>
+    <Setting Name="ReportsArchivalDelay" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="RunByUnknown" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">--- ? ---</Value>
+    </Setting>
+    <Setting Name="RunDateUnknown" Type="System.String" Scope="User">
+      <Value Profile="(Default)">--- ? ---</Value>
     </Setting>
   </Settings>
 </SettingsFile>

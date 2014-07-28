@@ -94,7 +94,7 @@
                                 <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
 									SQL Server name:
                                 </TextBlock>
-                                <TextBox Text="{Binding SQLServerName, Mode=TwoWay}"  Width="250" Margin="5" Style="{StaticResource CASTextBox}"  />
+                                <TextBox Text="{Binding Path=SQLServer, Mode=TwoWay}"  Width="250" Margin="5" Style="{StaticResource CASTextBox}"  />
                             </StackPanel>
                             <StackPanel Background="#FF3D3D3D" Orientation="Horizontal">
                                 <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">

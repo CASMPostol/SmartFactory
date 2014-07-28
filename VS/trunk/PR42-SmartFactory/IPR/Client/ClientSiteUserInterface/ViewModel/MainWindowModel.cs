@@ -32,6 +32,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       AssemblyName _name = Assembly.GetExecutingAssembly().GetName();
       this.Title = this.Title + " Rel " + _name.Version.ToString(4);
       ProgressList = new ObservableCollection<string>();
+      DoArchivingIsChecked = false;
+      DoSynchronizationIsChecked = false;
+      DoCleanupIsChecked = true;
       RestoreSettings();
       //create state machine
       this.EnterState<SetupDataDialogMachine>();
@@ -119,7 +122,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
         RaiseHandler<string>(value, ref b_SyncLastRunDate, "SyncLastRunDate", this);
       }
     }
-
     public string SyncLastRunBy
     {
       get
@@ -131,7 +133,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
         RaiseHandler<string>(value, ref b_SyncLastRunBy, "SyncLastRunBy", this);
       }
     }
-
     public string CleanupLastRunDate
     {
       get
@@ -175,7 +176,62 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       {
         RaiseHandler<string>(value, ref b_ArchivingLastRunBy, "ArchivingLastRunBy", this);
       }
-    } 
+    }
+    public bool DoCleanupIsChecked
+    {
+      get
+      {
+        return b_DoCleanupIsChecked;
+      }
+      set
+      {
+        RaiseHandler<bool>(value, ref b_DoCleanupIsChecked, "DoCleanupIsChecked", this);
+      }
+    }
+    public bool DoSynchronizationIsChecked
+    {
+      get
+      {
+        return b_DoSynchronizationIsChecked;
+      }
+      set
+      {
+        RaiseHandler<bool>(value, ref b_DoSynchronizationIsChecked, "DoSynchronizationIsChecked", this);
+      }
+    }
+    public bool DoArchivingIsChecked
+    {
+      get
+      {
+        return b_DoArchivingIsChecked;
+      }
+      set
+      {
+        RaiseHandler<bool>(value, ref b_DoArchivingIsChecked, "DoArchivingIsChecked", this);
+      }
+    }
+    public int ReportsArchivalDelay
+    {
+      get
+      {
+        return b_ReportsArchivalDelay;
+      }
+      set
+      {
+        RaiseHandler<int>(value, ref b_ReportsArchivalDelay, "ReportsArchivalDelay", this);
+      }
+    }
+    public int BatchArchivalDelay
+    {
+      get
+      {
+        return b_BatchArchivalDelay;
+      }
+      set
+      {
+        RaiseHandler<int>(value, ref b_BatchArchivalDelay, "BatchArchivalDelay", this);
+      }
+    }
     #endregion
 
     #region StateMachineContext
@@ -185,11 +241,15 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       if (entitiesState.UserState is string)
         ProgressList.Add((String)entitiesState.UserState);
     }
-    internal void xSaveSettings()
+    internal void SaveSettings()
     {
       Properties.Settings.Default.SiteURL = URL;
       Properties.Settings.Default.SQLDatabaseName = DatabaseName;
       Properties.Settings.Default.SQLServer = SQLServer;
+      Properties.Settings.Default.ArchiveIPRDelay = IPRAccountArchivalDelay;
+      Properties.Settings.Default.ArchiveBatchDelay = BatchArchivalDelay;
+      Properties.Settings.Default.ReportsArchivalDelay = ReportsArchivalDelay;
+      Properties.Settings.Default.Save();
     }
     #endregion
 
@@ -197,6 +257,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
     //backing fields
     private string b_Title;
     private int b_IPRAccountArchivalDelay;
+    private int b_ReportsArchivalDelay;
+    private int b_BatchArchivalDelay;
     private string b_URL;
     private string b_DatabaseName;
     private ObservableCollection<string> b_ProgressList;
@@ -207,12 +269,26 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
     private string b_CleanupLastRunBy;
     private string b_ArchivingLastRunDate;
     private string b_ArchivingLastRunBy;
+    private bool b_DoCleanupIsChecked;
+    private bool b_DoSynchronizationIsChecked;
+    private bool b_DoArchivingIsChecked;
     //methods
     private void RestoreSettings()
     {
+      //User
       URL = Properties.Settings.Default.SiteURL;
       DatabaseName = Properties.Settings.Default.SQLDatabaseName;
       SQLServer = Properties.Settings.Default.SQLServer;
+      IPRAccountArchivalDelay = Properties.Settings.Default.ArchiveIPRDelay;
+      BatchArchivalDelay = Properties.Settings.Default.ArchiveBatchDelay;
+      ReportsArchivalDelay = Properties.Settings.Default.ReportsArchivalDelay;
+      //Application
+      CleanupLastRunBy = Properties.Settings.Default.RunByUnknown;
+      SyncLastRunBy = Properties.Settings.Default.RunByUnknown;
+      ArchivingLastRunBy = Properties.Settings.Default.RunByUnknown;
+      CleanupLastRunDate = Properties.Settings.Default.RunDateUnknown;
+      SyncLastRunDate = Properties.Settings.Default.RunDateUnknown;
+      ArchivingLastRunDate = Properties.Settings.Default.RunDateUnknown;
     }
     #endregion
 
