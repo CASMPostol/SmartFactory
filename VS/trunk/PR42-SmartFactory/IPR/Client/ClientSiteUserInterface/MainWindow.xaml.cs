@@ -54,6 +54,11 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface
       e.Callback();
       this.Close();
     }
+    private void HelpButton_Click(object sender, RoutedEventArgs e)
+    {
+      var newWindow = new HelpWindow();
+      newWindow.Show();
+    }
     protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
     {
       Properties.Settings.Default.Save();
