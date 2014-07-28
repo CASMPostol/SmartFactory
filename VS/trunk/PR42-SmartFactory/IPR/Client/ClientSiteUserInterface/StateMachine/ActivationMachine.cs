@@ -66,7 +66,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       //}
       DataManagement.Activate180.Activate.Go(Properties.Settings.Default.SiteURL, Properties.Settings.Default.DoActivate1800, ReportProgress);
     }
-    protected override void RunWorkerCompleted()
+    protected override void RunWorkerCompleted(object result)
     {
       Context.Machine = ArchivingMachine.Get();
     }

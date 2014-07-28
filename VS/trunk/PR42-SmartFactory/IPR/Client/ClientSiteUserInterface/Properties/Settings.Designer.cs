@@ -140,21 +140,36 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("--- ? ---")]
         public string RunDateUnknown {
             get {
                 return ((string)(this["RunDateUnknown"]));
             }
-            set {
-                this["RunDateUnknown"] = value;
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-- ERROR --")]
+        public string RunByError {
+            get {
+                return ((string)(this["RunByError"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-- ERROR --")]
+        public string RunDateError {
+            get {
+                return ((string)(this["RunDateError"]));
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=CASAS\\MSSQL_SANDBOX;Initial Catalog=IPRDEV;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source={0};Initial Catalog={1}; Integrated Security=True")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));

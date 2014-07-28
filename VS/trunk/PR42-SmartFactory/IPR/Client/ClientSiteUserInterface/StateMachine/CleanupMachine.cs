@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         }
       }
     }
-    protected override void RunWorkerCompleted()
+    protected override void RunWorkerCompleted(object result)
     {
       Context.EnterState<FinishedMachine>();
     }
