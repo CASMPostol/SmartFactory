@@ -151,5 +151,17 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
                 this["RunDateUnknown"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=CASAS\\MSSQL_SANDBOX;Initial Catalog=IPRDEV;Integrated Security=True")]
+        public string ConnectionString {
+            get {
+                return ((string)(this["ConnectionString"]));
+            }
+            set {
+                this["ConnectionString"] = value;
+            }
+        }
     }
 }
