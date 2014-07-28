@@ -118,6 +118,12 @@
 		<Setter Property="FontSize" Value="13.333"/>
         <Setter Property="Foreground" Value="#FFF9F9F9"/>
     </Style>
+	<!-- Expander -->
+	<Style x:Key="CASExpander" TargetType="Expander">
+        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+		<Setter Property="FontSize" Value="13.333"/>
+        <Setter Property="Foreground" Value="#FFF9F9F9"/>
+    </Style>
     <!-- Label -->
     <Style x:Key="CASLabel" TargetType="Label">
         <Setter Property="FontFamily" Value="Segoe UI Light"/>

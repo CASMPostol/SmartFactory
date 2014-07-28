@@ -3,8 +3,52 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	x:Class="CAS.SmartFactory.IPR.Client.UserInterface.HelpWindow"
 	x:Name="Window"
-	Title="HelpWindow"
-	Width="640" Height="480">
-
-	<Grid x:Name="LayoutRoot"/>
+	Title="CAS SmartFactory IPR Archiving Wizard - Help"
+	Width="640" Height="480"
+    Background="#FF1D1D1D" WindowStartupLocation="CenterScreen" ScrollViewer.VerticalScrollBarVisibility="Auto">
+	<ScrollViewer>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+            <TextBlock Style="{StaticResource CASTextBlockHeader}" Margin="20,20,0,20">IPR Archiving Wizard Help</TextBlock>
+            <Expander Header="Cleanup" Style="{StaticResource CASExpander}" >
+                <TextBlock Style="{StaticResource CASTextBlock}" Margin="5" TextWrapping="Wrap">
+					Funkcja Cleanup ma za zadanie usuwanie zbędnych, niewykorzystywanych wpisów na liście Stock Entry i bibliotece Stock Library.
+					Wpisy takie powstają z powodu wielokrotnego wczytywania raportu dot. stanu magazynowego.
+					Funkcja ma za zadanie usunąć z biblioteki Stock Library pliki xml, które nie zostały uwzględnoine w żadnym raporcie oraz wszystkie
+					powiązane z nim wpisy na liście Stock Entry.
+                </TextBlock>
+            </Expander>
+            <Expander Header="Synchronize" Style="{StaticResource CASExpander}" >
+                <TextBlock Style="{StaticResource CASTextBlock}" Margin="5" TextWrapping="Wrap">
+					Funkcja Synchronize uruchania zadania w ramach funkcji Cleanup a w następnej kolejności ma za zadanie synchronizację danych dostępnych w 
+					aplikacji IPR z danymi w Bazie Danych. 
+					Po ukończeniu zadań w ramach funkcji Synchronize stan danych w Bazie danych odzwierciedla dane aplikacji IPR na dzień synchronizacji 
+					łącznie z danymi wcześniej zarchiwizowanymi.
+                </TextBlock>
+            </Expander>
+            <Expander Header="Archiving" Style="{StaticResource CASExpander}" >
+                <TextBlock Style="{StaticResource CASTextBlock}" Margin="5" TextWrapping="Wrap">
+					Funkcja Archiving uruchamia odpowiednio w kolejności zadania funkcji Cleanup, Synchronize a następnie te dedykowane dla funkcji Archiving.
+					Zadania dedykowane dla funkcji Archiving:<LineBreak/>
+					1.	archiwizacja kont księgi IPR przy uwzględnieniu że:<LineBreak/>
+					•	wpisy listy IPR List odzwierciedlają konta zamknięte<LineBreak/>
+                    •	wpisy listy Disposals są powiązane z batchem papierosów które zostały wcześniej wyeksportowane<LineBreak/>
+                    •	archiwizacja SAD ( wpisy listy SAD Good i list podrzędnych )Clearance, dla wpisów listy IPR List które odzwierciedlają konta zamknięte z uwzględnieniem ograniczeń Składu Celnego dla procedury celnej 5171<LineBreak/>
+                    •	archiwizacja SAD dla wpisów listy Disposals które przynależą do kont zarchiwizowanych oraz do jednego wpisu na liście Clearance<LineBreak/>
+                    •	użytkownik ma możliwość określenia ograniczenia czasowego dla archiwizacji kont zamkniętych<LineBreak/>
+					2.	oznaczanie wpisów dla niekompletnego batcha papierosów:<LineBreak/>
+					•	wpisy listy Disposals które należą do niekompletnego z powodu archiwizacji zestawu wpisów disposal dla danego batacha papierosów<LineBreak/>
+					•	wpisy listy Batch i Material odzwierciedlające niekompletny zestaw danych na podrzędnych listach Disposal<LineBreak/>
+					3.	archiwizacja danych dotyczących informacji o Batch tj. wpisy listy Batch i Material przy uwzględnieniu że:<LineBreak/>
+					•	wszystkie wpisy na liście Disposal powiązane z wpisem na liście Batch i Material zostały zarchiwizowane<LineBreak/>
+					•	użytkownik ma możliwość określenia ograniczenia czasowego dla archiwizacji wpisów na liście Batch<LineBreak/>
+					4.	archiwizacja wpisów na listach powstałych w celu wykonania raportów okresowych<LineBreak/>
+					•	wpisy list: Balance Batch, Balance IPR, Stock Entry, Stock Library, JSOX Customs Summary.<LineBreak/>
+					•	użytkownik ma możliwość określenia ograniczenia czasowego dla archiwizacji wpisów na listach: Balance Batch, Balance IPR, Stock Entry, Stock Library, JSOX Customs Summary.<LineBreak/>
+					5.	archiwizacja historii wersji list
+                </TextBlock>
+            </Expander>
+        </StackPanel>
+    </DockPanel>
+	</ScrollViewer>
 </Window>
