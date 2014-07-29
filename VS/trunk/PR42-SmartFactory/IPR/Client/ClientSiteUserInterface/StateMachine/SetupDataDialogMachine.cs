@@ -34,12 +34,18 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override void OnEnteringState()
     {
       base.OnEnteringState();
-      SetEventMask(Events.Cancel | Events.Next);
+      Success = false;
+      SetEventMask(Events.Cancel);
+      Context.ButtonNextTitle = " --- ";
       RunAsync();
     }
     public override void Next()
     {
-      Context.Machine = new CleanupMachine(Context);
+      if (Success)
+        Context.EnterState<SetupDataDialogMachine>(); //TODO for testing only
+      //Context.Machine = new CleanupMachine(Context);
+      else
+        Context.EnterState<SetupDataDialogMachine>();
     }
     public override string ToString()
     {
@@ -48,11 +54,10 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override void OnException(System.Exception exception)
     {
       Context.Exception(exception);
-      Context.Machine = FinishedMachine.Get();
-    }
-    public override void OnCancellation()
-    {
-      Context.Close();
+      SetEventMask(Events.Cancel | Events.Next);
+      Context.ButtonNextTitle = "Connect";
+      Context.SetStatus2Error();
+      Success = false;
     }
     public override void OnExitingState()
     {
@@ -100,14 +105,16 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     /// <param name="result">The result.</param>
     protected override void RunWorkerCompleted(object result)
     {
-      Context.ProgressChang(this, new ProgressChangedEventArgs(1, "The data has been retrieved successfully."));
-      WorkerReturnData m_WorkerReturnData = (WorkerReturnData)result;      
+      WorkerReturnData m_WorkerReturnData = (WorkerReturnData)result;
       Context.SyncLastRunBy = m_WorkerReturnData.SyncLastRunBy;
       Context.SyncLastRunDate = m_WorkerReturnData.SyncLastRunDate;
       Context.CleanupLastRunBy = m_WorkerReturnData.CleanupLastRunBy;
       Context.CleanupLastRunDate = m_WorkerReturnData.CleanupLastRunDate;
       Context.ArchivingLastRunBy = m_WorkerReturnData.ArchivingLastRunBy;
       Context.ArchivingLastRunDate = m_WorkerReturnData.ArchivingLastRunDate;
+      SetEventMask(Events.Cancel | Events.Next);
+      Context.ButtonNextTitle = "Run";
+      Context.ProgressChang(this, new ProgressChangedEventArgs(Context.ProgressBarMaximum, "The data has been retrieved successfully."));
     }
     #endregion
     private class WorkerReturnData
@@ -119,5 +126,12 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       public string SyncLastRunDate = Properties.Settings.Default.RunDateError;
       public string ArchivingLastRunDate = Properties.Settings.Default.RunDateError;
     }
+    /// <summary>
+    /// Gets or sets a value indicating whether this <see cref="SetupDataDialogMachine"/> finished the background operation successfully.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if success; otherwise, <c>false</c>.
+    /// </value>
+    public bool Success { get; set; }
   }
 }
