@@ -36,6 +36,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       DoSynchronizationIsChecked = false;
       DoCleanupIsChecked = true;
       RestoreSettings();
+      ButtonNextTitle = "Next";
       //create state machine
       this.EnterState<SetupDataDialogMachine>();
       //SetupDataDialogMachine _enteringState = new SetupDataDialogMachine(this);
@@ -232,6 +233,27 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
         RaiseHandler<int>(value, ref b_BatchArchivalDelay, "BatchArchivalDelay", this);
       }
     }
+    public string ButtonNextTitle
+    {
+      get
+      {
+        return b_ButtonNextTitle;
+      }
+      set
+      {
+        RaiseHandler<string>(value, ref b_ButtonNextTitle, "ButtonNextTitle", this);
+      }
+    }
+    //methods
+    internal void SetStatus2Error()
+    {
+      CleanupLastRunBy = Properties.Settings.Default.RunByError;
+      SyncLastRunBy = Properties.Settings.Default.RunByError;
+      ArchivingLastRunBy = Properties.Settings.Default.RunByError;
+      CleanupLastRunDate = Properties.Settings.Default.RunDateError;
+      SyncLastRunDate = Properties.Settings.Default.RunDateError;
+      ArchivingLastRunDate = Properties.Settings.Default.RunDateError;
+    }
     #endregion
 
     #region StateMachineContext
@@ -272,6 +294,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
     private bool b_DoCleanupIsChecked;
     private bool b_DoSynchronizationIsChecked;
     private bool b_DoArchivingIsChecked;
+    private string b_ButtonNextTitle;
     //methods
     private void RestoreSettings()
     {
@@ -283,6 +306,10 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       BatchArchivalDelay = Properties.Settings.Default.ArchiveBatchDelay;
       ReportsArchivalDelay = Properties.Settings.Default.ReportsArchivalDelay;
       //Application
+      SetStatus2Unknown();
+    }
+    private void SetStatus2Unknown()
+    {
       CleanupLastRunBy = Properties.Settings.Default.RunByUnknown;
       SyncLastRunBy = Properties.Settings.Default.RunByUnknown;
       ArchivingLastRunBy = Properties.Settings.Default.RunByUnknown;
