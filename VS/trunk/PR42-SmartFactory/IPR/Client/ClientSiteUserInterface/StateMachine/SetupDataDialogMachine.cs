@@ -114,7 +114,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       Context.ArchivingLastRunDate = m_WorkerReturnData.ArchivingLastRunDate;
       SetEventMask(Events.Cancel | Events.Next);
       Context.ButtonNextTitle = "Run";
-      Context.ProgressChang(this, new ProgressChangedEventArgs(Context.ProgressBarMaximum, "The data has been retrieved successfully."));
+      Context.ProgressChang(this, new ProgressChangedEventArgs(0, "The data has been retrieved successfully."));
     }
     #endregion
     private class WorkerReturnData
