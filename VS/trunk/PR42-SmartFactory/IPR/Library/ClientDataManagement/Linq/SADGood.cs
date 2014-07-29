@@ -6,16 +6,15 @@ using System.Text;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
 {
-
   /// <summary>
-  /// Announcement
+  /// SADGood
   /// </summary>
-  public partial class Announcement
+  public partial class SADGood
   {
     internal override Dictionary<string, string> GetMappings()
     {
       Dictionary<string, string> _ret = base.GetMappings();
-      _ret.Add("SPPropert", "SQLProperty");
+      _ret.Add("Procedure", "SPProcedure");
       return _ret;
     }
   }

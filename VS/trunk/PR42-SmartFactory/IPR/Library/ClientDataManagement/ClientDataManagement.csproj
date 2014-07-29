@@ -59,10 +59,12 @@
     <Compile Include="Linq2SQL\ActivitiesLogs.cs" />
     <Compile Include="Linq2SQL\Entities.cs" />
     <Compile Include="Linq\Announcement.cs" />
+    <Compile Include="Linq\Clearence.cs" />
     <Compile Include="Linq\Disposal.cs" />
     <Compile Include="Linq\Entities.cs" />
     <Compile Include="Linq\IPR.cs" />
     <Compile Include="Linq\Item.cs" />
+    <Compile Include="Linq\SADGood.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
