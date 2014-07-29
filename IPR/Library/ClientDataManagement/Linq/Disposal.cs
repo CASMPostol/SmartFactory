@@ -16,6 +16,7 @@
 using System;
 using System.Linq;
 using CAS.SmartFactory.IPR.Client.DataManagement;
+using System.Collections.Generic;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
 {
@@ -25,6 +26,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
   public sealed partial class Disposal
   {
     #region public
+    internal override Dictionary<string, string> GetMappings()
+    {
+      Dictionary<string, string> _ret = base.GetMappings();
+      _ret.Add("No", "SPNo");
+      return _ret;
+    }
     /// <summary>
     /// Gets or sets the settled quantity dec.
     /// </summary>
