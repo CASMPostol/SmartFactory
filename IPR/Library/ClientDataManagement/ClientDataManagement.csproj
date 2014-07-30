@@ -58,6 +58,7 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Linq2SQL\ActivitiesLogs.cs" />
     <Compile Include="Linq2SQL\Entities.cs" />
+    <Compile Include="Linq2SQL\EntitiesId.cs" />
     <Compile Include="Linq\Announcement.cs" />
     <Compile Include="Linq\Clearence.cs" />
     <Compile Include="Linq\Disposal.cs" />
