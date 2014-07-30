@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="7344e360-313b-4553-8318-153c7ce49c8d" solutionId="7344e360-313b-4553-8318-153c7ce49c8d" resetWebServer="true" title="CAS SmartFactory IPR Website Model" description="Package containing CAS SmartFactory IPR Website Model" name="CASSmartFactoryIPRModel" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <assemblies>
-    <customAssembly location="CAS.SharePoint.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll" />
+    <customAssembly location="CAS.SharePoint.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll" />
   </assemblies>
   <features>
     <featureReference itemId="6157b1a8-2d62-414f-9045-48bfbcf8892e" />

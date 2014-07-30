@@ -4,7 +4,7 @@
     <referencedFeatureActivationDependency minimumVersion="" itemId="6157b1a8-2d62-414f-9045-48bfbcf8892e" projectPath="..\IPRWebsiteModel\IPRWebsiteModel.csproj" />
     <referencedFeatureActivationDependency minimumVersion="" itemId="536545bb-aaa2-4f08-a050-274a3de9e39e" projectPath="..\IPRResources\IPRResources.csproj" />
     <referencedFeatureActivationDependency minimumVersion="" itemId="f7642b3b-52e4-47c6-89f9-b0eb3120a5a2" projectPath="..\IPRWebsite\IPRWebsite.csproj" />
-    <referencedFeatureActivationDependency minimumVersion="" itemId="bdd31d98-b40e-46d9-a58a-555715330d81" projectPath="..\Interoperability\Interoperability.csproj" />
+    <referencedFeatureActivationDependency minimumVersion="" itemId="bdd31d98-b40e-46d9-a58a-555715330d81" projectPath="..\IPRInteroperability\IPRInteroperability.csproj" />
   </activationDependencies>
   <projectItems>
     <projectItemReference itemId="381b2056-7a88-4fde-890c-c99f8a5b037e" />
