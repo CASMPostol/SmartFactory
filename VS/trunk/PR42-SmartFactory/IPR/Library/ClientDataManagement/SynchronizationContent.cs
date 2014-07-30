@@ -26,7 +26,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       IPRDEV _sqledc = Connect2SQL(settings, progressChanged);
       using (Entities _spedc = new Entities(settings.SiteURL))
       {
-        Dictionary<int, Linq2SQL.JSOXLibrary> _JSOXLibrary = JSOXLibrary(_sqledc.JSOXLibrary, _spedc.JSOXLibrary, progressChanged);
+        Dictionary<int, Linq2SQL.JSOXLibrary> _JSOXLibrary = Synchronize(_sqledc.JSOXLibrary, _spedc.JSOXLibrary, progressChanged);
         //BalanceBatch();
         //SADDocumentLibrary();
         //SADDocument();
@@ -68,23 +68,33 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       }
     }
 
-    private static Dictionary<int, Linq2SQL.JSOXLibrary> JSOXLibrary<TSP>
-
-      (Table<Linq2SQL.JSOXLibrary> table, EntityList<TSP> entityList, Action<object, ProgressChangedEventArgs> progressChanged)
-      where TSP : class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new() 
+    private static Dictionary<int, TSQL> Synchronize<TSQL, TSP>(Table<TSQL> table, EntityList<TSP> entityList, Action<object, ProgressChangedEventArgs> progressChanged)
+      where TSQL : class, IItem, new()
+      where TSP : Linq.Item, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
-      progressChanged(1, new ProgressChangedEventArgs(1, "Reading the table JSOXLibrary from SQL database."));
-      Dictionary<int, Linq2SQL.JSOXLibrary> _dictinary = table.ToDictionary<Linq2SQL.JSOXLibrary, int>(x => x.ID);
-      Synchronize<Linq2SQL.JSOXLibrary, TSP>(entityList, _dictinary, progressChanged);
+      progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Reading the table {0} from SQL database.", typeof(TSQL).Name)));
+      Dictionary<int, TSQL> _dictinary = table.ToDictionary<TSQL, int>(x => x.ID);
+      progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Reading the table {0} from SharePoint website.", typeof(TSP).Name)));
+      List<TSP> _scrList = entityList.ToList<TSP>();
+      progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Synchronization {0} elements in the SharePoint source tables with the {1} element in the SQL table.", _scrList.Count, _dictinary.Count)));
+      foreach (TSP _spItem in _scrList)
+      {
+        TSQL _sqlItem = default(TSQL);
+        if (!_dictinary.TryGetValue(_spItem.Id.Value, out _sqlItem))
+        {
+          _sqlItem = new TSQL();
+          _dictinary.Add(_spItem.Id.Value, _sqlItem);
+          table.InsertOnSubmit(_sqlItem);
+        }
+        Synchronize<TSQL, TSP>(_sqlItem, _spItem);
+      }
+      progressChanged(1, new ProgressChangedEventArgs(1, "Submitting Changes to SQL database"));
+      table.Context.SubmitChanges();
       return _dictinary;
     }
-    private static void Synchronize<TSQL, TSP>(EntityList<TSP> entityList, Dictionary<int, TSQL> _dictinary, Action<object, ProgressChangedEventArgs> progressChanged)
-      where TSP : class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
-      where TSQL : new()
+    private static void Synchronize<TSQL, TSP>(TSQL _spItem, TSP _sqlItem)
     {
-      progressChanged(1, new ProgressChangedEventArgs(1, "Reading the table JSOXLibrary from SharePoint website."));
-      List<TSP> _scrList = entityList.ToList<TSP>();
-
+      throw new NotImplementedException();
     }
     private static IPRDEV Connect2SQL(ArchiveSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
     {

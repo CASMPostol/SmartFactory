@@ -10,6 +10,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
   /// </summary>
   public interface IItem
   {
+    /// <summary>
+    /// Gets or sets the identifier.
+    /// </summary>
+    /// <value>
+    /// The identifier.
+    /// </value>
     int ID { get; set; }
   }
   public partial class JSOXLibrary : IItem { }
