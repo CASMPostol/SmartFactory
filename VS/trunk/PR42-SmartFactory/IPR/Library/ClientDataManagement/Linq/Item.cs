@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +27,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
   {
     internal virtual Dictionary<string, string> GetMappings()
     {
-      return new Dictionary<string, string>()
-      { 
-        {"SPProperty", "SQLProperty"} 
-      };
+      return new Dictionary<string, string>() { };
     }
+    private System.Nullable<DateTime> _Created;
+    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Created", Storage = "_Created", ReadOnly = true, FieldType = "DateTime")]
+    public System.Nullable<DateTime> Created
+    {
+      get
+      {
+        return this._Created;
+      }
+      set
+      {
+        if ((value != this._Created))
+        {
+          this.OnPropertyChanging("Created", this._id);
+          this._Created = value;
+          this.OnPropertyChanged("Created");
+        }
+      }
+    }
+
   }
 }
