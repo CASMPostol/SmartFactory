@@ -114,6 +114,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       SetEventMask(Events.Cancel | Events.Next);
       Context.ButtonNextTitle = "Run";
       Context.ProgressChang(this, new ProgressChangedEventArgs(0, "The data has been retrieved successfully."));
+      Success = true;
     }
     #endregion
     private class WorkerReturnData

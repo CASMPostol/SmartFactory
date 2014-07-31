@@ -116,14 +116,14 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         Synchronize<TSQL, TSP>(_sqlItem, _spItem);
       }
       progressChanged(1, new ProgressChangedEventArgs(1, "Submitting Changes to SQL database"));
-      table.Context.SubmitChanges();
+      //table.Context.SubmitChanges();
       return _dictinary;
     }
     private static void Synchronize<TSQL, TSP>(TSQL _spItem, TSP _sqlItem)
     {
       List<SharePoint.Client.Linq.StorageItem> _dscrpt = new List<SharePoint.Client.Linq.StorageItem>();
       SharePoint.Client.Linq.StorageItem.CreateStorageDescription(typeof(TSP), _dscrpt);
-      foreach (SharePoint.Client.Linq.StorageItem _si in _dscrpt)
+      foreach (SharePoint.Client.Linq.StorageItem _si in _dscrpt.Where < SharePoint.Client.Linq.StorageItem>( x => x.IsNotReverseLookup()))
       {
         _si.GetValueFromEntity(_sqlItem, x => Assign(x, _sqlItem));
       }
