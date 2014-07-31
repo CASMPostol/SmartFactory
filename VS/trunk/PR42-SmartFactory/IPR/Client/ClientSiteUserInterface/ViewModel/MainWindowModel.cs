@@ -254,6 +254,10 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       SyncLastRunDate = Properties.Settings.Default.RunDateError;
       ArchivingLastRunDate = Properties.Settings.Default.RunDateError;
     }
+    internal static string GetConnectionString()
+    {
+      return String.Format(Properties.Settings.Default.ConnectionString, Properties.Settings.Default.SQLServer, Properties.Settings.Default.SQLDatabaseName);
+    }
     #endregion
 
     #region StateMachineContext
@@ -318,6 +322,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       ArchivingLastRunDate = Properties.Settings.Default.RunDateUnknown;
     }
     #endregion
+
 
   }
 }

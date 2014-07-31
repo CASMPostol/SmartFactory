@@ -26,9 +26,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
   public sealed partial class Disposal
   {
     #region public
-    internal override Dictionary<string, string> GetMappings()
+    internal new static Dictionary<string, string> GetMappings()
     {
-      Dictionary<string, string> _ret = base.GetMappings();
+      Dictionary<string, string> _ret = Item.GetMappings();
       _ret.Add("No", "SPNo");
       return _ret;
     }

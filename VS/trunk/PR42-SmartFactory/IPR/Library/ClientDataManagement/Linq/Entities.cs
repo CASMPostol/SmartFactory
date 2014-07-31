@@ -2363,7 +2363,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq {
 		
 		private string _customsProcedure;
 		
-		private System.Nullable<System.DateTime> _created;
+    //private System.Nullable<System.DateTime> _created;
 		
 		private System.Nullable<double> _jSOXReportID;
 		
@@ -2393,7 +2393,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq {
 		
 		private System.Nullable<int> _authorId;
 		
-		private string _author;
+    //private string _author;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -2601,19 +2601,19 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Created", Storage="_created", ReadOnly=true, FieldType="DateTime")]
-		public System.Nullable<System.DateTime> Created {
-			get {
-				return this._created;
-			}
-			set {
-				if ((value != this._created)) {
-					this.OnPropertyChanging("Created", this._created);
-					this._created = value;
-					this.OnPropertyChanged("Created");
-				}
-			}
-		}
+    //[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Created", Storage="_created", ReadOnly=true, FieldType="DateTime")]
+    //public System.Nullable<System.DateTime> Created {
+    //  get {
+    //    return this._created;
+    //  }
+    //  set {
+    //    if ((value != this._created)) {
+    //      this.OnPropertyChanging("Created", this._created);
+    //      this._created = value;
+    //      this.OnPropertyChanged("Created");
+    //    }
+    //  }
+    //}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="JSOXReportID", Storage="_jSOXReportID", FieldType="Number")]
 		public System.Nullable<double> JSOXReportID {
@@ -2783,19 +2783,19 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Author", Storage="_author", ReadOnly=true, FieldType="User", IsLookupValue=true)]
-		public string Author {
-			get {
-				return this._author;
-			}
-			set {
-				if ((value != this._author)) {
-					this.OnPropertyChanging("Author", this._author);
-					this._author = value;
-					this.OnPropertyChanged("Author");
-				}
-			}
-		}
+    //[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Author", Storage="_author", ReadOnly=true, FieldType="User", IsLookupValue=true)]
+    //public string Author {
+    //  get {
+    //    return this._author;
+    //  }
+    //  set {
+    //    if ((value != this._author)) {
+    //      this.OnPropertyChanging("Author", this._author);
+    //      this._author = value;
+    //      this.OnPropertyChanged("Author");
+    //    }
+    //  }
+    //}
 		
 		private void OnDisposal2PCNIDChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Disposal2PCNID", this._disposal2PCNID.Clone());
