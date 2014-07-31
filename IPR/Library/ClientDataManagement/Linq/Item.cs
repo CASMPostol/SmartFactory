@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : partial class Item
 //  System  : Microsoft VisulaStudio 2013 / C#
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2014, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -15,8 +15,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
 {
@@ -25,7 +23,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
   /// </summary>
   public partial class Item
   {
-    internal virtual Dictionary<string, string> GetMappings()
+    internal static Dictionary<string, string> GetMappings()
     {
       return new Dictionary<string, string>() 
       {
@@ -33,7 +31,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
         {"Editor", "ModifiedBy"}
       };
     }
-    private System.Nullable<DateTime> _Created;
+    /// <summary>
+    /// Gets or sets the creation date.
+    /// </summary>
+    /// <value>
+    /// The created.
+    /// </value>
     [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Created", Storage = "_Created", ReadOnly = true, FieldType = "DateTime")]
     public System.Nullable<DateTime> Created
     {
@@ -51,7 +54,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
         }
       }
     }
-    private string _Author;
+    /// <summary>
+    /// Gets or sets the author.
+    /// </summary>
+    /// <value>
+    /// The author.
+    /// </value>
     [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Author", Storage = "_Author", ReadOnly = true, FieldType = "SPFieldUserValue")]
     public string Author
     {
@@ -69,7 +77,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
         }
       }
     }
-    private System.Nullable<DateTime> _Modified;
+    /// <summary>
+    /// Gets or sets the date of last modification.
+    /// </summary>
+    /// <value>
+    /// The modified.
+    /// </value>
     [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Modified", Storage = "_Modified", ReadOnly = true, FieldType = "DateTime")]
     public System.Nullable<DateTime> Modified
     {
@@ -87,7 +100,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
         }
       }
     }
-    private string _Editor;
+    /// <summary>
+    /// Gets or sets the editor.
+    /// </summary>
+    /// <value>
+    /// The editor.
+    /// </value>
     [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Editor", Storage = "_Editor", ReadOnly = true, FieldType = "SPFieldUserValue")]
     public string Editor
     {
@@ -105,5 +123,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
         }
       }
     }
+    private string _Editor;
+    private System.Nullable<DateTime> _Created;
+    private string _Author;
+    private System.Nullable<DateTime> _Modified;
   }
 }

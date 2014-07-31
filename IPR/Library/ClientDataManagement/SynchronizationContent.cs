@@ -1,4 +1,19 @@
-﻿using CAS.SmartFactory.IPR.Client.DataManagement.Linq;
+﻿//<summary>
+//  Title   : class SynchronizationContent
+//  System  : Microsoft VisulaStudio 2013 / C#
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using CAS.SmartFactory.IPR.Client.DataManagement.Linq;
 using CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL;
 using Microsoft.SharePoint.Linq;
 using System;
@@ -7,7 +22,6 @@ using System.ComponentModel;
 using System.Data.Linq;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement
 {
@@ -16,12 +30,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
   /// </summary>
   public static class SynchronizationContent
   {
-    public struct ArchiveSettings
+    /// <summary>
+    /// Represents synchronization settings
+    /// </summary>
+    public struct SynchronizationSettings
     {
+      /// <summary>
+      /// The site URL
+      /// </summary>
       public string SiteURL;
+      /// <summary>
+      /// The connection string
+      /// </summary>
       public string ConnectionString;
     }
-    public static void Go(ArchiveSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
+    /// <summary>
+    /// Realize the synchronization operation..
+    /// </summary>
+    /// <param name="settings">The settings.</param>
+    /// <param name="progressChanged">The progress changed.</param>
+    public static void Go(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
     {
       IPRDEV _sqledc = Connect2SQL(settings, progressChanged);
       using (Entities _spedc = new Entities(settings.SiteURL))
@@ -67,7 +95,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         //ActivitiesLogs();
       }
     }
-
     private static Dictionary<int, TSQL> Synchronize<TSQL, TSP>(Table<TSQL> table, EntityList<TSP> entityList, Action<object, ProgressChangedEventArgs> progressChanged)
       where TSQL : class, IItem, new()
       where TSP : Linq.Item, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
@@ -94,9 +121,17 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     }
     private static void Synchronize<TSQL, TSP>(TSQL _spItem, TSP _sqlItem)
     {
-      throw new NotImplementedException();
+      List<SharePoint.Client.Linq.StorageItem> _dscrpt = new List<SharePoint.Client.Linq.StorageItem>();
+      SharePoint.Client.Linq.StorageItem.CreateStorageDescription(typeof(TSP), _dscrpt);
+      foreach (SharePoint.Client.Linq.StorageItem _si in _dscrpt)
+      {
+        _si.GetValueFromEntity(_sqlItem, x => Assign(x, _sqlItem));
+      }
     }
-    private static IPRDEV Connect2SQL(ArchiveSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
+    private static void Assign(SharePoint.Client.Linq.StorageItem.Descriptor descriptor, object sqlItem)
+    {
+    }
+    private static IPRDEV Connect2SQL(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
     {
       progressChanged(settings, new ProgressChangedEventArgs(1, String.Format("Attempt to connect to SQL at: {0}", settings.ConnectionString)));
       System.Data.IDbConnection _connection = new SqlConnection(settings.ConnectionString);

@@ -11,9 +11,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
   /// </summary>
   public partial class SADGood
   {
-    internal override Dictionary<string, string> GetMappings()
+    internal new static Dictionary<string, string> GetMappings()
     {
-      Dictionary<string, string> _ret = base.GetMappings();
+      Dictionary<string, string> _ret = Item.GetMappings();
       _ret.Add("Procedure", "SPProcedure");
       return _ret;
     }

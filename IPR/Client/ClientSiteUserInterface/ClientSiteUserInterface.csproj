@@ -132,6 +132,7 @@
     <Compile Include="StateMachine\CleanupMachine.cs" />
     <Compile Include="StateMachine\FinishedMachine.cs" />
     <Compile Include="StateMachine\SetupDataDialogMachine.cs" />
+    <Compile Include="StateMachine\SynchronizationMachine.cs" />
     <Compile Include="ViewModel\MainWindowModel.cs" />
     <Page Include="HelpWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

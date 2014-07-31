@@ -7,13 +7,13 @@ using System.Text;
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
 {
   /// <summary>
-  /// Clearence
+  /// Clarence
   /// </summary>
   public partial class Clearence
   {
-    internal override Dictionary<string, string> GetMappings()
+    internal new static Dictionary<string, string> GetMappings()
     {
-      Dictionary<string, string> _ret = base.GetMappings();
+      Dictionary<string, string> _ret = Item.GetMappings();
       _ret.Add("Status", "SPStatus");
       return _ret;
     }

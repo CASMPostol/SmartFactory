@@ -42,8 +42,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override void Next()
     {
       if (Success)
-        Context.EnterState<SetupDataDialogMachine>(); //TODO for testing only
-      //Context.Machine = new CleanupMachine(Context);
+        Context.EnterState<SynchronizationMachine>();
       else
         Context.EnterState<SetupDataDialogMachine>();
     }
@@ -71,7 +70,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     protected override void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
     {
       e.Cancel = false;
-      string _connectionString = String.Format(Properties.Settings.Default.ConnectionString, Properties.Settings.Default.SQLServer, Properties.Settings.Default.SQLDatabaseName);
+      string _connectionString = ViewModel.MainWindowModel.GetConnectionString();
       ReportProgress(this, new ProgressChangedEventArgs(1, String.Format("Connection string {0}", _connectionString)));
       System.Data.IDbConnection _connection = new SqlConnection(_connectionString);
       IPRDEV _entities = new IPRDEV(_connection);

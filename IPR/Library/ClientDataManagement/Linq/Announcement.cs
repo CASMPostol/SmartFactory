@@ -1,8 +1,19 @@
-﻿
-using System;
+﻿//<summary>
+//  Title   : partial class Announcement
+//  System  : Microsoft VisulaStudio 2013 / C#
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
 {
@@ -12,9 +23,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
   /// </summary>
   public partial class Announcement
   {
-    internal override Dictionary<string, string> GetMappings()
+    internal new static Dictionary<string, string> GetMappings()
     {
-      Dictionary<string, string> _ret = base.GetMappings();
+      Dictionary<string, string> _ret = Item.GetMappings();
       _ret.Add("SPPropert", "SQLProperty");
       return _ret;
     }
