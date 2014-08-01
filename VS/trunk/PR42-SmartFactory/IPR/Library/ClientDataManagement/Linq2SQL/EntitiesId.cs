@@ -16,7 +16,7 @@
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 {
   /// <summary>
-  /// IItem
+  /// SQL Item base class
   /// </summary>
   public interface IItem
   {
@@ -28,6 +28,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     /// </value>
     int ID { get; set; }
   }
+
   public partial class JSOXLibrary : IItem { }
   public partial class BalanceBatch : IItem { }
   public partial class SADDocumentLibrary : IItem { }
