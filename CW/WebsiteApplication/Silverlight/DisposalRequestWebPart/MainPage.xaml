@@ -6,7 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data"
     xmlns:System="clr-namespace:System;assembly=mscorlib" 
-    xmlns:local="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart" 
+    xmlns:local="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart"
+    xmlns:xlinq="CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq"
     x:Class="CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.MainPage"
     mc:Ignorable="d"
     d:DesignHeight="600" d:DesignWidth="1200"
@@ -19,56 +20,85 @@
         <local:Double2StringConverter x:Key="Double2StringConverter"/>
         <local:MainPageData x:Key="MainPageDataDataSource" d:IsDataSource="True"/>
     </UserControl.Resources>
-    <sdk:TabControl Height="600" VerticalAlignment="Top" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-        <sdk:TabItem Header="MainPage">
-            <Grid  Name="x_GridMainPageData" HorizontalAlignment="Stretch" Background="#FF1F3B53" Margin="5" DataContext="{Binding Source={StaticResource MainPageDataDataSource}}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <sdk:Label x:Name="x_LabelHeader" Content="{Binding HeaderLabel, FallbackValue=N/A, TargetNullValue=Is null}" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="2" Foreground="White" Style="{StaticResource LabelStyle}"/>
-                <sdk:DataGrid x:Name="x_DataGridListView" AutoGenerateColumns="False" Background="#00000000" Grid.Row="1" ItemsSource="{Binding RequestCollection}" Foreground="#FFFDFDFD" Style="{StaticResource DataGridStyle}" >
-                    <sdk:DataGrid.CanUserReorderColumns >
-                        <System:Boolean>true</System:Boolean>
-                    </sdk:DataGrid.CanUserReorderColumns>
-                    <sdk:DataGrid.RowGroupHeaderStyles>
-                        <!-- Style for groups at top level -->
-                        <Style TargetType="sdk:DataGridRowGroupHeader">
-                            <Setter Property="PropertyNameVisibility" Value="Collapsed" />
-                            <Setter Property="Background" Value="#FF112255" />
-                            <Setter Property="Foreground" Value="#FFEEEEEE" />
-                            <Setter Property="SublevelIndent" Value="15" />
-                        </Style>
-                    </sdk:DataGrid.RowGroupHeaderStyles>
-                    <sdk:DataGrid.Columns>
-                        <sdk:DataGridTextColumn Binding="{Binding SKU, FallbackValue=N/A}" Header="Material" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <sdk:DataGridTextColumn Binding="{Binding SKUDescription, FallbackValue=N/A}" Header="Description" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <sdk:DataGridTextColumn Binding="{Binding Batch, FallbackValue=N/A}" Header="Batch" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <sdk:DataGridTextColumn Binding="{Binding TotalStock, FallbackValue=N/A}" Header="Total stock" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <sdk:DataGridTextColumn Binding="{Binding MassPerPackage, FallbackValue=N/A}"  Header="Qty in package" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <sdk:DataGridTextColumn Binding="{Binding DeclaredNetMass, FallbackValue=N/A}" Header="Qty" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <sdk:DataGridTextColumn Binding="{Binding AddedKg, Converter={StaticResource Double2StringConverter}, FallbackValue=N/A], Mode=TwoWay}" Header="Qty-added" IsReadOnly="False" CellStyle="{StaticResource EditableCell}"/>
-                        <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSum, FallbackValue=N/A}" Header="Qty-sum" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSumRounded, FallbackValue=N/A}" Header="Qty-rounded" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <sdk:DataGridTextColumn Binding="{Binding PackagesToDispose, FallbackValue=N/A}" Header="Packages" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <sdk:DataGridTextColumn Binding="{Binding RemainingOnStock, FallbackValue=N/A}" Header="Remaining on stock" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                        <sdk:DataGridTextColumn Binding="{Binding Units, FallbackValue=N/A}" Header="Units" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                    </sdk:DataGrid.Columns>
-                </sdk:DataGrid>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2">
-                    <Button x:Name="x_ButtonAddNew" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_AddNewButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonAddNew_Click"/>
-                    <Button x:Name="x_ButtonEndOfOgl" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_EndOfOGLButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonEndOfOgl_Click"/>
-                    <Button x:Name="x_ButtonEndofBatch" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_EndOfBatchButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonEndofBatch_Click"/>
-                    <Button x:Name="x_ButtonSave" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_SaveButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonSave_Click"/>
-                    <Button x:Name="x_ButtonCancel" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_CancelButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" ToolTipService.ToolTip="Cancel editing" Click="x_ButtonCancel_Click"/>
-                </StackPanel>
-                <sdk:Label x:Name="x_labelLog" Margin="5" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="3" Content="{Binding Log, TargetNullValue=Null}" Style="{StaticResource LabelStyle}"/>
-            </Grid>
-        </sdk:TabItem>
-        <sdk:TabItem Header="LogList" Visibility="Collapsed" >
-            <ListBox />
-        </sdk:TabItem>
-    </sdk:TabControl>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <sdk:TreeView x:Name="TreeView" ItemsSource="{Binding RequestCollection}" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <sdk:TreeView.Resources>
+                <sdk:HierarchicalDataTemplate x:Name="RequestCollection" ItemsSource="{Binding RequestCollection}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                        <!--<Image Source="{Binding Path=ImagePath}"/>-->
+                        <sdk:Label Content="{Binding OGL, FallbackValue=N/A}" />
+                        <sdk:Label Content="{Binding SKU}" />
+                        <sdk:Label Content="{Binding SKUDescription}" />
+                        <sdk:Label Content="{Binding Batch}" />
+                        <sdk:Label Content="{Binding TotalStock}" />
+                        <sdk:Label Content="{Binding MassPerPackage}" />
+                        <sdk:Label Content="{Binding DeclaredNetMass}" />
+                        <sdk:Label Content="{Binding AddedKg}" />
+                        <sdk:Label Content="{Binding QuantityyToClearSum}" />
+                        <sdk:Label Content="{Binding QuantityyToClearSumRounded}" />
+                        <sdk:Label Content="{Binding PackagesToDispose}" />
+                        <sdk:Label Content="{Binding RemainingOnStock}" />
+                        <sdk:Label Content="{Binding Units}" />
+                    </StackPanel>
+                </sdk:HierarchicalDataTemplate>
+            </sdk:TreeView.Resources>
+        </sdk:TreeView>
+        <sdk:TabControl Height="600" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <sdk:TabItem Header="MainPage">
+                <Grid  Name="x_GridMainPageData" HorizontalAlignment="Stretch" Background="#FF1F3B53" Margin="5" DataContext="{Binding Source={StaticResource MainPageDataDataSource}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <sdk:Label x:Name="x_LabelHeader" Content="{Binding HeaderLabel, FallbackValue=N/A, TargetNullValue=Is null}" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="2" Foreground="White" Style="{StaticResource LabelStyle}"/>
+
+                    <sdk:DataGrid x:Name="x_DataGridListView" AutoGenerateColumns="False" Background="#00000000" Grid.Row="1" ItemsSource="{Binding RequestCollection}" Foreground="#FFFDFDFD" Style="{StaticResource DataGridStyle}" >
+                        <sdk:DataGrid.CanUserReorderColumns >
+                            <System:Boolean>true</System:Boolean>
+                        </sdk:DataGrid.CanUserReorderColumns>
+                        <sdk:DataGrid.RowGroupHeaderStyles>
+                            <!-- Style for groups at top level -->
+                            <Style TargetType="sdk:DataGridRowGroupHeader">
+                                <Setter Property="PropertyNameVisibility" Value="Collapsed" />
+                                <Setter Property="Background" Value="#FF112255" />
+                                <Setter Property="Foreground" Value="#FFEEEEEE" />
+                                <Setter Property="SublevelIndent" Value="15" />
+                            </Style>
+                        </sdk:DataGrid.RowGroupHeaderStyles>
+                        <sdk:DataGrid.Columns>
+                            <sdk:DataGridTextColumn Binding="{Binding SKU, FallbackValue=N/A}" Header="Material" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                            <sdk:DataGridTextColumn Binding="{Binding SKUDescription, FallbackValue=N/A}" Header="Description" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                            <sdk:DataGridTextColumn Binding="{Binding Batch, FallbackValue=N/A}" Header="Batch" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                            <sdk:DataGridTextColumn Binding="{Binding TotalStock, FallbackValue=N/A}" Header="Total stock" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                            <sdk:DataGridTextColumn Binding="{Binding MassPerPackage, FallbackValue=N/A}"  Header="Qty in package" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                            <sdk:DataGridTextColumn Binding="{Binding DeclaredNetMass, FallbackValue=N/A}" Header="Qty" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                            <sdk:DataGridTextColumn Binding="{Binding AddedKg, Converter={StaticResource Double2StringConverter}, FallbackValue=N/A], Mode=TwoWay}" Header="Qty-added" IsReadOnly="False" CellStyle="{StaticResource EditableCell}"/>
+                            <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSum, FallbackValue=N/A}" Header="Qty-sum" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                            <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSumRounded, FallbackValue=N/A}" Header="Qty-rounded" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                            <sdk:DataGridTextColumn Binding="{Binding PackagesToDispose, FallbackValue=N/A}" Header="Packages" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                            <sdk:DataGridTextColumn Binding="{Binding RemainingOnStock, FallbackValue=N/A}" Header="Remaining on stock" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                            <sdk:DataGridTextColumn Binding="{Binding Units, FallbackValue=N/A}" Header="Units" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                        </sdk:DataGrid.Columns>
+                    </sdk:DataGrid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2">
+                        <Button x:Name="x_ButtonAddNew" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_AddNewButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonAddNew_Click"/>
+                        <Button x:Name="x_ButtonEndOfOgl" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_EndOfOGLButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonEndOfOgl_Click"/>
+                        <Button x:Name="x_ButtonEndofBatch" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_EndOfBatchButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonEndofBatch_Click"/>
+                        <Button x:Name="x_ButtonSave" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_SaveButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonSave_Click"/>
+                        <Button x:Name="x_ButtonCancel" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_CancelButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" ToolTipService.ToolTip="Cancel editing" Click="x_ButtonCancel_Click"/>
+                    </StackPanel>
+                    <sdk:Label x:Name="x_labelLog" Margin="5" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="3" Content="{Binding Log, TargetNullValue=Null}" Style="{StaticResource LabelStyle}"/>
+                </Grid>
+            </sdk:TabItem>
+            <sdk:TabItem Header="LogList" Visibility="Collapsed" >
+                <ListBox />
+            </sdk:TabItem>
+        </sdk:TabControl>
+    </Grid>
 </UserControl>
