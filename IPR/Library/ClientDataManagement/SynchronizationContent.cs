@@ -116,19 +116,20 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         Synchronize<TSQL, TSP>(_sqlItem, _spItem);
       }
       progressChanged(1, new ProgressChangedEventArgs(1, "Submitting Changes to SQL database"));
-      //table.Context.SubmitChanges();
+      //table.Context.SubmitChanges(); //TODO 
       return _dictinary;
     }
-    private static void Synchronize<TSQL, TSP>(TSQL _spItem, TSP _sqlItem)
+    private static void Synchronize<TSQL, TSP>(TSQL sqlItem, TSP splItem)
+      where TSQL : IItem, new()
     {
-      List<SharePoint.Client.Linq.StorageItem> _dscrpt = new List<SharePoint.Client.Linq.StorageItem>();
-      SharePoint.Client.Linq.StorageItem.CreateStorageDescription(typeof(TSP), _dscrpt);
-      foreach (SharePoint.Client.Linq.StorageItem _si in _dscrpt.Where < SharePoint.Client.Linq.StorageItem>( x => x.IsNotReverseLookup()))
+      List<SharePoint.Client.Linq2SP.StorageItem> _dscrpt = new List<SharePoint.Client.Linq2SP.StorageItem>();
+      SharePoint.Client.Linq2SP.StorageItem.CreateStorageDescription(typeof(TSP), _dscrpt);
+      foreach (SharePoint.Client.Linq2SP.StorageItem _si in _dscrpt.Where<SharePoint.Client.Linq2SP.StorageItem>(x => x.IsNotReverseLookup()))
       {
-        _si.GetValueFromEntity(_sqlItem, x => Assign(x, _sqlItem));
+        _si.GetValueFromEntity(splItem, x => Assign(x, sqlItem));
       }
     }
-    private static void Assign(SharePoint.Client.Linq.StorageItem.Descriptor descriptor, object sqlItem)
+    private static void Assign(SharePoint.Client.Linq2SP.StorageItem.Descriptor descriptor, IItem sqlIte)
     {
     }
     private static IPRDEV Connect2SQL(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
