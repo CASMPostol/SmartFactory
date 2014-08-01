@@ -27,8 +27,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
     {
       return new Dictionary<string, string>() 
       {
-        {"Author", "CreatedBy"},
-        {"Editor", "ModifiedBy"}
+        {"CreatedBy", "Author"},
+        {"ModifiedBy", "Editor"}
       };
     }
     /// <summary>

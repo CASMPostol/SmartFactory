@@ -14,7 +14,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
     internal new static Dictionary<string, string> GetMappings()
     {
       Dictionary<string, string> _ret = Item.GetMappings();
-      _ret.Add("Status", "SPStatus");
+      _ret.Add("SPStatus", "Status");
       return _ret;
     }
   }
