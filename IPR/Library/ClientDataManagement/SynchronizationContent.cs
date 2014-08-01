@@ -54,7 +54,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       IPRDEV _sqledc = Connect2SQL(settings, progressChanged);
       using (Entities _spedc = new Entities(settings.SiteURL))
       {
-        Dictionary<int, Linq2SQL.JSOXLibrary> _JSOXLibrary = Synchronize(_sqledc.JSOXLibrary, _spedc.JSOXLibrary, progressChanged);
+        Synchronize(_sqledc.JSOXLibrary, _spedc.JSOXLibrary, progressChanged, JSOXLib.GetMappings());
         //BalanceBatch();
         //SADDocumentLibrary();
         //SADDocument();
@@ -95,42 +95,39 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         //ActivitiesLogs();
       }
     }
-    private static Dictionary<int, TSQL> Synchronize<TSQL, TSP>(Table<TSQL> table, EntityList<TSP> entityList, Action<object, ProgressChangedEventArgs> progressChanged)
-      where TSQL : class, IItem, new()
+    private static void Synchronize<TSQL, TSP>(Table<TSQL> table, EntityList<TSP> entityList, Action<object, ProgressChangedEventArgs> progressChanged, Dictionary<string, string> mapping)
+      where TSQL : class, SharePoint.Client.Link2SQL.IItem, new()
       where TSP : Linq.Item, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
-      progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Reading the table {0} from SQL database.", typeof(TSQL).Name)));
-      Dictionary<int, TSQL> _dictinary = table.ToDictionary<TSQL, int>(x => x.ID);
       progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Reading the table {0} from SharePoint website.", typeof(TSP).Name)));
       List<TSP> _scrList = entityList.ToList<TSP>();
+      progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Reading the table {0} from SQL database.", typeof(TSQL).Name)));
+      Dictionary<int, SharePoint.Client.Link2SQL.IItem> _dictinary = table.ToDictionary<TSQL, int, SharePoint.Client.Link2SQL.IItem>(x => x.ID, y => (SharePoint.Client.Link2SQL.IItem)y);
+      SharePoint.Client.Link2SQL.RepositoryDataSet.Repository.Add(entityList.Name, _dictinary);
       progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Synchronization {0} elements in the SharePoint source tables with the {1} element in the SQL table.", _scrList.Count, _dictinary.Count)));
+      List<SharePoint.Client.Linq2SP.StorageItem> _spDscrpt = new List<SharePoint.Client.Linq2SP.StorageItem>();
+      SharePoint.Client.Linq2SP.StorageItem.CreateStorageDescription(typeof(TSP), _spDscrpt);
+      Dictionary<string, SharePoint.Client.Link2SQL.SQLStorageItem> _sqlDscrpt = new Dictionary<string, SharePoint.Client.Link2SQL.SQLStorageItem>();
+      SharePoint.Client.Link2SQL.SQLStorageItem.CreateStorageDescription(typeof(TSQL), mapping, _sqlDscrpt);
       foreach (TSP _spItem in _scrList)
       {
-        TSQL _sqlItem = default(TSQL);
+        SharePoint.Client.Link2SQL.IItem _sqlItem = default(SharePoint.Client.Link2SQL.IItem);
         if (!_dictinary.TryGetValue(_spItem.Id.Value, out _sqlItem))
         {
           _sqlItem = new TSQL();
           _dictinary.Add(_spItem.Id.Value, _sqlItem);
-          table.InsertOnSubmit(_sqlItem);
+          table.InsertOnSubmit((TSQL)_sqlItem);
         }
-        Synchronize<TSQL, TSP>(_sqlItem, _spItem);
+        Synchronize<TSQL, TSP>((TSQL)_sqlItem, _spItem, _spDscrpt, _sqlDscrpt);
       }
       progressChanged(1, new ProgressChangedEventArgs(1, "Submitting Changes to SQL database"));
-      //table.Context.SubmitChanges(); //TODO 
-      return _dictinary;
+      table.Context.SubmitChanges();
     }
-    private static void Synchronize<TSQL, TSP>(TSQL sqlItem, TSP splItem)
-      where TSQL : IItem, new()
+    private static void Synchronize<TSQL, TSP>(TSQL sqlItem, TSP splItem, List<SharePoint.Client.Linq2SP.StorageItem> _spDscrpt, Dictionary<string, SharePoint.Client.Link2SQL.SQLStorageItem> _sqlDscrpt)
     {
-      List<SharePoint.Client.Linq2SP.StorageItem> _dscrpt = new List<SharePoint.Client.Linq2SP.StorageItem>();
-      SharePoint.Client.Linq2SP.StorageItem.CreateStorageDescription(typeof(TSP), _dscrpt);
-      foreach (SharePoint.Client.Linq2SP.StorageItem _si in _dscrpt.Where<SharePoint.Client.Linq2SP.StorageItem>(x => x.IsNotReverseLookup()))
-      {
-        _si.GetValueFromEntity(splItem, x => Assign(x, sqlItem));
-      }
-    }
-    private static void Assign(SharePoint.Client.Linq2SP.StorageItem.Descriptor descriptor, IItem sqlIte)
-    {
+      foreach (SharePoint.Client.Linq2SP.StorageItem _si in _spDscrpt.Where<SharePoint.Client.Linq2SP.StorageItem>(x => x.IsNotReverseLookup()))
+        if (_sqlDscrpt.ContainsKey(_si.PropertyName))
+          _si.GetValueFromEntity(splItem, x => _sqlDscrpt[_si.PropertyName].Assign(x, sqlItem));
     }
     private static IPRDEV Connect2SQL(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
     {

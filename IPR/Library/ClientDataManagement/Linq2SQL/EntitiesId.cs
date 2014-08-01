@@ -13,22 +13,10 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Client.Link2SQL;
+
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 {
-  /// <summary>
-  /// SQL Item base class
-  /// </summary>
-  public interface IItem
-  {
-    /// <summary>
-    /// Gets or sets the identifier.
-    /// </summary>
-    /// <value>
-    /// The identifier.
-    /// </value>
-    int ID { get; set; }
-  }
-
   public partial class JSOXLibrary : IItem { }
   public partial class BalanceBatch : IItem { }
   public partial class SADDocumentLibrary : IItem { }
