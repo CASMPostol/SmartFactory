@@ -14,8 +14,6 @@
 //</summary>
 
 using System;
-using System.Linq;
-using CAS.SmartFactory.IPR.Client.DataManagement;
 using System.Collections.Generic;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
@@ -33,14 +31,14 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
       return _ret;
     }
     /// <summary>
-    /// Gets or sets the settled quantity dec.
+    /// Gets or sets the settled quantity as decimal value.
     /// </summary>
     /// <value>
     /// The settled quantity as decimal.
     /// </value>
     internal decimal SettledQuantityDec
     {
-      get { return Convert.ToDecimal( this.SettledQuantity.Value ).Rount2Decimals(); }
+      get { return Convert.ToDecimal( this.SettledQuantity.Value ).Round2Decimals(); }
     }
     #endregion
 
