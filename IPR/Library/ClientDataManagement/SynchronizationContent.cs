@@ -54,6 +54,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       IPRDEV _sqledc = Connect2SQL(settings, progressChanged);
       using (Entities _spedc = new Entities(settings.SiteURL))
       {
+        SharePoint.Client.Link2SQL.RepositoryDataSet.ClearContent();
         Synchronize(_sqledc.JSOXLibrary, _spedc.JSOXLibrary, progressChanged, JSOXLib.GetMappings());
         //BalanceBatch();
         //SADDocumentLibrary();
@@ -93,7 +94,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         //History();
         //ArchivingLogs();
         //ActivitiesLogs();
+        UpdateActivitiesLogs(_sqledc, progressChanged);
+        progressChanged(1, new ProgressChangedEventArgs(1, "SynchronizationContent has been finished"));
       }
+    }
+
+    private static void UpdateActivitiesLogs(IPRDEV sqlEntities, Action<object, ProgressChangedEventArgs> progressChanged)
+    {
+      Linq2SQL.ActivitiesLogs _logs = new ActivitiesLogs()
+      {
+        Date = DateTime.Now,
+        Operation = Linq2SQL.ActivitiesLogs.SynchronizationOperationName,
+        UserName = String.Format(Properties.Resources.ActivitiesLogsUserNamePattern,  Environment.UserName, Environment.MachineName)
+      };
+      sqlEntities.ActivitiesLogs.InsertOnSubmit(_logs);
+      sqlEntities.SubmitChanges();
+      progressChanged(1, new ProgressChangedEventArgs(1, "Updated ActivitiesLogs"));
     }
     private static void Synchronize<TSQL, TSP>(Table<TSQL> table, EntityList<TSP> entityList, Action<object, ProgressChangedEventArgs> progressChanged, Dictionary<string, string> mapping)
       where TSQL : class, SharePoint.Client.Link2SQL.IItem, new()
@@ -118,16 +134,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           _dictinary.Add(_spItem.Id.Value, _sqlItem);
           table.InsertOnSubmit((TSQL)_sqlItem);
         }
-        Synchronize<TSQL, TSP>((TSQL)_sqlItem, _spItem, _spDscrpt, _sqlDscrpt);
+        Synchronize<TSQL, TSP>((TSQL)_sqlItem, _spItem, _spDscrpt, _sqlDscrpt, progressChanged);
       }
       progressChanged(1, new ProgressChangedEventArgs(1, "Submitting Changes to SQL database"));
       table.Context.SubmitChanges();
     }
-    private static void Synchronize<TSQL, TSP>(TSQL sqlItem, TSP splItem, List<SharePoint.Client.Linq2SP.StorageItem> _spDscrpt, Dictionary<string, SharePoint.Client.Link2SQL.SQLStorageItem> _sqlDscrpt)
+    private static void Synchronize<TSQL, TSP>(TSQL sqlItem,
+      TSP splItem,
+      List<SharePoint.Client.Linq2SP.StorageItem> _spDscrpt,
+      Dictionary<string, SharePoint.Client.Link2SQL.SQLStorageItem> _sqlDscrpt,
+      Action<object, ProgressChangedEventArgs> progressChanged)
     {
       foreach (SharePoint.Client.Linq2SP.StorageItem _si in _spDscrpt.Where<SharePoint.Client.Linq2SP.StorageItem>(x => x.IsNotReverseLookup()))
         if (_sqlDscrpt.ContainsKey(_si.PropertyName))
           _si.GetValueFromEntity(splItem, x => _sqlDscrpt[_si.PropertyName].Assign(x, sqlItem));
+        else
+          progressChanged(_si, new ProgressChangedEventArgs(1, String.Format("Cannot find the {0} argument in the SQL entity {1}.", _si.PropertyName, typeof(TSP).Name)));
     }
     private static IPRDEV Connect2SQL(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
     {

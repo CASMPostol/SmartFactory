@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
+namespace CAS.SmartFactory.IPR.Client.DataManagement.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CAS.SmartFactory.IPR.Client.UserInterface.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CAS.SmartFactory.IPR.Client.DataManagement.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,11 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exit.
+        ///   Looks up a localized string similar to {0} at {1}.
         /// </summary>
-        internal static string ButtonExit {
+        internal static string ActivitiesLogsUserNamePattern {
             get {
-                return ResourceManager.GetString("ButtonExit", resourceCulture);
+                return ResourceManager.GetString("ActivitiesLogsUserNamePattern", resourceCulture);
             }
         }
     }
