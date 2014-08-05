@@ -59,8 +59,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         Synchronize(_sqledc.BalanceBatch, _spedc.BalanceBatch, progressChanged, Linq.BalanceBatch.GetMappings());
         Synchronize(_sqledc.SADDocumentLibrary, _spedc.SADDocumentLibrary, progressChanged, Linq.SADDocumentLib.GetMappings());
         Synchronize(_sqledc.SADDocument, _spedc.SADDocument, progressChanged, Linq.SADDocumentType.GetMappings());
-        //SADDocument();
-        //SADGood();
+        Synchronize(_sqledc.SADGood, _spedc.SADGood, progressChanged, Linq.SADGood.GetMappings());
         //SADConsignment();
         //Clearence();
         //Consent();
@@ -125,7 +124,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       List<SharePoint.Client.Linq2SP.StorageItem> _spDscrpt = new List<SharePoint.Client.Linq2SP.StorageItem>();
       SharePoint.Client.Linq2SP.StorageItem.CreateStorageDescription(typeof(TSP), _spDscrpt);
       Dictionary<string, SharePoint.Client.Link2SQL.SQLStorageItem> _sqlDscrpt = new Dictionary<string, SharePoint.Client.Link2SQL.SQLStorageItem>();
-      SharePoint.Client.Link2SQL.SQLStorageItem.CreateStorageDescription(typeof(TSQL), mapping, _sqlDscrpt);
+      SharePoint.Client.Link2SQL.SQLStorageItem.FillUpStorageInfoDictionary(typeof(TSQL), mapping, _sqlDscrpt);
       foreach (TSP _spItem in _scrList)
       {
         SharePoint.Client.Link2SQL.IItem _sqlItem = default(SharePoint.Client.Link2SQL.IItem);
