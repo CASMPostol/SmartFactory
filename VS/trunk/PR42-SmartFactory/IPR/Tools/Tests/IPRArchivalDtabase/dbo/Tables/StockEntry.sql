@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[StockEntry] (
+    [Batch]             NVARCHAR (255) NOT NULL,
+    [BatchIndex]        INT            NOT NULL,
+    [Blocked]           FLOAT (53)     NOT NULL,
+    [Created]           DATETIME       NOT NULL,
+    [CreatedBy]         NVARCHAR (255) NOT NULL,
+    [ID]                INT            NOT NULL,
+    [InQualityInsp]     FLOAT (53)     NOT NULL,
+    [IPRType]           BIT            NOT NULL,
+    [Modified]          DATETIME       NOT NULL,
+    [ModifiedBy]        NVARCHAR (255) NOT NULL,
+    [ProductType]       NVARCHAR (255) NOT NULL,
+    [Quantity]          FLOAT (53)     NOT NULL,
+    [RestrictedUse]     FLOAT (53)     NOT NULL,
+    [SKU]               NVARCHAR (255) NOT NULL,
+    [StockLibraryIndex] INT            NOT NULL,
+    [StorLoc]           NVARCHAR (255) NOT NULL,
+    [Title]             NVARCHAR (255) NOT NULL,
+    [Units]             NVARCHAR (255) NOT NULL,
+    [Unrestricted]      FLOAT (53)     NOT NULL,
+    CONSTRAINT [PK_StockEntry_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
+    CONSTRAINT [FK_StockEntry_Batch] FOREIGN KEY ([BatchIndex]) REFERENCES [dbo].[Batch] ([ID]),
+    CONSTRAINT [FK_StockEntry_StockLibrary] FOREIGN KEY ([StockLibraryIndex]) REFERENCES [dbo].[StockLibrary] ([ID])
+);
+
