@@ -56,6 +56,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       {
         SharePoint.Client.Link2SQL.RepositoryDataSet.ClearContent();
         Synchronize(_sqledc.JSOXLibrary, _spedc.JSOXLibrary, progressChanged, JSOXLib.GetMappings());
+        Synchronize(_sqledc.BalanceBatch, _spedc.BalanceBatch, progressChanged, Linq.BalanceBatch.GetMappings());
         //BalanceBatch();
         //SADDocumentLibrary();
         //SADDocument();
@@ -105,7 +106,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       {
         Date = DateTime.Now,
         Operation = Linq2SQL.ActivitiesLogs.SynchronizationOperationName,
-        UserName = String.Format(Properties.Resources.ActivitiesLogsUserNamePattern,  Environment.UserName, Environment.MachineName)
+        UserName = String.Format(Properties.Resources.ActivitiesLogsUserNamePattern, Environment.UserName, Environment.MachineName)
       };
       sqlEntities.ActivitiesLogs.InsertOnSubmit(_logs);
       sqlEntities.SubmitChanges();

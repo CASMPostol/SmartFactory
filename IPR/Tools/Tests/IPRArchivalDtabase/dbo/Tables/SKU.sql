@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[SKU] (
+    [BlendPurpose]    NVARCHAR (255) NOT NULL,
+    [Brand]           NVARCHAR (255) NOT NULL,
+    [CigaretteLenght] NVARCHAR (255) NOT NULL,
+    [Created]         DATETIME       NOT NULL,
+    [CreatedBy]       NVARCHAR (255) NOT NULL,
+    [Family]          NVARCHAR (255) NOT NULL,
+    [FilterLenght]    NVARCHAR (255) NOT NULL,
+    [FormatIndex]     INT            NOT NULL,
+    [ID]              INT            NOT NULL,
+    [IPRMaterial]     BIT            NOT NULL,
+    [Menthol]         NVARCHAR (255) NOT NULL,
+    [MentholMaterial] BIT            NOT NULL,
+    [Modified]        DATETIME       NOT NULL,
+    [ModifiedBy]      NVARCHAR (255) NOT NULL,
+    [PrimeMarket]     NVARCHAR (255) NOT NULL,
+    [ProductType]     NVARCHAR (255) NOT NULL,
+    [SKU]             NVARCHAR (255) NOT NULL,
+    [SKULibraryIndex] INT            NOT NULL,
+    [Title]           NVARCHAR (255) NOT NULL,
+    [Units]           NVARCHAR (255) NOT NULL,
+    CONSTRAINT [PK_SKU_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
+    CONSTRAINT [FK_SKU_SKULibrary] FOREIGN KEY ([SKULibraryIndex]) REFERENCES [dbo].[SKULibrary] ([ID]),
+    CONSTRAINT [FK_SKU_SPFormat] FOREIGN KEY ([FormatIndex]) REFERENCES [dbo].[SPFormat] ([ID])
+);
+

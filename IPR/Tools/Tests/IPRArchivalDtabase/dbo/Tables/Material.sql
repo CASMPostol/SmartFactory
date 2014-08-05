@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[Material] (
+    [Batch]               NVARCHAR (255) NOT NULL,
+    [Created]             DATETIME       NOT NULL,
+    [CreatedBy]           NVARCHAR (255) NOT NULL,
+    [Dust]                FLOAT (53)     NOT NULL,
+    [FGQuantity]          FLOAT (53)     NOT NULL,
+    [ID]                  INT            NOT NULL,
+    [Material2BatchIndex] INT            NOT NULL,
+    [Modified]            DATETIME       NOT NULL,
+    [ModifiedBy]          NVARCHAR (255) NOT NULL,
+    [Overuse]             FLOAT (53)     NOT NULL,
+    [ProductID]           NVARCHAR (255) NOT NULL,
+    [ProductType]         NVARCHAR (255) NOT NULL,
+    [SHMenthol]           FLOAT (53)     NOT NULL,
+    [SKU]                 NVARCHAR (255) NOT NULL,
+    [SKUDescription]      NVARCHAR (255) NOT NULL,
+    [StorLoc]             NVARCHAR (255) NOT NULL,
+    [Title]               NVARCHAR (255) NOT NULL,
+    [Tobacco]             FLOAT (53)     NOT NULL,
+    [TobaccoQuantity]     FLOAT (53)     NOT NULL,
+    [Units]               NVARCHAR (255) NOT NULL,
+    [Waste]               FLOAT (53)     NOT NULL,
+    CONSTRAINT [PK_Material_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
+    CONSTRAINT [FK_Material_Batch] FOREIGN KEY ([Material2BatchIndex]) REFERENCES [dbo].[Batch] ([ID])
+);
+
