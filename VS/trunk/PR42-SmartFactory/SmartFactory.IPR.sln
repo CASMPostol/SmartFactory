@@ -68,7 +68,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientDataManagement", "IPR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointClient", "..\PR44-SharePoint\Libraries\SharePointLinqClient\SharePointClient.csproj", "{70DD8ABC-B012-427A-8163-64E63304BD42}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IPRArchivalDtabase", "IPR\Tools\Tests\IPRArchivalDtabase\IPRArchivalDtabase.sqlproj", "{7548155D-B262-4CA2-9C9B-D7090F8D3D57}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IPRArchivinglDtabase", "IPR\Tools\Tests\IPRArchivalDtabase\IPRArchivinglDtabase.sqlproj", "{7548155D-B262-4CA2-9C9B-D7090F8D3D57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
