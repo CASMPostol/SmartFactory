@@ -35,6 +35,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void InsertArchivingLogs(ArchivingLogs instance);
     partial void UpdateArchivingLogs(ArchivingLogs instance);
     partial void DeleteArchivingLogs(ArchivingLogs instance);
+    partial void InsertArchivingOperationLogs(ArchivingOperationLogs instance);
+    partial void UpdateArchivingOperationLogs(ArchivingOperationLogs instance);
+    partial void DeleteArchivingOperationLogs(ArchivingOperationLogs instance);
     partial void InsertBalanceBatch(BalanceBatch instance);
     partial void UpdateBalanceBatch(BalanceBatch instance);
     partial void DeleteBalanceBatch(BalanceBatch instance);
@@ -185,6 +188,14 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			get
 			{
 				return this.GetTable<ArchivingLogs>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ArchivingOperationLogs> ArchivingOperationLogs
+		{
+			get
+			{
+				return this.GetTable<ArchivingOperationLogs>();
 			}
 		}
 		
@@ -712,6 +723,140 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ItemID = value;
 					this.SendPropertyChanged("ItemID");
 					this.OnItemIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ArchivingOperationLogs")]
+	public partial class ArchivingOperationLogs : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Operation;
+		
+		private System.DateTime _Date;
+		
+		private string _UserName;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnOperationChanging(string value);
+    partial void OnOperationChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    #endregion
+		
+		public ArchivingOperationLogs()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Operation", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Operation
+		{
+			get
+			{
+				return this._Operation;
+			}
+			set
+			{
+				if ((this._Operation != value))
+				{
+					this.OnOperationChanging(value);
+					this.SendPropertyChanging();
+					this._Operation = value;
+					this.SendPropertyChanged("Operation");
+					this.OnOperationChanged();
 				}
 			}
 		}
@@ -11410,13 +11555,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private System.DateTime _Created;
+		private System.Nullable<System.DateTime> _Created;
 		
 		private string _CreatedBy;
 		
 		private int _ID;
 		
-		private System.DateTime _Modified;
+		private System.Nullable<System.DateTime> _Modified;
 		
 		private string _ModifiedBy;
 		
@@ -11428,13 +11573,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnCreatedChanging(System.DateTime value);
+    partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
     partial void OnCreatedByChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
-    partial void OnModifiedChanging(System.DateTime value);
+    partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
@@ -11448,8 +11593,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
-		public System.DateTime Created
+		[Column(Storage="_Created", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Created
 		{
 			get
 			{
@@ -11468,7 +11613,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
 		public string CreatedBy
 		{
 			get
@@ -11508,8 +11653,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Modified", DbType="DateTime NOT NULL")]
-		public System.DateTime Modified
+		[Column(Storage="_Modified", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Modified
 		{
 			get
 			{
@@ -11528,7 +11673,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
 		public string ModifiedBy
 		{
 			get
@@ -11548,7 +11693,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(255)")]
 		public string Title
 		{
 			get

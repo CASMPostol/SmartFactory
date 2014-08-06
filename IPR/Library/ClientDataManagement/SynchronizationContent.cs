@@ -60,7 +60,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         Synchronize(_sqledc.SADDocumentLibrary, _spedc.SADDocumentLibrary, progressChanged, Linq.SADDocumentLib.GetMappings());
         Synchronize(_sqledc.SADDocument, _spedc.SADDocument, progressChanged, Linq.SADDocumentType.GetMappings());
         Synchronize(_sqledc.SADGood, _spedc.SADGood, progressChanged, Linq.SADGood.GetMappings());
-        //SADConsignment();
+        Synchronize(_sqledc.SADConsignment, _spedc.SADConsignment, progressChanged, Linq.SADConsignment.GetMappings());
         //Clearence();
         //Consent();
         //PCNCode();

@@ -190,10 +190,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Tables\ActivitiesLogs.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <Build Include="dbo\Tables\JSOXLibrary.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
@@ -258,5 +254,10 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
+    <Build Include="dbo\Tables\ActivitiesLogs.sql" />
+    <Build Include="dbo\Tables\ArchivingOperationLogs.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="IPRArchivinglDtabase.dbmdl" />
   </ItemGroup>
 </Project>
