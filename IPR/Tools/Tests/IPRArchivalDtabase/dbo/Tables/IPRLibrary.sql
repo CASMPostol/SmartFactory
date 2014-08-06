@@ -1,11 +1,11 @@
 ﻿CREATE TABLE [dbo].[IPRLibrary] (
-    [Created]    DATETIME       NOT NULL,
-    [CreatedBy]  NVARCHAR (255) NOT NULL,
-    [DocumentNo] NVARCHAR (255) NOT NULL,
-    [ID]         INT            NOT NULL,
-    [Modified]   DATETIME       NOT NULL,
-    [ModifiedBy] NVARCHAR (255) NOT NULL,
-    [Title]      NVARCHAR (255) NOT NULL,
+    [Created]                DATETIME        NULL,
+    [CreatedBy]              NVARCHAR(255)   NULL,
+    [DocumentNo]             NVARCHAR(255)   NULL,
+    [ID]                     INT             NOT NULL,
+    [Modified]               DATETIME        NULL,
+    [ModifiedBy]             NVARCHAR(255)   NULL,
+    [Title]                  NVARCHAR(255)   NULL,
     CONSTRAINT [PK_IPRLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

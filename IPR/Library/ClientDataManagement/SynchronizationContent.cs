@@ -61,23 +61,24 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         Synchronize(_sqledc.SADDocument, _spedc.SADDocument, progressChanged, Linq.SADDocumentType.GetMappings());
         Synchronize(_sqledc.SADGood, _spedc.SADGood, progressChanged, Linq.SADGood.GetMappings());
         Synchronize(_sqledc.SADConsignment, _spedc.SADConsignment, progressChanged, Linq.SADConsignment.GetMappings());
-        //Clearence();
-        //Consent();
-        //PCNCode();
-        //IPRLibrary();
-        //IPR();
-        //BalanceIPR();
-        //BatchLibrary();
-        //SPFormat();
-        //SKULibrary();
-        //SKU();
-        //Batch();
-        //CustomsUnion();
-        //CutfillerCoefficient();
-        //InvoiceLibrary();
-        //InvoiceContent();
-        //Material();
-        //JSOXCustomsSummary();
+        Synchronize(_sqledc.Clearence, _spedc.Clearence, progressChanged, Linq.Clearence.GetMappings());
+        Synchronize(_sqledc.Consent, _spedc.Consent, progressChanged, Linq.Consent.GetMappings());
+        Synchronize(_sqledc.PCNCode, _spedc.PCNCode, progressChanged, Linq.PCNCode.GetMappings());
+        Synchronize(_sqledc.IPRLibrary, _spedc.IPRLibrary, progressChanged, Linq.IPRLib.GetMappings());
+        Synchronize(_sqledc.IPR, _spedc.IPR, progressChanged, Linq.IPR.GetMappings());
+        Synchronize(_sqledc.BalanceIPR, _spedc.BalanceIPR, progressChanged, Linq.BalanceIPR.GetMappings());
+        Synchronize(_sqledc.BatchLibrary, _spedc.BatchLibrary, progressChanged, Linq.BatchLib.GetMappings());
+        Synchronize(_sqledc.SPFormat, _spedc.Format, progressChanged, Linq.Format.GetMappings());
+        Synchronize(_sqledc.SKULibrary, _spedc.SKULibrary, progressChanged, Linq.Document.GetMappings());
+        Synchronize(_sqledc.SKU, _spedc.SKU, progressChanged, Linq.SKUCommonPart.GetMappings());
+        Synchronize(_sqledc.Batch, _spedc.Batch, progressChanged, Linq.Batch.GetMappings());
+        Synchronize(_sqledc.CustomsUnion, _spedc.CustomsUnion, progressChanged, Linq.CustomsUnion.GetMappings());
+        Synchronize(_sqledc.CutfillerCoefficient, _spedc.CutfillerCoefficient, progressChanged, Linq.CutfillerCoefficient.GetMappings());
+        Synchronize(_sqledc.InvoiceLibrary, _spedc.InvoiceLibrary, progressChanged, Linq.InvoiceLib.GetMappings());
+        Synchronize(_sqledc.InvoiceContent, _spedc.InvoiceContent, progressChanged, Linq.InvoiceContent.GetMappings());
+        Synchronize(_sqledc.Material, _spedc.Material, progressChanged, Linq.Material.GetMappings());
+        Synchronize(_sqledc.JSOXCustomsSummary, _spedc.JSOXCustomsSummary, progressChanged, Linq.JSOXCustomsSummary.GetMappings());
+        Synchronize(_sqledc.Disposal, _spedc.Disposal, progressChanged, Linq.Disposal.GetMappings());
         //Disposal();
         //Dust();
         //SADDuties();
@@ -101,13 +102,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
 
     private static void UpdateActivitiesLogs(IPRDEV sqlEntities, Action<object, ProgressChangedEventArgs> progressChanged)
     {
-      Linq2SQL.ActivitiesLogs _logs = new ActivitiesLogs()
+      Linq2SQL.ArchivingOperationLogs _logs = new ArchivingOperationLogs()
       {
         Date = DateTime.Now,
         Operation = Linq2SQL.ActivitiesLogs.SynchronizationOperationName,
         UserName = String.Format(Properties.Resources.ActivitiesLogsUserNamePattern, Environment.UserName, Environment.MachineName)
       };
-      sqlEntities.ActivitiesLogs.InsertOnSubmit(_logs);
+      sqlEntities.ArchivingOperationLogs.InsertOnSubmit(_logs);
       sqlEntities.SubmitChanges();
       progressChanged(1, new ProgressChangedEventArgs(1, "Updated ActivitiesLogs"));
     }
@@ -148,8 +149,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       foreach (SharePoint.Client.Linq2SP.StorageItem _si in _spDscrpt.Where<SharePoint.Client.Linq2SP.StorageItem>(x => x.IsNotReverseLookup()))
         if (_sqlDscrpt.ContainsKey(_si.PropertyName))
           _si.GetValueFromEntity(splItem, x => _sqlDscrpt[_si.PropertyName].Assign(x, sqlItem));
-        else
-          progressChanged(_si, new ProgressChangedEventArgs(1, String.Format("Cannot find the {0} argument in the SQL entity {1}.", _si.PropertyName, typeof(TSP).Name)));
+        //else
+        //  progressChanged(_si, new ProgressChangedEventArgs(1, String.Format("Cannot find the {0} argument in the SQL entity {1}.", _si.PropertyName, typeof(TSP).Name)));
     }
     private static IPRDEV Connect2SQL(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
     {
