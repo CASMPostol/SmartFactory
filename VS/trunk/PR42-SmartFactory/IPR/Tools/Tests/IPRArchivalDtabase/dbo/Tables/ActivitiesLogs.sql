@@ -5,4 +5,3 @@
     [UserName]  NVARCHAR (255) NOT NULL,
     CONSTRAINT [PK_ActivitiesLogs_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
-
