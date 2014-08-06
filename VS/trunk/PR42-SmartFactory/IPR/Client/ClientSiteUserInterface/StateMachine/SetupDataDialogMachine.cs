@@ -75,7 +75,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       System.Data.IDbConnection _connection = new SqlConnection(_connectionString);
       IPRDEV _entities = new IPRDEV(_connection);
       if (_entities.DatabaseExists())
-        ReportProgress(this, new ProgressChangedEventArgs(1, "The specified database can be opened."));
+        ReportProgress(this, new ProgressChangedEventArgs(1, "The specified database exists."));
       else
         ReportProgress(this, new ProgressChangedEventArgs(1, "The specified database cannot be opened."));
       WorkerReturnData m_WorkerReturnData = new WorkerReturnData();
@@ -86,7 +86,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     private static void GetLastOperation(IPRDEV _entities, string operationName, ref string RunBy, ref string RunDate)
     {
-      ActivitiesLogs _recentActions = _entities.ActivitiesLogs.Where<ActivitiesLogs>(x => x.Operation.Contains(operationName)).OrderByDescending<ActivitiesLogs, DateTime>(x => x.Date).FirstOrDefault();
+      ArchivingOperationLogs _recentActions = _entities.ArchivingOperationLogs.Where<ArchivingOperationLogs>(x => x.Operation.Contains(operationName)).OrderByDescending<ArchivingOperationLogs, DateTime>(x => x.Date).FirstOrDefault();
       if (_recentActions != null)
       {
         RunBy = _recentActions.UserName;
