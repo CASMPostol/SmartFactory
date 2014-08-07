@@ -2391,7 +2391,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<InvoiceContent> _disposal2InvoiceContentIndex;
 		
-		private System.Nullable<int> _authorId;
+    //private System.Nullable<int> _authorId;
 		
     //private string _author;
 		
@@ -2769,19 +2769,19 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Author", Storage="_authorId", ReadOnly=true, FieldType="User", IsLookupId=true)]
-		public System.Nullable<int> AuthorId {
-			get {
-				return this._authorId;
-			}
-			set {
-				if ((value != this._authorId)) {
-					this.OnPropertyChanging("AuthorId", this._authorId);
-					this._authorId = value;
-					this.OnPropertyChanged("AuthorId");
-				}
-			}
-		}
+    //[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Author", Storage="_authorId", ReadOnly=true, FieldType="User", IsLookupId=true)]
+    //public System.Nullable<int> AuthorId {
+    //  get {
+    //    return this._authorId;
+    //  }
+    //  set {
+    //    if ((value != this._authorId)) {
+    //      this.OnPropertyChanging("AuthorId", this._authorId);
+    //      this._authorId = value;
+    //      this.OnPropertyChanged("AuthorId");
+    //    }
+    //  }
+    //}
 		
     //[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Author", Storage="_author", ReadOnly=true, FieldType="User", IsLookupValue=true)]
     //public string Author {
