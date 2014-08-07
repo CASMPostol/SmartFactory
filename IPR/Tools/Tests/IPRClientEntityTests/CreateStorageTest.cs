@@ -16,29 +16,46 @@ namespace CAS.SmartFactory.IPR.Client.DataManagementCAS.SmartFactory.IPR.Client.
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethod]
     public void CreateStorageDescription4SP()
     {
-      List<Linq2SP.StorageItem> _storageList = new List<Linq2SP.StorageItem>();
-      Linq2SP.StorageItem.CreateStorageDescription(typeof(ClinetLinqSP.Disposal), _storageList);
+      TestToDictionary<ClinetLinqSP.Disposal>(32);
+      TestToDictionary<ClinetLinqSP.Dust>(9);
+      TestToDictionary<ClinetLinqSP.SADDuties>(11);
+    }
+
+    private static void TestToDictionary<TEntity>(int expectedCount)
+    {
+      List<Linq2SP.StorageItem> _storageList = Linq2SP.StorageItem.CreateStorageDescription(typeof(TEntity));
       Dictionary<string, Linq2SP.StorageItem> _storageDictionary = _storageList.ToDictionary<Linq2SP.StorageItem, string>(si => si.Description.Name);
-      Assert.AreEqual(32, _storageDictionary.Count);
+      Assert.AreEqual(expectedCount, _storageDictionary.Count);
       _storageDictionary = _storageList.ToDictionary<Linq2SP.StorageItem, string>(si => si.PropertyName);
-      Assert.AreEqual(32, _storageDictionary.Count);
+      Assert.AreEqual(expectedCount, _storageDictionary.Count);
     }
 
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethod]
     public void CompareStorageContent()
     {
+      ComareSelectedStoragesContent<ClinetLinqSP.Disposal, ClinetLinqSQL.Disposal>();
+      ComareSelectedStoragesContent<ClinetLinqSP.Dust, ClinetLinqSQL.Dust>();
+      ComareSelectedStoragesContent<ClinetLinqSP.SADDuties, ClinetLinqSQL.SADDuties>();
+    }
+
+    private static void ComareSelectedStoragesContent<TSP, TSQL>()
+    {
       //Get SP stage info
-      List<Linq2SP.StorageItem> _storageListSP = new List<Linq2SP.StorageItem>();
-      Linq2SP.StorageItem.CreateStorageDescription(typeof(ClinetLinqSP.Disposal), _storageListSP);
+      List<Linq2SP.StorageItem> _storageListSP = Linq2SP.StorageItem.CreateStorageDescription(typeof(TSP));
       Dictionary<string, Linq2SP.StorageItem> _storageSPDictionary = _storageListSP.ToDictionary<Linq2SP.StorageItem, string>(si => si.PropertyName);
       //Get SQL stage info
-      Dictionary<string, Linq2SQL.SQLStorageItem> _storageListSQL = new Dictionary<string, Linq2SQL.SQLStorageItem>();
-      Linq2SQL.SQLStorageItem.FillUpStorageInfoDictionary(typeof(ClinetLinqSQL.Disposal), ClinetLinqSP.Disposal.GetMappings(), _storageListSQL);
-      Assert.AreEqual<int>(_storageSPDictionary.Count, _storageListSQL.Count, "Tables must be equal, if not loss of data may occur");
-      foreach (string _sqlItem in _storageListSQL.Keys)
+      Dictionary<string, Linq2SQL.SQLStorageItem> _storageListSQLDictionary = new Dictionary<string, Linq2SQL.SQLStorageItem>();
+      Linq2SQL.SQLStorageItem.FillUpStorageInfoDictionary(typeof(TSQL), ClinetLinqSP.Disposal.GetMappings(), _storageListSQLDictionary);
+      //Assert.AreEqual<int>(_storageSPDictionary.Count, _storageListSQL.Count, String.Format("Storage length of {0} must be equal, if not loss of data may occur", typeof(TSP).Name));
+      foreach (string _item in _storageListSQLDictionary.Keys)
       {
-        if (!_storageSPDictionary.ContainsKey(_sqlItem))
-          Assert.Fail(String.Format("Storage SP does not contain property {0}", _sqlItem));
+        if (!_storageSPDictionary.ContainsKey(_item))
+          Assert.Fail(String.Format("Storage SP of {1} does not contain property {0}", _item, typeof(TSP).Name));
+      }
+      foreach (string _item in _storageSPDictionary.Keys)
+      {
+        if (!_storageListSQLDictionary.ContainsKey(_item))
+          Assert.Fail(String.Format("Storage SQL of {1} does not contain property {0}", _item, typeof(TSP).Name));
       }
     }
   }

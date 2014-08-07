@@ -77,11 +77,10 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         Synchronize(_sqledc.InvoiceLibrary, _spedc.InvoiceLibrary, progressChanged, Linq.InvoiceLib.GetMappings());
         Synchronize(_sqledc.InvoiceContent, _spedc.InvoiceContent, progressChanged, Linq.InvoiceContent.GetMappings());
         Synchronize(_sqledc.Material, _spedc.Material, progressChanged, Linq.Material.GetMappings());
-        Synchronize(_sqledc.JSOXCustomsSummary, _spedc.JSOXCustomsSummary, progressChanged, Linq.JSOXCustomsSummary.GetMappings());
-        Synchronize(_sqledc.Disposal, _spedc.Disposal, progressChanged, Linq.Disposal.GetMappings());
-        //Disposal();
-        //Dust();
-        //SADDuties();
+        //Synchronize(_sqledc.JSOXCustomsSummary, _spedc.JSOXCustomsSummary, progressChanged, Linq.JSOXCustomsSummary.GetMappings());
+        //Synchronize(_sqledc.Disposal, _spedc.Disposal, progressChanged, Linq.Disposal.GetMappings());
+        Synchronize(_sqledc.Dust, _spedc.Dust, progressChanged, Linq.Dust.GetMappings());
+        Synchronize(_sqledc.SADDuties, _spedc.SADDuties, progressChanged, Linq.SADDuties.GetMappings());
         //SADPackage();
         //SADQuantity();
         //SADRequiredDocuments();
@@ -122,8 +121,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       Dictionary<int, SharePoint.Client.Link2SQL.IItem> _dictinary = table.ToDictionary<TSQL, int, SharePoint.Client.Link2SQL.IItem>(x => x.ID, y => (SharePoint.Client.Link2SQL.IItem)y);
       SharePoint.Client.Link2SQL.RepositoryDataSet.Repository.Add(entityList.Name, _dictinary);
       progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Synchronization {0} elements in the SharePoint source tables with the {1} element in the SQL table.", _scrList.Count, _dictinary.Count)));
-      List<SharePoint.Client.Linq2SP.StorageItem> _spDscrpt = new List<SharePoint.Client.Linq2SP.StorageItem>();
-      SharePoint.Client.Linq2SP.StorageItem.CreateStorageDescription(typeof(TSP), _spDscrpt);
+      List<SharePoint.Client.Linq2SP.StorageItem> _spDscrpt = SharePoint.Client.Linq2SP.StorageItem.CreateStorageDescription(typeof(TSP));
       Dictionary<string, SharePoint.Client.Link2SQL.SQLStorageItem> _sqlDscrpt = new Dictionary<string, SharePoint.Client.Link2SQL.SQLStorageItem>();
       SharePoint.Client.Link2SQL.SQLStorageItem.FillUpStorageInfoDictionary(typeof(TSQL), mapping, _sqlDscrpt);
       foreach (TSP _spItem in _scrList)
@@ -149,8 +147,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       foreach (SharePoint.Client.Linq2SP.StorageItem _si in _spDscrpt.Where<SharePoint.Client.Linq2SP.StorageItem>(x => x.IsNotReverseLookup()))
         if (_sqlDscrpt.ContainsKey(_si.PropertyName))
           _si.GetValueFromEntity(splItem, x => _sqlDscrpt[_si.PropertyName].Assign(x, sqlItem));
-        //else
-        //  progressChanged(_si, new ProgressChangedEventArgs(1, String.Format("Cannot find the {0} argument in the SQL entity {1}.", _si.PropertyName, typeof(TSP).Name)));
+      //else
+      //  progressChanged(_si, new ProgressChangedEventArgs(1, String.Format("Cannot find the {0} argument in the SQL entity {1}.", _si.PropertyName, typeof(TSP).Name)));
     }
     private static IPRDEV Connect2SQL(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
     {
