@@ -21,6 +21,7 @@
     [JSOXReportID]           FLOAT           NULL,
     [Modified]               DATETIME        NULL,
     [ModifiedBy]             NVARCHAR(255)   NULL,
+    [owshiddenversion]       INT             NULL,
     [RemainingQuantity]      FLOAT           NULL,
     [SadConsignmentNo]       NVARCHAR(255)   NULL,
     [SADDate]                DATETIME        NULL,

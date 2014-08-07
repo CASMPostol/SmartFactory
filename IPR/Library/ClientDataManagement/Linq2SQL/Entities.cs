@@ -5820,6 +5820,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ModifiedBy;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private System.Nullable<double> _RemainingQuantity;
 		
 		private string _SadConsignmentNo;
@@ -5900,6 +5902,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnRemainingQuantityChanging(System.Nullable<double> value);
     partial void OnRemainingQuantityChanged();
     partial void OnSadConsignmentNoChanging(string value);
@@ -6396,6 +6400,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
+				}
+			}
+		}
+		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
