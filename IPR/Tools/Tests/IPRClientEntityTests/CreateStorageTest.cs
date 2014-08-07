@@ -17,8 +17,20 @@ namespace CAS.SmartFactory.IPR.Client.DataManagementCAS.SmartFactory.IPR.Client.
     public void CreateStorageDescription4SP()
     {
       TestToDictionary<ClinetLinqSP.Disposal>(32);
-      TestToDictionary<ClinetLinqSP.Dust>(9);
+      TestToDictionary<ClinetLinqSP.Dust>(8);
       TestToDictionary<ClinetLinqSP.SADDuties>(11);
+      TestToDictionary<ClinetLinqSP.SADPackage>(11);
+      TestToDictionary<ClinetLinqSP.SADQuantity>(12);
+    }
+
+    [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethod]
+    public void CompareStorageContent()
+    {
+      ComareSelectedStoragesContent<ClinetLinqSP.Disposal, ClinetLinqSQL.Disposal>();
+      ComareSelectedStoragesContent<ClinetLinqSP.Dust, ClinetLinqSQL.Dust>();
+      ComareSelectedStoragesContent<ClinetLinqSP.SADDuties, ClinetLinqSQL.SADDuties>();
+      ComareSelectedStoragesContent<ClinetLinqSP.SADPackage, ClinetLinqSQL.SADDuties>();
+      ComareSelectedStoragesContent<ClinetLinqSP.SADQuantity, ClinetLinqSQL.SADDuties>();
     }
 
     private static void TestToDictionary<TEntity>(int expectedCount)
@@ -29,15 +41,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagementCAS.SmartFactory.IPR.Client.
       _storageDictionary = _storageList.ToDictionary<Linq2SP.StorageItem, string>(si => si.PropertyName);
       Assert.AreEqual(expectedCount, _storageDictionary.Count);
     }
-
-    [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethod]
-    public void CompareStorageContent()
-    {
-      ComareSelectedStoragesContent<ClinetLinqSP.Disposal, ClinetLinqSQL.Disposal>();
-      ComareSelectedStoragesContent<ClinetLinqSP.Dust, ClinetLinqSQL.Dust>();
-      ComareSelectedStoragesContent<ClinetLinqSP.SADDuties, ClinetLinqSQL.SADDuties>();
-    }
-
     private static void ComareSelectedStoragesContent<TSP, TSQL>()
     {
       //Get SP stage info
