@@ -6869,17 +6869,19 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private System.DateTime _Created;
+		private System.Nullable<System.DateTime> _Created;
 		
 		private string _CreatedBy;
 		
-		private double _DustRatio;
+		private System.Nullable<double> _DustRatio;
 		
 		private int _ID;
 		
-		private System.DateTime _Modified;
+		private System.Nullable<System.DateTime> _Modified;
 		
 		private string _ModifiedBy;
+		
+		private System.Nullable<int> _Owshiddenversion;
 		
 		private string _ProductType;
 		
@@ -6887,18 +6889,20 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnCreatedChanging(System.DateTime value);
+    partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
     partial void OnCreatedByChanged();
-    partial void OnDustRatioChanging(double value);
+    partial void OnDustRatioChanging(System.Nullable<double> value);
     partial void OnDustRatioChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
-    partial void OnModifiedChanging(System.DateTime value);
+    partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnProductTypeChanging(string value);
     partial void OnProductTypeChanged();
     #endregion
@@ -6908,8 +6912,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
-		public System.DateTime Created
+		[Column(Storage="_Created", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Created
 		{
 			get
 			{
@@ -6928,7 +6932,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
 		public string CreatedBy
 		{
 			get
@@ -6948,8 +6952,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_DustRatio", DbType="Float NOT NULL")]
-		public double DustRatio
+		[Column(Storage="_DustRatio", DbType="Float")]
+		public System.Nullable<double> DustRatio
 		{
 			get
 			{
@@ -6988,8 +6992,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Modified", DbType="DateTime NOT NULL")]
-		public System.DateTime Modified
+		[Column(Storage="_Modified", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Modified
 		{
 			get
 			{
@@ -7008,7 +7012,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
 		public string ModifiedBy
 		{
 			get
@@ -7028,7 +7032,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ProductType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ProductType", DbType="NVarChar(255)")]
 		public string ProductType
 		{
 			get
@@ -12754,9 +12778,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private double _Amount;
+		private System.Nullable<double> _Amount;
 		
-		private System.DateTime _Created;
+		private System.Nullable<bool> _Archival;
+		
+		private System.Nullable<System.DateTime> _Created;
 		
 		private string _CreatedBy;
 		
@@ -12764,11 +12790,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private int _ID;
 		
-		private System.DateTime _Modified;
+		private System.Nullable<System.DateTime> _Modified;
 		
 		private string _ModifiedBy;
 		
-		private int _SADDuties2SADGoodID;
+		private System.Nullable<int> _Owshiddenversion;
+		
+		private System.Nullable<int> _SADDuties2SADGoodID;
 		
 		private string _Title;
 		
@@ -12778,9 +12806,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnAmountChanging(double value);
+    partial void OnAmountChanging(System.Nullable<double> value);
     partial void OnAmountChanged();
-    partial void OnCreatedChanging(System.DateTime value);
+    partial void OnArchivalChanging(System.Nullable<bool> value);
+    partial void OnArchivalChanged();
+    partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
     partial void OnCreatedByChanged();
@@ -12788,11 +12818,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnDutyTypeChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
-    partial void OnModifiedChanging(System.DateTime value);
+    partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
-    partial void OnSADDuties2SADGoodIDChanging(int value);
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
+    partial void OnSADDuties2SADGoodIDChanging(System.Nullable<int> value);
     partial void OnSADDuties2SADGoodIDChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
@@ -12804,8 +12836,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_Amount", DbType="Float NOT NULL")]
-		public double Amount
+		[Column(Storage="_Amount", DbType="Float")]
+		public System.Nullable<double> Amount
 		{
 			get
 			{
@@ -12824,8 +12856,28 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
-		public System.DateTime Created
+		[Column(Storage="_Archival", DbType="Bit")]
+		public System.Nullable<bool> Archival
+		{
+			get
+			{
+				return this._Archival;
+			}
+			set
+			{
+				if ((this._Archival != value))
+				{
+					this.OnArchivalChanging(value);
+					this.SendPropertyChanging();
+					this._Archival = value;
+					this.SendPropertyChanged("Archival");
+					this.OnArchivalChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Created", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Created
 		{
 			get
 			{
@@ -12844,7 +12896,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
 		public string CreatedBy
 		{
 			get
@@ -12864,7 +12916,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_DutyType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_DutyType", DbType="NVarChar(255)")]
 		public string DutyType
 		{
 			get
@@ -12904,8 +12956,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Modified", DbType="DateTime NOT NULL")]
-		public System.DateTime Modified
+		[Column(Storage="_Modified", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Modified
 		{
 			get
 			{
@@ -12924,7 +12976,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
 		public string ModifiedBy
 		{
 			get
@@ -12944,8 +12996,28 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SADDuties2SADGoodID", DbType="Int NOT NULL")]
-		public int SADDuties2SADGoodID
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SADDuties2SADGoodID", DbType="Int")]
+		public System.Nullable<int> SADDuties2SADGoodID
 		{
 			get
 			{
@@ -13015,7 +13087,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					}
 					else
 					{
-						this._SADDuties2SADGoodID = default(int);
+						this._SADDuties2SADGoodID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("SADGood");
 				}
