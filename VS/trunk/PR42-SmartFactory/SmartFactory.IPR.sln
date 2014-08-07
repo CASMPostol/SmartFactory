@@ -70,6 +70,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointClient", "..\PR44
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IPRArchivinglDtabase", "IPR\Tools\Tests\IPRArchivalDtabase\IPRArchivinglDtabase.sqlproj", "{7548155D-B262-4CA2-9C9B-D7090F8D3D57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPRClientEntityTests", "IPR\Tools\Tests\IPRClientEntityTests\IPRClientEntityTests.csproj", "{62283B68-6A61-4502-B64B-4FF4B1BEB980}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -895,6 +897,36 @@ Global
 		{7548155D-B262-4CA2-9C9B-D7090F8D3D57}.SingleImage|Mixed Platforms.Deploy.0 = Debug|Any CPU
 		{7548155D-B262-4CA2-9C9B-D7090F8D3D57}.SingleImage|x64.ActiveCfg = Debug|Any CPU
 		{7548155D-B262-4CA2-9C9B-D7090F8D3D57}.SingleImage|x86.ActiveCfg = Debug|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.CD_ROM|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.CD_ROM|Mixed Platforms.Build.0 = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.CD_ROM|x64.ActiveCfg = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.CD_ROM|x86.ActiveCfg = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.DVD-5|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.DVD-5|Mixed Platforms.Build.0 = Debug|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.DVD-5|x64.ActiveCfg = Debug|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.DVD-5|x86.ActiveCfg = Debug|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.Release|x64.ActiveCfg = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.Release|x86.ActiveCfg = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.SingleImage|x64.ActiveCfg = Release|Any CPU
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.SingleImage|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -925,6 +957,7 @@ Global
 		{7FF92139-EA5D-469D-AA7C-A309B2E2FA29} = {400C9656-249A-429A-BBB0-E0B98AD7AFCC}
 		{70DD8ABC-B012-427A-8163-64E63304BD42} = {5A5E5E66-F5CE-496B-B9F2-C3A0B16E8F2B}
 		{7548155D-B262-4CA2-9C9B-D7090F8D3D57} = {5800D43D-6500-4C24-A7B5-D194DF615B55}
+		{62283B68-6A61-4502-B64B-4FF4B1BEB980} = {5800D43D-6500-4C24-A7B5-D194DF615B55}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = SmartFactory.vsmdi
