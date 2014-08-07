@@ -29,7 +29,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
       {
         {"CreatedBy", "Author"},
         {"ModifiedBy", "Editor"},
-        {"ID", "Id"}
+        {"ID", "Id"},
+        {"Owshiddenversion", "Version"}
       };
     }
     /// <summary>
