@@ -121,7 +121,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       Dictionary<int, SharePoint.Client.Link2SQL.IItem> _dictinary = table.ToDictionary<TSQL, int, SharePoint.Client.Link2SQL.IItem>(x => x.ID, y => (SharePoint.Client.Link2SQL.IItem)y);
       SharePoint.Client.Link2SQL.RepositoryDataSet.Repository.Add(entityList.Name, _dictinary);
       progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Synchronization {0} elements in the SharePoint source tables with the {1} element in the SQL table.", _scrList.Count, _dictinary.Count)));
-      List<SharePoint.Client.Linq2SP.StorageItem> _spDscrpt = SharePoint.Client.Linq2SP.StorageItem.CreateStorageDescription(typeof(TSP));
+      List<SharePoint.Client.Linq2SP.StorageItem> _spDscrpt = SharePoint.Client.Linq2SP.StorageItem.CreateStorageDescription(typeof(TSP), false);
       Dictionary<string, SharePoint.Client.Link2SQL.SQLStorageItem> _sqlDscrpt = new Dictionary<string, SharePoint.Client.Link2SQL.SQLStorageItem>();
       SharePoint.Client.Link2SQL.SQLStorageItem.FillUpStorageInfoDictionary(typeof(TSQL), mapping, _sqlDscrpt);
       foreach (TSP _spItem in _scrList)

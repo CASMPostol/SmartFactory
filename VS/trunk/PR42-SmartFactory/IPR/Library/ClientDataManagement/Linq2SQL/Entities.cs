@@ -928,6 +928,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private System.Nullable<bool> _Archival;
+		
 		private System.Nullable<double> _Balance;
 		
 		private System.Nullable<int> _Balance2JSOXLibraryIndex;
@@ -955,6 +957,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.Nullable<double> _OveruseCSNotStarted;
 		
 		private System.Nullable<double> _OveruseCSStarted;
+		
+		private System.Nullable<int> _Owshiddenversion;
 		
 		private System.Nullable<double> _PureTobaccoCSNotStarted;
 		
@@ -1006,6 +1010,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnArchivalChanging(System.Nullable<bool> value);
+    partial void OnArchivalChanged();
     partial void OnBalanceChanging(System.Nullable<double> value);
     partial void OnBalanceChanged();
     partial void OnBalance2JSOXLibraryIndexChanging(System.Nullable<int> value);
@@ -1034,6 +1040,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnOveruseCSNotStartedChanged();
     partial void OnOveruseCSStartedChanging(System.Nullable<double> value);
     partial void OnOveruseCSStartedChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnPureTobaccoCSNotStartedChanging(System.Nullable<double> value);
     partial void OnPureTobaccoCSNotStartedChanged();
     partial void OnPureTobaccoCSStartedChanging(System.Nullable<double> value);
@@ -1083,6 +1091,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			this._JSOXLibrary = default(EntityRef<JSOXLibrary>);
 			this._BalanceIPR = new EntitySet<BalanceIPR>(new Action<BalanceIPR>(this.attach_BalanceIPR), new Action<BalanceIPR>(this.detach_BalanceIPR));
 			OnCreated();
+		}
+		
+		[Column(Storage="_Archival", DbType="Bit")]
+		public System.Nullable<bool> Archival
+		{
+			get
+			{
+				return this._Archival;
+			}
+			set
+			{
+				if ((this._Archival != value))
+				{
+					this.OnArchivalChanging(value);
+					this.SendPropertyChanging();
+					this._Archival = value;
+					this.SendPropertyChanged("Archival");
+					this.OnArchivalChanged();
+				}
+			}
 		}
 		
 		[Column(Storage="_Balance", DbType="Float")]
@@ -1365,6 +1393,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._OveruseCSStarted = value;
 					this.SendPropertyChanged("OveruseCSStarted");
 					this.OnOveruseCSStartedChanged();
+				}
+			}
+		}
+		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -1915,6 +1963,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<double> _OveruseCSStarted;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private System.Nullable<double> _PureTobaccoCSNotStarted;
 		
 		private System.Nullable<double> _PureTobaccoCSStarted;
@@ -1999,6 +2049,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnOveruseCSNotStartedChanged();
     partial void OnOveruseCSStartedChanging(System.Nullable<double> value);
     partial void OnOveruseCSStartedChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnPureTobaccoCSNotStartedChanging(System.Nullable<double> value);
     partial void OnPureTobaccoCSNotStartedChanged();
     partial void OnPureTobaccoCSStartedChanging(System.Nullable<double> value);
@@ -2451,6 +2503,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._OveruseCSStarted = value;
 					this.SendPropertyChanged("OveruseCSStarted");
 					this.OnOveruseCSStartedChanged();
+				}
+			}
+		}
+		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -4154,6 +4226,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ModifiedBy;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private string _Title;
 		
 		private EntitySet<Batch> _Batch;
@@ -4176,6 +4250,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     #endregion
@@ -4326,6 +4402,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Title", DbType="NVarChar(255)")]
 		public string Title
 		{
@@ -4416,6 +4512,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ModifiedBy;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private string _ProcedureCode;
 		
 		private string _ReferenceNumber;
@@ -4458,6 +4556,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnProcedureCodeChanging(string value);
     partial void OnProcedureCodeChanged();
     partial void OnReferenceNumberChanging(string value);
@@ -4660,6 +4760,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
+				}
+			}
+		}
+		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -4954,6 +5074,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ModifiedBy;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private System.Nullable<double> _ProductivityRateMax;
 		
 		private System.Nullable<double> _ProductivityRateMin;
@@ -4986,6 +5108,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnProductivityRateMaxChanging(System.Nullable<double> value);
     partial void OnProductivityRateMaxChanged();
     partial void OnProductivityRateMinChanging(System.Nullable<double> value);
@@ -5160,6 +5284,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
+				}
+			}
+		}
+		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -8246,6 +8390,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _OGLValidTo;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private System.Nullable<double> _ProductivityRateMax;
 		
 		private System.Nullable<double> _ProductivityRateMin;
@@ -8348,6 +8494,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnNetMassChanged();
     partial void OnOGLValidToChanging(System.Nullable<System.DateTime> value);
     partial void OnOGLValidToChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnProductivityRateMaxChanging(System.Nullable<double> value);
     partial void OnProductivityRateMaxChanged();
     partial void OnProductivityRateMinChanging(System.Nullable<double> value);
@@ -9024,6 +9172,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_ProductivityRateMax", DbType="Float")]
 		public System.Nullable<double> ProductivityRateMax
 		{
@@ -9503,6 +9671,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ModifiedBy;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private string _Title;
 		
 		private EntitySet<IPR> _IPR;
@@ -9523,6 +9693,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     #endregion
@@ -9649,6 +9821,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
+				}
+			}
+		}
+		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -11523,6 +11715,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ModifiedBy;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private string _ProductCodeNumber;
 		
 		private string _Title;
@@ -11549,6 +11743,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnProductCodeNumberChanging(string value);
     partial void OnProductCodeNumberChanged();
     partial void OnTitleChanging(string value);
@@ -11702,6 +11898,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_ProductCodeNumber", DbType="NVarChar(255)")]
 		public string ProductCodeNumber
 		{
@@ -11819,6 +12035,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private System.Nullable<bool> _Archival;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
 		private string _CreatedBy;
@@ -11829,6 +12047,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ModifiedBy;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private string _Title;
 		
 		private EntitySet<Clearence> _Clearence;
@@ -11837,6 +12057,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnArchivalChanging(System.Nullable<bool> value);
+    partial void OnArchivalChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -11847,6 +12069,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     #endregion
@@ -11855,6 +12079,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		{
 			this._Clearence = new EntitySet<Clearence>(new Action<Clearence>(this.attach_Clearence), new Action<Clearence>(this.detach_Clearence));
 			OnCreated();
+		}
+		
+		[Column(Storage="_Archival", DbType="Bit")]
+		public System.Nullable<bool> Archival
+		{
+			get
+			{
+				return this._Archival;
+			}
+			set
+			{
+				if ((this._Archival != value))
+				{
+					this.OnArchivalChanging(value);
+					this.SendPropertyChanging();
+					this._Archival = value;
+					this.SendPropertyChanged("Archival");
+					this.OnArchivalChanged();
+				}
+			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime")]
@@ -11957,6 +12201,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Title", DbType="NVarChar(255)")]
 		public string Title
 		{
@@ -12053,6 +12317,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<double> _NetMass;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private string _ReferenceNumber;
 		
 		private System.Nullable<int> _SADDocumenLibrarytIndex;
@@ -12093,6 +12359,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedByChanged();
     partial void OnNetMassChanging(System.Nullable<double> value);
     partial void OnNetMassChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnReferenceNumberChanging(string value);
     partial void OnReferenceNumberChanged();
     partial void OnSADDocumenLibrarytIndexChanging(System.Nullable<int> value);
@@ -12350,6 +12618,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_ReferenceNumber", DbType="NVarChar(255)")]
 		public string ReferenceNumber
 		{
@@ -12520,6 +12808,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private System.Nullable<bool> _Archival;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
 		private string _CreatedBy;
@@ -12542,6 +12832,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnArchivalChanging(System.Nullable<bool> value);
+    partial void OnArchivalChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
@@ -12564,6 +12856,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		{
 			this._SADDocument = new EntitySet<SADDocument>(new Action<SADDocument>(this.attach_SADDocument), new Action<SADDocument>(this.detach_SADDocument));
 			OnCreated();
+		}
+		
+		[Column(Storage="_Archival", DbType="Bit")]
+		public System.Nullable<bool> Archival
+		{
+			get
+			{
+				return this._Archival;
+			}
+			set
+			{
+				if ((this._Archival != value))
+				{
+					this.OnArchivalChanging(value);
+					this.SendPropertyChanging();
+					this._Archival = value;
+					this.SendPropertyChanged("Archival");
+					this.OnArchivalChanged();
+				}
+			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime")]
@@ -13141,6 +13453,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<double> _NetMass;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private string _PCNTariffCode;
 		
 		private System.Nullable<int> _SADDocumentIndex;
@@ -13187,6 +13501,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedByChanged();
     partial void OnNetMassChanging(System.Nullable<double> value);
     partial void OnNetMassChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnPCNTariffCodeChanging(string value);
     partial void OnPCNTariffCodeChanged();
     partial void OnSADDocumentIndexChanging(System.Nullable<int> value);
@@ -13406,6 +13722,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._NetMass = value;
 					this.SendPropertyChanged("NetMass");
 					this.OnNetMassChanged();
+				}
+			}
+		}
+		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -16089,6 +16425,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ModifiedBy;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private string _Title;
 		
 		private EntitySet<SKU> _SKU;
@@ -16113,6 +16451,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     #endregion
@@ -16260,6 +16600,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
+				}
+			}
+		}
+		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
