@@ -10,6 +10,7 @@
     [IsExport]               BIT             NULL,
     [Modified]               DATETIME        NULL,
     [ModifiedBy]             NVARCHAR(255)   NULL,
+    [owshiddenversion]       INT             NULL,
     [Title]                  NVARCHAR(255)   NULL,
     CONSTRAINT [PK_InvoiceLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_InvoiceLibrary_Clearence] FOREIGN KEY ([ClearenceIndex]) REFERENCES [dbo].[Clearence] ([ID])

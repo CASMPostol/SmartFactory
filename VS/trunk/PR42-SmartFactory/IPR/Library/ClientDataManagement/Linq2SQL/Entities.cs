@@ -3054,6 +3054,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<double> _Overuse;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private string _ProductType;
 		
 		private System.Nullable<double> _SHCooeficiencyVersion;
@@ -3152,6 +3154,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedByChanged();
     partial void OnOveruseChanging(System.Nullable<double> value);
     partial void OnOveruseChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnProductTypeChanging(string value);
     partial void OnProductTypeChanged();
     partial void OnSHCooeficiencyVersionChanging(System.Nullable<double> value);
@@ -3769,6 +3773,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Overuse = value;
 					this.SendPropertyChanged("Overuse");
 					this.OnOveruseChanged();
+				}
+			}
+		}
+		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -5472,6 +5496,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ModifiedBy;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private string _Title;
 		
     #region Extensibility Method Definitions
@@ -5490,6 +5516,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     #endregion
@@ -5619,6 +5647,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
 		public string Title
 		{
@@ -5684,6 +5732,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ModifiedBy;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -5706,6 +5756,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     #endregion
 		
 		public CutfillerCoefficient()
@@ -5889,6 +5941,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
+				}
+			}
+		}
+		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -7955,6 +8027,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ModifiedBy;
 		
+		private System.Nullable<int> _Owshiddenversion;
+		
 		private string _Title;
 		
 		private EntitySet<InvoiceContent> _InvoiceContent;
@@ -7987,6 +8061,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     #endregion
@@ -8218,6 +8294,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ModifiedBy = value;
 					this.SendPropertyChanged("ModifiedBy");
 					this.OnModifiedByChanged();
+				}
+			}
+		}
+		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
