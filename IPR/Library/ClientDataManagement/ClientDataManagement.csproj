@@ -60,6 +60,7 @@
     <Compile Include="Linq2SQL\Entities.cs" />
     <Compile Include="Linq2SQL\EntitiesId.cs" />
     <Compile Include="Linq\Announcement.cs" />
+    <Compile Include="Linq\Batch.cs" />
     <Compile Include="Linq\Clearence.cs" />
     <Compile Include="Linq\Disposal.cs" />
     <Compile Include="Linq\Document.cs" />

@@ -23,6 +23,10 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
   /// </summary>
   public partial class Item
   {
+    /// <summary>
+    /// Gets the mappings the key is SQL property name, the value is SP property name.
+    /// </summary>
+    /// <returns></returns>
     internal static Dictionary<string, string> GetMappings()
     {
       return new Dictionary<string, string>() 

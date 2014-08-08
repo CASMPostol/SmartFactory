@@ -28,6 +28,7 @@
     [Modified]               DATETIME        NULL,
     [ModifiedBy]             NVARCHAR(255)   NULL,
     [Overuse]                FLOAT           NULL,
+    [owshiddenversion]       INT             NULL,
     [ProductType]            NVARCHAR(255)   NULL,
     [SHCooeficiencyVersion]  FLOAT           NULL,
     [SHMenthol]              FLOAT           NULL,
