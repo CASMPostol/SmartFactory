@@ -8,6 +8,7 @@
     [ID]                         INT            NOT NULL,
     [Modified]               DATETIME        NULL,
     [ModifiedBy]             NVARCHAR(255)   NULL,
+    [owshiddenversion]       INT             NULL,
     [ProcedureCode]          NVARCHAR(255)   NULL,
     [ReferenceNumber]        NVARCHAR(255)   NULL,
     [SADConsignmentLibraryIndex] INT             NULL,

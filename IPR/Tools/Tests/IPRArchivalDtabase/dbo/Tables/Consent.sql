@@ -7,6 +7,7 @@
     [IsIPR]                  BIT             NULL,
     [Modified]               DATETIME        NULL,
     [ModifiedBy]             NVARCHAR(255)   NULL,
+    [owshiddenversion]       INT             NULL,
     [ProductivityRateMax]    FLOAT           NULL,
     [ProductivityRateMin]    FLOAT           NULL,
     [Title]                  NVARCHAR(255)   NOT NULL,

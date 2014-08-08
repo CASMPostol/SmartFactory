@@ -1,4 +1,5 @@
 ﻿CREATE TABLE [dbo].[SADDocumentLibrary] (
+    [Archival]               BIT             NULL,
     [Created]                DATETIME        NULL,
     [CreatedBy]              NVARCHAR(255)   NULL,
     [ID]                         INT            NOT NULL,

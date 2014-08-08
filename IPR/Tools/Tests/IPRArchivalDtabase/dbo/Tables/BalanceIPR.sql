@@ -19,6 +19,7 @@
     [OGLIntroduction]        NVARCHAR(255)   NULL,
     [OveruseCSNotStarted]    FLOAT           NULL,
     [OveruseCSStarted]       FLOAT           NULL,
+    [owshiddenversion]       INT             NULL,
     [PureTobaccoCSNotStarted] FLOAT           NULL,
     [PureTobaccoCSStarted]   FLOAT           NULL,
     [SHMentholCSNotStarted]  FLOAT           NULL,

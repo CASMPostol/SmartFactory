@@ -9,6 +9,7 @@
     [Modified]               DATETIME        NULL,
     [ModifiedBy]             NVARCHAR(255)   NULL,
     [NetMass]                FLOAT           NULL,
+    [owshiddenversion]       INT             NULL,
     [PCNTariffCode]          NVARCHAR(255)   NULL,
     [SADDocumentIndex]       INT             NULL,
     [SPProcedure]            NVARCHAR(255)   NULL,

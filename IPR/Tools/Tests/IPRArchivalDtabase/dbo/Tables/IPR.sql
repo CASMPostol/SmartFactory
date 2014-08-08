@@ -30,6 +30,7 @@
     [ModifiedBy]             NVARCHAR(255)   NULL,
     [NetMass]                FLOAT           NULL,
     [OGLValidTo]             DATETIME        NULL,
+    [owshiddenversion]       INT             NULL,
     [ProductivityRateMax]    FLOAT           NULL,
     [ProductivityRateMin]    FLOAT           NULL,
     [SKU]                    NVARCHAR(255)   NULL,

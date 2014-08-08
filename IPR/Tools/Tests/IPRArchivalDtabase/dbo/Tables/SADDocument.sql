@@ -11,6 +11,7 @@
     [Modified]               DATETIME        NULL,
     [ModifiedBy]             NVARCHAR(255)   NULL,
     [NetMass]                FLOAT           NULL,
+    [owshiddenversion]       INT             NULL,
     [ReferenceNumber]        NVARCHAR(255)   NULL,
     [SADDocumenLibrarytIndex] INT             NULL,
     [SystemID]               NVARCHAR(255)   NULL,
