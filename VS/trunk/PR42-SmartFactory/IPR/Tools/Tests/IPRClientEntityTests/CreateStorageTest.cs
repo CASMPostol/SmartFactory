@@ -57,7 +57,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagementCAS.SmartFactory.IPR.Client.
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethod]
     public void CompareStorageContent()
     {
-      //TODO ComareSelectedStoragesContent<ClinetLinqSP.JSOXLib, ClinetLinqSQL.JSOXLibrary>(); //TODO Documents fields must be resolved
+      ComareSelectedStoragesContent<ClinetLinqSP.JSOXLib, ClinetLinqSQL.JSOXLibrary>(ClinetLinqSP.JSOXLib.GetMappings()); //TODO Documents fields must be resolved
       ComareSelectedStoragesContent<ClinetLinqSP.BalanceBatch, ClinetLinqSQL.BalanceBatch>(ClinetLinqSP.BalanceBatch.GetMappings());
       //TODO ComareSelectedStoragesContent<ClinetLinqSP.SADDocumentLib, ClinetLinqSQL.SADDocumentLibrary>(); //TODO Documents fields must be resolved
       ComareSelectedStoragesContent<ClinetLinqSP.SADDocumentType, ClinetLinqSQL.SADDocument>(ClinetLinqSP.SADDocumentType.GetMappings());

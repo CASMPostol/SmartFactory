@@ -10560,6 +10560,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _CreatedBy;
 		
+		private string _FileLeafRef;
+		
 		private int _ID;
 		
 		private System.DateTime _IntroducingDateEnd;
@@ -10579,6 +10581,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.DateTime _OutboundDateStart;
 		
 		private double _OutboundQuantity;
+		
+		private System.Nullable<int> _Owshiddenversion;
 		
 		private System.DateTime _PreviousMonthDate;
 		
@@ -10614,6 +10618,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreatedChanged();
     partial void OnCreatedByChanging(string value);
     partial void OnCreatedByChanged();
+    partial void OnFileLeafRefChanging(string value);
+    partial void OnFileLeafRefChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnIntroducingDateEndChanging(System.DateTime value);
@@ -10634,6 +10640,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnOutboundDateStartChanged();
     partial void OnOutboundQuantityChanging(double value);
     partial void OnOutboundQuantityChanged();
+    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
+    partial void OnOwshiddenversionChanged();
     partial void OnPreviousMonthDateChanging(System.DateTime value);
     partial void OnPreviousMonthDateChanged();
     partial void OnPreviousMonthQuantityChanging(double value);
@@ -10734,6 +10742,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CreatedBy = value;
 					this.SendPropertyChanged("CreatedBy");
 					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FileLeafRef", DbType="NVarChar(255)")]
+		public string FileLeafRef
+		{
+			get
+			{
+				return this._FileLeafRef;
+			}
+			set
+			{
+				if ((this._FileLeafRef != value))
+				{
+					this.OnFileLeafRefChanging(value);
+					this.SendPropertyChanging();
+					this._FileLeafRef = value;
+					this.SendPropertyChanged("FileLeafRef");
+					this.OnFileLeafRefChanged();
 				}
 			}
 		}
@@ -10934,6 +10962,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._OutboundQuantity = value;
 					this.SendPropertyChanged("OutboundQuantity");
 					this.OnOutboundQuantityChanged();
+				}
+			}
+		}
+		
+		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
+		public System.Nullable<int> Owshiddenversion
+		{
+			get
+			{
+				return this._Owshiddenversion;
+			}
+			set
+			{
+				if ((this._Owshiddenversion != value))
+				{
+					this.OnOwshiddenversionChanging(value);
+					this.SendPropertyChanging();
+					this._Owshiddenversion = value;
+					this.SendPropertyChanged("Owshiddenversion");
+					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
