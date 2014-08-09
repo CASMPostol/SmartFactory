@@ -8,6 +8,7 @@
     [InvoiceIndex]           INT             NULL,
     [Modified]               DATETIME        NULL,
     [ModifiedBy]             NVARCHAR(255)   NULL,
+    [owshiddenversion]       INT             NULL,
     [ProductType]            NVARCHAR(255)   NULL,
     [Quantity]               FLOAT           NULL,
     [SKUDescription]         NVARCHAR(255)   NULL,

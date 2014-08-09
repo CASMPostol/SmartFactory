@@ -11,6 +11,7 @@
     [JSOXCustomsSummary2JSOXIndex] INT             NULL,
     [Modified]               DATETIME        NULL,
     [ModifiedBy]             NVARCHAR(255)   NULL,
+    [owshiddenversion]       INT             NULL,
     [RemainingQuantity]      FLOAT           NULL,
     [SADDate]                DATETIME        NULL,
     [Title]                  NVARCHAR(255)   NOT NULL,

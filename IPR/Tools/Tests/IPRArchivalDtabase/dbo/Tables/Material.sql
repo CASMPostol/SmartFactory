@@ -10,6 +10,7 @@
     [Modified]               DATETIME        NULL,
     [ModifiedBy]             NVARCHAR(255)   NULL,
     [Overuse]                FLOAT           NULL,
+    [owshiddenversion]       INT             NULL,
     [ProductID]              NVARCHAR(255)   NULL,
     [ProductType]            NVARCHAR(255)   NULL,
     [SHMenthol]              FLOAT           NULL,
