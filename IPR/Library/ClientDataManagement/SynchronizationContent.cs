@@ -51,7 +51,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     /// <param name="progressChanged">The progress changed.</param>
     public static void Go(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
     {
-      IPRDEV _sqledc = Connect2SQL(settings, progressChanged);
+      IPRVEV2 _sqledc = Connect2SQL(settings, progressChanged);
       using (Entities _spedc = new Entities(settings.SiteURL))
       {
         SharePoint.Client.Link2SQL.RepositoryDataSet.ClearContent();
@@ -99,7 +99,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       }
     }
 
-    private static void UpdateActivitiesLogs(IPRDEV sqlEntities, Action<object, ProgressChangedEventArgs> progressChanged)
+    private static void UpdateActivitiesLogs(IPRVEV2 sqlEntities, Action<object, ProgressChangedEventArgs> progressChanged)
     {
       Linq2SQL.ArchivingOperationLogs _logs = new ArchivingOperationLogs()
       {
@@ -150,11 +150,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       //else
       //  progressChanged(_si, new ProgressChangedEventArgs(1, String.Format("Cannot find the {0} argument in the SQL entity {1}.", _si.PropertyName, typeof(TSP).Name)));
     }
-    private static IPRDEV Connect2SQL(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
+    private static IPRVEV2 Connect2SQL(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
     {
       progressChanged(settings, new ProgressChangedEventArgs(1, String.Format("Attempt to connect to SQL at: {0}", settings.ConnectionString)));
       System.Data.IDbConnection _connection = new SqlConnection(settings.ConnectionString);
-      IPRDEV _entities = new IPRDEV(_connection);
+      IPRVEV2 _entities = new IPRVEV2(_connection);
       if (_entities.DatabaseExists())
         progressChanged(settings, new ProgressChangedEventArgs(1, "The specified database can be opened."));
       else

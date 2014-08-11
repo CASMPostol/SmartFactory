@@ -22,16 +22,16 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 	using System;
 	
 	
-	public partial class IPRDEV : System.Data.Linq.DataContext
+	public partial class IPRVEV2 : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertActivitiesLogs(ActivitiesLogs instance);
-    partial void UpdateActivitiesLogs(ActivitiesLogs instance);
-    partial void DeleteActivitiesLogs(ActivitiesLogs instance);
+    partial void InsertActivityLog(ActivityLog instance);
+    partial void UpdateActivityLog(ActivityLog instance);
+    partial void DeleteActivityLog(ActivityLog instance);
     partial void InsertArchivingLogs(ArchivingLogs instance);
     partial void UpdateArchivingLogs(ArchivingLogs instance);
     partial void DeleteArchivingLogs(ArchivingLogs instance);
@@ -151,35 +151,35 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void DeleteWaste(Waste instance);
     #endregion
 		
-		public IPRDEV(string connection) : 
+		public IPRVEV2(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public IPRDEV(System.Data.IDbConnection connection) : 
+		public IPRVEV2(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public IPRDEV(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public IPRVEV2(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public IPRDEV(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public IPRVEV2(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<ActivitiesLogs> ActivitiesLogs
+		public System.Data.Linq.Table<ActivityLog> ActivityLog
 		{
 			get
 			{
-				return this.GetTable<ActivitiesLogs>();
+				return this.GetTable<ActivityLog>();
 			}
 		}
 		
@@ -496,40 +496,208 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		}
 	}
 	
-	[Table(Name="dbo.ActivitiesLogs")]
-	public partial class ActivitiesLogs : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="dbo.ActivityLog")]
+	public partial class ActivityLog : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _ActivityPriority;
+		
+		private string _ActivitySource;
+		
+		private string _Author;
+		
+		private string _Body;
+		
+		private System.Nullable<System.DateTime> _Created;
+		
+		private string _Editor;
+		
+		private System.Nullable<System.DateTime> _Expires;
+		
 		private int _ID;
 		
-		private string _Operation;
+		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.DateTime _Date;
+		private string _Title;
 		
-		private string _UserName;
+		private System.Nullable<int> _Version;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnActivityPriorityChanging(string value);
+    partial void OnActivityPriorityChanged();
+    partial void OnActivitySourceChanging(string value);
+    partial void OnActivitySourceChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
+    partial void OnBodyChanging(string value);
+    partial void OnBodyChanged();
+    partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
+    partial void OnExpiresChanging(System.Nullable<System.DateTime> value);
+    partial void OnExpiresChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
-    partial void OnOperationChanging(string value);
-    partial void OnOperationChanged();
-    partial void OnDateChanging(System.DateTime value);
-    partial void OnDateChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
+    partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifiedChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
-		public ActivitiesLogs()
+		public ActivityLog()
 		{
 			OnCreated();
 		}
 		
-		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[Column(Storage="_ActivityPriority", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string ActivityPriority
+		{
+			get
+			{
+				return this._ActivityPriority;
+			}
+			set
+			{
+				if ((this._ActivityPriority != value))
+				{
+					this.OnActivityPriorityChanging(value);
+					this.SendPropertyChanging();
+					this._ActivityPriority = value;
+					this.SendPropertyChanged("ActivityPriority");
+					this.OnActivityPriorityChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ActivitySource", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string ActivitySource
+		{
+			get
+			{
+				return this._ActivitySource;
+			}
+			set
+			{
+				if ((this._ActivitySource != value))
+				{
+					this.OnActivitySourceChanging(value);
+					this.SendPropertyChanging();
+					this._ActivitySource = value;
+					this.SendPropertyChanged("ActivitySource");
+					this.OnActivitySourceChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Body", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Body
+		{
+			get
+			{
+				return this._Body;
+			}
+			set
+			{
+				if ((this._Body != value))
+				{
+					this.OnBodyChanging(value);
+					this.SendPropertyChanging();
+					this._Body = value;
+					this.SendPropertyChanged("Body");
+					this.OnBodyChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Created", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Created
+		{
+			get
+			{
+				return this._Created;
+			}
+			set
+			{
+				if ((this._Created != value))
+				{
+					this.OnCreatedChanging(value);
+					this.SendPropertyChanging();
+					this._Created = value;
+					this.SendPropertyChanged("Created");
+					this.OnCreatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Expires", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Expires
+		{
+			get
+			{
+				return this._Expires;
+			}
+			set
+			{
+				if ((this._Expires != value))
+				{
+					this.OnExpiresChanging(value);
+					this.SendPropertyChanging();
+					this._Expires = value;
+					this.SendPropertyChanged("Expires");
+					this.OnExpiresChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int ID
 		{
 			get
@@ -549,62 +717,62 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Operation", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Operation
+		[Column(Storage="_Modified", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Modified
 		{
 			get
 			{
-				return this._Operation;
+				return this._Modified;
 			}
 			set
 			{
-				if ((this._Operation != value))
+				if ((this._Modified != value))
 				{
-					this.OnOperationChanging(value);
+					this.OnModifiedChanging(value);
 					this.SendPropertyChanging();
-					this._Operation = value;
-					this.SendPropertyChanged("Operation");
-					this.OnOperationChanged();
+					this._Modified = value;
+					this.SendPropertyChanged("Modified");
+					this.OnModifiedChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Date", DbType="DateTime NOT NULL")]
-		public System.DateTime Date
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Title
 		{
 			get
 			{
-				return this._Date;
+				return this._Title;
 			}
 			set
 			{
-				if ((this._Date != value))
+				if ((this._Title != value))
 				{
-					this.OnDateChanging(value);
+					this.OnTitleChanging(value);
 					this.SendPropertyChanging();
-					this._Date = value;
-					this.SendPropertyChanged("Date");
-					this.OnDateChanged();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_UserName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string UserName
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
 		{
 			get
 			{
-				return this._UserName;
+				return this._Version;
 			}
 			set
 			{
-				if ((this._UserName != value))
+				if ((this._Version != value))
 				{
-					this.OnUserNameChanging(value);
+					this.OnVersionChanging(value);
 					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -930,6 +1098,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private System.Nullable<double> _Balance;
 		
 		private System.Nullable<int> _Balance2JSOXLibraryIndex;
@@ -938,13 +1108,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
-		
 		private string _DocumentNo;
 		
 		private System.Nullable<double> _DustCSNotStarted;
 		
 		private System.Nullable<double> _DustCSStarted;
+		
+		private string _Editor;
 		
 		private int _ID;
 		
@@ -952,13 +1122,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
 		private System.Nullable<double> _OveruseCSNotStarted;
 		
 		private System.Nullable<double> _OveruseCSStarted;
-		
-		private System.Nullable<int> _Owshiddenversion;
 		
 		private System.Nullable<double> _PureTobaccoCSNotStarted;
 		
@@ -998,6 +1164,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<double> _TobaccoUsedInTheProduction;
 		
+		private System.Nullable<int> _Version;
+		
 		private System.Nullable<double> _WasteCSNotStarted;
 		
 		private System.Nullable<double> _WasteCSStarted;
@@ -1012,6 +1180,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnBalanceChanging(System.Nullable<double> value);
     partial void OnBalanceChanged();
     partial void OnBalance2JSOXLibraryIndexChanging(System.Nullable<int> value);
@@ -1020,28 +1190,24 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnBatchChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
     partial void OnDocumentNoChanging(string value);
     partial void OnDocumentNoChanged();
     partial void OnDustCSNotStartedChanging(System.Nullable<double> value);
     partial void OnDustCSNotStartedChanged();
     partial void OnDustCSStartedChanging(System.Nullable<double> value);
     partial void OnDustCSStartedChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnIPRBookChanging(System.Nullable<double> value);
     partial void OnIPRBookChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
     partial void OnOveruseCSNotStartedChanging(System.Nullable<double> value);
     partial void OnOveruseCSNotStartedChanged();
     partial void OnOveruseCSStartedChanging(System.Nullable<double> value);
     partial void OnOveruseCSStartedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnPureTobaccoCSNotStartedChanging(System.Nullable<double> value);
     partial void OnPureTobaccoCSNotStartedChanged();
     partial void OnPureTobaccoCSStartedChanging(System.Nullable<double> value);
@@ -1080,6 +1246,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTobaccoToBeUsedInTheProductionChanged();
     partial void OnTobaccoUsedInTheProductionChanging(System.Nullable<double> value);
     partial void OnTobaccoUsedInTheProductionChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     partial void OnWasteCSNotStartedChanging(System.Nullable<double> value);
     partial void OnWasteCSNotStartedChanged();
     partial void OnWasteCSStartedChanging(System.Nullable<double> value);
@@ -1109,6 +1277,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Archival = value;
 					this.SendPropertyChanged("Archival");
 					this.OnArchivalChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
 				}
 			}
 		}
@@ -1157,7 +1345,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Batch", DbType="NVarChar(255)")]
+		[Column(Storage="_Batch", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Batch
 		{
 			get
@@ -1197,27 +1385,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DocumentNo", DbType="NVarChar(255)")]
+		[Column(Storage="_DocumentNo", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string DocumentNo
 		{
 			get
@@ -1273,6 +1441,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._DustCSStarted = value;
 					this.SendPropertyChanged("DustCSStarted");
 					this.OnDustCSStartedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -1337,26 +1525,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_OveruseCSNotStarted", DbType="Float")]
 		public System.Nullable<double> OveruseCSNotStarted
 		{
@@ -1393,26 +1561,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._OveruseCSStarted = value;
 					this.SendPropertyChanged("OveruseCSStarted");
 					this.OnOveruseCSStartedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -1517,7 +1665,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SKU", DbType="NVarChar(255)")]
+		[Column(Storage="_SKU", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string SKU
 		{
 			get
@@ -1537,7 +1685,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255)")]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -1797,6 +1945,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_WasteCSNotStarted", DbType="Float")]
 		public System.Nullable<double> WasteCSNotStarted
 		{
@@ -1925,6 +2093,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private System.Nullable<double> _Balance;
 		
 		private System.Nullable<int> _BalanceBatchIndex;
@@ -1935,8 +2105,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
-		
 		private string _CustomsProcedure;
 		
 		private string _DocumentNo;
@@ -1944,6 +2112,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.Nullable<double> _DustCSNotStarted;
 		
 		private System.Nullable<double> _DustCSStarted;
+		
+		private string _Editor;
 		
 		private int _ID;
 		
@@ -1955,15 +2125,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
 		private string _OGLIntroduction;
 		
 		private System.Nullable<double> _OveruseCSNotStarted;
 		
 		private System.Nullable<double> _OveruseCSStarted;
-		
-		private System.Nullable<int> _Owshiddenversion;
 		
 		private System.Nullable<double> _PureTobaccoCSNotStarted;
 		
@@ -1995,6 +2161,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<double> _TobaccoUsedInTheProduction;
 		
+		private System.Nullable<int> _Version;
+		
 		private System.Nullable<double> _WasteCSNotStarted;
 		
 		private System.Nullable<double> _WasteCSStarted;
@@ -2011,6 +2179,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnBalanceChanging(System.Nullable<double> value);
     partial void OnBalanceChanged();
     partial void OnBalanceBatchIndexChanging(System.Nullable<int> value);
@@ -2021,8 +2191,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnBatchChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
     partial void OnCustomsProcedureChanging(string value);
     partial void OnCustomsProcedureChanged();
     partial void OnDocumentNoChanging(string value);
@@ -2031,6 +2199,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnDustCSNotStartedChanged();
     partial void OnDustCSStartedChanging(System.Nullable<double> value);
     partial void OnDustCSStartedChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnInvoiceNoChanging(string value);
@@ -2041,16 +2211,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnIPRIndexChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
     partial void OnOGLIntroductionChanging(string value);
     partial void OnOGLIntroductionChanged();
     partial void OnOveruseCSNotStartedChanging(System.Nullable<double> value);
     partial void OnOveruseCSNotStartedChanged();
     partial void OnOveruseCSStartedChanging(System.Nullable<double> value);
     partial void OnOveruseCSStartedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnPureTobaccoCSNotStartedChanging(System.Nullable<double> value);
     partial void OnPureTobaccoCSNotStartedChanged();
     partial void OnPureTobaccoCSStartedChanging(System.Nullable<double> value);
@@ -2081,6 +2247,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTobaccoToBeUsedInTheProductionChanged();
     partial void OnTobaccoUsedInTheProductionChanging(System.Nullable<double> value);
     partial void OnTobaccoUsedInTheProductionChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     partial void OnWasteCSNotStartedChanging(System.Nullable<double> value);
     partial void OnWasteCSNotStartedChanged();
     partial void OnWasteCSStartedChanging(System.Nullable<double> value);
@@ -2111,6 +2279,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Archival = value;
 					this.SendPropertyChanged("Archival");
 					this.OnArchivalChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
 				}
 			}
 		}
@@ -2183,7 +2371,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Batch", DbType="NVarChar(255)")]
+		[Column(Storage="_Batch", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Batch
 		{
 			get
@@ -2223,27 +2411,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CustomsProcedure", DbType="NVarChar(255)")]
+		[Column(Storage="_CustomsProcedure", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string CustomsProcedure
 		{
 			get
@@ -2263,7 +2431,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_DocumentNo", DbType="NVarChar(255)")]
+		[Column(Storage="_DocumentNo", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string DocumentNo
 		{
 			get
@@ -2323,6 +2491,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int ID
 		{
@@ -2343,7 +2531,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_InvoiceNo", DbType="NVarChar(255)")]
+		[Column(Storage="_InvoiceNo", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string InvoiceNo
 		{
 			get
@@ -2427,27 +2615,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_OGLIntroduction", DbType="NVarChar(255)")]
+		[Column(Storage="_OGLIntroduction", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string OGLIntroduction
 		{
 			get
@@ -2503,26 +2671,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._OveruseCSStarted = value;
 					this.SendPropertyChanged("OveruseCSStarted");
 					this.OnOveruseCSStartedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -2627,7 +2775,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SKU", DbType="NVarChar(255)")]
+		[Column(Storage="_SKU", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string SKU
 		{
 			get
@@ -2647,7 +2795,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -2827,6 +2975,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_WasteCSNotStarted", DbType="Float")]
 		public System.Nullable<double> WasteCSNotStarted
 		{
@@ -2998,6 +3166,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private string _Batch1;
 		
 		private System.Nullable<double> _BatchDustCooeficiency;
@@ -3006,15 +3176,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<double> _BatchSHCooeficiency;
 		
-		private string _BatchStatus;
-		
 		private System.Nullable<double> _BatchWasteCooeficiency;
 		
 		private System.Nullable<double> _CalculatedOveruse;
 		
-		private System.Nullable<double> _CFTProductivityNormMax;
+		private System.Nullable<int> _CFTProductivityNormMax;
 		
-		private System.Nullable<double> _CFTProductivityNormMin;
+		private System.Nullable<int> _CFTProductivityNormMin;
 		
 		private System.Nullable<double> _CFTProductivityRateMax;
 		
@@ -3024,8 +3192,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
-		
 		private System.Nullable<double> _CTFUsageMax;
 		
 		private System.Nullable<double> _CTFUsageMin;
@@ -3033,6 +3199,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.Nullable<double> _Dust;
 		
 		private System.Nullable<double> _DustCooeficiencyVersion;
+		
+		private string _Editor;
 		
 		private System.Nullable<double> _FGQuantity;
 		
@@ -3050,13 +3218,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
 		private System.Nullable<double> _Overuse;
-		
-		private System.Nullable<int> _Owshiddenversion;
-		
-		private string _ProductType;
 		
 		private System.Nullable<double> _SHCooeficiencyVersion;
 		
@@ -3075,6 +3237,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.Nullable<double> _UsageMin;
 		
 		private System.Nullable<double> _UsageVersion;
+		
+		private System.Nullable<int> _Version;
 		
 		private System.Nullable<double> _Waste;
 		
@@ -3098,6 +3262,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnBatch1Changing(string value);
     partial void OnBatch1Changed();
     partial void OnBatchDustCooeficiencyChanging(System.Nullable<double> value);
@@ -3106,15 +3272,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnBatchLibraryIndexChanged();
     partial void OnBatchSHCooeficiencyChanging(System.Nullable<double> value);
     partial void OnBatchSHCooeficiencyChanged();
-    partial void OnBatchStatusChanging(string value);
-    partial void OnBatchStatusChanged();
     partial void OnBatchWasteCooeficiencyChanging(System.Nullable<double> value);
     partial void OnBatchWasteCooeficiencyChanged();
     partial void OnCalculatedOveruseChanging(System.Nullable<double> value);
     partial void OnCalculatedOveruseChanged();
-    partial void OnCFTProductivityNormMaxChanging(System.Nullable<double> value);
+    partial void OnCFTProductivityNormMaxChanging(System.Nullable<int> value);
     partial void OnCFTProductivityNormMaxChanged();
-    partial void OnCFTProductivityNormMinChanging(System.Nullable<double> value);
+    partial void OnCFTProductivityNormMinChanging(System.Nullable<int> value);
     partial void OnCFTProductivityNormMinChanged();
     partial void OnCFTProductivityRateMaxChanging(System.Nullable<double> value);
     partial void OnCFTProductivityRateMaxChanged();
@@ -3124,8 +3288,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCFTProductivityVersionChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
     partial void OnCTFUsageMaxChanging(System.Nullable<double> value);
     partial void OnCTFUsageMaxChanged();
     partial void OnCTFUsageMinChanging(System.Nullable<double> value);
@@ -3134,6 +3296,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnDustChanged();
     partial void OnDustCooeficiencyVersionChanging(System.Nullable<double> value);
     partial void OnDustCooeficiencyVersionChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnFGQuantityChanging(System.Nullable<double> value);
     partial void OnFGQuantityChanged();
     partial void OnFGQuantityAvailableChanging(System.Nullable<double> value);
@@ -3150,14 +3314,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnMaterialQuantityPreviousChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
     partial void OnOveruseChanging(System.Nullable<double> value);
     partial void OnOveruseChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
-    partial void OnProductTypeChanging(string value);
-    partial void OnProductTypeChanged();
     partial void OnSHCooeficiencyVersionChanging(System.Nullable<double> value);
     partial void OnSHCooeficiencyVersionChanged();
     partial void OnSHMentholChanging(System.Nullable<double> value);
@@ -3176,6 +3334,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnUsageMinChanged();
     partial void OnUsageVersionChanging(System.Nullable<double> value);
     partial void OnUsageVersionChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     partial void OnWasteChanging(System.Nullable<double> value);
     partial void OnWasteChanged();
     partial void OnWasteCooeficiencyVersionChanging(System.Nullable<double> value);
@@ -3213,7 +3373,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Name="Batch", Storage="_Batch1", DbType="NVarChar(255)")]
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Name="Batch", Storage="_Batch1", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Batch1
 		{
 			get
@@ -3297,26 +3477,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_BatchStatus", DbType="NVarChar(255)")]
-		public string BatchStatus
-		{
-			get
-			{
-				return this._BatchStatus;
-			}
-			set
-			{
-				if ((this._BatchStatus != value))
-				{
-					this.OnBatchStatusChanging(value);
-					this.SendPropertyChanging();
-					this._BatchStatus = value;
-					this.SendPropertyChanged("BatchStatus");
-					this.OnBatchStatusChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_BatchWasteCooeficiency", DbType="Float")]
 		public System.Nullable<double> BatchWasteCooeficiency
 		{
@@ -3357,8 +3517,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CFTProductivityNormMax", DbType="Float")]
-		public System.Nullable<double> CFTProductivityNormMax
+		[Column(Storage="_CFTProductivityNormMax", DbType="Int")]
+		public System.Nullable<int> CFTProductivityNormMax
 		{
 			get
 			{
@@ -3377,8 +3537,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CFTProductivityNormMin", DbType="Float")]
-		public System.Nullable<double> CFTProductivityNormMin
+		[Column(Storage="_CFTProductivityNormMin", DbType="Int")]
+		public System.Nullable<int> CFTProductivityNormMin
 		{
 			get
 			{
@@ -3477,26 +3637,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_CTFUsageMax", DbType="Float")]
 		public System.Nullable<double> CTFUsageMax
 		{
@@ -3573,6 +3713,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._DustCooeficiencyVersion = value;
 					this.SendPropertyChanged("DustCooeficiencyVersion");
 					this.OnDustCooeficiencyVersionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -3737,26 +3897,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Overuse", DbType="Float")]
 		public System.Nullable<double> Overuse
 		{
@@ -3773,46 +3913,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Overuse = value;
 					this.SendPropertyChanged("Overuse");
 					this.OnOveruseChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ProductType", DbType="NVarChar(255)")]
-		public string ProductType
-		{
-			get
-			{
-				return this._ProductType;
-			}
-			set
-			{
-				if ((this._ProductType != value))
-				{
-					this.OnProductTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ProductType = value;
-					this.SendPropertyChanged("ProductType");
-					this.OnProductTypeChanged();
 				}
 			}
 		}
@@ -3857,7 +3957,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SKU", DbType="NVarChar(255)")]
+		[Column(Storage="_SKU", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string SKU
 		{
 			get
@@ -3901,7 +4001,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -3997,6 +4097,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._UsageVersion = value;
 					this.SendPropertyChanged("UsageVersion");
 					this.OnUsageVersionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -4236,23 +4356,29 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _Author;
+		
 		private string _BatchLibraryComments;
 		
 		private System.Nullable<bool> _BatchLibraryOK;
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _DocumentCreatedBy;
+		
+		private string _Editor;
+		
+		private string _FileName;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
+		private string _DocumentModifiedBy;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<Batch> _Batch;
 		
@@ -4260,24 +4386,30 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnBatchLibraryCommentsChanging(string value);
     partial void OnBatchLibraryCommentsChanged();
     partial void OnBatchLibraryOKChanging(System.Nullable<bool> value);
     partial void OnBatchLibraryOKChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnDocumentCreatedByChanging(string value);
+    partial void OnDocumentCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
+    partial void OnDocumentModifiedByChanging(string value);
+    partial void OnDocumentModifiedByChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public BatchLibrary()
@@ -4286,7 +4418,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_BatchLibraryComments", DbType="NVarChar(255)")]
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BatchLibraryComments", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string BatchLibraryComments
 		{
 			get
@@ -4346,22 +4498,62 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_DocumentCreatedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentCreatedBy
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._DocumentCreatedBy;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._DocumentCreatedBy != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnDocumentCreatedByChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._DocumentCreatedBy = value;
+					this.SendPropertyChanged("DocumentCreatedBy");
+					this.OnDocumentCreatedByChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FileName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string FileName
+		{
+			get
+			{
+				return this._FileName;
+			}
+			set
+			{
+				if ((this._FileName != value))
+				{
+					this.OnFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
 				}
 			}
 		}
@@ -4406,47 +4598,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
+		[Column(Storage="_DocumentModifiedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentModifiedBy
 		{
 			get
 			{
-				return this._ModifiedBy;
+				return this._DocumentModifiedBy;
 			}
 			set
 			{
-				if ((this._ModifiedBy != value))
+				if ((this._DocumentModifiedBy != value))
 				{
-					this.OnModifiedByChanging(value);
+					this.OnDocumentModifiedByChanging(value);
 					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
+					this._DocumentModifiedBy = value;
+					this.SendPropertyChanged("DocumentModifiedBy");
+					this.OnDocumentModifiedByChanged();
 				}
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(255)")]
+		[Column(Storage="_Title", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -4462,6 +4634,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -4520,23 +4712,19 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
-		private System.Nullable<int> _Clearence2SadGoodID;
+		private string _Author;
 		
-		private string _ClearenceProcedure;
+		private System.Nullable<int> _Clearence2SadGoodID;
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
-		
 		private string _DocumentNo;
+		
+		private string _Editor;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
-		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
 		
 		private string _ProcedureCode;
 		
@@ -4547,6 +4735,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.Nullable<bool> _SPStatus;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntityRef<SADConsignment> _SADConsignment;
 		
@@ -4564,24 +4754,20 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnClearence2SadGoodIDChanging(System.Nullable<int> value);
     partial void OnClearence2SadGoodIDChanged();
-    partial void OnClearenceProcedureChanging(string value);
-    partial void OnClearenceProcedureChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
     partial void OnDocumentNoChanging(string value);
     partial void OnDocumentNoChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnProcedureCodeChanging(string value);
     partial void OnProcedureCodeChanged();
     partial void OnReferenceNumberChanging(string value);
@@ -4592,6 +4778,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnSPStatusChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public Clearence()
@@ -4624,6 +4812,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Clearence2SadGoodID", DbType="Int")]
 		public System.Nullable<int> Clearence2SadGoodID
 		{
@@ -4648,26 +4856,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ClearenceProcedure", DbType="NVarChar(255)")]
-		public string ClearenceProcedure
-		{
-			get
-			{
-				return this._ClearenceProcedure;
-			}
-			set
-			{
-				if ((this._ClearenceProcedure != value))
-				{
-					this.OnClearenceProcedureChanging(value);
-					this.SendPropertyChanging();
-					this._ClearenceProcedure = value;
-					this.SendPropertyChanged("ClearenceProcedure");
-					this.OnClearenceProcedureChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Created", DbType="DateTime")]
 		public System.Nullable<System.DateTime> Created
 		{
@@ -4688,27 +4876,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DocumentNo", DbType="NVarChar(255)")]
+		[Column(Storage="_DocumentNo", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string DocumentNo
 		{
 			get
@@ -4724,6 +4892,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._DocumentNo = value;
 					this.SendPropertyChanged("DocumentNo");
 					this.OnDocumentNoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -4768,47 +4956,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ProcedureCode", DbType="NVarChar(255)")]
+		[Column(Storage="_ProcedureCode", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string ProcedureCode
 		{
 			get
@@ -4828,7 +4976,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ReferenceNumber", DbType="NVarChar(255)")]
+		[Column(Storage="_ReferenceNumber", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string ReferenceNumber
 		{
 			get
@@ -4892,7 +5040,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -4908,6 +5056,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -5082,23 +5250,21 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _ConsentDate;
 		
 		private System.Nullable<double> _ConsentPeriod;
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private int _ID;
 		
 		private System.Nullable<bool> _IsIPR;
 		
 		private System.Nullable<System.DateTime> _Modified;
-		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
 		
 		private System.Nullable<double> _ProductivityRateMax;
 		
@@ -5110,30 +5276,30 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _ValidToDate;
 		
+		private System.Nullable<int> _Version;
+		
 		private EntitySet<IPR> _IPR;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnConsentDateChanging(System.Nullable<System.DateTime> value);
     partial void OnConsentDateChanged();
     partial void OnConsentPeriodChanging(System.Nullable<double> value);
     partial void OnConsentPeriodChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnIsIPRChanging(System.Nullable<bool> value);
     partial void OnIsIPRChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnProductivityRateMaxChanging(System.Nullable<double> value);
     partial void OnProductivityRateMaxChanged();
     partial void OnProductivityRateMinChanging(System.Nullable<double> value);
@@ -5144,12 +5310,34 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnValidFromDateChanged();
     partial void OnValidToDateChanging(System.Nullable<System.DateTime> value);
     partial void OnValidToDateChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public Consent()
 		{
 			this._IPR = new EntitySet<IPR>(new Action<IPR>(this.attach_IPR), new Action<IPR>(this.detach_IPR));
 			OnCreated();
+		}
+		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
 		}
 		
 		[Column(Storage="_ConsentDate", DbType="DateTime")]
@@ -5212,22 +5400,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -5292,46 +5480,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_ProductivityRateMax", DbType="Float")]
 		public System.Nullable<double> ProductivityRateMax
 		{
@@ -5372,7 +5520,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -5432,6 +5580,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_IPR_Consent", Storage="_IPR", ThisKey="ID", OtherKey="IPR2ConsentTitle", DeleteRule="NO ACTION")]
 		public EntitySet<IPR> IPR
 		{
@@ -5484,9 +5652,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private string _EUPrimeMarket;
 		
@@ -5494,37 +5664,55 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnEUPrimeMarketChanging(string value);
     partial void OnEUPrimeMarketChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public CustomsUnion()
 		{
 			OnCreated();
+		}
+		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime")]
@@ -5547,27 +5735,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_EUPrimeMarket", DbType="NVarChar(255)")]
+		[Column(Storage="_EUPrimeMarket", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string EUPrimeMarket
 		{
 			get
@@ -5627,47 +5815,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -5683,6 +5831,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -5714,9 +5882,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private System.Nullable<double> _CFTProductivityNormMax;
+		private string _Author;
 		
-		private System.Nullable<double> _CFTProductivityNormMin;
+		private System.Nullable<int> _CFTProductivityNormMax;
+		
+		private System.Nullable<int> _CFTProductivityNormMin;
 		
 		private System.Nullable<double> _CFTProductivityRateMax;
 		
@@ -5724,23 +5894,25 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
+		private string _Title;
 		
-		private System.Nullable<int> _Owshiddenversion;
+		private System.Nullable<int> _Version;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnCFTProductivityNormMaxChanging(System.Nullable<double> value);
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
+    partial void OnCFTProductivityNormMaxChanging(System.Nullable<int> value);
     partial void OnCFTProductivityNormMaxChanged();
-    partial void OnCFTProductivityNormMinChanging(System.Nullable<double> value);
+    partial void OnCFTProductivityNormMinChanging(System.Nullable<int> value);
     partial void OnCFTProductivityNormMinChanged();
     partial void OnCFTProductivityRateMaxChanging(System.Nullable<double> value);
     partial void OnCFTProductivityRateMaxChanged();
@@ -5748,16 +5920,16 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCFTProductivityRateMinChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public CutfillerCoefficient()
@@ -5765,8 +5937,28 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_CFTProductivityNormMax", DbType="Float")]
-		public System.Nullable<double> CFTProductivityNormMax
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CFTProductivityNormMax", DbType="Int")]
+		public System.Nullable<int> CFTProductivityNormMax
 		{
 			get
 			{
@@ -5785,8 +5977,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CFTProductivityNormMin", DbType="Float")]
-		public System.Nullable<double> CFTProductivityNormMin
+		[Column(Storage="_CFTProductivityNormMin", DbType="Int")]
+		public System.Nullable<int> CFTProductivityNormMin
 		{
 			get
 			{
@@ -5865,22 +6057,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -5925,42 +6117,42 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Title
 		{
 			get
 			{
-				return this._ModifiedBy;
+				return this._Title;
 			}
 			set
 			{
-				if ((this._ModifiedBy != value))
+				if ((this._Title != value))
 				{
-					this.OnModifiedByChanging(value);
+					this.OnTitleChanging(value);
 					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
 				}
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
 		{
 			get
 			{
-				return this._Owshiddenversion;
+				return this._Version;
 			}
 			set
 			{
-				if ((this._Owshiddenversion != value))
+				if ((this._Version != value))
 				{
-					this.OnOwshiddenversionChanging(value);
+					this.OnVersionChanging(value);
 					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -5994,15 +6186,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
-		private string _ClearingType;
+		private string _Author;
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
-		
 		private string _CustomsProcedure;
-		
-		private string _CustomsStatus;
 		
 		private System.Nullable<int> _Disposal2BatchIndex;
 		
@@ -6016,11 +6204,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Disposal2PCNID;
 		
-		private string _DisposalStatus;
-		
 		private System.Nullable<double> _DutyAndVAT;
 		
 		private System.Nullable<double> _DutyPerSettledAmount;
+		
+		private string _Editor;
 		
 		private int _ID;
 		
@@ -6033,10 +6221,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.Nullable<double> _JSOXReportID;
 		
 		private System.Nullable<System.DateTime> _Modified;
-		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
 		
 		private System.Nullable<double> _RemainingQuantity;
 		
@@ -6055,6 +6239,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.Nullable<double> _TobaccoValue;
 		
 		private System.Nullable<double> _VATPerSettledAmount;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntityRef<Batch> _Batch;
 		
@@ -6076,16 +6262,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
-    partial void OnClearingTypeChanging(string value);
-    partial void OnClearingTypeChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
     partial void OnCustomsProcedureChanging(string value);
     partial void OnCustomsProcedureChanged();
-    partial void OnCustomsStatusChanging(string value);
-    partial void OnCustomsStatusChanged();
     partial void OnDisposal2BatchIndexChanging(System.Nullable<int> value);
     partial void OnDisposal2BatchIndexChanged();
     partial void OnDisposal2ClearenceIndexChanging(System.Nullable<int> value);
@@ -6098,12 +6280,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnDisposal2MaterialIndexChanged();
     partial void OnDisposal2PCNIDChanging(System.Nullable<int> value);
     partial void OnDisposal2PCNIDChanged();
-    partial void OnDisposalStatusChanging(string value);
-    partial void OnDisposalStatusChanged();
     partial void OnDutyAndVATChanging(System.Nullable<double> value);
     partial void OnDutyAndVATChanged();
     partial void OnDutyPerSettledAmountChanging(System.Nullable<double> value);
     partial void OnDutyPerSettledAmountChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnInvoiceNoChanging(string value);
@@ -6116,10 +6298,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnJSOXReportIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnRemainingQuantityChanging(System.Nullable<double> value);
     partial void OnRemainingQuantityChanged();
     partial void OnSadConsignmentNoChanging(string value);
@@ -6138,6 +6316,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTobaccoValueChanged();
     partial void OnVATPerSettledAmountChanging(System.Nullable<double> value);
     partial void OnVATPerSettledAmountChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public Disposal()
@@ -6172,22 +6352,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ClearingType", DbType="NVarChar(255)")]
-		public string ClearingType
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
 		{
 			get
 			{
-				return this._ClearingType;
+				return this._Author;
 			}
 			set
 			{
-				if ((this._ClearingType != value))
+				if ((this._Author != value))
 				{
-					this.OnClearingTypeChanging(value);
+					this.OnAuthorChanging(value);
 					this.SendPropertyChanging();
-					this._ClearingType = value;
-					this.SendPropertyChanged("ClearingType");
-					this.OnClearingTypeChanged();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
 				}
 			}
 		}
@@ -6212,27 +6392,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CustomsProcedure", DbType="NVarChar(255)")]
+		[Column(Storage="_CustomsProcedure", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string CustomsProcedure
 		{
 			get
@@ -6248,26 +6408,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CustomsProcedure = value;
 					this.SendPropertyChanged("CustomsProcedure");
 					this.OnCustomsProcedureChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CustomsStatus", DbType="NVarChar(255)")]
-		public string CustomsStatus
-		{
-			get
-			{
-				return this._CustomsStatus;
-			}
-			set
-			{
-				if ((this._CustomsStatus != value))
-				{
-					this.OnCustomsStatusChanging(value);
-					this.SendPropertyChanging();
-					this._CustomsStatus = value;
-					this.SendPropertyChanged("CustomsStatus");
-					this.OnCustomsStatusChanged();
 				}
 			}
 		}
@@ -6416,26 +6556,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_DisposalStatus", DbType="NVarChar(255)")]
-		public string DisposalStatus
-		{
-			get
-			{
-				return this._DisposalStatus;
-			}
-			set
-			{
-				if ((this._DisposalStatus != value))
-				{
-					this.OnDisposalStatusChanging(value);
-					this.SendPropertyChanging();
-					this._DisposalStatus = value;
-					this.SendPropertyChanged("DisposalStatus");
-					this.OnDisposalStatusChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_DutyAndVAT", DbType="Float")]
 		public System.Nullable<double> DutyAndVAT
 		{
@@ -6476,6 +6596,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int ID
 		{
@@ -6496,7 +6636,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_InvoiceNo", DbType="NVarChar(255)")]
+		[Column(Storage="_InvoiceNo", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string InvoiceNo
 		{
 			get
@@ -6516,7 +6656,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_IPRDocumentNo", DbType="NVarChar(255)")]
+		[Column(Storage="_IPRDocumentNo", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string IPRDocumentNo
 		{
 			get
@@ -6600,46 +6740,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_RemainingQuantity", DbType="Float")]
 		public System.Nullable<double> RemainingQuantity
 		{
@@ -6660,7 +6760,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SadConsignmentNo", DbType="NVarChar(255)")]
+		[Column(Storage="_SadConsignmentNo", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string SadConsignmentNo
 		{
 			get
@@ -6700,7 +6800,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SADDocumentNo", DbType="NVarChar(255)")]
+		[Column(Storage="_SADDocumentNo", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string SADDocumentNo
 		{
 			get
@@ -6760,7 +6860,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -6816,6 +6916,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._VATPerSettledAmount = value;
 					this.SendPropertyChanged("VATPerSettledAmount");
 					this.OnVATPerSettledAmountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -7085,47 +7205,67 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
-		
 		private System.Nullable<double> _DustRatio;
+		
+		private string _Editor;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
+		private string _Title;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
-		private string _ProductType;
+		private System.Nullable<int> _Version;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
     partial void OnDustRatioChanging(System.Nullable<double> value);
     partial void OnDustRatioChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
-    partial void OnProductTypeChanging(string value);
-    partial void OnProductTypeChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public Dust()
 		{
 			OnCreated();
+		}
+		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime")]
@@ -7148,26 +7288,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_DustRatio", DbType="Float")]
 		public System.Nullable<double> DustRatio
 		{
@@ -7184,6 +7304,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._DustRatio = value;
 					this.SendPropertyChanged("DustRatio");
 					this.OnDustRatioChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -7228,62 +7368,42 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Title
 		{
 			get
 			{
-				return this._ModifiedBy;
+				return this._Title;
 			}
 			set
 			{
-				if ((this._ModifiedBy != value))
+				if ((this._Title != value))
 				{
-					this.OnModifiedByChanging(value);
+					this.OnTitleChanging(value);
 					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
 				}
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
 		{
 			get
 			{
-				return this._Owshiddenversion;
+				return this._Version;
 			}
 			set
 			{
-				if ((this._Owshiddenversion != value))
+				if ((this._Version != value))
 				{
-					this.OnOwshiddenversionChanging(value);
+					this.OnVersionChanging(value);
 					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ProductType", DbType="NVarChar(255)")]
-		public string ProductType
-		{
-			get
-			{
-				return this._ProductType;
-			}
-			set
-			{
-				if ((this._ProductType != value))
-				{
-					this.OnProductTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ProductType = value;
-					this.SendPropertyChanged("ProductType");
-					this.OnProductTypeChanged();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -7434,7 +7554,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_FieldValue", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_FieldValue", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
 		public string FieldValue
 		{
 			get
@@ -7523,25 +7643,19 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private int _ID;
 		
 		private System.Nullable<int> _InvoiceContent2BatchIndex;
 		
-		private string _InvoiceContentStatus;
-		
 		private System.Nullable<int> _InvoiceIndex;
 		
 		private System.Nullable<System.DateTime> _Modified;
-		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
-		
-		private string _ProductType;
 		
 		private System.Nullable<double> _Quantity;
 		
@@ -7550,6 +7664,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private string _Title;
 		
 		private string _Units;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<Disposal> _Disposal;
 		
@@ -7563,26 +7679,20 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnInvoiceContent2BatchIndexChanging(System.Nullable<int> value);
     partial void OnInvoiceContent2BatchIndexChanged();
-    partial void OnInvoiceContentStatusChanging(string value);
-    partial void OnInvoiceContentStatusChanged();
     partial void OnInvoiceIndexChanging(System.Nullable<int> value);
     partial void OnInvoiceIndexChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
-    partial void OnProductTypeChanging(string value);
-    partial void OnProductTypeChanged();
     partial void OnQuantityChanging(System.Nullable<double> value);
     partial void OnQuantityChanged();
     partial void OnSKUDescriptionChanging(string value);
@@ -7591,6 +7701,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnUnitsChanging(string value);
     partial void OnUnitsChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public InvoiceContent()
@@ -7621,6 +7733,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Created", DbType="DateTime")]
 		public System.Nullable<System.DateTime> Created
 		{
@@ -7641,22 +7773,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -7705,26 +7837,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_InvoiceContentStatus", DbType="NVarChar(255)")]
-		public string InvoiceContentStatus
-		{
-			get
-			{
-				return this._InvoiceContentStatus;
-			}
-			set
-			{
-				if ((this._InvoiceContentStatus != value))
-				{
-					this.OnInvoiceContentStatusChanging(value);
-					this.SendPropertyChanging();
-					this._InvoiceContentStatus = value;
-					this.SendPropertyChanged("InvoiceContentStatus");
-					this.OnInvoiceContentStatusChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_InvoiceIndex", DbType="Int")]
 		public System.Nullable<int> InvoiceIndex
 		{
@@ -7769,66 +7881,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ProductType", DbType="NVarChar(255)")]
-		public string ProductType
-		{
-			get
-			{
-				return this._ProductType;
-			}
-			set
-			{
-				if ((this._ProductType != value))
-				{
-					this.OnProductTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ProductType = value;
-					this.SendPropertyChanged("ProductType");
-					this.OnProductTypeChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Quantity", DbType="Float")]
 		public System.Nullable<double> Quantity
 		{
@@ -7849,7 +7901,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SKUDescription", DbType="NVarChar(255)")]
+		[Column(Storage="_SKUDescription", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string SKUDescription
 		{
 			get
@@ -7869,7 +7921,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -7889,7 +7941,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Units", DbType="NVarChar(255)")]
+		[Column(Storage="_Units", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Units
 		{
 			get
@@ -7905,6 +7957,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Units = value;
 					this.SendPropertyChanged("Units");
 					this.OnUnitsChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -8029,13 +8101,19 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _Author;
+		
 		private string _BillDoc;
 		
 		private System.Nullable<int> _ClearenceIndex;
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _DocumentCreatedBy;
+		
+		private string _Editor;
+		
+		private string _FileName;
 		
 		private int _ID;
 		
@@ -8049,11 +8127,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
+		private string _DocumentModifiedBy;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<InvoiceContent> _InvoiceContent;
 		
@@ -8063,14 +8141,20 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnBillDocChanging(string value);
     partial void OnBillDocChanged();
     partial void OnClearenceIndexChanging(System.Nullable<int> value);
     partial void OnClearenceIndexChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnDocumentCreatedByChanging(string value);
+    partial void OnDocumentCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnInvoiceCreationDateChanging(System.Nullable<System.DateTime> value);
@@ -8083,12 +8167,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnIsExportChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
+    partial void OnDocumentModifiedByChanging(string value);
+    partial void OnDocumentModifiedByChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public InvoiceLibrary()
@@ -8098,7 +8182,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_BillDoc", DbType="NVarChar(255)")]
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BillDoc", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string BillDoc
 		{
 			get
@@ -8162,22 +8266,62 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_DocumentCreatedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentCreatedBy
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._DocumentCreatedBy;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._DocumentCreatedBy != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnDocumentCreatedByChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._DocumentCreatedBy = value;
+					this.SendPropertyChanged("DocumentCreatedBy");
+					this.OnDocumentCreatedByChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FileName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string FileName
+		{
+			get
+			{
+				return this._FileName;
+			}
+			set
+			{
+				if ((this._FileName != value))
+				{
+					this.OnFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
 				}
 			}
 		}
@@ -8302,47 +8446,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
+		[Column(Storage="_DocumentModifiedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentModifiedBy
 		{
 			get
 			{
-				return this._ModifiedBy;
+				return this._DocumentModifiedBy;
 			}
 			set
 			{
-				if ((this._ModifiedBy != value))
+				if ((this._DocumentModifiedBy != value))
 				{
-					this.OnModifiedByChanging(value);
+					this.OnDocumentModifiedByChanging(value);
 					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
+					this._DocumentModifiedBy = value;
+					this.SendPropertyChanged("DocumentModifiedBy");
+					this.OnDocumentModifiedByChanged();
 				}
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(255)")]
+		[Column(Storage="_Title", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -8358,6 +8482,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -8454,6 +8598,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private string _Batch;
 		
 		private System.Nullable<double> _Cartons;
@@ -8466,8 +8612,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
-		
 		private string _Currency;
 		
 		private System.Nullable<System.DateTime> _CustomsDebtDate;
@@ -8477,6 +8621,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.Nullable<double> _Duty;
 		
 		private string _DutyName;
+		
+		private string _Editor;
 		
 		private string _Grade;
 		
@@ -8492,8 +8638,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _IPR2PCNPCN;
 		
-		private string _IPRClosi;
-		
 		private System.Nullable<double> _IPRDutyPerUnit;
 		
 		private System.Nullable<int> _IPRLibraryIndex;
@@ -8504,13 +8648,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
 		private System.Nullable<double> _NetMass;
 		
 		private System.Nullable<System.DateTime> _OGLValidTo;
-		
-		private System.Nullable<int> _Owshiddenversion;
 		
 		private System.Nullable<double> _ProductivityRateMax;
 		
@@ -8533,6 +8673,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.Nullable<double> _VAT;
 		
 		private string _VATName;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<BalanceIPR> _BalanceIPR;
 		
@@ -8558,6 +8700,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnAccountClosedChanged();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnBatchChanging(string value);
     partial void OnBatchChanged();
     partial void OnCartonsChanging(System.Nullable<double> value);
@@ -8570,8 +8714,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnConsentPeriodChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
     partial void OnCurrencyChanging(string value);
     partial void OnCurrencyChanged();
     partial void OnCustomsDebtDateChanging(System.Nullable<System.DateTime> value);
@@ -8582,6 +8724,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnDutyChanged();
     partial void OnDutyNameChanging(string value);
     partial void OnDutyNameChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnGradeChanging(string value);
     partial void OnGradeChanged();
     partial void OnGrossMassChanging(System.Nullable<double> value);
@@ -8596,8 +8740,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnIPR2JSOXIndexChanged();
     partial void OnIPR2PCNPCNChanging(System.Nullable<int> value);
     partial void OnIPR2PCNPCNChanged();
-    partial void OnIPRClosiChanging(string value);
-    partial void OnIPRClosiChanged();
     partial void OnIPRDutyPerUnitChanging(System.Nullable<double> value);
     partial void OnIPRDutyPerUnitChanged();
     partial void OnIPRLibraryIndexChanging(System.Nullable<int> value);
@@ -8608,14 +8750,10 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnIPRVATPerUnitChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
     partial void OnNetMassChanging(System.Nullable<double> value);
     partial void OnNetMassChanged();
     partial void OnOGLValidToChanging(System.Nullable<System.DateTime> value);
     partial void OnOGLValidToChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnProductivityRateMaxChanging(System.Nullable<double> value);
     partial void OnProductivityRateMaxChanged();
     partial void OnProductivityRateMinChanging(System.Nullable<double> value);
@@ -8638,6 +8776,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnVATChanged();
     partial void OnVATNameChanging(string value);
     partial void OnVATNameChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public IPR()
@@ -8712,7 +8852,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Batch", DbType="NVarChar(255)")]
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Batch", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Batch
 		{
 			get
@@ -8836,27 +8996,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Currency", DbType="NVarChar(255)")]
+		[Column(Storage="_Currency", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Currency
 		{
 			get
@@ -8896,7 +9036,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_DocumentNo", DbType="NVarChar(255)")]
+		[Column(Storage="_DocumentNo", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string DocumentNo
 		{
 			get
@@ -8936,7 +9076,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_DutyName", DbType="NVarChar(255)")]
+		[Column(Storage="_DutyName", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string DutyName
 		{
 			get
@@ -8956,7 +9096,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Grade", DbType="NVarChar(255)")]
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Grade", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Grade
 		{
 			get
@@ -9016,7 +9176,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_InvoiceNo", DbType="NVarChar(255)")]
+		[Column(Storage="_InvoiceNo", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string InvoiceNo
 		{
 			get
@@ -9104,26 +9264,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._IPR2PCNPCN = value;
 					this.SendPropertyChanged("IPR2PCNPCN");
 					this.OnIPR2PCNPCNChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IPRClosi", DbType="NVarChar(255)")]
-		public string IPRClosi
-		{
-			get
-			{
-				return this._IPRClosi;
-			}
-			set
-			{
-				if ((this._IPRClosi != value))
-				{
-					this.OnIPRClosiChanging(value);
-					this.SendPropertyChanging();
-					this._IPRClosi = value;
-					this.SendPropertyChanged("IPRClosi");
-					this.OnIPRClosiChanged();
 				}
 			}
 		}
@@ -9232,26 +9372,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_NetMass", DbType="Float")]
 		public System.Nullable<double> NetMass
 		{
@@ -9288,26 +9408,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._OGLValidTo = value;
 					this.SendPropertyChanged("OGLValidTo");
 					this.OnOGLValidToChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -9352,7 +9452,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SKU", DbType="NVarChar(255)")]
+		[Column(Storage="_SKU", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string SKU
 		{
 			get
@@ -9372,7 +9472,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -9392,7 +9492,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_TobaccoName", DbType="NVarChar(255)")]
+		[Column(Storage="_TobaccoName", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string TobaccoName
 		{
 			get
@@ -9512,7 +9612,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_VATName", DbType="NVarChar(255)")]
+		[Column(Storage="_VATName", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string VATName
 		{
 			get
@@ -9528,6 +9628,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._VATName = value;
 					this.SendPropertyChanged("VATName");
 					this.OnVATNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -9779,21 +9899,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _DocumentCreatedBy;
 		
 		private string _DocumentNo;
+		
+		private string _Editor;
+		
+		private string _FileName;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
+		private string _DocumentModifiedBy;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<IPR> _IPR;
 		
@@ -9801,28 +9927,54 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnDocumentCreatedByChanging(string value);
+    partial void OnDocumentCreatedByChanged();
     partial void OnDocumentNoChanging(string value);
     partial void OnDocumentNoChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
+    partial void OnDocumentModifiedByChanging(string value);
+    partial void OnDocumentModifiedByChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public IPRLibrary()
 		{
 			this._IPR = new EntitySet<IPR>(new Action<IPR>(this.attach_IPR), new Action<IPR>(this.detach_IPR));
 			OnCreated();
+		}
+		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime")]
@@ -9845,27 +9997,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_DocumentCreatedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentCreatedBy
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._DocumentCreatedBy;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._DocumentCreatedBy != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnDocumentCreatedByChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._DocumentCreatedBy = value;
+					this.SendPropertyChanged("DocumentCreatedBy");
+					this.OnDocumentCreatedByChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_DocumentNo", DbType="NVarChar(255)")]
+		[Column(Storage="_DocumentNo", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string DocumentNo
 		{
 			get
@@ -9881,6 +10033,46 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._DocumentNo = value;
 					this.SendPropertyChanged("DocumentNo");
 					this.OnDocumentNoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FileName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string FileName
+		{
+			get
+			{
+				return this._FileName;
+			}
+			set
+			{
+				if ((this._FileName != value))
+				{
+					this.OnFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
 				}
 			}
 		}
@@ -9925,47 +10117,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
+		[Column(Storage="_DocumentModifiedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentModifiedBy
 		{
 			get
 			{
-				return this._ModifiedBy;
+				return this._DocumentModifiedBy;
 			}
 			set
 			{
-				if ((this._ModifiedBy != value))
+				if ((this._DocumentModifiedBy != value))
 				{
-					this.OnModifiedByChanging(value);
+					this.OnDocumentModifiedByChanging(value);
 					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
+					this._DocumentModifiedBy = value;
+					this.SendPropertyChanged("DocumentModifiedBy");
+					this.OnDocumentModifiedByChanged();
 				}
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(255)")]
+		[Column(Storage="_Title", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -9981,6 +10153,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -10037,13 +10229,15 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _Author;
+		
 		private string _CompensationGood;
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
-		
 		private string _CustomsProcedure;
+		
+		private string _Editor;
 		
 		private string _ExportOrFreeCirculationSAD;
 		
@@ -10059,10 +10253,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private System.Nullable<double> _RemainingQuantity;
 		
 		private System.Nullable<System.DateTime> _SADDate;
@@ -10070,6 +10260,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private string _Title;
 		
 		private System.Nullable<double> _TotalAmount;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<Disposal> _Disposal;
 		
@@ -10079,14 +10271,16 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCompensationGoodChanging(string value);
     partial void OnCompensationGoodChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
     partial void OnCustomsProcedureChanging(string value);
     partial void OnCustomsProcedureChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnExportOrFreeCirculationSADChanging(string value);
     partial void OnExportOrFreeCirculationSADChanged();
     partial void OnIDChanging(int value);
@@ -10101,10 +10295,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnJSOXCustomsSummary2JSOXIndexChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnRemainingQuantityChanging(System.Nullable<double> value);
     partial void OnRemainingQuantityChanged();
     partial void OnSADDateChanging(System.Nullable<System.DateTime> value);
@@ -10113,6 +10303,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnTotalAmountChanging(System.Nullable<double> value);
     partial void OnTotalAmountChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public JSOXCustomsSummary()
@@ -10122,7 +10314,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_CompensationGood", DbType="NVarChar(255)")]
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CompensationGood", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string CompensationGood
 		{
 			get
@@ -10162,27 +10374,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CustomsProcedure", DbType="NVarChar(255)")]
+		[Column(Storage="_CustomsProcedure", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string CustomsProcedure
 		{
 			get
@@ -10202,7 +10394,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ExportOrFreeCirculationSAD", DbType="NVarChar(255)")]
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ExportOrFreeCirculationSAD", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string ExportOrFreeCirculationSAD
 		{
 			get
@@ -10262,7 +10474,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_IntroducingSADNo", DbType="NVarChar(255)")]
+		[Column(Storage="_IntroducingSADNo", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string IntroducingSADNo
 		{
 			get
@@ -10282,7 +10494,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_InvoiceNo", DbType="NVarChar(255)")]
+		[Column(Storage="_InvoiceNo", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string InvoiceNo
 		{
 			get
@@ -10346,46 +10558,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_RemainingQuantity", DbType="Float")]
 		public System.Nullable<double> RemainingQuantity
 		{
@@ -10426,7 +10598,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -10462,6 +10634,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._TotalAmount = value;
 					this.SendPropertyChanged("TotalAmount");
 					this.OnTotalAmountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -10552,49 +10744,53 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private System.DateTime _BalanceDate;
+		private string _Author;
 		
-		private double _BalanceQuantity;
+		private System.Nullable<System.DateTime> _BalanceDate;
 		
-		private System.DateTime _Created;
+		private System.Nullable<double> _BalanceQuantity;
 		
-		private string _CreatedBy;
+		private System.Nullable<System.DateTime> _Created;
 		
-		private string _FileLeafRef;
+		private string _DocumentCreatedBy;
+		
+		private string _Editor;
+		
+		private string _FileName;
 		
 		private int _ID;
 		
-		private System.DateTime _IntroducingDateEnd;
+		private System.Nullable<System.DateTime> _IntroducingDateEnd;
 		
-		private System.DateTime _IntroducingDateStart;
+		private System.Nullable<System.DateTime> _IntroducingDateStart;
 		
-		private double _IntroducingQuantity;
+		private System.Nullable<double> _IntroducingQuantity;
 		
-		private bool _JSOXLibraryReadOnly;
+		private System.Nullable<bool> _JSOXLibraryReadOnly;
 		
-		private System.DateTime _Modified;
+		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
+		private string _DocumentModifiedBy;
 		
-		private System.DateTime _OutboundDateEnd;
+		private System.Nullable<System.DateTime> _OutboundDateEnd;
 		
-		private System.DateTime _OutboundDateStart;
+		private System.Nullable<System.DateTime> _OutboundDateStart;
 		
-		private double _OutboundQuantity;
+		private System.Nullable<double> _OutboundQuantity;
 		
-		private System.Nullable<int> _Owshiddenversion;
+		private System.Nullable<System.DateTime> _PreviousMonthDate;
 		
-		private System.DateTime _PreviousMonthDate;
+		private System.Nullable<double> _PreviousMonthQuantity;
 		
-		private double _PreviousMonthQuantity;
+		private System.Nullable<double> _ReassumeQuantity;
 		
-		private double _ReassumeQuantity;
+		private System.Nullable<System.DateTime> _SituationDate;
 		
-		private System.DateTime _SituationDate;
-		
-		private double _SituationQuantity;
+		private System.Nullable<double> _SituationQuantity;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<BalanceBatch> _BalanceBatch;
 		
@@ -10610,50 +10806,54 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnBalanceDateChanging(System.DateTime value);
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
+    partial void OnBalanceDateChanging(System.Nullable<System.DateTime> value);
     partial void OnBalanceDateChanged();
-    partial void OnBalanceQuantityChanging(double value);
+    partial void OnBalanceQuantityChanging(System.Nullable<double> value);
     partial void OnBalanceQuantityChanged();
-    partial void OnCreatedChanging(System.DateTime value);
+    partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
-    partial void OnFileLeafRefChanging(string value);
-    partial void OnFileLeafRefChanged();
+    partial void OnDocumentCreatedByChanging(string value);
+    partial void OnDocumentCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
-    partial void OnIntroducingDateEndChanging(System.DateTime value);
+    partial void OnIntroducingDateEndChanging(System.Nullable<System.DateTime> value);
     partial void OnIntroducingDateEndChanged();
-    partial void OnIntroducingDateStartChanging(System.DateTime value);
+    partial void OnIntroducingDateStartChanging(System.Nullable<System.DateTime> value);
     partial void OnIntroducingDateStartChanged();
-    partial void OnIntroducingQuantityChanging(double value);
+    partial void OnIntroducingQuantityChanging(System.Nullable<double> value);
     partial void OnIntroducingQuantityChanged();
-    partial void OnJSOXLibraryReadOnlyChanging(bool value);
+    partial void OnJSOXLibraryReadOnlyChanging(System.Nullable<bool> value);
     partial void OnJSOXLibraryReadOnlyChanged();
-    partial void OnModifiedChanging(System.DateTime value);
+    partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOutboundDateEndChanging(System.DateTime value);
+    partial void OnDocumentModifiedByChanging(string value);
+    partial void OnDocumentModifiedByChanged();
+    partial void OnOutboundDateEndChanging(System.Nullable<System.DateTime> value);
     partial void OnOutboundDateEndChanged();
-    partial void OnOutboundDateStartChanging(System.DateTime value);
+    partial void OnOutboundDateStartChanging(System.Nullable<System.DateTime> value);
     partial void OnOutboundDateStartChanged();
-    partial void OnOutboundQuantityChanging(double value);
+    partial void OnOutboundQuantityChanging(System.Nullable<double> value);
     partial void OnOutboundQuantityChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
-    partial void OnPreviousMonthDateChanging(System.DateTime value);
+    partial void OnPreviousMonthDateChanging(System.Nullable<System.DateTime> value);
     partial void OnPreviousMonthDateChanged();
-    partial void OnPreviousMonthQuantityChanging(double value);
+    partial void OnPreviousMonthQuantityChanging(System.Nullable<double> value);
     partial void OnPreviousMonthQuantityChanged();
-    partial void OnReassumeQuantityChanging(double value);
+    partial void OnReassumeQuantityChanging(System.Nullable<double> value);
     partial void OnReassumeQuantityChanged();
-    partial void OnSituationDateChanging(System.DateTime value);
+    partial void OnSituationDateChanging(System.Nullable<System.DateTime> value);
     partial void OnSituationDateChanged();
-    partial void OnSituationQuantityChanging(double value);
+    partial void OnSituationQuantityChanging(System.Nullable<double> value);
     partial void OnSituationQuantityChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public JSOXLibrary()
@@ -10666,8 +10866,28 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_BalanceDate", DbType="DateTime NOT NULL")]
-		public System.DateTime BalanceDate
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BalanceDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> BalanceDate
 		{
 			get
 			{
@@ -10686,8 +10906,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_BalanceQuantity", DbType="Float NOT NULL")]
-		public double BalanceQuantity
+		[Column(Storage="_BalanceQuantity", DbType="Float")]
+		public System.Nullable<double> BalanceQuantity
 		{
 			get
 			{
@@ -10706,8 +10926,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
-		public System.DateTime Created
+		[Column(Storage="_Created", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Created
 		{
 			get
 			{
@@ -10726,42 +10946,62 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string CreatedBy
+		[Column(Storage="_DocumentCreatedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentCreatedBy
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._DocumentCreatedBy;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._DocumentCreatedBy != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnDocumentCreatedByChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._DocumentCreatedBy = value;
+					this.SendPropertyChanged("DocumentCreatedBy");
+					this.OnDocumentCreatedByChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_FileLeafRef", DbType="NVarChar(255)")]
-		public string FileLeafRef
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._FileLeafRef;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._FileLeafRef != value))
+				if ((this._Editor != value))
 				{
-					this.OnFileLeafRefChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._FileLeafRef = value;
-					this.SendPropertyChanged("FileLeafRef");
-					this.OnFileLeafRefChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FileName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string FileName
+		{
+			get
+			{
+				return this._FileName;
+			}
+			set
+			{
+				if ((this._FileName != value))
+				{
+					this.OnFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
 				}
 			}
 		}
@@ -10786,8 +11026,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_IntroducingDateEnd", DbType="DateTime NOT NULL")]
-		public System.DateTime IntroducingDateEnd
+		[Column(Storage="_IntroducingDateEnd", DbType="DateTime")]
+		public System.Nullable<System.DateTime> IntroducingDateEnd
 		{
 			get
 			{
@@ -10806,8 +11046,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_IntroducingDateStart", DbType="DateTime NOT NULL")]
-		public System.DateTime IntroducingDateStart
+		[Column(Storage="_IntroducingDateStart", DbType="DateTime")]
+		public System.Nullable<System.DateTime> IntroducingDateStart
 		{
 			get
 			{
@@ -10826,8 +11066,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_IntroducingQuantity", DbType="Float NOT NULL")]
-		public double IntroducingQuantity
+		[Column(Storage="_IntroducingQuantity", DbType="Float")]
+		public System.Nullable<double> IntroducingQuantity
 		{
 			get
 			{
@@ -10846,8 +11086,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_JSOXLibraryReadOnly", DbType="Bit NOT NULL")]
-		public bool JSOXLibraryReadOnly
+		[Column(Storage="_JSOXLibraryReadOnly", DbType="Bit")]
+		public System.Nullable<bool> JSOXLibraryReadOnly
 		{
 			get
 			{
@@ -10866,8 +11106,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Modified", DbType="DateTime NOT NULL")]
-		public System.DateTime Modified
+		[Column(Storage="_Modified", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Modified
 		{
 			get
 			{
@@ -10886,28 +11126,28 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ModifiedBy
+		[Column(Storage="_DocumentModifiedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentModifiedBy
 		{
 			get
 			{
-				return this._ModifiedBy;
+				return this._DocumentModifiedBy;
 			}
 			set
 			{
-				if ((this._ModifiedBy != value))
+				if ((this._DocumentModifiedBy != value))
 				{
-					this.OnModifiedByChanging(value);
+					this.OnDocumentModifiedByChanging(value);
 					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
+					this._DocumentModifiedBy = value;
+					this.SendPropertyChanged("DocumentModifiedBy");
+					this.OnDocumentModifiedByChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_OutboundDateEnd", DbType="DateTime NOT NULL")]
-		public System.DateTime OutboundDateEnd
+		[Column(Storage="_OutboundDateEnd", DbType="DateTime")]
+		public System.Nullable<System.DateTime> OutboundDateEnd
 		{
 			get
 			{
@@ -10926,8 +11166,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_OutboundDateStart", DbType="DateTime NOT NULL")]
-		public System.DateTime OutboundDateStart
+		[Column(Storage="_OutboundDateStart", DbType="DateTime")]
+		public System.Nullable<System.DateTime> OutboundDateStart
 		{
 			get
 			{
@@ -10946,8 +11186,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_OutboundQuantity", DbType="Float NOT NULL")]
-		public double OutboundQuantity
+		[Column(Storage="_OutboundQuantity", DbType="Float")]
+		public System.Nullable<double> OutboundQuantity
 		{
 			get
 			{
@@ -10966,28 +11206,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_PreviousMonthDate", DbType="DateTime NOT NULL")]
-		public System.DateTime PreviousMonthDate
+		[Column(Storage="_PreviousMonthDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> PreviousMonthDate
 		{
 			get
 			{
@@ -11006,8 +11226,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_PreviousMonthQuantity", DbType="Float NOT NULL")]
-		public double PreviousMonthQuantity
+		[Column(Storage="_PreviousMonthQuantity", DbType="Float")]
+		public System.Nullable<double> PreviousMonthQuantity
 		{
 			get
 			{
@@ -11026,8 +11246,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ReassumeQuantity", DbType="Float NOT NULL")]
-		public double ReassumeQuantity
+		[Column(Storage="_ReassumeQuantity", DbType="Float")]
+		public System.Nullable<double> ReassumeQuantity
 		{
 			get
 			{
@@ -11046,8 +11266,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SituationDate", DbType="DateTime NOT NULL")]
-		public System.DateTime SituationDate
+		[Column(Storage="_SituationDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> SituationDate
 		{
 			get
 			{
@@ -11066,8 +11286,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SituationQuantity", DbType="Float NOT NULL")]
-		public double SituationQuantity
+		[Column(Storage="_SituationQuantity", DbType="Float")]
+		public System.Nullable<double> SituationQuantity
 		{
 			get
 			{
@@ -11086,7 +11306,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -11102,6 +11322,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -11260,13 +11500,15 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private string _Batch;
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
-		
 		private System.Nullable<double> _Dust;
+		
+		private string _Editor;
 		
 		private System.Nullable<double> _FGQuantity;
 		
@@ -11276,15 +11518,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
 		private System.Nullable<double> _Overuse;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _ProductID;
-		
-		private string _ProductType;
 		
 		private System.Nullable<double> _SHMenthol;
 		
@@ -11302,6 +11538,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _Units;
 		
+		private System.Nullable<int> _Version;
+		
 		private System.Nullable<double> _Waste;
 		
 		private EntitySet<Disposal> _Disposal;
@@ -11314,14 +11552,16 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnBatchChanging(string value);
     partial void OnBatchChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
     partial void OnDustChanging(System.Nullable<double> value);
     partial void OnDustChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnFGQuantityChanging(System.Nullable<double> value);
     partial void OnFGQuantityChanged();
     partial void OnIDChanging(int value);
@@ -11330,16 +11570,10 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnMaterial2BatchIndexChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
     partial void OnOveruseChanging(System.Nullable<double> value);
     partial void OnOveruseChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnProductIDChanging(string value);
     partial void OnProductIDChanged();
-    partial void OnProductTypeChanging(string value);
-    partial void OnProductTypeChanged();
     partial void OnSHMentholChanging(System.Nullable<double> value);
     partial void OnSHMentholChanged();
     partial void OnSKUChanging(string value);
@@ -11356,6 +11590,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTobaccoQuantityChanged();
     partial void OnUnitsChanging(string value);
     partial void OnUnitsChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     partial void OnWasteChanging(System.Nullable<double> value);
     partial void OnWasteChanged();
     #endregion
@@ -11387,7 +11623,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Batch", DbType="NVarChar(255)")]
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Batch", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Batch
 		{
 			get
@@ -11427,26 +11683,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Dust", DbType="Float")]
 		public System.Nullable<double> Dust
 		{
@@ -11463,6 +11699,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Dust = value;
 					this.SendPropertyChanged("Dust");
 					this.OnDustChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -11551,26 +11807,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Overuse", DbType="Float")]
 		public System.Nullable<double> Overuse
 		{
@@ -11591,27 +11827,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ProductID", DbType="NVarChar(255)")]
+		[Column(Storage="_ProductID", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string ProductID
 		{
 			get
@@ -11627,26 +11843,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ProductID = value;
 					this.SendPropertyChanged("ProductID");
 					this.OnProductIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ProductType", DbType="NVarChar(255)")]
-		public string ProductType
-		{
-			get
-			{
-				return this._ProductType;
-			}
-			set
-			{
-				if ((this._ProductType != value))
-				{
-					this.OnProductTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ProductType = value;
-					this.SendPropertyChanged("ProductType");
-					this.OnProductTypeChanged();
 				}
 			}
 		}
@@ -11671,7 +11867,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SKU", DbType="NVarChar(255)")]
+		[Column(Storage="_SKU", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string SKU
 		{
 			get
@@ -11691,7 +11887,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SKUDescription", DbType="NVarChar(255)")]
+		[Column(Storage="_SKUDescription", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string SKUDescription
 		{
 			get
@@ -11711,7 +11907,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_StorLoc", DbType="NVarChar(255)")]
+		[Column(Storage="_StorLoc", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string StorLoc
 		{
 			get
@@ -11731,7 +11927,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -11791,7 +11987,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Units", DbType="NVarChar(255)")]
+		[Column(Storage="_Units", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Units
 		{
 			get
@@ -11807,6 +12003,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Units = value;
 					this.SendPropertyChanged("Units");
 					this.OnUnitsChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -11917,25 +12133,25 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _Author;
+		
 		private string _CompensationGood;
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
-		
 		private System.Nullable<bool> _Disposal;
+		
+		private string _Editor;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _ProductCodeNumber;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<Disposal> _Disposal_PCNCode;
 		
@@ -11945,26 +12161,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCompensationGoodChanging(string value);
     partial void OnCompensationGoodChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
     partial void OnDisposalChanging(System.Nullable<bool> value);
     partial void OnDisposalChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnProductCodeNumberChanging(string value);
     partial void OnProductCodeNumberChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public PCNCode()
@@ -11974,7 +12190,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_CompensationGood", DbType="NVarChar(255)")]
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CompensationGood", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string CompensationGood
 		{
 			get
@@ -12014,26 +12250,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Disposal", DbType="Bit")]
 		public System.Nullable<bool> Disposal
 		{
@@ -12050,6 +12266,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Disposal = value;
 					this.SendPropertyChanged("Disposal");
 					this.OnDisposalChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -12094,47 +12330,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ProductCodeNumber", DbType="NVarChar(255)")]
+		[Column(Storage="_ProductCodeNumber", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string ProductCodeNumber
 		{
 			get
@@ -12154,7 +12350,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -12170,6 +12366,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -12253,19 +12469,25 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _DocumentCreatedBy;
+		
+		private string _Editor;
+		
+		private string _FileName;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
+		private string _DocumentModifiedBy;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<Clearence> _Clearence;
 		
@@ -12275,20 +12497,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnDocumentCreatedByChanging(string value);
+    partial void OnDocumentCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
+    partial void OnDocumentModifiedByChanging(string value);
+    partial void OnDocumentModifiedByChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public SADConsignment()
@@ -12317,6 +12545,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Created", DbType="DateTime")]
 		public System.Nullable<System.DateTime> Created
 		{
@@ -12337,22 +12585,62 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_DocumentCreatedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentCreatedBy
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._DocumentCreatedBy;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._DocumentCreatedBy != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnDocumentCreatedByChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._DocumentCreatedBy = value;
+					this.SendPropertyChanged("DocumentCreatedBy");
+					this.OnDocumentCreatedByChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FileName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string FileName
+		{
+			get
+			{
+				return this._FileName;
+			}
+			set
+			{
+				if ((this._FileName != value))
+				{
+					this.OnFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
 				}
 			}
 		}
@@ -12397,47 +12685,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
+		[Column(Storage="_DocumentModifiedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentModifiedBy
 		{
 			get
 			{
-				return this._ModifiedBy;
+				return this._DocumentModifiedBy;
 			}
 			set
 			{
-				if ((this._ModifiedBy != value))
+				if ((this._DocumentModifiedBy != value))
 				{
-					this.OnModifiedByChanging(value);
+					this.OnDocumentModifiedByChanging(value);
 					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
+					this._DocumentModifiedBy = value;
+					this.SendPropertyChanged("DocumentModifiedBy");
+					this.OnDocumentModifiedByChanged();
 				}
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(255)")]
+		[Column(Storage="_Title", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -12453,6 +12721,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -12511,15 +12799,17 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
-		private System.Nullable<System.DateTime> _Created;
+		private string _Author;
 		
-		private string _CreatedBy;
+		private System.Nullable<System.DateTime> _Created;
 		
 		private string _Currency;
 		
 		private System.Nullable<System.DateTime> _CustomsDebtDate;
 		
 		private string _DocumentNumber;
+		
+		private string _Editor;
 		
 		private System.Nullable<double> _ExchangeRate;
 		
@@ -12529,11 +12819,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
 		private System.Nullable<double> _NetMass;
-		
-		private System.Nullable<int> _Owshiddenversion;
 		
 		private string _ReferenceNumber;
 		
@@ -12542,6 +12828,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private string _SystemID;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntityRef<SADDocumentLibrary> _SADDocumentLibrary;
 		
@@ -12553,16 +12841,18 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
     partial void OnCurrencyChanging(string value);
     partial void OnCurrencyChanged();
     partial void OnCustomsDebtDateChanging(System.Nullable<System.DateTime> value);
     partial void OnCustomsDebtDateChanged();
     partial void OnDocumentNumberChanging(string value);
     partial void OnDocumentNumberChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnExchangeRateChanging(System.Nullable<double> value);
     partial void OnExchangeRateChanged();
     partial void OnGrossMassChanging(System.Nullable<double> value);
@@ -12571,12 +12861,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
     partial void OnNetMassChanging(System.Nullable<double> value);
     partial void OnNetMassChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnReferenceNumberChanging(string value);
     partial void OnReferenceNumberChanged();
     partial void OnSADDocumenLibrarytIndexChanging(System.Nullable<int> value);
@@ -12585,6 +12871,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnSystemIDChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public SADDocument()
@@ -12614,6 +12902,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Created", DbType="DateTime")]
 		public System.Nullable<System.DateTime> Created
 		{
@@ -12634,27 +12942,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Currency", DbType="NVarChar(255)")]
+		[Column(Storage="_Currency", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Currency
 		{
 			get
@@ -12694,7 +12982,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_DocumentNumber", DbType="NVarChar(255)")]
+		[Column(Storage="_DocumentNumber", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string DocumentNumber
 		{
 			get
@@ -12710,6 +12998,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._DocumentNumber = value;
 					this.SendPropertyChanged("DocumentNumber");
 					this.OnDocumentNumberChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -12794,26 +13102,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_NetMass", DbType="Float")]
 		public System.Nullable<double> NetMass
 		{
@@ -12834,27 +13122,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ReferenceNumber", DbType="NVarChar(255)")]
+		[Column(Storage="_ReferenceNumber", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string ReferenceNumber
 		{
 			get
@@ -12898,7 +13166,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SystemID", DbType="NVarChar(255)")]
+		[Column(Storage="_SystemID", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string SystemID
 		{
 			get
@@ -12918,7 +13186,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -12934,6 +13202,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -13026,21 +13314,29 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _DocumentCreatedBy;
+		
+		private string _Editor;
+		
+		private string _FileName;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
+		private string _DocumentModifiedBy;
 		
 		private string _SADDocumentLibraryComments;
 		
 		private System.Nullable<bool> _SADDocumentLibraryOK;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<SADDocument> _SADDocument;
 		
@@ -13050,22 +13346,30 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnDocumentCreatedByChanging(string value);
+    partial void OnDocumentCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
+    partial void OnDocumentModifiedByChanging(string value);
+    partial void OnDocumentModifiedByChanged();
     partial void OnSADDocumentLibraryCommentsChanging(string value);
     partial void OnSADDocumentLibraryCommentsChanged();
     partial void OnSADDocumentLibraryOKChanging(System.Nullable<bool> value);
     partial void OnSADDocumentLibraryOKChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public SADDocumentLibrary()
@@ -13094,6 +13398,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Created", DbType="DateTime")]
 		public System.Nullable<System.DateTime> Created
 		{
@@ -13114,22 +13438,62 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_DocumentCreatedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentCreatedBy
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._DocumentCreatedBy;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._DocumentCreatedBy != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnDocumentCreatedByChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._DocumentCreatedBy = value;
+					this.SendPropertyChanged("DocumentCreatedBy");
+					this.OnDocumentCreatedByChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FileName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string FileName
+		{
+			get
+			{
+				return this._FileName;
+			}
+			set
+			{
+				if ((this._FileName != value))
+				{
+					this.OnFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
 				}
 			}
 		}
@@ -13174,27 +13538,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
+		[Column(Storage="_DocumentModifiedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentModifiedBy
 		{
 			get
 			{
-				return this._ModifiedBy;
+				return this._DocumentModifiedBy;
 			}
 			set
 			{
-				if ((this._ModifiedBy != value))
+				if ((this._DocumentModifiedBy != value))
 				{
-					this.OnModifiedByChanging(value);
+					this.OnDocumentModifiedByChanging(value);
 					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
+					this._DocumentModifiedBy = value;
+					this.SendPropertyChanged("DocumentModifiedBy");
+					this.OnDocumentModifiedByChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_SADDocumentLibraryComments", DbType="NVarChar(255)")]
+		[Column(Storage="_SADDocumentLibraryComments", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string SADDocumentLibraryComments
 		{
 			get
@@ -13234,7 +13598,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255)")]
+		[Column(Storage="_Title", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -13250,6 +13614,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -13310,23 +13694,23 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
-		
 		private string _DutyType;
+		
+		private string _Editor;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private System.Nullable<int> _SADDuties2SADGoodID;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntityRef<SADGood> _SADGood;
 		
@@ -13338,24 +13722,24 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnAmountChanged();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
     partial void OnDutyTypeChanging(string value);
     partial void OnDutyTypeChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnSADDuties2SADGoodIDChanging(System.Nullable<int> value);
     partial void OnSADDuties2SADGoodIDChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public SADDuties()
@@ -13404,6 +13788,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Created", DbType="DateTime")]
 		public System.Nullable<System.DateTime> Created
 		{
@@ -13424,27 +13828,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DutyType", DbType="NVarChar(255)")]
+		[Column(Storage="_DutyType", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string DutyType
 		{
 			get
@@ -13460,6 +13844,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._DutyType = value;
 					this.SendPropertyChanged("DutyType");
 					this.OnDutyTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -13504,46 +13908,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_SADDuties2SADGoodID", DbType="Int")]
 		public System.Nullable<int> SADDuties2SADGoodID
 		{
@@ -13568,7 +13932,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -13584,6 +13948,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -13651,9 +14035,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private string _GoodsDescription;
 		
@@ -13665,11 +14051,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
 		private System.Nullable<double> _NetMass;
-		
-		private System.Nullable<int> _Owshiddenversion;
 		
 		private string _PCNTariffCode;
 		
@@ -13680,6 +14062,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private string _Title;
 		
 		private System.Nullable<double> _TotalAmountInvoiced;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<Clearence> _Clearence;
 		
@@ -13699,10 +14083,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnGoodsDescriptionChanging(string value);
     partial void OnGoodsDescriptionChanged();
     partial void OnGrossMassChanging(System.Nullable<double> value);
@@ -13713,12 +14099,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnItemNoChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
     partial void OnNetMassChanging(System.Nullable<double> value);
     partial void OnNetMassChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnPCNTariffCodeChanging(string value);
     partial void OnPCNTariffCodeChanged();
     partial void OnSADDocumentIndexChanging(System.Nullable<int> value);
@@ -13729,6 +14111,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnTotalAmountInvoicedChanging(System.Nullable<double> value);
     partial void OnTotalAmountInvoicedChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public SADGood()
@@ -13762,6 +14146,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Created", DbType="DateTime")]
 		public System.Nullable<System.DateTime> Created
 		{
@@ -13782,27 +14186,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_GoodsDescription", DbType="NVarChar(255)")]
+		[Column(Storage="_GoodsDescription", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string GoodsDescription
 		{
 			get
@@ -13902,26 +14306,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_NetMass", DbType="Float")]
 		public System.Nullable<double> NetMass
 		{
@@ -13942,27 +14326,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_PCNTariffCode", DbType="NVarChar(255)")]
+		[Column(Storage="_PCNTariffCode", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string PCNTariffCode
 		{
 			get
@@ -14006,7 +14370,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SPProcedure", DbType="NVarChar(255)")]
+		[Column(Storage="_SPProcedure", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string SPProcedure
 		{
 			get
@@ -14026,7 +14390,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -14062,6 +14426,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._TotalAmountInvoiced = value;
 					this.SendPropertyChanged("TotalAmountInvoiced");
 					this.OnTotalAmountInvoicedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -14254,9 +14638,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private int _ID;
 		
@@ -14264,15 +14650,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Package;
 		
 		private System.Nullable<int> _SADPackage2SADGoodID;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntityRef<SADGood> _SADGood;
 		
@@ -14282,26 +14666,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnItemNoChanging(System.Nullable<double> value);
     partial void OnItemNoChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnPackageChanging(string value);
     partial void OnPackageChanged();
     partial void OnSADPackage2SADGoodIDChanging(System.Nullable<int> value);
     partial void OnSADPackage2SADGoodIDChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public SADPackage()
@@ -14330,6 +14714,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Created", DbType="DateTime")]
 		public System.Nullable<System.DateTime> Created
 		{
@@ -14350,22 +14754,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -14430,47 +14834,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Package", DbType="NVarChar(255)")]
+		[Column(Storage="_Package", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Package
 		{
 			get
@@ -14514,7 +14878,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -14530,6 +14894,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -14597,9 +14981,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private int _ID;
 		
@@ -14607,17 +14993,15 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
 		private System.Nullable<double> _NetMass;
-		
-		private System.Nullable<int> _Owshiddenversion;
 		
 		private System.Nullable<int> _SADQuantity2SADGoodID;
 		
 		private string _Title;
 		
 		private string _Units;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntityRef<SADGood> _SADGood;
 		
@@ -14627,28 +15011,28 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnItemNoChanging(System.Nullable<double> value);
     partial void OnItemNoChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
     partial void OnNetMassChanging(System.Nullable<double> value);
     partial void OnNetMassChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnSADQuantity2SADGoodIDChanging(System.Nullable<int> value);
     partial void OnSADQuantity2SADGoodIDChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnUnitsChanging(string value);
     partial void OnUnitsChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public SADQuantity()
@@ -14677,6 +15061,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Created", DbType="DateTime")]
 		public System.Nullable<System.DateTime> Created
 		{
@@ -14697,22 +15101,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -14777,26 +15181,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_NetMass", DbType="Float")]
 		public System.Nullable<double> NetMass
 		{
@@ -14813,26 +15197,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._NetMass = value;
 					this.SendPropertyChanged("NetMass");
 					this.OnNetMassChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -14861,7 +15225,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -14881,7 +15245,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Units", DbType="NVarChar(255)")]
+		[Column(Storage="_Units", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Units
 		{
 			get
@@ -14897,6 +15261,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Units = value;
 					this.SendPropertyChanged("Units");
 					this.OnUnitsChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -14964,25 +15348,25 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private string _Code;
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
 		private string _Number;
-		
-		private System.Nullable<int> _Owshiddenversion;
 		
 		private System.Nullable<int> _SADRequiredDoc2SADGoodID;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntityRef<SADGood> _SADGood;
 		
@@ -14992,26 +15376,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCodeChanging(string value);
     partial void OnCodeChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
     partial void OnNumberChanging(string value);
     partial void OnNumberChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnSADRequiredDoc2SADGoodIDChanging(System.Nullable<int> value);
     partial void OnSADRequiredDoc2SADGoodIDChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public SADRequiredDocuments()
@@ -15040,7 +15424,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Code", DbType="NVarChar(255)")]
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Code", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Code
 		{
 			get
@@ -15080,22 +15484,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -15140,27 +15544,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Number", DbType="NVarChar(255)")]
+		[Column(Storage="_Number", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Number
 		{
 			get
@@ -15176,26 +15560,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Number = value;
 					this.SendPropertyChanged("Number");
 					this.OnNumberChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -15224,7 +15588,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -15240,6 +15604,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -15305,9 +15689,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private int _ID;
 		
@@ -15315,37 +15701,55 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnKeyValueChanging(string value);
     partial void OnKeyValueChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public Settings()
 		{
 			OnCreated();
+		}
+		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime")]
@@ -15368,22 +15772,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -15408,7 +15812,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_KeyValue", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_KeyValue", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string KeyValue
 		{
 			get
@@ -15448,47 +15852,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -15504,6 +15868,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -15535,47 +15919,67 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
-		
-		private string _ProductType;
-		
 		private double _SHMentholRatio;
+		
+		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
-    partial void OnProductTypeChanging(string value);
-    partial void OnProductTypeChanged();
     partial void OnSHMentholRatioChanging(double value);
     partial void OnSHMentholRatioChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public SHMenthol()
 		{
 			OnCreated();
+		}
+		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime")]
@@ -15598,22 +16002,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -15658,66 +16062,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ProductType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ProductType
-		{
-			get
-			{
-				return this._ProductType;
-			}
-			set
-			{
-				if ((this._ProductType != value))
-				{
-					this.OnProductTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ProductType = value;
-					this.SendPropertyChanged("ProductType");
-					this.OnProductTypeChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_SHMentholRatio", DbType="Float NOT NULL")]
 		public double SHMentholRatio
 		{
@@ -15734,6 +16078,46 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._SHMentholRatio = value;
 					this.SendPropertyChanged("SHMentholRatio");
 					this.OnSHMentholRatioChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -15767,6 +16151,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private string _BlendPurpose;
 		
 		private string _Brand;
@@ -15775,7 +16161,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private string _Family;
 		
@@ -15793,11 +16179,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
 		private string _PrimeMarket;
-		
-		private string _ProductType;
 		
 		private string _SKU1;
 		
@@ -15806,6 +16188,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private string _Title;
 		
 		private string _Units;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<Batch> _Batch;
 		
@@ -15819,6 +16203,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnBlendPurposeChanging(string value);
     partial void OnBlendPurposeChanged();
     partial void OnBrandChanging(string value);
@@ -15827,8 +16213,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCigaretteLenghtChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnFamilyChanging(string value);
     partial void OnFamilyChanged();
     partial void OnFilterLenghtChanging(string value);
@@ -15845,12 +16231,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnMentholMaterialChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
     partial void OnPrimeMarketChanging(string value);
     partial void OnPrimeMarketChanged();
-    partial void OnProductTypeChanging(string value);
-    partial void OnProductTypeChanged();
     partial void OnSKU1Changing(string value);
     partial void OnSKU1Changed();
     partial void OnSKULibraryIndexChanging(System.Nullable<int> value);
@@ -15859,6 +16241,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnUnitsChanging(string value);
     partial void OnUnitsChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public SKU()
@@ -15889,7 +16273,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_BlendPurpose", DbType="NVarChar(255)")]
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BlendPurpose", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string BlendPurpose
 		{
 			get
@@ -15909,7 +16313,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Brand", DbType="NVarChar(255)")]
+		[Column(Storage="_Brand", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Brand
 		{
 			get
@@ -15929,7 +16333,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CigaretteLenght", DbType="NVarChar(255)")]
+		[Column(Storage="_CigaretteLenght", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string CigaretteLenght
 		{
 			get
@@ -15969,27 +16373,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Family", DbType="NVarChar(255)")]
+		[Column(Storage="_Family", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Family
 		{
 			get
@@ -16009,7 +16413,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_FilterLenght", DbType="NVarChar(255)")]
+		[Column(Storage="_FilterLenght", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string FilterLenght
 		{
 			get
@@ -16093,7 +16497,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Menthol", DbType="NVarChar(255)")]
+		[Column(Storage="_Menthol", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Menthol
 		{
 			get
@@ -16153,27 +16557,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_PrimeMarket", DbType="NVarChar(255)")]
+		[Column(Storage="_PrimeMarket", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string PrimeMarket
 		{
 			get
@@ -16193,27 +16577,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ProductType", DbType="NVarChar(255)")]
-		public string ProductType
-		{
-			get
-			{
-				return this._ProductType;
-			}
-			set
-			{
-				if ((this._ProductType != value))
-				{
-					this.OnProductTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ProductType = value;
-					this.SendPropertyChanged("ProductType");
-					this.OnProductTypeChanged();
-				}
-			}
-		}
-		
-		[Column(Name="SKU", Storage="_SKU1", DbType="NVarChar(255)")]
+		[Column(Name="SKU", Storage="_SKU1", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string SKU1
 		{
 			get
@@ -16257,7 +16621,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -16277,7 +16641,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Units", DbType="NVarChar(255)")]
+		[Column(Storage="_Units", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Units
 		{
 			get
@@ -16293,6 +16657,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Units = value;
 					this.SendPropertyChanged("Units");
 					this.OnUnitsChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -16417,17 +16801,25 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private System.DateTime _Created;
+		private string _Author;
 		
-		private string _CreatedBy;
+		private System.Nullable<System.DateTime> _Created;
+		
+		private string _DocumentCreatedBy;
+		
+		private string _Editor;
+		
+		private string _FileName;
 		
 		private int _ID;
 		
-		private System.DateTime _Modified;
+		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
+		private string _DocumentModifiedBy;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<SKU> _SKU;
 		
@@ -16435,18 +16827,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnCreatedChanging(System.DateTime value);
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
+    partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnDocumentCreatedByChanging(string value);
+    partial void OnDocumentCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
-    partial void OnModifiedChanging(System.DateTime value);
+    partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
+    partial void OnDocumentModifiedByChanging(string value);
+    partial void OnDocumentModifiedByChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public SKULibrary()
@@ -16455,8 +16855,28 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
-		public System.DateTime Created
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Created", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Created
 		{
 			get
 			{
@@ -16475,22 +16895,62 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string CreatedBy
+		[Column(Storage="_DocumentCreatedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentCreatedBy
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._DocumentCreatedBy;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._DocumentCreatedBy != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnDocumentCreatedByChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._DocumentCreatedBy = value;
+					this.SendPropertyChanged("DocumentCreatedBy");
+					this.OnDocumentCreatedByChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FileName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string FileName
+		{
+			get
+			{
+				return this._FileName;
+			}
+			set
+			{
+				if ((this._FileName != value))
+				{
+					this.OnFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
 				}
 			}
 		}
@@ -16515,8 +16975,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Modified", DbType="DateTime NOT NULL")]
-		public System.DateTime Modified
+		[Column(Storage="_Modified", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Modified
 		{
 			get
 			{
@@ -16535,27 +16995,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ModifiedBy
+		[Column(Storage="_DocumentModifiedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentModifiedBy
 		{
 			get
 			{
-				return this._ModifiedBy;
+				return this._DocumentModifiedBy;
 			}
 			set
 			{
-				if ((this._ModifiedBy != value))
+				if ((this._DocumentModifiedBy != value))
 				{
-					this.OnModifiedByChanging(value);
+					this.OnDocumentModifiedByChanging(value);
 					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
+					this._DocumentModifiedBy = value;
+					this.SendPropertyChanged("DocumentModifiedBy");
+					this.OnDocumentModifiedByChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -16571,6 +17031,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -16627,11 +17107,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _Author;
+		
 		private string _CigaretteLenght;
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private string _FilterLenght;
 		
@@ -16639,11 +17121,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<SKU> _SKU;
 		
@@ -16653,24 +17133,24 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCigaretteLenghtChanging(string value);
     partial void OnCigaretteLenghtChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnFilterLenghtChanging(string value);
     partial void OnFilterLenghtChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public SPFormat()
@@ -16680,7 +17160,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			OnCreated();
 		}
 		
-		[Column(Storage="_CigaretteLenght", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CigaretteLenght", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string CigaretteLenght
 		{
 			get
@@ -16720,27 +17220,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_FilterLenght", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_FilterLenght", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string FilterLenght
 		{
 			get
@@ -16800,47 +17300,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -16856,6 +17316,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -16939,6 +17419,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private string _Batch;
 		
 		private System.Nullable<int> _BatchIndex;
@@ -16947,7 +17429,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private int _ID;
 		
@@ -16956,12 +17438,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.Nullable<bool> _IPRType;
 		
 		private System.Nullable<System.DateTime> _Modified;
-		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
-		
-		private string _ProductType;
 		
 		private System.Nullable<double> _Quantity;
 		
@@ -16979,6 +17455,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<double> _Unrestricted;
 		
+		private System.Nullable<int> _Version;
+		
 		private EntityRef<Batch> _BatchIndexBatch;
 		
 		private EntityRef<StockLibrary> _StockLibrary;
@@ -16989,6 +17467,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnBatchChanging(string value);
     partial void OnBatchChanged();
     partial void OnBatchIndexChanging(System.Nullable<int> value);
@@ -16997,8 +17477,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnBlockedChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnInQualityInspChanging(System.Nullable<double> value);
@@ -17007,12 +17487,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnIPRTypeChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
-    partial void OnProductTypeChanging(string value);
-    partial void OnProductTypeChanged();
     partial void OnQuantityChanging(System.Nullable<double> value);
     partial void OnQuantityChanged();
     partial void OnRestrictedUseChanging(System.Nullable<double> value);
@@ -17029,6 +17503,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnUnitsChanged();
     partial void OnUnrestrictedChanging(System.Nullable<double> value);
     partial void OnUnrestrictedChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public StockEntry()
@@ -17058,7 +17534,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Batch", DbType="NVarChar(255)")]
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Batch", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Batch
 		{
 			get
@@ -17142,22 +17638,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -17242,66 +17738,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ProductType", DbType="NVarChar(255)")]
-		public string ProductType
-		{
-			get
-			{
-				return this._ProductType;
-			}
-			set
-			{
-				if ((this._ProductType != value))
-				{
-					this.OnProductTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ProductType = value;
-					this.SendPropertyChanged("ProductType");
-					this.OnProductTypeChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Quantity", DbType="Float")]
 		public System.Nullable<double> Quantity
 		{
@@ -17342,7 +17778,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SKU", DbType="NVarChar(255)")]
+		[Column(Storage="_SKU", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string SKU
 		{
 			get
@@ -17386,7 +17822,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_StorLoc", DbType="NVarChar(255)")]
+		[Column(Storage="_StorLoc", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string StorLoc
 		{
 			get
@@ -17406,7 +17842,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -17426,7 +17862,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Units", DbType="NVarChar(255)")]
+		[Column(Storage="_Units", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Units
 		{
 			get
@@ -17462,6 +17898,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Unrestricted = value;
 					this.SendPropertyChanged("Unrestricted");
 					this.OnUnrestrictedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -17563,21 +18019,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _Archival;
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _DocumentCreatedBy;
+		
+		private string _Editor;
+		
+		private string _FileName;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
+		private string _DocumentModifiedBy;
 		
 		private System.Nullable<int> _Stock2JSOXLibraryIndex;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntitySet<StockEntry> _StockEntry;
 		
@@ -17589,22 +18051,28 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnArchivalChanging(System.Nullable<bool> value);
     partial void OnArchivalChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnDocumentCreatedByChanging(string value);
+    partial void OnDocumentCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
+    partial void OnDocumentModifiedByChanging(string value);
+    partial void OnDocumentModifiedByChanged();
     partial void OnStock2JSOXLibraryIndexChanging(System.Nullable<int> value);
     partial void OnStock2JSOXLibraryIndexChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public StockLibrary()
@@ -17634,6 +18102,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Created", DbType="DateTime")]
 		public System.Nullable<System.DateTime> Created
 		{
@@ -17654,22 +18142,62 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_DocumentCreatedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentCreatedBy
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._DocumentCreatedBy;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._DocumentCreatedBy != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnDocumentCreatedByChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._DocumentCreatedBy = value;
+					this.SendPropertyChanged("DocumentCreatedBy");
+					this.OnDocumentCreatedByChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FileName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string FileName
+		{
+			get
+			{
+				return this._FileName;
+			}
+			set
+			{
+				if ((this._FileName != value))
+				{
+					this.OnFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
 				}
 			}
 		}
@@ -17714,42 +18242,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
+		[Column(Storage="_DocumentModifiedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentModifiedBy
 		{
 			get
 			{
-				return this._ModifiedBy;
+				return this._DocumentModifiedBy;
 			}
 			set
 			{
-				if ((this._ModifiedBy != value))
+				if ((this._DocumentModifiedBy != value))
 				{
-					this.OnModifiedByChanging(value);
+					this.OnDocumentModifiedByChanging(value);
 					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
+					this._DocumentModifiedBy = value;
+					this.SendPropertyChanged("DocumentModifiedBy");
+					this.OnDocumentModifiedByChanged();
 				}
 			}
 		}
@@ -17778,7 +18286,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255)")]
+		[Column(Storage="_Title", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -17794,6 +18302,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -17884,13 +18412,15 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private System.Nullable<System.DateTime> _Created;
+		private string _Author;
 		
-		private string _CreatedBy;
+		private System.Nullable<System.DateTime> _Created;
 		
 		private System.Nullable<double> _CTFUsageMax;
 		
 		private System.Nullable<double> _CTFUsageMin;
+		
+		private string _Editor;
 		
 		private System.Nullable<int> _FormatIndex;
 		
@@ -17898,13 +18428,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
+		private string _Title;
 		
 		private System.Nullable<double> _UsageMax;
 		
 		private System.Nullable<double> _UsageMin;
+		
+		private System.Nullable<int> _Version;
 		
 		private EntityRef<SPFormat> _SPFormat;
 		
@@ -17912,34 +18442,56 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
     partial void OnCTFUsageMaxChanging(System.Nullable<double> value);
     partial void OnCTFUsageMaxChanged();
     partial void OnCTFUsageMinChanging(System.Nullable<double> value);
     partial void OnCTFUsageMinChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnFormatIndexChanging(System.Nullable<int> value);
     partial void OnFormatIndexChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
     partial void OnUsageMaxChanging(System.Nullable<double> value);
     partial void OnUsageMaxChanged();
     partial void OnUsageMinChanging(System.Nullable<double> value);
     partial void OnUsageMinChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     #endregion
 		
 		public Usage()
 		{
 			this._SPFormat = default(EntityRef<SPFormat>);
 			OnCreated();
+		}
+		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime")]
@@ -17958,26 +18510,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Created = value;
 					this.SendPropertyChanged("Created");
 					this.OnCreatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
 				}
 			}
 		}
@@ -18018,6 +18550,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CTFUsageMin = value;
 					this.SendPropertyChanged("CTFUsageMin");
 					this.OnCTFUsageMinChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -18086,42 +18638,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Title
 		{
 			get
 			{
-				return this._ModifiedBy;
+				return this._Title;
 			}
 			set
 			{
-				if ((this._ModifiedBy != value))
+				if ((this._Title != value))
 				{
-					this.OnModifiedByChanging(value);
+					this.OnTitleChanging(value);
 					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
 				}
 			}
 		}
@@ -18162,6 +18694,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._UsageMin = value;
 					this.SendPropertyChanged("UsageMin");
 					this.OnUsageMinChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
@@ -18227,23 +18779,21 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _Owshiddenversion;
-		
-		private string _ProductType;
-		
 		private string _SPProcedure;
 		
 		private string _Title;
+		
+		private System.Nullable<int> _Version;
 		
 		private string _WarehouseName;
 		
@@ -18251,24 +18801,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
-    partial void OnProductTypeChanging(string value);
-    partial void OnProductTypeChanged();
     partial void OnSPProcedureChanging(string value);
     partial void OnSPProcedureChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     partial void OnWarehouseNameChanging(string value);
     partial void OnWarehouseNameChanged();
     #endregion
@@ -18276,6 +18824,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		public Warehouse()
 		{
 			OnCreated();
+		}
+		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime")]
@@ -18298,22 +18866,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -18358,67 +18926,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ProductType", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ProductType
-		{
-			get
-			{
-				return this._ProductType;
-			}
-			set
-			{
-				if ((this._ProductType != value))
-				{
-					this.OnProductTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ProductType = value;
-					this.SendPropertyChanged("ProductType");
-					this.OnProductTypeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SPProcedure", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_SPProcedure", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string SPProcedure
 		{
 			get
@@ -18438,7 +18946,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -18458,7 +18966,27 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_WarehouseName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_WarehouseName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string WarehouseName
 		{
 			get
@@ -18505,19 +19033,19 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _Author;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _CreatedBy;
+		private string _Editor;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _ModifiedBy;
+		private string _Title;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
-		private string _ProductType;
+		private System.Nullable<int> _Version;
 		
 		private System.Nullable<double> _WasteRatio;
 		
@@ -18525,20 +19053,20 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
-    partial void OnProductTypeChanging(string value);
-    partial void OnProductTypeChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnVersionChanging(System.Nullable<int> value);
+    partial void OnVersionChanged();
     partial void OnWasteRatioChanging(System.Nullable<double> value);
     partial void OnWasteRatioChanged();
     #endregion
@@ -18546,6 +19074,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		public Waste()
 		{
 			OnCreated();
+		}
+		
+		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
 		}
 		
 		[Column(Storage="_Created", DbType="DateTime")]
@@ -18568,22 +19116,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(255)")]
-		public string CreatedBy
+		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Editor
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Editor;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Editor != value))
 				{
-					this.OnCreatedByChanging(value);
+					this.OnEditorChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
 				}
 			}
 		}
@@ -18628,62 +19176,42 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(255)")]
-		public string ModifiedBy
+		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Title
 		{
 			get
 			{
-				return this._ModifiedBy;
+				return this._Title;
 			}
 			set
 			{
-				if ((this._ModifiedBy != value))
+				if ((this._Title != value))
 				{
-					this.OnModifiedByChanging(value);
+					this.OnTitleChanging(value);
 					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
 				}
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
+		[Column(Storage="_Version", DbType="Int")]
+		public System.Nullable<int> Version
 		{
 			get
 			{
-				return this._Owshiddenversion;
+				return this._Version;
 			}
 			set
 			{
-				if ((this._Owshiddenversion != value))
+				if ((this._Version != value))
 				{
-					this.OnOwshiddenversionChanging(value);
+					this.OnVersionChanging(value);
 					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ProductType", DbType="NVarChar(255)")]
-		public string ProductType
-		{
-			get
-			{
-				return this._ProductType;
-			}
-			set
-			{
-				if ((this._ProductType != value))
-				{
-					this.OnProductTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ProductType = value;
-					this.SendPropertyChanged("ProductType");
-					this.OnProductTypeChanged();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
 				}
 			}
 		}
