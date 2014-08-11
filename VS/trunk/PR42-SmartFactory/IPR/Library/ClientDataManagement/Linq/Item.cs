@@ -32,7 +32,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
       return new Dictionary<string, string>() 
       {
         {"ID", "Id"},
-        {"Owshiddenversion", "Version"}
       };
     }
     /// <summary>

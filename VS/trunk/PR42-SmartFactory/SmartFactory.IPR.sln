@@ -20,6 +20,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F6BF3B41-D310-49FD-B761-EB30E2D0BB44}"
 	ProjectSection(SolutionItems) = preProject
 		..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4 = ..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4
+		..\PR44-SharePoint\Tools\SPExplorer\bin\Debug\SQLScriptFileName.sql = ..\PR44-SharePoint\Tools\SPExplorer\bin\Debug\SQLScriptFileName.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scripts", "Scripts\Scripts.csproj", "{A46DAE36-02EA-4302-A476-7AF770CB20C0}"
@@ -71,6 +72,8 @@ EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IPRArchivinglDtabase", "IPR\Tools\Tests\IPRArchivalDtabase\IPRArchivinglDtabase.sqlproj", "{7548155D-B262-4CA2-9C9B-D7090F8D3D57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPRClientEntityTests", "IPR\Tools\Tests\IPRClientEntityTests\IPRClientEntityTests.csproj", "{62283B68-6A61-4502-B64B-4FF4B1BEB980}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IPRDEV2", "IPRDEV2\IPRDEV2.sqlproj", "{1796BC36-A030-4723-9A29-743ED4CE36F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -927,6 +930,46 @@ Global
 		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
 		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.SingleImage|x64.ActiveCfg = Release|Any CPU
 		{62283B68-6A61-4502-B64B-4FF4B1BEB980}.SingleImage|x86.ActiveCfg = Release|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.CD_ROM|Any CPU.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.CD_ROM|Any CPU.Build.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.CD_ROM|Any CPU.Deploy.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.CD_ROM|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.CD_ROM|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.CD_ROM|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.CD_ROM|x64.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.CD_ROM|x86.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.DVD-5|Any CPU.Deploy.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.DVD-5|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.DVD-5|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.DVD-5|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.DVD-5|x64.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.DVD-5|x86.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Release|x64.ActiveCfg = Release|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.Release|x86.ActiveCfg = Release|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.SingleImage|Any CPU.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.SingleImage|Any CPU.Build.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.SingleImage|Any CPU.Deploy.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.SingleImage|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.SingleImage|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.SingleImage|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.SingleImage|x64.ActiveCfg = Debug|Any CPU
+		{1796BC36-A030-4723-9A29-743ED4CE36F1}.SingleImage|x86.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -958,6 +1001,7 @@ Global
 		{70DD8ABC-B012-427A-8163-64E63304BD42} = {5A5E5E66-F5CE-496B-B9F2-C3A0B16E8F2B}
 		{7548155D-B262-4CA2-9C9B-D7090F8D3D57} = {5800D43D-6500-4C24-A7B5-D194DF615B55}
 		{62283B68-6A61-4502-B64B-4FF4B1BEB980} = {5800D43D-6500-4C24-A7B5-D194DF615B55}
+		{1796BC36-A030-4723-9A29-743ED4CE36F1} = {5800D43D-6500-4C24-A7B5-D194DF615B55}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = SmartFactory.vsmdi
