@@ -29,9 +29,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
     internal new static Dictionary<string, string> GetMappings()
     {
       Dictionary<string, string> _ret = Item.GetMappings();
-      _ret.Add("FileLeafRef", "Name");
-      _ret.Add("DocumentModifiedBy", "DocumentModifiedBy");
-      _ret.Add("DocumentCreatedBy", "DocumentCreatedBy");
+      _ret.Add("FileName", "Name");
       return _ret;
     }
   }
