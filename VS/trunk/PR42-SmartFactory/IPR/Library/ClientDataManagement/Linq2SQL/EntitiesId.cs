@@ -55,5 +55,5 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
   public partial class Waste : IItem { }
   public partial class History : IItem { }
   public partial class ArchivingLogs : IItem { }
-  public partial class ActivitiesLogs : IItem { }
+  public partial class ArchivingOperationLogs : IItem { }
 }
