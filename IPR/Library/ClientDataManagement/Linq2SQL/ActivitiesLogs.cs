@@ -18,7 +18,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
   /// <summary>
   /// ActivitiesLogs table contains logs for each operation.
   /// </summary>
-  public partial class ActivitiesLogs
+  public partial class ArchivingOperationLogs
   {
 
     /// <summary>

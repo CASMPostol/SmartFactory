@@ -22,7 +22,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 	using System;
 	
 	
-	public partial class IPRVEV2 : System.Data.Linq.DataContext
+	[System.Data.Linq.Mapping.DatabaseAttribute(Name="IPRVEV2")]
+	public partial class IPRDEV : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -151,25 +152,25 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void DeleteWaste(Waste instance);
     #endregion
 		
-		public IPRVEV2(string connection) : 
+		public IPRDEV(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public IPRVEV2(System.Data.IDbConnection connection) : 
+		public IPRDEV(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public IPRVEV2(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public IPRDEV(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public IPRVEV2(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public IPRDEV(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -3176,13 +3177,15 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<double> _BatchSHCooeficiency;
 		
+		private string _BatchStatus;
+		
 		private System.Nullable<double> _BatchWasteCooeficiency;
 		
 		private System.Nullable<double> _CalculatedOveruse;
 		
-		private System.Nullable<int> _CFTProductivityNormMax;
+		private System.Nullable<double> _CFTProductivityNormMax;
 		
-		private System.Nullable<int> _CFTProductivityNormMin;
+		private System.Nullable<double> _CFTProductivityNormMin;
 		
 		private System.Nullable<double> _CFTProductivityRateMax;
 		
@@ -3219,6 +3222,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.Nullable<System.DateTime> _Modified;
 		
 		private System.Nullable<double> _Overuse;
+		
+		private string _ProductType;
 		
 		private System.Nullable<double> _SHCooeficiencyVersion;
 		
@@ -3272,13 +3277,15 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnBatchLibraryIndexChanged();
     partial void OnBatchSHCooeficiencyChanging(System.Nullable<double> value);
     partial void OnBatchSHCooeficiencyChanged();
+    partial void OnBatchStatusChanging(string value);
+    partial void OnBatchStatusChanged();
     partial void OnBatchWasteCooeficiencyChanging(System.Nullable<double> value);
     partial void OnBatchWasteCooeficiencyChanged();
     partial void OnCalculatedOveruseChanging(System.Nullable<double> value);
     partial void OnCalculatedOveruseChanged();
-    partial void OnCFTProductivityNormMaxChanging(System.Nullable<int> value);
+    partial void OnCFTProductivityNormMaxChanging(System.Nullable<double> value);
     partial void OnCFTProductivityNormMaxChanged();
-    partial void OnCFTProductivityNormMinChanging(System.Nullable<int> value);
+    partial void OnCFTProductivityNormMinChanging(System.Nullable<double> value);
     partial void OnCFTProductivityNormMinChanged();
     partial void OnCFTProductivityRateMaxChanging(System.Nullable<double> value);
     partial void OnCFTProductivityRateMaxChanged();
@@ -3316,6 +3323,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnOveruseChanging(System.Nullable<double> value);
     partial void OnOveruseChanged();
+    partial void OnProductTypeChanging(string value);
+    partial void OnProductTypeChanged();
     partial void OnSHCooeficiencyVersionChanging(System.Nullable<double> value);
     partial void OnSHCooeficiencyVersionChanged();
     partial void OnSHMentholChanging(System.Nullable<double> value);
@@ -3477,6 +3486,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_BatchStatus", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string BatchStatus
+		{
+			get
+			{
+				return this._BatchStatus;
+			}
+			set
+			{
+				if ((this._BatchStatus != value))
+				{
+					this.OnBatchStatusChanging(value);
+					this.SendPropertyChanging();
+					this._BatchStatus = value;
+					this.SendPropertyChanged("BatchStatus");
+					this.OnBatchStatusChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_BatchWasteCooeficiency", DbType="Float")]
 		public System.Nullable<double> BatchWasteCooeficiency
 		{
@@ -3517,8 +3546,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CFTProductivityNormMax", DbType="Int")]
-		public System.Nullable<int> CFTProductivityNormMax
+		[Column(Storage="_CFTProductivityNormMax", DbType="Float")]
+		public System.Nullable<double> CFTProductivityNormMax
 		{
 			get
 			{
@@ -3537,8 +3566,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CFTProductivityNormMin", DbType="Int")]
-		public System.Nullable<int> CFTProductivityNormMin
+		[Column(Storage="_CFTProductivityNormMin", DbType="Float")]
+		public System.Nullable<double> CFTProductivityNormMin
 		{
 			get
 			{
@@ -3913,6 +3942,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Overuse = value;
 					this.SendPropertyChanged("Overuse");
 					this.OnOveruseChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ProductType", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string ProductType
+		{
+			get
+			{
+				return this._ProductType;
+			}
+			set
+			{
+				if ((this._ProductType != value))
+				{
+					this.OnProductTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ProductType = value;
+					this.SendPropertyChanged("ProductType");
+					this.OnProductTypeChanged();
 				}
 			}
 		}
@@ -4716,6 +4765,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Clearence2SadGoodID;
 		
+		private string _ClearenceProcedure;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
 		private string _DocumentNo;
@@ -4758,6 +4809,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnAuthorChanged();
     partial void OnClearence2SadGoodIDChanging(System.Nullable<int> value);
     partial void OnClearence2SadGoodIDChanged();
+    partial void OnClearenceProcedureChanging(string value);
+    partial void OnClearenceProcedureChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
     partial void OnDocumentNoChanging(string value);
@@ -4852,6 +4905,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Clearence2SadGoodID = value;
 					this.SendPropertyChanged("Clearence2SadGoodID");
 					this.OnClearence2SadGoodIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ClearenceProcedure", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string ClearenceProcedure
+		{
+			get
+			{
+				return this._ClearenceProcedure;
+			}
+			set
+			{
+				if ((this._ClearenceProcedure != value))
+				{
+					this.OnClearenceProcedureChanging(value);
+					this.SendPropertyChanging();
+					this._ClearenceProcedure = value;
+					this.SendPropertyChanged("ClearenceProcedure");
+					this.OnClearenceProcedureChanged();
 				}
 			}
 		}
@@ -5884,9 +5957,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _Author;
 		
-		private System.Nullable<int> _CFTProductivityNormMax;
+		private System.Nullable<double> _CFTProductivityNormMax;
 		
-		private System.Nullable<int> _CFTProductivityNormMin;
+		private System.Nullable<double> _CFTProductivityNormMin;
 		
 		private System.Nullable<double> _CFTProductivityRateMax;
 		
@@ -5900,8 +5973,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _Title;
-		
 		private System.Nullable<int> _Version;
 		
     #region Extensibility Method Definitions
@@ -5910,9 +5981,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnAuthorChanging(string value);
     partial void OnAuthorChanged();
-    partial void OnCFTProductivityNormMaxChanging(System.Nullable<int> value);
+    partial void OnCFTProductivityNormMaxChanging(System.Nullable<double> value);
     partial void OnCFTProductivityNormMaxChanged();
-    partial void OnCFTProductivityNormMinChanging(System.Nullable<int> value);
+    partial void OnCFTProductivityNormMinChanging(System.Nullable<double> value);
     partial void OnCFTProductivityNormMinChanged();
     partial void OnCFTProductivityRateMaxChanging(System.Nullable<double> value);
     partial void OnCFTProductivityRateMaxChanged();
@@ -5926,8 +5997,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
     #endregion
@@ -5957,8 +6026,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CFTProductivityNormMax", DbType="Int")]
-		public System.Nullable<int> CFTProductivityNormMax
+		[Column(Storage="_CFTProductivityNormMax", DbType="Float")]
+		public System.Nullable<double> CFTProductivityNormMax
 		{
 			get
 			{
@@ -5977,8 +6046,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CFTProductivityNormMin", DbType="Int")]
-		public System.Nullable<int> CFTProductivityNormMin
+		[Column(Storage="_CFTProductivityNormMin", DbType="Float")]
+		public System.Nullable<double> CFTProductivityNormMin
 		{
 			get
 			{
@@ -6117,26 +6186,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Version", DbType="Int")]
 		public System.Nullable<int> Version
 		{
@@ -6188,9 +6237,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _Author;
 		
+		private string _ClearingType;
+		
 		private System.Nullable<System.DateTime> _Created;
 		
 		private string _CustomsProcedure;
+		
+		private string _CustomsStatus;
 		
 		private System.Nullable<int> _Disposal2BatchIndex;
 		
@@ -6203,6 +6256,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		private System.Nullable<int> _Disposal2MaterialIndex;
 		
 		private System.Nullable<int> _Disposal2PCNID;
+		
+		private string _DisposalStatus;
 		
 		private System.Nullable<double> _DutyAndVAT;
 		
@@ -6264,10 +6319,14 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnArchivalChanged();
     partial void OnAuthorChanging(string value);
     partial void OnAuthorChanged();
+    partial void OnClearingTypeChanging(string value);
+    partial void OnClearingTypeChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
     partial void OnCustomsProcedureChanging(string value);
     partial void OnCustomsProcedureChanged();
+    partial void OnCustomsStatusChanging(string value);
+    partial void OnCustomsStatusChanged();
     partial void OnDisposal2BatchIndexChanging(System.Nullable<int> value);
     partial void OnDisposal2BatchIndexChanged();
     partial void OnDisposal2ClearenceIndexChanging(System.Nullable<int> value);
@@ -6280,6 +6339,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnDisposal2MaterialIndexChanged();
     partial void OnDisposal2PCNIDChanging(System.Nullable<int> value);
     partial void OnDisposal2PCNIDChanged();
+    partial void OnDisposalStatusChanging(string value);
+    partial void OnDisposalStatusChanged();
     partial void OnDutyAndVATChanging(System.Nullable<double> value);
     partial void OnDutyAndVATChanged();
     partial void OnDutyPerSettledAmountChanging(System.Nullable<double> value);
@@ -6372,6 +6433,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_ClearingType", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string ClearingType
+		{
+			get
+			{
+				return this._ClearingType;
+			}
+			set
+			{
+				if ((this._ClearingType != value))
+				{
+					this.OnClearingTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ClearingType = value;
+					this.SendPropertyChanged("ClearingType");
+					this.OnClearingTypeChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Created", DbType="DateTime")]
 		public System.Nullable<System.DateTime> Created
 		{
@@ -6408,6 +6489,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._CustomsProcedure = value;
 					this.SendPropertyChanged("CustomsProcedure");
 					this.OnCustomsProcedureChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CustomsStatus", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string CustomsStatus
+		{
+			get
+			{
+				return this._CustomsStatus;
+			}
+			set
+			{
+				if ((this._CustomsStatus != value))
+				{
+					this.OnCustomsStatusChanging(value);
+					this.SendPropertyChanging();
+					this._CustomsStatus = value;
+					this.SendPropertyChanged("CustomsStatus");
+					this.OnCustomsStatusChanged();
 				}
 			}
 		}
@@ -6552,6 +6653,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Disposal2PCNID = value;
 					this.SendPropertyChanged("Disposal2PCNID");
 					this.OnDisposal2PCNIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DisposalStatus", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DisposalStatus
+		{
+			get
+			{
+				return this._DisposalStatus;
+			}
+			set
+			{
+				if ((this._DisposalStatus != value))
+				{
+					this.OnDisposalStatusChanging(value);
+					this.SendPropertyChanging();
+					this._DisposalStatus = value;
+					this.SendPropertyChanged("DisposalStatus");
+					this.OnDisposalStatusChanged();
 				}
 			}
 		}
@@ -7217,7 +7338,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _Title;
+		private string _ProductType;
 		
 		private System.Nullable<int> _Version;
 		
@@ -7237,8 +7358,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
+    partial void OnProductTypeChanging(string value);
+    partial void OnProductTypeChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
     #endregion
@@ -7368,22 +7489,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Title
+		[Column(Storage="_ProductType", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string ProductType
 		{
 			get
 			{
-				return this._Title;
+				return this._ProductType;
 			}
 			set
 			{
-				if ((this._Title != value))
+				if ((this._ProductType != value))
 				{
-					this.OnTitleChanging(value);
+					this.OnProductTypeChanging(value);
 					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
+					this._ProductType = value;
+					this.SendPropertyChanged("ProductType");
+					this.OnProductTypeChanged();
 				}
 			}
 		}
@@ -7653,9 +7774,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _InvoiceContent2BatchIndex;
 		
+		private string _InvoiceContentStatus;
+		
 		private System.Nullable<int> _InvoiceIndex;
 		
 		private System.Nullable<System.DateTime> _Modified;
+		
+		private string _ProductType;
 		
 		private System.Nullable<double> _Quantity;
 		
@@ -7689,10 +7814,14 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnIDChanged();
     partial void OnInvoiceContent2BatchIndexChanging(System.Nullable<int> value);
     partial void OnInvoiceContent2BatchIndexChanged();
+    partial void OnInvoiceContentStatusChanging(string value);
+    partial void OnInvoiceContentStatusChanged();
     partial void OnInvoiceIndexChanging(System.Nullable<int> value);
     partial void OnInvoiceIndexChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
+    partial void OnProductTypeChanging(string value);
+    partial void OnProductTypeChanged();
     partial void OnQuantityChanging(System.Nullable<double> value);
     partial void OnQuantityChanged();
     partial void OnSKUDescriptionChanging(string value);
@@ -7837,6 +7966,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_InvoiceContentStatus", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string InvoiceContentStatus
+		{
+			get
+			{
+				return this._InvoiceContentStatus;
+			}
+			set
+			{
+				if ((this._InvoiceContentStatus != value))
+				{
+					this.OnInvoiceContentStatusChanging(value);
+					this.SendPropertyChanging();
+					this._InvoiceContentStatus = value;
+					this.SendPropertyChanged("InvoiceContentStatus");
+					this.OnInvoiceContentStatusChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_InvoiceIndex", DbType="Int")]
 		public System.Nullable<int> InvoiceIndex
 		{
@@ -7877,6 +8026,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ProductType", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string ProductType
+		{
+			get
+			{
+				return this._ProductType;
+			}
+			set
+			{
+				if ((this._ProductType != value))
+				{
+					this.OnProductTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ProductType = value;
+					this.SendPropertyChanged("ProductType");
+					this.OnProductTypeChanged();
 				}
 			}
 		}
@@ -11522,6 +11691,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _ProductID;
 		
+		private string _ProductType;
+		
 		private System.Nullable<double> _SHMenthol;
 		
 		private string _SKU;
@@ -11574,6 +11745,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnOveruseChanged();
     partial void OnProductIDChanging(string value);
     partial void OnProductIDChanged();
+    partial void OnProductTypeChanging(string value);
+    partial void OnProductTypeChanged();
     partial void OnSHMentholChanging(System.Nullable<double> value);
     partial void OnSHMentholChanged();
     partial void OnSKUChanging(string value);
@@ -11843,6 +12016,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._ProductID = value;
 					this.SendPropertyChanged("ProductID");
 					this.OnProductIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ProductType", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string ProductType
+		{
+			get
+			{
+				return this._ProductType;
+			}
+			set
+			{
+				if ((this._ProductType != value))
+				{
+					this.OnProductTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ProductType = value;
+					this.SendPropertyChanged("ProductType");
+					this.OnProductTypeChanged();
 				}
 			}
 		}
@@ -15929,9 +16122,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private double _SHMentholRatio;
+		private string _ProductType;
 		
-		private string _Title;
+		private double _SHMentholRatio;
 		
 		private System.Nullable<int> _Version;
 		
@@ -15949,10 +16142,10 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
+    partial void OnProductTypeChanging(string value);
+    partial void OnProductTypeChanged();
     partial void OnSHMentholRatioChanging(double value);
     partial void OnSHMentholRatioChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
     #endregion
@@ -16062,6 +16255,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_ProductType", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string ProductType
+		{
+			get
+			{
+				return this._ProductType;
+			}
+			set
+			{
+				if ((this._ProductType != value))
+				{
+					this.OnProductTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ProductType = value;
+					this.SendPropertyChanged("ProductType");
+					this.OnProductTypeChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_SHMentholRatio", DbType="Float NOT NULL")]
 		public double SHMentholRatio
 		{
@@ -16078,26 +16291,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._SHMentholRatio = value;
 					this.SendPropertyChanged("SHMentholRatio");
 					this.OnSHMentholRatioChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
 				}
 			}
 		}
@@ -16181,6 +16374,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _PrimeMarket;
 		
+		private string _ProductType;
+		
 		private string _SKU1;
 		
 		private System.Nullable<int> _SKULibraryIndex;
@@ -16233,6 +16428,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnPrimeMarketChanging(string value);
     partial void OnPrimeMarketChanged();
+    partial void OnProductTypeChanging(string value);
+    partial void OnProductTypeChanged();
     partial void OnSKU1Changing(string value);
     partial void OnSKU1Changed();
     partial void OnSKULibraryIndexChanging(System.Nullable<int> value);
@@ -16573,6 +16770,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._PrimeMarket = value;
 					this.SendPropertyChanged("PrimeMarket");
 					this.OnPrimeMarketChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ProductType", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string ProductType
+		{
+			get
+			{
+				return this._ProductType;
+			}
+			set
+			{
+				if ((this._ProductType != value))
+				{
+					this.OnProductTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ProductType = value;
+					this.SendPropertyChanged("ProductType");
+					this.OnProductTypeChanged();
 				}
 			}
 		}
@@ -17439,6 +17656,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
+		private string _ProductType;
+		
 		private System.Nullable<double> _Quantity;
 		
 		private System.Nullable<double> _RestrictedUse;
@@ -17487,6 +17706,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnIPRTypeChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
+    partial void OnProductTypeChanging(string value);
+    partial void OnProductTypeChanged();
     partial void OnQuantityChanging(System.Nullable<double> value);
     partial void OnQuantityChanged();
     partial void OnRestrictedUseChanging(System.Nullable<double> value);
@@ -17734,6 +17955,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ProductType", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string ProductType
+		{
+			get
+			{
+				return this._ProductType;
+			}
+			set
+			{
+				if ((this._ProductType != value))
+				{
+					this.OnProductTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ProductType = value;
+					this.SendPropertyChanged("ProductType");
+					this.OnProductTypeChanged();
 				}
 			}
 		}
@@ -18428,8 +18669,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _Title;
-		
 		private System.Nullable<double> _UsageMax;
 		
 		private System.Nullable<double> _UsageMin;
@@ -18458,8 +18697,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
     partial void OnUsageMaxChanging(System.Nullable<double> value);
     partial void OnUsageMaxChanged();
     partial void OnUsageMinChanging(System.Nullable<double> value);
@@ -18638,26 +18875,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_UsageMax", DbType="Float")]
 		public System.Nullable<double> UsageMax
 		{
@@ -18789,6 +19006,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
+		private string _ProductType;
+		
 		private string _SPProcedure;
 		
 		private string _Title;
@@ -18811,6 +19030,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
+    partial void OnProductTypeChanging(string value);
+    partial void OnProductTypeChanged();
     partial void OnSPProcedureChanging(string value);
     partial void OnSPProcedureChanged();
     partial void OnTitleChanging(string value);
@@ -18922,6 +19143,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ProductType", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string ProductType
+		{
+			get
+			{
+				return this._ProductType;
+			}
+			set
+			{
+				if ((this._ProductType != value))
+				{
+					this.OnProductTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ProductType = value;
+					this.SendPropertyChanged("ProductType");
+					this.OnProductTypeChanged();
 				}
 			}
 		}
@@ -19043,7 +19284,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _Title;
+		private string _ProductType;
 		
 		private System.Nullable<int> _Version;
 		
@@ -19063,8 +19304,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
+    partial void OnProductTypeChanging(string value);
+    partial void OnProductTypeChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
     partial void OnWasteRatioChanging(System.Nullable<double> value);
@@ -19176,22 +19417,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Title
+		[Column(Storage="_ProductType", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string ProductType
 		{
 			get
 			{
-				return this._Title;
+				return this._ProductType;
 			}
 			set
 			{
-				if ((this._Title != value))
+				if ((this._ProductType != value))
 				{
-					this.OnTitleChanging(value);
+					this.OnProductTypeChanging(value);
 					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
+					this._ProductType = value;
+					this.SendPropertyChanged("ProductType");
+					this.OnProductTypeChanged();
 				}
 			}
 		}

@@ -51,46 +51,46 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     /// <param name="progressChanged">The progress changed.</param>
     public static void Go(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
     {
-      IPRVEV2 _sqledc = Connect2SQL(settings, progressChanged);
+      IPRDEV _sqledc = Connect2SQL(settings, progressChanged);
       using (Entities _spedc = new Entities(settings.SiteURL))
       {
         SharePoint.Client.Link2SQL.RepositoryDataSet.ClearContent();
         Synchronize(_sqledc.JSOXLibrary, _spedc.JSOXLibrary, progressChanged, JSOXLib.GetMappings());
-        //Synchronize(_sqledc.BalanceBatch, _spedc.BalanceBatch, progressChanged, Linq.BalanceBatch.GetMappings());
-        //Synchronize(_sqledc.SADDocumentLibrary, _spedc.SADDocumentLibrary, progressChanged, Linq.SADDocumentLib.GetMappings());
-        //Synchronize(_sqledc.SADDocument, _spedc.SADDocument, progressChanged, Linq.SADDocumentType.GetMappings());
-        //Synchronize(_sqledc.SADGood, _spedc.SADGood, progressChanged, Linq.SADGood.GetMappings());
-        //Synchronize(_sqledc.SADConsignment, _spedc.SADConsignment, progressChanged, Linq.SADConsignment.GetMappings());
-        //Synchronize(_sqledc.Clearence, _spedc.Clearence, progressChanged, Linq.Clearence.GetMappings());
-        //Synchronize(_sqledc.Consent, _spedc.Consent, progressChanged, Linq.Consent.GetMappings());
-        //Synchronize(_sqledc.PCNCode, _spedc.PCNCode, progressChanged, Linq.PCNCode.GetMappings());
-        //Synchronize(_sqledc.IPRLibrary, _spedc.IPRLibrary, progressChanged, Linq.IPRLib.GetMappings());
-        //Synchronize(_sqledc.IPR, _spedc.IPR, progressChanged, Linq.IPR.GetMappings());
-        //Synchronize(_sqledc.BalanceIPR, _spedc.BalanceIPR, progressChanged, Linq.BalanceIPR.GetMappings());
-        //Synchronize(_sqledc.BatchLibrary, _spedc.BatchLibrary, progressChanged, Linq.BatchLib.GetMappings());
-        //Synchronize(_sqledc.SPFormat, _spedc.Format, progressChanged, Linq.Format.GetMappings());
-        //Synchronize(_sqledc.SKULibrary, _spedc.SKULibrary, progressChanged, Linq.Document.GetMappings());
-        //Synchronize(_sqledc.SKU, _spedc.SKU, progressChanged, Linq.SKUCommonPart.GetMappings());
-        //Synchronize(_sqledc.Batch, _spedc.Batch, progressChanged, Linq.Batch.GetMappings());
-        //Synchronize(_sqledc.CustomsUnion, _spedc.CustomsUnion, progressChanged, Linq.CustomsUnion.GetMappings());
-        //Synchronize(_sqledc.CutfillerCoefficient, _spedc.CutfillerCoefficient, progressChanged, Linq.CutfillerCoefficient.GetMappings());
-        //Synchronize(_sqledc.InvoiceLibrary, _spedc.InvoiceLibrary, progressChanged, Linq.InvoiceLib.GetMappings());
-        //Synchronize(_sqledc.InvoiceContent, _spedc.InvoiceContent, progressChanged, Linq.InvoiceContent.GetMappings());
-        //Synchronize(_sqledc.Material, _spedc.Material, progressChanged, Linq.Material.GetMappings());
-        ////Synchronize(_sqledc.JSOXCustomsSummary, _spedc.JSOXCustomsSummary, progressChanged, Linq.JSOXCustomsSummary.GetMappings());
-        ////Synchronize(_sqledc.Disposal, _spedc.Disposal, progressChanged, Linq.Disposal.GetMappings());
-        //Synchronize(_sqledc.Dust, _spedc.Dust, progressChanged, Linq.Dust.GetMappings());
-        //Synchronize(_sqledc.SADDuties, _spedc.SADDuties, progressChanged, Linq.SADDuties.GetMappings());
-        //Synchronize(_sqledc.SADPackage, _spedc.SADPackage, progressChanged, Linq.SADPackage.GetMappings());
-        //Synchronize(_sqledc.SADQuantity, _spedc.SADQuantity, progressChanged, Linq.SADQuantity.GetMappings());
-        //Synchronize(_sqledc.SADRequiredDocuments, _spedc.SADRequiredDocuments, progressChanged, Linq.SADRequiredDocuments.GetMappings());
-        //Synchronize(_sqledc.Settings, _spedc.Settings, progressChanged, Linq.Settings.GetMappings());
-        //Synchronize(_sqledc.SHMenthol, _spedc.SHMenthol, progressChanged, Linq.SHMenthol.GetMappings());
-        //Synchronize(_sqledc.StockLibrary, _spedc.StockLibrary, progressChanged, Linq.StockLib.GetMappings());
-        //Synchronize(_sqledc.StockEntry, _spedc.StockEntry, progressChanged, Linq.StockEntry.GetMappings());
-        //Synchronize(_sqledc.Usage, _spedc.Usage, progressChanged, Linq.Usage.GetMappings());
-        //Synchronize(_sqledc.Warehouse, _spedc.Warehouse, progressChanged, Linq.Warehouse.GetMappings());
-        //Synchronize(_sqledc.Waste, _spedc.Waste, progressChanged, Linq.Waste.GetMappings());
+        Synchronize(_sqledc.BalanceBatch, _spedc.BalanceBatch, progressChanged, Linq.BalanceBatch.GetMappings());
+        Synchronize(_sqledc.SADDocumentLibrary, _spedc.SADDocumentLibrary, progressChanged, Linq.SADDocumentLib.GetMappings());
+        Synchronize(_sqledc.SADDocument, _spedc.SADDocument, progressChanged, Linq.SADDocumentType.GetMappings());
+        Synchronize(_sqledc.SADGood, _spedc.SADGood, progressChanged, Linq.SADGood.GetMappings());
+        Synchronize(_sqledc.SADConsignment, _spedc.SADConsignment, progressChanged, Linq.SADConsignment.GetMappings());
+        Synchronize(_sqledc.Clearence, _spedc.Clearence, progressChanged, Linq.Clearence.GetMappings());
+        Synchronize(_sqledc.Consent, _spedc.Consent, progressChanged, Linq.Consent.GetMappings());
+        Synchronize(_sqledc.PCNCode, _spedc.PCNCode, progressChanged, Linq.PCNCode.GetMappings());
+        Synchronize(_sqledc.IPRLibrary, _spedc.IPRLibrary, progressChanged, Linq.IPRLib.GetMappings());
+        Synchronize(_sqledc.IPR, _spedc.IPR, progressChanged, Linq.IPR.GetMappings());
+        Synchronize(_sqledc.BalanceIPR, _spedc.BalanceIPR, progressChanged, Linq.BalanceIPR.GetMappings());
+        Synchronize(_sqledc.BatchLibrary, _spedc.BatchLibrary, progressChanged, Linq.BatchLib.GetMappings());
+        Synchronize(_sqledc.SPFormat, _spedc.Format, progressChanged, Linq.Format.GetMappings());
+        Synchronize(_sqledc.SKULibrary, _spedc.SKULibrary, progressChanged, Linq.Document.GetMappings());
+        Synchronize(_sqledc.SKU, _spedc.SKU, progressChanged, Linq.SKUCommonPart.GetMappings());
+        Synchronize(_sqledc.Batch, _spedc.Batch, progressChanged, Linq.Batch.GetMappings());
+        Synchronize(_sqledc.CustomsUnion, _spedc.CustomsUnion, progressChanged, Linq.CustomsUnion.GetMappings());
+        Synchronize(_sqledc.CutfillerCoefficient, _spedc.CutfillerCoefficient, progressChanged, Linq.CutfillerCoefficient.GetMappings());
+        Synchronize(_sqledc.InvoiceLibrary, _spedc.InvoiceLibrary, progressChanged, Linq.InvoiceLib.GetMappings());
+        Synchronize(_sqledc.InvoiceContent, _spedc.InvoiceContent, progressChanged, Linq.InvoiceContent.GetMappings());
+        Synchronize(_sqledc.Material, _spedc.Material, progressChanged, Linq.Material.GetMappings());
+        Synchronize(_sqledc.JSOXCustomsSummary, _spedc.JSOXCustomsSummary, progressChanged, Linq.JSOXCustomsSummary.GetMappings());
+        Synchronize(_sqledc.Disposal, _spedc.Disposal, progressChanged, Linq.Disposal.GetMappings());
+        Synchronize(_sqledc.Dust, _spedc.Dust, progressChanged, Linq.Dust.GetMappings());
+        Synchronize(_sqledc.SADDuties, _spedc.SADDuties, progressChanged, Linq.SADDuties.GetMappings());
+        Synchronize(_sqledc.SADPackage, _spedc.SADPackage, progressChanged, Linq.SADPackage.GetMappings());
+        Synchronize(_sqledc.SADQuantity, _spedc.SADQuantity, progressChanged, Linq.SADQuantity.GetMappings());
+        Synchronize(_sqledc.SADRequiredDocuments, _spedc.SADRequiredDocuments, progressChanged, Linq.SADRequiredDocuments.GetMappings());
+        Synchronize(_sqledc.Settings, _spedc.Settings, progressChanged, Linq.Settings.GetMappings());
+        Synchronize(_sqledc.SHMenthol, _spedc.SHMenthol, progressChanged, Linq.SHMenthol.GetMappings());
+        Synchronize(_sqledc.StockLibrary, _spedc.StockLibrary, progressChanged, Linq.StockLib.GetMappings());
+        Synchronize(_sqledc.StockEntry, _spedc.StockEntry, progressChanged, Linq.StockEntry.GetMappings());
+        Synchronize(_sqledc.Usage, _spedc.Usage, progressChanged, Linq.Usage.GetMappings());
+        Synchronize(_sqledc.Warehouse, _spedc.Warehouse, progressChanged, Linq.Warehouse.GetMappings());
+        Synchronize(_sqledc.Waste, _spedc.Waste, progressChanged, Linq.Waste.GetMappings());
         //History();
         //ArchivingLogs();
         //ActivitiesLogs();
@@ -99,12 +99,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       }
     }
 
-    private static void UpdateActivitiesLogs(IPRVEV2 sqlEntities, Action<object, ProgressChangedEventArgs> progressChanged)
+    private static void UpdateActivitiesLogs(IPRDEV sqlEntities, Action<object, ProgressChangedEventArgs> progressChanged)
     {
       Linq2SQL.ArchivingOperationLogs _logs = new ArchivingOperationLogs()
       {
         Date = DateTime.Now,
-        Operation = Linq2SQL.ActivitiesLogs.SynchronizationOperationName,
+        Operation = Linq2SQL.ArchivingOperationLogs.SynchronizationOperationName,
         UserName = String.Format(Properties.Resources.ActivitiesLogsUserNamePattern, Environment.UserName, Environment.MachineName)
       };
       sqlEntities.ArchivingOperationLogs.InsertOnSubmit(_logs);
@@ -150,11 +150,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       //else
       //  progressChanged(_si, new ProgressChangedEventArgs(1, String.Format("Cannot find the {0} argument in the SQL entity {1}.", _si.PropertyName, typeof(TSP).Name)));
     }
-    private static IPRVEV2 Connect2SQL(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
+    private static IPRDEV Connect2SQL(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
     {
       progressChanged(settings, new ProgressChangedEventArgs(1, String.Format("Attempt to connect to SQL at: {0}", settings.ConnectionString)));
       System.Data.IDbConnection _connection = new SqlConnection(settings.ConnectionString);
-      IPRVEV2 _entities = new IPRVEV2(_connection);
+      IPRDEV _entities = new IPRDEV(_connection);
       if (_entities.DatabaseExists())
         progressChanged(settings, new ProgressChangedEventArgs(1, "The specified database can be opened."));
       else

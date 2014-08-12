@@ -79,9 +79,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       else
         ReportProgress(this, new ProgressChangedEventArgs(1, "The specified database cannot be opened."));
       WorkerReturnData m_WorkerReturnData = new WorkerReturnData();
-      GetLastOperation(_entities, ActivitiesLogs.CleanupOperationName, ref m_WorkerReturnData.CleanupLastRunBy, ref m_WorkerReturnData.CleanupLastRunDate);
-      GetLastOperation(_entities, ActivitiesLogs.SynchronizationOperationName, ref m_WorkerReturnData.SyncLastRunBy, ref m_WorkerReturnData.SyncLastRunDate);
-      GetLastOperation(_entities, ActivitiesLogs.ArchivingOperationName, ref m_WorkerReturnData.ArchivingLastRunBy, ref m_WorkerReturnData.ArchivingLastRunDate);
+      GetLastOperation(_entities, ArchivingOperationLogs.CleanupOperationName, ref m_WorkerReturnData.CleanupLastRunBy, ref m_WorkerReturnData.CleanupLastRunDate);
+      GetLastOperation(_entities, ArchivingOperationLogs.SynchronizationOperationName, ref m_WorkerReturnData.SyncLastRunBy, ref m_WorkerReturnData.SyncLastRunDate);
+      GetLastOperation(_entities, ArchivingOperationLogs.ArchivingOperationName, ref m_WorkerReturnData.ArchivingLastRunBy, ref m_WorkerReturnData.ArchivingLastRunDate);
       e.Result = m_WorkerReturnData;
     }
     private static void GetLastOperation(IPRDEV _entities, string operationName, ref string RunBy, ref string RunDate)
