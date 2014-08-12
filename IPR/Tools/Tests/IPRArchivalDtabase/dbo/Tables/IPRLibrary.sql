@@ -1,12 +1,15 @@
 ﻿CREATE TABLE [dbo].[IPRLibrary] (
-    [Created]                DATETIME        NULL,
-    [CreatedBy]              NVARCHAR(255)   NULL,
-    [DocumentNo]             NVARCHAR(255)   NULL,
-    [ID]                     INT             NOT NULL,
-    [Modified]               DATETIME        NULL,
-    [ModifiedBy]             NVARCHAR(255)   NULL,
-    [owshiddenversion]       INT             NULL,
-    [Title]                  NVARCHAR(255)   NULL,
+    [Author]             NVARCHAR (MAX) NULL,
+    [Created]            DATETIME       NULL,
+    [DocumentCreatedBy]  NVARCHAR (MAX) NULL,
+    [DocumentNo]         NVARCHAR (MAX) NULL,
+    [Editor]             NVARCHAR (MAX) NULL,
+    [FileName]           NVARCHAR (MAX) NOT NULL,
+    [ID]                 INT            NOT NULL,
+    [Modified]           DATETIME       NULL,
+    [DocumentModifiedBy] NVARCHAR (MAX) NULL,
+    [Title]              NVARCHAR (MAX) NULL,
+    [Version]            INT            NULL,
     CONSTRAINT [PK_IPRLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

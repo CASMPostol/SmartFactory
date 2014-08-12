@@ -1,13 +1,13 @@
 ﻿CREATE TABLE [dbo].[SPFormat] (
-    [CigaretteLenght]        NVARCHAR(255)   NOT NULL,
-    [Created]                DATETIME        NULL,
-    [CreatedBy]              NVARCHAR(255)   NULL,
-    [FilterLenght]           NVARCHAR(255)   NOT NULL,
-    [ID]                     INT             NOT NULL,
-    [Modified]               DATETIME        NULL,
-    [ModifiedBy]             NVARCHAR(255)   NULL,
-    [owshiddenversion]       INT             NULL,
-    [Title]                  NVARCHAR(255)   NOT NULL,
+    [Author]          NVARCHAR (MAX) NULL,
+    [CigaretteLenght] NVARCHAR (MAX) NOT NULL,
+    [Created]         DATETIME       NULL,
+    [Editor]          NVARCHAR (MAX) NULL,
+    [FilterLenght]    NVARCHAR (MAX) NOT NULL,
+    [ID]              INT            NOT NULL,
+    [Modified]        DATETIME       NULL,
+    [Title]           NVARCHAR (MAX) NOT NULL,
+    [Version]         INT            NULL,
     CONSTRAINT [PK_SPFormat_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

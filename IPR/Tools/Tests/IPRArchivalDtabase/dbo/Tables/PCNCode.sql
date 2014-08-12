@@ -1,14 +1,14 @@
 ﻿CREATE TABLE [dbo].[PCNCode] (
-    [CompensationGood]       NVARCHAR(255)   NULL,
-    [Created]                DATETIME        NULL,
-    [CreatedBy]              NVARCHAR(255)   NULL,
-    [Disposal]               BIT             NULL,
-    [ID]                     INT             NOT NULL,
-    [Modified]               DATETIME        NULL,
-    [ModifiedBy]             NVARCHAR(255)   NULL,
-    [owshiddenversion]       INT             NULL,
-    [ProductCodeNumber]      NVARCHAR(255)   NULL,
-    [Title]                  NVARCHAR(255)   NOT NULL,
+    [Author]            NVARCHAR (MAX) NULL,
+    [CompensationGood]  NVARCHAR (MAX) NULL,
+    [Created]           DATETIME       NULL,
+    [Disposal]          BIT            NULL,
+    [Editor]            NVARCHAR (MAX) NULL,
+    [ID]                INT            NOT NULL,
+    [Modified]          DATETIME       NULL,
+    [ProductCodeNumber] NVARCHAR (MAX) NULL,
+    [Title]             NVARCHAR (MAX) NOT NULL,
+    [Version]           INT            NULL,
     CONSTRAINT [PK_PCNCode_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

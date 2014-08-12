@@ -1,12 +1,12 @@
 ﻿CREATE TABLE [dbo].[Settings] (
-    [Created]                DATETIME        NULL,
-    [CreatedBy]              NVARCHAR(255)   NULL,
-    [ID]                     INT             NOT NULL,
-    [KeyValue]               NVARCHAR(255)   NOT NULL,
-    [Modified]               DATETIME        NULL,
-    [ModifiedBy]             NVARCHAR(255)   NULL,
-    [owshiddenversion]       INT             NULL,
-    [Title]                  NVARCHAR(255)   NOT NULL,
+    [Author]   NVARCHAR (MAX) NULL,
+    [Created]  DATETIME       NULL,
+    [Editor]   NVARCHAR (MAX) NULL,
+    [ID]       INT            NOT NULL,
+    [KeyValue] NVARCHAR (MAX) NOT NULL,
+    [Modified] DATETIME       NULL,
+    [Title]    NVARCHAR (MAX) NOT NULL,
+    [Version]  INT            NULL,
     CONSTRAINT [PK_Settings_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

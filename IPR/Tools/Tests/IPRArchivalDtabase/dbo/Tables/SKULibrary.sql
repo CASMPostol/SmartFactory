@@ -1,10 +1,14 @@
 ﻿CREATE TABLE [dbo].[SKULibrary] (
-    [Created]    DATETIME       NOT NULL,
-    [CreatedBy]  NVARCHAR (255) NOT NULL,
-    [ID]         INT            NOT NULL,
-    [Modified]   DATETIME       NOT NULL,
-    [ModifiedBy] NVARCHAR (255) NOT NULL,
-    [Title]      NVARCHAR (255) NOT NULL,
+    [Author]             NVARCHAR (MAX) NULL,
+    [Created]            DATETIME       NULL,
+    [DocumentCreatedBy]  NVARCHAR (MAX) NULL,
+    [Editor]             NVARCHAR (MAX) NULL,
+    [FileName]           NVARCHAR (MAX) NOT NULL,
+    [ID]                 INT            NOT NULL,
+    [Modified]           DATETIME       NULL,
+    [DocumentModifiedBy] NVARCHAR (MAX) NULL,
+    [Title]              NVARCHAR (MAX) NULL,
+    [Version]            INT            NULL,
     CONSTRAINT [PK_SKULibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 
