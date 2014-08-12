@@ -1,12 +1,12 @@
 ﻿CREATE TABLE [dbo].[Dust] (
-    [Created]                DATETIME        NULL,
-    [CreatedBy]              NVARCHAR(255)   NULL,
-    [DustRatio]              FLOAT           NULL,
-    [ID]                     INT             NOT NULL,
-    [Modified]               DATETIME        NULL,
-    [ModifiedBy]             NVARCHAR(255)   NULL,
-    [owshiddenversion]       INT             NULL,
-    [ProductType]            NVARCHAR(255)   NULL,
+    [Author]      NVARCHAR (MAX) NULL,
+    [Created]     DATETIME       NULL,
+    [DustRatio]   FLOAT (53)     NULL,
+    [Editor]      NVARCHAR (MAX) NULL,
+    [ID]          INT            NOT NULL,
+    [Modified]    DATETIME       NULL,
+    [ProductType] NVARCHAR (MAX) NULL,
+    [Version]     INT            NULL,
     CONSTRAINT [PK_Dust_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

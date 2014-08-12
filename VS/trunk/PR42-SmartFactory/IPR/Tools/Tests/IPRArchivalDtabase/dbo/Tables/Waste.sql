@@ -1,12 +1,12 @@
 ﻿CREATE TABLE [dbo].[Waste] (
-    [Created]                DATETIME        NULL,
-    [CreatedBy]              NVARCHAR(255)   NULL,
-    [ID]                     INT             NOT NULL,
-    [Modified]               DATETIME        NULL,
-    [ModifiedBy]             NVARCHAR(255)   NULL,
-    [owshiddenversion]       INT             NULL,
-    [ProductType]            NVARCHAR(255)   NULL,
-    [WasteRatio]             FLOAT           NULL,
+    [Author]      NVARCHAR (MAX) NULL,
+    [Created]     DATETIME       NULL,
+    [Editor]      NVARCHAR (MAX) NULL,
+    [ID]          INT            NOT NULL,
+    [Modified]    DATETIME       NULL,
+    [ProductType] NVARCHAR (MAX) NULL,
+    [Version]     INT            NULL,
+    [WasteRatio]  FLOAT (53)     NULL,
     CONSTRAINT [PK_Waste_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

@@ -1,12 +1,12 @@
 ﻿CREATE TABLE [dbo].[SHMenthol] (
-    [Created]                DATETIME        NULL,
-    [CreatedBy]              NVARCHAR(255)   NULL,
-    [ID]                     INT             NOT NULL,
-    [Modified]               DATETIME        NULL,
-    [ModifiedBy]             NVARCHAR(255)   NULL,
-    [owshiddenversion]       INT             NULL,
-    [ProductType]            NVARCHAR(255)   NOT NULL,
-    [SHMentholRatio]         FLOAT           NOT NULL,
+    [Author]         NVARCHAR (MAX) NULL,
+    [Created]        DATETIME       NULL,
+    [Editor]         NVARCHAR (MAX) NULL,
+    [ID]             INT            NOT NULL,
+    [Modified]       DATETIME       NULL,
+    [ProductType]    NVARCHAR (MAX) NOT NULL,
+    [SHMentholRatio] FLOAT (53)     NOT NULL,
+    [Version]        INT            NULL,
     CONSTRAINT [PK_SHMenthol_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 
