@@ -138,7 +138,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       }
       MyListItem.Update();
       _entity.OriginalValues.Clear();
-      EntityState = Data.EntityState.Unchanged;
+      EntityState = EntityState.Unchanged;
     }
     internal int Index { get { return m_Index; } }
     internal ListItem MyListItem { get; private set; }
