@@ -13,14 +13,12 @@
 //  http://www.cas.eu
 //</summary>
 
+using Microsoft.SharePoint.Client;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.SharePoint.Client;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
 {
@@ -105,13 +103,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     {
       IEntityListItemsCollection _nwLst = GetOrCreateListEntry<TEntity>( listName );
       return new EntityList<TEntity>( this, (EntityListItemsCollection<TEntity>)_nwLst );
-    }
-    /// <summary>
-    /// Cancels the asynchronous.
-    /// </summary>
-    /// <param name="userState">State of the user.</param>
-    public void CancelAsync( object userState )
-    {
     }
     /// <summary>
     /// Refreshes a collection of entities with the latest data from the content database according to the specified mode.
@@ -269,6 +260,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     // does not get called. 
     // It gives your base class the opportunity to finalize. 
     // Do not provide destructors in types derived from this class.
+    /// <summary>
+    /// Finalizes an instance of the <see cref="DataContext"/> class.
+    /// </summary>
     ~DataContext()
     {
       // Do not re-create Dispose clean-up code here. 

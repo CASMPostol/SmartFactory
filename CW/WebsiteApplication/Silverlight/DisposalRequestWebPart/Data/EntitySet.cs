@@ -57,7 +57,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// </returns>
     public object Clone() { return this.Clone(); }
     /// <summary>
-    /// Indicates whether a specified entity is in the <see cref=@"Microsoft.SharePoint.Linq.EntitySet<TEntity>"/>
+    /// Indicates whether a specified entity is in the <see cref="Microsoft.SharePoint.Linq.EntitySet{TEntity}"/>
     /// </summary>
     /// <param name="value">The <see cref="T:System.Object" />The object whose presence is questioned.</param>
     /// <returns>
