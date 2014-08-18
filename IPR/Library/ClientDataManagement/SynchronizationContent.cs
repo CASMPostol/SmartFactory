@@ -133,7 +133,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           _dictinary.Add(_spItem.Id.Value, _sqlItem);
           table.InsertOnSubmit((TSQL)_sqlItem);
         }
-        Synchronize<TSQL, TSP>((TSQL)_sqlItem, _spItem, _spDscrpt, _sqlDscrpt, progressChanged, entityList.da);
+        Synchronize<TSQL, TSP>((TSQL)_sqlItem, _spItem, _spDscrpt, _sqlDscrpt, progressChanged, entityList.DataContext);
       }
       progressChanged(1, new ProgressChangedEventArgs(1, "Submitting Changes to SQL database"));
       table.Context.SubmitChanges();
@@ -143,7 +143,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       List<SharePoint.Client.Linq2SP.StorageItem> _spDscrpt,
       Dictionary<string, SharePoint.Client.Link2SQL.SQLStorageItem> _sqlDscrpt,
       Action<object, ProgressChangedEventArgs> progressChanged,
-      Entities dataContext)
+      Microsoft.SharePoint.Linq.DataContext dataContext)
     {
       foreach (SharePoint.Client.Linq2SP.StorageItem _si in _spDscrpt.Where<SharePoint.Client.Linq2SP.StorageItem>(x => x.IsNotReverseLookup()))
         if (_sqlDscrpt.ContainsKey(_si.PropertyName))
