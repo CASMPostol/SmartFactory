@@ -37,6 +37,7 @@
     [Version]                        INT            NULL,
     [WasteCSNotStarted]              FLOAT (53)     NULL,
     [WasteCSStarted]                 FLOAT (53)     NULL,
+	[OnlySQL]						 BIT			NOT NULL,
     CONSTRAINT [PK_BalanceIPR_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_BalanceIPR_BalanceBatch] FOREIGN KEY ([BalanceBatchIndex]) REFERENCES [dbo].[BalanceBatch] ([ID]),
     CONSTRAINT [FK_BalanceIPR_IPR] FOREIGN KEY ([IPRIndex]) REFERENCES [dbo].[IPR] ([ID]),

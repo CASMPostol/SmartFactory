@@ -9,6 +9,7 @@
     [Title]         NVARCHAR (MAX) NOT NULL,
     [Version]       INT            NULL,
     [WarehouseName] NVARCHAR (MAX) NOT NULL,
+	[OnlySQL]		BIT			   NOT NULL,
     CONSTRAINT [PK_Warehouse_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

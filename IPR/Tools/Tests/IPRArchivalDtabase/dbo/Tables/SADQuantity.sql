@@ -11,6 +11,7 @@
     [Title]                 NVARCHAR (MAX) NOT NULL,
     [Units]                 NVARCHAR (MAX) NULL,
     [Version]               INT            NULL,
+	[OnlySQL]			    BIT			   NOT NULL,
     CONSTRAINT [PK_SADQuantity_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADQuantity_SADGood] FOREIGN KEY ([SADQuantity2SADGoodID]) REFERENCES [dbo].[SADGood] ([ID])
 );

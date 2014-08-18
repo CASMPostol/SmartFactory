@@ -7,6 +7,7 @@
     [ProductType] NVARCHAR (MAX) NULL,
     [Version]     INT            NULL,
     [WasteRatio]  FLOAT (53)     NULL,
+	[OnlySQL]	  BIT			 NOT NULL,
     CONSTRAINT [PK_Waste_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

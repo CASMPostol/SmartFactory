@@ -10,6 +10,7 @@
     [UsageMax]    FLOAT (53)     NULL,
     [UsageMin]    FLOAT (53)     NULL,
     [Version]     INT            NULL,
+	[OnlySQL]	  BIT			 NOT NULL,
     CONSTRAINT [PK_Usage_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Usage_SPFormat] FOREIGN KEY ([FormatIndex]) REFERENCES [dbo].[SPFormat] ([ID])
 );

@@ -22,7 +22,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 	using System;
 	
 	
-	[System.Data.Linq.Mapping.DatabaseAttribute(Name="IPRVEV2")]
 	public partial class IPRDEV : System.Data.Linq.DataContext
 	{
 		
@@ -525,6 +524,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -551,6 +552,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public ActivityLog()
@@ -774,6 +777,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Version = value;
 					this.SendPropertyChanged("Version");
 					this.OnVersionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
 				}
 			}
 		}
@@ -1171,6 +1194,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<double> _WasteCSStarted;
 		
+		private bool _OnlySQL;
+		
 		private EntityRef<JSOXLibrary> _JSOXLibrary;
 		
 		private EntitySet<BalanceIPR> _BalanceIPR;
@@ -1253,6 +1278,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnWasteCSNotStartedChanged();
     partial void OnWasteCSStartedChanging(System.Nullable<double> value);
     partial void OnWasteCSStartedChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public BalanceBatch()
@@ -2006,6 +2033,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_BalanceBatch_JSOXLibrary", Storage="_JSOXLibrary", ThisKey="Balance2JSOXLibraryIndex", OtherKey="ID", IsForeignKey=true)]
 		public JSOXLibrary JSOXLibrary
 		{
@@ -2168,6 +2215,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<double> _WasteCSStarted;
 		
+		private bool _OnlySQL;
+		
 		private EntityRef<BalanceBatch> _BalanceBatch;
 		
 		private EntityRef<IPR> _IPR;
@@ -2254,6 +2303,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnWasteCSNotStartedChanged();
     partial void OnWasteCSStartedChanging(System.Nullable<double> value);
     partial void OnWasteCSStartedChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public BalanceIPR()
@@ -3036,6 +3087,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_BalanceIPR_BalanceBatch", Storage="_BalanceBatch", ThisKey="BalanceBatchIndex", OtherKey="ID", IsForeignKey=true)]
 		public BalanceBatch BalanceBatch
 		{
@@ -3249,6 +3320,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<double> _WasteCooeficiencyVersion;
 		
+		private bool _OnlySQL;
+		
 		private EntityRef<BatchLibrary> _BatchLibrary;
 		
 		private EntityRef<SKU> _SKUIndexSKU;
@@ -3349,6 +3422,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnWasteChanged();
     partial void OnWasteCooeficiencyVersionChanging(System.Nullable<double> value);
     partial void OnWasteCooeficiencyVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public Batch()
@@ -4210,6 +4285,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_Batch_BatchLibrary", Storage="_BatchLibrary", ThisKey="BatchLibraryIndex", OtherKey="ID", IsForeignKey=true)]
 		public BatchLibrary BatchLibrary
 		{
@@ -4429,6 +4524,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<Batch> _Batch;
 		
     #region Extensibility Method Definitions
@@ -4459,6 +4556,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public BatchLibrary()
@@ -4707,6 +4806,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_Batch_BatchLibrary", Storage="_Batch", ThisKey="ID", OtherKey="BatchLibraryIndex", DeleteRule="NO ACTION")]
 		public EntitySet<Batch> Batch
 		{
@@ -4789,6 +4908,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntityRef<SADConsignment> _SADConsignment;
 		
 		private EntityRef<SADGood> _SADGood;
@@ -4833,6 +4954,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public Clearence()
@@ -5153,6 +5276,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_Clearence_SADConsignment", Storage="_SADConsignment", ThisKey="SADConsignmentLibraryIndex", OtherKey="ID", IsForeignKey=true)]
 		public SADConsignment SADConsignment
 		{
@@ -5351,6 +5494,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<IPR> _IPR;
 		
     #region Extensibility Method Definitions
@@ -5385,6 +5530,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnValidToDateChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public Consent()
@@ -5673,6 +5820,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_IPR_Consent", Storage="_IPR", ThisKey="ID", OtherKey="IPR2ConsentTitle", DeleteRule="NO ACTION")]
 		public EntitySet<IPR> IPR
 		{
@@ -5741,6 +5908,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -5761,6 +5930,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public CustomsUnion()
@@ -5928,6 +6099,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -5975,6 +6166,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -5999,6 +6192,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public CutfillerCoefficient()
@@ -6206,6 +6401,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -6297,6 +6512,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntityRef<Batch> _Batch;
 		
 		private EntityRef<Clearence> _Clearence;
@@ -6379,6 +6596,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnVATPerSettledAmountChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public Disposal()
@@ -7061,6 +7280,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_Disposal_Batch", Storage="_Batch", ThisKey="Disposal2BatchIndex", OtherKey="ID", IsForeignKey=true)]
 		public Batch Batch
 		{
@@ -7342,6 +7581,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -7362,6 +7603,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnProductTypeChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public Dust()
@@ -7525,6 +7768,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._Version = value;
 					this.SendPropertyChanged("Version");
 					this.OnVersionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
 				}
 			}
 		}
@@ -7792,6 +8055,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<Disposal> _Disposal;
 		
 		private EntityRef<Batch> _Batch;
@@ -7832,6 +8097,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnUnitsChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public InvoiceContent()
@@ -8150,6 +8417,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_Disposal_InvoiceContent", Storage="_Disposal", ThisKey="ID", OtherKey="Disposal2InvoiceContentIndex", DeleteRule="NO ACTION")]
 		public EntitySet<Disposal> Disposal
 		{
@@ -8302,6 +8589,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<InvoiceContent> _InvoiceContent;
 		
 		private EntityRef<Clearence> _Clearence;
@@ -8342,6 +8631,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public InvoiceLibrary()
@@ -8675,6 +8966,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_InvoiceContent_InvoiceLibrary", Storage="_InvoiceContent", ThisKey="ID", OtherKey="InvoiceIndex", DeleteRule="NO ACTION")]
 		public EntitySet<InvoiceContent> InvoiceContent
 		{
@@ -8845,6 +9156,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<BalanceIPR> _BalanceIPR;
 		
 		private EntitySet<Disposal> _Disposal;
@@ -8947,6 +9260,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnVATNameChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public IPR()
@@ -9821,6 +10136,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_BalanceIPR_IPR", Storage="_BalanceIPR", ThisKey="ID", OtherKey="IPRIndex", DeleteRule="NO ACTION")]
 		public EntitySet<BalanceIPR> BalanceIPR
 		{
@@ -10090,6 +10425,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<IPR> _IPR;
 		
     #region Extensibility Method Definitions
@@ -10118,6 +10455,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public IPRLibrary()
@@ -10346,6 +10685,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_IPR_IPRLibrary", Storage="_IPR", ThisKey="ID", OtherKey="IPRLibraryIndex", DeleteRule="NO ACTION")]
 		public EntitySet<IPR> IPR
 		{
@@ -10432,6 +10791,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<Disposal> _Disposal;
 		
 		private EntityRef<JSOXLibrary> _JSOXLibrary;
@@ -10474,6 +10835,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTotalAmountChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public JSOXCustomsSummary()
@@ -10827,6 +11190,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_Disposal_JSOXCustomsSummary", Storage="_Disposal", ThisKey="ID", OtherKey="JSOXCustomsSummaryIndex", DeleteRule="NO ACTION")]
 		public EntitySet<Disposal> Disposal
 		{
@@ -10961,6 +11344,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<BalanceBatch> _BalanceBatch;
 		
 		private EntitySet<BalanceIPR> _BalanceIPR;
@@ -11023,6 +11408,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public JSOXLibrary()
@@ -11515,6 +11902,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_BalanceBatch_JSOXLibrary", Storage="_BalanceBatch", ThisKey="ID", OtherKey="Balance2JSOXLibraryIndex", DeleteRule="NO ACTION")]
 		public EntitySet<BalanceBatch> BalanceBatch
 		{
@@ -11713,6 +12120,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<double> _Waste;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<Disposal> _Disposal;
 		
 		private EntityRef<Batch> _Material2BatchIndexBatch;
@@ -11767,6 +12176,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnVersionChanged();
     partial void OnWasteChanging(System.Nullable<double> value);
     partial void OnWasteChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public Material()
@@ -12240,6 +12651,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_Disposal_Material", Storage="_Disposal", ThisKey="ID", OtherKey="Disposal2MaterialIndex", DeleteRule="NO ACTION")]
 		public EntitySet<Disposal> Disposal
 		{
@@ -12346,6 +12777,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<Disposal> _Disposal_PCNCode;
 		
 		private EntitySet<IPR> _IPR;
@@ -12374,6 +12807,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public PCNCode()
@@ -12583,6 +13018,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_Disposal_PCNCode", Storage="_Disposal_PCNCode", ThisKey="ID", OtherKey="Disposal2PCNID", DeleteRule="NO ACTION")]
 		public EntitySet<Disposal> Disposal_PCNCode
 		{
@@ -12682,6 +13137,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<Clearence> _Clearence;
 		
     #region Extensibility Method Definitions
@@ -12710,6 +13167,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public SADConsignment()
@@ -12938,6 +13397,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_Clearence_SADConsignment", Storage="_Clearence", ThisKey="ID", OtherKey="SADConsignmentLibraryIndex", DeleteRule="NO ACTION")]
 		public EntitySet<Clearence> Clearence
 		{
@@ -13024,6 +13503,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntityRef<SADDocumentLibrary> _SADDocumentLibrary;
 		
 		private EntitySet<SADGood> _SADGood;
@@ -13066,6 +13547,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public SADDocument()
@@ -13419,6 +13902,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_SADDocument_SADDocumentLibrary", Storage="_SADDocumentLibrary", ThisKey="SADDocumenLibrarytIndex", OtherKey="ID", IsForeignKey=true)]
 		public SADDocumentLibrary SADDocumentLibrary
 		{
@@ -13531,6 +14034,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<SADDocument> _SADDocument;
 		
     #region Extensibility Method Definitions
@@ -13563,6 +14068,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public SADDocumentLibrary()
@@ -13831,6 +14338,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_SADDocument_SADDocumentLibrary", Storage="_SADDocument", ThisKey="ID", OtherKey="SADDocumenLibrarytIndex", DeleteRule="NO ACTION")]
 		public EntitySet<SADDocument> SADDocument
 		{
@@ -13905,6 +14432,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntityRef<SADGood> _SADGood;
 		
     #region Extensibility Method Definitions
@@ -13933,6 +14462,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public SADDuties()
@@ -14165,6 +14696,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_SADDuties_SADGood", Storage="_SADGood", ThisKey="SADDuties2SADGoodID", OtherKey="ID", IsForeignKey=true)]
 		public SADGood SADGood
 		{
@@ -14258,6 +14809,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<Clearence> _Clearence;
 		
 		private EntitySet<SADDuties> _SADDuties;
@@ -14306,6 +14859,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTotalAmountInvoicedChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public SADGood()
@@ -14643,6 +15198,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_Clearence_SADGood", Storage="_Clearence", ThisKey="ID", OtherKey="Clearence2SadGoodID", DeleteRule="NO ACTION")]
 		public EntitySet<Clearence> Clearence
 		{
@@ -14851,6 +15426,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntityRef<SADGood> _SADGood;
 		
     #region Extensibility Method Definitions
@@ -14879,6 +15456,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public SADPackage()
@@ -15111,6 +15690,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_SADPackage_SADGood", Storage="_SADGood", ThisKey="SADPackage2SADGoodID", OtherKey="ID", IsForeignKey=true)]
 		public SADGood SADGood
 		{
@@ -15196,6 +15795,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntityRef<SADGood> _SADGood;
 		
     #region Extensibility Method Definitions
@@ -15226,6 +15827,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnUnitsChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public SADQuantity()
@@ -15478,6 +16081,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_SADQuantity_SADGood", Storage="_SADGood", ThisKey="SADQuantity2SADGoodID", OtherKey="ID", IsForeignKey=true)]
 		public SADGood SADGood
 		{
@@ -15561,6 +16184,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntityRef<SADGood> _SADGood;
 		
     #region Extensibility Method Definitions
@@ -15589,6 +16214,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public SADRequiredDocuments()
@@ -15821,6 +16448,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_SADRequiredDocuments_SADGood", Storage="_SADGood", ThisKey="SADRequiredDoc2SADGoodID", OtherKey="ID", IsForeignKey=true)]
 		public SADGood SADGood
 		{
@@ -15898,6 +16545,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -15918,6 +16567,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public Settings()
@@ -16085,6 +16736,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -16128,6 +16799,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -16148,6 +16821,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnSHMentholRatioChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public SHMenthol()
@@ -16315,6 +16990,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -16386,6 +17081,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<Batch> _Batch;
 		
 		private EntityRef<SKULibrary> _SKULibrary;
@@ -16440,6 +17137,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnUnitsChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public SKU()
@@ -16898,6 +17597,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_Batch_SKU", Storage="_Batch", ThisKey="ID", OtherKey="SKUIndex", DeleteRule="NO ACTION")]
 		public EntitySet<Batch> Batch
 		{
@@ -17038,6 +17757,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<SKU> _SKU;
 		
     #region Extensibility Method Definitions
@@ -17064,6 +17785,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public SKULibrary()
@@ -17272,6 +17995,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_SKU_SKULibrary", Storage="_SKU", ThisKey="ID", OtherKey="SKULibraryIndex", DeleteRule="NO ACTION")]
 		public EntitySet<SKU> SKU
 		{
@@ -17342,6 +18085,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<SKU> _SKU;
 		
 		private EntitySet<Usage> _Usage;
@@ -17368,6 +18113,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public SPFormat()
@@ -17557,6 +18304,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_SKU_SPFormat", Storage="_SKU", ThisKey="ID", OtherKey="FormatIndex", DeleteRule="NO ACTION")]
 		public EntitySet<SKU> SKU
 		{
@@ -17676,6 +18443,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntityRef<Batch> _BatchIndexBatch;
 		
 		private EntityRef<StockLibrary> _StockLibrary;
@@ -17726,6 +18495,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnUnrestrictedChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public StockEntry()
@@ -18163,6 +18934,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_StockEntry_Batch", Storage="_BatchIndexBatch", ThisKey="BatchIndex", OtherKey="ID", IsForeignKey=true)]
 		public Batch BatchIndexBatch
 		{
@@ -18282,6 +19073,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntitySet<StockEntry> _StockEntry;
 		
 		private EntityRef<JSOXLibrary> _JSOXLibrary;
@@ -18314,6 +19107,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public StockLibrary()
@@ -18567,6 +19362,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_StockEntry_StockLibrary", Storage="_StockEntry", ThisKey="ID", OtherKey="StockLibraryIndex", DeleteRule="NO ACTION")]
 		public EntitySet<StockEntry> StockEntry
 		{
@@ -18675,6 +19490,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _Version;
 		
+		private bool _OnlySQL;
+		
 		private EntityRef<SPFormat> _SPFormat;
 		
     #region Extensibility Method Definitions
@@ -18703,6 +19520,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnUsageMinChanged();
     partial void OnVersionChanging(System.Nullable<int> value);
     partial void OnVersionChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public Usage()
@@ -18935,6 +19754,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		[Association(Name="FK_Usage_SPFormat", Storage="_SPFormat", ThisKey="FormatIndex", OtherKey="ID", IsForeignKey=true)]
 		public SPFormat SPFormat
 		{
@@ -19016,6 +19855,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private string _WarehouseName;
 		
+		private bool _OnlySQL;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -19040,6 +19881,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnVersionChanged();
     partial void OnWarehouseNameChanging(string value);
     partial void OnWarehouseNameChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public Warehouse()
@@ -19247,6 +20090,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 			}
 		}
 		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -19290,6 +20153,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<double> _WasteRatio;
 		
+		private bool _OnlySQL;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -19310,6 +20175,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
     partial void OnVersionChanged();
     partial void OnWasteRatioChanging(System.Nullable<double> value);
     partial void OnWasteRatioChanged();
+    partial void OnOnlySQLChanging(bool value);
+    partial void OnOnlySQLChanged();
     #endregion
 		
 		public Waste()
@@ -19473,6 +20340,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 					this._WasteRatio = value;
 					this.SendPropertyChanged("WasteRatio");
 					this.OnWasteRatioChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
+		public bool OnlySQL
+		{
+			get
+			{
+				return this._OnlySQL;
+			}
+			set
+			{
+				if ((this._OnlySQL != value))
+				{
+					this.OnOnlySQLChanging(value);
+					this.SendPropertyChanging();
+					this._OnlySQL = value;
+					this.SendPropertyChanged("OnlySQL");
+					this.OnOnlySQLChanged();
 				}
 			}
 		}

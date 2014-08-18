@@ -10,6 +10,7 @@
     [SADRequiredDoc2SADGoodID] INT            NULL,
     [Title]                    NVARCHAR (MAX) NOT NULL,
     [Version]                  INT            NULL,
+	[OnlySQL]				   BIT			  NOT NULL,
     CONSTRAINT [PK_SADRequiredDocuments_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADRequiredDocuments_SADGood] FOREIGN KEY ([SADRequiredDoc2SADGoodID]) REFERENCES [dbo].[SADGood] ([ID])
 );

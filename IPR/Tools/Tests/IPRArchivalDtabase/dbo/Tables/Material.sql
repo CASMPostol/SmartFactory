@@ -22,6 +22,7 @@
     [Units]               NVARCHAR (MAX) NULL,
     [Version]             INT            NULL,
     [Waste]               FLOAT (53)     NULL,
+	[OnlySQL]			  BIT			 NOT NULL,
     CONSTRAINT [PK_Material_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Material_Batch] FOREIGN KEY ([Material2BatchIndex]) REFERENCES [dbo].[Batch] ([ID])
 );

@@ -7,6 +7,7 @@
     [ProductType]    NVARCHAR (MAX) NOT NULL,
     [SHMentholRatio] FLOAT (53)     NOT NULL,
     [Version]        INT            NULL,
+	[OnlySQL]		 BIT			NOT NULL,
     CONSTRAINT [PK_SHMenthol_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

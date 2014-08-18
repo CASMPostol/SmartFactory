@@ -13,6 +13,7 @@
     [ValidFromDate]       DATETIME       NULL,
     [ValidToDate]         DATETIME       NULL,
     [Version]             INT            NULL,
+	[OnlySQL]			  BIT			 NOT NULL,
     CONSTRAINT [PK_Consent_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 
