@@ -37,5 +37,5 @@ DROP TABLE SADDocumentLibrary;
 DROP TABLE BalanceBatch;
 DROP TABLE JSOXLibrary;
 DROP TABLE History;
+DROP TABLE ArchivingOperationLogs;
 DROP TABLE ArchivingLogs;
-DROP TABLE ActivitiesLogs;
