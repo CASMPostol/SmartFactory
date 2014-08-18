@@ -9,6 +9,7 @@
     [ProductCodeNumber] NVARCHAR (MAX) NULL,
     [Title]             NVARCHAR (MAX) NOT NULL,
     [Version]           INT            NULL,
+	[OnlySQL]			BIT			   NOT NULL,
     CONSTRAINT [PK_PCNCode_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

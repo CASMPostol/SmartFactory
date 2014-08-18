@@ -1,4 +1,5 @@
 ﻿USE IPRDEV
+DROP TABLE ActivityLog;
 DROP TABLE Waste;
 DROP TABLE Warehouse;
 DROP TABLE Usage;

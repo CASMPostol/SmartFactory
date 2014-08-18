@@ -20,6 +20,7 @@
     [Units]             NVARCHAR (MAX) NULL,
     [Unrestricted]      FLOAT (53)     NULL,
     [Version]           INT            NULL,
+	[OnlySQL]			BIT			   NOT NULL,
     CONSTRAINT [PK_StockEntry_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_StockEntry_Batch] FOREIGN KEY ([BatchIndex]) REFERENCES [dbo].[Batch] ([ID]),
     CONSTRAINT [FK_StockEntry_StockLibrary] FOREIGN KEY ([StockLibraryIndex]) REFERENCES [dbo].[StockLibrary] ([ID])

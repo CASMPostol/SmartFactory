@@ -7,6 +7,7 @@
     [Modified]    DATETIME       NULL,
     [ProductType] NVARCHAR (MAX) NULL,
     [Version]     INT            NULL,
+	[OnlySQL]	  BIT			 NOT NULL,
     CONSTRAINT [PK_Dust_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

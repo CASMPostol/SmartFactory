@@ -10,6 +10,7 @@
     [SADPackage2SADGoodID] INT            NULL,
     [Title]                NVARCHAR (MAX) NOT NULL,
     [Version]              INT            NULL,
+	[OnlySQL]			   BIT			  NOT NULL,
     CONSTRAINT [PK_SADPackage_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADPackage_SADGood] FOREIGN KEY ([SADPackage2SADGoodID]) REFERENCES [dbo].[SADGood] ([ID])
 );

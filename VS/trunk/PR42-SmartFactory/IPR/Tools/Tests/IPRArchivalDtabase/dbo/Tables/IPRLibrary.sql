@@ -10,6 +10,7 @@
     [DocumentModifiedBy] NVARCHAR (MAX) NULL,
     [Title]              NVARCHAR (MAX) NULL,
     [Version]            INT            NULL,
+	[OnlySQL]			 BIT			NOT NULL,
     CONSTRAINT [PK_IPRLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

@@ -16,6 +16,7 @@
     [Title]                        NVARCHAR (MAX) NOT NULL,
     [TotalAmount]                  FLOAT (53)     NULL,
     [Version]                      INT            NULL,
+	[OnlySQL]					   BIT			  NOT NULL,
     CONSTRAINT [PK_JSOXCustomsSummary_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_JSOXCustomsSummary_JSOXLibrary] FOREIGN KEY ([JSOXCustomsSummary2JSOXIndex]) REFERENCES [dbo].[JSOXLibrary] ([ID])
 );

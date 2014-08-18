@@ -9,6 +9,7 @@
     [ID]                     INT            NOT NULL,
     [Modified]               DATETIME       NULL,
     [Version]                INT            NULL,
+	[OnlySQL]				 BIT			NOT NULL,
     CONSTRAINT [PK_CutfillerCoefficient_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 
