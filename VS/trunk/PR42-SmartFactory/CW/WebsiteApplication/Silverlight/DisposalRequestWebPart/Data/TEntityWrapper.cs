@@ -25,23 +25,23 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
   /// TEntityWrapper class
   /// </summary>
   /// <typeparam name="TEntity">The type of the entity.</typeparam>
-  internal class TEntityWrapper<TEntity>: ITrackEntityState
-    where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
+  internal class TEntityWrapper<TEntity> : ITrackEntityState
+    where TEntity : class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
   {
 
     #region creators
-    internal TEntityWrapper( DataContext dataContext, ListItem listItem, Dictionary<string, StorageItem> _storageDic, PropertyChangedEventHandler handler )
-      : this( dataContext )
+    internal TEntityWrapper(DataContext dataContext, ListItem listItem, Dictionary<string, StorageItem> storageDic, PropertyChangedEventHandler handler)
+      : this(dataContext)
     {
-      if ( listItem == null )
-        throw new ArgumentNullException( "listItem" );
+      if (listItem == null)
+        throw new ArgumentNullException("listItem");
       MyListItem = listItem;
       m_Index = listItem.Id;
       TEntity _newEntity = new TEntity();
       this.TEntityGetter = _newEntity;
-      AssignValues2Entity( _storageDic );
+      AssignValues2Entity(storageDic);
       _newEntity.EntityState = EntityState.Unchanged;
-      _newEntity.OriginalValues.Clear(); 
+      _newEntity.OriginalValues.Clear();
       _newEntity.PropertyChanged += handler;
     }
     /// <summary>
@@ -50,13 +50,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// <param name="dataContext">The data context.</param>
     /// <param name="entity">The new entity to be inserted.</param>
     /// <param name="handler">The <see cref="PropertyChangedEventHandler"/> handler.</param>
-    internal TEntityWrapper( DataContext dataContext, TEntity entity, PropertyChangedEventHandler handler, List list )
-      : this( dataContext )
+    internal TEntityWrapper(DataContext dataContext, TEntity entity, PropertyChangedEventHandler handler, List list)
+      : this(dataContext)
     {
       entity.EntityState = EntityState.ToBeInserted;
       entity.PropertyChanged += handler;
       this.TEntityGetter = entity;
-      this.MyListItem = list.AddItem( new ListItemCreationInformation() );
+      this.MyListItem = list.AddItem(new ListItemCreationInformation());
       m_Index = b_indexCounter--;
     }
     #endregion
@@ -70,45 +70,45 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// or
     /// IsLookupId must be true for lookup field.
     /// </exception>
-    internal void AssignValues2Entity( Dictionary<string, StorageItem> storageDictionary )
+    internal void AssignValues2Entity(Dictionary<string, StorageItem> storageDictionary)
     {
       TEntity _entity = (TEntity)this.TEntityGetter;
-      foreach ( KeyValuePair<string, object> _item in MyListItem.FieldValues )
+      foreach (KeyValuePair<string, object> _item in MyListItem.FieldValues)
       {
-        if ( !storageDictionary.ContainsKey( _item.Key ) )
+        if (!storageDictionary.ContainsKey(_item.Key))
           continue;
-        StorageItem _storage = storageDictionary[ _item.Key ];
-        if ( _storage.Association )
+        StorageItem _storage = storageDictionary[_item.Key];
+        if (_storage.Association)
         {
-          Debug.Assert( _storage.IsLookup, "Unexpected assignment to reverse lookup" );
-          IEntityRef _itemRef = (IEntityRef)_storage.Storage.GetValue( _entity );
-          _itemRef.SetLookup( _item.Value == null ? null : (FieldLookupValue)_item.Value, m_DataContext, ( (AssociationAttribute)_storage.Description ).List );
+          Debug.Assert(_storage.IsLookup, "Unexpected assignment to reverse lookup");
+          IEntityRef _itemRef = (IEntityRef)_storage.Storage.GetValue(_entity);
+          _itemRef.SetLookup(_item.Value == null ? null : (FieldLookupValue)_item.Value, m_DataContext, ((AssociationAttribute)_storage.Description).List);
         }
         else
         {
           ColumnAttribute _column = _storage.Description as ColumnAttribute;
-          if ( _column == null )
-            throw new NotImplementedException( "Only ColumnAttribute is supported." );
-          if ( _column.FieldType == "Lookup" )
+          if (_column == null)
+            throw new NotImplementedException("Only ColumnAttribute is supported.");
+          if (_column.FieldType == "Lookup")
           {
-            if ( _item.Value == null )
+            if (_item.Value == null)
               continue;
-            if ( _column.IsLookupId )
+            if (_column.IsLookupId)
             {
-              _storage.Storage.SetValue( _entity, ( (Microsoft.SharePoint.Client.FieldLookupValue)_item.Value ).LookupId );
+              _storage.Storage.SetValue(_entity, ((Microsoft.SharePoint.Client.FieldLookupValue)_item.Value).LookupId);
             }
             else
-              throw new NotImplementedException( "IsLookupId must be true for lookup field." );
+              throw new NotImplementedException("IsLookupId must be true for lookup field.");
           }
-          else if ( _column.FieldType == "Choice" )
+          else if (_column.FieldType == "Choice")
           {
             Dictionary<string, string> _values = new Dictionary<string, string>();
-            Type _type = StorageItem.GetEnumValues( _storage, _values, false );
-            object _enumValue = Enum.Parse( _type, _values[ (string)_item.Value ], true );
-            _storage.Storage.SetValue( _entity, _enumValue );
+            Type _type = StorageItem.GetEnumValues(_storage, _values, false);
+            object _enumValue = Enum.Parse(_type, _values[(string)_item.Value], true);
+            _storage.Storage.SetValue(_entity, _enumValue);
           }
           else
-            _storage.Storage.SetValue( _entity, _item.Value );
+            _storage.Storage.SetValue(_entity, _item.Value);
         }
       }
     }
@@ -116,25 +116,25 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// Gets the values from entity.
     /// </summary>
     /// <param name="entityDictionary">The entity dictionary containing property name <see cref="StorageItem" pairs./>.</param>
-    internal void GetValuesFromEntity( Dictionary<string, StorageItem> entityDictionary )
+    internal void GetValuesFromEntity(Dictionary<string, StorageItem> entityDictionary)
     {
       ITrackOriginalValues _entity = (ITrackOriginalValues)this.TEntityGetter;
-      foreach ( var _ovx in _entity.OriginalValues )
+      foreach (var _ovx in _entity.OriginalValues)
       {
-        StorageItem _storage = entityDictionary[ _ovx.Key ];
-        object _value = _storage.Storage.GetValue( _entity );
-        if ( _storage.Association )
+        StorageItem _storage = entityDictionary[_ovx.Key];
+        object _value = _storage.Storage.GetValue(_entity);
+        if (_storage.Association)
         {
-          Debug.Assert( _storage.IsLookup, "Unexpected MultivalueType in the GetValuesFromEntity. Expected is lookup, but the filde is reverse lookup" );
-          _value = ( (IEntityRef)_value ).GetLookup( m_DataContext, ( (AssociationAttribute)_storage.Description ).List );
+          Debug.Assert(_storage.IsLookup, "Unexpected MultivalueType in the GetValuesFromEntity. Expected is lookup, but the filde is reverse lookup");
+          _value = ((IEntityRef)_value).GetLookup(m_DataContext, ((AssociationAttribute)_storage.Description).List);
         }
-        else if ( ( (ColumnAttribute)_storage.Description ).FieldType.Contains( "Choice" ) )
+        else if (((ColumnAttribute)_storage.Description).FieldType.Contains("Choice"))
         {
           Dictionary<string, string> _values = new Dictionary<string, string>();
-          Type _type = StorageItem.GetEnumValues( _storage, _values, true );
-          _value = _values[ _value.ToString() ];
+          Type _type = StorageItem.GetEnumValues(_storage, _values, true);
+          _value = _values[_value.ToString()];
         }
-        MyListItem[ _storage.Description.Name ] = _value;
+        MyListItem[_storage.Description.Name] = _value;
       }
       MyListItem.Update();
       _entity.OriginalValues.Clear();
@@ -161,10 +161,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
 
 
     #region private
-    private DataContext m_DataContext = default( DataContext );
+    private DataContext m_DataContext = default(DataContext);
     private int m_Index = -1;
     private static int b_indexCounter = -1;
-    private TEntityWrapper( DataContext dataContext )
+    private TEntityWrapper(DataContext dataContext)
     {
       m_DataContext = dataContext;
     }
