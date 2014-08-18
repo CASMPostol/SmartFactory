@@ -52,6 +52,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       int _cntrNew = 0;
       int _cntrUpdt = 0;
       Dictionary<string, StorageItem> _entityDictionary = m_StorageDescription.ToDictionary<StorageItem, string>( storageItem => storageItem.PropertyName );
+      //ToBeDeleted
+      //ToBeInserted
       List<TEntityWrapper<TEntity>> _toBeInsertedCollection = ( from _tewx in m_Collection.Values where _tewx.EntityState == EntityState.ToBeInserted select _tewx ).ToList();
       foreach ( TEntityWrapper<TEntity> _toBeInsertedItem in _toBeInsertedCollection )
       {
@@ -59,32 +61,33 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
         _toBeInsertedItem.GetValuesFromEntity( _entityDictionary );
         _cntrNew++;
         if ( _cntrNew % 10 == 0 )
-          executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Excute query ListItem to be inserted # {0}", _cntrNew ) ) );
+          executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Execute query ListItem to be inserted # {0}", _cntrNew ) ) );
       }
-      executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Excute query ListItem to be inserted # {0}", _cntrNew ) ) );
+      executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Execute query ListItem to be inserted # {0}", _cntrNew ) ) );
       _cntrNew = 0;
       foreach ( TEntityWrapper<TEntity> _toBeInsertedItem in _toBeInsertedCollection )
       {
         _toBeInsertedItem.MyListItem.RefreshLoad();
         _cntrNew++;
         if ( _cntrNew % 10 == 0 )
-          executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Excute query ListItem RefreshLoad # {0}", _cntrNew ) ) );
+          executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Execute query ListItem RefreshLoad # {0}", _cntrNew ) ) );
       }
-      executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Excute query ListItem RefreshLoad # {0}", _cntrNew ) ) );
+      executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Execute query ListItem RefreshLoad # {0}", _cntrNew ) ) );
       foreach ( TEntityWrapper<TEntity> _toBeInsertedItem in _toBeInsertedCollection )
       {
         _toBeInsertedItem.AssignValues2Entity( ListItemPropertiesDictionary() );
         this.m_Collection.Add( _toBeInsertedItem.Index, _toBeInsertedItem );
       }
+      //ToBeUpdated
       List<TEntityWrapper<TEntity>> _toBeUpdatedCollection = ( from _tewx in m_Collection.Values where _tewx.EntityState == EntityState.ToBeUpdated select _tewx ).ToList();
       foreach ( TEntityWrapper<TEntity> _itemX in _toBeUpdatedCollection )
       {
         _itemX.GetValuesFromEntity( _entityDictionary );
         _cntrUpdt++;
         if ( _cntrUpdt % 10 == 0 )
-          executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Excute query ListItem Update # {0}", _cntrUpdt ) ) );
+          executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Execute query ListItem Update # {0}", _cntrUpdt ) ) );
       }
-      executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Excute query ListItem Update # {0}", _cntrUpdt ) ) );
+      executeQuery( this, new ProgressChangedEventArgs( 1, String.Format( "Execute query ListItem Update # {0}", _cntrUpdt ) ) );
       m_Unchaged = true;
     }
     /// <summary>
@@ -100,7 +103,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       {
         LookupId = entity == null ? -1 : m_EntitieAssociations[ (TEntity)entity ].Index
       };
-      Debug.Assert( _ret.LookupId > 0, "Unexpected null reference to existing Entity" );
+      // it is wrong after deleting an entity Debug.Assert( _ret.LookupId > 0, "Unexpected null reference to existing Entity" );
       return _ret;
     }
     public Object GetFieldLookupValue( FieldLookupValue fieldLookupValue )
@@ -120,7 +123,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     #region internal
     internal List MyList { get { return m_list; } }
     /// <summary>
-    /// Adds new entiti to be inserted
+    /// Adds new entity to be inserted
     /// </summary>
     /// <param name="entity">The entity.</param>
     internal void Add( TEntity entity )
@@ -130,7 +133,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       m_Unchaged = false;
     }
     /// <summary>
-    /// Adds an entity for the the specified list item.
+    /// Adds an entity for the specified list item.
     /// </summary>
     /// <param name="listItem">The list item.</param>
     /// <param name="dataContext">The data context.</param>

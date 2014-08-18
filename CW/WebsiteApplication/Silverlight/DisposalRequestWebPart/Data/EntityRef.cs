@@ -23,11 +23,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
   ///  Provides for deferred loading and relationship maintenance for the singleton side of a one-to-many relationship.
   /// </summary>
   /// <typeparam name="TEntity"> The type of the entity on the singleton side of the relationship.</typeparam>
-  public class EntityRef<TEntity>: IEntityRef
-    where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
+  public class EntityRef<TEntity> : IEntityRef
+    where TEntity : class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
   {
 
-    #region ctor
+    #region creator
     /// <summary>
     /// Initializes a new instance of the Microsoft.SharePoint.Linq.EntityRef class.
     /// </summary>
@@ -36,15 +36,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
 
     #region public
     /// <summary>
-    /// Raised after a change to this <see cref="EntityRef"/> object.
+    /// Raised after a change to this <see cref="EntityRef{TEntity}"/> object.
     /// </summary>
     public event EventHandler OnChanged;
     /// <summary>
-    /// Raised before a change to this  <see cref="EntityRef"/> object.
+    /// Raised before a change to this  <see cref="EntityRef{TEntity}"/> object.
     /// </summary>
     public event EventHandler OnChanging;
     /// <summary>
-    /// Raised when the <see cref="EntityRef"/> object is synchronized with the entity it represents.
+    /// Raised when the <see cref="EntityRef{TEntity}"/> object is synchronized with the entity it represents.
     /// </summary>
     public event EventHandler<AssociationChangedEventArgs<TEntity>> OnSync;
     /// <summary>
@@ -74,35 +74,35 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// </summary>
     /// <param name="entity">The entity to which the <see cref="Microsoft.SharePoint.Linq.EntityRef<TEntity>"/> is being pointed.</param>
     /// <exception cref="System.InvalidOperationException">The object is not registered in the context.</exception>
-    public void SetEntity( Object entity )
+    public void SetEntity(Object entity)
     {
-      if ( entity == m_Lookup )
+      if (entity == m_Lookup)
         return;
-      if ( OnChanging != null )
-        OnChanging( this, new EventArgs() );
-      if ( OnSync != null && m_Lookup != null )
-        OnSync( this, new AssociationChangedEventArgs<TEntity>( m_Lookup, AssociationChangedState.Removed ) );
+      if (OnChanging != null)
+        OnChanging(this, new EventArgs());
+      if (OnSync != null && m_Lookup != null)
+        OnSync(this, new AssociationChangedEventArgs<TEntity>(m_Lookup, AssociationChangedState.Removed));
       m_Lookup = (TEntity)entity;
-      if ( OnSync != null && m_Lookup != null )
-        OnSync( this, new AssociationChangedEventArgs<TEntity>( m_Lookup, AssociationChangedState.Added ) );
-      if ( OnChanged != null )
-        OnChanged( this, new EventArgs() );
+      if (OnSync != null && m_Lookup != null)
+        OnSync(this, new AssociationChangedEventArgs<TEntity>(m_Lookup, AssociationChangedState.Added));
+      if (OnChanged != null)
+        OnChanged(this, new EventArgs());
     }
-    FieldLookupValue IEntityRef.GetLookup( DataContext dataContext, string listName )
+    FieldLookupValue IEntityRef.GetLookup(DataContext dataContext, string listName)
     {
-      return dataContext.GetFieldLookupValue( listName, m_Lookup );
+      return dataContext.GetFieldLookupValue(listName, m_Lookup);
     }
-    void IEntityRef.SetLookup( FieldLookupValue value, DataContext dataContext, string listName )
+    void IEntityRef.SetLookup(FieldLookupValue value, DataContext dataContext, string listName)
     {
-      if ( value == null )
+      if (value == null)
         return;
-      Object _entity = dataContext.GetFieldLookupValue<TEntity>( listName, value );
-      SetEntity( _entity );
+      Object _entity = dataContext.GetFieldLookupValue<TEntity>(listName, value);
+      SetEntity(_entity);
     }
     #endregion
 
     #region private
-    private TEntity m_Lookup = default( TEntity );
+    private TEntity m_Lookup = default(TEntity);
     #endregion
 
   }
