@@ -118,7 +118,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Reading the table {0} from SharePoint website.", typeof(TSP).Name)));
       List<TSP> _scrList = entityList.ToList<TSP>();
       progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Reading the table {0} from SQL database.", typeof(TSQL).Name)));
-      Dictionary<int, SharePoint.Client.Link2SQL.IItem> _dictinary = table.ToDictionary<TSQL, int, SharePoint.Client.Link2SQL.IItem>(x => x.ID, y => (SharePoint.Client.Link2SQL.IItem)y);
+      Dictionary<int, SharePoint.Client.Link2SQL.IItem> _dictinary = table.Where<TSQL>(x => !x.OnlySQL).ToDictionary<TSQL, int, SharePoint.Client.Link2SQL.IItem>(x => x.ID, y => (SharePoint.Client.Link2SQL.IItem)y);
       SharePoint.Client.Link2SQL.RepositoryDataSet.Repository.Add(entityList.Name, _dictinary);
       progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Synchronization {0} elements in the SharePoint source tables with the {1} element in the SQL table.", _scrList.Count, _dictinary.Count)));
       List<SharePoint.Client.Linq2SP.StorageItem> _spDscrpt = SharePoint.Client.Linq2SP.StorageItem.CreateStorageDescription(typeof(TSP), false);
@@ -130,6 +130,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         if (!_dictinary.TryGetValue(_spItem.Id.Value, out _sqlItem))
         {
           _sqlItem = new TSQL();
+          _sqlItem.OnlySQL = false;
           _dictinary.Add(_spItem.Id.Value, _sqlItem);
           table.InsertOnSubmit((TSQL)_sqlItem);
         }
