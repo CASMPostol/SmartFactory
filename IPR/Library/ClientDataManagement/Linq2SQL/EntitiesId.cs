@@ -17,6 +17,7 @@ using CAS.SharePoint.Client.Link2SQL;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 {
+  public partial class ActivityLog : IItem { }
   public partial class JSOXLibrary : IItem { }
   public partial class BalanceBatch : IItem { }
   public partial class SADDocumentLibrary : IItem { }

@@ -265,5 +265,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
+    <None Include="dbo\SQLScriptFileName.sql" />
   </ItemGroup>
 </Project>

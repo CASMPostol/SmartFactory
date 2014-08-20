@@ -91,9 +91,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         Synchronize(_sqledc.Usage, _spedc.Usage, progressChanged, Linq.Usage.GetMappings());
         Synchronize(_sqledc.Warehouse, _spedc.Warehouse, progressChanged, Linq.Warehouse.GetMappings());
         Synchronize(_sqledc.Waste, _spedc.Waste, progressChanged, Linq.Waste.GetMappings());
+        Synchronize(_sqledc.ActivityLog, _spedc.ActivityLog, progressChanged, Linq.ActivityLogCT.GetMappings());
         //History();
         //ArchivingLogs();
-        //ActivitiesLogs();
         UpdateActivitiesLogs(_sqledc, progressChanged);
         progressChanged(1, new ProgressChangedEventArgs(1, "SynchronizationContent has been finished"));
       }
