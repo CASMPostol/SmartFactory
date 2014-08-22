@@ -15,6 +15,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Linq;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 {
@@ -54,6 +55,17 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
       sqlEntities.ArchivingOperationLogs.InsertOnSubmit(_logs);
       sqlEntities.SubmitChanges();
       progressChanged(1, new ProgressChangedEventArgs(1, "Updated ActivitiesLogs"));
+    }
+    /// <summary>
+    /// Gets the recent actions.
+    /// </summary>
+    /// <param name="entities">The _entities.</param>
+    /// <param name="operation">The operation.</param>
+    /// <returns></returns>
+    public static ArchivingOperationLogs GetRecentActions(IPRDEV entities, OperationName operation)
+    {
+      ArchivingOperationLogs _recentActions = entities.ArchivingOperationLogs.Where<ArchivingOperationLogs>(x => x.Operation.Contains(operation.ToString())).OrderByDescending<ArchivingOperationLogs, DateTime>(x => x.Date).FirstOrDefault();
+      return _recentActions;
     }
 
   }
