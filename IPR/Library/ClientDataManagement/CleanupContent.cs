@@ -61,13 +61,14 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         {
           if (_selX.Stock2JSOXLibraryIndex == null)
           {
+            _StockEntryArchived += _selX.StockEntry.Count;
+            int _count = _selX.StockEntry.Count;
             foreach (StockEntry _sex in _selX.StockEntry)
             {
               entities.StockEntry.DeleteOnSubmit(_sex);
               Linq2SQL.StockEntry.MarkSQLOnly(_sqledc, _sex.Id.Value);
             }
-            progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} Stock entries.", _selX.StockEntry.Count)));
-            _StockEntryArchived += _selX.StockEntry.Count;
+            progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} Stock entries.", _count)));
             _StockLibArchived++;
             entities.StockLibrary.DeleteOnSubmit(_selX);
             Linq2SQL.StockLibrary.MarkSQLOnly(_sqledc, _selX.Id.Value);

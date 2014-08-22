@@ -23,19 +23,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
   internal class FinishedMachine : AbstractMachineState<MainWindowModel>
   {
     //constructor
-    public FinishedMachine() : base() { }
-    internal FinishedMachine(MainWindowModel context)
-      : base(context)
-    {
-      m_Me = this;
-    }
-    //API
-    internal static FinishedMachine Get()
-    {
-      if (m_Me == null)
-        throw new ApplicationException();
-      return m_Me;
-    }
+    public FinishedMachine() { }
     //AbstractMachine
     public override void OnEnteringState()
     {
@@ -66,8 +54,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       Context.Close();
     }
-    //private
-    private static FinishedMachine m_Me;
 
   }
 }
