@@ -12,11 +12,8 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
-using System;
-using System.Collections.Generic;
+
 using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 {

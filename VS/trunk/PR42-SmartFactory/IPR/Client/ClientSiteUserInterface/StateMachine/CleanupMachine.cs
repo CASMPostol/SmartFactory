@@ -15,11 +15,8 @@
       
 using CAS.SharePoint.ViewModel.Wizard;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Net;
-using System.Text;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
@@ -44,7 +41,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       {
         try
         {
-          DataManagement.CleanupContent.Go(Properties.Settings.Default.SiteURL, ReportProgress);
+          DataManagement.CleanupContent.Go(Properties.Settings.Default.SiteURL, ViewModel.MainWindowModel.GetConnectionString(), ReportProgress);
           break;
         }
         catch (WebException _we)

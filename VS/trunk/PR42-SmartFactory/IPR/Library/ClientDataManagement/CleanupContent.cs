@@ -56,8 +56,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           }
         }
         progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockEntry entries.", _StockEntryArchived)));
-        SPSubmitChanges(entities, progress);
-        SQLSubmitChanges(entities, progress);
+        SPSubmitChanges(entities, _sqledc, progress);
         foreach (StockLib _selX in _slList)
         {
           if (_selX.Stock2JSOXLibraryIndex == null)
@@ -75,7 +74,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           }
         }
         progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockLibrary entries.", _StockLibArchived)));
-        SPSubmitChanges(entities, progress);
+        SPSubmitChanges(entities, _sqledc, progress);
         Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(_sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Cleanup, progress);
         progress(null, new ProgressChangedEventArgs(1, String.Format("Finished CleanupContent; deleted {0} StockEntry entries and {1} StockEntry.", _StockLibArchived, _StockEntryArchived)));
       }
