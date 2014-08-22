@@ -31,8 +31,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     /// </summary>
     /// <param name="siteURL">The site URL.</param>
     /// <param name="progress">Used to report the progress of the operation.</param>
-    public static void Go(string siteURL, Action<object, ProgressChangedEventArgs> progress)
+    public static void Go(string siteURL, string connectionString, Action<object, ProgressChangedEventArgs> progress)
     {
+      Linq2SQL.IPRDEV _sqledc = Linq2SQL.IPRDEV.Connect2SQL(connectionString, progress);
       using (Entities entities = new Entities(siteURL))
       {
         progress(null, new ProgressChangedEventArgs(1, String.Format("Starting CleanupContent. It could take several minutes")));
@@ -68,6 +69,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         }
         progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockLibrary entries.", _StockLibArchived)));
         SubmitChanges(entities, progress);
+        Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(_sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Cleanup, progress);
         progress(null, new ProgressChangedEventArgs(1, String.Format("Finished CleanupContent; deleted {0} StockEntry entries and {1} StockEntry.", _StockLibArchived, _StockEntryArchived)));
       }
     }

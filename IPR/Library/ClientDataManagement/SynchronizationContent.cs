@@ -51,7 +51,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     /// <param name="progressChanged">The progress changed.</param>
     public static void Go(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
     {
-      IPRDEV _sqledc = Connect2SQL(settings, progressChanged);
+      IPRDEV _sqledc = IPRDEV.Connect2SQL(settings.ConnectionString, progressChanged);
       using (Entities _spedc = new Entities(settings.SiteURL))
       {
         SharePoint.Client.Link2SQL.RepositoryDataSet.ClearContent();
@@ -94,23 +94,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         Synchronize(_sqledc.ActivityLog, _spedc.ActivityLog, progressChanged, Linq.ActivityLogCT.GetMappings());
         //History();
         //ArchivingLogs();
-        UpdateActivitiesLogs(_sqledc, progressChanged);
+        Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(_sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Synchronization, progressChanged);
         progressChanged(1, new ProgressChangedEventArgs(1, "SynchronizationContent has been finished"));
       }
     }
 
-    private static void UpdateActivitiesLogs(IPRDEV sqlEntities, Action<object, ProgressChangedEventArgs> progressChanged)
-    {
-      Linq2SQL.ArchivingOperationLogs _logs = new ArchivingOperationLogs()
-      {
-        Date = DateTime.Now,
-        Operation = Linq2SQL.ArchivingOperationLogs.SynchronizationOperationName,
-        UserName = String.Format(Properties.Resources.ActivitiesLogsUserNamePattern, Environment.UserName, Environment.MachineName)
-      };
-      sqlEntities.ArchivingOperationLogs.InsertOnSubmit(_logs);
-      sqlEntities.SubmitChanges();
-      progressChanged(1, new ProgressChangedEventArgs(1, "Updated ActivitiesLogs"));
-    }
     private static void Synchronize<TSQL, TSP>(Table<TSQL> table, EntityList<TSP> entityList, Action<object, ProgressChangedEventArgs> progressChanged, Dictionary<string, string> mapping)
       where TSQL : class, SharePoint.Client.Link2SQL.IItem, new()
       where TSP : Linq.Item, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
@@ -149,19 +137,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       foreach (SharePoint.Client.Linq2SP.StorageItem _si in _spDscrpt.Where<SharePoint.Client.Linq2SP.StorageItem>(x => x.IsNotReverseLookup()))
         if (_sqlDscrpt.ContainsKey(_si.PropertyName))
           _si.GetValueFromEntity(splItem, x => _sqlDscrpt[_si.PropertyName].Assign(x, sqlItem), dataContext);
-      //else
-      //  progressChanged(_si, new ProgressChangedEventArgs(1, String.Format("Cannot find the {0} argument in the SQL entity {1}.", _si.PropertyName, typeof(TSP).Name)));
-    }
-    private static IPRDEV Connect2SQL(SynchronizationSettings settings, Action<object, ProgressChangedEventArgs> progressChanged)
-    {
-      progressChanged(settings, new ProgressChangedEventArgs(1, String.Format("Attempt to connect to SQL at: {0}", settings.ConnectionString)));
-      System.Data.IDbConnection _connection = new SqlConnection(settings.ConnectionString);
-      IPRDEV _entities = new IPRDEV(_connection);
-      if (_entities.DatabaseExists())
-        progressChanged(settings, new ProgressChangedEventArgs(1, "The specified database can be opened."));
-      else
-        progressChanged(settings, new ProgressChangedEventArgs(1, "The specified database cannot be opened."));
-      return _entities;
     }
 
   }
