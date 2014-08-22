@@ -46,38 +46,46 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         progress(null, new ProgressChangedEventArgs(1, "Buffering StockEntry entries"));
         List<StockEntry> _seList = entities.StockEntry.ToList<StockEntry>();
         progress(null, new ProgressChangedEventArgs(1, String.Format("There is {0} StockEntry entries", _seList.Count)));
-        foreach (StockEntry _seix in _seList)
+        foreach (StockEntry _sex in _seList)
         {
-          if (_seix.StockLibraryIndex == null)
+          if (_sex.StockLibraryIndex == null)
           {
             _StockEntryArchived++;
-            entities.StockEntry.DeleteOnSubmit(_seix);
+            entities.StockEntry.DeleteOnSubmit(_sex);
+            Linq2SQL.StockEntry.MarkSQLOnly(_sqledc, _sex.Id.Value);
           }
         }
         progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockEntry entries.", _StockEntryArchived)));
-        SubmitChanges(entities, progress);
+        SPSubmitChanges(entities, progress);
+        SQLSubmitChanges(entities, progress);
         foreach (StockLib _selX in _slList)
         {
           if (_selX.Stock2JSOXLibraryIndex == null)
           {
             foreach (StockEntry _sex in _selX.StockEntry)
+            {
               entities.StockEntry.DeleteOnSubmit(_sex);
+              Linq2SQL.StockEntry.MarkSQLOnly(_sqledc, _sex.Id.Value);
+            }
             progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} Stock entries.", _selX.StockEntry.Count)));
             _StockEntryArchived += _selX.StockEntry.Count;
             _StockLibArchived++;
             entities.StockLibrary.DeleteOnSubmit(_selX);
+            Linq2SQL.StockLibrary.MarkSQLOnly(_sqledc, _selX.Id.Value);
           }
         }
         progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockLibrary entries.", _StockLibArchived)));
-        SubmitChanges(entities, progress);
+        SPSubmitChanges(entities, progress);
         Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(_sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Cleanup, progress);
         progress(null, new ProgressChangedEventArgs(1, String.Format("Finished CleanupContent; deleted {0} StockEntry entries and {1} StockEntry.", _StockLibArchived, _StockEntryArchived)));
       }
     }
-    private static void SubmitChanges(Entities entities, Action<object, ProgressChangedEventArgs> progress)
+    private static void SPSubmitChanges(Entities spEntities, Linq2SQL.IPRDEV sqlEntities, Action<object, ProgressChangedEventArgs> progress)
     {
-      progress(null, new ProgressChangedEventArgs(1, "SubmitChanges"));
-      entities.SubmitChanges();
+      progress(null, new ProgressChangedEventArgs(1, "Submitting changes to SharePoint"));
+      spEntities.SubmitChanges();
+      progress(null, new ProgressChangedEventArgs(1, "Submitting changes to SQL"));
+      sqlEntities.SubmitChanges();
     }
   }
 }
