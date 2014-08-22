@@ -24,8 +24,19 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override void OnEnteringState()
     {
       base.OnEnteringState();
+      if (!Context.DoSynchronizationIsChecked)
+      {
+        this.ReportProgress(this, new ProgressChangedEventArgs(0, "Synchronization skipped because is not selected by the user."));
+        Next();
+        return;
+      }
       SetEventMask(Events.Cancel);
       base.RunAsync();
+    }
+    public override void Next()
+    {
+      base.Next();
+      Context.EnterState<FinishedMachine>();
     }
     protected override void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
     {
@@ -38,7 +49,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     protected override void RunWorkerCompleted(object result)
     {
-      Context.EnterState<FinishedMachine>();
+      Next();
     }
     public override void OnException(Exception exception)
     {
