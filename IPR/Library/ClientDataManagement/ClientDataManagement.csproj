@@ -56,7 +56,7 @@
     <Compile Include="CleanupContent.cs" />
     <Compile Include="EntitiesChangedEventArgs.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Linq2SQL\ActivitiesLogs.cs" />
+    <Compile Include="Linq2SQL\ArchivingOperationLogs.cs" />
     <Compile Include="Linq2SQL\Entities.cs" />
     <Compile Include="Linq2SQL\EntitiesId.cs" />
     <Compile Include="Linq2SQL\IPRDEV.cs" />
