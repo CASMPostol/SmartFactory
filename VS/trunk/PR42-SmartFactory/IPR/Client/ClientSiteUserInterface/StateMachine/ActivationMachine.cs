@@ -22,17 +22,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
   {
 
     #region creator
-    internal ActivationMachine(ViewModel.MainWindowModel context)
-      : base(context)
-    {
-      m_Me = this;
-    }
+    internal ActivationMachine() { }
     #endregion
-
-    internal static ActivationMachine Get()
-    {
-      return m_Me;
-    }
 
     #region AbstractMachine
     public override void OnEnteringState()
@@ -46,8 +37,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       return "Updating";
     }
     #endregion
-
-    #region private
 
     #region BackgroundWorkerMachine implementation
     protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -68,7 +57,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     protected override void RunWorkerCompleted(object result)
     {
-      Context.Machine = ArchivingMachine.Get();
+      Context.EnterState<ArchivingMachine>();
     }
     public override void OnException(System.Exception exception)
     {
@@ -79,10 +68,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       Context.EnterState<FinishedMachine>();
     }
-    #endregion
-
-    private static ActivationMachine m_Me;
-
     #endregion
 
   }

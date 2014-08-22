@@ -20,18 +20,10 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
   internal class ArchivingMachine : BackgroundWorkerMachine<ViewModel.MainWindowModel>
   {
-    #region creator
-    internal ArchivingMachine(ViewModel.MainWindowModel context)
-      : base(context)
-    {
-      m_Me = this;
-    }
-    #endregion
 
-    internal static ArchivingMachine Get()
-    {
-      return m_Me;
-    }
+    #region creator
+    public ArchivingMachine() { }
+    #endregion
 
     #region BackgroundWorkerMachine implementation
     public override void OnEnteringState()
@@ -71,6 +63,5 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     #endregion
 
-    private static ArchivingMachine m_Me;
   }
 }

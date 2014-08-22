@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using CAS.SharePoint.ViewModel.Wizard;
 using System;
 using System.ComponentModel;
@@ -35,28 +35,22 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       SetEventMask(Events.Cancel);
       RunAsync();
     }
+    public override void Next()
+    {
+      base.Next();
+      if (success)
+        Context.EnterState<FinishedMachine>();
+      else
+        SetEventMask(Events.Cancel | Events.Next | Events.Previous);
+    }
     protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
     {
-      while (true)
-      {
-        try
-        {
-          DataManagement.CleanupContent.Go(Properties.Settings.Default.SiteURL, ViewModel.MainWindowModel.GetConnectionString(), ReportProgress);
-          break;
-        }
-        catch (WebException _we)
-        {
-          ReportProgress(this, new ProgressChangedEventArgs(0, _we.InnerException == null ? _we.Message : _we.InnerException.Message));
-        }
-        catch (Exception)
-        {
-          throw;
-        }
-      }
+      DataManagement.CleanupContent.Go(Properties.Settings.Default.SiteURL, ViewModel.MainWindowModel.GetConnectionString(), ReportProgress);
     }
     protected override void RunWorkerCompleted(object result)
     {
-      Context.EnterState<FinishedMachine>();
+      success = true;
+      Next();
     }
     public override void OnException(Exception exception)
     {
@@ -65,7 +59,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     public override void OnCancellation()
     {
-
       Context.EnterState<FinishedMachine>();
     }
     #endregion
