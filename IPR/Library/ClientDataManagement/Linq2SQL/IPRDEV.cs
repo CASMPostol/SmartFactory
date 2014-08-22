@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : public partial class IPRDEV
 //  System  : Microsoft VisulaStudio 2013 / C#
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2014, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -14,17 +14,14 @@
 //</summary>
       
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 {
   public partial class IPRDEV
   {
-    public static IPRDEV Connect2SQL(string connectionString, Action<object, ProgressChangedEventArgs> progressChanged)
+    internal static IPRDEV Connect2SQL(string connectionString, Action<object, ProgressChangedEventArgs> progressChanged)
     {
       progressChanged(null, new ProgressChangedEventArgs(1, String.Format("Attempt to connect to SQL at: {0}", connectionString)));
       System.Data.IDbConnection _connection = new SqlConnection(connectionString);
