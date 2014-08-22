@@ -30,6 +30,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     /// Runs synchronously the cleanup content operation.
     /// </summary>
     /// <param name="siteURL">The site URL.</param>
+    /// <param name="connectionString">The connection string.</param>
     /// <param name="progress">Used to report the progress of the operation.</param>
     public static void Go(string siteURL, string connectionString, Action<object, ProgressChangedEventArgs> progress)
     {

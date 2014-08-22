@@ -20,7 +20,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Linq;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement
@@ -98,7 +97,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         progressChanged(1, new ProgressChangedEventArgs(1, "SynchronizationContent has been finished"));
       }
     }
-
     private static void Synchronize<TSQL, TSP>(Table<TSQL> table, EntityList<TSP> entityList, Action<object, ProgressChangedEventArgs> progressChanged, Dictionary<string, string> mapping)
       where TSQL : class, SharePoint.Client.Link2SQL.IItem, new()
       where TSP : Linq.Item, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
