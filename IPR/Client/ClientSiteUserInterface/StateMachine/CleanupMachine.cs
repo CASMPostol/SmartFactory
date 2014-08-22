@@ -1,4 +1,18 @@
-﻿
+﻿//<summary>
+//  Title   : class CleanupMachin
+//  System  : Microsoft VisulaStudio 2013 / C#
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
 using CAS.SharePoint.ViewModel.Wizard;
 using System;
 using System.Collections.Generic;
@@ -14,15 +28,15 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
   /// </summary>
   internal class CleanupMachine : BackgroundWorkerMachine<ViewModel.MainWindowModel>
   {
-    public CleanupMachine(ViewModel.MainWindowModel context)
-      : base(context)
-    { }
+    public CleanupMachine() { }
+
     #region BackgroundWorkerMachine
     public override void OnEnteringState()
     {
       base.OnEnteringState();
+      success = false;
       SetEventMask(Events.Cancel);
-      base.RunAsync();
+      RunAsync();
     }
     protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
     {
@@ -58,10 +72,13 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       Context.EnterState<FinishedMachine>();
     }
     #endregion
+
     public override string ToString()
     {
       return "Cleanup";
     }
+
+    private bool success = false;
 
   }
 }

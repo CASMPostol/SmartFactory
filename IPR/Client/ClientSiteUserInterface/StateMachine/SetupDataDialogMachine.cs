@@ -25,9 +25,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
   internal class SetupDataDialogMachine : BackgroundWorkerMachine<MainWindowModel>
   {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="SetupDataDialogMachine"/> class.
-    /// </summary>
+
     public SetupDataDialogMachine() { }
 
     #region AbstractMachine
@@ -41,10 +39,10 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     public override void Next()
     {
-      if (Success)
+      if (!Success)
         Context.EnterState<SynchronizationMachine>();
       else
-        Context.EnterState<SetupDataDialogMachine>();
+        Context.EnterState<CleanupMachine>();
     }
     public override string ToString()
     {
@@ -84,20 +82,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       GetLastOperation(_entities, ArchivingOperationLogs.ArchivingOperationName, ref m_WorkerReturnData.ArchivingLastRunBy, ref m_WorkerReturnData.ArchivingLastRunDate);
       e.Result = m_WorkerReturnData;
     }
-    private static void GetLastOperation(IPRDEV _entities, string operationName, ref string RunBy, ref string RunDate)
-    {
-      ArchivingOperationLogs _recentActions = _entities.ArchivingOperationLogs.Where<ArchivingOperationLogs>(x => x.Operation.Contains(operationName)).OrderByDescending<ArchivingOperationLogs, DateTime>(x => x.Date).FirstOrDefault();
-      if (_recentActions != null)
-      {
-        RunBy = _recentActions.UserName;
-        RunDate = _recentActions.Date.ToString("G");
-      }
-      else
-      {
-        RunBy = Properties.Settings.Default.RunByUnknown;
-        RunDate = Properties.Settings.Default.RunDateUnknown;
-      }
-    }
     /// <summary>
     /// Runs the worker completed.
     /// </summary>
@@ -117,6 +101,22 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       Success = true;
     }
     #endregion
+
+    #region private
+    private static void GetLastOperation(IPRDEV _entities, string operationName, ref string RunBy, ref string RunDate)
+    {
+      ArchivingOperationLogs _recentActions = _entities.ArchivingOperationLogs.Where<ArchivingOperationLogs>(x => x.Operation.Contains(operationName)).OrderByDescending<ArchivingOperationLogs, DateTime>(x => x.Date).FirstOrDefault();
+      if (_recentActions != null)
+      {
+        RunBy = _recentActions.UserName;
+        RunDate = _recentActions.Date.ToString("G");
+      }
+      else
+      {
+        RunBy = Properties.Settings.Default.RunByUnknown;
+        RunDate = Properties.Settings.Default.RunDateUnknown;
+      }
+    }
     private class WorkerReturnData
     {
       public string CleanupLastRunBy = Properties.Settings.Default.RunByError;
@@ -127,11 +127,16 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       public string ArchivingLastRunDate = Properties.Settings.Default.RunDateError;
     }
     /// <summary>
+    /// Initializes a new instance of the <see cref="SetupDataDialogMachine"/> class.
+    /// </summary>
+    /// <summary>
     /// Gets or sets a value indicating whether this <see cref="SetupDataDialogMachine"/> finished the background operation successfully.
     /// </summary>
     /// <value>
     ///   <c>true</c> if success; otherwise, <c>false</c>.
     /// </value>
-    public bool Success { get; set; }
+    private bool Success { get; set; }
+    #endregion
+
   }
 }

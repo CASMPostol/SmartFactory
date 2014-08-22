@@ -38,31 +38,35 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         progress(null, new ProgressChangedEventArgs(1, String.Format("Starting CleanupContent. It could take several minutes")));
         int _StockEntryArchived = 0;
         int _StockLibArchived = 0;
-        progress(null, new ProgressChangedEventArgs(1, "Buffering StockEntry entries"));
-        List<StockEntry> _seList = entities.StockEntry.ToList<StockEntry>();
-        progress(null, new ProgressChangedEventArgs(1, String.Format("There is {0} StockEntry entries", _seList.Count)));
         progress(null, new ProgressChangedEventArgs(1, "Buffering StockLib entries"));
         List<StockLib> _slList = entities.StockLibrary.ToList<StockLib>();
         progress(null, new ProgressChangedEventArgs(1, String.Format("There is {0} StockLib entries", _slList.Count)));
-        foreach (StockLib _selX in _slList)
-        {
-          if (_selX.Stock2JSOXLibraryIndex == null)
-          {
-            _StockLibArchived++;
-            //entities.StockLibrary.DeleteOnSubmit(_selX);
-          }
-        }
-        progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockLibrary entries.", _StockLibArchived)));
-        SubmitChanges(entities, progress);
+        progress(null, new ProgressChangedEventArgs(1, "Buffering StockEntry entries"));
+        List<StockEntry> _seList = entities.StockEntry.ToList<StockEntry>();
+        progress(null, new ProgressChangedEventArgs(1, String.Format("There is {0} StockEntry entries", _seList.Count)));
         foreach (StockEntry _seix in _seList)
         {
           if (_seix.StockLibraryIndex == null)
           {
             _StockEntryArchived++;
-            //entities.StockEntry.DeleteOnSubmit(_seix);
+            entities.StockEntry.DeleteOnSubmit(_seix);
           }
         }
         progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockEntry entries.", _StockEntryArchived)));
+        SubmitChanges(entities, progress);
+        foreach (StockLib _selX in _slList)
+        {
+          if (_selX.Stock2JSOXLibraryIndex == null)
+          {
+            foreach (StockEntry _sex in _selX.StockEntry)
+              entities.StockEntry.DeleteOnSubmit(_sex);
+            progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} Stock entries.", _selX.StockEntry.Count)));
+            _StockEntryArchived += _selX.StockEntry.Count;
+            _StockLibArchived++;
+            entities.StockLibrary.DeleteOnSubmit(_selX);
+          }
+        }
+        progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockLibrary entries.", _StockLibArchived)));
         SubmitChanges(entities, progress);
         progress(null, new ProgressChangedEventArgs(1, String.Format("Finished CleanupContent; deleted {0} StockEntry entries and {1} StockEntry.", _StockLibArchived, _StockEntryArchived)));
       }
