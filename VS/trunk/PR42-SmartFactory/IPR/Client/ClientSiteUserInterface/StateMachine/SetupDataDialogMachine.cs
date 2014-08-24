@@ -36,8 +36,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       base.OnEnteringState();
       Success = false;
       SetEventMask(Events.Cancel);
-      Context.ButtonNextTitle = " --- ";
-      Context.ButtonGoBackwardTitle = " --- ";
+      Context.ButtonNextTitle = Properties.Resources.ButtonInactive;
+      Context.ButtonGoBackwardTitle = Properties.Resources.ButtonInactive;
       RunAsync();
     }
     public override void Next()

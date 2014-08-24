@@ -38,10 +38,19 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       base.OnEnteringState();
       success = false;
-      SetEventMask(Events.Cancel);
-      Context.ButtonNextTitle = " --- ";
-      Context.ButtonNextTitle = " --- ";
-      RunAsync();
+      if (Context.DoCleanupIsChecked || Context.DoSynchronizationIsChecked || Context.DoArchivingIsChecked)
+      {
+        SetEventMask(Events.Cancel);
+        Context.ButtonNextTitle = Properties.Resources.ButtonInactive;
+        Context.ButtonGoBackwardTitle = Properties.Resources.ButtonInactive;
+        RunAsync();
+      }
+      else
+      {
+        this.ReportProgress(this, new ProgressChangedEventArgs(0, "Cleanup skipped because is not selected by the user."));
+        Next();
+        return;
+      }
     }
     public override void Next()
     {
