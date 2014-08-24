@@ -61,11 +61,47 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connect.
+        /// </summary>
+        internal static string ButtonConnect {
+            get {
+                return ResourceManager.GetString("ButtonConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         internal static string ButtonExit {
             get {
                 return ResourceManager.GetString("ButtonExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  --- .
+        /// </summary>
+        internal static string ButtonInactive {
+            get {
+                return ResourceManager.GetString("ButtonInactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run.
+        /// </summary>
+        internal static string ButtonRun {
+            get {
+                return ResourceManager.GetString("ButtonRun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup.
+        /// </summary>
+        internal static string ButtonSetup {
+            get {
+                return ResourceManager.GetString("ButtonSetup", resourceCulture);
             }
         }
     }

@@ -244,6 +244,17 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
         RaiseHandler<string>(value, ref b_ButtonNextTitle, "ButtonNextTitle", this);
       }
     }
+    public string ButtonGoBackwardTitle
+    {
+      get
+      {
+        return b_ButtonGoBackwardTitle;
+      }
+      set
+      {
+        RaiseHandler<string>(value, ref b_ButtonGoBackwardTitle, "ButtonGoBackwardTitle", this);
+      }
+    }
     //methods
     internal void SetStatus2Error()
     {
@@ -299,6 +310,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
     private bool b_DoSynchronizationIsChecked;
     private bool b_DoArchivingIsChecked;
     private string b_ButtonNextTitle;
+    private string b_ButtonGoBackwardTitle;
+
     //methods
     private void RestoreSettings()
     {
@@ -322,7 +335,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       ArchivingLastRunDate = Properties.Settings.Default.RunDateUnknown;
     }
     #endregion
-
 
   }
 }

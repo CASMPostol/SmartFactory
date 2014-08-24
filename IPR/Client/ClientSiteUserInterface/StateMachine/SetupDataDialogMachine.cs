@@ -25,7 +25,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
   internal class SetupDataDialogMachine : BackgroundWorkerMachine<MainWindowModel>
   {
-
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SetupDataDialogMachine" /> class.
+    /// </summary>
     public SetupDataDialogMachine() { }
 
     #region AbstractMachine
@@ -35,14 +37,20 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       Success = false;
       SetEventMask(Events.Cancel);
       Context.ButtonNextTitle = " --- ";
+      Context.ButtonGoBackwardTitle = " --- ";
       RunAsync();
     }
     public override void Next()
     {
       if (!Success)
-        Context.EnterState<SynchronizationMachine>();
+        Context.EnterState<SetupDataDialogMachine>();
       else
         Context.EnterState<CleanupMachine>();
+    }
+    public override void Previous()
+    {
+      base.Previous();
+      Context.EnterState<SetupDataDialogMachine>();
     }
     public override string ToString()
     {
@@ -51,8 +59,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override void OnException(System.Exception exception)
     {
       Context.Exception(exception);
-      SetEventMask(Events.Cancel | Events.Next);
-      Context.ButtonNextTitle = "Connect";
+      SetEventMask(Events.Cancel | Events.Previous);
+      Context.ButtonNextTitle = Properties.Resources.ButtonInactive;
+      Context.ButtonGoBackwardTitle = Properties.Resources.ButtonConnect;
       Context.SetStatus2Error();
       Success = false;
     }
@@ -68,19 +77,25 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     protected override void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
     {
       e.Cancel = false;
+      e.Result = null;
       string _connectionString = ViewModel.MainWindowModel.GetConnectionString();
       ReportProgress(this, new ProgressChangedEventArgs(1, String.Format("Connection string {0}", _connectionString)));
       System.Data.IDbConnection _connection = new SqlConnection(_connectionString);
       IPRDEV _entities = new IPRDEV(_connection);
       if (_entities.DatabaseExists())
+      {
         ReportProgress(this, new ProgressChangedEventArgs(1, "The specified database exists."));
+        WorkerReturnData m_WorkerReturnData = new WorkerReturnData();
+        GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Cleanup, ref m_WorkerReturnData.CleanupLastRunBy, ref m_WorkerReturnData.CleanupLastRunDate);
+        GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Synchronization, ref m_WorkerReturnData.SyncLastRunBy, ref m_WorkerReturnData.SyncLastRunDate);
+        GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Archiving, ref m_WorkerReturnData.ArchivingLastRunBy, ref m_WorkerReturnData.ArchivingLastRunDate);
+        e.Result = m_WorkerReturnData;
+      }
       else
+      {
         ReportProgress(this, new ProgressChangedEventArgs(1, "The specified database cannot be opened."));
-      WorkerReturnData m_WorkerReturnData = new WorkerReturnData();
-      GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Cleanup, ref m_WorkerReturnData.CleanupLastRunBy, ref m_WorkerReturnData.CleanupLastRunDate);
-      GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Synchronization, ref m_WorkerReturnData.SyncLastRunBy, ref m_WorkerReturnData.SyncLastRunDate);
-      GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Archiving, ref m_WorkerReturnData.ArchivingLastRunBy, ref m_WorkerReturnData.ArchivingLastRunDate);
-      e.Result = m_WorkerReturnData;
+        throw new InvalidOperationException("The specified database cannot be opened.");
+      }
     }
     /// <summary>
     /// Runs the worker completed.
@@ -95,9 +110,10 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       Context.CleanupLastRunDate = m_WorkerReturnData.CleanupLastRunDate;
       Context.ArchivingLastRunBy = m_WorkerReturnData.ArchivingLastRunBy;
       Context.ArchivingLastRunDate = m_WorkerReturnData.ArchivingLastRunDate;
-      SetEventMask(Events.Cancel | Events.Next);
-      Context.ButtonNextTitle = "Run";
-      Context.ProgressChang(this, new ProgressChangedEventArgs(0, "The data has been retrieved successfully."));
+      SetEventMask(Events.Cancel | Events.Next | Events.Previous);
+      Context.ButtonNextTitle = Properties.Resources.ButtonRun;
+      Context.ButtonGoBackwardTitle = Properties.Resources.ButtonConnect;
+      Context.ProgressChang(this, new ProgressChangedEventArgs(0, "Connected, the data has been retrieved successfully."));
       Success = true;
     }
     #endregion
@@ -117,7 +133,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         RunDate = Properties.Settings.Default.RunDateUnknown;
       }
     }
-
     private class WorkerReturnData
     {
       public string CleanupLastRunBy = Properties.Settings.Default.RunByError;
@@ -127,15 +142,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       public string SyncLastRunDate = Properties.Settings.Default.RunDateError;
       public string ArchivingLastRunDate = Properties.Settings.Default.RunDateError;
     }
-    /// <summary>
-    /// Initializes a new instance of the <see cref="SetupDataDialogMachine"/> class.
-    /// </summary>
-    /// <summary>
-    /// Gets or sets a value indicating whether this <see cref="SetupDataDialogMachine"/> finished the background operation successfully.
-    /// </summary>
-    /// <value>
-    ///   <c>true</c> if success; otherwise, <c>false</c>.
-    /// </value>
     private bool Success { get; set; }
     #endregion
 
