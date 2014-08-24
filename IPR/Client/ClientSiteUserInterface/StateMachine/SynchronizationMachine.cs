@@ -24,14 +24,19 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override void OnEnteringState()
     {
       base.OnEnteringState();
-      if (!Context.DoSynchronizationIsChecked)
+      Context.ButtonNextTitle = Properties.Resources.ButtonInactive;
+      Context.ButtonGoBackwardTitle = Properties.Resources.ButtonInactive;
+      if (Context.DoSynchronizationIsChecked || Context.DoArchivingIsChecked)
+      {
+        SetEventMask(Events.Cancel);
+        RunAsync();
+      }
+      else
       {
         this.ReportProgress(this, new ProgressChangedEventArgs(0, "Synchronization skipped because is not selected by the user."));
         Next();
         return;
       }
-      SetEventMask(Events.Cancel);
-      base.RunAsync();
     }
     public override void Next()
     {

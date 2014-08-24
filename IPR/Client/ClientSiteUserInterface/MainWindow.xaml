@@ -32,9 +32,9 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Row="0" Grid.Column="0" x:Name="x_RadioListArchivingOptions" DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Left">
-                            <RadioButton x:Name="x_RadioButtonCleanupOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,55,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding Path=DoCleanupIsChecked, Mode=OneWay}" />
-                            <RadioButton x:Name="x_RadioButtonSyncOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,100,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding Path=DoSynchronizationIsChecked, Mode=OneWay}" />
-                            <RadioButton x:Name="x_RadioButtonArchiveOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,95,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding Path=DoArchivingIsChecked, Mode=OneWay}" />
+                            <RadioButton x:Name="x_RadioButtonCleanupOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,55,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding Path=DoCleanupIsChecked, Mode=TwoWay}" />
+                            <RadioButton x:Name="x_RadioButtonSyncOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,100,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding Path=DoSynchronizationIsChecked, Mode=TwoWay}" />
+                            <RadioButton x:Name="x_RadioButtonArchiveOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,95,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding Path=DoArchivingIsChecked, Mode=TwoWay}" />
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
                             <Image HorizontalAlignment="Right" Source="Imgs/CleanupIcon.png" Stretch="Fill" Width="100" Margin="10,10,10,5"/>
