@@ -117,7 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ButtonConnect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
   <data name="ButtonExit" xml:space="preserve">
     <value>Exit</value>
+  </data>
+  <data name="ButtonInactive" xml:space="preserve">
+    <value> --- </value>
+  </data>
+  <data name="ButtonRun" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="ButtonSetup" xml:space="preserve">
+    <value>Setup</value>
   </data>
 </root>

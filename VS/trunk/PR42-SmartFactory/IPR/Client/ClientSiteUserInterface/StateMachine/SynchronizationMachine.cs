@@ -47,14 +47,13 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       ReportProgress(this, new ProgressChangedEventArgs(1, String.Format("Connection string {0}", _setting.ConnectionString)));
       DataManagement.SynchronizationContent.Go(_setting, ReportProgress);
     }
-    protected override void RunWorkerCompleted(object result)
+    public override void OnCancellation()
     {
       Next();
     }
-    public override void OnException(Exception exception)
+    protected override void RunWorkerCompleted(object result)
     {
-      Context.Exception(exception);
-      Context.EnterState<FinishedMachine>();
+      Next();
     }
     public override string ToString()
     {

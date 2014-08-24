@@ -127,7 +127,7 @@
             </Grid>
             <StackPanel x:Name="x_StackPanelButtons" DockPanel.Dock="Top" Orientation="Horizontal" Height="60" Margin="40,0,0,5" HorizontalAlignment="Left">
                 <TextBlock Margin="20,10,10,10" Style="{StaticResource CASTextBlockHeader}">Actions:</TextBlock>
-                <Button x:Name="x_ButtonGoBackward" Style="{StaticResource CASButtonStyle}" Content="Back" Command="{Binding Path=ButtonGoBackward}" />
+                <Button x:Name="x_ButtonGoBackward" Style="{StaticResource CASButtonStyle}" Content="{Binding Path=ButtonGoBackwardTitle}" Command="{Binding Path=ButtonGoBackward}" />
                 <Button x:Name="x_ButtonGoForward" Style="{StaticResource CASButtonStyle}" Content="{Binding Path=ButtonNextTitle}" Command="{Binding Path=ButtonGoForward}" />
                 <Button x:Name="x_ButtonCancel" Style="{StaticResource CASButtonStyle}" Content="Cancel" Command="{Binding Path=ButtonCancel}" />
             </StackPanel>

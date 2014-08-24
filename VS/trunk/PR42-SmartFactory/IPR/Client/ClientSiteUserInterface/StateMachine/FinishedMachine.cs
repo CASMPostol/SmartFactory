@@ -30,6 +30,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       base.OnEnteringState();
       SetEventMask(Events.Next | Events.Previous);
       Context.ButtonNextTitle = Properties.Resources.ButtonExit;
+      Context.ButtonGoBackwardTitle = Properties.Resources.ButtonSetup;
       Context.ProgressChang(this, new System.ComponentModel.ProgressChangedEventArgs(0, "All operation have been finished, press >> to exit the program"));
     }
     public override void Previous()
@@ -44,11 +45,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override string ToString()
     {
       return "Finishing";
-    }
-    public override void OnException(System.Exception exception)
-    {
-      Context.Exception(exception);
-      Context.Close();
     }
     public override void OnCancellation()
     {

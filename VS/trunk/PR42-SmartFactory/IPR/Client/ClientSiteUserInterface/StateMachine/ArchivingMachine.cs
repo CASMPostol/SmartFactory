@@ -30,7 +30,12 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       base.OnEnteringState();
       SetEventMask(Events.Cancel);
-      base.RunAsync();
+      RunAsync();
+    }
+    public override void Next()
+    {
+      base.Next();
+      Context.EnterState<FinishedMachine>();
     }
     protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
     {
@@ -46,20 +51,15 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     protected override void RunWorkerCompleted(object result)
     {
-      Context.EnterState<FinishedMachine>();
+      Next();
     }
     public override string ToString()
     {
       return "Archiving";
     }
-    public override void OnException(System.Exception exception)
-    {
-      Context.Exception(exception);
-      Context.EnterState<FinishedMachine>();
-    }
     public override void OnCancellation()
     {
-      Context.Close();
+      Next();
     }
     #endregion
 

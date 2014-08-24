@@ -25,23 +25,31 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
   /// </summary>
   internal class CleanupMachine : BackgroundWorkerMachine<ViewModel.MainWindowModel>
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CleanupMachine"/> class.
+    /// </summary>
     public CleanupMachine() { }
 
     #region BackgroundWorkerMachine
+    /// <summary>
+    /// Called when entering the state.
+    /// </summary>
     public override void OnEnteringState()
     {
       base.OnEnteringState();
       success = false;
       SetEventMask(Events.Cancel);
+      Context.ButtonNextTitle = " --- ";
+      Context.ButtonNextTitle = " --- ";
       RunAsync();
     }
     public override void Next()
     {
       base.Next();
       if (success)
-        Context.EnterState<FinishedMachine>();
+        Context.EnterState<SynchronizationMachine>();
       else
-        SetEventMask(Events.Cancel | Events.Next | Events.Previous);
+        Context.EnterState<FinishedMachine>();
     }
     protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
     {
@@ -52,14 +60,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       success = true;
       Next();
     }
-    public override void OnException(Exception exception)
-    {
-      Context.Exception(exception);
-      Context.EnterState<FinishedMachine>();
-    }
     public override void OnCancellation()
     {
-      Context.EnterState<FinishedMachine>();
+      Next();
     }
     #endregion
 
