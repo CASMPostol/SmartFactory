@@ -1,17 +1,32 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿//<summary>
+//  Title   : public class StorageItemTest
+//  System  : Microsoft VisulaStudio 2013 / C#
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using ClinetLinqSP = CAS.SmartFactory.IPR.Client.DataManagement.Linq;
 using ClinetLinqSQL = CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL;
-using Linq2SP = CAS.SharePoint.Client.Linq2SP;
-using Linq2SQL = CAS.SharePoint.Client.Link2SQL;
+using LibLibLinq2SP = CAS.SharePoint.Client.Linq2SP;
+using LibLinq2SQL = CAS.SharePoint.Client.Link2SQL;
 
-namespace CAS.SmartFactory.IPR.Client.DataManagementCAS.SmartFactory.IPR.Client.DataManagement
+namespace CAS.SmartFactory.IPR.Client.DataManagement.Tests
 {
 
   [Microsoft.VisualStudio.TestTools.UnitTesting.TestClass]
-  public class CreateStorageTest
+  public class StorageItemTest
   {
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethod]
     public void CreateStorageDescription4SP()
@@ -97,20 +112,20 @@ namespace CAS.SmartFactory.IPR.Client.DataManagementCAS.SmartFactory.IPR.Client.
 
     private static void TestToDictionary<TEntity>(int expectedCount)
     {
-      List<Linq2SP.StorageItem> _storageList = Linq2SP.StorageItem.CreateStorageDescription(typeof(TEntity), false);
-      Dictionary<string, Linq2SP.StorageItem> _storageDictionary = _storageList.ToDictionary<Linq2SP.StorageItem, string>(si => si.Description.Name);
+      List<LibLibLinq2SP.StorageItem> _storageList = LibLibLinq2SP.StorageItem.CreateStorageDescription(typeof(TEntity), false);
+      Dictionary<string, LibLibLinq2SP.StorageItem> _storageDictionary = _storageList.ToDictionary<LibLibLinq2SP.StorageItem, string>(si => si.Description.Name);
       Assert.AreEqual(expectedCount, _storageDictionary.Count, String.Format("See list {0}", typeof(TEntity).Name));
-      _storageDictionary = _storageList.ToDictionary<Linq2SP.StorageItem, string>(si => si.PropertyName);
+      _storageDictionary = _storageList.ToDictionary<LibLibLinq2SP.StorageItem, string>(si => si.PropertyName);
       Assert.AreEqual(expectedCount, _storageDictionary.Count);
     }
     private static void ComareSelectedStoragesContent<TSP, TSQL>(Dictionary<string, string> mapping)
     {
       //Get SP stage info
-      List<Linq2SP.StorageItem> _storageListSP = Linq2SP.StorageItem.CreateStorageDescription(typeof(TSP), false);
-      Dictionary<string, Linq2SP.StorageItem> _storageSPDictionary = _storageListSP.ToDictionary<Linq2SP.StorageItem, string>(si => si.PropertyName);
+      List<LibLibLinq2SP.StorageItem> _storageListSP = LibLibLinq2SP.StorageItem.CreateStorageDescription(typeof(TSP), false);
+      Dictionary<string, LibLibLinq2SP.StorageItem> _storageSPDictionary = _storageListSP.ToDictionary<LibLibLinq2SP.StorageItem, string>(si => si.PropertyName);
       //Get SQL stage info
-      Dictionary<string, Linq2SQL.SQLStorageItem> _storageListSQLDictionary = new Dictionary<string, Linq2SQL.SQLStorageItem>();
-      Linq2SQL.SQLStorageItem.FillUpStorageInfoDictionary(typeof(TSQL), mapping, _storageListSQLDictionary);
+      Dictionary<string, LibLinq2SQL.SQLStorageItem> _storageListSQLDictionary = new Dictionary<string, LibLinq2SQL.SQLStorageItem>();
+      LibLinq2SQL.SQLStorageItem.FillUpStorageInfoDictionary(typeof(TSQL), mapping, _storageListSQLDictionary);
       //Assert.AreEqual<int>(_storageSPDictionary.Count, _storageListSQL.Count, String.Format("Storage length of {0} must be equal, if not loss of data may occur", typeof(TSP).Name));
       foreach (string _item in _storageListSQLDictionary.Keys)
       {
@@ -123,5 +138,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagementCAS.SmartFactory.IPR.Client.
           Assert.Fail(String.Format("Storage SQL of {1} does not contain property {0}", _item, typeof(TSQL).Name));
       }
     }
+
   }
 }
