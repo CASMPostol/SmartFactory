@@ -23,6 +23,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
     {
       Dictionary<string, string> _ret = SKUCommonPart.GetMappings();
       _ret.Add("BlendPurpose", "");
+      _ret.Add("Units", "");
+      _ret.Add("SKU1", "SKU");
       return _ret;
     }
 
