@@ -1,704 +1,645 @@
-﻿<?xml version="1.0"?>
-<Web xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Class="Entities" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal">
-  <List Name="Activity Log" />
-  <List Name="Balance Batch" />
-  <List Name="Balance IPR" />
-  <List Name="Batch" />
-  <List Name="Batch Library" />
-  <List Name="Clearence" />
-  <List Name="Consent" />
-  <List Name="Customs Union" />
-  <List Name="Cutfiller Coefficient" />
-  <!--<List Name="CW" />-->
-  <!--<List Name="CW Disposal" />-->
-  <!--<List Name="CW Library" />-->
-  <List Name="Disposal" />
-  <List Name="Disposal Declaration" />
-  <List Name="Dust" />
-  <List Name="Format" />
-  <List Name="Invoice Content" />
-  <List Name="Invoice Library" />
-  <List Name="IPR" />
-  <List Name="IPR Library" />
-  <List Name="JSOX Customs Summary" />
-  <List Name="JSOX Library" />
-  <!--<List Name="List Template Gallery" />-->
-  <!--<List Name="Master Page Gallery" />-->
-  <List Name="Material" />
-  <List Name="PCN Code" />
-  <List Name="SAD Consignment" />
-  <List Name="SAD Document" />
-  <List Name="SAD Document Library" />
-  <List Name="SAD Duties" />
-  <List Name="SAD Good" />
-  <List Name="SAD Package" />
-  <List Name="SAD Quantity" />
-  <List Name="SAD Required Documents" />
-  <List Name="Settings" />
-  <List Name="SHMenthol" />
-  <List Name="SKU" />
-  <List Name="SKU Library" />
-  <!--<List Name="Solution Gallery" />-->
-  <List Name="Stock Entry" />
-  <List Name="Stock Library" />
-  <!--<List Name="Style Library" />-->
-  <!--<List Name="Theme Gallery" />-->
-  <List Name="Usage" />
-  <!--<List Name="User Information List" />-->
-  <List Name="Warehouse" />
-  <List Name="Waste" />
-  <ExcludeOtherLists/>
-  <!--<List Name="Web Part Gallery" />-->
-  <ContentType Name="StockEntry" Class="StockEntry">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="SPParametersStylesheet.xslt"?>
+<Web xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" AccessModifier="Public" Class="Entities" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal">
+  <List Name="Activity Log" Member="Activity Log" />
+  <List Name="Balance Batch" Member="Balance Batch" />
+  <List Name="Balance IPR" Member="Balance IPR" />
+  <List Name="Batch" Member="Batch" />
+  <List Name="Batch Library" Member="Batch Library" />
+  <List Name="Clearence" Member="Clearence" />
+  <List Name="Consent" Member="Consent" />
+  <List Name="Customs Union" Member="Customs Union" />
+  <List Name="Cutfiller Coefficient" Member="Cutfiller Coefficient" />
+  <List Name="Disposal" Member="Disposal" />
+  <List Name="Dust" Member="Dust" />
+  <List Name="Format" Member="Format" />
+  <List Name="Invoice Content" Member="Invoice Content" />
+  <List Name="Invoice Library" Member="Invoice Library" />
+  <List Name="IPR" Member="IPR" />
+  <List Name="IPR Library" Member="IPR Library" />
+  <List Name="JSOX Customs Summary" Member="JSOX Customs Summary" />
+  <List Name="JSOX Library" Member="JSOX Library" />
+  <List Name="Material" Member="Material" />
+  <List Name="PCN Code" Member="PCN Code" />
+  <List Name="SAD Consignment" Member="SAD Consignment" />
+  <List Name="SAD Document" Member="SAD Document" />
+  <List Name="SAD Document Library" Member="SAD Document Library" />
+  <List Name="SAD Duties" Member="SAD Duties" />
+  <List Name="SAD Good" Member="SAD Good" />
+  <List Name="SAD Package" Member="SAD Package" />
+  <List Name="SAD Quantity" Member="SAD Quantity" />
+  <List Name="SAD Required Documents" Member="SAD Required Documents" />
+  <List Name="Settings" Member="Settings" />
+  <List Name="SHMenthol" Member="SHMenthol" />
+  <List Name="SKU" Member="SKU" />
+  <List Name="SKU Library" Member="SKU Library" />
+  <List Name="Stock Entry" Member="Stock Entry" />
+  <List Name="Stock Library" Member="Stock Library" />
+  <List Name="Usage" Member="Usage" />
+  <List Name="Warehouse" Member="Warehouse" />
+  <List Name="Waste" Member="Waste" />
+  <ExcludeOtherLists />
+  <ContentType Name="Item" Class="Element">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
-    <Column Name="SKU" Member="SKU" />
-    <Column Name="StorLoc" Member="StorLoc" />
-    <Column Name="Units" Member="Units" />
+    <!--<ExcludeOtherColumns />-->
+  </ContentType>
+  <ContentType Name="StockEntry" Class="StockEntry">
+    <Column Name="Archival" Member="Archival" />
     <Column Name="Batch" Member="Batch" />
-    <Column Name="Unrestricted" Member="Unrestricted" />
-    <Column Name="InQualityInsp" Member="InQualityInsp" />
-    <Column Name="RestrictedUse" Member="RestrictedUse" />
+    <Column Name="BatchIndex" Member="BatchIndex" />
     <Column Name="Blocked" Member="Blocked" />
-    <Column Name="Quantity" Member="Quantity" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="InQualityInsp" Member="InQualityInsp" />
     <Column Name="IPRType" Member="IPRType" />
     <Column Name="ProductType" Member="ProductType" />
-    <Column Name="BatchIndex" Member="BatchIndex" />
+    <Column Name="Quantity" Member="Quantity" />
+    <Column Name="RestrictedUse" Member="RestrictedUse" />
+    <Column Name="SKU" Member="SKU" />
     <Column Name="StockLibraryIndex" Member="StockLibraryIndex" />
-    <Column Name="Archival" Member="Archival" />
+    <Column Name="StorLoc" Member="StorLoc" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="Units" Member="Units" />
+    <Column Name="Unrestricted" Member="Unrestricted" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Usage" Class="Usage">
-    <Column Name="FormatIndex" Member="FormatIndex" />
-    <Column Name="UsageMin" Member="UsageMin" />
-    <Column Name="UsageMax" Member="UsageMax" />
-    <Column Name="CTFUsageMin" Member="CTFUsageMin" />
     <Column Name="CTFUsageMax" Member="CTFUsageMax" />
+    <Column Name="CTFUsageMin" Member="CTFUsageMin" />
+    <Column Name="FormatIndex" Member="FormatIndex" />
+    <!--<Column Name="Title" Member="Title" />-->
+    <Column Name="UsageMax" Member="UsageMax" />
+    <Column Name="UsageMin" Member="UsageMin" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
-  <ContentType Name="Disposal" Class="Disposal" >
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="No" Member="No" />
-    <Column Name="SADDocumentNo" Member="SADDocumentNo" />
-    <Column Name="SADDate" Member="SADDate" />
-    <Column Name="InvoiceNo" Member="InvoiceNo" />
-    <Column Name="IPRDocumentNo" Member="IPRDocumentNo" />
-    <Column Name="SettledQuantity" Member="SettledQuantity" />
-    <Column Name="DisposalStatus" Member="DisposalStatus" />
-    <Column Name="CustomsStatus" Member="CustomsStatus" />
-    <Column Name="Disposal2BatchSKU_sec" Member="Disposal2BatchSKU_sec" />
-    <Column Name="Disposal2BatchBatch_sec" Member="Disposal2BatchBatch_sec" />
-    <Column Name="DutyPerSettledAmount" Member="DutyPerSettledAmount" />
-    <Column Name="VATPerSettledAmount" Member="VATPerSettledAmount" />
-    <Column Name="DutyAndVAT" Member="DutyAndVAT" />
-    <Column Name="TobaccoValue" Member="TobaccoValue" />
-    <Column Name="Disposal2IPRCurrency_sec" Member="Disposal2IPRCurrency_sec" />
-    <Column Name="RemainingQuantity" Member="RemainingQuantity" />
-    <Column Name="CustomsProcedure" Member="CustomsProcedure" />
-    <Column Name="Disposal2PCNID" Member="Disposal2PCNID" />
-    <Column Name="PCNCompensationGood" Member="PCNCompensationGood" />
-    <Column Name="Disposal2PCNPCN_sec" Member="Disposal2PCNPCN_sec" />
+  <ContentType Name="Disposal" Class="Disposal">
+    <Column Name="Archival" Member="Archival" />
+    <Column Name="Author" Member="Author" />
     <Column Name="ClearingType" Member="ClearingType" />
-    <Column Name="Disposal2IPROGL_sec" Member="Disposal2IPROGL_sec" />
-    <Column Name="Disposal2IPRSKU_sec" Member="Disposal2IPRSKU_sec" />
-    <Column Name="Disposal2IPRBatch_sec" Member="Disposal2IPRBatch_sec" />
-    <Column Name="Disposal2ClearenceIndex" Member="Disposal2ClearenceIndex" />
-    <Column Name="JSOXCustomsSummaryIndex" Member="JSOXCustomsSummaryIndex" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="Created" Member="Created" />
+    <Column Name="CustomsProcedure" Member="CustomsProcedure" />
+    <Column Name="CustomsStatus" Member="CustomsStatus" />
     <Column Name="Disposal2BatchIndex" Member="Disposal2BatchIndex" />
+    <Column Name="Disposal2ClearenceIndex" Member="Disposal2ClearenceIndex" />
+    <Column Name="Disposal2InvoiceContentIndex" Member="Disposal2InvoiceContentIndex" />
     <Column Name="Disposal2IPRIndex" Member="Disposal2IPRIndex" />
     <Column Name="Disposal2MaterialIndex" Member="Disposal2MaterialIndex" />
-    <Column Name="Disposal2InvoiceContentIndex" Member="Disposal2InvoiceContentIndex" />
-    <Column Name="Created" Member="Created" />
-    <Column Name="Author" Member="Author" />
+    <Column Name="Disposal2PCNID" Member="Disposal2PCNID" />
+    <Column Name="DisposalStatus" Member="DisposalStatus" />
+    <Column Name="DutyAndVAT" Member="DutyAndVAT" />
+    <Column Name="DutyPerSettledAmount" Member="DutyPerSettledAmount" />
+    <Column Name="InvoiceNo" Member="InvoiceNo" />
+    <Column Name="IPRDocumentNo" Member="IPRDocumentNo" />
+    <Column Name="JSOXCustomsSummaryIndex" Member="JSOXCustomsSummaryIndex" />
     <Column Name="JSOXReportID" Member="JSOXReportID" />
-    <Column Name="Archival" Member="Archival" />
+    <Column Name="No" Member="SPNo" />
+    <Column Name="RemainingQuantity" Member="RemainingQuantity" />
     <Column Name="SadConsignmentNo" Member="SadConsignmentNo" />
+    <Column Name="SADDate" Member="SADDate" />
+    <Column Name="SADDocumentNo" Member="SADDocumentNo" />
+    <Column Name="SettledQuantity" Member="SettledQuantity" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="TobaccoValue" Member="TobaccoValue" />
+    <Column Name="VATPerSettledAmount" Member="VATPerSettledAmount" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SKUCommonPart" Class="SKUCommonPart">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="ProductType" Member="ProductType" />
-    <Column Name="FormatIndex" Member="FormatIndex" />
-    <Column Name="SKU" Member="SKU" />
-    <Column Name="IPRMaterial" Member="IPRMaterial" />
-    <Column Name="SKULibraryIndex" Member="SKULibraryIndex" />
     <Column Name="Archival" Member="Archival" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="FormatIndex" Member="FormatIndex" />
+    <Column Name="IPRMaterial" Member="IPRMaterial" />
+    <Column Name="ProductType" Member="ProductType" />
+    <Column Name="SKU" Member="SKU" />
+    <Column Name="SKULibraryIndex" Member="SKULibraryIndex" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SKUCigarette" Class="SKUCigarette">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="ProductType" Member="ProductType" />
-    <Column Name="FormatIndex" Member="FormatIndex" />
-    <Column Name="SKU" Member="SKU" />
-    <Column Name="IPRMaterial" Member="IPRMaterial" />
-    <Column Name="SKULibraryIndex" Member="SKULibraryIndex" />
-    <Column Name="Family" Member="Family" />
+    <Column Name="Archival" Member="Archival" />
     <Column Name="Brand" Member="Brand" />
     <Column Name="CigaretteLenght" Member="CigaretteLenght" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="Family" Member="Family" />
     <Column Name="FilterLenght" Member="FilterLenght" />
-    <Column Name="PrimeMarket" Member="PrimeMarket" />
-    <Column Name="MentholMaterial" Member="MentholMaterial" />
+    <Column Name="FormatIndex" Member="FormatIndex" />
+    <Column Name="IPRMaterial" Member="IPRMaterial" />
     <Column Name="Menthol" Member="Menthol" />
-    <Column Name="Archival" Member="Archival" />
+    <Column Name="MentholMaterial" Member="MentholMaterial" />
+    <Column Name="PrimeMarket" Member="PrimeMarket" />
+    <Column Name="ProductType" Member="ProductType" />
+    <Column Name="SKU" Member="SKU" />
+    <Column Name="SKULibraryIndex" Member="SKULibraryIndex" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SKUCutfiller" Class="SKUCutfiller">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="ProductType" Member="ProductType" />
-    <Column Name="FormatIndex" Member="FormatIndex" />
-    <Column Name="SKU" Member="SKU" />
-    <Column Name="IPRMaterial" Member="IPRMaterial" />
-    <Column Name="SKULibraryIndex" Member="SKULibraryIndex" />
-    <Column Name="Units" Member="Units" />
-    <Column Name="BlendPurpose" Member="BlendPurpose" />
     <Column Name="Archival" Member="Archival" />
+    <Column Name="BlendPurpose" Member="BlendPurpose" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="FormatIndex" Member="FormatIndex" />
+    <Column Name="IPRMaterial" Member="IPRMaterial" />
+    <Column Name="ProductType" Member="ProductType" />
+    <Column Name="SKU" Member="SKU" />
+    <Column Name="SKULibraryIndex" Member="SKULibraryIndex" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="Units" Member="Units" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SADQuantity" Class="SADQuantity">
+    <Column Name="Archival" Member="Archival" />
     <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
     <Column Name="ItemNo" Member="ItemNo" />
     <Column Name="NetMass" Member="NetMass" />
-    <Column Name="Units" Member="Units" />
     <Column Name="SADQuantity2SADGoodID" Member="SADQuantity2SADGoodID" />
-    <Column Name="Archival" Member="Archival" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="Units" Member="Units" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="CutfillerCoefficient" Class="CutfillerCoefficient">
-    <Column Name="CFTProductivityRateMin" Member="CFTProductivityRateMin" />
-    <Column Name="CFTProductivityRateMax" Member="CFTProductivityRateMax" />
-    <Column Name="CFTProductivityNormMin" Member="CFTProductivityNormMin" />
     <Column Name="CFTProductivityNormMax" Member="CFTProductivityNormMax" />
+    <Column Name="CFTProductivityNormMin" Member="CFTProductivityNormMin" />
+    <Column Name="CFTProductivityRateMax" Member="CFTProductivityRateMax" />
+    <Column Name="CFTProductivityRateMin" Member="CFTProductivityRateMin" />
+    <!--<Column Name="Title" Member="Title" />-->
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Warehouse" Class="Warehouse">
     <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="Procedure" Member="SPProcedure" />
+    <Column Name="ProductType" Member="ProductType" />
     <Column Name="Title" Member="Title" />
     <Column Name="WarehouseName" Member="WarehouseName" />
-    <Column Name="Procedure" Member="Procedure" />
-    <Column Name="ProductType" Member="ProductType" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Clearence" Class="Clearence">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="DocumentNo" Member="DocumentNo" />
-    <Column Name="ReferenceNumber" Member="ReferenceNumber" />
-    <Column Name="Status" Member="Status" />
-    <Column Name="SADConsignmentLibraryIndex" Member="SADConsignmentLibraryIndex" />
-    <Column Name="ProcedureCode" Member="ProcedureCode" />
-    <Column Name="ClearenceProcedure" Member="ClearenceProcedure" />
-    <Column Name="Clearence2SadGoodID" Member="Clearence2SadGoodID" />
     <Column Name="Archival" Member="Archival" />
+    <Column Name="Clearence2SadGoodID" Member="Clearence2SadGoodID" />
+    <Column Name="ClearenceProcedure" Member="ClearenceProcedure" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="DocumentNo" Member="DocumentNo" />
+    <Column Name="ProcedureCode" Member="ProcedureCode" />
+    <Column Name="ReferenceNumber" Member="ReferenceNumber" />
+    <Column Name="SADConsignmentLibraryIndex" Member="SADConsignmentLibraryIndex" />
+    <Column Name="Status" Member="SPStatus" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SHMenthol" Class="SHMenthol">
     <Column Name="ProductType" Member="ProductType" />
     <Column Name="SHMentholRatio" Member="SHMentholRatio" />
+    <!--<Column Name="Title" Member="Title" />-->
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Waste" Class="Waste">
     <Column Name="ProductType" Member="ProductType" />
+    <!--<Column Name="Title" Member="Title" />-->
     <Column Name="WasteRatio" Member="WasteRatio" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="PCNCode" Class="PCNCode">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="ProductCodeNumber" Member="ProductCodeNumber" />
     <Column Name="CompensationGood" Member="CompensationGood" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Disposal" Member="Disposal" />
+    <Column Name="ProductCodeNumber" Member="ProductCodeNumber" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SADGood" Class="SADGood">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="ItemNo" Member="ItemNo" />
-    <Column Name="GoodsDescription" Member="GoodsDescription" />
-    <Column Name="PCNTariffCode" Member="PCNTariffCode" />
-    <Column Name="GrossMass" Member="GrossMass" />
-    <Column Name="Procedure" Member="Procedure" />
-    <Column Name="TotalAmountInvoiced" Member="TotalAmountInvoiced" />
-    <Column Name="NetMass" Member="NetMass" />
-    <Column Name="SADDocumentIndex" Member="SADDocumentIndex" />
     <Column Name="Archival" Member="Archival" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="GoodsDescription" Member="GoodsDescription" />
+    <Column Name="GrossMass" Member="GrossMass" />
+    <Column Name="ItemNo" Member="ItemNo" />
+    <Column Name="NetMass" Member="NetMass" />
+    <Column Name="PCNTariffCode" Member="PCNTariffCode" />
+    <Column Name="Procedure" Member="SPProcedure" />
+    <Column Name="SADDocumentIndex" Member="SADDocumentIndex" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="TotalAmountInvoiced" Member="TotalAmountInvoiced" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SADDuties" Class="SADDuties">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="DutyType" Member="DutyType" />
     <Column Name="Amount" Member="Amount" />
-    <Column Name="SADDuties2SADGoodID" Member="SADDuties2SADGoodID" />
     <Column Name="Archival" Member="Archival" />
-  </ContentType>
-  <ContentType Name="Commodity" Class="Commodity">
     <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="DutyType" Member="DutyType" />
+    <Column Name="SADDuties2SADGoodID" Member="SADDuties2SADGoodID" />
     <Column Name="Title" Member="Title" />
-  </ContentType>
-  <ContentType Name="City" Class="City">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Material" Class="Material">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="SKUDescription" Member="SKUDescription" />
-    <Column Name="SKU" Member="SKU" />
+    <Column Name="Archival" Member="Archival" />
     <Column Name="Batch" Member="Batch" />
-    <Column Name="ProductID" Member="ProductID" />
-    <Column Name="StorLoc" Member="StorLoc" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="Dust" Member="Dust" />
     <Column Name="FGQuantity" Member="FGQuantity" />
+    <Column Name="Material2BatchIndex" Member="Material2BatchIndex" />
+    <Column Name="Overuse" Member="Overuse" />
+    <Column Name="ProductID" Member="ProductID" />
+    <Column Name="ProductType" Member="ProductType" />
+    <Column Name="SHMenthol" Member="SHMenthol" />
+    <Column Name="SKU" Member="SKU" />
+    <Column Name="SKUDescription" Member="SKUDescription" />
+    <Column Name="StorLoc" Member="StorLoc" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="Tobacco" Member="Tobacco" />
     <Column Name="TobaccoQuantity" Member="TobaccoQuantity" />
     <Column Name="Units" Member="Units" />
-    <Column Name="ProductType" Member="ProductType" />
-    <Column Name="Overuse" Member="Overuse" />
-    <Column Name="Dust" Member="Dust" />
     <Column Name="Waste" Member="Waste" />
-    <Column Name="Tobacco" Member="Tobacco" />
-    <Column Name="SHMenthol" Member="SHMenthol" />
-    <Column Name="Material2BatchIndex" Member="Material2BatchIndex" />
-    <Column Name="Archival" Member="Archival" />
-  </ContentType>
-  <ContentType Name="DisposalDeclaration" Class="DisposalDeclaration">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="EntryDate" Member="EntryDate" />
-    <Column Name="No" Member="No" />
-    <Column Name="DisposalDeclaration2BatchSKU_sec" Member="DisposalDeclaration2BatchSKU_sec" />
-    <Column Name="CWDescription" Member="CWDescription" />
-    <Column Name="DisposalsDeclaration2BatchIndex" Member="DisposalsDeclaration2BatchIndex" />
-    <Column Name="DecalredToCleared" Member="DecalredToCleared" />
-    <Column Name="QuantityAvailable" Member="QuantityAvailable" />
-    <Column Name="PackageAvailable" Member="PackageAvailable" />
-    <Column Name="QuantityToCleared" Member="QuantityToCleared" />
-    <Column Name="PackageToCleared" Member="PackageToCleared" />
-    <Column Name="AddedToClearDeclared" Member="AddedToClearDeclared" />
-    <Column Name="Procedure" Member="Procedure" />
-  </ContentType>
-  <ContentType Name="CustomsUnion" Class="CustomsUnion">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="EUPrimeMarket" Member="EUPrimeMarket" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Settings" Class="Settings">
     <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
     <Column Name="KeyValue" Member="KeyValue" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SADPackage" Class="SADPackage">
+    <Column Name="Archival" Member="Archival" />
     <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
     <Column Name="ItemNo" Member="ItemNo" />
     <Column Name="Package" Member="Package" />
     <Column Name="SADPackage2SADGoodID" Member="SADPackage2SADGoodID" />
-    <Column Name="Archival" Member="Archival" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Format" Class="Format">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
     <Column Name="CigaretteLenght" Member="CigaretteLenght" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="FilterLenght" Member="FilterLenght" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="InvoiceContent" Class="InvoiceContent">
+    <Column Name="Archival" Member="Archival" />
     <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="SKUDescription" Member="SKUDescription" />
-    <Column Name="ProductType" Member="ProductType" />
-    <Column Name="InvoiceContent2BatchSKU_sec" Member="InvoiceContent2BatchSKU_sec" />
-    <Column Name="InvoiceContent2BatchBatch_sec" Member="InvoiceContent2BatchBatch_sec" />
-    <Column Name="Quantity" Member="Quantity" />
-    <Column Name="Units" Member="Units" />
+    <Column Name="InvoiceContent2BatchIndex" Member="InvoiceContent2BatchIndex" />
     <Column Name="InvoiceContentStatus" Member="InvoiceContentStatus" />
     <Column Name="InvoiceIndex" Member="InvoiceIndex" />
-    <Column Name="InvoiceContent2BatchIndex" Member="InvoiceContent2BatchIndex" />
-    <Column Name="InvoiceContent2BatchQty_sec" Member="InvoiceContent2BatchQty_sec" />
-    <Column Name="Archival" Member="Archival" />
+    <Column Name="ProductType" Member="ProductType" />
+    <Column Name="Quantity" Member="Quantity" />
+    <Column Name="SKUDescription" Member="SKUDescription" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="Units" Member="Units" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SADDocumentType" Class="SADDocumentType">
+    <Column Name="Archival" Member="Archival" />
     <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="ReferenceNumber" Member="ReferenceNumber" />
+    <Column Name="Currency" Member="Currency" />
     <Column Name="CustomsDebtDate" Member="CustomsDebtDate" />
     <Column Name="DocumentNumber" Member="DocumentNumber" />
-    <Column Name="Currency" Member="Currency" />
     <Column Name="ExchangeRate" Member="ExchangeRate" />
     <Column Name="GrossMass" Member="GrossMass" />
+    <Column Name="NetMass" Member="NetMass" />
+    <Column Name="ReferenceNumber" Member="ReferenceNumber" />
     <Column Name="SADDocumenLibrarytIndex" Member="SADDocumenLibrarytIndex" />
-    <Column Name="NetMass" Member="NetMass" />
     <Column Name="SystemID" Member="SystemID" />
-    <Column Name="Archival" Member="Archival" />
-  </ContentType>
-  <!--<ContentType Name="CW" Class="CW">
-    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
-    <Column Name="EntryDate" Member="EntryDate" />
-    <Column Name="CW2ConsentTitle" Member="CW2ConsentTitle" />
-    <Column Name="ValidFromDate" Member="ValidFromDate" />
-    <Column Name="ValidToDate" Member="ValidToDate" />
-    <Column Name="ConsentPeriod" Member="ConsentPeriod" />
-    <Column Name="DocumentNo" Member="DocumentNo" />
-    <Column Name="CustomsDebtDate" Member="CustomsDebtDate" />
-    <Column Name="TobaccoName" Member="TobaccoName" />
-    <Column Name="Grade" Member="Grade" />
-    <Column Name="SKU" Member="SKU" />
-    <Column Name="Batch" Member="Batch" />
-    <Column Name="CW2PCNPCN_sec" Member="CW2PCNPCN_sec" />
-    <Column Name="CWQuantity" Member="CWQuantity" />
-    <Column Name="Units" Member="Units" />
-    <Column Name="NetMass" Member="NetMass" />
-    <Column Name="GrossMass" Member="GrossMass" />
-    <Column Name="CWPackageUnits" Member="CWPackageUnits" />
-    <Column Name="CWPackageKg" Member="CWPackageKg" />
-    <Column Name="CWMassPerPackage" Member="CWMassPerPackage" />
-    <Column Name="Value" Member="Value" />
-    <Column Name="Currency" Member="Currency" />
-    <Column Name="CWUnitPrice" Member="CWUnitPrice" />
-    <Column Name="CWPzNo" Member="CWPzNo" />
-    <Column Name="InvoiceNo" Member="InvoiceNo" />
-    <Column Name="AccountBalance" Member="AccountBalance" />
-    <Column Name="CWCertificate" Member="CWCertificate" />
-    <Column Name="ClosingDate" Member="ClosingDate" />
-    <Column Name="CW2PCNID" Member="CW2PCNID" />
-    <Column Name="CW2CWLibraryID" Member="CW2CWLibraryID" />
-  </ContentType>-->
+    <!--<ExcludeOtherColumns />-->
+  </ContentType>
   <ContentType Name="TobaccoBatchSummary" Class="TobaccoBatchSummary">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Consent" Class="Consent">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
     <Column Name="ConsentDate" Member="ConsentDate" />
-    <Column Name="ValidFromDate" Member="ValidFromDate" />
-    <Column Name="ValidToDate" Member="ValidToDate" />
-    <Column Name="ProductivityRateMin" Member="ProductivityRateMin" />
-    <Column Name="ProductivityRateMax" Member="ProductivityRateMax" />
     <Column Name="ConsentPeriod" Member="ConsentPeriod" />
-    <Column Name="IsIPR" Member="IsIPR" />
-  </ContentType>
-  <!--<ContentType Name="CWDisposal" Class="CWDisposal">
-    <Column Name="ContentType" Member="ContentType" />
-    <Column Name="Title" Member="Title" />
-    <Column Name="EntryDate" Member="EntryDate" />
-    <Column Name="No" Member="No" />
-    <Column Name="SADDocumentNo" Member="SADDocumentNo" />
-    <Column Name="SADDate" Member="SADDate" />
-    <Column Name="TobaccoName" Member="TobaccoName" />
-    <Column Name="Grade" Member="Grade" />
-    <Column Name="SKU" Member="SKU" />
-    <Column Name="Batch" Member="Batch" />
-    <Column Name="CWDeclaredNetMass" Member="CWDeclaredNetMass" />
-    <Column Name="CWWz1" Member="CWWz1" />
-    <Column Name="CWWz2" Member="CWWz2" />
-    <Column Name="CWAddedKg" Member="CWAddedKg" />
-    <Column Name="CWWz3" Member="CWWz3" />
-    <Column Name="CWSettledNetMass" Member="CWSettledNetMass" />
-    <Column Name="CWSettledGrossMass" Member="CWSettledGrossMass" />
-    <Column Name="TobaccoValue" Member="TobaccoValue" />
-    <Column Name="Currency" Member="Currency" />
-    <Column Name="RemainingQuantity" Member="RemainingQuantity" />
-    <Column Name="CWRemainingPackage" Member="CWRemainingPackage" />
-    <Column Name="CWRemainingTobaccoValue" Member="CWRemainingTobaccoValue" />
-    <Column Name="ClearingType" Member="ClearingType" />
-    <Column Name="CustomsProcedure" Member="CustomsProcedure" />
-    <Column Name="CWDisposal2PCNPCN_sec" Member="CWDisposal2PCNPCN_sec" />
-    <Column Name="CustomsStatus" Member="CustomsStatus" />
-    <Column Name="DutyPerSettledAmount" Member="DutyPerSettledAmount" />
-    <Column Name="VATPerSettledAmount" Member="VATPerSettledAmount" />
-    <Column Name="DutyAndVAT" Member="DutyAndVAT" />
-    <Column Name="CWDisposal2PCNTID" Member="CWDisposal2PCNTID" />
-  </ContentType>-->
-  <ContentType Name="IPR" Class="IPR">
     <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="IsIPR" Member="IsIPR" />
+    <Column Name="ProductivityRateMax" Member="ProductivityRateMax" />
+    <Column Name="ProductivityRateMin" Member="ProductivityRateMin" />
     <Column Name="Title" Member="Title" />
-    <Column Name="IPR2ConsentTitle" Member="IPR2ConsentTitle" />
     <Column Name="ValidFromDate" Member="ValidFromDate" />
     <Column Name="ValidToDate" Member="ValidToDate" />
-    <Column Name="ProductivityRateMin" Member="ProductivityRateMin" />
-    <Column Name="ProductivityRateMax" Member="ProductivityRateMax" />
-    <Column Name="ConsentPeriod" Member="ConsentPeriod" />
-    <Column Name="DocumentNo" Member="DocumentNo" />
-    <Column Name="CustomsDebtDate" Member="CustomsDebtDate" />
-    <Column Name="OGLValidTo" Member="OGLValidTo" />
-    <Column Name="TobaccoName" Member="TobaccoName" />
-    <Column Name="Grade" Member="Grade" />
-    <Column Name="SKU" Member="SKU" />
-    <Column Name="Batch" Member="Batch" />
-    <Column Name="DutyName" Member="DutyName" />
-    <Column Name="Duty" Member="Duty" />
-    <Column Name="IPRDutyPerUnit" Member="IPRDutyPerUnit" />
-    <Column Name="VATName" Member="VATName" />
-    <Column Name="VAT" Member="VAT" />
-    <Column Name="IPRVATPerUnit" Member="IPRVATPerUnit" />
-    <Column Name="NetMass" Member="NetMass" />
-    <Column Name="GrossMass" Member="GrossMass" />
-    <Column Name="Cartons" Member="Cartons" />
-    <Column Name="InvoiceNo" Member="InvoiceNo" />
-    <Column Name="Value" Member="Value" />
-    <Column Name="Currency" Member="Currency" />
-    <Column Name="IPRUnitPrice" Member="IPRUnitPrice" />
-    <Column Name="ClosingDate" Member="ClosingDate" />
+    <!--<ExcludeOtherColumns />-->
+  </ContentType>
+  <ContentType Name="IPR" Class="IPR">
     <Column Name="AccountBalance" Member="AccountBalance" />
-    <Column Name="TobaccoNotAllocated" Member="TobaccoNotAllocated" />
-    <Column Name="IPR2PCNPCN" Member="IPR2PCNPCN" />
-    <Column Name="IPR2JSOXIndex" Member="IPR2JSOXIndex" />
-    <Column Name="ClearenceIndex" Member="ClearenceIndex" />
-    <Column Name="IPRLibraryIndex" Member="IPRLibraryIndex" />
     <Column Name="AccountClosed" Member="AccountClosed" />
     <Column Name="Archival" Member="Archival" />
+    <Column Name="Batch" Member="Batch" />
+    <Column Name="Cartons" Member="Cartons" />
+    <Column Name="ClearenceIndex" Member="ClearenceIndex" />
+    <Column Name="ClosingDate" Member="ClosingDate" />
+    <Column Name="ConsentPeriod" Member="ConsentPeriod" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="Currency" Member="Currency" />
+    <Column Name="CustomsDebtDate" Member="CustomsDebtDate" />
+    <Column Name="DocumentNo" Member="DocumentNo" />
+    <Column Name="Duty" Member="Duty" />
+    <Column Name="DutyName" Member="DutyName" />
+    <Column Name="Grade" Member="Grade" />
+    <Column Name="GrossMass" Member="GrossMass" />
+    <Column Name="InvoiceNo" Member="InvoiceNo" />
+    <Column Name="IPR2ConsentTitle" Member="IPR2ConsentTitle" />
+    <Column Name="IPR2JSOXIndex" Member="IPR2JSOXIndex" />
+    <Column Name="IPR2PCNPCN" Member="IPR2PCNPCN" />
+    <Column Name="IPRDutyPerUnit" Member="IPRDutyPerUnit" />
+    <Column Name="IPRLibraryIndex" Member="IPRLibraryIndex" />
+    <Column Name="IPRUnitPrice" Member="IPRUnitPrice" />
+    <Column Name="IPRVATPerUnit" Member="IPRVATPerUnit" />
+    <Column Name="NetMass" Member="NetMass" />
+    <Column Name="OGLValidTo" Member="OGLValidTo" />
+    <Column Name="ProductivityRateMax" Member="ProductivityRateMax" />
+    <Column Name="ProductivityRateMin" Member="ProductivityRateMin" />
+    <Column Name="SKU" Member="SKU" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="TobaccoName" Member="TobaccoName" />
+    <Column Name="TobaccoNotAllocated" Member="TobaccoNotAllocated" />
+    <Column Name="ValidFromDate" Member="ValidFromDate" />
+    <Column Name="ValidToDate" Member="ValidToDate" />
+    <Column Name="Value" Member="Value" />
+    <Column Name="VAT" Member="VAT" />
+    <Column Name="VATName" Member="VATName" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="ReportsCommonPart" Class="ReportsCommonPart">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="DocumentNo" Member="DocumentNo" />
-    <Column Name="SKU" Member="SKU" />
-    <Column Name="Batch" Member="Batch" />
-    <Column Name="TobaccoEnteredIntoIPR" Member="TobaccoEnteredIntoIPR" />
-    <Column Name="TobaccoCSFinished" Member="TobaccoCSFinished" />
-    <Column Name="TobaccoInFGCSStarted" Member="TobaccoInFGCSStarted" />
-    <Column Name="DustCSStarted" Member="DustCSStarted" />
-    <Column Name="WasteCSStarted" Member="WasteCSStarted" />
-    <Column Name="SHMentholCSStarted" Member="SHMentholCSStarted" />
-    <Column Name="OveruseCSStarted" Member="OveruseCSStarted" />
-    <Column Name="PureTobaccoCSStarted" Member="PureTobaccoCSStarted" />
-    <Column Name="IPRBook" Member="IPRBook" />
-    <Column Name="WasteCSNotStarted" Member="WasteCSNotStarted" />
-    <Column Name="SHMentholCSNotStarted" Member="SHMentholCSNotStarted" />
-    <Column Name="OveruseCSNotStarted" Member="OveruseCSNotStarted" />
-    <Column Name="SHWasteOveruseCSNotStarted" Member="SHWasteOveruseCSNotStarted" />
-    <Column Name="DustCSNotStarted" Member="DustCSNotStarted" />
-    <Column Name="TobaccoAvailable" Member="TobaccoAvailable" />
-    <Column Name="TobaccoInFGCSNotStarted" Member="TobaccoInFGCSNotStarted" />
-    <Column Name="PureTobaccoCSNotStarted" Member="PureTobaccoCSNotStarted" />
-    <Column Name="TobaccoUsedInTheProduction" Member="TobaccoUsedInTheProduction" />
-    <Column Name="TobaccoToBeUsedInTheProduction" Member="TobaccoToBeUsedInTheProduction" />
-    <Column Name="TobaccoStarted" Member="TobaccoStarted" />
     <Column Name="Archival" Member="Archival" />
+    <Column Name="Batch" Member="Batch" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="DocumentNo" Member="DocumentNo" />
+    <Column Name="DustCSNotStarted" Member="DustCSNotStarted" />
+    <Column Name="DustCSStarted" Member="DustCSStarted" />
+    <Column Name="IPRBook" Member="IPRBook" />
+    <Column Name="OveruseCSNotStarted" Member="OveruseCSNotStarted" />
+    <Column Name="OveruseCSStarted" Member="OveruseCSStarted" />
+    <Column Name="PureTobaccoCSNotStarted" Member="PureTobaccoCSNotStarted" />
+    <Column Name="PureTobaccoCSStarted" Member="PureTobaccoCSStarted" />
+    <Column Name="SHMentholCSNotStarted" Member="SHMentholCSNotStarted" />
+    <Column Name="SHMentholCSStarted" Member="SHMentholCSStarted" />
+    <Column Name="SHWasteOveruseCSNotStarted" Member="SHWasteOveruseCSNotStarted" />
+    <Column Name="SKU" Member="SKU" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="TobaccoAvailable" Member="TobaccoAvailable" />
+    <Column Name="TobaccoCSFinished" Member="TobaccoCSFinished" />
+    <Column Name="TobaccoEnteredIntoIPR" Member="TobaccoEnteredIntoIPR" />
+    <Column Name="TobaccoInFGCSNotStarted" Member="TobaccoInFGCSNotStarted" />
+    <Column Name="TobaccoInFGCSStarted" Member="TobaccoInFGCSStarted" />
+    <Column Name="TobaccoStarted" Member="TobaccoStarted" />
+    <Column Name="TobaccoToBeUsedInTheProduction" Member="TobaccoToBeUsedInTheProduction" />
+    <Column Name="TobaccoUsedInTheProduction" Member="TobaccoUsedInTheProduction" />
+    <Column Name="WasteCSNotStarted" Member="WasteCSNotStarted" />
+    <Column Name="WasteCSStarted" Member="WasteCSStarted" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="BalanceBatch" Class="BalanceBatch">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="DocumentNo" Member="DocumentNo" />
-    <Column Name="SKU" Member="SKU" />
-    <Column Name="Batch" Member="Batch" />
-    <Column Name="TobaccoEnteredIntoIPR" Member="TobaccoEnteredIntoIPR" />
-    <Column Name="TobaccoCSFinished" Member="TobaccoCSFinished" />
-    <Column Name="TobaccoInFGCSStarted" Member="TobaccoInFGCSStarted" />
-    <Column Name="DustCSStarted" Member="DustCSStarted" />
-    <Column Name="WasteCSStarted" Member="WasteCSStarted" />
-    <Column Name="SHMentholCSStarted" Member="SHMentholCSStarted" />
-    <Column Name="OveruseCSStarted" Member="OveruseCSStarted" />
-    <Column Name="PureTobaccoCSStarted" Member="PureTobaccoCSStarted" />
-    <Column Name="IPRBook" Member="IPRBook" />
-    <Column Name="WasteCSNotStarted" Member="WasteCSNotStarted" />
-    <Column Name="SHMentholCSNotStarted" Member="SHMentholCSNotStarted" />
-    <Column Name="OveruseCSNotStarted" Member="OveruseCSNotStarted" />
-    <Column Name="SHWasteOveruseCSNotStarted" Member="SHWasteOveruseCSNotStarted" />
-    <Column Name="DustCSNotStarted" Member="DustCSNotStarted" />
-    <Column Name="TobaccoAvailable" Member="TobaccoAvailable" />
-    <Column Name="TobaccoInFGCSNotStarted" Member="TobaccoInFGCSNotStarted" />
-    <Column Name="PureTobaccoCSNotStarted" Member="PureTobaccoCSNotStarted" />
-    <Column Name="TobaccoUsedInTheProduction" Member="TobaccoUsedInTheProduction" />
-    <Column Name="TobaccoToBeUsedInTheProduction" Member="TobaccoToBeUsedInTheProduction" />
-    <Column Name="TobaccoInWarehouse" Member="TobaccoInWarehouse" />
-    <Column Name="TobaccoInCigarettesWarehouse" Member="TobaccoInCigarettesWarehouse" />
-    <Column Name="TobaccoInCigarettesProduction" Member="TobaccoInCigarettesProduction" />
-    <Column Name="TobaccoInCutfillerWarehouse" Member="TobaccoInCutfillerWarehouse" />
+    <Column Name="Archival" Member="Archival" />
     <Column Name="Balance" Member="Balance" />
     <Column Name="Balance2JSOXLibraryIndex" Member="Balance2JSOXLibraryIndex" />
+    <Column Name="Batch" Member="Batch" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="DocumentNo" Member="DocumentNo" />
+    <Column Name="DustCSNotStarted" Member="DustCSNotStarted" />
+    <Column Name="DustCSStarted" Member="DustCSStarted" />
+    <Column Name="IPRBook" Member="IPRBook" />
+    <Column Name="OveruseCSNotStarted" Member="OveruseCSNotStarted" />
+    <Column Name="OveruseCSStarted" Member="OveruseCSStarted" />
+    <Column Name="PureTobaccoCSNotStarted" Member="PureTobaccoCSNotStarted" />
+    <Column Name="PureTobaccoCSStarted" Member="PureTobaccoCSStarted" />
+    <Column Name="SHMentholCSNotStarted" Member="SHMentholCSNotStarted" />
+    <Column Name="SHMentholCSStarted" Member="SHMentholCSStarted" />
+    <Column Name="SHWasteOveruseCSNotStarted" Member="SHWasteOveruseCSNotStarted" />
+    <Column Name="SKU" Member="SKU" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="TobaccoAvailable" Member="TobaccoAvailable" />
+    <Column Name="TobaccoCSFinished" Member="TobaccoCSFinished" />
+    <Column Name="TobaccoEnteredIntoIPR" Member="TobaccoEnteredIntoIPR" />
+    <Column Name="TobaccoInCigarettesProduction" Member="TobaccoInCigarettesProduction" />
+    <Column Name="TobaccoInCigarettesWarehouse" Member="TobaccoInCigarettesWarehouse" />
+    <Column Name="TobaccoInCutfillerWarehouse" Member="TobaccoInCutfillerWarehouse" />
+    <Column Name="TobaccoInFGCSNotStarted" Member="TobaccoInFGCSNotStarted" />
+    <Column Name="TobaccoInFGCSStarted" Member="TobaccoInFGCSStarted" />
+    <Column Name="TobaccoInWarehouse" Member="TobaccoInWarehouse" />
     <Column Name="TobaccoStarted" Member="TobaccoStarted" />
-    <Column Name="Archival" Member="Archival" />
+    <Column Name="TobaccoToBeUsedInTheProduction" Member="TobaccoToBeUsedInTheProduction" />
+    <Column Name="TobaccoUsedInTheProduction" Member="TobaccoUsedInTheProduction" />
+    <Column Name="WasteCSNotStarted" Member="WasteCSNotStarted" />
+    <Column Name="WasteCSStarted" Member="WasteCSStarted" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="BalanceIPR" Class="BalanceIPR">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="DocumentNo" Member="DocumentNo" />
-    <Column Name="SKU" Member="SKU" />
-    <Column Name="Batch" Member="Batch" />
-    <Column Name="TobaccoEnteredIntoIPR" Member="TobaccoEnteredIntoIPR" />
-    <Column Name="TobaccoCSFinished" Member="TobaccoCSFinished" />
-    <Column Name="TobaccoInFGCSStarted" Member="TobaccoInFGCSStarted" />
-    <Column Name="DustCSStarted" Member="DustCSStarted" />
-    <Column Name="WasteCSStarted" Member="WasteCSStarted" />
-    <Column Name="SHMentholCSStarted" Member="SHMentholCSStarted" />
-    <Column Name="OveruseCSStarted" Member="OveruseCSStarted" />
-    <Column Name="PureTobaccoCSStarted" Member="PureTobaccoCSStarted" />
-    <Column Name="IPRBook" Member="IPRBook" />
-    <Column Name="WasteCSNotStarted" Member="WasteCSNotStarted" />
-    <Column Name="SHMentholCSNotStarted" Member="SHMentholCSNotStarted" />
-    <Column Name="OveruseCSNotStarted" Member="OveruseCSNotStarted" />
-    <Column Name="SHWasteOveruseCSNotStarted" Member="SHWasteOveruseCSNotStarted" />
-    <Column Name="DustCSNotStarted" Member="DustCSNotStarted" />
-    <Column Name="TobaccoAvailable" Member="TobaccoAvailable" />
-    <Column Name="TobaccoInFGCSNotStarted" Member="TobaccoInFGCSNotStarted" />
-    <Column Name="PureTobaccoCSNotStarted" Member="PureTobaccoCSNotStarted" />
-    <Column Name="TobaccoUsedInTheProduction" Member="TobaccoUsedInTheProduction" />
-    <Column Name="TobaccoToBeUsedInTheProduction" Member="TobaccoToBeUsedInTheProduction" />
-    <Column Name="CustomsProcedure" Member="CustomsProcedure" />
-    <Column Name="InvoiceNo" Member="InvoiceNo" />
-    <Column Name="OGLIntroduction" Member="OGLIntroduction" />
+    <Column Name="Archival" Member="Archival" />
     <Column Name="Balance" Member="Balance" />
     <Column Name="BalanceBatchIndex" Member="BalanceBatchIndex" />
     <Column Name="BalanceIPR2JSOXIndex" Member="BalanceIPR2JSOXIndex" />
+    <Column Name="Batch" Member="Batch" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="CustomsProcedure" Member="CustomsProcedure" />
+    <Column Name="DocumentNo" Member="DocumentNo" />
+    <Column Name="DustCSNotStarted" Member="DustCSNotStarted" />
+    <Column Name="DustCSStarted" Member="DustCSStarted" />
+    <Column Name="InvoiceNo" Member="InvoiceNo" />
+    <Column Name="IPRBook" Member="IPRBook" />
     <Column Name="IPRIndex" Member="IPRIndex" />
+    <Column Name="OGLIntroduction" Member="OGLIntroduction" />
+    <Column Name="OveruseCSNotStarted" Member="OveruseCSNotStarted" />
+    <Column Name="OveruseCSStarted" Member="OveruseCSStarted" />
+    <Column Name="PureTobaccoCSNotStarted" Member="PureTobaccoCSNotStarted" />
+    <Column Name="PureTobaccoCSStarted" Member="PureTobaccoCSStarted" />
+    <Column Name="SHMentholCSNotStarted" Member="SHMentholCSNotStarted" />
+    <Column Name="SHMentholCSStarted" Member="SHMentholCSStarted" />
+    <Column Name="SHWasteOveruseCSNotStarted" Member="SHWasteOveruseCSNotStarted" />
+    <Column Name="SKU" Member="SKU" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="TobaccoAvailable" Member="TobaccoAvailable" />
+    <Column Name="TobaccoCSFinished" Member="TobaccoCSFinished" />
+    <Column Name="TobaccoEnteredIntoIPR" Member="TobaccoEnteredIntoIPR" />
+    <Column Name="TobaccoInFGCSNotStarted" Member="TobaccoInFGCSNotStarted" />
+    <Column Name="TobaccoInFGCSStarted" Member="TobaccoInFGCSStarted" />
     <Column Name="TobaccoStarted" Member="TobaccoStarted" />
-    <Column Name="Archival" Member="Archival" />
+    <Column Name="TobaccoToBeUsedInTheProduction" Member="TobaccoToBeUsedInTheProduction" />
+    <Column Name="TobaccoUsedInTheProduction" Member="TobaccoUsedInTheProduction" />
+    <Column Name="WasteCSNotStarted" Member="WasteCSNotStarted" />
+    <Column Name="WasteCSStarted" Member="WasteCSStarted" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="JSOXCustomsSummary" Class="JSOXCustomsSummary">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="ExportOrFreeCirculationSAD" Member="ExportOrFreeCirculationSAD" />
-    <Column Name="SADDate" Member="SADDate" />
-    <Column Name="InvoiceNo" Member="InvoiceNo" />
-    <Column Name="IntroducingSADNo" Member="IntroducingSADNo" />
-    <Column Name="IntroducingSADDate" Member="IntroducingSADDate" />
     <Column Name="CompensationGood" Member="CompensationGood" />
-    <Column Name="TotalAmount" Member="TotalAmount" />
-    <Column Name="RemainingQuantity" Member="RemainingQuantity" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="CustomsProcedure" Member="CustomsProcedure" />
+    <Column Name="ExportOrFreeCirculationSAD" Member="ExportOrFreeCirculationSAD" />
+    <Column Name="IntroducingSADDate" Member="IntroducingSADDate" />
+    <Column Name="IntroducingSADNo" Member="IntroducingSADNo" />
+    <Column Name="InvoiceNo" Member="InvoiceNo" />
     <Column Name="JSOXCustomsSummary2JSOXIndex" Member="JSOXCustomsSummary2JSOXIndex" />
+    <Column Name="RemainingQuantity" Member="RemainingQuantity" />
+    <Column Name="SADDate" Member="SADDate" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="TotalAmount" Member="TotalAmount" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SADRequiredDocuments" Class="SADRequiredDocuments">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
+    <Column Name="Archival" Member="Archival" />
     <Column Name="Code" Member="Code" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Number" Member="Number" />
     <Column Name="SADRequiredDoc2SADGoodID" Member="SADRequiredDoc2SADGoodID" />
-    <Column Name="Archival" Member="Archival" />
-  </ContentType>
-  <ContentType Name="Country" Class="Country">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Dust" Class="Dust">
-    <Column Name="ProductType" Member="ProductType" />
     <Column Name="DustRatio" Member="DustRatio" />
+    <Column Name="ProductType" Member="ProductType" />
+    <!--<Column Name="Title" Member="Title" />-->
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Batch" Class="Batch">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="ProductType" Member="ProductType" />
-    <Column Name="BatchStatus" Member="BatchStatus" />
+    <Column Name="Archival" Member="Archival" />
     <Column Name="Batch" Member="Batch" />
-    <Column Name="SKU" Member="SKU" />
+    <Column Name="BatchDustCooeficiency" Member="BatchDustCooeficiency" />
+    <Column Name="BatchLibraryIndex" Member="BatchLibraryIndex" />
+    <Column Name="BatchSHCooeficiency" Member="BatchSHCooeficiency" />
+    <Column Name="BatchStatus" Member="BatchStatus" />
+    <Column Name="BatchWasteCooeficiency" Member="BatchWasteCooeficiency" />
+    <Column Name="CalculatedOveruse" Member="CalculatedOveruse" />
+    <Column Name="CFTProductivityNormMax" Member="CFTProductivityNormMax" />
+    <Column Name="CFTProductivityNormMin" Member="CFTProductivityNormMin" />
+    <Column Name="CFTProductivityRateMax" Member="CFTProductivityRateMax" />
+    <Column Name="CFTProductivityRateMin" Member="CFTProductivityRateMin" />
+    <Column Name="CFTProductivityVersion" Member="CFTProductivityVersion" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="CTFUsageMax" Member="CTFUsageMax" />
+    <Column Name="CTFUsageMin" Member="CTFUsageMin" />
+    <Column Name="Dust" Member="Dust" />
+    <Column Name="DustCooeficiencyVersion" Member="DustCooeficiencyVersion" />
     <Column Name="FGQuantity" Member="FGQuantity" />
-    <Column Name="FGQuantityPrevious" Member="FGQuantityPrevious" />
-    <Column Name="FGQuantityBlocked" Member="FGQuantityBlocked" />
     <Column Name="FGQuantityAvailable" Member="FGQuantityAvailable" />
+    <Column Name="FGQuantityBlocked" Member="FGQuantityBlocked" />
+    <Column Name="FGQuantityPrevious" Member="FGQuantityPrevious" />
     <Column Name="MaterialQuantity" Member="MaterialQuantity" />
     <Column Name="MaterialQuantityPrevious" Member="MaterialQuantityPrevious" />
-    <Column Name="CalculatedOveruse" Member="CalculatedOveruse" />
     <Column Name="Overuse" Member="Overuse" />
-    <Column Name="Dust" Member="Dust" />
-    <Column Name="Waste" Member="Waste" />
-    <Column Name="Tobacco" Member="Tobacco" />
-    <Column Name="SHMenthol" Member="SHMenthol" />
-    <Column Name="BatchLibraryIndex" Member="BatchLibraryIndex" />
-    <Column Name="SKUIndex" Member="SKUIndex" />
-    <Column Name="BatchSHCooeficiency" Member="BatchSHCooeficiency" />
+    <Column Name="ProductType" Member="ProductType" />
     <Column Name="SHCooeficiencyVersion" Member="SHCooeficiencyVersion" />
-    <Column Name="BatchDustCooeficiency" Member="BatchDustCooeficiency" />
-    <Column Name="DustCooeficiencyVersion" Member="DustCooeficiencyVersion" />
-    <Column Name="BatchWasteCooeficiency" Member="BatchWasteCooeficiency" />
-    <Column Name="WasteCooeficiencyVersion" Member="WasteCooeficiencyVersion" />
-    <Column Name="CFTProductivityRateMin" Member="CFTProductivityRateMin" />
-    <Column Name="CFTProductivityRateMax" Member="CFTProductivityRateMax" />
-    <Column Name="CFTProductivityNormMin" Member="CFTProductivityNormMin" />
-    <Column Name="CFTProductivityNormMax" Member="CFTProductivityNormMax" />
-    <Column Name="CFTProductivityVersion" Member="CFTProductivityVersion" />
-    <Column Name="UsageMin" Member="UsageMin" />
+    <Column Name="SHMenthol" Member="SHMenthol" />
+    <Column Name="SKU" Member="SKU" />
+    <Column Name="SKUIndex" Member="SKUIndex" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="Tobacco" Member="Tobacco" />
     <Column Name="UsageMax" Member="UsageMax" />
-    <Column Name="CTFUsageMin" Member="CTFUsageMin" />
-    <Column Name="CTFUsageMax" Member="CTFUsageMax" />
+    <Column Name="UsageMin" Member="UsageMin" />
     <Column Name="UsageVersion" Member="UsageVersion" />
-    <Column Name="Archival" Member="Archival" />
+    <Column Name="Waste" Member="Waste" />
+    <Column Name="WasteCooeficiencyVersion" Member="WasteCooeficiencyVersion" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="StockLib" Class="StockLib">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="FileLeafRef" Member="FileLeafRef" />
-    <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
-    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
-    <Column Name="Stock2JSOXLibraryIndex" Member="Stock2JSOXLibraryIndex" />
     <Column Name="Archival" Member="Archival" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <!--<Column Name="Created" Member="Created" />-->
+    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <!--<Column Name="Modified" Member="Modified" />-->
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <!--<Column Name="SelectFilename" Member="SelectFilename" />-->
+    <Column Name="Stock2JSOXLibraryIndex" Member="Stock2JSOXLibraryIndex" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="IPRLib" Class="IPRLib">
     <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="FileLeafRef" Member="FileLeafRef" />
-    <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <!--<Column Name="Created" Member="Created" />-->
     <Column Name="Created_x0020_By" Member="Created_x0020_By" />
     <Column Name="DocumentNo" Member="DocumentNo" />
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <!--<Column Name="Modified" Member="Modified" />-->
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <!--<Column Name="SelectFilename" Member="SelectFilename" />-->
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="JSOXLib" Class="JSOXLib">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="FileLeafRef" Member="FileLeafRef" />
-    <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
-    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
-    <Column Name="PreviousMonthDate" Member="PreviousMonthDate" />
-    <Column Name="PreviousMonthQuantity" Member="PreviousMonthQuantity" />
-    <Column Name="IntroducingDateStart" Member="IntroducingDateStart" />
-    <Column Name="IntroducingDateEnd" Member="IntroducingDateEnd" />
-    <Column Name="IntroducingQuantity" Member="IntroducingQuantity" />
-    <Column Name="OutboundDateStart" Member="OutboundDateStart" />
-    <Column Name="OutboundDateEnd" Member="OutboundDateEnd" />
-    <Column Name="OutboundQuantity" Member="OutboundQuantity" />
     <Column Name="BalanceDate" Member="BalanceDate" />
     <Column Name="BalanceQuantity" Member="BalanceQuantity" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <!--<Column Name="Created" Member="Created" />-->
+    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <Column Name="IntroducingDateEnd" Member="IntroducingDateEnd" />
+    <Column Name="IntroducingDateStart" Member="IntroducingDateStart" />
+    <Column Name="IntroducingQuantity" Member="IntroducingQuantity" />
+    <Column Name="JSOXLibraryReadOnly" Member="JSOXLibraryReadOnly" />
+    <!--<Column Name="Modified" Member="Modified" />-->
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <Column Name="OutboundDateEnd" Member="OutboundDateEnd" />
+    <Column Name="OutboundDateStart" Member="OutboundDateStart" />
+    <Column Name="OutboundQuantity" Member="OutboundQuantity" />
+    <Column Name="PreviousMonthDate" Member="PreviousMonthDate" />
+    <Column Name="PreviousMonthQuantity" Member="PreviousMonthQuantity" />
+    <Column Name="ReassumeQuantity" Member="ReassumeQuantity" />
+    <!--<Column Name="SelectFilename" Member="SelectFilename" />-->
     <Column Name="SituationDate" Member="SituationDate" />
     <Column Name="SituationQuantity" Member="SituationQuantity" />
-    <Column Name="ReassumeQuantity" Member="ReassumeQuantity" />
-    <Column Name="JSOXLibraryReadOnly" Member="JSOXLibraryReadOnly" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SADConsignment" Class="SADConsignment">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="FileLeafRef" Member="FileLeafRef" />
-    <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
-    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
     <Column Name="Archival" Member="Archival" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <!--<Column Name="Created" Member="Created" />-->
+    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <!--<Column Name="Modified" Member="Modified" />-->
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <!--<Column Name="SelectFilename" Member="SelectFilename" />-->
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="InvoiceLib" Class="InvoiceLib">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="FileLeafRef" Member="FileLeafRef" />
-    <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
-    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
     <Column Name="BillDoc" Member="BillDoc" />
-    <Column Name="InvoiceCreationDate" Member="InvoiceCreationDate" />
     <Column Name="ClearenceIndex" Member="ClearenceIndex" />
-    <Column Name="InvoiceLibraryStatus" Member="InvoiceLibraryStatus" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <!--<Column Name="Created" Member="Created" />-->
+    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <Column Name="InvoiceCreationDate" Member="InvoiceCreationDate" />
     <Column Name="InvoiceLibraryReadOnly" Member="InvoiceLibraryReadOnly" />
+    <Column Name="InvoiceLibraryStatus" Member="InvoiceLibraryStatus" />
     <Column Name="IsExport" Member="IsExport" />
+    <!--<Column Name="Modified" Member="Modified" />-->
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <!--<Column Name="SelectFilename" Member="SelectFilename" />-->
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SADDocumentLib" Class="SADDocumentLib">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="FileLeafRef" Member="FileLeafRef" />
-    <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
-    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
-    <Column Name="SADDocumentLibraryOK" Member="SADDocumentLibraryOK" />
-    <Column Name="SADDocumentLibraryComments" Member="SADDocumentLibraryComments" />
     <Column Name="Archival" Member="Archival" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <!--<Column Name="Created" Member="Created" />-->
+    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <!--<Column Name="Modified" Member="Modified" />-->
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <Column Name="SADDocumentLibraryComments" Member="SADDocumentLibraryComments" />
+    <Column Name="SADDocumentLibraryOK" Member="SADDocumentLibraryOK" />
+    <!--<Column Name="SelectFilename" Member="SelectFilename" />-->
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="BatchLib" Class="BatchLib">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="FileLeafRef" Member="FileLeafRef" />
-    <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
-    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
-    <Column Name="BatchLibraryOK" Member="BatchLibraryOK" />
     <Column Name="BatchLibraryComments" Member="BatchLibraryComments" />
-  </ContentType>
-  <!--<ContentType Name="CWLib" Class="CWLib">
-    <Column Name="ContentType" Member="ContentType" />
-    <Column Name="FileLeafRef" Member="FileLeafRef" />
-    <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
-    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
-  </ContentType>-->
-  <ContentType Name="ActivityLogCT" Class="ActivityLogCT">
+    <Column Name="BatchLibraryOK" Member="BatchLibraryOK" />
     <!--<Column Name="ContentType" Member="ContentType" />-->
+    <!--<Column Name="Created" Member="Created" />-->
+    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <!--<Column Name="Modified" Member="Modified" />-->
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <!--<Column Name="SelectFilename" Member="SelectFilename" />-->
     <Column Name="Title" Member="Title" />
-    <Column Name="Body" Member="Body" />
-    <Column Name="Expires" Member="Expires" />
+    <!--<ExcludeOtherColumns />-->
+  </ContentType>
+  <ContentType Name="ActivityLogCT" Class="ActivityLogCT">
     <Column Name="ActivityPriority" Member="ActivityPriority" />
     <Column Name="ActivitySource" Member="ActivitySource" />
-  </ContentType>
-  <ContentType Name="Item" Class="Element">
-    <Column Name="Title" Member="Title" />
+    <Column Name="Body" Member="Body" />
     <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="Expires" Member="Expires" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
+  <!--<ExcludeOtherContentTypes />-->
 </Web>
