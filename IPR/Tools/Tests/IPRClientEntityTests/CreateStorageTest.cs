@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -47,6 +47,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Tests
       TestToDictionary<ClinetLinqSP.Format>(9);
       TestToDictionary<ClinetLinqSP.Document>(10);
       TestToDictionary<ClinetLinqSP.SKUCommonPart>(13);
+      TestToDictionary<ClinetLinqSP.SKUCigarette>(20);
+      TestToDictionary<ClinetLinqSP.SKUCutfiller>(15);
       TestToDictionary<ClinetLinqSP.Batch>(42);
       TestToDictionary<ClinetLinqSP.CustomsUnion>(8);
       TestToDictionary<ClinetLinqSP.CutfillerCoefficient>(10);
@@ -87,7 +89,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Tests
       ComareSelectedStoragesContent<ClinetLinqSP.BatchLib, ClinetLinqSQL.BatchLibrary>(ClinetLinqSP.BatchLib.GetMappings());
       ComareSelectedStoragesContent<ClinetLinqSP.Format, ClinetLinqSQL.SPFormat>(ClinetLinqSP.Format.GetMappings());
       ComareSelectedStoragesContent<ClinetLinqSP.Document, ClinetLinqSQL.SKULibrary>(ClinetLinqSP.Document.GetMappings());
-      //TODO define task ComareSelectedStoragesContent<ClinetLinqSP.SKUCigarette, ClinetLinqSQL.SKU>(); -resolve inherited types
+      ComareSelectedStoragesContent<ClinetLinqSP.SKUCutfiller, ClinetLinqSQL.SKU>(ClinetLinqSP.SKUCutfiller.GetMappings());
+      ComareSelectedStoragesContent<ClinetLinqSP.SKUCigarette, ClinetLinqSQL.SKU>(ClinetLinqSP.SKUCigarette.GetMappings());
       ComareSelectedStoragesContent<ClinetLinqSP.Batch, ClinetLinqSQL.Batch>(ClinetLinqSP.Batch.GetMappings());
       ComareSelectedStoragesContent<ClinetLinqSP.CustomsUnion, ClinetLinqSQL.CustomsUnion>(ClinetLinqSP.CustomsUnion.GetMappings());
       ComareSelectedStoragesContent<ClinetLinqSP.CutfillerCoefficient, ClinetLinqSQL.CutfillerCoefficient>(ClinetLinqSP.CutfillerCoefficient.GetMappings());
