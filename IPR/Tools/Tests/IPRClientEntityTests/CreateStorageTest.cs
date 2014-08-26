@@ -112,7 +112,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Tests
       ComareSelectedStoragesContent<ClinetLinqSP.Warehouse, ClinetLinqSQL.Warehouse>(ClinetLinqSP.Warehouse.GetMappings());
       ComareSelectedStoragesContent<ClinetLinqSP.Waste, ClinetLinqSQL.Waste>(ClinetLinqSP.Waste.GetMappings());
     }
-
     private static void TestToDictionary<TEntity>(int expectedCount)
     {
       List<LibLibLinq2SP.StorageItem> _storageList = LibLibLinq2SP.StorageItem.CreateStorageDescription(typeof(TEntity), false);
@@ -127,8 +126,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Tests
       List<LibLibLinq2SP.StorageItem> _storageListSP = LibLibLinq2SP.StorageItem.CreateStorageDescription(typeof(TSP), false);
       Dictionary<string, LibLibLinq2SP.StorageItem> _storageSPDictionary = _storageListSP.ToDictionary<LibLibLinq2SP.StorageItem, string>(si => si.PropertyName);
       //Get SQL stage info
-      Dictionary<string, LibLinq2SQL.SQLStorageItem> _storageListSQLDictionary = new Dictionary<string, LibLinq2SQL.SQLStorageItem>();
-      LibLinq2SQL.SQLStorageItem.FillUpStorageInfoDictionary(typeof(TSQL), mapping, _storageListSQLDictionary);
+      Dictionary<string, LibLinq2SQL.SQLStorageItem> _storageListSQLDictionary = LibLinq2SQL.SQLStorageItem.CreateStorageDescription(typeof(TSQL), mapping);
       //Assert.AreEqual<int>(_storageSPDictionary.Count, _storageListSQL.Count, String.Format("Storage length of {0} must be equal, if not loss of data may occur", typeof(TSP).Name));
       foreach (string _item in _storageListSQLDictionary.Keys)
       {
