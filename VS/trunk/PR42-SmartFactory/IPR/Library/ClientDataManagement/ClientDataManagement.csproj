@@ -72,6 +72,7 @@
     <Compile Include="Linq\Item.cs" />
     <Compile Include="Linq\SADGood.cs" />
     <Compile Include="Linq\SKUCigarette.cs" />
+    <Compile Include="Linq\SKUCommonPart.cs" />
     <Compile Include="Linq\SKUCutfiller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
