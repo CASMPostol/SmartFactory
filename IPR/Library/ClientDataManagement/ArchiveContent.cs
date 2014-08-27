@@ -19,12 +19,12 @@ using System.Diagnostics;
 using System.Linq;
 using CAS.SmartFactory.IPR.Client.DataManagement.Linq;
 
-namespace CAS.SmartFactory.IPR.Client.DataManagement.Archival
+namespace CAS.SmartFactory.IPR.Client.DataManagement
 {
   /// <summary>
   /// Archive class contain collection of function supporting archival data management
   /// </summary>
-  public static class Archive
+  public static class ArchiveContent
   {
 
     #region public
@@ -55,7 +55,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Archival
       public string SiteURL;
     }
     /// <summary>
-    /// Goes the specified edc.
+    /// Performs Archive Content Task.
     /// </summary>
     /// <param name="settings">The settings.</param>
     /// <param name="ProgressChanged">The progress changed.</param>
@@ -70,11 +70,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Archival
     #endregion
 
     #region private
-    private static void SubmitChanges(Entities entities, Action<object, EntitiesChangedEventArgs> progress)
-    {
-      progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", entities));
-      entities.SubmitChanges();
-    }
     private static void GoIPR(Entities entities, ArchiveSettings settings, Action<object, EntitiesChangedEventArgs> progress)
     {
       if (!settings.DoArchiveIPR)
@@ -87,7 +82,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Archival
       int _iprArchived = 0;
       progress(null, new EntitiesChangedEventArgs(1, "Buffering Disposal entries", entities));
       List<Disposal> _dspsls = entities.Disposal.ToList<Disposal>();
-      foreach (IPR.Client.DataManagement.Linq.IPR _iprX in entities.IPR)
+      foreach (Linq.IPR _iprX in entities.IPR)
       {
         if (_iprX.AccountClosed.Value == true && _iprX.ClosingDate.IsLatter(settings.ArchiveIPRDelay))
         {
@@ -182,6 +177,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Archival
       }// foreach (Batch 
       SubmitChanges(entities, progress);
       progress(null, new EntitiesChangedEventArgs(1, String.Format("Finished Archive.GoBatch; Archived {0} Batch final, Batch progress {1} and {2} Material entries.", _batchArchived, _progressBatchArchived, _materialArchived), entities));
+    }
+    private static void SubmitChanges(Entities entities, Action<object, EntitiesChangedEventArgs> progress)
+    {
+      progress(null, new EntitiesChangedEventArgs(1, "SubmitChanges", entities));
+      entities.SubmitChanges();
     }
     #endregion
 
