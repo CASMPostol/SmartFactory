@@ -196,7 +196,7 @@ namespace CAS.SmartFactory.IPR.Customs
             PCNTariffCode = _doc.GetPCNTariffCode(),
             GrossMass = _doc.GetGrossMass(),
             NetMass = _doc.GetNetMass(),
-            Procedure = _doc.GetProcedure(),
+            SPProcedure = _doc.GetProcedure(),
             TotalAmountInvoiced = _doc.GetTotalAmountInvoiced(),
             ItemNo = _doc.GetItemNo()
           };

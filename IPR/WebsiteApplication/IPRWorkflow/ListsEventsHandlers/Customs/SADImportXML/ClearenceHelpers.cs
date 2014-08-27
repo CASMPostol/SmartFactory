@@ -114,7 +114,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
         SADDocumentType sad = Element.GetAtIndex<SADDocumentType>( entities.SADDocument, sadDocumentTypeId );
         foreach ( SADGood _sgx in sad.SADGood )
         {
-          switch ( _sgx.Procedure.RequestedProcedure() )
+          switch ( _sgx.SPProcedure.RequestedProcedure() )
           {
             case CustomsProcedureCodes.FreeCirculation:
               if ( messageType == CustomsDocument.DocumentType.SAD )
@@ -122,13 +122,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
                 comments = "Document added";
                 continue;
               }
-              if ( _sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure )
+              if ( _sgx.SPProcedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure )
                 _tasksList.Add( CWPrepareClearance( entities, _sgx ) ); //Procedure 4071
-              else if ( _sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.InwardProcessing )
+              else if ( _sgx.SPProcedure.PreviousProcedure() == CustomsProcedureCodes.InwardProcessing )
                 IPRClearThroughCustoms( entities, _sgx ); //Procedure 4051
               else
                 throw new IPRDataConsistencyException
-                  ( "SADPZCProcessing.FreeCirculation", string.Format( "Unexpected previous procedure code {1}for the {0} message", messageType, _sgx.Procedure.PreviousProcedure() ), null, _wrongProcedure );
+                  ( "SADPZCProcessing.FreeCirculation", string.Format( "Unexpected previous procedure code {1}for the {0} message", messageType, _sgx.SPProcedure.PreviousProcedure() ), null, _wrongProcedure );
               break;
             case CustomsProcedureCodes.InwardProcessing:
               {
@@ -137,7 +137,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
                   comments = "Document added";
                   continue;
                 }
-                if ( _sgx.Procedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure )
+                if ( _sgx.SPProcedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure )
                   _tasksList.Add( CWPrepareClearance( entities, _sgx ) ); //Procedure 5071
                 // Procedure 5100 lub 5171
                 Clearence _newClearance = Clearence.CreataClearence( entities, "InwardProcessing", ClearenceProcedure._5171, _sgx );
@@ -200,7 +200,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       ProgressChange( null, new ProgressChangedEventArgs( 1, "CreateIPRAccount.newIPRClass" ) );
       IPRClass _ipr = new IPRClass( entities, _iprdata, clearence, declaration );
       entities.IPR.InsertOnSubmit( _ipr );
-      clearence.Status = true;
+      clearence.SPStatus = true;
       ProgressChange( null, new ProgressChangedEventArgs( 1, "CreateIPRAccount.SubmitChanges" ) );
       entities.SubmitChanges();
       _ipr.UpdateTitle();

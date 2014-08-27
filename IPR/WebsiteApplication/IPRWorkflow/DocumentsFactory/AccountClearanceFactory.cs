@@ -72,7 +72,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     private static ProductCodeNumberDesscription[] CreateArrayOfProductCodeNumberDesscription(List<Disposal> disposals)
     {
       Dictionary<string, ProductCodeNumberDesscription> _ret = new Dictionary<string, ProductCodeNumberDesscription>();
-      foreach (Disposal _dx in disposals.OrderBy<Disposal, double>(x => x.No.HasValue ? x.No.Value : x.Created.Value.Ticks))
+      foreach (Disposal _dx in disposals.OrderBy<Disposal, double>(x => x.SPNo.HasValue ? x.SPNo.Value : x.Created.Value.Ticks))
       {
         if (!_ret.ContainsKey(_dx.Disposal2PCNID.ProductCodeNumber))
         {
@@ -89,7 +89,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     private static ArrayOfDIsposalsDisposalsArray[] CreateArrayOfDIsposalsDisposalsArray(List<Disposal> disposals)
     {
       List<ArrayOfDIsposalsDisposalsArray> _arry = new List<ArrayOfDIsposalsDisposalsArray>();
-      foreach (Disposal _dx in disposals.Where(x => x.SettledQuantityDec > 0).OrderBy<Disposal, double>(x => x.No.HasValue ? x.No.Value : x.Created.Value.Ticks))
+      foreach (Disposal _dx in disposals.Where(x => x.SettledQuantityDec > 0).OrderBy<Disposal, double>(x => x.SPNo.HasValue ? x.SPNo.Value : x.Created.Value.Ticks))
       {
         ArrayOfDIsposalsDisposalsArray _item = new ArrayOfDIsposalsDisposalsArray()
         {
@@ -97,7 +97,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           DutyAndVAT = _dx.DutyAndVAT.GetValueOrDefault(0),
           DutyPerSettledAmount = _dx.DutyPerSettledAmount.GetValueOrDefault(0),
           InvoiceNo = _dx.InvoiceNo,
-          No = _dx.No.GetValueOrDefault(-1),
+          No = _dx.SPNo.GetValueOrDefault(-1),
           ProductCodeNumber = _dx.Disposal2PCNID == null ? String.Empty.NotAvailable() : _dx.Disposal2PCNID.ProductCodeNumber,
           RemainingQuantity = _dx.RemainingQuantity.GetValueOrDefault(-1),
           SadConsignmentNo = _dx.SadConsignmentNo,
