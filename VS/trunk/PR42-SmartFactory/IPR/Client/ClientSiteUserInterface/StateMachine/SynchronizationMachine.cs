@@ -21,6 +21,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
   internal class SynchronizationMachine : BackgroundWorkerMachine<ViewModel.MainWindowModel>
   {
+
+    #region BackgroundWorkerMachine implementation
     public override void OnEnteringState()
     {
       base.OnEnteringState();
@@ -41,7 +43,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override void Next()
     {
       base.Next();
-      Context.EnterState<FinishedMachine>();
+      Context.EnterState<ArchivingMachine>();
     }
     protected override void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
     {
@@ -52,11 +54,11 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       ReportProgress(this, new ProgressChangedEventArgs(1, String.Format("Connection string {0}", _setting.ConnectionString)));
       DataManagement.SynchronizationContent.Go(_setting, ReportProgress);
     }
-    public override void OnCancellation()
+    protected override void RunWorkerCompleted(object result)
     {
       Next();
     }
-    protected override void RunWorkerCompleted(object result)
+    public override void OnCancellation()
     {
       Next();
     }
@@ -64,5 +66,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       return " Synchronization";
     }
+    #endregion
+
   }
 }
