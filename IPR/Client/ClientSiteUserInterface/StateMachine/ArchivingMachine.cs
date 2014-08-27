@@ -21,16 +21,23 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
   internal class ArchivingMachine : BackgroundWorkerMachine<ViewModel.MainWindowModel>
   {
 
-    #region creator
-    public ArchivingMachine() { }
-    #endregion
-
     #region BackgroundWorkerMachine implementation
     public override void OnEnteringState()
     {
       base.OnEnteringState();
-      SetEventMask(Events.Cancel);
-      RunAsync();
+      Context.ButtonNextTitle = Properties.Resources.ButtonInactive;
+      Context.ButtonGoBackwardTitle = Properties.Resources.ButtonInactive;
+      if (Context.DoArchivingIsChecked)
+      {
+        SetEventMask(Events.Cancel);
+        RunAsync();
+      }
+      else
+      {
+        this.ReportProgress(this, new ProgressChangedEventArgs(0, "Synchronization skipped because is not selected by the user."));
+        Next();
+        return;
+      }
     }
     public override void Next()
     {
@@ -53,13 +60,13 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     {
       Next();
     }
-    public override string ToString()
-    {
-      return "Archiving";
-    }
     public override void OnCancellation()
     {
       Next();
+    }
+    public override string ToString()
+    {
+      return "Archiving";
     }
     #endregion
 
