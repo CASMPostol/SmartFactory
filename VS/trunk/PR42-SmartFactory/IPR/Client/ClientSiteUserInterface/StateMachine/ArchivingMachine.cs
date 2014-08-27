@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
     {
-      DataManagement.Archival.Archive.ArchiveSettings _settings = new DataManagement.Archival.Archive.ArchiveSettings
+      DataManagement.ArchiveContent.ArchiveSettings _settings = new DataManagement.ArchiveContent.ArchiveSettings
       {
         ArchiveBatchDelay = Properties.Settings.Default.ArchiveBatchDelay,
         ArchiveIPRDelay = Properties.Settings.Default.ArchiveIPRDelay,
@@ -54,7 +54,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
         DoArchiveIPR = Properties.Settings.Default.DoArchiveIPR,
         SiteURL = Properties.Settings.Default.SiteURL
       };
-      DataManagement.Archival.Archive.Go(_settings, ReportProgress);
+      DataManagement.ArchiveContent.Go(_settings, ReportProgress);
     }
     protected override void RunWorkerCompleted(object result)
     {
