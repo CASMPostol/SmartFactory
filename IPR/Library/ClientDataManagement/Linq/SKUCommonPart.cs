@@ -1,5 +1,5 @@
 ﻿//<summary>
-//  Title   : public partial class SKUCigarette
+//  Title   : public partial class SKUCommonPart
 //  System  : Microsoft VisulaStudio 2013 / C#
 //  $LastChangedDate:$
 //  $Rev:$
@@ -17,13 +17,15 @@ using System.Collections.Generic;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
 {
-  public partial class SKUCigarette
+  public partial class SKUCommonPart
   {
+    /// <summary>
+    /// Gets the mappings, the key is SQL property name, the value is SP property name.
+    /// </summary>
     internal new static Dictionary<string, string> GetMappings()
     {
-      Dictionary<string, string> _ret = SKUCommonPart.GetMappings();
-      _ret.Add("BlendPurpose", "");
-      _ret.Add("Units", "");
+      Dictionary<string, string> _ret = Item.GetMappings();
+      _ret.Add("SKU1", "SKU");
       return _ret;
     }
   }
