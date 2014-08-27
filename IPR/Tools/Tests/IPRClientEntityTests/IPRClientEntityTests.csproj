@@ -62,7 +62,6 @@
     <Compile Include="CreateSPEntityTests.cs" />
     <Compile Include="CreateStorageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartWithEqualityComparerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\PR44-SharePoint\Libraries\SharePointLinqClient\SharePointClient.csproj">
