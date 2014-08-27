@@ -40,7 +40,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       InvoiceNo = String.Empty.NotAvailable(); //To be assigned during finished goods export.
       IPRDocumentNo = String.Empty.NotAvailable();
       JSOXCustomsSummaryIndex = null;
-      No = new Nullable<double>();
+      SPNo = new Nullable<double>();
       RemainingQuantity = new Nullable<double>(); //To be set during sad processing
       SADDate = Extensions.SPMinimum;
       SADDocumentNo = String.Empty.NotAvailable();
@@ -159,9 +159,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                                         where _dsp.CustomsStatus.Value == Linq.CustomsStatus.Finished
                                         select _dsp;
         if (_lastOne.Count<Disposal>() == 0)
-          this.No = 1;
+          this.SPNo = 1;
         else
-          this.No = _lastOne.Max<Disposal>(dspsl => dspsl.No.Value) + 1;
+          this.SPNo = _lastOne.Max<Disposal>(dspsl => dspsl.SPNo.Value) + 1;
         decimal _balance = CalculateRemainingQuantity();
         if (_balance == 0)
           this.ClearingType = Linq.ClearingType.TotalWindingUp;
@@ -272,13 +272,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       this.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
       this.SADDocumentNo = sadGood.SADDocumentIndex.DocumentNumber;
-      this.CustomsProcedure = sadGood.Procedure;
+      this.CustomsProcedure = sadGood.SPProcedure;
       //TODO remove it
       if (this.JSOXCustomsSummaryIndex == null)
         return;
       this.JSOXCustomsSummaryIndex.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
       this.JSOXCustomsSummaryIndex.ExportOrFreeCirculationSAD = sadGood.SADDocumentIndex.DocumentNumber;
-      this.JSOXCustomsSummaryIndex.CustomsProcedure = sadGood.Procedure;
+      this.JSOXCustomsSummaryIndex.CustomsProcedure = sadGood.SPProcedure;
       this.JSOXCustomsSummaryIndex.CompensationGood = this.Disposal2PCNID.CompensationGood;
       this.JSOXCustomsSummaryIndex.RemainingQuantity = this.RemainingQuantity;
     }

@@ -443,7 +443,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       if (this.AccountClosed.Value)
         throw new ApplicationException("IPR.RecalculateClearedRecords cannot be executed for closed account");
-      List<Disposal> _2Calculate = (from _dx in this.Disposal where _dx.CustomsStatus.Value == Linq.CustomsStatus.Finished orderby _dx.No.Value ascending select _dx).ToList<Disposal>();
+      List<Disposal> _2Calculate = (from _dx in this.Disposal where _dx.CustomsStatus.Value == Linq.CustomsStatus.Finished orderby _dx.SPNo.Value ascending select _dx).ToList<Disposal>();
       this.AccountBalance = this.NetMass;
       foreach (Disposal _dx in _2Calculate)
         _dx.CalculateRemainingQuantity();

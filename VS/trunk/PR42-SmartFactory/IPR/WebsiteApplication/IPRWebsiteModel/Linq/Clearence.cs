@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       SADDocumentType sadDocument = Clearence2SadGoodID.SADDocumentIndex;
       DocumentNo = sadDocument.DocumentNumber;
       ReferenceNumber = sadDocument.ReferenceNumber;
-      Status = true;
+      SPStatus = true;
       foreach (Disposal _disposal in Disposal)
         _disposal.FinishClearingThroughCustoms(entities, Clearence2SadGoodID);
       UpdateTitle(entities);
@@ -69,7 +69,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       SADDocumentType sadDocument = good.SADDocumentIndex;
       DocumentNo = sadDocument.DocumentNumber;
       ReferenceNumber = sadDocument.ReferenceNumber;
-      Status = true;
+      SPStatus = true;
     }
     /// <summary>
     /// Gets the customs debt date.
@@ -179,7 +179,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         DocumentNo = String.Empty.NotAvailable(),
         ProcedureCode = code,
         ReferenceNumber = String.Empty.NotAvailable(),
-        Status = false,
+        SPStatus = false,
         ClearenceProcedure = procedure
       };
       return _newClearence;
