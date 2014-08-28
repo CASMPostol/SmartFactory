@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activate180\Activate.cs" />
-    <Compile Include="Archival\Archive.cs" />
+    <Compile Include="ArchiveContent.cs" />
     <Compile Include="CleanupContent.cs" />
     <Compile Include="EntitiesChangedEventArgs.cs" />
     <Compile Include="Extensions.cs" />
