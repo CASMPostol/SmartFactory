@@ -36,7 +36,8 @@
     [Version]                        INT            NULL,
     [WasteCSNotStarted]              FLOAT (53)     NULL,
     [WasteCSStarted]                 FLOAT (53)     NULL,
-    [OnlySQL]						 BIT			NOT NULL, 
+    [OnlySQL]						 BIT			NOT NULL,
+	[UIVersionString]				 NVARCHAR(max)	NULL, 
     CONSTRAINT [PK_BalanceBatch_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_BalanceBatch_JSOXLibrary] FOREIGN KEY ([Balance2JSOXLibraryIndex]) REFERENCES [dbo].[JSOXLibrary] ([ID])
 );

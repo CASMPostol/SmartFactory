@@ -42,6 +42,7 @@
     [Waste]                    FLOAT (53)     NULL,
     [WasteCooeficiencyVersion] FLOAT (53)     NULL,
 	[OnlySQL]				   BIT			  NOT NULL,
+	[UIVersionString]		   NVARCHAR(max)  NULL,
     CONSTRAINT [PK_Batch_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Batch_BatchLibrary] FOREIGN KEY ([BatchLibraryIndex]) REFERENCES [dbo].[BatchLibrary] ([ID]),
     CONSTRAINT [FK_Batch_SKU] FOREIGN KEY ([SKUIndex]) REFERENCES [dbo].[SKU] ([ID])

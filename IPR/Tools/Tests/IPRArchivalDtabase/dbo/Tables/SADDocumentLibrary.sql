@@ -13,6 +13,7 @@
     [Title]                      NVARCHAR (MAX) NULL,
     [Version]                    INT            NULL,
 	[OnlySQL]					 BIT			NOT NULL,
+	[UIVersionString]			 NVARCHAR(max)	NULL,	
     CONSTRAINT [PK_SADDocumentLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

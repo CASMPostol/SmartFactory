@@ -16,6 +16,7 @@
     [TotalAmountInvoiced] FLOAT (53)     NULL,
     [Version]             INT            NULL,
 	[OnlySQL]			  BIT			 NOT NULL,
+	[UIVersionString]     NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_SADGood_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADGood_SADDocument] FOREIGN KEY ([SADDocumentIndex]) REFERENCES [dbo].[SADDocument] ([ID])
 );

@@ -32,6 +32,7 @@
     [VATPerSettledAmount]          FLOAT (53)     NULL,
     [Version]                      INT            NULL,
 	[OnlySQL]					   BIT			  NOT NULL,
+	[UIVersionString]		       NVARCHAR(max)  NULL,
     CONSTRAINT [PK_Disposal_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Disposal_Batch] FOREIGN KEY ([Disposal2BatchIndex]) REFERENCES [dbo].[Batch] ([ID]),
     CONSTRAINT [FK_Disposal_Clearence] FOREIGN KEY ([Disposal2ClearenceIndex]) REFERENCES [dbo].[Clearence] ([ID]),

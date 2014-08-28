@@ -16,6 +16,7 @@
     [Title]                  NVARCHAR (MAX) NULL,
     [Version]                INT            NULL,
 	[OnlySQL]				 BIT			NOT NULL,
+	[UIVersionString]		 NVARCHAR(max)	NULL,	
     CONSTRAINT [PK_InvoiceLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_InvoiceLibrary_Clearence] FOREIGN KEY ([ClearenceIndex]) REFERENCES [dbo].[Clearence] ([ID])
 );
