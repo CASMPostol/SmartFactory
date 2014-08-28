@@ -63,11 +63,13 @@
     <Compile Include="Linq2SQL\StockEntry.cs" />
     <Compile Include="Linq2SQL\StockLibrary.cs" />
     <Compile Include="Linq\Announcement.cs" />
+    <Compile Include="Linq\Archival.cs" />
     <Compile Include="Linq\Batch.cs" />
     <Compile Include="Linq\Clearence.cs" />
     <Compile Include="Linq\Disposal.cs" />
     <Compile Include="Linq\Document.cs" />
     <Compile Include="Linq\Entities.cs" />
+    <Compile Include="Linq\IArchival.cs" />
     <Compile Include="Linq\IPR.cs" />
     <Compile Include="Linq\Item.cs" />
     <Compile Include="Linq\SADGood.cs" />
