@@ -77,7 +77,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockLibrary entries.", _StockLibArchived)));
         SPSubmitChanges(entities, _sqledc, progress);
         Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(_sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Cleanup, progress);
-        progress(null, new ProgressChangedEventArgs(1, String.Format("Finished CleanupContent; deleted {0} StockEntry entries and {1} StockEntry.", _StockLibArchived, _StockEntryArchived)));
+        progress(null, new ProgressChangedEventArgs(1, String.Format("Finished CleanupContent; deleted {0} StockLib and {1} StockEntry entries.", _StockLibArchived, _StockEntryArchived)));
       }
     }
     private static void SPSubmitChanges(Entities spEntities, Linq2SQL.IPRDEV sqlEntities, Action<object, ProgressChangedEventArgs> progress)

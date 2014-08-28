@@ -276,7 +276,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
     {
       base.ProgressChang(activationMachine, entitiesState);
       if (entitiesState.UserState is string)
-        ProgressList.Add((String)entitiesState.UserState);
+        ProgressList.Add(String.Format("{0:T}: {1}", DateTime.Now, (String)entitiesState.UserState));
     }
     internal void SaveSettings()
     {

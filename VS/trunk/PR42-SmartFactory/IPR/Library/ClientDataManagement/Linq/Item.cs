@@ -13,8 +13,11 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Client.Link2SQL;
+using Microsoft.SharePoint.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
 {
@@ -23,18 +26,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
   /// </summary>
   public partial class Item
   {
-    /// <summary>
-    /// Gets the mappings the key is SQL property name, the value is SP property name.
-    /// </summary>
-    /// <returns></returns>
-    internal static Dictionary<string, string> GetMappings()
-    {
-      return new Dictionary<string, string>() 
-      {
-        {"ID", "Id"},
-        {"OnlySQL", ""} 
-      };
-    }
+    #region SharePoint fields access
     /// <summary>
     /// Gets or sets the creation date.
     /// </summary>
@@ -150,10 +142,43 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
         }
       }
     }
+    #endregion
+
+    #region internal
+    /// <summary>
+    /// Gets the mappings the key is SQL property name, the value is SP property name.
+    /// </summary>
+    /// <returns></returns>
+    internal static Dictionary<string, string> GetMappings()
+    {
+      return new Dictionary<string, string>() 
+      {
+        {"ID", "Id"},
+        {"OnlySQL", ""} 
+      };
+    }
+    internal static void Delete<TEntity>(EntityList<TEntity> list, IEnumerable<TEntity> entities, IEnumerable<IArchival> toBeMarkedAsArchival, Func<int, IItem> getSQLEntity, Action<int, string> addLog)
+      where TEntity : Item, new()
+    {
+      foreach (TEntity _item in entities)
+      {
+        IItem _sqlItem = getSQLEntity(_item.Id.Value);
+        _sqlItem.OnlySQL = true;
+        addLog(_item.Id.Value, list.Name);
+        list.DeleteOnSubmit(_item);
+      }
+      foreach (IArchival _ax in toBeMarkedAsArchival)
+        _ax.Archival = true;
+    }
+    #endregion
+
+    #region private
     private string _Editor;
     private System.Nullable<DateTime> _Created;
     private string _Author;
     private System.Nullable<DateTime> _Modified;
-    private string _version0;
+    private string _version0; 
+    #endregion
+
   }
 }
