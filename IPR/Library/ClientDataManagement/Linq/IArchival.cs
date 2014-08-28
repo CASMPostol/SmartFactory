@@ -28,4 +28,5 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
     /// </value>
     System.Nullable<bool> Archival { get; set; }
   }
+
 }
