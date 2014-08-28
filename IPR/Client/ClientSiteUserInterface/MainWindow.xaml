@@ -7,7 +7,10 @@
         mc:Ignorable="d" 
         x:Class="CAS.SmartFactory.IPR.Client.UserInterface.MainWindow"
         Title="CAS SmartFactory IPR Archiving Wizard"
-        Loaded="Window_Loaded" Background="#FF1D1D1D" MinWidth="1000" MinHeight="900" d:DesignWidth="1200"  d:DesignHeight="900" WindowStartupLocation="CenterScreen" Icon="Imgs/IPR_Ico.ico" >
+        Loaded="Window_Loaded" MinWidth="1000" MinHeight="900" d:DesignWidth="1200"  d:DesignHeight="900" WindowStartupLocation="CenterScreen" Icon="Imgs/IPR_Ico.ico" >
+	<Window.Background>
+		<ImageBrush ImageSource="Imgs/Background.jpg"/>
+	</Window.Background>
     <DockPanel LastChildFill="True">
         <StackPanel DockPanel.Dock="Top">
             <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
@@ -32,15 +35,15 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Row="0" Grid.Column="0" x:Name="x_RadioListArchivingOptions" DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Left">
-                            <RadioButton x:Name="x_RadioButtonCleanupOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,55,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding Path=DoCleanupIsChecked, Mode=TwoWay}" />
-                            <RadioButton x:Name="x_RadioButtonSyncOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,100,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding Path=DoSynchronizationIsChecked, Mode=TwoWay}" />
-                            <RadioButton x:Name="x_RadioButtonArchiveOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,95,0,0" VerticalAlignment="Center" Height="12" Width="12" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding Path=DoArchivingIsChecked, Mode=TwoWay}" />
+                            <RadioButton x:Name="x_RadioButtonCleanupOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,55,0,0" VerticalAlignment="Center" Height="13.333" Width="13.333" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding DoCleanupIsChecked, Mode=TwoWay}" />
+                            <RadioButton x:Name="x_RadioButtonSyncOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,100,0,0" VerticalAlignment="Center" Height="13.333" Width="13.333" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding DoSynchronizationIsChecked, Mode=TwoWay}" />
+                            <RadioButton x:Name="x_RadioButtonArchiveOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,95,0,0" VerticalAlignment="Center" Height="13.333" Width="13.333" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding DoArchivingIsChecked, Mode=TwoWay}" />
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
                             <Image HorizontalAlignment="Right" Source="Imgs/CleanupIcon.png" Stretch="Fill" Width="100" Margin="10,10,10,5"/>
                             <Image HorizontalAlignment="Right" Source="Imgs/SynchronizeIcon.png" Stretch="Fill" Width="100" Margin="10,5"/>
                             <Image HorizontalAlignment="Right" Source="Imgs/ArchiveIcon.png" Stretch="Fill" Width="100" Margin="10,5"/>
-                            <StackPanel Background="#FF3D3D3D" Margin="10,5" Height="242">
+                            <StackPanel Background="#FF9CCC65" Margin="10,5" Height="242">
                                 <Image HorizontalAlignment="Right" Source="Imgs/SettingsIcon.png" Stretch="Fill" Width="100" Margin="0"/>
                             </StackPanel>
                         </StackPanel>
@@ -51,7 +54,7 @@
                             <TextBlock Style="{StaticResource CASTextBlockViolet}" Margin="0,0,0,0">
 						Perform a cleanup - removes useless entries from Stock Entry list and Stock Library
                             </TextBlock>
-                            <StackPanel Background="#FF4617B5" Orientation="Horizontal" Height="30" >
+                            <StackPanel Background="#FF689F38" Orientation="Horizontal" Height="30" >
                                 <Label Content="Last run date: " Style="{StaticResource CASLabel}"/>
                                 <Label Content="{Binding CleanupLastRunDate}" Style="{StaticResource CASLabel}"/>
                                 <Label Content=" by: " Style="{StaticResource CASLabel}"/>
@@ -63,7 +66,7 @@
                             <TextBlock Style="{StaticResource CASTextBlockViolet}" Margin="0,0,0,0">
 						Perform a synchronization - synchronize data between SharePoint website and Database
                             </TextBlock>
-                            <StackPanel Background="#FF4617B5" Orientation="Horizontal" Height="30" >
+                            <StackPanel Background="#FF689F38" Orientation="Horizontal" Height="30" >
                                 <Label Content="Last run date: " Style="{StaticResource CASLabel}"/>
                                 <Label Content="{Binding SyncLastRunDate}" Style="{StaticResource CASLabel}"/>
                                 <Label Content=" by: " Style="{StaticResource CASLabel}"/>
@@ -75,7 +78,7 @@
                             <TextBlock Style="{StaticResource CASTextBlockViolet}" Margin="0,0,0,0">
 						Perform an archiving - moves all closed IPR accounts to the Database
                             </TextBlock>
-                            <StackPanel Background="#FF4617B5" Orientation="Horizontal" Height="30" >
+                            <StackPanel Background="#FF689F38" Orientation="Horizontal" Height="30" >
                                 <Label Content="Last run date: " Style="{StaticResource CASLabel}"/>
                                 <Label Content="{Binding ArchivingLastRunDate}" Style="{StaticResource CASLabel}"/>
                                 <Label Content=" by: " Style="{StaticResource CASLabel}"/>
@@ -84,37 +87,37 @@
                             <TextBlock Style="{StaticResource CASTextBlockGrayHeader}" Margin="0,10,0,0">
 						Settings
                             </TextBlock>
-                            <StackPanel Background="#FF3D3D3D" Orientation="Horizontal">
+                            <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
                                 <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
 									SharePoint website URL:
                                 </TextBlock>
                                 <TextBox Text="{Binding URL, Mode=TwoWay}" Width="250" Margin="5" Style="{StaticResource CASTextBox}" />
                             </StackPanel>
-                            <StackPanel Background="#FF3D3D3D" Orientation="Horizontal">
+                            <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
                                 <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
 									SQL Server name:
                                 </TextBlock>
                                 <TextBox Text="{Binding Path=SQLServer, Mode=TwoWay}"  Width="250" Margin="5" Style="{StaticResource CASTextBox}"  />
                             </StackPanel>
-                            <StackPanel Background="#FF3D3D3D" Orientation="Horizontal">
+                            <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
                                 <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
 									Database name:
                                 </TextBlock>
                                 <TextBox Text="{Binding DatabaseName, Mode=TwoWay}"  Width="250" Margin="5" Style="{StaticResource CASTextBox}"  />
                             </StackPanel>
-                            <StackPanel Background="#FF3D3D3D" Orientation="Horizontal">
+                            <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
                                 <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
 									IPR archive period:
                                 </TextBlock>
                                 <TextBox Text="{Binding IPRAccountArchivalDelay, Mode=TwoWay}" Width="50" Margin="5" Style="{StaticResource CASTextBox}" />
                             </StackPanel>
-                            <StackPanel Background="#FF3D3D3D" Orientation="Horizontal">
+                            <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
                                 <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
 									Batch archive period:
                                 </TextBlock>
                                 <TextBox Text="{Binding BatchArchivalDelay, Mode=TwoWay}" Width="50" Margin="5" Style="{StaticResource CASTextBox}" />
                             </StackPanel>
-                            <StackPanel Background="#FF3D3D3D" Orientation="Horizontal">
+                            <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
                                 <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
 									Reports archive period:
                                 </TextBlock>
@@ -132,9 +135,9 @@
                 <Button x:Name="x_ButtonCancel" Style="{StaticResource CASButtonStyle}" Content="Cancel" Command="{Binding Path=ButtonCancel}" />
             </StackPanel>
         </StackPanel>
-        <StackPanel Background="#FF3D3D3D" Orientation="Horizontal" DockPanel.Dock="Top" ToolTip="Information about the application and progress" Height="40">
+        <StackPanel Background="#FF689F38" Orientation="Horizontal" DockPanel.Dock="Top" ToolTip="Information about the application and progress" Height="40">
             <Label x:Name="x_ToolBarURLLabel" ContentStringFormat="URL: {0}" Content="{Binding Path=URL}" Margin="55,5,5,5" Style="{StaticResource CASLabel}"/>
-            <ProgressBar x:Name="x_ProgressBar" Value="{Binding Path=Progress}" Width="300"  Minimum="0" Foreground="#FF4617B5" Height="50" />
+            <ProgressBar x:Name="x_ProgressBar" Value="{Binding Path=Progress}" Width="300"  Minimum="0" Foreground="#FFaed581" Height="50" />
             <Label Content="Phase: " Margin="5" Style="{StaticResource CASLabel}"/>
             <Label Content="{Binding MachineState, Mode=OneWay}" HorizontalContentAlignment="Left" IsEnabled="False" Margin="5" Style="{StaticResource CASLabel}"/>
             <Button Click="HelpButton_Click" Style="{StaticResource CASButtonGray}" Width="20" Height="20" HorizontalContentAlignment="Right">

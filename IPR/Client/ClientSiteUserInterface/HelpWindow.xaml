@@ -5,7 +5,7 @@
 	x:Name="Window"
 	Title="CAS SmartFactory IPR Archiving Wizard - Help"
 	Width="640" Height="480"
-    Background="#FF1D1D1D" WindowStartupLocation="CenterScreen" ScrollViewer.VerticalScrollBarVisibility="Auto">
+    Background="#FF689F38" WindowStartupLocation="CenterScreen" ScrollViewer.VerticalScrollBarVisibility="Auto">
 	<ScrollViewer>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
