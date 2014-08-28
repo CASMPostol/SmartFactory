@@ -7,8 +7,8 @@
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Margin" Value="5"/>
         <Setter Property="Foreground" Value="#FFF9F9F9"/>
-        <Setter Property="Background" Value="#FF4617B5"/>
-        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="Background" Value="#FF689F38"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontSize" Value="13.333"/>
         <Setter Property="Width" Value="155"/>
         <Setter Property="Height" Value="50"/>
@@ -41,8 +41,8 @@
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Margin" Value="5"/>
         <Setter Property="Foreground" Value="#FFF9F9F9"/>
-        <Setter Property="Background" Value="#FF3D3D3D"/>
-        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="Background" Value="#FF689F38"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -69,64 +69,65 @@
     </Style>
     <!-- ListView -->
     <Style x:Key="CASListView" TargetType="ListView">
-        <Setter Property="Background" Value="#FF1D1D1D"/>
-        <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}"/>
+        <Setter Property="Background" Value="#FFFFFFFF"/>
+        <Setter Property="Foreground" Value="#FF000000"/>
+        <Setter Property="BorderBrush" Value="#FFdcedc8"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontSize" Value="13.333"/>
+		<Setter Property="Opacity" Value="0.7" />
     </Style>
     <!-- TextBox -->
     <Style x:Key="CASTextBox" TargetType="TextBox">
-        <Setter Property="Background" Value="#FF3D3D3D"/>
-        <Setter Property="BorderBrush" Value="#FF1D1D1D"/>
-        <Setter Property="Foreground" Value="#FFF9F9F9"/>
+        <Setter Property="Background" Value="#FFdcedc8"/>
+        <Setter Property="BorderBrush" Value="#FFaed581"/>
+        <Setter Property="Foreground" Value="#FF000000"/>
         <Setter Property="SelectionBrush" Value="#FFF9F9F9"/>
-        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
     </Style>
     <!-- TextBlock -->
 	<Style x:Key="CASTextBlockVioletHeader" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="Foreground" Value="#FFF9F9F9"/>
-		<Setter Property="Background" Value="#FF4617B5"/>
+		<Setter Property="Background" Value="#FF689F38"/>
 		<Setter Property="FontSize" Value="21.333"/>
 		<Setter Property="Height" Value="50"/>
     </Style>
 	<Style x:Key="CASTextBlockGrayHeader" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="Foreground" Value="#FFF9F9F9"/>
-		<Setter Property="Background" Value="#FF3D3D3D"/>
+		<Setter Property="Background" Value="#FF9CCC65"/>
 		<Setter Property="FontSize" Value="21.333"/>
 		<Setter Property="Height" Value="50"/>
     </Style>
 	<Style x:Key="CASTextBlockHeader" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Segoe UI Light"/>
-        <Setter Property="Foreground" Value="#FFF9F9F9"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="Foreground" Value="#FF000000"/>
 		<Setter Property="FontSize" Value="30" />
 		<Setter Property="HorizontalAlignment" Value="Left"/>
 		<Setter Property="VerticalAlignment" Value="Bottom"/>
     </Style>
 	<Style x:Key="CASTextBlockViolet" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="Foreground" Value="#FFF9F9F9"/>
-		<Setter Property="Background" Value="#FF4617B5"/>
+		<Setter Property="Background" Value="#FF689F38"/>
 		<Setter Property="FontSize" Value="13.333"/>
 		<Setter Property="Height" Value="20"/>
     </Style>
 	<Style x:Key="CASTextBlock" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
 		<Setter Property="FontSize" Value="13.333"/>
         <Setter Property="Foreground" Value="#FFF9F9F9"/>
     </Style>
 	<!-- Expander -->
 	<Style x:Key="CASExpander" TargetType="Expander">
-        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
 		<Setter Property="FontSize" Value="13.333"/>
         <Setter Property="Foreground" Value="#FFF9F9F9"/>
     </Style>
     <!-- Label -->
     <Style x:Key="CASLabel" TargetType="Label">
-        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="Foreground" Value="#FFF9F9F9"/>
         <Setter Property="FontSize" Value="13.333"/>
     </Style>
