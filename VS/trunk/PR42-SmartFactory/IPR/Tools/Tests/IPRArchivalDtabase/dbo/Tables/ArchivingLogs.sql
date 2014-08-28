@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[ArchivingLogs] (
-    [ID]       INT            IDENTITY (1, 1) NOT NULL,
+    [ID]       INT IDENTITY (1, 1) NOT NULL,
     [ListName] NVARCHAR (255) NOT NULL,
     [ItemID]   INT            NOT NULL,
     [Date]     DATETIME       NOT NULL,

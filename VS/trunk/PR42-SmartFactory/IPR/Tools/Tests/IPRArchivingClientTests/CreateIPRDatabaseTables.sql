@@ -13,7 +13,8 @@ CREATE TABLE [dbo].[ActivityLog] (
     [Modified]               DATETIME        NULL,
     [Title]                  NVARCHAR(max)   NOT NULL,
     [Version]                INT             NULL,
-    [OnlySQL]				 BIT			 NOT NULL,	
+    [OnlySQL]				 BIT			 NOT NULL,
+	[UIVersionString]		 NVARCHAR(max)	 NULL,	
 	CONSTRAINT [PK_ActivityLog_ID] PRIMARY KEY CLUSTERED ([ID] ASC) 
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'JSOXLibrary')
@@ -44,6 +45,7 @@ CREATE TABLE [dbo].[JSOXLibrary] (
     [Title]                 NVARCHAR (MAX) NULL,
     [Version]               INT            NULL,
 	[OnlySQL]				BIT			   NOT NULL,
+	[UIVersionString]		NVARCHAR(max)  NULL,	
     CONSTRAINT [PK_JSOXLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'BalanceBatch')
@@ -86,7 +88,8 @@ CREATE TABLE [dbo].[BalanceBatch] (
     [Version]                        INT            NULL,
     [WasteCSNotStarted]              FLOAT (53)     NULL,
     [WasteCSStarted]                 FLOAT (53)     NULL,
-    [OnlySQL]						 BIT			NOT NULL, 
+    [OnlySQL]						 BIT			NOT NULL,
+	[UIVersionString]				 NVARCHAR(max)	NULL, 
     CONSTRAINT [PK_BalanceBatch_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_BalanceBatch_JSOXLibrary] FOREIGN KEY ([Balance2JSOXLibraryIndex]) REFERENCES [dbo].[JSOXLibrary] ([ID])
 );
@@ -107,6 +110,7 @@ CREATE TABLE [dbo].[SADDocumentLibrary] (
     [Title]                      NVARCHAR (MAX) NULL,
     [Version]                    INT            NULL,
 	[OnlySQL]					 BIT			NOT NULL,
+	[UIVersionString]			 NVARCHAR(max)	NULL,	
     CONSTRAINT [PK_SADDocumentLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SADDocument')
@@ -130,6 +134,7 @@ CREATE TABLE [dbo].[SADDocument] (
     [Title]                   NVARCHAR (MAX) NOT NULL,
     [Version]                 INT            NULL,
 	[OnlySQL]				  BIT			 NOT NULL,
+	[UIVersionString]		  NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_SADDocument_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADDocument_SADDocumentLibrary] FOREIGN KEY ([SADDocumenLibrarytIndex]) REFERENCES [dbo].[SADDocumentLibrary] ([ID])
 );
@@ -153,6 +158,7 @@ CREATE TABLE [dbo].[SADGood] (
     [TotalAmountInvoiced] FLOAT (53)     NULL,
     [Version]             INT            NULL,
 	[OnlySQL]			  BIT			 NOT NULL,
+	[UIVersionString]     NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_SADGood_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADGood_SADDocument] FOREIGN KEY ([SADDocumentIndex]) REFERENCES [dbo].[SADDocument] ([ID])
 );
@@ -171,6 +177,7 @@ CREATE TABLE [dbo].[SADConsignment] (
     [Title]              NVARCHAR (MAX) NULL,
     [Version]            INT            NULL,
 	[OnlySQL]			 BIT			NOT NULL,
+	[UIVersionString]	 NVARCHAR(max)	NULL,
     CONSTRAINT [PK_SADConsignment_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Clearence')
@@ -192,6 +199,7 @@ CREATE TABLE [dbo].[Clearence] (
     [Title]                      NVARCHAR (MAX) NOT NULL,
     [Version]                    INT            NULL,
 	[OnlySQL]					 BIT			NOT NULL,
+	[UIVersionString]		     NVARCHAR(max)	NULL,
     CONSTRAINT [PK_Clearence_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Clearence_SADConsignment] FOREIGN KEY ([SADConsignmentLibraryIndex]) REFERENCES [dbo].[SADConsignment] ([ID]),
     CONSTRAINT [FK_Clearence_SADGood] FOREIGN KEY ([Clearence2SadGoodID]) REFERENCES [dbo].[SADGood] ([ID])
@@ -214,6 +222,7 @@ CREATE TABLE [dbo].[Consent] (
     [ValidToDate]         DATETIME       NULL,
     [Version]             INT            NULL,
 	[OnlySQL]			  BIT			 NOT NULL,
+	[UIVersionString]	  NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_Consent_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'PCNCode')
@@ -230,6 +239,7 @@ CREATE TABLE [dbo].[PCNCode] (
     [Title]             NVARCHAR (MAX) NOT NULL,
     [Version]           INT            NULL,
 	[OnlySQL]			BIT			   NOT NULL,
+	[UIVersionString]	NVARCHAR(max)  NULL,
     CONSTRAINT [PK_PCNCode_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'IPRLibrary')
@@ -247,6 +257,7 @@ CREATE TABLE [dbo].[IPRLibrary] (
     [Title]              NVARCHAR (MAX) NULL,
     [Version]            INT            NULL,
 	[OnlySQL]			 BIT			NOT NULL,
+	[UIVersionString]	 NVARCHAR(max)	NULL,	
     CONSTRAINT [PK_IPRLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'IPR')
@@ -295,6 +306,7 @@ CREATE TABLE [dbo].[IPR] (
     [VATName]             NVARCHAR (MAX) NULL,
     [Version]             INT            NULL,
 	[OnlySQL]			  BIT			 NOT NULL,
+	[UIVersionString]	  NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_IPR_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_IPR_Clearence] FOREIGN KEY ([ClearenceIndex]) REFERENCES [dbo].[Clearence] ([ID]),
     CONSTRAINT [FK_IPR_Consent] FOREIGN KEY ([IPR2ConsentTitle]) REFERENCES [dbo].[Consent] ([ID]),
@@ -344,6 +356,7 @@ CREATE TABLE [dbo].[BalanceIPR] (
     [WasteCSNotStarted]              FLOAT (53)     NULL,
     [WasteCSStarted]                 FLOAT (53)     NULL,
 	[OnlySQL]						 BIT			NOT NULL,
+	[UIVersionString]		         NVARCHAR(max)	NULL,
     CONSTRAINT [PK_BalanceIPR_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_BalanceIPR_BalanceBatch] FOREIGN KEY ([BalanceBatchIndex]) REFERENCES [dbo].[BalanceBatch] ([ID]),
     CONSTRAINT [FK_BalanceIPR_IPR] FOREIGN KEY ([IPRIndex]) REFERENCES [dbo].[IPR] ([ID]),
@@ -365,6 +378,7 @@ CREATE TABLE [dbo].[BatchLibrary] (
     [Title]                NVARCHAR (MAX) NULL,
     [Version]              INT            NULL,
 	[OnlySQL]			   BIT			  NOT NULL,
+	[UIVersionString]	   NVARCHAR(max)  NULL,	
     CONSTRAINT [PK_BatchLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SPFormat')
@@ -380,6 +394,7 @@ CREATE TABLE [dbo].[SPFormat] (
     [Title]           NVARCHAR (MAX) NOT NULL,
     [Version]         INT            NULL,
 	[OnlySQL]		  BIT			 NOT NULL,
+	[UIVersionString] NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_SPFormat_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SKULibrary')
@@ -396,6 +411,7 @@ CREATE TABLE [dbo].[SKULibrary] (
     [Title]              NVARCHAR (MAX) NULL,
     [Version]            INT            NULL,
 	[OnlySQL]			 BIT			NOT NULL,
+	[UIVersionString]	 NVARCHAR(max)	NULL,	
     CONSTRAINT [PK_SKULibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SKU')
@@ -424,6 +440,7 @@ CREATE TABLE [dbo].[SKU] (
     [Units]           NVARCHAR (MAX) NULL,
     [Version]         INT            NULL,
 	[OnlySQL]		  BIT			 NOT NULL,
+	[UIVersionString] NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_SKU_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SKU_SKULibrary] FOREIGN KEY ([SKULibraryIndex]) REFERENCES [dbo].[SKULibrary] ([ID]),
     CONSTRAINT [FK_SKU_SPFormat] FOREIGN KEY ([FormatIndex]) REFERENCES [dbo].[SPFormat] ([ID])
@@ -474,6 +491,7 @@ CREATE TABLE [dbo].[Batch] (
     [Waste]                    FLOAT (53)     NULL,
     [WasteCooeficiencyVersion] FLOAT (53)     NULL,
 	[OnlySQL]				   BIT			  NOT NULL,
+	[UIVersionString]		   NVARCHAR(max)  NULL,
     CONSTRAINT [PK_Batch_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Batch_BatchLibrary] FOREIGN KEY ([BatchLibraryIndex]) REFERENCES [dbo].[BatchLibrary] ([ID]),
     CONSTRAINT [FK_Batch_SKU] FOREIGN KEY ([SKUIndex]) REFERENCES [dbo].[SKU] ([ID])
@@ -481,15 +499,16 @@ CREATE TABLE [dbo].[Batch] (
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'CustomsUnion')
   drop table  CustomsUnion;
 CREATE TABLE [dbo].[CustomsUnion] (
-    [Author]        NVARCHAR (MAX) NULL,
-    [Created]       DATETIME       NULL,
-    [Editor]        NVARCHAR (MAX) NULL,
-    [EUPrimeMarket] NVARCHAR (MAX) NULL,
-    [ID]            INT            NOT NULL,
-    [Modified]      DATETIME       NULL,
-    [Title]         NVARCHAR (MAX) NOT NULL,
-    [Version]       INT            NULL,
-	[OnlySQL]		BIT			   NOT NULL,
+    [Author]				NVARCHAR (MAX) NULL,
+    [Created]				DATETIME       NULL,
+    [Editor]				NVARCHAR (MAX) NULL,
+    [EUPrimeMarket]			NVARCHAR (MAX) NULL,
+    [ID]					INT            NOT NULL,
+    [Modified]				DATETIME       NULL,
+    [Title]					NVARCHAR (MAX) NOT NULL,
+    [Version]				INT            NULL,
+	[OnlySQL]				BIT			   NOT NULL,
+	[UIVersionString]		NVARCHAR(max)  NULL,
     CONSTRAINT [PK_CustomsUnion_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'CutfillerCoefficient')
@@ -506,6 +525,7 @@ CREATE TABLE [dbo].[CutfillerCoefficient] (
     [Modified]               DATETIME       NULL,
     [Version]                INT            NULL,
 	[OnlySQL]				 BIT			NOT NULL,
+	[UIVersionString]		 NVARCHAR(max)	NULL,
     CONSTRAINT [PK_CutfillerCoefficient_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'InvoiceLibrary')
@@ -528,6 +548,7 @@ CREATE TABLE [dbo].[InvoiceLibrary] (
     [Title]                  NVARCHAR (MAX) NULL,
     [Version]                INT            NULL,
 	[OnlySQL]				 BIT			NOT NULL,
+	[UIVersionString]		 NVARCHAR(max)	NULL,	
     CONSTRAINT [PK_InvoiceLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_InvoiceLibrary_Clearence] FOREIGN KEY ([ClearenceIndex]) REFERENCES [dbo].[Clearence] ([ID])
 );
@@ -550,6 +571,7 @@ CREATE TABLE [dbo].[InvoiceContent] (
     [Units]                     NVARCHAR (MAX) NULL,
     [Version]                   INT            NULL,
 	[OnlySQL]					BIT			   NOT NULL,
+	[UIVersionString]		    NVARCHAR(max)  NULL,
     CONSTRAINT [PK_InvoiceContent_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_InvoiceContent_Batch] FOREIGN KEY ([InvoiceContent2BatchIndex]) REFERENCES [dbo].[Batch] ([ID]),
     CONSTRAINT [FK_InvoiceContent_InvoiceLibrary] FOREIGN KEY ([InvoiceIndex]) REFERENCES [dbo].[InvoiceLibrary] ([ID])
@@ -581,6 +603,7 @@ CREATE TABLE [dbo].[Material] (
     [Version]             INT            NULL,
     [Waste]               FLOAT (53)     NULL,
 	[OnlySQL]			  BIT			 NOT NULL,
+	[UIVersionString]	  NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_Material_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Material_Batch] FOREIGN KEY ([Material2BatchIndex]) REFERENCES [dbo].[Batch] ([ID])
 );
@@ -605,6 +628,7 @@ CREATE TABLE [dbo].[JSOXCustomsSummary] (
     [TotalAmount]                  FLOAT (53)     NULL,
     [Version]                      INT            NULL,
 	[OnlySQL]					   BIT			  NOT NULL,
+	[UIVersionString]		       NVARCHAR(max)  NULL,
     CONSTRAINT [PK_JSOXCustomsSummary_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_JSOXCustomsSummary_JSOXLibrary] FOREIGN KEY ([JSOXCustomsSummary2JSOXIndex]) REFERENCES [dbo].[JSOXLibrary] ([ID])
 );
@@ -644,6 +668,7 @@ CREATE TABLE [dbo].[Disposal] (
     [VATPerSettledAmount]          FLOAT (53)     NULL,
     [Version]                      INT            NULL,
 	[OnlySQL]					   BIT			  NOT NULL,
+	[UIVersionString]		       NVARCHAR(max)  NULL,
     CONSTRAINT [PK_Disposal_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Disposal_Batch] FOREIGN KEY ([Disposal2BatchIndex]) REFERENCES [dbo].[Batch] ([ID]),
     CONSTRAINT [FK_Disposal_Clearence] FOREIGN KEY ([Disposal2ClearenceIndex]) REFERENCES [dbo].[Clearence] ([ID]),
@@ -656,15 +681,16 @@ CREATE TABLE [dbo].[Disposal] (
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Dust')
   drop table  Dust;
 CREATE TABLE [dbo].[Dust] (
-    [Author]      NVARCHAR (MAX) NULL,
-    [Created]     DATETIME       NULL,
-    [DustRatio]   FLOAT (53)     NULL,
-    [Editor]      NVARCHAR (MAX) NULL,
-    [ID]          INT            NOT NULL,
-    [Modified]    DATETIME       NULL,
-    [ProductType] NVARCHAR (MAX) NULL,
-    [Version]     INT            NULL,
-	[OnlySQL]	  BIT			 NOT NULL,
+    [Author]			NVARCHAR (MAX) NULL,
+    [Created]			DATETIME       NULL,
+    [DustRatio]			FLOAT (53)     NULL,
+    [Editor]			NVARCHAR (MAX) NULL,
+    [ID]				INT            NOT NULL,
+    [Modified]			DATETIME       NULL,
+    [ProductType]		NVARCHAR (MAX) NULL,
+    [Version]			INT            NULL,
+	[OnlySQL]			BIT			   NOT NULL,
+	[UIVersionString]	NVARCHAR(max)  NULL,
     CONSTRAINT [PK_Dust_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SADDuties')
@@ -682,6 +708,7 @@ CREATE TABLE [dbo].[SADDuties] (
     [Title]               NVARCHAR (MAX) NOT NULL,
     [Version]             INT            NULL,
 	[OnlySQL]			  BIT			 NOT NULL,
+	[UIVersionString]	  NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_SADDuties_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADDuties_SADGood] FOREIGN KEY ([SADDuties2SADGoodID]) REFERENCES [dbo].[SADGood] ([ID])
 );
@@ -700,6 +727,7 @@ CREATE TABLE [dbo].[SADPackage] (
     [Title]                NVARCHAR (MAX) NOT NULL,
     [Version]              INT            NULL,
 	[OnlySQL]			   BIT			  NOT NULL,
+	[UIVersionString]	   NVARCHAR(max)  NULL,
     CONSTRAINT [PK_SADPackage_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADPackage_SADGood] FOREIGN KEY ([SADPackage2SADGoodID]) REFERENCES [dbo].[SADGood] ([ID])
 );
@@ -719,6 +747,7 @@ CREATE TABLE [dbo].[SADQuantity] (
     [Units]                 NVARCHAR (MAX) NULL,
     [Version]               INT            NULL,
 	[OnlySQL]			    BIT			   NOT NULL,
+	[UIVersionString]		NVARCHAR(max)  NULL,
     CONSTRAINT [PK_SADQuantity_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADQuantity_SADGood] FOREIGN KEY ([SADQuantity2SADGoodID]) REFERENCES [dbo].[SADGood] ([ID])
 );
@@ -737,35 +766,38 @@ CREATE TABLE [dbo].[SADRequiredDocuments] (
     [Title]                    NVARCHAR (MAX) NOT NULL,
     [Version]                  INT            NULL,
 	[OnlySQL]				   BIT			  NOT NULL,
+	[UIVersionString]		   NVARCHAR(max)  NULL,
     CONSTRAINT [PK_SADRequiredDocuments_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADRequiredDocuments_SADGood] FOREIGN KEY ([SADRequiredDoc2SADGoodID]) REFERENCES [dbo].[SADGood] ([ID])
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Settings')
   drop table  Settings;
 CREATE TABLE [dbo].[Settings] (
-    [Author]   NVARCHAR (MAX) NULL,
-    [Created]  DATETIME       NULL,
-    [Editor]   NVARCHAR (MAX) NULL,
-    [ID]       INT            NOT NULL,
-    [KeyValue] NVARCHAR (MAX) NOT NULL,
-    [Modified] DATETIME       NULL,
-    [Title]    NVARCHAR (MAX) NOT NULL,
-    [Version]  INT            NULL,
-	[OnlySQL]  BIT			  NOT NULL,
+    [Author]			NVARCHAR (MAX) NULL,
+    [Created]			DATETIME       NULL,
+    [Editor]			NVARCHAR (MAX) NULL,
+    [ID]				INT            NOT NULL,
+    [KeyValue]			NVARCHAR (MAX) NOT NULL,
+    [Modified]			DATETIME       NULL,
+    [Title]				NVARCHAR (MAX) NOT NULL,
+    [Version]			INT            NULL,
+	[OnlySQL]			BIT			   NOT NULL,
+	[UIVersionString]	NVARCHAR(max)  NULL,
     CONSTRAINT [PK_Settings_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SHMenthol')
   drop table  SHMenthol;
 CREATE TABLE [dbo].[SHMenthol] (
-    [Author]         NVARCHAR (MAX) NULL,
-    [Created]        DATETIME       NULL,
-    [Editor]         NVARCHAR (MAX) NULL,
-    [ID]             INT            NOT NULL,
-    [Modified]       DATETIME       NULL,
-    [ProductType]    NVARCHAR (MAX) NOT NULL,
-    [SHMentholRatio] FLOAT (53)     NOT NULL,
-    [Version]        INT            NULL,
-	[OnlySQL]		 BIT			NOT NULL,
+    [Author]			NVARCHAR (MAX) NULL,
+    [Created]			DATETIME       NULL,
+    [Editor]			NVARCHAR (MAX) NULL,
+    [ID]				INT            NOT NULL,
+    [Modified]			DATETIME       NULL,
+    [ProductType]		NVARCHAR (MAX) NOT NULL,
+    [SHMentholRatio]	FLOAT (53)     NOT NULL,
+    [Version]			INT            NULL,
+	[OnlySQL]			BIT			   NOT NULL,
+	[UIVersionString]	NVARCHAR(max)  NULL,
     CONSTRAINT [PK_SHMenthol_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'StockLibrary')
@@ -784,6 +816,7 @@ CREATE TABLE [dbo].[StockLibrary] (
     [Title]                  NVARCHAR (MAX) NULL,
     [Version]                INT            NULL,
 	[OnlySQL]				 BIT			NOT NULL,
+	[UIVersionString]		 NVARCHAR(max)	NULL,	
     CONSTRAINT [PK_StockLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_StockLibrary_JSOXLibrary] FOREIGN KEY ([Stock2JSOXLibraryIndex]) REFERENCES [dbo].[JSOXLibrary] ([ID])
 );
@@ -812,6 +845,7 @@ CREATE TABLE [dbo].[StockEntry] (
     [Unrestricted]      FLOAT (53)     NULL,
     [Version]           INT            NULL,
 	[OnlySQL]			BIT			   NOT NULL,
+	[UIVersionString]	NVARCHAR(max)  NULL,
     CONSTRAINT [PK_StockEntry_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_StockEntry_Batch] FOREIGN KEY ([BatchIndex]) REFERENCES [dbo].[Batch] ([ID]),
     CONSTRAINT [FK_StockEntry_StockLibrary] FOREIGN KEY ([StockLibraryIndex]) REFERENCES [dbo].[StockLibrary] ([ID])
@@ -819,67 +853,71 @@ CREATE TABLE [dbo].[StockEntry] (
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Usage')
   drop table  Usage;
 CREATE TABLE [dbo].[Usage] (
-    [Author]      NVARCHAR (MAX) NULL,
-    [Created]     DATETIME       NULL,
-    [CTFUsageMax] FLOAT (53)     NULL,
-    [CTFUsageMin] FLOAT (53)     NULL,
-    [Editor]      NVARCHAR (MAX) NULL,
-    [FormatIndex] INT            NULL,
-    [ID]          INT            NOT NULL,
-    [Modified]    DATETIME       NULL,
-    [UsageMax]    FLOAT (53)     NULL,
-    [UsageMin]    FLOAT (53)     NULL,
-    [Version]     INT            NULL,
-	[OnlySQL]	  BIT			 NOT NULL,
+    [Author]			NVARCHAR (MAX) NULL,
+    [Created]			DATETIME       NULL,
+    [CTFUsageMax]		FLOAT (53)     NULL,
+    [CTFUsageMin]		FLOAT (53)     NULL,
+    [Editor]			NVARCHAR (MAX) NULL,
+    [FormatIndex]		INT            NULL,
+    [ID]				INT            NOT NULL,
+    [Modified]			DATETIME       NULL,
+    [UsageMax]			FLOAT (53)     NULL,
+    [UsageMin]			FLOAT (53)     NULL,
+    [Version]			INT            NULL,
+	[OnlySQL]			BIT			   NOT NULL,
+	[UIVersionString]	NVARCHAR(max)  NULL,
     CONSTRAINT [PK_Usage_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Usage_SPFormat] FOREIGN KEY ([FormatIndex]) REFERENCES [dbo].[SPFormat] ([ID])
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Warehouse')
   drop table  Warehouse;
 CREATE TABLE [dbo].[Warehouse] (
-    [Author]        NVARCHAR (MAX) NULL,
-    [Created]       DATETIME       NULL,
-    [Editor]        NVARCHAR (MAX) NULL,
-    [ID]            INT            NOT NULL,
-    [Modified]      DATETIME       NULL,
-    [ProductType]   NVARCHAR (MAX) NOT NULL,
-    [SPProcedure]   NVARCHAR (MAX) NOT NULL,
-    [Title]         NVARCHAR (MAX) NOT NULL,
-    [Version]       INT            NULL,
-    [WarehouseName] NVARCHAR (MAX) NOT NULL,
-	[OnlySQL]		BIT			   NOT NULL,
+    [Author]			NVARCHAR (MAX) NULL,
+    [Created]			DATETIME       NULL,
+    [Editor]			NVARCHAR (MAX) NULL,
+    [ID]				INT            NOT NULL,
+    [Modified]			DATETIME       NULL,
+    [ProductType]		NVARCHAR (MAX) NOT NULL,
+    [SPProcedure]		NVARCHAR (MAX) NOT NULL,
+    [Title]				NVARCHAR (MAX) NOT NULL,
+    [Version]			INT            NULL,
+    [WarehouseName]		NVARCHAR (MAX) NOT NULL,
+	[OnlySQL]			BIT			   NOT NULL,
+	[UIVersionString]	NVARCHAR(max)  NULL,
     CONSTRAINT [PK_Warehouse_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Waste')
   drop table  Waste;
 CREATE TABLE [dbo].[Waste] (
-    [Author]      NVARCHAR (MAX) NULL,
-    [Created]     DATETIME       NULL,
-    [Editor]      NVARCHAR (MAX) NULL,
-    [ID]          INT            NOT NULL,
-    [Modified]    DATETIME       NULL,
-    [ProductType] NVARCHAR (MAX) NULL,
-    [Version]     INT            NULL,
-    [WasteRatio]  FLOAT (53)     NULL,
-	[OnlySQL]	  BIT			 NOT NULL,
+    [Author]			NVARCHAR (MAX) NULL,
+    [Created]			DATETIME       NULL,
+    [Editor]			NVARCHAR (MAX) NULL,
+    [ID]				INT            NOT NULL,
+    [Modified]			DATETIME       NULL,
+    [ProductType]		NVARCHAR (MAX) NULL,
+    [Version]			INT            NULL,
+    [WasteRatio]		FLOAT (53)     NULL,
+	[OnlySQL]			BIT			   NOT NULL,
+	[UIVersionString]	NVARCHAR(max)  NULL,
     CONSTRAINT [PK_Waste_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'History')
   drop table  History;
 CREATE TABLE [dbo].[History] (
-    [ID]         INT            IDENTITY (1, 1) NOT NULL,
-    [ListName]   NVARCHAR (255) NOT NULL,
-    [ItemID]     INT            NOT NULL,
-    [FieldName]  NVARCHAR (255) NOT NULL,
-    [FieldValue] NVARCHAR (255) NOT NULL,
-    [Modified]   DATETIME       NOT NULL,
-    [ModifiedBy] NVARCHAR (255) NOT NULL,
+    [ID]				INT IDENTITY (1, 1) NOT NULL,
+    [ListName]			NVARCHAR (255) NOT NULL,
+    [ItemID]			INT            NOT NULL,
+    [FieldName]			NVARCHAR (255) NOT NULL,
+    [FieldValue]		NVARCHAR (255) NOT NULL,
+	[UIVersionString]	NVARCHAR(max)  NULL,
+    [Modified]			DATETIME       NOT NULL,
+    [ModifiedBy]		NVARCHAR (255) NOT NULL,
     CONSTRAINT [PK_History_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'ArchivingLogs')
   drop table  ArchivingLogs;
 CREATE TABLE [dbo].[ArchivingLogs] (
-    [ID]       INT            IDENTITY (1, 1) NOT NULL,
+    [ID]       INT IDENTITY (1, 1) NOT NULL,
     [ListName] NVARCHAR (255) NOT NULL,
     [ItemID]   INT            NOT NULL,
     [Date]     DATETIME       NOT NULL,
@@ -889,7 +927,7 @@ CREATE TABLE [dbo].[ArchivingLogs] (
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'ArchivingOperationLogs')
   drop table  ArchivingOperationLogs;
 CREATE TABLE [dbo].[ArchivingOperationLogs] (
-    [ID]        INT            IDENTITY (1, 1) NOT NULL,
+    [ID]        INT IDENTITY (1, 1) NOT NULL,
     [Operation] NVARCHAR (255) NOT NULL,
     [Date]      DATETIME       NOT NULL,
     [UserName]  NVARCHAR (255) NOT NULL,

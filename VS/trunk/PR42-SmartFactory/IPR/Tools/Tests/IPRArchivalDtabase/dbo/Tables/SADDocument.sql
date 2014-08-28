@@ -17,6 +17,7 @@
     [Title]                   NVARCHAR (MAX) NOT NULL,
     [Version]                 INT            NULL,
 	[OnlySQL]				  BIT			 NOT NULL,
+	[UIVersionString]		  NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_SADDocument_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADDocument_SADDocumentLibrary] FOREIGN KEY ([SADDocumenLibrarytIndex]) REFERENCES [dbo].[SADDocumentLibrary] ([ID])
 );

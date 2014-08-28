@@ -100,6 +100,7 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="IPRArchivinglDtabase.dbmdl" />
@@ -266,5 +267,6 @@
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <None Include="dbo\SQLScriptFileName.sql" />
+    <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
   </ItemGroup>
 </Project>

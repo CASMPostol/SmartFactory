@@ -42,6 +42,7 @@
     [VATName]             NVARCHAR (MAX) NULL,
     [Version]             INT            NULL,
 	[OnlySQL]			  BIT			 NOT NULL,
+	[UIVersionString]	  NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_IPR_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_IPR_Clearence] FOREIGN KEY ([ClearenceIndex]) REFERENCES [dbo].[Clearence] ([ID]),
     CONSTRAINT [FK_IPR_Consent] FOREIGN KEY ([IPR2ConsentTitle]) REFERENCES [dbo].[Consent] ([ID]),

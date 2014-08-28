@@ -15,6 +15,7 @@
     [Title]                      NVARCHAR (MAX) NOT NULL,
     [Version]                    INT            NULL,
 	[OnlySQL]					 BIT			NOT NULL,
+	[UIVersionString]		     NVARCHAR(max)	NULL,
     CONSTRAINT [PK_Clearence_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Clearence_SADConsignment] FOREIGN KEY ([SADConsignmentLibraryIndex]) REFERENCES [dbo].[SADConsignment] ([ID]),
     CONSTRAINT [FK_Clearence_SADGood] FOREIGN KEY ([Clearence2SadGoodID]) REFERENCES [dbo].[SADGood] ([ID])

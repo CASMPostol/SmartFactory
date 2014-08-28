@@ -11,6 +11,7 @@
     [Title]              NVARCHAR (MAX) NULL,
     [Version]            INT            NULL,
 	[OnlySQL]			 BIT			NOT NULL,
+	[UIVersionString]	 NVARCHAR(max)	NULL,
     CONSTRAINT [PK_SADConsignment_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 

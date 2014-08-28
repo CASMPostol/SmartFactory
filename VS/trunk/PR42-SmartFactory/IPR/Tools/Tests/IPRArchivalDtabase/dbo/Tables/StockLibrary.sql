@@ -12,6 +12,7 @@
     [Title]                  NVARCHAR (MAX) NULL,
     [Version]                INT            NULL,
 	[OnlySQL]				 BIT			NOT NULL,
+	[UIVersionString]		 NVARCHAR(max)	NULL,	
     CONSTRAINT [PK_StockLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_StockLibrary_JSOXLibrary] FOREIGN KEY ([Stock2JSOXLibraryIndex]) REFERENCES [dbo].[JSOXLibrary] ([ID])
 );

@@ -127,9 +127,33 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
         }
       }
     }
+    /// <summary>
+    /// Gets or sets the version.
+    /// </summary>
+    /// <value>
+    /// The version.
+    /// </value>
+    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "_UIVersionString", Storage = "_version0", ReadOnly = true, FieldType = "Text")]
+    public string UIVersionString
+    {
+      get
+      {
+        return this._version0;
+      }
+      set
+      {
+        if ((value != this._Editor))
+        {
+          this.OnPropertyChanging("UIVersionString", this._id);
+          this._version0 = value;
+          this.OnPropertyChanged("UIVersionString");
+        }
+      }
+    }
     private string _Editor;
     private System.Nullable<DateTime> _Created;
     private string _Author;
     private System.Nullable<DateTime> _Modified;
+    private string _version0;
   }
 }

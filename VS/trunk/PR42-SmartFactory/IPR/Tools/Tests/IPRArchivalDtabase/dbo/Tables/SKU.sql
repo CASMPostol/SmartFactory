@@ -22,6 +22,7 @@
     [Units]           NVARCHAR (MAX) NULL,
     [Version]         INT            NULL,
 	[OnlySQL]		  BIT			 NOT NULL,
+	[UIVersionString] NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_SKU_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SKU_SKULibrary] FOREIGN KEY ([SKULibraryIndex]) REFERENCES [dbo].[SKULibrary] ([ID]),
     CONSTRAINT [FK_SKU_SPFormat] FOREIGN KEY ([FormatIndex]) REFERENCES [dbo].[SPFormat] ([ID])

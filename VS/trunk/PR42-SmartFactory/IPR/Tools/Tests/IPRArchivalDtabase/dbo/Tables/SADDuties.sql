@@ -11,6 +11,7 @@
     [Title]               NVARCHAR (MAX) NOT NULL,
     [Version]             INT            NULL,
 	[OnlySQL]			  BIT			 NOT NULL,
+	[UIVersionString]	  NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_SADDuties_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADDuties_SADGood] FOREIGN KEY ([SADDuties2SADGoodID]) REFERENCES [dbo].[SADGood] ([ID])
 );
