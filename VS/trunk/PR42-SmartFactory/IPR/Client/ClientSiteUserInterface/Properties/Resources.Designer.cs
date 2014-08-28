@@ -97,7 +97,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Setup.
+        ///   Looks up a localized string similar to Restart.
         /// </summary>
         internal static string ButtonSetup {
             get {
