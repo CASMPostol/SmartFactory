@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 
     internal static void MarkSQLOnly(IPRDEV _sqledc, int id)
     {
-      StockLibrary _se = _sqledc.StockLibrary.Where<StockLibrary>(x => x.ID == id).FirstOrDefault<StockLibrary>();
+      StockLibrary _se = _sqledc.StockLibrary.GetAt<StockLibrary>(id);
       if (_se == null)
         return;
       _se.OnlySQL = true;

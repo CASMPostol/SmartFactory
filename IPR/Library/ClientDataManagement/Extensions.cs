@@ -14,6 +14,7 @@
 //</summary>
       
 using System;
+using System.Linq;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement
 {
@@ -31,6 +32,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     internal static bool IsLatter(this DateTime? start, int delay)
     {
       return start.HasValue ? start + TimeSpan.FromDays(delay) < DateTime.Today : false;
+    }
+    internal static TEntity GetAt<TEntity>(this System.Data.Linq.Table<TEntity> table, int index)
+       where TEntity :class, CAS.SharePoint.Client.Link2SQL.IId 
+    {
+      return table.Where<TEntity>(x => x.ID == index).FirstOrDefault<TEntity>();
     }
   }
 }
