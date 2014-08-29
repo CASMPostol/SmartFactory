@@ -102,18 +102,18 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           //_toBeMarkedArchival.Add(_iprX.IPR2ConsentTitle);
           //_toBeMarkedArchival.Add(_iprX.IPR2JSOXIndex);
           //_toBeMarkedArchival.Add(_iprX.IPR2PCNPCN);
-          _toBeMarkedArchival4IPR.Add(_iprX.ClearenceIndex);
+          _toBeMarkedArchival4IPR.AddIfNotNull(_iprX.ClearenceIndex);
           //_toBeMarkedArchival.Add(_iprX.IPRLibraryIndex);
           foreach (NSSPLinq.Disposal _dspslx in _iprX.Disposal)
           {
-            _toBeMarkedArchival4Disposal.Add(_dspslx.Disposal2BatchIndex);
-            _toBeMarkedArchival4Disposal.Add(_dspslx.Disposal2ClearenceIndex);
-            _toBeMarkedArchival4Disposal.Add(_dspslx.Disposal2InvoiceContentIndex);
-            _toBeMarkedArchival4Disposal.Add(_dspslx.Disposal2IPRIndex);
-            _toBeMarkedArchival4Disposal.Add(_dspslx.Disposal2MaterialIndex);
+            _toBeMarkedArchival4Disposal.AddIfNotNull(_dspslx.Disposal2BatchIndex);
+            _toBeMarkedArchival4Disposal.AddIfNotNull(_dspslx.Disposal2ClearenceIndex);
+            _toBeMarkedArchival4Disposal.AddIfNotNull(_dspslx.Disposal2InvoiceContentIndex);
+            _toBeMarkedArchival4Disposal.AddIfNotNull(_dspslx.Disposal2IPRIndex);
+            _toBeMarkedArchival4Disposal.AddIfNotNull(_dspslx.Disposal2MaterialIndex);
             //_toBeMarkedArchival.Add(_dspslx.Disposal2PCNID);
             //_toBeMarkedArchival.Add(_dspslx.JSOXCustomsSummaryIndex);
-            _toDeletedDisposal.Add(_dspslx);
+            _toDeletedDisposal.AddIfNotNull(_dspslx);
           }
           _toDeleteIPR.Add(_iprX);
         }
