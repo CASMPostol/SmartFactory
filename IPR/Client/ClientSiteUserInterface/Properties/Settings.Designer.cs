@@ -37,30 +37,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool DoArchiveIPR {
-            get {
-                return ((bool)(this["DoArchiveIPR"]));
-            }
-            set {
-                this["DoArchiveIPR"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool DoActivate1800 {
-            get {
-                return ((bool)(this["DoActivate1800"]));
-            }
-            set {
-                this["DoActivate1800"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("60")]
         public int ArchiveBatchDelay {
             get {
@@ -80,18 +56,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
             }
             set {
                 this["ArchiveIPRDelay"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool DoArchiveBatch {
-            get {
-                return ((bool)(this["DoArchiveBatch"]));
-            }
-            set {
-                this["DoArchiveBatch"] = value;
             }
         }
         

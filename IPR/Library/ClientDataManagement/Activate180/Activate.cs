@@ -30,15 +30,10 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Activate180
     /// <param name="siteURL">The site URL.</param>
     /// <param name="doActivate1800">if set to <c>true</c> [document activate1800].</param>
     /// <param name="progress">The progress.</param>
-    public static void Go(string siteURL, bool doActivate1800, Action<object, EntitiesChangedEventArgs> progress)
+    public static void Go(string siteURL, Action<object, EntitiesChangedEventArgs> progress)
     {
       using (Entities edc = new Entities(siteURL))
       {
-        if (!doActivate1800)
-        {
-          progress(null, new EntitiesChangedEventArgs(1, "Activation of Rel 1.81 skipped", edc));
-          return;
-        }
         UpdateDisposals(edc, progress);
         IPRRecalculateClearedRecords(edc, progress);
         ResetArchival(edc, progress);

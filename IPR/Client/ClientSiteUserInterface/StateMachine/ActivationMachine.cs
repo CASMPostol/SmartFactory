@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
     {
-      DataManagement.Activate180.Activate.Go(Properties.Settings.Default.SiteURL, Properties.Settings.Default.DoActivate1800, ReportProgress);
+      DataManagement.Activate180.Activate.Go(Properties.Settings.Default.SiteURL, ReportProgress);
     }
     protected override void RunWorkerCompleted(object result)
     {

@@ -50,8 +50,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       {
         ArchiveBatchDelay = Properties.Settings.Default.ArchiveBatchDelay,
         ArchiveIPRDelay = Properties.Settings.Default.ArchiveIPRDelay,
-        DoArchiveBatch = Properties.Settings.Default.DoArchiveBatch,
-        DoArchiveIPR = Properties.Settings.Default.DoArchiveIPR,
         SiteURL = Properties.Settings.Default.SiteURL,
         ConnectionString = ViewModel.MainWindowModel.GetConnectionString()
       };

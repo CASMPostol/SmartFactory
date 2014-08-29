@@ -39,14 +39,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     public struct ArchiveSettings
     {
       /// <summary>
-      /// if <c>true</c> do archive of ipr entries 
-      /// </summary>
-      public bool DoArchiveIPR;
-      /// <summary>
-      /// if <c>true</c> do archive of Batch entries 
-      /// </summary>
-      public bool DoArchiveBatch;
-      /// <summary>
       /// The archive batch delay
       /// </summary>
       public int ArchiveBatchDelay;
@@ -86,11 +78,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     #region private
     private static void GoIPR(NSSPLinq.Entities spedc, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, Action<object, ProgressChangedEventArgs> progress)
     {
-      if (!settings.DoArchiveIPR)
-      {
-        progress(null, new ProgressChangedEventArgs(1, "IPR archive skipped"));
-        return;
-      }
       progress(null, new ProgressChangedEventArgs(1, String.Format("Starting IPR archive-{0} delay. It could take several minutes", settings.ArchiveIPRDelay)));
       //Select delete candidates.
       List<NSSPLinq.IPR> _toDeleteIPR = new List<NSSPLinq.IPR>();
@@ -139,11 +126,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     }
     private static void GoBatch(NSSPLinq.Entities entities, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, Action<object, ProgressChangedEventArgs> progress)
     {
-      if (!settings.DoArchiveBatch)
-      {
-        progress(null, new EntitiesChangedEventArgs(1, "Batch archive skipped", entities));
-        return;
-      }
       progress(null, new EntitiesChangedEventArgs(1, String.Format("Starting Batch archive - {0} delay. It could take several minutes", settings.ArchiveBatchDelay), entities));
       //TODO progress cig exclude if final or intermediate exist
       //TODO progress arch if there is new 
