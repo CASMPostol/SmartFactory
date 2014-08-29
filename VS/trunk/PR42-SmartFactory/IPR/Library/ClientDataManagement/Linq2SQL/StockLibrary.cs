@@ -20,12 +20,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
   public partial class StockLibrary
   {
 
-    internal static void MarkSQLOnly(IPRDEV _sqledc, int id)
-    {
-      StockLibrary _se = _sqledc.StockLibrary.GetAt<StockLibrary>(id);
-      if (_se == null)
-        return;
-      _se.OnlySQL = true;
-    }
+    //internal static void MarkSQLOnly(IPRDEV _sqledc, int id)
+    //{
+    //  StockLibrary _se = _sqledc.StockLibrary.GetAt<StockLibrary>(id);
+    //  if (_se == null)
+    //    return;
+    //  _se.OnlySQL = true;
+    //}
   }
 }

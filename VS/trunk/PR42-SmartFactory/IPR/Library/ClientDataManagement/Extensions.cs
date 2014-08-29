@@ -33,10 +33,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     {
       return start.HasValue ? start + TimeSpan.FromDays(delay) < DateTime.Today : false;
     }
-    internal static TEntity GetAt<TEntity>(this System.Data.Linq.Table<TEntity> table, int index)
-       where TEntity :class, CAS.SharePoint.Client.Link2SQL.IId 
+    internal static string UserName()
     {
-      return table.Where<TEntity>(x => x.ID == index).FirstOrDefault<TEntity>();
+      return String.Format(Properties.Resources.ActivitiesLogsUserNamePattern, Environment.UserName, Environment.MachineName);
     }
   }
 }

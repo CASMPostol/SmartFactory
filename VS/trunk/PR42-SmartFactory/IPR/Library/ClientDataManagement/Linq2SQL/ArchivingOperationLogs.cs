@@ -50,7 +50,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
       {
         Date = DateTime.Now,
         Operation = operation.ToString(),
-        UserName = String.Format(Properties.Resources.ActivitiesLogsUserNamePattern, Environment.UserName, Environment.MachineName)
+        UserName = Extensions.UserName()
       };
       sqlEntities.ArchivingOperationLogs.InsertOnSubmit(_logs);
       sqlEntities.SubmitChanges();

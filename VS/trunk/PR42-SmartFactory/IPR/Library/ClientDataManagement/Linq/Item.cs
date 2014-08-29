@@ -13,19 +13,18 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.SharePoint.Client.Link2SQL;
-using Microsoft.SharePoint.Linq;
+using CAS.SharePoint.Client.Linq2SP;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
 {
   /// <summary>
   /// SharePoint Item Entity class
   /// </summary>
-  public partial class Item
+  public partial class Item : ISPItem
   {
+
     #region SharePoint fields access
     /// <summary>
     /// Gets or sets the creation date.
@@ -156,19 +155,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
         {"ID", "Id"},
         {"OnlySQL", ""} 
       };
-    }
-    internal static void Delete<TEntity>(EntityList<TEntity> list, IEnumerable<TEntity> entities, IEnumerable<IArchival> toBeMarkedAsArchival, Func<int, IItem> getSQLEntity, Action<int, string> addLog)
-      where TEntity : Item, new()
-    {
-      foreach (TEntity _item in entities)
-      {
-        IItem _sqlItem = getSQLEntity(_item.Id.Value);
-        _sqlItem.OnlySQL = true;
-        addLog(_item.Id.Value, list.Name);
-        list.DeleteOnSubmit(_item);
-      }
-      foreach (IArchival _ax in toBeMarkedAsArchival)
-        _ax.Archival = true;
     }
     #endregion
 
