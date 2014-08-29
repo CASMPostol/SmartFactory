@@ -12,8 +12,9 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement
@@ -27,7 +28,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     /// <returns>The <paramref name="value"/> rounded; the number of fractional digits in the return value is 2.</returns>
     internal static decimal Round2Decimals(this decimal value)
     {
-      return Math.Round( value, 2 );
+      return Math.Round(value, 2);
     }
     internal static bool IsLatter(this DateTime? start, int delay)
     {
@@ -36,6 +37,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     internal static string UserName()
     {
       return String.Format(Properties.Resources.ActivitiesLogsUserNamePattern, Environment.UserName, Environment.MachineName);
+    }
+    internal static void AddIfNotNull<T>(this List<T> list, T item)
+      where T : class
+    {
+      if (item == null)
+        return;
+      list.Add(item);
     }
   }
 }
