@@ -15,7 +15,7 @@
 
 using System;
 
-namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
+namespace CAS.SmartFactory.Shepherd.DataModel.Entities.ShippingSubstateMachine
 {
   /// <summary>
   /// Shipment Substrate Machine Context
@@ -39,7 +39,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
       public static ContexException TriggerError( string trigger, ShippingState2 contextState )
       {
         string _msg = String.Format
-          ( "SheepingSubstateMachine error: the {0} trigger is not allowed in the current state {1}",
+          ( "ShippingSubstateMachine error: the {0} trigger is not allowed in the current state {1}",
             trigger,
             contextState
           );
@@ -80,7 +80,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
       public virtual void SetAwaiting( bool value )
       {
         string _msg = String.Format
-          ( "SheepingSubstateMachine error: SetAwaiting( {0} ) trigger is not allowed in the current state {1}",
+          ( "ShippingSubstateMachine error: SetAwaiting( {0} ) trigger is not allowed in the current state {1}",
             value,
             this.Parent.m_Parent.ShippingState2.Value
           );

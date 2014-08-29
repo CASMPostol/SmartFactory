@@ -455,7 +455,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// </summary>
     public void SetWarehouseEndTime()
     {
-      m_SheepingSubstateMachineContext.SetEndTime();
+      m_ShippingSubstateMachineContext.SetEndTime();
     }
     /// <summary>
     /// Get all Occupied <see cref="TimeSlotTimeSlot"/> for this <see cref="Shipping"/>.
@@ -507,7 +507,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
 
     #region private
     List<TimeSlotTimeSlot> m_TimeSlots = null;
-    private SheepingSubstateMachine.Context m_SheepingSubstateMachineContext;
+    private ShippingSubstateMachine.Context m_ShippingSubstateMachineContext;
     private TimeSpan _12h = new TimeSpan(12, 0, 0);
     private void RemoveDrivers(EntitiesDataContext EDC, Partner partner)
     {
@@ -525,7 +525,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// </summary>
     partial void OnCreated()
     {
-      m_SheepingSubstateMachineContext = new SheepingSubstateMachine.Context(this);
+      m_ShippingSubstateMachineContext = new ShippingSubstateMachine.Context(this);
     }
     /// <summary>
     /// Called when a selected property value has been changed.
@@ -537,13 +537,13 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       try
       {
         if (propertyName.Equals("ShippingState"))
-          m_SheepingSubstateMachineContext.SetShippingState(this.ShippingState.Value);
+          m_ShippingSubstateMachineContext.SetShippingState(this.ShippingState.Value);
         else if (propertyName.Equals("TruckAwaiting"))
-          m_SheepingSubstateMachineContext.SetAwaiting(this.TruckAwaiting.Value);
+          m_ShippingSubstateMachineContext.SetAwaiting(this.TruckAwaiting.Value);
         else if (propertyName.Equals("PartnerTitle"))
-          m_SheepingSubstateMachineContext.SetPartner(this.PartnerTitle);
+          m_ShippingSubstateMachineContext.SetPartner(this.PartnerTitle);
       }
-      catch (SheepingSubstateMachine.Context.ContexException)
+      catch (ShippingSubstateMachine.Context.ContexException)
       {
         throw;
       }
