@@ -42,6 +42,10 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CAS.SharePoint, Version=2.0.10.23021, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -82,9 +86,9 @@
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Entities\Entities.partial.cs" />
     <Compile Include="Entities\EntitiesDataDictionary.cs" />
-    <Compile Include="Entities\SheepingSubstateMachine\Context.cs" />
-    <Compile Include="Entities\SheepingSubstateMachine\IContextTrigers.cs" />
     <Compile Include="Entities\Shipping.cs" />
+    <Compile Include="Entities\ShippingSubstateMachine\Context.cs" />
+    <Compile Include="Entities\ShippingSubstateMachine\IContextTrigers.cs" />
     <Compile Include="Entities\TimeSlotTimeSlot.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ImportDataModel\ImportDataModelShepherd.cs">

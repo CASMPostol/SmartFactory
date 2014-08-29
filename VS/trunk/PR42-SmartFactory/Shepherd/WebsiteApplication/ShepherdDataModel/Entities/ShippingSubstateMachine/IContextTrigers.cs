@@ -13,7 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
-namespace CAS.SmartFactory.Shepherd.DataModel.Entities.SheepingSubstateMachine
+namespace CAS.SmartFactory.Shepherd.DataModel.Entities.ShippingSubstateMachine
 {
   /// <summary>
   /// Sheeping substate machine context trigers interface

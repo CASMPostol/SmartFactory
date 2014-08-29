@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="149819b5-8acd-4d63-a848-631d426176d0" solutionId="149819b5-8acd-4d63-a848-631d426176d0" resetWebServer="false" name="CASShepherdDataModel" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <assemblies>
-    <customAssembly location="CAS.SharePoint.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll" />
+    <customAssembly location="CAS.SharePoint.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\..\..\CommonBinaries\PR42-SmartFactory\CAS.SharePoint.dll" />
   </assemblies>
   <features>
     <featureReference itemId="8af5cff2-7428-4024-be44-a00e09558644" />
