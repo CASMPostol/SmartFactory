@@ -69,7 +69,6 @@
     <Compile Include="Linq\Disposal.cs" />
     <Compile Include="Linq\Document.cs" />
     <Compile Include="Linq\Entities.cs" />
-    <Compile Include="Linq\IArchival.cs" />
     <Compile Include="Linq\IPR.cs" />
     <Compile Include="Linq\Item.cs" />
     <Compile Include="Linq\SADGood.cs" />
@@ -117,9 +116,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

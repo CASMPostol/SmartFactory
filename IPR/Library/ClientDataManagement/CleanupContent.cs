@@ -18,6 +18,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using CAS.SharePoint.Client.Link2SQL;
+using CAS.SharePoint.Client.Linq2SP;
+using NSLinq2SQL = CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement
 {
@@ -35,57 +38,36 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     public static void Go(string siteURL, string connectionString, Action<object, ProgressChangedEventArgs> progress)
     {
       Linq2SQL.IPRDEV _sqledc = Linq2SQL.IPRDEV.Connect2SQL(connectionString, progress);
-      using (Entities entities = new Entities(siteURL))
+      using (Entities _spedc = new Entities(siteURL))
       {
         progress(null, new ProgressChangedEventArgs(1, String.Format("Starting CleanupContent. It could take several minutes")));
-        int _StockEntryArchived = 0;
-        int _StockLibArchived = 0;
         progress(null, new ProgressChangedEventArgs(1, "Buffering StockLib entries"));
-        List<StockLib> _slList = entities.StockLibrary.ToList<StockLib>();
+        List<StockLib> _slList = _spedc.StockLibrary.ToList<StockLib>();
         progress(null, new ProgressChangedEventArgs(1, String.Format("There is {0} StockLib entries", _slList.Count)));
         progress(null, new ProgressChangedEventArgs(1, "Buffering StockEntry entries"));
-        List<StockEntry> _seList = entities.StockEntry.ToList<StockEntry>();
-        progress(null, new ProgressChangedEventArgs(1, String.Format("There is {0} StockEntry entries", _seList.Count)));
-        foreach (StockEntry _sex in _seList)
-        {
-          if (_sex.StockLibraryIndex == null)
-          {
-            _StockEntryArchived++;
-            entities.StockEntry.DeleteOnSubmit(_sex);
-            Linq2SQL.StockEntry.MarkSQLOnly(_sqledc, _sex.Id.Value);
-          }
-        }
-        progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockEntry entries.", _StockEntryArchived)));
-        SPSubmitChanges(entities, _sqledc, progress);
+        List<StockEntry> _seToBeDeleted = _spedc.StockEntry.ToList<StockEntry>().Where<StockEntry>(x => x.StockLibraryIndex == null).ToList<StockEntry>();
+        //Delete not associated StockEntries
+        progress(null, new ProgressChangedEventArgs(1, String.Format("There is {0} StockEntry to be deleted because they are not associated with StockLib.", _seToBeDeleted.Count)));
+        _spedc.StockEntry.Delete<StockEntry>(_seToBeDeleted, null, x => _sqledc.StockEntry.GetAt<NSLinq2SQL.StockEntry>(x), (id, listName) => _sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()));
+        Link2SQLExtensions.SubmitChanges(_spedc, _sqledc, progress);
+        _seToBeDeleted.Clear();
+        List<StockLib> _slToBeDeleted = new List<StockLib>();
         foreach (StockLib _selX in _slList)
         {
-          if (_selX.Stock2JSOXLibraryIndex == null)
-          {
-            _StockEntryArchived += _selX.StockEntry.Count;
-            int _count = _selX.StockEntry.Count;
-            foreach (StockEntry _sex in _selX.StockEntry)
-            {
-              entities.StockEntry.DeleteOnSubmit(_sex);
-              Linq2SQL.StockEntry.MarkSQLOnly(_sqledc, _sex.Id.Value);
-            }
-            progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} Stock entries.", _count)));
-            _StockLibArchived++;
-            entities.StockLibrary.DeleteOnSubmit(_selX);
-            Linq2SQL.StockLibrary.MarkSQLOnly(_sqledc, _selX.Id.Value);
-          }
+          if (_selX.Stock2JSOXLibraryIndex != null)
+            continue;
+          _slToBeDeleted.Add(_selX);
+          _seToBeDeleted.AddRange(_selX.StockEntry);
         }
-        progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockLibrary entries.", _StockLibArchived)));
-        SPSubmitChanges(entities, _sqledc, progress);
+        progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} Stock entries.", _seToBeDeleted.Count)));
+        _spedc.StockEntry.Delete<StockEntry>(_seToBeDeleted, null, x => _sqledc.StockEntry.GetAt<NSLinq2SQL.StockEntry>(x), (id, listName) => _sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()));
+        progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockLib entries.", _slToBeDeleted.Count)));
+        _spedc.StockLibrary.Delete<StockLib>(_slToBeDeleted, null, x => _sqledc.StockLibrary.GetAt<NSLinq2SQL.StockLibrary>(x), (id, listName) => _sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()));
+        Link2SQLExtensions.SubmitChanges(_spedc, _sqledc, progress);
+        //Update Activities Log
         Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(_sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Cleanup, progress);
-        progress(null, new ProgressChangedEventArgs(1, String.Format("Finished CleanupContent; deleted {0} StockLib and {1} StockEntry entries.", _StockLibArchived, _StockEntryArchived)));
+        progress(null, new ProgressChangedEventArgs(1, "Finished Cleanup Content Operation."));
       }
-    }
-    private static void SPSubmitChanges(Entities spEntities, Linq2SQL.IPRDEV sqlEntities, Action<object, ProgressChangedEventArgs> progress)
-    {
-      progress(null, new ProgressChangedEventArgs(1, "Submitting changes to SharePoint"));
-      spEntities.SubmitChanges();
-      progress(null, new ProgressChangedEventArgs(1, "Submitting changes to SQL"));
-      sqlEntities.SubmitChanges();
     }
   }
 }
