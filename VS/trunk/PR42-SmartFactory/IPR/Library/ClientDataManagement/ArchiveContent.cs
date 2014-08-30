@@ -122,6 +122,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       spedc.Disposal.Delete<NSSPLinq.Disposal>(_toDeletedDisposal, _toBeMarkedArchival4Disposal, x => sqledc.Disposal.GetAt<NSLinq2SQL.Disposal>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()));
       spedc.IPR.Delete<NSSPLinq.IPR>(_toDeleteIPR, _toBeMarkedArchival4IPR, x => sqledc.IPR.GetAt<NSLinq2SQL.IPR>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()));
       Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
+      //Update Activities Log
+      Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Archiving, progress);
       progress(null, new ProgressChangedEventArgs(1, "Finished Archive IPR"));
     }
     private static void GoBatch(NSSPLinq.Entities entities, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, Action<object, ProgressChangedEventArgs> progress)
