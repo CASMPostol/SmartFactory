@@ -19,6 +19,7 @@ using Microsoft.SharePoint.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Linq;
 using System.Diagnostics;
 using System.Linq;
 using NSLinq2SQL = CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL;
@@ -119,8 +120,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         }
       }
       progress(null, new ProgressChangedEventArgs(1, String.Format("Selected {0} IPR accounts and {1} disposal entries to be deleted.", _toDeleteIPR.Count, _toDeletedDisposal.Count)));
-      spedc.Disposal.Delete<NSSPLinq.Disposal>(_toDeletedDisposal, _toBeMarkedArchival4Disposal, x => sqledc.Disposal.GetAt<NSLinq2SQL.Disposal>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()));
-      spedc.IPR.Delete<NSSPLinq.IPR>(_toDeleteIPR, _toBeMarkedArchival4IPR, x => sqledc.IPR.GetAt<NSLinq2SQL.IPR>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()));
+      spedc.Disposal.Delete<NSSPLinq.Disposal, NSLinq2SQL.History>
+        (_toDeletedDisposal, _toBeMarkedArchival4Disposal, x => sqledc.Disposal.GetAt<NSLinq2SQL.Disposal>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+          settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+      spedc.IPR.Delete<NSSPLinq.IPR, NSLinq2SQL.History>
+        (_toDeleteIPR, _toBeMarkedArchival4IPR, x => sqledc.IPR.GetAt<NSLinq2SQL.IPR>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+          settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
       Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
       //Update Activities Log
       Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Archiving, progress);

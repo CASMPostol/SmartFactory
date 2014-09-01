@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement
@@ -44,6 +45,10 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       if (item == null)
         return;
       list.Add(item);
+    }
+    internal static void AddHistoryEntry(this Table<Linq2SQL.History> sqledc, Linq2SQL.History history)
+    {
+      sqledc.InsertOnSubmit(history);
     }
   }
 }
