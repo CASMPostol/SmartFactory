@@ -93,7 +93,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         {
           bool _any = false;
           foreach (NSSPLinq.Disposal _dspx in _iprX.Disposal)
-            if (_dspx.Disposal2BatchIndex != null && (_dspx.Disposal2BatchIndex.FGQuantity.Value != 0 || _dspx.Disposal2BatchIndex.BatchStatus.Value != NSSPLinq.BatchStatus.Final))
+            if (_dspx.Disposal2BatchIndex != null && (_dspx.Disposal2BatchIndex.FGQuantityAvailable.Value != 0 || _dspx.Disposal2BatchIndex.BatchStatus.Value != NSSPLinq.BatchStatus.Final))
             {
               _any = true;
               break;
