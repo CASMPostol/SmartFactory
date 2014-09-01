@@ -13,13 +13,12 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Client.Link2SQL;
 using CAS.SmartFactory.IPR.Client.DataManagement.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using CAS.SharePoint.Client.Link2SQL;
-using CAS.SharePoint.Client.Linq2SP;
 using NSLinq2SQL = CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement
@@ -48,7 +47,9 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         List<StockEntry> _seToBeDeleted = _spedc.StockEntry.ToList<StockEntry>().Where<StockEntry>(x => x.StockLibraryIndex == null).ToList<StockEntry>();
         //Delete not associated StockEntries
         progress(null, new ProgressChangedEventArgs(1, String.Format("There is {0} StockEntry to be deleted because they are not associated with StockLib.", _seToBeDeleted.Count)));
-        _spedc.StockEntry.Delete<StockEntry>(_seToBeDeleted, null, x => _sqledc.StockEntry.GetAt<NSLinq2SQL.StockEntry>(x), (id, listName) => _sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()));
+        _spedc.StockEntry.Delete<StockEntry, NSLinq2SQL.History>
+          (_seToBeDeleted, null, x => _sqledc.StockEntry.GetAt<NSLinq2SQL.StockEntry>(x), (id, listName) => _sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+            siteURL, x => _sqledc.History.AddHistoryEntry(x));
         Link2SQLExtensions.SubmitChanges(_spedc, _sqledc, progress);
         _seToBeDeleted.Clear();
         List<StockLib> _slToBeDeleted = new List<StockLib>();
@@ -60,9 +61,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           _seToBeDeleted.AddRange(_selX.StockEntry);
         }
         progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} Stock entries.", _seToBeDeleted.Count)));
-        _spedc.StockEntry.Delete<StockEntry>(_seToBeDeleted, null, x => _sqledc.StockEntry.GetAt<NSLinq2SQL.StockEntry>(x), (id, listName) => _sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()));
+        _spedc.StockEntry.Delete<StockEntry, NSLinq2SQL.History>
+          (_seToBeDeleted, null, x => _sqledc.StockEntry.GetAt<NSLinq2SQL.StockEntry>(x), (id, listName) => _sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+           siteURL, x => _sqledc.History.AddHistoryEntry(x));
         progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockLib entries.", _slToBeDeleted.Count)));
-        _spedc.StockLibrary.Delete<StockLib>(_slToBeDeleted, null, x => _sqledc.StockLibrary.GetAt<NSLinq2SQL.StockLibrary>(x), (id, listName) => _sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()));
+        _spedc.StockLibrary.Delete<StockLib, NSLinq2SQL.History>
+          (_slToBeDeleted, null, x => _sqledc.StockLibrary.GetAt<NSLinq2SQL.StockLibrary>(x), (id, listName) => _sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+           siteURL, x => _sqledc.History.AddHistoryEntry(x));
         Link2SQLExtensions.SubmitChanges(_spedc, _sqledc, progress);
         //Update Activities Log
         Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(_sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Cleanup, progress);
