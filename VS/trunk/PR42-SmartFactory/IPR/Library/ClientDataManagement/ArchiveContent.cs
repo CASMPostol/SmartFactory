@@ -63,15 +63,17 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     /// <param name="ProgressChanged">The progress changed.</param>
     public static void Go(ArchiveSettings settings, Action<object, ProgressChangedEventArgs> ProgressChanged)
     {
-      NSLinq2SQL.IPRDEV _sqledc = NSLinq2SQL.IPRDEV.Connect2SQL(settings.ConnectionString, ProgressChanged);
-      if (String.IsNullOrEmpty(settings.ConnectionString))
-        throw new ArgumentNullException("Database connection string cannot be null or empty.");
-      if (!_sqledc.DatabaseExists())
-        throw new ArgumentOutOfRangeException(String.Format("The database at {0} does nor exist.", settings.ConnectionString));
-      using (NSSPLinq.Entities _spedc = new NSSPLinq.Entities(settings.SiteURL))
+      using (NSLinq2SQL.IPRDEV _sqledc = NSLinq2SQL.IPRDEV.Connect2SQL(settings.ConnectionString, ProgressChanged))
       {
-        GoIPR(_spedc, _sqledc, settings, ProgressChanged);
-        //GoBatch(edc, settings, ProgressChanged);
+        if (String.IsNullOrEmpty(settings.ConnectionString))
+          throw new ArgumentNullException("Database connection string cannot be null or empty.");
+        if (!_sqledc.DatabaseExists())
+          throw new ArgumentOutOfRangeException(String.Format("The database at {0} does nor exist.", settings.ConnectionString));
+        using (NSSPLinq.Entities _spedc = new NSSPLinq.Entities(settings.SiteURL))
+        {
+          GoIPR(_spedc, _sqledc, settings, ProgressChanged);
+          //GoBatch(edc, settings, ProgressChanged);
+        }
       }
     }
     #endregion
@@ -81,10 +83,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     {
       progress(null, new ProgressChangedEventArgs(1, String.Format("Starting IPR archive-{0} delay. It could take several minutes", settings.ArchiveIPRDelay)));
       //Select delete candidates.
-      List<NSSPLinq.IPR> _toDeleteIPR = new List<NSSPLinq.IPR>();
-      List<IArchival> _toBeMarkedArchival4IPR = new List<IArchival>();
-      List<Linq.Disposal> _toDeletedDisposal = new List<NSSPLinq.Disposal>();
-      List<IArchival> _toBeMarkedArchival4Disposal = new List<IArchival>();
       progress(null, new ProgressChangedEventArgs(1, "Buffering Disposal and IPR entries"));
       List<NSSPLinq.Disposal> _dspsls = spedc.Disposal.ToList<NSSPLinq.Disposal>();
       foreach (Linq.IPR _iprX in spedc.IPR)
@@ -100,6 +98,10 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
             }
           if (_any)
             continue;
+          List<NSSPLinq.IPR> _toDeleteIPR = new List<NSSPLinq.IPR>();
+          List<IArchival> _toBeMarkedArchival4IPR = new List<IArchival>();
+          List<Linq.Disposal> _toDeletedDisposal = new List<NSSPLinq.Disposal>();
+          List<IArchival> _toBeMarkedArchival4Disposal = new List<IArchival>();
           //_toBeMarkedArchival.Add(_iprX.IPR2ConsentTitle);
           //_toBeMarkedArchival.Add(_iprX.IPR2JSOXIndex);
           //_toBeMarkedArchival.Add(_iprX.IPR2PCNPCN);
@@ -117,16 +119,16 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
             _toDeletedDisposal.AddIfNotNull(_dspslx);
           }
           _toDeleteIPR.Add(_iprX);
+          progress(null, new ProgressChangedEventArgs(1, String.Format("Selected {0} IPR account with {1} disposal entries to be deleted.", _iprX.Title, _toDeletedDisposal.Count)));
+          spedc.Disposal.Delete<NSSPLinq.Disposal, NSLinq2SQL.History>
+            (_toDeletedDisposal, _toBeMarkedArchival4Disposal, x => sqledc.Disposal.GetAt<NSLinq2SQL.Disposal>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+              settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+          spedc.IPR.Delete<NSSPLinq.IPR, NSLinq2SQL.History>
+            (_toDeleteIPR, _toBeMarkedArchival4IPR, x => sqledc.IPR.GetAt<NSLinq2SQL.IPR>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+              settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+          Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
         }
       }
-      progress(null, new ProgressChangedEventArgs(1, String.Format("Selected {0} IPR accounts and {1} disposal entries to be deleted.", _toDeleteIPR.Count, _toDeletedDisposal.Count)));
-      spedc.Disposal.Delete<NSSPLinq.Disposal, NSLinq2SQL.History>
-        (_toDeletedDisposal, _toBeMarkedArchival4Disposal, x => sqledc.Disposal.GetAt<NSLinq2SQL.Disposal>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
-          settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
-      spedc.IPR.Delete<NSSPLinq.IPR, NSLinq2SQL.History>
-        (_toDeleteIPR, _toBeMarkedArchival4IPR, x => sqledc.IPR.GetAt<NSLinq2SQL.IPR>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
-          settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
-      Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
       //Update Activities Log
       Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Archiving, progress);
       progress(null, new ProgressChangedEventArgs(1, "Finished Archive IPR"));
