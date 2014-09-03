@@ -72,7 +72,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         using (NSSPLinq.Entities _spedc = new NSSPLinq.Entities(settings.SiteURL))
         {
           GoIPR(_spedc, _sqledc, settings, ProgressChanged);
-          //GoBatch(edc, settings, ProgressChanged);
+          GoBatch(_spedc, _sqledc, settings, ProgressChanged);
         }
       }
     }
@@ -133,22 +133,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Archiving, progress);
       progress(null, new ProgressChangedEventArgs(1, "Finished Archive IPR"));
     }
-    private static void GoBatch(NSSPLinq.Entities entities, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, Action<object, ProgressChangedEventArgs> progress)
+    private static void GoBatch(NSSPLinq.Entities _spedc, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, Action<object, ProgressChangedEventArgs> progress)
     {
-      progress(null, new EntitiesChangedEventArgs(1, String.Format("Starting Batch archive - {0} delay. It could take several minutes", settings.ArchiveBatchDelay), entities));
+      progress(null, new ProgressChangedEventArgs(1, String.Format("Starting Batch archive - {0} delay. It could take several minutes", settings.ArchiveBatchDelay)));
       //TODO progress cig exclude if final or intermediate exist
       //TODO progress arch if there is new 
       //TODO cuttfiler AD ??
-      progress(null, new EntitiesChangedEventArgs(1, "Buffering Material entries", entities));
-      List<NSSPLinq.Material> _mtrl = entities.Material.ToList<NSSPLinq.Material>();
+      progress(null, new ProgressChangedEventArgs(1, "Buffering Material entries"));
+      List<NSSPLinq.Material> _mtrl = _spedc.Material.ToList<NSSPLinq.Material>();
       int _batchArchived = 0;
       int _progressBatchArchived = 0;
       int _materialArchived = 0;
-      IEnumerable<NSSPLinq.Batch> _allB = entities.Batch.ToList<NSSPLinq.Batch>().Where<NSSPLinq.Batch>(x => x.ProductType.Value == NSSPLinq.ProductType.Cigarette);
+      IEnumerable<NSSPLinq.Batch> _allB = _spedc.Batch.ToList<NSSPLinq.Batch>().Where<NSSPLinq.Batch>(x => x.ProductType.Value == NSSPLinq.ProductType.Cigarette);
       Dictionary<string, IGrouping<string, NSSPLinq.Batch>> _progressBatch = (from _fbx in _allB where _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Progress group _fbx by _fbx.Batch0).ToDictionary(x => x.Key);
       List<NSSPLinq.Batch> _noProgressBatch = (from _fbx in _allB where _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Final || _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Intermediate select _fbx).ToList<NSSPLinq.Batch>();
       string _msg = String.Format("There are {0} Progress and {1} not Progress Batch entries", _progressBatch.Count, _noProgressBatch.Count);
-      progress(null, new EntitiesChangedEventArgs(1, _msg, entities));
+      progress(null, new ProgressChangedEventArgs(1, _msg));
       foreach (NSSPLinq.Batch _batchX in _noProgressBatch)
       {
         if (_progressBatch.Keys.Contains(_batchX.Batch0))
@@ -157,26 +157,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           foreach (NSSPLinq.Batch _bpx in _progressBatch[_batchX.Batch0])
           {
             Debug.Assert(_bpx.BatchStatus.Value == NSSPLinq.BatchStatus.Progress, "Wrong BatchStatus should be == BatchStatus.Progress");
-            progress(null, new EntitiesChangedEventArgs(1, null, entities));
+            progress(null, new ProgressChangedEventArgs(1, null));
             _bpx.Archival = true;
             _progressBatchArchived++;
-            Link2SQLExtensions.SubmitChanges(entities, sqledc, progress);
+            Link2SQLExtensions.SubmitChanges(_spedc, sqledc, progress);
             foreach (NSSPLinq.Material _mpx in _bpx.Material)
             {
               Debug.Assert(_mpx.Material2BatchIndex == _bpx, "Wrong Material to Batch link");
-              progress(null, new EntitiesChangedEventArgs(1, null, entities));
+              progress(null, new ProgressChangedEventArgs(1, null));
               _materialArchived++;
               _mpx.Archival = true;
             }
           }
         } //foreach (Batch _batchX
-        progress(null, new EntitiesChangedEventArgs(1, null, entities));
+        progress(null, new ProgressChangedEventArgs(1, null));
         if (_batchX.ProductType.Value != NSSPLinq.ProductType.Cigarette || _batchX.FGQuantityAvailable > 0)
           continue;
         bool _2archive = true;
         foreach (NSSPLinq.Material _material in _batchX.Material)
         {
-          progress(null, new EntitiesChangedEventArgs(1, null, entities));
+          progress(null, new EntitiesChangedEventArgs(1, null, _spedc));
           foreach (NSSPLinq.Disposal _disposalX in _material.Disposal)
           {
             if (_disposalX.CustomsStatus.Value != NSSPLinq.CustomsStatus.Finished || !_disposalX.SADDate.IsLatter(settings.ArchiveBatchDelay))
@@ -184,7 +184,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
               _2archive = false;
               break;
             }
-            progress(null, new EntitiesChangedEventArgs(1, null, entities));
+            progress(null, new EntitiesChangedEventArgs(1, null, _spedc));
           }
           if (!_2archive)
             break;
@@ -196,13 +196,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           foreach (NSSPLinq.Material _material in _batchX.Material)
           {
             _material.Archival = true;
-            progress(null, new EntitiesChangedEventArgs(1, null, entities));
+            progress(null, new EntitiesChangedEventArgs(1, null, _spedc));
           }
-          Link2SQLExtensions.SubmitChanges(entities, sqledc, progress);
+          Link2SQLExtensions.SubmitChanges(_spedc, sqledc, progress);
         }
       }// foreach (Batch 
-      Link2SQLExtensions.SubmitChanges(entities, sqledc, progress);
-      progress(null, new EntitiesChangedEventArgs(1, String.Format("Finished Archive.GoBatch; Archived {0} Batch final, Batch progress {1} and {2} Material entries.", _batchArchived, _progressBatchArchived, _materialArchived), entities));
+      Link2SQLExtensions.SubmitChanges(_spedc, sqledc, progress);
+      progress(null, new EntitiesChangedEventArgs(1, String.Format("Finished Archive.GoBatch; Archived {0} Batch final, Batch progress {1} and {2} Material entries.", _batchArchived, _progressBatchArchived, _materialArchived), _spedc));
     }
     #endregion
 
