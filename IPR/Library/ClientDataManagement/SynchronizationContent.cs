@@ -129,12 +129,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     }
     private static void Synchronize<TSQL, TSP>(TSQL sqlItem,
       TSP splItem,
-      List<SharePoint.Client.Linq2SP.StorageItem> _spDscrpt,
-      Dictionary<string, SharePoint.Client.Link2SQL.SQLStorageItem> _sqlDscrpt,
+      List<StorageItem> _spDscrpt,
+      Dictionary<string, SQLStorageItem> _sqlDscrpt,
       Action<object, ProgressChangedEventArgs> progressChanged,
       Microsoft.SharePoint.Linq.DataContext dataContext)
     {
-      foreach (StorageItem _si in _spDscrpt.Where<StorageItem>(x => x.IsNotReverseLookup()))
+      foreach (StorageItem _si in _spDscrpt.Where<StorageItem>(x => !x.IsReverseLookup()))
         if (_sqlDscrpt.ContainsKey(_si.PropertyName))
           _si.GetValueFromEntity(splItem, x => _sqlDscrpt[_si.PropertyName].Assign(x, sqlItem), dataContext);
     }
