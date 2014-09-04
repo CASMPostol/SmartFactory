@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="d5b7af74-65b4-4968-a81a-70ba671f405d" solutionId="d5b7af74-65b4-4968-a81a-70ba671f405d" resetWebServer="false" title="CAS SmartFactory Shepherd data model " description="Shepherd data model data model  package 1.70.10" name="CASShepherdWebsite" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="d5b7af74-65b4-4968-a81a-70ba671f405d" solutionId="d5b7af74-65b4-4968-a81a-70ba671f405d" resetWebServer="false" title="CAS SmartFactory Shepherd data model " description="Shepherd data model data model  package 2.20.00" name="CASShepherdWebsite" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
     <featureReference itemId="4cb45461-1db0-4082-a052-d91586eac38e" />
     <featureReference itemId="215afb23-ba42-402e-a2ec-41e2c06fc9be" />

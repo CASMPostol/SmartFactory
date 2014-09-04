@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="693191fd-6a7a-4db6-ac8e-a3f747ddf439" description="$Resources:CASSmartFactoryShepherd,CAS_ShepherdWebsiteFeatureDes" featureId="693191fd-6a7a-4db6-ac8e-a3f747ddf439" imageUrl="ShepherdDashboards\shepherd_feature_32x32.png" scope="Site" solutionId="00000000-0000-0000-0000-000000000000" title="$Resources:CASSmartFactoryShepherd,CAS_ShepherdWebsiteFeature" version="AAEAAAD/////AQAAAAAAAAAEAQAAAA5TeXN0ZW0uVmVyc2lvbgQAAAAGX01ham9yBl9NaW5vcgZfQnVpbGQJX1JldmlzaW9uAAAAAAgICAgBAAAARgAAAAsAAAAAAAAACw==" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
+<feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="693191fd-6a7a-4db6-ac8e-a3f747ddf439" description="$Resources:CASSmartFactoryShepherd,CAS_ShepherdWebsiteFeatureDes" featureId="693191fd-6a7a-4db6-ac8e-a3f747ddf439" imageUrl="ShepherdDashboards\shepherd_feature_32x32.png" scope="Site" solutionId="00000000-0000-0000-0000-000000000000" title="$Resources:CASSmartFactoryShepherd,CAS_ShepherdWebsiteFeature" version="AAEAAAD/////AQAAAAAAAAAEAQAAAA5TeXN0ZW0uVmVyc2lvbgQAAAAGX01ham9yBl9NaW5vcgZfQnVpbGQJX1JldmlzaW9uAAAAAAgICAgCAAAAFAAAAAAAAAAAAAAACw==" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
   <projectItems>
     <projectItemReference itemId="94ded09f-99f8-4b6a-9e24-4a6186f52a13" />
     <projectItemReference itemId="366e304a-165c-42c5-8058-824c780426aa" />
@@ -107,5 +107,6 @@
     <projectItemReference itemId="fe45f965-af6c-4500-a22d-4d56002ad11f" />
     <projectItemReference itemId="273b3817-7698-4ad4-94e4-ceb8b69dcd8a" />
     <projectItemReference itemId="1165e71a-ac27-48aa-9748-5d1162bcc724" />
+    <projectItemReference itemId="aa996cf1-b849-404f-8e34-7affe8dc9129" />
   </projectItems>
 </feature>
