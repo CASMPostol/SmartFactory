@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Feature xmlns="http://schemas.microsoft.com/sharepoint/">
 <UpgradeActions>
-    <VersionRange BeginVersion="1.50.0.0" EndVersion="1.70.10.00">
+    <VersionRange BeginVersion="1.50.0.0" EndVersion="1.70.10.0">
       <ApplyElementManifests>
         <ElementManifest Location="ShippingFields_1_70_10\Elements.xml" />
         <ElementManifest Location="ShippingLookupFields_1_70_10\Elements.xml" />
@@ -14,6 +14,14 @@
       <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{661E61C7-EC20-4B26-A346-6E7B1B83D1CC}" PushDown="TRUE" />
       <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{C094D1E5-CFF5-4A48-993C-BA0F1A8DF93E}" PushDown="TRUE" />
       <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{86FEC976-7423-455B-91F8-661EAA228C11}" PushDown="TRUE" />
+    </VersionRange>
+    <VersionRange BeginVersion="1.70.11.0" EndVersion="2.20.00.0">
+      <ApplyElementManifests>
+        <ElementManifest Location="DictionariesFields_2_20_00\Elements.xml" />
+      </ApplyElementManifests>
+      <AddContentTypeField ContentTypeId="0x0100b0982f01816047b1abff933b9f49b5db" FieldId="{01E00F32-921F-429D-BC9E-C693AFB2344B}" PushDown="TRUE"/>
+      <AddContentTypeField ContentTypeId="0x01003e7761aef97a4c619f44d01b53a56568" FieldId="{01E00F32-921F-429D-BC9E-C693AFB2344B}" PushDown="TRUE"/>
+      <AddContentTypeField ContentTypeId="0x01009ef7d9cee9664a48928ad8c8857ada95" FieldId="{01E00F32-921F-429D-BC9E-C693AFB2344B}" PushDown="TRUE"/>
     </VersionRange>
   </UpgradeActions>
 </Feature>
