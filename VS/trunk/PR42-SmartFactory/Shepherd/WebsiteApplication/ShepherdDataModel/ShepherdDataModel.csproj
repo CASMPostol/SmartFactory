@@ -89,7 +89,7 @@
     <Compile Include="Entities\Shipping.cs" />
     <Compile Include="Entities\ShippingSubstateMachine\Context.cs" />
     <Compile Include="Entities\ShippingSubstateMachine\IContextTrigers.cs" />
-    <Compile Include="Entities\TimeSlotTimeSlot.cs" />
+    <Compile Include="Entities\TimeSlot.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ImportDataModel\ImportDataModelShepherd.cs">
       <DependentUpon>ImportDataModelShepherd.xsd</DependentUpon>
