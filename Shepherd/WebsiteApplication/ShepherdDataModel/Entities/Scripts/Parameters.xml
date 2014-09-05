@@ -1,368 +1,400 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Web Class="EntitiesDataContext" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
-  <List Name=" Data Import Library" />
-  <List Name="Alarms And Events" />
-  <List Name="Business Description" />
-  <List Name="Carrier" />
-  <List Name="Carrier Performance Report" />
-  <List Name="City" />
-  <List Name="Comments" />
-  <List Name="Commodity" />
-  <List Name="Country" />
-  <List Name="Currency" />
-  <List Name="Destination Market" />
-  <List Name="Distribution List" />
-  <List Name="Driver" />
-  <List Name="Drivers Team" />
-  <List Name="Escort PO Library" />
-  <List Name="Event Log List" />
-  <List Name="Freight Payer" />
-  <List Name="Freight PO Library" />
-  <!--<List Name="Galeria szablonów list" />-->
-  <List Name="Load Description" />
-  <List Name="Market" />
-  <!--<List Name="Galeria stron wzorcowych" />-->
-  <List Name="Partner" />
-  <List Name="Route" />
-  <List Name="SAP Destination Plant" />
-  <List Name="Schedule Template" />
-  <List Name="Seal Protocol Library" />
-  <List Name="Security Escort Route" />
-  <List Name="Shipment Type" />
-  <List Name="Shipping" />
-  <List Name="Shipping Point" />
-  <!--<List Name="Galeria rozwiązań" />-->
-  <!--<List Name="Biblioteka stylów" />-->
-  <!--<List Name="Galeria motywów" />-->
-  <List Name="Time Slot" />
-  <List Name="TimeSlots Template" />
-  <List Name="Trailer" />
-  <List Name="Transport Unit Type" />
-  <List Name="Truck" />
-  <!--<List Name="Lista informacji o użytkowniku" />-->
-  <List Name="Warehouse" />
-  <!--<List Name="Galeria składników Web Part" />-->
-  <ExcludeOtherLists/>
-  <ContentType Name="TranspotUnit" Class="TranspotUnit">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="SPParametersStylesheet.xslt"?>
+<Web xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" AccessModifier="Public" Class="EntitiesDataContext" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal">
+  <List Name=" Data Import Library" Member=" Data Import Library" />
+  <List Name="Alarms And Events" Member="Alarms And Events" />
+  <List Name="Business Description" Member="Business Description" />
+  <List Name="Carrier" Member="Carrier" />
+  <List Name="Carrier Performance Report" Member="Carrier Performance Report" />
+  <List Name="City" Member="City" />
+  <List Name="Comments" Member="Comments" />
+  <List Name="Commodity" Member="Commodity" />
+  <List Name="Country" Member="Country" />
+  <List Name="Currency" Member="Currency" />
+  <List Name="Destination Market" Member="Destination Market" />
+  <List Name="Distribution List" Member="Distribution List" />
+  <List Name="Driver" Member="Driver" />
+  <List Name="Drivers Team" Member="Drivers Team" />
+  <List Name="Escort PO Library" Member="Escort PO Library" />
+  <List Name="Event Log List" Member="Event Log List" />
+  <List Name="Freight Payer" Member="Freight Payer" />
+  <List Name="Freight PO Library" Member="Freight PO Library" />
+  <List Name="Load Description" Member="Load Description" />
+  <List Name="Market" Member="Market" />
+  <List Name="Partner" Member="Partner" />
+  <List Name="Route" Member="Route" />
+  <List Name="SAP Destination Plant" Member="SAP Destination Plant" />
+  <List Name="Schedule Template" Member="Schedule Template" />
+  <List Name="Seal Protocol Library" Member="Seal Protocol Library" />
+  <List Name="Security Escort Route" Member="Security Escort Route" />
+  <List Name="Shipment Type" Member="Shipment Type" />
+  <List Name="Shipping" Member="Shipping" />
+  <List Name="Shipping Point" Member="Shipping Point" />
+  <List Name="Time Slot" Member="Time Slot" />
+  <List Name="TimeSlots Template" Member="TimeSlots Template" />
+  <List Name="Trailer" Member="Trailer" />
+  <List Name="Transport Unit Type" Member="Transport Unit Type" />
+  <List Name="Truck" Member="Truck" />
+  <List Name="Warehouse" Member="Warehouse" />
+  <ExcludeOtherLists />
+  <ContentType Name="Item" Class="Element">
+    <!--Class="EntitiesDataContext"-->
     <Column Name="Title" Member="Title" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>
+  <ContentType Name="TranspotUnit" Class="TranspotUnit">
+    <Column Name="Dummy" Member="Dummy" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Market" Class="Market">
+    <Column Name="Dummy" Member="Dummy" />
     <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="ShippingDriversTeam" Class="ShippingDriversTeam">
     <Column Name="DriverTitle" Member="DriverTitle" />
-    <Column Name="DriversTeamDriverID" Member="DriversTeamDriverID" />
-    <Column Name="DriversTeamDriverCellPhone" Member="DriversTeamDriverCellPhone" />
     <Column Name="ShippingIndex" Member="ShippingIndex" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Route" Class="Route">
-    <Column Name="Title" Member="Title" />
-    <Column Name="Route2CityTitle" Member="Route2CityTitle" />
-    <Column Name="Route2BusinessDescriptionTitle" Member="Route2BusinessDescriptionTitle" />
-    <Column Name="ShipmentTypeTitle" Member="ShipmentTypeTitle" />
-    <Column Name="FreightPayerTitle" Member="FreightPayerTitle" />
-    <Column Name="MaterialMaster" Member="MaterialMaster" />
-    <Column Name="RemarkMM" Member="RemarkMM" />
-    <Column Name="Route2Commodity" Member="Route2Commodity" />
-    <Column Name="Incoterm" Member="Incoterm" />
-    <Column Name="SAPDestinationPlantTitle" Member="SAPDestinationPlantTitle" />
-    <Column Name="PartnerTitle" Member="PartnerTitle" />
-    <Column Name="DeparturePort" Member="DeparturePort" />
-    <Column Name="DepartureCity" Member="DepartureCity" />
     <Column Name="CarrierTitle" Member="CarrierTitle" />
-    <Column Name="TransportUnitTypeTitle" Member="TransportUnitTypeTitle" />
-    <Column Name="TransportCosts" Member="TransportCosts" />
     <Column Name="CurrencyTitle" Member="CurrencyTitle" />
+    <Column Name="DepartureCity" Member="DepartureCity" />
+    <Column Name="DeparturePort" Member="DeparturePort" />
+    <Column Name="FreightPayerTitle" Member="FreightPayerTitle" />
     <Column Name="GoodsHandlingPO" Member="GoodsHandlingPO" />
+    <Column Name="Incoterm" Member="Incoterm" />
+    <Column Name="MaterialMaster" Member="MaterialMaster" />
+    <Column Name="PartnerTitle" Member="PartnerTitle" />
+    <Column Name="RemarkMM" Member="RemarkMM" />
+    <Column Name="Route2BusinessDescriptionTitle" Member="Route2BusinessDescriptionTitle" />
+    <Column Name="Route2CityTitle" Member="Route2CityTitle" />
+    <Column Name="Route2Commodity" Member="Route2Commodity" />
+    <Column Name="SAPDestinationPlantTitle" Member="SAPDestinationPlantTitle" />
+    <Column Name="ShipmentTypeTitle" Member="ShipmentTypeTitle" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="TransportCosts" Member="TransportCosts" />
+    <Column Name="TransportUnitTypeTitle" Member="TransportUnitTypeTitle" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Partner" Class="Partner">
-    <Column Name="Title" Member="Title" />
-    <Column Name="ShepherdUser" Member="ShepherdUser" />
-    <Column Name="VendorNumber" Member="VendorNumber" />
-    <Column Name="ServiceType" Member="ServiceType" />
-    <Column Name="EmailAddress" Member="EmailAddress" />
-    <Column Name="WorkPhone" Member="WorkPhone" />
     <Column Name="CellPhone" Member="CellPhone" />
+    <Column Name="EmailAddress" Member="EmailAddress" />
     <Column Name="Partner2WarehouseTitle" Member="Partner2WarehouseTitle" />
+    <Column Name="ServiceType" Member="ServiceType" />
+    <Column Name="ShepherdUser" Member="ShepherdUser" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="VendorNumber" Member="VendorNumber" />
+    <Column Name="WorkPhone" Member="WorkPhone" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Warehouse" Class="Warehouse">
-    <Column Name="Title" Member="Title" />
     <Column Name="CommodityTitle" Member="CommodityTitle" />
+    <Column Name="Title" Member="Title" />
     <Column Name="WarehouseAddress" Member="WarehouseAddress" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Currency" Class="Currency">
-    <Column Name="Title" Member="Title" />
     <Column Name="ExchangeRate" Member="ExchangeRate" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="FreightPayer" Class="FreightPayer">
-    <Column Name="Title" Member="Title" />
-    <Column Name="PayerName" Member="PayerName" />
     <Column Name="CompanyAddress" Member="CompanyAddress" />
-    <Column Name="WorkZip" Member="WorkZip" />
+    <Column Name="NIP" Member="NIP" />
+    <Column Name="PayerName" Member="PayerName" />
+    <Column Name="SendInvoiceToMultiline" Member="SendInvoiceToMultiline" />
+    <Column Name="Title" Member="Title" />
     <Column Name="WorkCity" Member="WorkCity" />
     <Column Name="WorkCountry" Member="WorkCountry" />
-    <Column Name="NIP" Member="NIP" />
-    <Column Name="SendInvoiceToMultiline" Member="SendInvoiceToMultiline" />
+    <Column Name="WorkZip" Member="WorkZip" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="DestinationMarket" Class="DestinationMarket">
     <Column Name="DestinationMarket2CityTitle" Member="DestinationMarket2CityTitle" />
     <Column Name="MarketTitle" Member="MarketTitle" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Commodity" Class="Commodity">
+    <Column Name="Dummy" Member="Dummy" />
     <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="CityType" Class="CityType">
-    <Column Name="Title" Member="Title" />
     <Column Name="CountryTitle" Member="CountryTitle" />
-    <Column Name="CountryGroupTitle" Member="CountryGroupTitle" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Truck" Class="Truck">
+    <Column Name="AdditionalComments" Member="AdditionalComments" />
     <Column Name="Title" Member="Title" />
+    <Column Name="ToBeDeleted" Member="ToBeDeleted" />
     <Column Name="Truck2PartnerTitle" Member="Truck2PartnerTitle" />
     <Column Name="VehicleType" Member="VehicleType" />
-    <Column Name="AdditionalComments" Member="AdditionalComments" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="BusienssDescription" Class="BusienssDescription">
-    <Column Name="Title" Member="Title" />
     <Column Name="AdditionalComments" Member="AdditionalComments" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="AlarmsAndEvents" Class="AlarmsAndEvents">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
     <Column Name="AlarmAndEventDetails" Member="AlarmAndEventDetails" />
-    <Column Name="AlarmsAndEventsShippingTitle" Member="AlarmsAndEventsShippingTitle" />
     <Column Name="AlarmAndEventOwner" Member="AlarmAndEventOwner" />
-    <Column Name="AlarmsAndEventsList2Shipping" Member="AlarmsAndEventsList2Shipping" />
-    <Column Name="AlarmsAndEventsList2PartnerTitle" Member="AlarmsAndEventsList2PartnerTitle" />
     <Column Name="AlarmPriority" Member="AlarmPriority" />
+    <Column Name="AlarmsAndEventsList2PartnerTitle" Member="AlarmsAndEventsList2PartnerTitle" />
+    <Column Name="AlarmsAndEventsList2Shipping" Member="AlarmsAndEventsList2Shipping" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SecurityEscortCatalog" Class="SecurityEscortCatalog">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="SecurityEscortCatalog2BusinessDescriptionTitle" Member="SecurityEscortCatalog2BusinessDescriptionTitle" />
+    <Column Name="CurrencyTitle" Member="CurrencyTitle" />
     <Column Name="EscortDestination" Member="EscortDestination" />
-    <Column Name="RemarkMM" Member="RemarkMM" />
     <Column Name="FreightPayerTitle" Member="FreightPayerTitle" />
     <Column Name="MaterialMaster" Member="MaterialMaster" />
     <Column Name="PartnerTitle" Member="PartnerTitle" />
+    <Column Name="RemarkMM" Member="RemarkMM" />
     <Column Name="SecurityCost" Member="SecurityCost" />
-    <Column Name="CurrencyTitle" Member="CurrencyTitle" />
+    <Column Name="SecurityEscortCatalog2BusinessDescriptionTitle" Member="SecurityEscortCatalog2BusinessDescriptionTitle" />
     <Column Name="SecurityEscrotPO" Member="SecurityEscrotPO" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="ScheduleTemplate" Class="ScheduleTemplate">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
     <Column Name="ShippingPointLookupTitle" Member="ShippingPointLookupTitle" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SAPDestinationPlant" Class="SAPDestinationPlant">
+    <Column Name="Dummy" Member="Dummy" />
     <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="DistributionList" Class="DistributionList">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
     <Column Name="EmailAddress" Member="EmailAddress" />
     <Column Name="ShepherdRole" Member="ShepherdRole" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Trailer" Class="Trailer">
-    <Column Name="Title" Member="Title" />
-    <Column Name="Trailer2PartnerTitle" Member="Trailer2PartnerTitle" />
     <Column Name="AdditionalComments" Member="AdditionalComments" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="ToBeDeleted" Member="ToBeDeleted" />
+    <Column Name="Trailer2PartnerTitle" Member="Trailer2PartnerTitle" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="ShipmentType" Class="ShipmentType">
+    <Column Name="Dummy" Member="Dummy" />
     <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Driver" Class="Driver">
-    <Column Name="Title" Member="Title" />
+    <Column Name="CellPhone" Member="CellPhone" />
     <Column Name="Driver2PartnerTitle" Member="Driver2PartnerTitle" />
     <Column Name="IdentityDocumentNumber" Member="IdentityDocumentNumber" />
-    <Column Name="CellPhone" Member="CellPhone" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="ToBeDeleted" Member="ToBeDeleted" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="CarrierPerformanceReport" Class="CarrierPerformanceReport">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="ReportPeriod" Member="ReportPeriod" />
-    <Column Name="CPRDate" Member="CPRDate" />
     <Column Name="CPR2PartnerTitle" Member="CPR2PartnerTitle" />
-    <Column Name="CPRNumberOrdered" Member="CPRNumberOrdered" />
-    <Column Name="CPRNumberOnTime" Member="CPRNumberOnTime" />
+    <Column Name="CPRDate" Member="CPRDate" />
     <Column Name="CPRNumberDelayed" Member="CPRNumberDelayed" />
     <Column Name="CPRNumberDelayed1h" Member="CPRNumberDelayed1h" />
     <Column Name="CPRNumberNotShowingUp" Member="CPRNumberNotShowingUp" />
+    <Column Name="CPRNumberOnTime" Member="CPRNumberOnTime" />
+    <Column Name="CPRNumberOrdered" Member="CPRNumberOrdered" />
     <Column Name="CPRNumberRejectedBadQuality" Member="CPRNumberRejectedBadQuality" />
+    <Column Name="ReportPeriod" Member="ReportPeriod" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Shipping" Class="Shipping">
-    <Column Name="Title" Member="Title" />
-    <Column Name="ReportPeriod" Member="ReportPeriod" />
-    <Column Name="PartnerTitle" Member="PartnerTitle" />
-    <Column Name="Shipping2WarehouseTitle" Member="Shipping2WarehouseTitle" />
-    <Column Name="DockNumber" Member="DockNumber" />
-    <Column Name="ShippingState" Member="ShippingState" />
-    <Column Name="StartTime" Member="StartTime" />
-    <Column Name="EndTime" Member="EndTime" />
-    <Column Name="ShippingDuration" Member="ShippingDuration" />
-    <Column Name="TruckTitle" Member="TruckTitle" />
-    <Column Name="TrailerTitle" Member="TrailerTitle" />
-    <Column Name="Shipping2RouteTitle" Member="Shipping2RouteTitle" />
-    <Column Name="Shipping2RouteID" Member="Shipping2RouteID" />
-    <Column Name="CancelationReason" Member="CancelationReason" />
+    <Column Name="AdditionalCosts" Member="AdditionalCosts" />
+    <Column Name="ArrivalTime" Member="ArrivalTime" />
     <Column Name="BusinessDescription" Member="BusinessDescription" />
-    <Column Name="Shipping2PartnerTitle" Member="Shipping2PartnerTitle" />
-    <Column Name="SecurityEscortCatalogTitle" Member="SecurityEscortCatalogTitle" />
-    <Column Name="Shipping2EscortID" Member="Shipping2EscortID" />
-    <Column Name="Shipping2TruckTitle" Member="Shipping2TruckTitle" />
-    <Column Name="EstimateDeliveryTime" Member="EstimateDeliveryTime" />
-    <Column Name="Shipping2City" Member="Shipping2City" />
-    <Column Name="Shipping2TransportUnitType" Member="Shipping2TransportUnitType" />
-    <Column Name="LoadingType" Member="LoadingType" />
-    <Column Name="IsOutbound" Member="IsOutbound" />
-    <Column Name="TruckAwaiting" Member="TruckAwaiting" />
-    <Column Name="TrailerCondition" Member="TrailerCondition" />
-    <Column Name="TrailerConditionComments" Member="TrailerConditionComments" />
+    <Column Name="CancelationReason" Member="CancelationReason" />
     <Column Name="ContainerNo" Member="ContainerNo" />
-    <Column Name="ShippingCountryTitle" Member="ShippingCountryTitle" />
-    <Column Name="ShippingFreightPayerTitle" Member="ShippingFreightPayerTitle" />
+    <Column Name="DockNumber" Member="DockNumber" />
+    <Column Name="Editor" Member="Editor" />
+    <Column Name="EndTime" Member="EndTime" />
+    <Column Name="EstimateDeliveryTime" Member="EstimateDeliveryTime" />
     <Column Name="EuroPalletsQuantity" Member="EuroPalletsQuantity" />
     <Column Name="InduPalletsQuantity" Member="InduPalletsQuantity" />
-    <Column Name="ShippingRouteDepartureCity" Member="ShippingRouteDepartureCity" />
-    <Column Name="ShippingCarrierTitle" Member="ShippingCarrierTitle" />
-    <Column Name="ShippingCommodityTitle" Member="ShippingCommodityTitle" />
-    <Column Name="TotalQuantityKU" Member="TotalQuantityKU" />
-    <Column Name="AdditionalCosts" Member="AdditionalCosts" />
-    <Column Name="Shipping2Currency4AddCosts" Member="Shipping2Currency4AddCosts" />
-    <Column Name="ShippingFreightCost" Member="ShippingFreightCost" />
-    <Column Name="Shipping2CurrencyForFreight" Member="Shipping2CurrencyForFreight" />
-    <Column Name="ShippingSecurityCost" Member="ShippingSecurityCost" />
-    <Column Name="Shipping2CurrencyForEscort" Member="Shipping2CurrencyForEscort" />
-    <Column Name="TotalCostsPerKU" Member="TotalCostsPerKU" />
-    <Column Name="Shipping2Currency4CostsPerKU" Member="Shipping2Currency4CostsPerKU" />
-    <Column Name="Shipping2FreightPOIndex" Member="Shipping2FreightPOIndex" />
-    <Column Name="Shipping2EscortPOIndex" Member="Shipping2EscortPOIndex" />
-    <Column Name="SecuritySealProtocolIndex" Member="SecuritySealProtocolIndex" />
+    <Column Name="IsOutbound" Member="IsOutbound" />
+    <Column Name="LoadingType" Member="LoadingType" />
     <Column Name="Modified" Member="Modified" />
-    <Column Name="Editor" Member="Editor" />
-    <Column Name="TSStartTime" Member="TSStartTime" />
-    <Column Name="TSEndTime" Member="TSEndTime" />
-    <Column Name="WarehouseStartTime" Member="WarehouseStartTime" />
-    <Column Name="WarehouseEndTime" Member="WarehouseEndTime" />
-    <Column Name="ArrivalTime" Member="ArrivalTime" />
+    <Column Name="PartnerTitle" Member="PartnerTitle" />
     <Column Name="PoLastModification" Member="PoLastModification" />
     <Column Name="PoNumberMultiline" Member="PoNumberMultiline" />
+    <Column Name="ReportPeriod" Member="ReportPeriod" />
+    <Column Name="SecurityEscortCatalogTitle" Member="SecurityEscortCatalogTitle" />
+    <Column Name="SecuritySealProtocolIndex" Member="SecuritySealProtocolIndex" />
+    <Column Name="Shipping2City" Member="Shipping2City" />
+    <Column Name="Shipping2Currency4AddCosts" Member="Shipping2Currency4AddCosts" />
+    <Column Name="Shipping2Currency4CostsPerKU" Member="Shipping2Currency4CostsPerKU" />
+    <Column Name="Shipping2CurrencyForEscort" Member="Shipping2CurrencyForEscort" />
+    <Column Name="Shipping2CurrencyForFreight" Member="Shipping2CurrencyForFreight" />
+    <Column Name="Shipping2EscortPOIndex" Member="Shipping2EscortPOIndex" />
+    <Column Name="Shipping2FreightPOIndex" Member="Shipping2FreightPOIndex" />
+    <Column Name="Shipping2PartnerTitle" Member="Shipping2PartnerTitle" />
+    <Column Name="Shipping2RouteTitle" Member="Shipping2RouteTitle" />
+    <Column Name="Shipping2TransportUnitType" Member="Shipping2TransportUnitType" />
+    <Column Name="Shipping2TruckTitle" Member="Shipping2TruckTitle" />
+    <Column Name="Shipping2WarehouseTitle" Member="Shipping2WarehouseTitle" />
+    <Column Name="ShippingCarrierTitle" Member="ShippingCarrierTitle" />
+    <Column Name="ShippingCommodityTitle" Member="ShippingCommodityTitle" />
+    <Column Name="ShippingCountryTitle" Member="ShippingCountryTitle" />
+    <Column Name="ShippingDuration" Member="ShippingDuration" />
+    <Column Name="ShippingFreightCost" Member="ShippingFreightCost" />
+    <Column Name="ShippingFreightPayerTitle" Member="ShippingFreightPayerTitle" />
+    <Column Name="ShippingRouteDepartureCity" Member="ShippingRouteDepartureCity" />
+    <Column Name="ShippingSecurityCost" Member="ShippingSecurityCost" />
+    <Column Name="ShippingState" Member="ShippingState" />
     <Column Name="ShippingState2" Member="ShippingState2" />
+    <Column Name="StartTime" Member="StartTime" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="TotalCostsPerKU" Member="TotalCostsPerKU" />
+    <Column Name="TotalQuantityKU" Member="TotalQuantityKU" />
+    <Column Name="TrailerCondition" Member="TrailerCondition" />
+    <Column Name="TrailerConditionComments" Member="TrailerConditionComments" />
+    <Column Name="TrailerTitle" Member="TrailerTitle" />
+    <Column Name="TruckAwaiting" Member="TruckAwaiting" />
+    <Column Name="TruckTitle" Member="TruckTitle" />
+    <Column Name="TSEndTime" Member="TSEndTime" />
+    <Column Name="TSStartTime" Member="TSStartTime" />
+    <Column Name="WarehouseEndTime" Member="WarehouseEndTime" />
+    <Column Name="WarehouseStartTime" Member="WarehouseStartTime" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="ShippingPoint" Class="ShippingPoint">
-    <Column Name="Title" Member="Title" />
     <Column Name="Direction" Member="Direction" />
-    <Column Name="WarehouseTitle" Member="WarehouseTitle" />
     <Column Name="ShippingPointDescription" Member="ShippingPointDescription" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="WarehouseTitle" Member="WarehouseTitle" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="CountryType" Class="CountryType">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
     <Column Name="CountryGroup" Member="CountryGroup" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="TimeSlotsTemplate" Class="TimeSlotsTemplate">
     <Column Name="ScheduleTemplateTitle" Member="ScheduleTemplateTitle" />
     <Column Name="TimeSlotsTemplateDay" Member="TimeSlotsTemplateDay" />
-    <Column Name="TimeSlotsTemplateStartHour" Member="TimeSlotsTemplateStartHour" />
-    <Column Name="TimeSlotsTemplateStartMinute" Member="TimeSlotsTemplateStartMinute" />
     <Column Name="TimeSlotsTemplateEndHour" Member="TimeSlotsTemplateEndHour" />
     <Column Name="TimeSlotsTemplateEndMinute" Member="TimeSlotsTemplateEndMinute" />
+    <Column Name="TimeSlotsTemplateStartHour" Member="TimeSlotsTemplateStartHour" />
+    <Column Name="TimeSlotsTemplateStartMinute" Member="TimeSlotsTemplateStartMinute" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="ShippingComments" Class="ShippingComments">
     <Column Name="Body" Member="Body" />
     <Column Name="ExternalComment" Member="ExternalComment" />
     <Column Name="ShippingComments2PartnerTitle" Member="ShippingComments2PartnerTitle" />
     <Column Name="ShippingComments2ShippingID" Member="ShippingComments2ShippingID" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="LoadDescription" Class="LoadDescription">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="LoadDescription2ShippingIndex" Member="LoadDescription2ShippingIndex" />
-    <Column Name="LoadDescriptionShippingTitle" Member="LoadDescriptionShippingTitle" />
-    <Column Name="LoadDescription2PartnerTitle" Member="LoadDescription2PartnerTitle" />
-    <Column Name="MarketTitle" Member="MarketTitle" />
-    <Column Name="PalletType" Member="PalletType" />
+    <Column Name="CMRNumber" Member="CMRNumber" />
     <Column Name="DeliveryNumber" Member="DeliveryNumber" />
     <Column Name="GoodsQuantity" Member="GoodsQuantity" />
-    <Column Name="NumberOfPallets" Member="NumberOfPallets" />
-    <Column Name="LoadDescription2Commodity" Member="LoadDescription2Commodity" />
-    <Column Name="CMRNumber" Member="CMRNumber" />
     <Column Name="InvoiceNumber" Member="InvoiceNumber" />
+    <Column Name="LoadDescription2Commodity" Member="LoadDescription2Commodity" />
+    <Column Name="LoadDescription2PartnerTitle" Member="LoadDescription2PartnerTitle" />
+    <Column Name="LoadDescription2ShippingIndex" Member="LoadDescription2ShippingIndex" />
+    <Column Name="MarketTitle" Member="MarketTitle" />
+    <Column Name="NumberOfPallets" Member="NumberOfPallets" />
+    <Column Name="PalletType" Member="PalletType" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="CarrierType" Class="CarrierType">
+    <Column Name="Dummy" Member="Dummy" />
     <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="EscortPO" Class="EscortPO">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="FileLeafRef" Member="FileLeafRef" />
-    <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <Column Name="Created" Member="Created" />
     <Column Name="Created_x0020_By" Member="Created_x0020_By" />
-    <Column Name="SPOFreightPO" Member="SPOFreightPO" />
-    <Column Name="SecurityPOEscortPayerName" Member="SecurityPOEscortPayerName" />
-    <Column Name="SecurityPOEscortPayerAddress" Member="SecurityPOEscortPayerAddress" />
-    <Column Name="SecurityPOEscortPayerZip" Member="SecurityPOEscortPayerZip" />
-    <Column Name="SecurityPOEscortPayerCity" Member="SecurityPOEscortPayerCity" />
-    <Column Name="SecurityPOEscortPayerNIP" Member="SecurityPOEscortPayerNIP" />
-    <Column Name="SPODispatchDate" Member="SPODispatchDate" />
+    <Column Name="EmailAddress" Member="EmailAddress" />
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <Column Name="FPOWarehouseAddress" Member="FPOWarehouseAddress" />
+    <Column Name="Modified" Member="Modified" />
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <Column Name="SecurityPOCity" Member="SecurityPOCity" />
+    <Column Name="SecurityPOCommodity" Member="SecurityPOCommodity" />
+    <Column Name="SecurityPOCountry" Member="SecurityPOCountry" />
     <Column Name="SecurityPOEscortCosts" Member="SecurityPOEscortCosts" />
     <Column Name="SecurityPOEscortCurrency" Member="SecurityPOEscortCurrency" />
+    <Column Name="SecurityPOEscortPayerAddress" Member="SecurityPOEscortPayerAddress" />
+    <Column Name="SecurityPOEscortPayerCity" Member="SecurityPOEscortPayerCity" />
+    <Column Name="SecurityPOEscortPayerName" Member="SecurityPOEscortPayerName" />
+    <Column Name="SecurityPOEscortPayerNIP" Member="SecurityPOEscortPayerNIP" />
+    <Column Name="SecurityPOEscortPayerZip" Member="SecurityPOEscortPayerZip" />
     <Column Name="SecurityPOEscortProvider" Member="SecurityPOEscortProvider" />
-    <Column Name="SecurityPOCity" Member="SecurityPOCity" />
-    <Column Name="SecurityPOCountry" Member="SecurityPOCountry" />
-    <Column Name="SecurityPOCommodity" Member="SecurityPOCommodity" />
     <Column Name="SecurityPOSentInvoiceToMultiline" Member="SecurityPOSentInvoiceToMultiline" />
-    <Column Name="EmailAddress" Member="EmailAddress" />
-    <Column Name="FPOWarehouseAddress" Member="FPOWarehouseAddress" />
+    <Column Name="SPODispatchDate" Member="SPODispatchDate" />
+    <Column Name="SPOFreightPO" Member="SPOFreightPO" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="FreightPO" Class="FreightPO">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="FileLeafRef" Member="FileLeafRef" />
-    <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <Column Name="Created" Member="Created" />
     <Column Name="Created_x0020_By" Member="Created_x0020_By" />
-    <Column Name="FPOFreightPO" Member="FPOFreightPO" />
-    <Column Name="FreightPOPayerName" Member="FreightPOPayerName" />
-    <Column Name="FreightPOPayerAddress" Member="FreightPOPayerAddress" />
-    <Column Name="FreightPOPayerZip" Member="FreightPOPayerZip" />
-    <Column Name="FreightPOPayerCity" Member="FreightPOPayerCity" />
-    <Column Name="FreightPOPayerNIP" Member="FreightPOPayerNIP" />
-    <Column Name="FPOLoadingDate" Member="FPOLoadingDate" />
+    <Column Name="EmailAddress" Member="EmailAddress" />
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="FPODispatchDate" Member="FPODispatchDate" />
-    <Column Name="FreightPOTransportUnitType" Member="FreightPOTransportUnitType" />
-    <Column Name="FreightPOTransportCosts" Member="FreightPOTransportCosts" />
+    <Column Name="FPOFreightPO" Member="FPOFreightPO" />
+    <Column Name="FPOLoadingDate" Member="FPOLoadingDate" />
+    <Column Name="FPOWarehouseAddress" Member="FPOWarehouseAddress" />
+    <Column Name="FreightPOCity" Member="FreightPOCity" />
+    <Column Name="FreightPOCommodity" Member="FreightPOCommodity" />
+    <Column Name="FreightPOCountry" Member="FreightPOCountry" />
     <Column Name="FreightPOCurrency" Member="FreightPOCurrency" />
     <Column Name="FreightPOForwarder" Member="FreightPOForwarder" />
-    <Column Name="FreightPOCity" Member="FreightPOCity" />
-    <Column Name="FreightPOCountry" Member="FreightPOCountry" />
-    <Column Name="FreightPOCommodity" Member="FreightPOCommodity" />
+    <Column Name="FreightPOPayerAddress" Member="FreightPOPayerAddress" />
+    <Column Name="FreightPOPayerCity" Member="FreightPOPayerCity" />
+    <Column Name="FreightPOPayerName" Member="FreightPOPayerName" />
+    <Column Name="FreightPOPayerNIP" Member="FreightPOPayerNIP" />
+    <Column Name="FreightPOPayerZip" Member="FreightPOPayerZip" />
     <Column Name="FreightPOSendInvoiceToMultiline" Member="FreightPOSendInvoiceToMultiline" />
-    <Column Name="EmailAddress" Member="EmailAddress" />
-    <Column Name="FPOWarehouseAddress" Member="FPOWarehouseAddress" />
+    <Column Name="FreightPOTransportCosts" Member="FreightPOTransportCosts" />
+    <Column Name="FreightPOTransportUnitType" Member="FreightPOTransportUnitType" />
+    <Column Name="Modified" Member="Modified" />
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SealProtocol" Class="SealProtocol">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="FileLeafRef" Member="FileLeafRef" />
-    <Column Name="Title" Member="Title" />
-    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <Column Name="Created" Member="Created" />
     <Column Name="Created_x0020_By" Member="Created_x0020_By" />
-    <Column Name="SealProtocolDispatchDate" Member="SealProtocolDispatchDate" />
-    <Column Name="SealProtocolCity" Member="SealProtocolCity" />
-    <Column Name="SealProtocolCountry" Member="SealProtocolCountry" />
-    <Column Name="SealProtocolForwarder" Member="SealProtocolForwarder" />
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <Column Name="Modified" Member="Modified" />
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
     <Column Name="SealProtocol1stDriver" Member="SealProtocol1stDriver" />
-    <Column Name="SealProtocol2ndDriver" Member="SealProtocol2ndDriver" />
-    <Column Name="SealProtocolDriverPhone" Member="SealProtocolDriverPhone" />
-    <Column Name="SealProtocolSecurityEscortProvider" Member="SealProtocolSecurityEscortProvider" />
     <Column Name="SealProtocol1stEscort" Member="SealProtocol1stEscort" />
+    <Column Name="SealProtocol2ndDriver" Member="SealProtocol2ndDriver" />
     <Column Name="SealProtocol2ndEscort" Member="SealProtocol2ndEscort" />
-    <Column Name="SealProtocolEscortPhone" Member="SealProtocolEscortPhone" />
-    <Column Name="SealProtocolEscortCarNo" Member="SealProtocolEscortCarNo" />
+    <Column Name="SealProtocolCity" Member="SealProtocolCity" />
     <Column Name="SealProtocolContainersNo" Member="SealProtocolContainersNo" />
+    <Column Name="SealProtocolCountry" Member="SealProtocolCountry" />
+    <Column Name="SealProtocolDispatchDate" Member="SealProtocolDispatchDate" />
     <Column Name="SealProtocolDispatchDateActual" Member="SealProtocolDispatchDateActual" />
-    <Column Name="SealProtocolWarehouse" Member="SealProtocolWarehouse" />
-    <Column Name="SealProtocolTruckNo" Member="SealProtocolTruckNo" />
+    <Column Name="SealProtocolDriverPhone" Member="SealProtocolDriverPhone" />
+    <Column Name="SealProtocolEscortCarNo" Member="SealProtocolEscortCarNo" />
+    <Column Name="SealProtocolEscortPhone" Member="SealProtocolEscortPhone" />
+    <Column Name="SealProtocolForwarder" Member="SealProtocolForwarder" />
+    <Column Name="SealProtocolSecurityEscortProvider" Member="SealProtocolSecurityEscortProvider" />
     <Column Name="SealProtocolTrailerNo" Member="SealProtocolTrailerNo" />
+    <Column Name="SealProtocolTruckNo" Member="SealProtocolTruckNo" />
+    <Column Name="SealProtocolWarehouse" Member="SealProtocolWarehouse" />
+    <Column Name="Title" Member="Title" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="TimeSlot" Class="TimeSlot">
     <Column Name="StartDate" Member="StartDate" />
@@ -374,15 +406,14 @@
     <Column Name="ExitTime" Member="ExitTime" />
     <Column Name="Occupied" Member="Occupied" />
     <Column Name="IsDouble" Member="IsDouble" />
+    <!--<ExcludeOtherColumns />-->
   </ContentType>
-<ContentType Name="Item" Class="Element">
-  <Column Name="Title" Member="Title" />
-  <!--<Column Name="ContentType" Member="ContentType" />-->
-</ContentType>
-<ContentType Name="Announcement" Class="Anons">
-  <Column Name="Title" Member="Title" />
-  <Column Name="Body" Member="Body" />
-  <Column Name="Expires" Member="Expires" />
-  <!--<Column Name="ContentType" Member="ContentType" />-->
-</ContentType>
+  <ContentType Name="Announcement" Class="Anons">
+    <Column Name="Body" Member="Body" />
+    <!--Class="EntitiesDataContext"-->
+    <Column Name="Expires" Member="Expires" />
+    <Column Name="Title" Member="Title" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+  </ContentType>
+  <ExcludeOtherContentTypes />
 </Web>
