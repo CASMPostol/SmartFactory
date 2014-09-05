@@ -28,7 +28,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Activate180
     /// Goes the specified site URL.
     /// </summary>
     /// <param name="siteURL">The site URL.</param>
-    /// <param name="doActivate1800">if set to <c>true</c> [document activate1800].</param>
     /// <param name="progress">The progress.</param>
     public static void Go(string siteURL, Action<object, EntitiesChangedEventArgs> progress)
     {

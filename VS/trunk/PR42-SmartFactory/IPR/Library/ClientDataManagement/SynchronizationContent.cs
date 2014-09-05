@@ -109,7 +109,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       Dictionary<int, IItem> _dictinary = sqlTable.Where<TSQL>(x => !x.OnlySQL).ToDictionary<TSQL, int, IItem>(x => x.ID, y => (SharePoint.Client.Link2SQL.IItem)y);
       progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Synchronization {0} elements in the SharePoint source tables with the {1} element in the SQL table.", _scrList.Count, _dictinary.Count)));
       //create descriptors using reflection
-      Dictionary<string, List<StorageItem>> _spDscrpt = StorageItem.CreateStorageDescription(typeof(TSP));
+      Dictionary<string, StorageItemsList> _spDscrpt = StorageItem.CreateStorageDescription(typeof(TSP));
       Dictionary<string, SQLStorageItem> _sqlDscrpt = SQLStorageItem.CreateStorageDescription(typeof(TSQL), mapping);
       foreach (TSP _spItem in _scrList)
       {
