@@ -128,7 +128,14 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         }
         Microsoft.SharePoint.Linq.ContentTypeAttribute _attr = _spItem.GetType().GetContentType();
         _itemChanged = false;
-        Synchronize<TSQL, TSP>((TSQL)_sqlItem, _spItem, _spDscrpt[_attr.Id], _sqlDscrpt, progressChanged, spList.DataContext, (x, y) => { _counter++; _changes.Add(y.PropertyName); _itemChanged = true; });
+        Synchronize<TSQL, TSP>(
+          (TSQL)_sqlItem, 
+          _spItem, _spDscrpt[_attr.Id], 
+          _sqlDscrpt, progressChanged, 
+          spList.DataContext, 
+          (x, y) => { _counter++; 
+                     _changes.Add(y.PropertyName); 
+                     _itemChanged = true; });
         if (_itemChanged)
           _itemChanges++;
       }
