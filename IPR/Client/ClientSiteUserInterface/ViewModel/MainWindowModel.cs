@@ -255,7 +255,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
         RaiseHandler<string>(value, ref b_ButtonGoBackwardTitle, "ButtonGoBackwardTitle", this);
       }
     }
-    private Version b_CurrentContentVersion;
     public Version CurrentContentVersion
     {
       get
@@ -267,7 +266,19 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
         if (RaiseHandler<Version>(value, ref b_CurrentContentVersion, "CurrentContentVersion", this))
           URL = String.Format("{0} Version: {1}", URL, value.ToString());
       }
+    }
+    public int RowLimit
+    {
+      get
+      {
+        return b_RowLimit;
+      }
+      set
+      {
+        RaiseHandler<int>(value, ref b_RowLimit, "RowLimit", this);
+      }
     } 
+                
     //methods
     internal void SetStatus2Error()
     {
@@ -299,6 +310,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       Properties.Settings.Default.ArchiveIPRDelay = IPRAccountArchivalDelay;
       Properties.Settings.Default.ArchiveBatchDelay = BatchArchivalDelay;
       Properties.Settings.Default.ReportsArchivalDelay = ReportsArchivalDelay;
+      Properties.Settings.Default.RowLimit = RowLimit;
       Properties.Settings.Default.Save();
     }
     #endregion
@@ -324,6 +336,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
     private bool b_DoArchivingIsChecked;
     private string b_ButtonNextTitle;
     private string b_ButtonGoBackwardTitle;
+    private Version b_CurrentContentVersion;
+    private int b_RowLimit;
 
     //methods
     private void RestoreSettings()
@@ -335,6 +349,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       IPRAccountArchivalDelay = Properties.Settings.Default.ArchiveIPRDelay;
       BatchArchivalDelay = Properties.Settings.Default.ArchiveBatchDelay;
       ReportsArchivalDelay = Properties.Settings.Default.ReportsArchivalDelay;
+      RowLimit = Properties.Settings.Default.RowLimit;
       //Application
       SetStatus2Unknown();
     }

@@ -142,5 +142,17 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
                 this["ConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int RowLimit {
+            get {
+                return ((int)(this["RowLimit"]));
+            }
+            set {
+                this["RowLimit"] = value;
+            }
+        }
     }
 }
