@@ -46,6 +46,10 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       /// The connection string
       /// </summary>
       public string ConnectionString;
+      /// <summary>
+      /// the maximal number of items queried form the ShsrePoint.
+      /// </summary>
+      public int RowLimit;
     }
     /// <summary>
     /// Realize the synchronization operation..
@@ -57,6 +61,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       IPRDEV _sqledc = IPRDEV.Connect2SQL(settings.ConnectionString, progressChanged);
       using (Entities _spedc = new Entities(settings.SiteURL))
       {
+        _spedc.RowLimit = settings.RowLimit;
         Synchronize(_sqledc.JSOXLibrary, _spedc.JSOXLibrary, progressChanged, JSOXLib.GetMappings());
         Synchronize(_sqledc.BalanceBatch, _spedc.BalanceBatch, progressChanged, Linq.BalanceBatch.GetMappings());
         Synchronize(_sqledc.SADDocumentLibrary, _spedc.SADDocumentLibrary, progressChanged, Linq.SADDocumentLib.GetMappings());

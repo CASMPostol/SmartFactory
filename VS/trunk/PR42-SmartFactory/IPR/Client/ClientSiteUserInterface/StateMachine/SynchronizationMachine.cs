@@ -51,6 +51,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       DataManagement.SynchronizationContent.SynchronizationSettings _setting;
       _setting.SiteURL = Properties.Settings.Default.SiteURL;
       _setting.ConnectionString = ViewModel.MainWindowModel.GetConnectionString();
+      _setting.RowLimit = Context.RowLimit;
       ReportProgress(this, new ProgressChangedEventArgs(1, String.Format("Connection string {0}", _setting.ConnectionString)));
       DataManagement.SynchronizationContent.Go(_setting, ReportProgress);
     }
