@@ -255,6 +255,19 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
         RaiseHandler<string>(value, ref b_ButtonGoBackwardTitle, "ButtonGoBackwardTitle", this);
       }
     }
+    private Version b_CurrentContentVersion;
+    public Version CurrentContentVersion
+    {
+      get
+      {
+        return b_CurrentContentVersion;
+      }
+      set
+      {
+        if (RaiseHandler<Version>(value, ref b_CurrentContentVersion, "CurrentContentVersion", this))
+          URL = String.Format("{0} Version: {1}", URL, value.ToString());
+      }
+    } 
     //methods
     internal void SetStatus2Error()
     {

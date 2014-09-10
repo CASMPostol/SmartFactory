@@ -20,6 +20,7 @@ using System;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
+using NsSPLinq = CAS.SmartFactory.IPR.Client.DataManagement.Linq;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
 {
@@ -82,20 +83,19 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       ReportProgress(this, new ProgressChangedEventArgs(1, String.Format("Connection string {0}", _connectionString)));
       System.Data.IDbConnection _connection = new SqlConnection(_connectionString);
       IPRDEV _entities = new IPRDEV(_connection);
+      WorkerReturnData m_WorkerReturnData = new WorkerReturnData();
       if (_entities.DatabaseExists())
       {
         ReportProgress(this, new ProgressChangedEventArgs(1, "The specified database exists."));
-        WorkerReturnData m_WorkerReturnData = new WorkerReturnData();
         GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Cleanup, ref m_WorkerReturnData.CleanupLastRunBy, ref m_WorkerReturnData.CleanupLastRunDate);
         GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Synchronization, ref m_WorkerReturnData.SyncLastRunBy, ref m_WorkerReturnData.SyncLastRunDate);
         GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Archiving, ref m_WorkerReturnData.ArchivingLastRunBy, ref m_WorkerReturnData.ArchivingLastRunDate);
-        e.Result = m_WorkerReturnData;
       }
       else
-      {
         ReportProgress(this, new ProgressChangedEventArgs(1, "The specified database cannot be opened."));
-        throw new InvalidOperationException("The specified database cannot be opened.");
-      }
+      NsSPLinq.Settings.GetCurrentContentVersion(Properties.Settings.Default.SiteURL, ref m_WorkerReturnData.CurrentContentVersion, ReportProgress);
+      ReportProgress(this, new ProgressChangedEventArgs(1, String.Format("The current version of the site content is: {0}", m_WorkerReturnData.CurrentContentVersion.ToString())));
+      e.Result = m_WorkerReturnData;
     }
     /// <summary>
     /// Runs the worker completed.
@@ -110,6 +110,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       Context.CleanupLastRunDate = m_WorkerReturnData.CleanupLastRunDate;
       Context.ArchivingLastRunBy = m_WorkerReturnData.ArchivingLastRunBy;
       Context.ArchivingLastRunDate = m_WorkerReturnData.ArchivingLastRunDate;
+      Context.CurrentContentVersion = m_WorkerReturnData.CurrentContentVersion;
       SetEventMask(Events.Cancel | Events.Next | Events.Previous);
       Context.ButtonNextTitle = Properties.Resources.ButtonRun;
       Context.ButtonGoBackwardTitle = Properties.Resources.ButtonConnect;
@@ -141,6 +142,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       public string CleanupLastRunDate = Properties.Settings.Default.RunDateError;
       public string SyncLastRunDate = Properties.Settings.Default.RunDateError;
       public string ArchivingLastRunDate = Properties.Settings.Default.RunDateError;
+      public System.Version CurrentContentVersion = new Version();
     }
     private bool Success { get; set; }
     #endregion
