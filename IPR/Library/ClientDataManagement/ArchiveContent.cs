@@ -72,7 +72,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         using (NSSPLinq.Entities _spedc = new NSSPLinq.Entities(settings.SiteURL))
         {
           GoIPR(_spedc, _sqledc, settings, ProgressChanged);
-          GoBatch(_spedc, _sqledc, settings, ProgressChanged);
+          //GoBatch(_spedc, _sqledc, settings, ProgressChanged);
         }
       }
     }
@@ -102,6 +102,10 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           List<IArchival> _toBeMarkedArchival4IPR = new List<IArchival>();
           List<Linq.Disposal> _toDeletedDisposal = new List<NSSPLinq.Disposal>();
           List<IArchival> _toBeMarkedArchival4Disposal = new List<IArchival>();
+          List<NSSPLinq.BalanceIPR> _toDeletedBalanceIPR = new List<NSSPLinq.BalanceIPR>();
+          List<IArchival> _toBeMarkedArchival4BalanceIPR = new List<IArchival>();
+          List<NSSPLinq.Material> _toDeletedMaterial = new List<NSSPLinq.Material>();
+          List<IArchival> _toBeMarkedArchival4Material = new List<IArchival>();
           //_toBeMarkedArchival.Add(_iprX.IPR2ConsentTitle);
           //_toBeMarkedArchival.Add(_iprX.IPR2JSOXIndex);
           //_toBeMarkedArchival.Add(_iprX.IPR2PCNPCN);
@@ -117,14 +121,39 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
             //_toBeMarkedArchival.Add(_dspslx.Disposal2PCNID);
             //_toBeMarkedArchival.Add(_dspslx.JSOXCustomsSummaryIndex);
             _toDeletedDisposal.AddIfNotNull(_dspslx);
+            if (_dspslx.Disposal2MaterialIndex != null && _dspslx.Disposal2MaterialIndex.Disposal.Count == 1)
+            {
+              _toBeMarkedArchival4Material.AddIfNotNull(_dspslx.Disposal2MaterialIndex.Material2BatchIndex);
+              _toDeletedMaterial.Add(_dspslx.Disposal2MaterialIndex);
+            }
+          }
+          foreach (NSSPLinq.BalanceIPR _biprx in _iprX.BalanceIPR)
+          {
+            //_toBeMarkedArchival4BalanceIPR.AddIfNotNull(_biprx.IPRIndex);
+            //_toBeMarkedArchival4BalanceIPR.AddIfNotNull(_biprx.BalanceIPR2JSOXIndex);
+            _toBeMarkedArchival4BalanceIPR.AddIfNotNull(_biprx.BalanceBatchIndex);
+            _toDeletedBalanceIPR.Add(_biprx);
           }
           _toDeleteIPR.Add(_iprX);
-          progress(null, new ProgressChangedEventArgs(1, String.Format("Selected {0} IPR account with {1} disposal entries to be deleted.", _iprX.Title, _toDeletedDisposal.Count)));
+          string _mtmp = "Selected {0} IPR account with {1} Disposal and {2} BalanceIPR entries to be deleted.";
+          progress(null, new ProgressChangedEventArgs(1, String.Format(_mtmp, _iprX.Title, _toDeletedDisposal.Count, _toDeletedBalanceIPR.Count)));
+          //delete BalanceIPR
+          spedc.BalanceIPR.Delete<NSSPLinq.BalanceIPR, NSLinq2SQL.History>
+            (_toDeletedBalanceIPR, _toBeMarkedArchival4BalanceIPR, x => sqledc.BalanceIPR.GetAt<NSLinq2SQL.BalanceIPR>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+              settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+          //delete Disposal entries
           spedc.Disposal.Delete<NSSPLinq.Disposal, NSLinq2SQL.History>
             (_toDeletedDisposal, _toBeMarkedArchival4Disposal, x => sqledc.Disposal.GetAt<NSLinq2SQL.Disposal>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
               settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+          //delete IPR
           spedc.IPR.Delete<NSSPLinq.IPR, NSLinq2SQL.History>
             (_toDeleteIPR, _toBeMarkedArchival4IPR, x => sqledc.IPR.GetAt<NSLinq2SQL.IPR>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+              settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+          Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
+          _mtmp = "Selected {0} Material entries to be deleted.";
+          progress(null, new ProgressChangedEventArgs(1, String.Format(_mtmp, _iprX.Title, _toDeletedDisposal.Count, _toDeletedBalanceIPR.Count)));
+          spedc.Material.Delete<NSSPLinq.Material, NSLinq2SQL.History>
+            (_toDeletedMaterial, _toBeMarkedArchival4Material, x => sqledc.Material.GetAt<NSLinq2SQL.Material>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
               settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
           Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
         }
