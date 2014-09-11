@@ -44,6 +44,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       //Components.Add(new ArchivingMachine(this));
       //new FinishedMachine(this);
       //this.OpenEntryState(_enteringState);
+      ProgressChang(null, new System.ComponentModel.ProgressChangedEventArgs(1, "Starting application " + Title));
     }
     //UI API
     public string Title
@@ -263,8 +264,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       }
       set
       {
-        if (RaiseHandler<Version>(value, ref b_CurrentContentVersion, "CurrentContentVersion", this))
-          URL = String.Format("{0} Version: {1}", URL, value.ToString());
+        RaiseHandler<Version>(value, ref b_CurrentContentVersion, "CurrentContentVersion", this);
       }
     }
     public int RowLimit
@@ -277,8 +277,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
       {
         RaiseHandler<int>(value, ref b_RowLimit, "RowLimit", this);
       }
-    } 
-                
+    }
+
     //methods
     internal void SetStatus2Error()
     {
