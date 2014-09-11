@@ -121,6 +121,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       //create descriptors using reflection
       Dictionary<string, StorageItemsList> _spDscrpt = StorageItem.CreateStorageDescription(typeof(TSP));
       Dictionary<string, SQLStorageItem> _sqlDscrpt = SQLStorageItem.CreateStorageDescription(typeof(TSQL), mapping);
+      int _archivalCount = 0;
       int _counter = 0;
       int _itemChanges = 0;
       bool _itemChanged;
@@ -128,7 +129,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       List<string> _changes = new List<string>();
       if (port2210 && typeof(TSP) is IArchival)
       {
-        _port = x => ((IArchival)x).Archival = false;
+        _port = x => { ((IArchival)x).Archival = false; _archivalCount++; };
         progressChanged(1, new ProgressChangedEventArgs(1, "The table will be updated new software version"));
       }
       foreach (TSP _spItem in _scrList)
