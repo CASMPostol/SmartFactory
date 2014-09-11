@@ -50,7 +50,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
         }
       }
     }
-    public static void SaveCurrentContentVersion(string requestUrl, ref Version version, ProgressChangedEventHandler ReportProgress)
+    /// <summary>
+    /// Saves the current content version as the website setting.
+    /// </summary>
+    /// <param name="requestUrl">The requested website URL.</param>
+    /// <param name="ReportProgress">The delegate reporting the operation progress.</param>
+    public static void SaveCurrentContentVersion(string requestUrl, ProgressChangedEventHandler ReportProgress)
     {
       using (Entities _edc = new Entities(requestUrl))
       {
@@ -65,7 +70,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
           };
           _edc.Settings.InsertOnSubmit(_version);
         }
-        _version.Title = version.ToString();
+        _version.Title = System.Reflection.Assembly.GetCallingAssembly().GetName().Version.ToString();
         _edc.SubmitChanges();
       }
     }

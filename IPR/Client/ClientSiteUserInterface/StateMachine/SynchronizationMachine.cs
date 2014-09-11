@@ -52,6 +52,9 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       _setting.SiteURL = Properties.Settings.Default.SiteURL;
       _setting.ConnectionString = ViewModel.MainWindowModel.GetConnectionString();
       _setting.RowLimit = Context.RowLimit;
+      _setting.Port2Rel210 = Context.CurrentContentVersion <= new Version(2, 10);
+      if (_setting.Port2Rel210)
+        ReportProgress(this, new ProgressChangedEventArgs(1, "The website contend will be updated to meet requirements of Rel. 2.10 and higher"));
       ReportProgress(this, new ProgressChangedEventArgs(1, String.Format("Connection string {0}", _setting.ConnectionString)));
       DataManagement.SynchronizationContent.Go(_setting, ReportProgress);
     }

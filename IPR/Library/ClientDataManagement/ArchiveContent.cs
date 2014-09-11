@@ -61,7 +61,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     /// </summary>
     /// <param name="settings">The settings.</param>
     /// <param name="ProgressChanged">The progress changed.</param>
-    public static void Go(ArchiveSettings settings, Action<object, ProgressChangedEventArgs> ProgressChanged)
+    public static void Go(ArchiveSettings settings, ProgressChangedEventHandler ProgressChanged)
     {
       using (NSLinq2SQL.IPRDEV _sqledc = NSLinq2SQL.IPRDEV.Connect2SQL(settings.ConnectionString, ProgressChanged))
       {
@@ -79,7 +79,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     #endregion
 
     #region private
-    private static void GoIPR(NSSPLinq.Entities spedc, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, Action<object, ProgressChangedEventArgs> progress)
+    private static void GoIPR(NSSPLinq.Entities spedc, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, ProgressChangedEventHandler progress)
     {
       progress(null, new ProgressChangedEventArgs(1, String.Format("Starting IPR archive-{0} delay. It could take several minutes", settings.ArchiveIPRDelay)));
       //Select delete candidates.
@@ -162,7 +162,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Archiving, progress);
       progress(null, new ProgressChangedEventArgs(1, "Finished Archive IPR"));
     }
-    private static void GoBatch(NSSPLinq.Entities _spedc, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, Action<object, ProgressChangedEventArgs> progress)
+    private static void GoBatch(NSSPLinq.Entities _spedc, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, ProgressChangedEventHandler progress)
     {
       progress(null, new ProgressChangedEventArgs(1, String.Format("Starting Batch archive - {0} delay. It could take several minutes", settings.ArchiveBatchDelay)));
       //TODO progress cig exclude if final or intermediate exist

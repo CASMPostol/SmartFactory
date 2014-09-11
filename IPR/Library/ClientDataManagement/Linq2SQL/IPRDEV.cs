@@ -21,7 +21,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
 {
   public partial class IPRDEV
   {
-    internal static IPRDEV Connect2SQL(string connectionString, Action<object, ProgressChangedEventArgs> progressChanged)
+    internal static IPRDEV Connect2SQL(string connectionString, ProgressChangedEventHandler progressChanged)
     {
       progressChanged(null, new ProgressChangedEventArgs(1, String.Format("Attempt to connect to SQL at: {0}", connectionString)));
       System.Data.IDbConnection _connection = new SqlConnection(connectionString);

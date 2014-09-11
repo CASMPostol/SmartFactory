@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL
       /// </summary>
       Archiving
     }
-    internal static void UpdateActivitiesLogs(IPRDEV sqlEntities, OperationName operation, Action<object, ProgressChangedEventArgs> progressChanged)
+    internal static void UpdateActivitiesLogs(IPRDEV sqlEntities, OperationName operation, ProgressChangedEventHandler progressChanged)
     {
       Linq2SQL.ArchivingOperationLogs _logs = new ArchivingOperationLogs()
       {
