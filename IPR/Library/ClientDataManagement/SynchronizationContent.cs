@@ -127,7 +127,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       bool _itemChanged;
       Action<TSP> _port = x => { };
       List<string> _changes = new List<string>();
-      if (port2210 && typeof(TSP) is IArchival)
+      if (port2210 && typeof(IArchival).IsAssignableFrom(typeof(TSP)))
       {
         _port = x => { ((IArchival)x).Archival = false; _archivalCount++; };
         progressChanged(1, new ProgressChangedEventArgs(1, "The table will be updated new software version"));
@@ -161,7 +161,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       }
       progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Submitting {0} changes on {1} list rows to SQL database", _counter, _itemChanges)));
       sqlTable.Context.SubmitChanges();
-      if (_archivalCount > 0 )
+      if (_archivalCount > 0)
       {
         progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Update to Rel 2.10 Submitting {0} Archival bit changes", _archivalCount)));
         spList.DataContext.SubmitChanges();
