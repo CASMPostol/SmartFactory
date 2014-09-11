@@ -28,7 +28,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://www.commsvr.com/COInstal/IPRClientSiteUserInterface210/</InstallUrl>
+    <InstallUrl>http://www.commsvr.com/COInstal/IPRClientSiteUserInterfaceInt/</InstallUrl>
     <SupportUrl>http://jti.cas.eu</SupportUrl>
     <ErrorReportUrl>http://www.cas.eu/Aboutcas/Contact/tabid/440/language/en-US/Default.aspx</ErrorReportUrl>
     <ProductName>CAS IPR Management Console</ProductName>
@@ -38,7 +38,7 @@
     <WebPage>publish.html</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
     <ApplicationRevision>43</ApplicationRevision>
-    <ApplicationVersion>2.10.04.%2a</ApplicationVersion>
+    <ApplicationVersion>2.10.05.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
