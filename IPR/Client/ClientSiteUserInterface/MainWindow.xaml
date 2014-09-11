@@ -43,7 +43,7 @@
                             <Image HorizontalAlignment="Right" Source="Imgs/CleanupIcon.png" Stretch="Fill" Width="100" Margin="10,10,10,5"/>
                             <Image HorizontalAlignment="Right" Source="Imgs/SynchronizeIcon.png" Stretch="Fill" Width="100" Margin="10,5"/>
                             <Image HorizontalAlignment="Right" Source="Imgs/ArchiveIcon.png" Stretch="Fill" Width="100" Margin="10,5"/>
-                            <StackPanel Background="#FF9CCC65" Margin="10,5" Height="242">
+                            <StackPanel Background="#FF9CCC65" Margin="10,5" Height="274">
                                 <Image HorizontalAlignment="Right" Source="Imgs/SettingsIcon.png" Stretch="Fill" Width="100" Margin="0"/>
                             </StackPanel>
                         </StackPanel>
@@ -123,10 +123,19 @@
                                 </TextBlock>
                                 <TextBox Text="{Binding ReportsArchivalDelay, Mode=TwoWay}" Width="50" Margin="5" Style="{StaticResource CASTextBox}" />
                             </StackPanel>
+                            <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
+                                <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
+									Read data in batches of:
+                                </TextBlock>
+                                <TextBox Text="{Binding ReadElements, Mode=TwoWay}" Width="50" Margin="5" Style="{StaticResource CASTextBox}" />
+                                <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
+									elements.
+                                </TextBlock>
+                            </StackPanel>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
-                <ListView  x:Name="x_ListBox" Style="{StaticResource CASListView}" ItemsSource="{Binding ProgressList}" Grid.Row="0" Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10" Height="570" />
+                <ListView  x:Name="x_ListBox" Style="{StaticResource CASListView}" ItemsSource="{Binding ProgressList}" Grid.Row="0" Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10" Height="600" />
             </Grid>
             <StackPanel x:Name="x_StackPanelButtons" DockPanel.Dock="Top" Orientation="Horizontal" Height="60" Margin="40,0,0,5" HorizontalAlignment="Left">
                 <TextBlock Margin="20,10,10,10" Style="{StaticResource CASTextBlockHeader}">Actions:</TextBlock>
@@ -137,6 +146,7 @@
         </StackPanel>
         <StackPanel Background="#FF689F38" Orientation="Horizontal" DockPanel.Dock="Top" ToolTip="Information about the application and progress" Height="40">
             <Label x:Name="x_ToolBarURLLabel" ContentStringFormat="URL: {0}" Content="{Binding Path=URL}" Margin="55,5,5,5" Style="{StaticResource CASLabel}"/>
+            <Label x:Name="x_ToolBarIPRVersionLabel" ContentStringFormat="IPR version: {0}" Content="{Binding Path=IPRVersion}" Margin="55,5,5,5" Style="{StaticResource CASLabel}"/>
             <ProgressBar x:Name="x_ProgressBar" Value="{Binding Path=Progress}" Width="300"  Minimum="0" Foreground="#FFaed581" Height="50" />
             <Label Content="Phase: " Margin="5" Style="{StaticResource CASLabel}"/>
             <Label Content="{Binding MachineState, Mode=OneWay}" HorizontalContentAlignment="Left" IsEnabled="False" Margin="5" Style="{StaticResource CASLabel}"/>
