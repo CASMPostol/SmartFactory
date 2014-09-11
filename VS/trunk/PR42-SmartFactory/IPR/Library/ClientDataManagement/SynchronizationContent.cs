@@ -161,6 +161,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       }
       progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Submitting {0} changes on {1} list rows to SQL database", _counter, _itemChanges)));
       sqlTable.Context.SubmitChanges();
+      if (_archivalCount > 0 )
+      {
+        progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Update to Rel 2.10 Submitting {0} Archival bit changes", _archivalCount)));
+        spList.DataContext.SubmitChanges();
+      }
     }
     private static void Synchronize<TSQL, TSP>
       (
