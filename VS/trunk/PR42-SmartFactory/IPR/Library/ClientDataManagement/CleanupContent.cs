@@ -34,7 +34,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     /// <param name="siteURL">The site URL.</param>
     /// <param name="connectionString">The connection string.</param>
     /// <param name="progress">Used to report the progress of the operation.</param>
-    public static void Go(string siteURL, string connectionString, Action<object, ProgressChangedEventArgs> progress)
+    public static void Go(string siteURL, string connectionString, ProgressChangedEventHandler progress)
     {
       Linq2SQL.IPRDEV _sqledc = Linq2SQL.IPRDEV.Connect2SQL(connectionString, progress);
       using (Entities _spedc = new Entities(siteURL))
