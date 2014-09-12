@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.ViewModel
     {
       //InitializeUI();
       AssemblyName _name = Assembly.GetExecutingAssembly().GetName();
-      this.Title = this.Title + " Rel " + _name.Version.ToString(4);
+      this.Title = Properties.Resources.ApplicationName + " Rel " + _name.Version.ToString(3);
       ProgressList = new ObservableCollection<string>();
       DoArchivingIsChecked = false;
       DoSynchronizationIsChecked = false;

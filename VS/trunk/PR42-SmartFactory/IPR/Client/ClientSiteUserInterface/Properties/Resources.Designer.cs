@@ -61,6 +61,15 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CAS SmartFactory IPR Archiving Wizard.
+        /// </summary>
+        internal static string ApplicationName {
+            get {
+                return ResourceManager.GetString("ApplicationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connect.
         /// </summary>
         internal static string ButtonConnect {

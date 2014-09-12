@@ -6,11 +6,11 @@
         xmlns:vm="clr-namespace:CAS.SmartFactory.IPR.Client.UserInterface.ViewModel"
         mc:Ignorable="d" 
         x:Class="CAS.SmartFactory.IPR.Client.UserInterface.MainWindow"
-        Title="CAS SmartFactory IPR Archiving Wizard"
+        Title="{Binding Path=Title}"
         Loaded="Window_Loaded" MinWidth="1000" MinHeight="900" d:DesignWidth="1200"  d:DesignHeight="900" WindowStartupLocation="CenterScreen" Icon="Imgs/IPR_Ico.ico" >
-	<Window.Background>
-		<ImageBrush ImageSource="Imgs/Background.jpg"/>
-	</Window.Background>
+    <Window.Background>
+        <ImageBrush ImageSource="Imgs/Background.jpg"/>
+    </Window.Background>
     <DockPanel LastChildFill="True">
         <StackPanel DockPanel.Dock="Top">
             <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
@@ -127,7 +127,7 @@
                                 <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
 									Read data in batches of:
                                 </TextBlock>
-                                <TextBox Text="{Binding ReadElements, Mode=TwoWay}" Width="50" Margin="5" Style="{StaticResource CASTextBox}" />
+                                <TextBox Text="{Binding Path=RowLimit, Mode=TwoWay}" Width="50" Margin="5" Style="{StaticResource CASTextBox}" />
                                 <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
 									elements.
                                 </TextBlock>
@@ -144,17 +144,16 @@
                 <Button x:Name="x_ButtonCancel" Style="{StaticResource CASButtonStyle}" Content="Cancel" Command="{Binding Path=ButtonCancel}" />
             </StackPanel>
         </StackPanel>
-        <StackPanel Background="#FF689F38" Orientation="Horizontal" DockPanel.Dock="Top" ToolTip="Information about the application and progress" Height="40">
-            <Label x:Name="x_ToolBarURLLabel" ContentStringFormat="URL: {0}" Content="{Binding Path=URL}" Margin="55,5,5,5" Style="{StaticResource CASLabel}"/>
-            <Label x:Name="x_ToolBarIPRVersionLabel" ContentStringFormat="IPR version: {0}" Content="{Binding Path=IPRVersion}" Margin="55,5,5,5" Style="{StaticResource CASLabel}"/>
-            <ProgressBar x:Name="x_ProgressBar" Value="{Binding Path=Progress}" Width="300"  Minimum="0" Foreground="#FFaed581" Height="50" />
-            <Label Content="Phase: " Margin="5" Style="{StaticResource CASLabel}"/>
-            <Label Content="{Binding MachineState, Mode=OneWay}" HorizontalContentAlignment="Left" IsEnabled="False" Margin="5" Style="{StaticResource CASLabel}"/>
+        <StackPanel Background="#FF689F38" Orientation="Horizontal" DockPanel.Dock="Top" ToolTip="Information about the application and progress" Height="40"  >
+            <Label ContentStringFormat="URL: {0}" Content="{Binding Path=URL}" Margin="55,5,5,5" Style="{StaticResource CASLabel}"/>
+            <Label ContentStringFormat="IPR version: {0}" Content="{Binding Path=CurrentContentVersion}" Margin="55,5,5,5" Style="{StaticResource CASLabel}"/>
+            <Label  ContentStringFormat="Phase: {0}" Content="{Binding XPath=MachineState, Mode=OneWay}" HorizontalContentAlignment="Left" IsEnabled="False" Margin="5" Style="{StaticResource CASLabel}"/>
             <Button Click="HelpButton_Click" Style="{StaticResource CASButtonGray}" Width="20" Height="20" HorizontalContentAlignment="Right">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="Imgs/ButtonHelp.png" Width="18" Height="18" ToolTipService.ToolTip="View help" />
                 </StackPanel>
             </Button>
+            <ProgressBar x:Name="x_ProgressBar" Value="{Binding Path=Progress}" MinWidth="500" HorizontalAlignment="Stretch"  Minimum="0" Foreground="#FFaed581" VerticalAlignment="Stretch" />
         </StackPanel>
     </DockPanel>
 </Window>
