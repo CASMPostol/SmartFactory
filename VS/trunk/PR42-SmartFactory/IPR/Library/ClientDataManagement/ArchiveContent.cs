@@ -79,6 +79,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         using (NSSPLinq.Entities _spedc = new NSSPLinq.Entities(settings.SiteURL))
         {
           GoIPR(_spedc, _sqledc, settings, progressChanged);
+          GoReports(_spedc, _sqledc, settings, progressChanged);
           //GoBatch(_spedc, _sqledc, settings, ProgressChanged);
         }
         Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(_sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Archiving, progressChanged);
