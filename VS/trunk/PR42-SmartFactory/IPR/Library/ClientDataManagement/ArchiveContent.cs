@@ -55,15 +55,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       /// The connection string
       /// </summary>
       public string ConnectionString;
+      /// <summary>
+      /// Gets or sets the archival delay of reports.
+      /// </summary>
+      /// <value>
+      /// The reports archival delay.
+      /// </value>
+      public int ReportsArchivalDelay { get; set; }
     }
     /// <summary>
     /// Performs Archive Content Task.
     /// </summary>
     /// <param name="settings">The settings.</param>
-    /// <param name="ProgressChanged">The progress changed.</param>
-    public static void Go(ArchiveSettings settings, ProgressChangedEventHandler ProgressChanged)
+    /// <param name="progressChanged">The progress changed.</param>
+    public static void Go(ArchiveSettings settings, ProgressChangedEventHandler progressChanged)
     {
-      using (NSLinq2SQL.IPRDEV _sqledc = NSLinq2SQL.IPRDEV.Connect2SQL(settings.ConnectionString, ProgressChanged))
+      using (NSLinq2SQL.IPRDEV _sqledc = NSLinq2SQL.IPRDEV.Connect2SQL(settings.ConnectionString, progressChanged))
       {
         if (String.IsNullOrEmpty(settings.ConnectionString))
           throw new ArgumentNullException("Database connection string cannot be null or empty.");
@@ -71,10 +78,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           throw new ArgumentOutOfRangeException(String.Format("The database at {0} does nor exist.", settings.ConnectionString));
         using (NSSPLinq.Entities _spedc = new NSSPLinq.Entities(settings.SiteURL))
         {
-          GoIPR(_spedc, _sqledc, settings, ProgressChanged);
+          GoIPR(_spedc, _sqledc, settings, progressChanged);
           //GoBatch(_spedc, _sqledc, settings, ProgressChanged);
         }
+        Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(_sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Archiving, progressChanged);
       }
+      progressChanged(null, new ProgressChangedEventArgs(1, "Finished archiving all lists"));
     }
     #endregion
 
@@ -159,8 +168,62 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         }
       }
       //Update Activities Log
-      Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Archiving, progress);
       progress(null, new ProgressChangedEventArgs(1, "Finished Archive IPR"));
+    }
+    private static void GoReports(NSSPLinq.Entities spedc, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, ProgressChangedEventHandler progress)
+    {
+      progress(null, new ProgressChangedEventArgs(1, String.Format("Starting Reports archive - {0} delay. It could take several minutes", settings.ReportsArchivalDelay)));
+      progress(null, new ProgressChangedEventArgs(1, "Buffering JSOXLib and IPR entries"));
+      List<NSSPLinq.JSOXLib> _2DeleteJSOXLib = spedc.JSOXLibrary.ToList<NSSPLinq.JSOXLib>().Where<NSSPLinq.JSOXLib>(x => x.SituationDate.IsLatter(settings.ReportsArchivalDelay)).ToList<NSSPLinq.JSOXLib>();
+      progress(null, new ProgressChangedEventArgs(1, String.Format("There are {0} JSOXLib to be archived", _2DeleteJSOXLib.Count)));
+      foreach (NSSPLinq.JSOXLib _jsoxlx in _2DeleteJSOXLib)
+      {
+        List<NSSPLinq.BalanceIPR> _2deleteBalanceIPR = new List<NSSPLinq.BalanceIPR>();
+        List<IArchival> _2ArchivalBIPR = new List<IArchival>();
+        bool _any = false;
+        foreach (NSSPLinq.JSOXCustomsSummary _jcsx in _jsoxlx.JSOXCustomsSummary)
+          if (_jcsx.Disposal.Count != 0)
+          {
+            _any = true;
+            break;
+          }
+        if (_any)
+          continue;
+        //Start deleting procedure of this branch of lists
+        //delete BalanceIPR
+        foreach (NSSPLinq.BalanceIPR _birx in _jsoxlx.BalanceIPR)
+        {
+          _2ArchivalBIPR.AddIfNotNull(_birx.IPRIndex);
+          _2deleteBalanceIPR.Add(_birx);
+        }
+        spedc.BalanceIPR.Delete<NSSPLinq.BalanceIPR, NSLinq2SQL.History>
+          (_2deleteBalanceIPR, null, x => sqledc.BalanceIPR.GetAt<NSLinq2SQL.BalanceIPR>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+            settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+        progress(null, new ProgressChangedEventArgs(1, "Finished Archive BalanceIPR"));
+        Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
+        //delete BalanceBatch
+        spedc.BalanceBatch.Delete<NSSPLinq.BalanceBatch, NSLinq2SQL.History>
+          (_jsoxlx.BalanceBatch, null, x => sqledc.BalanceBatch.GetAt<NSLinq2SQL.BalanceBatch>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+            settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+        Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
+        //delete StockEntry
+        List<NSSPLinq.StockEntry> _2deleteStockEntry = new List<NSSPLinq.StockEntry>();
+        List<IArchival> _2ArchivalStockEntry = new List<IArchival>();
+        foreach (NSSPLinq.StockLib _slx in _jsoxlx.StockLib)
+        {
+          _slx.Archival = true;
+          foreach (NSSPLinq.StockEntry _sex in _slx.StockEntry)
+          {
+            //TODO to be investigated - remove comment if needed _2ArchivalStockEntry.AddIfNotNull(_sex.BatchIndex); 
+            _2deleteStockEntry.Add(_sex);
+          }
+        }
+        spedc.StockEntry.Delete<NSSPLinq.StockEntry, NSLinq2SQL.History>
+          (_2deleteStockEntry, _2ArchivalStockEntry, x => sqledc.StockEntry.GetAt<NSLinq2SQL.StockEntry>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+            settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+        Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
+        progress(null, new ProgressChangedEventArgs(1, "Finished Archive Reports"));
+      }
     }
     private static void GoBatch(NSSPLinq.Entities _spedc, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, ProgressChangedEventHandler progress)
     {
