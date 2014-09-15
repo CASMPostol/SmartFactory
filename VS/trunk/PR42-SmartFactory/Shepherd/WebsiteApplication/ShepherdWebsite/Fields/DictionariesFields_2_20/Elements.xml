@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+  DisplayName="$Resources:CASSmartFactoryShepherd,CAS_ToBeDeleted"
+  Name="ToBeDeleted"
+  Type="Boolean"
+  ID="{01E00F32-921F-429D-BC9E-C693AFB2344B}"
+  Group="CAS Smart Factory Shepherd"
+    />
+</Elements>

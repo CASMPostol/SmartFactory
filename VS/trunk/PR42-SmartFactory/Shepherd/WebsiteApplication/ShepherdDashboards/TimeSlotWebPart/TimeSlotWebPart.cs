@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     /// Initializes a new instance of the <see cref="TimeSlotWebPart"/> class.
     /// </summary>
     public TimeSlotWebPart()
-    {}
+    { }
     #region Personalization properties
     /// <summary>
     /// Gets or sets the role of the hosting dashboard.

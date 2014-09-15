@@ -38,24 +38,23 @@
   <List Name="Warehouse" Member="Warehouse" />
   <ExcludeOtherLists />
   <ContentType Name="Item" Class="Element">
-    <!--Class="EntitiesDataContext"-->
     <Column Name="Title" Member="Title" />
     <!--<Column Name="ContentType" Member="ContentType" />-->
   </ContentType>
   <ContentType Name="TranspotUnit" Class="TranspotUnit">
-    <Column Name="Dummy" Member="Dummy" />
+    <!--<Column Name="Dummy" Member="Dummy" />-->
     <Column Name="Title" Member="Title" />
     <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Market" Class="Market">
-    <Column Name="Dummy" Member="Dummy" />
+    <!--<Column Name="Dummy" Member="Dummy" />-->
     <Column Name="Title" Member="Title" />
     <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="ShippingDriversTeam" Class="ShippingDriversTeam">
     <Column Name="DriverTitle" Member="DriverTitle" />
     <Column Name="ShippingIndex" Member="ShippingIndex" />
-    <Column Name="Title" Member="Title" />
+    <!--<Column Name="Title" Member="Title" />-->
     <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Route" Class="Route">
@@ -115,11 +114,11 @@
   <ContentType Name="DestinationMarket" Class="DestinationMarket">
     <Column Name="DestinationMarket2CityTitle" Member="DestinationMarket2CityTitle" />
     <Column Name="MarketTitle" Member="MarketTitle" />
-    <Column Name="Title" Member="Title" />
+    <!--<Column Name="Title" Member="Title" />-->
     <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Commodity" Class="Commodity">
-    <Column Name="Dummy" Member="Dummy" />
+    <!--<Column Name="Dummy" Member="Dummy" />-->
     <Column Name="Title" Member="Title" />
     <!--<ExcludeOtherColumns />-->
   </ContentType>
@@ -142,13 +141,14 @@
     <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="AlarmsAndEvents" Class="AlarmsAndEvents">
-    <Column Name="AlarmAndEventDetails" Member="AlarmAndEventDetails" />
-    <Column Name="AlarmAndEventOwner" Member="AlarmAndEventOwner" />
-    <Column Name="AlarmPriority" Member="AlarmPriority" />
-    <Column Name="AlarmsAndEventsList2PartnerTitle" Member="AlarmsAndEventsList2PartnerTitle" />
-    <Column Name="AlarmsAndEventsList2Shipping" Member="AlarmsAndEventsList2Shipping" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
-    <!--<ExcludeOtherColumns />-->
+    <Column Name="AlarmAndEventDetails" Member="AlarmAndEventDetails" />
+    <Column Name="AlarmsAndEventsShippingTitle" Member="AlarmsAndEventsShippingTitle" />
+    <Column Name="AlarmAndEventOwner" Member="AlarmAndEventOwner" />
+    <Column Name="AlarmsAndEventsList2Shipping" Member="AlarmsAndEventsList2Shipping" />
+    <Column Name="AlarmsAndEventsList2PartnerTitle" Member="AlarmsAndEventsList2PartnerTitle" />
+    <Column Name="AlarmPriority" Member="AlarmPriority" />
   </ContentType>
   <ContentType Name="SecurityEscortCatalog" Class="SecurityEscortCatalog">
     <Column Name="CurrencyTitle" Member="CurrencyTitle" />
@@ -169,7 +169,7 @@
     <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SAPDestinationPlant" Class="SAPDestinationPlant">
-    <Column Name="Dummy" Member="Dummy" />
+    <!--<Column Name="Dummy" Member="Dummy" />-->
     <Column Name="Title" Member="Title" />
     <!--<ExcludeOtherColumns />-->
   </ContentType>
@@ -187,7 +187,7 @@
     <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="ShipmentType" Class="ShipmentType">
-    <Column Name="Dummy" Member="Dummy" />
+    <!--<Column Name="Dummy" Member="Dummy" />-->
     <Column Name="Title" Member="Title" />
     <!--<ExcludeOtherColumns />-->
   </ContentType>
@@ -289,7 +289,7 @@
     <Column Name="TimeSlotsTemplateEndMinute" Member="TimeSlotsTemplateEndMinute" />
     <Column Name="TimeSlotsTemplateStartHour" Member="TimeSlotsTemplateStartHour" />
     <Column Name="TimeSlotsTemplateStartMinute" Member="TimeSlotsTemplateStartMinute" />
-    <Column Name="Title" Member="Title" />
+    <!--<Column Name="Title" Member="Title" />-->
     <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="ShippingComments" Class="ShippingComments">
@@ -314,17 +314,17 @@
     <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="CarrierType" Class="CarrierType">
-    <Column Name="Dummy" Member="Dummy" />
+    <!--<Column Name="Dummy" Member="Dummy" />-->
     <Column Name="Title" Member="Title" />
     <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="EscortPO" Class="EscortPO">
-    <Column Name="Created" Member="Created" />
+    <!--<Column Name="Created" Member="Created" />-->
     <Column Name="Created_x0020_By" Member="Created_x0020_By" />
     <Column Name="EmailAddress" Member="EmailAddress" />
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="FPOWarehouseAddress" Member="FPOWarehouseAddress" />
-    <Column Name="Modified" Member="Modified" />
+    <!--<Column Name="Modified" Member="Modified" />-->
     <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
     <Column Name="SecurityPOCity" Member="SecurityPOCity" />
     <Column Name="SecurityPOCommodity" Member="SecurityPOCommodity" />
@@ -344,7 +344,7 @@
     <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="FreightPO" Class="FreightPO">
-    <Column Name="Created" Member="Created" />
+    <!--<Column Name="Created" Member="Created" />-->
     <Column Name="Created_x0020_By" Member="Created_x0020_By" />
     <Column Name="EmailAddress" Member="EmailAddress" />
     <Column Name="FileLeafRef" Member="FileLeafRef" />
@@ -365,16 +365,16 @@
     <Column Name="FreightPOSendInvoiceToMultiline" Member="FreightPOSendInvoiceToMultiline" />
     <Column Name="FreightPOTransportCosts" Member="FreightPOTransportCosts" />
     <Column Name="FreightPOTransportUnitType" Member="FreightPOTransportUnitType" />
-    <Column Name="Modified" Member="Modified" />
+    <!--<Column Name="Modified" Member="Modified" />-->
     <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
     <Column Name="Title" Member="Title" />
     <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="SealProtocol" Class="SealProtocol">
-    <Column Name="Created" Member="Created" />
+    <!--<Column Name="Created" Member="Created" />-->
     <Column Name="Created_x0020_By" Member="Created_x0020_By" />
     <Column Name="FileLeafRef" Member="FileLeafRef" />
-    <Column Name="Modified" Member="Modified" />
+    <!--<Column Name="Modified" Member="Modified" />-->
     <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
     <Column Name="SealProtocol1stDriver" Member="SealProtocol1stDriver" />
     <Column Name="SealProtocol1stEscort" Member="SealProtocol1stEscort" />
@@ -405,15 +405,14 @@
     <Column Name="TimeSpan" Member="TimeSpan" />
     <Column Name="ExitTime" Member="ExitTime" />
     <Column Name="Occupied" Member="Occupied" />
-    <Column Name="IsDouble" Member="IsDouble" />
+    <Column Name="IsDouble" Member="IsDouble" />  
     <!--<ExcludeOtherColumns />-->
   </ContentType>
   <ContentType Name="Announcement" Class="Anons">
     <Column Name="Body" Member="Body" />
-    <!--Class="EntitiesDataContext"-->
     <Column Name="Expires" Member="Expires" />
     <Column Name="Title" Member="Title" />
     <!--<Column Name="ContentType" Member="ContentType" />-->
   </ContentType>
-  <ExcludeOtherContentTypes />
+  <!--<ExcludeOtherContentTypes />-->
 </Web>
