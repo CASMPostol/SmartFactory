@@ -17,7 +17,7 @@
     </VersionRange>
     <VersionRange BeginVersion="1.70.11.0" EndVersion="2.20.00.0">
       <ApplyElementManifests>
-        <ElementManifest Location="DictionariesFields_2_20_00\Elements.xml" />
+        <ElementManifest Location="DictionariesFields_2_20\Elements.xml" />
       </ApplyElementManifests>
       <AddContentTypeField ContentTypeId="0x0100b0982f01816047b1abff933b9f49b5db" FieldId="{01E00F32-921F-429D-BC9E-C693AFB2344B}" PushDown="TRUE"/>
       <AddContentTypeField ContentTypeId="0x01003e7761aef97a4c619f44d01b53a56568" FieldId="{01E00F32-921F-429D-BC9E-C693AFB2344B}" PushDown="TRUE"/>

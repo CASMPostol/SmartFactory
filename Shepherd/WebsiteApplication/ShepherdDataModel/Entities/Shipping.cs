@@ -367,15 +367,15 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <param name="isDouble">if set to <c>true</c> [_is double].</param>
     /// <returns></returns>
     /// <exception cref="System.ApplicationException">Time slot has been aleady reserved</exception>
-    public List<TimeSlot> MakeBooking(List<TimeSlot> timeSlotsCollection, bool isDouble)
+    public List<TimeSlotTimeSlot> MakeBooking(List<TimeSlotTimeSlot> timeSlotsCollection, bool isDouble)
     {
       m_TimeSlots = null;
       StartTime = timeSlotsCollection[0].StartTime;
       TSStartTime = timeSlotsCollection[0].StartTime;
       WarehouseStartTime = timeSlotsCollection[0].StartTime;
       Shipping2WarehouseTitle = timeSlotsCollection[0].GetWarehouse();
-      TimeSlot _next = timeSlotsCollection[0];
-      foreach (TimeSlot _tsx in timeSlotsCollection)
+      TimeSlotTimeSlot _next = timeSlotsCollection[0];
+      foreach (TimeSlotTimeSlot _tsx in timeSlotsCollection)
       {
         _tsx.TimeSlot2ShippingIndex = this;
         _next = _tsx;
@@ -463,13 +463,13 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <param name="edc">The edc.</param>
     /// <returns></returns>
     /// <exception cref="System.ArgumentNullException">edc;calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null</exception>
-    public List<TimeSlot> OccupiedTimeSlots(EntitiesDataContext edc)
+    public List<TimeSlotTimeSlot> OccupiedTimeSlots(EntitiesDataContext edc)
     {
       if (edc == null)
         throw new ArgumentNullException("edc", "calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null");
       if (m_TimeSlots == null)
       {
-        m_TimeSlots = new List<TimeSlot>();
+        m_TimeSlots = new List<TimeSlotTimeSlot>();
         m_TimeSlots.AddRange((from _ts in edc.TimeSlot
                               where this.StartTime == _ts.StartTime
                               select _ts).ToList());
@@ -489,12 +489,12 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     /// <param name="edc">The edc.</param>
     /// <returns></returns>
     /// <exception cref="System.ArgumentNullException">edc;calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null</exception>
-    public List<TimeSlot> DelayedTimeSlots(EntitiesDataContext edc)
+    public List<TimeSlotTimeSlot> DelayedTimeSlots(EntitiesDataContext edc)
     {
       if (edc == null)
         throw new ArgumentNullException("edc", "calling Shipping.TimeSlots( EntitiesDataContext edc ) edc cannot be null");
 
-      List<TimeSlot> _retTimeSlots = (from _ts in edc.TimeSlot
+      List<TimeSlotTimeSlot> _retTimeSlots = (from _ts in edc.TimeSlot
                                               where _ts.Occupied.GetValueOrDefault(Occupied.Free) == Occupied.Delayed
                                               select _ts).ToList();
       return (from _ts in _retTimeSlots
@@ -506,7 +506,7 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
     #endregion
 
     #region private
-    List<TimeSlot> m_TimeSlots = null;
+    List<TimeSlotTimeSlot> m_TimeSlots = null;
     private ShippingSubstateMachine.Context m_ShippingSubstateMachineContext;
     private TimeSpan _12h = new TimeSpan(12, 0, 0);
     private void RemoveDrivers(EntitiesDataContext EDC, Partner partner)
