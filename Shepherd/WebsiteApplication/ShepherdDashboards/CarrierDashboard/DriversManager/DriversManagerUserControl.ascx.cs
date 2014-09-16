@@ -96,6 +96,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
         throw new ApplicationException("Page_Load exception: " + _ex.Message, _ex);
       }
     }
+
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
@@ -284,6 +285,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
     {
       _drv.IdentityDocumentNumber = m_DriverIDNumber.Text;
       _drv.CellPhone = m_DriverMobileNo.Text;
+      _drv.ToBeDeleted = false;
       if (m_DriverTitle.Text.IsNullOrEmpty())
         return LocalStateMachineEngine.ActionResult.NotValidated(m_DriverNameLabel.Text + "MustBeProvided".GetShepherdLocalizedString());
       _drv.Title = m_DriverTitle.Text;
@@ -318,7 +320,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
       try
       {
         Driver _drv = Element.GetAtIndex<Driver>(EDC.Driver, m_ControlState.ItemID);
-        EDC.Driver.RecycleOnSubmit(_drv);
+        _drv.ToBeDeleted = true;
         EDC.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
       }
       catch (Exception ex)

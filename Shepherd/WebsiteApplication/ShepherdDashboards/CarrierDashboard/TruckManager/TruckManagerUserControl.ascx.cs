@@ -298,6 +298,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
       if (m_TruckTitle.Text.IsNullOrEmpty())
         return LocalStateMachineEngine.ActionResult.NotValidated(m_TruckNameLabel.Text + "MustBeProvided".GetShepherdLocalizedString());
       _drv.Title = m_TruckTitle.Text;
+      _drv.ToBeDeleted = false;
       if (m_VehicleType.SelectedIndex < 0)
         return LocalStateMachineEngine.ActionResult.NotValidated(m_VehicleTypeLabel.Text + "MustBeProvided".GetShepherdLocalizedString());
       _drv.VehicleType = (VehicleType)m_VehicleType.SelectedValue.String2Int().GetValueOrDefault(0);
@@ -332,7 +333,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
       try
       {
         Truck _itm = Element.GetAtIndex<Truck>(EDC.Truck, m_ControlState.ItemID);
-        EDC.Truck.RecycleOnSubmit(_itm);
+        _itm.ToBeDeleted = true;
         EDC.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
       }
       catch (Exception ex)
