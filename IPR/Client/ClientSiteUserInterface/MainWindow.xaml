@@ -145,15 +145,15 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Background="#FF689F38" Orientation="Horizontal" DockPanel.Dock="Top" ToolTip="Information about the application and progress" Height="40"  >
-            <Label ContentStringFormat="URL: {0}" Content="{Binding Path=URL}" Margin="55,5,5,5" Style="{StaticResource CASLabel}"/>
-            <Label ContentStringFormat="IPR version: {0}" Content="{Binding Path=CurrentContentVersion}" Margin="55,5,5,5" Style="{StaticResource CASLabel}"/>
-            <Label  ContentStringFormat="Phase: {0}" Content="{Binding XPath=MachineState, Mode=OneWay}" HorizontalContentAlignment="Left" IsEnabled="False" Margin="5" Style="{StaticResource CASLabel}"/>
-            <Button Click="HelpButton_Click" Style="{StaticResource CASButtonGray}" Width="20" Height="20" HorizontalContentAlignment="Right">
+            <Button Click="HelpButton_Click" Style="{StaticResource CASButtonGray}" Margin="55,5,5,5" Width="20" Height="20" HorizontalContentAlignment="Right">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="Imgs/ButtonHelp.png" Width="18" Height="18" ToolTipService.ToolTip="View help" />
                 </StackPanel>
             </Button>
             <ProgressBar x:Name="x_ProgressBar" Value="{Binding Path=Progress}" MinWidth="500" HorizontalAlignment="Stretch"  Minimum="0" Foreground="#FFaed581" VerticalAlignment="Stretch" />
+            <Label ContentStringFormat="Website url: {0}" Content="{Binding Path=URL}" Margin="5" Style="{StaticResource CASLabel}"/>
+            <Label ContentStringFormat="IPR version: {0}" Content="{Binding Path=CurrentContentVersion}" Margin="5" Style="{StaticResource CASLabel}"/>
+            <Label  ContentStringFormat="Phase: {0}" Content="{Binding Path=MachineState, Mode=OneWay}" IsEnabled="True" Margin="5" Style="{StaticResource CASLabel}"/>            
         </StackPanel>
     </DockPanel>
 </Window>
