@@ -285,6 +285,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
       if (m_TrailerTitle.Text.IsNullOrEmpty())
         return LocalStateMachineEngine.ActionResult.NotValidated(m_TrailerNameLabel.Text + "MustBeProvided".GetShepherdLocalizedString());
       _itm.Title = m_TrailerTitle.Text;
+      _itm.ToBeDeleted = false;
       return LocalStateMachineEngine.ActionResult.Success;
     }
     private LocalStateMachineEngine.ActionResult Create()
@@ -316,7 +317,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
       try
       {
         Trailer _drv = Element.GetAtIndex<Trailer>(EDC.Trailer, m_ControlState.ItemID);
-        EDC.Trailer.RecycleOnSubmit(_drv);
+        _drv.ToBeDeleted = true;
         EDC.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
       }
       catch (Exception ex)
