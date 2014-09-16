@@ -147,6 +147,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         Driver _driver = item.DriverTitle;
         if (_driver == null)
           continue;
+        if (_driver.ToBeDeleted == true)
+          continue;
         if ((Role == TransportResources.RolesSet.SecurityEscort && _driver.Driver2PartnerTitle.ServiceType.Value != ServiceType.SecurityEscortProvider) ||
            (Role == TransportResources.RolesSet.Carrier && _driver.Driver2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider))
           continue;
@@ -154,6 +156,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         _drivers.Remove(_driver.Id.Value);
       }
       foreach (var item in _drivers)
+        if (item.Value.ToBeDeleted != true)
         m_DriversListBox.Items.Add(new ListItem(item.Value.Title, item.Key.ToString()));
       m_ShippingTextBox.Text = _Shipping.Title;
       m_TruckDropDown.Items.Add(new ListItem());
@@ -161,6 +164,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       {
         if ((Role == TransportResources.RolesSet.SecurityEscort && _item.Truck2PartnerTitle.ServiceType.Value != ServiceType.SecurityEscortProvider) ||
           (Role == TransportResources.RolesSet.Carrier && _item.Truck2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider))
+          continue;
+        if (_item.ToBeDeleted == true)
           continue;
         ListItem _li = new ListItem(_item.Title, _item.Id.Value.ToString());
         m_TruckDropDown.Items.Add(_li);
@@ -176,6 +181,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       m_TrailerDropDown.Items.Add(new ListItem());
       foreach (Trailer item in _prtn.Trailer.OrderBy(x => x.Title))
       {
+        if (item.ToBeDeleted == true)
+          continue;
         ListItem _li = new ListItem(item.Title, item.Id.Value.ToString());
         m_TrailerDropDown.Items.Add(_li);
         if (_Shipping.TrailerTitle == item)
