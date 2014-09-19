@@ -116,6 +116,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           List<IArchival> _toBeMarkedArchival4BalanceIPR = new List<IArchival>();
           List<NSSPLinq.Material> _toDeletedMaterial = new List<NSSPLinq.Material>();
           List<IArchival> _toBeMarkedArchival4Material = new List<IArchival>();
+          List<NSSPLinq.SADDocumentType> _toDeletedSADDocumentType = new List<NSSPLinq.SADDocumentType>();
+          List<NSSPLinq.SADGood> _toDeletedSADGood = new List<NSSPLinq.SADGood>();
+          List<NSSPLinq.SADRequiredDocuments> _toDeletedSADRequiredDocuments = new List<NSSPLinq.SADRequiredDocuments>();
+          List<NSSPLinq.SADQuantity> _toDeletedSADQuantity = new List<NSSPLinq.SADQuantity>();
+          List<NSSPLinq.SADPackage> _toDeletedSADPackage = new List<NSSPLinq.SADPackage>();
+          List<NSSPLinq.SADDuties> _toDeletedSADDuties = new List<NSSPLinq.SADDuties>();
           //_toBeMarkedArchival.Add(_iprX.IPR2ConsentTitle);
           //_toBeMarkedArchival.Add(_iprX.IPR2JSOXIndex);
           //_toBeMarkedArchival.Add(_iprX.IPR2PCNPCN);
@@ -135,6 +141,33 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
             {
               _toBeMarkedArchival4Material.AddIfNotNull(_dspslx.Disposal2MaterialIndex.Material2BatchIndex);
               _toDeletedMaterial.Add(_dspslx.Disposal2MaterialIndex);
+            }
+            if (_dspslx.Disposal2InvoiceContentIndex != null && _dspslx.Disposal2InvoiceContentIndex.Disposal.Count == 1 )
+            {
+              NSSPLinq.InvoiceContent _invCnt = _dspslx.Disposal2InvoiceContentIndex;
+              if (_invCnt.InvoiceIndex.InvoiceContent.Count == 1 )
+              {
+                NSSPLinq.InvoiceLib _invcLb = _invCnt.InvoiceIndex;
+                bool _lstInvce = spedc.InvoiceLibrary.ToList<NSSPLinq.InvoiceLib>().Where<NSSPLinq.InvoiceLib>(x => x.ClearenceIndex == _invcLb.ClearenceIndex ).Count<NSSPLinq.InvoiceLib>() == 1;
+                if (_lstInvce)
+                {
+                  NSSPLinq.Clearence _clrnc = _invcLb.ClearenceIndex;
+                  if (_clrnc.Clearence2SadGoodID.Clearence.Count == 1 )
+                  {
+                    NSSPLinq.SADGood _SDGd = _clrnc.Clearence2SadGoodID;
+                    if (_SDGd.Clearence.Count == 1)
+                    {
+                      _toDeletedSADDocumentType.Add(_SDGd.SADDocumentIndex);
+                      _toDeletedSADDuties.AddRange(_SDGd.SADDuties);
+                      _toDeletedSADPackage.AddRange(_SDGd.SADPackage);
+                      _toDeletedSADQuantity.AddRange(_SDGd.SADQuantity);
+                      _toDeletedSADGood.Add(_SDGd);
+                    }
+                  }
+                }
+
+              }
+              
             }
           }
           foreach (NSSPLinq.BalanceIPR _biprx in _iprX.BalanceIPR)
@@ -229,9 +262,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     private static void GoBatch(NSSPLinq.Entities spedc, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, ProgressChangedEventHandler progress)
     {
       progress(null, new ProgressChangedEventArgs(1, String.Format("Starting Batch archive - {0} delay. It could take several minutes", settings.ArchiveBatchDelay)));
-      //TODO progress cig exclude if final or intermediate exist
-      //TODO progress arch if there is new 
-      //TODO cuttfiler AD ??
       progress(null, new ProgressChangedEventArgs(1, "Buffering Material entries"));
       List<NSSPLinq.Material> _mtrl = spedc.Material.ToList<NSSPLinq.Material>();
       int _batchArchived = 0;
@@ -262,8 +292,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
               _2BeDeletedMaterial.Add(_mpx);
             }
           }
-        } //foreach (Batch _batchX
-        if (_batchX.FGQuantityAvailable > 0)
+        } //foreach (Batch _batchX ....
+        if ((_batchX.FGQuantityAvailable > 0) || (_batchX.BatchStatus.Value == NSSPLinq.BatchStatus.Intermediate))
           continue;
         Debug.Assert(_batchX.ProductType.Value == NSSPLinq.ProductType.Cigarette);
         bool _2archive = true;
@@ -296,6 +326,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
       progress(null, new ProgressChangedEventArgs(1, "Finished archival Batch and Material list"));
     }
+
     #endregion
 
   }
