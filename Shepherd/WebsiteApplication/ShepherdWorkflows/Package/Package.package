@@ -1,2 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="36d8c059-1711-4f6c-8aed-c4bea273805e" solutionId="36d8c059-1711-4f6c-8aed-c4bea273805e" resetWebServer="true" title="CAS SmartFactory Shepherd workflows" description="CAS SmartFactory Shepherd workflows collection package." name="CASShepherdWorkflows" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" />
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="36d8c059-1711-4f6c-8aed-c4bea273805e" solutionId="36d8c059-1711-4f6c-8aed-c4bea273805e" resetWebServer="true" title="CAS SmartFactory Shepherd workflows" description="CAS SmartFactory Shepherd workflows collection package." name="CASShepherdWorkflows" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="ba19c4a6-34af-445e-9709-76d26a7ce2b3" />
+  </features>
+</package>
