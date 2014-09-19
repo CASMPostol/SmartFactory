@@ -25,10 +25,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
   /// </summary>
   internal class CleanupMachine : BackgroundWorkerMachine<ViewModel.MainWindowModel>
   {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="CleanupMachine"/> class.
-    /// </summary>
-    public CleanupMachine() { }
 
     #region BackgroundWorkerMachine
     /// <summary>
@@ -37,7 +33,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override void OnEnteringState()
     {
       base.OnEnteringState();
-      success = false;
       if (Context.DoCleanupIsChecked || Context.DoSynchronizationIsChecked || Context.DoArchivingIsChecked)
       {
         SetEventMask(Events.Cancel);
@@ -55,7 +50,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override void Next()
     {
       base.Next();
-      if (success)
+      if (Success)
         Context.EnterState<SynchronizationMachine>();
       else
         Context.EnterState<FinishedMachine>();
@@ -66,7 +61,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     }
     protected override void RunWorkerCompleted(object result)
     {
-      success = true;
       Next();
     }
     public override void OnCancellation()
@@ -74,13 +68,15 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       Next();
     }
     #endregion
-
+    /// <summary>
+    /// Returns a <see cref="System.String" /> that represents this instance.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="System.String" /> that represents this instance.
+    /// </returns>
     public override string ToString()
     {
       return "Cleanup";
     }
-
-    private bool success = false;
-
   }
 }
