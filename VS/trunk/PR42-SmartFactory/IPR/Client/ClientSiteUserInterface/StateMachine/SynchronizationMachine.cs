@@ -43,7 +43,10 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override void Next()
     {
       base.Next();
-      Context.EnterState<ArchivingMachine>();
+      if (Success)
+        Context.EnterState<ArchivingMachine>();
+      else
+        Context.EnterState<FinishedMachine>();
     }
     protected override void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
     {

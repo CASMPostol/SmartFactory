@@ -19,7 +19,6 @@ using CAS.SmartFactory.IPR.Client.UserInterface.ViewModel;
 using System;
 using System.ComponentModel;
 using System.Data.SqlClient;
-using System.Linq;
 using NsSPLinq = CAS.SmartFactory.IPR.Client.DataManagement.Linq;
 
 namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
@@ -35,7 +34,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
     public override void OnEnteringState()
     {
       base.OnEnteringState();
-      Success = false;
       SetEventMask(Events.Cancel);
       Context.ButtonNextTitle = Properties.Resources.ButtonInactive;
       Context.ButtonGoBackwardTitle = Properties.Resources.ButtonInactive;
@@ -64,16 +62,11 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       Context.ButtonNextTitle = Properties.Resources.ButtonInactive;
       Context.ButtonGoBackwardTitle = Properties.Resources.ButtonConnect;
       Context.SetStatus2Error();
-      Success = false;
     }
     public override void OnExitingState()
     {
       base.OnExitingState();
       Context.SaveSettings();
-    }
-    protected override void BackgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
-    {
-      base.BackgroundWorker_RunWorkerCompleted(sender, e);
     }
     protected override void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
     {
@@ -115,7 +108,6 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       Context.ButtonNextTitle = Properties.Resources.ButtonRun;
       Context.ButtonGoBackwardTitle = Properties.Resources.ButtonConnect;
       Context.ProgressChang(this, new ProgressChangedEventArgs(0, "Connected, the data has been retrieved successfully."));
-      Success = true;
     }
     #endregion
 
@@ -142,9 +134,8 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       public string CleanupLastRunDate = Properties.Settings.Default.RunDateError;
       public string SyncLastRunDate = Properties.Settings.Default.RunDateError;
       public string ArchivingLastRunDate = Properties.Settings.Default.RunDateError;
-      public System.Version CurrentContentVersion = new Version();
+      public Version CurrentContentVersion = new Version();
     }
-    private bool Success { get; set; }
     #endregion
 
   }
