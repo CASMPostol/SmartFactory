@@ -80,7 +80,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         {
           GoIPR(_spedc, _sqledc, settings, progressChanged);
           GoReports(_spedc, _sqledc, settings, progressChanged);
-          //GoBatch(_spedc, _sqledc, settings, ProgressChanged);
+          GoBatch(_spedc, _sqledc, settings, progressChanged);
         }
         Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(_sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Archiving, progressChanged);
       }
@@ -226,76 +226,75 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         progress(null, new ProgressChangedEventArgs(1, "Finished Archive Reports"));
       }
     }
-    private static void GoBatch(NSSPLinq.Entities _spedc, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, ProgressChangedEventHandler progress)
+    private static void GoBatch(NSSPLinq.Entities spedc, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, ProgressChangedEventHandler progress)
     {
       progress(null, new ProgressChangedEventArgs(1, String.Format("Starting Batch archive - {0} delay. It could take several minutes", settings.ArchiveBatchDelay)));
       //TODO progress cig exclude if final or intermediate exist
       //TODO progress arch if there is new 
       //TODO cuttfiler AD ??
       progress(null, new ProgressChangedEventArgs(1, "Buffering Material entries"));
-      List<NSSPLinq.Material> _mtrl = _spedc.Material.ToList<NSSPLinq.Material>();
+      List<NSSPLinq.Material> _mtrl = spedc.Material.ToList<NSSPLinq.Material>();
       int _batchArchived = 0;
       int _progressBatchArchived = 0;
       int _materialArchived = 0;
-      IEnumerable<NSSPLinq.Batch> _allB = _spedc.Batch.ToList<NSSPLinq.Batch>().Where<NSSPLinq.Batch>(x => x.ProductType.Value == NSSPLinq.ProductType.Cigarette);
+      IEnumerable<NSSPLinq.Batch> _allB = spedc.Batch.ToList<NSSPLinq.Batch>().Where<NSSPLinq.Batch>(x => x.ProductType.Value == NSSPLinq.ProductType.Cigarette);
       Dictionary<string, IGrouping<string, NSSPLinq.Batch>> _progressBatch = (from _fbx in _allB where _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Progress group _fbx by _fbx.Batch0).ToDictionary(x => x.Key);
       List<NSSPLinq.Batch> _noProgressBatch = (from _fbx in _allB where _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Final || _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Intermediate select _fbx).ToList<NSSPLinq.Batch>();
       string _msg = String.Format("There are {0} Progress and {1} not Progress Batch entries", _progressBatch.Count, _noProgressBatch.Count);
       progress(null, new ProgressChangedEventArgs(1, _msg));
+      List<NSSPLinq.Batch> _2BeDeletedBatch = new List<NSSPLinq.Batch>();
+      List<NSSPLinq.Material> _2BeDeletedMaterial = new List<NSSPLinq.Material>();
       foreach (NSSPLinq.Batch _batchX in _noProgressBatch)
       {
+        //Deleting progress batches
         if (_progressBatch.Keys.Contains(_batchX.Batch0))
         {
           Debug.Assert(_batchX.BatchStatus.Value != NSSPLinq.BatchStatus.Progress, "Wrong BatchStatus should be != BatchStatus.Progress");
           foreach (NSSPLinq.Batch _bpx in _progressBatch[_batchX.Batch0])
           {
             Debug.Assert(_bpx.BatchStatus.Value == NSSPLinq.BatchStatus.Progress, "Wrong BatchStatus should be == BatchStatus.Progress");
-            progress(null, new ProgressChangedEventArgs(1, null));
-            _bpx.Archival = true;
+            _2BeDeletedBatch.Add(_bpx);
             _progressBatchArchived++;
-            Link2SQLExtensions.SubmitChanges(_spedc, sqledc, progress);
             foreach (NSSPLinq.Material _mpx in _bpx.Material)
             {
               Debug.Assert(_mpx.Material2BatchIndex == _bpx, "Wrong Material to Batch link");
-              progress(null, new ProgressChangedEventArgs(1, null));
               _materialArchived++;
-              _mpx.Archival = true;
+              _2BeDeletedMaterial.Add(_mpx);
             }
           }
         } //foreach (Batch _batchX
-        progress(null, new ProgressChangedEventArgs(1, null));
-        if (_batchX.ProductType.Value != NSSPLinq.ProductType.Cigarette || _batchX.FGQuantityAvailable > 0)
+        if (_batchX.FGQuantityAvailable > 0)
           continue;
+        Debug.Assert(_batchX.ProductType.Value == NSSPLinq.ProductType.Cigarette);
         bool _2archive = true;
         foreach (NSSPLinq.Material _material in _batchX.Material)
         {
-          progress(null, new EntitiesChangedEventArgs(1, null, _spedc));
-          foreach (NSSPLinq.Disposal _disposalX in _material.Disposal)
+          if (_material.Disposal.Count > 0)
           {
-            if (_disposalX.CustomsStatus.Value != NSSPLinq.CustomsStatus.Finished || !_disposalX.SADDate.IsLatter(settings.ArchiveBatchDelay))
-            {
-              _2archive = false;
-              break;
-            }
-            progress(null, new EntitiesChangedEventArgs(1, null, _spedc));
-          }
-          if (!_2archive)
+            _2archive = false;
             break;
+          }
         } // foreach (Material
         if (_2archive)
         {
-          _batchX.Archival = true;
-          _batchArchived++;
-          foreach (NSSPLinq.Material _material in _batchX.Material)
+          _materialArchived += _batchX.Material.Count;
+          _2BeDeletedMaterial.AddRange(_batchX.Material);
+          if (!_batchX.Modified.IsLatter(settings.ArchiveBatchDelay) || _batchX.InvoiceContent.Count > 0 || _batchX.StockEntry.Count > 0 || _batchX.Disposal.Count > 0)
           {
-            _material.Archival = true;
-            progress(null, new EntitiesChangedEventArgs(1, null, _spedc));
+            _batchArchived++;
+            _2BeDeletedBatch.Add(_batchX);
           }
-          Link2SQLExtensions.SubmitChanges(_spedc, sqledc, progress);
         }
       }// foreach (Batch 
-      Link2SQLExtensions.SubmitChanges(_spedc, sqledc, progress);
-      progress(null, new EntitiesChangedEventArgs(1, String.Format("Finished Archive.GoBatch; Archived {0} Batch final, Batch progress {1} and {2} Material entries.", _batchArchived, _progressBatchArchived, _materialArchived), _spedc));
+      progress(null, new ProgressChangedEventArgs(1, String.Format("Archiving {0} Batch final, Batch progress {1} and {2} Material entries.", _batchArchived, _progressBatchArchived, _materialArchived)));
+      spedc.Material.Delete<NSSPLinq.Material, NSLinq2SQL.History>
+        (_2BeDeletedMaterial, null, x => sqledc.Material.GetAt<NSLinq2SQL.Material>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+          settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+      spedc.Batch.Delete<NSSPLinq.Batch, NSLinq2SQL.History>
+        (_2BeDeletedBatch, null, x => sqledc.Batch.GetAt<NSLinq2SQL.Batch>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+          settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+      Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
+      progress(null, new ProgressChangedEventArgs(1, "Finished archival Batch and Material list"));
     }
     #endregion
 
