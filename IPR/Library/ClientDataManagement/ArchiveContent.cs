@@ -116,17 +116,17 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           List<IArchival> _toBeMarkedArchival4BalanceIPR = new List<IArchival>();
           List<NSSPLinq.Material> _toDeletedMaterial = new List<NSSPLinq.Material>();
           List<IArchival> _toBeMarkedArchival4Material = new List<IArchival>();
+          List<IArchival> _toBeMarkedArchival4Clearence = new List<IArchival>();
+          List<NSSPLinq.Clearence> _toDeletedClearence = new List<NSSPLinq.Clearence>();
           List<NSSPLinq.SADDocumentType> _toDeletedSADDocumentType = new List<NSSPLinq.SADDocumentType>();
           List<NSSPLinq.SADGood> _toDeletedSADGood = new List<NSSPLinq.SADGood>();
           List<NSSPLinq.SADRequiredDocuments> _toDeletedSADRequiredDocuments = new List<NSSPLinq.SADRequiredDocuments>();
           List<NSSPLinq.SADQuantity> _toDeletedSADQuantity = new List<NSSPLinq.SADQuantity>();
           List<NSSPLinq.SADPackage> _toDeletedSADPackage = new List<NSSPLinq.SADPackage>();
           List<NSSPLinq.SADDuties> _toDeletedSADDuties = new List<NSSPLinq.SADDuties>();
-          //_toBeMarkedArchival.Add(_iprX.IPR2ConsentTitle);
-          //_toBeMarkedArchival.Add(_iprX.IPR2JSOXIndex);
-          //_toBeMarkedArchival.Add(_iprX.IPR2PCNPCN);
+          List<NSSPLinq.InvoiceContent> _toDeletedInvoiceContent = new List<NSSPLinq.InvoiceContent>();
+          List<NSSPLinq.InvoiceLib> _toDeletedInvoiceLib = new List<NSSPLinq.InvoiceLib>();
           _toBeMarkedArchival4IPR.AddIfNotNull(_iprX.ClearenceIndex);
-          //_toBeMarkedArchival.Add(_iprX.IPRLibraryIndex);
           foreach (NSSPLinq.Disposal _dspslx in _iprX.Disposal)
           {
             _toBeMarkedArchival4Disposal.AddIfNotNull(_dspslx.Disposal2BatchIndex);
@@ -142,32 +142,35 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
               _toBeMarkedArchival4Material.AddIfNotNull(_dspslx.Disposal2MaterialIndex.Material2BatchIndex);
               _toDeletedMaterial.Add(_dspslx.Disposal2MaterialIndex);
             }
-            if (_dspslx.Disposal2InvoiceContentIndex != null && _dspslx.Disposal2InvoiceContentIndex.Disposal.Count == 1 )
+            if (_dspslx.Disposal2InvoiceContentIndex != null && _dspslx.Disposal2InvoiceContentIndex.Disposal.Count == 1)
             {
+              _toDeletedInvoiceContent.Add(_dspslx.Disposal2InvoiceContentIndex);
               NSSPLinq.InvoiceContent _invCnt = _dspslx.Disposal2InvoiceContentIndex;
-              if (_invCnt.InvoiceIndex.InvoiceContent.Count == 1 )
+              if (_invCnt.InvoiceIndex.InvoiceContent.Count == 1)
               {
+                _toDeletedInvoiceLib.Add(_invCnt.InvoiceIndex);
                 NSSPLinq.InvoiceLib _invcLb = _invCnt.InvoiceIndex;
-                bool _lstInvce = spedc.InvoiceLibrary.ToList<NSSPLinq.InvoiceLib>().Where<NSSPLinq.InvoiceLib>(x => x.ClearenceIndex == _invcLb.ClearenceIndex ).Count<NSSPLinq.InvoiceLib>() == 1;
+                bool _lstInvce = spedc.InvoiceLibrary.ToList<NSSPLinq.InvoiceLib>().Where<NSSPLinq.InvoiceLib>(x => x.ClearenceIndex == _invcLb.ClearenceIndex).Count<NSSPLinq.InvoiceLib>() == 1;
                 if (_lstInvce)
                 {
                   NSSPLinq.Clearence _clrnc = _invcLb.ClearenceIndex;
-                  if (_clrnc.Clearence2SadGoodID.Clearence.Count == 1 )
+                  if (_clrnc.Clearence2SadGoodID.Clearence.Count == 1)
                   {
+                    _toDeletedClearence.Add(_clrnc);
                     NSSPLinq.SADGood _SDGd = _clrnc.Clearence2SadGoodID;
+                    _toBeMarkedArchival4Clearence.Add(_SDGd);
                     if (_SDGd.Clearence.Count == 1)
                     {
                       _toDeletedSADDocumentType.Add(_SDGd.SADDocumentIndex);
+                      _toDeletedSADGood.Add(_SDGd);
+                      _toDeletedSADRequiredDocuments.AddRange(_SDGd.SADRequiredDocuments);
                       _toDeletedSADDuties.AddRange(_SDGd.SADDuties);
                       _toDeletedSADPackage.AddRange(_SDGd.SADPackage);
                       _toDeletedSADQuantity.AddRange(_SDGd.SADQuantity);
-                      _toDeletedSADGood.Add(_SDGd);
                     }
                   }
                 }
-
               }
-              
             }
           }
           foreach (NSSPLinq.BalanceIPR _biprx in _iprX.BalanceIPR)
@@ -178,7 +181,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
             _toDeletedBalanceIPR.Add(_biprx);
           }
           _toDeleteIPR.Add(_iprX);
-          string _mtmp = "Selected {0} IPR account with {1} Disposal and {2} BalanceIPR entries to be deleted.";
+          string _mtmp = "The selected {0} IPR account with {1} Disposal and {2} BalanceIPR entries are to be deleted.";
           progress(null, new ProgressChangedEventArgs(1, String.Format(_mtmp, _iprX.Title, _toDeletedDisposal.Count, _toDeletedBalanceIPR.Count)));
           //delete BalanceIPR
           spedc.BalanceIPR.Delete<NSSPLinq.BalanceIPR, NSLinq2SQL.History>
@@ -193,16 +196,30 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
             (_toDeleteIPR, _toBeMarkedArchival4IPR, x => sqledc.IPR.GetAt<NSLinq2SQL.IPR>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
               settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
           Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
-          _mtmp = "Selected {0} Material entries to be deleted.";
-          progress(null, new ProgressChangedEventArgs(1, String.Format(_mtmp, _iprX.Title, _toDeletedDisposal.Count, _toDeletedBalanceIPR.Count)));
+          //delete Material
+          _mtmp = "The selected {0} Material entries are to be deleted.";
+          progress(null, new ProgressChangedEventArgs(1, String.Format(_mtmp, _toDeletedMaterial.Count)));
           spedc.Material.Delete<NSSPLinq.Material, NSLinq2SQL.History>
             (_toDeletedMaterial, _toBeMarkedArchival4Material, x => sqledc.Material.GetAt<NSLinq2SQL.Material>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+              settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+          Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
+          //delete InvoiceContent, InvoiceLibrary, Clarence
+          _mtmp = "The selected: {0} InvoiceContent,  {1} InvoiceLibrary, and {2} Clarence entries are to be deleted.";
+          progress(null, new ProgressChangedEventArgs(1, String.Format(_mtmp, _toDeletedInvoiceContent.Count, _toDeletedInvoiceLib.Count, _toDeletedClearence.Count)));
+          spedc.InvoiceContent.Delete<NSSPLinq.InvoiceContent, NSLinq2SQL.History>
+            (_toDeletedInvoiceContent, null, x => sqledc.InvoiceContent.GetAt<NSLinq2SQL.InvoiceContent>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+              settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+          spedc.InvoiceLibrary.Delete<NSSPLinq.InvoiceLib, NSLinq2SQL.History>
+            (_toDeletedInvoiceLib, null, x => sqledc.InvoiceLibrary.GetAt<NSLinq2SQL.InvoiceLibrary>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+              settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+          spedc.Clearence.Delete<NSSPLinq.Clearence, NSLinq2SQL.History>
+            (_toDeletedClearence, null, x => sqledc.Clearence.GetAt<NSLinq2SQL.Clearence>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
               settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
           Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
         }
       }
       //Update Activities Log
-      progress(null, new ProgressChangedEventArgs(1, "Finished Archive IPR"));
+      progress(null, new ProgressChangedEventArgs(1, "Finished archive operation of IPR related lists"));
     }
     private static void GoReports(NSSPLinq.Entities spedc, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, ProgressChangedEventHandler progress)
     {
@@ -326,7 +343,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
       progress(null, new ProgressChangedEventArgs(1, "Finished archival Batch and Material list"));
     }
-
     #endregion
 
   }
