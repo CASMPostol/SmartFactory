@@ -229,8 +229,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       progress(null, new ProgressChangedEventArgs(1, String.Format("There are {0} JSOXLib to be archived", _2DeleteJSOXLib.Count)));
       foreach (NSSPLinq.JSOXLib _jsoxlx in _2DeleteJSOXLib)
       {
-        List<NSSPLinq.BalanceIPR> _2deleteBalanceIPR = new List<NSSPLinq.BalanceIPR>();
-        List<IArchival> _2ArchivalBIPR = new List<IArchival>();
         bool _any = false;
         foreach (NSSPLinq.JSOXCustomsSummary _jcsx in _jsoxlx.JSOXCustomsSummary)
           if (_jcsx.Disposal.Count != 0)
@@ -241,36 +239,23 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         if (_any)
           continue;
         //Start deleting procedure of this branch of lists
-        //delete BalanceIPR
-        foreach (NSSPLinq.BalanceIPR _birx in _jsoxlx.BalanceIPR)
-        {
-          _2ArchivalBIPR.AddIfNotNull(_birx.IPRIndex);
-          _2deleteBalanceIPR.Add(_birx);
-        }
+        //delete StockEntry
+        List<NSSPLinq.StockEntry> _2deleteStockEntry = new List<NSSPLinq.StockEntry>();
+        foreach (NSSPLinq.StockLib _slx in _jsoxlx.StockLib)
+          _2deleteStockEntry.AddRange(_slx.StockEntry);
+        String _mstTmp = "The selected {0} JSOXLib report related list are to be deleted: {1} BalanceIPR, {2} BalanceBatch, {3} JSOXCustomsSummary, and {4} StockEntry  entries are to be deleted.";
+        progress(null, new ProgressChangedEventArgs(1, String.Format(_mstTmp, _jsoxlx.Title, _jsoxlx.BalanceIPR.Count, _jsoxlx.BalanceBatch.Count, _jsoxlx.JSOXCustomsSummary.Count, _2deleteStockEntry.Count)));
         spedc.BalanceIPR.Delete<NSSPLinq.BalanceIPR, NSLinq2SQL.History>
-          (_2deleteBalanceIPR, null, x => sqledc.BalanceIPR.GetAt<NSLinq2SQL.BalanceIPR>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+          (_jsoxlx.BalanceIPR, null, x => sqledc.BalanceIPR.GetAt<NSLinq2SQL.BalanceIPR>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
             settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
-        progress(null, new ProgressChangedEventArgs(1, "Finished Archive BalanceIPR"));
-        Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
-        //delete BalanceBatch
         spedc.BalanceBatch.Delete<NSSPLinq.BalanceBatch, NSLinq2SQL.History>
           (_jsoxlx.BalanceBatch, null, x => sqledc.BalanceBatch.GetAt<NSLinq2SQL.BalanceBatch>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
             settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
-        Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
-        //delete StockEntry
-        List<NSSPLinq.StockEntry> _2deleteStockEntry = new List<NSSPLinq.StockEntry>();
-        List<IArchival> _2ArchivalStockEntry = new List<IArchival>();
-        foreach (NSSPLinq.StockLib _slx in _jsoxlx.StockLib)
-        {
-          _slx.Archival = true;
-          foreach (NSSPLinq.StockEntry _sex in _slx.StockEntry)
-          {
-            //TODO to be investigated - remove comment if needed _2ArchivalStockEntry.AddIfNotNull(_sex.BatchIndex); 
-            _2deleteStockEntry.Add(_sex);
-          }
-        }
+        spedc.JSOXCustomsSummary.Delete<NSSPLinq.JSOXCustomsSummary, NSLinq2SQL.History>
+          (_jsoxlx.JSOXCustomsSummary, null, x => sqledc.JSOXCustomsSummary.GetAt<NSLinq2SQL.JSOXCustomsSummary>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+            settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
         spedc.StockEntry.Delete<NSSPLinq.StockEntry, NSLinq2SQL.History>
-          (_2deleteStockEntry, _2ArchivalStockEntry, x => sqledc.StockEntry.GetAt<NSLinq2SQL.StockEntry>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+          (_2deleteStockEntry, null, x => sqledc.StockEntry.GetAt<NSLinq2SQL.StockEntry>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
             settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
         Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
         progress(null, new ProgressChangedEventArgs(1, "Finished Archive Reports"));
