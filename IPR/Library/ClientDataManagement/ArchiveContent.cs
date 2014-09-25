@@ -311,14 +311,14 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         {
           _materialArchived += _batchX.Material.Count;
           _2BeDeletedMaterial.AddRange(_batchX.Material);
-          if (!_batchX.Modified.IsLatter(settings.ArchiveBatchDelay) || _batchX.InvoiceContent.Count > 0 || _batchX.StockEntry.Count > 0 || _batchX.Disposal.Count > 0)
+          if (_batchX.Modified.IsLatter(settings.ArchiveBatchDelay) && _batchX.InvoiceContent.Count == 0 &&_batchX.StockEntry.Count ==0 && _batchX.Disposal.Count == 0)
           {
             _batchArchived++;
             _2BeDeletedBatch.Add(_batchX);
           }
         }
       }// foreach (Batch 
-      progress(null, new ProgressChangedEventArgs(1, String.Format("Archiving {0} Batch final, Batch progress {1} and {2} Material entries.", _batchArchived, _progressBatchArchived, _materialArchived)));
+      progress(null, new ProgressChangedEventArgs(1, String.Format("The selected {0} Batch final, {1} Batch progress and {2} Material entries are to be deleted.", _batchArchived, _progressBatchArchived, _materialArchived)));
       spedc.Material.Delete<NSSPLinq.Material, NSLinq2SQL.History>
         (_2BeDeletedMaterial, null, x => sqledc.Material.GetAt<NSLinq2SQL.Material>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
@@ -326,7 +326,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         (_2BeDeletedBatch, null, x => sqledc.Batch.GetAt<NSLinq2SQL.Batch>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
       Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
-      progress(null, new ProgressChangedEventArgs(1, "Finished archival Batch and Material list"));
+      progress(null, new ProgressChangedEventArgs(1, "Finished archival of the Batch and Material lists"));
     }
     #endregion
 
