@@ -44,24 +44,25 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         List<StockLib> _slList = _spedc.StockLibrary.ToList<StockLib>();
         progress(null, new ProgressChangedEventArgs(1, String.Format("There are {0} StockLib entries", _slList.Count)));
         progress(null, new ProgressChangedEventArgs(1, "Buffering StockEntry entries"));
-        List<StockEntry> _seToBeDeleted = _spedc.StockEntry.ToList<StockEntry>().Where<StockEntry>(x => x.StockLibraryIndex == null).ToList<StockEntry>();
+        List<StockEntry> _stockEntryAll = _spedc.StockEntry.ToList<StockEntry>().ToList<StockEntry>();
+        IEnumerable<StockEntry> _seToBeDeleted = _stockEntryAll.Where<StockEntry>(x => x.StockLibraryIndex == null);
         //Delete not associated StockEntries
-        progress(null, new ProgressChangedEventArgs(1, String.Format("There are {0} StockEntry to be deleted because they are not associated with StockLib.", _seToBeDeleted.Count)));
+        progress(null, new ProgressChangedEventArgs(1, String.Format("There are {0} StockEntry to be deleted because they are not associated with StockLib.", _seToBeDeleted.Count<StockEntry>())));
         _spedc.StockEntry.Delete<StockEntry, NSLinq2SQL.History>
           (_seToBeDeleted, null, x => _sqledc.StockEntry.GetAt<NSLinq2SQL.StockEntry>(x), (id, listName) => _sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
             siteURL, x => _sqledc.History.AddHistoryEntry(x));
         Link2SQLExtensions.SubmitChanges(_spedc, _sqledc, progress);
         //Delete StockLib and associated StockEntry
-        _seToBeDeleted.Clear();
         List<StockLib> _slToBeDeleted = new List<StockLib>();
         foreach (StockLib _selX in _slList)
         {
           if (_selX.Stock2JSOXLibraryIndex != null)
             continue;
           _slToBeDeleted.Add(_selX);
-          _seToBeDeleted.AddRange(_selX.StockEntry);
+          _seToBeDeleted = _stockEntryAll.Where(x => x.StockLibraryIndex == _selX );
         }
-        progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockLib and associated {1} StockEntry entries.", _slToBeDeleted.Count, _seToBeDeleted.Count)));
+        int _entries = _seToBeDeleted.Count<StockEntry>();
+        progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockLib and associated {1} StockEntry entries.", _slToBeDeleted.Count, _entries)));
         _spedc.StockEntry.Delete<StockEntry, NSLinq2SQL.History>
           (_seToBeDeleted, null, x => _sqledc.StockEntry.GetAt<NSLinq2SQL.StockEntry>(x), (id, listName) => _sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
            siteURL, x => _sqledc.History.AddHistoryEntry(x));
