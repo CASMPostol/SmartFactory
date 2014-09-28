@@ -59,7 +59,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           if (_selX.Stock2JSOXLibraryIndex != null)
             continue;
           _slToBeDeleted.Add(_selX);
-          _seToBeDeleted = _stockEntryAll.Where(x => x.StockLibraryIndex == _selX );
+          _seToBeDeleted = _stockEntryAll.Where(x => x.StockLibraryIndex == _selX);
         }
         int _entries = _seToBeDeleted.Count<StockEntry>();
         progress(null, new ProgressChangedEventArgs(1, String.Format("To be deleted {0} StockLib and associated {1} StockEntry entries.", _slToBeDeleted.Count, _entries)));
@@ -72,8 +72,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         Link2SQLExtensions.SubmitChanges(_spedc, _sqledc, progress);
         //Update Activities Log
         Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(_sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Cleanup, progress);
-        progress(null, new ProgressChangedEventArgs(1, "Finished Cleanup Content Operation."));
       }
+      progress(null, new ProgressChangedEventArgs(1, "Finished Cleanup Content Operation."));
     }
   }
 }
