@@ -215,6 +215,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           spedc.Clearence.Delete<NSSPLinq.Clearence, NSLinq2SQL.History>
             (_toDeletedClearence, null, x => sqledc.Clearence.GetAt<NSLinq2SQL.Clearence>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
               settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+          //TODO delete SAD lists group 
           Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
         }
       }
@@ -243,6 +244,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         List<NSSPLinq.StockEntry> _2deleteStockEntry = new List<NSSPLinq.StockEntry>();
         foreach (NSSPLinq.StockLib _slx in _jsoxlx.StockLib)
           _2deleteStockEntry.AddRange(_slx.StockEntry);
+        if (_jsoxlx.BalanceIPR.Count + _jsoxlx.BalanceBatch.Count + _jsoxlx.JSOXCustomsSummary.Count + _2deleteStockEntry.Count == 0)
+          continue;
         String _mstTmp = "The selected {0} JSOXLib report related list are to be deleted: {1} BalanceIPR, {2} BalanceBatch, {3} JSOXCustomsSummary, and {4} StockEntry  entries are to be deleted.";
         progress(null, new ProgressChangedEventArgs(1, String.Format(_mstTmp, _jsoxlx.Title, _jsoxlx.BalanceIPR.Count, _jsoxlx.BalanceBatch.Count, _jsoxlx.JSOXCustomsSummary.Count, _2deleteStockEntry.Count)));
         spedc.BalanceIPR.Delete<NSSPLinq.BalanceIPR, NSLinq2SQL.History>
@@ -258,8 +261,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           (_2deleteStockEntry, null, x => sqledc.StockEntry.GetAt<NSLinq2SQL.StockEntry>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
             settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
         Link2SQLExtensions.SubmitChanges(spedc, sqledc, progress);
-        progress(null, new ProgressChangedEventArgs(1, "Finished Archive Reports"));
       }
+      progress(null, new ProgressChangedEventArgs(1, "Finished Archive Reports"));
     }
     private static void GoBatch(NSSPLinq.Entities spedc, NSLinq2SQL.IPRDEV sqledc, ArchiveSettings settings, ProgressChangedEventHandler progress)
     {
@@ -311,7 +314,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         {
           _materialArchived += _batchX.Material.Count;
           _2BeDeletedMaterial.AddRange(_batchX.Material);
-          if (_batchX.Modified.IsLatter(settings.ArchiveBatchDelay) && _batchX.InvoiceContent.Count == 0 &&_batchX.StockEntry.Count ==0 && _batchX.Disposal.Count == 0)
+          if (_batchX.Modified.IsLatter(settings.ArchiveBatchDelay) && _batchX.InvoiceContent.Count == 0 && _batchX.StockEntry.Count == 0 && _batchX.Disposal.Count == 0)
           {
             _batchArchived++;
             _2BeDeletedBatch.Add(_batchX);
