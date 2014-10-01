@@ -15,11 +15,9 @@
 
 using CAS.SharePoint.Client.Link2SQL;
 using CAS.SharePoint.Client.Linq2SP;
-using Microsoft.SharePoint.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data.Linq;
 using System.Diagnostics;
 using System.Linq;
 using NSLinq2SQL = CAS.SmartFactory.IPR.Client.DataManagement.Linq2SQL;
@@ -95,7 +93,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       using (NSSPLinq.Entities _spedc = new NSSPLinq.Entities(settings.SiteURL))
       {
         progress(null, new ProgressChangedEventArgs(1, "Buffering IPR entries"));
-        foreach (Linq.IPR _iprX in _spedc.IPR.Where<Linq.IPR>(_iprX => _iprX.AccountClosed.Value == true && _iprX.ClosingDate.IsLatter(settings.ArchiveIPRDelay)))
+        foreach (Linq.IPR _iprX in _spedc.IPR.ToList<Linq.IPR>().Where<Linq.IPR>(_iprX => _iprX.AccountClosed.Value == true && _iprX.ClosingDate.IsLatter(settings.ArchiveIPRDelay)))
         {
           bool _any = false;
           foreach (NSSPLinq.Disposal _dspx in _iprX.Disposal)
