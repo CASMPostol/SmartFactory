@@ -46,6 +46,12 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         return;
       list.Add(item);
     }
+    internal static void AddIfNew<TKey>(this List<TKey> list, TKey key)
+    {
+      if (list.Contains(key))
+        return;
+      list.Add(key);
+    }
     internal static void AddHistoryEntry(this Table<Linq2SQL.History> sqledc, Linq2SQL.History history)
     {
       sqledc.InsertOnSubmit(history);
