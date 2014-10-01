@@ -91,6 +91,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       progress(null, new ProgressChangedEventArgs(1, String.Format("Starting IPR archive-{0} delay. It could take several minutes", settings.ArchiveIPRDelay)));
       //Select delete candidates.
       List<int> _invcLib2BeChecked = new List<int>();
+      List<int> _clearance2BeChecked = new List<int>();
       using (NSSPLinq.Entities _spedc = new NSSPLinq.Entities(settings.SiteURL))
       {
         progress(null, new ProgressChangedEventArgs(1, "Buffering IPR entries"));
@@ -124,6 +125,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
             _toDeletedDisposal.Add(_dspslx);
             if (_dspslx.Disposal2InvoiceContentIndex != null)
               _invcLib2BeChecked.AddIfNew(_dspslx.Disposal2InvoiceContentIndex.InvoiceIndex.Id.Value);
+            if (_dspslx.Disposal2ClearenceIndex != null)
+              _clearance2BeChecked.AddIfNew(_dspslx.Disposal2ClearenceIndex.Id.Value);
           }
           foreach (NSSPLinq.BalanceIPR _biprx in _iprX.BalanceIPR)
           {
@@ -150,7 +153,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           Link2SQLExtensions.SubmitChanges(_spedc, sqledc, progress);
         }
       }
-      List<int> _clearance2BeChecked = new List<int>();
       using (NSSPLinq.Entities _spedc = new NSSPLinq.Entities(settings.SiteURL))
       {
         List<NSSPLinq.InvoiceContent> _toDeletedInvoiceContent = new List<NSSPLinq.InvoiceContent>();
@@ -311,13 +313,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         int _batchArchived = 0;
         int _progressBatchArchived = 0;
         int _materialArchived = 0;
-        IEnumerable<NSSPLinq.Batch> _allB = spedc.Batch.ToList<NSSPLinq.Batch>().Where<NSSPLinq.Batch>(x => x.ProductType.Value == NSSPLinq.ProductType.Cigarette);
-        Dictionary<string, IGrouping<string, NSSPLinq.Batch>> _progressBatch = (from _fbx in _allB where _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Progress group _fbx by _fbx.Batch0).ToDictionary(x => x.Key);
-        List<NSSPLinq.Batch> _noProgressBatch = (from _fbx in _allB where _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Final || _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Intermediate select _fbx).ToList<NSSPLinq.Batch>();
-        string _msg = String.Format("There are {0} Progress and {1} not Progress Batch entries", _progressBatch.Count, _noProgressBatch.Count);
-        progress(null, new ProgressChangedEventArgs(1, _msg));
+        List<NSSPLinq.Batch> _allBtchs = spedc.Batch.ToList<NSSPLinq.Batch>();
         List<NSSPLinq.Batch> _2BeDeletedBatch = new List<NSSPLinq.Batch>();
         List<NSSPLinq.Material> _2BeDeletedMaterial = new List<NSSPLinq.Material>();
+        foreach (NSSPLinq.Batch _noCig in _allBtchs.Where<NSSPLinq.Batch>(x => x.ProductType.Value != NSSPLinq.ProductType.Cigarette))
+        {
+          if (_noCig.StockEntry.Count > 0)
+            continue;
+          _2BeDeletedBatch.Add(_noCig);
+          _2BeDeletedMaterial.AddRange(_noCig.Material);
+        }
+        string _msg = String.Format("There are {0} Batch and {1} Material entries for no cigarette to be deleted.", _2BeDeletedBatch.Count, _2BeDeletedMaterial.Count);
+        IEnumerable<NSSPLinq.Batch> _allBtchCig = _allBtchs.Where<NSSPLinq.Batch>(x => x.ProductType.Value == NSSPLinq.ProductType.Cigarette);
+        Dictionary<string, IGrouping<string, NSSPLinq.Batch>> _progressBatch = (from _fbx in _allBtchCig where _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Progress group _fbx by _fbx.Batch0).ToDictionary(x => x.Key);
+        List<NSSPLinq.Batch> _noProgressBatch = (from _fbx in _allBtchCig where _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Final || _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Intermediate select _fbx).ToList<NSSPLinq.Batch>();
+        _msg = String.Format("There are {0} Progress and {1} not Progress Batch entries for cigarette", _progressBatch.Count, _noProgressBatch.Count);
+        progress(null, new ProgressChangedEventArgs(1, _msg));
         foreach (NSSPLinq.Batch _batchX in _noProgressBatch)
         {
           //Deleting progress batches
