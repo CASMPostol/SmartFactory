@@ -173,7 +173,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           _clearance2BeChecked.AddIfNew(_invcLb.ClearenceIndex.Id.Value);
         }
         string _mtmp = "The selected: {0} InvoiceLibrary, and {1} InvoiceContent entries are to be deleted.";
-        progress(null, new ProgressChangedEventArgs(1, String.Format(_mtmp, _toDeletedInvoiceContent.Count, _toDeletedInvoiceLib.Count)));
+        progress(null, new ProgressChangedEventArgs(1, String.Format(_mtmp, _toDeletedInvoiceLib.Count, _toDeletedInvoiceContent.Count)));
         _spedc.InvoiceContent.Delete<NSSPLinq.InvoiceContent, NSLinq2SQL.History>
           (_toDeletedInvoiceContent, null, x => sqledc.InvoiceContent.GetAt<NSLinq2SQL.InvoiceContent>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
             settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
@@ -203,6 +203,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           _sad2BeChecked.AddIfNew(_clrnc.Clearence2SadGoodID.Id.Value);
           _clearance2BeChecked = null;
         }
+        string _mtmp = "The selected {0} Clearance entries are to be deleted.";
+        progress(null, new ProgressChangedEventArgs(1, String.Format(_mtmp, _toDeletedClearence.Count)));
         _spedc.Clearence.Delete<NSSPLinq.Clearence, NSLinq2SQL.History>
           (_toDeletedClearence, _toBeMarkedArchival4Clearence, x => sqledc.Clearence.GetAt<NSLinq2SQL.Clearence>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
             settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
@@ -263,7 +265,6 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       using (NSSPLinq.Entities _spedc = new NSSPLinq.Entities(settings.SiteURL))
       {
         List<NSSPLinq.JSOXLib> _2DeleteJSOXLib = _spedc.JSOXLibrary.ToList<NSSPLinq.JSOXLib>().Where<NSSPLinq.JSOXLib>(x => x.SituationDate.IsLatter(settings.ReportsArchivalDelay)).ToList<NSSPLinq.JSOXLib>();
-        progress(null, new ProgressChangedEventArgs(1, String.Format("There are {0} JSOXLib to be archived", _2DeleteJSOXLib.Count)));
         foreach (NSSPLinq.JSOXLib _jsoxlx in _2DeleteJSOXLib)
         {
           bool _any = false;
@@ -322,6 +323,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           _2BeDeletedMaterial.AddRange(_noCig.Material);
         }
         string _msg = String.Format("There are {0} Batch and {1} Material entries for no cigarette to be deleted.", _2BeDeletedBatch.Count, _2BeDeletedMaterial.Count);
+        progress(null, new ProgressChangedEventArgs(1, _msg));
         IEnumerable<NSSPLinq.Batch> _allBtchCig = _allBtchs.Where<NSSPLinq.Batch>(x => x.ProductType.Value == NSSPLinq.ProductType.Cigarette);
         Dictionary<string, IGrouping<string, NSSPLinq.Batch>> _progressBatch = (from _fbx in _allBtchCig where _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Progress group _fbx by _fbx.Batch0).ToDictionary(x => x.Key);
         List<NSSPLinq.Batch> _noProgressBatch = (from _fbx in _allBtchCig where _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Final || _fbx.BatchStatus.Value == NSSPLinq.BatchStatus.Intermediate select _fbx).ToList<NSSPLinq.Batch>();

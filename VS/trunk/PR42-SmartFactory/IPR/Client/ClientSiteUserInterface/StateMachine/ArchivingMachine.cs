@@ -34,7 +34,7 @@ namespace CAS.SmartFactory.IPR.Client.UserInterface.StateMachine
       }
       else
       {
-        this.ReportProgress(this, new ProgressChangedEventArgs(0, "Synchronization skipped because is not selected by the user."));
+        this.ReportProgress(this, new ProgressChangedEventArgs(0, "Archive operation skipped because is not selected by the user."));
         Next();
         return;
       }
