@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         if ( _ClientContext == null )
           throw new ArgumentNullException( "clientContext", String.Format( "Cannot get the {0} ", "ClientContext" ) );
         m_URL = _ClientContext.Url;
-        this.MainPageData.GetData( m_URL, m_SelectedID );
+        CreateViewModel();
       }
       catch ( Exception ex )
       {
@@ -169,8 +169,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       if ( MessageBox.Show( "All modification will be discarded", "Request Editor", MessageBoxButton.OKCancel ) != MessageBoxResult.OK )
         return;
       DisposeMainPageData();
+      CreateViewModel();
+    }
+    private void CreateViewModel()
+    {
       this.MainPageData = new MainPageData();
-      this.MainPageData.GetData( m_URL, m_SelectedID );
+      this.MainPageData.GetData(m_URL, m_SelectedID);
     }
     #endregion
 
@@ -180,8 +184,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     private MainPageData MainPageData
     {
-      get { return ( (MainPageData)x_GridMainPageData.DataContext ); }
-      set { x_GridMainPageData.DataContext = value; this.UpdateLayout(); }
+      get { return ( (MainPageData)this.DataContext ); }
+      set { this.DataContext = value; this.UpdateLayout(); }
     }
     private void DisposeMainPageData()
     {

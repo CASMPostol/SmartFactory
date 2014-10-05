@@ -13,20 +13,20 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 {
   public class DisposalRequestDetails: DisposalRequest
   {
+    //TODO
+    //private string b_DocumentNumber;
 
-    private string b_DocumentNumber;
-
-    public string DocumentNumber
-    {
-      get
-      {
-        return b_DocumentNumber;
-      }
-      set
-      {
-        RaiseHandler<string>(value, ref b_DocumentNumber, "DocumentNumber", this);
-      }
-    } 
+    //public string DocumentNumber
+    //{
+    //  get
+    //  {
+    //    return b_DocumentNumber;
+    //  }
+    //  set
+    //  {
+    //    RaiseHandler<string>(value, ref b_DocumentNumber, "DocumentNumber", this);
+    //  }
+    //} 
                 
   }
 }
