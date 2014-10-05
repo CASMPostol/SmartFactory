@@ -29,7 +29,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       double _doubleValue = (double)value;
       if ( typeof( String ) != targetType )
-        throw new ArgumentOutOfRangeException( String.Format( "targetType", "Vrong target type {0} but expected String", targetType.Name ) );
+        throw new ArgumentOutOfRangeException( String.Format( "targetType", "Wrong target type {0} but expected String", targetType.Name ) );
       return _doubleValue.ToString("F2", culture );
     }
 
@@ -37,7 +37,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       string _stringValue = (String)value;
       if ( typeof( Double ) != targetType )
-        throw new ArgumentOutOfRangeException( String.Format( "targetType", "Vrong target type {0} but expected Double", targetType.Name ) );
+        throw new ArgumentOutOfRangeException( String.Format( "targetType", "Wrong target type {0} but expected Double", targetType.Name ) );
       return Double.Parse( _stringValue, culture );
     }
     #endregion

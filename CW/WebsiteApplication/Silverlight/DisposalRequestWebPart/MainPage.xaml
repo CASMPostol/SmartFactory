@@ -15,10 +15,10 @@
     Height="600"
     Width="Auto"
     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+   
     >
     <UserControl.Resources>
         <local:Double2StringConverter x:Key="Double2StringConverter"/>
-        <local:MainPageData x:Key="MainPageDataDataSource" d:IsDataSource="True"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -49,7 +49,7 @@
         </sdk:TreeView>
         <sdk:TabControl Height="600" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled">
             <sdk:TabItem Header="MainPage">
-                <Grid  Name="x_GridMainPageData" HorizontalAlignment="Stretch" Background="#FF1F3B53" Margin="5" DataContext="{Binding Source={StaticResource MainPageDataDataSource}}">
+                <Grid  Name="x_GridMainPageData" HorizontalAlignment="Stretch" Background="#FF1F3B53" Margin="5" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
