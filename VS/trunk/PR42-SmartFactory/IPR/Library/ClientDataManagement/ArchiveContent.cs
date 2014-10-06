@@ -198,11 +198,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
               !_allInvcs.Where<NSSPLinq.InvoiceLib>(x => x.ClearenceIndex == _clrnc).Any<NSSPLinq.InvoiceLib>() &&
               !_allIPR.Where<NSSPLinq.IPR>(x => x.ClearenceIndex == _clrnc).Any<NSSPLinq.IPR>())
             _toDeletedClearence.Add(_clrnc);
-          Debug.Assert(_clrnc.Clearence2SadGoodID != null);
+          //Debug.Assert(_clrnc.Clearence2SadGoodID != null); - Disposal with 0 belongs may be assigned to closed account but not cleared through custom. 
+          if (_clrnc.Clearence2SadGoodID == null)
+            continue;
           _toBeMarkedArchival4Clearence.AddIfNotNull(_clrnc.Clearence2SadGoodID);
           _sad2BeChecked.AddIfNew(_clrnc.Clearence2SadGoodID.Id.Value);
-          _clearance2BeChecked = null;
         }
+        _clearance2BeChecked = null;
         string _mtmp = "The selected {0} Clearance entries are to be deleted.";
         progress(null, new ProgressChangedEventArgs(1, String.Format(_mtmp, _toDeletedClearence.Count)));
         _spedc.Clearence.Delete<NSSPLinq.Clearence, NSLinq2SQL.History>
