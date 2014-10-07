@@ -7,7 +7,7 @@
     xmlns:data="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data"
     xmlns:System="clr-namespace:System;assembly=mscorlib" 
     xmlns:local="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart"
-    xmlns:xlinq="CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq"
+    xmlns:xlinq="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq"
     x:Class="CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.MainPage"
     mc:Ignorable="d"
     d:DesignHeight="600" d:DesignWidth="1200"
@@ -15,20 +15,42 @@
     Height="600"
     Width="Auto"
     ScrollViewer.VerticalScrollBarVisibility="Disabled"
-   
     >
+    <UserControl.DataContext>
+        <local:MainPageData/>
+    </UserControl.DataContext>
     <UserControl.Resources>
         <local:Double2StringConverter x:Key="Double2StringConverter"/>
+        <sdk:HierarchicalDataTemplate x:Key="DisposalRequestTemplate" ItemsSource="{Binding Disposals}">
+            <StackPanel>
+                <TextBlock Text="{Binding AddedKg}"/>
+                <TextBlock Text="{Binding Batch}"/>
+                <TextBlock Text="{Binding CustomsProcedure}"/>
+                <TextBlock Text="{Binding DeclaredNetMass}"/>
+                <TextBlock Text="{Binding MassPerPackage}"/>
+                <TextBlock Text="{Binding PackagesToDispose}"/>
+                <TextBlock Text="{Binding Path}"/>
+                <TextBlock Text="{Binding QuantityyToClearSum}"/>
+                <TextBlock Text="{Binding QuantityyToClearSumRounded}"/>
+                <TextBlock Text="{Binding RemainingOnStock}"/>
+                <TextBlock Text="{Binding RemainingPackages}"/>
+                <TextBlock Text="{Binding SKU}"/>
+                <TextBlock Text="{Binding SKUDescription}"/>
+                <TextBlock Text="{Binding Title}"/>
+                <TextBlock Text="{Binding TotalStock}"/>
+                <TextBlock Text="{Binding Units}"/>
+            </StackPanel>
+        </sdk:HierarchicalDataTemplate>
     </UserControl.Resources>
-    <Grid>
+    <Grid d:DataContext="{d:DesignData /SampleData/DisposalRequestObservableSampleData.xaml}">
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <sdk:TreeView x:Name="TreeView" ItemsSource="{Binding RequestCollection}" ScrollViewer.VerticalScrollBarVisibility="Visible">
+        <sdk:TreeView x:Name="TreeView" Grid.Row="0" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <sdk:TreeView.Resources>
-                <sdk:HierarchicalDataTemplate x:Name="RequestCollection" ItemsSource="{Binding RequestCollection}">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                <sdk:HierarchicalDataTemplate x:Key="TreeViewDisposalRequestTemplate" ItemsSource="{Binding Items}" DataType="xlinq:DisposalRequest">
+                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" >
                         <!--<Image Source="{Binding Path=ImagePath}"/>-->
                         <sdk:Label Content="{Binding OGL, FallbackValue=N/A}" />
                         <sdk:Label Content="{Binding SKU}" />
@@ -43,6 +65,10 @@
                         <sdk:Label Content="{Binding PackagesToDispose}" />
                         <sdk:Label Content="{Binding RemainingOnStock}" />
                         <sdk:Label Content="{Binding Units}" />
+                    </StackPanel>
+                </sdk:HierarchicalDataTemplate>
+                <sdk:HierarchicalDataTemplate x:Key="TreeViewDisposalRequestDetailsTemplate" DataType="xlinq:DisposalRequestDetails">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     </StackPanel>
                 </sdk:HierarchicalDataTemplate>
             </sdk:TreeView.Resources>
