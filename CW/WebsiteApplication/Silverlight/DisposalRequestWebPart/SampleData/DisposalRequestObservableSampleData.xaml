@@ -1,0 +1,92 @@
+﻿<Linq:DisposalRequestObservable xmlns:Linq="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq">
+	<Linq:DisposalRequest AddedKg="745.52" Batch="Adipiscing duis" CustomsProcedure="Phasellus curae accumsan" DeclaredNetMass="127.18" MassPerPackage="793.63" PackagesToDispose="54" Path="Vestibulum vivamus nunc adipiscing donec" QuantityyToClearSum="374.66" QuantityyToClearSumRounded="932.38" RemainingOnStock="279.41" RemainingPackages="404.21" SKUDescription="Integer curabitur quisque cras vestibulum" SKU="Aliquam maecenas class" TotalStock="546.57" Title="Amet bibendum" Units="Praesent parturient aenean vestibulum">
+		<Linq:DisposalRequest.Items>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+		</Linq:DisposalRequest.Items>
+	</Linq:DisposalRequest>
+	<Linq:DisposalRequest AddedKg="941.68" Batch="Nam lorem eleifend facilisi ante" CustomsProcedure="Consequat arcu diam aptent nulla" DeclaredNetMass="481.22" MassPerPackage="937.19" PackagesToDispose="79" Path="Auctor faucibus" QuantityyToClearSum="265.29" QuantityyToClearSumRounded="756.55" RemainingOnStock="527.98" RemainingPackages="813.49" SKUDescription="Fusce aliquam" SKU="Mauris etiam dictumst" TotalStock="145.87" Title="Congue eget blandit commodo" Units="Nullam morbi aliquet">
+		<Linq:DisposalRequest.Items>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+		</Linq:DisposalRequest.Items>
+	</Linq:DisposalRequest>
+	<Linq:DisposalRequest AddedKg="376.96" Batch="Libero habitant enim dapibus" CustomsProcedure="Vestibulum vestibulum" DeclaredNetMass="134.84" MassPerPackage="725.67" PackagesToDispose="12" Path="Erat augue egestas" QuantityyToClearSum="137.33" QuantityyToClearSumRounded="551.95" RemainingOnStock="737.27" RemainingPackages="216.01" SKUDescription="Cubilia dictum lectus elit proin" SKU="Cursus sed conubia" TotalStock="682.07" Title="Litora elementum" Units="Convallis dignissim ligula parturient">
+		<Linq:DisposalRequest.Items>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+		</Linq:DisposalRequest.Items>
+	</Linq:DisposalRequest>
+	<Linq:DisposalRequest AddedKg="365.94" Batch="Nibh interdum" CustomsProcedure="Fringilla fames nisl dis" DeclaredNetMass="980.9" MassPerPackage="706.86" PackagesToDispose="74" Path="Nunc habitasse vestibulum lobortis nascetur" QuantityyToClearSum="511.18" QuantityyToClearSumRounded="406.55" RemainingOnStock="949.5" RemainingPackages="418.53" SKUDescription="Euismod fermentum luctus eros" SKU="Adipiscing inceptos dolor facilisis" TotalStock="758.15" Title="Magnis iaculis vestibulum" Units="Nisi parturient feugiat gravida">
+		<Linq:DisposalRequest.Items>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+		</Linq:DisposalRequest.Items>
+	</Linq:DisposalRequest>
+	<Linq:DisposalRequest AddedKg="952.65" Batch="Parturient odio natoque himenaeos hac" CustomsProcedure="Vestibulum mattis vestibulum imperdiet placerat" DeclaredNetMass="729.7" MassPerPackage="892.12" PackagesToDispose="37" Path="Adipiscing malesuada ipsum orci pulvinar" QuantityyToClearSum="723.23" QuantityyToClearSumRounded="579.9" RemainingOnStock="628.6" RemainingPackages="452.06" SKUDescription="Adipiscing felis est" SKU="Lacinia hendrerit laoreet" TotalStock="816.67" Title="Leo justo mauris sagittis" Units="Pharetra posuere potenti">
+		<Linq:DisposalRequest.Items>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+		</Linq:DisposalRequest.Items>
+	</Linq:DisposalRequest>
+	<Linq:DisposalRequest AddedKg="880.29" Batch="Lacus mollis mus nec" CustomsProcedure="Pretium montes rhoncus" DeclaredNetMass="616.08" MassPerPackage="104.11" PackagesToDispose="93" Path="Penatibus nostra porttitor parturient torquent" QuantityyToClearSum="826.79" QuantityyToClearSumRounded="770.63" RemainingOnStock="360.25" RemainingPackages="224.82" SKUDescription="Senectus quis sociosqu suscipit" SKU="Parturient pede vestibulum vestibulum quam" TotalStock="922.3" Title="Ultrices per" Units="Lorem non adipiscing urna">
+		<Linq:DisposalRequest.Items>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+		</Linq:DisposalRequest.Items>
+	</Linq:DisposalRequest>
+	<Linq:DisposalRequest AddedKg="323.99" Batch="Ultricies sed ornare vestibulum neque" CustomsProcedure="Maecenas venenatis aliquam" DeclaredNetMass="427.41" MassPerPackage="467.06" PackagesToDispose="27" Path="Nulla duis" QuantityyToClearSum="994.61" QuantityyToClearSumRounded="156.35" RemainingOnStock="911.16" RemainingPackages="987.36" SKUDescription="Vestibulum vehicula massa metus morbi" SKU="Magna sodales tincidunt tristique" TotalStock="194.36" Title="Platea primis" Units="Cras volutpat viverra netus">
+		<Linq:DisposalRequest.Items>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+		</Linq:DisposalRequest.Items>
+	</Linq:DisposalRequest>
+	<Linq:DisposalRequest AddedKg="893.02" Batch="Integer quisque consequat sit" CustomsProcedure="Purus convallis parturient" DeclaredNetMass="913.47" MassPerPackage="951.47" PackagesToDispose="40" Path="Praesent nunc" QuantityyToClearSum="739.32" QuantityyToClearSumRounded="987.68" RemainingOnStock="162.68" RemainingPackages="225.01" SKUDescription="Rutrum sapien sem porta" SKU="Vulputate curabitur phasellus" TotalStock="667.8" Title="Amet vel vivamus ante aliquam" Units="Adipiscing semper sociis">
+		<Linq:DisposalRequest.Items>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+		</Linq:DisposalRequest.Items>
+	</Linq:DisposalRequest>
+	<Linq:DisposalRequest AddedKg="190.26" Batch="Tellus risus velit diam vestibulum" CustomsProcedure="Bibendum parturient vitae tempus eget" DeclaredNetMass="575.32" MassPerPackage="126.84" PackagesToDispose="14" Path="Facilisis dis fermentum class est" QuantityyToClearSum="202.17" QuantityyToClearSumRounded="197.06" RemainingOnStock="682.78" RemainingPackages="454.65" SKUDescription="Aliquet nam dignissim taciti sed" SKU="Accumsan arcu" TotalStock="373.16" Title="Dictumst eleifend hac curae tortor" Units="Tempor vestibulum adipiscing elementum">
+		<Linq:DisposalRequest.Items>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+		</Linq:DisposalRequest.Items>
+	</Linq:DisposalRequest>
+	<Linq:DisposalRequest AddedKg="389.21" Batch="Habitasse faucibus" CustomsProcedure="Etiam varius fusce" DeclaredNetMass="856.97" MassPerPackage="935.86" PackagesToDispose="93" Path="Vestibulum habitant" QuantityyToClearSum="987.52" QuantityyToClearSumRounded="446.6" RemainingOnStock="856.08" RemainingPackages="271.57" SKUDescription="Erat turpis donec fringilla leo" SKU="Elit blandit enim facilisi" TotalStock="133.21" Title="Aenean mauris eros lorem" Units="Commodo mus">
+		<Linq:DisposalRequest.Items>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+			<Linq:DisposalRequestDetails/>
+		</Linq:DisposalRequest.Items>
+	</Linq:DisposalRequest>
+</Linq:DisposalRequestObservable>

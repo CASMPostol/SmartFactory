@@ -30,6 +30,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     public DisposalRequest()
     {
       Disposals = new ObservableCollection<CustomsWarehouseDisposal>();
+      Items = new ObservableCollection<DisposalRequestDetails>();
       AutoCalculation = false;
     }
 
@@ -339,6 +340,29 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         }
       }
     }
+    /// <summary>
+    /// Gets or sets the items.
+    /// </summary>
+    /// <value>
+    /// The items.
+    /// </value>
+    public ObservableCollection<DisposalRequestDetails> Items
+    {
+      get
+      {
+        return b_Items;
+      }
+      set
+      {
+        if ((value != this.b_Items))
+        {
+          this.OnPropertyChanging("Items", this._packagesToClear);
+          this.b_Items = value;
+          this.OnPropertyChanged("Items");
+        }
+      }
+    }
+
     #endregion
 
     #region internal
@@ -450,6 +474,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private ObservableCollection<CustomsWarehouseDisposal> b_Disposals;
     private string b_customsProcedure = String.Empty;
     private List<CustomsWarehouse> m_ListOfCustomsWarehouse = null;
+    private ObservableCollection<DisposalRequestDetails> b_Items;
     #endregion
 
     protected override void OnPropertyChanged(string propertyName)

@@ -13,16 +13,15 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
+using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq;
+using Microsoft.SharePoint.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Windows.Data;
-using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
-using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq;
-using Microsoft.SharePoint.Client;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 {
