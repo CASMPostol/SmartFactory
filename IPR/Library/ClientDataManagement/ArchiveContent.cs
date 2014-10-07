@@ -151,6 +151,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           Link2SQLExtensions.SubmitChanges(_spedc, sqledc, progress);
         }
       }
+      //delete InvoiceLib and InvoiceContent
       using (NSSPLinq.Entities _spedc = new NSSPLinq.Entities(settings.SiteURL))
       {
         List<NSSPLinq.InvoiceContent> _toDeletedInvoiceContent = new List<NSSPLinq.InvoiceContent>();
@@ -181,6 +182,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           (_toDeletedInvoiceLib, null, x => sqledc.InvoiceLibrary.GetAt<NSLinq2SQL.InvoiceLibrary>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
             settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
         _invcLib2BeChecked = null;
+        Link2SQLExtensions.SubmitChanges(_spedc, sqledc, progress);
       }
       //Clearance
       List<int> _sad2BeChecked = new List<int>();
