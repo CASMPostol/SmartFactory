@@ -16,9 +16,9 @@
     Width="Auto"
     ScrollViewer.VerticalScrollBarVisibility="Disabled"
     >
-    <UserControl.DataContext>
+    <!--<UserControl.DataContext>
         <local:MainPageData/>
-    </UserControl.DataContext>
+    </UserControl.DataContext>-->
     <UserControl.Resources>
         <local:Double2StringConverter x:Key="Double2StringConverter"/>
         <sdk:HierarchicalDataTemplate x:Key="DisposalRequestTemplate" ItemsSource="{Binding Disposals}">
