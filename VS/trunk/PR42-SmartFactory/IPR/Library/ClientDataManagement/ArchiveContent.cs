@@ -214,10 +214,10 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
             settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
         Link2SQLExtensions.SubmitChanges(_spedc, sqledc, progress);
       }
+      List<int> _sadDocument2BeChecked = new List<int>();
       //SADDocument
       using (NSSPLinq.Entities _spedc = new NSSPLinq.Entities(settings.SiteURL))
       {
-        List<NSSPLinq.SADDocumentType> _toDeletedSADDocumentType = new List<NSSPLinq.SADDocumentType>();
         List<NSSPLinq.SADGood> _toDeletedSADGood = new List<NSSPLinq.SADGood>();
         List<NSSPLinq.SADRequiredDocuments> _toDeletedSADRequiredDocuments = new List<NSSPLinq.SADRequiredDocuments>();
         List<NSSPLinq.SADQuantity> _toDeletedSADQuantity = new List<NSSPLinq.SADQuantity>();
@@ -229,15 +229,15 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           NSSPLinq.SADGood _SDGd = _allSDGd[_sgid];
           if (_SDGd.Clearence.Count > 0)
             continue;
-          _toDeletedSADDocumentType.Add(_SDGd.SADDocumentIndex);
+          _sadDocument2BeChecked.AddIfNew(_SDGd.SADDocumentIndex.Id.Value);
           _toDeletedSADGood.Add(_SDGd);
           _toDeletedSADRequiredDocuments.AddRange(_SDGd.SADRequiredDocuments);
           _toDeletedSADDuties.AddRange(_SDGd.SADDuties);
           _toDeletedSADPackage.AddRange(_SDGd.SADPackage);
           _toDeletedSADQuantity.AddRange(_SDGd.SADQuantity);
         }
-        string _mtmp = "The selected: {0} SADDocument, {1} SADGood, {2} SADRequiredDocuments, {3} SADQuantity, {4} SADPackage, and {5} SADDuties entries are to be deleted.";
-        progress(null, new ProgressChangedEventArgs(1, String.Format(_mtmp, _toDeletedSADDocumentType.Count, _toDeletedSADGood.Count, _toDeletedSADRequiredDocuments.Count, _toDeletedSADQuantity.Count,
+        string _mtmp = "The selected: {0} SADGood, {1} SADRequiredDocuments, {2} SADQuantity, {3} SADPackage, and {4} SADDuties entries are to be deleted.";
+        progress(null, new ProgressChangedEventArgs(1, String.Format(_mtmp, _toDeletedSADGood.Count, _toDeletedSADRequiredDocuments.Count, _toDeletedSADQuantity.Count,
                                                     _toDeletedSADPackage.Count, _toDeletedSADDuties.Count)));
         _spedc.SADDuties.Delete<NSSPLinq.SADDuties, NSLinq2SQL.History>
           (_toDeletedSADDuties, null, x => sqledc.SADDuties.GetAt<NSLinq2SQL.SADDuties>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
@@ -254,6 +254,22 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         _spedc.SADGood.Delete<NSSPLinq.SADGood, NSLinq2SQL.History>
           (_toDeletedSADGood, null, x => sqledc.SADGood.GetAt<NSLinq2SQL.SADGood>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
            settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));
+        Link2SQLExtensions.SubmitChanges(_spedc, sqledc, progress);
+        _sad2BeChecked = null;
+      }
+      using (NSSPLinq.Entities _spedc = new NSSPLinq.Entities(settings.SiteURL))
+      {
+        List<NSSPLinq.SADDocumentType> _toDeletedSADDocumentType = new List<NSSPLinq.SADDocumentType>();
+        Dictionary<int, NSSPLinq.SADDocumentType> _allSDGd = _spedc.SADDocument.ToDictionary<NSSPLinq.SADDocumentType, int>(x => x.Id.Value);
+        foreach (int _sdid in _sad2BeChecked)
+        {
+          NSSPLinq.SADDocumentType _SDcumnt = _allSDGd[_sdid];
+          if (_SDcumnt.SADGood.Count > 0)
+            continue;
+          _toDeletedSADDocumentType.AddIfNotNull<NSSPLinq.SADDocumentType>(_SDcumnt);
+        }
+        string _mtmp = "The selected: {0} SADDocument entries are to be deleted.";
+        progress(null, new ProgressChangedEventArgs(1, String.Format(_mtmp, _toDeletedSADDocumentType.Count)));
         _spedc.SADDocument.Delete<NSSPLinq.SADDocumentType, NSLinq2SQL.History>
           (_toDeletedSADDocumentType, null, x => sqledc.SADDocument.GetAt<NSLinq2SQL.SADDocument>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
             settings.SiteURL, x => sqledc.History.AddHistoryEntry(x));

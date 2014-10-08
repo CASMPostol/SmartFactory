@@ -115,7 +115,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       if ( !m_DisposalRequestLibId.HasValue )
         return;
       m_Context.CreateContextAsyncCompletedEvent += m_Context_CreateContextAsyncCompletedEvent;
-      Log = String.Format( "GetDataAsync: CreateContextAsync for url={0}.", m_URL );
+      Log = String.Format( "GetDataAsync: CreateContextAsync for URL={0}.", m_URL );
       m_Context.CreateContextAsync( m_URL );
     }
     /// <summary>
@@ -163,7 +163,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     #endregion
 
     /// <summary>
-    /// Called whena property value changes.
+    /// Called when property value changes.
     /// </summary>
     /// <param name="propertyName">Name of the property.</param>
     private void OnPropertyChanged( string propertyName )
@@ -214,7 +214,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       Log = String.Format( "GetData DoWork: new DataContext for url={0}.", m_URL );
       if ( e.Cancelled )
       {
-        Log = "CreateContextAsync Cancelled";
+        Log = "CreateContextAsync canceled";
         return;
       }
       if ( e.Error != null )
@@ -224,13 +224,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       }
       Log = String.Format( ": new DataContext for url={0}.", m_URL );
       Debug.Assert( m_DisposalRequestLibId.HasValue, "m_SelectedID must have value" );
-      m_Context.GetListCompleted += m_Context_GetListCompleted;
+      m_Context.GetListCompleted += m_Context_GetDisposals4RequestCompleted;
+      //Get all disposals for the request with id of m_DisposalRequestLibId
       m_Context.GetListAsync<CustomsWarehouseDisposal>
         ( CommonDefinition.CustomsWarehouseDisposalTitle, CommonDefinition.GetCAMLSelectedID( m_DisposalRequestLibId.Value, CommonDefinition.FieldCWDisposal2DisposalRequestLibraryID, CommonDefinition.CAMLTypeNumber ) );
     }
-    private void m_Context_GetListCompleted( object siurce, GetListAsyncCompletedEventArgs e )
+    private void m_Context_GetDisposals4RequestCompleted( object siurce, GetListAsyncCompletedEventArgs e )
     {
-      m_Context.GetListCompleted -= m_Context_GetListCompleted;
+      m_Context.GetListCompleted -= m_Context_GetDisposals4RequestCompleted;
       if ( e.Cancelled )
       {
         Log = "GetList has been canceled";

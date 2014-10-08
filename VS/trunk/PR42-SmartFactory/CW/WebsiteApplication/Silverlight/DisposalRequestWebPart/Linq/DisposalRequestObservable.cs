@@ -29,6 +29,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   {
 
     #region internal
+    /// <summary>
+    /// Gets the data context.
+    /// </summary>
+    /// <param name="disposalRequestLibId">The disposal request library identifier.</param>
+    /// <param name="list">The list.</param>
+    /// <param name="context">The context.</param>
     internal void GetDataContext( int disposalRequestLibId, List<CustomsWarehouseDisposal> list, DataContextAsync context )
     {
       m_DisposalRequestLibId = disposalRequestLibId;
@@ -114,9 +120,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         CraeteRequestBase _rqs = this.Dequeue();
         _rqs.DoAsync();
       }
-      private void AddRequest2Queue( IGrouping<string, CustomsWarehouseDisposal> grouping )
+      private void AddRequest2Queue( IGrouping<string, CustomsWarehouseDisposal> group )
       {
-        CraeteRequestBase _creator = new CraeteRequest( this, grouping );
+        CraeteRequestBase _creator = new CraeteRequest( this, group );
         this.Enqueue( _creator );
       }
       private DataContextAsync m_DataContext = null;
@@ -128,18 +134,18 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       internal CraeteRequestBase( IGrouping<string, CustomsWarehouseDisposal> grouping )
       {
-        m_Grouping = grouping;
+        m_BatchGroup = grouping;
       }
       internal void DoAsync()
       {
         DataContext.GetListCompleted += context_GetListCompleted;
         DataContext.GetListAsync<CustomsWarehouse>( CommonDefinition.CustomsWarehouseTitle,
-                                                    CommonDefinition.GetCAMLSelectedID( m_Grouping.Key, CommonDefinition.FieldBatch, CommonDefinition.CAMLTypeText ) );
+                                                    CommonDefinition.GetCAMLSelectedID( m_BatchGroup.Key, CommonDefinition.FieldBatch, CommonDefinition.CAMLTypeText ) );
       }
       protected abstract DataContextAsync DataContext { get; }
       protected abstract DisposalRequestObservable Parent { get; }
       protected abstract void DoNext();
-      private IGrouping<string, CustomsWarehouseDisposal> m_Grouping = null;
+      private IGrouping<string, CustomsWarehouseDisposal> m_BatchGroup = null;
       private void context_GetListCompleted( object siurce, GetListAsyncCompletedEventArgs e )
       {
         try
@@ -149,10 +155,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
             return;
           if ( e.Error != null )
             Parent.OnProgressChanged( new ProgressChangedEventArgs( 0, String.Format( "Exception {0} at m_DataContext.GetListAsync", e.Error.Message ) ) );
-          CustomsWarehouseDisposal _first = m_Grouping.First<CustomsWarehouseDisposal>();
+          CustomsWarehouseDisposal _first = m_BatchGroup.First<CustomsWarehouseDisposal>();
           CustomsWarehouse _Cw = _first.CWL_CWDisposal2CustomsWarehouseID != null ? _first.CWL_CWDisposal2CustomsWarehouseID : new CustomsWarehouse() { Units = "N/A", SKU = "N/A", CW_MassPerPackage = 0 };
           DisposalRequest _Dr = DisposalRequest.DefaultDisposalRequestnew( _first.SKUDescription, _Cw );
-          _Dr.GetDataContext( e.Result<CustomsWarehouse>(), m_Grouping );
+          _Dr.GetDataContext( e.Result<CustomsWarehouse>(), m_BatchGroup );
           Parent.Add( _Dr );
           _Dr.AutoCalculation = true;
         }
