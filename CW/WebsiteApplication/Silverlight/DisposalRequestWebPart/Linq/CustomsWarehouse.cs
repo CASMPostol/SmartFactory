@@ -50,7 +50,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       return Convert.ToInt32(Math.Round(quantity / massPerPackage + 0.499999, 0));
     }
     /// <summary>
-    /// compares descenfing two objects of the <see cref="CustomsWarehouse "/> type.
+    /// Compares descending two objects of the <see cref="CustomsWarehouse "/> type using <paramref name="CustomsWarehouse.CustomsDebtDate"/> and if equal <paramref name="CustomsWarehouse.DocumentNo"/>.
     /// </summary>
     /// <param name="x">The first object to compare.</param>
     /// <param name="y">The second object to compare.</param>

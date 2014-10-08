@@ -396,16 +396,27 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       set { b_Disposals = value; }
     }
     internal bool AutoCalculation { get; set; }
-    internal void GetDataContext(List<CustomsWarehouse> list, IGrouping<string, CustomsWarehouseDisposal> m_Grouping)
+    /// <summary>
+    /// Gets the data context.
+    /// </summary>
+    /// <param name="list">The list.</param>
+    /// <param name="group">The group.</param>
+    internal void GetDataContext(List<CustomsWarehouse> list, IGrouping<string, CustomsWarehouseDisposal> group)
     {
       list.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
-      CustomsProcedure = m_Grouping.First<CustomsWarehouseDisposal>().CustomsProcedure;
+      CustomsProcedure = group.First<CustomsWarehouseDisposal>().CustomsProcedure;
       m_ListOfCustomsWarehouse = list;
       RemainingOnStock = m_ListOfCustomsWarehouse.Sum(x => x.TobaccoNotAllocated.Value);
-      foreach (CustomsWarehouseDisposal _cwdrdx in m_Grouping)
+      foreach (CustomsWarehouseDisposal _cwdrdx in group)
         GetDataContext(_cwdrdx);
       UpdateOnInit();
     }
+    /// <summary>
+    /// Gets the data context.
+    /// </summary>
+    /// <param name="list">The list.</param>
+    /// <param name="toDispose">To dispose.</param>
+    /// <param name="customsProcedure">The customs procedure.</param>
     internal void GetDataContext(List<CustomsWarehouse> list, double toDispose, string customsProcedure)
     {
       b_customsProcedure = customsProcedure;
