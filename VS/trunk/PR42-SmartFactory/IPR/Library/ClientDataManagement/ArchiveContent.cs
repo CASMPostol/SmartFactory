@@ -261,7 +261,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       {
         List<NSSPLinq.SADDocumentType> _toDeletedSADDocumentType = new List<NSSPLinq.SADDocumentType>();
         Dictionary<int, NSSPLinq.SADDocumentType> _allSDGd = _spedc.SADDocument.ToDictionary<NSSPLinq.SADDocumentType, int>(x => x.Id.Value);
-        foreach (int _sdid in _sad2BeChecked)
+        foreach (int _sdid in _sadDocument2BeChecked)
         {
           NSSPLinq.SADDocumentType _SDcumnt = _allSDGd[_sdid];
           if (_SDcumnt.SADGood.Count > 0)
