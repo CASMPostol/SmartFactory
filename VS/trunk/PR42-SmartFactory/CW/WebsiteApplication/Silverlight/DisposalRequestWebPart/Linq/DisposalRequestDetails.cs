@@ -215,7 +215,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     /// <value>
     /// The remaining packages.
     /// </value>
-    public string RemainingPackages
+    public int RemainingPackages
     {
       get
       {
@@ -223,7 +223,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       set
       {
-        RaiseHandler<string>(value, ref b_RemainingPackages, "RemainingPackages", this);
+        RaiseHandler<int>(value, ref b_RemainingPackages, "RemainingPackages", this);
       }
     }
     /// <summary>
@@ -293,7 +293,67 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       {
         RaiseHandler<int>(value, ref b_SequenceNumber, "SequenceNumber", this);
       }
-    } 
+    }
+    #endregion
+
+    #region internal
+    internal static DisposalRequestDetails Create4Disposal(CustomsWarehouseDisposal _cwdrdx, int sequenceNumber)
+    {
+      DisposalRequestDetails _ret = new DisposalRequestDetails()
+      {
+        AddedKg = _cwdrdx.CW_AddedKg.Value,
+        Batch = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.Batch,
+        CustomsProcedure = _cwdrdx.CustomsProcedure,
+        DeclaredNetMass = _cwdrdx._cW_DeclaredNetMass.Value,
+        DocumentNumber = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.DocumentNo,
+        MassPerPackage = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.CW_MassPerPackage.Value,
+        PackagesToDispose = 0,
+        QuantityyToClearSum = 0,
+        QuantityyToClearSumRounded = 0,
+        RemainingOnStock = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value,
+        RemainingPackages = 0,
+        SequenceNumber = sequenceNumber,
+        SKU = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.SKU,
+        SKUDescription = _cwdrdx.SKUDescription,
+        TotalStock = 0
+      };
+      _ret.QuantityyToClearSum = _ret.AddedKg + _ret.DeclaredNetMass;
+      _ret.PackagesToDispose = CustomsWarehouse.Packages(_ret.QuantityyToClearSum, _ret.MassPerPackage);
+      _ret.QuantityyToClearSumRounded = _ret.PackagesToDispose * _ret.MassPerPackage;
+      _ret.TotalStock = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value + _ret.QuantityyToClearSumRounded;
+      _ret.m_Disposal = _cwdrdx;
+      _ret.m_Account = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID;
+      return _ret;
+    }
+    internal static DisposalRequestDetails Create4Account(CustomsWarehouse _cwx, int sequenceNumber)
+    {
+      DisposalRequestDetails _ret = new DisposalRequestDetails()
+      {
+        AddedKg = 0,
+        Batch = _cwx.Batch,
+        CustomsProcedure = string.Empty,
+        DeclaredNetMass = 0,
+        DocumentNumber = _cwx.DocumentNo,
+        MassPerPackage = _cwx.CW_MassPerPackage.Value,
+        PackagesToDispose = 0,
+        QuantityyToClearSum = 0,
+        QuantityyToClearSumRounded = 0,
+        RemainingOnStock = _cwx.TobaccoNotAllocated.Value,
+        RemainingPackages = 0,
+        SequenceNumber = sequenceNumber,
+        SKU = _cwx.SKU,
+        SKUDescription = string.Empty,
+        TotalStock = 0
+      };
+      //TODO
+      //_ret.QuantityyToClearSum = _ret.AddedKg + _ret.DeclaredNetMass;
+      //_ret.PackagesToDispose = CustomsWarehouse.Packages(_ret.QuantityyToClearSum, _ret.MassPerPackage);
+      //_ret.QuantityyToClearSumRounded = _ret.PackagesToDispose * _ret.MassPerPackage;
+      //_ret.TotalStock = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value + _ret.QuantityyToClearSumRounded;
+      //_ret.m_Disposal = _cwdrdx;
+      //_ret.m_Account = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID;
+      return _ret;
+    }
     #endregion
 
     #region backing fields
@@ -308,12 +368,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private double b_QuantityyToClearSumRounded;
     private double b_RemainingOnStock;
     private string b_Units;
-    private string b_RemainingPackages;
+    private int b_RemainingPackages;
     private int b_PackagesToDispose;
     private string b_CustomsProcedure;
     private string b_DocumentNumber;
     private int b_SequenceNumber;
     #endregion
 
+    private CustomsWarehouseDisposal m_Disposal = null;
+    private CustomsWarehouse m_Account = null;
   }
 }

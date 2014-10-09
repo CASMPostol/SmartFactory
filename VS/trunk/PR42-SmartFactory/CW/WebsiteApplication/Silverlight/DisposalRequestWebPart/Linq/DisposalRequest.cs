@@ -397,19 +397,33 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     }
     internal bool AutoCalculation { get; set; }
     /// <summary>
-    /// Gets the data context.
+    /// Updates this instance using the collection <paramref name="groupOfDisposals"/> of selected  <see cref="CustomsWarehouseDisposal"/>.
     /// </summary>
-    /// <param name="list">The list.</param>
-    /// <param name="group">The group.</param>
-    internal void GetDataContext(List<CustomsWarehouse> list, IGrouping<string, CustomsWarehouseDisposal> group)
+    /// <param name="listOfAccounts">The list.</param>
+    /// <param name="groupOfDisposals">The group.</param>
+    internal void GetDataContext(List<CustomsWarehouse> listOfAccounts, IGrouping<string, CustomsWarehouseDisposal> groupOfDisposals)
     {
-      list.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
-      CustomsProcedure = group.First<CustomsWarehouseDisposal>().CustomsProcedure;
-      m_ListOfCustomsWarehouse = list;
+      listOfAccounts.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
+      CustomsProcedure = groupOfDisposals.First<CustomsWarehouseDisposal>().CustomsProcedure;
+      m_ListOfCustomsWarehouse = listOfAccounts;
       RemainingOnStock = m_ListOfCustomsWarehouse.Sum(x => x.TobaccoNotAllocated.Value);
-      foreach (CustomsWarehouseDisposal _cwdrdx in group)
+      ObservableCollection<DisposalRequestDetails> _newCollection = new ObservableCollection<DisposalRequestDetails>();
+      int _sequenceNumber = 0;
+      List<CustomsWarehouse> _copylistOfAccounts = new List<CustomsWarehouse>(listOfAccounts);
+      foreach (CustomsWarehouseDisposal _cwdrdx in groupOfDisposals)
+      {
+        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Disposal(_cwdrdx, _sequenceNumber ++);
+        _copylistOfAccounts.Remove(_cwdrdx.CWL_CWDisposal2CustomsWarehouseID);
+        _newCollection.Add(_newDisposalRequestDetails);
         GetDataContext(_cwdrdx);
+      }
+      foreach (CustomsWarehouse _cwx in _copylistOfAccounts)
+      {
+        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Account(_cwx, _sequenceNumber ++);
+        _newCollection.Add(_newDisposalRequestDetails);
+      }
       UpdateOnInit();
+      Items = _newCollection;
     }
     /// <summary>
     /// Gets the data context.
@@ -431,7 +445,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       List<CustomsWarehouse> _CWListCopy = new List<CustomsWarehouse>(m_ListOfCustomsWarehouse);
       List<CustomsWarehouseDisposal> _2Delete = new List<CustomsWarehouseDisposal>();
       int _packagesToDispose = PackagesToDispose;
-      foreach (CustomsWarehouseDisposal _cwItem in b_Disposals)
+      foreach (CustomsWarehouseDisposal _cwItem in Disposals)
         if (_packagesToDispose > 0)
           _cwItem.DisposeMaterial(ref _packagesToDispose, _CWListCopy);
         else
@@ -464,7 +478,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     internal void EndOfOgl()
     {
       this.AddedKg = 0;
-      foreach (CustomsWarehouseDisposal _cwix in b_Disposals)
+      foreach (CustomsWarehouseDisposal _cwix in Disposals)
         this.AddedKg += _cwix.CW_AddedKg.Value + _cwix.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value;
     }
     #endregion
