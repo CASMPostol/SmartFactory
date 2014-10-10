@@ -13,14 +13,13 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.Common.ViewModel;
+using CAS.SmartFactory.Shepherd.RouteEditor.InputData;
+using CAS.SmartFactory.Shepherd.RouteEditor.UpdateData;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Windows;
-using CAS.SharePoint.ViewModel;
-using CAS.SmartFactory.Shepherd.RouteEditor.InputData;
-using CAS.SmartFactory.Shepherd.RouteEditor.UpdateData;
 
 namespace CAS.SmartFactory.Shepherd.RouteEditor
 {
@@ -297,7 +296,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     private ViewModelBackgroundWorker.DoWorkEventHandler m_DoWorkEventHandler = null;
     private System.ComponentModel.RunWorkerCompletedEventHandler m_CompletedEventHandler = null;
     private System.ComponentModel.ProgressChangedEventHandler m_ProgressChangedEventHandler = null;
-    protected override SharePoint.ViewModel.ViewModelBackgroundWorker.DoWorkEventHandler GetDoWorkEventHandler
+    protected override ViewModelBackgroundWorker.DoWorkEventHandler GetDoWorkEventHandler
     {
       get { return m_DoWorkEventHandler; }
     }
@@ -308,6 +307,11 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     protected override System.ComponentModel.ProgressChangedEventHandler ProgressChangedEventHandler
     {
       get { return m_ProgressChangedEventHandler; }
+    }
+    //TODO Not Implemented 
+    protected override void OnNotBusyChanged()
+    {
+      throw new NotImplementedException();
     }
     #endregion
 
@@ -350,6 +354,5 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
       m_EntitiesDataDictionary = null;
     }
     #endregion
-
   }
 }

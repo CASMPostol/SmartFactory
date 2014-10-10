@@ -13,11 +13,11 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 {

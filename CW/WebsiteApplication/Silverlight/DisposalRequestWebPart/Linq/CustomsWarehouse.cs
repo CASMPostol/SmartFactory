@@ -15,7 +15,6 @@
 //</summary>
 
 using System;
-using System.Collections.Generic;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 {
