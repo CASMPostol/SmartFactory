@@ -325,33 +325,28 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       _ret.m_Account = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID;
       return _ret;
     }
-    internal static DisposalRequestDetails Create4Account(CustomsWarehouse _cwx, int sequenceNumber)
+    internal static DisposalRequestDetails Create4Account(CustomsWarehouse customsWarehouse, int sequenceNumber)
     {
       DisposalRequestDetails _ret = new DisposalRequestDetails()
       {
         AddedKg = 0,
-        Batch = _cwx.Batch,
+        Batch = customsWarehouse.Batch,
         CustomsProcedure = string.Empty,
         DeclaredNetMass = 0,
-        DocumentNumber = _cwx.DocumentNo,
-        MassPerPackage = _cwx.CW_MassPerPackage.Value,
+        DocumentNumber = customsWarehouse.DocumentNo,
+        MassPerPackage = customsWarehouse.CW_MassPerPackage.Value,
         PackagesToDispose = 0,
         QuantityyToClearSum = 0,
         QuantityyToClearSumRounded = 0,
-        RemainingOnStock = _cwx.TobaccoNotAllocated.Value,
+        RemainingOnStock = customsWarehouse.TobaccoNotAllocated.Value,
         RemainingPackages = 0,
         SequenceNumber = sequenceNumber,
-        SKU = _cwx.SKU,
+        SKU = customsWarehouse.SKU,
         SKUDescription = string.Empty,
-        TotalStock = 0
+        TotalStock = customsWarehouse.TobaccoNotAllocated.Value
       };
-      //TODO
-      //_ret.QuantityyToClearSum = _ret.AddedKg + _ret.DeclaredNetMass;
-      //_ret.PackagesToDispose = CustomsWarehouse.Packages(_ret.QuantityyToClearSum, _ret.MassPerPackage);
-      //_ret.QuantityyToClearSumRounded = _ret.PackagesToDispose * _ret.MassPerPackage;
-      //_ret.TotalStock = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value + _ret.QuantityyToClearSumRounded;
-      //_ret.m_Disposal = _cwdrdx;
-      //_ret.m_Account = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID;
+      _ret.m_Disposal = null;
+      _ret.m_Account = customsWarehouse;
       return _ret;
     }
     #endregion
