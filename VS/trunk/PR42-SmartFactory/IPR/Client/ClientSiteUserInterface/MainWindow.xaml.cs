@@ -13,7 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.SharePoint.Interactivity.InteractionRequest;
+using CAS.Common.Interactivity.InteractionRequest;
 using CAS.SmartFactory.IPR.Client.UserInterface.ViewModel;
 using System.Windows;
 
