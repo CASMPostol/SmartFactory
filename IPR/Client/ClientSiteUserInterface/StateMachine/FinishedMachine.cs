@@ -14,7 +14,7 @@
 //</summary>
 
 
-using CAS.SharePoint.ViewModel.Wizard;
+using CAS.Common.ViewModel.Wizard;
 using CAS.SmartFactory.IPR.Client.UserInterface.ViewModel;
 using System;
 

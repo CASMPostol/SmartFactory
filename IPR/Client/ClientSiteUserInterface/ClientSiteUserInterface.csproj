@@ -196,13 +196,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\PR44-SharePoint\Libraries\CASSystem\CASCommonClassLibrary.csproj">
+      <Project>{af2434e6-fd65-43a2-be31-c8c1e5ba5acd}</Project>
+      <Name>CASCommonClassLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\PR44-SharePoint\Libraries\SharePointLinqClient\SharePointClient.csproj">
       <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
       <Name>SharePointClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\PR44-SharePoint\Libraries\SharePoint\SharePoint.csproj">
-      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
-      <Name>SharePoint</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Library\ClientDataManagement\ClientDataManagement.csproj">
       <Project>{7ff92139-ea5d-469d-aa7c-a309b2e2fa29}</Project>
