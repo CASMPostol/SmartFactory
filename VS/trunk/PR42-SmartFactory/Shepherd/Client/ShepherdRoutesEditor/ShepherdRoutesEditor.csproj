@@ -235,6 +235,10 @@
     <Resource Include="Images\help.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\PR44-SharePoint\Libraries\CASSystem\CASCommonClassLibrary.csproj">
+      <Project>{af2434e6-fd65-43a2-be31-c8c1e5ba5acd}</Project>
+      <Name>CASCommonClassLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\PR44-SharePoint\Libraries\SharePointLinqClient\SharePointClient.csproj">
       <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
       <Name>SharePointClient</Name>
