@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -22,6 +22,7 @@ using System.Web.UI.WebControls;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
+using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
 {
@@ -157,7 +158,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     /// <returns></returns>
     public static string ControlTextProperty(this string _val)
     {
-        return String.IsNullOrEmpty(_val) ? "SelectFromList".GetShepherdLocalizedString() : _val;
+      return String.IsNullOrEmpty(_val) ? "SelectFromList".GetShepherdLocalizedString() : _val;
     }
     /// <summary>
     /// String2s the int.
@@ -256,12 +257,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     /// </summary>
     /// <param name="control">The control to be setup.</param>
     /// <param name="date">The date.</param>
-    internal static void SetTimePicker( this DateTimeControl control, DateTime? date )
+    internal static void SetTimePicker(this DateTimeControl control, DateTime? date)
     {
-      if ( date.HasValue )
+      if (date.HasValue)
         control.SelectedDate = date.Value;
       else
+      {
         control.IsValid = false;
+        control.SelectedDate = SPContext.Current.Web.CurrentUser.RegionalSettings.TimeZone.UTCToLocalTime(System.DateTime.UtcNow);
+      }
     }
     #endregion
 
