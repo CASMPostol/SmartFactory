@@ -22,6 +22,7 @@ using System.Web.UI.WebControls;
 using CAS.SmartFactory.Shepherd.DataModel.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
+using System.Globalization;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
 {
@@ -112,7 +113,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     /// <param name="e">An <see cref="T:System.EventArgs" /> object that contains the event data.</param>
     protected override void OnPreRender(EventArgs e)
     {
-      PreapareCalendar(m_RoleDirection);
+      PrepareCalendar(m_RoleDirection);
       base.OnPreRender(e);
     }
     #endregion
@@ -158,28 +159,34 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     #endregion
 
     #region private
-    private void PreapareCalendar(Direction _direction)
+    /// <summary>
+    /// Prepares the calendar.
+    /// </summary>
+    /// <param name="direction">The _direction.</param>
+    private void PrepareCalendar(Direction direction)
     {
       try
       {
-        DateTime _sd = m_Calendar.SelectedDate.Date;
-        DateTime _strt = new DateTime(m_Calendar.VisibleDate.Year, m_Calendar.VisibleDate.Month, 1);
-        if (_strt < DateTime.Now)
-          _strt = DateTime.Now;
-        DateTime _end = _strt.AddMonths(1);
         if (m_WarehouseDropDownList.SelectedValue.IsNullOrEmpty())
           return;
+        DateTime _sd = m_Calendar.SelectedDate.Date;
+        DateTime _strt = new DateTime(m_Calendar.VisibleDate.Year, m_Calendar.VisibleDate.Month, 1);
+        DateTime _end = _strt.AddMonths(1);
         Warehouse _warehouse = Element.GetAtIndex(EDC.Warehouse, m_WarehouseDropDownList.SelectedValue);
         List<TimeSlot> _2Expose = new List<TimeSlot>();
         List<TimeSlotTimeSlot> _all4Date = (from _tsidx in EDC.TimeSlot
                                             where _tsidx.Occupied.Value == Occupied.Free && _tsidx.StartTime >= _strt && _tsidx.StartTime < _end
                                             orderby _tsidx.StartTime ascending
                                             select _tsidx).ToList<TimeSlotTimeSlot>();
+        DateTime _now4User = SPContext.Current.Web.CurrentUser.RegionalSettings.TimeZone.UTCToLocalTime(System.DateTime.UtcNow);
+        m_UserLocalTime.Value = _now4User.ToString(CultureInfo.GetCultureInfo((int)SPContext.Current.Web.CurrentUser.RegionalSettings.LocaleId));
+        if (_strt < _now4User)
+          _strt = _now4User;
         foreach (var _spoint in (from _sp in _warehouse.ShippingPoint select _sp))
         {
-          if (_spoint.Direction != _direction && _spoint.Direction != Direction.BothDirections)
+          if (_spoint.Direction != direction && _spoint.Direction != Direction.BothDirections)
             continue;
-          List<TimeSlotTimeSlot> _avlblTmslts = _all4Date.Where(x => x.TimeSlot2ShippingPointLookup == _spoint).ToList<TimeSlotTimeSlot>();
+          List<TimeSlotTimeSlot> _avlblTmslts = _all4Date.Where(x => x.TimeSlot2ShippingPointLookup == _spoint && x.StartTime >= _strt && x.StartTime < _end).ToList<TimeSlotTimeSlot>();
           if (m_ShowDoubleTimeSlots.Checked)
           {
             TimeSpan _spn15min = new TimeSpan(0, 15, 0);
