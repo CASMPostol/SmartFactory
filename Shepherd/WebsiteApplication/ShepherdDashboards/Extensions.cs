@@ -264,7 +264,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       else
       {
         control.IsValid = false;
-        control.SelectedDate = SPContext.Current.Web.CurrentUser.RegionalSettings.TimeZone.UTCToLocalTime(System.DateTime.UtcNow);
+        control.SelectedDate = CAS.SharePoint.Extensions.SPMinimum;
       }
     }
     #endregion
