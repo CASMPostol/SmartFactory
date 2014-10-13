@@ -167,19 +167,40 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     {
       try
       {
+        m_UserLocalTime.Value = "At Starting";
         if (m_WarehouseDropDownList.SelectedValue.IsNullOrEmpty())
           return;
         DateTime _sd = m_Calendar.SelectedDate.Date;
         DateTime _strt = new DateTime(m_Calendar.VisibleDate.Year, m_Calendar.VisibleDate.Month, 1);
         DateTime _end = _strt.AddMonths(1);
+        m_UserLocalTime.Value = "At Warehouse";
         Warehouse _warehouse = Element.GetAtIndex(EDC.Warehouse, m_WarehouseDropDownList.SelectedValue);
         List<TimeSlot> _2Expose = new List<TimeSlot>();
+        m_UserLocalTime.Value = "List[TimeSlotTimeSlot]";
         List<TimeSlotTimeSlot> _all4Date = (from _tsidx in EDC.TimeSlot
                                             where _tsidx.Occupied.Value == Occupied.Free && _tsidx.StartTime >= _strt && _tsidx.StartTime < _end
                                             orderby _tsidx.StartTime ascending
                                             select _tsidx).ToList<TimeSlotTimeSlot>();
-        DateTime _now4User = SPContext.Current.Web.CurrentUser.RegionalSettings.TimeZone.UTCToLocalTime(System.DateTime.UtcNow);
-        m_UserLocalTime.Value = _now4User.ToString(CultureInfo.CurrentCulture);
+        m_UserLocalTime.Value = "DateTime _now4User ";
+        DateTime _now4User = default(DateTime);
+        string _dateFormat = null;
+        if (SPContext.Current.Web.CurrentUser.RegionalSettings != null)
+        {
+          _now4User = SPContext.Current.Web.CurrentUser.RegionalSettings.TimeZone.UTCToLocalTime(System.DateTime.UtcNow);
+          _dateFormat = "Current user time {0}";
+        }
+        if (SPContext.Current.Web.RegionalSettings != null)
+        {
+          _now4User = SPContext.Current.Web.RegionalSettings.TimeZone.UTCToLocalTime(System.DateTime.UtcNow);
+          _dateFormat = "Current web time {0}";
+        }
+        else
+        {
+          _now4User = System.DateTime.Now;
+          _dateFormat = "Current server time {0}";
+        }
+        m_UserLocalTime.Value = "m_UserLocalTime_Value";
+        m_UserLocalTime.Value = String.Format(CultureInfo.CurrentCulture, _dateFormat, _now4User);
         if (_strt < _now4User)
           _strt = _now4User;
         foreach (var _spoint in (from _sp in _warehouse.ShippingPoint select _sp))
