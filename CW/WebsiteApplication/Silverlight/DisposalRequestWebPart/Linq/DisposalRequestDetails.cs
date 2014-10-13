@@ -13,6 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.Common.ViewModel;
+
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 {
   /// <summary>
@@ -20,7 +22,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   /// </summary>
   public class DisposalRequestDetails : CAS.Common.ComponentModel.PropertyChangedBase
   {
-
+    private DisposalRequestDetails(DisposalRequest parent)
+    {
+      m_Parent = parent;
+      ButtonDown = new SynchronousCommandBase<int>(x => parent.GoDown(SequenceNumber), y => !parent.IsBottom(SequenceNumber));
+      ButtonDown = new SynchronousCommandBase<int>(x => parent.GoUp(SequenceNumber), y => !parent.IsTop(SequenceNumber));
+    }
     #region public UI properties
     /// <summary>
     /// Gets or sets the SKU.
@@ -294,12 +301,47 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         RaiseHandler<int>(value, ref b_SequenceNumber, "SequenceNumber", this);
       }
     }
+    /// <summary>
+    /// Gets or sets the Button Up handler.
+    /// </summary>
+    /// <value>
+    /// The Button Up handler.
+    /// </value>
+    public ICommandWithUpdate ButtonUp
+    {
+      get
+      {
+        return b_ButtonUp;
+      }
+      set
+      {
+        RaiseHandler<ICommandWithUpdate>(value, ref b_ButtonUp, "ButtonUp", this);
+      }
+    }
+    /// <summary>
+    /// Gets or sets the Button Down.
+    /// </summary>
+    /// <value>
+    /// The Button Down.
+    /// </value>
+    public ICommandWithUpdate ButtonDown
+    {
+      get
+      {
+        return b_ButtonDown;
+      }
+      set
+      {
+        RaiseHandler<ICommandWithUpdate>(value, ref b_ButtonDown, "ButtonDown", this);
+      }
+    }
+
     #endregion
 
     #region internal
-    internal static DisposalRequestDetails Create4Disposal(CustomsWarehouseDisposal _cwdrdx, int sequenceNumber)
+    internal static DisposalRequestDetails Create4Disposal(DisposalRequest parent, CustomsWarehouseDisposal _cwdrdx, int sequenceNumber)
     {
-      DisposalRequestDetails _ret = new DisposalRequestDetails()
+      DisposalRequestDetails _ret = new DisposalRequestDetails(parent)
       {
         AddedKg = _cwdrdx.CW_AddedKg.Value,
         Batch = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.Batch,
@@ -325,9 +367,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       _ret.m_Account = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID;
       return _ret;
     }
-    internal static DisposalRequestDetails Create4Account(CustomsWarehouse customsWarehouse, int sequenceNumber)
+    internal static DisposalRequestDetails Create4Account(DisposalRequest parent, CustomsWarehouse customsWarehouse, int sequenceNumber)
     {
-      DisposalRequestDetails _ret = new DisposalRequestDetails()
+      DisposalRequestDetails _ret = new DisposalRequestDetails(parent)
       {
         AddedKg = 0,
         Batch = customsWarehouse.Batch,
@@ -368,9 +410,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private string b_CustomsProcedure;
     private string b_DocumentNumber;
     private int b_SequenceNumber;
+    private ICommandWithUpdate b_ButtonDown;
+    private ICommandWithUpdate b_ButtonUp;
     #endregion
 
     private CustomsWarehouseDisposal m_Disposal = null;
     private CustomsWarehouse m_Account = null;
+    private DisposalRequest m_Parent = null;
   }
 }

@@ -412,14 +412,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       List<CustomsWarehouse> _copylistOfAccounts = new List<CustomsWarehouse>(listOfAccounts);
       foreach (CustomsWarehouseDisposal _cwdrdx in groupOfDisposals)
       {
-        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Disposal(_cwdrdx, _sequenceNumber ++);
+        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Disposal(this, _cwdrdx, _sequenceNumber++);
         _copylistOfAccounts.Remove(_cwdrdx.CWL_CWDisposal2CustomsWarehouseID);
         _newCollection.Add(_newDisposalRequestDetails);
         GetDataContext(_cwdrdx);
       }
       foreach (CustomsWarehouse _cwx in _copylistOfAccounts)
       {
-        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Account(_cwx, _sequenceNumber ++);
+        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Account(this, _cwx, _sequenceNumber++);
         _newCollection.Add(_newDisposalRequestDetails);
       }
       UpdateOnInit();
@@ -544,5 +544,38 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     }
     #endregion
 
+    //TODO
+    internal void GoDown(int sequenceNumber)
+    {
+      Dictionary<int, DisposalRequestDetails> _dctnry = Items.ToDictionary(x => x.SequenceNumber);
+      DisposalRequestDetails _current = _dctnry[sequenceNumber];
+      DisposalRequestDetails _next = _dctnry[sequenceNumber + 1];
+      _dctnry.Remove(sequenceNumber);
+      _dctnry.Remove(sequenceNumber + 1);
+      _current.SequenceNumber += 1;
+      _next.SequenceNumber -= 1;
+      _dctnry.Add(_current.SequenceNumber, _current);
+      _dctnry.Add(_current.SequenceNumber, _next);
+      ObservableCollection<DisposalRequestDetails> _items = new ObservableCollection<DisposalRequestDetails>(_dctnry.Values);
+      RecalculateDisposals(_items);
+      Items = _items;
+    }
+
+    private void RecalculateDisposals(ObservableCollection<DisposalRequestDetails> _items)
+    {
+      throw new NotImplementedException();
+    }
+    internal bool IsBottom(int sequenceNumber)
+    {
+      throw new NotImplementedException();
+    }
+    internal object GoUp(int sequenceNumber)
+    {
+      return Items.Count == 0 || sequenceNumber == Items.Count - 1;
+    }
+    internal bool IsTop(int sequenceNumber)
+    {
+      return sequenceNumber == 0; ;
+    }
   }
 }
