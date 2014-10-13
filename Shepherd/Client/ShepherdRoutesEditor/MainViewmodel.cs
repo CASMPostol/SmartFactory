@@ -308,9 +308,13 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     {
       get { return m_ProgressChangedEventHandler; }
     }
-    //TODO Not Implemented 
+    /// <summary>
+    /// Called when the NotBusy has been changed.
+    /// </summary>
+    /// <exception cref="System.NotImplementedException"></exception>
     protected override void OnNotBusyChanged()
     {
+      //http://casas:11227/sites/awt/Lists/TaskList/_cts/Tasks/displayifs.aspx?List=72c511b5%2D8b63%2D4dfa%2Dad34%2D133a97eba469&ID=4430&ContentTypeId=0x01005D39260836CE498D8E0D443AD5CAD3AC00456AB372ACF9DA41B8AE870CD1954927
       throw new NotImplementedException();
     }
     #endregion
