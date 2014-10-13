@@ -179,7 +179,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
                                             orderby _tsidx.StartTime ascending
                                             select _tsidx).ToList<TimeSlotTimeSlot>();
         DateTime _now4User = SPContext.Current.Web.CurrentUser.RegionalSettings.TimeZone.UTCToLocalTime(System.DateTime.UtcNow);
-        m_UserLocalTime.Value = _now4User.ToString(CultureInfo.GetCultureInfo((int)SPContext.Current.Web.CurrentUser.RegionalSettings.LocaleId));
+        m_UserLocalTime.Value = _now4User.ToString(CultureInfo.CurrentCulture);
         if (_strt < _now4User)
           _strt = _now4User;
         foreach (var _spoint in (from _sp in _warehouse.ShippingPoint select _sp))
