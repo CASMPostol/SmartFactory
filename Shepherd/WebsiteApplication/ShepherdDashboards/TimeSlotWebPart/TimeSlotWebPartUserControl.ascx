@@ -37,3 +37,4 @@
     </asp:TableCell>
   </asp:TableRow>
 </asp:Table>
+<asp:HiddenField runat="server" ID="m_UserLocalTime"></asp:HiddenField>
