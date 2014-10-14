@@ -157,6 +157,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         List<NSSPLinq.InvoiceContent> _toDeletedInvoiceContent = new List<NSSPLinq.InvoiceContent>();
         List<NSSPLinq.InvoiceLib> _toDeletedInvoiceLib = new List<NSSPLinq.InvoiceLib>();
         Dictionary<int, NSSPLinq.InvoiceLib> _allInvcLib = _spedc.InvoiceLibrary.ToDictionary<NSSPLinq.InvoiceLib, int>(x => x.Id.Value);
+        int _brokenCleranceLookup = 0;
         foreach (int _ilx in _invcLib2BeChecked)
         {
           NSSPLinq.InvoiceLib _invcLb = _allInvcLib[_ilx];
@@ -171,8 +172,13 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
             continue;
           _toDeletedInvoiceLib.Add(_invcLb);
           _toDeletedInvoiceContent.AddRange(_invcLb.InvoiceContent);
-          _clearance2BeChecked.AddIfNew(_invcLb.ClearenceIndex.Id.Value);
+          if (_invcLb.ClearenceIndex == null)
+            _brokenCleranceLookup++;
+          else
+            _clearance2BeChecked.AddIfNew(_invcLb.ClearenceIndex.Id.Value);
         }
+        if (_brokenCleranceLookup != 0)
+          progress(null, new ProgressChangedEventArgs(1, String.Format("Warning: there are {0} InvoiceLib entries with broken lookup on Clearance", _brokenCleranceLookup)));
         string _mtmp = "The selected: {0} InvoiceLibrary, and {1} InvoiceContent entries are to be deleted.";
         progress(null, new ProgressChangedEventArgs(1, String.Format(_mtmp, _toDeletedInvoiceLib.Count, _toDeletedInvoiceContent.Count)));
         _spedc.InvoiceContent.Delete<NSSPLinq.InvoiceContent, NSLinq2SQL.History>
