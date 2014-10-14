@@ -377,6 +377,8 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities
       TimeSlotTimeSlot _next = timeSlotsCollection[0];
       foreach (TimeSlotTimeSlot _tsx in timeSlotsCollection)
       {
+        if (isDouble == true)
+          _tsx.IsDouble = true;
         _tsx.TimeSlot2ShippingIndex = this;
         _next = _tsx;
       }
