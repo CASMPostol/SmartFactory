@@ -281,28 +281,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
     }
     /// <summary>
-    /// Gets or sets the remaining packages.
-    /// </summary>
-    /// <value>
-    /// The remaining packages.
-    /// </value>
-    public double RemainingPackages
-    {
-      get
-      {
-        return this._remainingPackages;
-      }
-      set
-      {
-        if ((value != this._remainingPackages))
-        {
-          this.OnPropertyChanging("RemainingPackages", this._remainingPackages);
-          this._remainingPackages = value;
-          this.OnPropertyChanged("RemainingPackages");
-        }
-      }
-    }
-    /// <summary>
     /// Gets or sets the packages automatic clear.
     /// </summary>
     /// <value>
@@ -382,7 +360,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         QuantityyToClearSum = 0,
         QuantityyToClearSumRounded = 0,
         RemainingOnStock = 0,
-        RemainingPackages = 0,
         SKUDescription = skuDescription,
         Title = "Title TBD",
         TotalStock = 0,
@@ -397,48 +374,58 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     }
     internal bool AutoCalculation { get; set; }
     /// <summary>
-    /// Updates this instance using the collection <paramref name="groupOfDisposals"/> of selected  <see cref="CustomsWarehouseDisposal"/>.
+    /// Updates this instance using the collection of <see cref="CustomsWarehouse"/> and existing <see cref="CustomsWarehouseDisposal"/> entries.
     /// </summary>
-    /// <param name="listOfAccounts">The list.</param>
-    /// <param name="groupOfDisposals">The group.</param>
+    /// <param name="listOfAccounts">The list of <see cref="CustomsWarehouse"/> with the same batch. </param>
+    /// <param name="groupOfDisposals">The group of existing <see cref="CustomsWarehouseDisposal"/> for the selected Batch.</param>
     internal void GetDataContext(List<CustomsWarehouse> listOfAccounts, IGrouping<string, CustomsWarehouseDisposal> groupOfDisposals)
     {
       listOfAccounts.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
       CustomsProcedure = groupOfDisposals.First<CustomsWarehouseDisposal>().CustomsProcedure;
       m_ListOfCustomsWarehouse = listOfAccounts;
-      RemainingOnStock = m_ListOfCustomsWarehouse.Sum(x => x.TobaccoNotAllocated.Value);
       ObservableCollection<DisposalRequestDetails> _newCollection = new ObservableCollection<DisposalRequestDetails>();
       int _sequenceNumber = 0;
       List<CustomsWarehouse> _copylistOfAccounts = new List<CustomsWarehouse>(listOfAccounts);
-      foreach (CustomsWarehouseDisposal _cwdrdx in groupOfDisposals)
+      foreach (CustomsWarehouseDisposal _cwdx in groupOfDisposals)
       {
-        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Disposal(this, _cwdrdx, _sequenceNumber++);
-        _copylistOfAccounts.Remove(_cwdrdx.CWL_CWDisposal2CustomsWarehouseID);
+        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Disposal(this, _cwdx, _sequenceNumber++);
+        _copylistOfAccounts.Remove(_cwdx.CWL_CWDisposal2CustomsWarehouseID);
         _newCollection.Add(_newDisposalRequestDetails);
-        GetDataContext(_cwdrdx);
+        GetDataContext(_cwdx);
       }
       foreach (CustomsWarehouse _cwx in _copylistOfAccounts)
       {
         DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Account(this, _cwx, _sequenceNumber++);
         _newCollection.Add(_newDisposalRequestDetails);
       }
+      RemainingOnStock = m_ListOfCustomsWarehouse.Sum(x => x.TobaccoNotAllocated.Value);
       UpdateOnInit();
       Items = _newCollection;
     }
     /// <summary>
-    /// Gets the data context.
+    /// Creates an instance of <see cref="DisposalRequest"/> using the collection of <see cref="CustomsWarehouse"/> when there are no disposals.
     /// </summary>
-    /// <param name="list">The list.</param>
+    /// <param name="listOfAccounts">The list of <see cref="CustomsWarehouse"/> with the same batch.</param>
     /// <param name="toDispose">To dispose.</param>
     /// <param name="customsProcedure">The customs procedure.</param>
-    internal void GetDataContext(List<CustomsWarehouse> list, double toDispose, string customsProcedure)
+    internal static DisposalRequest GetDataContext(List<CustomsWarehouse> listOfAccounts, double toDispose, string customsProcedure)
     {
-      b_customsProcedure = customsProcedure;
-      list.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
-      m_ListOfCustomsWarehouse = list;
-      TotalStock = m_ListOfCustomsWarehouse.Sum(x => x.TobaccoNotAllocated.Value);
-      AddedKg = toDispose;
-      UpdateOnChange();
+      CustomsWarehouse _fcw = listOfAccounts.First<CustomsWarehouse>();
+      DisposalRequest _ret = DisposalRequest.DefaultDisposalRequestnew("N/A", _fcw);
+      listOfAccounts.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
+      _ret.CustomsProcedure = customsProcedure;
+      _ret.m_ListOfCustomsWarehouse = listOfAccounts;
+      ObservableCollection<DisposalRequestDetails> _newCollection = new ObservableCollection<DisposalRequestDetails>();
+      int _sequenceNumber = 0;
+      foreach (CustomsWarehouse _cwx in listOfAccounts)
+      {
+        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Account(_ret, _cwx, _sequenceNumber++);
+        _newCollection.Add(_newDisposalRequestDetails);
+      }
+      _ret.TotalStock = listOfAccounts.Sum(x => x.TobaccoNotAllocated.Value);
+      _ret.AddedKg = toDispose;
+      _ret.UpdateOnChange();
+      return _ret;
     }
     internal void RecalculateDisposals(int disposalRequestLibId, DataContextAsync context)
     {
@@ -481,6 +468,44 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       foreach (CustomsWarehouseDisposal _cwix in Disposals)
         this.AddedKg += _cwix.CW_AddedKg.Value + _cwix.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value;
     }
+    internal void GoDown(int sequenceNumber)
+    {
+      Dictionary<int, DisposalRequestDetails> _dctnry = Items.ToDictionary(x => x.SequenceNumber);
+      DisposalRequestDetails _current = _dctnry[sequenceNumber];
+      DisposalRequestDetails _next = _dctnry[sequenceNumber + 1];
+      _dctnry.Remove(sequenceNumber);
+      _dctnry.Remove(sequenceNumber + 1);
+      _current.SequenceNumber += 1;
+      _next.SequenceNumber -= 1;
+      _dctnry.Add(_current.SequenceNumber, _current);
+      _dctnry.Add(_current.SequenceNumber, _next);
+      ObservableCollection<DisposalRequestDetails> _items = new ObservableCollection<DisposalRequestDetails>(_dctnry.Values);
+      RecalculateDisposals(_items);
+      Items = _items;
+    }
+    internal void GoUp(int sequenceNumber)
+    {
+      Dictionary<int, DisposalRequestDetails> _dctnry = Items.ToDictionary(x => x.SequenceNumber);
+      DisposalRequestDetails _prvs = _dctnry[sequenceNumber - 1];
+      DisposalRequestDetails _current = _dctnry[sequenceNumber];
+      _dctnry.Remove(sequenceNumber);
+      _dctnry.Remove(sequenceNumber - 1);
+      _current.SequenceNumber -= 1;
+      _prvs.SequenceNumber += 1;
+      _dctnry.Add(_current.SequenceNumber, _current);
+      _dctnry.Add(_current.SequenceNumber, _prvs);
+      ObservableCollection<DisposalRequestDetails> _items = new ObservableCollection<DisposalRequestDetails>(_dctnry.Values);
+      RecalculateDisposals(_items);
+      Items = _items;
+    }
+    internal bool IsBottom(int sequenceNumber)
+    {
+      return Items.Count == 0 || sequenceNumber == Items.Count - 1;
+    }
+    internal bool IsTop(int sequenceNumber)
+    {
+      return sequenceNumber == 0; ;
+    }
     #endregion
 
     #region private
@@ -497,7 +522,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private double _quantityyToClearSumRounded;
     private double _remainingOnStock;
     private string _units;
-    private double _remainingPackages;
     private int _packagesToClear;
     private ObservableCollection<CustomsWarehouseDisposal> b_Disposals;
     private string b_customsProcedure = String.Empty;
@@ -542,53 +566,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       PackagesToDispose = CustomsWarehouse.Packages(QuantityyToClearSum, this.MassPerPackage);
       QuantityyToClearSumRounded = PackagesToDispose * this.MassPerPackage;
     }
-    #endregion
-
-    //TODO
-    internal void GoDown(int sequenceNumber)
-    {
-      Dictionary<int, DisposalRequestDetails> _dctnry = Items.ToDictionary(x => x.SequenceNumber);
-      DisposalRequestDetails _current = _dctnry[sequenceNumber];
-      DisposalRequestDetails _next = _dctnry[sequenceNumber + 1];
-      _dctnry.Remove(sequenceNumber);
-      _dctnry.Remove(sequenceNumber + 1);
-      _current.SequenceNumber += 1;
-      _next.SequenceNumber -= 1;
-      _dctnry.Add(_current.SequenceNumber, _current);
-      _dctnry.Add(_current.SequenceNumber, _next);
-      ObservableCollection<DisposalRequestDetails> _items = new ObservableCollection<DisposalRequestDetails>(_dctnry.Values);
-      RecalculateDisposals(_items);
-      Items = _items;
-    }
-    internal void GoUp(int sequenceNumber)
-    {
-      Dictionary<int, DisposalRequestDetails> _dctnry = Items.ToDictionary(x => x.SequenceNumber);
-      DisposalRequestDetails _prvs = _dctnry[sequenceNumber - 1];
-      DisposalRequestDetails _current = _dctnry[sequenceNumber];
-      _dctnry.Remove(sequenceNumber);
-      _dctnry.Remove(sequenceNumber - 1);
-      _current.SequenceNumber -= 1;
-      _prvs.SequenceNumber += 1;
-      _dctnry.Add(_current.SequenceNumber, _current);
-      _dctnry.Add(_current.SequenceNumber, _prvs);
-      ObservableCollection<DisposalRequestDetails> _items = new ObservableCollection<DisposalRequestDetails>(_dctnry.Values);
-      RecalculateDisposals(_items);
-      Items = _items;
-    }
-    internal bool IsBottom(int sequenceNumber)
-    {
-      return Items.Count == 0 || sequenceNumber == Items.Count - 1;
-    }
-    internal bool IsTop(int sequenceNumber)
-    {
-      return sequenceNumber == 0; ;
-    }
     private void RecalculateDisposals(ObservableCollection<DisposalRequestDetails> _items)
     {
       int _packages = this.PackagesToDispose;
       double _declared = this.DeclaredNetMass;
-      foreach (DisposalRequestDetails _drx  in _items)
+      foreach (DisposalRequestDetails _drx in _items)
         _drx.DisposeMaterial(ref _packages, ref _declared);
     }
+
+    #endregion
+
   }
 }

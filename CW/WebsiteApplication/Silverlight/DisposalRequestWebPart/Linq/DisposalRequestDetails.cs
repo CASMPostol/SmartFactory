@@ -214,23 +214,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
     }
     /// <summary>
-    /// Gets or sets the remaining packages.
-    /// </summary>
-    /// <value>
-    /// The remaining packages.
-    /// </value>
-    public int RemainingPackages
-    {
-      get
-      {
-        return b_RemainingPackages;
-      }
-      set
-      {
-        RaiseHandler<int>(value, ref b_RemainingPackages, "RemainingPackages", this);
-      }
-    }
-    /// <summary>
     /// Gets or sets the packages automatic clear.
     /// </summary>
     /// <value>
@@ -351,7 +334,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         QuantityyToClearSum = 0,
         QuantityyToClearSumRounded = 0,
         RemainingOnStock = _account.TobaccoNotAllocated.Value,
-        RemainingPackages = 0,
         SequenceNumber = sequenceNumber,
         SKU = _account.SKU,
         SKUDescription = disposal.SKUDescription,
@@ -363,7 +345,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       _ret.PackagesToDispose = _ret.m_Account.Packages(_ret.QuantityyToClearSum);
       _ret.QuantityyToClearSumRounded = _ret.PackagesToDispose * _ret.MassPerPackage;
       _ret.TotalStock = _account.TobaccoNotAllocated.Value + _ret.QuantityyToClearSumRounded;
-      _ret.RemainingPackages = _ret.m_Account.Packages(_ret.TotalStock * _ret.MassPerPackage) - _ret.PackagesToDispose;
       return _ret;
     }
     internal static DisposalRequestDetails Create4Account(DisposalRequest parent, CustomsWarehouse customsWarehouse, int sequenceNumber)
@@ -380,7 +361,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         QuantityyToClearSum = 0,
         QuantityyToClearSumRounded = 0,
         RemainingOnStock = customsWarehouse.TobaccoNotAllocated.Value,
-        RemainingPackages = 0,
         SequenceNumber = sequenceNumber,
         SKU = customsWarehouse.SKU,
         SKUDescription = string.Empty,
@@ -394,15 +374,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       this.PackagesToDispose = Math.Min(this.m_Account.Packages(TotalStock), packagesToDispose);
       packagesToDispose -= this.PackagesToDispose;
-      this.QuantityyToClearSumRounded =  this.m_Account.Quantity(this.PackagesToDispose);
+      this.QuantityyToClearSumRounded = this.m_Account.Quantity(this.PackagesToDispose);
       this.QuantityyToClearSum = this.QuantityyToClearSumRounded;
       Debug.Assert(packagesToDispose >= 0, "packagesToDispose <= 0");
       this.DeclaredNetMass = Math.Min(declared, this.QuantityyToClearSumRounded);
       declared -= this.DeclaredNetMass;
       this.AddedKg = this.QuantityyToClearSumRounded - this.DeclaredNetMass;
       Debug.Assert(this.AddedKg >= 0, "CW_AddedKg <= 0");
-      this.RemainingPackages = this.m_Account.Packages(this.TotalStock * this.MassPerPackage) - this.PackagesToDispose;
-      Debug.Assert(this.RemainingPackages >= 0, "RemainingPackages");
     }
     #endregion
 
@@ -418,7 +396,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private double b_QuantityyToClearSumRounded;
     private double b_RemainingOnStock;
     private string b_Units;
-    private int b_RemainingPackages;
     private int b_PackagesToDispose;
     private string b_CustomsProcedure;
     private string b_DocumentNumber;
@@ -427,6 +404,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private ICommandWithUpdate b_ButtonUp;
     #endregion
 
+    #region private
     private DisposalRequestDetails(DisposalRequest parent)
     {
       m_Parent = parent;
@@ -436,5 +414,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private CustomsWarehouseDisposal m_Disposal = null;
     private CustomsWarehouse m_Account = null;
     private DisposalRequest m_Parent = null;
+    #endregion
+
   }
 }

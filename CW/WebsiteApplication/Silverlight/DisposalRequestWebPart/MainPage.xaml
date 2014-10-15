@@ -10,9 +10,8 @@
     xmlns:xlinq="clr-namespace:CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq"
     x:Class="CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.MainPage"
     mc:Ignorable="d"
-    d:DesignHeight="600" d:DesignWidth="1200"
     Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded"
-    Height="600"
+    Height="Auto"
     Width="Auto"
     ScrollViewer.VerticalScrollBarVisibility="Disabled"
     >
@@ -42,9 +41,9 @@
             </StackPanel>
         </sdk:HierarchicalDataTemplate>
     </UserControl.Resources>
-    <Grid d:DataContext="{d:DesignData /SampleData/DisposalRequestObservableSampleData.xaml}">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="*" MinHeight="100" />
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <sdk:TreeView x:Name="TreeView" Grid.Row="0" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible">

@@ -52,8 +52,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         _fDspRqs.AddedKg += toDispose;
       else
       {
-        DisposalRequest _dr = DisposalRequest.DefaultDisposalRequestnew( "N/A", _fcw );
-        _dr.GetDataContext( list, toDispose, customsProcedure );
+        DisposalRequest _dr = DisposalRequest.GetDataContext(list, toDispose, customsProcedure);
         this.Add( _dr );
         _dr.AutoCalculation = true;
       }
