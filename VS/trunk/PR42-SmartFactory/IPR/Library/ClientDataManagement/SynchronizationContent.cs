@@ -62,51 +62,57 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     /// <param name="progressChanged">The progress changed.</param>
     public static void Go(SynchronizationSettings settings, ProgressChangedEventHandler progressChanged)
     {
-      IPRDEV _sqledc = IPRDEV.Connect2SQL(settings.ConnectionString, progressChanged);
       using (Entities _spedc = new Entities(settings.SiteURL))
       {
-        _spedc.RowLimit = settings.RowLimit;
-        Synchronize(_sqledc.JSOXLibrary, _spedc.JSOXLibrary, progressChanged, JSOXLib.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.BalanceBatch, _spedc.BalanceBatch, progressChanged, Linq.BalanceBatch.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.SADDocumentLibrary, _spedc.SADDocumentLibrary, progressChanged, Linq.SADDocumentLib.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.SADDocument, _spedc.SADDocument, progressChanged, Linq.SADDocumentType.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.SADGood, _spedc.SADGood, progressChanged, Linq.SADGood.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.SADConsignment, _spedc.SADConsignment, progressChanged, Linq.SADConsignment.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.Clearence, _spedc.Clearence, progressChanged, Linq.Clearence.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.Consent, _spedc.Consent, progressChanged, Linq.Consent.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.PCNCode, _spedc.PCNCode, progressChanged, Linq.PCNCode.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.IPRLibrary, _spedc.IPRLibrary, progressChanged, Linq.IPRLib.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.IPR, _spedc.IPR, progressChanged, Linq.IPR.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.BalanceIPR, _spedc.BalanceIPR, progressChanged, Linq.BalanceIPR.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.BatchLibrary, _spedc.BatchLibrary, progressChanged, Linq.BatchLib.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.SPFormat, _spedc.Format, progressChanged, Linq.Format.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.SKULibrary, _spedc.SKULibrary, progressChanged, Linq.Document.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.SKU, _spedc.SKU, progressChanged, Linq.SKUCommonPart.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.Batch, _spedc.Batch, progressChanged, Linq.Batch.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.CustomsUnion, _spedc.CustomsUnion, progressChanged, Linq.CustomsUnion.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.CutfillerCoefficient, _spedc.CutfillerCoefficient, progressChanged, Linq.CutfillerCoefficient.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.InvoiceLibrary, _spedc.InvoiceLibrary, progressChanged, Linq.InvoiceLib.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.InvoiceContent, _spedc.InvoiceContent, progressChanged, Linq.InvoiceContent.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.Material, _spedc.Material, progressChanged, Linq.Material.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.JSOXCustomsSummary, _spedc.JSOXCustomsSummary, progressChanged, Linq.JSOXCustomsSummary.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.Disposal, _spedc.Disposal, progressChanged, Linq.Disposal.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.Dust, _spedc.Dust, progressChanged, Linq.Dust.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.SADDuties, _spedc.SADDuties, progressChanged, Linq.SADDuties.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.SADPackage, _spedc.SADPackage, progressChanged, Linq.SADPackage.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.SADQuantity, _spedc.SADQuantity, progressChanged, Linq.SADQuantity.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.SADRequiredDocuments, _spedc.SADRequiredDocuments, progressChanged, Linq.SADRequiredDocuments.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.Settings, _spedc.Settings, progressChanged, Linq.Settings.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.SHMenthol, _spedc.SHMenthol, progressChanged, Linq.SHMenthol.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.StockLibrary, _spedc.StockLibrary, progressChanged, Linq.StockLib.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.StockEntry, _spedc.StockEntry, progressChanged, Linq.StockEntry.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.Usage, _spedc.Usage, progressChanged, Linq.Usage.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.Warehouse, _spedc.Warehouse, progressChanged, Linq.Warehouse.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.Waste, _spedc.Waste, progressChanged, Linq.Waste.GetMappings(), settings.Port2Rel210);
-        Synchronize(_sqledc.ActivityLog, _spedc.ActivityLog, progressChanged, Linq.ActivityLogCT.GetMappings(), settings.Port2Rel210);
+        using (IPRDEV _sqledc = IPRDEV.Connect2SQL(settings.ConnectionString, progressChanged))
+        {
+          _spedc.RowLimit = settings.RowLimit;
+          Synchronize(_sqledc.JSOXLibrary, _spedc.JSOXLibrary, progressChanged, JSOXLib.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.BalanceBatch, _spedc.BalanceBatch, progressChanged, Linq.BalanceBatch.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.SADDocumentLibrary, _spedc.SADDocumentLibrary, progressChanged, Linq.SADDocumentLib.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.SADDocument, _spedc.SADDocument, progressChanged, Linq.SADDocumentType.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.SADGood, _spedc.SADGood, progressChanged, Linq.SADGood.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.SADConsignment, _spedc.SADConsignment, progressChanged, Linq.SADConsignment.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.Clearence, _spedc.Clearence, progressChanged, Linq.Clearence.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.Consent, _spedc.Consent, progressChanged, Linq.Consent.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.PCNCode, _spedc.PCNCode, progressChanged, Linq.PCNCode.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.IPRLibrary, _spedc.IPRLibrary, progressChanged, Linq.IPRLib.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.IPR, _spedc.IPR, progressChanged, Linq.IPR.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.BalanceIPR, _spedc.BalanceIPR, progressChanged, Linq.BalanceIPR.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.BatchLibrary, _spedc.BatchLibrary, progressChanged, Linq.BatchLib.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.SPFormat, _spedc.Format, progressChanged, Linq.Format.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.SKULibrary, _spedc.SKULibrary, progressChanged, Linq.Document.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.SKU, _spedc.SKU, progressChanged, Linq.SKUCommonPart.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.Batch, _spedc.Batch, progressChanged, Linq.Batch.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.CustomsUnion, _spedc.CustomsUnion, progressChanged, Linq.CustomsUnion.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.CutfillerCoefficient, _spedc.CutfillerCoefficient, progressChanged, Linq.CutfillerCoefficient.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.InvoiceLibrary, _spedc.InvoiceLibrary, progressChanged, Linq.InvoiceLib.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.InvoiceContent, _spedc.InvoiceContent, progressChanged, Linq.InvoiceContent.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.Material, _spedc.Material, progressChanged, Linq.Material.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.JSOXCustomsSummary, _spedc.JSOXCustomsSummary, progressChanged, Linq.JSOXCustomsSummary.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.Disposal, _spedc.Disposal, progressChanged, Linq.Disposal.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.Dust, _spedc.Dust, progressChanged, Linq.Dust.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.SADDuties, _spedc.SADDuties, progressChanged, Linq.SADDuties.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.SADPackage, _spedc.SADPackage, progressChanged, Linq.SADPackage.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.SADQuantity, _spedc.SADQuantity, progressChanged, Linq.SADQuantity.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.SADRequiredDocuments, _spedc.SADRequiredDocuments, progressChanged, Linq.SADRequiredDocuments.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.Settings, _spedc.Settings, progressChanged, Linq.Settings.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.SHMenthol, _spedc.SHMenthol, progressChanged, Linq.SHMenthol.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.StockLibrary, _spedc.StockLibrary, progressChanged, Linq.StockLib.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.StockEntry, _spedc.StockEntry, progressChanged, Linq.StockEntry.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.Usage, _spedc.Usage, progressChanged, Linq.Usage.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.Warehouse, _spedc.Warehouse, progressChanged, Linq.Warehouse.GetMappings(), settings.Port2Rel210);
+          Synchronize(_sqledc.Waste, _spedc.Waste, progressChanged, Linq.Waste.GetMappings(), settings.Port2Rel210);
+        }
+        using (IPRDEV _sqledc = IPRDEV.Connect2SQL(settings.ConnectionString, progressChanged))
+        {
+          Synchronize(_sqledc.ActivityLog, _spedc.ActivityLog, progressChanged, Linq.ActivityLogCT.GetMappings(), settings.Port2Rel210);
+        }
       }
       if (settings.Port2Rel210)
         Linq.Settings.SaveCurrentContentVersion(settings.SiteURL, progressChanged);
-      Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(_sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Synchronization, progressChanged);
+      using (IPRDEV _sqledc = IPRDEV.Connect2SQL(settings.ConnectionString, progressChanged))
+        Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(_sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Synchronization, progressChanged);
       progressChanged(1, new ProgressChangedEventArgs(1, "SynchronizationContent has been finished"));
     }
     private static void Synchronize<TSQL, TSP>(Table<TSQL> sqlTable, EntityList<TSP> spList, ProgressChangedEventHandler progressChanged, Dictionary<string, string> mapping, bool port2210)
@@ -122,8 +128,11 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
       Dictionary<string, StorageItemsList> _spDscrpt = StorageItem.CreateStorageDescription(typeof(TSP));
       Dictionary<string, SQLStorageItem> _sqlDscrpt = SQLStorageItem.CreateStorageDescription(typeof(TSQL), mapping);
       int _archivalCount = 0;
+      int _archivalCountOld = 0;
       int _counter = 0;
+      int _counterOld = 0;
       int _itemChanges = 0;
+      int _itemChangesOld = 0;
       bool _itemChanged;
       Action<TSP> _port = x => { };
       List<string> _changes = new List<string>();
@@ -132,6 +141,8 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         _port = x => { ((IArchival)x).Archival = false; _archivalCount++; };
         progressChanged(1, new ProgressChangedEventArgs(1, "The table will be updated new software version"));
       }
+      Stopwatch _sw = new Stopwatch();
+      _sw.Start();
       foreach (TSP _spItem in _scrList)
       {
         _port(_spItem);
@@ -158,12 +169,26 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           });
         if (_itemChanged)
           _itemChanges++;
+        if (_sw.Elapsed > new TimeSpan(0, 5, 0))
+        {
+          progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Submitting {0} changes on {1} list rows to SQL database", _counter - _counterOld, _itemChanges - _itemChangesOld)));
+          sqlTable.Context.SubmitChanges();
+          if (_archivalCount > 0)
+          {
+            progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Update to Rel 2.10 Submitting {0} Archival bit changes", _archivalCount - _archivalCountOld)));
+            spList.DataContext.SubmitChanges();
+          }
+          _sw.Reset();
+          _sw.Start();
+          _counterOld = _counter;
+          _itemChangesOld = _itemChanges;
+        }
       }
-      progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Submitting {0} changes on {1} list rows to SQL database", _counter, _itemChanges)));
+      progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Submitting total {0} changes on {1} list rows to SQL database", _counter, _itemChanges)));
       sqlTable.Context.SubmitChanges();
       if (_archivalCount > 0)
       {
-        progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Update to Rel 2.10 Submitting {0} Archival bit changes", _archivalCount)));
+        progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Update to Rel 2.10 Submitting total {0} Archival bit changes", _archivalCount)));
         spList.DataContext.SubmitChanges();
       }
     }

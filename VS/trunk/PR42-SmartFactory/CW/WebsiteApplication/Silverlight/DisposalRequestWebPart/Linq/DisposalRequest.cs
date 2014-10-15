@@ -164,9 +164,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       {
         if ((value != this._declaredNetMass))
         {
-          this.OnPropertyChanging("CW_SettledNetMass", this._declaredNetMass);
+          this.OnPropertyChanging("DeclaredNetMass", this._declaredNetMass);
           this._declaredNetMass = value;
-          this.OnPropertyChanged("CW_SettledNetMass");
+          this.OnPropertyChanged("DeclaredNetMass");
         }
       }
     }
@@ -560,22 +560,35 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       RecalculateDisposals(_items);
       Items = _items;
     }
-
-    private void RecalculateDisposals(ObservableCollection<DisposalRequestDetails> _items)
+    internal void GoUp(int sequenceNumber)
     {
-      throw new NotImplementedException();
+      Dictionary<int, DisposalRequestDetails> _dctnry = Items.ToDictionary(x => x.SequenceNumber);
+      DisposalRequestDetails _prvs = _dctnry[sequenceNumber - 1];
+      DisposalRequestDetails _current = _dctnry[sequenceNumber];
+      _dctnry.Remove(sequenceNumber);
+      _dctnry.Remove(sequenceNumber - 1);
+      _current.SequenceNumber -= 1;
+      _prvs.SequenceNumber += 1;
+      _dctnry.Add(_current.SequenceNumber, _current);
+      _dctnry.Add(_current.SequenceNumber, _prvs);
+      ObservableCollection<DisposalRequestDetails> _items = new ObservableCollection<DisposalRequestDetails>(_dctnry.Values);
+      RecalculateDisposals(_items);
+      Items = _items;
     }
     internal bool IsBottom(int sequenceNumber)
-    {
-      throw new NotImplementedException();
-    }
-    internal object GoUp(int sequenceNumber)
     {
       return Items.Count == 0 || sequenceNumber == Items.Count - 1;
     }
     internal bool IsTop(int sequenceNumber)
     {
       return sequenceNumber == 0; ;
+    }
+    private void RecalculateDisposals(ObservableCollection<DisposalRequestDetails> _items)
+    {
+      int _packages = this.PackagesToDispose;
+      double _declared = this.DeclaredNetMass;
+      foreach (DisposalRequestDetails _drx  in _items)
+        _drx.DisposeMaterial(ref _packages, ref _declared);
     }
   }
 }

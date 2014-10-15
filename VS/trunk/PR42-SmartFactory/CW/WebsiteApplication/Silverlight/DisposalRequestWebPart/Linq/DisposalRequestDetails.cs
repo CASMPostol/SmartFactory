@@ -14,6 +14,8 @@
 //</summary>
 
 using CAS.Common.ViewModel;
+using System;
+using System.Diagnostics;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 {
@@ -22,12 +24,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   /// </summary>
   public class DisposalRequestDetails : CAS.Common.ComponentModel.PropertyChangedBase
   {
-    private DisposalRequestDetails(DisposalRequest parent)
-    {
-      m_Parent = parent;
-      ButtonDown = new SynchronousCommandBase<int>(x => parent.GoDown(SequenceNumber), y => !parent.IsBottom(SequenceNumber));
-      ButtonDown = new SynchronousCommandBase<int>(x => parent.GoUp(SequenceNumber), y => !parent.IsTop(SequenceNumber));
-    }
+
     #region public UI properties
     /// <summary>
     /// Gets or sets the SKU.
@@ -339,32 +336,34 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     #endregion
 
     #region internal
-    internal static DisposalRequestDetails Create4Disposal(DisposalRequest parent, CustomsWarehouseDisposal _cwdrdx, int sequenceNumber)
+    internal static DisposalRequestDetails Create4Disposal(DisposalRequest parent, CustomsWarehouseDisposal disposal, int sequenceNumber)
     {
+      CustomsWarehouse _account = disposal.CWL_CWDisposal2CustomsWarehouseID;
       DisposalRequestDetails _ret = new DisposalRequestDetails(parent)
       {
-        AddedKg = _cwdrdx.CW_AddedKg.Value,
-        Batch = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.Batch,
-        CustomsProcedure = _cwdrdx.CustomsProcedure,
-        DeclaredNetMass = _cwdrdx._cW_DeclaredNetMass.Value,
-        DocumentNumber = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.DocumentNo,
-        MassPerPackage = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.CW_MassPerPackage.Value,
+        AddedKg = disposal.CW_AddedKg.Value,
+        Batch = _account.Batch,
+        CustomsProcedure = disposal.CustomsProcedure,
+        DeclaredNetMass = disposal.CW_DeclaredNetMass.Value,
+        DocumentNumber = _account.DocumentNo,
+        MassPerPackage = _account.CW_MassPerPackage.Value,
         PackagesToDispose = 0,
         QuantityyToClearSum = 0,
         QuantityyToClearSumRounded = 0,
-        RemainingOnStock = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value,
+        RemainingOnStock = _account.TobaccoNotAllocated.Value,
         RemainingPackages = 0,
         SequenceNumber = sequenceNumber,
-        SKU = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.SKU,
-        SKUDescription = _cwdrdx.SKUDescription,
-        TotalStock = 0
+        SKU = _account.SKU,
+        SKUDescription = disposal.SKUDescription,
+        TotalStock = 0,
+        m_Disposal = disposal,
+        m_Account = _account,
       };
       _ret.QuantityyToClearSum = _ret.AddedKg + _ret.DeclaredNetMass;
-      _ret.PackagesToDispose = CustomsWarehouse.Packages(_ret.QuantityyToClearSum, _ret.MassPerPackage);
+      _ret.PackagesToDispose = _ret.m_Account.Packages(_ret.QuantityyToClearSum);
       _ret.QuantityyToClearSumRounded = _ret.PackagesToDispose * _ret.MassPerPackage;
-      _ret.TotalStock = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value + _ret.QuantityyToClearSumRounded;
-      _ret.m_Disposal = _cwdrdx;
-      _ret.m_Account = _cwdrdx.CWL_CWDisposal2CustomsWarehouseID;
+      _ret.TotalStock = _account.TobaccoNotAllocated.Value + _ret.QuantityyToClearSumRounded;
+      _ret.RemainingPackages = _ret.m_Account.Packages(_ret.TotalStock * _ret.MassPerPackage) - _ret.PackagesToDispose;
       return _ret;
     }
     internal static DisposalRequestDetails Create4Account(DisposalRequest parent, CustomsWarehouse customsWarehouse, int sequenceNumber)
@@ -391,6 +390,20 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       _ret.m_Account = customsWarehouse;
       return _ret;
     }
+    internal void DisposeMaterial(ref int packagesToDispose, ref double declared)
+    {
+      this.PackagesToDispose = Math.Min(this.m_Account.Packages(TotalStock), packagesToDispose);
+      packagesToDispose -= this.PackagesToDispose;
+      this.QuantityyToClearSumRounded =  this.m_Account.Quantity(this.PackagesToDispose);
+      this.QuantityyToClearSum = this.QuantityyToClearSumRounded;
+      Debug.Assert(packagesToDispose >= 0, "packagesToDispose <= 0");
+      this.DeclaredNetMass = Math.Min(declared, this.QuantityyToClearSumRounded);
+      declared -= this.DeclaredNetMass;
+      this.AddedKg = this.QuantityyToClearSumRounded - this.DeclaredNetMass;
+      Debug.Assert(this.AddedKg >= 0, "CW_AddedKg <= 0");
+      this.RemainingPackages = this.m_Account.Packages(this.TotalStock * this.MassPerPackage) - this.PackagesToDispose;
+      Debug.Assert(this.RemainingPackages >= 0, "RemainingPackages");
+    }
     #endregion
 
     #region backing fields
@@ -414,6 +427,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private ICommandWithUpdate b_ButtonUp;
     #endregion
 
+    private DisposalRequestDetails(DisposalRequest parent)
+    {
+      m_Parent = parent;
+      ButtonDown = new SynchronousCommandBase<int>(x => parent.GoDown(SequenceNumber), y => !parent.IsBottom(SequenceNumber));
+      ButtonDown = new SynchronousCommandBase<int>(x => parent.GoUp(SequenceNumber), y => !parent.IsTop(SequenceNumber));
+    }
     private CustomsWarehouseDisposal m_Disposal = null;
     private CustomsWarehouse m_Account = null;
     private DisposalRequest m_Parent = null;
