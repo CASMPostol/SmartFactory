@@ -14,83 +14,71 @@
 ///</summary>
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 {
+  /// <summary>
+  /// Entity representing an item on the list CustomsWarehouseDisposal
+  /// </summary>
   public partial class CustomsWarehouseDisposal
   {
-    internal void DisposeMaterial(ref int packagesToDispose, List<CustomsWarehouse> listCopy)
+    /// <summary>
+    /// Updates the disposal using user entered data.
+    /// </summary>
+    /// <param name="disposalRequestDetails">The disposal request details <see cref="DisposalRequestDetails"/>.</param>
+    internal void UpdateDisposal(DisposalRequestDetails disposalRequestDetails)
     {
-      if (this.CustomsStatus.Value == Linq.CustomsStatus.NotStarted)
-      {
-        double _Available = this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value + this.CW_SettledNetMass.Value;
-        int _2DisposePackages = Math.Min(this.CWL_CWDisposal2CustomsWarehouseID.Packages(_Available), packagesToDispose);
-        packagesToDispose -= _2DisposePackages;
-        if (CW_PackageToClear != _2DisposePackages)
-        {
-          this.CW_PackageToClear = _2DisposePackages;
-          double _diff = this.CWL_CWDisposal2CustomsWarehouseID.Quantity(_2DisposePackages) - this.CW_SettledNetMass.Value;
-          SettledNetMass(this.CW_SettledNetMass.Value + _diff);
-          this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated -= _diff;
-          Debug.Assert(this.CW_AddedKg >= 0, "CW_AddedKg <= 0");
-        }
-      }
-      listCopy.Remove(this.CWL_CWDisposal2CustomsWarehouseID);
+      if (this.CustomsStatus.Value != Linq.CustomsStatus.NotStarted)
+        return;
+      Recalculate(disposalRequestDetails);
     }
-    internal static CustomsWarehouseDisposal Create(int disposalRequestLibId, int toDisposePackages, double toDisposeKg, double packageWeight, CustomsWarehouse cw, string customsProcedure)
+    internal static CustomsWarehouseDisposal Create(DisposalRequestDetails disposalRequestDetails, int disposalRequestLibId, CustomsWarehouse account, string customsProcedure)
     {
+      Debug.Assert(account != null, "Disposal have to has account assigned.");
       CustomsWarehouseDisposal _newItem = new CustomsWarehouseDisposal()
       {
         Archival = false,
-        CNIDId = cw.CNIDId,
+        CNIDId = account.CNIDId,
         ClearingType = Linq.ClearingType.PartialWindingUp,
         CustomsStatus = Linq.CustomsStatus.NotStarted,
         CustomsProcedure = customsProcedure,
-        CW_AddedKg = 0, //Assigned in SettledNetMass
+        CW_AddedKg = 0, //Assigned in Recalculate
         CW_DeclaredNetMass = 0,
-        CW_SettledNetMass = 0, //Assigned in SettledNetMass
-        CW_SettledGrossMass = 0, //Assigned in SettledNetMass
-        CW_PackageToClear = toDisposePackages,
-        TobaccoValue = 0, //Assigned in SettledNetMass
+        CW_SettledNetMass = 0, //Assigned in Recalculate
+        CW_SettledGrossMass = 0, //Assigned in Recalculate
+        CW_PackageToClear = 0, //Assigned in Recalculate
+        TobaccoValue = 0, //Assigned in Recalculate
         DisposalRequestId = disposalRequestLibId,
-        CWL_CWDisposal2CustomsWarehouseID = cw,
+        CWL_CWDisposal2CustomsWarehouseID = account,
         SKUDescription = "N/A",
         Title = "ToDo",
-        SADDate = Extensions.SPMinimum
+        SADDate = Extensions.SPMinimum, 
       };
-      _newItem.SettledNetMass(toDisposeKg);
-      _newItem.UpdateTitle(DateTime.Today);
+      _newItem.Recalculate(disposalRequestDetails);
+      _newItem.Title = String.Format("CW-{0:D4}-{1}", DateTime.Today.Year, "XXXXXX"); //TODO Id.Value);
       return _newItem;
     }
     internal void DeleteDisposal()
     {
-      this.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated += this.CW_SettledNetMass.Value;
-      this.SettledNetMass(0);
-      Debug.Assert(this.CW_DeclaredNetMass.Value == 0, "I expect Value of this.CW_DeclaredNetMass == 0 while deleting.");
-      this.CW_DeclaredNetMass = 0;
-      this.CW_PackageToClear = 0;
+      CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated += this.CW_SettledNetMass.Value;
+      CW_PackageToClear = 0;
+      CW_SettledNetMass = 0;
+      CW_SettledGrossMass = 0;
+      CW_AddedKg = 0;
+      CW_DeclaredNetMass = 0;
+      TobaccoValue = 0;
     }
-    /// <summary>
-    /// Updates the title.
-    /// </summary>
-    internal void UpdateTitle(DateTime dateTime)
+    private void Recalculate(DisposalRequestDetails disposalRequestDetails)
     {
-      Title = String.Format("CW-{0:D4}-{1}", dateTime.Year, "XXXXXX"); //TODO Id.Value);
+      CW_PackageToClear = disposalRequestDetails.PackagesToDispose;
+      double _diff = disposalRequestDetails.QuantityyToClearSumRounded - CW_SettledGrossMass.Value;
+      CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated -= _diff;
+      CW_SettledNetMass = disposalRequestDetails.QuantityyToClearSumRounded;
+      CW_SettledGrossMass = (CW_PackageToClear.Value * CWL_CWDisposal2CustomsWarehouseID.PackageWeight() + CW_SettledNetMass.Value).RoundValue();
+      CW_AddedKg = disposalRequestDetails.AddedKg;
+      double _Portion = CW_SettledNetMass.Value / CWL_CWDisposal2CustomsWarehouseID.CW_Quantity.Value;
+      TobaccoValue = (_Portion * CWL_CWDisposal2CustomsWarehouseID.Value.Value).RoundValue();
     }
-    /// <summary>
-    /// Assigns value to: CW_SettledNetMass, TobaccoValue, CW_SettledGrossMass, CW_AddedKg.
-    /// </summary>
-    /// <param name="value">The value.</param>
-    private void SettledNetMass(double value)
-    {
-      this.CW_SettledNetMass = value.RoundValue();
-      double _Portion = value / CWL_CWDisposal2CustomsWarehouseID.CW_Quantity.Value;
-      this.TobaccoValue = (_Portion * CWL_CWDisposal2CustomsWarehouseID.Value.Value).RoundValue();
-      this.CW_SettledGrossMass = (CW_PackageToClear.Value * CWL_CWDisposal2CustomsWarehouseID.PackageWeight() + value).RoundValue();
-      this.CW_AddedKg = (value - this.CW_DeclaredNetMass.Value).RoundValue();
-    }
-
   }
 }
