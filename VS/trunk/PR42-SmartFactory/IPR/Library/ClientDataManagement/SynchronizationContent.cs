@@ -141,8 +141,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         _port = x => { ((IArchival)x).Archival = false; _archivalCount++; };
         progressChanged(1, new ProgressChangedEventArgs(1, "The table will be updated new software version"));
       }
-      Stopwatch _sw = new Stopwatch();
-      _sw.Start();
+      int _loopCounter = 0;
       foreach (TSP _spItem in _scrList)
       {
         _port(_spItem);
@@ -169,17 +168,17 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
           });
         if (_itemChanged)
           _itemChanges++;
-        if (_sw.Elapsed > new TimeSpan(0, 5, 0))
+        _loopCounter++;
+        if (_loopCounter > 10000)
         {
-          progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Submitting {0} changes on {1} list rows to SQL database", _counter - _counterOld, _itemChanges - _itemChangesOld)));
+          progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Intermediate: submitting {0} changes on {1} list rows to SQL database", _counter - _counterOld, _itemChanges - _itemChangesOld)));
           sqlTable.Context.SubmitChanges();
           if (_archivalCount > 0)
           {
-            progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Update to Rel 2.10 Submitting {0} Archival bit changes", _archivalCount - _archivalCountOld)));
+            progressChanged(1, new ProgressChangedEventArgs(1, String.Format("Intermediate: update to Rel 2.10 Submitting {0} Archival bit changes", _archivalCount - _archivalCountOld)));
             spList.DataContext.SubmitChanges();
           }
-          _sw.Reset();
-          _sw.Start();
+          _loopCounter = 0;
           _counterOld = _counter;
           _itemChangesOld = _itemChanges;
         }
