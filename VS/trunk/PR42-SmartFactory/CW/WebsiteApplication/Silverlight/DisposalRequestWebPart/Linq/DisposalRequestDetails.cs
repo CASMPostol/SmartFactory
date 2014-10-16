@@ -15,6 +15,7 @@
 
 using CAS.Common.ViewModel;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
@@ -382,6 +383,22 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       this.AddedKg = this.QuantityyToClearSumRounded - this.DeclaredNetMass;
       Debug.Assert(this.AddedKg >= 0, "CW_AddedKg <= 0");
     }
+    internal void UpdateDisposal(int disposalRequestLibId, List<CustomsWarehouseDisposal> list2Delete, List<CustomsWarehouseDisposal> list2Insert)
+    {
+      if (QuantityyToClearSumRounded > 0)
+        if (m_Disposal == null)
+        {
+          m_Disposal = CustomsWarehouseDisposal.Create(this, disposalRequestLibId, m_Account, CustomsProcedure);
+          list2Insert.Add(m_Disposal);
+        }
+        else
+          m_Disposal.UpdateDisposal(this);
+      else if (m_Disposal != null)
+      {
+        m_Disposal.DeleteDisposal();
+        list2Delete.Add(m_Disposal);
+      }
+    }
     #endregion
 
     #region backing fields
@@ -415,6 +432,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private CustomsWarehouse m_Account = null;
     private DisposalRequest m_Parent = null;
     #endregion
+
 
   }
 }

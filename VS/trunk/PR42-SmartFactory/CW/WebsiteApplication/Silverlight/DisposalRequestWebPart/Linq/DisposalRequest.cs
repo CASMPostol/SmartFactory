@@ -17,6 +17,7 @@ using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
@@ -32,8 +33,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     /// </summary>
     public DisposalRequest()
     {
-      Disposals = new ObservableCollection<CustomsWarehouseDisposal>();
-      Items = new ObservableCollection<DisposalRequestDetails>();
       AutoCalculation = false;
     }
 
@@ -347,60 +346,37 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     #endregion
 
     #region internal
-    internal static DisposalRequest DefaultDisposalRequestnew(string skuDescription, CustomsWarehouse cw)
-    {
-      return new DisposalRequest()
-      {
-        AddedKg = 0,
-        DeclaredNetMass = 0,
-        CustomsProcedure = "N/A",
-        Batch = cw.Batch,
-        MassPerPackage = cw.CW_MassPerPackage.Value,
-        PackagesToDispose = 0,
-        QuantityyToClearSum = 0,
-        QuantityyToClearSumRounded = 0,
-        RemainingOnStock = 0,
-        SKUDescription = skuDescription,
-        Title = "Title TBD",
-        TotalStock = 0,
-        Units = cw.Units,
-        SKU = cw.SKU,
-      };
-    }
-    internal ObservableCollection<CustomsWarehouseDisposal> Disposals
-    {
-      get { return b_Disposals; }
-      set { b_Disposals = value; }
-    }
     internal bool AutoCalculation { get; set; }
     /// <summary>
-    /// Updates this instance using the collection of <see cref="CustomsWarehouse"/> and existing <see cref="CustomsWarehouseDisposal"/> entries.
+    /// Creates an instance of <see cref="DisposalRequest"/> using the collection of <see cref="CustomsWarehouse"/> and existing <see cref="CustomsWarehouseDisposal"/> entries.
     /// </summary>
-    /// <param name="listOfAccounts">The list of <see cref="CustomsWarehouse"/> with the same batch. </param>
+    /// <param name="listOfAccounts">The list of <see cref="CustomsWarehouse"/> with the same batch.</param>
     /// <param name="groupOfDisposals">The group of existing <see cref="CustomsWarehouseDisposal"/> for the selected Batch.</param>
-    internal void GetDataContext(List<CustomsWarehouse> listOfAccounts, IGrouping<string, CustomsWarehouseDisposal> groupOfDisposals)
+    internal static DisposalRequest Create(List<CustomsWarehouse> listOfAccounts, IGrouping<string, CustomsWarehouseDisposal> groupOfDisposals)
     {
+      CustomsWarehouseDisposal _firstDisposal = groupOfDisposals.First<CustomsWarehouseDisposal>();
+      CustomsWarehouse _firstAccount = _firstDisposal.CWL_CWDisposal2CustomsWarehouseID;
+      DisposalRequest _newRequest = CreateDisposalRequest(_firstAccount, _firstDisposal.SKUDescription, _firstDisposal.CustomsProcedure);
       listOfAccounts.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
-      CustomsProcedure = groupOfDisposals.First<CustomsWarehouseDisposal>().CustomsProcedure;
-      m_ListOfCustomsWarehouse = listOfAccounts;
       ObservableCollection<DisposalRequestDetails> _newCollection = new ObservableCollection<DisposalRequestDetails>();
       int _sequenceNumber = 0;
       List<CustomsWarehouse> _copylistOfAccounts = new List<CustomsWarehouse>(listOfAccounts);
       foreach (CustomsWarehouseDisposal _cwdx in groupOfDisposals)
       {
-        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Disposal(this, _cwdx, _sequenceNumber++);
+        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Disposal(_newRequest, _cwdx, _sequenceNumber++);
         _copylistOfAccounts.Remove(_cwdx.CWL_CWDisposal2CustomsWarehouseID);
         _newCollection.Add(_newDisposalRequestDetails);
-        GetDataContext(_cwdx);
+        _newRequest.GetDataContext(_newDisposalRequestDetails);
       }
       foreach (CustomsWarehouse _cwx in _copylistOfAccounts)
       {
-        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Account(this, _cwx, _sequenceNumber++);
+        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Account(_newRequest, _cwx, _sequenceNumber++);
         _newCollection.Add(_newDisposalRequestDetails);
       }
-      RemainingOnStock = m_ListOfCustomsWarehouse.Sum(x => x.TobaccoNotAllocated.Value);
-      UpdateOnInit();
-      Items = _newCollection;
+      _newRequest.RemainingOnStock = _newCollection.Sum(x => x.RemainingOnStock);
+      _newRequest.UpdateOnInit();
+      _newRequest.Items = _newCollection;
+      return _newRequest;
     }
     /// <summary>
     /// Creates an instance of <see cref="DisposalRequest"/> using the collection of <see cref="CustomsWarehouse"/> when there are no disposals.
@@ -408,13 +384,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     /// <param name="listOfAccounts">The list of <see cref="CustomsWarehouse"/> with the same batch.</param>
     /// <param name="toDispose">To dispose.</param>
     /// <param name="customsProcedure">The customs procedure.</param>
-    internal static DisposalRequest GetDataContext(List<CustomsWarehouse> listOfAccounts, double toDispose, string customsProcedure)
+    internal static DisposalRequest Create(List<CustomsWarehouse> listOfAccounts, double toDispose, string customsProcedure)
     {
       CustomsWarehouse _fcw = listOfAccounts.First<CustomsWarehouse>();
-      DisposalRequest _ret = DisposalRequest.DefaultDisposalRequestnew("N/A", _fcw);
+      DisposalRequest _ret = DisposalRequest.CreateDisposalRequest(_fcw, "N/A", customsProcedure);
       listOfAccounts.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
-      _ret.CustomsProcedure = customsProcedure;
-      _ret.m_ListOfCustomsWarehouse = listOfAccounts;
       ObservableCollection<DisposalRequestDetails> _newCollection = new ObservableCollection<DisposalRequestDetails>();
       int _sequenceNumber = 0;
       foreach (CustomsWarehouse _cwx in listOfAccounts)
@@ -427,36 +401,21 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       _ret.UpdateOnChange();
       return _ret;
     }
+    /// <summary>
+    /// Recalculates the disposals before committing changes to the website.
+    /// </summary>
+    /// <param name="disposalRequestLibId">The disposal request library identifier.</param>
+    /// <param name="context">The context.</param>
+    /// <exception cref="System.ArgumentOutOfRangeException">toDispose;Cannot dispose - tobacco not available.</exception>
     internal void RecalculateDisposals(int disposalRequestLibId, DataContextAsync context)
     {
-      List<CustomsWarehouse> _CWListCopy = new List<CustomsWarehouse>(m_ListOfCustomsWarehouse);
       List<CustomsWarehouseDisposal> _2Delete = new List<CustomsWarehouseDisposal>();
-      int _packagesToDispose = PackagesToDispose;
-      foreach (CustomsWarehouseDisposal _cwItem in Disposals)
-        if (_packagesToDispose > 0)
-          _cwItem.DisposeMaterial(ref _packagesToDispose, _CWListCopy);
-        else
-        {
-          _cwItem.DeleteDisposal();
-          _2Delete.Add(_cwItem);
-        };
+      List<CustomsWarehouseDisposal> _2Insert = new List<CustomsWarehouseDisposal>();
+      foreach (DisposalRequestDetails _dslRqstDtlItem in Items)
+        _dslRqstDtlItem.UpdateDisposal(disposalRequestLibId, _2Delete, _2Insert);
       EntityList<CustomsWarehouseDisposal> _Entity = context.GetList<CustomsWarehouseDisposal>(CommonDefinition.CustomsWarehouseDisposalTitle);
-      if (_packagesToDispose > 0)
-      {
-        int _cwx = 0;
-        while (_packagesToDispose > 0)
-        {
-          if (_cwx >= _CWListCopy.Count)
-            throw new ArgumentOutOfRangeException("toDispose", "Cannot dispose - tobacco not available.");
-          CustomsWarehouseDisposal _newDisposal = _CWListCopy[_cwx++].CreateDisposal(disposalRequestLibId, ref _packagesToDispose, CustomsProcedure);
-          if (_newDisposal == null)
-            continue;
-          Disposals.Add(_newDisposal);
-          _Entity.InsertOnSubmit(_newDisposal);
-        }
-      }
-      //else
-      //  _Entity.DeleteAllOnSubmit( _2Delete );
+      _Entity.InsertAllOnSubmit(_2Insert);
+      // _Entity.DeleteAllOnSubmit(_2Delete); TODO to be implemented
     }
     internal void EndOfBatch()
     {
@@ -464,9 +423,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     }
     internal void EndOfOgl()
     {
-      this.AddedKg = 0;
-      foreach (CustomsWarehouseDisposal _cwix in Disposals)
-        this.AddedKg += _cwix.CW_AddedKg.Value + _cwix.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value;
+      double _AddedKg = 0;
+      foreach (DisposalRequestDetails _cwix in Items)
+        this.AddedKg += _cwix.TotalStock;
+      this.AddedKg = _AddedKg;
     }
     internal void GoDown(int sequenceNumber)
     {
@@ -523,9 +483,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private double _remainingOnStock;
     private string _units;
     private int _packagesToClear;
-    private ObservableCollection<CustomsWarehouseDisposal> b_Disposals;
     private string b_customsProcedure = String.Empty;
-    private List<CustomsWarehouse> m_ListOfCustomsWarehouse = null;
     private ObservableCollection<DisposalRequestDetails> b_Items;
     #endregion
 
@@ -538,12 +496,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       AddedKg = Math.Min(AddedKg, TotalStock - DeclaredNetMass);
       UpdateOnChange();
     }
-    private void GetDataContext(CustomsWarehouseDisposal rowData)
+    private void GetDataContext(DisposalRequestDetails rowData)
     {
-      DeclaredNetMass += rowData.CW_DeclaredNetMass.Value;
-      AddedKg += rowData.CW_AddedKg.Value;
-      QuantityyToClearSum += rowData.CW_SettledNetMass.Value;
-      Disposals.Add(rowData);
+      DeclaredNetMass += rowData.DeclaredNetMass;
+      AddedKg += rowData.AddedKg;
     }
     private void UpdateOnInit()
     {
@@ -572,8 +528,28 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       double _declared = this.DeclaredNetMass;
       foreach (DisposalRequestDetails _drx in _items)
         _drx.DisposeMaterial(ref _packages, ref _declared);
+      Debug.Assert(_packages > 0, String.Format("Cannot dispose {0} packages - tobacco not available.", _packages));
     }
-
+    private static DisposalRequest CreateDisposalRequest(CustomsWarehouse account, string skuDescription, string customsProcedure)
+    {
+      return new DisposalRequest()
+      {
+        AddedKg = 0,
+        DeclaredNetMass = 0,
+        CustomsProcedure = customsProcedure,
+        Batch = account.Batch,
+        MassPerPackage = account.CW_MassPerPackage.Value,
+        PackagesToDispose = 0,
+        QuantityyToClearSum = 0,
+        QuantityyToClearSumRounded = 0,
+        RemainingOnStock = 0,
+        SKUDescription = skuDescription,
+        Title = "Title TBD",
+        TotalStock = 0,
+        Units = account.Units,
+        SKU = account.SKU,
+      };
+    }
     #endregion
 
   }
