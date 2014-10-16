@@ -728,6 +728,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         {
           _checkPoint = "Shipping.CreateShipping";
           Shipping _sppng = Shipping.CreateShipping(m_DashboardType == GlobalDefinitions.Roles.OutboundOwner);
+          _sppng.EstimateDeliveryTime = m_EstimateDeliveryTimeDateTimeControl.SelectedDate;
           _checkPoint = "UpdateShipping";
           UpdateShipping(_sppng, _rsult, EDC);
           if (!_rsult.Valid)
