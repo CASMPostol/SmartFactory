@@ -28,14 +28,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   public class DisposalRequest : Element
   {
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="DisposalRequest"/> class.
-    /// </summary>
-    public DisposalRequest()
-    {
-      AutoCalculation = false;
-    }
-
     #region public properties
     /// <summary>
     /// Gets or sets the SKU.
@@ -553,6 +545,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         Units = account.Units,
         SKU = account.SKU,
       };
+    }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DisposalRequest"/> class.
+    /// </summary>
+    private DisposalRequest()
+    {
+      AutoCalculation = false;
     }
     #endregion
 
