@@ -7,6 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+#pragma warning disable 1591
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 {
@@ -1702,3 +1703,4 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     Finished = 8,
   }
 }
+#pragma warning restore 1591
