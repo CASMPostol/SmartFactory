@@ -23,11 +23,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   /// </summary>
   public partial class CustomsWarehouseDisposal
   {
+
+    #region internal
     /// <summary>
     /// Updates the disposal using user entered data.
     /// </summary>
     /// <param name="disposalRequestDetails">The disposal request details <see cref="DisposalRequestDetails"/>.</param>
-    internal void UpdateDisposal(DisposalRequestDetails disposalRequestDetails)
+    internal void Update(DisposalRequestDetails disposalRequestDetails)
     {
       if (this.CustomsStatus.Value != Linq.CustomsStatus.NotStarted)
         return;
@@ -53,7 +55,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         CWL_CWDisposal2CustomsWarehouseID = account,
         SKUDescription = "N/A",
         Title = "ToDo",
-        SADDate = Extensions.SPMinimum, 
+        SADDate = Extensions.SPMinimum,
       };
       _newItem.Recalculate(disposalRequestDetails);
       _newItem.Title = String.Format("CW-{0:D4}-{1}", DateTime.Today.Year, "XXXXXX"); //TODO Id.Value);
@@ -69,6 +71,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       CW_DeclaredNetMass = 0;
       TobaccoValue = 0;
     }
+    #endregion
+
+    #region private
     private void Recalculate(DisposalRequestDetails disposalRequestDetails)
     {
       CW_PackageToClear = disposalRequestDetails.PackagesToDispose;
@@ -80,5 +85,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       double _Portion = CW_SettledNetMass.Value / CWL_CWDisposal2CustomsWarehouseID.CW_Quantity.Value;
       TobaccoValue = (_Portion * CWL_CWDisposal2CustomsWarehouseID.Value.Value).RoundValue();
     }
+    #endregion
+
   }
 }

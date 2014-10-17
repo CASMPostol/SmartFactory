@@ -32,4 +32,4 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     internal const string ColumnNameId = "<#= ColumnNameId #>";
   }
 }
-<#@ include file = "..\..\CWModel.t4" #>
+<#@ include file = "..\..\..\CWModel.t4" #>

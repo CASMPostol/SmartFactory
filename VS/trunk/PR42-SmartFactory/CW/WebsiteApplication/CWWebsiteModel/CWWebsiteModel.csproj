@@ -94,6 +94,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Silverlight\DisposalRequestWebPart\Extensions.cs">
+      <Link>Extensions.cs</Link>
+    </Compile>
     <Compile Include="Features\CWWebsiteModel\CWWebsiteModel.EventReceiver.cs">
       <DependentUpon>CWWebsiteModel.feature</DependentUpon>
     </Compile>

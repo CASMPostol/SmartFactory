@@ -363,14 +363,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       List<CustomsWarehouse> _copylistOfAccounts = new List<CustomsWarehouse>(listOfAccounts);
       foreach (CustomsWarehouseDisposal _cwdx in groupOfDisposals)
       {
-        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Disposal(_newRequest, _cwdx, _sequenceNumber++);
+        DisposalRequestDetails _newDisposalRequestDetails = new DisposalRequestDetails(_newRequest, _cwdx, ref _sequenceNumber);
         _copylistOfAccounts.Remove(_cwdx.CWL_CWDisposal2CustomsWarehouseID);
         _newCollection.Add(_newDisposalRequestDetails);
         _newRequest.GetDataContext(_newDisposalRequestDetails);
       }
       foreach (CustomsWarehouse _cwx in _copylistOfAccounts)
       {
-        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Account(_newRequest, _cwx, _sequenceNumber++);
+        DisposalRequestDetails _newDisposalRequestDetails = new DisposalRequestDetails(_newRequest, _cwx, ref _sequenceNumber);
         _newCollection.Add(_newDisposalRequestDetails);
       }
       _newRequest.RemainingOnStock = _newCollection.Sum(x => x.RemainingOnStock);
@@ -393,7 +393,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       int _sequenceNumber = 0;
       foreach (CustomsWarehouse _cwx in listOfAccounts)
       {
-        DisposalRequestDetails _newDisposalRequestDetails = DisposalRequestDetails.Create4Account(_ret, _cwx, _sequenceNumber++);
+        DisposalRequestDetails _newDisposalRequestDetails = new DisposalRequestDetails(_ret, _cwx, ref _sequenceNumber);
         _newCollection.Add(_newDisposalRequestDetails);
       }
       _ret.TotalStock = listOfAccounts.Sum(x => x.TobaccoNotAllocated.Value);
@@ -522,12 +522,16 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       PackagesToDispose = CustomsWarehouse.Packages(QuantityyToClearSum, this.MassPerPackage);
       QuantityyToClearSumRounded = PackagesToDispose * this.MassPerPackage;
     }
-    private void RecalculateDisposals(ObservableCollection<DisposalRequestDetails> _items)
+    /// <summary>
+    /// Recalculates the disposals after changing the sequence of accounts to be used for disposing the request item.
+    /// </summary>
+    /// <param name="items">The list of <see cref="DisposalRequestDetails"/> after changing the order of this lists items.</param>
+    private void RecalculateDisposals(IEnumerable<DisposalRequestDetails> items)
     {
       int _packages = this.PackagesToDispose;
       double _declared = this.DeclaredNetMass;
-      foreach (DisposalRequestDetails _drx in _items)
-        _drx.DisposeMaterial(ref _packages, ref _declared);
+      foreach (DisposalRequestDetails _drx in items)
+        _drx.Update(ref _packages, ref _declared);
       Debug.Assert(_packages > 0, String.Format("Cannot dispose {0} packages - tobacco not available.", _packages));
     }
     private static DisposalRequest CreateDisposalRequest(CustomsWarehouse account, string skuDescription, string customsProcedure)
