@@ -82,7 +82,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
         SKU = "12607453",
         Batch = "0003808069",
         AccountBalance = 6120,
-        TobaccoNotAllocated = 5320,
+        TobaccoNotAllocated = 4320,
         NetMass = 6120,
         GrossMass = 6630,
         CW_PackageUnits = 34,
