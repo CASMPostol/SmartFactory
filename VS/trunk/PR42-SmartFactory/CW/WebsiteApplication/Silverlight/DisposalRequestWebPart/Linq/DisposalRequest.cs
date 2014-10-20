@@ -417,7 +417,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
       double _AddedKg = 0;
       foreach (DisposalRequestDetails _cwix in Items)
-        this.AddedKg += _cwix.TotalStock;
+        _AddedKg += _cwix.EndOfOGL();
       this.AddedKg = _AddedKg;
     }
     internal void GoDown(int sequenceNumber)
@@ -430,7 +430,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       _current.SequenceNumber += 1;
       _next.SequenceNumber -= 1;
       _dctnry.Add(_current.SequenceNumber, _current);
-      _dctnry.Add(_current.SequenceNumber, _next);
+      _dctnry.Add(_next.SequenceNumber, _next);
       ObservableCollection<DisposalRequestDetails> _items = new ObservableCollection<DisposalRequestDetails>(_dctnry.Values);
       RecalculateDisposals(_items);
       Items = _items;
@@ -445,7 +445,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       _current.SequenceNumber -= 1;
       _prvs.SequenceNumber += 1;
       _dctnry.Add(_current.SequenceNumber, _current);
-      _dctnry.Add(_current.SequenceNumber, _prvs);
+      _dctnry.Add(_prvs.SequenceNumber, _prvs);
       ObservableCollection<DisposalRequestDetails> _items = new ObservableCollection<DisposalRequestDetails>(_dctnry.Values);
       RecalculateDisposals(_items);
       Items = _items;
@@ -524,7 +524,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       double _declared = this.DeclaredNetMass;
       foreach (DisposalRequestDetails _drx in items)
         _drx.Update(ref _packages, ref _declared);
-      Debug.Assert(_packages > 0, String.Format("Cannot dispose {0} packages - tobacco not available.", _packages));
+      Debug.Assert(_packages == 0, String.Format("Cannot dispose {0} packages - tobacco not available.", _packages));
     }
     private static DisposalRequest CreateDisposalRequest(CustomsWarehouse account, string skuDescription, string customsProcedure)
     {
