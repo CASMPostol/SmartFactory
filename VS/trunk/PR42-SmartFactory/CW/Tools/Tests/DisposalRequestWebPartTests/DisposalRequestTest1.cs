@@ -19,6 +19,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
       CustomsWarehouse _newCW = new CustomsWarehouse()
       {
          DocumentNo = "OGL/362010/00/003231/2014",
+         CustomsDebtDate = new DateTime(2014/02/14),
          Grade = "XIDSME",
          SKU = "12607453",
          Batch = "0003808069",
@@ -47,6 +48,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
        _newCW = new CustomsWarehouse()
       {
         DocumentNo = "OGL/362010/00/013937/2014",
+        CustomsDebtDate = new DateTime(2014/06/23),
         Grade = "XIDSME",
         SKU = "12607453",
         Batch = "0003808069",
@@ -63,7 +65,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
       listOfAccounts.Add(_newCW);
        _newCWD = new CustomsWarehouseDisposal()
       {
-        CWL_CWDisposal2CustomsWarehouseID = _newCW,
+        CWL_CWDisposal2CustomsWarehouseID = _newCW,        
         CW_AddedKg = 1000,
         CW_DeclaredNetMass = 6020,
         CW_SettledGrossMass = 7605,
@@ -75,6 +77,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
       _newCW = new CustomsWarehouse()
       {
         DocumentNo = "OGL/362010/00/015363/2014",
+        CustomsDebtDate = new DateTime(2014/07/14),
         Grade = "XIDSME",
         SKU = "12607453",
         Batch = "0003808069",
@@ -103,6 +106,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
       _newCW = new CustomsWarehouse()
       {
         DocumentNo = "OGL/362010/00/016193/2014",
+        CustomsDebtDate = new DateTime(2014/07/15),
         Grade = "XIDSME",
         SKU = "12607453",
         Batch = "0003808069",
@@ -120,6 +124,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
       _newCW = new CustomsWarehouse()
       {
         DocumentNo = "OGL/362010/00/017253/2014",
+        CustomsDebtDate = new DateTime(2014/07/16),
         Grade = "XIDSME",
         SKU = "12607453",
         Batch = "0003808069",
