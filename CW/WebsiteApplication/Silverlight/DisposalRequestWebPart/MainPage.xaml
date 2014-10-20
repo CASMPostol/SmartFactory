@@ -68,6 +68,22 @@
                 </sdk:HierarchicalDataTemplate>
                 <sdk:HierarchicalDataTemplate x:Key="TreeViewDisposalRequestDetailsTemplate" DataType="xlinq:DisposalRequestDetails">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <!--Review and add all properties for DisposalRequestDetails (region public UI properties) should be the same as for DisposalRequest -->
+                        <Button Command="{Binding MoveUp}" Content="UP"/> <!--use picture -->
+                        <Button Command="{Binding MoveDown}" Content="DOWN" /> <!--use picture -->
+                        <sdk:Label Content="{Binding OGL, FallbackValue=N/A}" />
+                        <sdk:Label Content="{Binding SKU}" />
+                        <sdk:Label Content="{Binding SKUDescription}" />
+                        <sdk:Label Content="{Binding Batch}" />
+                        <sdk:Label Content="{Binding TotalStock}" />
+                        <sdk:Label Content="{Binding MassPerPackage}" />
+                        <sdk:Label Content="{Binding DeclaredNetMass}" />
+                        <sdk:Label Content="{Binding AddedKg}" />
+                        <sdk:Label Content="{Binding QuantityyToClearSum}" />
+                        <sdk:Label Content="{Binding QuantityyToClearSumRounded}" />
+                        <sdk:Label Content="{Binding PackagesToDispose}" />
+                        <sdk:Label Content="{Binding RemainingOnStock}" />
+                        <sdk:Label Content="{Binding Units}" />
                     </StackPanel>
                 </sdk:HierarchicalDataTemplate>
             </sdk:TreeView.Resources>
@@ -82,7 +98,6 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <sdk:Label x:Name="x_LabelHeader" Content="{Binding HeaderLabel, FallbackValue=N/A, TargetNullValue=Is null}" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="2" Foreground="White" Style="{StaticResource LabelStyle}"/>
-
                     <sdk:DataGrid x:Name="x_DataGridListView" AutoGenerateColumns="False" Background="#00000000" Grid.Row="1" ItemsSource="{Binding RequestCollection}" Foreground="#FFFDFDFD" Style="{StaticResource DataGridStyle}" >
                         <sdk:DataGrid.CanUserReorderColumns >
                             <System:Boolean>true</System:Boolean>
