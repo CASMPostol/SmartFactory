@@ -288,15 +288,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     /// <value>
     /// The Button Up handler.
     /// </value>
-    public ICommandWithUpdate ButtonUp
+    public ICommandWithUpdate MoveUp
     {
       get
       {
-        return b_ButtonUp;
+        return b_MoveUp;
       }
       set
       {
-        RaiseHandler<ICommandWithUpdate>(value, ref b_ButtonUp, "ButtonUp", this);
+        RaiseHandler<ICommandWithUpdate>(value, ref b_MoveUp, "MoveUp", this);
       }
     }
     /// <summary>
@@ -305,15 +305,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     /// <value>
     /// The Button Down.
     /// </value>
-    public ICommandWithUpdate ButtonDown
+    public ICommandWithUpdate MoveDown
     {
       get
       {
-        return b_ButtonDown;
+        return b_MoveDown;
       }
       set
       {
-        RaiseHandler<ICommandWithUpdate>(value, ref b_ButtonDown, "ButtonDown", this);
+        RaiseHandler<ICommandWithUpdate>(value, ref b_MoveDown, "MoveDown", this);
       }
     }
     #endregion
@@ -417,8 +417,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private string b_CustomsProcedure;
     private string b_DocumentNumber;
     private int b_SequenceNumber;
-    private ICommandWithUpdate b_ButtonDown;
-    private ICommandWithUpdate b_ButtonUp;
+    private ICommandWithUpdate b_MoveDown;
+    private ICommandWithUpdate b_MoveUp;
     #endregion
 
     #region private
@@ -426,7 +426,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private CustomsWarehouse m_Account = null;
     private DisposalRequest m_Parent = null;
     #endregion
-
 
   }
 }
