@@ -37,8 +37,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
       CustomsWarehouseDisposal _newCWD = new CustomsWarehouseDisposal()
       {
         CWL_CWDisposal2CustomsWarehouseID = _newCW,
-        CW_AddedKg = 9000,
-        CW_DeclaredNetMass = 0,
+        CW_AddedKg = 0,
+        CW_DeclaredNetMass = 9000,
         CW_SettledGrossMass = 9750,
         CW_PackageToClear = 50,
         TobaccoValue = 76401,
@@ -66,8 +66,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
        _newCWD = new CustomsWarehouseDisposal()
       {
         CWL_CWDisposal2CustomsWarehouseID = _newCW,        
-        CW_AddedKg = 1000,
-        CW_DeclaredNetMass = 6020,
+        CW_AddedKg = 6020,
+        CW_DeclaredNetMass = 1000,
         CW_SettledGrossMass = 7605,
         CW_PackageToClear = 39,
         TobaccoValue = 59592.78,
@@ -95,8 +95,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
       _newCWD = new CustomsWarehouseDisposal()
       {
         CWL_CWDisposal2CustomsWarehouseID = _newCW,
-        CW_AddedKg = 0,
-        CW_DeclaredNetMass = 1800,
+        CW_AddedKg = 1800,
+        CW_DeclaredNetMass = 0,
         CW_SettledGrossMass = 1950,
         CW_PackageToClear = 10,
         TobaccoValue = 15280.2,
