@@ -72,7 +72,6 @@
     <None Include="Features\DisposalRequestTestFeature\DisposalRequestTestFeature.feature">
       <FeatureId>{9cff4da6-6f6b-48b3-bc5b-b87a8b034654}</FeatureId>
     </None>
-    <None Include="key.snk" />
     <None Include="Package\Package.package">
       <PackageId>{1da962ff-d9db-4170-9ad6-c2f9fe911dc8}</PackageId>
     </None>

@@ -16,16 +16,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
     [ClassInitialize]
     public static void ClassInitializeMethod(TestContext context)
     {
-      groupOfDisposals = listOfDisposals.GroupBy<CustomsWarehouseDisposal, string>(x => x.CWL_CWDisposal2CustomsWarehouseID.Batch);
       CustomsWarehouse _newCW = new CustomsWarehouse()
       {
-         _documentNo = "OGL/362010/00/003231/2014",
-         _grade = "XIDSME",
-         _sKU = "12607453",
-         _batch = "0003808069",
-         _accountBalance = 9000,
-         _tobaccoNotAllocated = 0,
-         _netMass = 9000,
+         DocumentNo = "OGL/362010/00/003231/2014",
+         Gradegrade = "XIDSME",
+         SKU = "12607453",
+         Batch = "0003808069",
+         AccountBalance = 9000,
+         TobaccoNotAllocated = 0,
+         NetMass = 9000,
          _grossMass = 9750,
          _cW_PackageUnits = 50,
          _cW_PackageKg = 180,
@@ -135,8 +134,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
         _accountClosed = false
       };
       listOfAccounts.Add(_newCW);
+      groupOfDisposals = listOfDisposals.GroupBy<CustomsWarehouseDisposal, string>(x => x.CWL_CWDisposal2CustomsWarehouseID.Batch);
     }
-
     [TestMethod]
     [ExpectedException(typeof(InvalidOperationException))]
     public void CreateDisposalRequestInstanceWrongDataTest()
