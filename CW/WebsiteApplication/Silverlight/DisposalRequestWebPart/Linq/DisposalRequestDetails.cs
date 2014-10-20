@@ -344,8 +344,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       SKU = account.SKU;
       SKUDescription = string.Empty;
       TotalStock = account.TobaccoNotAllocated.Value;
-      ButtonDown = new SynchronousCommandBase<int>(x => parent.GoDown(SequenceNumber), y => !parent.IsBottom(SequenceNumber));
-      ButtonDown = new SynchronousCommandBase<int>(x => parent.GoUp(SequenceNumber), y => !parent.IsTop(SequenceNumber));
+      MoveDown = new SynchronousCommandBase<int>(x => parent.GoDown(SequenceNumber), y => !parent.IsBottom(SequenceNumber));
+      MoveUp = new SynchronousCommandBase<int>(x => parent.GoUp(SequenceNumber), y => !parent.IsTop(SequenceNumber));
     }
     /// <summary>
     /// Creates the instance of <see cref="DisposalRequestDetails" /> to be used as a wrapper of <see cref="CustomsWarehouseDisposal" />.
