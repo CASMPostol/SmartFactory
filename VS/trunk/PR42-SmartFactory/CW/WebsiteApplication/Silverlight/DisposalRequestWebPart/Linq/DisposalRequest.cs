@@ -552,6 +552,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private DisposalRequest()
     {
       AutoCalculation = false;
+      Items = new ObservableCollection<DisposalRequestDetails>();
     }
     #endregion
 
