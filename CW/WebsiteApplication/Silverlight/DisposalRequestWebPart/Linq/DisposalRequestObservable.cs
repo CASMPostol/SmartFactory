@@ -47,8 +47,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       List<CustomsWarehouse> listOfAccounts = new List<CustomsWarehouse>();
       IGrouping<string, CustomsWarehouseDisposal> groupOfDisposals = null;
       SampleData.RequestSampleData.GetData(listOfAccounts, out groupOfDisposals);
-      this.Add(DisposalRequest.Create(listOfAccounts, groupOfDisposals));
-      this.Add(DisposalRequest.Create(listOfAccounts, groupOfDisposals));
+      DisposalRequest _new = DisposalRequest.Create(listOfAccounts, groupOfDisposals);
+      _new.AutoCalculation = true;
+      this.Add(_new);
+      _new = DisposalRequest.Create(listOfAccounts, groupOfDisposals);
+      _new.AutoCalculation = true;
+      this.Add(_new);
     }
     internal void CreateDisposalRequest(List<CustomsWarehouse> list, double toDispose, string customsProcedure)
     {
