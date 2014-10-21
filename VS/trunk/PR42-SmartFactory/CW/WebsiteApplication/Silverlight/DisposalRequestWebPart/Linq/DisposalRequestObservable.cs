@@ -42,6 +42,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       RequestsQueue _Queue = new RequestsQueue(this, context);
       _Queue.DoAsync(_requests);
     }
+    internal void GetDemoData()
+    {
+      List<CustomsWarehouse> listOfAccounts = new List<CustomsWarehouse>();
+      IGrouping<string, CustomsWarehouseDisposal> groupOfDisposals = null;
+      SampleData.RequestSampleData.GetData(listOfAccounts, out groupOfDisposals);
+      this.Add(DisposalRequest.Create(listOfAccounts, groupOfDisposals));
+      this.Add(DisposalRequest.Create(listOfAccounts, groupOfDisposals));
+    }
     internal void CreateDisposalRequest(List<CustomsWarehouse> list, double toDispose, string customsProcedure)
     {
       if (list.Count == 0)
@@ -166,6 +174,5 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
     }//class CraeteRequest
     #endregion
-
   }
 }

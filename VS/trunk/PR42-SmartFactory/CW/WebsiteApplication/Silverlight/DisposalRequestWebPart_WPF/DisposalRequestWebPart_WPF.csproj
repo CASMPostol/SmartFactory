@@ -187,6 +187,9 @@
     <Compile Include="..\DisposalRequestWebPart\Linq\Entities.cs">
       <Link>Linq\Entities.cs</Link>
     </Compile>
+    <Compile Include="..\DisposalRequestWebPart\SampleData\RequestSampleData.cs">
+      <Link>SampleData\RequestSampleData.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
