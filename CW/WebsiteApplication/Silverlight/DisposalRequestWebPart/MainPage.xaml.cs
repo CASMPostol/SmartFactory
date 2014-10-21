@@ -34,8 +34,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     public MainPage()
     {
       InitializeComponent();
-      m_URL = @"http://casas:11227/sites/ipr";
-      m_SelectedID = 60;
     }
     public MainPage(string hiddenFieldDataName)
       : this()
@@ -164,8 +162,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     private void CreateViewModel()
     {
-      this.MainPageData = new MainPageData();
-      this.MainPageData.GetData(m_URL, m_SelectedID);
+      this.MainPageData = MainPageData.GetData(m_URL, m_SelectedID);
     }
     #endregion
 

@@ -42,11 +42,31 @@
         </sdk:HierarchicalDataTemplate>
     </UserControl.Resources>
     <Grid>
+        <Grid.Resources>
+            <sdk:HierarchicalDataTemplate x:Key="TreeViewDisposalRequestTemplate" ItemsSource="{Binding Items}" DataType="xlinq:DisposalRequest">
+                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" >
+                    <!--<Image Source="{Binding Path=ImagePath}"/>-->
+                    <sdk:Label Content="{Binding OGL, FallbackValue=N/A}" />
+                    <sdk:Label Content="{Binding SKU}" />
+                    <sdk:Label Content="{Binding SKUDescription}" />
+                    <sdk:Label Content="{Binding Batch}" />
+                    <sdk:Label Content="{Binding TotalStock}" />
+                    <sdk:Label Content="{Binding MassPerPackage}" />
+                    <sdk:Label Content="{Binding DeclaredNetMass}" />
+                    <sdk:Label Content="{Binding AddedKg}" />
+                    <sdk:Label Content="{Binding QuantityyToClearSum}" />
+                    <sdk:Label Content="{Binding QuantityyToClearSumRounded}" />
+                    <sdk:Label Content="{Binding PackagesToDispose}" />
+                    <sdk:Label Content="{Binding RemainingOnStock}" />
+                    <sdk:Label Content="{Binding Units}" />
+                </StackPanel>
+            </sdk:HierarchicalDataTemplate>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" MinHeight="100" />
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <sdk:TreeView x:Name="TreeView" Grid.Row="0" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible">
+        <sdk:TreeView x:Name="TreeView" Grid.Row="0" ItemsSource="{Binding Path=RequestCollection.SourceCollection}" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemTemplate="{StaticResource TreeViewDisposalRequestTemplate }">
             <sdk:TreeView.Resources>
                 <sdk:HierarchicalDataTemplate x:Key="TreeViewDisposalRequestTemplate" ItemsSource="{Binding Items}" DataType="xlinq:DisposalRequest">
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" >
@@ -69,8 +89,10 @@
                 <sdk:HierarchicalDataTemplate x:Key="TreeViewDisposalRequestDetailsTemplate" DataType="xlinq:DisposalRequestDetails">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <!--Review and add all properties for DisposalRequestDetails (region public UI properties) should be the same as for DisposalRequest -->
-                        <Button Command="{Binding MoveUp}" Content="UP"/> <!--use picture -->
-                        <Button Command="{Binding MoveDown}" Content="DOWN" /> <!--use picture -->
+                        <Button Command="{Binding MoveUp}" Content="UP"/>
+                        <!--use picture -->
+                        <Button Command="{Binding MoveDown}" Content="DOWN" />
+                        <!--use picture -->
                         <sdk:Label Content="{Binding OGL, FallbackValue=N/A}" />
                         <sdk:Label Content="{Binding SKU}" />
                         <sdk:Label Content="{Binding SKUDescription}" />

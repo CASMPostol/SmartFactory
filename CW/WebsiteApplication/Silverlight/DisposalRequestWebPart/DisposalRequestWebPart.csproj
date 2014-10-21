@@ -128,6 +128,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
+    <Compile Include="SampleData\RequestSampleData.cs" />
     <Compile Include="String2DoubleConverter.cs" />
     <None Include="cas.snk" />
     <None Include="CommonDefinition.tt">

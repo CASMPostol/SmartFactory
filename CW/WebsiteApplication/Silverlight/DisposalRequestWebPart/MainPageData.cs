@@ -31,21 +31,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
   public sealed class MainPageData: INotifyPropertyChanged, IDisposable
   {
 
-    #region ctor
-    /// <summary>
-    /// Initializes a new instance of the <see cref="MainPageData"/> class.
-    /// </summary>
-    public MainPageData()
-    {
-      PagedCollectionView _npc = new PagedCollectionView( new DisposalRequestObservable() );
-      _npc.PropertyChanged += RequestCollection_PropertyChanged;
-      _npc.CollectionChanged += RequestCollection_CollectionChanged;
-      RequestCollection = _npc;
-      this.DisposalRequestObservable.ProgressChanged += DisposalRequestObservable_ProgressChanged;
-      Log = "MainPageData created.";
-    }
-    #endregion
-
     #region public properties
     public string HeaderLabel
     {
@@ -87,7 +72,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       get { return b_RequestCollection; }
       set { b_RequestCollection = value; }
     }
-    internal DataContextAsync DataContextAsync { get { return m_Context; } }
     #endregion
 
     #region INotifyPropertyChanged Members
@@ -107,16 +91,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     #endregion
 
     #region internal
-    internal void GetData( string url, int? selectedID )
+    internal DataContextAsync DataContextAsync { get { return m_Context; } }
+    internal static MainPageData GetData(string url, int? selectedID)
     {
-      CheckDisposed();
-      m_URL = url;
-      m_DisposalRequestLibId = selectedID;
-      if ( !m_DisposalRequestLibId.HasValue )
-        return;
-      m_Context.CreateContextAsyncCompletedEvent += m_Context_CreateContextAsyncCompletedEvent;
-      Log = String.Format( "GetDataAsync: CreateContextAsync for URL={0}.", m_URL );
-      m_Context.CreateContextAsync( m_URL );
+      MainPageData _ret = new MainPageData();
+      if (selectedID.HasValue)
+        _ret.GetRealData(url, selectedID);
+      else
+        _ret.GetDemoData();
+      return _ret;
     }
     /// <summary>
     /// Creates the disposal request.
@@ -160,8 +143,39 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private int? m_DisposalRequestLibId = new Nullable<int>();
     private bool m_Edited = false;
     private DataContextAsync m_Context = new DataContextAsync();
+    private bool m_DemoDataLoaded = false;
     #endregion
 
+
+    #region ctor
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MainPageData"/> class.
+    /// </summary>
+    private MainPageData()
+    {
+      PagedCollectionView _npc = new PagedCollectionView(new DisposalRequestObservable());
+      _npc.PropertyChanged += RequestCollection_PropertyChanged;
+      _npc.CollectionChanged += RequestCollection_CollectionChanged;
+      RequestCollection = _npc;
+      this.DisposalRequestObservable.ProgressChanged += DisposalRequestObservable_ProgressChanged;
+      Log = "MainPageData created.";
+    }
+
+    #endregion
+    private void GetDemoData()
+    {
+      this.DisposalRequestObservable.GetDemoData();
+      m_DemoDataLoaded = true;
+    }
+    private void GetRealData(string url, int? selectedID)
+    {
+      m_URL = url;
+      m_DisposalRequestLibId = selectedID;
+      m_Context.CreateContextAsyncCompletedEvent += m_Context_CreateContextAsyncCompletedEvent;
+      Log = String.Format("GetDataAsync: CreateContextAsync for URL={0}.", m_URL);
+      m_Context.CreateContextAsync(m_URL);
+
+    }
     /// <summary>
     /// Called when property value changes.
     /// </summary>
