@@ -19,6 +19,6 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 [assembly: Guid("889da8e5-cdfb-4866-868d-70695e6c5d96")]
-[assembly: AssemblyVersion("2.20.00.*")]
-[assembly: AssemblyFileVersion("2.20.00")]
+[assembly: AssemblyVersion("2.20.10.*")]
+[assembly: AssemblyFileVersion("2.20.10")]
 

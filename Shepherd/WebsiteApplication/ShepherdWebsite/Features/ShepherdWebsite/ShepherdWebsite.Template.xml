@@ -15,7 +15,7 @@
       <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{C094D1E5-CFF5-4A48-993C-BA0F1A8DF93E}" PushDown="TRUE" />
       <AddContentTypeField ContentTypeId="0x0100bbd0d4ab58624f5b900fece61eec2988" FieldId="{86FEC976-7423-455B-91F8-661EAA228C11}" PushDown="TRUE" />
     </VersionRange>
-    <VersionRange BeginVersion="1.70.11.0" EndVersion="2.20.00.0">
+    <VersionRange BeginVersion="1.70.11.0" EndVersion="2.20.10.0">
       <ApplyElementManifests>
         <ElementManifest Location="DictionariesFields_2_20\Elements.xml" />
       </ApplyElementManifests>
