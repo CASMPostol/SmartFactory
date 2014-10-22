@@ -216,6 +216,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Imgs\down_24.png" />
+    <Resource Include="Imgs\up_24.png" />
     <Content Include="Linq\Scripts\Parameters.xml" />
     <Content Include="SampleData\CAMLGetItem.xml" />
   </ItemGroup>
