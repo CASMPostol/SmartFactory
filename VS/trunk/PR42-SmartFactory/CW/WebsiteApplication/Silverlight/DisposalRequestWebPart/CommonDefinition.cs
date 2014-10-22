@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : class CommonDefinition
 //  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate: 2013-10-07 12:20:37 +0200 (Mon, 07 Oct 2013) $
-//  $Rev: 9810 $
+//  $LastChangedDate: 2014-10-17 13:24:26 +0200 (Pt, 17 paź 2014) $
+//  $Rev: 10866 $
 //  $LastChangedBy: mpostol $
 //  $URL: svn://svnserver.hq.cas.com.pl/VS/trunk/PR42-SmartFactory/CW/WebsiteApplication/Silverlight/DisposalRequestWebPart/CommonDefinition.tt $
-//  $Id: CommonDefinition.tt 9810 2013-10-07 10:20:37Z mpostol $
+//  $Id: CommonDefinition.tt 10866 2014-10-17 11:24:26Z mpostol $
 //
 //  Copyright (C) 2013, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
