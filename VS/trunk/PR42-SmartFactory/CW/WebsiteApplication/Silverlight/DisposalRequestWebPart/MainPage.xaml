@@ -41,7 +41,6 @@
             </StackPanel>
         </sdk:HierarchicalDataTemplate>
     </UserControl.Resources>
-
     <sdk:TabControl Height="600" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled">
         <sdk:TabItem Header="MainPage">
             <Grid  Name="x_GridMainPageData" HorizontalAlignment="Stretch" Background="#FF1F3B53" Margin="5" >
@@ -88,40 +87,24 @@
                                         <sdk:DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <sdk:Label Content="Details>"/>
                                                     <Button Command="{Binding MoveUp}" Content="UP"/>
                                                     <Button Command="{Binding MoveDown}" Content="DOWN" />
                                                 </StackPanel>
                                             </DataTemplate>
                                         </sdk:DataGridTemplateColumn.CellTemplate>
                                     </sdk:DataGridTemplateColumn>
-                                    <sdk:DataGridTextColumn Binding="{Binding SequenceNumber, FallbackValue=N/A}" Header=""  />
-                                    <sdk:DataGridTextColumn Binding="{Binding OGL, FallbackValue=N/A}" Header="OGL"  />
-                                    <!--<sdk:DataGridTemplateColumn >
-                                            <sdk:DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <StackPanel>
-                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                                            
-                                                            -->
-                                    <!--<sdk:Label Content="{Binding SKU}" />
-                                                            <sdk:Label Content="{Binding SKUDescription}" />
-                                                            <sdk:Label Content="{Binding Batch}" />
-                                                            <sdk:Label Content="{Binding TotalStock}" />
-                                                            <sdk:Label Content="{Binding MassPerPackage}" />
-                                                            <sdk:Label Content="{Binding DeclaredNetMass}" />
-                                                            <sdk:Label Content="{Binding AddedKg}" />
-                                                            <sdk:Label Content="{Binding QuantityyToClearSum}" />
-                                                            <sdk:Label Content="{Binding QuantityyToClearSumRounded}" />
-                                                            <sdk:Label Content="{Binding PackagesToDispose}" />
-                                                            <sdk:Label Content="{Binding RemainingOnStock}" />
-                                                            <sdk:Label Content="{Binding Units}" />-->
-                                    <!--
-                                                        </StackPanel>
-                                                    </StackPanel>
-                                                </DataTemplate>
-                                            </sdk:DataGridTemplateColumn.CellTemplate>
-                                        </sdk:DataGridTemplateColumn>-->
+                                    <sdk:DataGridTextColumn Binding="{Binding SKU, FallbackValue=N/A}" Header="Material" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                                    <sdk:DataGridTextColumn Binding="{Binding SKUDescription, FallbackValue=N/A}" Header="Description" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                                    <sdk:DataGridTextColumn Binding="{Binding Batch, FallbackValue=N/A}" Header="Batch" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                                    <sdk:DataGridTextColumn Binding="{Binding TotalStock, FallbackValue=N/A}" Header="Total stock" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                                    <sdk:DataGridTextColumn Binding="{Binding MassPerPackage, FallbackValue=N/A}"  Header="Qty in package" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                                    <sdk:DataGridTextColumn Binding="{Binding DeclaredNetMass, FallbackValue=N/A}" Header="Qty" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                                    <sdk:DataGridTextColumn Binding="{Binding AddedKg, Converter={StaticResource Double2StringConverter}, FallbackValue=N/A], Mode=TwoWay}" Header="Qty-added" IsReadOnly="False" CellStyle="{StaticResource EditableCell}"/>
+                                    <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSum, FallbackValue=N/A}" Header="Qty-sum" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                                    <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSumRounded, FallbackValue=N/A}" Header="Qty-rounded" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                                    <sdk:DataGridTextColumn Binding="{Binding PackagesToDispose, FallbackValue=N/A}" Header="Packages" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                                    <sdk:DataGridTextColumn Binding="{Binding RemainingOnStock, FallbackValue=N/A}" Header="Remaining on stock" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                                    <sdk:DataGridTextColumn Binding="{Binding Units, FallbackValue=N/A}" Header="Units" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                                 </sdk:DataGrid.Columns>
                             </sdk:DataGrid>
                         </DataTemplate>
@@ -136,9 +119,6 @@
                 </StackPanel>
                 <sdk:Label x:Name="x_labelLog" Margin="5" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="3" Content="{Binding Log, TargetNullValue=Null}" Style="{StaticResource LabelStyle}"/>
             </Grid>
-        </sdk:TabItem>
-        <sdk:TabItem Header="LogList" Visibility="Collapsed" >
-            <ListBox />
         </sdk:TabItem>
     </sdk:TabControl>
 </UserControl>
