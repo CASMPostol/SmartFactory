@@ -37,6 +37,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
     public static void Go(string siteURL, string connectionString, ProgressChangedEventHandler progress)
     {
       Linq2SQL.IPRDEV _sqledc = Linq2SQL.IPRDEV.Connect2SQL(connectionString, progress);
+      progress(null, new ProgressChangedEventArgs(1, String.Format("Opening connection to: {0}", siteURL)));
       using (Entities _spedc = new Entities(siteURL))
       {
         progress(null, new ProgressChangedEventArgs(1, String.Format("Starting CleanupContent. It could take several minutes")));
@@ -73,6 +74,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement
         //Update Activities Log
         Linq2SQL.ArchivingOperationLogs.UpdateActivitiesLogs(_sqledc, Linq2SQL.ArchivingOperationLogs.OperationName.Cleanup, progress);
       }
+      progress(null, new ProgressChangedEventArgs(1, String.Format("Opening connection to: {0}", siteURL)));
       //Delete all not associated BatchMaterial
       using (Entities _spedc = new Entities(siteURL))
       {
