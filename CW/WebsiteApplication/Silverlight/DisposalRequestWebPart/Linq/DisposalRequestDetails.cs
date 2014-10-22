@@ -382,6 +382,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       declared -= this.DeclaredNetMass;
       this.AddedKg = this.QuantityyToClearSumRounded - this.DeclaredNetMass;
       Debug.Assert(this.AddedKg >= 0, "CW_AddedKg < 0");
+      this.RemainingOnStock = TotalStock - AddedKg - DeclaredNetMass;
+      Debug.Assert(this.RemainingOnStock >= 0, "CW_AddedKg < 0");
     }
     internal void UpdateDisposal(int disposalRequestLibId, List<CustomsWarehouseDisposal> list2Delete, List<CustomsWarehouseDisposal> list2Insert)
     {
