@@ -350,7 +350,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       CustomsWarehouse _firstAccount = _firstDisposal.CWL_CWDisposal2CustomsWarehouseID;
       DisposalRequest _newRequest = CreateDisposalRequest(_firstAccount, _firstDisposal.SKUDescription, _firstDisposal.CustomsProcedure);
       listOfAccounts.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
-      ObservableCollection<DisposalRequestDetails> _newCollection = new ObservableCollection<DisposalRequestDetails>();
+      List<DisposalRequestDetails> _newCollection = new List<DisposalRequestDetails>();
       int _sequenceNumber = 0;
       List<CustomsWarehouse> _copylistOfAccounts = new List<CustomsWarehouse>(listOfAccounts);
       foreach (CustomsWarehouseDisposal _cwdx in groupOfDisposals)
@@ -366,8 +366,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         _newCollection.Add(_newDisposalRequestDetails);
       }
       _newRequest.RemainingOnStock = _newCollection.Sum(x => x.RemainingOnStock);
-      _newRequest.UpdateOnInit();
-      _newRequest.Items = _newCollection;
+      _newRequest.UpdateOnInit(_newCollection);
       return _newRequest;
     }
     /// <summary>
@@ -431,10 +430,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       _next.SequenceNumber -= 1;
       _dctnry.Add(_current.SequenceNumber, _current);
       _dctnry.Add(_next.SequenceNumber, _next);
-      ObservableCollection<DisposalRequestDetails> _items = new ObservableCollection<DisposalRequestDetails>(_dctnry.Values);
-      RecalculateDisposals(_items);
-      Items = _items;
+      RecreateDisposals(_dctnry.Values);
     }
+
     internal void GoUp(int sequenceNumber)
     {
       Dictionary<int, DisposalRequestDetails> _dctnry = Items.ToDictionary(x => x.SequenceNumber);
@@ -446,9 +444,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       _prvs.SequenceNumber += 1;
       _dctnry.Add(_current.SequenceNumber, _current);
       _dctnry.Add(_prvs.SequenceNumber, _prvs);
-      ObservableCollection<DisposalRequestDetails> _items = new ObservableCollection<DisposalRequestDetails>(_dctnry.Values);
-      RecalculateDisposals(_items);
-      Items = _items;
+      RecreateDisposals(_dctnry.Values);
     }
     internal bool IsBottom(int sequenceNumber)
     {
@@ -493,9 +489,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       DeclaredNetMass += rowData.DeclaredNetMass;
       AddedKg += rowData.AddedKg;
     }
-    private void UpdateOnInit()
+    private void UpdateOnInit(IEnumerable<DisposalRequestDetails> items)
     {
       bool _ac = AutoCalculation;
+      Items = new ObservableCollection<DisposalRequestDetails>(items); 
       Recalculate();
       TotalStock = RemainingOnStock + QuantityyToClearSumRounded;
       AutoCalculation = _ac;
@@ -513,11 +510,18 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       QuantityyToClearSum = DeclaredNetMass + AddedKg;
       PackagesToDispose = CustomsWarehouse.Packages(QuantityyToClearSum, this.MassPerPackage);
       QuantityyToClearSumRounded = PackagesToDispose * this.MassPerPackage;
+      RecalculateDisposals(Items);
     }
     /// <summary>
     /// Recalculates the disposals after changing the sequence of accounts to be used for disposing the request item.
     /// </summary>
     /// <param name="items">The list of <see cref="DisposalRequestDetails"/> after changing the order of this lists items.</param>
+    private void RecreateDisposals(IEnumerable<DisposalRequestDetails> items)
+    {
+      ObservableCollection<DisposalRequestDetails> _newItems = new ObservableCollection<DisposalRequestDetails>(items);
+      RecalculateDisposals(_newItems);
+      Items = _newItems;
+    }
     private void RecalculateDisposals(IEnumerable<DisposalRequestDetails> items)
     {
       int _packages = this.PackagesToDispose;
