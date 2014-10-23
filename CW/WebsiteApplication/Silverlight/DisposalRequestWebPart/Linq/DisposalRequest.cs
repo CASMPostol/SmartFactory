@@ -356,7 +356,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
           this.OnPropertyChanged("CustomsProcedure");
         }
       }
-    } 
+    }
     #endregion
 
     #region internal
@@ -381,9 +381,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         _copylistOfAccounts.Remove(_cwdx.CWL_CWDisposal2CustomsWarehouseID);
         _newCollection.Add(_newDisposalRequestDetails);
         _newRequest.GetDataContext(_newDisposalRequestDetails);
+        if (_cwdx.CustomsStatus.GetValueOrDefault(CustomsStatus.NotStarted) != CustomsStatus.NotStarted)
+          _newRequest.ReadOnly = true;
       }
       foreach (CustomsWarehouse _cwx in _copylistOfAccounts)
       {
+        if (_cwx.TobaccoNotAllocated == 0)
+          continue;
         DisposalRequestDetails _newDisposalRequestDetails = new DisposalRequestDetails(_newRequest, _cwx, ref _sequenceNumber);
         _newCollection.Add(_newDisposalRequestDetails);
       }
@@ -495,7 +499,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private int _packagesToClear;
     private string b_customsProcedure = String.Empty;
     private ObservableCollection<DisposalRequestDetails> b_Items;
-    private bool b_ReadOnly;
+    private bool b_ReadOnly = false;
     #endregion
 
     protected override void OnPropertyChanged(string propertyName)
@@ -515,7 +519,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private void UpdateOnInit(IEnumerable<DisposalRequestDetails> items)
     {
       bool _ac = AutoCalculation;
-      Items = new ObservableCollection<DisposalRequestDetails>(items); 
+      Items = new ObservableCollection<DisposalRequestDetails>(items);
       Recalculate();
       TotalStock = RemainingOnStock + QuantityyToClearSumRounded;
       AutoCalculation = _ac;
@@ -579,7 +583,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private DisposalRequest()
     {
       AutoCalculation = false;
-      ReadOnly = true;
       Items = new ObservableCollection<DisposalRequestDetails>();
     }
     #endregion
