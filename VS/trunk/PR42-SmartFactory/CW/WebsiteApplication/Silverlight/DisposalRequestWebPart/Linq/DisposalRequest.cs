@@ -14,6 +14,7 @@
 //</summary>
 
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
+using CAS.Common.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -306,7 +307,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       {
         if ((value != this.b_customsProcedure))
         {
-          this.OnPropertyChanging("CustomsProcedure", this._packagesToClear);
+          this.OnPropertyChanging("CustomsProcedure", this.b_customsProcedure);
           this.b_customsProcedure = value;
           this.OnPropertyChanged("CustomsProcedure");
         }
@@ -334,7 +335,28 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         }
       }
     }
-
+    /// <summary>
+    /// Gets or sets a value indicating whether this item is read only.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if this item is read only; otherwise, <c>false</c>.
+    /// </value>
+    public bool ReadOnly
+    {
+      get
+      {
+        return b_ReadOnly;
+      }
+      set
+      {
+        if ((value != this.b_ReadOnly))
+        {
+          this.OnPropertyChanging("CustomsProcedure", this.b_ReadOnly);
+          this.b_ReadOnly = value;
+          this.OnPropertyChanged("CustomsProcedure");
+        }
+      }
+    } 
     #endregion
 
     #region internal
@@ -473,6 +495,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private int _packagesToClear;
     private string b_customsProcedure = String.Empty;
     private ObservableCollection<DisposalRequestDetails> b_Items;
+    private bool b_ReadOnly;
     #endregion
 
     protected override void OnPropertyChanged(string propertyName)
@@ -556,6 +579,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private DisposalRequest()
     {
       AutoCalculation = false;
+      ReadOnly = true;
       Items = new ObservableCollection<DisposalRequestDetails>();
     }
     #endregion

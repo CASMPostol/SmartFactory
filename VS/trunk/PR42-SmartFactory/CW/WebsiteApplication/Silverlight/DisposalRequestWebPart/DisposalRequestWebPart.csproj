@@ -91,6 +91,7 @@
     <Compile Include="AddNew.xaml.cs">
       <DependentUpon>AddNew.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BoolNotConverter.cs" />
     <Compile Include="CASSmartFactoryDisposalRequest.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
