@@ -84,6 +84,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         RaiseHandler<bool>(value, ref b_ReadOnly, "ReadOnly", this);
       }
     } 
+
     /// <summary>
     /// Gets or sets the request collection.
     /// </summary>
@@ -92,16 +93,22 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     /// </value>
     public PagedCollectionView RequestCollection
     {
-      get { return b_RequestCollection; }
-      set { b_RequestCollection = value; }
-    }
-    #endregion
-
-    #region INotifyPropertyChanged Members
-    /// <summary>
-    /// Occurs when a property value changes.
-    /// </summary>
-    public event PropertyChangedEventHandler PropertyChanged;
+      get
+      {
+        return b_RequestCollection;
+      }
+      set
+      {
+        if (RaiseHandler<PagedCollectionView>(value, ref b_RequestCollection, "RequestCollection", this))
+          foreach (DisposalRequest _request in value.SourceCollection)
+          {
+            if (!_request.ReadOnly)
+              continue;
+            this.ReadOnly = true;
+            break;
+          }
+      }
+    } 
     #endregion
 
     #region IDisposable Members
@@ -162,7 +169,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private PagedCollectionView b_RequestCollection = null;
     private string b_HeaderLabel = "N/A";
     private string b_Log = "Log before starting";
-    private bool b_ReadOnly = true;
+    private bool b_ReadOnly = false;
     #endregion
 
     #region vars
@@ -203,16 +210,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       Log = String.Format("GetDataAsync: CreateContextAsync for URL={0}.", m_URL);
       m_Context.CreateContextAsync(m_URL);
 
-    }
-    /// <summary>
-    /// Called when property value changes.
-    /// </summary>
-    /// <param name="propertyName">Name of the property.</param>
-    private void OnPropertyChanged(string propertyName)
-    {
-      if ((null == this.PropertyChanged))
-        return;
-      this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
     }
     private void m_Context_SubmitChangesCompleted(object sender, AsyncCompletedEventArgs e)
     {
