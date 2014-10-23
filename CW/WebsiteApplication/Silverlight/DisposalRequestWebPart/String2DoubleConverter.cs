@@ -21,6 +21,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
   /// <summary>
   /// Double to string Converter
   /// </summary>
+  
   public class Double2StringConverter: IValueConverter
   {
 

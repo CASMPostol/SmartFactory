@@ -28,21 +28,28 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
   /// <summary>
   /// public class MainPageData
   /// </summary>
-  public sealed class MainPageData : INotifyPropertyChanged, IDisposable
+  public sealed class MainPageData : CAS.Common.ComponentModel.PropertyChangedBase, IDisposable
   {
 
     #region public properties
+
+    /// <summary>
+    /// Gets or sets the header label.
+    /// </summary>
+    /// <value>
+    /// The header label.
+    /// </value>
     public string HeaderLabel
     {
-      get { return b_HeaderLabel; }
+      get
+      {
+        return b_HeaderLabel;
+      }
       set
       {
-        if (b_HeaderLabel == value)
-          return;
-        b_HeaderLabel = value;
-        OnPropertyChanged("HeaderLabel");
+        RaiseHandler<string>(value, ref b_HeaderLabel, "HeaderLabel", this);
       }
-    }
+    } 
     /// <summary>
     /// Gets or sets the log.
     /// </summary>
@@ -51,16 +58,32 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     /// </value>
     public string Log
     {
-      get { return b_Log; }
+      get
+      {
+        return b_Log;
+      }
       set
       {
-        if (b_Log == value)
-          return;
-        b_Log = value;
-        OnPropertyChanged("Log");
+        RaiseHandler<string>(value, ref b_Log, "Log", this);
       }
     }
-    public TextWriter LogList { get; set; }
+    /// <summary>
+    /// Gets or sets a value indicating whether this item is read only.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if this item is read only; otherwise, <c>false</c>.
+    /// </value>
+    public bool ReadOnly
+    {
+      get
+      {
+        return b_ReadOnly;
+      }
+      set
+      {
+        RaiseHandler<bool>(value, ref b_ReadOnly, "ReadOnly", this);
+      }
+    } 
     /// <summary>
     /// Gets or sets the request collection.
     /// </summary>
@@ -139,6 +162,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private PagedCollectionView b_RequestCollection = null;
     private string b_HeaderLabel = "N/A";
     private string b_Log = "Log before starting";
+    private bool b_ReadOnly = true;
     #endregion
 
     #region vars

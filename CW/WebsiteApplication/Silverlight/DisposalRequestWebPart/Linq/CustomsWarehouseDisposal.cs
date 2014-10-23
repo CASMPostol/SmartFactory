@@ -63,6 +63,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     }
     internal void DeleteDisposal()
     {
+      if (this.CustomsStatus.Value != Linq.CustomsStatus.NotStarted)
+        return;
       CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated += this.CW_SettledNetMass.Value;
       CW_PackageToClear = 0;
       CW_SettledNetMass = 0;
@@ -77,8 +79,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private void Recalculate(DisposalRequestDetails disposalRequestDetails)
     {
       CW_PackageToClear = disposalRequestDetails.PackagesToDispose;
-      double _diff = disposalRequestDetails.QuantityyToClearSumRounded - CW_SettledGrossMass.Value;
+      double _diff = disposalRequestDetails.QuantityyToClearSumRounded - CW_SettledNetMass.Value;
       CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated -= _diff;
+      CW_DeclaredNetMass = disposalRequestDetails.DeclaredNetMass;
       CW_SettledNetMass = disposalRequestDetails.QuantityyToClearSumRounded;
       CW_SettledGrossMass = (CW_PackageToClear.Value * CWL_CWDisposal2CustomsWarehouseID.PackageWeight() + CW_SettledNetMass.Value).RoundValue();
       CW_AddedKg = disposalRequestDetails.AddedKg;

@@ -178,5 +178,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
     }//class CraeteRequest
     #endregion
+
   }
 }
