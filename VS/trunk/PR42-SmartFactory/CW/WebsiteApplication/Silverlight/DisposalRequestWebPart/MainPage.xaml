@@ -48,19 +48,18 @@
                 <DataTemplate>
                     <sdk:DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False">
                         <sdk:DataGrid.Columns>
-                            <sdk:DataGridTextColumn Binding="{Binding SequenceNumber, FallbackValue=N/A}" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}"  />
-                            <sdk:DataGridTextColumn Binding="{Binding SKU, FallbackValue=N/A}" Header="Material" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                            <sdk:DataGridTextColumn Binding="{Binding SKUDescription, FallbackValue=N/A}" Header="Description" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                            <sdk:DataGridTextColumn Binding="{Binding SKU, FallbackValue=N/A}" Header="Material" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />                            
                             <sdk:DataGridTextColumn Binding="{Binding Batch, FallbackValue=N/A}" Header="Batch" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                             <sdk:DataGridTextColumn Binding="{Binding TotalStock, FallbackValue=N/A}" Header="Total stock" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                             <sdk:DataGridTextColumn Binding="{Binding MassPerPackage, FallbackValue=N/A}"  Header="Qty in package" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                             <sdk:DataGridTextColumn Binding="{Binding DeclaredNetMass, FallbackValue=N/A}" Header="Qty" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                            <sdk:DataGridTextColumn Binding="{Binding AddedKg, Converter={StaticResource Double2StringConverter}, FallbackValue=N/A], Mode=TwoWay}" Header="Qty-added" IsReadOnly="False" CellStyle="{StaticResource EditableCell}"/>
+                            <sdk:DataGridTextColumn Binding="{Binding AddedKg, Converter={StaticResource Double2StringConverter}, FallbackValue=N/A], Mode=TwoWay}" Header="Qty-added" IsReadOnly="True" CellStyle="{StaticResource EditableCell}"/>
                             <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSum, FallbackValue=N/A}" Header="Qty-sum" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                             <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSumRounded, FallbackValue=N/A}" Header="Qty-rounded" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                             <sdk:DataGridTextColumn Binding="{Binding PackagesToDispose, FallbackValue=N/A}" Header="Packages" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                             <sdk:DataGridTextColumn Binding="{Binding RemainingOnStock, FallbackValue=N/A}" Header="Remaining on stock" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                            <sdk:DataGridTextColumn Binding="{Binding Units, FallbackValue=N/A}" Header="Units" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                            <sdk:DataGridTextColumn Binding="{Binding Units, TargetNullValue=KG}" Header="Units" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
+                            <sdk:DataGridTextColumn Binding="{Binding DocumentNumber, FallbackValue=N/A}" Header="OGL" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                             <sdk:DataGridTemplateColumn >
                                 <sdk:DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
