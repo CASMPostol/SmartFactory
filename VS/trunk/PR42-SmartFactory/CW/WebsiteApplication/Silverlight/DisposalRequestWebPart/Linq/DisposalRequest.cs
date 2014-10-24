@@ -20,6 +20,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.ComponentModel;
+using System.Collections.Specialized;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 {
@@ -362,15 +364,17 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     #region internal
     internal bool AutoCalculation { get; set; }
     /// <summary>
-    /// Creates an instance of <see cref="DisposalRequest"/> using the collection of <see cref="CustomsWarehouse"/> and existing <see cref="CustomsWarehouseDisposal"/> entries.
+    /// Creates an instance of <see cref="DisposalRequest" /> using the collection of <see cref="CustomsWarehouse" /> and existing <see cref="CustomsWarehouseDisposal" /> entries.
     /// </summary>
-    /// <param name="listOfAccounts">The list of <see cref="CustomsWarehouse"/> with the same batch.</param>
-    /// <param name="groupOfDisposals">The group of existing <see cref="CustomsWarehouseDisposal"/> for the selected Batch.</param>
-    internal static DisposalRequest Create(List<CustomsWarehouse> listOfAccounts, IGrouping<string, CustomsWarehouseDisposal> groupOfDisposals)
+    /// <param name="listOfAccounts">The list of <see cref="CustomsWarehouse" /> with the same batch.</param>
+    /// <param name="groupOfDisposals">The group of existing <see cref="CustomsWarehouseDisposal" /> for the selected Batch.</param>
+    /// <param name="notify">The notify.</param>
+    /// <returns></returns>
+    internal static DisposalRequest Create(List<CustomsWarehouse> listOfAccounts, IGrouping<string, CustomsWarehouseDisposal> groupOfDisposals, Action<DisposalRequest, PropertyChangedEventArgs> notify)
     {
       CustomsWarehouseDisposal _firstDisposal = groupOfDisposals.First<CustomsWarehouseDisposal>();
       CustomsWarehouse _firstAccount = _firstDisposal.CWL_CWDisposal2CustomsWarehouseID;
-      DisposalRequest _newRequest = CreateDisposalRequest(_firstAccount, _firstDisposal.SKUDescription, _firstDisposal.CustomsProcedure);
+      DisposalRequest _newRequest = CreateDisposalRequest(_firstAccount, _firstDisposal.SKUDescription, _firstDisposal.CustomsProcedure, notify);
       listOfAccounts.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
       List<DisposalRequestDetails> _newCollection = new List<DisposalRequestDetails>();
       int _sequenceNumber = 0;
@@ -396,15 +400,17 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       return _newRequest;
     }
     /// <summary>
-    /// Creates an instance of <see cref="DisposalRequest"/> using the collection of <see cref="CustomsWarehouse"/> when there are no disposals.
+    /// Creates an instance of <see cref="DisposalRequest" /> using the collection of <see cref="CustomsWarehouse" /> when there are no disposals.
     /// </summary>
-    /// <param name="listOfAccounts">The list of <see cref="CustomsWarehouse"/> with the same batch.</param>
+    /// <param name="listOfAccounts">The list of <see cref="CustomsWarehouse" /> with the same batch.</param>
     /// <param name="toDispose">To dispose.</param>
     /// <param name="customsProcedure">The customs procedure.</param>
-    internal static DisposalRequest Create(List<CustomsWarehouse> listOfAccounts, double toDispose, string customsProcedure)
+    /// <param name="notify">The notify.</param>
+    /// <returns></returns>
+    internal static DisposalRequest Create(List<CustomsWarehouse> listOfAccounts, double toDispose, string customsProcedure, Action<DisposalRequest, PropertyChangedEventArgs> notify)
     {
       CustomsWarehouse _fcw = listOfAccounts.First<CustomsWarehouse>();
-      DisposalRequest _ret = DisposalRequest.CreateDisposalRequest(_fcw, "N/A", customsProcedure);
+      DisposalRequest _ret = DisposalRequest.CreateDisposalRequest(_fcw, "N/A", customsProcedure, notify);
       listOfAccounts.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
       ObservableCollection<DisposalRequestDetails> _newCollection = new ObservableCollection<DisposalRequestDetails>();
       int _sequenceNumber = 0;
@@ -472,13 +478,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       _dctnry.Add(_prvs.SequenceNumber, _prvs);
       RecreateDisposals(_dctnry.Values);
     }
-    internal bool IsBottom(int sequenceNumber)
+    internal bool IsBottomActive(int sequenceNumber)
     {
-      return Items.Count == 0 || sequenceNumber == Items.Count - 1;
+      return ReadOnly || (Items.Count == 0 || sequenceNumber == Items.Count - 1);
     }
-    internal bool IsTop(int sequenceNumber)
+    internal bool IsTopActive(int sequenceNumber)
     {
-      return sequenceNumber == 0; ;
+      return ReadOnly || sequenceNumber == 0; ;
     }
     #endregion
 
@@ -498,10 +504,15 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private string _units;
     private int _packagesToClear;
     private string b_customsProcedure = String.Empty;
-    private ObservableCollection<DisposalRequestDetails> b_Items;
+    private ObservableCollection<DisposalRequestDetails> b_Items = new ObservableCollection<DisposalRequestDetails>();
     private bool b_ReadOnly = false;
     #endregion
 
+    private Action<DisposalRequest, PropertyChangedEventArgs> m_ParentNotify;
+    /// <summary>
+    /// Called when [property changed].
+    /// </summary>
+    /// <param name="propertyName">Name of the property.</param>
     protected override void OnPropertyChanged(string propertyName)
     {
       base.OnPropertyChanged(propertyName);
@@ -510,6 +521,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       AddedKg = Math.Max(AddedKg, 0);
       AddedKg = Math.Min(AddedKg, TotalStock - DeclaredNetMass);
       UpdateOnChange();
+      m_ParentNotify(this, new PropertyChangedEventArgs(propertyName));
     }
     private void GetDataContext(DisposalRequestDetails rowData)
     {
@@ -557,7 +569,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         _drx.Update(ref _packages, ref _declared);
       Debug.Assert(_packages == 0, String.Format("Cannot dispose {0} packages - tobacco not available.", _packages));
     }
-    private static DisposalRequest CreateDisposalRequest(CustomsWarehouse account, string skuDescription, string customsProcedure)
+    private static DisposalRequest CreateDisposalRequest(CustomsWarehouse account, string skuDescription, string customsProcedure, Action<DisposalRequest, PropertyChangedEventArgs> notify)
     {
       return new DisposalRequest()
       {
@@ -575,6 +587,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         TotalStock = 0,
         Units = account.Units,
         SKU = account.SKU,
+        m_ParentNotify = notify
       };
     }
     /// <summary>
@@ -583,7 +596,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private DisposalRequest()
     {
       AutoCalculation = false;
-      Items = new ObservableCollection<DisposalRequestDetails>();
     }
     #endregion
 

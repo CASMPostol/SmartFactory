@@ -24,12 +24,12 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
       List<CustomsWarehouse> _listOfAccounts = new List<CustomsWarehouse>();
       List<CustomsWarehouseDisposal> _listOfDisposals = new List<CustomsWarehouseDisposal>();
       IEnumerable<IGrouping<string, CustomsWarehouseDisposal>> _groupOfDisposals = _listOfDisposals.GroupBy<CustomsWarehouseDisposal, string>(x => x.CWL_CWDisposal2CustomsWarehouseID.Batch);
-      DisposalRequest _newItem = DisposalRequest.Create(_listOfAccounts, _groupOfDisposals.First());
+      DisposalRequest _newItem = DisposalRequest.Create(_listOfAccounts, _groupOfDisposals.First(), (x, y) => { });
     }
     [TestMethod]
     public void CreateDisposalRequestInstanceDemoDataTest()
     {
-      DisposalRequest _newItem = DisposalRequest.Create(listOfAccounts, groupOfDisposals);
+      DisposalRequest _newItem = DisposalRequest.Create(listOfAccounts, groupOfDisposals, (x, y) => { });
       Assert.AreEqual(_newItem.AutoCalculation, false);
       AssertButtonsCanExecute(_newItem);
       AssertConstantValues(_newItem);
@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
     [TestMethod]
     public void CreateDisposalRequestInstance0Down()
     {
-      DisposalRequest _newItem = DisposalRequest.Create(listOfAccounts, groupOfDisposals);
+      DisposalRequest _newItem = DisposalRequest.Create(listOfAccounts, groupOfDisposals, (x, y) => { });
       Assert.AreEqual(_newItem.AutoCalculation, false);
       _newItem.AutoCalculation = true;
       DisposalRequestDetails _firs = _newItem.Items[0];
@@ -51,7 +51,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
     [TestMethod]
     public void CreateDisposalRequestInstance1Up()
     {
-      DisposalRequest _newItem = DisposalRequest.Create(listOfAccounts, groupOfDisposals);
+      DisposalRequest _newItem = DisposalRequest.Create(listOfAccounts, groupOfDisposals, (x, y) => { });
       Assert.AreEqual(_newItem.AutoCalculation, false);
       _newItem.AutoCalculation = true;
       DisposalRequestDetails _firs = _newItem.Items[0];
@@ -64,7 +64,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
     [TestMethod]
     public void CreateDisposalRequestInstanceBottom2Top()
     {
-      DisposalRequest _newItem = DisposalRequest.Create(listOfAccounts, groupOfDisposals);
+      DisposalRequest _newItem = DisposalRequest.Create(listOfAccounts, groupOfDisposals, (x, y) => { });
       Assert.AreEqual(_newItem.AutoCalculation, false);
       _newItem.AutoCalculation = true;
       DisposalRequestDetails _firs = _newItem.Items[4];
@@ -80,7 +80,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
     [TestMethod]
     public void CreateDisposalRequestInstanceEndOfOgl()
     {
-      DisposalRequest _newItem = DisposalRequest.Create(listOfAccounts, groupOfDisposals);
+      DisposalRequest _newItem = DisposalRequest.Create(listOfAccounts, groupOfDisposals, (x, y) => { });
       AssertConstantValues(_newItem);
       _newItem.AutoCalculation = true;
       _newItem.EndOfOgl();
@@ -91,7 +91,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
     [TestMethod]
     public void CreateDisposalRequestInstanceUnavailable()
     {
-      DisposalRequest _newItem = DisposalRequest.Create(listOfAccounts, groupOfDisposals);
+      DisposalRequest _newItem = DisposalRequest.Create(listOfAccounts, groupOfDisposals, (x, y) => { });
       AssertConstantValues(_newItem);
       _newItem.AutoCalculation = true;
       _newItem.AddedKg = 999999; //Tobacco unavailable
@@ -102,7 +102,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
     [TestMethod]
     public void CreateDisposalRequestInstanceEndOfBatch()
     {
-      DisposalRequest _newItem = DisposalRequest.Create(listOfAccounts, groupOfDisposals);
+      DisposalRequest _newItem = DisposalRequest.Create(listOfAccounts, groupOfDisposals, (x, y) => { });
       AssertConstantValues(_newItem);
       _newItem.AutoCalculation = true;
       _newItem.EndOfBatch();
@@ -132,10 +132,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
     }
     private static void AssertButtonsCanExecute(DisposalRequest _newItem)
     {
-      Assert.AreEqual(_newItem.IsBottom(0), false);
-      Assert.AreEqual(_newItem.IsBottom(4), true);
-      Assert.AreEqual(_newItem.IsTop(0), true);
-      Assert.AreEqual(_newItem.IsTop(4), false);
+      Assert.AreEqual(_newItem.IsBottomActive(0), false);
+      Assert.AreEqual(_newItem.IsBottomActive(4), true);
+      Assert.AreEqual(_newItem.IsTopActive(0), true);
+      Assert.AreEqual(_newItem.IsTopActive(4), false);
       Assert.AreEqual(false, _newItem.Items[0].MoveUp.CanExecute(null));
       Assert.AreEqual(true, _newItem.Items[0].MoveDown.CanExecute(null));
       Assert.AreEqual(true, _newItem.Items[4].MoveUp.CanExecute(null));

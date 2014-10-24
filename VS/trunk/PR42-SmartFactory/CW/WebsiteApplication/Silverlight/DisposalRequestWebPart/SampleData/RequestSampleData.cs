@@ -49,6 +49,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.SampleData
         CW_PackageToClear = 50,
         TobaccoValue = 76401,
         CustomsProcedure = "4071",
+        CustomsStatus = CustomsStatus.NotStarted
       };
       listOfDisposals.Add(_newCWD);
       _newCW = new CustomsWarehouse()
@@ -96,7 +97,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.SampleData
         CW_MassPerPackage = 180,
         Value = 51952.68,
         InvoiceNo = "82222800",
-        AccountClosed = false
+        AccountClosed = false,
+        Units = "m3",
       };
       listOfAccounts.Add(_newCW);
       _newCWD = new CustomsWarehouseDisposal()
@@ -125,7 +127,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.SampleData
         CW_MassPerPackage = 180,
         Value = 35144.46,
         InvoiceNo = "82223962",
-        AccountClosed = false
+        AccountClosed = false,
+        Units = "m4",
       };
       listOfAccounts.Add(_newCW);
       _newCW = new CustomsWarehouse()
@@ -143,7 +146,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.SampleData
         CW_MassPerPackage = 180,
         Value = 74872.98,
         InvoiceNo = "82225744",
-        AccountClosed = false
+        AccountClosed = false,
+        Units = "m5",
       };
       listOfAccounts.Add(_newCW);
       groupOfDisposals = listOfDisposals.GroupBy<CustomsWarehouseDisposal, string>(x => x.CWL_CWDisposal2CustomsWarehouseID.Batch).First < IGrouping<string, CustomsWarehouseDisposal>>();
