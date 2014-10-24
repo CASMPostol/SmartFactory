@@ -14,14 +14,12 @@
 //</summary>
 
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
-using CAS.Common.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.ComponentModel;
-using System.Collections.Specialized;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
 {
@@ -530,18 +528,17 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     }
     private void UpdateOnInit(IEnumerable<DisposalRequestDetails> items)
     {
-      bool _ac = AutoCalculation;
+      Debug.Assert(AutoCalculation == false, "At the beginning the AutoCalculation must be false");
       AutoCalculation = false;
       Items = new ObservableCollection<DisposalRequestDetails>(items);
       Recalculate();
       TotalStock = RemainingOnStock + QuantityyToClearSumRounded;
-      AutoCalculation = _ac;
     }
     private void UpdateOnChange()
     {
       bool _ac = AutoCalculation;
-      AutoCalculation = false;
       Recalculate();
+      RecalculateDisposals(Items);
       RemainingOnStock = TotalStock - QuantityyToClearSumRounded;
       AutoCalculation = _ac;
     }
@@ -551,7 +548,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       QuantityyToClearSum = DeclaredNetMass + AddedKg;
       PackagesToDispose = CustomsWarehouse.Packages(QuantityyToClearSum, this.MassPerPackage);
       QuantityyToClearSumRounded = PackagesToDispose * this.MassPerPackage;
-      RecalculateDisposals(Items);
     }
     /// <summary>
     /// Recalculates the disposals after changing the sequence of accounts to be used for disposing the request item.

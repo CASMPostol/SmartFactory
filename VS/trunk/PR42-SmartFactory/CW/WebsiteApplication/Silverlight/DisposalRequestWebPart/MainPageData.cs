@@ -203,7 +203,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       this.DisposalRequestObservable.GetDemoData();
       m_DemoDataLoaded = true;
       Log = "Demo data loaded";
-      OnLoadedData();
+      OnDataLoaded();
     }
     private void GetRealData(string url, int? selectedID)
     {
@@ -299,10 +299,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       }
       m_Edited = false;
       UpdateHeader();
-      OnLoadedData();
+      OnDataLoaded();
       Log = "GetData RunWorker Completed";
     }
-    private void OnLoadedData()
+    private void OnDataLoaded()
     {
       bool _readOnly = false;
       foreach (DisposalRequest _request in DisposalRequestObservable)
