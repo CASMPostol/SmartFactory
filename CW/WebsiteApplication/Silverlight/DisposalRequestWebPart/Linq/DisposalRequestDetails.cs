@@ -405,7 +405,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     internal double EndOfOGL()
     {
       double _ret = 0.0;
-      if (this.m_Disposal != null)
+      if (this.m_Disposal != null && m_Disposal.CW_DeclaredNetMass.Value > 0)
         _ret = TotalStock - m_Disposal.CW_DeclaredNetMass.Value;
       return _ret;
     }

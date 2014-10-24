@@ -89,6 +89,36 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.SampleData
         Grade = "XIDSME",
         SKU = "12607453",
         Batch = "0003808069",
+        AccountBalance = 4140,
+        TobaccoNotAllocated = 4140,
+        NetMass = 4140,
+        GrossMass = 4485,
+        CW_PackageUnits = 23,
+        CW_MassPerPackage = 180,
+        Value = 35144.46,
+        InvoiceNo = "82222800",
+        AccountClosed = false,
+        Units = "m3",
+      };
+      listOfAccounts.Add(_newCW);
+      _newCWD = new CustomsWarehouseDisposal()
+      {
+        CWL_CWDisposal2CustomsWarehouseID = _newCW,
+        CW_AddedKg = 0,
+        CW_DeclaredNetMass = 0,
+        CW_SettledGrossMass = 0,
+        CW_PackageToClear = 0,
+        TobaccoValue = 15280.2,
+        CustomsProcedure = "4071",
+      };
+      listOfDisposals.Add(_newCWD);
+      _newCW = new CustomsWarehouse()
+      {
+        DocumentNo = "OGL/362010/00/016193/2014",
+        CustomsDebtDate = new DateTime(2014, 07, 15),
+        Grade = "XIDSME",
+        SKU = "12607453",
+        Batch = "0003808069",
         AccountBalance = 6120,
         TobaccoNotAllocated = 4320,
         NetMass = 6120,
@@ -96,9 +126,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.SampleData
         CW_PackageUnits = 34,
         CW_MassPerPackage = 180,
         Value = 51952.68,
-        InvoiceNo = "82222800",
+        InvoiceNo = "82223962",
         AccountClosed = false,
-        Units = "m3",
+        Units = "m4",
       };
       listOfAccounts.Add(_newCW);
       _newCWD = new CustomsWarehouseDisposal()
@@ -112,25 +142,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.SampleData
         CustomsProcedure = "4071",
       };
       listOfDisposals.Add(_newCWD);
-      _newCW = new CustomsWarehouse()
-      {
-        DocumentNo = "OGL/362010/00/016193/2014",
-        CustomsDebtDate = new DateTime(2014, 07, 15),
-        Grade = "XIDSME",
-        SKU = "12607453",
-        Batch = "0003808069",
-        AccountBalance = 4140,
-        TobaccoNotAllocated = 4140,
-        NetMass = 4140,
-        GrossMass = 4485,
-        CW_PackageUnits = 23,
-        CW_MassPerPackage = 180,
-        Value = 35144.46,
-        InvoiceNo = "82223962",
-        AccountClosed = false,
-        Units = "m4",
-      };
-      listOfAccounts.Add(_newCW);
       _newCW = new CustomsWarehouse()
       {
         DocumentNo = "OGL/362010/00/017253/2014",
