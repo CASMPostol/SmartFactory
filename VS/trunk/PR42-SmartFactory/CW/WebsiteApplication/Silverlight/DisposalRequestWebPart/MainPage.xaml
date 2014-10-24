@@ -54,7 +54,7 @@
                             <sdk:DataGridTextColumn Binding="{Binding TotalStock, FallbackValue=N/A}" Header="Total stock" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                             <sdk:DataGridTextColumn Binding="{Binding MassPerPackage, FallbackValue=N/A}"  Header="Qty in package" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                             <sdk:DataGridTextColumn Binding="{Binding DeclaredNetMass, FallbackValue=N/A}" Header="Qty" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
-                            <sdk:DataGridTextColumn Binding="{Binding AddedKg, Converter={StaticResource Double2StringConverter}, FallbackValue=N/A], Mode=TwoWay}" Header="Qty-added" IsReadOnly="True" CellStyle="{StaticResource EditableCell}"/>
+                            <sdk:DataGridTextColumn Binding="{Binding AddedKg, Converter={StaticResource Double2StringConverter}, FallbackValue=N/A], Mode=TwoWay}" Header="Qty-added" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}"/>
                             <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSum, FallbackValue=N/A}" Header="Qty-sum" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                             <sdk:DataGridTextColumn Binding="{Binding QuantityyToClearSumRounded, FallbackValue=N/A}" Header="Qty-rounded" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                             <sdk:DataGridTextColumn Binding="{Binding PackagesToDispose, FallbackValue=N/A}" Header="Packages" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
