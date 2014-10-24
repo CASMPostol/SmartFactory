@@ -17,6 +17,7 @@ using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 
@@ -25,10 +26,14 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
   /// <summary>
   /// class DisposalRequestObservable
   /// </summary>
-  public class DisposalRequestObservable : ObservableCollection<DisposalRequest>
+  public class DisposalRequestObservable : ObservableCollection<DisposalRequest>, INotifyCollectionChanged
   {
 
     #region internal
+    /// <summary>
+    /// The property changed
+    /// </summary>
+    internal new PropertyChangedEventHandler PropertyChanged;
     /// <summary>
     /// Gets the data context.
     /// </summary>
@@ -47,10 +52,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       List<CustomsWarehouse> listOfAccounts = new List<CustomsWarehouse>();
       IGrouping<string, CustomsWarehouseDisposal> groupOfDisposals = null;
       SampleData.RequestSampleData.GetData(listOfAccounts, out groupOfDisposals);
-      DisposalRequest _new = DisposalRequest.Create(listOfAccounts, groupOfDisposals);
+      DisposalRequest _new = DisposalRequest.Create(listOfAccounts, groupOfDisposals, (x, y) => RaisePropertyChanged(y));
       _new.AutoCalculation = true;
       this.Add(_new);
-      _new = DisposalRequest.Create(listOfAccounts, groupOfDisposals);
+      _new = DisposalRequest.Create(listOfAccounts, groupOfDisposals, (x, y) => RaisePropertyChanged(y));
       _new.AutoCalculation = true;
       this.Add(_new);
     }
@@ -64,7 +69,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         _fDspRqs.AddedKg += toDispose;
       else
       {
-        DisposalRequest _dr = DisposalRequest.Create(list, toDispose, customsProcedure);
+        DisposalRequest _dr = DisposalRequest.Create(list, toDispose, customsProcedure, (x, y) => RaisePropertyChanged(y));
         this.Add(_dr);
         _dr.AutoCalculation = true;
       }
@@ -84,6 +89,18 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     #endregion
 
     #region private
+
+    protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+    {
+      base.OnPropertyChanged(e);
+      RaisePropertyChanged(e);
+    }
+    private void RaisePropertyChanged(PropertyChangedEventArgs e)
+    {
+      PropertyChangedEventHandler _pc = PropertyChanged;
+      if (_pc != null)
+        _pc(this, e);
+    }
     private int m_DisposalRequestLibId;
     private class RequestsQueue : Queue<CraeteRequestBase>
     {
@@ -166,7 +183,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
             return;
           if (e.Error != null)
             Parent.OnProgressChanged(new ProgressChangedEventArgs(0, String.Format("Exception {0} at m_DataContext.GetListAsync", e.Error.Message)));
-          DisposalRequest _Dr = DisposalRequest.Create(e.Result<CustomsWarehouse>(), m_BatchGroup);
+          DisposalRequest _Dr = DisposalRequest.Create(e.Result<CustomsWarehouse>(), m_BatchGroup, (x, y) => Parent.RaisePropertyChanged(y));
           Parent.Add(_Dr);
           _Dr.AutoCalculation = true;
         }

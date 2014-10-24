@@ -49,7 +49,7 @@
                 <DataTemplate>
                     <sdk:DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False">
                         <sdk:DataGrid.Columns>
-                            <sdk:DataGridTextColumn Binding="{Binding SKU, FallbackValue=N/A}" Header="Material" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />                            
+                            <sdk:DataGridTextColumn Binding="{Binding SKU, FallbackValue=N/A}" Header="Material" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                             <sdk:DataGridTextColumn Binding="{Binding Batch, FallbackValue=N/A}" Header="Batch" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                             <sdk:DataGridTextColumn Binding="{Binding TotalStock, FallbackValue=N/A}" Header="Total stock" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
                             <sdk:DataGridTextColumn Binding="{Binding MassPerPackage, FallbackValue=N/A}"  Header="Qty in package" IsReadOnly="True" CellStyle="{StaticResource NonEditableCell}" />
@@ -85,11 +85,11 @@
             </sdk:DataGrid.RowDetailsTemplate>
         </sdk:DataGrid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2">
-            <Button x:Name="x_ButtonAddNew" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_AddNewButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonAddNew_Click"/>
-            <Button x:Name="x_ButtonEndOfOgl" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_EndOfOGLButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonEndOfOgl_Click"/>
-            <Button x:Name="x_ButtonEndofBatch" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_EndOfBatchButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonEndofBatch_Click"/>
-            <Button x:Name="x_ButtonSave" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_SaveButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonSave_Click" IsEnabled="{Binding ReadOnly, Converter={StaticResource BoolNotConverter}}"/>
-            <Button x:Name="x_ButtonCancel" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_CancelButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" ToolTipService.ToolTip="Cancel editing" Click="x_ButtonCancel_Click"/>
+            <Button x:Name="x_ButtonAddNew" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_AddNewButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonAddNew_Click" IsEnabled="{Binding ReadOnly, Converter={StaticResource BoolNotConverter}}"/>
+            <Button x:Name="x_ButtonEndOfOgl" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_EndOfOGLButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonEndOfOgl_Click" IsEnabled="{Binding ReadOnly, Converter={StaticResource BoolNotConverter}}"/>
+            <Button x:Name="x_ButtonEndofBatch" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_EndOfBatchButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonEndofBatch_Click" IsEnabled="{Binding ReadOnly, Converter={StaticResource BoolNotConverter}}" />
+            <Button x:Name="x_ButtonSave" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_SaveButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" Click="x_ButtonSave_Click" IsEnabled="{Binding Modified}"/>
+            <Button x:Name="x_ButtonCancel" Content="{Binding Path=CASSmartFactoryDisposalRequest.CAS_CancelButton, Source={StaticResource LocalizedStrings }}" Style="{StaticResource ButtonStyle}" ToolTipService.ToolTip="Cancel editing" Click="x_ButtonCancel_Click" IsEnabled="{Binding ReadOnly, Converter={StaticResource BoolNotConverter}}"/>
         </StackPanel>
         <sdk:Label x:Name="x_labelLog" Margin="5" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="3" Content="{Binding Log, TargetNullValue=Null}" Style="{StaticResource LabelStyle}"/>
     </Grid>

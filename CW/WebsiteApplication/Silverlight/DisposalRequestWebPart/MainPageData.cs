@@ -32,7 +32,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
   {
 
     #region public properties
-
     /// <summary>
     /// Gets or sets the header label.
     /// </summary>
@@ -49,7 +48,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       {
         RaiseHandler<string>(value, ref b_HeaderLabel, "HeaderLabel", this);
       }
-    } 
+    }
     /// <summary>
     /// Gets or sets the log.
     /// </summary>
@@ -83,8 +82,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       {
         RaiseHandler<bool>(value, ref b_ReadOnly, "ReadOnly", this);
       }
-    } 
-
+    }
     /// <summary>
     /// Gets or sets the request collection.
     /// </summary>
@@ -99,16 +97,21 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       }
       set
       {
-        if (RaiseHandler<PagedCollectionView>(value, ref b_RequestCollection, "RequestCollection", this))
-          foreach (DisposalRequest _request in value.SourceCollection)
-          {
-            if (!_request.ReadOnly)
-              continue;
-            this.ReadOnly = true;
-            break;
-          }
+        RaiseHandler<PagedCollectionView>(value, ref b_RequestCollection, "RequestCollection", this);
       }
-    } 
+    }
+    public bool Modified
+    {
+      get
+      {
+        return b_Modified;
+      }
+      set
+      {
+        RaiseHandler<bool>(value, ref b_Modified, "Modified", this);
+      }
+    }
+
     #endregion
 
     #region IDisposable Members
@@ -169,7 +172,8 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private PagedCollectionView b_RequestCollection = null;
     private string b_HeaderLabel = "N/A";
     private string b_Log = "Log before starting";
-    private bool b_ReadOnly = false;
+    private bool b_ReadOnly = true;
+    private bool b_Modified = false;
     #endregion
 
     #region vars
@@ -188,19 +192,18 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private MainPageData()
     {
       PagedCollectionView _npc = new PagedCollectionView(new DisposalRequestObservable());
-      _npc.PropertyChanged += RequestCollection_PropertyChanged;
-      _npc.CollectionChanged += RequestCollection_CollectionChanged;
       RequestCollection = _npc;
       this.DisposalRequestObservable.ProgressChanged += DisposalRequestObservable_ProgressChanged;
       Log = "MainPageData created.";
     }
-
     #endregion
 
     private void GetDemoData()
     {
       this.DisposalRequestObservable.GetDemoData();
       m_DemoDataLoaded = true;
+      Log = "Demo data loaded";
+      OnLoadedData();
     }
     private void GetRealData(string url, int? selectedID)
     {
@@ -209,7 +212,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       m_Context.CreateContextAsyncCompletedEvent += m_Context_CreateContextAsyncCompletedEvent;
       Log = String.Format("GetDataAsync: CreateContextAsync for URL={0}.", m_URL);
       m_Context.CreateContextAsync(m_URL);
-
     }
     private void m_Context_SubmitChangesCompleted(object sender, AsyncCompletedEventArgs e)
     {
@@ -237,10 +239,16 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     private void RequestCollection_CollectionChanged(object sender, EventArgs e)
     {
-      UpdateHeader();
+      OnModified();
     }
     private void RequestCollection_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
+      OnModified();
+    }
+    private void OnModified()
+    {
+      m_Edited = true;
+      Modified = !ReadOnly;
       UpdateHeader();
     }
     private void DisposalRequestObservable_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -284,14 +292,30 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       Log = "GetListCompleted .GetDataContext  " + CommonDefinition.CustomsWarehouseDisposalTitle;
       List<CustomsWarehouseDisposal> _list = e.Result<CustomsWarehouseDisposal>();
       this.DisposalRequestObservable.GetDataContext(m_DisposalRequestLibId.Value, _list, m_Context);
-      m_Edited = false;
       if (this.RequestCollection.CanSort == true)
       {
         // By default, sort by Batch.
         this.RequestCollection.SortDescriptions.Add(new SortDescription("Batch", ListSortDirection.Ascending));
       }
+      m_Edited = false;
       UpdateHeader();
+      OnLoadedData();
       Log = "GetData RunWorker Completed";
+    }
+    private void OnLoadedData()
+    {
+      bool _readOnly = false;
+      foreach (DisposalRequest _request in DisposalRequestObservable)
+      {
+        if (!_request.ReadOnly)
+          continue;
+        _readOnly = true;
+        break;
+      }
+      ReadOnly = _readOnly;
+      UpdateHeader();
+      DisposalRequestObservable.PropertyChanged += RequestCollection_PropertyChanged;
+      DisposalRequestObservable.CollectionChanged += RequestCollection_CollectionChanged;
     }
     private DisposalRequestObservable DisposalRequestObservable { get { return (DisposalRequestObservable)this.RequestCollection.SourceCollection; } }
     private void CheckDisposed()
