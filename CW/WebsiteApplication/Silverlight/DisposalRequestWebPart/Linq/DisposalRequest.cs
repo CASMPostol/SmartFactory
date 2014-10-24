@@ -531,6 +531,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private void UpdateOnInit(IEnumerable<DisposalRequestDetails> items)
     {
       bool _ac = AutoCalculation;
+      AutoCalculation = false;
       Items = new ObservableCollection<DisposalRequestDetails>(items);
       Recalculate();
       TotalStock = RemainingOnStock + QuantityyToClearSumRounded;
@@ -539,6 +540,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private void UpdateOnChange()
     {
       bool _ac = AutoCalculation;
+      AutoCalculation = false;
       Recalculate();
       RemainingOnStock = TotalStock - QuantityyToClearSumRounded;
       AutoCalculation = _ac;

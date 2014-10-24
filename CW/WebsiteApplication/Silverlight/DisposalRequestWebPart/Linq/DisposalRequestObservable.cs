@@ -53,11 +53,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       IGrouping<string, CustomsWarehouseDisposal> groupOfDisposals = null;
       SampleData.RequestSampleData.GetData(listOfAccounts, out groupOfDisposals);
       DisposalRequest _new = DisposalRequest.Create(listOfAccounts, groupOfDisposals, (x, y) => RaisePropertyChanged(y));
-      _new.AutoCalculation = true;
       this.Add(_new);
-      _new = DisposalRequest.Create(listOfAccounts, groupOfDisposals, (x, y) => RaisePropertyChanged(y));
-      _new.AutoCalculation = true;
+       _new.AutoCalculation = true;
+     _new = DisposalRequest.Create(listOfAccounts, groupOfDisposals, (x, y) => RaisePropertyChanged(y));
       this.Add(_new);
+      _new.AutoCalculation = true;
     }
     internal void CreateDisposalRequest(List<CustomsWarehouse> list, double toDispose, string customsProcedure)
     {
