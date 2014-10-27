@@ -86,7 +86,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Test
       _newItem.EndOfOgl();
       AssertButtonsCanExecute(_newItem);
       AssertConstantValues(_newItem);
-      AssertValues(_newItem, 12140.0, 123, 22140.0, 22140.0, 12960.0);
+      AssertValues(_newItem, 6020.0, 89, 16020.0, 16020.0, 19080.0);
     }
     [TestMethod]
     public void CreateDisposalRequestInstanceUnavailable()
