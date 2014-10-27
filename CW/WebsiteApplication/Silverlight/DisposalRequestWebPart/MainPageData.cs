@@ -93,7 +93,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     {
       get
       {
-        return b_ToBeSaved && b_ReadOnly;
+        return b_ToBeSaved && ! b_ReadOnly;
       }
       set
       {
