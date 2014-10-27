@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.Common.ComponentModel;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq;
 using Microsoft.SharePoint.Client;
@@ -20,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
 using System.Windows.Data;
 
 namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
@@ -28,7 +28,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
   /// <summary>
   /// public class MainPageData
   /// </summary>
-  public sealed class MainPageData : CAS.Common.ComponentModel.PropertyChangedBase, IDisposable
+  public sealed class MainPageData : PropertyChangedBase, IDisposable
   {
 
     #region public properties
@@ -100,18 +100,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
         RaiseHandler<PagedCollectionView>(value, ref b_RequestCollection, "RequestCollection", this);
       }
     }
-    public bool Modified
-    {
-      get
-      {
-        return b_Modified;
-      }
-      set
-      {
-        RaiseHandler<bool>(value, ref b_Modified, "Modified", this);
-      }
-    }
-
     #endregion
 
     #region IDisposable Members
@@ -173,7 +161,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private string b_HeaderLabel = "N/A";
     private string b_Log = "Log before starting";
     private bool b_ReadOnly = true;
-    private bool b_Modified = false;
     #endregion
 
     #region vars

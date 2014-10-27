@@ -69,9 +69,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
         _fDspRqs.AddedKg += toDispose;
       else
       {
-        DisposalRequest _dr = DisposalRequest.Create(list, toDispose, customsProcedure, (x, y) => RaisePropertyChanged(y));
+        DisposalRequest _dr = DisposalRequest.Create(list, customsProcedure, (x, y) => RaisePropertyChanged(y));
         this.Add(_dr);
         _dr.AutoCalculation = true;
+        _dr.AddedKg += toDispose;
       }
     }
     internal event ProgressChangedEventHandler ProgressChanged;  //TODO report progress

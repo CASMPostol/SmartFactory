@@ -371,31 +371,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     internal static DisposalRequest Create(List<CustomsWarehouse> listOfAccounts, IGrouping<string, CustomsWarehouseDisposal> groupOfDisposals, Action<DisposalRequest, PropertyChangedEventArgs> notify)
     {
       CustomsWarehouseDisposal _firstDisposal = groupOfDisposals.First<CustomsWarehouseDisposal>();
-      CustomsWarehouse _firstAccount = _firstDisposal.CWL_CWDisposal2CustomsWarehouseID;
-      DisposalRequest _newRequest = CreateDisposalRequest(_firstAccount, _firstDisposal.SKUDescription, _firstDisposal.CustomsProcedure, notify);
-      listOfAccounts.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
-      List<DisposalRequestDetails> _newCollection = new List<DisposalRequestDetails>();
-      int _sequenceNumber = 0;
-      List<CustomsWarehouse> _copylistOfAccounts = new List<CustomsWarehouse>(listOfAccounts);
-      foreach (CustomsWarehouseDisposal _cwdx in groupOfDisposals)
-      {
-        DisposalRequestDetails _newDisposalRequestDetails = new DisposalRequestDetails(_newRequest, _cwdx, ref _sequenceNumber);
-        _copylistOfAccounts.Remove(_cwdx.CWL_CWDisposal2CustomsWarehouseID);
-        _newCollection.Add(_newDisposalRequestDetails);
-        _newRequest.GetDataContext(_newDisposalRequestDetails);
-        if (_cwdx.CustomsStatus.GetValueOrDefault(CustomsStatus.NotStarted) != CustomsStatus.NotStarted)
-          _newRequest.ReadOnly = true;
-      }
-      foreach (CustomsWarehouse _cwx in _copylistOfAccounts)
-      {
-        if (_cwx.TobaccoNotAllocated == 0)
-          continue;
-        DisposalRequestDetails _newDisposalRequestDetails = new DisposalRequestDetails(_newRequest, _cwx, ref _sequenceNumber);
-        _newCollection.Add(_newDisposalRequestDetails);
-      }
-      _newRequest.RemainingOnStock = _newCollection.Sum(x => x.RemainingOnStock);
-      _newRequest.UpdateOnInit(_newCollection);
-      return _newRequest;
+      return Create(listOfAccounts, groupOfDisposals, _firstDisposal.SKUDescription, _firstDisposal.CustomsProcedure, notify);
     }
     /// <summary>
     /// Creates an instance of <see cref="DisposalRequest" /> using the collection of <see cref="CustomsWarehouse" /> when there are no disposals.
@@ -405,22 +381,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     /// <param name="customsProcedure">The customs procedure.</param>
     /// <param name="notify">The notify.</param>
     /// <returns></returns>
-    internal static DisposalRequest Create(List<CustomsWarehouse> listOfAccounts, double toDispose, string customsProcedure, Action<DisposalRequest, PropertyChangedEventArgs> notify)
+    internal static DisposalRequest Create(List<CustomsWarehouse> listOfAccounts, string customsProcedure, Action<DisposalRequest, PropertyChangedEventArgs> notify)
     {
-      CustomsWarehouse _fcw = listOfAccounts.First<CustomsWarehouse>();
-      DisposalRequest _ret = DisposalRequest.CreateDisposalRequest(_fcw, "N/A", customsProcedure, notify);
-      listOfAccounts.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
-      ObservableCollection<DisposalRequestDetails> _newCollection = new ObservableCollection<DisposalRequestDetails>();
-      int _sequenceNumber = 0;
-      foreach (CustomsWarehouse _cwx in listOfAccounts)
-      {
-        DisposalRequestDetails _newDisposalRequestDetails = new DisposalRequestDetails(_ret, _cwx, ref _sequenceNumber);
-        _newCollection.Add(_newDisposalRequestDetails);
-      }
-      _ret.TotalStock = listOfAccounts.Sum(x => x.TobaccoNotAllocated.Value);
-      _ret.AddedKg = toDispose;
-      _ret.UpdateOnChange();
-      return _ret;
+      return Create(listOfAccounts, null, "N/A", customsProcedure, notify);
     }
     /// <summary>
     /// Recalculates the disposals before committing changes to the website.
@@ -594,6 +557,36 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private DisposalRequest()
     {
       AutoCalculation = false;
+    }
+    private static DisposalRequest Create
+      (List<CustomsWarehouse> listOfAccounts, IGrouping<string, CustomsWarehouseDisposal> disposals, string description, string procedure, Action<DisposalRequest, PropertyChangedEventArgs> notify)
+    {
+      CustomsWarehouse _firstAccount = listOfAccounts.First<CustomsWarehouse>();
+      DisposalRequest _newRequest = CreateDisposalRequest(_firstAccount, description, procedure, notify);
+      listOfAccounts.Sort(new Comparison<CustomsWarehouse>(CustomsWarehouse.CompareCustomsWarehouse));
+      List<DisposalRequestDetails> _newCollection = new List<DisposalRequestDetails>();
+      int _sequenceNumber = 0;
+      List<CustomsWarehouse> _copylistOfAccounts = new List<CustomsWarehouse>(listOfAccounts);
+      if (disposals != null)
+        foreach (CustomsWarehouseDisposal _cwdx in disposals)
+        {
+          DisposalRequestDetails _newDisposalRequestDetails = new DisposalRequestDetails(_newRequest, _cwdx, ref _sequenceNumber);
+          _copylistOfAccounts.Remove(_cwdx.CWL_CWDisposal2CustomsWarehouseID);
+          _newCollection.Add(_newDisposalRequestDetails);
+          _newRequest.GetDataContext(_newDisposalRequestDetails);
+          if (_cwdx.CustomsStatus.GetValueOrDefault(CustomsStatus.NotStarted) != CustomsStatus.NotStarted)
+            _newRequest.ReadOnly = true;
+        }
+      foreach (CustomsWarehouse _cwx in _copylistOfAccounts)
+      {
+        if (_cwx.TobaccoNotAllocated == 0)
+          continue;
+        DisposalRequestDetails _newDisposalRequestDetails = new DisposalRequestDetails(_newRequest, _cwx, ref _sequenceNumber);
+        _newCollection.Add(_newDisposalRequestDetails);
+      }
+      _newRequest.RemainingOnStock = _newCollection.Sum(x => x.RemainingOnStock);
+      _newRequest.UpdateOnInit(_newCollection);
+      return _newRequest;
     }
     #endregion
 
