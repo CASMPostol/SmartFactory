@@ -84,6 +84,23 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       }
     }
     /// <summary>
+    /// Gets or sets a value indicating whether [to be saved].
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if [to be saved]; otherwise, <c>false</c>.
+    /// </value>
+    public bool ToBeSaved
+    {
+      get
+      {
+        return b_ToBeSaved && b_ReadOnly;
+      }
+      set
+      {
+        RaiseHandler<bool>(value, ref b_ToBeSaved, "ToBeSaved", this);
+      }
+    }
+    /// <summary>
     /// Gets or sets the request collection.
     /// </summary>
     /// <value>
@@ -137,19 +154,24 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     internal void SubmitChanges()
     {
       CheckDisposed();
-      if (m_DemoDataLoaded)
-        return;
       try
       {
+        if (m_DemoDataLoaded)
+          return;
         this.DisposalRequestObservable.RecalculateDisposals(m_DisposalRequestLibId.Value, m_Context);
         m_Context.SubmitChangesCompleted += m_Context_SubmitChangesCompleted;
         m_Context.SubmitChangesAsyn();
-        m_Edited = false;
         UpdateHeader();
+        Modified = false;
       }
       catch (Exception _ex)
       {
         ExceptionHandling(_ex);
+      }
+      finally
+      {
+        UpdateHeader();
+        Modified = false;
       }
     }
     #endregion
@@ -161,13 +183,13 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private string b_HeaderLabel = "N/A";
     private string b_Log = "Log before starting";
     private bool b_ReadOnly = true;
+    private bool b_ToBeSaved;
     #endregion
 
     #region vars
     private bool m_Disposed = false;
     private string m_URL = String.Empty;
     private int? m_DisposalRequestLibId = new Nullable<int>();
-    private bool m_Edited = false;
     private DataContextAsync m_Context = new DataContextAsync();
     private bool m_DemoDataLoaded = false;
     #endregion
@@ -185,6 +207,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     #endregion
 
+    protected override void OnModified()
+    {
+      ToBeSaved = true;
+    }
     private void GetDemoData()
     {
       this.DisposalRequestObservable.GetDemoData();
@@ -214,10 +240,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       try
       {
         int items = RequestCollection == null ? -1 : RequestCollection.TotalItemCount;
-        string _pattern = "Disposal request {0} content: {1} items; {2}";
-        string _star = m_Edited ? "*" : " ";
+        string _pattern = "Disposal request {0} content: {1} items;";
         string _rid = m_DisposalRequestLibId.HasValue ? m_DisposalRequestLibId.ToString() : "Not connected";
-        this.HeaderLabel = String.Format(_pattern, _rid, items, _star);
+        this.HeaderLabel = String.Format(_pattern, _rid, items);
       }
       catch (Exception ex)
       {
@@ -226,17 +251,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     }
     private void RequestCollection_CollectionChanged(object sender, EventArgs e)
     {
-      OnModified();
+      Modified = true;
     }
     private void RequestCollection_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-      OnModified();
-    }
-    private void OnModified()
-    {
-      m_Edited = true;
-      Modified = !ReadOnly;
-      UpdateHeader();
+      Modified = true;
     }
     private void DisposalRequestObservable_ProgressChanged(object sender, ProgressChangedEventArgs e)
     {
@@ -280,12 +299,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       List<CustomsWarehouseDisposal> _list = e.Result<CustomsWarehouseDisposal>();
       this.DisposalRequestObservable.GetDataContext(m_DisposalRequestLibId.Value, _list, m_Context);
       if (this.RequestCollection.CanSort == true)
-      {
-        // By default, sort by Batch.
-        this.RequestCollection.SortDescriptions.Add(new SortDescription("Batch", ListSortDirection.Ascending));
-      }
-      m_Edited = false;
-      UpdateHeader();
+        this.RequestCollection.SortDescriptions.Add(new SortDescription("Batch", ListSortDirection.Ascending)); // By default, sort by Batch.
       OnDataLoaded();
       Log = "GetData RunWorker Completed";
     }
@@ -301,6 +315,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       }
       ReadOnly = _readOnly;
       UpdateHeader();
+      Modified = false;
       DisposalRequestObservable.PropertyChanged += RequestCollection_PropertyChanged;
       DisposalRequestObservable.CollectionChanged += RequestCollection_CollectionChanged;
     }
