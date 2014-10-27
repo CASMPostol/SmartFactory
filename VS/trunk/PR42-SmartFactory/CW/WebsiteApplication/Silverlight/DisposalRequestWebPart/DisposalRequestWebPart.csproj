@@ -91,7 +91,6 @@
     <Compile Include="AddNew.xaml.cs">
       <DependentUpon>AddNew.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BoolNotConverter.cs" />
     <Compile Include="CASSmartFactoryDisposalRequest.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -135,7 +134,6 @@
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
     <Compile Include="SampleData\RequestSampleData.cs" />
-    <Compile Include="String2DoubleConverter.cs" />
     <None Include="cas.snk" />
     <Compile Include="CommonDefinition.tt.cs" />
     <Compile Include="Data\AssociationAttribute.cs" />
