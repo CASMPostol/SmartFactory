@@ -40,11 +40,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     /// <param name="disposalRequestLibId">The disposal request library identifier.</param>
     /// <param name="list">The list.</param>
     /// <param name="context">The context.</param>
-    internal void GetDataContext(int disposalRequestLibId, List<CustomsWarehouseDisposal> list, DataContextAsync context)
+    internal void GetDataContext(int disposalRequestLibId, List<CustomsWarehouseDisposal> list, DataContextAsync context, Action dataLoaded)
     {
       m_DisposalRequestLibId = disposalRequestLibId;
       IEnumerable<IGrouping<string, CustomsWarehouseDisposal>> _requests = list.GroupBy<CustomsWarehouseDisposal, string>(x => x.CWL_CWDisposal2CustomsWarehouseID.Batch);
-      RequestsQueue _Queue = new RequestsQueue(this, context);
+      RequestsQueue _Queue = new RequestsQueue(this, context, dataLoaded);
       _Queue.DoAsync(_requests);
     }
     internal void GetDemoData()
@@ -107,10 +107,11 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     {
 
       #region internal
-      internal RequestsQueue(DisposalRequestObservable parent, DataContextAsync context)
+      internal RequestsQueue(DisposalRequestObservable parent, DataContextAsync context, Action dataLoaded)
       {
         m_Parent = parent;
         m_DataContext = context;
+        m_DataLoaded = dataLoaded;
       }
       internal void DoAsync(IEnumerable<IGrouping<string, CustomsWarehouseDisposal>> requests)
       {
@@ -145,7 +146,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       private void DoAsync()
       {
         if (this.Count == 0)
+        {
+          m_DataLoaded();
           return;
+        }
         CraeteRequestBase _rqs = this.Dequeue();
         _rqs.DoAsync();
       }
@@ -156,6 +160,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       }
       private DataContextAsync m_DataContext = null;
       private DisposalRequestObservable m_Parent;
+      private Action m_DataLoaded = null;
       #endregion
 
     }

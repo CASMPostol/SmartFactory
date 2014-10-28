@@ -14,6 +14,7 @@
 //</summary>
 
 using CAS.Common.ComponentModel;
+using CAS.Common.ViewModel;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data;
 using CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq;
 using Microsoft.SharePoint.Client;
@@ -84,22 +85,23 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       }
     }
     /// <summary>
-    /// Gets or sets a value indicating whether [to be saved].
+    /// Gets or sets the save command.
     /// </summary>
     /// <value>
-    ///   <c>true</c> if [to be saved]; otherwise, <c>false</c>.
+    /// The save command.
     /// </value>
-    public bool ToBeSaved
+    public SynchronousCommandBase<Object> SaveCommand
     {
       get
       {
-        return b_ToBeSaved && ! b_ReadOnly;
+        return b_SaveCommand;
       }
       set
       {
-        RaiseHandler<bool>(value, ref b_ToBeSaved, "ToBeSaved", this);
+        RaiseHandler<SynchronousCommandBase<Object>>(value, ref b_SaveCommand, "SaveCommand", this);
       }
     }
+
     /// <summary>
     /// Gets or sets the request collection.
     /// </summary>
@@ -183,7 +185,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     private string b_HeaderLabel = "N/A";
     private string b_Log = "Log before starting";
     private bool b_ReadOnly = true;
-    private bool b_ToBeSaved;
+    private SynchronousCommandBase<Object> b_SaveCommand = null;
     #endregion
 
     #region vars
@@ -200,6 +202,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
     /// </summary>
     private MainPageData()
     {
+      b_SaveCommand = new CAS.Common.ViewModel.SynchronousCommandBase<Object>(x => SubmitChanges(), x => Modified && !ReadOnly);
       PagedCollectionView _npc = new PagedCollectionView(new DisposalRequestObservable());
       RequestCollection = _npc;
       this.DisposalRequestObservable.ProgressChanged += DisposalRequestObservable_ProgressChanged;
@@ -209,7 +212,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
 
     protected override void OnModified()
     {
-      ToBeSaved = true;
+      SaveCommand.RaiseCanExecuteChanged();
     }
     private void GetDemoData()
     {
@@ -297,10 +300,9 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart
       }
       Log = "GetListCompleted .GetDataContext  " + CommonDefinition.CustomsWarehouseDisposalTitle;
       List<CustomsWarehouseDisposal> _list = e.Result<CustomsWarehouseDisposal>();
-      this.DisposalRequestObservable.GetDataContext(m_DisposalRequestLibId.Value, _list, m_Context);
+      this.DisposalRequestObservable.GetDataContext(m_DisposalRequestLibId.Value, _list, m_Context, () => OnDataLoaded());
       if (this.RequestCollection.CanSort == true)
         this.RequestCollection.SortDescriptions.Add(new SortDescription("Batch", ListSortDirection.Ascending)); // By default, sort by Batch.
-      OnDataLoaded();
       Log = "GetData RunWorker Completed";
     }
     private void OnDataLoaded()
