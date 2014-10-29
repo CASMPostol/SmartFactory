@@ -17,6 +17,7 @@ CREATE TABLE [dbo].[ActivityLog] (
 	[UIVersionString]		 NVARCHAR(max)	 NULL,	
 	CONSTRAINT [PK_ActivityLog_ID] PRIMARY KEY CLUSTERED ([ID] ASC) 
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'JSOXLibrary')
   drop table  JSOXLibrary;
 CREATE TABLE [dbo].[JSOXLibrary] (
@@ -48,6 +49,7 @@ CREATE TABLE [dbo].[JSOXLibrary] (
 	[UIVersionString]		NVARCHAR(max)  NULL,	
     CONSTRAINT [PK_JSOXLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'BalanceBatch')
   drop table  BalanceBatch;
 CREATE TABLE [dbo].[BalanceBatch] (
@@ -93,6 +95,7 @@ CREATE TABLE [dbo].[BalanceBatch] (
     CONSTRAINT [PK_BalanceBatch_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_BalanceBatch_JSOXLibrary] FOREIGN KEY ([Balance2JSOXLibraryIndex]) REFERENCES [dbo].[JSOXLibrary] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SADDocumentLibrary')
   drop table  SADDocumentLibrary;
 CREATE TABLE [dbo].[SADDocumentLibrary] (
@@ -113,6 +116,7 @@ CREATE TABLE [dbo].[SADDocumentLibrary] (
 	[UIVersionString]			 NVARCHAR(max)	NULL,	
     CONSTRAINT [PK_SADDocumentLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SADDocument')
   drop table  SADDocument;
 CREATE TABLE [dbo].[SADDocument] (
@@ -138,6 +142,7 @@ CREATE TABLE [dbo].[SADDocument] (
     CONSTRAINT [PK_SADDocument_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADDocument_SADDocumentLibrary] FOREIGN KEY ([SADDocumenLibrarytIndex]) REFERENCES [dbo].[SADDocumentLibrary] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SADGood')
   drop table  SADGood;
 CREATE TABLE [dbo].[SADGood] (
@@ -162,6 +167,7 @@ CREATE TABLE [dbo].[SADGood] (
     CONSTRAINT [PK_SADGood_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADGood_SADDocument] FOREIGN KEY ([SADDocumentIndex]) REFERENCES [dbo].[SADDocument] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SADConsignment')
   drop table  SADConsignment;
 CREATE TABLE [dbo].[SADConsignment] (
@@ -180,6 +186,7 @@ CREATE TABLE [dbo].[SADConsignment] (
 	[UIVersionString]	 NVARCHAR(max)	NULL,
     CONSTRAINT [PK_SADConsignment_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Clearence')
   drop table  Clearence;
 CREATE TABLE [dbo].[Clearence] (
@@ -204,6 +211,7 @@ CREATE TABLE [dbo].[Clearence] (
     CONSTRAINT [FK_Clearence_SADConsignment] FOREIGN KEY ([SADConsignmentLibraryIndex]) REFERENCES [dbo].[SADConsignment] ([ID]),
     CONSTRAINT [FK_Clearence_SADGood] FOREIGN KEY ([Clearence2SadGoodID]) REFERENCES [dbo].[SADGood] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Consent')
   drop table  Consent;
 CREATE TABLE [dbo].[Consent] (
@@ -225,6 +233,7 @@ CREATE TABLE [dbo].[Consent] (
 	[UIVersionString]	  NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_Consent_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'PCNCode')
   drop table  PCNCode;
 CREATE TABLE [dbo].[PCNCode] (
@@ -242,6 +251,7 @@ CREATE TABLE [dbo].[PCNCode] (
 	[UIVersionString]	NVARCHAR(max)  NULL,
     CONSTRAINT [PK_PCNCode_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'IPRLibrary')
   drop table  IPRLibrary;
 CREATE TABLE [dbo].[IPRLibrary] (
@@ -260,6 +270,7 @@ CREATE TABLE [dbo].[IPRLibrary] (
 	[UIVersionString]	 NVARCHAR(max)	NULL,	
     CONSTRAINT [PK_IPRLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'IPR')
   drop table  IPR;
 CREATE TABLE [dbo].[IPR] (
@@ -314,6 +325,7 @@ CREATE TABLE [dbo].[IPR] (
     CONSTRAINT [FK_IPR_JSOXLibrary] FOREIGN KEY ([IPR2JSOXIndex]) REFERENCES [dbo].[JSOXLibrary] ([ID]),
     CONSTRAINT [FK_IPR_PCNCode] FOREIGN KEY ([IPR2PCNPCN]) REFERENCES [dbo].[PCNCode] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'BalanceIPR')
   drop table  BalanceIPR;
 CREATE TABLE [dbo].[BalanceIPR] (
@@ -362,6 +374,7 @@ CREATE TABLE [dbo].[BalanceIPR] (
     CONSTRAINT [FK_BalanceIPR_IPR] FOREIGN KEY ([IPRIndex]) REFERENCES [dbo].[IPR] ([ID]),
     CONSTRAINT [FK_BalanceIPR_JSOXLibrary] FOREIGN KEY ([BalanceIPR2JSOXIndex]) REFERENCES [dbo].[JSOXLibrary] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'BatchLibrary')
   drop table  BatchLibrary;
 CREATE TABLE [dbo].[BatchLibrary] (
@@ -381,6 +394,7 @@ CREATE TABLE [dbo].[BatchLibrary] (
 	[UIVersionString]	   NVARCHAR(max)  NULL,	
     CONSTRAINT [PK_BatchLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SPFormat')
   drop table  SPFormat;
 CREATE TABLE [dbo].[SPFormat] (
@@ -397,6 +411,7 @@ CREATE TABLE [dbo].[SPFormat] (
 	[UIVersionString] NVARCHAR(max)	 NULL,
     CONSTRAINT [PK_SPFormat_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SKULibrary')
   drop table  SKULibrary;
 CREATE TABLE [dbo].[SKULibrary] (
@@ -414,6 +429,7 @@ CREATE TABLE [dbo].[SKULibrary] (
 	[UIVersionString]	 NVARCHAR(max)	NULL,	
     CONSTRAINT [PK_SKULibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SKU')
   drop table  SKU;
 CREATE TABLE [dbo].[SKU] (
@@ -445,6 +461,7 @@ CREATE TABLE [dbo].[SKU] (
     CONSTRAINT [FK_SKU_SKULibrary] FOREIGN KEY ([SKULibraryIndex]) REFERENCES [dbo].[SKULibrary] ([ID]),
     CONSTRAINT [FK_SKU_SPFormat] FOREIGN KEY ([FormatIndex]) REFERENCES [dbo].[SPFormat] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Batch')
   drop table  Batch;
 CREATE TABLE [dbo].[Batch] (
@@ -496,6 +513,7 @@ CREATE TABLE [dbo].[Batch] (
     CONSTRAINT [FK_Batch_BatchLibrary] FOREIGN KEY ([BatchLibraryIndex]) REFERENCES [dbo].[BatchLibrary] ([ID]),
     CONSTRAINT [FK_Batch_SKU] FOREIGN KEY ([SKUIndex]) REFERENCES [dbo].[SKU] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'CustomsUnion')
   drop table  CustomsUnion;
 CREATE TABLE [dbo].[CustomsUnion] (
@@ -511,6 +529,7 @@ CREATE TABLE [dbo].[CustomsUnion] (
 	[UIVersionString]		NVARCHAR(max)  NULL,
     CONSTRAINT [PK_CustomsUnion_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'CutfillerCoefficient')
   drop table  CutfillerCoefficient;
 CREATE TABLE [dbo].[CutfillerCoefficient] (
@@ -528,6 +547,7 @@ CREATE TABLE [dbo].[CutfillerCoefficient] (
 	[UIVersionString]		 NVARCHAR(max)	NULL,
     CONSTRAINT [PK_CutfillerCoefficient_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'InvoiceLibrary')
   drop table  InvoiceLibrary;
 CREATE TABLE [dbo].[InvoiceLibrary] (
@@ -552,6 +572,7 @@ CREATE TABLE [dbo].[InvoiceLibrary] (
     CONSTRAINT [PK_InvoiceLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_InvoiceLibrary_Clearence] FOREIGN KEY ([ClearenceIndex]) REFERENCES [dbo].[Clearence] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'InvoiceContent')
   drop table  InvoiceContent;
 CREATE TABLE [dbo].[InvoiceContent] (
@@ -576,6 +597,7 @@ CREATE TABLE [dbo].[InvoiceContent] (
     CONSTRAINT [FK_InvoiceContent_Batch] FOREIGN KEY ([InvoiceContent2BatchIndex]) REFERENCES [dbo].[Batch] ([ID]),
     CONSTRAINT [FK_InvoiceContent_InvoiceLibrary] FOREIGN KEY ([InvoiceIndex]) REFERENCES [dbo].[InvoiceLibrary] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Material')
   drop table  Material;
 CREATE TABLE [dbo].[Material] (
@@ -607,6 +629,7 @@ CREATE TABLE [dbo].[Material] (
     CONSTRAINT [PK_Material_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Material_Batch] FOREIGN KEY ([Material2BatchIndex]) REFERENCES [dbo].[Batch] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'JSOXCustomsSummary')
   drop table  JSOXCustomsSummary;
 CREATE TABLE [dbo].[JSOXCustomsSummary] (
@@ -632,6 +655,7 @@ CREATE TABLE [dbo].[JSOXCustomsSummary] (
     CONSTRAINT [PK_JSOXCustomsSummary_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_JSOXCustomsSummary_JSOXLibrary] FOREIGN KEY ([JSOXCustomsSummary2JSOXIndex]) REFERENCES [dbo].[JSOXLibrary] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Disposal')
   drop table  Disposal;
 CREATE TABLE [dbo].[Disposal] (
@@ -678,6 +702,7 @@ CREATE TABLE [dbo].[Disposal] (
     CONSTRAINT [FK_Disposal_Material] FOREIGN KEY ([Disposal2MaterialIndex]) REFERENCES [dbo].[Material] ([ID]),
     CONSTRAINT [FK_Disposal_PCNCode] FOREIGN KEY ([Disposal2PCNID]) REFERENCES [dbo].[PCNCode] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Dust')
   drop table  Dust;
 CREATE TABLE [dbo].[Dust] (
@@ -693,6 +718,7 @@ CREATE TABLE [dbo].[Dust] (
 	[UIVersionString]	NVARCHAR(max)  NULL,
     CONSTRAINT [PK_Dust_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SADDuties')
   drop table  SADDuties;
 CREATE TABLE [dbo].[SADDuties] (
@@ -712,6 +738,7 @@ CREATE TABLE [dbo].[SADDuties] (
     CONSTRAINT [PK_SADDuties_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADDuties_SADGood] FOREIGN KEY ([SADDuties2SADGoodID]) REFERENCES [dbo].[SADGood] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SADPackage')
   drop table  SADPackage;
 CREATE TABLE [dbo].[SADPackage] (
@@ -731,6 +758,7 @@ CREATE TABLE [dbo].[SADPackage] (
     CONSTRAINT [PK_SADPackage_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADPackage_SADGood] FOREIGN KEY ([SADPackage2SADGoodID]) REFERENCES [dbo].[SADGood] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SADQuantity')
   drop table  SADQuantity;
 CREATE TABLE [dbo].[SADQuantity] (
@@ -751,6 +779,7 @@ CREATE TABLE [dbo].[SADQuantity] (
     CONSTRAINT [PK_SADQuantity_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADQuantity_SADGood] FOREIGN KEY ([SADQuantity2SADGoodID]) REFERENCES [dbo].[SADGood] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SADRequiredDocuments')
   drop table  SADRequiredDocuments;
 CREATE TABLE [dbo].[SADRequiredDocuments] (
@@ -770,6 +799,7 @@ CREATE TABLE [dbo].[SADRequiredDocuments] (
     CONSTRAINT [PK_SADRequiredDocuments_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_SADRequiredDocuments_SADGood] FOREIGN KEY ([SADRequiredDoc2SADGoodID]) REFERENCES [dbo].[SADGood] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Settings')
   drop table  Settings;
 CREATE TABLE [dbo].[Settings] (
@@ -785,6 +815,7 @@ CREATE TABLE [dbo].[Settings] (
 	[UIVersionString]	NVARCHAR(max)  NULL,
     CONSTRAINT [PK_Settings_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SHMenthol')
   drop table  SHMenthol;
 CREATE TABLE [dbo].[SHMenthol] (
@@ -800,6 +831,7 @@ CREATE TABLE [dbo].[SHMenthol] (
 	[UIVersionString]	NVARCHAR(max)  NULL,
     CONSTRAINT [PK_SHMenthol_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'StockLibrary')
   drop table  StockLibrary;
 CREATE TABLE [dbo].[StockLibrary] (
@@ -820,6 +852,7 @@ CREATE TABLE [dbo].[StockLibrary] (
     CONSTRAINT [PK_StockLibrary_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_StockLibrary_JSOXLibrary] FOREIGN KEY ([Stock2JSOXLibraryIndex]) REFERENCES [dbo].[JSOXLibrary] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'StockEntry')
   drop table  StockEntry;
 CREATE TABLE [dbo].[StockEntry] (
@@ -850,6 +883,7 @@ CREATE TABLE [dbo].[StockEntry] (
     CONSTRAINT [FK_StockEntry_Batch] FOREIGN KEY ([BatchIndex]) REFERENCES [dbo].[Batch] ([ID]),
     CONSTRAINT [FK_StockEntry_StockLibrary] FOREIGN KEY ([StockLibraryIndex]) REFERENCES [dbo].[StockLibrary] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Usage')
   drop table  Usage;
 CREATE TABLE [dbo].[Usage] (
@@ -869,6 +903,7 @@ CREATE TABLE [dbo].[Usage] (
     CONSTRAINT [PK_Usage_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Usage_SPFormat] FOREIGN KEY ([FormatIndex]) REFERENCES [dbo].[SPFormat] ([ID])
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Warehouse')
   drop table  Warehouse;
 CREATE TABLE [dbo].[Warehouse] (
@@ -886,6 +921,7 @@ CREATE TABLE [dbo].[Warehouse] (
 	[UIVersionString]	NVARCHAR(max)  NULL,
     CONSTRAINT [PK_Warehouse_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Waste')
   drop table  Waste;
 CREATE TABLE [dbo].[Waste] (
@@ -901,6 +937,7 @@ CREATE TABLE [dbo].[Waste] (
 	[UIVersionString]	NVARCHAR(max)  NULL,
     CONSTRAINT [PK_Waste_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'History')
   drop table  History;
 CREATE TABLE [dbo].[History] (
@@ -914,6 +951,7 @@ CREATE TABLE [dbo].[History] (
     [ModifiedBy]		NVARCHAR (255) NOT NULL,
     CONSTRAINT [PK_History_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'ArchivingLogs')
   drop table  ArchivingLogs;
 CREATE TABLE [dbo].[ArchivingLogs] (
@@ -924,6 +962,7 @@ CREATE TABLE [dbo].[ArchivingLogs] (
     [UserName] NVARCHAR (255) NOT NULL,
     CONSTRAINT [PK_ArchivingLogs_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'ArchivingOperationLogs')
   drop table  ArchivingOperationLogs;
 CREATE TABLE [dbo].[ArchivingOperationLogs] (
@@ -933,3 +972,78 @@ CREATE TABLE [dbo].[ArchivingOperationLogs] (
     [UserName]  NVARCHAR (255) NOT NULL,
     CONSTRAINT [PK_ArchivingOperationLogs_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+GO
+CREATE INDEX [OnlySQL] ON [dbo].[ActivityLog] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQL] ON [dbo].[JSOXLibrary] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQL] ON [dbo].[BalanceBatch] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQL] ON [dbo].[SADDocumentLibrary] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQL] ON [dbo].[SADDocument] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQL] ON [dbo].[SADGood] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQL] ON [dbo].[SADConsignment] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQL] ON [dbo].[Clearence] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[Consent] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[PCNCode] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[IPRLibrary] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[IPR] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[BalanceIPR] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[BatchLibrary] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[SPFormat] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[SKULibrary] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[SKU] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[Batch] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[CustomsUnion] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[CutfillerCoefficient] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[InvoiceLibrary] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[InvoiceContent] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[Material] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[JSOXCustomsSummary] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[Disposal] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[Dust] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[SADDuties] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[SADPackage] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[SADQuantity] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[SADRequiredDocuments] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[Settings] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[SHMenthol] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[StockLibrary] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[StockEntry] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[Usage] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[Warehouse] ([OnlySQL])
+GO
+CREATE INDEX [OnlySQ] ON [dbo].[Waste] ([OnlySQL])
+GO
