@@ -332,7 +332,7 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
       m_Account = account;
       AddedKg = 0;
       Batch = account.Batch;
-      CustomsProcedure = string.Empty;
+      CustomsProcedure = parent.CustomsProcedure;
       DeclaredNetMass = 0;
       DocumentNumber = account.DocumentNo;
       MassPerPackage = account.CW_MassPerPackage.Value;
@@ -436,5 +436,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Linq
     private CustomsWarehouse m_Account = null;
     private DisposalRequest m_Parent = null;
     #endregion
+
   }
 }
