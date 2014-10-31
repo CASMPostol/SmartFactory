@@ -13,14 +13,14 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet;
 using Microsoft.SharePoint;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CAS.SmartFactory.IPR.DocumentsFactory
 {
@@ -95,7 +95,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         DocumentDate = DateTime.Today.Date,
         DocumentNo = documentName,
         EndDate = list.SituationDate.GetValueOrDefault(),
-        BalanceBatch = GetBalanceBatchContent(list.BalanceBatch),
+        BalanceBatch = GetBalanceBatchContent(edc, edc.BalanceBatch.WhereItem<BalanceBatch>(x => x.Balance2JSOXLibraryIndex == list)),
         JSOX = GetJSOContent(factory),
         SituationAtDate = list.SituationDate.GetValueOrDefault(),
         StartDate = list.PreviousMonthDate.GetValueOrDefault(),
@@ -106,10 +106,10 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     private static List<BalanceCutfillerContent> CreateBalanceCutfillerContent(Entities edc, JSOXLibFactory factory)
     {
       List<BalanceCutfillerContent> _ret = new List<BalanceCutfillerContent>();
-      foreach (StockEntry _StockEntryX in from _sex in factory.JSOXList.Stock(edc).StockEntriesList() where _sex.IPRType.Value && _sex.ProductType == ProductType.Cutfiller orderby _sex.Batch select _sex)
+      foreach (StockEntry _StockEntryX in from _sex in factory.JSOXList.Stock(edc).StockEntriesList(edc) where _sex.IPRType.Value && _sex.ProductType == ProductType.Cutfiller orderby _sex.Batch select _sex)
       {
         double _cfc = _StockEntryX.Quantity.Value / _StockEntryX.BatchIndex.FGQuantity.Value;
-        foreach (Material _MaterialX in _StockEntryX.BatchIndex.Material.Where(x => x.ProductType.Value == ProductType.IPRTobacco))
+        foreach (Material _MaterialX in edc.Material.WhereItem<Material>(x => x.Material2BatchIndex == _StockEntryX.BatchIndex && x.ProductType.Value == ProductType.IPRTobacco))
         {
           BalanceCutfillerContent _bcc = new BalanceCutfillerContent()
           {
@@ -198,7 +198,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       }
       return _ret.ToArray<JSOXCustomsSummaryContent>();
     }
-    private static BalanceBatchContent[] GetBalanceBatchContent(IQueryable<BalanceBatch> collection)
+    private static BalanceBatchContent[] GetBalanceBatchContent(Entities edc, IEnumerable<BalanceBatch> collection)
     {
       List<BalanceBatchContent> _ret = new List<BalanceBatchContent>();
       if (collection != null)
@@ -206,7 +206,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         {
           BalanceBatchContent _new = new BalanceBatchContent()
             {
-              BalanceIPR = GetBalanceIPRContent(_bsx.BalanceIPR),
+              BalanceIPR = GetBalanceIPRContent(edc.BalanceIPR.WhereItem<BalanceIPR>(x => x.BalanceBatchIndex == _bsx)),
               TotalBalance = _bsx.Balance.Rount2DecimalOrDefault(),
               TotalDustCSNotStarted = _bsx.DustCSNotStarted.Rount2DecimalOrDefault(),
               TotalIPRBook = _bsx.IPRBook.Rount2DecimalOrDefault(),
@@ -222,7 +222,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         }
       return _ret.ToArray<BalanceBatchContent>();
     }
-    private static BalanceIPRContent[] GetBalanceIPRContent(IQueryable<BalanceIPR> collection)
+    private static BalanceIPRContent[] GetBalanceIPRContent(IEnumerable<BalanceIPR> collection)
     {
       List<BalanceIPRContent> _iprRows = new List<BalanceIPRContent>();
       foreach (BalanceIPR _item in collection)

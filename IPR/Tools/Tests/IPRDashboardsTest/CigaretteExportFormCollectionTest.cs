@@ -113,7 +113,6 @@ namespace IPRDashboardsTest
         SHMenthol = 1.3,
         SKU = "SKU1234567890",
         SKUIndex = _sku,
-        StockEntry = null,
         WasteCooeficiencyVersion = 1,
         Waste = 1.3,
         BatchWasteCooeficiency = 0.012345678,

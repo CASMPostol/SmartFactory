@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -54,7 +55,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
     /// Initializes a new instance of the <see cref="AccountData" /> class.
     /// </summary>
     /// <param name="edc">The <see cref="Entities" /> object.</param>
-    /// <param name="clearence">The clearence.</param>
+    /// <param name="clearence">The clearance.</param>
     /// <param name="messageType">Type of the customs message.</param>
     /// <param name="ProgressChange">Represents the method that will handle an event.
     /// </param>
@@ -63,13 +64,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
       base.GetAccountData(edc, clearence, messageType, ProgressChange);
       Value = clearence.Clearence2SadGoodID.TotalAmountInvoiced.GetValueOrDefault(0);
       UnitPrice = Value / NetMass;
-      AnalizeDutyAndVAT(clearence.Clearence2SadGoodID);
+      AnalizeDutyAndVAT(edc, clearence.Clearence2SadGoodID);
     }
     /// <summary>
     /// Calls the remote service.
     /// </summary>
-    /// <param name="requestUrl">The The URL of a Windows SharePoint Services "14" Web site.</param>
-    /// <param name="warnningList">The warnning list.</param>
+    /// <param name="requestUrl">The URL of a Windows SharePoint Services "14" Web site.</param>
+    /// <param name="warnningList">The warning list.</param>
     public override void CallService(string requestUrl, System.Collections.Generic.List<Customs.Warnning> warnningList)
     {
       //throw new NotImplementedException();
@@ -78,7 +79,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
 
     #region private
     private static int m_DaysPerMath = 30;
-    private void AnalizeDutyAndVAT(SADGood good)
+    private void AnalizeDutyAndVAT(Entities edc, SADGood good)
     {
       string _at = "Started";
       try
@@ -87,7 +88,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
         VAT = 0;
         DutyName = string.Empty;
         VATName = string.Empty;
-        foreach (SADDuties _duty in good.SADDuties)
+        foreach (SADDuties _duty in edc.SADDuties.WhereItem<SADDuties>(x => x.SADDuties2SADGoodID == good))
         {
           _at = "switch " + _duty.DutyType;
           switch (_duty.DutyType)
@@ -124,14 +125,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
       }
     }
     /// <summary>
-    /// Analizes the good.
+    /// Analyzes the good.
     /// </summary>
+    /// <param name="edc">The <see cref="Entities"/> instance.</param>
     /// <param name="good">The good.</param>
     /// <param name="_messageType">Type of the _message.</param>
-    protected internal override void AnalizeGood(SADGood good, MessageType _messageType)
+    protected internal override void AnalizeGood(Entities edc, SADGood good, MessageType _messageType)
     {
-      base.AnalizeGood(good, _messageType);
-      SADPackage _packagex = good.SADPackage.First();
+      base.AnalizeGood(edc, good, _messageType);
+      SADPackage _packagex = edc.SADPackage.WhereItem<SADPackage>(x => x.SADPackage2SADGoodID == good).First();
       if (_packagex.Package.ToUpper().Contains("CT"))
         CartonsMass = GrossMass - NetMass;
       else
@@ -150,10 +152,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
     /// <summary>
     /// Gets the net mass.
     /// </summary>
+    /// <param name="edc">The <see cref="Entities" /> instance</param>
     /// <param name="good">The good.</param>
-    protected internal override void GetNetMass(SADGood good)
+    protected internal override void GetNetMass(Entities edc, SADGood good)
     {
-      SADQuantity _quantity = good.SADQuantity.FirstOrDefault();
+      SADQuantity _quantity = edc.SADQuantity.WhereItem<SADQuantity>(x => x.SADQuantity2SADGoodID == good).FirstOrDefault();
       NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault(0);
     }
     /// <summary>
@@ -166,6 +169,5 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
       ValidToDate = customsDebtDate + TimeSpan.FromDays(consent.ConsentPeriod.Value * m_DaysPerMath);
     }
     #endregion
-
   }
 }

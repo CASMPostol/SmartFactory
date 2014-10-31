@@ -1,5 +1,20 @@
-﻿using System;
+﻿//<summary>
+//  Title   : StockEntry
+//  System  : Microsoft VisulaStudio 2013 / C#
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
 using CAS.SmartFactory.Customs;
+using System;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -9,12 +24,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Processes the entry.
     /// </summary>
-    /// <param name="edc">The edc.</param>
+    /// <param name="edc">The <see cref="Entities"/> item.</param>
     /// <param name="warnings">The warnings.</param>
-    public void ProcessEntry( Entities edc, ErrorsList warnings )
+    public void ProcessEntry(Entities edc, ErrorsList warnings)
     {
-      GetProductType( edc );
-      GetBatchLookup( edc, warnings );
+      GetProductType(edc);
+      GetBatchLookup(edc, warnings);
     }
     /// <summary>
     /// Gets the no matching batch warning message.
@@ -26,7 +41,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       get
       {
-        return String.Format( "Cannot find batch:{0}/sku: {1} for stock record {2} on the stock location:{3}.", this.Batch, this.SKU, this.Title, this.StorLoc );
+        return String.Format("Cannot find batch:{0}/sku: {1} for stock record {2} on the stock location:{3}.", this.Batch, this.SKU, this.Title, this.StorLoc);
       }
     }
     /// <summary>
@@ -39,23 +54,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       get
       {
-        return String.Format( "Cannot find open IPR account for tobacco batch:{0}/sku: {1} for stock record {2} on the stock location: {3}.", this.Batch, this.SKU, this.Title, this.StorLoc );
+        return String.Format("Cannot find open IPR account for tobacco batch:{0}/sku: {1} for stock record {2} on the stock location: {3}.", this.Batch, this.SKU, this.Title, this.StorLoc);
       }
     }
-    internal void GetInventory( Balance.StockDictionary balanceStock )
+    internal void GetInventory(Entities edc, Balance.StockDictionary balanceStock)
     {
-      switch ( ProductType.Value )
+      switch (ProductType.Value)
       {
         case Linq.ProductType.Cutfiller:
-          if ( IPRType.Value && BatchIndex != null )
-            BatchIndex.GetInventory( balanceStock, Balance.StockDictionary.StockValueKey.TobaccoInCutfillerWarehouse, this.Quantity.Value );
+          if (IPRType.Value && BatchIndex != null)
+            BatchIndex.GetInventory(edc, balanceStock, Balance.StockDictionary.StockValueKey.TobaccoInCutfillerWarehouse, this.Quantity.Value);
           break;
         case Linq.ProductType.Cigarette:
-          if ( IPRType.Value && BatchIndex != null )
-            BatchIndex.GetInventory( balanceStock, Balance.StockDictionary.StockValueKey.TobaccoInCigarettesProduction, this.Quantity.Value );
+          if (IPRType.Value && BatchIndex != null)
+            BatchIndex.GetInventory(edc, balanceStock, Balance.StockDictionary.StockValueKey.TobaccoInCigarettesProduction, this.Quantity.Value);
           break;
         case Linq.ProductType.IPRTobacco:
-          balanceStock.Sum( this.Quantity.Value, this.Batch, Balance.StockDictionary.StockValueKey.TobaccoInWarehouse );
+          balanceStock.Sum(this.Quantity.Value, this.Batch, Balance.StockDictionary.StockValueKey.TobaccoInWarehouse);
           break;
         case Linq.ProductType.Tobacco:
         case Linq.ProductType.Other:
@@ -65,22 +80,22 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
-    private void GetProductType( Entities edc )
+    private void GetProductType(Entities edc)
     {
-      Entities.ProductDescription product = edc.GetProductType( this.SKU, this.StorLoc );
+      Entities.ProductDescription product = edc.GetProductType(this.SKU, this.StorLoc);
       this.ProductType = product.productType;
       this.IPRType = product.IPRMaterial;
     }
-    private void GetBatchLookup( Entities edc, ErrorsList warnings )
+    private void GetBatchLookup(Entities edc, ErrorsList warnings)
     {
-      if ( ProductType != Linq.ProductType.Cigarette && ProductType != Linq.ProductType.Cutfiller )
+      if (ProductType != Linq.ProductType.Cigarette && ProductType != Linq.ProductType.Cutfiller)
         return;
-      if ( !IPRType.GetValueOrDefault( false ) )
+      if (!IPRType.GetValueOrDefault(false))
         return;
-      this.BatchIndex = Linq.Batch.FindStockToBatchLookup( edc, this.Batch );
-      if ( this.BatchIndex != null )
+      this.BatchIndex = Linq.Batch.FindStockToBatchLookup(edc, this.Batch);
+      if (this.BatchIndex != null)
         return;
-      warnings.Add( new Warnning( NoMachingBatchWarningMessage, false ) );
+      warnings.Add(new Warnning(NoMachingBatchWarningMessage, false));
     }
     #endregion
 

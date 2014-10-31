@@ -13,12 +13,12 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using CAS.SharePoint;
-using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -63,7 +63,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Batches the processing.
     /// </summary>
-    /// <param name="edc">The edc.</param>
+    /// <param name="edc">The <see cref="Entities"/> instance.</param>
     /// <param name="contentInfo">The content info.</param>
     /// <param name="parent">The parent.</param>
     /// <param name="progressChanged">The progress changed.</param>
@@ -84,13 +84,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return String.Format(_msg, this.Title);
       }
     }
-    internal void GetInventory(StockDictionary balanceStock, StockDictionary.StockValueKey key, double quantityOnStock)
+    internal void GetInventory(Entities edc, StockDictionary balanceStock, StockDictionary.StockValueKey key, double quantityOnStock)
     {
       switch (this.BatchStatus.Value)
       {
         case Linq.BatchStatus.Progress:
           double _portion = quantityOnStock / this.FGQuantity.Value;
-          foreach (Material _mtx in Material)
+          foreach (Material _mtx in edc.Material.WhereItem<Material>(x => x.Material2BatchIndex == this))
             _mtx.GetInventory(balanceStock, key, _portion);
           break;
         case Linq.BatchStatus.Intermediate:
@@ -98,12 +98,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           break;
       }
     }
-    internal void CheckQuantity(List<string> _warnings, StockLib lib)
+    internal void CheckQuantity(Entities edc, List<string> _warnings, StockLib lib)
     {
       if (this.ProductType.Value != Linq.ProductType.Cigarette)
         return;
       decimal _onStock = 0;
-      foreach (StockEntry _stock in this.StockEntry)
+      foreach (StockEntry _stock in edc.StockEntry.WhereItem<StockEntry>(x => x.BatchIndex == this))
       {
         if (_stock.StockLibraryIndex != lib)
           continue;
@@ -114,6 +114,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         string _msg = string.Format(m_noMachingQuantityWarningMessage, Convert.ToDecimal(this.FGQuantityAvailable), _onStock, this.ProductType, this.Batch0, this.SKU);
         _warnings.Add(_msg);
       }
+    }
+    /// <summary>
+    /// Reverse lookup to <see cref="Material"/>.
+    /// </summary>
+    /// <param name="entities">The entities.</param>
+    /// <returns></returns>
+    public IEnumerable<Material> Material(Entities entities)
+    {
+      return entities.Material.WhereItem<Material>(x => x.Material2BatchIndex == this);
     }
     #endregion
 

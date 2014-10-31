@@ -13,10 +13,11 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.Linq;
 using CAS.SharePoint;
 using CAS.SharePoint.Web;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -26,7 +27,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   public sealed partial class Disposal
   {
 
-    #region ctor
+    #region creator
     internal Disposal(IPR ipr, Linq.DisposalStatus _typeOfDisposal, decimal _toDispose)
       : this()
     {
@@ -155,9 +156,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       try
       {
         _at = "Disposal _lastOne";
-        IQueryable<Disposal> _lastOne = from _dsp in this.Disposal2IPRIndex.Disposal
-                                        where _dsp.CustomsStatus.Value == Linq.CustomsStatus.Finished
-                                        select _dsp;
+        IEnumerable<Disposal> _lastOne = from _dsp in edc.Disposal.WhereItem<Disposal>(x => x.Disposal2IPRIndex == this.Disposal2IPRIndex)
+                                         where _dsp.CustomsStatus.Value == Linq.CustomsStatus.Finished
+                                         select _dsp;
         if (_lastOne.Count<Disposal>() == 0)
           this.SPNo = 1;
         else
@@ -186,11 +187,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.Disposal2IPRIndex.AccountBalance = this.RemainingQuantity = Convert.ToDouble(_balance);
       return _balance;
     }
-    internal void Adjust(ref decimal _toDispose)
+    internal void Adjust(Entities edc, ref decimal _toDispose)
     {
       this.SettledQuantityDec += this.Disposal2IPRIndex.Withdraw(ref _toDispose, this.SettledQuantityDec);
       if (this.CustomsStatus.Value == Linq.CustomsStatus.Finished)
-        this.Disposal2IPRIndex.RecalculateClearedRecords();
+        this.Disposal2IPRIndex.RecalculateClearedRecords(edc);
     }
     #endregion
 

@@ -13,11 +13,11 @@
 //  http://www.cas.eu
 //</summary>
 
-using System.Collections.Generic;
 using CAS.SharePoint.Common.ServiceLocation;
 using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.Customs.Account;
 using Microsoft.Practices.ServiceLocation;
+using System.Collections.Generic;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
 {
@@ -55,8 +55,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
     /// <summary>
     /// Gets the net mass.
     /// </summary>
+    /// <param name="edc">The entity data context.</param>
     /// <param name="good">The good.</param>
-    protected internal override void GetNetMass(SADGood good)
+    protected internal override void GetNetMass(Entities edc, SADGood good)
     {
       NetMass = good.NetMass.GetValueOrDefault(0);
     }
