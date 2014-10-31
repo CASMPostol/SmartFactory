@@ -13,9 +13,10 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.Linq;
 using CAS.SharePoint;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -45,7 +46,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       DocumentNo = sadDocument.DocumentNumber;
       ReferenceNumber = sadDocument.ReferenceNumber;
       SPStatus = true;
-      foreach (Disposal _disposal in Disposal)
+      foreach (Disposal _disposal in entities.Disposal.WhereItem<Disposal>(x => x.Disposal2ClearenceIndex == this))
         _disposal.FinishClearingThroughCustoms(entities, Clearence2SadGoodID);
       UpdateTitle(entities);
     }
@@ -122,7 +123,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public void ClearThroughCustom(Entities entities, SADConsignment sadConsignment)
     {
       SADConsignmentLibraryIndex = sadConsignment;
-      foreach (Disposal _dspsl in Disposal)
+      foreach (Disposal _dspsl in entities.Disposal.WhereItem<Disposal>(x => x.Disposal2ClearenceIndex == this))
         _dspsl.ClearThroughCustom(entities, this.ClearenceProcedure.Value, this.SADDocumentNumber, _disposal => _disposal.Disposal2IPRIndex.RecalculateLastStarted(entities, _disposal));
       UpdateTitle(entities);
     }
@@ -145,8 +146,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public void UpdateTitle(Entities entities)
     {
       string _quantity = String.Empty;
-      if (this.Disposal.Any())
-        _quantity = this.Disposal.Sum<Disposal>(x => x.SettledQuantity.Value).ToString("F2");
+      List<Disposal> _dspsls = entities.Disposal.WhereItem<Disposal>(x => x.Disposal2ClearenceIndex == this).ToList<Disposal>();
+      if (_dspsls.Count > 0)
+        _quantity = _dspsls.Sum<Disposal>(x => x.SettledQuantity.Value).ToString("F2");
       else
         _quantity = " --- ";
       string _ClearanceTitleFormat = Settings.GetParameter(entities, SettingsEntry.ClearanceTitleFormat);
@@ -169,6 +171,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The sad document number.
     /// </value>
     public int SADDocumentNumber { get { return this.Id.Value; } }
+    /// <summary>
+    /// Reverse lookup for disposals.
+    /// </summary>
+    /// <param name="entities">The <see cref="Entities"/> instance.</param>
+    /// <returns></returns>
+    public IEnumerable<Disposal> Disposal(Entities entities)
+    {
+      return entities.Disposal.WhereItem<Disposal>(x => x.Disposal2ClearenceIndex == this);
+    }
     #endregion
 
     #region private

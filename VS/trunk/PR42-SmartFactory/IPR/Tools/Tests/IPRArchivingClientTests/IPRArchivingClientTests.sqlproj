@@ -69,7 +69,4 @@
       <DatabaseVariableLiteralValue>IPRDEV</DatabaseVariableLiteralValue>
     </ArtifactReference>
   </ItemGroup>
-  <ItemGroup>
-    <Build Include="CreateIPRDatabaseTables.sql" />
-  </ItemGroup>
 </Project>

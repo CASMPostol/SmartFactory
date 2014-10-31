@@ -13,14 +13,13 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint;
+using CAS.SmartFactory.Customs;
+using CAS.SmartFactory.Customs.Account;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using CAS.SharePoint;
-using CAS.SmartFactory.Customs;
-using CAS.SmartFactory.Customs.Account;
-using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
 {
@@ -35,15 +34,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
     /// <param name="clearanceLookup">The clearance lookup.</param>
     public AccountData(int clearanceLookup)
       : base(clearanceLookup)
-    {
-
-    }
+    { }
     #region public
     /// <summary>
     /// Initializes a new instance of the <see cref="AccountData" /> class.
     /// </summary>
     /// <param name="edc">The <see cref="Entities" /> object.</param>
-    /// <param name="clearence">The clearence.</param>
+    /// <param name="clearence">The clearance.</param>
     /// <param name="messageType">Type of the customs message.</param>
     /// <param name="ProgressChange">The progress change.</param>
     public virtual void GetAccountData(Entities edc, Clearence clearence, MessageType messageType, ProgressChangedEventHandler ProgressChange)
@@ -52,15 +49,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
       DocumentNo = clearence.DocumentNo;
       DateTime _customsDebtDate = clearence.Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value;
       this.CustomsDebtDate = _customsDebtDate;
-      AnalizeGood(clearence.Clearence2SadGoodID, messageType);
+      AnalizeGood(edc, clearence.Clearence2SadGoodID, messageType);
       ProgressChange(this, new ProgressChangedEventArgs(1, "AccountData.GetAccountData.Invoice"));
-      this.Invoice = (from _dx in clearence.Clearence2SadGoodID.SADRequiredDocuments
+      List<SADRequiredDocuments> _rdoc = edc.SADRequiredDocuments.Where<SADRequiredDocuments>(x => x.SADRequiredDoc2SADGoodID == clearence.Clearence2SadGoodID).ToList<SADRequiredDocuments>();
+      this.Invoice = (from _dx in _rdoc
                       let CustomsProcedureCode = _dx.Code.ToUpper()
                       where CustomsProcedureCode.Contains("N380") || CustomsProcedureCode.Contains("N935")
                       select new { Number = _dx.Number }
                       ).First().Number;
       ProgressChange(this, new ProgressChangedEventArgs(1, "AccountData.GetAccountData.FindConsentRecord"));
-      FindConsentRecord(edc, clearence.Clearence2SadGoodID.SADRequiredDocuments, _customsDebtDate, ProgressChange);
+      FindConsentRecord(edc, _rdoc, _customsDebtDate, ProgressChange);
       ProgressChange(this, new ProgressChangedEventArgs(1, "AccountData.GetAccountData.AnalizeGoodsDescription"));
       AnalizeGoodsDescription(edc, clearence.Clearence2SadGoodID.GoodsDescription); //TODO to IPR
       ProgressChange(this, new ProgressChangedEventArgs(1, "AccountData.GetAccountData.PCNTariffCodeLookup"));
@@ -69,8 +67,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
     /// <summary>
     /// Calls the remote service.
     /// </summary>
-    /// <param name="requestUrl">The The URL of a Windows SharePoint Services "14" Web site.</param>
-    /// <param name="warnningList">The warnning list.</param>
+    /// <param name="requestUrl">The URL of a Windows SharePoint Services "14" Web site.</param>
+    /// <param name="warnningList">The warning list.</param>
     public abstract void CallService(string requestUrl, List<Warnning> warnningList);
     #endregion
 
@@ -82,11 +80,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
     /// <param name="consent">The consent.</param>
     protected internal virtual void SetValidToDate(DateTime customsDebtDate, Consent consent) { }
     /// <summary>
-    /// Analizes the good.
+    /// Analyzes the good.
     /// </summary>
+    /// <param name="edc">The <see cref="Entities"/> instance.</param>
     /// <param name="good">The good.</param>
     /// <param name="messageType">Type of the _message.</param>
-    protected internal virtual void AnalizeGood(SADGood good, MessageType messageType)
+    protected internal virtual void AnalizeGood(Entities edc, SADGood good, MessageType messageType)
     {
       SADDocumentType _document = good.SADDocumentIndex;
       switch (messageType)
@@ -98,17 +97,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
           GrossMass = good.GrossMass.HasValue ? good.GrossMass.Value : _document.GrossMass.Value;
           break;
       }
-      GetNetMass(good);
+      GetNetMass(edc, good);
     }
     /// <summary>
     /// Gets the net mass.
     /// </summary>
+    /// <param name="edc">The <see cref="Entities"/> instance</param>
     /// <param name="good">The good.</param>
-    protected internal abstract void GetNetMass(SADGood good);
+    protected internal abstract void GetNetMass(Entities edc, SADGood good);
     /// <summary>
-    /// Analizes the goods description.
+    /// Analyzes the goods description.
     /// </summary>
-    /// <param name="edc">The edc.</param>
+    /// <param name="edc">The <see cref="Entities"/> instance</param>
     /// <param name="goodsDescription">The _ goods description.</param>
     /// <exception cref="InputDataValidationException">Syntax errors in the good description.;AnalizeGoodsDescription</exception>
     /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException">Syntax errors in the good description.</exception>
@@ -127,7 +127,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
         throw new InputDataValidationException("Syntax errors in the good description.", "AnalizeGoodsDescription", _el);
       }
     }
-    private void FindConsentRecord(Entities edc, EntitySet<SADRequiredDocuments> sadRequiredDocumentsEntitySet, DateTime customsDebtDate, ProgressChangedEventHandler ProgressChange)
+    private void FindConsentRecord(Entities edc, IEnumerable<SADRequiredDocuments> sadRequiredDocumentsEntitySet, DateTime customsDebtDate, ProgressChangedEventHandler ProgressChange)
     {
       ProgressChange(this, new ProgressChangedEventArgs(1, "AccountData.FindConsentRecord"));
       SADRequiredDocuments _rd = (from _dx in sadRequiredDocumentsEntitySet

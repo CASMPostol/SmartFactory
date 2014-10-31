@@ -13,13 +13,12 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
-using ExportedProductType = CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.ProductType;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Clearance
 {
@@ -36,7 +35,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       List<CigaretteExportForm> _consignment = new List<CigaretteExportForm>();
       invoice.ClearenceIndex = clearance;
       invoice.InvoiceLibraryReadOnly = true;
-      foreach (InvoiceContent item in invoice.InvoiceContent)
+      foreach (InvoiceContent item in invoice.InvoiceContent(entities))
         ExportInvoiceEntry(entities, item, _consignment, documentName, ref _position, sadConsignmentNumber);
       return GetCigaretteExportFormCollection(_consignment, documentName, invoice.BillDoc);
     }
@@ -144,7 +143,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         batch.FGQuantityAvailable = Convert.ToDouble(Convert.ToDecimal(batch.FGQuantityAvailable.Value) - Convert.ToDecimal(invoice.Quantity.Value));
         List<Ingredient> _ingredients = new List<Ingredient>();
         _at = "foreach";
-        foreach (Material _materialIdx in batch.Material)
+        foreach (Material _materialIdx in batch.Material(entities))
           ExportMaterial(entities, _materialIdx, _ingredients, _closingBatch, invoice, sadConsignmentNumber);
         _at = "_exportConsignment";
         CigaretteExportForm _form = GetCigaretteExportForm(batch, invoice, _ingredients, documentName, ref subdocumentNo, invoice.InvoiceIndex.ClearenceIndex.ClearenceProcedure.Value);
@@ -191,13 +190,14 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
     }
     private static void CountExportFormTotals(List<Ingredient> ingredients, CigaretteExportForm form)
     {
-      form.Ingredients = ingredients.OrderBy(x =>  { 
-                                                      IPRIngredient y = x as IPRIngredient;
-                                                      if (y == null)
-                                                        return " ";
-                                                      else
-                                                        return y.DocumentNoumber;
-                                                    }).ToArray();
+      form.Ingredients = ingredients.OrderBy(x =>
+      {
+        IPRIngredient y = x as IPRIngredient;
+        if (y == null)
+          return " ";
+        else
+          return y.DocumentNoumber;
+      }).ToArray();
       form.IPTMaterialQuantityTotal = 0;
       form.RegularMaterialQuantityTotal = 0;
       form.IPTDutyVatTotals = new TotalAmountOfMoney();

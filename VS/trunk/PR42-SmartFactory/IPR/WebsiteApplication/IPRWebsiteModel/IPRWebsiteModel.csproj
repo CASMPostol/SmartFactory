@@ -94,6 +94,7 @@
     <Compile Include="GlobalDefinitions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="InputDataValidationException.cs" />
+    <Compile Include="Linq\InvoiceLib.cs" />
     <Compile Include="IPRDataConsistencyException.cs" />
     <Compile Include="Linq\ActionResult.cs" />
     <Compile Include="Linq\ActivityLogCT.cs" />

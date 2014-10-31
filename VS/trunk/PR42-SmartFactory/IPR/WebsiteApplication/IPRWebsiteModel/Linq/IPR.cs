@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,9 +95,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Adds the disposal.
     /// </summary>
-    /// <param name="edc">The edc.</param>
+    /// <param name="edc">The <see cref="Entities"/> instance.</param>
     /// <param name="quantity">The quantity.</param>
-    /// <exception cref="CAS">CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal;_qunt > 0;null</exception>
+    /// <exception cref="CAS">CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal;_qunt &gt; 0;null</exception>
     public void AddDisposal(Entities edc, decimal quantity)
     {
       AddDisposal(edc, DisposalEnum.Cartons, ref quantity);
@@ -106,7 +107,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="edc">The _edc.</param>
     /// <param name="quantity">The quantity.</param>
-    /// <param name="clearence">The clearence.</param>
+    /// <param name="clearence">The clearance.</param>
     /// <exception cref="CAS">CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal;_qunt > 0;null</exception>
     public void AddDisposal(Entities edc, decimal quantity, Clearence clearence)
     {
@@ -114,7 +115,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       _dsp.Clearance = clearence;
       if (quantity > 0)
       {
-        string _msg = String.Format("Cannot add Disposal to IPR  {0} because because the there is not material on tje IPR.", this.Id.Value);
+        string _msg = String.Format("Cannot add Disposal to IPR  {0} because there is not material on the IPR.", this.Id.Value);
         throw CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult.Exception
           (new CAS.SharePoint.ApplicationError("CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal", "_qunt > 0", _msg, null), _msg);
       }
@@ -172,7 +173,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       decimal _ret = 0;
       dateEnd = LinqIPRExtensions.DateTimeMinValue;
       dateStart = LinqIPRExtensions.DateTimeMaxValue;
-      foreach (IPR _iprx in parent.IPR)
+      foreach (IPR _iprx in edc.IPR.Where<IPR>(x => x.IPR2JSOXIndex == parent))
       {
         _ret += _iprx.NetMassDec;
         dateEnd = LinqIPRExtensions.Max(_iprx.CustomsDebtDate.Value.Date, dateEnd);
@@ -239,12 +240,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal class Balance : Dictionary<IPR.ValueKey, decimal>
     {
       #region ctor
-      internal Balance(IPR record)
+      internal Balance(Entities edc, IPR record)
       {
         foreach (ValueKey _vkx in Enum.GetValues(typeof(ValueKey)))
           base[_vkx] = 0;
         #region totals
-        foreach (Disposal _dspx in record.Disposal)
+        foreach (Disposal _dspx in edc.Disposal.Where<Disposal>(x => x.Disposal2IPRIndex == record))
         {
           switch (_dspx.CustomsStatus.Value)
           {
@@ -439,11 +440,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       quantity -= _toDispose;
       return _toDispose;
     }
-    internal void RecalculateClearedRecords()
+    internal void RecalculateClearedRecords(Entities edc)
     {
       if (this.AccountClosed.Value)
         throw new ApplicationException("IPR.RecalculateClearedRecords cannot be executed for closed account");
-      List<Disposal> _2Calculate = (from _dx in this.Disposal where _dx.CustomsStatus.Value == Linq.CustomsStatus.Finished orderby _dx.SPNo.Value ascending select _dx).ToList<Disposal>();
+      List<Disposal> _2Calculate = edc.Disposal.WhereItem<Disposal>(x => x.Disposal2IPRIndex == this).ToList<Disposal>();
+      _2Calculate = (from _dx in _2Calculate where _dx.CustomsStatus.Value == Linq.CustomsStatus.Finished orderby _dx.SPNo.Value ascending select _dx).ToList<Disposal>();
       this.AccountBalance = this.NetMass;
       foreach (Disposal _dx in _2Calculate)
         _dx.CalculateRemainingQuantity();

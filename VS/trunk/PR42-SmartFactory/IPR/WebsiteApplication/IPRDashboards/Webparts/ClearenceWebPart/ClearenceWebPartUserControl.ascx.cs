@@ -515,7 +515,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     private void Delete()
     {
       Entities _edc = m_DataContextManagement.DataContext;
-      foreach (Disposal _dx in CurrentClearence.Disposal.ToList())
+      foreach (Disposal _dx in CurrentClearence.Disposal(_edc))
         RemoveDisposalFromClearance(_edc, _dx);
       m_DataContextManagement.DataContext.SubmitChanges();
       m_DataContextManagement.DataContext.Clearence.DeleteOnSubmit(CurrentClearence);
@@ -575,22 +575,23 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         Entities _edc = m_DataContextManagement.DataContext;
         string _masterDocumentName = CurrentClearence.FinishedGoodsExportFormFileName(_edc);
         int _sadConsignmentIdentifier = default(int);
+        Func<IEnumerable<Disposal>> _dspslLst = () => CurrentClearence.Disposal( _edc);
         switch (ToSelectedGroup(CurrentClearence.ProcedureCode))
         {
           case Group.Tobacco:
           case Group.TobaccoNotAllocated:
             DocumentContent _newTobaccoDoc =
-              DisposalsFormFactory.GetTobaccoFreeCirculationFormContent(CurrentClearence.Disposal, CurrentClearence.ClearenceProcedure.Value, _masterDocumentName);
+              DisposalsFormFactory.GetTobaccoFreeCirculationFormContent(_dspslLst(), CurrentClearence.ClearenceProcedure.Value, _masterDocumentName);
             _sadConsignmentIdentifier = SPDocumentFactory.Prepare(SPContext.Current.Web, _newTobaccoDoc, _masterDocumentName, CompensatiionGood.Tobacco);
             break;
           case Group.Waste:
           case Group.Dust:
-            DocumentContent _newDustWasteDoc = DisposalsFormFactory.GetDustWasteFormContent(CurrentClearence.Disposal, CurrentClearence.ClearenceProcedure.Value, _masterDocumentName);
+            DocumentContent _newDustWasteDoc = DisposalsFormFactory.GetDustWasteFormContent(_dspslLst(), CurrentClearence.ClearenceProcedure.Value, _masterDocumentName);
             CompensatiionGood _compensatiionGood = SelectedGroup == Group.Waste ? CompensatiionGood.Waste : CompensatiionGood.Dust;
             _sadConsignmentIdentifier = SPDocumentFactory.Prepare(SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, _compensatiionGood);
             break;
           case Group.Cartons:
-            DocumentContent _newBoxFormContent = DisposalsFormFactory.GetBoxFormContent(CurrentClearence.Disposal, CurrentClearence.ClearenceProcedure.Value, _masterDocumentName);
+            DocumentContent _newBoxFormContent = DisposalsFormFactory.GetBoxFormContent(_dspslLst(), CurrentClearence.ClearenceProcedure.Value, _masterDocumentName);
             _sadConsignmentIdentifier = SPDocumentFactory.Prepare(SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, CompensatiionGood.Cartons);
             break;
         }
@@ -633,7 +634,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       if (CurrentClearence == null)
         return;
       m_ControlState.AssignedItems.SelectionTable.Clear();
-      List<Selection.SelectionTableRowWraper> _dsposals = (from _dsx in CurrentClearence.Disposal
+      List<Selection.SelectionTableRowWraper> _dsposals = (from _dsx in CurrentClearence.Disposal(m_DataContextManagement.DataContext)
                                                            select new Selection.SelectionTableRowWraper(_dsx)).ToList();
       m_ControlState.AssignedItems.SelectionTable.Add(_dsposals);
     }
