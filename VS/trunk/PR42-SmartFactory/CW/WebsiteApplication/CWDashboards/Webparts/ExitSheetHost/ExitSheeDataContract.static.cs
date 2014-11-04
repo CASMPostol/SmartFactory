@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
     }
     internal static ExitSheeDataContract GetExitSheeDataContract(Entities edc, WebsiteModel.Linq.CustomsWarehouseDisposal cwd)
     {
-      Warehouse _wrh = (from _wrhx in edc.Warehouse where _wrhx.Procedure == cwd.CustomsProcedure select _wrhx).FirstOrDefault();
+      Warehouse _wrh = (from _wrhx in edc.Warehouse where _wrhx.SPProcedure == cwd.CustomsProcedure select _wrhx).FirstOrDefault();
       string _warehouseName = _wrh == null ? "N/A" : _wrh.WarehouseName;
       CustomsWarehouse _cw = cwd.CWL_CWDisposal2CustomsWarehouseID;
       if (_cw == null)
