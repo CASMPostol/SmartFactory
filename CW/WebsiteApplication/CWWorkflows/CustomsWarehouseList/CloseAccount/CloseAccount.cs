@@ -110,7 +110,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         {
           CNTarrifCode = _cwdx.CWL_CWDisposal2PCNTID.ProductCodeNumber,
           Currency = _cwdx.CWL_CWDisposal2CustomsWarehouseID.Currency,
-          No = _cwdx.No.GetValueOrDefault().Convert2Int(),
+          No = _cwdx.SPNo.GetValueOrDefault().Convert2Int(),
           PackageToClear = _cwdx.CW_PackageToClear.GetValueOrDefault().Convert2Int(),
           RemainingPackage = _cwdx.CW_RemainingPackage.GetValueOrDefault(-1).Convert2Int(),
           RemainingQuantity = _cwdx.RemainingQuantity.GetValueOrDefault(-1).Convert2Int(),

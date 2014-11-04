@@ -85,7 +85,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
           consentsList.Add(_cwx.CWL_CW2ConsentTitle.Title, _cwx.CWL_CW2ConsentTitle);
         List<CustomsWarehouseDisposal> _last = (from _cwdx in _cwx.CustomsWarehouseDisposal
                                                 where _cwdx.CustomsStatus.Value == CustomsStatus.Finished
-                                                orderby _cwdx.No.Value descending
+                                                orderby _cwdx.SPNo.Value descending
                                                 select _cwdx).ToList<CustomsWarehouseDisposal>();
         decimal _Value = 0;
         decimal _mass = 0;

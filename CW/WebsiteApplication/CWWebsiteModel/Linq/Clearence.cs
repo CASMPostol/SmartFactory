@@ -71,7 +71,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       SADDocumentType sadDocument = Clearence2SadGoodID.SADDocumentIndex;
       DocumentNo = sadDocument.DocumentNumber;
       ReferenceNumber = sadDocument.ReferenceNumber;
-      Status = true;
+      SPStatus = true;
       foreach (CustomsWarehouseDisposal _cwdx in this.CustomsWarehouseDisposal)
         _cwdx.FinishClearThroughCustoms(sadGood);
       UpdateTitle(entities);
@@ -85,7 +85,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         DocumentNo = String.Empty.NotAvailable(),
         ProcedureCode = code,
         ReferenceNumber = String.Empty.NotAvailable(),
-        Status = false,
+        SPStatus = false,
         ClearenceProcedure = procedure
       };
       return _newClearence;

@@ -166,7 +166,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         CWL_CWDisposal2CustomsWarehouseID = this,
         SADDate = CAS.SharePoint.Extensions.SPMinimum,
         SKUDescription = xmlData.SKUDescription,
-        WZAdded = false,
+        CW_WZNoSupplemented = false,
         Title = "ToDo",
       };
       _new.CalculateMassValu(_2Dispose.DoubleValue());

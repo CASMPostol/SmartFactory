@@ -104,9 +104,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
                                                     where _dsp.CustomsStatus.Value == Linq.CustomsStatus.Finished
                                                     select _dsp).ToList<CustomsWarehouseDisposal>();
         if (_Finished.Count<CustomsWarehouseDisposal>() == 0)
-          this.No = 1;
+          this.SPNo = 1;
         else
-          this.No = _Finished.Max<CustomsWarehouseDisposal>(dspsl => dspsl.No.Value) + 1;
+          this.SPNo = _Finished.Max<CustomsWarehouseDisposal>(dspsl => dspsl.SPNo.Value) + 1;
         AssignSADGood(sadGood);
         decimal _balance = CalculateRemainingQuantity();
         if (_balance == 0)
@@ -164,7 +164,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
       this.SADDocumentNo = sadGood.SADDocumentIndex.DocumentNumber;
       //TODO check consistency and generate warning.
-      this.CustomsProcedure = sadGood.Procedure;
+      this.CustomsProcedure = sadGood.SPProcedure;
       if (this.TobaccoValue != sadGood.TotalAmountInvoiced)
         throw new ArgumentOutOfRangeException("TotalAmountInvoiced", "Total Amount Invoiced value is not equal as requested to clear through customs");
       decimal _vat = 0;
