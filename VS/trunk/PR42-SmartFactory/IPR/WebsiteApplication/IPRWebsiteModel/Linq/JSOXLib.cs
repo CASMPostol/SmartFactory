@@ -13,7 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
 using System;
 using System.Collections.Generic;
@@ -49,7 +48,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       else
         ActivityLogCT.WriteEntry(edc, "Balance report", "Cannot find stock report - only preliminary report will be created");
       List<string> _processed = new List<string>();
-      List<BalanceBatch> _BalanceBatch = edc.BalanceBatch.WhereItem<BalanceBatch>(x => x.Balance2JSOXLibraryIndex == this).ToList<BalanceBatch>();
+      List<BalanceBatch> _BalanceBatch = edc.BalanceBatch.Where<BalanceBatch>(x => x.Balance2JSOXLibraryIndex == this).ToList<BalanceBatch>();
       foreach (BalanceBatch _bbx in _BalanceBatch)
       {
         if (_accountGroups.ContainsKey(_bbx.Batch))
@@ -107,7 +106,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       if (!m_NoStock && b_Stock == null)
       {
-        b_Stock = edc.StockLibrary.WhereItem<StockLib>(x => x.Stock2JSOXLibraryIndex == this).FirstOrDefault<Linq.StockLib>();
+        b_Stock = edc.StockLibrary.Where<StockLib>(x => x.Stock2JSOXLibraryIndex == this).FirstOrDefault<Linq.StockLib>();
         if (b_Stock == null)
           b_Stock = Linq.StockLib.Find(edc);
         m_NoStock = b_Stock == null;

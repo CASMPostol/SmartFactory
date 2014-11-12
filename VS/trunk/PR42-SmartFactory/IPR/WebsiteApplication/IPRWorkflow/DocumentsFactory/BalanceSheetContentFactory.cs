@@ -95,7 +95,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         DocumentDate = DateTime.Today.Date,
         DocumentNo = documentName,
         EndDate = list.SituationDate.GetValueOrDefault(),
-        BalanceBatch = GetBalanceBatchContent(edc, edc.BalanceBatch.WhereItem<BalanceBatch>(x => x.Balance2JSOXLibraryIndex == list)),
+        BalanceBatch = GetBalanceBatchContent(edc, edc.BalanceBatch.Where<BalanceBatch>(x => x.Balance2JSOXLibraryIndex == list)),
         JSOX = GetJSOContent(factory),
         SituationAtDate = list.SituationDate.GetValueOrDefault(),
         StartDate = list.PreviousMonthDate.GetValueOrDefault(),
@@ -109,7 +109,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       foreach (StockEntry _StockEntryX in from _sex in factory.JSOXList.Stock(edc).StockEntriesList(edc) where _sex.IPRType.Value && _sex.ProductType == ProductType.Cutfiller orderby _sex.Batch select _sex)
       {
         double _cfc = _StockEntryX.Quantity.Value / _StockEntryX.BatchIndex.FGQuantity.Value;
-        foreach (Material _MaterialX in edc.Material.WhereItem<Material>(x => x.Material2BatchIndex == _StockEntryX.BatchIndex && x.ProductType.Value == ProductType.IPRTobacco))
+        foreach (Material _MaterialX in edc.Material.Where<Material>(x => x.Material2BatchIndex == _StockEntryX.BatchIndex && x.ProductType.Value == ProductType.IPRTobacco))
         {
           BalanceCutfillerContent _bcc = new BalanceCutfillerContent()
           {
@@ -206,7 +206,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         {
           BalanceBatchContent _new = new BalanceBatchContent()
             {
-              BalanceIPR = GetBalanceIPRContent(edc.BalanceIPR.WhereItem<BalanceIPR>(x => x.BalanceBatchIndex == _bsx)),
+              BalanceIPR = GetBalanceIPRContent(edc.BalanceIPR.Where<BalanceIPR>(x => x.BalanceBatchIndex == _bsx)),
               TotalBalance = _bsx.Balance.Rount2DecimalOrDefault(),
               TotalDustCSNotStarted = _bsx.DustCSNotStarted.Rount2DecimalOrDefault(),
               TotalIPRBook = _bsx.IPRBook.Rount2DecimalOrDefault(),

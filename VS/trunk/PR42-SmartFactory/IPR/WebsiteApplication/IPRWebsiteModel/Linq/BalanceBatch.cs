@@ -13,7 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
 using System;
 using System.Collections.Generic;
@@ -55,7 +54,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         Dictionary<string, IPR> _iprDictionary = grouping.ToDictionary(x => x.DocumentNo);
         List<string> _processed = new List<string>();
         BalanceTotals _totals = new BalanceTotals();
-        foreach (BalanceIPR _blncIPRx in edc.BalanceIPR.WhereItem(x => x.BalanceBatchIndex == this))
+        foreach (BalanceIPR _blncIPRx in edc.BalanceIPR.Where(x => x.BalanceBatchIndex == this))
         {
           if (_iprDictionary.ContainsKey(_blncIPRx.DocumentNo))
           {

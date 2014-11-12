@@ -13,7 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.SharePoint;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +44,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void UpdateExportedDisposals(Entities edc)
     {
-      IEnumerable<IGrouping<int, Disposal>> _dspslsGroups = from _dsx in edc.Disposal.WhereItem<Disposal>(x => x.Disposal2InvoiceContentIndex == this)
+      IEnumerable<IGrouping<int, Disposal>> _dspslsGroups = from _dsx in edc.Disposal.Where<Disposal>(x => x.Disposal2InvoiceContentIndex == this)
                                                             let _midx = _dsx.Disposal2MaterialIndex.Id.Value
                                                             group _dsx by _midx;
       foreach (IGrouping<int, Disposal> _gx in _dspslsGroups)

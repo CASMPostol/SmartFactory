@@ -13,7 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.SharePoint;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -90,7 +89,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public List<StockEntry> StockEntriesList(Entities edc)
     {
       if (m_Entries == null)
-        m_Entries = edc.StockEntry.WhereItem<StockEntry>(x => x.StockLibraryIndex == this).ToList<StockEntry>();
+        m_Entries = edc.StockEntry.Where<StockEntry>(x => x.StockLibraryIndex == this).ToList<StockEntry>();
       return m_Entries;
     }
     #endregion
@@ -120,7 +119,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                                                  where _btx.FGQuantityAvailable.Value > 0
                                                  orderby _btx.Id.Value descending
                                                  select _btx).ToDictionary<Batch, int>(x => x.Id.Value);
-      foreach (StockEntry _sex in edc.StockEntry.WhereItem<StockEntry>(x => x.StockLibraryIndex == library))
+      foreach (StockEntry _sex in edc.StockEntry.Where<StockEntry>(x => x.StockLibraryIndex == library))
         if (_sex.BatchIndex != null && _batchDictionary.ContainsKey(_sex.BatchIndex.Id.Value))
           _batchDictionary.Remove(_sex.BatchIndex.Id.Value);
       foreach (Batch _bidx in _batchDictionary.Values)

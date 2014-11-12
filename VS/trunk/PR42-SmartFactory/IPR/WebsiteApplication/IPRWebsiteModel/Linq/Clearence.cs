@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       DocumentNo = sadDocument.DocumentNumber;
       ReferenceNumber = sadDocument.ReferenceNumber;
       SPStatus = true;
-      foreach (Disposal _disposal in entities.Disposal.WhereItem<Disposal>(x => x.Disposal2ClearenceIndex == this))
+      foreach (Disposal _disposal in entities.Disposal.Where<Disposal>(x => x.Disposal2ClearenceIndex == this))
         _disposal.FinishClearingThroughCustoms(entities, Clearence2SadGoodID);
       UpdateTitle(entities);
     }
@@ -123,7 +123,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public void ClearThroughCustom(Entities entities, SADConsignment sadConsignment)
     {
       SADConsignmentLibraryIndex = sadConsignment;
-      foreach (Disposal _dspsl in entities.Disposal.WhereItem<Disposal>(x => x.Disposal2ClearenceIndex == this))
+      foreach (Disposal _dspsl in entities.Disposal.Where<Disposal>(x => x.Disposal2ClearenceIndex == this))
         _dspsl.ClearThroughCustom(entities, this.ClearenceProcedure.Value, this.SADDocumentNumber, _disposal => _disposal.Disposal2IPRIndex.RecalculateLastStarted(entities, _disposal));
       UpdateTitle(entities);
     }
@@ -146,7 +146,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public void UpdateTitle(Entities entities)
     {
       string _quantity = String.Empty;
-      List<Disposal> _dspsls = entities.Disposal.WhereItem<Disposal>(x => x.Disposal2ClearenceIndex == this).ToList<Disposal>();
+      List<Disposal> _dspsls = entities.Disposal.Where<Disposal>(x => x.Disposal2ClearenceIndex == this).ToList<Disposal>();
       if (_dspsls.Count > 0)
         _quantity = _dspsls.Sum<Disposal>(x => x.SettledQuantity.Value).ToString("F2");
       else
@@ -178,7 +178,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public IEnumerable<Disposal> Disposal(Entities entities)
     {
-      return entities.Disposal.WhereItem<Disposal>(x => x.Disposal2ClearenceIndex == this);
+      return entities.Disposal.Where<Disposal>(x => x.Disposal2ClearenceIndex == this);
     }
     #endregion
 
