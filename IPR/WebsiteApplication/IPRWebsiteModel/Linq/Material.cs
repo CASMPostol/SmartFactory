@@ -13,7 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.SharePoint;
 using CAS.SmartFactory.Customs;
 using System;
 using System.Collections.Generic;
@@ -229,7 +228,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Linq.DisposalStatus status = this.Material2BatchIndex.ProductType.Value == Linq.ProductType.Cigarette ? DisposalStatus.TobaccoInCigaretes : DisposalStatus.TobaccoInCutfiller;
       return
         (
-            from _didx in edc.Disposal.WhereItem<Disposal>(x => x.Disposal2MaterialIndex == this)
+            from _didx in edc.Disposal.Where<Disposal>(x => x.Disposal2MaterialIndex == this)
             let _ipr = _didx.Disposal2IPRIndex
             where _didx.CustomsStatus.Value == CustomsStatus.NotStarted && _didx.DisposalStatus.Value == status
             orderby _ipr.Id ascending
@@ -353,7 +352,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       string _parentBatch = this.Material2BatchIndex.Batch0;
       if (this.ProductType.Value != Linq.ProductType.IPRTobacco)
         return;
-      List<Disposal> _allDisposals = edc.Disposal.WhereItem<Disposal>(x => x.Disposal2MaterialIndex == this).ToList<Disposal>();
+      List<Disposal> _allDisposals = edc.Disposal.Where<Disposal>(x => x.Disposal2MaterialIndex == this).ToList<Disposal>();
       foreach (Linq.DisposalEnum _kind in Enum.GetValues(typeof(Linq.DisposalEnum)))
       {
         try

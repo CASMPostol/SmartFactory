@@ -13,7 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.SharePoint;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.Customs.Account;
@@ -60,7 +59,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       using (Entities _entities = new Entities(webUrl))
       {
         SADDocumentType _sad = Element.GetAtIndex<SADDocumentType>(_entities.SADDocument, sadDocumentTypeId);
-        foreach (SADGood _gdx in _entities.SADGood.WhereItem<SADGood>(x => x.SADDocumentIndex == _sad))
+        foreach (SADGood _gdx in _entities.SADGood.Where<SADGood>(x => x.SADDocumentIndex == _sad))
           IPRClearThroughCustoms(_entities, _gdx);
         comments = "Reexport of goods";
         _entities.SubmitChanges();
@@ -113,7 +112,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       using (Entities entities = new Entities(webUrl))
       {
         SADDocumentType sad = Element.GetAtIndex<SADDocumentType>(entities.SADDocument, sadDocumentTypeId);
-        foreach (SADGood _sgx in entities.SADGood.WhereItem<SADGood>(x => x.SADDocumentIndex == sad))
+        foreach (SADGood _sgx in entities.SADGood.Where<SADGood>(x => x.SADDocumentIndex == sad))
         {
           switch (_sgx.SPProcedure.RequestedProcedure())
           {
@@ -267,7 +266,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     private static List<Clearence> GetClearanceIds(Entities entities, SADGood good, string pattern)
     {
       List<Clearence> _ret = new List<Clearence>();
-      foreach (SADRequiredDocuments _rdx in entities.SADRequiredDocuments.WhereItem<SADRequiredDocuments>(x => x.SADRequiredDoc2SADGoodID == good))
+      foreach (SADRequiredDocuments _rdx in entities.SADRequiredDocuments.Where<SADRequiredDocuments>(x => x.SADRequiredDoc2SADGoodID == good))
       {
         if (_rdx.Code != XMLResources.RequiredDocumentConsignmentCode)
           continue;

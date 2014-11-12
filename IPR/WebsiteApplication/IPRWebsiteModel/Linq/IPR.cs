@@ -13,7 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.SharePoint;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -444,7 +443,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       if (this.AccountClosed.Value)
         throw new ApplicationException("IPR.RecalculateClearedRecords cannot be executed for closed account");
-      List<Disposal> _2Calculate = edc.Disposal.WhereItem<Disposal>(x => x.Disposal2IPRIndex == this).ToList<Disposal>();
+      List<Disposal> _2Calculate = edc.Disposal.Where<Disposal>(x => x.Disposal2IPRIndex == this).ToList<Disposal>();
       _2Calculate = (from _dx in _2Calculate where _dx.CustomsStatus.Value == Linq.CustomsStatus.Finished orderby _dx.SPNo.Value ascending select _dx).ToList<Disposal>();
       this.AccountBalance = this.NetMass;
       foreach (Disposal _dx in _2Calculate)

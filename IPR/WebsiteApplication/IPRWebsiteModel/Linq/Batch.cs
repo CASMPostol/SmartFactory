@@ -90,7 +90,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         case Linq.BatchStatus.Progress:
           double _portion = quantityOnStock / this.FGQuantity.Value;
-          foreach (Material _mtx in edc.Material.WhereItem<Material>(x => x.Material2BatchIndex == this))
+          foreach (Material _mtx in edc.Material.Where<Material>(x => x.Material2BatchIndex == this))
             _mtx.GetInventory(balanceStock, key, _portion);
           break;
         case Linq.BatchStatus.Intermediate:
@@ -103,7 +103,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if (this.ProductType.Value != Linq.ProductType.Cigarette)
         return;
       decimal _onStock = 0;
-      foreach (StockEntry _stock in edc.StockEntry.WhereItem<StockEntry>(x => x.BatchIndex == this))
+      foreach (StockEntry _stock in edc.StockEntry.Where<StockEntry>(x => x.BatchIndex == this))
       {
         if (_stock.StockLibraryIndex != lib)
           continue;
@@ -122,7 +122,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public IEnumerable<Material> Material(Entities entities)
     {
-      return entities.Material.WhereItem<Material>(x => x.Material2BatchIndex == this);
+      return entities.Material.Where<Material>(x => x.Material2BatchIndex == this);
     }
     #endregion
 

@@ -156,7 +156,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       try
       {
         _at = "Disposal _lastOne";
-        IEnumerable<Disposal> _lastOne = from _dsp in edc.Disposal.WhereItem<Disposal>(x => x.Disposal2IPRIndex == this.Disposal2IPRIndex)
+        IEnumerable<Disposal> _lastOne = from _dsp in edc.Disposal.Where<Disposal>(x => x.Disposal2IPRIndex == this.Disposal2IPRIndex)
                                          where _dsp.CustomsStatus.Value == Linq.CustomsStatus.Finished
                                          select _dsp;
         if (_lastOne.Count<Disposal>() == 0)
