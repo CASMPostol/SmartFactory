@@ -106,16 +106,30 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       if (!m_NoStock && b_Stock == null)
       {
-        b_Stock = edc.StockLibrary.Where<StockLib>(x => x.Stock2JSOXLibraryIndex == this).FirstOrDefault<Linq.StockLib>();
+        b_Stock = StockLib(edc).FirstOrDefault<Linq.StockLib>();
         if (b_Stock == null)
           b_Stock = Linq.StockLib.Find(edc);
         m_NoStock = b_Stock == null;
       }
       return b_Stock;
     }
+    internal IEnumerable<IPR> IPR(Entities edc)
+    {
+      if (m_IPR == null)
+        m_IPR = from _iprx in edc.IPR let _id = _iprx.IPR2JSOXIndex.Id.Value orderby _id descending where _id == this.Id.Value select _iprx;
+      return m_IPR;
+    }
     #endregion
 
     #region private
+    private IEnumerable<StockLib> StockLib(Entities edc)
+    {
+      if (m_StockLib == null)
+        m_StockLib = from _slx in edc.StockLibrary let _id = _slx.Stock2JSOXLibraryIndex.Id.Value where _id == this.Id.Value select _slx;
+      return m_StockLib;
+    }
+    private IEnumerable<StockLib> m_StockLib = null;
+    private IEnumerable<IPR> m_IPR = null;
     private Linq.StockLib b_Stock;
     private bool m_NoStock = false;
     #endregion

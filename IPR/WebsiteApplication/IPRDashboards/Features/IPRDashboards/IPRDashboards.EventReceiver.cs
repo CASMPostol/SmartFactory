@@ -172,17 +172,17 @@ namespace CAS.SmartFactory.IPR.Dashboards.Features.IPRDashboards
         throw new ApplicationException("Cannot remove navigation entries: " + ex.Message);
       }
     }
-    private static void DeleteWebParts(Entities _edc, SPWeb _root)
+    private static void DeleteWebParts(Entities edc, SPWeb root)
     {
-      ActivityLogCT.WriteEntry(_edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts strating");
+      ActivityLogCT.WriteEntry(edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts starting");
       try
       {
-        SPList _wpl = _root.GetCatalog(SPListTemplateType.WebPartCatalog);
+        SPList _wpl = root.GetCatalog(SPListTemplateType.WebPartCatalog);
         List<SPFile> _filesToDelete = new List<SPFile>();
         // figure out which Web Part template files need to be deleted
         ActivityLogCT.WriteEntry
         (
-          _edc, m_SourceClass + m_SourceDeleteWebParts,
+          edc, m_SourceClass + m_SourceDeleteWebParts,
           String.Format("Processing of the WebPartCatalog containing {0} items starting ", _wpl.ItemCount)
         );
         foreach (SPListItem _li in _wpl.Items)
@@ -191,7 +191,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Features.IPRDashboards
           if (_delete)
             _filesToDelete.Add(_li.File);
           string _mess = String.Format("Title: {0}, Name: {1}, File name: {2}, deleted: {3}", _li.Title, _li.Name, _li.File.Name, _delete);
-          ActivityLogCT.WriteEntry(_edc, "Processing Web Part", _mess);
+          ActivityLogCT.WriteEntry(edc, "Processing Web Part", _mess);
         }
         // delete Web Part template files
         foreach (SPFile file in _filesToDelete)
@@ -199,9 +199,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Features.IPRDashboards
       }
       catch (Exception ex)
       {
-        ActivityLogCT.WriteEntry(_edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts finished with exception: " + ex.Message);
+        ActivityLogCT.WriteEntry(edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts finished with exception: " + ex.Message);
       }
-      ActivityLogCT.WriteEntry(_edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts finished");
+      ActivityLogCT.WriteEntry(edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts finished");
     }
     private const string m_SourceClass = "DashboardsEventReceiver.";
     private const string m_SourceDeleteWebParts = "DeleteWebParts";

@@ -172,7 +172,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       decimal _ret = 0;
       dateEnd = LinqIPRExtensions.DateTimeMinValue;
       dateStart = LinqIPRExtensions.DateTimeMaxValue;
-      foreach (IPR _iprx in edc.IPR.Where<IPR>(x => x.IPR2JSOXIndex == parent))
+      foreach (IPR _iprx in parent.IPR(edc) )
       {
         _ret += _iprx.NetMassDec;
         dateEnd = LinqIPRExtensions.Max(_iprx.CustomsDebtDate.Value.Date, dateEnd);

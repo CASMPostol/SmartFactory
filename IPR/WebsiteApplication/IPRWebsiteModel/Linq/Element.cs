@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns>
     /// An instance of the <typeparamref name="t"/> for the selected index.
     /// </returns>
-    /// <exception cref="ApplicationException">_ID is nuul or element cannot be found.</exception>
+    /// <exception cref="ApplicationException">element cannot be found at specified index.</exception>
     public static t GetAtIndex<t>( EntityList<t> list, int index )
       where t: Element
     {
@@ -86,7 +86,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       catch ( Exception )
       {
-        throw new ApplicationException( String.Format( "{0} cannot be found at specified index{1}", typeof( t ).Name, index ) );
+        throw new ApplicationException( String.Format( "{0} cannot be found at specified index {1}", typeof( t ).Name, index ) );
       }
     }
     /// <summary>

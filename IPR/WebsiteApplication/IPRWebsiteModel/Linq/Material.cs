@@ -228,7 +228,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Linq.DisposalStatus status = this.Material2BatchIndex.ProductType.Value == Linq.ProductType.Cigarette ? DisposalStatus.TobaccoInCigaretes : DisposalStatus.TobaccoInCutfiller;
       return
         (
-            from _didx in edc.Disposal.Where<Disposal>(x => x.Disposal2MaterialIndex == this)
+            from _didx in Disposal(edc)
             let _ipr = _didx.Disposal2IPRIndex
             where _didx.CustomsStatus.Value == CustomsStatus.NotStarted && _didx.DisposalStatus.Value == status
             orderby _ipr.Id ascending
@@ -429,9 +429,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
+    IEnumerable<Disposal> m_Disposal = null;
     private decimal Disposed { get; set; }
     private const string m_keyForam = "{0}:{1}:{2}";
     private List<IPR> myVarAccounts2Dispose = null;
+    private IEnumerable<Disposal> Disposal(Entities edc)
+    {
+      if (m_Disposal == null)
+        m_Disposal = from _dslx in edc.Disposal let _id = _dslx.Disposal2MaterialIndex.Id.Value where _id == this.Id.Value select _dslx;
+      return m_Disposal;
+    }
     #endregion
 
     #region IComparable<Material> Members
