@@ -182,7 +182,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           break;
       }
       progressChanged(null, new ProgressChangedEventArgs(1, "GetXmlContent: Validate"));
-      _contentInfo.Validate(edc, edc.Disposal.Where<Disposal>(x => x.Disposal2BatchIndex == _batch));
+      _contentInfo.Validate(edc, _batch.Disposal(edc));
       if (_newBatch)
         edc.Batch.InsertOnSubmit(_batch);
       progressChanged(null, new ProgressChangedEventArgs(1, "GetXmlContent: BatchProcessing"));

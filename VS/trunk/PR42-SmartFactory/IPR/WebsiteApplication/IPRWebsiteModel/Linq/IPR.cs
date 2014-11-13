@@ -138,7 +138,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="edc">The <see cref="Entities"/> object.</param>
     /// <returns>All Disposals associated with this item</returns>
-    public List<Disposal> Disposals(Entities edc)
+    public IEnumerable<Disposal> Disposals(Entities edc)
     {
       if (m_Disposals == null)
         m_Disposals = (from _dsx in edc.Disposal
@@ -172,7 +172,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       decimal _ret = 0;
       dateEnd = LinqIPRExtensions.DateTimeMinValue;
       dateStart = LinqIPRExtensions.DateTimeMaxValue;
-      foreach (IPR _iprx in parent.IPR(edc) )
+      foreach (IPR _iprx in parent.IPR(edc))
       {
         _ret += _iprx.NetMassDec;
         dateEnd = LinqIPRExtensions.Max(_iprx.CustomsDebtDate.Value.Date, dateEnd);
@@ -238,13 +238,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal class Balance : Dictionary<IPR.ValueKey, decimal>
     {
-      #region ctor
+      #region creator
       internal Balance(Entities edc, IPR record)
       {
         foreach (ValueKey _vkx in Enum.GetValues(typeof(ValueKey)))
           base[_vkx] = 0;
         #region totals
-        foreach (Disposal _dspx in edc.Disposal.Where<Disposal>(x => x.Disposal2IPRIndex == record))
+        foreach (Disposal _dspx in record.Disposals(edc))
         {
           switch (_dspx.CustomsStatus.Value)
           {
@@ -443,7 +443,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       if (this.AccountClosed.Value)
         throw new ApplicationException("IPR.RecalculateClearedRecords cannot be executed for closed account");
-      List<Disposal> _2Calculate = edc.Disposal.Where<Disposal>(x => x.Disposal2IPRIndex == this).ToList<Disposal>();
+      IEnumerable<Disposal> _2Calculate = this.Disposals(edc);
       _2Calculate = (from _dx in _2Calculate where _dx.CustomsStatus.Value == Linq.CustomsStatus.Finished orderby _dx.SPNo.Value ascending select _dx).ToList<Disposal>();
       this.AccountBalance = this.NetMass;
       foreach (Disposal _dx in _2Calculate)
@@ -460,7 +460,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       if (this.TobaccoNotAllocatedDec != 0 || _disposal.Where(x => x.SettledQuantityDec > 0 && x.CustomsStatus == CustomsStatus.NotStarted).Any())
         return;
-      List<Disposal> _dspsl = Disposals(edc);
+      IEnumerable<Disposal> _dspsl = Disposals(edc);
       disposal.DutyPerSettledAmount = (disposal.DutyPerSettledAmount + this.Duty.Value - (from _dec in _dspsl where _dec.DutyPerSettledAmount.HasValue select _dec.DutyPerSettledAmount.Value).Sum(itm => itm)).Value.Rount2Decimals();
       disposal.VATPerSettledAmount = (disposal.VATPerSettledAmount + this.VAT.Value - (from _dec in _dspsl where _dec.VATPerSettledAmount.HasValue select _dec.VATPerSettledAmount.Value).Sum(itm => itm)).Value.Rount2Decimals();
       disposal.DutyAndVAT = (disposal.DutyPerSettledAmount + disposal.VATPerSettledAmount).Value.Rount2Decimals();

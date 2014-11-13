@@ -106,15 +106,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
     }
     internal decimal IPRBookDecimal { get { return this.IPRBook.Rount2DecimalOrDefault(); } }
-    #endregion
-
-    #region private
-    private IEnumerable<BalanceIPR> BalanceIPR(Entities edc)
+    /// <summary>
+    /// Reverse lookup for <see cref="BalanceIPR"/>
+    /// </summary>
+    /// <param name="edc">The entities context.</param>
+    /// <returns></returns>
+    public IEnumerable<BalanceIPR> BalanceIPR(Entities edc)
     {
       if (m_BalanceIPR == null)
         m_BalanceIPR = from _biprx in edc.BalanceIPR let _id = _biprx.BalanceBatchIndex.Id where _id == this.Id select _biprx;
       return m_BalanceIPR;
     }
+    #endregion
+
+    #region private
     private IEnumerable<BalanceIPR> m_BalanceIPR = null;
     /// <summary>
     /// Balance Totals

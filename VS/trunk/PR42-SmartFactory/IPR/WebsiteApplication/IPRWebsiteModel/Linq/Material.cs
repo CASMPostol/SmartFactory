@@ -352,7 +352,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       string _parentBatch = this.Material2BatchIndex.Batch0;
       if (this.ProductType.Value != Linq.ProductType.IPRTobacco)
         return;
-      List<Disposal> _allDisposals = edc.Disposal.Where<Disposal>(x => x.Disposal2MaterialIndex == this).ToList<Disposal>();
+      IEnumerable<Disposal> _allDisposals = this.Disposal(edc);
       foreach (Linq.DisposalEnum _kind in Enum.GetValues(typeof(Linq.DisposalEnum)))
       {
         try

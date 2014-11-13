@@ -94,6 +94,7 @@
     <Compile Include="GlobalDefinitions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="InputDataValidationException.cs" />
+    <Compile Include="Linq\SADDocumentType.cs" />
     <Compile Include="Linq\InvoiceLib.cs" />
     <Compile Include="IPRDataConsistencyException.cs" />
     <Compile Include="Linq\ActionResult.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="Linq\Material.cs" />
     <Compile Include="Linq\PCNCode.cs" />
     <Compile Include="Linq\SADConsignment.cs" />
+    <Compile Include="Linq\SADGood.cs" />
     <Compile Include="Linq\Settings.cs" />
     <Compile Include="Linq\SHMenthol.cs" />
     <Compile Include="Linq\SKUCigarette.cs" />

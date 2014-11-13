@@ -35,7 +35,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void GetInventory(Entities edc, Balance.StockDictionary balanceStock)
     {
-      foreach (StockEntry _sex in StockEntriesList(edc))
+      foreach (StockEntry _sex in this.StockEntry(edc))
         _sex.GetInventory(edc, balanceStock);
     }
     internal bool Validate(Entities edc, Dictionary<string, IGrouping<string, IPR>> _accountGroups, StockLib library)
@@ -86,10 +86,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Return of list of stock entries..
     /// </summary>
     /// <returns> list of stock entries associated with this <see cref="StockLib"/> entry.</returns>
-    public List<StockEntry> StockEntriesList(Entities edc)
+    public IEnumerable<StockEntry> StockEntry(Entities edc)
     {
       if (m_Entries == null)
-        m_Entries = edc.StockEntry.Where<StockEntry>(x => x.StockLibraryIndex == this).ToList<StockEntry>();
+        m_Entries = from _stenrx in edc.StockEntry let _id = _stenrx.StockLibraryIndex.Id.Value where this.Id.Value == _id select _stenrx;
       return m_Entries;
     }
     #endregion
@@ -102,13 +102,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns>The collection of <see cref="StockEntry" /></returns>
     private IEnumerable<StockEntry> AllIPRFinishedGoods(Entities edc)
     {
-      return from _sex in this.StockEntriesList(edc)
+      return from _sex in this.StockEntry(edc)
              where ((_sex.ProductType.Value == ProductType.Cigarette) || (_sex.ProductType.Value == ProductType.Cutfiller)) && _sex.IPRType.Value
              select _sex;
     }
     private IEnumerable<StockEntry> AllIPRTobacco(Entities edc)
     {
-      return from _sex in this.StockEntriesList(edc)
+      return from _sex in this.StockEntry(edc)
              where _sex.ProductType.Value == ProductType.IPRTobacco
              select _sex;
     }
@@ -119,7 +119,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                                                  where _btx.FGQuantityAvailable.Value > 0
                                                  orderby _btx.Id.Value descending
                                                  select _btx).ToDictionary<Batch, int>(x => x.Id.Value);
-      foreach (StockEntry _sex in edc.StockEntry.Where<StockEntry>(x => x.StockLibraryIndex == library))
+      foreach (StockEntry _sex in library.StockEntry(edc))
         if (_sex.BatchIndex != null && _batchDictionary.ContainsKey(_sex.BatchIndex.Id.Value))
           _batchDictionary.Remove(_sex.BatchIndex.Id.Value);
       foreach (Batch _bidx in _batchDictionary.Values)
@@ -133,7 +133,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       return _ret.Values;
     }
-    private List<StockEntry> m_Entries = null;
+    private IEnumerable<StockEntry> m_Entries = null;
     #endregion
 
   }

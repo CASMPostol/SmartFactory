@@ -87,7 +87,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
         VAT = 0;
         DutyName = string.Empty;
         VATName = string.Empty;
-        foreach (SADDuties _duty in edc.SADDuties.Where<SADDuties>(x => x.SADDuties2SADGoodID == good))
+        foreach (SADDuties _duty in good.SADDuties(edc))
         {
           _at = "switch " + _duty.DutyType;
           switch (_duty.DutyType)
@@ -132,7 +132,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
     protected internal override void AnalizeGood(Entities edc, SADGood good, MessageType _messageType)
     {
       base.AnalizeGood(edc, good, _messageType);
-      SADPackage _packagex = edc.SADPackage.Where<SADPackage>(x => x.SADPackage2SADGoodID == good).First();
+      SADPackage _packagex = good.SADPackage(edc).First();
       if (_packagex.Package.ToUpper().Contains("CT"))
         CartonsMass = GrossMass - NetMass;
       else
@@ -155,7 +155,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
     /// <param name="good">The good.</param>
     protected internal override void GetNetMass(Entities edc, SADGood good)
     {
-      SADQuantity _quantity = edc.SADQuantity.Where<SADQuantity>(x => x.SADQuantity2SADGoodID == good).FirstOrDefault();
+      SADQuantity _quantity = good.SADQuantity(edc).FirstOrDefault();
       NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault(0);
     }
     /// <summary>

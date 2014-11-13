@@ -4897,7 +4897,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 				e.Item.SADRequiredDoc2SADGoodID = null;
 			}
 		}
-	}
+
+  }
 	
 	/// <summary>
 	/// SAD Package List Content Type

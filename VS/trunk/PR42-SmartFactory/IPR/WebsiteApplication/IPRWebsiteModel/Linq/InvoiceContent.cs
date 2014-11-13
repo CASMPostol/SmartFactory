@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void UpdateExportedDisposals(Entities edc)
     {
-      IEnumerable<IGrouping<int, Disposal>> _dspslsGroups = from _dsx in edc.Disposal.Where<Disposal>(x => x.Disposal2InvoiceContentIndex == this)
+      IEnumerable<IGrouping<int, Disposal>> _dspslsGroups = from _dsx in this.Disposal(edc)
                                                             let _midx = _dsx.Disposal2MaterialIndex.Id.Value
                                                             group _dsx by _midx;
       foreach (IGrouping<int, Disposal> _gx in _dspslsGroups)
@@ -71,6 +71,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
     }
 
+    private IEnumerable<Disposal> Disposal(Entities edc)
+    {
+      if (m_Disposal == null)
+        m_Disposal = from _dspslx in edc.Disposal let _id = _dspslx.Disposal2InvoiceContentIndex.Id.Value where this.Id.Value == _id select _dspslx;
+      return m_Disposal;
+    }
+    private IEnumerable<Disposal> m_Disposal = null;
     private const string m_quantityIsUnavailable = "The requested quantity is unavailable. There is only {0} on the stock.";
 
   }

@@ -69,7 +69,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     #endregion
 
     #region private
-    private static ProductCodeNumberDesscription[] CreateArrayOfProductCodeNumberDesscription(List<Disposal> disposals)
+    private static ProductCodeNumberDesscription[] CreateArrayOfProductCodeNumberDesscription(IEnumerable<Disposal> disposals)
     {
       Dictionary<string, ProductCodeNumberDesscription> _ret = new Dictionary<string, ProductCodeNumberDesscription>();
       foreach (Disposal _dx in disposals.OrderBy<Disposal, double>(x => x.SPNo.HasValue ? x.SPNo.Value : x.Created.Value.Ticks))
@@ -86,7 +86,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       }
       return _ret.Values.OrderBy<ProductCodeNumberDesscription, string>(x => x.CodeNumber).ToArray<ProductCodeNumberDesscription>();
     }
-    private static ArrayOfDIsposalsDisposalsArray[] CreateArrayOfDIsposalsDisposalsArray(List<Disposal> disposals)
+    private static ArrayOfDIsposalsDisposalsArray[] CreateArrayOfDIsposalsDisposalsArray(IEnumerable<Disposal> disposals)
     {
       List<ArrayOfDIsposalsDisposalsArray> _arry = new List<ArrayOfDIsposalsDisposalsArray>();
       foreach (Disposal _dx in disposals.Where(x => x.SettledQuantityDec > 0).OrderBy<Disposal, double>(x => x.SPNo.HasValue ? x.SPNo.Value : x.Created.Value.Ticks))
