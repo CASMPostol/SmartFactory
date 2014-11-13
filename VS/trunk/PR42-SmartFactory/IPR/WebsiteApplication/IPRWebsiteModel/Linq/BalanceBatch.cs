@@ -54,7 +54,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         Dictionary<string, IPR> _iprDictionary = grouping.ToDictionary(x => x.DocumentNo);
         List<string> _processed = new List<string>();
         BalanceTotals _totals = new BalanceTotals();
-        foreach (BalanceIPR _blncIPRx in edc.BalanceIPR.Where(x => x.BalanceBatchIndex == this))
+        foreach (BalanceIPR _blncIPRx in this.BalanceIPR(edc))
         {
           if (_iprDictionary.ContainsKey(_blncIPRx.DocumentNo))
           {
@@ -109,6 +109,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
+    private IEnumerable<BalanceIPR> BalanceIPR(Entities edc)
+    {
+      if (m_BalanceIPR == null)
+        m_BalanceIPR = from _biprx in edc.BalanceIPR let _id = _biprx.BalanceBatchIndex.Id where _id == this.Id select _biprx;
+      return m_BalanceIPR;
+    }
+    private IEnumerable<BalanceIPR> m_BalanceIPR = null;
     /// <summary>
     /// Balance Totals
     /// </summary>

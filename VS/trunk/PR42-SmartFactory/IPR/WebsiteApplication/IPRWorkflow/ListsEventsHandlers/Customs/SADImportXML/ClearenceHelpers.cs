@@ -139,7 +139,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
                 }
                 if (_sgx.SPProcedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure)
                   _tasksList.Add(CWPrepareClearance(entities, _sgx)); //Procedure 5071
-                // Procedure 5100 lub 5171
+                // Procedure 5100 or 5171
                 Clearence _newClearance = Clearence.CreataClearence(entities, "InwardProcessing", ClearenceProcedure._5171, _sgx);
                 CreateIPRAccount(entities, _newClearance, CustomsDocument.DocumentType.PZC, out comments, ProgressChange);
                 break;

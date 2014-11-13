@@ -122,11 +122,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public IEnumerable<Material> Material(Entities entities)
     {
-      return entities.Material.Where<Material>(x => x.Material2BatchIndex == this);
+      if (m_Material == null)
+        m_Material = from _midx in entities.Material let _id = _midx.Material2BatchIndex.Id.Value where _id == this.Id.Value select _midx;
+      return m_Material;
     }
     #endregion
 
     #region private
+    private IEnumerable<Material> m_Material = null;
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
     private const string m_LookupFailedAndAddedMessage = "I cannot recognize batch {0} - added preliminary entry to the list that must be uploaded.";

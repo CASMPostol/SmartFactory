@@ -6600,7 +6600,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 				e.Item.BalanceIPR2JSOXIndex = null;
 			}
 		}
-	}
+
+  }
 	
 	/// <summary>
 	/// SAD Consignment Library Content Type

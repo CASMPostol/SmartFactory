@@ -13,11 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Web.UI;
-using System.Web.UI.WebControls.WebParts;
 using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
@@ -25,7 +20,12 @@ using CAS.SmartFactory.IPR.Dashboards.Clearance;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using Microsoft.SharePoint;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Web.UI;
+using System.Web.UI.WebControls.WebParts;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
@@ -34,7 +34,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
   /// </summary>
   public partial class ExportWebPartUserControl : UserControl
   {
-    #region ctor
+    #region creator
     /// <summary>
     /// Initializes a new instance of the <see cref="ExportWebPartUserControl" /> class.
     /// </summary>
@@ -251,7 +251,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     } //ControlState
     private class LocalStateMachineEngine : WEB.WebpartStateMachineEngine
     {
-      #region ctor
+      #region constructor
       public LocalStateMachineEngine(ExportWebPartUserControl parent)
       {
         Parent = parent;
@@ -414,7 +414,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       protected override void SMError(GenericStateMachineEngine.InterfaceEvent interfaceEvent)
       {
         ShowActionResult
-          (ActionResult.Exception(new ApplicationError("SMError", CurrentMachineState.ToString(), "State maschine internal error", null), "State maschine internal error"));
+          (ActionResult.Exception(new ApplicationError("SMError", CurrentMachineState.ToString(), "State machine internal error", null), "State machine internal error"));
         CurrentMachineState = InterfaceState.ViewState;
       }
       protected override void ShowActionResult(GenericStateMachineEngine.ActionResult _rslt)
@@ -546,7 +546,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       m_NewButton.Enabled = (_set & GenericStateMachineEngine.ControlsSet.NewOn) != 0;
       m_SaveButton.Enabled = (_set & GenericStateMachineEngine.ControlsSet.SaveOn) != 0;
       m_DeleteButton.Enabled = (_set & GenericStateMachineEngine.ControlsSet.DeleteOn) != 0;
-      //Lodcal controls
+      //Local controls
       m_EditBatchCheckBox.Enabled = m_CancelButton.Enabled;
       m_InvoiceQuantityTextBox.Enabled = m_CancelButton.Enabled;
       m_ExportButton.Enabled = m_NewButton.Enabled && (m_ControlState.Invoice != null) && !m_ControlState.ReadOnly;
