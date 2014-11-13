@@ -51,7 +51,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
       this.CustomsDebtDate = _customsDebtDate;
       AnalizeGood(edc, clearence.Clearence2SadGoodID, messageType);
       ProgressChange(this, new ProgressChangedEventArgs(1, "AccountData.GetAccountData.Invoice"));
-      List<SADRequiredDocuments> _rdoc = edc.SADRequiredDocuments.Where<SADRequiredDocuments>(x => x.SADRequiredDoc2SADGoodID == clearence.Clearence2SadGoodID).ToList<SADRequiredDocuments>();
+      IEnumerable<SADRequiredDocuments> _rdoc = clearence.Clearence2SadGoodID.SADRequiredDocuments(edc);
       this.Invoice = (from _dx in _rdoc
                       let CustomsProcedureCode = _dx.Code.ToUpper()
                       where CustomsProcedureCode.Contains("N380") || CustomsProcedureCode.Contains("N935")

@@ -59,7 +59,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       using (Entities _entities = new Entities(webUrl))
       {
         SADDocumentType _sad = Element.GetAtIndex<SADDocumentType>(_entities.SADDocument, sadDocumentTypeId);
-        foreach (SADGood _gdx in _entities.SADGood.Where<SADGood>(x => x.SADDocumentIndex == _sad))
+        foreach (SADGood _gdx in _sad.SADGood(_entities))
           IPRClearThroughCustoms(_entities, _gdx);
         comments = "Reexport of goods";
         _entities.SubmitChanges();
@@ -90,11 +90,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
               break;
             case CustomsProcedureCodes.CustomsWarehousingProcedure:
               throw new NotImplementedException("CLNEProcessing - CustomsWarehousingProcedure"); //TODO http://casas:11227/sites/awt/Lists/RequirementsList/_cts/Requirements/displayifs.aspx?List=e1cf335a
-              //comments = "CW account creation error";
-              //CWAccountData _accountData = new CWAccountData(_cx.Id.Value);
-              //_accountData.GetAccountData(_entities, _cx, ImportXMLCommon.Convert2MessageType(CustomsDocument.DocumentType.SAD), progressChange);
-              //CreateCWAccount(_accountData, webUrl, out comments);
-              //break;
+            //comments = "CW account creation error";
+            //CWAccountData _accountData = new CWAccountData(_cx.Id.Value);
+            //_accountData.GetAccountData(_entities, _cx, ImportXMLCommon.Convert2MessageType(CustomsDocument.DocumentType.SAD), progressChange);
+            //CreateCWAccount(_accountData, webUrl, out comments);
+            //break;
             case CustomsProcedureCodes.ReExport:
             case CustomsProcedureCodes.NoProcedure:
             default:
@@ -112,7 +112,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       using (Entities entities = new Entities(webUrl))
       {
         SADDocumentType sad = Element.GetAtIndex<SADDocumentType>(entities.SADDocument, sadDocumentTypeId);
-        foreach (SADGood _sgx in entities.SADGood.Where<SADGood>(x => x.SADDocumentIndex == sad))
+        foreach (SADGood _sgx in sad.SADGood(entities))
         {
           switch (_sgx.SPProcedure.RequestedProcedure())
           {
@@ -228,7 +228,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
       throw new InputDataValidationException("Create CW Account Failed", "CreateCWAccount", _el);
     }
     /// <summary>
-    /// Clear through customs according 4071 procudure.
+    /// Clear through customs according 4071 procedure.
     /// </summary>
     /// <param name="entities">The entities.</param>
     /// <param name="good">The good.</param>
@@ -266,7 +266,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     private static List<Clearence> GetClearanceIds(Entities entities, SADGood good, string pattern)
     {
       List<Clearence> _ret = new List<Clearence>();
-      foreach (SADRequiredDocuments _rdx in entities.SADRequiredDocuments.Where<SADRequiredDocuments>(x => x.SADRequiredDoc2SADGoodID == good))
+      foreach (SADRequiredDocuments _rdx in good.SADRequiredDocuments(  entities))  
       {
         if (_rdx.Code != XMLResources.RequiredDocumentConsignmentCode)
           continue;

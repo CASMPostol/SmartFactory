@@ -136,7 +136,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _mx.CalculateCompensationComponents(materialRatios);
         AccumulatedDisposalsAnalisis.Accumutate(_mx);
       }
-      foreach (InvoiceContent _ix in edc.InvoiceContent.Where<InvoiceContent>(x => x.InvoiceContent2BatchIndex == parent))
+      foreach (InvoiceContent _ix in parent.InvoiceContent(edc))
         _ix.UpdateExportedDisposals(edc);
       this.UpdateNotStartedDisposals(edc, progressChanged);
     }
@@ -164,7 +164,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         List<Material> _oldMaterialList = new List<Material>();
         List<Material> _copyThis = new List<Material>();
         _copyThis.AddRange(this.Values);
-        Dictionary<string, Material> _parentsMaterials = entities.Material.Where<Material>(x => x.Material2BatchIndex == parent).ToDictionary<Material, string>(x => x.GetKey());
+        Dictionary<string, Material> _parentsMaterials = parent.Material(entities).ToDictionary<Material, string>(x => x.GetKey());
         progressChanged(this, new ProgressChangedEventArgs(1, "ProcessMaterials: ReplaceByExistingOne"));
         foreach (Material _materialX in _copyThis)
           _materialX.ReplaceByExistingOne(_oldMaterialList, _newMaterialList, _parentsMaterials, parent);

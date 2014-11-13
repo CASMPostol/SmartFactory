@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       else
         ActivityLogCT.WriteEntry(edc, "Balance report", "Cannot find stock report - only preliminary report will be created");
       List<string> _processed = new List<string>();
-      List<BalanceBatch> _BalanceBatch = edc.BalanceBatch.Where<BalanceBatch>(x => x.Balance2JSOXLibraryIndex == this).ToList<BalanceBatch>();
+      IEnumerable<BalanceBatch> _BalanceBatch = this.BalanceBatch(edc);
       foreach (BalanceBatch _bbx in _BalanceBatch)
       {
         if (_accountGroups.ContainsKey(_bbx.Batch))
@@ -119,6 +119,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         m_IPR = from _iprx in edc.IPR let _id = _iprx.IPR2JSOXIndex.Id.Value orderby _id descending where _id == this.Id.Value select _iprx;
       return m_IPR;
     }
+    /// <summary>
+    /// Reverse lookup for <see cref="BalanceBatch"/> entities.
+    /// </summary>
+    /// <param name="edc">The entities context.</param>
+    /// <returns></returns>
+    public IEnumerable<BalanceBatch> BalanceBatch(Entities edc)
+    {
+      if (m_BalanceBatch == null)
+        m_BalanceBatch = from _bbx in edc.BalanceBatch let _id = _bbx.Balance2JSOXLibraryIndex.Id.Value where this.Id.Value == _id select _bbx;
+      return m_BalanceBatch;
+    }
     #endregion
 
     #region private
@@ -129,6 +140,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return m_StockLib;
     }
     private IEnumerable<StockLib> m_StockLib = null;
+    IEnumerable<BalanceBatch> m_BalanceBatch = null;
     private IEnumerable<IPR> m_IPR = null;
     private Linq.StockLib b_Stock;
     private bool m_NoStock = false;

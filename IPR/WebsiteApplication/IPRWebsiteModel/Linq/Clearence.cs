@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       DocumentNo = sadDocument.DocumentNumber;
       ReferenceNumber = sadDocument.ReferenceNumber;
       SPStatus = true;
-      foreach (Disposal _disposal in entities.Disposal.Where<Disposal>(x => x.Disposal2ClearenceIndex == this))
+      foreach (Disposal _disposal in this.Disposal(entities))
         _disposal.FinishClearingThroughCustoms(entities, Clearence2SadGoodID);
       UpdateTitle(entities);
     }
@@ -123,7 +123,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public void ClearThroughCustom(Entities entities, SADConsignment sadConsignment)
     {
       SADConsignmentLibraryIndex = sadConsignment;
-      foreach (Disposal _dspsl in entities.Disposal.Where<Disposal>(x => x.Disposal2ClearenceIndex == this))
+      foreach (Disposal _dspsl in this.Disposal(entities))
         _dspsl.ClearThroughCustom(entities, this.ClearenceProcedure.Value, this.SADDocumentNumber, _disposal => _disposal.Disposal2IPRIndex.RecalculateLastStarted(entities, _disposal));
       UpdateTitle(entities);
     }
@@ -146,8 +146,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public void UpdateTitle(Entities entities)
     {
       string _quantity = String.Empty;
-      List<Disposal> _dspsls = entities.Disposal.Where<Disposal>(x => x.Disposal2ClearenceIndex == this).ToList<Disposal>();
-      if (_dspsls.Count > 0)
+      IEnumerable<Disposal> _dspsls = this.Disposal(entities).ToList<Disposal>();
+      if (_dspsls.Count() > 0)
         _quantity = _dspsls.Sum<Disposal>(x => x.SettledQuantity.Value).ToString("F2");
       else
         _quantity = " --- ";
@@ -178,11 +178,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public IEnumerable<Disposal> Disposal(Entities entities)
     {
-      return entities.Disposal.Where<Disposal>(x => x.Disposal2ClearenceIndex == this);
+      if (m_Disposal == null)
+        m_Disposal = from _dspslx in entities.Disposal let _id = _dspslx.Disposal2ClearenceIndex.Id.Value where this.Id.Value == _id select _dspslx;
+      return m_Disposal;
     }
     #endregion
 
     #region private
+    IEnumerable<Disposal> m_Disposal = null;
     private static Clearence CreateClearance(string code, ClearenceProcedure procedure)
     {
       Clearence _newClearence = new Clearence()

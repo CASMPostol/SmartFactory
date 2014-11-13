@@ -90,7 +90,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         case Linq.BatchStatus.Progress:
           double _portion = quantityOnStock / this.FGQuantity.Value;
-          foreach (Material _mtx in edc.Material.Where<Material>(x => x.Material2BatchIndex == this))
+          foreach (Material _mtx in this.Material(edc))
             _mtx.GetInventory(balanceStock, key, _portion);
           break;
         case Linq.BatchStatus.Intermediate:
@@ -103,7 +103,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if (this.ProductType.Value != Linq.ProductType.Cigarette)
         return;
       decimal _onStock = 0;
-      foreach (StockEntry _stock in edc.StockEntry.Where<StockEntry>(x => x.BatchIndex == this))
+      foreach (Linq.StockEntry _stock in this.StockEntry(edc))
       {
         if (_stock.StockLibraryIndex != lib)
           continue;
@@ -126,10 +126,34 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         m_Material = from _midx in entities.Material let _id = _midx.Material2BatchIndex.Id.Value where _id == this.Id.Value select _midx;
       return m_Material;
     }
+    /// <summary>
+    /// Reverse lookup for <see cref="Disposal"/>.
+    /// </summary>
+    /// <param name="edc">The entities context.</param>
+    /// <returns></returns>
+    public IEnumerable<Disposal> Disposal(Entities edc)
+    {
+      if (m_Disposal == null)
+        m_Disposal = from _dspx in edc.Disposal let _id = _dspx.Disposal2BatchIndex.Id.Value where this.Id.Value == _id select _dspx;
+      return m_Disposal;
+    }
+    /// <summary>
+    /// Reverse lookup for <see cref="InvoiceContent"/>.
+    /// </summary>
+    /// <param name="edc">The entities context.</param>
+    /// <returns>A collection of <see cref="InvoiceContent"/> entities</returns>
+    internal IEnumerable<InvoiceContent> InvoiceContent(Entities edc)
+    {
+      if (m_InvoiceContent == null)
+        m_InvoiceContent = from _dspx in edc.InvoiceContent let _id = _dspx.InvoiceContent2BatchIndex.Id.Value where this.Id.Value == _id select _dspx;
+      return m_InvoiceContent;
+    }
     #endregion
 
     #region private
     private IEnumerable<Material> m_Material = null;
+    private IEnumerable<Disposal> m_Disposal = null;
+    private IEnumerable<InvoiceContent> m_InvoiceContent = null;
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
     private const string m_LookupFailedAndAddedMessage = "I cannot recognize batch {0} - added preliminary entry to the list that must be uploaded.";
@@ -200,7 +224,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Tobacco = contentInfo[Linq.DisposalEnum.TobaccoInCigaretess];
       Overuse = contentInfo[Linq.DisposalEnum.OverusageInKg];
     }
+    private IEnumerable<StockEntry> m_StockEntry = null;
+    private IEnumerable<StockEntry> StockEntry(Entities edc)
+    {
+      if (m_StockEntry == null)
+        m_StockEntry = from _stckx in edc.StockEntry let _id = _stckx.BatchIndex.Id.Value where this.Id.Value == _id select _stckx;
+      return m_StockEntry;
+    }
     #endregion
+
 
   }
 }
