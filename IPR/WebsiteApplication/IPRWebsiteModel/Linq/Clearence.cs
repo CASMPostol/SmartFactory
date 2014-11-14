@@ -146,7 +146,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public void UpdateTitle(Entities entities)
     {
       string _quantity = String.Empty;
-      IEnumerable<Disposal> _dspsls = this.Disposal(entities).ToList<Disposal>();
+      IEnumerable<Disposal> _dspsls = this.Disposal(entities);
       if (_dspsls.Count() > 0)
         _quantity = _dspsls.Sum<Disposal>(x => x.SettledQuantity.Value).ToString("F2");
       else
@@ -199,7 +199,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return _newClearence;
     }
     #endregion
-
 
   }
 }
