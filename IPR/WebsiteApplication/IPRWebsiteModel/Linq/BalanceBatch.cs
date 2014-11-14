@@ -113,6 +113,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public IEnumerable<BalanceIPR> BalanceIPR(Entities edc)
     {
+      if (!this.Id.HasValue)
+        return null;
       if (m_BalanceIPR == null)
         m_BalanceIPR = from _biprx in edc.BalanceIPR let _id = _biprx.BalanceBatchIndex.Id where _id == this.Id select _biprx;
       return m_BalanceIPR;

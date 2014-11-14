@@ -73,6 +73,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 
     private IEnumerable<Disposal> Disposal(Entities edc)
     {
+      if (!this.Id.HasValue)
+        return null;
       if (m_Disposal == null)
         m_Disposal = from _dspslx in edc.Disposal let _id = _dspslx.Disposal2InvoiceContentIndex.Id.Value where this.Id.Value == _id select _dspslx;
       return m_Disposal;

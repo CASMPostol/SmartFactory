@@ -122,6 +122,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public IEnumerable<Material> Material(Entities entities)
     {
+      if (!this.Id.HasValue)
+        return null;
       if (m_Material == null)
         m_Material = from _midx in entities.Material let _id = _midx.Material2BatchIndex.Id.Value where _id == this.Id.Value select _midx;
       return m_Material;
@@ -133,6 +135,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public IEnumerable<Disposal> Disposal(Entities edc)
     {
+      if (!this.Id.HasValue)
+        return null;
       if (m_Disposal == null)
         m_Disposal = from _dspx in edc.Disposal let _id = _dspx.Disposal2BatchIndex.Id.Value where this.Id.Value == _id select _dspx;
       return m_Disposal;
@@ -144,6 +148,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns>A collection of <see cref="InvoiceContent"/> entities</returns>
     internal IEnumerable<InvoiceContent> InvoiceContent(Entities edc)
     {
+      if (!this.Id.HasValue)
+        return null;
       if (m_InvoiceContent == null)
         m_InvoiceContent = from _dspx in edc.InvoiceContent let _id = _dspx.InvoiceContent2BatchIndex.Id.Value where this.Id.Value == _id select _dspx;
       return m_InvoiceContent;
@@ -227,6 +233,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private IEnumerable<StockEntry> m_StockEntry = null;
     private IEnumerable<StockEntry> StockEntry(Entities edc)
     {
+      if (!this.Id.HasValue)
+        return null;
       if (m_StockEntry == null)
         m_StockEntry = from _stckx in edc.StockEntry let _id = _stckx.BatchIndex.Id.Value where this.Id.Value == _id select _stckx;
       return m_StockEntry;
