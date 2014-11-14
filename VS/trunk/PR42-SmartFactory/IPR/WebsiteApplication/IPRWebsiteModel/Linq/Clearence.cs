@@ -25,6 +25,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// </summary>
   public partial class Clearence
   {
+
     #region public
     /// <summary>
     /// Gets the clearance.
@@ -147,7 +148,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       string _quantity = String.Empty;
       IEnumerable<Disposal> _dspsls = this.Disposal(entities);
-      if (_dspsls.Count() > 0)
+      if (_dspsls != null && _dspsls.Count() > 0)
         _quantity = _dspsls.Sum<Disposal>(x => x.SettledQuantity.Value).ToString("F2");
       else
         _quantity = " --- ";
@@ -178,6 +179,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public IEnumerable<Disposal> Disposal(Entities entities)
     {
+      if (!this.Id.HasValue)
+        return null;
       if (m_Disposal == null)
         m_Disposal = from _dspslx in entities.Disposal let _id = _dspslx.Disposal2ClearenceIndex.Id.Value where this.Id.Value == _id select _dspslx;
       return m_Disposal;

@@ -140,11 +140,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns>All Disposals associated with this item</returns>
     public IEnumerable<Disposal> Disposals(Entities edc)
     {
+      if (!this.Id.HasValue)
+        return null;
       if (m_Disposals == null)
-        m_Disposals = (from _dsx in edc.Disposal
-                       let _idx = _dsx.Disposal2IPRIndex.Id.Value
-                       where !_dsx.Archival.GetValueOrDefault(false) && (_idx == this.Id.Value)
-                       select _dsx).ToList();
+        m_Disposals = from _dsx in edc.Disposal
+                      let _idx = _dsx.Disposal2IPRIndex.Id.Value
+                      where _idx == this.Id.Value
+                      select _dsx;
       return m_Disposals;
     }
 
@@ -469,7 +471,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
-    List<Disposal> m_Disposals = null;
+    IEnumerable<Disposal> m_Disposals = null;
     /// <summary>
     /// Contains calculated data required to create IPR account
     /// </summary>

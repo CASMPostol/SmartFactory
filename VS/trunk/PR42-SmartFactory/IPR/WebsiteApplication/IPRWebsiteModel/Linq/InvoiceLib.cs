@@ -30,6 +30,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public IEnumerable<InvoiceContent> InvoiceContent(Entities entities)
     {
+      if (!this.Id.HasValue)
+        return null;
       if (m_InvoiceContent == null)
         m_InvoiceContent = from _idx in entities.InvoiceContent let _id = _idx.InvoiceIndex.Id.Value where _id == this.Id.Value select _idx;
       return m_InvoiceContent; 
