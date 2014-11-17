@@ -31,4 +31,4 @@ namespace CAS.SmartFactory.CW.Dashboards
     internal const string HiddenFieldDataParameterName = "<#= HiddenFieldDataParameterName #>";
   }
 }
-<#@ include file = "..\CWModel.t4" #>
+<#@ include file = "..\..\CWModel.t4" #>

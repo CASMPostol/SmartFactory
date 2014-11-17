@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CW", "CW", "{9FFAC044-7B6D-45C5-937F-70D14078D0A3}"
 EndProject
@@ -64,6 +64,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisposalRequestWebPart_WPF", "CW\WebsiteApplication\Silverlight\DisposalRequestWebPart_WPF\DisposalRequestWebPart_WPF.csproj", "{1373310A-B2E5-4737-98D2-F4EFDFF60A76}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisposalRequestWebPartTests", "CW\Tools\Tests\DisposalRequestWebPartTests\DisposalRequestWebPartTests.csproj", "{5CA67662-9EF9-4D54-B434-43B80075E7CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scripts", "Scripts\Scripts.csproj", "{A46DAE36-02EA-4302-A476-7AF770CB20C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -254,6 +256,14 @@ Global
 		{5CA67662-9EF9-4D54-B434-43B80075E7CC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5CA67662-9EF9-4D54-B434-43B80075E7CC}.Release|x64.ActiveCfg = Release|Any CPU
 		{5CA67662-9EF9-4D54-B434-43B80075E7CC}.Release|x86.ActiveCfg = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Release|x64.ActiveCfg = Release|Any CPU
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -284,5 +294,6 @@ Global
 		{EC5BBDE9-71DC-414C-AD01-8CF6D4B00F91} = {BE440823-1114-4835-BC08-7850469C754F}
 		{1373310A-B2E5-4737-98D2-F4EFDFF60A76} = {8BA48226-1040-4FA2-941D-11A82B11FE78}
 		{5CA67662-9EF9-4D54-B434-43B80075E7CC} = {E975AE4F-A418-466A-8ADE-A40108274615}
+		{A46DAE36-02EA-4302-A476-7AF770CB20C0} = {E5B3C924-7BC6-495C-B50F-0617E2CF29F9}
 	EndGlobalSection
 EndGlobal
