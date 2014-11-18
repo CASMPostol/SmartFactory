@@ -117,10 +117,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       get { return Convert.ToDouble(myTotalTobacco); }
     }
     internal double CalculatedOveruse { get; private set; }
-    internal void Analyze(Entities edc, Batch parent, ProgressChangedEventHandler progressChanged, Material.Ratios materialRatios)
+    internal void Analyze(Entities edc, Batch parent, ProgressChangedEventHandler progressChanged, Material.Ratios materialRatios, bool newBatch)
     {
       progressChanged(this, new ProgressChangedEventArgs(1, "Analyze: ProcessMaterials"));
-      this.ReplaceMaterials(edc, parent, materialRatios, progressChanged);
+      if (! newBatch)
+        this.ReplaceMaterials(edc, parent, materialRatios, progressChanged);
       progressChanged(this, new ProgressChangedEventArgs(1, "Analyze: AdjustMaterialQuantity"));
       List<Material> _tobacco = this.Values.Where<Material>(x => x.ProductType.Value == ProductType.IPRTobacco || x.ProductType.Value == ProductType.Tobacco).ToList<Material>();
       List<Material> _IPRtobacco = _tobacco.Where<Material>(x => x.ProductType.Value == ProductType.IPRTobacco).ToList<Material>();
@@ -141,6 +142,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _mx.CalculateCompensationComponents(materialRatios);
         AccumulatedDisposalsAnalisis.Accumutate(_mx);
       }
+      if (newBatch)
+        return;
       foreach (InvoiceContent _ix in parent.InvoiceContent(edc))
         _ix.UpdateExportedDisposals(edc);
       this.UpdateNotStartedDisposals(edc, progressChanged);

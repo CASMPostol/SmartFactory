@@ -73,7 +73,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       BatchLibraryIndex = parent;
       progressChanged(this, new ProgressChangedEventArgs(1, "BatchProcessing: GetDependences"));
       Material.Ratios _mr = GetDependences(edc, contentInfo);
-      contentInfo.Analyze(edc, this, progressChanged, _mr);
+      contentInfo.Analyze(edc, this, progressChanged, _mr, newBatch);
       AssignContentInfo(contentInfo, newBatch);
     }
     internal string DanglingBatchWarningMessage
