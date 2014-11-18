@@ -223,17 +223,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Gets the list of disposals.
     /// </summary>
     /// <returns></returns>
-    public List<Disposal> GetListOfDisposals(Entities edc)
+    private IEnumerable<Disposal> GetListOfDisposals(Entities edc)
     {
       Linq.DisposalStatus status = this.Material2BatchIndex.ProductType.Value == Linq.ProductType.Cigarette ? DisposalStatus.TobaccoInCigaretes : DisposalStatus.TobaccoInCutfiller;
-      return
-        (
-            from _didx in Disposal(edc)
-            let _ipr = _didx.Disposal2IPRIndex
-            where _didx.CustomsStatus.Value == CustomsStatus.NotStarted && _didx.DisposalStatus.Value == status
-            orderby _ipr.Id ascending
-            select _didx
-        ).ToList();
+      return from _didx in Disposal(edc)
+             let _ipr = _didx.Disposal2IPRIndex
+             where _didx.CustomsStatus.Value == CustomsStatus.NotStarted && _didx.DisposalStatus.Value == status
+             orderby _ipr.Id ascending
+             select _didx;
     }
     /// <summary>
     /// Exports the specified entities.
@@ -436,7 +433,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private IEnumerable<Disposal> Disposal(Entities edc)
     {
       if (m_Disposal == null)
-        m_Disposal = from _dslx in edc.Disposal let _id = _dslx.Disposal2MaterialIndex.Id.Value where _id == this.Id.Value select _dslx;
+        m_Disposal = this.Id.HasValue ? from _dslx in edc.Disposal let _id = _dslx.Disposal2MaterialIndex.Id.Value where _id == this.Id.Value select _dslx : null;
       return m_Disposal;
     }
     #endregion
