@@ -182,7 +182,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           break;
       }
       progressChanged(null, new ProgressChangedEventArgs(1, "GetXmlContent: Validate"));
-      _contentInfo.Validate(edc, _batch.Disposal(edc));
+      _contentInfo.Validate(edc, _batch.Disposal(edc, _newBatch));
       if (_newBatch)
         edc.Batch.InsertOnSubmit(_batch);
       progressChanged(null, new ProgressChangedEventArgs(1, "GetXmlContent: BatchProcessing"));
@@ -215,8 +215,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       {
         foreach (BatchMaterialXml item in xml)
         {
-          Entities.ProductDescription product = entities.GetProductType(item.Material, item.Stor__Loc, item.IsFinishedGood);
-          Material _newMaterial = new Material(entities, product, item.Batch, item.Material, item.Stor__Loc, item.Material_description, item.Unit, item.Quantity, item.Quantity_calculated, item.material_group);
+          Entities.ProductDescription _product = entities.GetProductType(item.Material, item.Stor__Loc, item.IsFinishedGood);
+          Material _newMaterial = new Material(entities, _product, item.Batch, item.Material, item.Stor__Loc, item.Material_description, item.Unit, item.Quantity, item.Quantity_calculated, item.material_group);
           _newMaterial.GetListOfIPRAccounts(entities);
           progressChanged(this, new ProgressChangedEventArgs(1, String.Format("SKU={0}", _newMaterial.SKU)));
           Add(_newMaterial);
@@ -224,7 +224,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         if (Product == null)
           throw new InputDataValidationException("Unrecognized finished good", "Product", "Wrong Batch XML message", true);
       }
-
     }
     private ErrorsList m_Warnings = new ErrorsList();
     private const string m_Source = "Batch processing";

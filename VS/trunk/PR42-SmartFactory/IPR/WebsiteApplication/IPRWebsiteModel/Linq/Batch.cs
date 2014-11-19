@@ -90,7 +90,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         case Linq.BatchStatus.Progress:
           double _portion = quantityOnStock / this.FGQuantity.Value;
-          foreach (Material _mtx in this.Material(edc))
+          foreach (Material _mtx in this.Material(edc, false))
             _mtx.GetInventory(balanceStock, key, _portion);
           break;
         case Linq.BatchStatus.Intermediate:
@@ -116,27 +116,29 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
     }
     /// <summary>
-    /// Reverse lookup to <see cref="Material"/>.
+    /// Reverse lookup to <see cref="Material" />.
     /// </summary>
-    /// <param name="entities">The entities.</param>
+    /// <param name="edc">The entities.</param>
+    /// <param name="emptyListIfNew">if set to <c>true</c> return empty list.</param>
     /// <returns></returns>
-    public IEnumerable<Material> Material(Entities entities)
+    public IEnumerable<Material> Material(Entities edc, bool emptyListIfNew)
     {
       if (!this.Id.HasValue)
-        return null;
+        return emptyListIfNew ? new Material[] { } : null;
       if (m_Material == null)
-        m_Material = from _midx in entities.Material let _id = _midx.Material2BatchIndex.Id.Value where _id == this.Id.Value select _midx;
+        m_Material = from _midx in edc.Material let _id = _midx.Material2BatchIndex.Id.Value where _id == this.Id.Value select _midx;
       return m_Material;
     }
     /// <summary>
-    /// Reverse lookup for <see cref="Disposal"/>.
+    /// Reverse lookup for <see cref="Disposal" />.
     /// </summary>
     /// <param name="edc">The entities context.</param>
+    /// <param name="emptyListIfNew">if set to <c>true</c> return empty list.</param>
     /// <returns></returns>
-    public IEnumerable<Disposal> Disposal(Entities edc)
+    public IEnumerable<Disposal> Disposal(Entities edc, bool emptyListIfNew)
     {
       if (!this.Id.HasValue)
-        return null;
+        return emptyListIfNew ? new Disposal[]{} : null;
       if (m_Disposal == null)
         m_Disposal = from _dspx in edc.Disposal let _id = _dspx.Disposal2BatchIndex.Id.Value where this.Id.Value == _id select _dspx;
       return m_Disposal;
@@ -209,7 +211,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         double _available = FGQuantityAvailable.Value;
         if (_diff + _available < 0)
         {
-          string _ptrn = "The previous batch {0} has quantity of finisched good greater then the new one - it looks like wrong messages sequence. Available={1}, Diff={2}";
+          string _ptrn = "The previous batch {0} has quantity of finished good greater then the new one - it looks like wrong messages sequence. Available={1}, Diff={2}";
           throw new InputDataValidationException("wrong status of the input batch", "BatchProcessing", String.Format(_ptrn, contentInfo.Product.Batch, _available, _diff), true);
         }
         FGQuantityAvailable = _diff + _available;
@@ -241,7 +243,5 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     #endregion
 
-
   }
 }
-
