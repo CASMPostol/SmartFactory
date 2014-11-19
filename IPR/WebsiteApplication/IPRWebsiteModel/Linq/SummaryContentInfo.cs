@@ -73,11 +73,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if (Product.ProductType != ProductType.Cigarette)
         return;
       Dictionary<string, IGrouping<string, Disposal>> _disposalGroups;
-      if (disposals != null)
-        _disposalGroups = (from _mx in disposals
-                           group _mx by _mx.Disposal2IPRIndex.Batch).ToDictionary<IGrouping<string, Disposal>, string>(k => k.Key);
-      else
-        _disposalGroups = new Dictionary<string, IGrouping<string, Disposal>>();
+      _disposalGroups = (from _mx in disposals
+                         group _mx by _mx.Disposal2IPRIndex.Batch).ToDictionary<IGrouping<string, Disposal>, string>(k => k.Key);
       Dictionary<string, decimal> _materials = new Dictionary<string, decimal>();
       //sum disposed material
       foreach (IGrouping<string, Disposal> _groupX in _disposalGroups.Values)
@@ -120,8 +117,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal void Analyze(Entities edc, Batch parent, ProgressChangedEventHandler progressChanged, Material.Ratios materialRatios, bool newBatch)
     {
       progressChanged(this, new ProgressChangedEventArgs(1, "Analyze: ProcessMaterials"));
-      if (! newBatch)
-        this.ReplaceMaterials(edc, parent, materialRatios, progressChanged);
+      this.ReplaceMaterials(edc, parent, materialRatios, progressChanged, newBatch);
       progressChanged(this, new ProgressChangedEventArgs(1, "Analyze: AdjustMaterialQuantity"));
       List<Material> _tobacco = this.Values.Where<Material>(x => x.ProductType.Value == ProductType.IPRTobacco || x.ProductType.Value == ProductType.Tobacco).ToList<Material>();
       List<Material> _IPRtobacco = _tobacco.Where<Material>(x => x.ProductType.Value == ProductType.IPRTobacco).ToList<Material>();
@@ -162,7 +158,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The accumulated disposals analysis.
     /// </value>
     private DisposalsAnalisis AccumulatedDisposalsAnalisis { get; set; }
-    private void ReplaceMaterials(Entities entities, Batch parent, Material.Ratios materialRatios, ProgressChangedEventHandler progressChanged)
+    private void ReplaceMaterials(Entities entities, Batch parent, Material.Ratios materialRatios, ProgressChangedEventHandler progressChanged, bool newBatch)
     {
       if (Product == null)
         throw new IPRDataConsistencyException("SummaryContentInfo.ProcessMaterials", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized.");
@@ -172,7 +168,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         List<Material> _oldMaterialList = new List<Material>();
         List<Material> _copyThis = new List<Material>();
         _copyThis.AddRange(this.Values);
-        Dictionary<string, Material> _parentsMaterials = parent.Material(entities).ToDictionary<Material, string>(x => x.GetKey());
+        Dictionary<string, Material> _parentsMaterials = parent.Material(entities, newBatch).ToDictionary<Material, string>(x => x.GetKey());
         progressChanged(this, new ProgressChangedEventArgs(1, "ProcessMaterials: ReplaceByExistingOne"));
         foreach (Material _materialX in _copyThis)
           _materialX.ReplaceByExistingOne(_oldMaterialList, _newMaterialList, _parentsMaterials, parent);

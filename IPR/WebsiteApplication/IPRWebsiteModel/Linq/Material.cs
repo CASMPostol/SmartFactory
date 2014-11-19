@@ -226,7 +226,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private IEnumerable<Disposal> GetListOfDisposals(Entities edc)
     {
       Linq.DisposalStatus status = this.Material2BatchIndex.ProductType.Value == Linq.ProductType.Cigarette ? DisposalStatus.TobaccoInCigaretes : DisposalStatus.TobaccoInCutfiller;
-      return from _didx in Disposal(edc)
+      return from _didx in Disposal(edc, false)
              let _ipr = _didx.Disposal2IPRIndex
              where _didx.CustomsStatus.Value == CustomsStatus.NotStarted && _didx.DisposalStatus.Value == status
              orderby _ipr.Id ascending
@@ -349,7 +349,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       string _parentBatch = this.Material2BatchIndex.Batch0;
       if (this.ProductType.Value != Linq.ProductType.IPRTobacco)
         return;
-      IEnumerable<Disposal> _allDisposals = this.Disposal(edc);
+      IEnumerable<Disposal> _allDisposals = this.Disposal(edc, true);
       foreach (Linq.DisposalEnum _kind in Enum.GetValues(typeof(Linq.DisposalEnum)))
       {
         try
@@ -430,8 +430,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private decimal Disposed { get; set; }
     private const string m_keyForam = "{0}:{1}:{2}";
     private List<IPR> myVarAccounts2Dispose = null;
-    private IEnumerable<Disposal> Disposal(Entities edc)
+    private IEnumerable<Disposal> Disposal(Entities edc, bool emptyListIfNew)
     {
+      if (!Id.HasValue)
+        return emptyListIfNew ? new Disposal[] { } : null;
       if (m_Disposal == null)
         m_Disposal = this.Id.HasValue ? from _dslx in edc.Disposal let _id = _dslx.Disposal2MaterialIndex.Id.Value where _id == this.Id.Value select _dslx : null;
       return m_Disposal;

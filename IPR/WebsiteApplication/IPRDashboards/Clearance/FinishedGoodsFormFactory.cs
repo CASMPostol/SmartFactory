@@ -143,7 +143,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         batch.FGQuantityAvailable = Convert.ToDouble(Convert.ToDecimal(batch.FGQuantityAvailable.Value) - Convert.ToDecimal(invoice.Quantity.Value));
         List<Ingredient> _ingredients = new List<Ingredient>();
         _at = "foreach";
-        foreach (Material _materialIdx in batch.Material(entities))
+        foreach (Material _materialIdx in batch.Material(entities, false))
           ExportMaterial(entities, _materialIdx, _ingredients, _closingBatch, invoice, sadConsignmentNumber);
         _at = "_exportConsignment";
         CigaretteExportForm _form = GetCigaretteExportForm(batch, invoice, _ingredients, documentName, ref subdocumentNo, invoice.InvoiceIndex.ClearenceIndex.ClearenceProcedure.Value);
