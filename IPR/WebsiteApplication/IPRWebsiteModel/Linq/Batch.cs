@@ -216,6 +216,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         }
         FGQuantityAvailable = _diff + _available;
       }
+      Archival = false;
       BatchStatus = contentInfo.BatchStatus;
       Batch0 = contentInfo.Product.Batch;
       SKU = contentInfo.Product.SKU;

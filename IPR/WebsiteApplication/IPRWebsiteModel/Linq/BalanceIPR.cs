@@ -26,6 +26,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       BalanceIPR _newItem = new BalanceIPR()
       {
+        Archival = false,
         Balance = -1,
         BalanceBatchIndex = parent,
         BalanceIPR2JSOXIndex = masterReport,

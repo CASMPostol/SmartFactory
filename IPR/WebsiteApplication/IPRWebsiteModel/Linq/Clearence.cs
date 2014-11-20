@@ -193,6 +193,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       Clearence _newClearence = new Clearence()
       {
+        Archival = false,
         DocumentNo = String.Empty.NotAvailable(),
         ProcedureCode = code,
         ReferenceNumber = String.Empty.NotAvailable(),

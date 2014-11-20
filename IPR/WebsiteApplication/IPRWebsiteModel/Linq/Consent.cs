@@ -29,7 +29,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       int _defPeriod = 360;
       DateTime _defDate = DateTime.Today.Date;
       Consent _ret = new Consent()
-      {
+      {        
         ConsentDate = _defDate,
         ConsentPeriod = _defPeriod / 30,
         IsIPR = process == CustomsProcess.ipr,
