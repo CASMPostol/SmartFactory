@@ -148,10 +148,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="edc">The entities context.</param>
     /// <returns>A collection of <see cref="InvoiceContent"/> entities</returns>
-    internal IEnumerable<InvoiceContent> InvoiceContent(Entities edc)
+    internal IEnumerable<InvoiceContent> InvoiceContent(Entities edc, bool emptyListIfNew)
     {
       if (!this.Id.HasValue)
-        return null;
+        return emptyListIfNew ? new InvoiceContent[]{} : null;
       if (m_InvoiceContent == null)
         m_InvoiceContent = from _dspx in edc.InvoiceContent let _id = _dspx.InvoiceContent2BatchIndex.Id.Value where this.Id.Value == _id select _dspx;
       return m_InvoiceContent;

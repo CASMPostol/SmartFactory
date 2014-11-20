@@ -31,12 +31,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal Disposal(IPR ipr, Linq.DisposalStatus _typeOfDisposal, decimal _toDispose)
       : this()
     {
+      Archival = false;
       ClearingType = Linq.ClearingType.PartialWindingUp;
       CustomsProcedure = String.Empty.NotAvailable();
       CustomsStatus = Linq.CustomsStatus.NotStarted;
       Disposal2IPRIndex = ipr;
       DisposalStatus = _typeOfDisposal;
-      Disposal2PCNID = null; //will be assigned during claring through custom
+      Disposal2PCNID = null; //will be assigned during clearing through custom
       DutyPerSettledAmount = new Nullable<double>();  // calculated in SetUpCalculatedColumns,
       InvoiceNo = String.Empty.NotAvailable(); //To be assigned during finished goods export.
       IPRDocumentNo = String.Empty.NotAvailable();

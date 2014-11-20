@@ -47,6 +47,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         tobaccoQuantity, string productID)
       : this()
     {
+      Archival = false; 
       Batch = batch;
       Material2BatchIndex = null;
       SKU = sku;

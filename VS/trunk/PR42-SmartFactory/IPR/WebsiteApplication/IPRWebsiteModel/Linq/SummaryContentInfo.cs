@@ -138,9 +138,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _mx.CalculateCompensationComponents(materialRatios);
         AccumulatedDisposalsAnalisis.Accumutate(_mx);
       }
-      if (newBatch)
-        return;
-      foreach (InvoiceContent _ix in parent.InvoiceContent(edc))
+      foreach (InvoiceContent _ix in parent.InvoiceContent(edc, newBatch))
         _ix.UpdateExportedDisposals(edc);
       this.UpdateNotStartedDisposals(edc, progressChanged);
     }
