@@ -36,6 +36,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Linq.Consent _consentLookup = GetAtIndex<Consent>(entities.Consent, iprdata.ConsentLookup);
       AccountClosed = false;
       AccountBalance = iprdata.NetMass;
+      Archival = false;
       Batch = iprdata.BatchId;
       Cartons = iprdata.CartonsMass;
       ClearenceIndex = clearence;
