@@ -34,6 +34,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         IPR _firsTIPR = _grpx.FirstOrDefault<IPR>();
         BalanceBatch _newBB = new BalanceBatch()
         {
+          Archival = false,
           Balance2JSOXLibraryIndex = parent,
           Batch = _grpx.Key,
           Title = "creating",
