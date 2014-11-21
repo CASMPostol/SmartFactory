@@ -92,12 +92,12 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         CompletedLogToHistory_HistoryDescription = _ex.Message;
       }
     }
-    private RequestContent CreateContent(CustomsWarehouse _cw)
+    private RequestContent CreateContent(Entities edc, CustomsWarehouse _cw)
     {
       string _WithdrawalSADDcoumentNo = String.Empty;
       DateTime _WithdrawalSADDocumentDate = default(DateTime);
       List<ArrayOfDisposalDisposalsArray> _listOfDisposals = new List<ArrayOfDisposalDisposalsArray>();
-      foreach (CustomsWarehouseDisposal _cwdx in _cw.CustomsWarehouseDisposal)
+      foreach (CustomsWarehouseDisposal _cwdx in _cw.CustomsWarehouseDisposal(edc, false)) //TODO mp
       {
         List<string> _wz = new List<string>();
         if (!_cwdx.CW_Wz1.IsNullOrEmpty())

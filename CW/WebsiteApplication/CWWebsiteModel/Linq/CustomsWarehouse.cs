@@ -125,9 +125,27 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     {
       return this.CW_PackageUnits.Value == 0 ? 0 : (this.GrossMass.Value - this.CW_Quantity.Value) / this.CW_PackageUnits.Value;
     }
+
+    /// <summary>
+    /// Reverse lookup to <see cref="CustomsWarehouseDisposal" />.
+    /// </summary>
+    /// <param name="edc">The entities.</param>
+    /// <param name="emptyListIfNew">if set to <c>true</c> return empty list.</param>
+    /// <returns></returns>
+    public IEnumerable<CustomsWarehouseDisposal> CustomsWarehouseDisposal(Entities edc, bool emptyListIfNew)
+    {
+      if (!this.Id.HasValue)
+        return emptyListIfNew ? new CustomsWarehouseDisposal[] { } : null;
+      if (m_CustomsWarehouseDisposal == null)
+        m_CustomsWarehouseDisposal = from _cwdx in edc.CustomsWarehouseDisposal let _id = _cwdx.CWL_CWDisposal2CustomsWarehouseID.Id.Value where _id == this.Id.Value select _cwdx;
+      return m_CustomsWarehouseDisposal;
+    }
+
     #endregion
 
     #region private
+
+    private IEnumerable<CustomsWarehouseDisposal> m_CustomsWarehouseDisposal = null;
     private static List<CustomsWarehouse> GetOrderedQueryable4Batch(Entities entities, string batch)
     {
       return (from _cwi in entities.CustomsWarehouse
@@ -176,5 +194,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     }
     #endregion
 
+    
   }
 }
