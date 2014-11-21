@@ -71,7 +71,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
       }
       return _ret;
     }
-    private static List<ArrayOfAccountsDetailsDetailsOfOneAccount> CreateDetails(IGrouping<string, CustomsWarehouse> group, out decimal totalNetMass, out decimal totalValue, Dictionary<string, Consent> consentsList)
+    private static List<ArrayOfAccountsDetailsDetailsOfOneAccount> CreateDetails(Entities edc, IGrouping<string, CustomsWarehouse> group, out decimal totalNetMass, out decimal totalValue, Dictionary<string, Consent> consentsList)
     {
       totalNetMass = 0;
       totalValue = 0;
@@ -83,7 +83,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
           throw new ArgumentNullException("CWL_CW2ConsentTitle", "Incosistent data content: in AccountsReportContentWithStylesheet.CreateDetails the account must be associated with a consent.");
         if (!consentsList.ContainsKey(_cwx.CWL_CW2ConsentTitle.Title))
           consentsList.Add(_cwx.CWL_CW2ConsentTitle.Title, _cwx.CWL_CW2ConsentTitle);
-        List<CustomsWarehouseDisposal> _last = (from _cwdx in _cwx.CustomsWarehouseDisposal
+        List<CustomsWarehouseDisposal> _last = (from _cwdx in _cwx.CustomsWarehouseDisposal(edc, false) //TODO mp
                                                 where _cwdx.CustomsStatus.Value == CustomsStatus.Finished
                                                 orderby _cwdx.SPNo.Value descending
                                                 select _cwdx).ToList<CustomsWarehouseDisposal>();

@@ -26,7 +26,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
   /// partial class Clearence
   /// </summary>
   public partial class Clearence
-  {
+  { 
+   
     /// <summary>
     /// Creatas the clearence.
     /// </summary>
@@ -66,13 +67,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     {
       return Settings.SADTemplateDocumentNameFileName(entities, this.Id.Value);
     }
-    internal void FinishClearThroughCustoms(Entities entities, SADGood sadGood)
+    internal void FinishClearThroughCustoms(Entities entities, Entities edc, SADGood sadGood)
     {
       SADDocumentType sadDocument = Clearence2SadGoodID.SADDocumentIndex;
       DocumentNo = sadDocument.DocumentNumber;
       ReferenceNumber = sadDocument.ReferenceNumber;
       SPStatus = true;
-      foreach (CustomsWarehouseDisposal _cwdx in this.CustomsWarehouseDisposal)
+      foreach (CustomsWarehouseDisposal _cwdx in this.CustomsWarehouseDisposal(edc, false)) //TODO mp
         _cwdx.FinishClearThroughCustoms(sadGood);
       UpdateTitle(entities);
     }
@@ -89,6 +90,15 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         ClearenceProcedure = procedure
       };
       return _newClearence;
+    }
+    private IEnumerable<CustomsWarehouseDisposal> m_CustomsWarehouseDisposal = null;
+    private IEnumerable<CustomsWarehouseDisposal> CustomsWarehouseDisposal(Entities edc, bool emptyListIfNew)
+    {
+      if (!this.Id.HasValue)
+        return emptyListIfNew ? new CustomsWarehouseDisposal[] { } : null;
+      if (m_CustomsWarehouseDisposal == null)
+        m_CustomsWarehouseDisposal = from _cwdx in edc.CustomsWarehouseDisposal let _id = _cwdx.CWL_CWDisposal2CustomsWarehouseID.Id.Value where _id == this.Id.Value select _cwdx;
+      return m_CustomsWarehouseDisposal;
     }
     #endregion
 

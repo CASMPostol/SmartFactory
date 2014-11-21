@@ -94,13 +94,13 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       CW_SettledGrossMass = (CW_PackageToClear.Value * CWL_CWDisposal2CustomsWarehouseID.PackageWeight() + value).RoundValue();
       this.CW_AddedKg = (value - this.CW_DeclaredNetMass.Value).RoundValue();
     }
-    internal void FinishClearThroughCustoms(SADGood sadGood)
+    internal void FinishClearThroughCustoms(Entities edc, SADGood sadGood)
     {
       if (this.CustomsStatus.Value == Linq.CustomsStatus.Finished)
         return;
       try
       {
-        List<CustomsWarehouseDisposal> _Finished = (from _dsp in this.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal
+        List<CustomsWarehouseDisposal> _Finished = (from _dsp in this.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal(edc, false) //TODO mp
                                                     where _dsp.CustomsStatus.Value == Linq.CustomsStatus.Finished
                                                     select _dsp).ToList<CustomsWarehouseDisposal>();
         if (_Finished.Count<CustomsWarehouseDisposal>() == 0)
