@@ -112,6 +112,7 @@
     <Compile Include="Linq\Element.cs" />
     <Compile Include="Linq\Entities.cs" />
     <Compile Include="Linq\Entities.spmetal.cs" />
+    <Compile Include="Linq\SADGood.cs" />
     <Compile Include="Linq\Settings.cs" />
     <Compile Include="Linq\StatementLib.cs" />
     <Compile Include="Linq\Vendor.cs" />

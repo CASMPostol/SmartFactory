@@ -13,10 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Workflow.Activities;
 using CAS.SharePoint.DocumentsFactory;
 using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.Customs.Messages.CELINA.SAD;
@@ -24,6 +20,10 @@ using CAS.SmartFactory.CW.WebsiteModel;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Workflow.Activities;
 
 namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCustoms
 {
@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
         using (Entities _entities = new Entities(workflowProperties.WebUrl))
         {
           DisposalRequestLib _Dr = Element.GetAtIndex<DisposalRequestLib>(_entities.DisposalRequestLibrary, workflowProperties.ItemId);
-          foreach (CustomsWarehouseDisposal _cwdx in _Dr.CustomsWarehouseDisposal)
+          foreach (CustomsWarehouseDisposal _cwdx in _Dr.CustomsWarehouseDisposal(_entities, false))
           {
             if (_cwdx.CustomsStatus.Value != CustomsStatus.NotStarted)
               continue;
@@ -56,22 +56,23 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
             _cwdx.CWL_CWDisposal2ClearanceID = _newClearance;
             _cwdx.CustomsStatus = CustomsStatus.Started;
             if (_cwdx.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value > 0 ||
-                _cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal.Where<CustomsWarehouseDisposal>(x => x.CustomsStatus.Value == CustomsStatus.NotStarted).Any<CustomsWarehouseDisposal>())
+                _cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal(_entities, false).Where<CustomsWarehouseDisposal>(x => x.CustomsStatus.Value == CustomsStatus.NotStarted).Any<CustomsWarehouseDisposal>())
               _cwdx.ClearingType = ClearingType.PartialWindingUp;
             else
             {
               _cwdx.ClearingType = ClearingType.TotalWindingUp;
-              _cwdx.TobaccoValue += _cwdx.CWL_CWDisposal2CustomsWarehouseID.Value.Value - _cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal.Sum<CustomsWarehouseDisposal>(x => x.TobaccoValue.Value);
+              _cwdx.TobaccoValue += _cwdx.CWL_CWDisposal2CustomsWarehouseID.Value.Value - _cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal(_entities, false).Sum<CustomsWarehouseDisposal>(x => x.TobaccoValue.Value);
               _cwdx.TobaccoValue = _cwdx.TobaccoValue.Value.RoundValue();
-              _cwdx.CW_SettledNetMass += _cwdx.CWL_CWDisposal2CustomsWarehouseID.CW_Quantity.Value - _cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal.Sum<CustomsWarehouseDisposal>(x => x.CW_SettledNetMass.Value);
+              _cwdx.CW_SettledNetMass += _cwdx.CWL_CWDisposal2CustomsWarehouseID.CW_Quantity.Value - _cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal(_entities, false).Sum<CustomsWarehouseDisposal>(x => x.CW_SettledNetMass.Value);
               _cwdx.CW_SettledNetMass = _cwdx.CW_SettledNetMass.Value.RoundValue();
-              _cwdx.CW_SettledGrossMass += _cwdx.CWL_CWDisposal2CustomsWarehouseID.GrossMass.Value - _cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal.Sum<CustomsWarehouseDisposal>(x => x.CW_SettledGrossMass.Value);
+              _cwdx.CW_SettledGrossMass += _cwdx.CWL_CWDisposal2CustomsWarehouseID.GrossMass.Value - _cwdx.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal(_entities, false).Sum<CustomsWarehouseDisposal>(x => x.CW_SettledGrossMass.Value);
               _cwdx.CW_SettledGrossMass = _cwdx.CW_SettledGrossMass.Value.RoundValue();
             }
             _MasterDocumentName = _newClearance.SADTemplateDocumentNameFileName(_entities);
             SAD _sad = CraeteSAD(_entities, _cwdx, _MasterDocumentName);
             SPFile _newFile = File.CreateXmlFile<SAD>(workflowProperties.Web, _sad, _MasterDocumentName, SADConsignment.IPRSADConsignmentLibraryTitle, SAD.StylesheetNmane);
             SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>(_entities.SADConsignment, _newFile.Item.ID);
+            _sadConsignment.Archival = true;
             _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
             _entities.SubmitChanges();
           }
@@ -81,7 +82,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
       }
       catch (Exception _ex)
       {
-        logToHistoryListActivity_HistoryOutcome = "Exeption";
+        logToHistoryListActivity_HistoryOutcome = "Exception";
         logToHistoryListActivity_HistoryDescription = _ex.Message;
       }
     }
@@ -91,7 +92,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
       List<SADZgloszenieTowarDokumentWymagany> _dcsList = new List<SADZgloszenieTowarDokumentWymagany>();
       int _Pos = 1;
       _dcsList.Add(SADZgloszenieTowarDokumentWymagany.Create(_Pos++, Settings.CustomsProcedureCode9DK8, masterDocumentName, String.Empty));
-      foreach (SADRequiredDocuments _rdx in _entrySAD.SADRequiredDocuments)
+      foreach (SADRequiredDocuments _rdx in _entrySAD.SADRequiredDocuments(entities, false))
       {
         if (Required(_rdx.Code))
           _dcsList.Add(SADZgloszenieTowarDokumentWymagany.Create(_Pos++, _rdx.Code, _rdx.Number, _rdx.Title));

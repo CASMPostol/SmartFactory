@@ -16,7 +16,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CAS.SharePoint;
 
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq
 {
@@ -40,12 +39,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       /// </summary>
       public decimal DeclaredQuantity;
       /// <summary>
-      /// The sku description
+      /// The SKU description
       /// </summary>
       public string SKUDescription;
     }
     /// <summary>
-    /// Goodses the name.
+    /// Goods the name.
     /// </summary>
     /// <param name="entities">The entities.</param>
     /// <returns></returns>
@@ -69,10 +68,10 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       }
     }
     /// <summary>
-    /// Gets the taric.
+    /// Gets the TARIC.
     /// </summary>
     /// <value>
-    /// The taric.
+    /// The TARIC.
     /// </value>
     public string ProductCodeTaric
     {
@@ -83,7 +82,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       }
     }
     /// <summary>
-    /// Calculated and assignes values to CW_SettledNetMass, CW_SettledGrossMass, CW_AddedKg, TobaccoValue
+    /// Calculated and assigns values to CW_SettledNetMass, CW_SettledGrossMass, CW_AddedKg, TobaccoValue
     /// </summary>
     /// <param name="value">The net mass.</param>
     internal void CalculateMassValu(double value)
@@ -100,14 +99,14 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         return;
       try
       {
-        List<CustomsWarehouseDisposal> _Finished = (from _dsp in this.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal(edc, false) //TODO mp
+        List<CustomsWarehouseDisposal> _Finished = (from _dsp in this.CWL_CWDisposal2CustomsWarehouseID.CustomsWarehouseDisposal(edc, false)
                                                     where _dsp.CustomsStatus.Value == Linq.CustomsStatus.Finished
                                                     select _dsp).ToList<CustomsWarehouseDisposal>();
         if (_Finished.Count<CustomsWarehouseDisposal>() == 0)
           this.SPNo = 1;
         else
           this.SPNo = _Finished.Max<CustomsWarehouseDisposal>(dspsl => dspsl.SPNo.Value) + 1;
-        AssignSADGood(sadGood);
+        AssignSADGood(edc, sadGood);
         decimal _balance = CalculateRemainingQuantity();
         if (_balance == 0)
         {
@@ -159,7 +158,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     {
       //TODO CheckCNCosistency NotImplementedException();
     }
-    private void AssignSADGood(SADGood sadGood)
+    private void AssignSADGood(Entities edc, SADGood sadGood)
     {
       this.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
       this.SADDocumentNo = sadGood.SADDocumentIndex.DocumentNumber;
@@ -169,7 +168,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         throw new ArgumentOutOfRangeException("TotalAmountInvoiced", "Total Amount Invoiced value is not equal as requested to clear through customs");
       decimal _vat = 0;
       decimal _duties = 0;
-      foreach (SADDuties _sdc in sadGood.SADDuties)
+      foreach (SADDuties _sdc in sadGood.SADDuties(edc, false))
       {
         switch (Settings.DutyKind(_sdc.DutyType))
         {

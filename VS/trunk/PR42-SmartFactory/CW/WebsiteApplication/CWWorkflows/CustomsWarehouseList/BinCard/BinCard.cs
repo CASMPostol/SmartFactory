@@ -1,4 +1,19 @@
-﻿using System;
+﻿//<summary>
+//  Title   : BinCard
+//  System  : Microsoft VisulaStudio 2013 / C#
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Workflow.Activities;
 using CAS.SharePoint.DocumentsFactory;
 using CAS.SmartFactory.CW.Interoperability.DocumentsFactory.BinCard;
@@ -8,6 +23,9 @@ using Microsoft.SharePoint.Workflow;
 
 namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.BinCard
 {
+  /// <summary>
+  /// BinCard Sequential Workflow Activity
+  /// </summary>
   public sealed partial class BinCard: SequentialWorkflowActivity
   {
     public BinCard()
@@ -29,6 +47,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.BinCard
             string _documentName = Settings.BinCardDocumentName( _entities, workflowProperties.ItemId );
             SPFile _newFile = File.CreateXmlFile<BinCardContentType>( workflowProperties.Web, _newBinCard, _documentName, BinCardLib.LibraryName, BinCardContentType.StylesheetNmane );
             BinCardLib _BinCardLibRntry = Element.GetAtIndex<BinCardLib>( _entities.BinCardLibrary, _newFile.Item.ID );
+            _BinCardLibRntry.Archival = false;
             _cw.CWL_CW2BinCardTitle = _BinCardLibRntry;
             _entities.SubmitChanges();
           }

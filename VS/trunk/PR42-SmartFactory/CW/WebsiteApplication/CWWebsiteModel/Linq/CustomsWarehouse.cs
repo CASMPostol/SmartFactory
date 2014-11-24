@@ -13,11 +13,11 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using CAS.SharePoint;
 
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq
 {
@@ -31,9 +31,8 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// <summary>
     /// Initializes a new instance of the <see cref="CW" /> class.
     /// </summary>
+    /// <param name="edc">The <see cref="Linq.Entities"/> instance.</param>
     /// <param name="data">The data.</param>
-    /// <param name="clearence">The clearence.</param>
-    /// <param name="declaration">The declaration.</param>
     public CustomsWarehouse(Linq.Entities edc, Account.CWAccountData data)
       : this()
     {
@@ -101,7 +100,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         if (xmlData.DeclaredQuantity + xmlData.AdditionalQuantity <= 0)
           return;
       }
-      string _msg2 = String.Format("there is not enought tobacco {0} to dispose the batch: {1}", xmlData.DeclaredQuantity + xmlData.AdditionalQuantity, batch);
+      string _msg2 = String.Format("there is not enough tobacco {0} to dispose the batch: {1}", xmlData.DeclaredQuantity + xmlData.AdditionalQuantity, batch);
       throw new CAS.SharePoint.ApplicationError("CustomsWarehouse.Dispose", "ending", _msg2, null);
     }
     /// <summary>
@@ -125,7 +124,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     {
       return this.CW_PackageUnits.Value == 0 ? 0 : (this.GrossMass.Value - this.CW_Quantity.Value) / this.CW_PackageUnits.Value;
     }
-
     /// <summary>
     /// Reverse lookup to <see cref="CustomsWarehouseDisposal" />.
     /// </summary>
@@ -140,7 +138,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         m_CustomsWarehouseDisposal = from _cwdx in edc.CustomsWarehouseDisposal let _id = _cwdx.CWL_CWDisposal2CustomsWarehouseID.Id.Value where _id == this.Id.Value select _cwdx;
       return m_CustomsWarehouseDisposal;
     }
-
     #endregion
 
     #region private
@@ -193,7 +190,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       _new.UpdateTitle();
     }
     #endregion
-
     
   }
 }

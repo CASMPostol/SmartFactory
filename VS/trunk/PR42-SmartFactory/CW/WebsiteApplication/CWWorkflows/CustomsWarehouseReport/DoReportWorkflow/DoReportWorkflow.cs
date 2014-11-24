@@ -13,12 +13,12 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.Linq;
-using System.Workflow.Activities;
 using CAS.SharePoint.DocumentsFactory;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint.Workflow;
+using System;
+using System.Linq;
+using System.Workflow.Activities;
 
 namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport.DoReportWorkflow
 {
@@ -51,11 +51,11 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport.DoReportWorkflow
           if ((from _cwl in _entities.CustomsWarehouseReportLibrary where _cwl.Id.Value > workflowProperties.ItemId select new { }).Any())
           {
             this.CompletedLogToHistory_HistoryDescription = "Aborted";
-            this.CompletedLogToHistory_HistoryOutcome = "A next raport.";
+            this.CompletedLogToHistory_HistoryOutcome = "A next rapport.";
             return;
           }
           string _documentName = Settings.CustomsWarehouseReportFileName(_entities, workflowProperties.ItemId + 1);
-          AccountsReportContentWithStylesheet _newRequestContent = AccountsReportContentWithStylesheet.Create(_entities, _documentName);
+          AccountsReportContentWithStylesheet _newRequestContent = AccountsReportContentWithStylesheet.CreateReportContent(_entities, _documentName);
           //if (_update)
           //  File.WriteXmlFile<AccountsReportContentWithStylesheet>((SPDocumentLibrary)workflowProperties.Web.Lists[Entities.CustomsWarehouseReportLibName], workflowProperties.ItemId, _newRequestContent);
           //else
@@ -69,7 +69,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport.DoReportWorkflow
       }
       catch (Exception _ex)
       {
-        CompletedLogToHistory_HistoryOutcome = "Exeption";
+        CompletedLogToHistory_HistoryOutcome = "Exception";
         CompletedLogToHistory_HistoryDescription = _ex.Message;
       }
     }
