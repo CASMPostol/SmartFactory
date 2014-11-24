@@ -13,9 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.Collections.Generic;
-using System.Workflow.Activities;
 using CAS.SharePoint;
 using CAS.SharePoint.DocumentsFactory;
 using CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountClearance;
@@ -23,6 +20,9 @@ using CAS.SmartFactory.CW.WebsiteModel;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
+using System;
+using System.Collections.Generic;
+using System.Workflow.Activities;
 
 namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
 {
@@ -52,7 +52,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         using (Entities _entities = new Entities(workflowProperties.WebUrl))
         {
           CustomsWarehouse _cw = Element.GetAtIndex<CustomsWarehouse>(_entities.CustomsWarehouse, workflowProperties.ItemId);
-          RequestContent _newRequestContent = CreateContent(_cw);
+          RequestContent _newRequestContent = CreateContent(_entities, _cw);
           if (_cw.AccountClosed.GetValueOrDefault(false))
           {
             this.CompletedLogToHistory_HistoryDescription = "Aborted";
@@ -75,8 +75,9 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
           {
             string _documentName = Settings.ClearanceRequestFileName(_entities, workflowProperties.ItemId);
             SPFile _newFile = File.CreateXmlFile<RequestContent>(workflowProperties.Web, _newRequestContent, _documentName, Entities.CustomsWarehouseLibName, RequestContent.StylesheetName);
-            CustomsWarehouseLib _BinCardLibRntry = Element.GetAtIndex<CustomsWarehouseLib>(_entities.CustomsWarehouseLibrary, _newFile.Item.ID);
-            _cw.CWL_CW2CWLibraryID = _BinCardLibRntry;
+            CustomsWarehouseLib _CustomsWarehouseLibEntry = Element.GetAtIndex<CustomsWarehouseLib>(_entities.CustomsWarehouseLibrary, _newFile.Item.ID);
+            _CustomsWarehouseLibEntry.Archival = false;
+            _cw.CWL_CW2CWLibraryID = _CustomsWarehouseLibEntry;
             _entities.SubmitChanges();
           }
         }
@@ -92,12 +93,12 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         CompletedLogToHistory_HistoryDescription = _ex.Message;
       }
     }
-    private RequestContent CreateContent(Entities edc, CustomsWarehouse _cw)
+    private RequestContent CreateContent(Entities edc, CustomsWarehouse customsWarehouse)
     {
       string _WithdrawalSADDcoumentNo = String.Empty;
       DateTime _WithdrawalSADDocumentDate = default(DateTime);
       List<ArrayOfDisposalDisposalsArray> _listOfDisposals = new List<ArrayOfDisposalDisposalsArray>();
-      foreach (CustomsWarehouseDisposal _cwdx in _cw.CustomsWarehouseDisposal(edc, false)) //TODO mp
+      foreach (CustomsWarehouseDisposal _cwdx in customsWarehouse.CustomsWarehouseDisposal(edc, false))
       {
         List<string> _wz = new List<string>();
         if (!_cwdx.CW_Wz1.IsNullOrEmpty())
@@ -128,7 +129,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
           _WithdrawalSADDocumentDate = _cwdx.SADDate.GetValueOrDefault(Extensions.SPMinimum);
         }
       }
-      if (_cw.AccountBalance.Value > 0)
+      if (customsWarehouse.AccountBalance.Value > 0)
       {
         _WithdrawalSADDcoumentNo = String.Empty.NotAvailable();
         _WithdrawalSADDocumentDate = Extensions.SPMinimum;
@@ -139,28 +140,28 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
                                       });
       RequestContent _new = new RequestContent()
       {
-        Batch = _cw.Batch,
-        CNTarrifCode = _cw.CWL_CW2PCNID.ProductCodeNumber,
-        ConsentDate = _cw.CWL_CW2ConsentTitle == null ? Extensions.SPMinimum : _cw.CWL_CW2ConsentTitle.ConsentDate.GetValueOrNull(),
-        ConsentNo = _cw.CWL_CW2ConsentTitle == null ? String.Empty.NotAvailable() : _cw.CWL_CW2ConsentTitle.Title,
-        Currency = _cw.Currency,
+        Batch = customsWarehouse.Batch,
+        CNTarrifCode = customsWarehouse.CWL_CW2PCNID.ProductCodeNumber,
+        ConsentDate = customsWarehouse.CWL_CW2ConsentTitle == null ? Extensions.SPMinimum : customsWarehouse.CWL_CW2ConsentTitle.ConsentDate.GetValueOrNull(),
+        ConsentNo = customsWarehouse.CWL_CW2ConsentTitle == null ? String.Empty.NotAvailable() : customsWarehouse.CWL_CW2ConsentTitle.Title,
+        Currency = customsWarehouse.Currency,
         DisposalsColection = _listOfDisposals.ToArray(),
         DocumentDate = DateTime.Today,
-        DocumentName = _cw.Title,
-        DocumentNo = _cw.Id.Value,
-        Grade = _cw.Grade,
-        GrossMass = _cw.GrossMass.GetValueOrDefault(-1),
-        IntroducingSADDocumentDate = _cw.CustomsDebtDate.GetValueOrNull(),
-        IntroducingSADDocumentNo = _cw.DocumentNo,
-        InvoiceNo = _cw.InvoiceNo,
-        NetMass = _cw.NetMass.GetValueOrDefault(-1), //TODO Clossing the account
-        PackageUnits = _cw.CW_PackageUnits.GetValueOrDefault(-1),
-        PzNo = _cw.CW_PzNo,
-        Quantity = _cw.CW_Quantity.GetValueOrDefault(-1),
-        SKU = _cw.SKU,
-        TobaccoName = _cw.TobaccoName,
-        UnitPrice = _cw.CW_UnitPrice.GetValueOrDefault(-1),
-        Value = _cw.Value.GetValueOrDefault(-1),
+        DocumentName = customsWarehouse.Title,
+        DocumentNo = customsWarehouse.Id.Value,
+        Grade = customsWarehouse.Grade,
+        GrossMass = customsWarehouse.GrossMass.GetValueOrDefault(-1),
+        IntroducingSADDocumentDate = customsWarehouse.CustomsDebtDate.GetValueOrNull(),
+        IntroducingSADDocumentNo = customsWarehouse.DocumentNo,
+        InvoiceNo = customsWarehouse.InvoiceNo,
+        NetMass = customsWarehouse.NetMass.GetValueOrDefault(-1), //TODO Clossing the account
+        PackageUnits = customsWarehouse.CW_PackageUnits.GetValueOrDefault(-1),
+        PzNo = customsWarehouse.CW_PzNo,
+        Quantity = customsWarehouse.CW_Quantity.GetValueOrDefault(-1),
+        SKU = customsWarehouse.SKU,
+        TobaccoName = customsWarehouse.TobaccoName,
+        UnitPrice = customsWarehouse.CW_UnitPrice.GetValueOrDefault(-1),
+        Value = customsWarehouse.Value.GetValueOrDefault(-1),
         WithdrawalSADDcoumentNo = _WithdrawalSADDcoumentNo,
         WithdrawalSADDocumentDate = _WithdrawalSADDocumentDate
       };

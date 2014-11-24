@@ -13,13 +13,13 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using CAS.SharePoint;
 using CAS.SharePoint.DocumentsFactory;
 using CAS.SmartFactory.CW.Interoperability.DocumentsFactory.AccountsReport;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
 {
@@ -30,15 +30,15 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
   {
 
     #region public
-    internal static AccountsReportContentWithStylesheet Create(Entities entities, string documentName)
+    internal static AccountsReportContentWithStylesheet CreateReportContent(Entities entities, string documentName)
     {
 
       Dictionary<string, Consent> _ConsentsList = new Dictionary<string, Consent>();
       IQueryable<IGrouping<string, CustomsWarehouse>> _groups = from _grx in entities.CustomsWarehouse
-                                                                where !_grx.Archival.Value && !_grx.AccountClosed.Value && _grx.AccountBalance.Value > 0
+                                                                where !_grx.AccountClosed.Value && _grx.AccountBalance.Value > 0
                                                                 let _curr = _grx.Currency.Trim().ToUpper()
                                                                 group _grx by _curr;
-      List<ArrayOfAccountsAccountsArray> _AccountsColection = CreateArrayOfAccountsAccountsArray(_groups, _ConsentsList);
+      List<ArrayOfAccountsAccountsArray> _AccountsColection = CreateArrayOfAccountsAccountsArray(entities, _groups, _ConsentsList);
       AccountsReportContentWithStylesheet _ret = new AccountsReportContentWithStylesheet()
         {
           AccountsColection = _AccountsColection.ToArray(),
@@ -52,14 +52,14 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
     #endregion
 
     #region private
-    private static List<ArrayOfAccountsAccountsArray> CreateArrayOfAccountsAccountsArray(IQueryable<IGrouping<string, CustomsWarehouse>> groups, Dictionary<string, Consent> consentsList)
+    private static List<ArrayOfAccountsAccountsArray> CreateArrayOfAccountsAccountsArray(Entities edc, IQueryable<IGrouping<string, CustomsWarehouse>> groups, Dictionary<string, Consent> consentsList)
     {
       List<ArrayOfAccountsAccountsArray> _ret = new List<ArrayOfAccountsAccountsArray>();
       foreach (IGrouping<string, CustomsWarehouse> _grx in groups)
       {
         decimal _TotalNetMass;
         decimal _TotalValue;
-        List<ArrayOfAccountsDetailsDetailsOfOneAccount> _AccountsDetails = CreateDetails(_grx, out _TotalNetMass, out _TotalValue, consentsList);
+        List<ArrayOfAccountsDetailsDetailsOfOneAccount> _AccountsDetails = CreateDetails(edc, _grx, out _TotalNetMass, out _TotalValue, consentsList);
         ArrayOfAccountsAccountsArray _newItem = new ArrayOfAccountsAccountsArray()
         {
           AccountsDetails = _AccountsDetails.ToArray(),
@@ -71,7 +71,8 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
       }
       return _ret;
     }
-    private static List<ArrayOfAccountsDetailsDetailsOfOneAccount> CreateDetails(Entities edc, IGrouping<string, CustomsWarehouse> group, out decimal totalNetMass, out decimal totalValue, Dictionary<string, Consent> consentsList)
+    private static List<ArrayOfAccountsDetailsDetailsOfOneAccount> CreateDetails
+      (Entities edc, IGrouping<string, CustomsWarehouse> group, out decimal totalNetMass, out decimal totalValue, Dictionary<string, Consent> consentsList)
     {
       totalNetMass = 0;
       totalValue = 0;
@@ -80,10 +81,10 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseReport
       foreach (CustomsWarehouse _cwx in group.OrderBy<CustomsWarehouse, string>(x => x.DocumentNo))
       {
         if (_cwx.CWL_CW2ConsentTitle == null)
-          throw new ArgumentNullException("CWL_CW2ConsentTitle", "Incosistent data content: in AccountsReportContentWithStylesheet.CreateDetails the account must be associated with a consent.");
+          throw new ArgumentNullException("CWL_CW2ConsentTitle", "Inconsistent data content: in AccountsReportContentWithStylesheet.CreateDetails the account must be associated with a consent.");
         if (!consentsList.ContainsKey(_cwx.CWL_CW2ConsentTitle.Title))
           consentsList.Add(_cwx.CWL_CW2ConsentTitle.Title, _cwx.CWL_CW2ConsentTitle);
-        List<CustomsWarehouseDisposal> _last = (from _cwdx in _cwx.CustomsWarehouseDisposal(edc, false) //TODO mp
+        List<CustomsWarehouseDisposal> _last = (from _cwdx in _cwx.CustomsWarehouseDisposal(edc, false)
                                                 where _cwdx.CustomsStatus.Value == CustomsStatus.Finished
                                                 orderby _cwdx.SPNo.Value descending
                                                 select _cwdx).ToList<CustomsWarehouseDisposal>();

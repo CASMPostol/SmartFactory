@@ -54,6 +54,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
             _xml = DisposalRequestXml.ImportDocument(_stream);
           At = "GetAtIndex - DisposalRequestLib";
           DisposalRequestLib _entry = Element.GetAtIndex<DisposalRequestLib>(_edc.DisposalRequestLibrary, properties.ListItemId);
+          _entry.Archival = true;
           _entry.ClearenceProcedure = Covert2ClearenceProcedure(_xml.ClearenceProcedure);
           At = "GetXmlContent";
           GetXmlContent(_edc, _xml, _entry, ProgressChange);

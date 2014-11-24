@@ -119,7 +119,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
           _at = "AnalizeGoodsDescription";
           AnalizeGoodsDescription(_edc, ClearenceLookup.Clearence2SadGoodID.GoodsDescription, warnings);
           _at = "AnalizeGoodsDescription";
-          AnalyzeCertificates(_edc, ClearenceLookup.Clearence2SadGoodID.SADRequiredDocuments, warnings);
+          AnalyzeCertificates(_edc, ClearenceLookup.Clearence2SadGoodID.SADRequiredDocuments(_edc, false), warnings);
           this.EntryDate = DateTime.Today;
           bool _fatal = (from _wx in warnings where _wx.Fatal select _wx).Any<Warnning>();
           if (_fatal)
@@ -176,7 +176,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     #endregion
 
     #region private
-    private void AnalyzeCertificates(Entities entities, EntitySet<SADRequiredDocuments> sadRequiredDocumentsEntitySet, List<Warnning> warnings)
+    private void AnalyzeCertificates(Entities entities, IEnumerable<SADRequiredDocuments> sadRequiredDocumentsEntitySet, List<Warnning> warnings)
     {
       List<string> _stringsList = new List<string>();
       foreach (SADRequiredDocuments _srdx in (from _dx in sadRequiredDocumentsEntitySet select _dx))

@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost
     internal static CheckListWebPartDataContract GetCheckListWebPartDataContract(WebsiteModel.Linq.Entities _edx, WebsiteModel.Linq.DisposalRequestLib _drl)
     {
       List<DisposalDescription> _dda = new List<DisposalDescription>();
-      foreach (CustomsWarehouseDisposal _cwdx in _drl.CustomsWarehouseDisposal)
+      foreach (CustomsWarehouseDisposal _cwdx in _drl.CustomsWarehouseDisposal(_edx, false))
       {
         CustomsWarehouse _cw = _cwdx.CWL_CWDisposal2CustomsWarehouseID;
         if (_cw == null)
