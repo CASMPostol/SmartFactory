@@ -32,7 +32,6 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
     /// <summary>
     /// Initializes a new instance of the <see cref="DataContext" /> class.
     /// </summary>
-    /// <param name="requestUrl">The URL of a Windows SharePoint Services "14" Web site that provides client site access and change tracking for the specified Web site..</param>
     public DataContext()
     {
 #if DEBUG
@@ -42,6 +41,10 @@ namespace CAS.SmartFactory.CW.Dashboards.DisposalRequestWebPart.Data
       this.DeferredLoadingEnabled = true;
       // Open the current ClientContext
     }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DataContext"/> class.
+    /// </summary>
+    /// <param name="requestUrl">The requested URL.</param>
     public DataContext(string requestUrl)
       : this()
     {
