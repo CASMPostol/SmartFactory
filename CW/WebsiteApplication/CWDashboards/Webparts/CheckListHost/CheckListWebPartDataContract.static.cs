@@ -41,10 +41,10 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost
     {
       return JsonSerializer.Serialize<CheckListWebPartDataContract>(this);
     }
-    internal static CheckListWebPartDataContract GetCheckListWebPartDataContract(WebsiteModel.Linq.Entities _edx, WebsiteModel.Linq.DisposalRequestLib _drl)
+    internal static CheckListWebPartDataContract GetCheckListWebPartDataContract(WebsiteModel.Linq.Entities entities, WebsiteModel.Linq.DisposalRequestLib disposalRequestLib)
     {
       List<DisposalDescription> _dda = new List<DisposalDescription>();
-      foreach (CustomsWarehouseDisposal _cwdx in _drl.CustomsWarehouseDisposal(_edx, false))
+      foreach (CustomsWarehouseDisposal _cwdx in disposalRequestLib.CustomsWarehouseDisposal(entities, false))
       {
         CustomsWarehouse _cw = _cwdx.CWL_CWDisposal2CustomsWarehouseID;
         if (_cw == null)
