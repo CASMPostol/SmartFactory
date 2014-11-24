@@ -1,5 +1,4 @@
-﻿///<summary>
-//  Title   : public partial class CustomsWarehouseDisposal
+﻿//  Title   : public partial class CustomsWarehouseDisposal
 //  System  : Microsoft Visual C# .NET 2012
 //  $LastChangedDate$
 //  $Rev$
@@ -11,7 +10,6 @@
 //  TEL: +48 (42) 686 25 47
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
-///</summary>
 
 using System;
 using System.Diagnostics;
