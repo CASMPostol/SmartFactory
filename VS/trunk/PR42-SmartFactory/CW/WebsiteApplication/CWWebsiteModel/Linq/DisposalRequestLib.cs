@@ -24,7 +24,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
   public partial class DisposalRequestLib
   {
     /// <summary>
-    /// Statements the name of the template document name file.
+    /// Gets Statements template document name.
     /// </summary>
     /// <param name="entities">The entities.</param>
     /// <returns></returns>
@@ -46,6 +46,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
         m_CustomsWarehouseDisposal = from _cwdx in edc.CustomsWarehouseDisposal let _id = _cwdx.CWL_CWDisposal2DisposalRequestLibraryID.Id.Value where _id == this.Id.Value select _cwdx;
       return m_CustomsWarehouseDisposal;
     }
+
+    //private
     private IEnumerable<CustomsWarehouseDisposal> m_CustomsWarehouseDisposal = null;
+
   }
 }
