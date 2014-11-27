@@ -2,7 +2,6 @@
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="53d26add-8444-44ef-affa-1be15aa9c3d1" solutionId="53d26add-8444-44ef-affa-1be15aa9c3d1" resetWebServer="false" name="CASSmartFactoryCommonAssembly" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <assemblies>
     <customAssembly location="CAS.Customs.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\CommonBinaries\PR42-SmartFactory\CAS.Customs.2.0.0.22658\CAS.Customs.dll" />
-    <customAssembly location="CAS.SharePoint.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.1.70.38.26293\CAS.SharePoint.dll" />
   </assemblies>
   <features>
     <featureReference itemId="8673d23d-845c-4311-9c4f-e40428cd31de" />
