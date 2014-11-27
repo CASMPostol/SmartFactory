@@ -7,8 +7,8 @@
     <ProjectGuid>{A125A86E-1502-4ABC-B858-D167F0BD4A13}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CommonAssembly</RootNamespace>
-    <AssemblyName>CommonAssembly</AssemblyName>
+    <RootNamespace>CAS.SmartFactory.CommonAssembly</RootNamespace>
+    <AssemblyName>CAS.CommonAssembly</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -23,7 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <DocumentationFile>bin\Debug\CommonAssembly.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\CAS.CommonAssembly.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
