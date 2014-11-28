@@ -162,7 +162,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\WebsiteApplication\ShepherdDataModel\ShepherdDataModel.csproj">
       <Project>{7799a380-8b13-4bec-bdec-5c399993c40d}</Project>
-      <Name>DataModel</Name>
+      <Name>ShepherdDataModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
