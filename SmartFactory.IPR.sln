@@ -1,14 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IPR", "IPR", "{828726FE-375E-4E46-B21C-F87F65F3332D}"
 	ProjectSection(SolutionItems) = preProject
 		Model.t4 = Model.t4
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharePointHelpers", "SharePointHelpers", "{5A5E5E66-F5CE-496B-B9F2-C3A0B16E8F2B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharePoint", "SharePoint", "{5A5E5E66-F5CE-496B-B9F2-C3A0B16E8F2B}"
 	ProjectSection(SolutionItems) = preProject
 		..\PR44-SharePoint\Model.t4 = ..\PR44-SharePoint\Model.t4
 	EndProjectSection
@@ -74,9 +74,9 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IPRArchivinglDtabase", "IPR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPRClientEntityTests", "IPR\Tools\Tests\IPRClientEntityTests\IPRClientEntityTests.csproj", "{62283B68-6A61-4502-B64B-4FF4B1BEB980}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CASCommonClassLibrary", "..\PR44-SharePoint\Libraries\CASSystem\CASCommonClassLibrary.csproj", "{AF2434E6-FD65-43A2-BE31-C8C1E5BA5ACD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CASCommon", "..\..\SmartFactoryCommon\PR44-SharePoint\Libraries\CASCommon\CASCommon.csproj", "{AF2434E6-FD65-43A2-BE31-C8C1E5BA5ACD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CASCommonClassLibrary350", "..\PR44-SharePoint\Libraries\CASSystem\CASCommonClassLibrary350.csproj", "{8C0D5FEA-F28C-48C7-BD99-71AC92F3EBCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CASCommon.350", "..\..\SmartFactoryCommon\PR44-SharePoint\Libraries\CASCommon\CASCommon.350.csproj", "{8C0D5FEA-F28C-48C7-BD99-71AC92F3EBCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
