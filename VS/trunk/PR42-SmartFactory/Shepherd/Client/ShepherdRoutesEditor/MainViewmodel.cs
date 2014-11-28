@@ -271,7 +271,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
       string path = argument as string;
       if (String.IsNullOrEmpty(path))
         throw new ArgumentException("DoWorkEventHandler ReadXMLFile", "argument");
-      RoutesCatalog _catalog = SharePoint.DocumentsFactory.XmlFile.ReadXmlFile<RoutesCatalog>(path);
+      RoutesCatalog _catalog = CAS.Common.DocumentsFactory.XmlFile.ReadXmlFile<RoutesCatalog>(path);
       progress(new ProgressChangedEventArgs(0, "Read data from XML file finished"));
       return _catalog;
     }
