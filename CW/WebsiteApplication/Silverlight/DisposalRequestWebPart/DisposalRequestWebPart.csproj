@@ -226,9 +226,9 @@
     </DesignData>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\PR44-SharePoint\Libraries\CASSystem\CASCommonSilverLight.csproj">
+    <ProjectReference Include="..\..\..\..\..\..\SmartFactoryCommon\PR44-SharePoint\Libraries\CASCommon\CASCommon.SilverLight.csproj">
       <Project>{ec5bbde9-71dc-414c-ad01-8cf6d4b00f91}</Project>
-      <Name>CASCommonSilverLight</Name>
+      <Name>CASCommon.SilverLight</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
