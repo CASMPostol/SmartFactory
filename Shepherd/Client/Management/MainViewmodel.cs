@@ -14,14 +14,14 @@
 //</summary>
 
 using CAS.Common.ViewModel;
-using CAS.SmartFactory.Shepherd.RouteEditor.InputData;
-using CAS.SmartFactory.Shepherd.RouteEditor.UpdateData;
+using  CAS.SmartFactory.Shepherd.Client.Management.InputData;
+using  CAS.SmartFactory.Shepherd.Client.Management.UpdateData;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 
-namespace CAS.SmartFactory.Shepherd.RouteEditor
+namespace  CAS.SmartFactory.Shepherd.Client.Management
 {
   internal class MainViewmodel : ViewModelBackgroundWorker
   {

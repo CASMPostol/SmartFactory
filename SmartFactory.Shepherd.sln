@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CASCommon", "..\..\SmartFac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CASCommon.350", "..\..\SmartFactoryCommon\PR44-SharePoint\Libraries\CASCommon\CASCommon.350.csproj", "{8C0D5FEA-F28C-48C7-BD99-71AC92F3EBCA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management", "Shepherd\Client\Management\Management.csproj", "{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -173,6 +175,14 @@ Global
 		{8C0D5FEA-F28C-48C7-BD99-71AC92F3EBCA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8C0D5FEA-F28C-48C7-BD99-71AC92F3EBCA}.Release|x64.ActiveCfg = Release|Any CPU
 		{8C0D5FEA-F28C-48C7-BD99-71AC92F3EBCA}.Release|x86.ActiveCfg = Release|Any CPU
+		{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254}.Release|x64.ActiveCfg = Release|Any CPU
+		{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -194,5 +204,6 @@ Global
 		{70DD8ABC-B012-427A-8163-64E63304BD42} = {F0F76A46-E3AC-4A6A-BA42-5D1205D52861}
 		{AF2434E6-FD65-43A2-BE31-C8C1E5BA5ACD} = {F0F76A46-E3AC-4A6A-BA42-5D1205D52861}
 		{8C0D5FEA-F28C-48C7-BD99-71AC92F3EBCA} = {F0F76A46-E3AC-4A6A-BA42-5D1205D52861}
+		{23C36CC9-C0C5-4C6A-9D72-CB33CCF51254} = {6B01941B-5931-439D-BAF5-DA8578B02A49}
 	EndGlobalSection
 EndGlobal

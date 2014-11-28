@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace RounteEditor
+namespace CAS.SmartFactory.Shepherd.Client.Management
 {
   /// <summary>
   /// Interaction logic for App.xaml

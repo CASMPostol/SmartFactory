@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CAS.SmartFactory.Shepherd.RouteEditor
+namespace  CAS.SmartFactory.Shepherd.Client.Management
 {
   internal static class Extensions
   {
