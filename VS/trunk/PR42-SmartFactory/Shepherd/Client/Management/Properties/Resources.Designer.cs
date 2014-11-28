@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CAS.SmartFactory.Shepherd.RouteEditor.Properties {
+namespace CAS.SmartFactory.Shepherd.Client.Management.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CAS.SmartFactory.Shepherd.RouteEditor.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CAS.SmartFactory.Shepherd.Client.Management.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

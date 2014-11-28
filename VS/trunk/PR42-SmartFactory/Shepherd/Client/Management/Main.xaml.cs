@@ -27,12 +27,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using CAS.SmartFactory.Shepherd.RouteEditor.InputData;
-using CAS.SmartFactory.Shepherd.RouteEditor.UpdateData;
+using  CAS.SmartFactory.Shepherd.Client.Management.InputData;
+using  CAS.SmartFactory.Shepherd.Client.Management.UpdateData;
 using Microsoft.SharePoint.Linq;
 using Microsoft.Win32;
 
-namespace CAS.SmartFactory.Shepherd.RouteEditor
+namespace  CAS.SmartFactory.Shepherd.Client.Management
 {
   /// <summary>
   /// Interaction logic for Main.xaml

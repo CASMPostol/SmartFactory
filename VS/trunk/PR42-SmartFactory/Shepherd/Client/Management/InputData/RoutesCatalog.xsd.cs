@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
-using CAS.SmartFactory.Shepherd.RouteEditor.UpdateData;
+using  CAS.SmartFactory.Shepherd.Client.Management.UpdateData;
 
-namespace CAS.SmartFactory.Shepherd.RouteEditor.InputData
+namespace  CAS.SmartFactory.Shepherd.Client.Management.InputData
 {
   public partial class RoutesCatalog
   {

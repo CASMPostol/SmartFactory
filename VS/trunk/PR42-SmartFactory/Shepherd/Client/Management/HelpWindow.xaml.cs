@@ -15,7 +15,7 @@
 
 using System.Windows;
 
-namespace CAS.SmartFactory.Shepherd.RouteEditor
+namespace  CAS.SmartFactory.Shepherd.Client.Management
 {
   /// <summary>
   /// Interaction logic for HelpWindow.xaml

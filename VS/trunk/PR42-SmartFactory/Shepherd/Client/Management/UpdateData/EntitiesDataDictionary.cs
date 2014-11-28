@@ -17,10 +17,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using CAS.SmartFactory.Shepherd.RouteEditor.InputData;
+using  CAS.SmartFactory.Shepherd.Client.Management.InputData;
 using Microsoft.SharePoint.Linq;
 
-namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
+namespace  CAS.SmartFactory.Shepherd.Client.Management.UpdateData
 {
   internal class EntitiesDataDictionary : IDisposable
   {
