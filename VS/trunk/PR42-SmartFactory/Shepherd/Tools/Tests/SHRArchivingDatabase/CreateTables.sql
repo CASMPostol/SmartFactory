@@ -4,7 +4,6 @@ if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Commodity
 CREATE TABLE [dbo].[Commodity] (
     [Author]                 NVARCHAR(max)   NULL,
     [Created]                DATETIME        NULL,
-    [Dummy]                  FLOAT           NULL,
     [Editor]                 NVARCHAR(max)   NULL,
     [ID]                     INT             NOT NULL,
     [Modified]               DATETIME        NULL,
@@ -257,7 +256,6 @@ if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Carrier')
 CREATE TABLE [dbo].[Carrier] (
     [Author]                 NVARCHAR(max)   NULL,
     [Created]                DATETIME        NULL,
-    [Dummy]                  FLOAT           NULL,
     [Editor]                 NVARCHAR(max)   NULL,
     [ID]                     INT             NOT NULL,
     [Modified]               DATETIME        NULL,
@@ -271,7 +269,6 @@ if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SAPDestin
 CREATE TABLE [dbo].[SAPDestinationPlant] (
     [Author]                 NVARCHAR(max)   NULL,
     [Created]                DATETIME        NULL,
-    [Dummy]                  FLOAT           NULL,
     [Editor]                 NVARCHAR(max)   NULL,
     [ID]                     INT             NOT NULL,
     [Modified]               DATETIME        NULL,
@@ -285,7 +282,6 @@ if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'ShipmentT
 CREATE TABLE [dbo].[ShipmentType] (
     [Author]                 NVARCHAR(max)   NULL,
     [Created]                DATETIME        NULL,
-    [Dummy]                  FLOAT           NULL,
     [Editor]                 NVARCHAR(max)   NULL,
     [ID]                     INT             NOT NULL,
     [Modified]               DATETIME        NULL,
@@ -299,7 +295,6 @@ if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Transport
 CREATE TABLE [dbo].[TransportUnitType] (
     [Author]                 NVARCHAR(max)   NULL,
     [Created]                DATETIME        NULL,
-    [Dummy]                  FLOAT           NULL,
     [Editor]                 NVARCHAR(max)   NULL,
     [ID]                     INT             NOT NULL,
     [Modified]               DATETIME        NULL,
@@ -462,7 +457,7 @@ CREATE TABLE [dbo].[Shipping] (
     CONSTRAINT [FK_Shipping_Truck] FOREIGN KEY ([Shipping2TruckTitle]) REFERENCES [dbo].[Truck] ([ID]),
     CONSTRAINT [FK_Shipping_Warehouse] FOREIGN KEY ([Shipping2WarehouseTitle]) REFERENCES [dbo].[Warehouse] ([ID]),
     CONSTRAINT [FK_Shipping_Trailer] FOREIGN KEY ([TrailerTitle]) REFERENCES [dbo].[Trailer] ([ID]),
-    CONSTRAINT [FK_Shipping_Eswcort] FOREIGN KEY ([TruckTitle]) REFERENCES [dbo].[Truck] ([ID]),
+    CONSTRAINT [FK_Shipping_Escort] FOREIGN KEY ([TruckTitle]) REFERENCES [dbo].[Truck] ([ID]),
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'AlarmsAndEvents')
   drop table  AlarmsAndEvents;
@@ -512,7 +507,6 @@ if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Market')
 CREATE TABLE [dbo].[Market] (
     [Author]                 NVARCHAR(max)   NULL,
     [Created]                DATETIME        NULL,
-    [Dummy]                  FLOAT           NULL,
     [Editor]                 NVARCHAR(max)   NULL,
     [ID]                     INT             NOT NULL,
     [Modified]               DATETIME        NULL,
