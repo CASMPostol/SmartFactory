@@ -1,0 +1,27 @@
+if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'LoadDescription')
+  drop table  LoadDescription;
+CREATE TABLE [dbo].[LoadDescription] (
+    [Author]                 NVARCHAR(max)   NULL,
+    [CMRNumber]              NVARCHAR(max)   NULL,
+    [Created]                DATETIME        NULL,
+    [DeliveryNumber]         NVARCHAR(max)   NULL,
+    [Editor]                 NVARCHAR(max)   NULL,
+    [GoodsQuantity]          FLOAT           NULL,
+    [ID]                     INT             NOT NULL,
+    [InvoiceNumber]          NVARCHAR(max)   NULL,
+    [LoadDescription2Commodity] INT             NULL,
+    [LoadDescription2PartnerTitle] INT             NULL,
+    [LoadDescription2ShippingIndex] INT             NULL,
+    [MarketTitle]            INT             NULL,
+    [Modified]               DATETIME        NULL,
+    [NumberOfPallets]        FLOAT           NULL,
+    [owshiddenversion]       INT             NULL,
+    [PalletType]             NVARCHAR(max)   NULL,
+    [Title]                  NVARCHAR(max)   NOT NULL,
+    [OnlySQL]				 BIT			 NOT NULL,	
+	CONSTRAINT [PK_LoadDescription_ID] PRIMARY KEY CLUSTERED ([ID] ASC) ,
+    CONSTRAINT [FK_LoadDescription_Commodity] FOREIGN KEY ([LoadDescription2Commodity]) REFERENCES [dbo].[Commodity] ([ID]),
+    CONSTRAINT [FK_LoadDescription_Partner] FOREIGN KEY ([LoadDescription2PartnerTitle]) REFERENCES [dbo].[Partner] ([ID]),
+    CONSTRAINT [FK_LoadDescription_Shipping] FOREIGN KEY ([LoadDescription2ShippingIndex]) REFERENCES [dbo].[Shipping] ([ID]),
+    CONSTRAINT [FK_LoadDescription_Market] FOREIGN KEY ([MarketTitle]) REFERENCES [dbo].[Market] ([ID]),
+);

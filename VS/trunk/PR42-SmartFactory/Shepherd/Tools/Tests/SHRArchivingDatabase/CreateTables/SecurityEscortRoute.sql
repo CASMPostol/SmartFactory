@@ -1,0 +1,26 @@
+if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'SecurityEscortRoute')
+  drop table  SecurityEscortRoute;
+CREATE TABLE [dbo].[SecurityEscortRoute] (
+    [Author]                 NVARCHAR(max)   NULL,
+    [Created]                DATETIME        NULL,
+    [CurrencyTitle]          INT             NULL,
+    [Editor]                 NVARCHAR(max)   NULL,
+    [EscortDestination]      NVARCHAR(max)   NULL,
+    [FreightPayerTitle]      INT             NULL,
+    [ID]                     INT             NOT NULL,
+    [MaterialMaster]         NVARCHAR(max)   NULL,
+    [Modified]               DATETIME        NULL,
+    [owshiddenversion]       INT             NULL,
+    [PartnerTitle]           INT             NULL,
+    [RemarkMM]               NVARCHAR(max)   NULL,
+    [SecurityCost]           FLOAT           NULL,
+    [SecurityEscortCatalog2BusinessDescriptionTitle] INT             NULL,
+    [SecurityEscrotPO]       NVARCHAR(max)   NULL,
+    [Title]                  NVARCHAR(max)   NOT NULL,
+    [OnlySQL]				 BIT			 NOT NULL,	
+	CONSTRAINT [PK_SecurityEscortRoute_ID] PRIMARY KEY CLUSTERED ([ID] ASC) ,
+    CONSTRAINT [FK_SecurityEscortRoute_Currency] FOREIGN KEY ([CurrencyTitle]) REFERENCES [dbo].[Currency] ([ID]),
+    CONSTRAINT [FK_SecurityEscortRoute_FreightPayer] FOREIGN KEY ([FreightPayerTitle]) REFERENCES [dbo].[FreightPayer] ([ID]),
+    CONSTRAINT [FK_SecurityEscortRoute_Partner] FOREIGN KEY ([PartnerTitle]) REFERENCES [dbo].[Partner] ([ID]),
+    CONSTRAINT [FK_SecurityEscortRoute_BusinessDescription] FOREIGN KEY ([SecurityEscortCatalog2BusinessDescriptionTitle]) REFERENCES [dbo].[BusinessDescription] ([ID]),
+);
