@@ -19,6 +19,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
   /// </summary>
   public partial class Shell : Window
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Shell"/> class.
+    /// </summary>
     public Shell()
     {
       InitializeComponent();
