@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="CommonServiceLocator 1.2" Category="Package" Bounds="0.487496035893727,226.106677042643,152.59,23.2766666666667" Label="CommonServiceLocator 1.2" UseManualLocation="True" />
+    <Node Id="EnterpriseLibrary.Common 6.0.1304.0" Category="Package" Bounds="278.178333333333,106.553333333333,204.18,23.2766666666666" Label="EnterpriseLibrary.Common 6.0.1304.0" />
+    <Node Id="EnterpriseLibrary.ExceptionHandling 6.0.1304.0" Category="Package" Bounds="96,42.2766666666667,250.536666666667,23.2766666666667" Label="EnterpriseLibrary.ExceptionHandling 6.0.1304.0" UseManualLocation="True" />
+    <Node Id="EnterpriseLibrary.Logging 6.0.1304.0" Category="Package" Bounds="422.591666666667,47.2766666666667,199.353333333333,23.2766666666667" Label="EnterpriseLibrary.Logging 6.0.1304.0" UseManualLocation="True" />
+    <Node Id="Prism.PubSubEvents 1.0.0" Category="Package" Bounds="183.077496035894,225.106677042643,146.906666666667,23.2766666666667" Label="Prism.PubSubEvents 1.0.0" UseManualLocation="True" />
+    <Node Id="PrismLibrary_Desktop\Prism.Composition.Desktop" Category="Project" Bounds="-2.8421709430404E-14,159.83,152.313333333333,23.2766666666667" Label="Prism.Composition.Desktop" />
+    <Node Id="PrismLibrary_Desktop\Prism.MefExtensions.Desktop" Category="Project" Bounds="183.081666666667,159.83,162.15,23.2766666666667" Label="Prism.MefExtensions.Desktop" />
+    <Node Id="Shepherd\Client\Management" Category="Project" Bounds="337.835,-26,82.8666666666667,23.2766666666667" Label="Management" UseManualLocation="True" />
+  </Nodes>
+  <Links>
+    <Link Source="EnterpriseLibrary.ExceptionHandling 6.0.1304.0" Target="EnterpriseLibrary.Common 6.0.1304.0" Category="Package Dependency" Bounds="250.057870713348,65.5533361562093,93.0769514036392,37.6268941971961" />
+    <Link Source="EnterpriseLibrary.Logging 6.0.1304.0" Target="EnterpriseLibrary.Common 6.0.1304.0" Category="Package Dependency" Bounds="416.453913849933,70.5533361562093,77.9342607514542,32.532980242923" />
+    <Link Source="PrismLibrary_Desktop\Prism.Composition.Desktop" Target="CommonServiceLocator 1.2" Category="Installed Package" Bounds="76.2665661491544,183.106671346029,0.321053428690618,34.0004069048769" />
+    <Link Source="PrismLibrary_Desktop\Prism.Composition.Desktop" Target="Prism.PubSubEvents 1.0.0" Category="Installed Package" Bounds="108.316008013071,183.106671346029,107.592621626133,38.9373307142857" />
+    <Link Source="PrismLibrary_Desktop\Prism.MefExtensions.Desktop" Target="CommonServiceLocator 1.2" Category="Installed Package" Bounds="118.170678476823,183.106671346029,113.082656840055,39.9988021790646" />
+    <Link Source="PrismLibrary_Desktop\Prism.MefExtensions.Desktop" Target="Prism.PubSubEvents 1.0.0" Category="Installed Package" Bounds="258.9347643879,183.106671346029,3.86226974553,33.0607986542896" />
+    <Link Source="Shepherd\Client\Management" Target="EnterpriseLibrary.ExceptionHandling 6.0.1304.0" Category="Installed Package" Bounds="256.46238465233,-2.72333334604899,95.8735106688153,41.4298990075157" />
+    <Link Source="Shepherd\Client\Management" Target="EnterpriseLibrary.Logging 6.0.1304.0" Category="Installed Package" Bounds="401.980627764233,-2.72333334604899,89.565765697021,45.8956665131819" />
+  </Links>
+  <Categories>
+    <Category Id="Installed Package" />
+    <Category Id="Package" />
+    <Category Id="Package Dependency" />
+    <Category Id="Project" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Project" ValueLabel="True">
+      <Condition Expression="HasCategory('Project')" />
+      <Setter Property="Background" Value="Blue" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Package Dependency" ValueLabel="True">
+      <Condition Expression="HasCategory('Package Dependency')" />
+      <Setter Property="Background" Value="Yellow" />
+    </Style>
+  </Styles>
+</DirectedGraph>

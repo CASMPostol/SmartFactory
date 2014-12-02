@@ -87,7 +87,17 @@
     <ApplicationIcon>SHR_Ico.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\..\..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling">
+      <HintPath>..\..\..\packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging">
+      <HintPath>..\..\..\packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -108,13 +118,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ApplicationIBootstrapper.cs" />
     <Compile Include="Controls\RoundedBox.xaml.cs">
       <DependentUpon>RoundedBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EnterpriseLibraryLoggerAdapter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Behaviors\AutoPopulateExportedViewsBehavior.cs" />
+    <Compile Include="Infrastructure\Behaviors\IViewRegionRegistration.cs" />
     <Compile Include="Infrastructure\RegionNames.cs" />
     <Compile Include="InputData\RoutesCatalog.cs">
       <DependentUpon>RoutesCatalog.xsd</DependentUpon>
@@ -177,11 +191,13 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <Compile Include="ApplicationIBootstrapper.Desktop.cs" />
     <None Include="InputData\RoutesCatalog.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="InputData\Scripts\CreateCS.ps1" />
     <None Include="key.snk" />
+    <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
@@ -261,6 +277,10 @@
     <ProjectReference Include="..\..\..\..\..\SmartFactoryCommon\PR44-SharePoint\Libraries\CASCommon\CASCommon.csproj">
       <Project>{af2434e6-fd65-43a2-be31-c8c1e5ba5acd}</Project>
       <Name>CASCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\EX07-PrismV5SourcePrismLibrary\Desktop\Prism.MefExtensions\Prism.MefExtensions.Desktop.csproj">
+      <Project>{6ed61550-8e7a-42c6-9b30-380c6f97ed55}</Project>
+      <Name>Prism.MefExtensions.Desktop</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\EX07-PrismV5SourcePrismLibrary\Desktop\Prism\Prism.Composition.Desktop.csproj">
       <Project>{77138947-1d13-4e22-aee0-5d0dd046ca34}</Project>
