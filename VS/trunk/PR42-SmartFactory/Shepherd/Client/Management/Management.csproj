@@ -141,6 +141,7 @@
     </Compile>
     <Compile Include="Infrastructure\Behaviors\AutoPopulateExportedViewsBehavior.cs" />
     <Compile Include="Infrastructure\Behaviors\IViewRegionRegistration.cs" />
+    <Compile Include="Infrastructure\Behaviors\ViewExportAttribute.cs" />
     <Compile Include="Infrastructure\RegionNames.cs" />
     <Compile Include="InputData\RoutesCatalog.cs">
       <DependentUpon>RoutesCatalog.xsd</DependentUpon>
@@ -157,6 +158,7 @@
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ShellViewModel.cs" />
     <Compile Include="UpdateData\Entities.cs" />
     <Compile Include="UpdateData\EntitiesDataDictionary.cs" />
     <Page Include="Controls\ButtonsPanel.xaml">
@@ -217,7 +219,9 @@
     </None>
     <None Include="InputData\Scripts\CreateCS.ps1" />
     <None Include="key.snk" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>

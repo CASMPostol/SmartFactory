@@ -1,17 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//<summary>
+//  Title   : Shell export
+//  System  : Microsoft VisulaStudio 2013 / C#
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CAS.SmartFactory.Shepherd.Client.Management
 {
@@ -28,6 +32,22 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     {
       InitializeComponent();
     }
+    /// <summary>
+    /// Sets the ViewModel.
+    /// </summary>
+    /// <remarks>
+    /// This set-only property is annotated with the <see cref="ImportAttribute"/> so it is injected by MEF with
+    /// the appropriate view model.
+    /// </remarks>
+    [Import]
+    [SuppressMessage("Microsoft.Design", "CA1044:PropertiesShouldNotBeWriteOnly", Justification = "Needs to be a property to be composed by MEF")]
+    ShellViewModel ViewModel
+    {
+      set
+      {
+        this.DataContext = value;
+      }
+    }        
 
   }
 }

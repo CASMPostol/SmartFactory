@@ -1,10 +1,21 @@
-﻿using Microsoft.Practices.Prism.Regions;
+﻿//<summary>
+//  Title   : AutoPopulateExportedViewsBehavior
+//  System  : Microsoft VisulaStudio 2013 / C#
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using Microsoft.Practices.Prism.Regions;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors
 {
@@ -41,6 +52,12 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors
       }
     }
 
+    /// <summary>
+    /// Gets or sets the registered views.
+    /// </summary>
+    /// <value>
+    /// The registered views.
+    /// </value>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "MEF injected values"), ImportMany(AllowRecomposition = true)]
     public Lazy<object, IViewRegionRegistration>[] RegisteredViews { get; set; }
   }
