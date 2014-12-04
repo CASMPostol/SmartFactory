@@ -7,13 +7,14 @@
         Height="768" Width="1024" WindowStartupLocation="CenterScreen" WindowState="Maximized"
      ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
     <Window.Background>
-        <ImageBrush ImageSource="Resources/background.png"  Stretch="UniformToFill"/>
+        <ImageBrush ImageSource="Imgs/Background.jpg"  Stretch="UniformToFill"/>
     </Window.Background>
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="124"/>
             <RowDefinition Height="4*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="60" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="650" />
@@ -129,6 +130,12 @@
                 </ItemsControl.Template>
             </ItemsControl>
         </Grid>
-
+        
+        <!-- buttons -->
+        <Grid x:Name="ButtonsGrid" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Width="60" Margin="40,0,0,5" HorizontalAlignment="Left">
+            <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.ButtonsRegion}">
+                
+            </ItemsControl>
+        </Grid>
     </Grid>
 </Window>
