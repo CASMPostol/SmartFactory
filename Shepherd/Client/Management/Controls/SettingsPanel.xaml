@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="CAS.SmartFactory.Shepherd.Client.Management.Controls.SetupPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="154" Width="614">
+    <Grid Margin="20,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Background="#FF9CCC65" Margin="0,10,10,5" Height="Auto">
+            <Image HorizontalAlignment="Right" Source="Imgs/SettingsIcon.png" Stretch="Fill" Width="100" Margin="0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+            <TextBlock Style="{StaticResource CASTextBlockGrayHeader}" Margin="0,10,0,0">
+						Settings
+            </TextBlock>
+            <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
+                <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
+									SharePoint website URL:
+                </TextBlock>
+                <TextBox Text="{Binding URL, Mode=TwoWay}" Width="250" Margin="5" Style="{StaticResource CASTextBox}" />
+            </StackPanel>
+            <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
+                <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
+									SQL Server name:
+                </TextBlock>
+                <TextBox Text="{Binding Path=SQLServer, Mode=TwoWay}"  Width="250" Margin="5" Style="{StaticResource CASTextBox}"  />
+            </StackPanel>
+            <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
+                <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
+									Database name:
+                </TextBlock>
+                <TextBox Text="{Binding DatabaseName, Mode=TwoWay}"  Width="250" Margin="5" Style="{StaticResource CASTextBox}"  />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
