@@ -17,11 +17,12 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
 
     #region ILoggerFacade Members
 
-    public void Log(string message, Category category, Priority priority)
+    public void Log(string message, Microsoft.Practices.Prism.Logging.Category category, Priority priority)
     {
       Logger.Write(message, category.ToString(), (int)priority);
     }
 
     #endregion
+
   }
 }
