@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
-    <Node Id="CommonServiceLocator 1.2" Category="Package" Bounds="7.86166341781616,213.856748723857,152.59,23.2766666666667" Label="CommonServiceLocator 1.2" />
-    <Node Id="EnterpriseLibrary.Common 6.0.1304.0" Category="Package" Bounds="183.178333435059,107.303215390523,204.18,23.2766666666667" Label="EnterpriseLibrary.Common 6.0.1304.0" UseManualLocation="True" />
+    <Node Id="CommonServiceLocator 1.2" Category="Package" Bounds="-1.13833658218384,245.306753248291,152.59,23.2766666666667" Label="CommonServiceLocator 1.2" UseManualLocation="True" />
+    <Node Id="EnterpriseLibrary.Common 6.0.1304.0" Category="Package" Bounds="142.178333435059,107.003221077474,204.18,23.2766666666667" Label="EnterpriseLibrary.Common 6.0.1304.0" UseManualLocation="True" />
     <Node Id="EnterpriseLibrary.ExceptionHandling 6.0.1304.0" Category="Package" Bounds="-2.8421709430404E-14,53.2766666666667,250.536666666667,23.2766666666667" Label="EnterpriseLibrary.ExceptionHandling 6.0.1304.0" />
     <Node Id="EnterpriseLibrary.Logging 6.0.1304.0" Category="Package" Bounds="280.591666666667,53.2766666666667,199.353333333333,23.2766666666667" Label="EnterpriseLibrary.Logging 6.0.1304.0" />
-    <Node Id="Prism.PubSubEvents 1.0.0" Category="Package" Bounds="190.703328653971,213.856748723857,146.906666666667,23.2766666666667" Label="Prism.PubSubEvents 1.0.0" />
-    <Node Id="PrismLibrary_Desktop\Prism.Composition.Desktop" Category="Project" Bounds="-2.8421709430404E-14,159.83,152.313333333333,23.2766666666667" Label="Prism.Composition.Desktop" />
-    <Node Id="PrismLibrary_Desktop\Prism.MefExtensions.Desktop" Category="Project" Bounds="183.081661987305,160.57998205719,162.15,23.2766666666667" Label="Prism.MefExtensions.Desktop" />
-    <Node Id="Shepherd\Client\Management" Category="Project" Bounds="338.835,1.4210854715202E-14,82.8666666666667,23.2766666666667" Label="Management" />
+    <Node Id="Prism.PubSubEvents 1.0.0" Category="Package" Bounds="251.703328653971,236.306753248291,146.906666666667,23.2766666666667" Label="Prism.PubSubEvents 1.0.0" UseManualLocation="True" />
+    <Node Id="PrismLibrary_Desktop\Prism.Composition.Desktop" Category="Project" Bounds="19.8841667556763,160.279987744141,152.313333333333,23.2766666666667" Label="Prism.Composition.Desktop" UseManualLocation="True" />
+    <Node Id="PrismLibrary_Desktop\Prism.MefExtensions.Desktop" Category="Project" Bounds="202.19750008901,160.529986368815,162.15,23.2766666666667" Label="Prism.MefExtensions.Desktop" UseManualLocation="True" />
+    <Node Id="Shepherd\Client\Management" Category="Project" Bounds="219.835,-45,82.8666666666667,23.2766666666667" Label="Management" UseManualLocation="True" />
   </Nodes>
   <Links>
-    <Link Source="EnterpriseLibrary.ExceptionHandling 6.0.1304.0" Target="EnterpriseLibrary.Common 6.0.1304.0" Category="Package Dependency" Bounds="159.735340390236,76.5533361562093,82.5389843195393,27.8706014059994" />
-    <Link Source="EnterpriseLibrary.Logging 6.0.1304.0" Target="EnterpriseLibrary.Common 6.0.1304.0" Category="Package Dependency" Bounds="313.556486162421,76.5533361562093,46.2470678788804,26.3007277356366" />
-    <Link Source="PrismLibrary_Desktop\Prism.Composition.Desktop" Target="CommonServiceLocator 1.2" Category="Installed Package" Bounds="77.880012308706,183.106671346029,3.23501034914815,21.8471514428319" />
-    <Link Source="PrismLibrary_Desktop\Prism.Composition.Desktop" Target="Prism.PubSubEvents 1.0.0" Category="Installed Package" Bounds="116.655252616098,183.106671346029,98.3529185779123,28.2642987961563" />
-    <Link Source="PrismLibrary_Desktop\Prism.MefExtensions.Desktop" Target="CommonServiceLocator 1.2" Category="Installed Package" Bounds="132.107664386962,183.856648723857,92.727917992448,27.4457982757277" />
-    <Link Source="PrismLibrary_Desktop\Prism.MefExtensions.Desktop" Target="Prism.PubSubEvents 1.0.0" Category="Installed Package" Bounds="264.156661987305,183.856648723857,0,21.0001" />
-    <Link Source="Shepherd\Client\Management" Target="EnterpriseLibrary.ExceptionHandling 6.0.1304.0" Category="Installed Package" Bounds="189.783081054688,20.2949104309082,149.051971435547,31.1411476135254" />
-    <Link Source="Shepherd\Client\Management" Target="EnterpriseLibrary.Logging 6.0.1304.0" Category="Installed Package" Bounds="380.268341064453,23.2766666412354,0,21.0000019073486" />
+    <Link Source="EnterpriseLibrary.ExceptionHandling 6.0.1304.0" Target="EnterpriseLibrary.Common 6.0.1304.0" Category="Package Dependency" Bounds="151.046307746326,76.5533361562093,59.2413182557215,26.7464852218746" />
+    <Link Source="EnterpriseLibrary.Logging 6.0.1304.0" Target="EnterpriseLibrary.Common 6.0.1304.0" Category="Package Dependency" Bounds="282.099383903172,76.5533361562093,68.7084134385692,27.1431317062246" />
+    <Link Source="PrismLibrary_Desktop\Prism.Composition.Desktop" Target="CommonServiceLocator 1.2" Category="Installed Package" Bounds="80.1620176625027,183.556654410807,13.0202220044261,53.0098701413992" />
+    <Link Source="PrismLibrary_Desktop\Prism.Composition.Desktop" Target="Prism.PubSubEvents 1.0.0" Category="Installed Package" Bounds="131.114358513604,183.556654410807,150.426768117853,49.9156233956036" />
+    <Link Source="PrismLibrary_Desktop\Prism.MefExtensions.Desktop" Target="CommonServiceLocator 1.2" Category="Installed Package" Bounds="112.062234179423,183.806653035482,142.63968118863,58.1048015799275" />
+    <Link Source="PrismLibrary_Desktop\Prism.MefExtensions.Desktop" Target="Prism.PubSubEvents 1.0.0" Category="Installed Package" Bounds="289.705366480419,183.806653035482,24.6646472209476,44.6232470007158" />
+    <Link Source="Shepherd\Client\Management" Target="EnterpriseLibrary.ExceptionHandling 6.0.1304.0" Category="Installed Package" Bounds="148.668747631124,-21.723333346049,96.4938982450273,69.728668726552" />
+    <Link Source="Shepherd\Client\Management" Target="EnterpriseLibrary.Logging 6.0.1304.0" Category="Installed Package" Bounds="275.360810952607,-21.723333346049,83.8756041974667,69.2690294498816" />
   </Links>
   <Categories>
     <Category Id="Installed Package" />
