@@ -1,5 +1,21 @@
-﻿using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors;
+﻿//<summary>
+//  Title   : ApplicationIBootstrapper
+//  System  : Microsoft VisulaStudio 2013 / C#
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors;
 using Microsoft.Practices.Prism.MefExtensions;
+using Microsoft.Practices.Prism.Regions;
 using System.ComponentModel.Composition.Hosting;
 using System.Windows;
 
@@ -11,11 +27,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     protected override void ConfigureAggregateCatalog()
     {
       this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ApplicationIBootstrapper).Assembly));
-      //this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(StockTraderRICommands).Assembly));
-      //this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MarketModule).Assembly));
-      //this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(PositionModule).Assembly));
-      //this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(WatchModule).Assembly));
-      //this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(NewsModule).Assembly));
     }
 
     protected override void ConfigureContainer()
@@ -32,10 +43,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
 
     protected override Microsoft.Practices.Prism.Regions.IRegionBehaviorFactory ConfigureDefaultRegionBehaviors()
     {
-      var factory = base.ConfigureDefaultRegionBehaviors();
-
+      IRegionBehaviorFactory factory = base.ConfigureDefaultRegionBehaviors();
       factory.AddIfMissing("AutoPopulateExportedViewsBehavior", typeof(AutoPopulateExportedViewsBehavior));
-
       return factory;
     }
 
