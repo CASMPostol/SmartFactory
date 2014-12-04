@@ -88,7 +88,8 @@
     <ApplicationIcon>SHR_Ico.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -123,6 +124,9 @@
     </ApplicationDefinition>
     <Compile Include="ApplicationIBootstrapper.cs" />
     <Compile Include="ApplicationIBootstrapper.Desktop.cs" />
+    <Compile Include="Controls\ButtonsPanel.xaml.cs">
+      <DependentUpon>ButtonsPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RoundedBox.xaml.cs">
       <DependentUpon>RoundedBox.xaml</DependentUpon>
     </Compile>
@@ -152,6 +156,10 @@
     </Compile>
     <Compile Include="UpdateData\Entities.cs" />
     <Compile Include="UpdateData\EntitiesDataDictionary.cs" />
+    <Page Include="Controls\ButtonsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\RoundedBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -310,7 +318,14 @@
     <Resource Include="Resources\shadow_tl.png" />
     <Resource Include="Resources\shadow_tr.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Imgs\ArchiveIcon.png" />
+    <Resource Include="Imgs\Background.jpg" />
+    <Resource Include="Imgs\ButtonHelp.png" />
+    <Resource Include="Imgs\CleanupIcon.png" />
+    <Resource Include="Imgs\SettingsIcon.png" />
+    <Resource Include="Imgs\SynchronizeIcon.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Entities\Scripts\Parameters.xml" />
   </ItemGroup>
