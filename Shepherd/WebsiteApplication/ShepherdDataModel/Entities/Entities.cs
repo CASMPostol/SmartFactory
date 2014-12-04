@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#pragma warning disable 1591
 namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 	using System;
 	
@@ -7072,3 +7073,4 @@ namespace CAS.SmartFactory.Shepherd.DataModel.Entities {
 		Delayed = 8,
 	}
 }
+#pragma warning restore 1591

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#pragma warning disable 1591
 namespace CAS.SmartFactory.Shepherd.Client.Management {
 	using System;
 	
@@ -6464,3 +6465,4 @@ namespace CAS.SmartFactory.Shepherd.Client.Management {
 		Delayed = 8,
 	}
 }
+#pragma warning restore 1591
