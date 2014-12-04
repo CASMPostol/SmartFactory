@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
   /// <summary>
   /// Interaction logic for Shell.xaml
   /// </summary>
+  [Export]
   public partial class Shell : Window
   {
     /// <summary>
@@ -26,5 +28,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     {
       InitializeComponent();
     }
+
   }
 }

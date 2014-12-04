@@ -7,6 +7,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
 {
   internal partial class ApplicationIBootstrapper : MefBootstrapper
   {
+    
     protected override void ConfigureAggregateCatalog()
     {
       this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ApplicationIBootstrapper).Assembly));
@@ -25,7 +26,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     protected override void InitializeShell()
     {
       base.InitializeShell();
-
       Application.Current.MainWindow = (Shell)this.Shell;
       Application.Current.MainWindow.Show();
     }
