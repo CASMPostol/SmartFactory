@@ -16,6 +16,7 @@
 using CAS.Common.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
@@ -24,18 +25,16 @@ using System.Windows;
 
 namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
 {
-  [Export]  
-  internal class ButtonsPanelViewModel: CAS.Common.ComponentModel.PropertyChangedBase, CAS.SmartFactory.Shepherd.Client.Management.Controls.IButtonsPanelViewModel
+  [Export]
+  internal class ButtonsPanelViewModel : CAS.Common.ComponentModel.PropertyChangedBase, CAS.SmartFactory.Shepherd.Client.Management.Controls.IButtonsPanelViewModel
   {
     [ImportingConstructor]
     public ButtonsPanelViewModel(ShellViewModel parentViewMode)
     {
       if (parentViewMode == null)
         throw new ArgumentNullException("parentViewMode");
+      m_ParentViewMode = parentViewMode;
       parentViewMode.PropertyChanged += parentViewMode_PropertyChanged;
-    }
-    void parentViewMode_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-    {
     }
     public string LeftButtonTitle
     {
@@ -166,7 +165,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         RaiseHandler<Visibility>(value, ref b_RightMiddleButtonVisibility, "RightMiddleButtonVisibility", this);
       }
     }
-    private Visibility b_RightButtonVisibility = Visibility.Hidden;
+    private Visibility b_RightButtonVisibility;
     public Visibility RightButtonVisibility
     {
       get
@@ -177,11 +176,19 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       {
         RaiseHandler<Visibility>(value, ref b_RightButtonVisibility, "RightButtonVisibility", this);
       }
-    } 
+    }
     private string b_LeftButtonTitle = "Left";
     private string b_LeftMiddleButtonTitle = "Left Middle";
     private string b_RightMiddleButtonTitle = "Right Middle";
     private string b_RightButtonTitle = "Right";
-                 
+
+    private ShellViewModel m_ParentViewMode;
+    private void parentViewMode_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+      if (e.PropertyName == "ButtonPanelState")
+        GetState(m_ParentViewMode.ButtonPanelState);
+    }
+    private void GetState(IButtonsPanelViewModel state)
+    { }
   }
 }
