@@ -13,7 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-
 namespace CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors
 {
   public interface IViewRegionRegistration
