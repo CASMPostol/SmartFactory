@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : AutoPopulateExportedViewsBehaviorFixture
 //  System  : Microsoft VisulaStudio 2013 / C#
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2014, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -16,6 +16,9 @@
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 
@@ -24,6 +27,24 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
   [TestClass]
   public class AutoPopulateExportedViewsBehaviorFixture
   {
+    [TestMethod]
+    public void AddThis()
+    {
+      var catalog = new AggregateCatalog();
+      catalog.Catalogs.Add(new AssemblyCatalog(typeof(AutoPopulateExportedViewsBehaviorFixture).Assembly));
+      CompositionContainer container = new CompositionContainer(catalog);
+      IEnumerable<object> _v1 = container.GetExportedValues<object>();
+      Assert.IsNotNull(_v1);
+      Assert.AreEqual<int>(4, _v1.Count<object>());
+      _v1 = container.GetExportedValues<object>("View");
+      Assert.IsNotNull(_v1);
+      Assert.AreEqual<int>(1, _v1.Count<object>());
+      Lazy<object> _lv = container.GetExport<object>("View");
+      Assert.IsNotNull(_lv);
+      Assert.IsFalse(_lv.IsValueCreated);
+      Assert.IsNotNull(_lv.Value);
+      Assert.IsTrue(_lv.IsValueCreated);
+    }
     [TestMethod]
     public void WhenAttached_ThenAddsViewsRegisteredToTheRegion()
     {
@@ -65,6 +86,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     }
   }
 
+  [ViewExport("View", RegionName = "region")]
+  public class View { }
   [ViewExport(RegionName = "region1")]
   public class View1 { }
 
