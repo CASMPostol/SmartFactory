@@ -20,10 +20,21 @@ using System.ComponentModel.Composition;
 namespace CAS.SmartFactory.Shepherd.Client.Management
 {
   [Export]
-  [PartCreationPolicy(System.ComponentModel.Composition.CreationPolicy.Shared)]
+  [PartCreationPolicy(CreationPolicy.Shared)]
   public class ShellViewModel : StateMachineContext
   {
-    // This is where any view model logic for the shell would go.
-    public string ButtonNextTitle { get; set; }
+    private Controls.IButtonsPanelViewModel b_ButtonPanelState;
+    public Controls.IButtonsPanelViewModel ButtonPanelState
+    {
+      get
+      {
+        return b_ButtonPanelState;
+      }
+      set
+      {
+        RaiseHandler<Controls.IButtonsPanelViewModel>(value, ref b_ButtonPanelState, "ButtonPanelState", this);
+      }
+    } 
+                
   }
 }
