@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 
-namespace CAS.SmartFactory.Shepherd.Client.Management
+namespace CAS.SmartFactory.Shepherd.Client.Management.Tests
 {
   [TestClass]
   public class AutoPopulateExportedViewsBehaviorFixture

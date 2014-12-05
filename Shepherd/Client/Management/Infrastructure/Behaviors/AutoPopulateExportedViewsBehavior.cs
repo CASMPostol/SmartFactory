@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using Microsoft.Practices.Prism.Regions;
 using System;
 using System.ComponentModel.Composition;
@@ -37,7 +37,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors
     {
       if (this.Region != null)
       {
-        foreach (var viewEntry in this.RegisteredViews)
+        foreach (Lazy<object, IViewRegionRegistration> viewEntry in this.RegisteredViews)
         {
           if (viewEntry.Metadata.RegionName == this.Region.Name)
           {
@@ -58,7 +58,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors
     /// <value>
     /// The registered views.
     /// </value>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "MEF injected values"), ImportMany(AllowRecomposition = true)]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "MEF injected values")]
+    [ImportMany(AllowRecomposition = true)]
     public Lazy<object, IViewRegionRegistration>[] RegisteredViews { get; set; }
   }
 }

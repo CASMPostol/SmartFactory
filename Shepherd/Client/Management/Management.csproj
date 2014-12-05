@@ -66,7 +66,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>CAS.SmartFactory.Shepherd.Client.Management.App</StartupObject>
@@ -127,6 +127,8 @@
     <Compile Include="Controls\ButtonsPanel.xaml.cs">
       <DependentUpon>ButtonsPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ButtonsPanelViewModel.cs" />
+    <Compile Include="Controls\IButtonsPanelViewModel.cs" />
     <Compile Include="Controls\RoundedBox.xaml.cs">
       <DependentUpon>RoundedBox.xaml</DependentUpon>
     </Compile>
@@ -213,12 +215,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="cas.snk" />
     <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="InputData\RoutesCatalog.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="InputData\Scripts\CreateCS.ps1" />
-    <None Include="key.snk" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

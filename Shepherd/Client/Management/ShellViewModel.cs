@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using CAS.Common.ViewModel.Wizard;
 using System;
 using System.ComponentModel.Composition;
@@ -20,8 +20,10 @@ using System.ComponentModel.Composition;
 namespace CAS.SmartFactory.Shepherd.Client.Management
 {
   [Export]
+  [PartCreationPolicy(System.ComponentModel.Composition.CreationPolicy.Shared)]
   public class ShellViewModel : StateMachineContext
   {
     // This is where any view model logic for the shell would go.
+    public string ButtonNextTitle { get; set; }
   }
 }
