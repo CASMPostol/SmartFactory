@@ -124,6 +124,9 @@
     </ApplicationDefinition>
     <Compile Include="ApplicationIBootstrapper.cs" />
     <Compile Include="ApplicationIBootstrapper.Desktop.cs" />
+    <Compile Include="Controls\ArchivingPanel.xaml.cs">
+      <DependentUpon>ArchivingPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ButtonsPanel.xaml.cs">
       <DependentUpon>ButtonsPanel.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,10 @@
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="UpdateData\Entities.cs" />
     <Compile Include="UpdateData\EntitiesDataDictionary.cs" />
+    <Page Include="Controls\ArchivingPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ButtonsPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,6 +205,10 @@
     <Page Include="Shell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Simple Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

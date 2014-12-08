@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="CAS.SmartFactory.Shepherd.Client.Management.Controls.ArchivingPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="459" Width="705">
+    <Grid >
+        <StackPanel Grid.Row="0" Grid.Column="0" DockPanel.Dock="Top" Orientation="Vertical">
+            <Grid Margin="20,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0" x:Name="x_RadioListArchivingOptions" DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Left">
+                    <RadioButton x:Name="x_RadioButtonCleanupOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,55,0,0" VerticalAlignment="Center" Height="13.333" Width="13.333" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding DoCleanupIsChecked, Mode=TwoWay}" />
+                    <RadioButton x:Name="x_RadioButtonSyncOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,100,0,0" VerticalAlignment="Center" Height="13.333" Width="13.333" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding DoSynchronizationIsChecked, Mode=TwoWay}" />
+                    <RadioButton x:Name="x_RadioButtonArchiveOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,95,0,0" VerticalAlignment="Center" Height="13.333" Width="13.333" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding DoArchivingIsChecked, Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+                    <Image HorizontalAlignment="Right" Source="Imgs/CleanupIcon.png" Stretch="Fill" Width="100" Margin="10,10,10,5"/>
+                    <Image HorizontalAlignment="Right" Source="Imgs/SynchronizeIcon.png" Stretch="Fill" Width="100" Margin="10,5"/>
+                    <Image HorizontalAlignment="Right" Source="Imgs/ArchiveIcon.png" Stretch="Fill" Width="100" Margin="10,5"/>
+                    <StackPanel Background="#FF9CCC65" Margin="10,5" Height="106">
+                        <Image HorizontalAlignment="Right" Source="Imgs/SettingsIcon.png" Stretch="Fill" Width="100" Margin="0"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical">
+                    <TextBlock Style="{StaticResource CASTextBlockVioletHeader}" Margin="0,10,0,0">
+						Perform a cleanup
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource CASTextBlockViolet}" Margin="0,0,0,0">
+						Perform a cleanup - removes useless entries from Time Slot list
+                    </TextBlock>
+                    <StackPanel Background="#FF689F38" Orientation="Horizontal" Height="30" >
+                        <Label Content="Last run date: " Style="{StaticResource CASLabel}"/>
+                        <Label Content="{Binding CleanupLastRunDate}" Style="{StaticResource CASLabel}"/>
+                        <Label Content=" by: " Style="{StaticResource CASLabel}"/>
+                        <Label Content="{Binding CleanupLastRunBy}" Style="{StaticResource CASLabel}"/>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource CASTextBlockVioletHeader}" Margin="0,10,0,0">
+						Perform a synchronization
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource CASTextBlockViolet}" Margin="0,0,0,0">
+						Perform a synchronization - synchronize data between SharePoint website and Database
+                    </TextBlock>
+                    <StackPanel Background="#FF689F38" Orientation="Horizontal" Height="30" >
+                        <Label Content="Last run date: " Style="{StaticResource CASLabel}"/>
+                        <Label Content="{Binding SyncLastRunDate}" Style="{StaticResource CASLabel}"/>
+                        <Label Content=" by: " Style="{StaticResource CASLabel}"/>
+                        <Label Content="{Binding SyncLastRunBy}" Style="{StaticResource CASLabel}"/>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource CASTextBlockVioletHeader}" Margin="0,10,0,0">
+						Perform an archiving
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource CASTextBlockViolet}" Margin="0,0,0,0">
+						Perform an archiving - moves all old Shippings to the Database
+                    </TextBlock>
+                    <StackPanel Background="#FF689F38" Orientation="Horizontal" Height="30" >
+                        <Label Content="Last run date: " Style="{StaticResource CASLabel}"/>
+                        <Label Content="{Binding ArchivingLastRunDate}" Style="{StaticResource CASLabel}"/>
+                        <Label Content=" by: " Style="{StaticResource CASLabel}"/>
+                        <Label Content="{Binding ArchivingLastRunBy}" Style="{StaticResource CASLabel}"/>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource CASTextBlockGrayHeader}" Margin="0,10,0,0">
+						Settings
+                    </TextBlock>
+                    <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
+                        <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
+									Shippings archive period:
+                        </TextBlock>
+                        <TextBox Text="{Binding IPRAccountArchivalDelay, Mode=TwoWay}" Width="50" Margin="5" Style="{StaticResource CASTextBox}" />
+                    </StackPanel>
+                    <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
+                        <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
+									Read data in batches of:
+                        </TextBlock>
+                        <TextBox Text="{Binding Path=RowLimit, Mode=TwoWay}" Width="50" Margin="5" Style="{StaticResource CASTextBox}" />
+                        <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
+									elements.
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>
