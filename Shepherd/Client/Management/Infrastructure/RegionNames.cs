@@ -26,5 +26,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Infrastructure
     public const string ActionRegion = "ActionRegion";
     public const string DiagnosticRegion = "DiagnosticRegion";
     public const string ButtonsRegion = "ButtonsRegion";
+    public const string ProgressRegion = "ProgressRegion";
   }
 }
