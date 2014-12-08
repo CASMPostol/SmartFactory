@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Tests
     [TestMethod]
     public void CreateButtonPanel()
     {
-      ButtonsPanel _nbp = ButtonsPanel.Create();
+      ButtonsPanel _nbp = ButtonsPanel.New();
       Assert.IsNotNull(_nbp); 
     }
   }
