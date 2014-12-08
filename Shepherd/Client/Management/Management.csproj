@@ -146,6 +146,9 @@
     <Compile Include="EnterpriseLibraryLoggerAdapter.cs" />
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="HelpWindow.xaml.cs">
+      <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Behaviors\AutoPopulateExportedViewsBehavior.cs" />
     <Compile Include="Infrastructure\Behaviors\IViewRegionRegistration.cs" />
     <Compile Include="Infrastructure\Behaviors\ViewExportAttribute.cs" />
@@ -195,6 +198,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="HelpWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ResourceDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
