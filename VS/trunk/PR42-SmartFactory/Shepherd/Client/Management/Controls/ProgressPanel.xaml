@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="192" d:DesignWidth="946">
-    <Grid Margin="0,0,0,99">
+             d:DesignHeight="70" d:DesignWidth="946">
+    <Grid>
         <StackPanel Background="#FF689F38" Orientation="Horizontal" DockPanel.Dock="Top" ToolTip="Information about the application and progress" Height="40"  >
             <Button Click="HelpButton_Click" Style="{DynamicResource CASButtonGray}" Margin="55,5,5,5" Width="20" Height="20" HorizontalContentAlignment="Right">
                 <StackPanel Orientation="Horizontal">

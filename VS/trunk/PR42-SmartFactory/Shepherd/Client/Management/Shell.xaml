@@ -9,7 +9,8 @@
         WindowState="Maximized"
         ScrollViewer.HorizontalScrollBarVisibility="Auto" 
         ScrollViewer.VerticalScrollBarVisibility="Auto"
-        Icon="SHR_Ico.ico">
+        Icon="SHR_Ico.ico"
+        MinWidth="1366">
     <Window.Background>
         <ImageBrush ImageSource="Imgs/Background.jpg"  Stretch="UniformToFill"/>
     </Window.Background>
