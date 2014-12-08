@@ -14,6 +14,10 @@
 //</summary>
 
 using CAS.Common.ViewModel.Wizard;
+using CAS.SmartFactory.Shepherd.Client.Management.Controls;
+using CAS.SmartFactory.Shepherd.Client.Management.StateMachines;
+using Microsoft.Practices.Prism.PubSubEvents;
+using Microsoft.Practices.Prism.Regions;
 using System;
 using System.ComponentModel.Composition;
 
@@ -23,6 +27,19 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
   [PartCreationPolicy(CreationPolicy.Shared)]
   public class ShellViewModel : StateMachineContext
   {
+    [ImportingConstructor]
+    public ShellViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
+    {
+      if (regionManager == null)
+      {
+        throw new ArgumentNullException("watchListService");
+      }
+      m_RegionManager = regionManager;
+      if (eventAggregator == null)
+      {
+        throw new ArgumentNullException("eventAggregator");
+      }
+    }
     private Controls.IButtonsPanelViewModel b_ButtonPanelState;
     public Controls.IButtonsPanelViewModel ButtonPanelState
     {
@@ -34,7 +51,28 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
       {
         RaiseHandler<Controls.IButtonsPanelViewModel>(value, ref b_ButtonPanelState, "ButtonPanelState", this);
       }
-    } 
-                
+    }
+
+    internal void ActivateView(Controls.SetupPanel setupPanel)
+    {
+      try
+      {
+        //IRegion _rg = m_RegionManager.Regions[Infrastructure.RegionNames.ActionRegion];
+        //_rg.Add(setupPanel);
+        //_rg.Activate(setupPanel);
+
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e.Message);
+      }
+    }
+    [Import]
+    public EnteringStateProvider EnteringState 
+    {
+      set { value.ActivateEnteringState(this); }
+    }
+    private IRegionManager m_RegionManager = null;
+    private IEventAggregator m_EventAggregator = null;
   }
 }

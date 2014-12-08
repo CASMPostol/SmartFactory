@@ -21,8 +21,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
   /// <summary>
   /// Interaction logic for SetupPanel.xaml
   /// </summary>
-  [ViewExport(RegionName = RegionNames.ActionRegion)]
-  [PartCreationPolicy(CreationPolicy.Shared)]
   public partial class SetupPanel : UserControl
   {
     public SetupPanel()
