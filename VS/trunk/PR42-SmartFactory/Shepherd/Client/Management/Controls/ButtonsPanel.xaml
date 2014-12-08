@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="800">
+             d:DesignHeight="70" d:DesignWidth="850">
     <Grid>
-        <StackPanel x:Name="x_StackPanelButtons" DockPanel.Dock="Top" Orientation="Horizontal" Height="60" Margin="40,0,0,5" HorizontalAlignment="Left">
-            <TextBlock Margin="20,10,10,10" Style="{DynamicResource CASTextBlockHeader}">Actions:</TextBlock>
+        <StackPanel x:Name="x_StackPanelButtons" DockPanel.Dock="Top" Orientation="Horizontal" Height="60" Margin="0,0,0,5" HorizontalAlignment="Left">
+            <TextBlock Margin="65,10,10,10" Style="{DynamicResource CASTextBlockHeader}">Actions:</TextBlock>
             <Button Content="{Binding Path=LeftButtonTitle}" Style="{DynamicResource CASButtonStyle}" Command="{Binding Path=LeftButtonCommand}" Visibility="{Binding Path=LeftButtonVisibility}" />
             <Button Content="{Binding Path=LeftMiddleButtonTitle}" Style="{DynamicResource CASButtonStyle}" Command="{Binding Path=LeftMiddleButtonCommand}" Visibility="{Binding Path=LeftMiddleButtonVisibility}" />
             <Button Content="{Binding Path=RightMiddleButtonTitle}" Style="{DynamicResource CASButtonStyle}" Command="{Binding Path=RightMiddleButtonCommand}" Visibility="{Binding Path=RightMiddleButtonVisibility}" />

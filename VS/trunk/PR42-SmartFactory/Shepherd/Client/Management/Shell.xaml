@@ -4,7 +4,7 @@
         xmlns:prism="http://www.codeplex.com/prism"
         xmlns:inf="clr-namespace:CAS.SmartFactory.Shepherd.Client.Management.Infrastructure"
         xmlns:Controls="clr-namespace:CAS.SmartFactory.Shepherd.Client.Management.Controls"
-        Height="768" Width="1024" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowState="Maximized"
      ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
     <Window.Background>
         <ImageBrush ImageSource="Imgs/Background.jpg"  Stretch="UniformToFill"/>
@@ -62,38 +62,19 @@
         </Grid>
 
         <!-- details -->
-        <Grid x:Name="DetailsGrid" Grid.Row="2" Grid.Column="0" Margin="10,10,10,10" RenderTransformOrigin="0.5,0.5">
-            <Grid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Grid.RenderTransform>
+        <Grid x:Name="DetailsGrid" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0" Margin="0" VerticalAlignment="Top">
             <ContentControl x:Name="ActionContent" prism:RegionManager.RegionName="{x:Static inf:RegionNames.ActionRegion}" MinHeight="50">
-                <ContentControl.Template>
-                    <ControlTemplate TargetType="ContentControl">
-                        <Grid>
-                            <UserControl />
-                            <ContentPresenter Margin="10,0,10,0" Content="{TemplateBinding Content}" />
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="HasContent" Value="false">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </ContentControl.Template>
+
+
             </ContentControl>
         </Grid>
 
         <!-- buttons -->
-        <Grid x:Name="ButtonsGrid" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" Margin="5,5,5,5" HorizontalAlignment="Left">
+        <Grid x:Name="ButtonsGrid" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" Margin="0" HorizontalAlignment="Left">
             <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.ButtonsRegion}" MinHeight="50"/>
         </Grid>
         <!-- ProgressPanel -->
-        <Grid x:Name="ProgressPanelGrid" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" Margin="5,5,5,5" HorizontalAlignment="Left">
+        <Grid x:Name="ProgressPanelGrid" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="1" Margin="5,5,5,5" HorizontalAlignment="Left">
             <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.ProgressRegion}" MinHeight="50"/>
         </Grid>
         <!-- sidebar -->
