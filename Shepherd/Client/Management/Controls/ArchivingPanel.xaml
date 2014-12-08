@@ -29,57 +29,57 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical">
-                    <TextBlock Style="{StaticResource CASTextBlockVioletHeader}" Margin="0,10,0,0">
+                    <TextBlock Style="{DynamicResource CASTextBlockVioletHeader}" Margin="0,10,0,0">
 						Perform a cleanup
                     </TextBlock>
-                    <TextBlock Style="{StaticResource CASTextBlockViolet}" Margin="0,0,0,0">
+                    <TextBlock Style="{DynamicResource CASTextBlockViolet}" Margin="0,0,0,0">
 						Perform a cleanup - removes useless entries from Time Slot list
                     </TextBlock>
                     <StackPanel Background="#FF689F38" Orientation="Horizontal" Height="30" >
-                        <Label Content="Last run date: " Style="{StaticResource CASLabel}"/>
-                        <Label Content="{Binding CleanupLastRunDate}" Style="{StaticResource CASLabel}"/>
-                        <Label Content=" by: " Style="{StaticResource CASLabel}"/>
-                        <Label Content="{Binding CleanupLastRunBy}" Style="{StaticResource CASLabel}"/>
+                        <Label Content="Last run date: " Style="{DynamicResource CASLabel}"/>
+                        <Label Content="{Binding CleanupLastRunDate}" Style="{DynamicResource CASLabel}"/>
+                        <Label Content=" by: " Style="{DynamicResource CASLabel}"/>
+                        <Label Content="{Binding CleanupLastRunBy}" Style="{DynamicResource CASLabel}"/>
                     </StackPanel>
-                    <TextBlock Style="{StaticResource CASTextBlockVioletHeader}" Margin="0,10,0,0">
+                    <TextBlock Style="{DynamicResource CASTextBlockVioletHeader}" Margin="0,10,0,0">
 						Perform a synchronization
                     </TextBlock>
-                    <TextBlock Style="{StaticResource CASTextBlockViolet}" Margin="0,0,0,0">
+                    <TextBlock Style="{DynamicResource CASTextBlockViolet}" Margin="0,0,0,0">
 						Perform a synchronization - synchronize data between SharePoint website and Database
                     </TextBlock>
                     <StackPanel Background="#FF689F38" Orientation="Horizontal" Height="30" >
-                        <Label Content="Last run date: " Style="{StaticResource CASLabel}"/>
-                        <Label Content="{Binding SyncLastRunDate}" Style="{StaticResource CASLabel}"/>
-                        <Label Content=" by: " Style="{StaticResource CASLabel}"/>
-                        <Label Content="{Binding SyncLastRunBy}" Style="{StaticResource CASLabel}"/>
+                        <Label Content="Last run date: " Style="{DynamicResource CASLabel}"/>
+                        <Label Content="{Binding SyncLastRunDate}" Style="{DynamicResource CASLabel}"/>
+                        <Label Content=" by: " Style="{DynamicResource CASLabel}"/>
+                        <Label Content="{Binding SyncLastRunBy}" Style="{DynamicResource CASLabel}"/>
                     </StackPanel>
-                    <TextBlock Style="{StaticResource CASTextBlockVioletHeader}" Margin="0,10,0,0">
+                    <TextBlock Style="{DynamicResource CASTextBlockVioletHeader}" Margin="0,10,0,0">
 						Perform an archiving
                     </TextBlock>
-                    <TextBlock Style="{StaticResource CASTextBlockViolet}" Margin="0,0,0,0">
+                    <TextBlock Style="{DynamicResource CASTextBlockViolet}" Margin="0,0,0,0">
 						Perform an archiving - moves all old Shippings to the Database
                     </TextBlock>
                     <StackPanel Background="#FF689F38" Orientation="Horizontal" Height="30" >
-                        <Label Content="Last run date: " Style="{StaticResource CASLabel}"/>
-                        <Label Content="{Binding ArchivingLastRunDate}" Style="{StaticResource CASLabel}"/>
-                        <Label Content=" by: " Style="{StaticResource CASLabel}"/>
-                        <Label Content="{Binding ArchivingLastRunBy}" Style="{StaticResource CASLabel}"/>
+                        <Label Content="Last run date: " Style="{DynamicResource CASLabel}"/>
+                        <Label Content="{Binding ArchivingLastRunDate}" Style="{DynamicResource CASLabel}"/>
+                        <Label Content=" by: " Style="{DynamicResource CASLabel}"/>
+                        <Label Content="{Binding ArchivingLastRunBy}" Style="{DynamicResource CASLabel}"/>
                     </StackPanel>
-                    <TextBlock Style="{StaticResource CASTextBlockGrayHeader}" Margin="0,10,0,0">
+                    <TextBlock Style="{DynamicResource CASTextBlockGrayHeader}" Margin="0,10,0,0">
 						Settings
                     </TextBlock>
                     <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
-                        <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
+                        <TextBlock Width="200" Style="{DynamicResource CASTextBlock}" Margin="5">
 									Shippings archive period:
                         </TextBlock>
-                        <TextBox Text="{Binding IPRAccountArchivalDelay, Mode=TwoWay}" Width="50" Margin="5" Style="{StaticResource CASTextBox}" />
+                        <TextBox Text="{Binding IPRAccountArchivalDelay, Mode=TwoWay}" Width="50" Margin="5" Style="{DynamicResource CASTextBox}" />
                     </StackPanel>
                     <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
-                        <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
+                        <TextBlock Width="200" Style="{DynamicResource CASTextBlock}" Margin="5">
 									Read data in batches of:
                         </TextBlock>
-                        <TextBox Text="{Binding Path=RowLimit, Mode=TwoWay}" Width="50" Margin="5" Style="{StaticResource CASTextBox}" />
-                        <TextBlock Width="200" Style="{StaticResource CASTextBlock}" Margin="5">
+                        <TextBox Text="{Binding Path=RowLimit, Mode=TwoWay}" Width="50" Margin="5" Style="{DynamicResource CASTextBox}" />
+                        <TextBlock Width="200" Style="{DynamicResource CASTextBlock}" Margin="5">
 									elements.
                         </TextBlock>
                     </StackPanel>
