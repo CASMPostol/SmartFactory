@@ -361,6 +361,7 @@
         <Setter Property="Foreground" Value="#FF000000"/>
         <Setter Property="SelectionBrush" Value="#FFF9F9F9"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="Height" Value="20"/>
     </Style>
     <!-- TextBlock -->
     <Style x:Key="CASTextBlockVioletHeader" TargetType="TextBlock">
