@@ -1,5 +1,8 @@
-﻿using System;
+﻿using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
+using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +21,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
   /// <summary>
   /// Interaction logic for SetupPanel.xaml
   /// </summary>
+  [ViewExport(RegionName = RegionNames.ActionRegion)]
+  [PartCreationPolicy(CreationPolicy.Shared)]
   public partial class SetupPanel : UserControl
   {
     public SetupPanel()
