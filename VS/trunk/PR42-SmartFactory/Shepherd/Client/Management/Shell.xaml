@@ -4,8 +4,12 @@
         xmlns:prism="http://www.codeplex.com/prism"
         xmlns:inf="clr-namespace:CAS.SmartFactory.Shepherd.Client.Management.Infrastructure"
         xmlns:Controls="clr-namespace:CAS.SmartFactory.Shepherd.Client.Management.Controls"
-        Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowState="Maximized"
-     ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+        Height="768" Width="1366" 
+        WindowStartupLocation="CenterScreen" 
+        WindowState="Maximized"
+        ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+        ScrollViewer.VerticalScrollBarVisibility="Auto"
+        Icon="SHR_Ico.ico">
     <Window.Background>
         <ImageBrush ImageSource="Imgs/Background.jpg"  Stretch="UniformToFill"/>
     </Window.Background>
@@ -44,7 +48,7 @@
                       Margin="0,0,10,0" 
                       RenderTransformOrigin="0.5,0.5"/>
         <!-- content -->
-        <Grid x:Name="ContentGrid" Grid.Row="1" Grid.Column="0" RenderTransformOrigin="0.5,0.5">
+        <!--<Grid x:Name="ContentGrid" Grid.Row="1" Grid.Column="0" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -59,7 +63,7 @@
                     VerticalAlignment="Stretch"
                     prism:RegionManager.RegionName="{x:Static inf:RegionNames.MainRegion}"
                     AutomationProperties.AutomationId="PositionSummaryTab" />
-        </Grid>
+        </Grid>-->
 
         <!-- details -->
         <Grid x:Name="DetailsGrid" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0" Margin="0" VerticalAlignment="Top">
@@ -79,31 +83,8 @@
         </Grid>
         <!-- sidebar -->
         <Grid x:Name="SideGrid" Margin="10,29,10,10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" RenderTransformOrigin="0.5,0.5" Width="Auto">
-            <Grid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Grid.RenderTransform>
-            <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.DiagnosticRegion}">
-                <ItemsControl.Template>
-                    <ControlTemplate TargetType="{x:Type ItemsControl}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Controls:RoundedBox Grid.Row="1" />
-                            <ScrollViewer Grid.Row="1" Width="285" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                                <ItemsPresenter Width="285" />
-                            </ScrollViewer>
-                        </Grid>
-                    </ControlTemplate>
-                </ItemsControl.Template>
-            </ItemsControl>
+            <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.DiagnosticRegion}" MinHeight="50" />
         </Grid>
-
 
     </Grid>
 </Window>

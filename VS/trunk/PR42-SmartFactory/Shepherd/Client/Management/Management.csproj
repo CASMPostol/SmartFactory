@@ -132,6 +132,9 @@
     </Compile>
     <Compile Include="Controls\ButtonsPanelViewModel.cs" />
     <Compile Include="Controls\IButtonsPanelViewModel.cs" />
+    <Compile Include="Controls\LogPanel.xaml.cs">
+      <DependentUpon>LogPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Main.xaml.cs" />
     <Compile Include="Controls\MainViewmodel.cs" />
     <Compile Include="Controls\ProgressPanel.xaml.cs">
@@ -175,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ButtonsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LogPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
