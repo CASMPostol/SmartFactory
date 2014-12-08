@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Tests
   public class ManagerExportedViewsFixture
   {
     [TestMethod]
-    public void TestMethod1()
+    public void AutoPopulatButtonPanel()
     {
       var catalog = new AggregateCatalog();
       catalog.Catalogs.Add(new AssemblyCatalog(typeof(AutoPopulateExportedViewsBehavior).Assembly));
@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Tests
     [TestMethod]
     public void CreateButtonPanel()
     {
-      ButtonsPanel _nbp = ButtonsPanel.New();
+      ButtonsPanel _nbp = new ButtonsPanel();
       Assert.IsNotNull(_nbp); 
     }
   }
