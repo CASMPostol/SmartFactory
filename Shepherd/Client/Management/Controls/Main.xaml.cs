@@ -37,7 +37,7 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management
   /// <summary>
   /// Interaction logic for Main.xaml
   /// </summary>
-  public partial class Main : Window
+  public partial class Main : UserControl
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="Main"/> class.
@@ -51,18 +51,18 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management
     /// Raises the <see cref="E:System.Windows.Window.Closing" /> event.
     /// </summary>
     /// <param name="e">A <see cref="T:System.ComponentModel.CancelEventArgs" /> that contains the event data.</param>
-    protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
-    {
-      if (m_MainViewmodel.Connected)
-        if (MessageBox.Show("You are about to close application. All changes will be lost.", "Closing application", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel) == MessageBoxResult.Cancel)
-        {
-          e.Cancel = true;
-          return;
-        }
-      m_MainViewmodel.Dispose();
-      m_MainViewmodel = null;
-      base.OnClosing(e);
-    }
+    //protected override void OnClosing(System.ComponentModel.CancelEventArgs e) //TODO mp
+    //{
+    //  if (m_MainViewmodel.Connected)
+    //    if (MessageBox.Show("You are about to close application. All changes will be lost.", "Closing application", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel) == MessageBoxResult.Cancel)
+    //    {
+    //      e.Cancel = true;
+    //      return;
+    //    }
+    //  m_MainViewmodel.Dispose();
+    //  m_MainViewmodel = null;
+    //  base.OnClosing(e);
+    //}
     /// <summary>
     /// Handles the Loaded event of the Window control.
     /// </summary>
@@ -70,7 +70,7 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management
     /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
-      this.Title = String.Format("Shepherd Route Editor rel. {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
+      //this.Title = String.Format("Shepherd Route Editor rel. {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()); TODO mp
       this.m_MainViewmodel = new MainViewmodel();
       this.x_MainGrid.DataContext = m_MainViewmodel;
       this.UpdateLayout();
