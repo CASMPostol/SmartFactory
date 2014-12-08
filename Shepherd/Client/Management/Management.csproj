@@ -193,6 +193,7 @@
     <Page Include="ResourceDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Shell.xaml">
       <SubType>Designer</SubType>

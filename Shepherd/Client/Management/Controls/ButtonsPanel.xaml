@@ -7,11 +7,11 @@
              d:DesignHeight="300" d:DesignWidth="800">
     <Grid>
         <StackPanel x:Name="x_StackPanelButtons" DockPanel.Dock="Top" Orientation="Horizontal" Height="60" Margin="40,0,0,5" HorizontalAlignment="Left">
-            <TextBlock Margin="20,10,10,10" >Actions:</TextBlock>
-            <Button Content="{Binding Path=LeftButtonTitle}" Command="{Binding Path=LeftButtonCommand}" Visibility="{Binding Path=LeftButtonVisibility}" />
-            <Button Content="{Binding Path=LeftMiddleButtonTitle}" Command="{Binding Path=LeftMiddleButtonCommand}" Visibility="{Binding Path=LeftMiddleButtonVisibility}" />
-            <Button Content="{Binding Path=RightMiddleButtonTitle}" Command="{Binding Path=RightMiddleButtonCommand}" Visibility="{Binding Path=RightMiddleButtonVisibility}" />
-            <Button Content="{Binding Path=RightButtonTitle}"  Command="{Binding Path=RightButtonCommand}" Visibility="{Binding Path=RightButtonVisibility}" />
+            <TextBlock Margin="20,10,10,10" Style="{StaticResource CASTextBlockHeader}">Actions:</TextBlock>
+            <Button Content="{Binding Path=LeftButtonTitle}" Style="{StaticResource CASButtonStyle}" Command="{Binding Path=LeftButtonCommand}" Visibility="{Binding Path=LeftButtonVisibility}" />
+            <Button Content="{Binding Path=LeftMiddleButtonTitle}" Style="{StaticResource CASButtonStyle}" Command="{Binding Path=LeftMiddleButtonCommand}" Visibility="{Binding Path=LeftMiddleButtonVisibility}" />
+            <Button Content="{Binding Path=RightMiddleButtonTitle}" Style="{StaticResource CASButtonStyle}" Command="{Binding Path=RightMiddleButtonCommand}" Visibility="{Binding Path=RightMiddleButtonVisibility}" />
+            <Button Content="{Binding Path=RightButtonTitle}" Style="{StaticResource CASButtonStyle}" Command="{Binding Path=RightButtonCommand}" Visibility="{Binding Path=RightButtonVisibility}" />
         </StackPanel>
     </Grid>
 </UserControl>
