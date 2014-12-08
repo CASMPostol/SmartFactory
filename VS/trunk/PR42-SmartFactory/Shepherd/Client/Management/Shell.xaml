@@ -14,7 +14,8 @@
             <RowDefinition Height="124"/>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="650" />
@@ -31,8 +32,9 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Canvas.RenderTransform>
-            <TextBlock Text="CAS " TextWrapping="NoWrap" Foreground="#FFC4CFD6" FontSize="72" Opacity="0.85" Canvas.Left="0" Canvas.Top="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="80" Width="135" TextAlignment="Left" FontWeight="Bold" />
-            <TextBlock Text="SHEPHERD" TextWrapping="NoWrap" Foreground="#FFC4CFD6" FontSize="72" Opacity="0.85" Height="80" TextAlignment="Left" FontWeight="Normal" Width="525" Canvas.Left="150" Canvas.Top="5"/>
+            <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+                <TextBlock Style="{DynamicResource CASTextBlockHeader}" Margin="20,20,0,20">Shepherd Management Wizard</TextBlock>
+            </StackPanel>
         </Canvas>
 
         <ItemsControl x:Name="MainToolbar" Grid.Row="1" Grid.Column="0"
@@ -90,6 +92,10 @@
         <Grid x:Name="ButtonsGrid" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" Margin="5,5,5,5" HorizontalAlignment="Left">
             <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.ButtonsRegion}" MinHeight="50"/>
         </Grid>
+        <!-- ProgressPanel -->
+        <Grid x:Name="ProgressPanelGrid" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" Margin="5,5,5,5" HorizontalAlignment="Left">
+            <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.ProgressRegion}" MinHeight="50"/>
+        </Grid>
         <!-- sidebar -->
         <Grid x:Name="SideGrid" Margin="10,29,10,10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" RenderTransformOrigin="0.5,0.5" Width="Auto">
             <Grid.RenderTransform>
@@ -106,25 +112,7 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <Border Grid.Row="0"
-        						Height="30" 
-        						CornerRadius="12,12,12,12" 
-        						Margin="0,0,0,10" 
-        						BorderBrush="#FFFFFFFF" 
-        						BorderThickness="2,2,2,2" 
-        						x:Name="rightHeader" 
-        						Panel.ZIndex="1" 
-        						Opacity="0.9">
-                                <ItemsControl ItemsSource="{TemplateBinding ItemsSource}" HorizontalAlignment="Center">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                </ItemsControl>
-                            </Border>
                             <Controls:RoundedBox Grid.Row="1" />
                             <ScrollViewer Grid.Row="1" Width="285" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                                 <ItemsPresenter Width="285" />
