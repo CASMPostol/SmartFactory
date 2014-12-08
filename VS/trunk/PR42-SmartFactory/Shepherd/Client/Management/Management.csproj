@@ -132,6 +132,8 @@
     </Compile>
     <Compile Include="Controls\ButtonsPanelViewModel.cs" />
     <Compile Include="Controls\IButtonsPanelViewModel.cs" />
+    <Compile Include="Controls\Main.xaml.cs" />
+    <Compile Include="Controls\MainViewmodel.cs" />
     <Compile Include="Controls\ProgressPanel.xaml.cs">
       <DependentUpon>ProgressPanel.xaml</DependentUpon>
     </Compile>
@@ -144,9 +146,6 @@
     <Compile Include="EnterpriseLibraryLoggerAdapter.cs" />
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="HelpWindow.xaml.cs">
-      <DependentUpon>HelpWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Infrastructure\Behaviors\AutoPopulateExportedViewsBehavior.cs" />
     <Compile Include="Infrastructure\Behaviors\IViewRegionRegistration.cs" />
     <Compile Include="Infrastructure\Behaviors\ViewExportAttribute.cs" />
@@ -157,7 +156,6 @@
     <Compile Include="InputData\RoutesCatalog.xsd.cs">
       <DependentUpon>RoutesCatalog.xsd</DependentUpon>
     </Compile>
-    <Compile Include="MainViewmodel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -177,6 +175,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Main.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\ProgressPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -189,20 +191,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HelpWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Main.xaml.cs">
-      <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
     <Page Include="ResourceDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
