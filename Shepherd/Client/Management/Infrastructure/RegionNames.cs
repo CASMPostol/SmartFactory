@@ -21,8 +21,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Infrastructure
   /// </summary>
   internal static class RegionNames
   {
-    public const string MainToolBarRegion = "MainToolBarRegion";
-    public const string MainRegion = "MainRegion";
     public const string ActionRegion = "ActionRegion";
     public const string DiagnosticRegion = "DiagnosticRegion";
     public const string ButtonsRegion = "ButtonsRegion";

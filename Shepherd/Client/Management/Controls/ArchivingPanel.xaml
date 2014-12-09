@@ -6,7 +6,7 @@
              mc:Ignorable="d" Height="459" Width="705">
     <Grid >
         <StackPanel Grid.Row="0" Grid.Column="0" DockPanel.Dock="Top" Orientation="Vertical">
-            <Grid Margin="20,0,0,0">
+            <Grid Margin="30,0,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -21,11 +21,11 @@
                     <RadioButton x:Name="x_RadioButtonArchiveOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,95,0,0" VerticalAlignment="Center" Height="13.333" Width="13.333" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding DoArchivingIsChecked, Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
-                    <Image HorizontalAlignment="Right" Source="Imgs/CleanupIcon.png" Stretch="Fill" Width="100" Margin="10,10,10,5"/>
-                    <Image HorizontalAlignment="Right" Source="Imgs/SynchronizeIcon.png" Stretch="Fill" Width="100" Margin="10,5"/>
-                    <Image HorizontalAlignment="Right" Source="Imgs/ArchiveIcon.png" Stretch="Fill" Width="100" Margin="10,5"/>
+                    <Image HorizontalAlignment="Right" Source="../Imgs/CleanupIcon.png" Stretch="Fill" Width="100" Margin="10,10,10,5"/>
+                    <Image HorizontalAlignment="Right" Source="../Imgs/SynchronizeIcon.png" Stretch="Fill" Width="100" Margin="10,5"/>
+                    <Image HorizontalAlignment="Right" Source="../Imgs/ArchiveIcon.png" Stretch="Fill" Width="100" Margin="10,5"/>
                     <StackPanel Background="#FF9CCC65" Margin="10,5" Height="106">
-                        <Image HorizontalAlignment="Right" Source="Imgs/SettingsIcon.png" Stretch="Fill" Width="100" Margin="0"/>
+                        <Image HorizontalAlignment="Right" Source="../Imgs/SettingsIcon.png" Stretch="Fill" Width="100" Margin="0"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical">
@@ -72,7 +72,7 @@
                         <TextBlock Width="200" Style="{DynamicResource CASTextBlock}" Margin="5">
 									Shippings archive period:
                         </TextBlock>
-                        <TextBox Text="{Binding IPRAccountArchivalDelay, Mode=TwoWay}" Width="50" Margin="5" Style="{DynamicResource CASTextBox}" />
+                        <TextBox Text="{Binding ArchivalDelay, Mode=TwoWay}" Width="50" Margin="5" Style="{DynamicResource CASTextBox}" />
                     </StackPanel>
                     <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
                         <TextBlock Width="200" Style="{DynamicResource CASTextBlock}" Margin="5">

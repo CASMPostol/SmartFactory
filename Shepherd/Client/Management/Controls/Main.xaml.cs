@@ -27,8 +27,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using  CAS.SmartFactory.Shepherd.Client.Management.InputData;
-using  CAS.SmartFactory.Shepherd.Client.Management.UpdateData;
+using System.ComponentModel.Composition;
 using Microsoft.SharePoint.Linq;
 using Microsoft.Win32;
 
@@ -38,7 +37,7 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management
   /// Interaction logic for Main.xaml
   /// </summary>
   public partial class Main : UserControl
-  {
+  {    
     /// <summary>
     /// Initializes a new instance of the <see cref="Main"/> class.
     /// </summary>
