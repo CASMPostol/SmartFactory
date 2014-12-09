@@ -34,7 +34,7 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management
     {
       RoutesCatalog = null;
       Log = new ObservableCollection<string>();
-      URL = Properties.Settings.Default.URL;
+      URL = Properties.Settings.Default.SiteURL;
       Connected = false;
       Prefix = DateTime.Today.Year.ToString();
       RoutesCatalog = null;
@@ -322,7 +322,7 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management
     #region Dispose
     protected override void Dispose(bool disposing)
     {
-      Properties.Settings.Default.URL = URL;
+      Properties.Settings.Default.SiteURL = URL;
       Properties.Settings.Default.Save();
       if (disposing)
         DisposeEntitiesDataDictionary();

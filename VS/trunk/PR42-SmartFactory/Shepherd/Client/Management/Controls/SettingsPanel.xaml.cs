@@ -1,5 +1,6 @@
 ﻿using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors;
+using CAS.SmartFactory.Shepherd.Client.Management.StateMachines;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -28,6 +29,21 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     public SetupPanel()
     {
       InitializeComponent();
+    }
+
+    /// Sets the ViewModel.
+    /// </summary>
+    /// <remarks>
+    /// This set-only property is annotated with the <see cref="ImportAttribute"/> so it is injected by MEF with
+    /// the appropriate view model.
+    /// </remarks>
+    [Import]
+    public SettingsPanelViewModel StateMachineContext
+    {
+      set
+      {
+        DataContext = value;
+      }
     }
   }
 }
