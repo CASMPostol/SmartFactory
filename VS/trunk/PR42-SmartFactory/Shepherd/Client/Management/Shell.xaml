@@ -4,88 +4,57 @@
         xmlns:prism="http://www.codeplex.com/prism"
         xmlns:inf="clr-namespace:CAS.SmartFactory.Shepherd.Client.Management.Infrastructure"
         xmlns:Controls="clr-namespace:CAS.SmartFactory.Shepherd.Client.Management.Controls"
-        Height="768" Width="1366" 
         WindowStartupLocation="CenterScreen" 
         WindowState="Maximized"
         ScrollViewer.HorizontalScrollBarVisibility="Auto" 
         ScrollViewer.VerticalScrollBarVisibility="Auto"
         Icon="SHR_Ico.ico"
+        MinHeight="768"
         MinWidth="1366">
     <Window.Background>
         <ImageBrush ImageSource="Imgs/Background.jpg"  Stretch="UniformToFill"/>
     </Window.Background>
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
+    <Grid>
+        <!-- Main Grid Definition -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="124"/>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="70" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="650" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
-        <!-- logo -->
-        <Canvas x:Name="Logo" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5">
-            <Canvas.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Canvas.RenderTransform>
-            <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
-                <TextBlock Style="{DynamicResource CASTextBlockHeader}" Margin="20,20,0,20">Shepherd Management Wizard</TextBlock>
-            </StackPanel>
-        </Canvas>
-
-        <ItemsControl x:Name="MainToolbar" Grid.Row="1" Grid.Column="0"
-                      prism:RegionManager.RegionName="{x:Static inf:RegionNames.MainToolBarRegion}" 
-                      HorizontalAlignment="Right" 
-                      VerticalAlignment="Top" 
-                      Margin="0,0,10,0" 
-                      RenderTransformOrigin="0.5,0.5"/>
-        <!-- content -->
-        <!--<Grid x:Name="ContentGrid" Grid.Row="1" Grid.Column="0" RenderTransformOrigin="0.5,0.5">
-            <Grid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Grid.RenderTransform>
-            <TabControl
-                    x:Name="PositionBuySellTab"
-                    SelectedIndex="0"  
-                    VerticalAlignment="Stretch"
-                    prism:RegionManager.RegionName="{x:Static inf:RegionNames.MainRegion}"
-                    AutomationProperties.AutomationId="PositionSummaryTab" />
-        </Grid>-->
-
-        <!-- details -->
-        <Grid x:Name="DetailsGrid" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0" Margin="0" VerticalAlignment="Top">
-            <ContentControl x:Name="ActionContent" prism:RegionManager.RegionName="{x:Static inf:RegionNames.ActionRegion}" MinHeight="50">
-
-
-            </ContentControl>
+        <!-- Title -->
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <TextBlock Style="{DynamicResource CASTextBlockHeader}" Margin="20,20,20,20">Shepherd Management Wizard</TextBlock>
+        </StackPanel>
+        <!-- ActionsGrid -->
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="70" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="850" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <!-- Main Action Region -->
+            <Grid x:Name="DetailsGrid" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Margin="0" VerticalAlignment="Top">
+                <ContentControl x:Name="ActionContent" prism:RegionManager.RegionName="{x:Static inf:RegionNames.ActionRegion}" MinHeight="50">
+                </ContentControl>
+            </Grid>
+            <!-- Action Buttons -->
+            <Grid x:Name="ButtonsGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.ButtonsRegion}" MinHeight="50"/>
+            </Grid>
+            <!-- Diagnostic Region -->
+            <Grid x:Name="SideGrid" Margin="0" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.DiagnosticRegion}" MinHeight="50" />
+            </Grid>
         </Grid>
-
-        <!-- buttons -->
-        <Grid x:Name="ButtonsGrid" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" Margin="0" HorizontalAlignment="Left">
-            <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.ButtonsRegion}" MinHeight="50"/>
-        </Grid>
-        <!-- ProgressPanel -->
-        <Grid x:Name="ProgressPanelGrid" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="1" Margin="5,5,5,5" HorizontalAlignment="Left">
+        <!-- Bottom Progress Panel -->
+        <StackPanel Grid.Row="2" Grid.Column="0">
             <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.ProgressRegion}" MinHeight="50"/>
-        </Grid>
-        <!-- sidebar -->
-        <Grid x:Name="SideGrid" Margin="10,29,10,10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" RenderTransformOrigin="0.5,0.5" Width="Auto">
-            <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.DiagnosticRegion}" MinHeight="50" />
-        </Grid>
-
+        </StackPanel>
     </Grid>
 </Window>

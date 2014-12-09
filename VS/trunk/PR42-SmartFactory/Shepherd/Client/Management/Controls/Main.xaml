@@ -43,7 +43,7 @@
         </Grid>
         <StackPanel Margin="70,5,5,5" Grid.Row="1">
             <TabControl Grid.Row="3" VerticalAlignment="Top">
-                <TabItem Header="Routs">
+                <TabItem Header="Routs" Style="{DynamicResource CASTabItemStyle}">
                     <DataGrid Width="Auto" x:Name="x_DataGridRouts" AutoGenerateColumns="False" ItemsSource="{Binding Route}" MinHeight="400" VerticalContentAlignment="Center" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="City" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Dest_City}" />
@@ -66,7 +66,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
-                <TabItem Header="Markets">
+                <TabItem Header="Markets" Style="{DynamicResource CASTabItemStyle}">
                     <DataGrid Width="Auto" x:Name="x_DataGridMarkets" AutoGenerateColumns="False" ItemsSource="{Binding Market}" MinHeight="400" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Market" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Market}" />
@@ -76,7 +76,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
-                <TabItem Header="Partners">
+                <TabItem Header="Partners" Style="{DynamicResource CASTabItemStyle}">
                     <DataGrid Width="Auto" x:Name="x_DataGridPartners" AutoGenerateColumns="False" ItemsSource="{Binding Partners}" MinHeight="400" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Name}" />
@@ -91,14 +91,14 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
-                <TabItem Header="Commodity">
+                <TabItem Header="Commodity" Style="{DynamicResource CASTabItemStyle}">
                     <DataGrid Width="Auto" x:Name="x_DataGridCommodity" AutoGenerateColumns="False" ItemsSource="{Binding Commodity}" MinHeight="400" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Commodity" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Title}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
-                <TabItem Header="Import log">
+                <TabItem Header="Import log" Style="{DynamicResource CASTabItemStyle}">
                     <ListBox x:Name="ErrorList" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Foreground="Black" Padding="3" UseLayoutRounding="True" ToolTip="Information abou the upgrade process progress." IsSynchronizedWithCurrentItem="False" ItemsSource="{Binding Log}" MinHeight="400" />
                 </TabItem>
             </TabControl>
