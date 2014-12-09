@@ -20,7 +20,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
   /// <summary>
   /// Interaction logic for ArchivingPanel.xaml
   /// </summary>
-  [ViewExport(RegionName = RegionNames.ActionRegion)]
+  //[ViewExport(RegionName = RegionNames.ActionRegion)]
   public partial class ArchivingPanel : UserControl
   {
     public ArchivingPanel()

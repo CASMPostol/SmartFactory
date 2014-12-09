@@ -14,8 +14,6 @@
 //</summary>
 
 using CAS.Common.ViewModel.Wizard;
-using CAS.SmartFactory.Shepherd.Client.Management.Controls;
-using CAS.SmartFactory.Shepherd.Client.Management.StateMachines;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 using System;
@@ -51,11 +49,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
       {
         RaiseHandler<Controls.IButtonsPanelViewModel>(value, ref b_ButtonPanelState, "ButtonPanelState", this);
       }
-    }
-    [Import]
-    public EnteringStateProvider EnteringState 
-    {
-      set { value.ActivateEnteringState(this); }
     }
     private IRegionManager m_RegionManager = null;
     private IEventAggregator m_EventAggregator = null;

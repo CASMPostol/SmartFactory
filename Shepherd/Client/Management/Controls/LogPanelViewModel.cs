@@ -1,16 +1,19 @@
-﻿// ***********************************************************************
-// Assembly         : CAS.ShepherdManagement
-// Author           : mariusz postol
-// Created          : 12-09-2014
+﻿//<summary>
+//  Assembly         : CAS.ShepherdManagement
+//  Title   : LogPanelViewModel.cs
+//  System  : Microsoft VisualStudio 2013 / C#
+//  $LastChangedDate:$
+//  $Rev:$
+//  $LastChangedBy:$
+//  $URL:$
+//  $Id:$
 //
-// Last Modified By : mariusz postol
-// Last Modified On : 12-09-2014
-// ***********************************************************************
-// <copyright file="LogPanelViewModel.cs" company="CAS">
-//     Copyright (c) CAS. All rights reserved.
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+            
 
 using System;
 using System.Collections.Generic;
