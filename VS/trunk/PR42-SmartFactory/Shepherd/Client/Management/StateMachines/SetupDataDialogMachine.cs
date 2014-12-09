@@ -20,7 +20,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     {
       throw new NotImplementedException();
     }
-
     protected override void RunWorkerCompleted(object result)
     {
       throw new NotImplementedException();
