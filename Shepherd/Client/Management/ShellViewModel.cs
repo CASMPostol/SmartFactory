@@ -52,21 +52,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
         RaiseHandler<Controls.IButtonsPanelViewModel>(value, ref b_ButtonPanelState, "ButtonPanelState", this);
       }
     }
-
-    internal void ActivateView(Controls.SetupPanel setupPanel)
-    {
-      try
-      {
-        //IRegion _rg = m_RegionManager.Regions[Infrastructure.RegionNames.ActionRegion];
-        //_rg.Add(setupPanel);
-        //_rg.Activate(setupPanel);
-
-      }
-      catch (Exception e)
-      {
-        Console.WriteLine(e.Message);
-      }
-    }
     [Import]
     public EnteringStateProvider EnteringState 
     {

@@ -140,6 +140,7 @@
     <Compile Include="Controls\LogPanel.xaml.cs">
       <DependentUpon>LogPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LogPanelViewModel.cs" />
     <Compile Include="Controls\Main.xaml.cs" />
     <Compile Include="Controls\MainViewmodel.cs" />
     <Compile Include="Controls\ProgressPanel.xaml.cs">
@@ -151,6 +152,7 @@
     <Compile Include="Controls\SettingsPanel.xaml.cs">
       <DependentUpon>SettingsPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SettingsPanelViewModel.cs" />
     <Compile Include="EnterpriseLibraryLoggerAdapter.cs" />
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Extensions.cs" />

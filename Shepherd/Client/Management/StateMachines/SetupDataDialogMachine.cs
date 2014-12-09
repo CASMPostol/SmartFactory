@@ -1,4 +1,17 @@
-﻿
+﻿// ***********************************************************************
+// Assembly         : CAS.ShepherdManagement
+// Author           : mariusz postol
+// Created          : 12-08-2014
+//
+// Last Modified By : mariusz postol
+// Last Modified On : 12-09-2014
+// ***********************************************************************
+// <copyright file="SetupDataDialogMachine.cs" company="CAS">
+//     Copyright (c) CAS. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
 using CAS.Common.ViewModel.Wizard;
 using System;
 using System.Collections.Generic;
@@ -11,10 +24,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
   internal class SetupDataDialogMachine : BackgroundWorkerMachine<ShellViewModel>
   {
 
-    public SetupDataDialogMachine()
-    {
+    public SetupDataDialogMachine() { }
 
-    }
     #region BackgroundWorkerMachine
     protected override void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
     {
@@ -27,7 +38,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     public override void OnEnteringState()
     {
       base.OnEnteringState();
-      this.Context.ActivateView(new Controls.SetupPanel());
     }
     #endregion
 

@@ -26,12 +26,48 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/sites/shepherd")]
-        public string URL {
+        public string SiteURL {
             get {
-                return ((string)(this["URL"]));
+                return ((string)(this["SiteURL"]));
             }
             set {
-                this["URL"] = value;
+                this["SiteURL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Shepherd")]
+        public string SQLDatabaseName {
+            get {
+                return ((string)(this["SQLDatabaseName"]));
+            }
+            set {
+                this["SQLDatabaseName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("CASAS\\MSSQL_SANDBOX")]
+        public string SQLServer {
+            get {
+                return ((string)(this["SQLServer"]));
+            }
+            set {
+                this["SQLServer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source={0};Initial Catalog={1}; Integrated Security=True")]
+        public string ConnectionString {
+            get {
+                return ((string)(this["ConnectionString"]));
+            }
+            set {
+                this["ConnectionString"] = value;
             }
         }
     }

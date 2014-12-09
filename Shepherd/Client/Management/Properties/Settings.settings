@@ -1,9 +1,18 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace=" CAS.SmartFactory.Shepherd.Client.Management.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CAS.SmartFactory.Shepherd.Client.Management.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="URL" Type="System.String" Scope="User">
+    <Setting Name="SiteURL" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://localhost/sites/shepherd</Value>
+    </Setting>
+    <Setting Name="SQLDatabaseName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Shepherd</Value>
+    </Setting>
+    <Setting Name="SQLServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CASAS\MSSQL_SANDBOX</Value>
+    </Setting>
+    <Setting Name="ConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source={0};Initial Catalog={1}; Integrated Security=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
