@@ -496,7 +496,8 @@
     		</Setter.Value>
     	</Setter>
     </Style>
-    <SolidColorBrush x:Key="TabItem.Static.Background" Color="#FFEBEBEB"/>
+    <SolidColorBrush x:Key="TabItem.Static.Background" Color="#FFFFFFFF"/>
+	<SolidColorBrush x:Key="TabItem.Static.Background.Opacity" Opacity="0.1"/>
     <SolidColorBrush x:Key="TabItem.Static.Border" Color="#FF898C95"/>
     <SolidColorBrush x:Key="TabItem.MouseOver.Background" Color="#FFD9F0FC"/>
     <SolidColorBrush x:Key="TabItem.MouseOver.Border" Color="#FF3C7FB1"/>
@@ -504,8 +505,8 @@
     <SolidColorBrush x:Key="TabItem.Selected.Background" Color="#FFFFFFFF"/>
     <Style x:Key="CASTabItemStyle" TargetType="{x:Type TabItem}">
     	<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-    	<Setter Property="Foreground" Value="Black"/>
-    	<Setter Property="Background" Value="{StaticResource TabItem.Static.Background}"/>
+    	<Setter Property="Foreground" Value="#FFFFFF"/>
+    	<Setter Property="Background" Value="Transparent"/>
     	<Setter Property="BorderBrush" Value="{StaticResource TabItem.Static.Border}"/>
     	<Setter Property="Margin" Value="0"/>
     	<Setter Property="Padding" Value="6,2"/>
@@ -515,24 +516,24 @@
     		<Setter.Value>
     			<ControlTemplate TargetType="{x:Type TabItem}">
     				<Grid x:Name="templateRoot" SnapsToDevicePixels="true">
-    					<Border x:Name="mainBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" Background="{TemplateBinding Background}" Margin="0">
-    						<Border x:Name="innerBorder" BorderBrush="{x:Null}" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0" Background="#FFFFFF" Margin="-1" Opacity="0.5" />
+    					<Border x:Name="mainBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" Background="{TemplateBinding Background}" Margin="1,1,1,0">
+    						<Border x:Name="innerBorder" BorderBrush="{x:Null}" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0" Background="#FF9CCC65" Margin="0" Opacity="1" />
     					</Border>
     					<ContentPresenter x:Name="contentPresenter" ContentSource="Header" Focusable="False" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" Opacity="1" OpacityMask="Black"/>
     				</Grid>
     				<ControlTemplate.Triggers>
     					<Trigger Property="IsMouseOver" Value="true">
-    						<Setter Property="Background" TargetName="mainBorder" Value="{StaticResource TabItem.MouseOver.Background}"/>
     						<Setter Property="BorderBrush" TargetName="mainBorder" Value="{StaticResource TabItem.MouseOver.Border}"/>
+							<Setter Property="Background" TargetName="mainBorder" Value="#FFF9F9F9" />
     					</Trigger>
     					<Trigger Property="IsEnabled" Value="false">
-    						<Setter Property="Opacity" TargetName="contentPresenter" Value="0.56"/>
+    						<Setter Property="Opacity" TargetName="contentPresenter" Value="0.1"/>
     					</Trigger>
     					<Trigger Property="IsSelected" Value="true">
     						<Setter Property="Panel.ZIndex" Value="1"/>
-    						<Setter Property="Margin" Value="-1"/>
-							<Setter Property="Background" TargetName="innerBorder" Value="#FFF9F9F9" />
-    						<Setter Property="Opacity" TargetName="innerBorder" Value="0.5"/>
+    						<Setter Property="Margin" Value="-3,-3,-3,0"/>
+							<Setter Property="Background" TargetName="mainBorder" Value="Transparent" />
+							<Setter Property="Background" TargetName="innerBorder" Value="#FF689F38" />
     					</Trigger>
     				</ControlTemplate.Triggers>
     			</ControlTemplate>
