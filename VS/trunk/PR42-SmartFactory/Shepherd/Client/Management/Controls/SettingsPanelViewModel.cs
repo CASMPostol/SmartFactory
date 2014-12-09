@@ -21,7 +21,7 @@ using System.ComponentModel.Composition;
 namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
 {
   [Export]
-  public class SettingsPanelViewModel: PropertyChangedBase, IViewModelContext
+  public class SettingsPanelViewModel : PropertyChangedBase, IViewModelContext
   {
     public SettingsPanelViewModel()
     {
@@ -69,7 +69,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     {
       set
       {
-        SetupDataDialogMachineLocal _myState =  value.EnterState<SetupDataDialogMachineLocal>(this);
+        SetupDataDialogMachineLocal _myState = value.EnterState<SetupDataDialogMachineLocal>(this);
       }
     }
     //vars
@@ -78,8 +78,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     private string b_SQLServer = string.Empty;
     private class SetupDataDialogMachineLocal : SetupDataDialogMachine<SettingsPanelViewModel>
     {
-      
-
+      protected override string URL { get { return this.ViewModelContext.URL; } }
+      protected override string DatabaseName { get { return this.ViewModelContext.DatabaseName; } }
+      protected override string SQLServer { get { return this.ViewModelContext.SQLServer; } }
     }
     //methods
     private void RestoreSettings()

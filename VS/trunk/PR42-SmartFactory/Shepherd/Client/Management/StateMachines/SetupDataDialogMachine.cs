@@ -13,8 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-
-
 using CAS.Common.ViewModel.Wizard;
 using System;
 using System.Collections.Generic;
@@ -30,7 +28,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
   /// <summary>
   /// Class SetupDataDialogMachine.
   /// </summary>
-  internal class SetupDataDialogMachine<ViewModelContextType> : BackgroundWorkerMachine<ShellViewModel, ViewModelContextType>
+  internal abstract class SetupDataDialogMachine<ViewModelContextType> : BackgroundWorkerMachine<ShellViewModel, ViewModelContextType>
     where ViewModelContextType : IViewModelContext
   {
 
@@ -38,6 +36,14 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     /// Initializes a new instance of the <see cref="SetupDataDialogMachine"/> class.
     /// </summary>
     public SetupDataDialogMachine() { }
+
+    /// <summary>
+    /// Called on entering new state.
+    /// </summary>
+    public override void OnEnteringState()
+    {
+      base.OnEnteringState();
+    }
 
     #region BackgroundWorkerMachine
     /// <summary>
@@ -59,14 +65,12 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     {
       throw new NotImplementedException();
     }
-    /// <summary>
-    /// Called on entering new state.
-    /// </summary>
-    public override void OnEnteringState()
-    {
-      base.OnEnteringState();
-    }
     #endregion
 
+    #region private
+    protected abstract string URL { get; }
+    protected abstract string DatabaseName { get; }
+    protected abstract string SQLServer { get; }
+    #endregion
   }
 }
