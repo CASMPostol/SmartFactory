@@ -13,7 +13,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Tests
   public class ManagerExportedViewsFixture
   {
     [TestMethod]
-    public void AutoPopulatButtonPanel()
+    public void AutoPopulateButtonPanel()
     {
       var catalog = new AggregateCatalog();
       catalog.Catalogs.Add(new AssemblyCatalog(typeof(Shell).Assembly));
@@ -29,7 +29,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Tests
       Assert.IsTrue(region.Views.Cast<object>().Any(e => e.GetType() == typeof(ButtonsPanel)));
     }
     [TestMethod]
-    public void ManualyPopulatButtonPanel()
+    public void ManuallyPopulateButtonPanel()
     {
       var catalog = new AggregateCatalog();
       catalog.Catalogs.Add(new AssemblyCatalog(typeof(Shell).Assembly));
