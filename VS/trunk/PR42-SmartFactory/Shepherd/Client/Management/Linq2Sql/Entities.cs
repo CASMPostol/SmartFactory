@@ -14530,13 +14530,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private string _Author;
 		
-		private string _Category;
-		
 		private System.Nullable<System.DateTime> _Created;
-		
-		private string _Description;
-		
-		private System.Nullable<int> _Duration;
 		
 		private string _Editor;
 		
@@ -14544,25 +14538,13 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _EntryTime;
 		
-		private System.Nullable<bool> _EventCanceled;
-		
 		private System.DateTime _EventDate;
 		
-		private System.Nullable<int> _EventType;
-		
 		private System.Nullable<System.DateTime> _ExitTime;
-		
-		private System.Nullable<bool> _FAllDayEvent;
-		
-		private System.Nullable<bool> _FRecurrence;
 		
 		private int _ID;
 		
 		private System.Nullable<bool> _IsDouble;
-		
-		private string _Location;
-		
-		private System.Nullable<int> _MasterSeriesItemID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
@@ -14570,23 +14552,11 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<int> _Owshiddenversion;
 		
-		private string _RecurrenceData;
-		
-		private System.Nullable<System.DateTime> _RecurrenceID;
-		
 		private System.Nullable<int> _TimeSlot2ShippingIndex;
 		
 		private System.Nullable<int> _TimeSlot2ShippingPointLookup;
 		
 		private System.Nullable<double> _TimeSpan;
-		
-		private System.Nullable<int> _TimeZone;
-		
-		private string _Title;
-		
-		private System.Nullable<bool> _WorkspaceLink;
-		
-		private string _XMLTZone;
 		
 		private bool _OnlySQL;
 		
@@ -14600,64 +14570,34 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnCreated();
     partial void OnAuthorChanging(string value);
     partial void OnAuthorChanged();
-    partial void OnCategoryChanging(string value);
-    partial void OnCategoryChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnDurationChanging(System.Nullable<int> value);
-    partial void OnDurationChanged();
     partial void OnEditorChanging(string value);
     partial void OnEditorChanged();
     partial void OnEndDateChanging(System.DateTime value);
     partial void OnEndDateChanged();
     partial void OnEntryTimeChanging(System.Nullable<System.DateTime> value);
     partial void OnEntryTimeChanged();
-    partial void OnEventCanceledChanging(System.Nullable<bool> value);
-    partial void OnEventCanceledChanged();
     partial void OnEventDateChanging(System.DateTime value);
     partial void OnEventDateChanged();
-    partial void OnEventTypeChanging(System.Nullable<int> value);
-    partial void OnEventTypeChanged();
     partial void OnExitTimeChanging(System.Nullable<System.DateTime> value);
     partial void OnExitTimeChanged();
-    partial void OnFAllDayEventChanging(System.Nullable<bool> value);
-    partial void OnFAllDayEventChanged();
-    partial void OnFRecurrenceChanging(System.Nullable<bool> value);
-    partial void OnFRecurrenceChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnIsDoubleChanging(System.Nullable<bool> value);
     partial void OnIsDoubleChanged();
-    partial void OnLocationChanging(string value);
-    partial void OnLocationChanged();
-    partial void OnMasterSeriesItemIDChanging(System.Nullable<int> value);
-    partial void OnMasterSeriesItemIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
     partial void OnOccupiedChanging(string value);
     partial void OnOccupiedChanged();
     partial void OnOwshiddenversionChanging(System.Nullable<int> value);
     partial void OnOwshiddenversionChanged();
-    partial void OnRecurrenceDataChanging(string value);
-    partial void OnRecurrenceDataChanged();
-    partial void OnRecurrenceIDChanging(System.Nullable<System.DateTime> value);
-    partial void OnRecurrenceIDChanged();
     partial void OnTimeSlot2ShippingIndexChanging(System.Nullable<int> value);
     partial void OnTimeSlot2ShippingIndexChanged();
     partial void OnTimeSlot2ShippingPointLookupChanging(System.Nullable<int> value);
     partial void OnTimeSlot2ShippingPointLookupChanged();
     partial void OnTimeSpanChanging(System.Nullable<double> value);
     partial void OnTimeSpanChanged();
-    partial void OnTimeZoneChanging(System.Nullable<int> value);
-    partial void OnTimeZoneChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnWorkspaceLinkChanging(System.Nullable<bool> value);
-    partial void OnWorkspaceLinkChanged();
-    partial void OnXMLTZoneChanging(string value);
-    partial void OnXMLTZoneChanged();
     partial void OnOnlySQLChanging(bool value);
     partial void OnOnlySQLChanged();
     #endregion
@@ -14689,26 +14629,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Category", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Category
-		{
-			get
-			{
-				return this._Category;
-			}
-			set
-			{
-				if ((this._Category != value))
-				{
-					this.OnCategoryChanging(value);
-					this.SendPropertyChanging();
-					this._Category = value;
-					this.SendPropertyChanged("Category");
-					this.OnCategoryChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Created", DbType="DateTime")]
 		public System.Nullable<System.DateTime> Created
 		{
@@ -14725,46 +14645,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Created = value;
 					this.SendPropertyChanged("Created");
 					this.OnCreatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Description", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Duration", DbType="Int")]
-		public System.Nullable<int> Duration
-		{
-			get
-			{
-				return this._Duration;
-			}
-			set
-			{
-				if ((this._Duration != value))
-				{
-					this.OnDurationChanging(value);
-					this.SendPropertyChanging();
-					this._Duration = value;
-					this.SendPropertyChanged("Duration");
-					this.OnDurationChanged();
 				}
 			}
 		}
@@ -14829,26 +14709,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_EventCanceled", DbType="Bit")]
-		public System.Nullable<bool> EventCanceled
-		{
-			get
-			{
-				return this._EventCanceled;
-			}
-			set
-			{
-				if ((this._EventCanceled != value))
-				{
-					this.OnEventCanceledChanging(value);
-					this.SendPropertyChanging();
-					this._EventCanceled = value;
-					this.SendPropertyChanged("EventCanceled");
-					this.OnEventCanceledChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_EventDate", DbType="DateTime NOT NULL")]
 		public System.DateTime EventDate
 		{
@@ -14869,26 +14729,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_EventType", DbType="Int")]
-		public System.Nullable<int> EventType
-		{
-			get
-			{
-				return this._EventType;
-			}
-			set
-			{
-				if ((this._EventType != value))
-				{
-					this.OnEventTypeChanging(value);
-					this.SendPropertyChanging();
-					this._EventType = value;
-					this.SendPropertyChanged("EventType");
-					this.OnEventTypeChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_ExitTime", DbType="DateTime")]
 		public System.Nullable<System.DateTime> ExitTime
 		{
@@ -14905,46 +14745,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._ExitTime = value;
 					this.SendPropertyChanged("ExitTime");
 					this.OnExitTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Name="fAllDayEvent", Storage="_FAllDayEvent", DbType="Bit")]
-		public System.Nullable<bool> FAllDayEvent
-		{
-			get
-			{
-				return this._FAllDayEvent;
-			}
-			set
-			{
-				if ((this._FAllDayEvent != value))
-				{
-					this.OnFAllDayEventChanging(value);
-					this.SendPropertyChanging();
-					this._FAllDayEvent = value;
-					this.SendPropertyChanged("FAllDayEvent");
-					this.OnFAllDayEventChanged();
-				}
-			}
-		}
-		
-		[Column(Name="fRecurrence", Storage="_FRecurrence", DbType="Bit")]
-		public System.Nullable<bool> FRecurrence
-		{
-			get
-			{
-				return this._FRecurrence;
-			}
-			set
-			{
-				if ((this._FRecurrence != value))
-				{
-					this.OnFRecurrenceChanging(value);
-					this.SendPropertyChanging();
-					this._FRecurrence = value;
-					this.SendPropertyChanged("FRecurrence");
-					this.OnFRecurrenceChanged();
 				}
 			}
 		}
@@ -14985,46 +14785,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._IsDouble = value;
 					this.SendPropertyChanged("IsDouble");
 					this.OnIsDoubleChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Location", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Location
-		{
-			get
-			{
-				return this._Location;
-			}
-			set
-			{
-				if ((this._Location != value))
-				{
-					this.OnLocationChanging(value);
-					this.SendPropertyChanging();
-					this._Location = value;
-					this.SendPropertyChanged("Location");
-					this.OnLocationChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_MasterSeriesItemID", DbType="Int")]
-		public System.Nullable<int> MasterSeriesItemID
-		{
-			get
-			{
-				return this._MasterSeriesItemID;
-			}
-			set
-			{
-				if ((this._MasterSeriesItemID != value))
-				{
-					this.OnMasterSeriesItemIDChanging(value);
-					this.SendPropertyChanging();
-					this._MasterSeriesItemID = value;
-					this.SendPropertyChanged("MasterSeriesItemID");
-					this.OnMasterSeriesItemIDChanged();
 				}
 			}
 		}
@@ -15085,46 +14845,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Owshiddenversion = value;
 					this.SendPropertyChanged("Owshiddenversion");
 					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_RecurrenceData", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string RecurrenceData
-		{
-			get
-			{
-				return this._RecurrenceData;
-			}
-			set
-			{
-				if ((this._RecurrenceData != value))
-				{
-					this.OnRecurrenceDataChanging(value);
-					this.SendPropertyChanging();
-					this._RecurrenceData = value;
-					this.SendPropertyChanged("RecurrenceData");
-					this.OnRecurrenceDataChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_RecurrenceID", DbType="DateTime")]
-		public System.Nullable<System.DateTime> RecurrenceID
-		{
-			get
-			{
-				return this._RecurrenceID;
-			}
-			set
-			{
-				if ((this._RecurrenceID != value))
-				{
-					this.OnRecurrenceIDChanging(value);
-					this.SendPropertyChanging();
-					this._RecurrenceID = value;
-					this.SendPropertyChanged("RecurrenceID");
-					this.OnRecurrenceIDChanged();
 				}
 			}
 		}
@@ -15193,86 +14913,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._TimeSpan = value;
 					this.SendPropertyChanged("TimeSpan");
 					this.OnTimeSpanChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_TimeZone", DbType="Int")]
-		public System.Nullable<int> TimeZone
-		{
-			get
-			{
-				return this._TimeZone;
-			}
-			set
-			{
-				if ((this._TimeZone != value))
-				{
-					this.OnTimeZoneChanging(value);
-					this.SendPropertyChanging();
-					this._TimeZone = value;
-					this.SendPropertyChanged("TimeZone");
-					this.OnTimeZoneChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_WorkspaceLink", DbType="Bit")]
-		public System.Nullable<bool> WorkspaceLink
-		{
-			get
-			{
-				return this._WorkspaceLink;
-			}
-			set
-			{
-				if ((this._WorkspaceLink != value))
-				{
-					this.OnWorkspaceLinkChanging(value);
-					this.SendPropertyChanging();
-					this._WorkspaceLink = value;
-					this.SendPropertyChanged("WorkspaceLink");
-					this.OnWorkspaceLinkChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_XMLTZone", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string XMLTZone
-		{
-			get
-			{
-				return this._XMLTZone;
-			}
-			set
-			{
-				if ((this._XMLTZone != value))
-				{
-					this.OnXMLTZoneChanging(value);
-					this.SendPropertyChanging();
-					this._XMLTZone = value;
-					this.SendPropertyChanged("XMLTZone");
-					this.OnXMLTZoneChanged();
 				}
 			}
 		}
