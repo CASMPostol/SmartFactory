@@ -81,6 +81,16 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       protected override string URL { get { return this.ViewModelContext.URL; } }
       protected override string DatabaseName { get { return this.ViewModelContext.DatabaseName; } }
       protected override string SQLServer { get { return this.ViewModelContext.SQLServer; } }
+
+      protected override void OnlyCancelActive()
+      {
+        throw new System.NotImplementedException();
+      }
+
+      protected override ButtonsPanelState ButtonsPanelState
+      {
+        get { throw new System.NotImplementedException(); }
+      }
     }
     //methods
     private void RestoreSettings()
