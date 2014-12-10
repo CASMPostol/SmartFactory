@@ -108,6 +108,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -169,6 +170,7 @@
     <Compile Include="InputData\RoutesCatalog.xsd.cs">
       <DependentUpon>RoutesCatalog.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Linq2Sql\Entities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -253,6 +255,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="InputData\Scripts\CreateCS.ps1" />
+    <None Include="Linq2Sql\Scripts\GetEntities.ps1" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
