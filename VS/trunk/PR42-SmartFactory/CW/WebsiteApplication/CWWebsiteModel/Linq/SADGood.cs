@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : SADGood
 //  System  : Microsoft VisulaStudio 2013 / C#
-//  $LastChangedDate: 2014-11-13 17:07:20 +0100 (Cz, 13 lis 2014) $
-//  $Rev: 10941 $
-//  $LastChangedBy: mpostol $
-//  $URL: svn://svnserver.hq.cas.com.pl/VS/trunk/PR42-SmartFactory/IPR/WebsiteApplication/IPRWebsiteModel/Linq/SADGood.cs $
-//  $Id: SADGood.cs 10941 2014-11-13 16:07:20Z mpostol $
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2014, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
