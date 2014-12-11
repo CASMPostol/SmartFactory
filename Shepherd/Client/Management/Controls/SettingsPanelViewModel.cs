@@ -22,12 +22,20 @@ using System.ComponentModel.Composition;
 namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
 {
   [Export]
-  public class SettingsPanelViewModel : PropertyChangedBase, IViewModelContext
+  public class SettingsPanelViewModel : ViewModelBase<SettingsPanelViewModel.SetupDataDialogMachineLocal>
   {
+    #region creator
     public SettingsPanelViewModel()
     {
       RestoreSettings();
     }
+    #endregion
+
+    #region public UI API
+    /// <summary>
+    /// Gets or sets the URL.
+    /// </summary>
+    /// <value>The URL.</value>
     public string URL
     {
       get
@@ -39,6 +47,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         RaiseHandler<string>(value, ref b_URL, "URL", this);
       }
     }
+    /// <summary>
+    /// Gets or sets the name of the database.
+    /// </summary>
+    /// <value>The name of the database.</value>
     public string DatabaseName
     {
       get
@@ -50,6 +62,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         RaiseHandler<string>(value, ref b_DatabaseName, "DatabaseName", this);
       }
     }
+    /// <summary>
+    /// Gets or sets the SQL server.
+    /// </summary>
+    /// <value>The SQL server.</value>
     public string SQLServer
     {
       get
@@ -61,23 +77,29 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         RaiseHandler<string>(value, ref b_SQLServer, "SQLServer", this);
       }
     }
+    #endregion
+
+    #region public 
     /// <summary>
-    /// Sets the master shell view model. It activates the state <see cref="SetupDataDialogMachine"/>
+    /// Sets the master shell view model. It activates the state <see cref="SetupDataDialogMachine" />
     /// </summary>
-    /// <value>The master shell view model <see cref="ShellViewModel"/>.</value>
+    /// <value>The master shell view model <see cref="ShellViewModel" />.</value>
     [Import]
     public ShellViewModel MasterShellViewModel
     {
       set
       {
-        SetupDataDialogMachineLocal _myState = value.EnterState<SetupDataDialogMachineLocal>(this);
+        base.EnterState(value);
       }
     }
+    #endregion
+
+    #region private
     //vars
     private string b_URL = string.Empty;
     private string b_DatabaseName = string.Empty;
     private string b_SQLServer = string.Empty;
-    private class SetupDataDialogMachineLocal : SetupDataDialogMachine<SettingsPanelViewModel>
+    public class SetupDataDialogMachineLocal : SetupDataDialogMachine<SettingsPanelViewModel>
     {
       protected override string URL { get { return this.ViewModelContext.URL; } }
       protected override string DatabaseName { get { return this.ViewModelContext.DatabaseName; } }
@@ -107,5 +129,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       DatabaseName = Properties.Settings.Default.SQLDatabaseName;
       SQLServer = Properties.Settings.Default.SQLServer;
     }
+    #endregion
+
   }
 }
