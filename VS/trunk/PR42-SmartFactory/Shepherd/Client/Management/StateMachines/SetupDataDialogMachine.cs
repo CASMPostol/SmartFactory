@@ -15,10 +15,6 @@
 
 using CAS.Common.ViewModel.Wizard;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /// <summary>
 /// The StateMachines namespace.
@@ -28,7 +24,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
   /// <summary>
   /// Class SetupDataDialogMachine.
   /// </summary>
-  internal abstract class SetupDataDialogMachine<ViewModelContextType> : BackgroundWorkerMachine<ShellViewModel, ViewModelContextType>
+  public abstract class SetupDataDialogMachine<ViewModelContextType> : BackgroundWorkerMachine<ShellViewModel, ViewModelContextType>
     where ViewModelContextType : IViewModelContext
   {
 
