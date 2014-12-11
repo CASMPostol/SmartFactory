@@ -22,8 +22,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 	using System;
 	
 	
-	[System.Data.Linq.Mapping.DatabaseAttribute(Name="SHRARCHIVE")]
-	public partial class IPRDEV : System.Data.Linq.DataContext
+	public partial class SHRARCHIVE : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -134,25 +133,25 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void DeleteWarehouse(Warehouse instance);
     #endregion
 		
-		public IPRDEV(string connection) : 
+		public SHRARCHIVE(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public IPRDEV(System.Data.IDbConnection connection) : 
+		public SHRARCHIVE(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public IPRDEV(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public SHRARCHIVE(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public IPRDEV(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public SHRARCHIVE(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -457,8 +456,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private bool _OnlySQL;
@@ -491,8 +488,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -710,26 +705,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -1221,8 +1196,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private bool _OnlySQL;
@@ -1247,8 +1220,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -1382,26 +1353,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
@@ -1529,8 +1480,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private bool _OnlySQL;
@@ -1551,8 +1500,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -1661,26 +1608,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -1803,8 +1730,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _ReportPeriod;
 		
 		private string _Title;
@@ -1843,8 +1768,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnReportPeriodChanging(string value);
     partial void OnReportPeriodChanged();
     partial void OnTitleChanging(string value);
@@ -2123,26 +2046,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_ReportPeriod", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string ReportPeriod
 		{
@@ -2276,8 +2179,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private bool _OnlySQL;
@@ -2306,8 +2207,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -2443,26 +2342,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -2653,8 +2532,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private bool _OnlySQL;
@@ -2679,8 +2556,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -2791,26 +2666,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -2969,8 +2824,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private bool _OnlySQL;
@@ -2993,8 +2846,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -3127,26 +2978,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
@@ -3251,8 +3082,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private bool _OnlySQL;
@@ -3285,8 +3114,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -3420,26 +3247,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -3675,8 +3482,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private bool _OnlySQL;
@@ -3703,8 +3508,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnMarketTitleChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -3866,26 +3669,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
@@ -4037,8 +3820,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private System.Nullable<bool> _ToBeDeleted;
@@ -4069,8 +3850,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIdentityDocumentNumberChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnToBeDeletedChanging(System.Nullable<bool> value);
@@ -4250,26 +4029,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
@@ -4428,8 +4187,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private System.Nullable<int> _ShippingIndex;
 		
 		private string _Title;
@@ -4456,8 +4213,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnShippingIndexChanging(System.Nullable<int> value);
     partial void OnShippingIndexChanged();
     partial void OnTitleChanging(string value);
@@ -4593,26 +4348,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -4780,13 +4515,13 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _Created_x0020_By;
+		private string _DocumentCreatedBy;
 		
 		private string _Editor;
 		
 		private string _EmailAddress;
 		
-		private string _FileLeafRef;
+		private string _FileName;
 		
 		private string _FPOWarehouseAddress;
 		
@@ -4794,9 +4529,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _Modified_x0020_By;
-		
-		private System.Nullable<int> _Owshiddenversion;
+		private string _DocumentModifiedBy;
 		
 		private string _SecurityPOCity;
 		
@@ -4840,24 +4573,22 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreated_x0020_ByChanging(string value);
-    partial void OnCreated_x0020_ByChanged();
+    partial void OnDocumentCreatedByChanging(string value);
+    partial void OnDocumentCreatedByChanged();
     partial void OnEditorChanging(string value);
     partial void OnEditorChanged();
     partial void OnEmailAddressChanging(string value);
     partial void OnEmailAddressChanged();
-    partial void OnFileLeafRefChanging(string value);
-    partial void OnFileLeafRefChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
     partial void OnFPOWarehouseAddressChanging(string value);
     partial void OnFPOWarehouseAddressChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModified_x0020_ByChanging(string value);
-    partial void OnModified_x0020_ByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
+    partial void OnDocumentModifiedByChanging(string value);
+    partial void OnDocumentModifiedByChanged();
     partial void OnSecurityPOCityChanging(string value);
     partial void OnSecurityPOCityChanged();
     partial void OnSecurityPOCommodityChanging(string value);
@@ -4938,22 +4669,22 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Created_x0020_By", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Created_x0020_By
+		[Column(Storage="_DocumentCreatedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentCreatedBy
 		{
 			get
 			{
-				return this._Created_x0020_By;
+				return this._DocumentCreatedBy;
 			}
 			set
 			{
-				if ((this._Created_x0020_By != value))
+				if ((this._DocumentCreatedBy != value))
 				{
-					this.OnCreated_x0020_ByChanging(value);
+					this.OnDocumentCreatedByChanging(value);
 					this.SendPropertyChanging();
-					this._Created_x0020_By = value;
-					this.SendPropertyChanged("Created_x0020_By");
-					this.OnCreated_x0020_ByChanged();
+					this._DocumentCreatedBy = value;
+					this.SendPropertyChanged("DocumentCreatedBy");
+					this.OnDocumentCreatedByChanged();
 				}
 			}
 		}
@@ -4998,22 +4729,22 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_FileLeafRef", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string FileLeafRef
+		[Column(Storage="_FileName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string FileName
 		{
 			get
 			{
-				return this._FileLeafRef;
+				return this._FileName;
 			}
 			set
 			{
-				if ((this._FileLeafRef != value))
+				if ((this._FileName != value))
 				{
-					this.OnFileLeafRefChanging(value);
+					this.OnFileNameChanging(value);
 					this.SendPropertyChanging();
-					this._FileLeafRef = value;
-					this.SendPropertyChanged("FileLeafRef");
-					this.OnFileLeafRefChanged();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
 				}
 			}
 		}
@@ -5078,42 +4809,22 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Modified_x0020_By", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Modified_x0020_By
+		[Column(Storage="_DocumentModifiedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentModifiedBy
 		{
 			get
 			{
-				return this._Modified_x0020_By;
+				return this._DocumentModifiedBy;
 			}
 			set
 			{
-				if ((this._Modified_x0020_By != value))
+				if ((this._DocumentModifiedBy != value))
 				{
-					this.OnModified_x0020_ByChanging(value);
+					this.OnDocumentModifiedByChanging(value);
 					this.SendPropertyChanging();
-					this._Modified_x0020_By = value;
-					this.SendPropertyChanged("Modified_x0020_By");
-					this.OnModified_x0020_ByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
+					this._DocumentModifiedBy = value;
+					this.SendPropertyChanged("DocumentModifiedBy");
+					this.OnDocumentModifiedByChanged();
 				}
 			}
 		}
@@ -5504,8 +5215,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private string _NIP;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _PayerName;
 		
 		private string _SendInvoiceToMultiline;
@@ -5542,8 +5251,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnNIPChanging(string value);
     partial void OnNIPChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnPayerNameChanging(string value);
     partial void OnPayerNameChanged();
     partial void OnSendInvoiceToMultilineChanging(string value);
@@ -5703,26 +5410,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._NIP = value;
 					this.SendPropertyChanged("NIP");
 					this.OnNIPChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -5948,13 +5635,13 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _Created_x0020_By;
+		private string _DocumentCreatedBy;
 		
 		private string _Editor;
 		
 		private string _EmailAddress;
 		
-		private string _FileLeafRef;
+		private string _FileName;
 		
 		private System.Nullable<System.DateTime> _FPODispatchDate;
 		
@@ -5994,9 +5681,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _Modified_x0020_By;
-		
-		private System.Nullable<int> _Owshiddenversion;
+		private string _DocumentModifiedBy;
 		
 		private string _Title;
 		
@@ -6012,14 +5697,14 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreated_x0020_ByChanging(string value);
-    partial void OnCreated_x0020_ByChanged();
+    partial void OnDocumentCreatedByChanging(string value);
+    partial void OnDocumentCreatedByChanged();
     partial void OnEditorChanging(string value);
     partial void OnEditorChanged();
     partial void OnEmailAddressChanging(string value);
     partial void OnEmailAddressChanged();
-    partial void OnFileLeafRefChanging(string value);
-    partial void OnFileLeafRefChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
     partial void OnFPODispatchDateChanging(System.Nullable<System.DateTime> value);
     partial void OnFPODispatchDateChanged();
     partial void OnFPOFreightPOChanging(string value);
@@ -6058,10 +5743,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModified_x0020_ByChanging(string value);
-    partial void OnModified_x0020_ByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
+    partial void OnDocumentModifiedByChanging(string value);
+    partial void OnDocumentModifiedByChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -6114,22 +5797,22 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Created_x0020_By", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Created_x0020_By
+		[Column(Storage="_DocumentCreatedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentCreatedBy
 		{
 			get
 			{
-				return this._Created_x0020_By;
+				return this._DocumentCreatedBy;
 			}
 			set
 			{
-				if ((this._Created_x0020_By != value))
+				if ((this._DocumentCreatedBy != value))
 				{
-					this.OnCreated_x0020_ByChanging(value);
+					this.OnDocumentCreatedByChanging(value);
 					this.SendPropertyChanging();
-					this._Created_x0020_By = value;
-					this.SendPropertyChanged("Created_x0020_By");
-					this.OnCreated_x0020_ByChanged();
+					this._DocumentCreatedBy = value;
+					this.SendPropertyChanged("DocumentCreatedBy");
+					this.OnDocumentCreatedByChanged();
 				}
 			}
 		}
@@ -6174,22 +5857,22 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_FileLeafRef", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string FileLeafRef
+		[Column(Storage="_FileName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string FileName
 		{
 			get
 			{
-				return this._FileLeafRef;
+				return this._FileName;
 			}
 			set
 			{
-				if ((this._FileLeafRef != value))
+				if ((this._FileName != value))
 				{
-					this.OnFileLeafRefChanging(value);
+					this.OnFileNameChanging(value);
 					this.SendPropertyChanging();
-					this._FileLeafRef = value;
-					this.SendPropertyChanged("FileLeafRef");
-					this.OnFileLeafRefChanged();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
 				}
 			}
 		}
@@ -6574,42 +6257,22 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Modified_x0020_By", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Modified_x0020_By
+		[Column(Storage="_DocumentModifiedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentModifiedBy
 		{
 			get
 			{
-				return this._Modified_x0020_By;
+				return this._DocumentModifiedBy;
 			}
 			set
 			{
-				if ((this._Modified_x0020_By != value))
+				if ((this._DocumentModifiedBy != value))
 				{
-					this.OnModified_x0020_ByChanging(value);
+					this.OnDocumentModifiedByChanging(value);
 					this.SendPropertyChanging();
-					this._Modified_x0020_By = value;
-					this.SendPropertyChanged("Modified_x0020_By");
-					this.OnModified_x0020_ByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
+					this._DocumentModifiedBy = value;
+					this.SendPropertyChanged("DocumentModifiedBy");
+					this.OnDocumentModifiedByChanged();
 				}
 			}
 		}
@@ -6964,8 +6627,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<double> _NumberOfPallets;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _PalletType;
 		
 		private string _Title;
@@ -7012,8 +6673,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnNumberOfPalletsChanging(System.Nullable<double> value);
     partial void OnNumberOfPalletsChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnPalletTypeChanging(string value);
     partial void OnPalletTypeChanged();
     partial void OnTitleChanging(string value);
@@ -7327,26 +6986,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_PalletType", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string PalletType
 		{
@@ -7580,8 +7219,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private bool _OnlySQL;
@@ -7604,8 +7241,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -7715,26 +7350,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -7870,8 +7485,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private System.Nullable<int> _Partner2WarehouseTitle;
 		
 		private string _ServiceType;
@@ -7926,8 +7539,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnPartner2WarehouseTitleChanging(System.Nullable<int> value);
     partial void OnPartner2WarehouseTitleChanged();
     partial void OnServiceTypeChanging(string value);
@@ -8096,26 +7707,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -8601,8 +8192,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private System.Nullable<int> _PartnerTitle;
 		
 		private string _RemarkMM;
@@ -8677,8 +8266,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnMaterialMasterChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnPartnerTitleChanging(System.Nullable<int> value);
     partial void OnPartnerTitleChanged();
     partial void OnRemarkMMChanging(string value);
@@ -8987,26 +8574,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -9661,8 +9228,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private bool _OnlySQL;
@@ -9683,8 +9248,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -9797,26 +9360,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
@@ -9919,8 +9462,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private System.Nullable<int> _ShippingPointLookupTitle;
 		
 		private string _Title;
@@ -9945,8 +9486,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnShippingPointLookupTitleChanging(System.Nullable<int> value);
     partial void OnShippingPointLookupTitleChanged();
     partial void OnTitleChanging(string value);
@@ -10058,26 +9597,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -10236,19 +9755,17 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private string _Created_x0020_By;
+		private string _DocumentCreatedBy;
 		
 		private string _Editor;
 		
-		private string _FileLeafRef;
+		private string _FileName;
 		
 		private int _ID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _Modified_x0020_By;
-		
-		private System.Nullable<int> _Owshiddenversion;
+		private string _DocumentModifiedBy;
 		
 		private string _SealProtocol1stDriver;
 		
@@ -10298,20 +9815,18 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCreated_x0020_ByChanging(string value);
-    partial void OnCreated_x0020_ByChanged();
+    partial void OnDocumentCreatedByChanging(string value);
+    partial void OnDocumentCreatedByChanged();
     partial void OnEditorChanging(string value);
     partial void OnEditorChanged();
-    partial void OnFileLeafRefChanging(string value);
-    partial void OnFileLeafRefChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnModified_x0020_ByChanging(string value);
-    partial void OnModified_x0020_ByChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
+    partial void OnDocumentModifiedByChanging(string value);
+    partial void OnDocumentModifiedByChanged();
     partial void OnSealProtocol1stDriverChanging(string value);
     partial void OnSealProtocol1stDriverChanged();
     partial void OnSealProtocol1stEscortChanging(string value);
@@ -10398,22 +9913,22 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Created_x0020_By", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Created_x0020_By
+		[Column(Storage="_DocumentCreatedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentCreatedBy
 		{
 			get
 			{
-				return this._Created_x0020_By;
+				return this._DocumentCreatedBy;
 			}
 			set
 			{
-				if ((this._Created_x0020_By != value))
+				if ((this._DocumentCreatedBy != value))
 				{
-					this.OnCreated_x0020_ByChanging(value);
+					this.OnDocumentCreatedByChanging(value);
 					this.SendPropertyChanging();
-					this._Created_x0020_By = value;
-					this.SendPropertyChanged("Created_x0020_By");
-					this.OnCreated_x0020_ByChanged();
+					this._DocumentCreatedBy = value;
+					this.SendPropertyChanged("DocumentCreatedBy");
+					this.OnDocumentCreatedByChanged();
 				}
 			}
 		}
@@ -10438,22 +9953,22 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_FileLeafRef", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string FileLeafRef
+		[Column(Storage="_FileName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string FileName
 		{
 			get
 			{
-				return this._FileLeafRef;
+				return this._FileName;
 			}
 			set
 			{
-				if ((this._FileLeafRef != value))
+				if ((this._FileName != value))
 				{
-					this.OnFileLeafRefChanging(value);
+					this.OnFileNameChanging(value);
 					this.SendPropertyChanging();
-					this._FileLeafRef = value;
-					this.SendPropertyChanged("FileLeafRef");
-					this.OnFileLeafRefChanged();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
 				}
 			}
 		}
@@ -10498,42 +10013,22 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Modified_x0020_By", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Modified_x0020_By
+		[Column(Storage="_DocumentModifiedBy", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string DocumentModifiedBy
 		{
 			get
 			{
-				return this._Modified_x0020_By;
+				return this._DocumentModifiedBy;
 			}
 			set
 			{
-				if ((this._Modified_x0020_By != value))
+				if ((this._DocumentModifiedBy != value))
 				{
-					this.OnModified_x0020_ByChanging(value);
+					this.OnDocumentModifiedByChanging(value);
 					this.SendPropertyChanging();
-					this._Modified_x0020_By = value;
-					this.SendPropertyChanged("Modified_x0020_By");
-					this.OnModified_x0020_ByChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
+					this._DocumentModifiedBy = value;
+					this.SendPropertyChanged("DocumentModifiedBy");
+					this.OnDocumentModifiedByChanged();
 				}
 			}
 		}
@@ -10988,8 +10483,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private System.Nullable<int> _PartnerTitle;
 		
 		private string _RemarkMM;
@@ -11036,8 +10529,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnMaterialMasterChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnPartnerTitleChanging(System.Nullable<int> value);
     partial void OnPartnerTitleChanged();
     partial void OnRemarkMMChanging(string value);
@@ -11248,26 +10739,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -11618,8 +11089,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private bool _OnlySQL;
@@ -11640,8 +11109,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -11750,26 +11217,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -11899,8 +11346,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		private string _LoadingType;
 		
 		private System.Nullable<System.DateTime> _Modified;
-		
-		private System.Nullable<int> _Owshiddenversion;
 		
 		private System.Nullable<int> _PartnerTitle;
 		
@@ -12064,8 +11509,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnLoadingTypeChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnPartnerTitleChanging(System.Nullable<int> value);
     partial void OnPartnerTitleChanged();
     partial void OnPoLastModificationChanging(System.Nullable<System.DateTime> value);
@@ -12512,26 +11955,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -14141,8 +13564,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _ShippingPointDescription;
 		
 		private string _Title;
@@ -14173,8 +13594,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnShippingPointDescriptionChanging(string value);
     partial void OnShippingPointDescriptionChanged();
     partial void OnTitleChanging(string value);
@@ -14309,26 +13728,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -14550,8 +13949,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private string _Occupied;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private System.Nullable<int> _TimeSlot2ShippingIndex;
 		
 		private System.Nullable<int> _TimeSlot2ShippingPointLookup;
@@ -14590,8 +13987,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnOccupiedChanging(string value);
     partial void OnOccupiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTimeSlot2ShippingIndexChanging(System.Nullable<int> value);
     partial void OnTimeSlot2ShippingIndexChanged();
     partial void OnTimeSlot2ShippingPointLookupChanging(System.Nullable<int> value);
@@ -14829,26 +14224,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 			}
 		}
 		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_TimeSlot2ShippingIndex", DbType="Int")]
 		public System.Nullable<int> TimeSlot2ShippingIndex
 		{
@@ -15042,8 +14417,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private System.Nullable<int> _ScheduleTemplateTitle;
 		
 		private string _TimeSlotsTemplateDay;
@@ -15076,8 +14449,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnScheduleTemplateTitleChanging(System.Nullable<int> value);
     partial void OnScheduleTemplateTitleChanged();
     partial void OnTimeSlotsTemplateDayChanging(string value);
@@ -15198,26 +14569,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -15459,8 +14810,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private System.Nullable<bool> _ToBeDeleted;
@@ -15489,8 +14838,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnToBeDeletedChanging(System.Nullable<bool> value);
@@ -15624,26 +14971,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -15828,8 +15155,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private bool _OnlySQL;
@@ -15852,8 +15177,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -15963,26 +15286,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -16116,8 +15419,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private System.Nullable<bool> _ToBeDeleted;
@@ -16150,8 +15451,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnToBeDeletedChanging(System.Nullable<bool> value);
@@ -16288,26 +15587,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
@@ -16539,8 +15818,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Owshiddenversion;
-		
 		private string _Title;
 		
 		private string _WarehouseAddress;
@@ -16571,8 +15848,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnOwshiddenversionChanging(System.Nullable<int> value);
-    partial void OnOwshiddenversionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnWarehouseAddressChanging(string value);
@@ -16710,26 +15985,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Name="owshiddenversion", Storage="_Owshiddenversion", DbType="Int")]
-		public System.Nullable<int> Owshiddenversion
-		{
-			get
-			{
-				return this._Owshiddenversion;
-			}
-			set
-			{
-				if ((this._Owshiddenversion != value))
-				{
-					this.OnOwshiddenversionChanging(value);
-					this.SendPropertyChanging();
-					this._Owshiddenversion = value;
-					this.SendPropertyChanged("Owshiddenversion");
-					this.OnOwshiddenversionChanged();
 				}
 			}
 		}
