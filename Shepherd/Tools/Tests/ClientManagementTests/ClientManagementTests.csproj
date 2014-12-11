@@ -64,6 +64,7 @@
     <Compile Include="AutoPopulateExportedViewsBehaviorFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ManagerExportedViewsFixture.cs" />
+    <Compile Include="ButtonsPanelViewModelUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
@@ -72,6 +73,10 @@
     <ProjectReference Include="..\..\..\..\..\EX07-PrismV5SourcePrismLibrary\Desktop\Prism\Prism.Composition.Desktop.csproj">
       <Project>{77138947-1d13-4e22-aee0-5d0dd046ca34}</Project>
       <Name>Prism.Composition.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\PR44-SharePoint\Libraries\CASCommon\CASCommon.csproj">
+      <Project>{af2434e6-fd65-43a2-be31-c8c1e5ba5acd}</Project>
+      <Name>CASCommon</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Client\Management\Management.csproj">
       <Project>{23c36cc9-c0c5-4c6a-9d72-cb33ccf51254}</Project>

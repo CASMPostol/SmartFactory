@@ -14,7 +14,6 @@
 //</summary>
 
 using CAS.Common.ViewModel.Wizard;
-using CAS.SmartFactory.Shepherd.Client.Management.Controls;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 using System;
@@ -38,28 +37,11 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
       {
         throw new ArgumentNullException("eventAggregator");
       }
+      m_EventAggregator = eventAggregator;
     }
+
     private IRegionManager m_RegionManager = null;
     private IEventAggregator m_EventAggregator = null;
 
-    internal object OnLeftButtonCommand()
-    {
-      throw new NotImplementedException();
-    }
-
-    internal object OnLeftMiddleButtonCommand()
-    {
-      throw new NotImplementedException();
-    }
-
-    internal object OnRightMiddleButtonCommand()
-    {
-      throw new NotImplementedException();
-    }
-
-    internal object OnRightButtonCommand()
-    {
-      throw new NotImplementedException();
-    }
   }
 }

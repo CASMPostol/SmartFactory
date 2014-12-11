@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : ButtonsPanelViewModel
 //  System  : Microsoft VisulaStudio 2013 / C#
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2014, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -21,6 +21,9 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Windows;
 
+/// <summary>
+/// The Controls namespace.
+/// </summary>
 namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
 {
   [Export]
@@ -34,11 +37,13 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       m_ParentViewMode = parentViewMode;
       GetState(parentViewMode.ButtonPanelState);
       parentViewMode.PropertyChanged += parentViewMode_PropertyChanged;
-      LeftButtonCommand = new SynchronousCommandBase<object>(x => m_ParentViewMode.OnLeftButtonCommand(), y => (this.m_EnabledEvents & StateMachineEvents.LeftButtonEvent) != 0);
-      LeftMiddleButtonCommand = new SynchronousCommandBase<object>(x => m_ParentViewMode.OnLeftMiddleButtonCommand(), y => (this.m_EnabledEvents & StateMachineEvents.LeftMiddleButtonEvent) != 0);
-      RightMiddleButtonCommand = new SynchronousCommandBase<object>(x => m_ParentViewMode.OnRightMiddleButtonCommand(), y => (this.m_EnabledEvents & StateMachineEvents.RightMiddleButtonEvent) != 0);
-      RightButtonCommand = new SynchronousCommandBase<object>(x => m_ParentViewMode.OnRightButtonCommand(), y => (this.m_EnabledEvents & StateMachineEvents.RightButtonEvent) != 0);
+      LeftButtonCommand = new SynchronousCommandBase<object>(m_ParentViewMode.StateMachineActionsArray[(int)StateMachineEvents.LeftButtonEvent], y => (this.m_EnabledEvents & StateMachineEvents.LeftButtonEvent) != 0);
+      LeftMiddleButtonCommand = new SynchronousCommandBase<object>(m_ParentViewMode.StateMachineActionsArray[(int)StateMachineEvents.LeftMiddleButtonEvent], y => (this.m_EnabledEvents & StateMachineEvents.LeftMiddleButtonEvent) != 0);
+      RightMiddleButtonCommand = new SynchronousCommandBase<object>(m_ParentViewMode.StateMachineActionsArray[(int)StateMachineEvents.RightMiddleButtonEvent], y => (this.m_EnabledEvents & StateMachineEvents.RightMiddleButtonEvent) != 0);
+      RightButtonCommand = new SynchronousCommandBase<object>(m_ParentViewMode.StateMachineActionsArray[(int)StateMachineEvents.RightButtonEvent], y => (this.m_EnabledEvents & StateMachineEvents.RightButtonEvent) != 0);
     }
+
+    #region public UI API
     private ICommandWithUpdate b_LeftButtonCommand;
     /// <summary>
     /// Gets or sets the left button command.
@@ -56,6 +61,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       }
     }
     private ICommandWithUpdate b_LeftMiddleButtonCommand;
+    /// <summary>
+    /// Gets or sets the left-middle button command.
+    /// </summary>
+    /// <value>The left middle button command.</value>
     public ICommandWithUpdate LeftMiddleButtonCommand
     {
       get
@@ -68,6 +77,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       }
     }
     private ICommandWithUpdate b_RightMiddleButtonCommand;
+    /// <summary>
+    /// Gets or sets the right-middle button command.
+    /// </summary>
+    /// <value>The right middle button command.</value>
     public ICommandWithUpdate RightMiddleButtonCommand
     {
       get
@@ -80,6 +93,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       }
     }
     private ICommandWithUpdate b_RightButtonCommand;
+    /// <summary>
+    /// Gets or sets the right button command.
+    /// </summary>
+    /// <value>The right button command.</value>
     public ICommandWithUpdate RightButtonCommand
     {
       get
@@ -91,6 +108,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         RaiseHandlerICommandWithUpdate(value, ref b_RightButtonCommand, "RightButtonCommand", this);
       }
     }
+    /// <summary>
+    /// Gets or sets the left button title.
+    /// </summary>
+    /// <value>The left button title.</value>
     public string LeftButtonTitle
     {
       get
@@ -102,6 +123,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         RaiseHandler<string>(value, ref b_LeftButtonTitle, "LeftButtonTitle", this);
       }
     }
+    /// <summary>
+    /// Gets or sets the left-middle button title.
+    /// </summary>
+    /// <value>The left middle button title.</value>
     public string LeftMiddleButtonTitle
     {
       get
@@ -113,6 +138,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         RaiseHandler<string>(value, ref b_LeftMiddleButtonTitle, "LeftMiddleButtonTitle", this);
       }
     }
+    /// <summary>
+    /// Gets or sets the right middle button title.
+    /// </summary>
+    /// <value>The right middle button title.</value>
     public string RightMiddleButtonTitle
     {
       get
@@ -124,6 +153,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         RaiseHandler<string>(value, ref b_RightMiddleButtonTitle, "RightMiddleButtonTitle", this);
       }
     }
+    /// <summary>
+    /// Gets or sets the right button title.
+    /// </summary>
+    /// <value>The right button title.</value>
     public string RightButtonTitle
     {
       get
@@ -136,6 +169,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       }
     }
     private Visibility b_LeftButtonVisibility;
+    /// <summary>
+    /// Gets or sets the left button visibility.
+    /// </summary>
+    /// <value>The left button visibility.</value>
     public Visibility LeftButtonVisibility
     {
       get
@@ -148,6 +185,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       }
     }
     private Visibility b_LeftMiddleButtonVisibility;
+    /// <summary>
+    /// Gets or sets the left middle button visibility.
+    /// </summary>
+    /// <value>The left-middle button visibility.</value>
     public Visibility LeftMiddleButtonVisibility
     {
       get
@@ -160,6 +201,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       }
     }
     private Visibility b_RightMiddleButtonVisibility;
+    /// <summary>
+    /// Gets or sets the right middle button visibility.
+    /// </summary>
+    /// <value>The right-middle button visibility.</value>
     public Visibility RightMiddleButtonVisibility
     {
       get
@@ -172,6 +217,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       }
     }
     private Visibility b_RightButtonVisibility;
+    /// <summary>
+    /// Gets or sets the right button visibility.
+    /// </summary>
+    /// <value>The right button visibility.</value>
     public Visibility RightButtonVisibility
     {
       get
@@ -184,12 +233,25 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       }
     }
 
+    #endregion
+
+    #region private
+
+    #region backing fields
     private string b_LeftButtonTitle = "Left";
     private string b_LeftMiddleButtonTitle = "Left Middle";
     private string b_RightMiddleButtonTitle = "Right Middle";
     private string b_RightButtonTitle = "Right";
+    #endregion
 
+    //vars
     private ShellViewModel m_ParentViewMode;
+    private StateMachineEvents m_EnabledEvents = (StateMachineEvents)0;
+    /// <summary>
+    /// Occurs when changes occur that affect whether or not the command should execute.
+    /// </summary>
+    private event EventHandler CanExecuteChanged;
+    //procedures
     private void parentViewMode_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
       if (e.PropertyName == "ButtonPanelState")
@@ -208,12 +270,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       this.m_EnabledEvents = state.EnabledEvents;
       RaiseCanExecuteChanged();
     }
-    private StateMachineEvents m_EnabledEvents = (StateMachineEvents)0;
-    /// <summary>
-    /// Occurs when changes occur that affect whether or not the command should execute.
-    /// </summary>
-    private event EventHandler CanExecuteChanged;
-    //procedures
     private void RaiseCanExecuteChanged()
     {
       EventHandler _cec = CanExecuteChanged;
@@ -228,6 +284,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         this.CanExecuteChanged += (sevder, e) => value.RaiseCanExecuteChanged();
       return _ret;
     }
+    #endregion
 
   }
 }

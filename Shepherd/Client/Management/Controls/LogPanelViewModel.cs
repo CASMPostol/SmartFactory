@@ -2,11 +2,11 @@
 //  Assembly         : CAS.ShepherdManagement
 //  Title   : LogPanelViewModel.cs
 //  System  : Microsoft VisualStudio 2013 / C#
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2014, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
