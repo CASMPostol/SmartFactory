@@ -1,17 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Web xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" AccessModifier="Public" Class="Entities" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal">
+    <List Name="Data Import Library" Member="Data Import Library" />
     <List Name="Alarms And Events" Member="Alarms And Events" />
     <List Name="Business Description" Member="Business Description" />
     <List Name="Carrier" Member="Carrier" />
     <List Name="Carrier Performance Report" Member="Carrier Performance Report" />
     <List Name="City" Member="City" />
+    <List Name="Comments" Member="Comments" />
     <List Name="Commodity" Member="Commodity" />
     <List Name="Country" Member="Country" />
     <List Name="Currency" Member="Currency" />
     <List Name="Destination Market" Member="Destination Market" />
+    <List Name="Distribution List" Member="Distribution List" />
     <List Name="Driver" Member="Driver" />
     <List Name="Drivers Team" Member="Drivers Team" />
     <List Name="Escort PO Library" Member="Escort PO Library" />
+    <List Name="Event Log List" Member="Event Log List" />
     <List Name="Freight Payer" Member="Freight Payer" />
     <List Name="Freight PO Library" Member="Freight PO Library" />
     <List Name="Load Description" Member="Load Description" />
@@ -33,9 +37,8 @@
     <List Name="Warehouse" Member="Warehouse" />
     <ExcludeOtherLists />
     <ContentType Name="Item" Class="Item">
-      <!--<Column Name="ContentType" Member="ContentType" />-->
       <Column Name="Title" Member="Title" />
-      <!--<ExcludeOtherColumns />-->
+      <!--<Column Name="ContentType" Member="ContentType" />-->
     </ContentType>
     <ContentType Name="TranspotUnit" Class="TranspotUnit">
       <!--<Column Name="Dummy" Member="Dummy" />-->
@@ -137,13 +140,14 @@
       <!--<ExcludeOtherColumns />-->
     </ContentType>
     <ContentType Name="AlarmsAndEvents" Class="AlarmsAndEvents">
-      <Column Name="AlarmAndEventDetails" Member="AlarmAndEventDetails" />
-      <Column Name="AlarmAndEventOwner" Member="AlarmAndEventOwner" />
-      <Column Name="AlarmPriority" Member="AlarmPriority" />
-      <Column Name="AlarmsAndEventsList2PartnerTitle" Member="AlarmsAndEventsList2PartnerTitle" />
-      <Column Name="AlarmsAndEventsList2Shipping" Member="AlarmsAndEventsList2Shipping" />
+      <!--<Column Name="ContentType" Member="ContentType" />-->
       <Column Name="Title" Member="Title" />
-      <!--<ExcludeOtherColumns />-->
+      <Column Name="AlarmAndEventDetails" Member="AlarmAndEventDetails" />
+      <Column Name="AlarmsAndEventsShippingTitle" Member="AlarmsAndEventsShippingTitle" />
+      <Column Name="AlarmAndEventOwner" Member="AlarmAndEventOwner" />
+      <Column Name="AlarmsAndEventsList2Shipping" Member="AlarmsAndEventsList2Shipping" />
+      <Column Name="AlarmsAndEventsList2PartnerTitle" Member="AlarmsAndEventsList2PartnerTitle" />
+      <Column Name="AlarmPriority" Member="AlarmPriority" />
     </ContentType>
     <ContentType Name="SecurityEscortCatalog" Class="SecurityEscortCatalog">
       <Column Name="CurrencyTitle" Member="CurrencyTitle" />
@@ -209,6 +213,7 @@
     </ContentType>
     <ContentType Name="Shipping" Class="Shipping">
       <Column Name="AdditionalCosts" Member="AdditionalCosts" />
+      <Column Name="ArrivalTime" Member="ArrivalTime" />
       <Column Name="BusinessDescription" Member="BusinessDescription" />
       <Column Name="CancelationReason" Member="CancelationReason" />
       <Column Name="ContainerNo" Member="ContainerNo" />
@@ -222,6 +227,8 @@
       <Column Name="LoadingType" Member="LoadingType" />
       <Column Name="Modified" Member="Modified" />
       <Column Name="PartnerTitle" Member="PartnerTitle" />
+      <Column Name="PoLastModification" Member="PoLastModification" />
+      <Column Name="PoNumberMultiline" Member="PoNumberMultiline" />
       <Column Name="ReportPeriod" Member="ReportPeriod" />
       <Column Name="SecurityEscortCatalogTitle" Member="SecurityEscortCatalogTitle" />
       <Column Name="SecuritySealProtocolIndex" Member="SecuritySealProtocolIndex" />
@@ -246,6 +253,7 @@
       <Column Name="ShippingRouteDepartureCity" Member="ShippingRouteDepartureCity" />
       <Column Name="ShippingSecurityCost" Member="ShippingSecurityCost" />
       <Column Name="ShippingState" Member="ShippingState" />
+      <Column Name="ShippingState2" Member="ShippingState2" />
       <Column Name="StartTime" Member="StartTime" />
       <Column Name="Title" Member="Title" />
       <Column Name="TotalCostsPerKU" Member="TotalCostsPerKU" />
@@ -255,6 +263,10 @@
       <Column Name="TrailerTitle" Member="TrailerTitle" />
       <Column Name="TruckAwaiting" Member="TruckAwaiting" />
       <Column Name="TruckTitle" Member="TruckTitle" />
+      <Column Name="TSEndTime" Member="TSEndTime" />
+      <Column Name="TSStartTime" Member="TSStartTime" />
+      <Column Name="WarehouseEndTime" Member="WarehouseEndTime" />
+      <Column Name="WarehouseStartTime" Member="WarehouseStartTime" />
       <!--<ExcludeOtherColumns />-->
     </ContentType>
     <ContentType Name="ShippingPoint" Class="ShippingPoint">
@@ -276,7 +288,7 @@
       <Column Name="TimeSlotsTemplateEndMinute" Member="TimeSlotsTemplateEndMinute" />
       <Column Name="TimeSlotsTemplateStartHour" Member="TimeSlotsTemplateStartHour" />
       <Column Name="TimeSlotsTemplateStartMinute" Member="TimeSlotsTemplateStartMinute" />
-      <Column Name="Title" Member="Title" />
+      <!--<Column Name="Title" Member="Title" />-->
       <!--<ExcludeOtherColumns />-->
     </ContentType>
     <ContentType Name="ShippingComments" Class="ShippingComments">
@@ -306,12 +318,12 @@
       <!--<ExcludeOtherColumns />-->
     </ContentType>
     <ContentType Name="EscortPO" Class="EscortPO">
-      <Column Name="Created" Member="Created" />
+      <!--<Column Name="Created" Member="Created" />-->
       <Column Name="Created_x0020_By" Member="Created_x0020_By" />
       <Column Name="EmailAddress" Member="EmailAddress" />
       <Column Name="FileLeafRef" Member="FileLeafRef" />
       <Column Name="FPOWarehouseAddress" Member="FPOWarehouseAddress" />
-      <Column Name="Modified" Member="Modified" />
+      <!--<Column Name="Modified" Member="Modified" />-->
       <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
       <Column Name="SecurityPOCity" Member="SecurityPOCity" />
       <Column Name="SecurityPOCommodity" Member="SecurityPOCommodity" />
@@ -331,7 +343,7 @@
       <!--<ExcludeOtherColumns />-->
     </ContentType>
     <ContentType Name="FreightPO" Class="FreightPO">
-      <Column Name="Created" Member="Created" />
+      <!--<Column Name="Created" Member="Created" />-->
       <Column Name="Created_x0020_By" Member="Created_x0020_By" />
       <Column Name="EmailAddress" Member="EmailAddress" />
       <Column Name="FileLeafRef" Member="FileLeafRef" />
@@ -352,16 +364,16 @@
       <Column Name="FreightPOSendInvoiceToMultiline" Member="FreightPOSendInvoiceToMultiline" />
       <Column Name="FreightPOTransportCosts" Member="FreightPOTransportCosts" />
       <Column Name="FreightPOTransportUnitType" Member="FreightPOTransportUnitType" />
-      <Column Name="Modified" Member="Modified" />
+      <!--<Column Name="Modified" Member="Modified" />-->
       <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
       <Column Name="Title" Member="Title" />
       <!--<ExcludeOtherColumns />-->
     </ContentType>
     <ContentType Name="SealProtocol" Class="SealProtocol">
-      <Column Name="Created" Member="Created" />
+      <!--<Column Name="Created" Member="Created" />-->
       <Column Name="Created_x0020_By" Member="Created_x0020_By" />
       <Column Name="FileLeafRef" Member="FileLeafRef" />
-      <Column Name="Modified" Member="Modified" />
+      <!--<Column Name="Modified" Member="Modified" />-->
       <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
       <Column Name="SealProtocol1stDriver" Member="SealProtocol1stDriver" />
       <Column Name="SealProtocol1stEscort" Member="SealProtocol1stEscort" />
@@ -383,55 +395,23 @@
       <Column Name="Title" Member="Title" />
       <!--<ExcludeOtherColumns />-->
     </ContentType>
-    <ContentType Name="Event" Class="Event">
-      <Column Name="Category" Member="Category" />
-      <Column Name="Comments" Member="Comments" />
-      <!--<Column Name="ContentType" Member="ContentType" />-->
-      <Column Name="Duration" Member="Duration" />
-      <Column Name="EndDate" Member="EndDate" />
-      <Column Name="EventCanceled" Member="EventCanceled" />
-      <Column Name="EventType" Member="EventType" />
-      <Column Name="fAllDayEvent" Member="fAllDayEvent" />
-      <Column Name="fRecurrence" Member="fRecurrence" />
-      <Column Name="Location" Member="Location" />
-      <Column Name="MasterSeriesItemID" Member="MasterSeriesItemID" />
-      <Column Name="RecurrenceData" Member="RecurrenceData" />
-      <Column Name="RecurrenceID" Member="RecurrenceID" />
-      <Column Name="StartDate" Member="StartDate" />
-      <Column Name="TimeZone" Member="TimeZone" />
-      <Column Name="Title" Member="Title" />
-      <Column Name="UID" Member="UID" />
-      <Column Name="Workspace" Member="Workspace" />
-      <Column Name="WorkspaceLink" Member="WorkspaceLink" />
-      <Column Name="XMLTZone" Member="XMLTZone" />
-      <!--<ExcludeOtherColumns />-->
-    </ContentType>
     <ContentType Name="TimeSlot" Class="TimeSlot">
-      <!--<Column Name="Category" Member="Category" />-->
-      <!--<Column Name="Comments" Member="Comments" />-->
-      <Column Name="Duration" Member="Duration" />
-      <Column Name="EndDate" Member="EndDate" />
-      <Column Name="EntryTime" Member="EntryTime" />
-      <!--<Column Name="EventCanceled" Member="EventCanceled" />-->
-      <!--<Column Name="EventType" Member="EventType" />-->
-      <Column Name="ExitTime" Member="ExitTime" />
-      <!--<Column Name="fAllDayEvent" Member="fAllDayEvent" />-->
-      <!--<Column Name="fRecurrence" Member="fRecurrence" />-->
-      <Column Name="IsDouble" Member="IsDouble" />
-      <!--<Column Name="Location" Member="Location" />-->
-      <!--<Column Name="MasterSeriesItemID" Member="MasterSeriesItemID" />-->
-      <Column Name="Occupied" Member="Occupied" />
-      <!--<Column Name="RecurrenceData" Member="RecurrenceData" />-->
-      <!--<Column Name="RecurrenceID" Member="RecurrenceID" />-->
       <Column Name="StartDate" Member="StartDate" />
+      <Column Name="EndDate" Member="EndDate" />
       <Column Name="TimeSlot2ShippingIndex" Member="TimeSlot2ShippingIndex" />
       <Column Name="TimeSlot2ShippingPointLookup" Member="TimeSlot2ShippingPointLookup" />
-      <!--<Column Name="TimeSpan" Member="TimeSpan" />-->
-      <!--<Column Name="TimeZone" Member="TimeZone" />-->
-      <Column Name="Title" Member="Title" />
-      <!--<Column Name="WorkspaceLink" Member="WorkspaceLink" />-->
-      <!--<Column Name="XMLTZone" Member="XMLTZone" />-->
+      <Column Name="EntryTime" Member="EntryTime" />
+      <Column Name="TimeSpan" Member="TimeSpan" />
+      <Column Name="ExitTime" Member="ExitTime" />
+      <Column Name="Occupied" Member="Occupied" />
+      <Column Name="IsDouble" Member="IsDouble" />
       <!--<ExcludeOtherColumns />-->
+    </ContentType>
+    <ContentType Name="Announcement" Class="Anons">
+      <Column Name="Body" Member="Body" />
+      <Column Name="Expires" Member="Expires" />
+      <Column Name="Title" Member="Title" />
+      <!--<Column Name="ContentType" Member="ContentType" />-->
     </ContentType>
     <!--<ExcludeOtherContentTypes />-->
   </Web>
