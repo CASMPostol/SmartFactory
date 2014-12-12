@@ -13,13 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.Common.ComponentModel;
-using CAS.Common.ViewModel;
 using CAS.Common.ViewModel.Wizard;
-using System;
-using System.ComponentModel;
 using System.ComponentModel.Composition;
-using System.Windows;
 
 /// <summary>
 /// The Controls namespace.
@@ -27,12 +22,14 @@ using System.Windows;
 namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
 {
   [Export]
-  internal class ButtonsPanelViewModel : ButtonsPanelBase
+  public class ButtonsPanelViewModel : ButtonsPanelBase
   {
     [ImportingConstructor]
     public ButtonsPanelViewModel(ShellViewModel parentViewMode)
       : base(parentViewMode)
     {
+      if (parentViewMode == null)
+        throw new System.ArgumentNullException("parentViewMode", "Error in ImportingConstructor of the ButtonsPanelViewModel");
     }
 
   }
