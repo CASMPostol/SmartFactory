@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CAS.SmartFactory.Shepherd.Client.Management.Linq2SQL
+namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;

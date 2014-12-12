@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 #pragma warning disable 1591
-namespace CAS.SmartFactory.Shepherd.Client.Management {
+namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq {
 	using System;
 	
 	
