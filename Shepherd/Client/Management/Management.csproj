@@ -154,7 +154,6 @@
     </Compile>
     <Compile Include="Controls\SettingsPanelViewModel.cs" />
     <Compile Include="EnterpriseLibraryLoggerAdapter.cs" />
-    <Compile Include="Entities\Entities.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
@@ -169,7 +168,6 @@
     <Compile Include="InputData\RoutesCatalog.xsd.cs">
       <DependentUpon>RoutesCatalog.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Linq2Sql\Entities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -249,12 +247,10 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="cas.snk" />
-    <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="InputData\RoutesCatalog.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="InputData\Scripts\CreateCS.ps1" />
-    <None Include="Linq2Sql\Scripts\GetEntities.ps1" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -350,6 +346,10 @@
       <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
       <Name>SharePointClient</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Library\ClientDataManagement\ClientDataManagement.csproj">
+      <Project>{e6b7f891-ba8c-4791-8978-1a09f6b46e33}</Project>
+      <Name>ClientDataManagement</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\shadow_b.png" />
@@ -372,9 +372,6 @@
     <Resource Include="Imgs\CleanupIcon.png" />
     <Resource Include="Imgs\SettingsIcon.png" />
     <Resource Include="Imgs\SynchronizeIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Entities\Scripts\Parameters.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

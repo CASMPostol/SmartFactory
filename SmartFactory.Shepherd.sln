@@ -63,6 +63,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientManagementTests", "Sh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAS.CommonUnitTest", "..\PR44-SharePoint\Libraries\UnitTests\CASCommonUnitTes\CAS.CommonUnitTest.csproj", "{5CB8E635-2CF3-49B3-956E-4D213DCEEC50}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{B8B8CD4A-5AEA-48EF-90BA-EC86281237B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientDataManagement", "Shepherd\Library\ClientDataManagement\ClientDataManagement.csproj", "{E6B7F891-BA8C-4791-8978-1A09F6B46E33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -249,6 +253,14 @@ Global
 		{5CB8E635-2CF3-49B3-956E-4D213DCEEC50}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5CB8E635-2CF3-49B3-956E-4D213DCEEC50}.Release|x64.ActiveCfg = Release|Any CPU
 		{5CB8E635-2CF3-49B3-956E-4D213DCEEC50}.Release|x86.ActiveCfg = Release|Any CPU
+		{E6B7F891-BA8C-4791-8978-1A09F6B46E33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6B7F891-BA8C-4791-8978-1A09F6B46E33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6B7F891-BA8C-4791-8978-1A09F6B46E33}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E6B7F891-BA8C-4791-8978-1A09F6B46E33}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E6B7F891-BA8C-4791-8978-1A09F6B46E33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6B7F891-BA8C-4791-8978-1A09F6B46E33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6B7F891-BA8C-4791-8978-1A09F6B46E33}.Release|x64.ActiveCfg = Release|Any CPU
+		{E6B7F891-BA8C-4791-8978-1A09F6B46E33}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -278,6 +290,8 @@ Global
 		{527DC381-9CD8-4A1D-AE3C-55238126DA3A} = {D00B2712-AFF7-45F9-9315-12AD239440FB}
 		{CCC02CD5-F5DC-40FD-998E-7AF143EB4D05} = {D00B2712-AFF7-45F9-9315-12AD239440FB}
 		{5CB8E635-2CF3-49B3-956E-4D213DCEEC50} = {F0F76A46-E3AC-4A6A-BA42-5D1205D52861}
+		{B8B8CD4A-5AEA-48EF-90BA-EC86281237B2} = {FAD0A6A7-1B51-4C7B-86B6-D4E21B9C0C43}
+		{E6B7F891-BA8C-4791-8978-1A09F6B46E33} = {B8B8CD4A-5AEA-48EF-90BA-EC86281237B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45
