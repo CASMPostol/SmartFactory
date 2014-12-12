@@ -14,6 +14,7 @@
 //</summary>
 
 using CAS.Common.ViewModel.Wizard;
+using CAS.Common.ViewModel.Wizard.ButtonsPanelStateTemplates;
 using System;
 
 /// <summary>
@@ -61,6 +62,12 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     {
       throw new NotImplementedException();
     }
+    private ButtonsPanelState b_ButtonsPanelState = new ConnectCancelTemplate();
+    protected override ButtonsPanelState ButtonsPanelState
+    {
+      get { return b_ButtonsPanelState; }
+      set { b_ButtonsPanelState = value; }
+    }
     #endregion
 
     #region private
@@ -69,5 +76,5 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     protected abstract string SQLServer { get; }
     #endregion
 
-   }
+  }
 }
