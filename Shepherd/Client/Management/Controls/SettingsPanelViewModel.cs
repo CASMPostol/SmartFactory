@@ -19,12 +19,21 @@ using CAS.Common.ViewModel.Wizard.ButtonsPanelStateTemplates;
 using CAS.SmartFactory.Shepherd.Client.Management.StateMachines;
 using System.ComponentModel.Composition;
 
+/// <summary>
+/// The Controls namespace.
+/// </summary>
 namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
 {
+  /// <summary>
+  /// Class SettingsPanelViewModel provide ViewModel for Setting state
+  /// </summary>
   [Export]
   public class SettingsPanelViewModel : ViewModelBase<SettingsPanelViewModel.SetupDataDialogMachineLocal>
   {
     #region creator
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SettingsPanelViewModel"/> class.
+    /// </summary>
     public SettingsPanelViewModel()
     {
       RestoreSettings();
@@ -99,27 +108,13 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     private string b_URL = string.Empty;
     private string b_DatabaseName = string.Empty;
     private string b_SQLServer = string.Empty;
+    //types
     public class SetupDataDialogMachineLocal : SetupDataDialogMachine<SettingsPanelViewModel>
     {
       protected override string URL { get { return this.ViewModelContext.URL; } }
       protected override string DatabaseName { get { return this.ViewModelContext.DatabaseName; } }
       protected override string SQLServer { get { return this.ViewModelContext.SQLServer; } }
 
-      protected override void OnlyCancelActive()
-      {
-        m_ButtonsTemplate.OnlyCancel();
-      }
-
-      protected override ButtonsPanelState ButtonsPanelState
-      {
-        get { return m_ButtonsTemplate; }
-      }
-
-      public override System.Action<object>[] StateMachineActionsArray
-      {
-        get { throw new System.NotImplementedException(); }
-      }
-      private ConnectCancelTemplate m_ButtonsTemplate = new ConnectCancelTemplate();
     }
     //methods
     private void RestoreSettings()

@@ -1,6 +1,6 @@
 ﻿//<summary>
-//  Title   : Shell export
-//  System  : Microsoft VisulaStudio 2013 / C#
+//  Title   : Shell
+//  System  : Microsoft VisualStudio 2013 / C#
 //  $LastChangedDate$
 //  $Rev$
 //  $LastChangedBy$
@@ -13,8 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.Common.Interactivity.InteractionRequest;
 using System.ComponentModel.Composition;
-using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 
 namespace CAS.SmartFactory.Shepherd.Client.Management
@@ -40,14 +40,50 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     /// the appropriate view model.
     /// </remarks>
     [Import]
-    [SuppressMessage("Microsoft.Design", "CA1044:PropertiesShouldNotBeWriteOnly", Justification = "Needs to be a property to be composed by MEF")]
-    ShellViewModel ViewModel
+    public ShellViewModel ViewModel
     {
       set
       {
         this.DataContext = value;
+        value.CloseWindow.Raised += CloseWindow_Raised;
+        value.CancelConfirmation.Raised += CancelConfirmation_Raised;
+        value.ExceptionNotification.Raised += ExceptionNotification_Raised;
       }
-    }        
+      get { return (ShellViewModel)this.DataContext; }
+    }
+
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+    }
+    private void ExceptionNotification_Raised(object sender, InteractionRequestedEventArgs<INotification> e)
+    {
+      MessageBox.Show((string)e.Context.Content, e.Context.Title, MessageBoxButton.OK, MessageBoxImage.Error);
+      e.Callback();
+    }
+    private void CancelConfirmation_Raised(object sender, InteractionRequestedEventArgs<IConfirmation> e)
+    {
+      if (MessageBox.Show((string)e.Context.Content, e.Context.Title, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+        e.Context.Confirmed = true;
+      else
+        e.Context.Confirmed = false;
+      e.Callback();
+    }
+    private void CloseWindow_Raised(object sender, InteractionRequestedEventArgs<INotification> e)
+    {
+      e.Callback();
+      this.Close();
+    }
+    private void HelpButton_Click(object sender, RoutedEventArgs e)
+    {
+      var newWindow = new HelpWindow();
+      newWindow.Show();
+    }
+    protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+    {
+      Properties.Settings.Default.Save();
+      ViewModel.Dispose();
+      base.OnClosing(e);
+    }
 
   }
 }
