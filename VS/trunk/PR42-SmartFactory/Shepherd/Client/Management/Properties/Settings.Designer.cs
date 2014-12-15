@@ -70,5 +70,44 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Properties {
                 this["ConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("--- ? ---")]
+        public string RunByUnknown {
+            get {
+                return ((string)(this["RunByUnknown"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("--- ? ---")]
+        public string RunDateUnknown {
+            get {
+                return ((string)(this["RunDateUnknown"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-- ERROR --")]
+        public string RunByError {
+            get {
+                return ((string)(this["RunByError"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-- ERROR --")]
+        public string RunDateError {
+            get {
+                return ((string)(this["RunDateError"]));
+            }
+            set {
+                this["RunDateError"] = value;
+            }
+        }
     }
 }

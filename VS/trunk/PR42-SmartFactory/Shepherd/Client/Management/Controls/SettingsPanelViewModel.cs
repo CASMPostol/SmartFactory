@@ -111,7 +111,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     //types
     public class SetupDataDialogMachineLocal : SetupDataDialogMachine<SettingsPanelViewModel>
     {
-      protected override string URL { get { return this.ViewModelContext.URL; } }
+      protected override string SharePointServerURL { get { return this.ViewModelContext.URL; } }
       protected override string DatabaseName { get { return this.ViewModelContext.DatabaseName; } }
       protected override string SQLServer { get { return this.ViewModelContext.SQLServer; } }
 

@@ -173,6 +173,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\ConnectionData.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
