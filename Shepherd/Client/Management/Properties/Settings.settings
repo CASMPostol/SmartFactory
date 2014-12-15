@@ -14,5 +14,17 @@
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Data Source={0};Initial Catalog={1}; Integrated Security=True</Value>
     </Setting>
+    <Setting Name="RunByUnknown" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">--- ? ---</Value>
+    </Setting>
+    <Setting Name="RunDateUnknown" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">--- ? ---</Value>
+    </Setting>
+    <Setting Name="RunByError" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">-- ERROR --</Value>
+    </Setting>
+    <Setting Name="RunDateError" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-- ERROR --</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

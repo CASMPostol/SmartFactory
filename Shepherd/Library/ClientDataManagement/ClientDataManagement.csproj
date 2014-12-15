@@ -48,13 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Linq2Sql\Entities.cs" />
+    <Compile Include="Linq2SQL\ArchivingOperationLogs.cs" />
+    <Compile Include="Linq2SQL\Entities.cs" />
     <Compile Include="Linq\Entities.cs" />
+    <Compile Include="Linq\Connectivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
-    <None Include="Linq2Sql\Scripts\GetEntities.ps1" />
+    <None Include="Linq2SQL\Scripts\GetEntities.ps1" />
     <None Include="Linq\Scripts\GetEntities.ps1" />
   </ItemGroup>
   <ItemGroup>
