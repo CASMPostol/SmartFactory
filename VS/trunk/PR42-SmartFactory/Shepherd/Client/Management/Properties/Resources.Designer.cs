@@ -61,6 +61,15 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Setup.
+        /// </summary>
+        internal static string SetupDataDialogMachineName {
+            get {
+                return ResourceManager.GetString("SetupDataDialogMachineName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An unhandled exception occurred, and the application is terminating. For more information, see your Application log..
         /// </summary>
         internal static string UnhandledException {

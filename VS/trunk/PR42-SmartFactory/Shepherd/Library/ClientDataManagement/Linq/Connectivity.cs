@@ -19,9 +19,19 @@ using System.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
 {
+  /// <summary>
+  /// Class Connectivity - helper class to test connectivity with SharePoint website and SQL data base.
+  /// </summary>
   public static class Connectivity
   {
 
+    /// <summary>
+    /// Tests the connection with the SharePoint website.
+    /// </summary>
+    /// <param name="sharePointServerURL">The SharePoint server URL.</param>
+    /// <param name="reportProgress">The report progress.</param>
+    /// <returns><c>true</c> if the connection succeeded, <c>false</c> otherwise.</returns>
+    /// <exception cref="System.ArgumentException">The currency list is empty. It must be added at least one element before any further operations.</exception>
     public static bool TestConnection(string sharePointServerURL, Action<ProgressChangedEventArgs> reportProgress)
     {
       try

@@ -163,6 +163,7 @@
     <Compile Include="Infrastructure\Behaviors\IViewRegionRegistration.cs" />
     <Compile Include="Infrastructure\Behaviors\ViewExportAttribute.cs" />
     <Compile Include="Infrastructure\ISharePointWebsiteData.cs" />
+    <Compile Include="Infrastructure\MachineStateNameEvent.cs" />
     <Compile Include="Infrastructure\ProgressChangeEvent.cs" />
     <Compile Include="Infrastructure\RegionNames.cs" />
     <Compile Include="Infrastructure\SharePointWebsiteData.cs" />

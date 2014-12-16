@@ -27,6 +27,7 @@ using System.Windows;
 /// </summary>
 namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
 {
+
   /// <summary>
   /// Class ProgressPanelViewModel.
   /// </summary>
@@ -34,6 +35,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
   public class ProgressPanelViewModel : PropertyChangedBase
   {
 
+    #region creator
     /// <summary>
     /// Initializes a new instance of the <see cref="ProgressPanelViewModel"/> class providing a view model for <see cref="ProgressPanel"/> controlling content of the
     /// <see cref="ProgressBar"/>, and labels: "Website URL, Version, Phase
@@ -43,9 +45,12 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     public ProgressPanelViewModel(IEventAggregator eventAggregator)
     {
       m_EventAggregator = eventAggregator;
-      this.m_EventAggregator.GetEvent<ProgressChangeEvent>().Subscribe(this.ProgressUpdatedHandler, ThreadOption.UIThread);
-      this.m_EventAggregator.GetEvent<SharePointWebsiteEvent>().Subscribe(this.SharePointWebsiteDataHandler, ThreadOption.UIThread);
+      this.m_EventAggregator.GetEvent<ProgressChangeEvent>().Subscribe(this.ProgressUpdatedHandler, ThreadOption.PublisherThread);
+      this.m_EventAggregator.GetEvent<SharePointWebsiteEvent>().Subscribe(this.SharePointWebsiteDataHandler, ThreadOption.PublisherThread);
+      this.m_EventAggregator.GetEvent<MachineStateNameEvent>().Subscribe(this.MachineStateNameEventHandler, ThreadOption.PublisherThread);
     }
+
+    #endregion
 
     #region public UI API
     /// <summary>
@@ -127,15 +132,19 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         RaiseHandler<System.Windows.Visibility>(value, ref b_VersionVisibility, "VersionVisibility", this);
       }
     }
-    public string MachineState
+    /// <summary>
+    /// Gets or sets the state name of the machine.
+    /// </summary>
+    /// <value>The state of the machine.</value>
+    public string MachineStateName
     {
       get
       {
-        return b_MachineState;
+        return b_MachineStateName;
       }
       set
       {
-        RaiseHandler<string>(value, ref b_MachineState, "MachineState", this);
+        RaiseHandler<string>(value, ref b_MachineStateName, "MachineStateName", this);
       }
     }
     #endregion                
@@ -154,6 +163,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       else
         VersionVisibility = Visibility.Visible;
     }
+    private void MachineStateNameEventHandler(string machineStateName)
+    {
+      MachineStateName = machineStateName;
+    }
     private void UpdateProgressBar(int progress)
     {
       if (progress <= 0)
@@ -171,12 +184,12 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     private const int ProgressBarMaximumDefault = 100;
 
     //backing fields
-    private string b_URL;
-    private Version b_CurrentContentVersion;
+    private string b_URL = "---";
+    private Version b_CurrentContentVersion = null;
     private Visibility b_VersionVisibility = Visibility.Collapsed;
     private int b_Progress;
     private int b_ProgressBarMaximum = ProgressBarMaximumDefault;
-    private string b_MachineState;
+    private string b_MachineStateName = " --- ";
     #endregion
 
   }

@@ -1,6 +1,6 @@
 ﻿//<summary>
 //  Title   : ShellViewModel
-//  System  : Microsoft VisulaStudio 2013 / C#
+//  System  : Microsoft VisualStudio 2013 / C#
 //  $LastChangedDate$
 //  $Rev$
 //  $LastChangedBy$
@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-
+      
 using CAS.Common.ViewModel.Wizard;
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
 using Microsoft.Practices.Prism.PubSubEvents;
@@ -23,10 +23,23 @@ using System.ComponentModel.Composition;
 
 namespace CAS.SmartFactory.Shepherd.Client.Management
 {
+  /// <summary>
+  /// Class ShellViewModel.
+  /// </summary>
   [Export]
   [PartCreationPolicy(CreationPolicy.Shared)]
   public class ShellViewModel : StateMachineContext
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ShellViewModel"/> class.
+    /// </summary>
+    /// <param name="regionManager">The region manager service.</param>
+    /// <param name="eventAggregator">The event aggregator service.</param>
+    /// <exception cref="System.ArgumentNullException">
+    /// watchListService
+    /// or
+    /// eventAggregator
+    /// </exception>
     [ImportingConstructor]
     public ShellViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
     {
@@ -45,6 +58,15 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     {
       base.ProgressChang(activationMachine, entitiesState);
       m_EventAggregator.GetEvent<ProgressChangeEvent>().Publish(entitiesState);
+    }
+
+    /// <summary>
+    /// Reports state name change.
+    /// </summary>
+    /// <param name="machineStateName">Current name of the machine state.</param>
+    protected override void StateNameProgressChang(string machineStateName)
+    {
+      m_EventAggregator.GetEvent<MachineStateNameEvent>().Publish(machineStateName);
     }
     private IRegionManager m_RegionManager = null;
     private IEventAggregator m_EventAggregator = null;
