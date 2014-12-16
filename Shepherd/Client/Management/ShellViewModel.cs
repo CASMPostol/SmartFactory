@@ -14,9 +14,11 @@
 //</summary>
 
 using CAS.Common.ViewModel.Wizard;
+using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 using System;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 
 namespace CAS.SmartFactory.Shepherd.Client.Management
@@ -39,7 +41,11 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
       }
       m_EventAggregator = eventAggregator;
     }
-
+    public override void ProgressChang(IAbstractMachineState activationMachine, ProgressChangedEventArgs entitiesState)
+    {
+      base.ProgressChang(activationMachine, entitiesState);
+      m_EventAggregator.GetEvent<ProgressChangeEvent>().Publish(entitiesState);
+    }
     private IRegionManager m_RegionManager = null;
     private IEventAggregator m_EventAggregator = null;
 

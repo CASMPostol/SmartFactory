@@ -12,9 +12,10 @@
                     <Image Source="Imgs/ButtonHelp.png" Width="18" Height="18" ToolTipService.ToolTip="View help" />
                 </StackPanel>
             </Button>
-            <ProgressBar x:Name="x_ProgressBar" Value="{Binding Path=Progress}" MinWidth="500" HorizontalAlignment="Stretch"  Minimum="0" Foreground="#FFaed581" VerticalAlignment="Stretch" />
-            <Label ContentStringFormat="Website url: {0}" Content="{Binding Path=URL}" Margin="5" Style="{DynamicResource CASLabel}"/>
-            <Label ContentStringFormat="IPR version: {0}" Content="{Binding Path=CurrentContentVersion}" Margin="5" Style="{DynamicResource CASLabel}"/>
+            <ProgressBar x:Name="x_ProgressBar" Value="{Binding Path=Progress}" MinWidth="500" HorizontalAlignment="Stretch"  Minimum="0" Maximum="{Binding Path=ProgressBarMaximum}" 
+                         Foreground="#FFaed581" VerticalAlignment="Stretch" />
+            <Label ContentStringFormat="Website URL: {0}" Content="{Binding Path=URL}" Margin="5" Style="{DynamicResource CASLabel}"/>
+            <Label ContentStringFormat="Version: {0}" Content="{Binding Path=CurrentContentVersion}" Margin="5" Style="{DynamicResource CASLabel}" Visibility="{Binding Path=VersionVisibility}"/>
             <Label  ContentStringFormat="Phase: {0}" Content="{Binding Path=MachineState, Mode=OneWay}" IsEnabled="True" Margin="5" Style="{DynamicResource CASLabel}"/>
         </StackPanel>
     </Grid>
