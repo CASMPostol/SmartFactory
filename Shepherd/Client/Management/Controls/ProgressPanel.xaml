@@ -16,7 +16,7 @@
                          Foreground="#FFaed581" VerticalAlignment="Stretch" />
             <Label ContentStringFormat="Website URL: {0}" Content="{Binding Path=URL}" Margin="5" Style="{DynamicResource CASLabel}"/>
             <Label ContentStringFormat="Version: {0}" Content="{Binding Path=CurrentContentVersion}" Margin="5" Style="{DynamicResource CASLabel}" Visibility="{Binding Path=VersionVisibility}"/>
-            <Label  ContentStringFormat="Phase: {0}" Content="{Binding Path=MachineState, Mode=OneWay}" IsEnabled="True" Margin="5" Style="{DynamicResource CASLabel}"/>
+            <Label  ContentStringFormat="Phase: {0}" Content="{Binding Path=MachineStateName, Mode=OneWay}" IsEnabled="True" Margin="5" Style="{DynamicResource CASLabel}"/>
         </StackPanel>
     </Grid>
 </UserControl>
