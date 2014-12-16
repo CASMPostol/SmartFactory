@@ -5,6 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" d:DesignWidth="300" Height="620">
     <Grid>
-        <ListView  x:Name="x_ListBox" Style="{DynamicResource CASListView}" ItemsSource="{Binding ProgressList}" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10" />
+        <ListView MinWidth="400" Width="600" MaxWidth="850" Height="400" x:Name="x_ListBox" Style="{DynamicResource CASListView}" ItemsSource="{Binding ProgressList}" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10" />
     </Grid>
 </UserControl>

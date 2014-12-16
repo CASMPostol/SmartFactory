@@ -10,7 +10,7 @@
         ScrollViewer.VerticalScrollBarVisibility="Auto"
         Icon="SHR_Ico.ico"
         MinHeight="768"
-        MinWidth="1366">
+        MinWidth="1500">
     <Window.Background>
         <ImageBrush ImageSource="Imgs/Background.jpg"  Stretch="UniformToFill"/>
     </Window.Background>
@@ -35,8 +35,8 @@
                 <RowDefinition Height="70" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="850" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" MinWidth="850" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <!-- Main Action Region -->
             <Grid x:Name="DetailsGrid" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Margin="0" VerticalAlignment="Top">
