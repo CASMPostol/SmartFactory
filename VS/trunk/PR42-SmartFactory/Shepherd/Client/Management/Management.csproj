@@ -146,6 +146,7 @@
     <Compile Include="Controls\ProgressPanel.xaml.cs">
       <DependentUpon>ProgressPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProgressPanelViewModel.cs" />
     <Compile Include="Controls\RoundedBox.xaml.cs">
       <DependentUpon>RoundedBox.xaml</DependentUpon>
     </Compile>
@@ -161,7 +162,11 @@
     <Compile Include="Infrastructure\Behaviors\AutoPopulateExportedViewsBehavior.cs" />
     <Compile Include="Infrastructure\Behaviors\IViewRegionRegistration.cs" />
     <Compile Include="Infrastructure\Behaviors\ViewExportAttribute.cs" />
+    <Compile Include="Infrastructure\ISharePointWebsiteData.cs" />
+    <Compile Include="Infrastructure\ProgressChangeEvent.cs" />
     <Compile Include="Infrastructure\RegionNames.cs" />
+    <Compile Include="Infrastructure\SharePointWebsiteData.cs" />
+    <Compile Include="Infrastructure\SharePointWebsiteEvent.cs" />
     <Compile Include="InputData\RoutesCatalog.cs">
       <DependentUpon>RoutesCatalog.xsd</DependentUpon>
     </Compile>

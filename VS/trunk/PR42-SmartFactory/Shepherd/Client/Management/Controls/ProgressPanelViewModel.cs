@@ -1,0 +1,183 @@
+﻿//<summary>
+//  Title   : ProgressPanelViewModel
+//  System  : Microsoft VisualStudio 2013 / C#
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using CAS.Common.ComponentModel;
+using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
+using Microsoft.Practices.Prism.PubSubEvents;
+using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.Windows;
+
+/// <summary>
+/// The Controls namespace.
+/// </summary>
+namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
+{
+  /// <summary>
+  /// Class ProgressPanelViewModel.
+  /// </summary>
+  [Export]
+  public class ProgressPanelViewModel : PropertyChangedBase
+  {
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ProgressPanelViewModel"/> class providing a view model for <see cref="ProgressPanel"/> controlling content of the
+    /// <see cref="ProgressBar"/>, and labels: "Website URL, Version, Phase
+    /// </summary>
+    /// <param name="eventAggregator">The event aggregator.</param>
+    [ImportingConstructor]
+    public ProgressPanelViewModel(IEventAggregator eventAggregator)
+    {
+      m_EventAggregator = eventAggregator;
+      this.m_EventAggregator.GetEvent<ProgressChangeEvent>().Subscribe(this.ProgressUpdatedHandler, ThreadOption.UIThread);
+      this.m_EventAggregator.GetEvent<SharePointWebsiteEvent>().Subscribe(this.SharePointWebsiteDataHandler, ThreadOption.UIThread);
+    }
+
+    #region public UI API
+    /// <summary>
+    /// Gets or sets the progress.
+    /// </summary>
+    /// <value>
+    /// The progress.
+    /// </value>
+    public int Progress
+    {
+      get
+      {
+        return b_Progress;
+      }
+      set
+      {
+        RaiseHandler<int>(value, ref b_Progress, "Progress", this);
+      }
+    }
+    /// <summary>
+    /// Gets or sets the progress bar maximum.
+    /// </summary>
+    /// <value>
+    /// The progress bar maximum.
+    /// </value>
+    public int ProgressBarMaximum
+    {
+      get
+      {
+        return b_ProgressBarMaximum;
+      }
+      set
+      {
+        RaiseHandler<int>(value, ref b_ProgressBarMaximum, "ProgressBarMaximum", this);
+      }
+    }
+    /// <summary>
+    /// Gets or sets the URL of the SharePoint website.
+    /// </summary>
+    /// <value>The URL of the website.</value>
+    public string URL
+    {
+      get
+      {
+        return b_URL;
+      }
+      set
+      {
+        RaiseHandler<string>(value, ref b_URL, "URL", this);
+      }
+    }
+    /// <summary>
+    /// Gets or sets the current content version of the SharePoint website.
+    /// </summary>
+    /// <value>The current content version.</value>
+    public Version CurrentContentVersion
+    {
+      get
+      {
+        return b_CurrentContentVersion;
+      }
+      set
+      {
+        RaiseHandler<Version>(value, ref b_CurrentContentVersion, "CurrentContentVersion", this);
+      }
+    }
+    /// <summary>
+    /// Gets or sets the version visibility. By default it is Collapsed <see cref="Visibility"/>
+    /// </summary>
+    /// <value>The version visibility.</value>
+    public Visibility VersionVisibility
+    {
+      get
+      {
+        return b_VersionVisibility;
+      }
+      set
+      {
+        RaiseHandler<System.Windows.Visibility>(value, ref b_VersionVisibility, "VersionVisibility", this);
+      }
+    }
+    public string MachineState
+    {
+      get
+      {
+        return b_MachineState;
+      }
+      set
+      {
+        RaiseHandler<string>(value, ref b_MachineState, "MachineState", this);
+      }
+    }
+    #endregion                
+
+    #region private
+    private void ProgressUpdatedHandler(ProgressChangedEventArgs progress)
+    {
+      UpdateProgressBar(progress.ProgressPercentage);
+    }
+    private void SharePointWebsiteDataHandler(ISharePointWebsiteData data)
+    {
+      URL = data.URL;
+      CurrentContentVersion = data.CurrentContentVersion;
+      if (data.CurrentContentVersion == null)
+        VersionVisibility = Visibility.Collapsed;
+      else
+        VersionVisibility = Visibility.Visible;
+    }
+    private void UpdateProgressBar(int progress)
+    {
+      if (progress <= 0)
+      {
+        Progress = 0;
+        ProgressBarMaximum = ProgressBarMaximumDefault;
+        return;
+      }
+      while (ProgressBarMaximum - Progress < progress)
+        ProgressBarMaximum *= 2;
+      Progress += progress;
+    }
+    private IEventAggregator m_EventAggregator;
+    private ObservableCollection<string> b_ProgressList;
+    private const int ProgressBarMaximumDefault = 100;
+
+    //backing fields
+    private string b_URL;
+    private Version b_CurrentContentVersion;
+    private Visibility b_VersionVisibility = Visibility.Collapsed;
+    private int b_Progress;
+    private int b_ProgressBarMaximum = ProgressBarMaximumDefault;
+    private string b_MachineState;
+    #endregion
+
+  }
+}
