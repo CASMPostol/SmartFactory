@@ -320,22 +320,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\ico.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\help.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\SHR_Ico.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="SHR_Ico.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\status.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\help.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\EX07-PrismV5SourcePrismLibrary\Desktop\Prism.MefExtensions\Prism.MefExtensions.Desktop.csproj">
@@ -380,6 +365,13 @@
     <Resource Include="Imgs\CleanupIcon.png" />
     <Resource Include="Imgs\SettingsIcon.png" />
     <Resource Include="Imgs\SynchronizeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imgs\help.ico" />
+    <Resource Include="Imgs\help.png" />
+    <Resource Include="Imgs\ico.png" />
+    <Resource Include="Imgs\SHR_Ico.ico" />
+    <Resource Include="Imgs\status.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
