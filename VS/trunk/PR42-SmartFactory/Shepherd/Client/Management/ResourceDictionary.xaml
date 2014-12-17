@@ -317,12 +317,22 @@
 		<Setter Property="FontSize" Value="13.333"/>
 		<Setter Property="Foreground" Value="#FFF9F9F9"/>
 	</Style>
+    <Style x:Key="CASTextBlockBlack" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="13.333"/>
+        <Setter Property="Foreground" Value="#000000"/>
+    </Style>
     <!-- Expander -->
 	<Style x:Key="CASExpander" TargetType="{x:Type Expander}">
 		<Setter Property="FontFamily" Value="Segoe UI"/>
 		<Setter Property="FontSize" Value="13.333"/>
 		<Setter Property="Foreground" Value="#FFF9F9F9"/>
 	</Style>
+    <Style x:Key="CASExpanderBlack" TargetType="{x:Type Expander}">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="13.333"/>
+        <Setter Property="Foreground" Value="#000000"/>
+    </Style>
     <!-- Label -->
 	<Style x:Key="CASLabel" TargetType="{x:Type Label}">
 		<Setter Property="FontFamily" Value="Segoe UI"/>

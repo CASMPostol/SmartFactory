@@ -7,20 +7,44 @@
         Width="Auto" 
         MinHeight="400" 
         MinWidth="500"
-        WindowStyle="ThreeDBorderWindow"
-        Background="#FF354B5F">
-    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <TextBlock Margin="5" Grid.Row="0" Foreground="White" TextWrapping="Wrap">
-            <Bold>Shepherd Route Editor - Help</Bold><LineBreak/>
-            Here are answers to common questions about Shepherd Route Editor<LineBreak/>
-            <Expander  Header="How to create XML file?" Foreground="White">Copy data required from Global Logistics Price List to the excel file maped with schema. Selece "Developer" and Export option. Save to the xml file.</Expander><LineBreak/>
-            <Expander Header="How to connect to the Shepherd website?" Foreground="White">Enter Shepherd website URL to the text box and press Connect button. When the connection is established and all required dictionary data will be read, connection status will change from False to True.</Expander><LineBreak/>
-            <Expander Header="Is Routs For Year required?" Foreground="White">Title for each route is created as a combination of variables: [Year] To: [City], by: [Partner], of: [Commodity]. [City], [Partner] and [Commodity] are taken directly from route. [Year] must be entered manual - this value will apply to all routes imported.</Expander><LineBreak/>
-            <Expander Header="How to import XML file?" Foreground="White">Press Import XML button and browse for xml file. All data read from selected xml file will be displayed at proper tabs.</Expander><LineBreak/>
-            <Expander Header="How to upload data from XML file to Shepherd website?" Foreground="White">Connect to the Shepherd website. Import xml file and press Uptade routes button. When finished, messege about successful import will be displayed at Import log tab.</Expander>
-        </TextBlock>
-    </Grid>
+        WindowStyle="ThreeDBorderWindow">
+    <Window.Background>
+        <ImageBrush ImageSource="Imgs/Background.jpg"  Stretch="Fill"/>
+    </Window.Background>
+    <ScrollViewer>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+                <TextBlock Margin="5" Grid.Row="0" TextWrapping="Wrap">
+            <Bold>Shepherd Management Wizard - Help</Bold><LineBreak/>
+            Here are answers to common questions about Shepherd Management Wizard
+                </TextBlock>
+                <Expander  Header="How to create XML file?" Style="{DynamicResource CASExpanderBlack}">
+                    <TextBlock Style="{DynamicResource CASTextBlockBlack}" Margin="5" TextWrapping="Wrap">
+                Copy data required from Global Logistics Price List to the excel file maped with schema. Selece "Developer" and Export option. Save to the xml file.
+                    </TextBlock>
+                </Expander>
+
+                <Expander Header="How to connect to the Shepherd website?">
+                    <TextBlock Style="{DynamicResource CASTextBlockBlack}" Margin="5" TextWrapping="Wrap">
+                Enter Shepherd website URL to the text box and press Connect button. When the connection is established and all required dictionary data will be read, connection status will change from False to True.
+                    </TextBlock>
+                </Expander>
+                <Expander Header="Is Routs For Year required?">
+                    <TextBlock Style="{DynamicResource CASTextBlockBlack}" Margin="5" TextWrapping="Wrap">
+                Title for each route is created as a combination of variables: [Year] To: [City], by: [Partner], of: [Commodity]. [City], [Partner] and [Commodity] are taken directly from route. [Year] must be entered manual - this value will apply to all routes imported.
+                    </TextBlock>
+                </Expander>
+                <Expander Header="How to import XML file?">
+                    <TextBlock Style="{DynamicResource CASTextBlockBlack}" Margin="5" TextWrapping="Wrap">
+                Press Import XML button and browse for xml file. All data read from selected xml file will be displayed at proper tabs.
+                    </TextBlock>
+                </Expander>
+                <Expander Header="How to upload data from XML file to Shepherd website?">
+                    <TextBlock Style="{DynamicResource CASTextBlockBlack}" Margin="5" TextWrapping="Wrap">
+            Connect to the Shepherd website. Import xml file and press Uptade routes button. When finished, messege about successful import will be displayed at Import log tab.
+                    </TextBlock>
+                </Expander>
+            </StackPanel>
+        </DockPanel>
+    </ScrollViewer>
 </Window>

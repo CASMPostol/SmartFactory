@@ -9,10 +9,10 @@
         ScrollViewer.HorizontalScrollBarVisibility="Auto" 
         ScrollViewer.VerticalScrollBarVisibility="Auto"
         Icon="SHR_Ico.ico"
-        MinHeight="768"
+        MinHeight="800"
         MinWidth="1500">
     <Window.Background>
-        <ImageBrush ImageSource="Imgs/Background.jpg"  Stretch="UniformToFill"/>
+        <ImageBrush ImageSource="Imgs/Background.jpg"  Stretch="Fill"/>
     </Window.Background>
     <Grid>
         <!-- Main Grid Definition -->
