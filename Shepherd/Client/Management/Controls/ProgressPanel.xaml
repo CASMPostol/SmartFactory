@@ -9,7 +9,7 @@
         <StackPanel Background="#FF689F38" Orientation="Horizontal" DockPanel.Dock="Top" ToolTip="Information about the application and progress" Height="40"  >
             <Button Click="HelpButton_Click" Style="{DynamicResource CASButtonGray}" Margin="55,5,5,5" Width="20" Height="20" HorizontalContentAlignment="Right">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Imgs/ButtonHelp.png" Width="18" Height="18" ToolTipService.ToolTip="View help" />
+                    <Image Source="../Imgs/ButtonHelp.png" Width="18" Height="18" ToolTipService.ToolTip="View help" />
                 </StackPanel>
             </Button>
             <ProgressBar x:Name="x_ProgressBar" Value="{Binding Path=Progress}" MinWidth="500" HorizontalAlignment="Stretch"  Minimum="0" Maximum="{Binding Path=ProgressBarMaximum}" 
