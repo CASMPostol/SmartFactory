@@ -104,21 +104,24 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     {
       e.Cancel = false;
       e.Result = null;
-      string _connectionString = this.GetConnectionString();
+      ConnectionDescription _connectionDescription = this.GetConnectionData;
+      string _connectionString = this.GetConnectionString(_connectionDescription);
       ReportProgress(this, new ProgressChangedEventArgs(1, String.Format("Connection string {0}", _connectionString)));
       System.Data.IDbConnection _connection = new SqlConnection(_connectionString);
       SHRARCHIVE _entities = new SHRARCHIVE(_connection);
+      ConnectionData _cd = ConnectionData.ThisInstance;
       if (_entities.DatabaseExists())
       {
         ReportProgress(this, new ProgressChangedEventArgs(1, "The specified database exists."));
-        GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Cleanup, x => ConnectionData.ThisInstance.CleanupLastRunBy = x, x => ConnectionData.ThisInstance.CleanupLastRunDate = x);
-        GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Synchronization, x => ConnectionData.ThisInstance.SyncLastRunBy = x, x => ConnectionData.ThisInstance.SyncLastRunDate = x);
-        GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Archiving, x => ConnectionData.ThisInstance.ArchivingLastRunBy = x, x => ConnectionData.ThisInstance.ArchivingLastRunDate);
-        ConnectionData.ThisInstance.SQLConnected = true;
+        GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Cleanup, x => _cd.CleanupLastRunBy = x, x => _cd.CleanupLastRunDate = x);
+        GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Synchronization, x => _cd.SyncLastRunBy = x, x => _cd.SyncLastRunDate = x);
+        GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Archiving, x => _cd.ArchivingLastRunBy = x, x => _cd.ArchivingLastRunDate);
+        _cd.SQLConnected = true;
       }
       else
         ReportProgress(this, new ProgressChangedEventArgs(1, "The specified database cannot be opened."));
-      ConnectionData.ThisInstance.SPConnected = NsSPLinq.Connectivity.TestConnection(SharePointServerURL, x => ReportProgress(this, x));
+      _cd.SPConnected = NsSPLinq.Connectivity.TestConnection(_connectionDescription.SharePointServerURL, x => ReportProgress(this, x));
+      e.Result = _cd;
     }
     /// <summary>
     /// Called when worker task has been completed.
@@ -127,7 +130,14 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     /// <exception cref="System.NotImplementedException"></exception>
     protected override void RunWorkerCompleted(object result)
     {
-      Context.EnabledEvents = StateMachineEvents.LeftButtonEvent | StateMachineEvents.LeftMiddleButtonEvent | StateMachineEvents.RightButtonEvent | StateMachineEvents.RightMiddleButtonEvent;
+      ConnectionData _cdResult = (ConnectionData)result;
+      StateMachineEvents _events = StateMachineEvents.RightButtonEvent | StateMachineEvents.RightMiddleButtonEvent;
+      if (_cdResult.SPConnected)
+        _events |=  StateMachineEvents.LeftMiddleButtonEvent;
+      if (_cdResult.SPConnected)
+        _events |= StateMachineEvents.LeftMiddleButtonEvent;
+      Context.EnabledEvents = _events;
+      DataContentState = _cdResult;
     }
     /// <summary>
     ///  Called when only cancel button must be active - after starting background worker.
@@ -143,21 +153,34 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     #endregion
 
     #region abstract
+    protected struct ConnectionDescription
+    {
+      /// <summary>
+      /// Gets the URL of the SharePoint application website.
+      /// </summary>
+      /// <value>The URL.</value>
+      internal string SharePointServerURL;
+      /// <summary>
+      /// Gets the name of the SQL database containing backup of SharePoint application data content.
+      /// </summary>
+      /// <value>The name of the database.</value>
+      internal string DatabaseName;
+      /// <summary>
+      /// Gets the SQL server part of the connection string.
+      /// </summary>
+      /// <value>The SQL server address.</value>
+      internal string SQLServer;
+    }
     /// <summary>
-    /// Gets the URL of the SharePoint application website.
+    /// Gets the get connection data.
     /// </summary>
-    /// <value>The URL.</value>
-    protected abstract string SharePointServerURL { get; }
+    /// <value>The get connection data.</value>
+    protected abstract ConnectionDescription GetConnectionData { get; }
     /// <summary>
-    /// Gets the name of the SQL database containing backup of SharePoint application data content.
+    /// Sets the state of the data content.
     /// </summary>
-    /// <value>The name of the database.</value>
-    protected abstract string DatabaseName { get; }
-    /// <summary>
-    /// Gets the SQL server part of the connection string.
-    /// </summary>
-    /// <value>The SQL server address.</value>
-    protected abstract string SQLServer { get; }
+    /// <value>The state of the data content.</value>
+    internal protected abstract Services.ConnectionData DataContentState { set; }
     #endregion
 
     #region private
@@ -189,9 +212,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     private ConnectCancelTemplate m_ButtonsTemplate = null;
     private Action<object>[] m_StateMachineActionsArray;
-    private string GetConnectionString()
+    private string GetConnectionString(ConnectionDescription data)
     {
-      return String.Format(Properties.Settings.Default.ConnectionString, SQLServer, DatabaseName);
+      return String.Format(Properties.Settings.Default.ConnectionString, data.SQLServer, data.DatabaseName);
     }
     #endregion
 

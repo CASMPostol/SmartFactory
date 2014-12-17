@@ -37,11 +37,19 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Infrastructure
     #endregion
 
     #region ISharePointWebsiteData
+    /// <summary>
+    /// Gets the URL of the SharePoint website.
+    /// </summary>
+    /// <value>The URL.</value>
     public string URL
     {
       get;
       private set;
     }
+    /// <summary>
+    /// Gets the current content version of the SharePoint website.
+    /// </summary>
+    /// <value>The current content version.</value>
     public Version CurrentContentVersion
     {
       get;
