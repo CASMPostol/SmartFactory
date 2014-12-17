@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -41,6 +41,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
           reportProgress(new ProgressChangedEventArgs(1, String.Format("Trying to get access to SharePoint content at {0}.", sharePointServerURL)));
           if (!_edc.Currency.ToList<Currency>().Any())
             throw new ArgumentException("The currency list is empty. It must be added at least one element before any further operations.");
+          reportProgress(new ProgressChangedEventArgs(1, "The target SharePoint content exist."));
           return true;
         }
       }

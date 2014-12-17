@@ -20,7 +20,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Services
   /// <summary>
   /// Class ConnectionData contains recent information gathered during connection to the SharePoint and SQL database
   /// </summary>
-  internal class ConnectionData
+  public class ConnectionData
   {
     /// <summary>
     /// Gets this service.
