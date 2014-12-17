@@ -15,6 +15,7 @@
 //</summary>
 
 using CAS.Common.ComponentModel;
+using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.PubSubEvents;
 using System;
 using System.Collections.ObjectModel;
@@ -55,9 +56,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     /// </summary>
     /// <param name="eventAggregator">The event aggregator.</param>
     [ImportingConstructor]
-    public LogPanelViewModel(IEventAggregator eventAggregator)
+    public LogPanelViewModel(IEventAggregator eventAggregator, ILoggerFacade logger)
     {
       m_EventAggregator = eventAggregator;
+      m_ILoggerFacade = logger;
       this.m_EventAggregator.GetEvent<Infrastructure.ProgressChangeEvent>().Subscribe(this.ProgressUpdatedHandler, ThreadOption.UIThread);
     }
     #endregion
@@ -67,8 +69,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     {
       if (progress.UserState is string)
         ProgressList.Add(String.Format("{0:T}: {1}", DateTime.Now, (String)progress.UserState));
+      Services.NamedTraceLogger.Logger.TraceProgressChange(progress);
     }
     private IEventAggregator m_EventAggregator;
+    private ILoggerFacade m_ILoggerFacade;
     private ObservableCollection<string> b_ProgressList = new ObservableCollection<string>();
     #endregion
 

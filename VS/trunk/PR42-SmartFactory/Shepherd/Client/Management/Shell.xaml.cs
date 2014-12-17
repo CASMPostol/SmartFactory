@@ -82,6 +82,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     {
       Properties.Settings.Default.Save();
       ViewModel.Dispose();
+      Services.NamedTraceLogger.Logger.Dispose();
       base.OnClosing(e);
     }
 

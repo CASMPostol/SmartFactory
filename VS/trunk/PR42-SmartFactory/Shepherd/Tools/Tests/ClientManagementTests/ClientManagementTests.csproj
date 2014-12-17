@@ -69,6 +69,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ManagerExportedViewsFixture.cs" />
     <Compile Include="ButtonsPanelViewModelUnitTest.cs" />
+    <Compile Include="NamedTraceLoggerUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
