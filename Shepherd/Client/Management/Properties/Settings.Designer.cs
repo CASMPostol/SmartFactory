@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/sites/shepherd")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://casas:11227/sites/shepherd")]
         public string SiteURL {
             get {
                 return ((string)(this["SiteURL"]));
@@ -37,7 +37,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Shepherd")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SHRDEV")]
         public string SQLDatabaseName {
             get {
                 return ((string)(this["SQLDatabaseName"]));
@@ -107,6 +107,39 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Properties {
             }
             set {
                 this["RunDateError"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("CAS.SmartFactory.Shepherd.Client")]
+        public string TraceSourceName {
+            get {
+                return ((string)(this["TraceSourceName"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("CAS.SmartFactory.Shepherd.Log")]
+        public string LogFileName {
+            get {
+                return ((string)(this["LogFileName"]));
+            }
+            set {
+                this["LogFileName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("All")]
+        public global::System.Diagnostics.SourceLevels LogSourceLevel {
+            get {
+                return ((global::System.Diagnostics.SourceLevels)(this["LogSourceLevel"]));
+            }
+            set {
+                this["LogSourceLevel"] = value;
             }
         }
     }

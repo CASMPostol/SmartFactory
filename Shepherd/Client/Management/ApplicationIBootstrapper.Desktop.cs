@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.MefExtensions;
 
@@ -21,14 +21,18 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
   /// <summary>
   /// ApplicationIBootstrapper part that defines the logger 
   /// </summary>
-  internal partial class ApplicationIBootstrapper 
+  internal partial class ApplicationIBootstrapper
+  {
+
+    /// <summary>
+    /// Create the <see cref="ILoggerFacade" /> used by the bootstrapper.
+    /// </summary>
+    /// <returns>ILoggerFacade.</returns>
+    /// <remarks>The base implementation returns a new TextLogger.</remarks>
+    protected override ILoggerFacade CreateLogger()
     {
-      private readonly EnterpriseLibraryLoggerAdapter _logger = new EnterpriseLibraryLoggerAdapter();
-
-      protected override ILoggerFacade CreateLogger()
-      {
-        return _logger;
-      }
-
+      return Services.NamedTraceLogger.Logger;
     }
+
+  }
 }
