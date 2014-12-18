@@ -16,11 +16,11 @@
 using CAS.Common.ViewModel.Wizard;
 using CAS.Common.ViewModel.Wizard.ButtonsPanelStateTemplates;
 using CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL;
-using NsSPLinq = CAS.SmartFactory.Shepherd.Client.DataManagement.Linq;
 using CAS.SmartFactory.Shepherd.Client.Management.Services;
 using System;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using NsSPLinq = CAS.SmartFactory.Shepherd.Client.DataManagement.Linq;
 
 /// <summary>
 /// The StateMachines namespace.
@@ -34,6 +34,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     where ViewModelContextType : IViewModelContext
   {
 
+    #region creator
     /// <summary>
     /// Initializes a new instance of the <see cref="SetupDataDialogMachine"/> class.
     /// </summary>
@@ -50,19 +51,17 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftButtonEvent] = x => this.OnRouteEditCommand();
       m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftMiddleButtonEvent] = x => this.OnArchiveCommand();
     }
+    #endregion
 
-    #region IAbstractMachineState
+    #region BackgroundWorkerMachine
     /// <summary>
     /// Gets the state machine actions array.
     /// </summary>
-    /// <value>The state machine actions array.</value>
-    /// <exception cref="System.NotImplementedException"></exception>
+    /// <value>The current state machine actions array.</value>
     public override Action<object>[] StateMachineActionsArray
     {
       get { return m_StateMachineActionsArray; }
     }
-    #endregion
-
     /// <summary>
     /// Called on entering new state.
     /// </summary>
@@ -71,19 +70,15 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       base.OnEnteringState();
       Context.EnabledEvents = StateMachineEvents.RightButtonEvent | StateMachineEvents.RightMiddleButtonEvent;
     }
-    public override void OnCancellation()
-    {
-      base.OnCancellation();
-    }
+    /// <summary>
+    /// Called when exception has occurred. Make context aware about exception.
+    /// </summary>
+    /// <param name="exception">The exception.</param>
     public override void OnException(Exception exception)
     {
       base.OnException(exception);
-      m_ButtonsTemplate.OnlyTemplate();
-    }
-    public override void OnExitingState()
-    {
-      base.OnExitingState();
-      //Context.SaveSettings();
+      //TODO Improve usage of teh mask bits. 
+      Context.EnabledEvents = StateMachineEvents.RightButtonEvent | StateMachineEvents.RightMiddleButtonEvent;
     }
     /// <summary>
     /// Returns a <see cref="System.String" /> that represents this instance.
@@ -93,7 +88,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     {
       return Properties.Resources.SetupDataDialogMachineName;
     }
-    #region BackgroundWorkerMachine
     /// <summary>
     /// Handles the DoWork event of the BackgroundWorker control.
     /// </summary>
@@ -146,6 +140,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     {
       m_ButtonsTemplate.OnlyCancel();
     }
+    /// <summary>
+    /// Gets the state of the buttons panel.
+    /// </summary>
+    /// <value>The state of the buttons panel.</value>
     protected override ButtonsPanelState ButtonsPanelState
     {
       get { return m_ButtonsTemplate; }

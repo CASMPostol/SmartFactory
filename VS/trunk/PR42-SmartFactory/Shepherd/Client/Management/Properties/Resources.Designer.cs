@@ -86,5 +86,23 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Properties {
                 return ResourceManager.GetString("UnhandledException", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http:\\ - Error -.
+        /// </summary>
+        internal static string URLError {
+            get {
+                return ResourceManager.GetString("URLError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http:\\ - ??? -.
+        /// </summary>
+        internal static string URLUnknown {
+            get {
+                return ResourceManager.GetString("URLUnknown", resourceCulture);
+            }
+        }
     }
 }

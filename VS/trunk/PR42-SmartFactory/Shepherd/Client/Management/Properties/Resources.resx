@@ -126,4 +126,10 @@
   <data name="UnhandledException" xml:space="preserve">
     <value>An unhandled exception occurred, and the application is terminating. For more information, see your Application log.</value>
   </data>
+  <data name="URLError" xml:space="preserve">
+    <value>http:\\ - Error -</value>
+  </data>
+  <data name="URLUnknown" xml:space="preserve">
+    <value>http:\\ - ??? -</value>
+  </data>
 </root>

@@ -19,8 +19,9 @@ using System.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
 {
+
   /// <summary>
-  /// Class Connectivity - helper class to test connectivity with SharePoint website and SQL data base.
+  /// Class Connectivity - helper class to test connectivity with SharePoint website.
   /// </summary>
   public static class Connectivity
   {
@@ -53,4 +54,5 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
     }
 
   }
+
 }

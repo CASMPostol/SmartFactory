@@ -17,7 +17,6 @@ using CAS.Common.ComponentModel;
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
 using Microsoft.Practices.Prism.PubSubEvents;
 using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Windows;
@@ -49,7 +48,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       this.m_EventAggregator.GetEvent<SharePointWebsiteEvent>().Subscribe(this.SharePointWebsiteDataHandler, ThreadOption.PublisherThread);
       this.m_EventAggregator.GetEvent<MachineStateNameEvent>().Subscribe(this.MachineStateNameEventHandler, ThreadOption.PublisherThread);
     }
-
     #endregion
 
     #region public UI API
@@ -147,7 +145,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         RaiseHandler<string>(value, ref b_MachineStateName, "MachineStateName", this);
       }
     }
-    #endregion                
+    #endregion
 
     #region private
     private void ProgressUpdatedHandler(ProgressChangedEventArgs progress)
@@ -156,7 +154,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     }
     private void SharePointWebsiteDataHandler(ISharePointWebsiteData data)
     {
-      URL = data.URL;
+      URL = string.IsNullOrEmpty(data.URL) ? Properties.Resources.URLError : data.URL;
       CurrentContentVersion = data.CurrentContentVersion;
       if (data.CurrentContentVersion == null)
         VersionVisibility = Visibility.Collapsed;
@@ -180,11 +178,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       Progress += progress;
     }
     private IEventAggregator m_EventAggregator;
-    private ObservableCollection<string> b_ProgressList;
     private const int ProgressBarMaximumDefault = 100;
-
     //backing fields
-    private string b_URL = "---";
+    private string b_URL = Properties.Resources.URLUnknown;
     private Version b_CurrentContentVersion = null;
     private Visibility b_VersionVisibility = Visibility.Collapsed;
     private int b_Progress;

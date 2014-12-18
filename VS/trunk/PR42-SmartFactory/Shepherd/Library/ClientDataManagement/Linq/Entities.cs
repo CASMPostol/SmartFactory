@@ -28,7 +28,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
     }
 
     /// <summary>
-    /// Alarms & Events list
+    /// Alarms and Events list
     /// </summary>
     [Microsoft.SharePoint.Linq.ListAttribute(Name = "Alarms And Events")]
     public Microsoft.SharePoint.Linq.EntityList<AlarmsAndEvents> AlarmsAndEvents
@@ -1052,7 +1052,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
   }
 
   /// <summary>
-  /// Alarms & Events List Content Type
+  /// Alarms and Events List Content Type
   /// </summary>
   [Microsoft.SharePoint.Linq.ContentTypeAttribute(Name = "AlarmsAndEvents", Id = "0x010049AA7238FCE34BE18336F419AE924845")]
   public partial class AlarmsAndEvents : Item
