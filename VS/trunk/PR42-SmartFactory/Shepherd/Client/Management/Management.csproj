@@ -141,8 +141,6 @@
       <DependentUpon>LogPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\LogPanelViewModel.cs" />
-    <Compile Include="Controls\Main.xaml.cs" />
-    <Compile Include="Controls\MainViewmodel.cs" />
     <Compile Include="Controls\ProgressPanel.xaml.cs">
       <DependentUpon>ProgressPanel.xaml</DependentUpon>
     </Compile>
@@ -150,11 +148,14 @@
     <Compile Include="Controls\RoundedBox.xaml.cs">
       <DependentUpon>RoundedBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RouteEdit.xaml.cs">
+      <DependentUpon>RouteEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RouteEditViewModel.cs" />
     <Compile Include="Controls\SettingsPanel.xaml.cs">
       <DependentUpon>SettingsPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SettingsPanelViewModel.cs" />
-    <Compile Include="EnterpriseLibraryLoggerAdapter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
@@ -185,6 +186,7 @@
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShellViewModel.cs" />
+    <Compile Include="StateMachines\RouteEditMachineState.cs" />
     <Compile Include="StateMachines\SetupDataDialogMachine.cs" />
     <Compile Include="UpdateData\Entities.cs" />
     <Compile Include="UpdateData\EntitiesDataDictionary.cs" />
@@ -200,15 +202,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Main.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\ProgressPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\RoundedBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RouteEdit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
