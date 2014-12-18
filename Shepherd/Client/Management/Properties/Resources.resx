@@ -132,4 +132,10 @@
   <data name="URLUnknown" xml:space="preserve">
     <value>http:\\ - ??? -</value>
   </data>
+  <data name="ArchiveButtonTitle" xml:space="preserve">
+    <value>Archive</value>
+  </data>
+  <data name="RouteEditButtonTitle" xml:space="preserve">
+    <value>Route edit</value>
+  </data>
 </root>

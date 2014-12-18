@@ -31,17 +31,17 @@ using System.ComponentModel.Composition;
 using Microsoft.SharePoint.Linq;
 using Microsoft.Win32;
 
-namespace  CAS.SmartFactory.Shepherd.Client.Management
+namespace  CAS.SmartFactory.Shepherd.Client.Management.Controls
 {
   /// <summary>
   /// Interaction logic for Main.xaml
   /// </summary>
-  public partial class Main : UserControl
+  public partial class RouteEdit : UserControl
   {    
     /// <summary>
     /// Initializes a new instance of the <see cref="Main"/> class.
     /// </summary>
-    public Main()
+    public RouteEdit()
     {
       InitializeComponent();
     }

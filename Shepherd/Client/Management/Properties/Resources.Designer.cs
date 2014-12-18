@@ -61,11 +61,29 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archive.
+        /// </summary>
+        internal static string ArchiveButtonTitle {
+            get {
+                return ResourceManager.GetString("ArchiveButtonTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {1}: {2}. Priority: {3}. Time-stamp:{0:u}..
         /// </summary>
         internal static string DefaultTextLoggerPattern {
             get {
                 return ResourceManager.GetString("DefaultTextLoggerPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Route edit.
+        /// </summary>
+        internal static string RouteEditButtonTitle {
+            get {
+                return ResourceManager.GetString("RouteEditButtonTitle", resourceCulture);
             }
         }
         

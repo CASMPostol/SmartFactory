@@ -41,9 +41,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     public SetupDataDialogMachine()
     {
       m_ButtonsTemplate = new ConnectCancelTemplate();
-      m_ButtonsTemplate.LeftButtonTitle = "Route edit";
+      m_ButtonsTemplate.LeftButtonTitle = Properties.Resources.RouteEditButtonTitle;
       m_ButtonsTemplate.LeftButtonVisibility = System.Windows.Visibility.Visible;
-      m_ButtonsTemplate.LeftMiddleButtonTitle = "Archive";
+      m_ButtonsTemplate.LeftMiddleButtonTitle = Properties.Resources.ArchiveButtonTitle;
       m_ButtonsTemplate.LeftMiddleButtonVisibility = System.Windows.Visibility.Visible;
       m_StateMachineActionsArray = new Action<object>[4];
       m_StateMachineActionsArray[m_ButtonsTemplate.ConnectPosition] = x => this.OnConnectCommand();
