@@ -144,7 +144,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     //methods
     private void RestoreSettings()
     {
-      m_ILoggerFacade.Log("Restoring user settings", Category.Debug, Priority.None);
+      m_ILoggerFacade.Log("Restoring user settings from configuration file.", Category.Debug, Priority.None);
       //User
       URL = Properties.Settings.Default.SiteURL;
       DatabaseName = Properties.Settings.Default.SQLDatabaseName;

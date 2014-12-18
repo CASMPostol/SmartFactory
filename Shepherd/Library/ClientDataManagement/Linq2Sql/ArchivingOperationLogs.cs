@@ -1,14 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//<summary>
+//  Title   : ArchivingOperationLogs
+//  System  : Microsoft VisualStudio 2013 / C#
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System;
 using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 {
+  /// <summary>
+  /// Class ArchivingOperationLogs - enumerates all operations available for the website.
+  /// </summary>
   public partial class ArchivingOperationLogs
   {
     /// <summary>
-    /// Operation Name 
+    /// Operation Name enumerator. The names are used to report operation done for the content.
     /// </summary>
     public enum OperationName
     {
@@ -25,6 +41,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
       /// The archiving operation name
       /// </summary>
       Archiving
+
     }
     /// <summary>
     /// Gets the recent actions.

@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : NamedTraceLogger
 //  System  : Microsoft VisualStudio 2013 / C#
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2014, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -17,7 +17,6 @@ using CAS.SmartFactory.Shepherd.Client.Management.Properties;
 using Microsoft.Practices.Prism.Logging;
 using System;
 using System.ComponentModel;
-using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Globalization;
 
@@ -29,23 +28,30 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Services
   /// <summary>
   /// Class NamedTraceLogger is implemented as <see cref="TraceSource"/> with the name defined in the setting by the entry Default.TraceSourceName.
   /// </summary>
-  public class NamedTraceLogger : TraceSource, ILoggerFacade, IDisposable
+  internal class NamedTraceLogger : TraceSource, ILoggerFacade, IDisposable
   {
 
+    #region public
     /// <summary>
     /// Gets the logger service - it is implemented as singleton and must by disposed before closing the application.
     /// </summary>
     /// <value>The logger.</value>
-    public static NamedTraceLogger Logger
+    internal static NamedTraceLogger Logger
     {
       get { return m_NamedTraceLogger; }
     }
+    /// <summary>
+    /// Traces the progress change.
+    /// </summary>
+    /// <param name="progress">The <see cref="ProgressChangedEventArgs"/> instance containing the event data.</param>
     internal void TraceProgressChange(ProgressChangedEventArgs progress)
     {
       if (progress.UserState == null)
         return;
       m_NamedTraceLogger.TraceEvent(TraceEventType.Information, 1, progress.UserState.ToString());
     }
+    #endregion
+    
     #region ILoggerFacade
     public void Log(string message, Category category, Priority priority)
     {
@@ -82,7 +88,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Services
       string _fileName = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Settings.Default.LogFileName);
       m_TextWriterTraceListener = new TextWriterTraceListener(_fileName)
       {
-        TraceOutputOptions = TraceOptions.Timestamp,
+        TraceOutputOptions = TraceOptions.DateTime,
         Filter = new EventTypeFilter(SourceLevels.All)
       };
       this.Listeners.Add(m_TextWriterTraceListener);
@@ -123,16 +129,16 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Services
         disposed = true;
       }
     }
-    // Track whether Dispose has been called. 
-    private bool disposed = false;
-    // Use C# destructor syntax for finalization code. 
-    // This destructor will run only if the Dispose method 
-    // does not get called. 
-    // It gives your base class the opportunity to finalize. 
-    // Do not provide destructors in types derived from this class.
     /// <summary>
-    /// Finalizes an instance of the <see cref="StateMachineContext"/> class. Use C# destructor syntax for finalization code. This destructor will run only if the Dispose method 
-    /// does not get called. It gives your base class the opportunity to finalize. Do not provide destructors in types derived from this class.
+    /// Track whether Dispose has been called. 
+    /// </summary>
+    private bool disposed = false;
+    /// <summary>
+    /// Use C# destructor syntax for finalization code. This destructor will run only if the Dispose method does not get called. 
+    /// It gives your base class the opportunity to finalize. Do not provide destructors in types derived from this class.
+    /// Finalizes an instance of the <see cref="StateMachineContext"/> class. Use C# destructor syntax for finalization code. 
+    /// This destructor will run only if the Dispose method does not get called. It gives your base class the opportunity to finalize. 
+    /// Do not provide destructors in types derived from this class.
     /// </summary>
     ~NamedTraceLogger()
     {
