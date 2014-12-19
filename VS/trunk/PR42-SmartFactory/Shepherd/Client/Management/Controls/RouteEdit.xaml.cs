@@ -13,31 +13,22 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CAS.Common.Interactivity.InteractionRequest;
+using Microsoft.Win32;
+using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.ComponentModel.Composition;
-using Microsoft.SharePoint.Linq;
-using Microsoft.Win32;
 
-namespace  CAS.SmartFactory.Shepherd.Client.Management.Controls
+namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
 {
   /// <summary>
   /// Interaction logic for Main.xaml
   /// </summary>
+  [PartCreationPolicy(CreationPolicy.NonShared)]
   public partial class RouteEdit : UserControl
-  {    
+  {
+
+    #region creator
     /// <summary>
     /// Initializes a new instance of the <see cref="Main"/> class.
     /// </summary>
@@ -45,67 +36,46 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management.Controls
     {
       InitializeComponent();
     }
-    private MainViewmodel m_MainViewmodel = null;
-    /// <summary>
-    /// Raises the <see cref="E:System.Windows.Window.Closing" /> event.
+    #endregion
+
+    #region Imports
+    /// Sets the ViewModel.
     /// </summary>
-    /// <param name="e">A <see cref="T:System.ComponentModel.CancelEventArgs" /> that contains the event data.</param>
-    //protected override void OnClosing(System.ComponentModel.CancelEventArgs e) //TODO mp
-    //{
-    //  if (m_MainViewmodel.Connected)
-    //    if (MessageBox.Show("You are about to close application. All changes will be lost.", "Closing application", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel) == MessageBoxResult.Cancel)
-    //    {
-    //      e.Cancel = true;
-    //      return;
-    //    }
-    //  m_MainViewmodel.Dispose();
-    //  m_MainViewmodel = null;
-    //  base.OnClosing(e);
-    //}
-    /// <summary>
-    /// Handles the Loaded event of the Window control.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-    private void Window_Loaded(object sender, RoutedEventArgs e)
+    /// <remarks>
+    /// This set-only property is annotated with the <see cref="ImportAttribute"/> so it is injected by MEF with
+    /// the appropriate view model.
+    /// </remarks>
+    [Import]
+    public RouteEditViewModel StateMachineContext
     {
-      //this.Title = String.Format("Shepherd Route Editor rel. {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()); TODO mp
-      this.m_MainViewmodel = new MainViewmodel();
-      this.x_MainGrid.DataContext = m_MainViewmodel;
-      this.UpdateLayout();
-    }
-    private void HelpButton_Click(object sender, RoutedEventArgs e)
-    {
-      var newWindow = new HelpWindow();
-      newWindow.Show();
-    }
-    private void x_ConnectButton_Click(object sender, RoutedEventArgs e)
-    {
-      if (m_MainViewmodel.Connected)
-        if (MessageBox.Show("You are about to reestablish connection. All changes will be lost.", "Closing application", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel) == MessageBoxResult.Cancel)
-          return;
-      m_MainViewmodel.ReadSiteContent();
-    }
-    private void UpdateRoutesButton_Click(object sender, RoutedEventArgs e)
-    {
-      m_MainViewmodel.UpdateRoutes();
-    }
-    private void x_ImportXMLButton_Click(object sender, RoutedEventArgs e)
-    {
-      OpenFileDialog _mofd = new OpenFileDialog()
+      set
       {
-        CheckFileExists = true,
-        CheckPathExists = true,
-        Filter = "XML Documents|*.XML|XML Documents|*.xml|All files |*.*",
-        DefaultExt = ".xml",
-        AddExtension = true,
-      };
-      if (!_mofd.ShowDialog().GetValueOrDefault(false))
-      {
-        ErrorList.Items.Add("Operation aborted by the user.");
-        return;
+        DataContext = value;
+        value.ReadSiteContentConfirmation.Raised += ReadSiteContentConfirmation_Raised;
+        value.ReadRouteFileNameConfirmation.Raised += ReadRouteFileNameConfirmation_Raised;
       }
-      m_MainViewmodel.ReadXMLFile(_mofd.FileName);
     }
+    #endregion
+
+    #region handlers
+    private void ReadRouteFileNameConfirmation_Raised(object sender, InteractionRequestedEventArgs<IConfirmation> e)
+    {
+      OpenFileDialog _ofd = (OpenFileDialog)e.Context.Content;
+      if (_ofd.ShowDialog().GetValueOrDefault(false))
+        e.Context.Confirmed = true;
+      else
+        e.Context.Confirmed = false;
+      e.Callback();
+    }
+    private void ReadSiteContentConfirmation_Raised(object sender, InteractionRequestedEventArgs<IConfirmation> e)
+    {
+      if (MessageBox.Show((string)e.Context.Content, e.Context.Title, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+        e.Context.Confirmed = true;
+      else
+        e.Context.Confirmed = false;
+      e.Callback();
+    }
+    #endregion
+
   }
 }

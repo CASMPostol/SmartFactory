@@ -138,7 +138,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     /// </summary>
     protected override void OnlyCancelActive()
     {
-      m_ButtonsTemplate.OnlyCancel();
+      Context.EnabledEvents = m_ButtonsTemplate.OnlyCancelActive();
     }
     /// <summary>
     /// Gets the state of the buttons panel.

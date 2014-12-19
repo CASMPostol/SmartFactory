@@ -106,16 +106,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         base.EnterState(value);
       }
     }
-    #endregion
-
-    #region private
-    //vars
-    private string b_URL = string.Empty;
-    private string b_DatabaseName = string.Empty;
-    private string b_SQLServer = string.Empty;
-    private IEventAggregator m_EventAggregator;
-    private ILoggerFacade m_ILoggerFacade;
-    //types
+    /// <summary>
+    /// Class SetupDataDialogMachineLocal local implementation of the <see cref="SetupDataDialogMachine{SettingsPanelViewModel}"/>
+    /// </summary>
     public class SetupDataDialogMachineLocal : SetupDataDialogMachine<SettingsPanelViewModel>
     {
       protected override SetupDataDialogMachine<SettingsPanelViewModel>.ConnectionDescription GetConnectionData
@@ -141,6 +134,16 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         }
       }
     }
+    #endregion
+
+    #region private
+    //vars
+    private string b_URL = string.Empty;
+    private string b_DatabaseName = string.Empty;
+    private string b_SQLServer = string.Empty;
+    private IEventAggregator m_EventAggregator;
+    private ILoggerFacade m_ILoggerFacade;
+    //types
     //methods
     private void RestoreSettings()
     {

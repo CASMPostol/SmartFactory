@@ -3,14 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:CAS.SmartFactory.Shepherd.Client.Management"
+             xmlns:local="clr-namespace:CAS.SmartFactory.Shepherd.Client.Management.Controls"
              xmlns:InputData="clr-namespace:CAS.SmartFactory.Shepherd.Client.Management.InputData"
              mc:Ignorable="d" 
              d:DesignHeight="560" d:DesignWidth="1366">
-    <UserControl.Resources>
-        <local:MainViewmodel x:Key="MainViewmodelDataSource" />
-    </UserControl.Resources>
-    <Grid x:Name="x_MainGrid" DataContext="{Binding Source={DynamicResource MainViewmodelDataSource}}">
+    <Grid x:Name="x_MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -97,9 +94,6 @@
                             <DataGridTextColumn Header="Commodity" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Title}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                </TabItem>
-                <TabItem Header="Import log" Style="{DynamicResource CASTabItemStyle}">
-                    <ListBox x:Name="ErrorList" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Foreground="Black" Padding="3" UseLayoutRounding="True" ToolTip="Information abou the upgrade process progress." IsSynchronizedWithCurrentItem="False" ItemsSource="{Binding Log}" MinHeight="400" />
                 </TabItem>
             </TabControl>
         </StackPanel>
