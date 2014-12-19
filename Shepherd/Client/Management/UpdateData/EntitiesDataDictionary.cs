@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SmartFactory.Shepherd.Client.DataManagement.Linq;
 using CAS.SmartFactory.Shepherd.Client.Management.InputData;
 using Microsoft.SharePoint.Linq;
 using System;
@@ -20,7 +21,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-namespace  CAS.SmartFactory.Shepherd.Client.Management.UpdateData
+namespace CAS.SmartFactory.Shepherd.Client.Management.UpdateData
 {
   internal class EntitiesDataDictionary : IDisposable
   {
@@ -28,7 +29,7 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management.UpdateData
     #region internal
     internal EntitiesDataDictionary(string _url)
     {
-      m_EDC = new EntitiesDataContext(_url);
+      m_EDC = new Entities(_url);
     }
     internal void ImportTable(RoutesCatalogCommodityRow[] routesCatalogCommodityRow, Action<ProgressChangedEventArgs> progress)
     {
@@ -98,7 +99,7 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management.UpdateData
           BusienssDescription _busnessDscrptn = GetOrAdd<BusienssDescription>(m_EDC.BusinessDescription, m_BusinessDescription, _route.Business_description, false);
           Commodity _cmdty = GetOrAdd<Commodity>(m_EDC.Commodity, m_CommodityCommodity, _route.Commodity, false);
           string _sku = _route.Material_Master__Reference;
-          string _title = String.Format("2014 To: {0}, by: {1}, of: {2}", _CityType.Tytuł, _prtnr.Tytuł, _route.Commodity);
+          string _title = String.Format("2014 To: {0}, by: {1}, of: {2}", _CityType.Title, _prtnr.Title, _route.Commodity);
           switch (_service)
           {
             case ServiceType.Forwarder:
@@ -116,7 +117,7 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management.UpdateData
                 RemarkMM = _route.Remarks,
                 SAPDestinationPlantTitle = _SAPDestinationPlant,
                 ShipmentTypeTitle = _ShipmentType,
-                Tytuł = _title,
+                Title = _title,
                 TransportCosts = testData ? 4567.8 : _route.Total_Cost_per_UoM.String2Double(),
                 TransportUnitTypeTitle = _TranspotUnit,
                 PartnerTitle = _prtnr,
@@ -136,7 +137,7 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management.UpdateData
                 RemarkMM = _route.Remarks,
                 SecurityCost = testData ? 345.6 : _route.Total_Cost_per_UoM.String2Double(),
                 SecurityEscrotPO = _route.PO_NUMBER,
-                Tytuł = _title,
+                Title = _title,
                 PartnerTitle = _prtnr
               };
               m_EDC.SecurityEscortRoute.InsertOnSubmit(_sec);
@@ -192,43 +193,43 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management.UpdateData
     {
       progress("Reading Commodity");
       foreach (Commodity _cmdty in m_EDC.Commodity)
-        Add<string, Commodity>(m_CommodityCommodity, _cmdty.Tytuł, _cmdty, false);
+        Add<string, Commodity>(m_CommodityCommodity, _cmdty.Title, _cmdty, false);
       progress("Reading Warehouse");
       foreach (Warehouse _wrse in m_EDC.Warehouse)
-        Add<string, Warehouse>(m_Warehouse, _wrse.Tytuł, _wrse, false);
+        Add<string, Warehouse>(m_Warehouse, _wrse.Title, _wrse, false);
       progress("Reading Partner");
       foreach (Partner _prtnr in m_EDC.Partner)
-        Add<string, Partner>(m_Partner, _prtnr.Tytuł, _prtnr, false);
+        Add<string, Partner>(m_Partner, _prtnr.Title, _prtnr, false);
       progress("Reading CountryType");
       foreach (CountryType _cntry in m_EDC.Country)
-        Add<string, CountryType>(m_CountryClass, _cntry.Tytuł, _cntry, false);
+        Add<string, CountryType>(m_CountryClass, _cntry.Title, _cntry, false);
       progress("Reading CityType");
       foreach (CityType _cty in m_EDC.City)
-        Add<string, CityType>(m_CityDictionary, _cty.Tytuł, _cty, false);
+        Add<string, CityType>(m_CityDictionary, _cty.Title, _cty, false);
       progress("Reading FreightPayer");
       foreach (FreightPayer _frpyr in m_EDC.FreightPayer)
-        Add<string, FreightPayer>(m_FreightPayer, _frpyr.Tytuł, _frpyr, false);
+        Add<string, FreightPayer>(m_FreightPayer, _frpyr.Title, _frpyr, false);
       progress("Reading Currency");
       foreach (Currency _curr in m_EDC.Currency)
-        Add<string, Currency>(m_Currency, _curr.Tytuł, _curr, false);
-      progress("Reading BusienssDescription");
+        Add<string, Currency>(m_Currency, _curr.Title, _curr, false);
+      progress("Reading BusinessDescription");
       foreach (BusienssDescription _bdsc in m_EDC.BusinessDescription)
-        Add<string, BusienssDescription>(m_BusinessDescription, _bdsc.Tytuł, _bdsc, false);
+        Add<string, BusienssDescription>(m_BusinessDescription, _bdsc.Title, _bdsc, false);
       progress("Reading ShipmentType");
       foreach (ShipmentType _shpmnt in m_EDC.ShipmentType)
-        Add<string, ShipmentType>(m_ShipmentType, _shpmnt.Tytuł, _shpmnt, false);
+        Add<string, ShipmentType>(m_ShipmentType, _shpmnt.Title, _shpmnt, false);
       progress("Reading CarrierType");
       foreach (CarrierType _crr in m_EDC.Carrier)
-        Add<string, CarrierType>(m_CarrierCarrierType, _crr.Tytuł, _crr, false);
-      progress("Reading TranspotUnit");
+        Add<string, CarrierType>(m_CarrierCarrierType, _crr.Title, _crr, false);
+      progress("Reading TransportUnit");
       foreach (TranspotUnit _tu in m_EDC.TransportUnitType)
-        Add<string, TranspotUnit>(m_TranspotUnit, _tu.Tytuł, _tu, false);
+        Add<string, TranspotUnit>(m_TranspotUnit, _tu.Title, _tu, false);
       progress("Reading SAPDestinationPlant");
       foreach (SAPDestinationPlant _sdp in m_EDC.SAPDestinationPlant)
-        Add<string, SAPDestinationPlant>(m_SAPDestinationPlant, _sdp.Tytuł, _sdp, false);
+        Add<string, SAPDestinationPlant>(m_SAPDestinationPlant, _sdp.Title, _sdp, false);
       progress("Reading Market");
       foreach (Market _mrkt in m_EDC.Market)
-        Add<string, Market>(m_MarketMarket, _mrkt.Tytuł, _mrkt, false);
+        Add<string, Market>(m_MarketMarket, _mrkt.Title, _mrkt, false);
       progress("Reading DestinationMarket");
       foreach (DestinationMarket _dstm in m_EDC.DestinationMarket)
       {
@@ -286,9 +287,9 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management.UpdateData
 
     #region data management
     private type Create<type>(EntityList<type> _EDC, Dictionary<string, type> _dictionary, string key, bool _testData)
-      where type : Element, new()
+      where type : Item, new()
     {
-      type _elmnt = new type() { Tytuł = _testData ? EmptyKey : key };
+      type _elmnt = new type() { Title = _testData ? EmptyKey : key };
       if (_dictionary.Keys.Contains(key))
         key = String.Format("Duplicated name: {0} [{1}]", key, EmptyKey);
       _dictionary.Add(key, _elmnt);
@@ -302,7 +303,7 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management.UpdateData
       _dictionary.Add(_key, entity);
     }
     private type GetOrAdd<type>(EntityList<type> _EDC, Dictionary<string, type> dictionary, string key, bool testData)
-      where type : Element, new()
+      where type : Item, new()
     {
       if (key.IsNullOrEmpty())
         throw new ArgumentNullException("key", String.Format("Cannot add empty key to the dictionary {0}", typeof(type).Name));
@@ -343,7 +344,7 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management.UpdateData
       _city.CountryTitle = _countryClass;
       return _city;
     }
-    private EntitiesDataContext m_EDC;
+    private Entities m_EDC;
     private static short m_EmptyKeyIdx = 0;
     private static string EmptyKey { get { return String.Format("EmptyKey{0}", m_EmptyKeyIdx++); } }
     private static string DestinationMarketKey(Market mrkt, CityType city)
@@ -351,9 +352,9 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management.UpdateData
       string _dstName = String.Format("{0} in {1}", EntityEmptyKey(city), EntityEmptyKey(mrkt));
       return _dstName;
     }
-    private static string EntityEmptyKey(Element entity)
+    private static string EntityEmptyKey(Item entity)
     {
-      return entity == null ? EmptyKey : entity.Tytuł;
+      return entity == null ? EmptyKey : entity.Title;
     }
     private string DummyName(string _text, string _replacement, bool _testData)
     {

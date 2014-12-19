@@ -188,7 +188,6 @@
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="StateMachines\RouteEditMachineState.cs" />
     <Compile Include="StateMachines\SetupDataDialogMachine.cs" />
-    <Compile Include="UpdateData\Entities.cs" />
     <Compile Include="UpdateData\EntitiesDataDictionary.cs" />
     <Page Include="Controls\ArchivingPanel.xaml">
       <SubType>Designer</SubType>
