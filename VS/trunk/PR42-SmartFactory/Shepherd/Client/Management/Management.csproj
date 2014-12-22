@@ -169,6 +169,7 @@
     <Compile Include="Infrastructure\RegionNames.cs" />
     <Compile Include="Infrastructure\SharePointWebsiteData.cs" />
     <Compile Include="Infrastructure\SharePointWebsiteEvent.cs" />
+    <Compile Include="Infrastructure\ViewNames.cs" />
     <Compile Include="InputData\RoutesCatalog.cs">
       <DependentUpon>RoutesCatalog.xsd</DependentUpon>
     </Compile>
