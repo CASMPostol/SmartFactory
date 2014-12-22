@@ -124,8 +124,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       StateMachineEvents _events = StateMachineEvents.RightButtonEvent | StateMachineEvents.RightMiddleButtonEvent;
       if (_cdResult.SPConnected)
         _events |= StateMachineEvents.LeftMiddleButtonEvent;
-      if (_cdResult.SPConnected)
-        _events |= StateMachineEvents.LeftMiddleButtonEvent;
+      if (_cdResult.SQLConnected)
+        _events |= StateMachineEvents.LeftButtonEvent;
       Context.EnabledEvents = _events;
       DataContentState = _cdResult;
     }
@@ -188,7 +188,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     private object OnRouteEditCommand()
     {
-      throw new NotImplementedException();
+      Context.SwitchState = Infrastructure.ViewNames.RouteEditorStateName;
+      return null;
     }
     private static void GetLastOperation(SHRARCHIVE entities, ArchivingOperationLogs.OperationName operationName, Func<string, string> RunBy, Func<string, string> RunDate)
     {

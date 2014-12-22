@@ -24,6 +24,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
   /// <summary>
   /// Interaction logic for Main.xaml
   /// </summary>
+  [Export(Infrastructure.ViewNames.RouteEditorStateName)]
   [PartCreationPolicy(CreationPolicy.NonShared)]
   public partial class RouteEdit : UserControl
   {

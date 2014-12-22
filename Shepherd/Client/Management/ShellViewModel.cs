@@ -12,9 +12,10 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using CAS.Common.ViewModel.Wizard;
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
+using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 using System;
@@ -41,7 +42,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     /// eventAggregator
     /// </exception>
     [ImportingConstructor]
-    public ShellViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
+    public ShellViewModel(IRegionManager regionManager, IEventAggregator eventAggregator, ILoggerFacade loggingService)
     {
       if (regionManager == null)
       {
@@ -53,13 +54,31 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
         throw new ArgumentNullException("eventAggregator");
       }
       m_EventAggregator = eventAggregator;
+      m_LoggingService = loggingService;
+      m_LoggingService.Log("Entered ShellViewModel state machine context", Category.Info, Priority.Low);
     }
+    /// <summary>
+    /// Is called by the event handler of the <see cref="BackgroundWorker.ProgressChanged" />.
+    /// </summary>
+    /// <param name="activationMachine">The activation machine.</param>
+    /// <param name="entitiesState">The <see cref="ProgressChangedEventArgs" /> instance containing the event data.</param>
     public override void ProgressChang(IAbstractMachineState activationMachine, ProgressChangedEventArgs entitiesState)
     {
       base.ProgressChang(activationMachine, entitiesState);
       m_EventAggregator.GetEvent<ProgressChangeEvent>().Publish(entitiesState);
     }
-
+    /// <summary>
+    /// Sets the new name of the new view to be displayed. New view is responsible to enter new machine state.
+    /// </summary>
+    /// <value>The state of the switch.</value>
+    public override string SwitchState
+    {
+      set 
+      {
+        m_LoggingService.Log(String.Format("RequestNavigate to {0}", value), Category.Debug, Priority.Low);
+        m_RegionManager.RequestNavigate(Infrastructure.RegionNames.ActionRegion, new Uri(value, UriKind.Relative)); 
+      }
+    }
     /// <summary>
     /// Reports state name change.
     /// </summary>
@@ -70,6 +89,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     }
     private IRegionManager m_RegionManager = null;
     private IEventAggregator m_EventAggregator = null;
-
+    private ILoggerFacade m_LoggingService;
   }
 }
