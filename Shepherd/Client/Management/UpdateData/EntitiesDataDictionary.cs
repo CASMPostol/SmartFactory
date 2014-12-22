@@ -27,6 +27,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.UpdateData
   {
 
     #region internal
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EntitiesDataDictionary"/> class - it is a wrapper of <see cref="Entities"/>.
+    /// </summary>
+    /// <param name="_url">The _url.</param>
     internal EntitiesDataDictionary(string _url)
     {
       m_EDC = new Entities(_url);

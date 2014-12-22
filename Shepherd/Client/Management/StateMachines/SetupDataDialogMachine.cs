@@ -40,16 +40,12 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     /// </summary>
     public SetupDataDialogMachine()
     {
-      m_ButtonsTemplate = new ConnectCancelTemplate();
-      m_ButtonsTemplate.LeftButtonTitle = Properties.Resources.RouteEditButtonTitle;
-      m_ButtonsTemplate.LeftButtonVisibility = System.Windows.Visibility.Visible;
-      m_ButtonsTemplate.LeftMiddleButtonTitle = Properties.Resources.ArchiveButtonTitle;
-      m_ButtonsTemplate.LeftMiddleButtonVisibility = System.Windows.Visibility.Visible;
+      m_ButtonsTemplate = new ConnectCancelTemplate(Properties.Resources.RouteEditButtonTitle, Properties.Resources.ArchiveButtonTitle);
       m_StateMachineActionsArray = new Action<object>[4];
-      m_StateMachineActionsArray[m_ButtonsTemplate.ConnectPosition] = x => this.OnConnectCommand();
-      m_StateMachineActionsArray[m_ButtonsTemplate.CancelPosition] = x => this.OnCancellation();
-      m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftButtonEvent] = x => this.OnRouteEditCommand();
-      m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftMiddleButtonEvent] = x => this.OnArchiveCommand();
+      m_StateMachineActionsArray[(int)m_ButtonsTemplate.ConnectPosition] = x => this.OnConnectCommand();
+      m_StateMachineActionsArray[(int)m_ButtonsTemplate.CancelPosition] = x => this.OnCancellation();
+      m_StateMachineActionsArray[(int)m_ButtonsTemplate.LeftButtonPosition] = x => this.OnRouteEditCommand();
+      m_StateMachineActionsArray[(int)m_ButtonsTemplate.LeftMiddleButtonPosition] = x => this.OnArchiveCommand();
     }
     #endregion
 
@@ -127,7 +123,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       ConnectionData _cdResult = (ConnectionData)result;
       StateMachineEvents _events = StateMachineEvents.RightButtonEvent | StateMachineEvents.RightMiddleButtonEvent;
       if (_cdResult.SPConnected)
-        _events |=  StateMachineEvents.LeftMiddleButtonEvent;
+        _events |= StateMachineEvents.LeftMiddleButtonEvent;
       if (_cdResult.SPConnected)
         _events |= StateMachineEvents.LeftMiddleButtonEvent;
       Context.EnabledEvents = _events;
@@ -138,13 +134,13 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     /// </summary>
     protected override void OnlyCancelActive()
     {
-      Context.EnabledEvents = m_ButtonsTemplate.OnlyCancelActive();
+      Context.EnabledEvents = m_ButtonsTemplate.OnlyCancel();
     }
     /// <summary>
     /// Gets the state of the buttons panel.
     /// </summary>
     /// <value>The state of the buttons panel.</value>
-    protected override ButtonsPanelState ButtonsPanelState
+    protected override ButtonsSetState ButtonsPanelState
     {
       get { return m_ButtonsTemplate; }
     }
@@ -184,7 +180,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     #region private
     private void OnConnectCommand()
     {
-      this.RunAsync();
+      this.RunAsync(null);
     }
     private object OnArchiveCommand()
     {

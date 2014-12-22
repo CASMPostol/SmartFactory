@@ -138,4 +138,22 @@
   <data name="RouteEditButtonTitle" xml:space="preserve">
     <value>Route edit</value>
   </data>
+  <data name="ImportXMLButtonTitle" xml:space="preserve">
+    <value>Import XML</value>
+  </data>
+  <data name="ImportXMLButtonToolTip" xml:space="preserve">
+    <value>Import XML file with new routs</value>
+  </data>
+  <data name="ReadSPContentButtonTitle" xml:space="preserve">
+    <value>Read SP Content</value>
+  </data>
+  <data name="ReadSPContentButtonToolTip" xml:space="preserve">
+    <value>Connect to Shepherd website and read dictionaries</value>
+  </data>
+  <data name="UpdateRoutesButtonTitle" xml:space="preserve">
+    <value>Update Routes</value>
+  </data>
+  <data name="UpdateRoutesButtonToolTip" xml:space="preserve">
+    <value>Import XML file and update existing routes, cities, countries and markets lists.</value>
+  </data>
 </root>

@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.Common.ViewModel.Wizard;
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors;
 using System.ComponentModel.Composition;
@@ -41,7 +42,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     /// </remarks>
     [Import]
     [SuppressMessage("Microsoft.Design", "CA1044:PropertiesShouldNotBeWriteOnly", Justification = "Needs to be a property to be composed by MEF")]
-    ButtonsPanelViewModel ViewModel
+    IButtonsPanelBase ViewModel
     {
       set
       {
