@@ -21,7 +21,7 @@ using System.ComponentModel.Composition;
 /// </summary>
 namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
 {
-  [Export]
+  [Export(typeof(IButtonsPanelBase))]
   public class ButtonsPanelViewModel : ButtonsPanelBase
   {
     [ImportingConstructor]

@@ -14,7 +14,9 @@
 //</summary>
 
 using CAS.Common.ViewModel.Wizard;
+using CAS.Common.ViewModel.Wizard.ButtonsPanelStateTemplates;
 using CAS.SmartFactory.Shepherd.Client.Management.InputData;
+using CAS.SmartFactory.Shepherd.Client.Management.Properties;
 using CAS.SmartFactory.Shepherd.Client.Management.UpdateData;
 using System;
 using System.ComponentModel;
@@ -26,12 +28,21 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
   {
     public RouteEditMachineState()
     {
-
+      m_ButtonsTemplate = new CancelTemplate(Resources.UpdateRoutesButtonTitle, Resources.ImportXMLButtonTitle, Resources.ReadSPContentButtonTitle);
+      m_StateMachineActionsArray = new Action<object>[4];
+      m_StateMachineActionsArray[(int)m_ButtonsTemplate.CancelPosition] = x => this.OnCancellation();
+      m_StateMachineActionsArray[(int)StateMachineEventIndex.RightMiddleButtonEvent] = x => this.ReadSiteContent();
+      m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftButtonEvent] = x => this.UpdateRoutes();
+      m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftMiddleButtonEvent] = x => this.ReadXMLFile();
     }
 
     #region BackgroundWorkerMachine
     private DoWorkEventHandler m_DoWorkEventHandler = null;
     private Action<object> m_CompletedEventHandler = null;
+    public override void OnEnteringState()
+    {
+      base.OnEnteringState();
+    }
     protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
     {
       m_DoWorkEventHandler(sender, e);
@@ -42,9 +53,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     protected override void OnlyCancelActive()
     {
-      Context.EnabledEvents = m_ButtonsTemplate.OnlyCancelActive();
+      Context.EnabledEvents = m_ButtonsTemplate.OnlyCancel();
     }
-    protected override ButtonsPanelState ButtonsPanelState
+    protected override ButtonsSetState ButtonsPanelState
     {
       get { return m_ButtonsTemplate; }
     }
@@ -61,13 +72,11 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     {
       if (!this.GetReadSiteContentConfirmation())
         return;
-      Uri _uri = default(Uri);
       try
       {
-        _uri = new Uri(URL, UriKind.Absolute);
         m_DoWorkEventHandler = DoWorkEventHandler_ReadSiteContent;
         m_CompletedEventHandler = RunWorkerCompletedEventHandler_ReadSiteContent;
-        this.RunAsync();
+        this.RunAsync(URL);
       }
       catch (Exception _ex)
       {
@@ -77,12 +86,12 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     private void DoWorkEventHandler_ReadSiteContent(object sender, DoWorkEventArgs e)
     {
       ReportProgress(this, new ProgressChangedEventArgs(0, String.Format("Trying to establish connection with the site {0}.", URL)));
-      EntitiesDataDictionary _ret = new EntitiesDataDictionary(URL);
-      if (_ret == null)
-        throw new ArgumentException("DoWorkEventHandler UpdateRoutes", "argument");
-      ReportProgress(this, new ProgressChangedEventArgs(0, "Starting read current data from selected site."));
-      int _prc = 0;
-      _ret.ReadSiteContent(x => ReportProgress(this, new ProgressChangedEventArgs(_prc++, x)));
+      string _url = (string)e.Argument;
+      if (string.IsNullOrEmpty(_url))
+        throw new ArgumentException("URL cannot be empty or null");
+      EntitiesDataDictionary _ret = new EntitiesDataDictionary((string)e.Argument);
+      ReportProgress(this, new ProgressChangedEventArgs(0, "Starting read current data from the selected site."));
+      _ret.ReadSiteContent(x => ReportProgress(this, new ProgressChangedEventArgs(1, x)));
       ReportProgress(this, new ProgressChangedEventArgs(100, "Finished read current data from selected site."));
       e.Result = _ret;
     }
@@ -93,17 +102,18 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       m_EntitiesDataDictionary = result as EntitiesDataDictionary;
       Connected = true;
       this.Context.ProgressChang(this, new ProgressChangedEventArgs(1, "Operation ReadSiteContent finished"));
+      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(false, true, false);
     }
     #endregion
 
     #region UpdateRoutes
-    internal void UpdateRoutes()
+    private void UpdateRoutes()
     {
       if (!Connected)
         throw new ApplicationException("Before updating changes you must establish connection.");
       m_DoWorkEventHandler = DoWorkEventHandler_UpdateRoutes;
       m_CompletedEventHandler = RunWorkerCompletedEventHandler_UpdateRoutes;
-      this.RunAsync(); //this.StartBackgroundWorker(m_EntitiesDataDictionary);
+      this.RunAsync(m_EntitiesDataDictionary);
     }
     private void DoWorkEventHandler_UpdateRoutes(object argument, DoWorkEventArgs e)
     {
@@ -126,6 +136,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     private void RunWorkerCompletedEventHandler_UpdateRoutes(object result)
     {
       Context.ProgressChang(this, new ProgressChangedEventArgs(100, "Operation UpdateRoutes finished"));
+      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(true, false, false);
     }
     #endregion
 
@@ -138,7 +149,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       Context.ProgressChang(this, new ProgressChangedEventArgs(1, String.Format("Start reading the file containing routes {0}", path)));
       m_DoWorkEventHandler = DoWorkEventHandler_ReadXMLFile;
       m_CompletedEventHandler = RunWorkerCompletedEventHandler_ReadXMLFile;
-      this.RunAsync();// this.StartBackgroundWorker(path);
+      this.RunAsync(path);
     }
     private void DoWorkEventHandler_ReadXMLFile(object sender, DoWorkEventArgs e)
     {
@@ -162,7 +173,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     #region private
     private EntitiesDataDictionary m_EntitiesDataDictionary = null;
     private bool Connected;
-    private Common.ViewModel.Wizard.ButtonsPanelState m_ButtonsTemplate;
+    private CancelTemplate m_ButtonsTemplate;
     private Action<object>[] m_StateMachineActionsArray;
     private void DisposeEntitiesDataDictionary()
     {

@@ -79,6 +79,42 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import XML.
+        /// </summary>
+        internal static string ImportXMLButtonTitle {
+            get {
+                return ResourceManager.GetString("ImportXMLButtonTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import XML file with new routs.
+        /// </summary>
+        internal static string ImportXMLButtonToolTip {
+            get {
+                return ResourceManager.GetString("ImportXMLButtonToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read SP Content.
+        /// </summary>
+        internal static string ReadSPContentButtonTitle {
+            get {
+                return ResourceManager.GetString("ReadSPContentButtonTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect to Shepherd website and read dictionaries.
+        /// </summary>
+        internal static string ReadSPContentButtonToolTip {
+            get {
+                return ResourceManager.GetString("ReadSPContentButtonToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Route edit.
         /// </summary>
         internal static string RouteEditButtonTitle {
@@ -102,6 +138,24 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Properties {
         internal static string UnhandledException {
             get {
                 return ResourceManager.GetString("UnhandledException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Routes.
+        /// </summary>
+        internal static string UpdateRoutesButtonTitle {
+            get {
+                return ResourceManager.GetString("UpdateRoutesButtonTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import XML file and update existing routes, cities, countries and markets lists..
+        /// </summary>
+        internal static string UpdateRoutesButtonToolTip {
+            get {
+                return ResourceManager.GetString("UpdateRoutesButtonToolTip", resourceCulture);
             }
         }
         
