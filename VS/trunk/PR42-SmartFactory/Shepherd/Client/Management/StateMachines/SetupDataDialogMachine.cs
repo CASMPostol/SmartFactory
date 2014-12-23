@@ -16,10 +16,13 @@
 using CAS.Common.ViewModel.Wizard;
 using CAS.Common.ViewModel.Wizard.ButtonsPanelStateTemplates;
 using CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL;
+using CAS.SmartFactory.Shepherd.Client.Management.Properties;
 using CAS.SmartFactory.Shepherd.Client.Management.Services;
+using Microsoft.Practices.Prism.Regions;
 using System;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using NsSPLinq = CAS.SmartFactory.Shepherd.Client.DataManagement.Linq;
 
 /// <summary>
@@ -40,7 +43,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     /// </summary>
     public SetupDataDialogMachine()
     {
-      m_ButtonsTemplate = new ConnectCancelTemplate(Properties.Resources.RouteEditButtonTitle, Properties.Resources.ArchiveButtonTitle);
+      m_ButtonsTemplate = new ConnectCancelTemplate(Resources.RouteEditButtonTitle, Resources.ArchiveButtonTitle);
       m_StateMachineActionsArray = new Action<object>[4];
       m_StateMachineActionsArray[(int)m_ButtonsTemplate.ConnectPosition] = x => this.OnConnectCommand();
       m_StateMachineActionsArray[(int)m_ButtonsTemplate.CancelPosition] = x => this.OnCancellation();
@@ -94,12 +97,12 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     {
       e.Cancel = false;
       e.Result = null;
-      ConnectionDescription _connectionDescription = this.GetConnectionData;
-      string _connectionString = this.GetConnectionString(_connectionDescription);
+      ConnectionData _cd = ConnectionData.ThisInstance;
+      _cd.ConnectionDescription = this.GetConnectionData;
+      string _connectionString = this.GetConnectionString(_cd.ConnectionDescription);
       ReportProgress(this, new ProgressChangedEventArgs(1, String.Format("Connection string {0}", _connectionString)));
       System.Data.IDbConnection _connection = new SqlConnection(_connectionString);
       SHRARCHIVE _entities = new SHRARCHIVE(_connection);
-      ConnectionData _cd = ConnectionData.ThisInstance;
       if (_entities.DatabaseExists())
       {
         ReportProgress(this, new ProgressChangedEventArgs(1, "The specified database exists."));
@@ -110,7 +113,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       }
       else
         ReportProgress(this, new ProgressChangedEventArgs(1, "The specified database cannot be opened."));
-      _cd.SPConnected = NsSPLinq.Connectivity.TestConnection(_connectionDescription.SharePointServerURL, x => ReportProgress(this, x));
+      _cd.SPConnected = NsSPLinq.Connectivity.TestConnection(_cd.ConnectionDescription.SharePointServerURL, x => ReportProgress(this, x));
       e.Result = _cd;
     }
     /// <summary>
@@ -120,14 +123,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     /// <exception cref="System.NotImplementedException"></exception>
     protected override void RunWorkerCompleted(object result)
     {
-      ConnectionData _cdResult = (ConnectionData)result;
-      StateMachineEvents _events = StateMachineEvents.RightButtonEvent | StateMachineEvents.RightMiddleButtonEvent;
-      if (_cdResult.SPConnected)
-        _events |= StateMachineEvents.LeftMiddleButtonEvent;
-      if (_cdResult.SQLConnected)
-        _events |= StateMachineEvents.LeftButtonEvent;
-      Context.EnabledEvents = _events;
-      DataContentState = _cdResult;
+      m_ConnectionData = (ConnectionData)result;
+      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(m_ConnectionData.SQLConnected, m_ConnectionData.SPConnected);
+      if (m_ConnectionData.SPConnected)
+        this.PublishSPURL();
     }
     /// <summary>
     ///  Called when only cancel button must be active - after starting background worker.
@@ -147,34 +146,16 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     #endregion
 
     #region abstract
-    protected struct ConnectionDescription
-    {
-      /// <summary>
-      /// Gets the URL of the SharePoint application website.
-      /// </summary>
-      /// <value>The URL.</value>
-      internal string SharePointServerURL;
-      /// <summary>
-      /// Gets the name of the SQL database containing backup of SharePoint application data content.
-      /// </summary>
-      /// <value>The name of the database.</value>
-      internal string DatabaseName;
-      /// <summary>
-      /// Gets the SQL server part of the connection string.
-      /// </summary>
-      /// <value>The SQL server address.</value>
-      internal string SQLServer;
-    }
     /// <summary>
     /// Gets the get connection data.
     /// </summary>
     /// <value>The get connection data.</value>
     protected abstract ConnectionDescription GetConnectionData { get; }
     /// <summary>
-    /// Sets the state of the data content.
+    /// Publishes the SharePoint site URL.
     /// </summary>
-    /// <value>The state of the data content.</value>
-    internal protected abstract Services.ConnectionData DataContentState { set; }
+    /// <param name="URL">The URL of the website.</param>
+    internal protected abstract void PublishSPURL();
     #endregion
 
     #region private
@@ -184,13 +165,18 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     private object OnArchiveCommand()
     {
-      throw new NotImplementedException();
+      Context.ProgressChang(this, new ProgressChangedEventArgs(1, "OnArchiveCommand raised but is not supported."));
+      return null;
     }
     private object OnRouteEditCommand()
     {
-      Context.SwitchState = Infrastructure.ViewNames.RouteEditorStateName;
+      NavigationParameters _par = new NavigationParameters();
+      Debug.Assert(m_ConnectionData.ConnectionDescription != null, "In OnRouteEditCommand the ConnectionDescription is null");
+      _par.Add(Infrastructure.ViewNames.RouteEditorStateName, m_ConnectionData.ConnectionDescription);
+      Context.RequestNavigate(Infrastructure.ViewNames.RouteEditorStateName, _par);
       return null;
     }
+    private Services.ConnectionData m_ConnectionData = null;
     private static void GetLastOperation(SHRARCHIVE entities, ArchivingOperationLogs.OperationName operationName, Func<string, string> RunBy, Func<string, string> RunDate)
     {
       ArchivingOperationLogs _recentActions = ArchivingOperationLogs.GetRecentActions(entities, operationName);

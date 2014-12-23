@@ -26,6 +26,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
   public abstract class RouteEditMachineState<ViewModelContextType> : BackgroundWorkerMachine<ShellViewModel, ViewModelContextType>
     where ViewModelContextType : IViewModelContext
   {
+    
     public RouteEditMachineState()
     {
       m_ButtonsTemplate = new CancelTemplate(Resources.UpdateRoutesButtonTitle, Resources.ImportXMLButtonTitle, Resources.ReadSPContentButtonTitle);
@@ -41,7 +42,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     private Action<object> m_CompletedEventHandler = null;
     public override void OnEnteringState()
     {
+      Context.ProgressChang(this, new ProgressChangedEventArgs(0, String.Format("On entering the state {0}", Infrastructure.ViewNames.RouteEditorStateName)));
       base.OnEnteringState();
+      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(false, false, true);
     }
     protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
     {
@@ -66,9 +69,15 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     #endregion
 
     #region API
+    public override string ToString()
+    {
+      return Infrastructure.ViewNames.RouteEditorStateName;
+    }
+    #endregion
 
+    #region private
     #region ReadSiteContent
-    internal void ReadSiteContent()
+    private void ReadSiteContent()
     {
       if (!this.GetReadSiteContentConfirmation())
         return;
@@ -141,7 +150,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     #endregion
 
     #region ReadXMLFile
-    internal void ReadXMLFile()
+    private void ReadXMLFile()
     {
       string path = GetReadRouteFileNameConfirmation();
       if (String.IsNullOrEmpty(path))
@@ -168,9 +177,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     #endregion
 
-    #endregion
 
-    #region private
     private EntitiesDataDictionary m_EntitiesDataDictionary = null;
     private bool Connected;
     private CancelTemplate m_ButtonsTemplate;

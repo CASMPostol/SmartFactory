@@ -68,16 +68,18 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
       m_EventAggregator.GetEvent<ProgressChangeEvent>().Publish(entitiesState);
     }
     /// <summary>
-    /// Sets the new name of the new view to be displayed. New view is responsible to enter new machine state.
+    ///  Navigates the specified region manager.
     /// </summary>
-    /// <value>The state of the switch.</value>
-    public override string SwitchState
+    /// <param name="url">The URL of the content to display.</param>
+    /// <param name="parameter">An instance of <see cref="NavigationParameters"/>, which holds a collection of object parameters.</param>
+    internal void RequestNavigate(string url, NavigationParameters parameter)
     {
-      set 
-      {
-        m_LoggingService.Log(String.Format("RequestNavigate to {0}", value), Category.Debug, Priority.Low);
-        m_RegionManager.RequestNavigate(Infrastructure.RegionNames.ActionRegion, new Uri(value, UriKind.Relative)); 
-      }
+      m_LoggingService.Log(String.Format("RequestNavigate to {0}", url), Category.Debug, Priority.Low);
+      if (parameter == null)
+        m_RegionManager.RequestNavigate(RegionNames.ActionRegion, new Uri(url, UriKind.Relative));
+      else
+        m_RegionManager.RequestNavigate(RegionNames.ActionRegion, new Uri(url, UriKind.Relative), parameter);
+
     }
     /// <summary>
     /// Reports state name change.
