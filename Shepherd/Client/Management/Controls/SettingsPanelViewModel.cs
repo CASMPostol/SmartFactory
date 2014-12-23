@@ -13,12 +13,12 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.Common.ComponentModel;
-using CAS.Common.ViewModel.Wizard;
-using CAS.Common.ViewModel.Wizard.ButtonsPanelStateTemplates;
+using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
+using CAS.SmartFactory.Shepherd.Client.Management.Properties;
 using CAS.SmartFactory.Shepherd.Client.Management.StateMachines;
 using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.PubSubEvents;
+using Microsoft.Practices.Prism.Regions;
 using System.ComponentModel.Composition;
 
 /// <summary>
@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
   /// Class SettingsPanelViewModel provide ViewModel for Setting state
   /// </summary>
   [Export]
-  public class SettingsPanelViewModel : ViewModelBase<SettingsPanelViewModel.SetupDataDialogMachineLocal>
+  public class SettingsPanelViewModel : ViewModelStateMachineBase<SettingsPanelViewModel.SetupDataDialogMachineLocal>, INavigationAware
   {
     #region creator
     /// <summary>
@@ -95,43 +95,20 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
 
     #region public
     /// <summary>
-    /// Sets the master shell view model. It activates the state <see cref="SetupDataDialogMachine" />
-    /// </summary>
-    /// <value>The master shell view model <see cref="ShellViewModel" />.</value>
-    [Import]
-    public ShellViewModel MasterShellViewModel
-    {
-      set
-      {
-        base.EnterState(value);
-      }
-    }
-    /// <summary>
     /// Class SetupDataDialogMachineLocal local implementation of the <see cref="SetupDataDialogMachine{SettingsPanelViewModel}"/>
     /// </summary>
-    public class SetupDataDialogMachineLocal : SetupDataDialogMachine<SettingsPanelViewModel>
+    public sealed class SetupDataDialogMachineLocal : SetupDataDialogMachine<SettingsPanelViewModel>
     {
-      protected override SetupDataDialogMachine<SettingsPanelViewModel>.ConnectionDescription GetConnectionData
+      protected override Services.ConnectionDescription GetConnectionData
       {
         get
         {
-          return new ConnectionDescription()
-            {
-              SharePointServerURL = this.ViewModelContext.URL,
-              DatabaseName = this.ViewModelContext.DatabaseName,
-              SQLServer = this.ViewModelContext.SQLServer,
-            };
+          return new Services.ConnectionDescription(this.ViewModelContext.URL, this.ViewModelContext.DatabaseName, this.ViewModelContext.SQLServer);
         }
       }
-      protected internal override Services.ConnectionData DataContentState
+      internal protected override void PublishSPURL()
       {
-        set
-        {
-          if (value.SPConnected)
-            this.ViewModelContext.m_EventAggregator.GetEvent<Infrastructure.SharePointWebsiteEvent>().Publish(new Infrastructure.SharePointWebsiteData(this.ViewModelContext.URL, null));
-          if (value.SPConnected)
-            this.ViewModelContext.m_EventAggregator.GetEvent<Infrastructure.SharePointWebsiteEvent>().Publish(new Infrastructure.SharePointWebsiteData(" ERR ", null));
-        }
+        this.ViewModelContext.m_EventAggregator.GetEvent<Infrastructure.SharePointWebsiteEvent>().Publish(new SharePointWebsiteData(ViewModelContext.URL, null));
       }
     }
     #endregion
@@ -149,9 +126,36 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     {
       m_ILoggerFacade.Log("Restoring user settings from configuration file.", Category.Debug, Priority.None);
       //User
-      URL = Properties.Settings.Default.SiteURL;
-      DatabaseName = Properties.Settings.Default.SQLDatabaseName;
-      SQLServer = Properties.Settings.Default.SQLServer;
+      URL = Settings.Default.SiteURL;
+      DatabaseName = Settings.Default.SQLDatabaseName;
+      SQLServer = Settings.Default.SQLServer;
+    }
+    internal void SaveSettings()
+    {
+      m_ILoggerFacade.Log("Saving user settings to configuration file.", Category.Debug, Priority.None);
+      Settings.Default.SiteURL = URL;
+      Settings.Default.SQLDatabaseName = DatabaseName;
+      Settings.Default.SQLServer = SQLServer;
+      Settings.Default.Save();
+    }
+    #endregion
+
+
+    #region INavigationAware
+    /// <summary>
+    /// Called when the implementer has been navigated to.
+    /// </summary>
+    /// <param name="navigationContext">The navigation context.</param>
+    public void OnNavigatedTo(NavigationContext navigationContext)
+    {
+    }
+    public bool IsNavigationTarget(NavigationContext navigationContext)
+    {
+      return false;
+    }
+    public void OnNavigatedFrom(NavigationContext navigationContext)
+    {
+      SaveSettings();
     }
     #endregion
 

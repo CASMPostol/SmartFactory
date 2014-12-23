@@ -35,7 +35,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Services
         return m_Singleton;
       }
     }
-
+    internal ConnectionDescription ConnectionDescription { get; set; }
     public string CleanupLastRunBy = Properties.Settings.Default.RunByError;
     public string SyncLastRunBy = Properties.Settings.Default.RunByError;
     public string ArchivingLastRunBy = Properties.Settings.Default.RunByError;
