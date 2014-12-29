@@ -80,9 +80,13 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         else
         {
           this.Commodity = value.CommodityTable != null ? new ObservableCollection<RoutesCatalogCommodityRow>(value.CommodityTable) : null;
+          m_LoggingService.Log(String.Format("Entered {0} items to Commodity table", this.Commodity == null ? 0 : this.Commodity.Count), Category.Info, Priority.Medium);
           this.Market = value.MarketTable != null ? new ObservableCollection<RoutesCatalogMarket>(value.MarketTable) : null;
+          m_LoggingService.Log(String.Format("Entered {0} items to Market table", this.Market == null ? 0 : this.Market.Count), Category.Info, Priority.Medium);
           this.Partners = value.PartnersTable != null ? new ObservableCollection<RoutesCatalogPartnersRow>(value.PartnersTable) : null;
+          m_LoggingService.Log(String.Format("Entered {0} items to Partners table", this.Partners == null ? 0 : this.Partners.Count), Category.Info, Priority.Medium);
           this.Route = value.GlobalPricelist != null ? new ObservableCollection<RoutesCatalogRoute>(value.GlobalPricelist) : null;
+          m_LoggingService.Log(String.Format("Entered {0} items to Route table", this.Route == null ? 0 : this.Route.Count), Category.Info, Priority.Medium);
         }
         RaiseHandler<RoutesCatalog>(value, ref b_Routes, "RoutesCatalog", this);
       }
