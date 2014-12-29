@@ -40,6 +40,9 @@
         </Grid>
         <StackPanel Margin="70,5,5,5" Grid.Row="1">
             <TabControl Grid.Row="3" VerticalAlignment="Top">
+                <TabItem Header="Simple Routs">
+                    <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Path=Route}"/>
+                </TabItem>
                 <TabItem Header="Routs" Style="{DynamicResource CASTabItemStyle}">
                     <DataGrid Style="{DynamicResource CASDataGridStyle}" Width="Auto" x:Name="x_DataGridRouts" ItemsSource="{Binding Route}" MinHeight="400" VerticalContentAlignment="Center" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}">
                         <DataGrid.Columns>
@@ -64,7 +67,7 @@
                     </DataGrid>
                 </TabItem>
                 <TabItem Header="Markets" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid Style="{DynamicResource CASDataGridStyle}" Width="Auto" x:Name="x_DataGridMarkets" ItemsSource="{Binding Market}" MinHeight="400" VerticalContentAlignment="Center">
+                    <DataGrid Style="{DynamicResource CASDataGridStyle}" AutoGenerateColumns="False" Width="Auto" x:Name="x_DataGridMarkets" ItemsSource="{Binding Market}" MinHeight="400" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Market" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Market}" />
                             <DataGridTextColumn Header="Area" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Area}" />
@@ -74,7 +77,7 @@
                     </DataGrid>
                 </TabItem>
                 <TabItem Header="Partners" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid Style="{DynamicResource CASDataGridStyle}" Width="Auto" x:Name="x_DataGridPartners" ItemsSource="{Binding Partners}" MinHeight="400" VerticalContentAlignment="Center">
+                    <DataGrid Style="{DynamicResource CASDataGridStyle}" AutoGenerateColumns="False" Width="Auto" x:Name="x_DataGridPartners" ItemsSource="{Binding Partners}" MinHeight="400" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Name}" />
                             <DataGridTextColumn Header="Number (from SAP)" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding NumberFromSAP}" />
