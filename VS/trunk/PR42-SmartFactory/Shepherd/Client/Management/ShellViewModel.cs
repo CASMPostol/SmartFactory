@@ -46,11 +46,13 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     {
       if (regionManager == null)
       {
+        m_LoggingService.Log(String.Format("ShellViewModel: exception {0}", "ArgumentNullException(\"watchListService\")"), Category.Debug, Priority.Low);
         throw new ArgumentNullException("watchListService");
       }
       m_RegionManager = regionManager;
       if (eventAggregator == null)
       {
+        m_LoggingService.Log(String.Format("ShellViewModel: exception {0}", "ArgumentNullException(\"eventAggregator\")"), Category.Debug, Priority.Low);
         throw new ArgumentNullException("eventAggregator");
       }
       m_EventAggregator = eventAggregator;
@@ -74,12 +76,11 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     /// <param name="parameter">An instance of <see cref="NavigationParameters"/>, which holds a collection of object parameters.</param>
     internal void RequestNavigate(string url, NavigationParameters parameter)
     {
-      m_LoggingService.Log(String.Format("RequestNavigate to {0}", url), Category.Debug, Priority.Low);
+      m_LoggingService.Log(String.Format("RequestNavigate to {0}/?{1}", url, parameter), Category.Debug, Priority.Low);
       if (parameter == null)
         m_RegionManager.RequestNavigate(RegionNames.ActionRegion, new Uri(url, UriKind.Relative));
       else
         m_RegionManager.RequestNavigate(RegionNames.ActionRegion, new Uri(url, UriKind.Relative), parameter);
-
     }
     /// <summary>
     /// Reports state name change.
@@ -87,6 +88,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     /// <param name="machineStateName">Current name of the machine state.</param>
     protected override void StateNameProgressChang(string machineStateName)
     {
+      m_LoggingService.Log(String.Format("StateNameProgressChang: new machine state {0}", machineStateName), Category.Debug, Priority.Low);
       m_EventAggregator.GetEvent<MachineStateNameEvent>().Publish(machineStateName);
     }
     private IRegionManager m_RegionManager = null;

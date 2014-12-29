@@ -18,31 +18,44 @@ using CAS.Common.ViewModel.Wizard.ButtonsPanelStateTemplates;
 using CAS.SmartFactory.Shepherd.Client.Management.InputData;
 using CAS.SmartFactory.Shepherd.Client.Management.Properties;
 using CAS.SmartFactory.Shepherd.Client.Management.UpdateData;
+using Microsoft.Practices.Prism.Logging;
 using System;
 using System.ComponentModel;
 
 namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
 {
-  public abstract class RouteEditMachineState<ViewModelContextType> : BackgroundWorkerMachine<ShellViewModel, ViewModelContextType>
+  public abstract class RouteEditMachineState<ViewModelContextType> : BackgroundWorkerMachine<ShellViewModel, ViewModelContextType>, ILoggerFacade
     where ViewModelContextType : IViewModelContext
   {
-    
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RouteEditMachineState{ViewModelContextType}"/> class.
+    /// </summary>
     public RouteEditMachineState()
     {
       m_ButtonsTemplate = new CancelTemplate(Resources.UpdateRoutesButtonTitle, Resources.ImportXMLButtonTitle, Resources.ReadSPContentButtonTitle);
       m_StateMachineActionsArray = new Action<object>[4];
       m_StateMachineActionsArray[(int)m_ButtonsTemplate.CancelPosition] = x => this.OnCancellation();
-      m_StateMachineActionsArray[(int)StateMachineEventIndex.RightMiddleButtonEvent] = x => this.ReadSiteContent();
+      m_StateMachineActionsArray[(int)StateMachineEventIndex.RightMiddleButtonEvent] = x => this.ReadSiteContent(true);
       m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftButtonEvent] = x => this.UpdateRoutes();
       m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftMiddleButtonEvent] = x => this.ReadXMLFile();
     }
+    /// <summary>
+    /// Called by the ViewModel when navigation context has been changed. It start execution default action.
+    /// </summary>
+    internal void OnNavigationContextChanged()
+    {
+      this.Log("OnNavigationContextChanged: Starting operation ReadSiteContent", Category.Debug, Priority.Low);
+      ReadSiteContent(false);
+    }
 
     #region BackgroundWorkerMachine
-    private DoWorkEventHandler m_DoWorkEventHandler = null;
-    private Action<object> m_CompletedEventHandler = null;
+    /// <summary>
+    /// Called on entering new state.
+    /// </summary>
     public override void OnEnteringState()
     {
-      Context.ProgressChang(this, new ProgressChangedEventArgs(0, String.Format("On entering the state {0}", Infrastructure.ViewNames.RouteEditorStateName)));
+      this.Log(String.Format("OnEnteringState {0}", Infrastructure.ViewNames.RouteEditorStateName), Category.Debug, Priority.Low);
       base.OnEnteringState();
       Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(false, false, true);
     }
@@ -76,10 +89,11 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     #endregion
 
     #region private
+
     #region ReadSiteContent
-    private void ReadSiteContent()
+    private void ReadSiteContent(bool raiseConfirmation)
     {
-      if (!this.GetReadSiteContentConfirmation())
+      if (raiseConfirmation && !this.GetReadSiteContentConfirmation())
         return;
       try
       {
@@ -94,14 +108,14 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     private void DoWorkEventHandler_ReadSiteContent(object sender, DoWorkEventArgs e)
     {
-      ReportProgress(this, new ProgressChangedEventArgs(0, String.Format("Trying to establish connection with the site {0}.", URL)));
+      ReportProgress(this, new ProgressChangedEventArgs(0, String.Format("ReadSiteContent: Trying to establish connection with the site {0}.", URL)));
       string _url = (string)e.Argument;
       if (string.IsNullOrEmpty(_url))
-        throw new ArgumentException("URL cannot be empty or null");
+        throw new ArgumentException("ReadSiteContent: URL cannot be empty or null");
       EntitiesDataDictionary _ret = new EntitiesDataDictionary((string)e.Argument);
-      ReportProgress(this, new ProgressChangedEventArgs(0, "Starting read current data from the selected site."));
+      ReportProgress(this, new ProgressChangedEventArgs(0, "ReadSiteContent: Starting read current data from the selected site."));
       _ret.ReadSiteContent(x => ReportProgress(this, new ProgressChangedEventArgs(1, x)));
-      ReportProgress(this, new ProgressChangedEventArgs(100, "Finished read current data from selected site."));
+      ReportProgress(this, new ProgressChangedEventArgs(100, "ReadSiteContent: Finished read current data from selected site."));
       e.Result = _ret;
     }
     private void RunWorkerCompletedEventHandler_ReadSiteContent(object result)
@@ -177,7 +191,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     #endregion
 
-
+    private DoWorkEventHandler m_DoWorkEventHandler = null;
+    private Action<object> m_CompletedEventHandler = null;
     private EntitiesDataDictionary m_EntitiesDataDictionary = null;
     private bool Connected;
     private CancelTemplate m_ButtonsTemplate;
@@ -196,6 +211,13 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     protected abstract string GetReadRouteFileNameConfirmation();
     protected abstract RoutesCatalog SetRoutesCatalog { set; get; }
     protected abstract string URL { get; }
+    /// <summary>
+    /// Write a new log entry with the specified category and priority.
+    /// </summary>
+    /// <param name="message">Message body to log.</param>
+    /// <param name="category">Category of the entry.</param>
+    /// <param name="priority">The priority of the entry.</param>
+    public abstract void Log(string message, Category category, Priority priority);
     #endregion
 
   }
