@@ -67,9 +67,11 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     #region private
     private void ProgressUpdatedHandler(ProgressChangedEventArgs progress)
     {
+      if (progress.UserState == null)
+        return;
       if (progress.UserState is string)
         ProgressList.Add(String.Format("{0:T}: {1}", DateTime.Now, (String)progress.UserState));
-      Services.NamedTraceLogger.Logger.TraceProgressChange(progress);
+      m_ILoggerFacade.Log(progress.UserState.ToString(), Category.Info, Priority.Low);
     }
     private IEventAggregator m_EventAggregator;
     private ILoggerFacade m_ILoggerFacade;

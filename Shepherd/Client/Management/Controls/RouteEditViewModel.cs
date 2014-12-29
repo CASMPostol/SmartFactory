@@ -14,9 +14,11 @@
 //</summary>
 
 using CAS.Common.Interactivity.InteractionRequest;
+using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
 using CAS.SmartFactory.Shepherd.Client.Management.InputData;
 using CAS.SmartFactory.Shepherd.Client.Management.StateMachines;
 using Microsoft.Practices.Prism.Logging;
+using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Win32;
 using System;
@@ -40,8 +42,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     /// Initializes a new instance of the <see cref="RouteEditViewModel"/> class.
     /// </summary>
     [ImportingConstructor]
-    public RouteEditViewModel(ILoggerFacade loggingService)
+    public RouteEditViewModel(IEventAggregator eventAggregator, ILoggerFacade loggingService)
     {
+      m_EventAggregator = eventAggregator;
       m_LoggingService = loggingService;
       Prefix = DateTime.Today.Year.ToString();
       RoutesCatalog = null;
@@ -79,14 +82,15 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         }
         else
         {
+          ProgressChangeEvent _agr = m_EventAggregator.GetEvent<ProgressChangeEvent>();
           this.Commodity = value.CommodityTable != null ? new ObservableCollection<RoutesCatalogCommodityRow>(value.CommodityTable) : null;
-          m_LoggingService.Log(String.Format("Entered {0} items to Commodity table", this.Commodity == null ? 0 : this.Commodity.Count), Category.Info, Priority.Medium);
+          _agr.Publish(new System.ComponentModel.ProgressChangedEventArgs(1, String.Format("Entered {0} items to Commodity table", this.Commodity == null ? 0 : this.Commodity.Count)));
           this.Market = value.MarketTable != null ? new ObservableCollection<RoutesCatalogMarket>(value.MarketTable) : null;
-          m_LoggingService.Log(String.Format("Entered {0} items to Market table", this.Market == null ? 0 : this.Market.Count), Category.Info, Priority.Medium);
+          _agr.Publish(new System.ComponentModel.ProgressChangedEventArgs(1, String.Format("Entered {0} items to Market table", this.Market == null ? 0 : this.Market.Count)));
           this.Partners = value.PartnersTable != null ? new ObservableCollection<RoutesCatalogPartnersRow>(value.PartnersTable) : null;
-          m_LoggingService.Log(String.Format("Entered {0} items to Partners table", this.Partners == null ? 0 : this.Partners.Count), Category.Info, Priority.Medium);
+          _agr.Publish(new System.ComponentModel.ProgressChangedEventArgs(1, String.Format("Entered {0} items to Partners table", this.Partners == null ? 0 : this.Partners.Count)));
           this.Route = value.GlobalPricelist != null ? new ObservableCollection<RoutesCatalogRoute>(value.GlobalPricelist) : null;
-          m_LoggingService.Log(String.Format("Entered {0} items to Route table", this.Route == null ? 0 : this.Route.Count), Category.Info, Priority.Medium);
+          _agr.Publish(new System.ComponentModel.ProgressChangedEventArgs(1, String.Format("Entered {0} items to Route table", this.Route == null ? 0 : this.Route.Count)));
         }
         RaiseHandler<RoutesCatalog>(value, ref b_Routes, "RoutesCatalog", this);
       }
@@ -187,6 +191,20 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
           return ViewModelContext.m_ConnectionData.SharePointServerURL;
         }
       }
+
+      #region ILoggerFacade
+      /// <summary>
+      /// Write a new log entry with the specified category and priority.
+      /// </summary>
+      /// <param name="message">Message body to log.</param>
+      /// <param name="category">Category of the entry.</param>
+      /// <param name="priority">The priority of the entry.</param>
+      public override void Log(string message, Category category, Priority priority)
+      {
+        ViewModelContext.m_LoggingService.Log(message, category, priority);
+      }
+      #endregion
+
     }
     #endregion
 
@@ -199,8 +217,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     private ObservableCollection<RoutesCatalogRoute> b_Route;
     private Services.ConnectionDescription m_ConnectionData;
     private ILoggerFacade m_LoggingService;
+    private IEventAggregator m_EventAggregator;
     #endregion
-
 
     #region INavigationAware
     /// <summary>
@@ -211,8 +229,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     {
       m_ConnectionData = (Services.ConnectionDescription)navigationContext.Parameters[Infrastructure.ViewNames.RouteEditorStateName];
       string _msg = String.Format
-        ("Created view model {0} for SharePoint: {1}.", typeof(RouteEditViewModel).Name, m_ConnectionData.SharePointServerURL);
+        ("OnNavigatedTo - created view model {0} for SharePoint: {1}.", typeof(RouteEditViewModel).Name, m_ConnectionData.SharePointServerURL);
       m_LoggingService.Log(_msg, Category.Debug, Priority.Low);
+      this.MyState.OnNavigationContextChanged();
     }
     /// <summary>
     /// Called to determine if this instance can handle the navigation request.
@@ -232,4 +251,5 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     #endregion
 
   }
+
 }

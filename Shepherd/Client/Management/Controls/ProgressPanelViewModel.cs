@@ -15,6 +15,7 @@
 
 using CAS.Common.ComponentModel;
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
+using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.PubSubEvents;
 using System;
 using System.ComponentModel;
@@ -41,9 +42,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     /// </summary>
     /// <param name="eventAggregator">The event aggregator.</param>
     [ImportingConstructor]
-    public ProgressPanelViewModel(IEventAggregator eventAggregator)
+    public ProgressPanelViewModel(IEventAggregator eventAggregator, ILoggerFacade loggingService)
     {
       m_EventAggregator = eventAggregator;
+      m_loggingService = loggingService;
       this.m_EventAggregator.GetEvent<ProgressChangeEvent>().Subscribe(this.ProgressUpdatedHandler, ThreadOption.PublisherThread);
       this.m_EventAggregator.GetEvent<SharePointWebsiteEvent>().Subscribe(this.SharePointWebsiteDataHandler, ThreadOption.PublisherThread);
       this.m_EventAggregator.GetEvent<MachineStateNameEvent>().Subscribe(this.MachineStateNameEventHandler, ThreadOption.PublisherThread);
@@ -160,10 +162,13 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         VersionVisibility = Visibility.Collapsed;
       else
         VersionVisibility = Visibility.Visible;
+      m_loggingService.Log
+        (String.Format("Mew ISharePointWebsiteData: URL={0}, CurrentContentVersion={1}", URL, CurrentContentVersion == null ? "null" : data.CurrentContentVersion.ToString()), Category.Debug, Priority.Low);
     }
     private void MachineStateNameEventHandler(string machineStateName)
     {
       MachineStateName = machineStateName;
+      m_loggingService.Log(String.Format("Mew MachineStateName {0}", MachineStateName), Category.Debug, Priority.Low);
     }
     private void UpdateProgressBar(int progress)
     {
@@ -171,10 +176,14 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       {
         Progress = 0;
         ProgressBarMaximum = ProgressBarMaximumDefault;
+        m_loggingService.Log(String.Format("Set the progress bar to the standby position Progress=0, ProgressBarMaximum={0}", ProgressBarMaximumDefault), Category.Debug, Priority.Low);
         return;
       }
       while (ProgressBarMaximum - Progress < progress)
+      {
         ProgressBarMaximum *= 2;
+        m_loggingService.Log(String.Format("Changed progress bar scale to ProgressBarMaximum={0}", ProgressBarMaximum), Category.Debug, Priority.Low);
+      }
       Progress += progress;
     }
     private IEventAggregator m_EventAggregator;
@@ -186,6 +195,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     private int b_Progress;
     private int b_ProgressBarMaximum = ProgressBarMaximumDefault;
     private string b_MachineStateName = " --- ";
+    private ILoggerFacade m_loggingService;
     #endregion
 
   }
