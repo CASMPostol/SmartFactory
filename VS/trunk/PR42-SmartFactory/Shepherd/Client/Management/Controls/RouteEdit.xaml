@@ -40,9 +40,9 @@
         </Grid>
         <StackPanel Margin="70,5,5,5" Grid.Row="1">
             <TabControl Grid.Row="3" VerticalAlignment="Top">
-                <TabItem Header="Simple Routs">
+                <!--<TabItem Header="Simple Routs">
                     <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Path=Route}"/>
-                </TabItem>
+                </TabItem>-->
                 <TabItem Header="Routes" Style="{DynamicResource CASTabItemStyle}">
                     <DataGrid Height="500" Width="800" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Route}" CellStyle="{DynamicResource NonEditableCell}" />
                 </TabItem>
