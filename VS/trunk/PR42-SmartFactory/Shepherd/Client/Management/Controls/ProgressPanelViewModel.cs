@@ -169,6 +169,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     {
       MachineStateName = machineStateName;
       m_loggingService.Log(String.Format("Mew MachineStateName {0}", MachineStateName), Category.Debug, Priority.Low);
+      UpdateProgressBar(0);
     }
     private void UpdateProgressBar(int progress)
     {

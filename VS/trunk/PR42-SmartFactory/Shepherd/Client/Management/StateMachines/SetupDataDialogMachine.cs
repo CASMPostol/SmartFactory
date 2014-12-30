@@ -127,6 +127,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(m_ConnectionData.SQLConnected, m_ConnectionData.SPConnected);
       if (m_ConnectionData.SPConnected)
         this.PublishSPURL();
+      Context.ProgressChang(this, new ProgressChangedEventArgs(0, "Operation Connect finished."));
     }
     /// <summary>
     ///  Called when only cancel button must be active - after starting background worker.
@@ -163,18 +164,16 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     {
       this.RunAsync(null);
     }
-    private object OnArchiveCommand()
+    private void OnArchiveCommand()
     {
       Context.ProgressChang(this, new ProgressChangedEventArgs(1, "OnArchiveCommand raised but is not supported."));
-      return null;
     }
-    private object OnRouteEditCommand()
+    private void OnRouteEditCommand()
     {
       NavigationParameters _par = new NavigationParameters();
       Debug.Assert(m_ConnectionData.ConnectionDescription != null, "In OnRouteEditCommand the ConnectionDescription is null");
       _par.Add(Infrastructure.ViewNames.RouteEditorStateName, m_ConnectionData.ConnectionDescription);
       Context.RequestNavigate(Infrastructure.ViewNames.RouteEditorStateName, _par);
-      return null;
     }
     private Services.ConnectionData m_ConnectionData = null;
     private static void GetLastOperation(SHRARCHIVE entities, ArchivingOperationLogs.OperationName operationName, Func<string, string> RunBy, Func<string, string> RunDate)

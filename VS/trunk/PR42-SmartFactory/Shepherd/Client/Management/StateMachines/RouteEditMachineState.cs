@@ -33,13 +33,14 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     /// </summary>
     public RouteEditMachineState()
     {
-      m_ButtonsTemplate = new CancelTemplate(Resources.UpdateRoutesButtonTitle, Resources.ImportXMLButtonTitle, Resources.ReadSPContentButtonTitle);
+      m_ButtonsTemplate = new CancelTemplate(Resources.UpdateRoutesButtonTitle, Resources.ImportXMLButtonTitle, Resources.SetupButtonTitle);
       m_StateMachineActionsArray = new Action<object>[4];
       m_StateMachineActionsArray[(int)m_ButtonsTemplate.CancelPosition] = x => this.OnCancellation();
-      m_StateMachineActionsArray[(int)StateMachineEventIndex.RightMiddleButtonEvent] = x => this.ReadSiteContent(true);
+      m_StateMachineActionsArray[(int)StateMachineEventIndex.RightMiddleButtonEvent] = x => this.OnSetupButton();
       m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftButtonEvent] = x => this.UpdateRoutes();
       m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftMiddleButtonEvent] = x => this.ReadXMLFile();
     }
+
     /// <summary>
     /// Called by the ViewModel when navigation context has been changed. It start execution default action.
     /// </summary>
@@ -125,7 +126,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       m_EntitiesDataDictionary = result as EntitiesDataDictionary;
       Connected = true;
       this.Context.ProgressChang(this, new ProgressChangedEventArgs(1, "Operation ReadSiteContent finished"));
-      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(false, true, false);
+      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(false, true, true);
     }
     #endregion
 
@@ -143,23 +144,23 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       EntitiesDataDictionary _edc = e.Argument as EntitiesDataDictionary;
       if (_edc == null)
         throw new ArgumentException("DoWorkEventHandler UpdateRoutes", "argument");
-      ReportProgress(this, new ProgressChangedEventArgs(100, "Start updating the site data."));
-      _edc.ImportTable(this.SetRoutesCatalog.CommodityTable, x => ReportProgress(this, x));
-      ReportProgress(this, new ProgressChangedEventArgs(0, "Commodity updated."));
-      _edc.ImportTable(this.SetRoutesCatalog.PartnersTable, false, x => ReportProgress(this, x));
-      ReportProgress(this, new ProgressChangedEventArgs(0, "Partners updated."));
-      _edc.ImportTable(this.SetRoutesCatalog.MarketTable, x => ReportProgress(this, x));
-      ReportProgress(this, new ProgressChangedEventArgs(0, "Market updated."));
-      _edc.ImportTable(this.SetRoutesCatalog.GlobalPricelist, false, x => ReportProgress(this, x));
-      ReportProgress(this, new ProgressChangedEventArgs(0, "Global Price List updated."));
-      ReportProgress(this, new ProgressChangedEventArgs(0, "Data from current site has been read"));
-      _edc.SubmitChages();
-      ReportProgress(this, new ProgressChangedEventArgs(0, "Submitted changes."));
+      ReportProgress(this, new ProgressChangedEventArgs(0, "Start updating the site data."));
+      //_edc.ImportTable(this.SetRoutesCatalog.CommodityTable, x => ReportProgress(this, x));
+      ReportProgress(this, new ProgressChangedEventArgs(1, "Commodity updated."));
+      //_edc.ImportTable(this.SetRoutesCatalog.PartnersTable, false, x => ReportProgress(this, x));
+      ReportProgress(this, new ProgressChangedEventArgs(1, "Partners updated."));
+      //_edc.ImportTable(this.SetRoutesCatalog.MarketTable, x => ReportProgress(this, x));
+      ReportProgress(this, new ProgressChangedEventArgs(1, "Market updated."));
+      //_edc.ImportTable(this.SetRoutesCatalog.GlobalPricelist, false, x => ReportProgress(this, x));
+      ReportProgress(this, new ProgressChangedEventArgs(1, "Global Price List updated."));
+      ReportProgress(this, new ProgressChangedEventArgs(1, "Data from current site has been read"));
+      //_edc.SubmitChanges();
+      ReportProgress(this, new ProgressChangedEventArgs(1, "Submitted changes."));
     }
     private void RunWorkerCompletedEventHandler_UpdateRoutes(object result)
     {
       Context.ProgressChang(this, new ProgressChangedEventArgs(100, "Operation UpdateRoutes finished"));
-      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(true, false, false);
+      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(false, true, true);
     }
     #endregion
 
@@ -188,8 +189,14 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     {
       this.SetRoutesCatalog = (RoutesCatalog)result;
       Context.ProgressChang(this, new ProgressChangedEventArgs(100, "Operation ReadXMLFile finished"));
+      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(true, true, true);
     }
     #endregion
+    private void OnSetupButton()
+    {
+      Log("User requested navigation to setup dialog screen.", Category.Debug, Priority.Low);
+      Context.RequestNavigate(Infrastructure.ViewNames.SetupStateName, null);
+    }
 
     private DoWorkEventHandler m_DoWorkEventHandler = null;
     private Action<object> m_CompletedEventHandler = null;

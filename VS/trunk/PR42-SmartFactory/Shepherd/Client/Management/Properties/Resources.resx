@@ -156,4 +156,7 @@
   <data name="UpdateRoutesButtonToolTip" xml:space="preserve">
     <value>Import XML file and update existing routes, cities, countries and markets lists.</value>
   </data>
+  <data name="SetupButtonTitle" xml:space="preserve">
+    <value>Setup</value>
+  </data>
 </root>
