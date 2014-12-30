@@ -243,7 +243,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.UpdateData
         m_DestinationMarket.Add(_key, _dstm);
       }
     }
-    internal void SubmitChages()
+    /// <summary>
+    /// Submits the changes.
+    /// </summary>
+    internal void SubmitChanges()
     {
       m_EDC.SubmitChanges();
     }

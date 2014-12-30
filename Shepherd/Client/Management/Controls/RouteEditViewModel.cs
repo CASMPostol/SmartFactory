@@ -151,7 +151,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     /// <summary>
     /// Class RouteEditMachineStateLocal - ViewModel extension of the machine state <see cref="RouteEditMachineState"/>.
     /// </summary>
-    public class RouteEditMachineStateLocal : RouteEditMachineState<RouteEditViewModel>
+    public sealed class RouteEditMachineStateLocal : RouteEditMachineState<RouteEditViewModel>
     {
       protected override bool GetReadSiteContentConfirmation()
       {
