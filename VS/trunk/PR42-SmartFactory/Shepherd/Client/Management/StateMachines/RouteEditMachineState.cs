@@ -19,6 +19,7 @@ using CAS.SmartFactory.Shepherd.Client.Management.InputData;
 using CAS.SmartFactory.Shepherd.Client.Management.Properties;
 using CAS.SmartFactory.Shepherd.Client.Management.UpdateData;
 using Microsoft.Practices.Prism.Logging;
+using Microsoft.Practices.Prism.Regions;
 using System;
 using System.ComponentModel;
 
@@ -35,7 +36,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     {
       m_ButtonsTemplate = new CancelTemplate(Resources.UpdateRoutesButtonTitle, Resources.ImportXMLButtonTitle, Resources.SetupButtonTitle);
       m_StateMachineActionsArray = new Action<object>[4];
-      m_StateMachineActionsArray[(int)m_ButtonsTemplate.CancelPosition] = x => this.OnCancellation();
+      m_StateMachineActionsArray[(int)m_ButtonsTemplate.CancelPosition] = x => this.Cancel();
       m_StateMachineActionsArray[(int)StateMachineEventIndex.RightMiddleButtonEvent] = x => this.OnSetupButton();
       m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftButtonEvent] = x => this.UpdateRoutes();
       m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftMiddleButtonEvent] = x => this.ReadXMLFile();
@@ -79,6 +80,11 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     public override Action<object>[] StateMachineActionsArray
     {
       get { return m_StateMachineActionsArray; }
+    }
+    public override void Cancel()
+    {
+      Log("Requested Cancel operation", Category.Debug, Priority.Low);
+      base.Cancel();
     }
     #endregion
 
@@ -125,8 +131,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       DisposeEntitiesDataDictionary();
       m_EntitiesDataDictionary = result as EntitiesDataDictionary;
       Connected = true;
-      this.Context.ProgressChang(this, new ProgressChangedEventArgs(1, "Operation ReadSiteContent finished"));
       Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(false, true, true);
+      this.Context.ProgressChang(this, new ProgressChangedEventArgs(0, "Operation ReadSiteContent finished"));
     }
     #endregion
 
@@ -159,8 +165,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     private void RunWorkerCompletedEventHandler_UpdateRoutes(object result)
     {
-      Context.ProgressChang(this, new ProgressChangedEventArgs(100, "Operation UpdateRoutes finished"));
       Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(false, true, true);
+      Context.ProgressChang(this, new ProgressChangedEventArgs(0, "Operation UpdateRoutes finished"));
     }
     #endregion
 
@@ -188,14 +194,16 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     private void RunWorkerCompletedEventHandler_ReadXMLFile(object result)
     {
       this.SetRoutesCatalog = (RoutesCatalog)result;
-      Context.ProgressChang(this, new ProgressChangedEventArgs(100, "Operation ReadXMLFile finished"));
       Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(true, true, true);
+      Context.ProgressChang(this, new ProgressChangedEventArgs(0, "Operation ReadXMLFile finished"));
     }
     #endregion
     private void OnSetupButton()
     {
       Log("User requested navigation to setup dialog screen.", Category.Debug, Priority.Low);
-      Context.RequestNavigate(Infrastructure.ViewNames.SetupStateName, null);
+      NavigationParameters _par = new NavigationParameters();
+      _par.Add(Infrastructure.ViewNames.SetupStateName, String.Empty);
+      Context.RequestNavigate(Infrastructure.ViewNames.SetupStateName, _par);
     }
 
     private DoWorkEventHandler m_DoWorkEventHandler = null;

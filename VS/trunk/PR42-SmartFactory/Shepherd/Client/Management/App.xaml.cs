@@ -49,6 +49,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
       {
         ApplicationIBootstrapper bootstrapper = new ApplicationIBootstrapper();
         bootstrapper.Run();
+        
       }
       catch (Exception ex)
       {

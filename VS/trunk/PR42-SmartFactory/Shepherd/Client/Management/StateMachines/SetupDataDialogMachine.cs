@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       m_ButtonsTemplate = new ConnectCancelTemplate(Resources.RouteEditButtonTitle, Resources.ArchiveButtonTitle);
       m_StateMachineActionsArray = new Action<object>[4];
       m_StateMachineActionsArray[(int)m_ButtonsTemplate.ConnectPosition] = x => this.OnConnectCommand();
-      m_StateMachineActionsArray[(int)m_ButtonsTemplate.CancelPosition] = x => this.OnCancellation();
+      m_StateMachineActionsArray[(int)m_ButtonsTemplate.CancelPosition] = x => this.Cancel();
       m_StateMachineActionsArray[(int)m_ButtonsTemplate.LeftButtonPosition] = x => this.OnRouteEditCommand();
       m_StateMachineActionsArray[(int)m_ButtonsTemplate.LeftMiddleButtonPosition] = x => this.OnArchiveCommand();
     }
@@ -143,6 +143,11 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     protected override ButtonsSetState ButtonsPanelState
     {
       get { return m_ButtonsTemplate; }
+    }
+    public override void Cancel()
+    {
+      Context.ProgressChang(this, new ProgressChangedEventArgs(1, "Cancellation pending"));
+      base.Cancel();
     }
     #endregion
 
