@@ -43,10 +43,22 @@
                 <TabItem Header="Simple Routs">
                     <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Path=Route}"/>
                 </TabItem>
-                <TabItem Header="Routs" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid Style="{DynamicResource CASDataGridStyle}" Width="Auto" x:Name="x_DataGridRouts" ItemsSource="{Binding Route}" MinHeight="400" VerticalContentAlignment="Center" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}">
+                <TabItem Header="Routes" Style="{DynamicResource CASTabItemStyle}">
+                    <DataGrid Height="500" Width="800" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Route}" CellStyle="{DynamicResource NonEditableCell}" />
+                </TabItem>
+                <TabItem Header="Market" Style="{DynamicResource CASTabItemStyle}">
+                    <DataGrid Height="500" Width="800" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Market}" CellStyle="{DynamicResource NonEditableCell}" />
+                </TabItem>
+                <TabItem Header="Partners" Style="{DynamicResource CASTabItemStyle}">
+                    <DataGrid Height="500" Width="800" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Partners}" CellStyle="{DynamicResource NonEditableCell}" />
+                </TabItem>
+                <TabItem Header="Commodity" Style="{DynamicResource CASTabItemStyle}">
+                    <DataGrid Height="500" Width="800" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Commodity}" CellStyle="{DynamicResource NonEditableCell}" />
+                </TabItem>
+                <!--<TabItem Header="Routs" Style="{DynamicResource CASTabItemStyle}">
+                    <DataGrid Style="{DynamicResource CASDataGridStyle}" Width="Auto" x:Name="x_DataGridRouts" ItemsSource="{Binding Path=Route}" MinHeight="400" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="City" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Dest_City}" />
+                            <DataGridTextColumn Header="City" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Path=Route/Dest_City}" />
                             <DataGridTextColumn Header="Business description" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Business_description}" />
                             <DataGridTextColumn Header="Shipment type" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Business_description}" />
                             <DataGridTextColumn Header="Payer" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Freight_Payer__I_C__MainLeg}" />
@@ -65,8 +77,8 @@
                             <DataGridTextColumn Header="Fright PO" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding PO_NUMBER}" />
                         </DataGrid.Columns>
                     </DataGrid>
-                </TabItem>
-                <TabItem Header="Markets" Style="{DynamicResource CASTabItemStyle}">
+                </TabItem>-->
+                <!--<TabItem Header="Markets" Style="{DynamicResource CASTabItemStyle}">
                     <DataGrid Style="{DynamicResource CASDataGridStyle}" AutoGenerateColumns="False" Width="Auto" x:Name="x_DataGridMarkets" ItemsSource="{Binding Market}" MinHeight="400" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Market" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Market}" />
@@ -75,8 +87,8 @@
                             <DataGridTextColumn Header="Destination City" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding DestinationCity}" />
                         </DataGrid.Columns>
                     </DataGrid>
-                </TabItem>
-                <TabItem Header="Partners" Style="{DynamicResource CASTabItemStyle}">
+                </TabItem>-->
+               <!-- <TabItem Header="Partners" Style="{DynamicResource CASTabItemStyle}">
                     <DataGrid Style="{DynamicResource CASDataGridStyle}" AutoGenerateColumns="False" Width="Auto" x:Name="x_DataGridPartners" ItemsSource="{Binding Partners}" MinHeight="400" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Name}" />
@@ -90,14 +102,14 @@
                             <DataGridTextColumn Header="Warehouse" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Warehouse}" />
                         </DataGrid.Columns>
                     </DataGrid>
-                </TabItem>
-                <TabItem Header="Commodity" Style="{DynamicResource CASTabItemStyle}">
+                </TabItem>-->
+                <!--<TabItem Header="Commodity" Style="{DynamicResource CASTabItemStyle}">
                     <DataGrid Style="{DynamicResource CASDataGridStyle}" Width="Auto" x:Name="x_DataGridCommodity" ItemsSource="{Binding Commodity}" MinHeight="400" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Commodity" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Title}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                </TabItem>
+                </TabItem>-->
             </TabControl>
         </StackPanel>
     </Grid>
