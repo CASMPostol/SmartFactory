@@ -30,6 +30,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
   /// Class SettingsPanelViewModel provide ViewModel for Setting state
   /// </summary>
   [Export]
+  [PartCreationPolicy( CreationPolicy.NonShared)]
   public class SettingsPanelViewModel : ViewModelStateMachineBase<SettingsPanelViewModel.SetupDataDialogMachineLocal>, INavigationAware
   {
     #region creator
@@ -39,6 +40,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     [ImportingConstructor]
     public SettingsPanelViewModel(ILoggerFacade loggingService, IEventAggregator eventAggregator)
     {
+      loggingService.Log("Creating SettingsPanelViewModel", Category.Debug, Priority.Low);
       m_EventAggregator = eventAggregator;
       m_ILoggerFacade = loggingService;
       RestoreSettings();
@@ -151,7 +153,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     }
     public bool IsNavigationTarget(NavigationContext navigationContext)
     {
-      return false;
+      return true;
     }
     public void OnNavigatedFrom(NavigationContext navigationContext)
     {

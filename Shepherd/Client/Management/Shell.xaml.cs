@@ -37,7 +37,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     #endregion
 
     /// <summary>
-    /// Sets the ViewModel.
+    /// Sets or gets the ViewModel <see cref="ShellViewModel"/>.
     /// </summary>
     /// <remarks>
     /// This set-only property is annotated with the <see cref="ImportAttribute"/> so it is injected by MEF with

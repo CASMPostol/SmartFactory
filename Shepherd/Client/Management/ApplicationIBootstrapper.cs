@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
 {
   internal partial class ApplicationIBootstrapper : MefBootstrapper
   {
-    
+
     protected override void ConfigureAggregateCatalog()
     {
       this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ApplicationIBootstrapper).Assembly));
@@ -52,6 +52,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     {
       return this.Container.GetExportedValue<Shell>();
     }
-
+    public override void Run(bool runWithDefaultConfiguration)
+    {
+      base.Run(runWithDefaultConfiguration);
+      ((Shell)Shell).ViewModel.RequestNavigate(Infrastructure.ViewNames.SetupStateName, null);
+    }
   }
 }

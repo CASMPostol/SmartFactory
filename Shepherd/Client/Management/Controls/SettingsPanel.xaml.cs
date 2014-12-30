@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors;
 using System.ComponentModel.Composition;
@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
   /// <summary>
   /// Interaction logic for SetupPanel.xaml
   /// </summary>
-  [ViewExport(RegionName = RegionNames.ActionRegion)]
+  [Export(Infrastructure.ViewNames.SetupStateName)]
   [PartCreationPolicy(CreationPolicy.NonShared)]
   public partial class SetupPanel : UserControl
   {
