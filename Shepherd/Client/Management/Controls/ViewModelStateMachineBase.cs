@@ -18,7 +18,7 @@ using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.Regions;
 using System.ComponentModel.Composition;
 
-namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
+namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
 {
   /// <summary>
   /// Class ViewModelStateMachineBase - base ViewModel for all View classes hosting a state the state machine <see cref=""/>
