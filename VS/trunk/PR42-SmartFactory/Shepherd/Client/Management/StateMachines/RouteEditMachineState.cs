@@ -41,7 +41,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftButtonEvent] = x => this.UpdateRoutes();
       m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftMiddleButtonEvent] = x => this.ReadXMLFile();
     }
-
     /// <summary>
     /// Called by the ViewModel when navigation context has been changed. It start execution default action.
     /// </summary>
@@ -88,13 +87,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     #endregion
 
-    #region API
-    public override string ToString()
-    {
-      return Infrastructure.ViewNames.RouteEditorStateName;
-    }
-    #endregion
-
     #region private
 
     #region ReadSiteContent
@@ -104,6 +96,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
         return;
       try
       {
+        SetRoutesCatalog = null;
         m_DoWorkEventHandler = DoWorkEventHandler_ReadSiteContent;
         m_CompletedEventHandler = RunWorkerCompletedEventHandler_ReadSiteContent;
         this.RunAsync(URL);
@@ -198,6 +191,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       Context.ProgressChang(this, new ProgressChangedEventArgs(0, "Operation ReadXMLFile finished"));
     }
     #endregion
+
     private void OnSetupButton()
     {
       Log("User requested navigation to setup dialog screen.", Category.Debug, Priority.Low);
@@ -205,7 +199,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       _par.Add(Infrastructure.ViewNames.SetupStateName, String.Empty);
       Context.RequestNavigate(Infrastructure.ViewNames.SetupStateName, _par);
     }
-
     private DoWorkEventHandler m_DoWorkEventHandler = null;
     private Action<object> m_CompletedEventHandler = null;
     private EntitiesDataDictionary m_EntitiesDataDictionary = null;

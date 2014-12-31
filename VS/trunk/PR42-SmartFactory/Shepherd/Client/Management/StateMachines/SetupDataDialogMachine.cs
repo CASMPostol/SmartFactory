@@ -171,14 +171,19 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     private void OnArchiveCommand()
     {
-      Context.ProgressChang(this, new ProgressChangedEventArgs(1, "OnArchiveCommand raised but is not supported."));
+      RequestNavigate(Infrastructure.ViewNames.ArchivalStateName);
     }
     private void OnRouteEditCommand()
     {
+      RequestNavigate(Infrastructure.ViewNames.RouteEditorStateName);
+    }
+
+    private void RequestNavigate(string targetUri)
+    {
       NavigationParameters _par = new NavigationParameters();
       Debug.Assert(m_ConnectionData.ConnectionDescription != null, "In OnRouteEditCommand the ConnectionDescription is null");
-      _par.Add(Infrastructure.ViewNames.RouteEditorStateName, m_ConnectionData.ConnectionDescription);
-      Context.RequestNavigate(Infrastructure.ViewNames.RouteEditorStateName, _par);
+      _par.Add(targetUri, m_ConnectionData.ConnectionDescription);
+      Context.RequestNavigate(targetUri, _par);
     }
     private Services.ConnectionData m_ConnectionData = null;
     private static void GetLastOperation(SHRARCHIVE entities, ArchivingOperationLogs.OperationName operationName, Func<string, string> RunBy, Func<string, string> RunDate)

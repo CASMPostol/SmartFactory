@@ -1,31 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿//<summary>
+//  Title   : ArchivingPanel
+//  System  : Microsoft VisualStudio 2013 / C#
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2014, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+      
+using System.ComponentModel.Composition;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
-using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors;
 
 namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
 {
   /// <summary>
   /// Interaction logic for ArchivingPanel.xaml
   /// </summary>
-  //[ViewExport(RegionName = RegionNames.ActionRegion)]
+  [Export(Infrastructure.ViewNames.ArchivalStateName)]
+  [PartCreationPolicy(CreationPolicy.NonShared)]
   public partial class ArchivingPanel : UserControl
   {
     public ArchivingPanel()
     {
       InitializeComponent();
     }
+    #region Imports
+    /// Sets the ViewModel.
+    /// </summary>
+    /// <remarks>
+    /// This set-only property is annotated with the <see cref="ImportAttribute"/> so it is injected by MEF with
+    /// the appropriate view model.
+    /// </remarks>
+    [Import]
+    public ArchivingViewModel StateMachineContext
+    {
+      set
+      {
+        DataContext = value;
+      }
+    }
+    #endregion
+
   }
 }

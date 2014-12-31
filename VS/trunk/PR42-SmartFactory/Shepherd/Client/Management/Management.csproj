@@ -133,6 +133,7 @@
     <Compile Include="Controls\ArchivingPanel.xaml.cs">
       <DependentUpon>ArchivingPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ArchivingViewModel.cs" />
     <Compile Include="Controls\ButtonsPanel.xaml.cs">
       <DependentUpon>ButtonsPanel.xaml</DependentUpon>
     </Compile>
@@ -156,6 +157,7 @@
       <DependentUpon>SettingsPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SettingsPanelViewModel.cs" />
+    <Compile Include="Controls\ViewModelStateMachineBase.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
@@ -190,9 +192,9 @@
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShellViewModel.cs" />
+    <Compile Include="StateMachines\ArchivingMachineState.cs" />
     <Compile Include="StateMachines\RouteEditMachineState.cs" />
     <Compile Include="StateMachines\SetupDataDialogMachine.cs" />
-    <Compile Include="StateMachines\ViewModelStateMachineBase.cs" />
     <Compile Include="UpdateData\EntitiesDataDictionary.cs" />
     <Page Include="Controls\ArchivingPanel.xaml">
       <SubType>Designer</SubType>

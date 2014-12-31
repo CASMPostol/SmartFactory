@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     /// <param name="parameter">An instance of <see cref="NavigationParameters"/>, which holds a collection of object parameters.</param>
     internal void RequestNavigate(string url, NavigationParameters parameter)
     {
-      m_LoggingService.Log(String.Format("RequestNavigate to {0}/{1}", url, parameter), Category.Debug, Priority.Low);
+      m_LoggingService.Log(String.Format("RequestNavigate to {0}/{1}", url, parameter == null ? String.Empty : parameter.ToString()), Category.Debug, Priority.Low);
       if (parameter == null)
         m_RegionManager.RequestNavigate(RegionNames.ActionRegion, new Uri(url, UriKind.Relative));
       else
