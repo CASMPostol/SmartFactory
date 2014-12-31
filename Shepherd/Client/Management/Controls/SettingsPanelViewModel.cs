@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
   /// Class SettingsPanelViewModel provide ViewModel for Setting state
   /// </summary>
   [Export]
-  [PartCreationPolicy( CreationPolicy.NonShared)]
+  [PartCreationPolicy(CreationPolicy.NonShared)]
   public class SettingsPanelViewModel : ViewModelStateMachineBase<SettingsPanelViewModel.SetupDataDialogMachineLocal>, INavigationAware
   {
     #region creator
@@ -39,10 +39,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     /// </summary>
     [ImportingConstructor]
     public SettingsPanelViewModel(ILoggerFacade loggingService, IEventAggregator eventAggregator)
+      : base(loggingService)
     {
       loggingService.Log("Creating SettingsPanelViewModel", Category.Debug, Priority.Low);
       m_EventAggregator = eventAggregator;
-      m_ILoggerFacade = loggingService;
       RestoreSettings();
     }
     #endregion
@@ -121,12 +121,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     private string b_DatabaseName = string.Empty;
     private string b_SQLServer = string.Empty;
     private IEventAggregator m_EventAggregator;
-    private ILoggerFacade m_ILoggerFacade;
-    //types
     //methods
     private void RestoreSettings()
     {
-      m_ILoggerFacade.Log("Restoring user settings from configuration file.", Category.Debug, Priority.None);
+      this.Log("Restoring user settings from configuration file.", Category.Debug, Priority.None);
       //User
       URL = Settings.Default.SiteURL;
       DatabaseName = Settings.Default.SQLDatabaseName;
@@ -134,7 +132,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     }
     internal void SaveSettings()
     {
-      m_ILoggerFacade.Log("Saving user settings to configuration file.", Category.Debug, Priority.None);
+      this.Log("Saving user settings to configuration file.", Category.Debug, Priority.None);
       Settings.Default.SiteURL = URL;
       Settings.Default.SQLDatabaseName = DatabaseName;
       Settings.Default.SQLServer = SQLServer;
@@ -142,20 +140,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     }
     #endregion
 
-
     #region INavigationAware
-    /// <summary>
-    /// Called when the implementer has been navigated to.
-    /// </summary>
-    /// <param name="navigationContext">The navigation context.</param>
-    public void OnNavigatedTo(NavigationContext navigationContext)
-    {
-    }
-    public bool IsNavigationTarget(NavigationContext navigationContext)
-    {
-      return true;
-    }
-    public void OnNavigatedFrom(NavigationContext navigationContext)
+    public override void OnNavigatedFrom(NavigationContext navigationContext)
     {
       SaveSettings();
     }

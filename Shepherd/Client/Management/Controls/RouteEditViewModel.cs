@@ -43,7 +43,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     /// </summary>
     [ImportingConstructor]
     public RouteEditViewModel(IEventAggregator eventAggregator, ILoggerFacade loggingService)
+      : base(loggingService)
     {
+      loggingService.Log("Created RouteEditViewModel", Category.Debug, Priority.Low);
       m_EventAggregator = eventAggregator;
       m_LoggingService = loggingService;
       Prefix = DateTime.Today.Year.ToString();
@@ -225,29 +227,15 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     /// Called when the implementer has been navigated to.
     /// </summary>
     /// <param name="navigationContext">The navigation context.</param>
-    public void OnNavigatedTo(NavigationContext navigationContext)
+    public override void OnNavigatedTo(NavigationContext navigationContext)
     {
+      base.OnNavigatedTo(navigationContext);
       m_ConnectionData = (Services.ConnectionDescription)navigationContext.Parameters[Infrastructure.ViewNames.RouteEditorStateName];
       string _msg = String.Format
         ("OnNavigatedTo - created view model {0} for SharePoint: {1}.", typeof(RouteEditViewModel).Name, m_ConnectionData.SharePointServerURL);
       m_LoggingService.Log(_msg, Category.Debug, Priority.Low);
       this.MyState.OnNavigationContextChanged();
     }
-    /// <summary>
-    /// Called to determine if this instance can handle the navigation request.
-    /// </summary>
-    /// <param name="navigationContext">The navigation context.</param>
-    /// <returns><see langword="true" /> if this instance accepts the navigation request; otherwise, <see langword="false" />.</returns>
-    public bool IsNavigationTarget(NavigationContext navigationContext)
-    {
-      return false;
-    }
-    /// <summary>
-    /// Called when the implementer is being navigated away from.
-    /// </summary>
-    /// <param name="navigationContext">The navigation context.</param>
-    public void OnNavigatedFrom(NavigationContext navigationContext)
-    { }
     #endregion
 
   }
