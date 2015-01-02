@@ -99,9 +99,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     /// <summary>
     /// Class SetupDataDialogMachineLocal local implementation of the <see cref="SetupDataDialogMachine{SettingsPanelViewModel}"/>
     /// </summary>
-    public sealed class SetupDataDialogMachineLocal : SetupDataDialogMachine<SettingsPanelViewModel>
+    public sealed class SetupDataDialogMachineLocal : SetupDataDialogMachine
     {
-      protected override Services.ConnectionDescription GetConnectionData
+
+      protected override Services.ConnectionDescription GetConnectionDescription
       {
         get
         {

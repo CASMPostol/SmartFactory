@@ -155,6 +155,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     /// </summary>
     public sealed class RouteEditMachineStateLocal : RouteEditMachineState<RouteEditViewModel>
     {
+      #region RouteEditMachineState<RouteEditViewModel>
       protected override bool GetReadSiteContentConfirmation()
       {
         bool _confirmed = false;
@@ -190,9 +191,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         get
         {
           Debug.Assert(ViewModelContext.m_ConnectionData != null, "There is no connection data available.");
-          return ViewModelContext.m_ConnectionData.SharePointServerURL;
+          return ViewModelContext.m_ConnectionData.SharePointWebsiteURL;
         }
       }
+      #endregion
 
       #region ILoggerFacade
       /// <summary>
@@ -217,7 +219,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     private ObservableCollection<RoutesCatalogMarket> b_Market;
     private ObservableCollection<RoutesCatalogPartnersRow> b_Partners;
     private ObservableCollection<RoutesCatalogRoute> b_Route;
-    private Services.ConnectionDescription m_ConnectionData;
+    private ISPContentState m_ConnectionData;
     private ILoggerFacade m_LoggingService;
     private IEventAggregator m_EventAggregator;
     #endregion
@@ -230,9 +232,11 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     public override void OnNavigatedTo(NavigationContext navigationContext)
     {
       base.OnNavigatedTo(navigationContext);
-      m_ConnectionData = (Services.ConnectionDescription)navigationContext.Parameters[Infrastructure.ViewNames.RouteEditorStateName];
+      m_ConnectionData = (ISPContentState)navigationContext.Parameters[typeof(ISPContentState).Name];
+      Debug.Assert(m_ConnectionData != null, "{} parameter cannot be null while navigating to RouteEditViewModel.");
+      Debug.Assert(m_ConnectionData.SPConnected == true, "SP has to be connected before navigating to RouteEditViewModel.");
       string _msg = String.Format
-        ("OnNavigatedTo - created view model {0} for SharePoint: {1}.", typeof(RouteEditViewModel).Name, m_ConnectionData.SharePointServerURL);
+        ("OnNavigatedTo - created view model {0} for SharePoint: {1}.", typeof(RouteEditViewModel).Name, m_ConnectionData.SharePointWebsiteURL);
       m_LoggingService.Log(_msg, Category.Debug, Priority.Low);
       this.MyState.OnNavigationContextChanged();
     }
