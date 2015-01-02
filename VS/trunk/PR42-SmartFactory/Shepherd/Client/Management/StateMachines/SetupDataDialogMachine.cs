@@ -33,8 +33,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
   /// <summary>
   /// Class SetupDataDialogMachine.
   /// </summary>
-  public abstract class SetupDataDialogMachine<ViewModelContextType> : BackgroundWorkerMachine<ShellViewModel, ViewModelContextType>
-    where ViewModelContextType : IViewModelContext
+  public abstract class SetupDataDialogMachine : BackgroundWorkerMachine<ShellViewModel, Controls.SettingsPanelViewModel>
   {
 
     #region creator
@@ -47,8 +46,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       m_StateMachineActionsArray = new Action<object>[4];
       m_StateMachineActionsArray[(int)m_ButtonsTemplate.ConnectPosition] = x => this.OnConnectCommand();
       m_StateMachineActionsArray[(int)m_ButtonsTemplate.CancelPosition] = x => this.Cancel();
-      m_StateMachineActionsArray[(int)m_ButtonsTemplate.LeftButtonPosition] = x => this.OnRouteEditCommand();
-      m_StateMachineActionsArray[(int)m_ButtonsTemplate.LeftMiddleButtonPosition] = x => this.OnArchiveCommand();
+      m_StateMachineActionsArray[(int)m_ButtonsTemplate.LeftButtonPosition] = x => this.OnRouteEditCommand(m_ConnectionData);
+      m_StateMachineActionsArray[(int)m_ButtonsTemplate.LeftMiddleButtonPosition] = x => this.OnArchiveCommand(m_ConnectionData, m_ConnectionData);
     }
     #endregion
 
@@ -97,23 +96,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     {
       e.Cancel = false;
       e.Result = null;
-      ConnectionData _cd = ConnectionData.ThisInstance;
-      _cd.ConnectionDescription = this.GetConnectionData;
-      string _connectionString = this.GetConnectionString(_cd.ConnectionDescription);
-      ReportProgress(this, new ProgressChangedEventArgs(1, String.Format("Connection string {0}", _connectionString)));
-      System.Data.IDbConnection _connection = new SqlConnection(_connectionString);
-      SHRARCHIVE _entities = new SHRARCHIVE(_connection);
-      if (_entities.DatabaseExists())
-      {
-        ReportProgress(this, new ProgressChangedEventArgs(1, "The specified database exists."));
-        GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Cleanup, x => _cd.CleanupLastRunBy = x, x => _cd.CleanupLastRunDate = x);
-        GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Synchronization, x => _cd.SyncLastRunBy = x, x => _cd.SyncLastRunDate = x);
-        GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Archiving, x => _cd.ArchivingLastRunBy = x, x => _cd.ArchivingLastRunDate);
-        _cd.SQLConnected = true;
-      }
-      else
-        ReportProgress(this, new ProgressChangedEventArgs(1, "The specified database cannot be opened."));
-      _cd.SPConnected = NsSPLinq.Connectivity.TestConnection(_cd.ConnectionDescription.SharePointServerURL, x => ReportProgress(this, x));
+      ConnectionData _cd = (ConnectionData)e.Argument;
+      GetSQLContentState(_cd, args => ReportProgress(this, args));
+      _cd.SPConnected = NsSPLinq.Connectivity.TestConnection(_cd.SharePointWebsiteURL, x => ReportProgress(this, x));
       e.Result = _cd;
     }
     /// <summary>
@@ -124,7 +109,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     protected override void RunWorkerCompleted(object result)
     {
       m_ConnectionData = (ConnectionData)result;
-      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(m_ConnectionData.SQLConnected, m_ConnectionData.SPConnected);
+      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(m_ConnectionData.SPConnected, m_ConnectionData.SPConnected && m_ConnectionData.SQLConnected);
       if (m_ConnectionData.SPConnected)
         this.PublishSPURL();
       Context.ProgressChang(this, new ProgressChangedEventArgs(0, "Operation Connect finished."));
@@ -156,7 +141,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     /// Gets the get connection data.
     /// </summary>
     /// <value>The get connection data.</value>
-    protected abstract ConnectionDescription GetConnectionData { get; }
+    protected abstract ConnectionDescription GetConnectionDescription { get; }
     /// <summary>
     /// Publishes the SharePoint site URL.
     /// </summary>
@@ -165,46 +150,157 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     #endregion
 
     #region private
-    private void OnConnectCommand()
+    /// <summary>
+    /// Class ConnectionData contains recent information gathered during connection to the SharePoint and SQL database. 
+    /// It is singleton to provide a common reference point.
+    /// </summary>
+    public class ConnectionData : ISQLContentState, ISPContentState
     {
-      this.RunAsync(null);
-    }
-    private void OnArchiveCommand()
-    {
-      RequestNavigate(Infrastructure.ViewNames.ArchivalStateName);
-    }
-    private void OnRouteEditCommand()
-    {
-      RequestNavigate(Infrastructure.ViewNames.RouteEditorStateName);
+      #region creator
+      /// <summary>
+      /// Creates the instance.
+      /// </summary>
+      /// <param name="ConnectionDescription">The connection description.</param>
+      internal ConnectionData(ConnectionDescription ConnectionDescription) :
+        base()
+      {
+        SQLConnectionString = GetConnectionString(ConnectionDescription.SQLServer, ConnectionDescription.DatabaseName);
+        SharePointWebsiteURL = ConnectionDescription.SharePointServerURL;
+      }
+      #endregion
+
+      #region SQLContentState
+      /// <summary>
+      /// Gets or sets the cleanup last run by.
+      /// </summary>
+      /// <value>The user name.</value>
+      public string CleanupLastRunBy { get; set; }
+      /// <summary>
+      /// Gets or sets the synchronization last run by.
+      /// </summary>
+      /// <value>The user name.</value>
+      public string SyncLastRunBy { get; set; }
+      /// <summary>
+      /// Gets or sets the archiving last run by.
+      /// </summary>
+      /// <value>The user name.</value>
+      public string ArchivingLastRunBy { get; set; }
+      /// <summary>
+      /// Gets or sets the cleanup last run date.
+      /// </summary>
+      /// <value>The last cleanup <see cref="DateTime" />.</value>
+      public System.DateTime? CleanupLastRunDate { get; set; }
+      /// <summary>
+      /// Gets or sets the synchronize last run date.
+      /// </summary>
+      /// <value>The las synchronize <see cref="DateTime" />.</value>
+      public System.DateTime? SyncLastRunDate { get; set; }
+      /// <summary>
+      /// Gets or sets the archiving last run date.
+      /// </summary>
+      /// <value>The last archiving <see cref="DateTime" />.</value>
+      public System.DateTime? ArchivingLastRunDate { get; set; }
+      /// <summary>
+      /// Gets or sets the SQL connection string.
+      /// </summary>
+      /// <value>The SQL connection string.</value>
+      public string SQLConnectionString { get; set; }
+      /// <summary>
+      /// Gets or sets a value indicating whether the SQL database can be accessed using the <see cref="ISQLContentState.SQLConnectionString" />.
+      /// </summary>
+      /// <value><c>true</c> if SQL successfully connected and gathered all required data about the content state; otherwise, <c>false</c>.</value>
+      public bool SQLConnected { get; set; }
+      #endregion
+
+      #region ISPContentState
+      public string SharePointWebsiteURL
+      {
+        get;
+        private set;
+      }
+      public bool SPConnected { get; set; }
+      #endregion
+
+      #region private
+      /// <summary>
+      /// Prevents a default instance of the <see cref="ConnectionData"/> class from being created.
+      /// </summary>
+      private ConnectionData()
+      {
+        CleanupLastRunBy = Properties.Settings.Default.RunByError;
+        SyncLastRunBy = Properties.Settings.Default.RunByError;
+        ArchivingLastRunBy = Properties.Settings.Default.RunByError;
+        CleanupLastRunDate = new Nullable<DateTime>();
+        SyncLastRunDate = new Nullable<DateTime>();
+        ArchivingLastRunDate = new Nullable<DateTime>();
+        SQLConnectionString = String.Empty;
+        SQLConnected = false;
+      }
+      private static string GetConnectionString(string sqlServer, string databaseName)
+      {
+        return String.Format(Properties.Settings.Default.ConnectionString, sqlServer, databaseName);
+      }
+      #endregion
+
     }
 
-    private void RequestNavigate(string targetUri)
+    private void OnConnectCommand()
+    {
+      m_ConnectionData = null;
+      this.RunAsync(new ConnectionData(GetConnectionDescription));
+    }
+    private void OnArchiveCommand(ISPContentState spContentState, ISQLContentState sqlContentState)
     {
       NavigationParameters _par = new NavigationParameters();
-      Debug.Assert(m_ConnectionData.ConnectionDescription != null, "In OnRouteEditCommand the ConnectionDescription is null");
-      _par.Add(targetUri, m_ConnectionData.ConnectionDescription);
-      Context.RequestNavigate(targetUri, _par);
+      _par.Add(typeof(ISPContentState).Name, spContentState);
+      _par.Add(typeof(ISQLContentState).Name, sqlContentState);
+      Context.RequestNavigate(Infrastructure.ViewNames.ArchivalStateName, _par);
     }
-    private Services.ConnectionData m_ConnectionData = null;
-    private static void GetLastOperation(SHRARCHIVE entities, ArchivingOperationLogs.OperationName operationName, Func<string, string> RunBy, Func<string, string> RunDate)
+    private void OnRouteEditCommand(ISPContentState spContentState)
+    {
+      NavigationParameters _par = new NavigationParameters();
+      _par.Add(typeof(ISPContentState).Name, spContentState);
+      Context.RequestNavigate(Infrastructure.ViewNames.RouteEditorStateName, _par);
+    }
+    private ConnectionData m_ConnectionData = null;
+    private static void GetLastOperation(SHRARCHIVE entities, ArchivingOperationLogs.OperationName operationName, Action<string> RunBy, Action<DateTime?> RunDate)
     {
       ArchivingOperationLogs _recentActions = ArchivingOperationLogs.GetRecentActions(entities, operationName);
       if (_recentActions != null)
       {
         RunBy(_recentActions.UserName);
-        RunDate(_recentActions.Date.ToString("G"));
+        RunDate(_recentActions.Date);
       }
       else
       {
         RunBy(Properties.Settings.Default.RunByUnknown);
-        RunDate(Properties.Settings.Default.RunDateUnknown);
+        RunDate(new Nullable<DateTime>());
       }
     }
     private ConnectCancelTemplate m_ButtonsTemplate = null;
     private Action<object>[] m_StateMachineActionsArray;
-    private string GetConnectionString(ConnectionDescription data)
+    private static void GetSQLContentState(ISQLContentState _cd, Action<ProgressChangedEventArgs> reportProgress)
     {
-      return String.Format(Properties.Settings.Default.ConnectionString, data.SQLServer, data.DatabaseName);
+      try
+      {
+        reportProgress(new ProgressChangedEventArgs(1, String.Format("Connection string {0}", _cd.SQLConnectionString)));
+        System.Data.IDbConnection _connection = new SqlConnection(_cd.SQLConnectionString);
+        SHRARCHIVE _entities = new SHRARCHIVE(_connection);
+        if (_entities.DatabaseExists())
+        {
+          reportProgress(new ProgressChangedEventArgs(1, "The specified database exists."));
+          GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Cleanup, x => _cd.CleanupLastRunBy = x, y => _cd.CleanupLastRunDate = y);
+          GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Synchronization, x => _cd.SyncLastRunBy = x, y => _cd.SyncLastRunDate = y);
+          GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Archiving, x => _cd.ArchivingLastRunBy = x, y => _cd.ArchivingLastRunDate = y);
+          _cd.SQLConnected = true;
+        }
+        else
+          reportProgress(new ProgressChangedEventArgs(1, "The specified database cannot be opened."));
+      }
+      catch (Exception _ex)
+      {
+        reportProgress(new ProgressChangedEventArgs(1, String.Format("Testing SQL connection has been aborted by the exception: {0}", _ex.Message)));
+      }
     }
     #endregion
 
