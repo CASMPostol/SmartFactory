@@ -112,7 +112,17 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(m_ConnectionData.SPConnected, m_ConnectionData.SPConnected && m_ConnectionData.SQLConnected);
       if (m_ConnectionData.SPConnected)
         this.PublishSPURL();
+      if (m_ConnectionData.SQLConnected)
+      {
+        ProgressChang(String.Format("Last cleanup run at {0} by {1}", m_ConnectionData.CleanupLastRunDate.LocalizedString(), m_ConnectionData.CleanupLastRunBy.GetValueOrDefault(Settings.Default.RunByUnknown)));
+        ProgressChang(String.Format("Last synchronization run at {0} by {1}", m_ConnectionData.SyncLastRunDate.LocalizedString(), m_ConnectionData.SyncLastRunBy.GetValueOrDefault(Settings.Default.RunByUnknown)));
+        ProgressChang(String.Format("Last Archiving run at {0} by {1}", m_ConnectionData.ArchivingLastRunDate.LocalizedString(), m_ConnectionData.ArchivingLastRunBy.GetValueOrDefault(Settings.Default.RunByUnknown)));
+      }
       Context.ProgressChang(this, new ProgressChangedEventArgs(0, "Operation Connect finished."));
+    }
+    private void ProgressChang(string message)
+    {
+      Context.ProgressChang(this, new ProgressChangedEventArgs(1, message));
     }
     /// <summary>
     ///  Called when only cancel button must be active - after starting background worker.
@@ -273,7 +283,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       }
       else
       {
-        RunBy(Properties.Settings.Default.RunByUnknown);
+        RunBy(String.Empty);
         RunDate(new Nullable<DateTime>());
       }
     }

@@ -13,7 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
-namespace CAS.SmartFactory.Shepherd.Client.Management.Services
+namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
 {
 
   /// <summary>
