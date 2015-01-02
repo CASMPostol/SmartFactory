@@ -25,19 +25,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
   public abstract class ArchivingMachineState<ViewModelContextType> : BackgroundWorkerMachine<ShellViewModel, ViewModelContextType>, ILoggerFacade
     where ViewModelContextType : IViewModelContext
   {
-    private void OnSetupButton()
-    {
-      Log("User requested navigation to setup dialog screen.", Category.Debug, Priority.Low);
-      NavigationParameters _par = new NavigationParameters();
-      _par.Add(Infrastructure.ViewNames.SetupStateName, String.Empty);
-      Context.RequestNavigate(Infrastructure.ViewNames.SetupStateName, _par);
-    }
-    private void OnArchiveButton()
-    {
-      //TODO
-    }
-    private CancelTemplate m_ButtonsTemplate;
-    private Action<object>[] m_StateMachineActionsArray;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ArchivingMachineState{ViewModelContextType}"/> class.
@@ -51,8 +38,20 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftButtonEvent] = x => this.OnArchiveButton();
       m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftMiddleButtonEvent] = x => { };
     }
+
     #region ILoggerFacade
     public abstract void Log(string message, Category category, Priority priority);
+    #endregion
+
+    #region object
+    /// <summary>
+    /// Returns a <see cref="System.String" /> that represents this instance.
+    /// </summary>
+    /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+    public override string ToString()
+    {
+      return Infrastructure.ViewNames.ArchivalStateName;
+    }
     #endregion
 
     #region BackgroundWorkerMachine
@@ -87,6 +86,22 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       Log("In ArchivingMachineState requested Cancel operation", Category.Debug, Priority.Low);
       base.Cancel();
     }
+    #endregion
+
+    #region private
+    private void OnSetupButton()
+    {
+      Log("User requested navigation to setup dialog screen.", Category.Debug, Priority.Low);
+      NavigationParameters _par = new NavigationParameters();
+      _par.Add(Infrastructure.ViewNames.SetupStateName, String.Empty);
+      Context.RequestNavigate(Infrastructure.ViewNames.SetupStateName, _par);
+    }
+    private void OnArchiveButton()
+    {
+      //TODO
+    }
+    private CancelTemplate m_ButtonsTemplate;
+    private Action<object>[] m_StateMachineActionsArray;
     #endregion
 
   }

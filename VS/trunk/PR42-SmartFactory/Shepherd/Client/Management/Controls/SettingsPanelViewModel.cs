@@ -102,11 +102,11 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     public sealed class SetupDataDialogMachineLocal : SetupDataDialogMachine
     {
 
-      protected override Services.ConnectionDescription GetConnectionDescription
+      protected override ConnectionDescription GetConnectionDescription
       {
         get
         {
-          return new Services.ConnectionDescription(this.ViewModelContext.URL, this.ViewModelContext.DatabaseName, this.ViewModelContext.SQLServer);
+          return new ConnectionDescription(this.ViewModelContext.URL, this.ViewModelContext.DatabaseName, this.ViewModelContext.SQLServer);
         }
       }
       internal protected override void PublishSPURL()

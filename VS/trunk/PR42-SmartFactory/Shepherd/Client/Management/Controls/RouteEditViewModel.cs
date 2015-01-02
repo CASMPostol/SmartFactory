@@ -212,18 +212,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     }
     #endregion
 
-    #region private
-    private string b_Prefix;
-    private RoutesCatalog b_Routes;
-    private ObservableCollection<RoutesCatalogCommodityRow> b_Commodity;
-    private ObservableCollection<RoutesCatalogMarket> b_Market;
-    private ObservableCollection<RoutesCatalogPartnersRow> b_Partners;
-    private ObservableCollection<RoutesCatalogRoute> b_Route;
-    private ISPContentState m_ConnectionData;
-    private ILoggerFacade m_LoggingService;
-    private IEventAggregator m_EventAggregator;
-    #endregion
-
     #region INavigationAware
     /// <summary>
     /// Called when the implementer has been navigated to.
@@ -241,6 +229,19 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       this.MyState.OnNavigationContextChanged();
     }
     #endregion
+
+    #region private
+    private string b_Prefix;
+    private RoutesCatalog b_Routes;
+    private ObservableCollection<RoutesCatalogCommodityRow> b_Commodity;
+    private ObservableCollection<RoutesCatalogMarket> b_Market;
+    private ObservableCollection<RoutesCatalogPartnersRow> b_Partners;
+    private ObservableCollection<RoutesCatalogRoute> b_Route;
+    private ISPContentState m_ConnectionData;
+    private ILoggerFacade m_LoggingService;
+    private IEventAggregator m_EventAggregator;
+    #endregion
+
 
   }
 
