@@ -62,8 +62,12 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
     #region services
     private static void ImportTable(Entities edc, RoutesCatalogCommodityRow[] routesCatalogCommodityRow, Dictionaries dictionaries, Action<ProgressChangedEventArgs> progress)
     {
+      progress(new ProgressChangedEventArgs(1, "ImportTable: Importing table of RoutesCatalogCommodityRow"));
       if (routesCatalogCommodityRow == null)
+      {
+        progress(new ProgressChangedEventArgs(1, "Finished the import because the parameter is empty"));
         return;
+      }
       int _poz = 0;
       foreach (RoutesCatalogCommodityRow _CommodityRow in routesCatalogCommodityRow)
         try
@@ -76,6 +80,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           string _format = "Cannot add RoutesCatalogCommodityRow data Name={0} because of import Error= {1}. The entry is skipped.";
           progress(new ProgressChangedEventArgs(_poz, String.Format(_format, _CommodityRow.Title, _ex.Message)));
         }
+      string _msg = String.Format("Importing finished, the {0} items have been reviewed.");
+      progress(new ProgressChangedEventArgs(1, _msg));
     }
     private static void ImportTable(Entities edc, RoutesCatalogPartnersRow[] routesCatalogPartnersRow, Dictionaries dictionaries, bool _testData, Action<ProgressChangedEventArgs> progress)
     {
@@ -104,6 +110,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           string _format = "Cannot add RoutesCatalogPartnersRow data Name={0} NumberFromSAP={1} because of import Error= {2}. The entry is skipped.";
           progress(new ProgressChangedEventArgs(_poz, String.Format(_format, _partner.Name, _partner.NumberFromSAP, _ex.Message)));
         }
+        string _msg = String.Format("Importing RoutesCatalogPartnersRow table finished, the {0} items have been reviewed.");
+        progress(new ProgressChangedEventArgs(1, _msg));
       }
     }
     private static void ImportTable(Entities edc, RoutesCatalogRoute[] routesCatalogRoute, Dictionaries dic, bool testData, Action<ProgressChangedEventArgs> progress)
@@ -399,21 +407,21 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
         return _city;
       }
       internal Dictionary<string, Partner> m_Partner = new Dictionary<string, Partner>();
-      internal Dictionary<string, FreightPayer> m_FreightPayer = new Dictionary<string, FreightPayer>();
-      internal Dictionary<string, CityType> m_CityDictionary = new Dictionary<string, CityType>();
-      internal Dictionary<string, CountryType> m_CountryClass = new Dictionary<string, CountryType>();
-      internal Dictionary<string, Currency> m_Currency = new Dictionary<string, Currency>();
-      internal Dictionary<string, ShipmentType> m_ShipmentType = new Dictionary<string, ShipmentType>();
-      internal Dictionary<string, CarrierType> m_CarrierCarrierType = new Dictionary<string, CarrierType>();
-      internal Dictionary<string, TranspotUnit> m_TranspotUnit = new Dictionary<string, TranspotUnit>();
-      internal Dictionary<string, SAPDestinationPlant> m_SAPDestinationPlant = new Dictionary<string, SAPDestinationPlant>();
-      internal Dictionary<string, Market> m_MarketMarket = new Dictionary<string, Market>();
+      private Dictionary<string, FreightPayer> m_FreightPayer = new Dictionary<string, FreightPayer>();
+      private Dictionary<string, CityType> m_CityDictionary = new Dictionary<string, CityType>();
+      private Dictionary<string, CountryType> m_CountryClass = new Dictionary<string, CountryType>();
+      private Dictionary<string, Currency> m_Currency = new Dictionary<string, Currency>();
+      private Dictionary<string, ShipmentType> m_ShipmentType = new Dictionary<string, ShipmentType>();
+      private Dictionary<string, CarrierType> m_CarrierCarrierType = new Dictionary<string, CarrierType>();
+      private Dictionary<string, TranspotUnit> m_TranspotUnit = new Dictionary<string, TranspotUnit>();
+      private Dictionary<string, SAPDestinationPlant> m_SAPDestinationPlant = new Dictionary<string, SAPDestinationPlant>();
+      private Dictionary<string, Market> m_MarketMarket = new Dictionary<string, Market>();
       internal Dictionary<string, Warehouse> m_Warehouse = new Dictionary<string, Warehouse>();
       internal Dictionary<string, Commodity> m_CommodityCommodity = new Dictionary<string, Commodity>();
-      internal Dictionary<string, ShippingPoint> m_ShippingPoint = new Dictionary<string, ShippingPoint>();
-      internal Dictionary<string, BusienssDescription> m_BusinessDescription = new Dictionary<string, BusienssDescription>();
-      internal Dictionary<string, DistributionList> m_DistributionList = new Dictionary<string, DistributionList>();
-      internal Dictionary<string, DestinationMarket> m_DestinationMarket = new Dictionary<string, DestinationMarket>();
+      private Dictionary<string, ShippingPoint> m_ShippingPoint = new Dictionary<string, ShippingPoint>();
+      private Dictionary<string, BusienssDescription> m_BusinessDescription = new Dictionary<string, BusienssDescription>();
+      private Dictionary<string, DistributionList> m_DistributionList = new Dictionary<string, DistributionList>();
+      private Dictionary<string, DestinationMarket> m_DestinationMarket = new Dictionary<string, DestinationMarket>();
     }
     #endregion
 

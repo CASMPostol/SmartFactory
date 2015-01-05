@@ -17,12 +17,10 @@ using CAS.Common.ViewModel.Wizard;
 using CAS.Common.ViewModel.Wizard.ButtonsPanelStateTemplates;
 using CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL;
 using CAS.SmartFactory.Shepherd.Client.Management.Properties;
-using CAS.SmartFactory.Shepherd.Client.Management.Services;
 using Microsoft.Practices.Prism.Regions;
 using System;
 using System.ComponentModel;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using NsSPLinq = CAS.SmartFactory.Shepherd.Client.DataManagement.Linq;
 
 /// <summary>
@@ -31,7 +29,7 @@ using NsSPLinq = CAS.SmartFactory.Shepherd.Client.DataManagement.Linq;
 namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
 {
   /// <summary>
-  /// Class SetupDataDialogMachine.
+  /// Class SetupDataDialogMachine - setup settings state of the machine state <see cref="BackgroundWorkerMachine{StateMachineType, ViewModelType}"/>
   /// </summary>
   public abstract class SetupDataDialogMachine : BackgroundWorkerMachine<ShellViewModel, Controls.SettingsPanelViewModel>
   {
