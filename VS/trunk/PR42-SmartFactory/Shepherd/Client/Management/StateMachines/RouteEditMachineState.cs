@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : RouteEditMachineState
 //  System  : Microsoft VisualStudio 2013 / C#
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2014, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -29,26 +29,20 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     where ViewModelContextType : IViewModelContext
   {
 
+    #region public
     /// <summary>
     /// Initializes a new instance of the <see cref="RouteEditMachineState{ViewModelContextType}"/> class.
     /// </summary>
-    public RouteEditMachineState()
+    internal RouteEditMachineState()
     {
       m_ButtonsTemplate = new CancelTemplate(Resources.UpdateRoutesButtonTitle, Resources.ImportXMLButtonTitle, Resources.SetupButtonTitle);
       m_StateMachineActionsArray = new Action<object>[4];
       m_StateMachineActionsArray[(int)m_ButtonsTemplate.CancelPosition] = x => this.Cancel();
       m_StateMachineActionsArray[(int)StateMachineEventIndex.RightMiddleButtonEvent] = x => this.OnSetupButton();
-      m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftButtonEvent] = x => this.UpdateRoutes();
-      m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftMiddleButtonEvent] = x => this.ReadXMLFile();
+      m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftButtonEvent] = x => this.OnUpdateRoutesButton();
+      m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftMiddleButtonEvent] = x => this.OnReadXMLFileButton();
     }
-    /// <summary>
-    /// Called by the ViewModel when navigation context has been changed. It start execution default action.
-    /// </summary>
-    internal void OnNavigationContextChanged()
-    {
-      this.Log("OnNavigationContextChanged: Starting operation ReadSiteContent", Category.Debug, Priority.Low);
-      ReadSiteContent(false);
-    }
+    #endregion
 
     #region object
     /// <summary>
@@ -69,7 +63,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     {
       this.Log(String.Format("OnEnteringState {0}", Infrastructure.ViewNames.RouteEditorStateName), Category.Debug, Priority.Low);
       base.OnEnteringState();
-      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(false, false, true);
+      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(false, true, true);
     }
     protected override void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
     {
@@ -100,72 +94,43 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
 
     #region private
 
-    #region ReadSiteContent
-    private void ReadSiteContent(bool raiseConfirmation)
-    {
-      if (raiseConfirmation && !this.GetReadSiteContentConfirmation())
-        return;
-      try
-      {
-        SetRoutesCatalog = null;
-        m_DoWorkEventHandler = DoWorkEventHandler_ReadSiteContent;
-        m_CompletedEventHandler = RunWorkerCompletedEventHandler_ReadSiteContent;
-        this.RunAsync(URL);
-      }
-      catch (Exception _ex)
-      {
-        this.Context.Exception(_ex);
-      }
-    }
-    private void DoWorkEventHandler_ReadSiteContent(object sender, DoWorkEventArgs e)
-    {
-      ReportProgress(this, new ProgressChangedEventArgs(0, String.Format("ReadSiteContent: Trying to establish connection with the site {0}.", URL)));
-      string _url = (string)e.Argument;
-      if (string.IsNullOrEmpty(_url))
-        throw new ArgumentException("ReadSiteContent: URL cannot be empty or null");
-      EntitiesDataDictionary _ret = new EntitiesDataDictionary((string)e.Argument);
-      ReportProgress(this, new ProgressChangedEventArgs(0, "ReadSiteContent: Starting read current data from the selected site."));
-      _ret.ReadSiteContent(x => ReportProgress(this, new ProgressChangedEventArgs(1, x)));
-      ReportProgress(this, new ProgressChangedEventArgs(100, "ReadSiteContent: Finished read current data from selected site."));
-      e.Result = _ret;
-    }
-    private void RunWorkerCompletedEventHandler_ReadSiteContent(object result)
-    {
-      Connected = false;
-      DisposeEntitiesDataDictionary();
-      m_EntitiesDataDictionary = result as EntitiesDataDictionary;
-      Connected = true;
-      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(false, true, true);
-      this.Context.ProgressChang(this, new ProgressChangedEventArgs(0, "Operation ReadSiteContent finished"));
-    }
-    #endregion
-
     #region UpdateRoutes
-    private void UpdateRoutes()
+    private void OnUpdateRoutesButton()
     {
-      if (!Connected)
-        throw new ApplicationException("Before updating changes you must establish connection.");
+      Log("Entering UpdateRoutes", Category.Debug, Priority.Low);
+      if (!this.GetReadSiteContentConfirmation())
+      {
+        Log("Leaving UpdateRoutes - no confirmation.", Category.Debug, Priority.Low);
+        return;
+      }
       m_DoWorkEventHandler = DoWorkEventHandler_UpdateRoutes;
       m_CompletedEventHandler = RunWorkerCompletedEventHandler_UpdateRoutes;
-      this.RunAsync(m_EntitiesDataDictionary);
+      this.RunAsync(new UpdateRoutesArgument() { RoutesCatalog = this.RoutesCatalog, URL = this.URL });
     }
     private void DoWorkEventHandler_UpdateRoutes(object argument, DoWorkEventArgs e)
     {
-      EntitiesDataDictionary _edc = e.Argument as EntitiesDataDictionary;
-      if (_edc == null)
-        throw new ArgumentException("DoWorkEventHandler UpdateRoutes", "argument");
-      ReportProgress(this, new ProgressChangedEventArgs(0, "Start updating the site data."));
-      //_edc.ImportTable(this.SetRoutesCatalog.CommodityTable, x => ReportProgress(this, x));
-      ReportProgress(this, new ProgressChangedEventArgs(1, "Commodity updated."));
-      //_edc.ImportTable(this.SetRoutesCatalog.PartnersTable, false, x => ReportProgress(this, x));
-      ReportProgress(this, new ProgressChangedEventArgs(1, "Partners updated."));
-      //_edc.ImportTable(this.SetRoutesCatalog.MarketTable, x => ReportProgress(this, x));
-      ReportProgress(this, new ProgressChangedEventArgs(1, "Market updated."));
-      //_edc.ImportTable(this.SetRoutesCatalog.GlobalPricelist, false, x => ReportProgress(this, x));
-      ReportProgress(this, new ProgressChangedEventArgs(1, "Global Price List updated."));
-      ReportProgress(this, new ProgressChangedEventArgs(1, "Data from current site has been read"));
-      //_edc.SubmitChanges();
-      ReportProgress(this, new ProgressChangedEventArgs(1, "Submitted changes."));
+      ReportProgress(this, new ProgressChangedEventArgs(1, "Starting UpdateRoutes background worker"));
+      UpdateRoutesArgument _argument = (UpdateRoutesArgument)e.Argument;
+      if (string.IsNullOrEmpty(_argument.URL))
+        throw new ArgumentException("ReadSiteContent: URL cannot be empty or null");
+      ReportProgress(this, new ProgressChangedEventArgs(0, String.Format("Establishing connection with the site {0}.", URL)));
+      using (EntitiesDataDictionary _edc = new EntitiesDataDictionary(_argument.URL))
+      {
+        ReportProgress(this, new ProgressChangedEventArgs(1, "Starting read current data from the selected site."));
+        _edc.ReadSiteContent(x => ReportProgress(this, new ProgressChangedEventArgs(1, x)));
+        ReportProgress(this, new ProgressChangedEventArgs(1, "Start updating the site data."));
+        //_edc.ImportTable(this.SetRoutesCatalog.CommodityTable, x => ReportProgress(this, x));
+        ReportProgress(this, new ProgressChangedEventArgs(1, "Commodity updated."));
+        //_edc.ImportTable(this.SetRoutesCatalog.PartnersTable, false, x => ReportProgress(this, x));
+        ReportProgress(this, new ProgressChangedEventArgs(1, "Partners updated."));
+        //_edc.ImportTable(this.SetRoutesCatalog.MarketTable, x => ReportProgress(this, x));
+        ReportProgress(this, new ProgressChangedEventArgs(1, "Market updated."));
+        //_edc.ImportTable(this.SetRoutesCatalog.GlobalPricelist, false, x => ReportProgress(this, x));
+        ReportProgress(this, new ProgressChangedEventArgs(1, "Global Price List updated."));
+        ReportProgress(this, new ProgressChangedEventArgs(1, "Data from current site has been read"));
+        //_edc.SubmitChanges();
+        ReportProgress(this, new ProgressChangedEventArgs(1, "Submitted changes."));
+      }
     }
     private void RunWorkerCompletedEventHandler_UpdateRoutes(object result)
     {
@@ -175,7 +140,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     #endregion
 
     #region ReadXMLFile
-    private void ReadXMLFile()
+    private void OnReadXMLFileButton()
     {
       string path = GetReadRouteFileNameConfirmation();
       if (String.IsNullOrEmpty(path))
@@ -197,12 +162,21 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     private void RunWorkerCompletedEventHandler_ReadXMLFile(object result)
     {
-      this.SetRoutesCatalog = (RoutesCatalog)result;
+      this.RoutesCatalog = (RoutesCatalog)result;
       Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(true, true, true);
       Context.ProgressChang(this, new ProgressChangedEventArgs(0, "Operation ReadXMLFile finished"));
     }
     #endregion
 
+    private struct UpdateRoutesArgument
+    {
+      internal string URL;
+      internal RoutesCatalog RoutesCatalog;
+    }
+    private DoWorkEventHandler m_DoWorkEventHandler = null;
+    private Action<object> m_CompletedEventHandler = null;
+    private CancelTemplate m_ButtonsTemplate = null;
+    private Action<object>[] m_StateMachineActionsArray;
     private void OnSetupButton()
     {
       Log("User requested navigation to setup dialog screen.", Category.Debug, Priority.Low);
@@ -210,25 +184,12 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       _par.Add(Infrastructure.ViewNames.SetupStateName, String.Empty);
       Context.RequestNavigate(Infrastructure.ViewNames.SetupStateName, _par);
     }
-    private DoWorkEventHandler m_DoWorkEventHandler = null;
-    private Action<object> m_CompletedEventHandler = null;
-    private EntitiesDataDictionary m_EntitiesDataDictionary = null;
-    private bool Connected;
-    private CancelTemplate m_ButtonsTemplate;
-    private Action<object>[] m_StateMachineActionsArray;
-    private void DisposeEntitiesDataDictionary()
-    {
-      if (m_EntitiesDataDictionary == null)
-        return;
-      m_EntitiesDataDictionary.Dispose();
-      m_EntitiesDataDictionary = null;
-    }
     #endregion
 
     #region abstract
     protected abstract bool GetReadSiteContentConfirmation();
     protected abstract string GetReadRouteFileNameConfirmation();
-    protected abstract RoutesCatalog SetRoutesCatalog { set; get; }
+    protected abstract RoutesCatalog RoutesCatalog { set; get; }
     protected abstract string URL { get; }
     /// <summary>
     /// Write a new log entry with the specified category and priority.

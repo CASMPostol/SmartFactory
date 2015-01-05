@@ -21,10 +21,10 @@ using System.ComponentModel.Composition;
 namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
 {
   /// <summary>
-  /// Class ViewModelStateMachineBase - base ViewModel for all View classes hosting a state the state machine <see cref=""/>
+  /// Class ViewModelStateMachineBase - base ViewModel for all View classes hosting a state <typeparamref name="StateType"/> of the state machine <see cref="CAS.Common.ViewModel.Wizard.StateMachineContext"/> .
   /// </summary>
   /// <typeparam name="StateType">The type of the state.</typeparam>
-  public class ViewModelStateMachineBase<StateType> : ViewModelBase<StateType>, INavigationAware, ILoggerFacade
+  public abstract class ViewModelStateMachineBase<StateType> : ViewModelBase<StateType>, INavigationAware, ILoggerFacade
     where StateType : class, IAbstractMachineState, new()
   {
     /// <summary>
@@ -50,7 +50,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
 
     #region INavigationAware
     /// <summary>
-    /// Called when the implementer has been navigated to.
+    /// Called when the implementer has been navigated to and causes entering the state <typeparamref name="StateType"/>.
     /// </summary>
     /// <param name="navigationContext">The navigation context.</param>
     public virtual void OnNavigatedTo(NavigationContext navigationContext)

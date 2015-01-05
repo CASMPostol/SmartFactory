@@ -42,6 +42,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       loggingService.Log("Created ArchivingViewModel.", Category.Debug, Priority.Low);
       m_loggingService = loggingService;
     }
+
     #region UI API
     public string URL
     {
@@ -166,6 +167,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     }
     #endregion
 
+    #region ViewModelStateMachineBase
     public class ArchivingMachineStateLocal : ArchivingMachineState<ArchivingViewModel>
     {
       /// <summary>
@@ -202,7 +204,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       string _msg = String.Format("OnNavigatedTo - created view model {0} for SharePoint: {1} and database {2}.", typeof(ArchivingViewModel).Name, URL, SQLServer);
       m_loggingService.Log(_msg, Category.Debug, Priority.Low);
     }
-
+    #endregion
 
     #region backing up fields
     public string b_SQLServer = String.Empty;
