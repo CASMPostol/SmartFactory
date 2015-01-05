@@ -47,18 +47,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="InputData\Class1.cs" />
+    <Compile Include="InputData\RoutesCatalog.cs">
+      <DependentUpon>RoutesCatalog.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="InputData\RoutesCatalog.xsd.cs">
+      <DependentUpon>RoutesCatalog.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Linq2SQL\ArchivingOperationLogs.cs" />
     <Compile Include="Linq2SQL\Entities.cs" />
     <Compile Include="Linq\Entities.cs" />
     <Compile Include="Linq\Connectivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdateRotes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
+    <None Include="InputData\RoutesCatalog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="InputData\Scripts\CreateCS.ps1" />
     <None Include="Linq2SQL\Scripts\GetEntities.ps1" />
     <None Include="Linq\Scripts\GetEntities.ps1" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="InputData\RoutesCatalog.XML" />
     <Content Include="Linq\Scripts\Parameters.xml" />
   </ItemGroup>
   <ItemGroup>

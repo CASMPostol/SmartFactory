@@ -138,6 +138,7 @@
       <DependentUpon>ButtonsPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ButtonsPanelViewModel.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Controls\LogPanel.xaml.cs">
       <DependentUpon>LogPanel.xaml</DependentUpon>
     </Compile>
@@ -158,7 +159,6 @@
     </Compile>
     <Compile Include="Controls\SettingsPanelViewModel.cs" />
     <Compile Include="Controls\ViewModelStateMachineBase.cs" />
-    <Compile Include="Extensions.cs" />
     <Compile Include="HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
     </Compile>
@@ -172,12 +172,6 @@
     <Compile Include="Infrastructure\SharePointWebsiteData.cs" />
     <Compile Include="Infrastructure\SharePointWebsiteEvent.cs" />
     <Compile Include="Infrastructure\ViewNames.cs" />
-    <Compile Include="InputData\RoutesCatalog.cs">
-      <DependentUpon>RoutesCatalog.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="InputData\RoutesCatalog.xsd.cs">
-      <DependentUpon>RoutesCatalog.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -194,7 +188,6 @@
     <Compile Include="StateMachines\ConnectionDescription.cs" />
     <Compile Include="StateMachines\RouteEditMachineState.cs" />
     <Compile Include="StateMachines\SetupDataDialogMachine.cs" />
-    <Compile Include="UpdateData\EntitiesDataDictionary.cs" />
     <Page Include="Controls\ArchivingPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -262,10 +255,6 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="cas.snk" />
-    <None Include="InputData\RoutesCatalog.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="InputData\Scripts\CreateCS.ps1" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -379,9 +368,6 @@
     <Resource Include="Imgs\ico.png" />
     <Resource Include="Imgs\SHR_Ico.ico" />
     <Resource Include="Imgs\status.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="InputData\RoutesCatalog.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

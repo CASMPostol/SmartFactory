@@ -14,8 +14,8 @@
 //</summary>
 
 using CAS.Common.Interactivity.InteractionRequest;
+using CAS.SmartFactory.Shepherd.Client.DataManagement.InputData;
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
-using CAS.SmartFactory.Shepherd.Client.Management.InputData;
 using CAS.SmartFactory.Shepherd.Client.Management.StateMachines;
 using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.PubSubEvents;
