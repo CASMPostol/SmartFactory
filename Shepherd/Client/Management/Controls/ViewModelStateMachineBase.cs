@@ -27,6 +27,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
   public abstract class ViewModelStateMachineBase<StateType> : ViewModelBase<StateType>, INavigationAware, ILoggerFacade
     where StateType : class, IAbstractMachineState, new()
   {
+
+    #region public
     /// <summary>
     /// Initializes a new instance of the <see cref="ViewModelStateMachineBase{StateType}"/> class.
     /// </summary>
@@ -47,6 +49,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         m_ShellViewModel = value;
       }
     }
+    #endregion
 
     #region INavigationAware
     /// <summary>
@@ -66,7 +69,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       base.ExitState();
     }
     #endregion
-
 
     #region ILoggerFacade
     /// <summary>
