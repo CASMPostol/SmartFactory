@@ -29,7 +29,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     /// <summary>
     /// Initializes a new instance of the <see cref="ArchivingMachineState{ViewModelContextType}"/> class.
     /// </summary>
-    public ArchivingMachineState()
+    internal ArchivingMachineState()
     {
       m_ButtonsTemplate = new CancelTemplate(String.Empty, Resources.ArchiveButtonTitle, Resources.SetupButtonTitle);
       m_StateMachineActionsArray = new Action<object>[4];

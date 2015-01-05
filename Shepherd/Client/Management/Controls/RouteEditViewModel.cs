@@ -160,8 +160,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       {
         bool _confirmed = false;
         this.ViewModelContext.ReadSiteContentConfirmation.Raise(
-          new Confirmation() { Title = "Read Site Content.", Content = "You are about to read the website content. All changes will be lost.. Are you sure?", Confirmed = true },
-          c => _confirmed = c.Confirmed);
+          new Confirmation() { Title = "Import routes.", Content = "You are about to update the website content. Are you sure ?", Confirmed = true }, c => _confirmed = c.Confirmed);
         return _confirmed;
       }
       protected override string GetReadRouteFileNameConfirmation()
@@ -181,7 +180,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
           c => _confirmed = c.Confirmed);
         return _confirmed ? _ofd.FileName : String.Empty;
       }
-      protected override RoutesCatalog SetRoutesCatalog
+      protected override RoutesCatalog RoutesCatalog
       {
         set { ViewModelContext.RoutesCatalog = value; }
         get { return ViewModelContext.RoutesCatalog; }
@@ -210,9 +209,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       #endregion
 
     }
-    #endregion
-
-    #region INavigationAware
     /// <summary>
     /// Called when the implementer has been navigated to.
     /// </summary>
@@ -226,7 +222,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       string _msg = String.Format
         ("OnNavigatedTo - created view model {0} for SharePoint: {1}.", typeof(RouteEditViewModel).Name, m_ConnectionData.SharePointWebsiteURL);
       m_LoggingService.Log(_msg, Category.Debug, Priority.Low);
-      this.MyState.OnNavigationContextChanged();
     }
     #endregion
 
@@ -241,7 +236,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     private ILoggerFacade m_LoggingService;
     private IEventAggregator m_EventAggregator;
     #endregion
-
 
   }
 
