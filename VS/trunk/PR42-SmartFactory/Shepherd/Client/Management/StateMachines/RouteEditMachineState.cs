@@ -105,7 +105,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       }
       m_DoWorkEventHandler = DoWorkEventHandler_UpdateRoutes;
       m_CompletedEventHandler = RunWorkerCompletedEventHandler_UpdateRoutes;
-      this.RunAsync(new UpdateRoutesArgument() { RoutesCatalog = this.RoutesCatalog, URL = this.URL });
+      this.RunAsync(new UpdateRoutesArgument() { RoutesCatalog = this.RoutesCatalog, URL = this.URL, RoutePrefix = this.RoutePrefix });
     }
     private void DoWorkEventHandler_UpdateRoutes(object argument, DoWorkEventArgs e)
     {
@@ -113,7 +113,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       UpdateRoutesArgument _argument = (UpdateRoutesArgument)e.Argument;
       if (string.IsNullOrEmpty(_argument.URL))
         throw new ArgumentException("ReadSiteContent: URL cannot be empty or null");
-      UpdateRotes.DoUpdate(_argument.URL, _argument.RoutesCatalog, x => ReportProgress(this, x));
+      UpdateRotes.DoUpdate(_argument.URL, _argument.RoutesCatalog, _argument.RoutePrefix, x => ReportProgress(this, x));
     }
     private void RunWorkerCompletedEventHandler_UpdateRoutes(object result)
     {
@@ -154,6 +154,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     private struct UpdateRoutesArgument
     {
       internal string URL;
+      internal string RoutePrefix;
       internal RoutesCatalog RoutesCatalog;
     }
     private DoWorkEventHandler m_DoWorkEventHandler = null;
@@ -173,6 +174,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     protected abstract bool GetReadSiteContentConfirmation();
     protected abstract string GetReadRouteFileNameConfirmation();
     protected abstract RoutesCatalog RoutesCatalog { set; get; }
+    protected abstract string RoutePrefix { get; }
     protected abstract string URL { get; }
     /// <summary>
     /// Write a new log entry with the specified category and priority.
@@ -181,7 +183,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     /// <param name="category">Category of the entry.</param>
     /// <param name="priority">The priority of the entry.</param>
     public abstract void Log(string message, Category category, Priority priority);
-    #endregion
 
+
+    #endregion
   }
 }

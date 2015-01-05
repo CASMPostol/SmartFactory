@@ -193,6 +193,10 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
           return ViewModelContext.m_ConnectionData.SharePointWebsiteURL;
         }
       }
+      protected override string RoutePrefix
+      {
+        get { return ViewModelContext.Prefix; }
+      }
       #endregion
 
       #region ILoggerFacade
@@ -207,6 +211,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         ViewModelContext.m_LoggingService.Log(message, category, priority);
       }
       #endregion
+
 
     }
     /// <summary>
