@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DefaultTextLoggerPattern" xml:space="preserve">
-    <value>{1}: {2}. Priority: {3}. Time-stamp:{0:u}.</value>
+    <value>{1}; {2}; Priority: {3}; Time-stamp:{0:u};</value>
   </data>
   <data name="SetupDataDialogMachineName" xml:space="preserve">
     <value>Setup</value>
