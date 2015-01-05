@@ -1,6 +1,6 @@
 ﻿//<summary>
 //  Title   : Extensions
-//  System  : Microsoft VisulaStudio 2013 / C#
+//  System  : Microsoft VisualStudio 2013 / C#
 //  $LastChangedDate$
 //  $Rev$
 //  $LastChangedBy$
@@ -12,10 +12,11 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
+      
 
 using System;
 
-namespace CAS.SmartFactory.Shepherd.Client.Management
+namespace CAS.SmartFactory.Shepherd.Client.DataManagement
 {
   internal static class Extensions
   {
@@ -42,24 +43,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     public static bool IsNullOrEmpty(this string _val)
     {
       return String.IsNullOrEmpty(_val);
-    }
-    /// <summary>
-    /// Convert the <see cref="Nullable{DateTime}"/> to localized string.
-    /// </summary>
-    /// <param name="value">The value to be converted.</param>
-    /// <returns>Localized <see cref="System.String"/>.</returns>
-    public static string LocalizedString(this Nullable<DateTime> value)
-    {
-      return value.HasValue ? value.Value.ToString("G", System.Globalization.CultureInfo.CurrentCulture) : Properties.Settings.Default.RunDateUnknown;
-    }
-    /// <summary>
-    /// Gets the value or default.
-    /// </summary>
-    /// <param name="value">The value if not bull or empty.</param>
-    /// <param name="defaultString">The default string returned if <paramref name="value"/> is null or default.</param>
-    public static string GetValueOrDefault(this string value, string defaultString)
-    {
-      return string.IsNullOrEmpty(value) ? defaultString : value;
     }
 
   }

@@ -15,9 +15,9 @@
 
 using CAS.Common.ViewModel.Wizard;
 using CAS.Common.ViewModel.Wizard.ButtonsPanelStateTemplates;
-using CAS.SmartFactory.Shepherd.Client.Management.InputData;
+using CAS.SmartFactory.Shepherd.Client.DataManagement.InputData;
 using CAS.SmartFactory.Shepherd.Client.Management.Properties;
-using CAS.SmartFactory.Shepherd.Client.Management.UpdateData;
+using CAS.SmartFactory.Shepherd.Client.DataManagement;
 using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.Regions;
 using System;
@@ -113,24 +113,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       UpdateRoutesArgument _argument = (UpdateRoutesArgument)e.Argument;
       if (string.IsNullOrEmpty(_argument.URL))
         throw new ArgumentException("ReadSiteContent: URL cannot be empty or null");
-      ReportProgress(this, new ProgressChangedEventArgs(0, String.Format("Establishing connection with the site {0}.", URL)));
-      using (EntitiesDataDictionary _edc = new EntitiesDataDictionary(_argument.URL))
-      {
-        ReportProgress(this, new ProgressChangedEventArgs(1, "Starting read current data from the selected site."));
-        _edc.ReadSiteContent(x => ReportProgress(this, new ProgressChangedEventArgs(1, x)));
-        ReportProgress(this, new ProgressChangedEventArgs(1, "Start updating the site data."));
-        //_edc.ImportTable(this.SetRoutesCatalog.CommodityTable, x => ReportProgress(this, x));
-        ReportProgress(this, new ProgressChangedEventArgs(1, "Commodity updated."));
-        //_edc.ImportTable(this.SetRoutesCatalog.PartnersTable, false, x => ReportProgress(this, x));
-        ReportProgress(this, new ProgressChangedEventArgs(1, "Partners updated."));
-        //_edc.ImportTable(this.SetRoutesCatalog.MarketTable, x => ReportProgress(this, x));
-        ReportProgress(this, new ProgressChangedEventArgs(1, "Market updated."));
-        //_edc.ImportTable(this.SetRoutesCatalog.GlobalPricelist, false, x => ReportProgress(this, x));
-        ReportProgress(this, new ProgressChangedEventArgs(1, "Global Price List updated."));
-        ReportProgress(this, new ProgressChangedEventArgs(1, "Data from current site has been read"));
-        //_edc.SubmitChanges();
-        ReportProgress(this, new ProgressChangedEventArgs(1, "Submitted changes."));
-      }
+      UpdateRotes.DoUpdate(_argument.URL, _argument.RoutesCatalog, x => ReportProgress(this, x));
     }
     private void RunWorkerCompletedEventHandler_UpdateRoutes(object result)
     {
