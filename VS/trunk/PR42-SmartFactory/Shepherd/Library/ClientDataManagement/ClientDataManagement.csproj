@@ -57,11 +57,13 @@
     </Compile>
     <Compile Include="Linq2SQL\ArchivingOperationLogs.cs" />
     <Compile Include="Linq2SQL\Entities.cs" />
+    <Compile Include="Linq2SQL\SHRARCHIVE.cs" />
     <Compile Include="Linq\Entities.cs" />
     <Compile Include="Linq\Connectivity.cs" />
     <Compile Include="Linq\Entities.partial.cs" />
     <Compile Include="Linq\TraceLogWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SynchronizationContent.cs" />
     <Compile Include="UpdateRotes.cs" />
   </ItemGroup>
   <ItemGroup>

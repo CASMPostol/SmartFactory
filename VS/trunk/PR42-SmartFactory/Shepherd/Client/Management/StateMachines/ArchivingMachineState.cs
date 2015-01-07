@@ -15,10 +15,12 @@
 
 using CAS.Common.ViewModel.Wizard;
 using CAS.Common.ViewModel.Wizard.ButtonsPanelStateTemplates;
+using CAS.SmartFactory.Shepherd.Client.DataManagement;
 using CAS.SmartFactory.Shepherd.Client.Management.Properties;
 using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.Regions;
 using System;
+using System.ComponentModel;
 
 namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
 {
@@ -59,9 +61,20 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     protected override void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
     {
-      ReportProgress(this, new System.ComponentModel.ProgressChangedEventArgs(1, "Starting archiving background process."));
+      ReportProgress(this, new ProgressChangedEventArgs(1, "Starting archiving background process."));
       BackgroundProcessArgument _argument = (BackgroundProcessArgument)e.Argument;
-      DataManagement.CleanupContent.DoCleanupContent(_argument.URL, x => ReportProgress(this, x), y => this.Log(y, Category.Debug, Priority.None));
+      if ((_argument.Phases & Phases.CleanupContent) > 0)
+        CleanupContent.DoCleanupContent(_argument.URL, x => ReportProgress(this, x), y => this.Log(y, Category.Debug, Priority.None));
+      else
+        this.ReportProgress(this, new ProgressChangedEventArgs(0, "Cleanup content skipped because is not selected by the user."));
+      if ((_argument.Phases & Phases.SynchronizationContent) > 0)
+        SynchronizationContent.DoSynchronizationContent(_argument.URL, _argument.SQLConnectionString, x => ReportProgress(this, x), y => this.Log(y, Category.Debug, Priority.None));
+      else
+        this.ReportProgress(this, new ProgressChangedEventArgs(0, "Synchronization content skipped because is not selected by the user."));
+      if ((_argument.Phases & Phases.ArchivingContent) > 0)
+        ;
+      else
+        this.ReportProgress(this, new ProgressChangedEventArgs(0, "Archiving content skipped because is not selected by the user."));
       ReportProgress(this, new System.ComponentModel.ProgressChangedEventArgs(1, "Finished archiving background process."));
     }
     protected override void RunWorkerCompleted(object result)
@@ -93,10 +106,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     #endregion
 
     #region private
-    private struct BackgroundProcessArgument
-    {
-      internal string URL;
-    }
     private void OnSetupButton()
     {
       Log("User requested navigation to setup dialog screen.", Category.Debug, Priority.Low);
@@ -107,14 +116,27 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     private void OnArchiveButton()
     {
       Context.ProgressChang(this, new System.ComponentModel.ProgressChangedEventArgs(1, "Starting archival process - it could take several minutes."));
-      RunAsync(new BackgroundProcessArgument() { URL = this.URL });
+      RunAsync(GetArgument);
     }
     private CancelTemplate m_ButtonsTemplate;
     private Action<object>[] m_StateMachineActionsArray;
     #endregion
 
     #region abstract
-    protected abstract string URL { get; }
+    [Flags]
+    protected enum Phases
+    {
+      CleanupContent,
+      SynchronizationContent,
+      ArchivingContent
+    }
+    protected struct BackgroundProcessArgument
+    {
+      internal string URL;
+      internal string SQLConnectionString;
+      internal Phases Phases;
+    }
+    protected abstract BackgroundProcessArgument GetArgument { get; }
     //ILoggerFacade
     public abstract void Log(string message, Category category, Priority priority);
     #endregion
