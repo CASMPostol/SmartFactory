@@ -18,7 +18,7 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="2">
                     <Label Content="{Binding Path=URL, FallbackValue= --- ? --- }" ContentStringFormat="SharePoint URL: {0}" />
-                    <Label Content="{Binding Path=SQLServer, FallbackValue= --- ? ---}" ContentStringFormat="Badabase: {0}"/>
+                    <Label Content="{Binding Path=SQLServer, FallbackValue= --- ? ---}" ContentStringFormat="Database: {0}"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Grid.Column="0" x:Name="x_RadioListArchivingOptions" DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Left">
                     <RadioButton x:Name="x_RadioButtonCleanupOption" Style="{DynamicResource SimpleRadioButton}" Margin="5,55,0,0" VerticalAlignment="Center" Height="13.333" Width="13.333" HorizontalAlignment="Center" BorderThickness="1" IsChecked="{Binding DoCleanupIsChecked, Mode=TwoWay}" />

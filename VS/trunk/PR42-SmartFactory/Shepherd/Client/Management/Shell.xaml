@@ -9,52 +9,56 @@
         ScrollViewer.HorizontalScrollBarVisibility="Auto" 
         ScrollViewer.VerticalScrollBarVisibility="Auto"
         Icon="SHR_Ico.ico"
-        MinHeight="800"
-        MinWidth="1500">
+        Width="Auto"
+        Height="Auto">
     <Window.Background>
         <ImageBrush ImageSource="Imgs/Background.jpg"  Stretch="Fill"/>
     </Window.Background>
-    <Grid>
-        <!-- Main Grid Definition -->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <!-- Title -->
-        <StackPanel Grid.Row="0" Grid.Column="0">
-            <TextBlock Style="{DynamicResource CASTextBlockHeader}" Margin="20,20,20,20">Shepherd Management Wizard</TextBlock>
-        </StackPanel>
-        <!-- ActionsGrid -->
-        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="70" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" MinWidth="850" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <!-- Main Action Region -->
-            <Grid x:Name="DetailsGrid" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Margin="0" VerticalAlignment="Top">
-                <ContentControl x:Name="ActionContent" prism:RegionManager.RegionName="{x:Static inf:RegionNames.ActionRegion}" MinHeight="50">
-                </ContentControl>
+    <TabControl Background="{x:Null}" BorderThickness="0" >
+        <TabItem Header="Wizard" Style="{DynamicResource CASMainTabItemStyle}">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="0,0,0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!-- Logo -->
+                <StackPanel Grid.Row="0" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5">
+                    <TextBlock Style="{DynamicResource CASTextBlockHeader}" Margin="20,20,20,20">Shepherd Management Wizard</TextBlock>
+                </StackPanel>
+
+                <!-- Content -->
+
+                <Grid x:Name="DetailsGrid" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" Margin="0" VerticalAlignment="Top">
+                    <ContentControl x:Name="ActionContent" prism:RegionManager.RegionName="{x:Static inf:RegionNames.ActionRegion}" MinHeight="50">
+                    </ContentControl>
+                </Grid>
+
+                <!-- Buttons -->
+
+                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
+                    <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.ButtonsRegion}"/>
+                </StackPanel>
+
+                <!-- Progress Panel -->
+
+                <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
+                    <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.ProgressRegion}"/>
+                </StackPanel>
             </Grid>
-            <!-- Action Buttons -->
-            <Grid x:Name="ButtonsGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.ButtonsRegion}" MinHeight="50"/>
+        </TabItem>
+        <TabItem Header="Log" Style="{DynamicResource CASMainTabItemStyle}">
+
+            <!-- Diagnostic -->
+
+            <Grid x:Name="SideGrid" Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.DiagnosticRegion}" />
             </Grid>
-            <!-- Diagnostic Region -->
-            <Grid x:Name="SideGrid" Margin="0" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.DiagnosticRegion}" MinHeight="50" />
-            </Grid>
-        </Grid>
-        <!-- Bottom Progress Panel -->
-        <StackPanel Grid.Row="2" Grid.Column="0">
-            <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.ProgressRegion}" MinHeight="50"/>
-        </StackPanel>
-    </Grid>
+        </TabItem>
+    </TabControl>
+
 </Window>

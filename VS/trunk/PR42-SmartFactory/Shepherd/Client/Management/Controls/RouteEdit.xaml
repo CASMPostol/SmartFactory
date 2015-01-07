@@ -9,10 +9,10 @@
     <Grid x:Name="x_MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
@@ -37,22 +37,22 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-        <StackPanel Margin="70,5,5,5" Grid.Row="1">
-            <TabControl Grid.Row="3" VerticalAlignment="Top">
+        <StackPanel Margin="70,5,5,5" Grid.Row="1" Width="Auto">
+            <TabControl Grid.Row="3" VerticalAlignment="Top" Height="500" Width="Auto" >
                 <!--<TabItem Header="Simple Routs">
                     <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Path=Route}"/>
                 </TabItem>-->
                 <TabItem Header="Routes" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid Height="500" Width="800" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Route}" CellStyle="{DynamicResource NonEditableCell}" />
+                    <DataGrid  Width="Auto" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Route}" CellStyle="{DynamicResource NonEditableCell}" />
                 </TabItem>
                 <TabItem Header="Market" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid Height="500" Width="800" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Market}" CellStyle="{DynamicResource NonEditableCell}" />
+                    <DataGrid HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Market}" CellStyle="{DynamicResource NonEditableCell}" />
                 </TabItem>
                 <TabItem Header="Partners" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid Height="500" Width="800" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Partners}" CellStyle="{DynamicResource NonEditableCell}" />
+                    <DataGrid HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Partners}" CellStyle="{DynamicResource NonEditableCell}" />
                 </TabItem>
                 <TabItem Header="Commodity" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid Height="500" Width="800" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Commodity}" CellStyle="{DynamicResource NonEditableCell}" />
+                    <DataGrid HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Commodity}" CellStyle="{DynamicResource NonEditableCell}" />
                 </TabItem>
                 <!--<TabItem Header="Routs" Style="{DynamicResource CASTabItemStyle}">
                     <DataGrid Style="{DynamicResource CASDataGridStyle}" Width="Auto" x:Name="x_DataGridRouts" ItemsSource="{Binding Path=Route}" MinHeight="400" VerticalContentAlignment="Center">
