@@ -10,12 +10,13 @@
         ScrollViewer.VerticalScrollBarVisibility="Auto"
         Icon="SHR_Ico.ico"
         Width="Auto"
-        Height="Auto">
+        Height="Auto"
+        MinHeight="930">
     <Window.Background>
         <ImageBrush ImageSource="Imgs/Background.jpg"  Stretch="Fill"/>
     </Window.Background>
     <TabControl Background="{x:Null}" BorderThickness="0" >
-        <TabItem Header="Wizard" Style="{DynamicResource CASMainTabItemStyle}">
+        <TabItem Header="Main window" Style="{DynamicResource CASMainTabItemStyle}">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="0,0,0,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70" />
@@ -51,7 +52,7 @@
                 </StackPanel>
             </Grid>
         </TabItem>
-        <TabItem Header="Log" Style="{DynamicResource CASMainTabItemStyle}">
+        <TabItem Header="Application log" Style="{DynamicResource CASMainTabItemStyle}">
 
             <!-- Diagnostic -->
 
