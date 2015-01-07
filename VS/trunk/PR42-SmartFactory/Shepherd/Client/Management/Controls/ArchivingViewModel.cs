@@ -180,7 +180,16 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       {
         ViewModelContext.Log(message, category, priority);
       }
+
+      protected override string URL
+      {
+        get { return ViewModelContext.URL; }
+      }
     }
+    /// <summary>
+    /// Called when the implementer has been navigated to.
+    /// </summary>
+    /// <param name="navigationContext">The navigation context <see cref="NavigationContext"/>.</param>
     public override void OnNavigatedTo(NavigationContext navigationContext)
     {
       base.OnNavigatedTo(navigationContext);

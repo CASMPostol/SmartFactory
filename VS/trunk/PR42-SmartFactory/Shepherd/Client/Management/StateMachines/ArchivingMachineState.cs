@@ -35,13 +35,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       m_StateMachineActionsArray = new Action<object>[4];
       m_StateMachineActionsArray[(int)m_ButtonsTemplate.CancelPosition] = x => this.Cancel();
       m_StateMachineActionsArray[(int)StateMachineEventIndex.RightMiddleButtonEvent] = x => this.OnSetupButton();
-      m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftButtonEvent] = x => this.OnArchiveButton();
-      m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftMiddleButtonEvent] = x => { };
+      m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftMiddleButtonEvent] = x => this.OnArchiveButton();
+      m_StateMachineActionsArray[(int)StateMachineEventIndex.LeftButtonEvent] = x => { };
     }
-
-    #region ILoggerFacade
-    public abstract void Log(string message, Category category, Priority priority);
-    #endregion
 
     #region object
     /// <summary>
@@ -63,11 +59,14 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     protected override void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
     {
-      throw new NotImplementedException();
+      ReportProgress(this, new System.ComponentModel.ProgressChangedEventArgs(1, "Starting archiving background process."));
+      BackgroundProcessArgument _argument = (BackgroundProcessArgument)e.Argument;
+      DataManagement.CleanupContent.DoCleanupContent(_argument.URL, x => ReportProgress(this, x), y => this.Log(y, Category.Debug, Priority.None));
+      ReportProgress(this, new System.ComponentModel.ProgressChangedEventArgs(1, "Finished archiving background process."));
     }
     protected override void RunWorkerCompleted(object result)
     {
-      throw new NotImplementedException();
+      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(false, true, true);
     }
     protected override void OnlyCancelActive()
     {
@@ -86,9 +85,18 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       Log("In ArchivingMachineState requested Cancel operation", Category.Debug, Priority.Low);
       base.Cancel();
     }
+    public override void OnException(Exception exception)
+    {
+      base.OnException(exception);
+      Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(false, false, true);
+    }
     #endregion
 
     #region private
+    private struct BackgroundProcessArgument
+    {
+      internal string URL;
+    }
     private void OnSetupButton()
     {
       Log("User requested navigation to setup dialog screen.", Category.Debug, Priority.Low);
@@ -98,10 +106,17 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     private void OnArchiveButton()
     {
-      //TODO
+      Context.ProgressChang(this, new System.ComponentModel.ProgressChangedEventArgs(1, "Starting archival process - it could take several minutes."));
+      RunAsync(new BackgroundProcessArgument() { URL = this.URL });
     }
     private CancelTemplate m_ButtonsTemplate;
     private Action<object>[] m_StateMachineActionsArray;
+    #endregion
+
+    #region abstract
+    protected abstract string URL { get; }
+    //ILoggerFacade
+    public abstract void Log(string message, Category category, Priority priority);
     #endregion
 
   }
