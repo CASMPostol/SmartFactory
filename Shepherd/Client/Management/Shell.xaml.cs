@@ -48,6 +48,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     {
       set
       {
+        //It is assigned twice but the handles must not be assigned more then once. 
+        if (this.DataContext != null)
+          return;
         this.DataContext = value;
         value.CloseWindow.Raised += CloseWindow_Raised;
         value.CancelConfirmation.Raised += CancelConfirmation_Raised;

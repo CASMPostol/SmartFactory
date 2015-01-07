@@ -36,26 +36,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
     /// <param name="URL">The URL of the SharePoint website.</param>
     /// <param name="routes">The routes catalog.</param>
     /// <param name="routePrefix">The route title prefix.</param>
-    /// <param name="ReportProgress">The report progress.</param>
+    /// <param name="reportProgress">The report progress.</param>
     /// <param name="trace">The trace is used to write and log messages to an external trace.</param>
-    public static void DoUpdate(string URL, RoutesCatalog routes, string routePrefix, Action<ProgressChangedEventArgs> ReportProgress, Action<String> trace)
+    public static void DoUpdate(string URL, RoutesCatalog routes, string routePrefix, Action<ProgressChangedEventArgs> reportProgress, Action<String> trace)
     {
-      ReportProgress(new ProgressChangedEventArgs(1, String.Format("Establishing connection with the site {0}.", URL)));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("Establishing connection with the site {0}.", URL)));
       using (Linq.Entities _edc = new Linq.Entities(trace, URL))
       {
         Dictionaries _dictionary = new Dictionaries();
-        ReportProgress(new ProgressChangedEventArgs(1, "Starting read current data from the selected site."));
-        _dictionary.ReadSiteContent(_edc, x => ReportProgress(new ProgressChangedEventArgs(1, x)));
-        ReportProgress(new ProgressChangedEventArgs(1, "Start updating the site data."));
-        ImportTable(_edc, routes.CommodityTable, _dictionary, x => ReportProgress(x));
-        ImportTable(_edc, routes.PartnersTable, _dictionary, false, x => ReportProgress(x));
-        ImportTable(_edc, routes.MarketTable, _dictionary, x => ReportProgress(x));
-        ReportProgress(new ProgressChangedEventArgs(1, "Market updated."));
-        ImportTable(_edc, routes.GlobalPricelist, routePrefix, _dictionary, false, x => ReportProgress(x));
-        ReportProgress(new ProgressChangedEventArgs(1, "Global Price List updated."));
-        ReportProgress(new ProgressChangedEventArgs(1, "Data from current site has been read"));
+        reportProgress(new ProgressChangedEventArgs(1, "Starting read current data from the selected site."));
+        _dictionary.ReadSiteContent(_edc, x => reportProgress(new ProgressChangedEventArgs(1, x)));
+        reportProgress(new ProgressChangedEventArgs(1, "Start updating the site data."));
+        ImportTable(_edc, routes.CommodityTable, _dictionary, x => reportProgress(x));
+        ImportTable(_edc, routes.PartnersTable, _dictionary, false, x => reportProgress(x));
+        ImportTable(_edc, routes.MarketTable, _dictionary, x => reportProgress(x));
+        reportProgress(new ProgressChangedEventArgs(1, "Market updated."));
+        ImportTable(_edc, routes.GlobalPricelist, routePrefix, _dictionary, false, x => reportProgress(x));
+        reportProgress(new ProgressChangedEventArgs(1, "Global Price List updated."));
+        reportProgress(new ProgressChangedEventArgs(1, "Data from current site has been read"));
         //TODO _edc.SubmitChanges();
-        ReportProgress(new ProgressChangedEventArgs(1, "Submitted changes."));
+        reportProgress(new ProgressChangedEventArgs(1, "Submitted changes."));
       }
     }
     #endregion
