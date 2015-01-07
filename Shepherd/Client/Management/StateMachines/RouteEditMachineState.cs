@@ -113,7 +113,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       UpdateRoutesArgument _argument = (UpdateRoutesArgument)e.Argument;
       if (string.IsNullOrEmpty(_argument.URL))
         throw new ArgumentException("ReadSiteContent: URL cannot be empty or null");
-      UpdateRotes.DoUpdate(_argument.URL, _argument.RoutesCatalog, _argument.RoutePrefix, x => ReportProgress(this, x));
+      UpdateRotes.DoUpdate(_argument.URL, _argument.RoutesCatalog, _argument.RoutePrefix, x => ReportProgress(this, x), x => this.Log(x, Category.Debug, Priority.Low));
     }
     private void RunWorkerCompletedEventHandler_UpdateRoutes(object result)
     {

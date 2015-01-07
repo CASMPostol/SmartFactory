@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
+namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
 {
     using System;
     
@@ -15,7 +15,7 @@ namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
+    #line 1 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
     public partial class FreightPurchaseOrderTemplate : FreightPurchaseOrderTemplateBase
     {
@@ -27,77 +27,77 @@ namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
         {
             this.Write("  <p>\r\n    <b>Freight Purches Order:</b> ");
             
-            #line 2 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
+            #line 2 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FPO2RouteGoodsHandlingPO));
             
             #line default
             #line hidden
             this.Write("</p>\r\n  <p>\r\n    <b>Warehouse address:</b> ");
             
-            #line 4 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
+            #line 4 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FPO2WarehouseAddress));
             
             #line default
             #line hidden
             this.Write("</p>\r\n  <p>\r\n    <b>Deliveries:</b> ");
             
-            #line 6 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
+            #line 6 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FPO2CityTitle));
             
             #line default
             #line hidden
             this.Write(", ");
             
-            #line 6 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
+            #line 6 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FPO2CountryTitle));
             
             #line default
             #line hidden
             this.Write("</p>\r\n  <p>\r\n    <b>Loading Date:</b> ");
             
-            #line 8 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
+            #line 8 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FPOLoadingDate));
             
             #line default
             #line hidden
             this.Write("</p>\r\n  <p>\r\n    <b>Type of transport:</b> ");
             
-            #line 10 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
+            #line 10 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FPO2TransportUnitTypeTitle));
             
             #line default
             #line hidden
             this.Write("</p>\r\n  <p>\r\n    <b>Commodity:</b> ");
             
-            #line 12 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
+            #line 12 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FPO2CommodityTitle));
             
             #line default
             #line hidden
             this.Write("</p>\r\n  <p>\r\n    <b>Freight Purchase Order document:</b> <a href=\"");
             
-            #line 14 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
+            #line 14 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Encodedabsurl));
             
             #line default
             #line hidden
             this.Write("\"> ");
             
-            #line 14 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
+            #line 14 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(DocumentName));
             
             #line default
             #line hidden
             this.Write("</a>\r\n  <p>\r\n    <b>Date and author of the order:</b> ");
             
-            #line 16 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
+            #line 16 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Modified));
             
             #line default
             #line hidden
             this.Write(", ");
             
-            #line 16 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
+            #line 16 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\FreightPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ModifiedBy));
             
             #line default

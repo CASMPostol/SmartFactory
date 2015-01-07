@@ -28,6 +28,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
   /// </summary>
   public static class UpdateRotes
   {
+
+    #region public
     /// <summary>
     /// Does the update.
     /// </summary>
@@ -35,10 +37,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
     /// <param name="routes">The routes catalog.</param>
     /// <param name="routePrefix">The route title prefix.</param>
     /// <param name="ReportProgress">The report progress.</param>
-    public static void DoUpdate(string URL, RoutesCatalog routes, string routePrefix, Action<ProgressChangedEventArgs> ReportProgress)
+    /// <param name="trace">The trace is used to write and log messages to an external trace.</param>
+    public static void DoUpdate(string URL, RoutesCatalog routes, string routePrefix, Action<ProgressChangedEventArgs> ReportProgress, Action<String> trace)
     {
       ReportProgress(new ProgressChangedEventArgs(1, String.Format("Establishing connection with the site {0}.", URL)));
-      using (Linq.Entities _edc = new Linq.Entities(URL))
+      using (Linq.Entities _edc = new Linq.Entities(trace, URL))
       {
         Dictionaries _dictionary = new Dictionaries();
         ReportProgress(new ProgressChangedEventArgs(1, "Starting read current data from the selected site."));
@@ -55,6 +58,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
         ReportProgress(new ProgressChangedEventArgs(1, "Submitted changes."));
       }
     }
+    #endregion
 
     #region private
 
