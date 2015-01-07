@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
+namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
 {
     using System;
     
@@ -15,7 +15,7 @@ namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\SupplementData2hEscortTemplate.tt"
+    #line 1 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\SupplementData2hEscortTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
     public partial class SupplementData2hEscortTemplate : SupplementData2hEscortTemplateBase
     {
@@ -28,21 +28,21 @@ namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
             this.Write("<p><b>2 hour remaining to supplement missing escort data.</b></p>\r\n<p><b>Security" +
                     " Escort Provider</b>: ");
             
-            #line 3 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\SupplementData2hEscortTemplate.tt"
+            #line 3 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\SupplementData2hEscortTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PartnerTitle));
             
             #line default
             #line hidden
             this.Write("</p>\r\n<p><b>Shipping:</b> ");
             
-            #line 4 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\SupplementData2hEscortTemplate.tt"
+            #line 4 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\SupplementData2hEscortTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ShippingTitle));
             
             #line default
             #line hidden
             this.Write("</p>\r\n<p><b>Time Slot:</b> ");
             
-            #line 5 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\SupplementData2hEscortTemplate.tt"
+            #line 5 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\SupplementData2hEscortTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(StartTime));
             
             #line default

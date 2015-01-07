@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
+namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
 {
     using System;
     
@@ -15,7 +15,7 @@ namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\DelayedShippingVendorTemplate.tt"
+    #line 1 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\DelayedShippingVendorTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
     public partial class DelayedShippingVendorTemplate : DelayedShippingVendorTemplateBase
     {
@@ -27,28 +27,28 @@ namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
         {
             this.Write("<p><b>Shipment is delayed. Expected truck ");
             
-            #line 1 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\DelayedShippingVendorTemplate.tt"
+            #line 1 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\DelayedShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TruckTitle));
             
             #line default
             #line hidden
             this.Write(" had not arrived.</b></p>\r\n<p><b>Partner:</b> ");
             
-            #line 2 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\DelayedShippingVendorTemplate.tt"
+            #line 2 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\DelayedShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PartnerTitle));
             
             #line default
             #line hidden
             this.Write("</p>\r\n<p><b>Shipping:</b> ");
             
-            #line 3 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\DelayedShippingVendorTemplate.tt"
+            #line 3 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\DelayedShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ShippingTitle));
             
             #line default
             #line hidden
             this.Write("</p>\r\n<p><b>Time Slot:</b> ");
             
-            #line 4 "C:\Repository\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\DelayedShippingVendorTemplate.tt"
+            #line 4 "C:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\DelayedShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(StartTime));
             
             #line default
