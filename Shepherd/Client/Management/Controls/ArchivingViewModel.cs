@@ -180,10 +180,22 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       {
         ViewModelContext.Log(message, category, priority);
       }
-
-      protected override string URL
+      protected override ArchivingMachineState<ArchivingViewModel>.BackgroundProcessArgument GetArgument
       {
-        get { return ViewModelContext.URL; }
+        get
+        {
+          Phases _phase = ViewModelContext.DoCleanupIsChecked ? Phases.CleanupContent : (Phases)0;
+          if (ViewModelContext.DoSynchronizationIsChecked)
+            _phase |= Phases.CleanupContent;
+          if (ViewModelContext.DoArchivingIsChecked)
+            _phase |= Phases.ArchivingContent;
+          return new BackgroundProcessArgument()
+          {
+            Phases = _phase,
+            SQLConnectionString = ViewModelContext.SQLServer,
+            URL = ViewModelContext.URL
+          };
+        }
       }
     }
     /// <summary>
