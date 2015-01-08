@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
+namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
 {
     using System;
     

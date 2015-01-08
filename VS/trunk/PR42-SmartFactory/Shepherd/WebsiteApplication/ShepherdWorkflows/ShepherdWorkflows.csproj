@@ -8,7 +8,7 @@
     <ProjectGuid>{89325B12-F757-42B3-97B5-EB5991F8A959}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CAS.SmartFactory.Shepherd.SendNotification</RootNamespace>
+    <RootNamespace>CAS.SmartFactory.Shepherd.Workflows</RootNamespace>
     <AssemblyName>CAS.ShepherdWorkflows</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
