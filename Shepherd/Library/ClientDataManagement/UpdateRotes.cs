@@ -150,7 +150,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
         catch (Exception ex)
         {
           string _format = "Cannot add market data DestinationCity={0} Market={1}  at position {2} because of import Error= {3}. The entry is skipped.";
-          progress(new ProgressChangedEventArgs(1, String.Format(_format, _market.DestinationCity, _market.Market, ex.Message)));
+          progress(new ProgressChangedEventArgs(1, String.Format(_format, _market.DestinationCity, _market.Market, _poz, ex.Message)));
         }
       }
         string _msg = String.Format("Importing RoutesCatalogMarket table finished, the {0} items have been reviewed and {1} added.", _poz, _newCounter);
