@@ -38,21 +38,9 @@
             </StackPanel>
         </Grid>
         <StackPanel Margin="70,5,70,5" Grid.Row="1">
-            <TabControl Grid.Row="3" VerticalAlignment="Top" MinHeight="400" Height="500" Width="Auto" >
-                <TabItem Header="Routes" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid  Width="Auto" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Route}" CellStyle="{DynamicResource NonEditableCell}" />
-                </TabItem>
-                <TabItem Header="Market" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Market}" CellStyle="{DynamicResource NonEditableCell}" />
-                </TabItem>
-                <TabItem Header="Partners" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Partners}" CellStyle="{DynamicResource NonEditableCell}" />
-                </TabItem>
-                <TabItem Header="Commodity" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="True" ItemsSource="{Binding Path=Commodity}" CellStyle="{DynamicResource NonEditableCell}" />
-                </TabItem>
-                <!--<TabItem Header="Routs" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid Style="{DynamicResource CASDataGridStyle}" Width="Auto" ItemsSource="{Binding Path=Route}" MinHeight="400" VerticalContentAlignment="Center">
+            <TabControl Grid.Row="3" VerticalAlignment="Top" MinHeight="400" Height="500" Width="Auto">
+                <TabItem Header="Routs" Style="{DynamicResource CASTabItemStyle}">
+                    <DataGrid Width="Auto" AutoGenerateColumns="False" ItemsSource="{Binding Path=Route}" MinHeight="400" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="City" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Dest_City}" />
                             <DataGridTextColumn Header="Business description" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Business_description}" />
@@ -73,9 +61,9 @@
                             <DataGridTextColumn Header="Fright PO" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding PO_NUMBER}" />
                         </DataGrid.Columns>
                     </DataGrid>
-                </TabItem>-->
-                <!--<TabItem Header="Markets" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid Style="{DynamicResource CASDataGridStyle}" AutoGenerateColumns="False" Width="Auto" x:Name="x_DataGridMarkets" ItemsSource="{Binding Market}" MinHeight="400" VerticalContentAlignment="Center">
+                </TabItem>
+                <TabItem Header="Markets" Style="{DynamicResource CASTabItemStyle}">
+                    <DataGrid AutoGenerateColumns="False" Width="Auto" x:Name="x_DataGridMarkets" ItemsSource="{Binding Market}" MinHeight="400" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Market" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Market}" />
                             <DataGridTextColumn Header="Area" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Area}" />
@@ -83,9 +71,9 @@
                             <DataGridTextColumn Header="Destination City" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding DestinationCity}" />
                         </DataGrid.Columns>
                     </DataGrid>
-                </TabItem>-->
-               <!-- <TabItem Header="Partners" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid Style="{DynamicResource CASDataGridStyle}" AutoGenerateColumns="False" Width="Auto" x:Name="x_DataGridPartners" ItemsSource="{Binding Partners}" MinHeight="400" VerticalContentAlignment="Center">
+                </TabItem>
+                <TabItem Header="Partners" Style="{DynamicResource CASTabItemStyle}">
+                    <DataGrid AutoGenerateColumns="False" Width="Auto" x:Name="x_DataGridPartners" ItemsSource="{Binding Partners}" MinHeight="400" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Name}" />
                             <DataGridTextColumn Header="Number (from SAP)" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding NumberFromSAP}" />
@@ -98,14 +86,14 @@
                             <DataGridTextColumn Header="Warehouse" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Warehouse}" />
                         </DataGrid.Columns>
                     </DataGrid>
-                </TabItem>-->
-                <!--<TabItem Header="Commodity" Style="{DynamicResource CASTabItemStyle}">
-                    <DataGrid Style="{DynamicResource CASDataGridStyle}" Width="Auto" x:Name="x_DataGridCommodity" ItemsSource="{Binding Commodity}" MinHeight="400" VerticalContentAlignment="Center">
+                </TabItem>
+                <TabItem Header="Commodity" Style="{DynamicResource CASTabItemStyle}">
+                    <DataGrid Width="Auto" x:Name="x_DataGridCommodity" ItemsSource="{Binding Commodity}" MinHeight="400" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Commodity" IsReadOnly="True" CellStyle="{DynamicResource NonEditableCell}" Binding="{Binding Title}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                </TabItem>-->
+                </TabItem>
             </TabControl>
         </StackPanel>
     </Grid>
