@@ -144,6 +144,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     #region INavigationAware
     public override void OnNavigatedFrom(NavigationContext navigationContext)
     {
+      base.OnNavigatedFrom(navigationContext);
       SaveSettings();
     }
     #endregion

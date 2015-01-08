@@ -30,6 +30,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
   [PartCreationPolicy(CreationPolicy.NonShared)]
   public class ArchivingViewModel : ViewModelStateMachineBase<ArchivingViewModel.ArchivingMachineStateLocal>
   {
+
     /// <summary>
     /// Importing constructor that initializes a new instance of the <see cref="ArchivingViewModel"/> class. 
     /// The constructor is to be used by the composition infrastructure.
@@ -165,6 +166,29 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         RaiseHandler<bool>(value, ref b_DoArchivingIsChecked, "DoArchivingIsChecked", this);
       }
     }
+    public int ArchivalDelay
+    {
+      get
+      {
+        return b_ArchivalDelay;
+      }
+      set
+      {
+        RaiseHandler<int>(value, ref b_ArchivalDelay, "ArchivalDelay", this);
+      }
+    }
+    public int RowLimit
+    {
+      get
+      {
+        return b_RowLimit;
+      }
+      set
+      {
+        RaiseHandler<int>(value, ref b_RowLimit, "RowLimit", this);
+      }
+    }
+
     #endregion
 
     #region ViewModelStateMachineBase
@@ -186,18 +210,21 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
         {
           Phases _phase = ViewModelContext.DoCleanupIsChecked ? Phases.CleanupContent : (Phases)0;
           if (ViewModelContext.DoSynchronizationIsChecked)
-            _phase |= Phases.CleanupContent;
-          if (ViewModelContext.DoArchivingIsChecked)
-            _phase |= Phases.ArchivingContent;
+            _phase = Phases.CleanupContent | Phases.SynchronizationContent;
+          else if (ViewModelContext.DoArchivingIsChecked)
+            _phase = Phases.ArchivingContent | Phases.CleanupContent | Phases.SynchronizationContent;
           return new BackgroundProcessArgument()
           {
             Phases = _phase,
             SQLConnectionString = ViewModelContext.SQLServer,
-            URL = ViewModelContext.URL
+            URL = ViewModelContext.URL,
+            ArchivalDelay = ViewModelContext.ArchivalDelay,
+            RowLimit = ViewModelContext.RowLimit
           };
         }
       }
     }
+    //INavigationAware
     /// <summary>
     /// Called when the implementer has been navigated to.
     /// </summary>
@@ -205,6 +232,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     public override void OnNavigatedTo(NavigationContext navigationContext)
     {
       base.OnNavigatedTo(navigationContext);
+      RestoreSettings();
       ISPContentState _spContentState = (ISPContentState)navigationContext.Parameters[typeof(ISPContentState).Name];
       Debug.Assert(_spContentState != null, string.Format("{0} parameter cannot be null while navigating to ArchivingViewModel.", typeof(ISPContentState).Name));
       Debug.Assert(_spContentState.SPConnected == true, "SP has to be connected before navigating to ArchivingViewModel.");
@@ -225,9 +253,16 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
       string _msg = String.Format("OnNavigatedTo - created view model {0} for SharePoint: {1} and database {2}.", typeof(ArchivingViewModel).Name, URL, SQLServer);
       m_loggingService.Log(_msg, Category.Debug, Priority.Low);
     }
+    public override void OnNavigatedFrom(NavigationContext navigationContext)
+    {
+      base.OnNavigatedFrom(navigationContext);
+      SaveSettings();
+    }
     #endregion
 
-    #region backing up fields
+    #region private
+
+    #region backing fields
     public string b_SQLServer = String.Empty;
     private string b_URL = String.Empty;
     private string b_SyncLastRunDate = Settings.Default.RunDateUnknown;
@@ -240,6 +275,24 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Controls
     private bool b_DoSynchronizationIsChecked = false;
     private bool b_DoArchivingIsChecked = false;
     private ILoggerFacade m_loggingService = null;
+    private int b_ArchivalDelay;
+    private int b_RowLimit;
+    #endregion
+    //methods
+    private void RestoreSettings()
+    {
+      this.Log("Restoring user settings from configuration file.", Category.Debug, Priority.None);
+      //User
+      this.ArchivalDelay = Properties.Settings.Default.ArchivalDelay;
+      this.RowLimit = Properties.Settings.Default.RowLimit;
+    }
+    private void SaveSettings()
+    {
+      this.Log("Saving user settings to configuration file.", Category.Debug, Priority.None);
+      Properties.Settings.Default.ArchivalDelay = this.ArchivalDelay;
+      Properties.Settings.Default.RowLimit = this.RowLimit;
+      Settings.Default.Save();
+    }
     #endregion
 
   }

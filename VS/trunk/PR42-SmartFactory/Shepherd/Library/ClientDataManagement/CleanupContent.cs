@@ -12,7 +12,7 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
 using System;
 using System.ComponentModel;
 
@@ -33,11 +33,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
     public static void DoCleanupContent(string URL, Action<ProgressChangedEventArgs> reportProgress, Action<String> trace)
     {
       bool _breakingIssueEncountered = false;
-      reportProgress(new ProgressChangedEventArgs(1, "Starting DoCleanupContent"));
-      reportProgress(new ProgressChangedEventArgs(1, String.Format("Establishing connection with the site {0}.", URL)));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("Starting DoCleanupContent and establishing connection with the site {0}.", URL)));
       using (Linq.Entities _edc = new Linq.Entities(trace, URL))
       {
-        _breakingIssueEncountered = true;
+        if (false)
+          _breakingIssueEncountered = true;
       }
       reportProgress(new ProgressChangedEventArgs(1, "Finished DoCleanupContent"));
       if (_breakingIssueEncountered)

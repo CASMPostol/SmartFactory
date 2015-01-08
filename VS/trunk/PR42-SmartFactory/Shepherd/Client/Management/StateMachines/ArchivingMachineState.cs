@@ -72,14 +72,14 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       else
         this.ReportProgress(this, new ProgressChangedEventArgs(0, "Synchronization content skipped because is not selected by the user."));
       if ((_argument.Phases & Phases.ArchivingContent) > 0)
-        ;
+        ArchivingContent.DoArchivingContent(_argument.URL, _argument.SQLConnectionString, _argument.ArchivalDelay, _argument.RowLimit, x => ReportProgress(this, x), y => this.Log(y, Category.Debug, Priority.None));
       else
         this.ReportProgress(this, new ProgressChangedEventArgs(0, "Archiving content skipped because is not selected by the user."));
-      ReportProgress(this, new System.ComponentModel.ProgressChangedEventArgs(1, "Finished archiving background process."));
     }
     protected override void RunWorkerCompleted(object result)
     {
       Context.EnabledEvents = m_ButtonsTemplate.SetEventsMask(false, true, true);
+      Context.ProgressChang(this, new System.ComponentModel.ProgressChangedEventArgs(0, "Finished archiving background process."));
     }
     protected override void OnlyCancelActive()
     {
@@ -126,15 +126,17 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     [Flags]
     protected enum Phases
     {
-      CleanupContent,
-      SynchronizationContent,
-      ArchivingContent
+      CleanupContent = 0x1,
+      SynchronizationContent = 0x2,
+      ArchivingContent = 0x4
     }
     protected struct BackgroundProcessArgument
     {
       internal string URL;
       internal string SQLConnectionString;
       internal Phases Phases;
+      internal int ArchivalDelay;
+      internal int RowLimit;
     }
     protected abstract BackgroundProcessArgument GetArgument { get; }
     //ILoggerFacade

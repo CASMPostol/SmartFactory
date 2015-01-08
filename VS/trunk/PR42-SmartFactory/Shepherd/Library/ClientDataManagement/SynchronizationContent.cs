@@ -27,22 +27,23 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
     /// Runs the synchronization of the SharePoint and SQL.
     /// </summary>
     /// <param name="URL">The requested URL.</param>
-    /// <param name="SQLConnectionString">The SQL connection string.</param>
+    /// <param name="sqlConnectionString">The SQL connection string.</param>
     /// <param name="reportProgress">An action to trace progress in a log stream.</param>
     /// <param name="trace">An action to trace progress in a log stream.</param>
     public static void DoSynchronizationContent(string URL, string sqlConnectionString, Action<ProgressChangedEventArgs> reportProgress, Action<String> trace)
     {
       bool _breakingIssueEncountered = false;
-      reportProgress(new ProgressChangedEventArgs(1, "Starting DoSynchronizationContent"));
-      reportProgress(new ProgressChangedEventArgs(1, String.Format("Establishing connection with the site {0}.", URL)));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("Starting DoSynchronizationContent URL: {0}, connection string: {1}", URL, sqlConnectionString)));
+      trace("Establishing connection with the SP site and SQL database.");
       using (Linq.Entities _edc = new Linq.Entities(trace, URL))
       {
-        using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => reportProgress(y)))
+        using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => trace(y)))
         {
-          _breakingIssueEncountered = true;
+          if (false)
+            _breakingIssueEncountered = true;
         }
       }
-      reportProgress(new ProgressChangedEventArgs(1, "Finished DoCleanupContent"));
+      reportProgress(new ProgressChangedEventArgs(1, "Finished DoSynchronizationContent"));
       if (_breakingIssueEncountered)
         throw new ApplicationException("DoSynchronizationContent has encountered breaking inconsistency - review the log and remove problems to pass to next phase.");
     }
