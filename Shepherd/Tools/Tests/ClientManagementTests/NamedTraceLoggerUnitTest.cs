@@ -36,7 +36,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.Tests
       Assert.AreEqual<string>(m_Message, _MyTraceLisner.WriteLineMessage);
       NamedTraceLogger.Logger.Log(m_Message, Category.Debug, Priority.High);
       Assert.AreEqual<string>(@"CAS.SmartFactory.Shepherd.Client Critical: 0 : ", _MyTraceLisner.WriteMessage);
-      Assert.IsTrue(_MyTraceLisner.WriteLineMessage.Contains("DEBUG: Test message. Priority: High. Time-stamp:"));
+      Assert.IsTrue(_MyTraceLisner.WriteLineMessage.Contains("DEBUG; Test message; Priority: High; Time-stamp:"));
     }
 
     private class MyTraceLisner : TraceListener

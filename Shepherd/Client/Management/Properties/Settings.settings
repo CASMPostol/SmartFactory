@@ -35,5 +35,11 @@
     <Setting Name="LogSourceLevel" Type="System.Diagnostics.SourceLevels" Scope="User">
       <Value Profile="(Default)">All</Value>
     </Setting>
+    <Setting Name="ArchivalDelay" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">400</Value>
+    </Setting>
+    <Setting Name="RowLimit" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

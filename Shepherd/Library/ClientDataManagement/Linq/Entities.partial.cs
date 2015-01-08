@@ -18,7 +18,7 @@ using System;
 namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
 {
   /// <summary>
-  /// Class Entities - provides additional constructor to implement tracing using the <see cref="Entities.Log"/> property.
+  /// Class Entities - provides additional constructor to implement tracing using the Entities.Log property.
   /// </summary>
   public partial class Entities
   {
