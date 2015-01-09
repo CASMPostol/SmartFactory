@@ -36,8 +36,43 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       reportProgress(new ProgressChangedEventArgs(1, String.Format("Starting DoCleanupContent and establishing connection with the site {0}.", URL)));
       using (Linq.Entities _edc = new Linq.Entities(trace, URL))
       {
-        if (false)
-          _breakingIssueEncountered = true;
+        //Commodity
+        //Warehouse
+        //Partner
+        //Currency
+        //FreightPayer
+        //BusinessDescription
+        //SecurityEscortRoute
+        //SealProtocolLibrary
+        //Country
+        //City
+        //EscortPOLibrary
+        //FreightPOLibrary
+        //Carrier
+        //SAPDestinationPlant
+        //ShipmentType
+        //TransportUnitType
+        //Route
+        //Truck
+        //Trailer
+        //Shipping
+        //AlarmsAndEvents
+        //CarrierPerformanceReport
+        _breakingIssueEncountered &= DoDestinationMarket(_edc);
+        //Market
+        //DestinationMarket
+        //Driver
+        //DriversTeam
+        //LoadDescription
+        //ShippingPoint
+        //ScheduleTemplate
+        //TimeSlot
+
+        //ArchivingOperationLogs
+        //ArchivingLogs
+        //History
+        DoTimeSlotsTemplate(_edc);
+
       }
       reportProgress(new ProgressChangedEventArgs(1, "Finished DoCleanupContent"));
       if (_breakingIssueEncountered)
@@ -45,5 +80,17 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
 
     }
 
+    private static void DoTimeSlotsTemplate(Linq.Entities _edc)
+    {
+      throw new NotImplementedException();
+    }
+    #region private
+
+    private static bool DoDestinationMarket(Linq.Entities edc)
+    {
+      throw new NotImplementedException();
+    }
+
+    #endregion
   }
 }
