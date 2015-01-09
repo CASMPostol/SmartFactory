@@ -153,8 +153,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           progress(new ProgressChangedEventArgs(1, String.Format(_format, _market.DestinationCity, _market.Market, _poz, ex.Message)));
         }
       }
-        string _msg = String.Format("Importing RoutesCatalogMarket table finished, the {0} items have been reviewed and {1} added.", _poz, _newCounter);
-        progress(new ProgressChangedEventArgs(1, _msg));
+      string _msg = String.Format("Importing RoutesCatalogMarket table finished, the {0} items have been reviewed and {1} added.", _poz, _newCounter);
+      progress(new ProgressChangedEventArgs(1, _msg));
     }
     private static void ImportTable(Entities edc, RoutesCatalogRoute[] routesCatalogRoute, string routePrefix, Dictionaries dic, bool testData, Action<ProgressChangedEventArgs> progress)
     {
@@ -420,18 +420,12 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       {
         if (city.IsNullOrEmpty())
           throw new ArgumentNullException("city", String.Format("Cannot add empty key to the city dictionary for country {0}/area {1}.", country, area));
-        CityType _city = default(CityType);
-        if (m_CityDictionary.ContainsKey(city))
-          _city = m_CityDictionary[city];
-        else
-          _city = Create<CityType>(edc.City, m_CityDictionary, city, false);
+        CityType _city = GetOrAdd<CityType>(edc.City, m_CityDictionary, city, false, x => NewItemCreateNotification(x, progress));
         if (_city.CountryTitle != null)
           return _city;
         if (country.IsNullOrEmpty())
           country = "Country-" + EmptyKey;
-        CountryType _countryClass = GetOrAdd(edc.Country, m_CountryClass, country, false, x => NewItemCreateNotification(x, progress));
-        if (_countryClass.CountryGroup.IsNullOrEmpty() && !area.IsNullOrEmpty())
-          _countryClass.CountryGroup = area;
+        CountryType _countryClass = GetOrAdd(edc.Country, m_CountryClass, country, false, x => { NewItemCreateNotification(x, progress); x.CountryGroup = area; });
         _city.CountryTitle = _countryClass;
         return _city;
       }
