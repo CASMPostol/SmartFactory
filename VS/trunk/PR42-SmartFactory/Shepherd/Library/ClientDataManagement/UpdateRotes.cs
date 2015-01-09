@@ -54,7 +54,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
         ImportTable(_edc, routes.GlobalPricelist, routePrefix, _dictionary, false, x => reportProgress(x));
         reportProgress(new ProgressChangedEventArgs(1, "Global Price List updated."));
         reportProgress(new ProgressChangedEventArgs(1, "Data from current site has been read"));
-        //TODO _edc.SubmitChanges();
+        _edc.SubmitChanges();
         reportProgress(new ProgressChangedEventArgs(1, "Submitted changes."));
       }
     }
@@ -122,7 +122,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
         catch (Exception _ex)
         {
           string _format = "Cannot add RoutesCatalogPartnersRow data Name={0} NumberFromSAP={1} at position {2} because of import Error= {3}. The entry is skipped.";
-          progress(new ProgressChangedEventArgs(1, String.Format(_format, _partner.Name, _partner.NumberFromSAP, _ex.Message)));
+          progress(new ProgressChangedEventArgs(1, String.Format(_format, _partner.Name, _partner.NumberFromSAP, _poz, _ex.Message)));
         }
         progress(new ProgressChangedEventArgs(1, null));
       }
