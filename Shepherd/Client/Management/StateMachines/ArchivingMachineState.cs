@@ -64,7 +64,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       ReportProgress(this, new ProgressChangedEventArgs(1, "Starting archiving background process."));
       BackgroundProcessArgument _argument = (BackgroundProcessArgument)e.Argument;
       if ((_argument.Phases & Phases.CleanupContent) > 0)
-        CleanupContent.DoCleanupContent(_argument.URL, x => ReportProgress(this, x), y => this.Log(y, Category.Debug, Priority.None));
+        CleanupContent.DoCleanupContent(_argument.URL, _argument.SQLConnectionString, x => ReportProgress(this, x), y => this.Log(y, Category.Debug, Priority.None));
       else
         this.ReportProgress(this, new ProgressChangedEventArgs(0, "Cleanup content skipped because is not selected by the user."));
       if ((_argument.Phases & Phases.SynchronizationContent) > 0)

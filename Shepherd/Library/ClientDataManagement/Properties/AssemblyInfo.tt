@@ -3,13 +3,12 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Windows;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle( "CAS.ShepherdManagement" )]
-[assembly: AssemblyDescription( "CAS SmartFactory Shepherd Management Console" )]
+[assembly: AssemblyTitle( "CAS.ShepherdClientDataManagement" )]
+[assembly: AssemblyDescription( "CAS SmartFactory Shepherd Management Console - Data Management Library" )]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("<#=AssemblyCompany#>")]
 [assembly: AssemblyProduct("<#=SFAssemblyProduct#>")]
@@ -21,11 +20,6 @@ using System.Windows;
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
-
-[assembly: ThemeInfo(
-    ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
-    ResourceDictionaryLocation.SourceAssembly //where the generic resource dictionary is located
-)]
 [assembly: AssemblyVersion("<#=ShepherdManagementAssemblyVersion#>")]
 [assembly: AssemblyFileVersion("<#=ShepherdManagementAssemblyFileVersion#>")]
 [assembly: InternalsVisibleToAttribute("CAS.ClientManagementTests, PublicKey=0024000004800000940000000602000000240000525341310004000001000100b3cff1bec656a6" +

@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CAS.SmartFactory.Shepherd.Client.DataManagement</RootNamespace>
-    <AssemblyName>ClientDataManagement</AssemblyName>
+    <AssemblyName>CAS.ShepherdClientDataManagement</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\ClientDataManagement.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\CAS.ShepherdClientDataManagement.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -64,7 +64,11 @@
     <Compile Include="Linq\Connectivity.cs" />
     <Compile Include="Linq\Entities.partial.cs" />
     <Compile Include="Linq\TraceLogWriter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
     <Compile Include="SynchronizationContent.cs" />
     <Compile Include="UpdateRotes.cs" />
   </ItemGroup>
@@ -76,6 +80,10 @@
     <None Include="InputData\Scripts\CreateCS.ps1" />
     <None Include="Linq2SQL\Scripts\GetEntities.ps1" />
     <None Include="Linq\Scripts\GetEntities.ps1" />
+    <None Include="Properties\AssemblyInfo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="InputData\RoutesCatalog.XML" />
@@ -86,6 +94,10 @@
       <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
       <Name>SharePointClient</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
