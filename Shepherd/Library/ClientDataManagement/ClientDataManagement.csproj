@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Linq2SQL\ArchivingOperationLogs.cs" />
     <Compile Include="Linq2SQL\Entities.cs" />
+    <Compile Include="Linq2SQL\EntitiesId.cs" />
     <Compile Include="Linq2SQL\SHRARCHIVE.cs" />
     <Compile Include="Linq\Entities.cs" />
     <Compile Include="Linq\Connectivity.cs" />
