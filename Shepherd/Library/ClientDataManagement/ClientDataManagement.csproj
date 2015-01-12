@@ -63,11 +63,17 @@
     <Compile Include="Linq\Entities.cs" />
     <Compile Include="Linq\Connectivity.cs" />
     <Compile Include="Linq\Entities.partial.cs" />
+    <Compile Include="Linq\Item.cs" />
     <Compile Include="Linq\TraceLogWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SynchronizationContent.cs" />
     <Compile Include="UpdateRotes.cs" />
@@ -95,7 +101,12 @@
       <Name>SharePointClient</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

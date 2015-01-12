@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : SHRARCHIVE
 //  System  : Microsoft VisualStudio 2013 / C#
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2014, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -14,11 +14,7 @@
 //</summary>
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 {
