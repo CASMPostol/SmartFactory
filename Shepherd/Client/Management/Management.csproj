@@ -35,7 +35,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.html</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>18</ApplicationRevision>
+    <ApplicationRevision>19</ApplicationRevision>
     <ApplicationVersion>2.60.10.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -341,6 +341,10 @@
     <ProjectReference Include="..\..\..\..\PR44-SharePoint\Libraries\CASCommon\CASCommon.csproj">
       <Project>{af2434e6-fd65-43a2-be31-c8c1e5ba5acd}</Project>
       <Name>CASCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\PR44-SharePoint\Libraries\SharePointLinqClient\SharePointClient.csproj">
+      <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
+      <Name>SharePointClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Library\ClientDataManagement\ClientDataManagement.csproj">
       <Project>{e6b7f891-ba8c-4791-8978-1a09f6b46e33}</Project>
