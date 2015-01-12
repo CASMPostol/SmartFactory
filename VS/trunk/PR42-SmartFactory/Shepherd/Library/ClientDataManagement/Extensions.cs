@@ -7,7 +7,7 @@
 //  $URL$
 //  $Id$
 //
-//  Copyright (C) 2014, CAS LODZ POLAND.
+//  Copyright (C) 2015, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
@@ -15,6 +15,8 @@
       
 
 using System;
+using System.Collections.Generic;
+using System.Data.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Client.DataManagement
 {
@@ -43,6 +45,27 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
     public static bool IsNullOrEmpty(this string _val)
     {
       return String.IsNullOrEmpty(_val);
+    }
+    internal static string UserName()
+    {
+      return String.Format(Properties.Resources.ActivitiesLogsUserNamePattern, Environment.UserName, Environment.MachineName);
+    }
+    internal static void AddIfNotNull<T>(this List<T> list, T item)
+      where T : class
+    {
+      if (item == null)
+        return;
+      list.Add(item);
+    }
+    internal static void AddIfNew<TKey>(this List<TKey> list, TKey key)
+    {
+      if (list.Contains(key))
+        return;
+      list.Add(key);
+    }
+    internal static void AddHistoryEntry(this Table<Linq2SQL.History> sqledc, Linq2SQL.History history)
+    {
+      sqledc.InsertOnSubmit(history);
     }
 
   }
