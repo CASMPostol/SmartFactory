@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       {
         if (!_sqledc.DatabaseExists())
           throw new ArgumentException("Cannot connect to SQL database.", "SQLConnectionString");
-        using (Linq.Entities _edc = new Linq.Entities(x => { trace(x); reportProgress(new ProgressChangedEventArgs(1, String.Empty)); }, URL))
+        using (Linq.Entities _edc = new Linq.Entities(trace, URL))
         {
           //Commodity
           //Warehouse
@@ -123,7 +123,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
                                                          where _notUsed && _tsx.StartDate.Value < DateTime.Now
                                                          select _tsx).ToList<Linq.TimeSlotTimeSlot>();
       _TimeSlot3BeDeleted.AddRange(_TimeSlotAll.Where<Linq.TimeSlotTimeSlot>(x => x.TimeSlot2ShippingIndex == null));
-      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} ScheduleTemplate entries to be deleted.", _TimeSlot3BeDeleted.Count())));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} Time Slot entries to be deleted.", _TimeSlot3BeDeleted.Count())));
       spedc.TimeSlot.Delete<Linq.TimeSlotTimeSlot, Linq2SQL.History>
          (_TimeSlot3BeDeleted, null, x => sqledc.TimeSlot.GetAt<Linq2SQL.TimeSlot>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
