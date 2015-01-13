@@ -7,7 +7,8 @@
         Width="Auto" 
         MinHeight="400" 
         MinWidth="500"
-        WindowStyle="ThreeDBorderWindow">
+        WindowStyle="ThreeDBorderWindow"
+        SizeToContent="WidthAndHeight">
     <Window.Background>
         <ImageBrush ImageSource="Imgs/Background.jpg"  Stretch="Fill"/>
     </Window.Background>
