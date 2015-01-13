@@ -41,7 +41,7 @@ namespace CAS.SmartFactory.Shepherd.Workflows.AddTimeSlots
       try
       {
         TimeSlotsInitiationData _data = TimeSlotsInitiationData.Deserialize(workflowProperties.InitiationData);
-        StartLogToHistory_HistoryDescription = String.Format("Starting applayin the template. From: {0}, Weeks: {1}", _data.StartDate, _data.Duration); ;
+        StartLogToHistory_HistoryDescription = String.Format("Starting applying the template. From: {0}, Weeks: {1}", _data.StartDate, _data.Duration); ;
       }
       catch (Exception ex)
       {
@@ -108,7 +108,7 @@ namespace CAS.SmartFactory.Shepherd.Workflows.AddTimeSlots
       }
       catch (Exception ex)
       {
-        string _frmt = "Worflow aborted in AddTimeslotsActivity because of the error: {0}";
+        string _frmt = "Workflow aborted in AddTimeslotsActivity because of the error: {0}";
         throw new ApplicationException(String.Format(_frmt, ex.Message));
       }
     }
