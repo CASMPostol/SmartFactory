@@ -13,12 +13,12 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Client.Link2SQL;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
-using CAS.SharePoint.Client.Link2SQL;
+using System.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Client.DataManagement
 {
@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       {
         if (!_sqledc.DatabaseExists())
           throw new ArgumentException("Cannot connect to SQL database.", "SQLConnectionString");
-        using (Linq.Entities _edc = new Linq.Entities(trace, URL))
+        using (Linq.Entities _edc = new Linq.Entities(x => { trace(x); reportProgress(new ProgressChangedEventArgs(1, String.Empty)); }, URL))
         {
           //Commodity
           //Warehouse
@@ -68,7 +68,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           //Shipping
           //AlarmsAndEvents
           //CarrierPerformanceReport
-          _breakingIssueEncountered &= DoDestinationMarket(_edc);
+          //_breakingIssueEncountered &= DoDestinationMarket(_edc);
           //Market
           //DestinationMarket
           //Driver
@@ -89,14 +89,13 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       }
     }
     /// <summary>
-    /// Does the cleanup of the lists <see cref="Linq.ScheduleTemplate"/>, <see cref="Linq.TimeSlotsTemplateTimeSlotsTemplate>"/>.
+    /// Does the cleanup of the lists <see cref="Linq.ScheduleTemplate"/>, <see cref="Linq.TimeSlotsTemplateTimeSlotsTemplate>"/>, <see cref="Linq.TimeSlotTimeSlot"/>.
     /// </summary>
     /// <param name="spedc">The spedc.</param>
     /// <param name="sqledc">The sqledc.</param>
     /// <param name="reportProgress">The report progress.</param>
     /// <param name="trace">The trace.</param>
     /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-    /// <exception cref="System.NotImplementedException"></exception>
     private static bool DoTimeSlotsTemplate(Linq.Entities spedc, Linq2SQL.SHRARCHIVE sqledc, Action<ProgressChangedEventArgs> reportProgress, Action<String> trace)
     {
       trace("Entering DoTimeSlotsTemplate");
@@ -116,6 +115,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
          (_ScheduleTemplate2BeDeleted, null, x => sqledc.ScheduleTemplate.GetAt<Linq2SQL.ScheduleTemplate>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
       //TimeSlotTimeSlot
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("Starting Time Slot processing.", _ScheduleTemplate2BeDeleted.Count())));
       List<Linq.TimeSlotTimeSlot> _TimeSlotAll = spedc.TimeSlot.ToList<Linq.TimeSlotTimeSlot>().Where<Linq.TimeSlotTimeSlot>(x => x.StartDate.Value < DateTime.Now).ToList<Linq.TimeSlotTimeSlot>();
       List<Linq.TimeSlotTimeSlot> _TimeSlot3BeDeleted = (from _tsx in _TimeSlotAll
                                                          let _notUsed = _tsx.TimeSlot2ShippingIndex != null && (_tsx.TimeSlot2ShippingIndex.ShippingState == Linq.ShippingState.Canceled ||
@@ -128,7 +128,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
          (_TimeSlot3BeDeleted, null, x => sqledc.TimeSlot.GetAt<Linq2SQL.TimeSlot>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
       //Link2SQLExtensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
-      
+
       return _ret;
     }
     #region private
