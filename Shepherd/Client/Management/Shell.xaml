@@ -11,53 +11,56 @@
         Icon="SHR_Ico.ico"
         Width="Auto"
         Height="Auto"
-        MinHeight="930">
+        MinHeight="750"
+        MinWidth="850">
     <Window.Background>
         <ImageBrush ImageSource="Imgs/Background.jpg"  Stretch="Fill"/>
     </Window.Background>
-    <TabControl Background="{x:Null}" BorderThickness="0" >
+    <TabControl Background="{x:Null}" BorderThickness="0">
         <TabItem Header="Main window" Style="{DynamicResource CASMainTabItemStyle}">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="0,0,0,20">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="0,0,0,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="70" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="50" />
+                    <RowDefinition />
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <!-- Logo -->
-                <StackPanel Grid.Row="0" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5">
-                    <TextBlock Style="{DynamicResource CASTextBlockHeader}" Margin="20,20,20,20">Shepherd Management Wizard</TextBlock>
-                </StackPanel>
+                <DockPanel Grid.Row="0" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5">
+                    <TextBlock Style="{DynamicResource CASTextBlockHeader}" Margin="10,10,10,10">Shepherd Management Wizard</TextBlock>
+                </DockPanel>
 
                 <!-- Content -->
 
-                <Grid x:Name="DetailsGrid" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" Margin="0" VerticalAlignment="Top">
+                <DockPanel x:Name="DetailsGrid" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" Margin="0" VerticalAlignment="Top">
                     <ContentControl x:Name="ActionContent" prism:RegionManager.RegionName="{x:Static inf:RegionNames.ActionRegion}" MinHeight="50">
                     </ContentControl>
-                </Grid>
+                </DockPanel>
 
                 <!-- Buttons -->
 
-                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
+                <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
                     <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.ButtonsRegion}"/>
-                </StackPanel>
+                </DockPanel>
 
                 <!-- Progress Panel -->
 
-                <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
+                <DockPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
                     <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.ProgressRegion}"/>
-                </StackPanel>
+                </DockPanel>
             </Grid>
         </TabItem>
         <TabItem Header="Application log" Style="{DynamicResource CASMainTabItemStyle}">
 
             <!-- Diagnostic -->
 
-            <Grid x:Name="SideGrid" Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.DiagnosticRegion}" />
+            <Grid x:Name="DiagnosticRegion" Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.DiagnosticRegion}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                </ScrollViewer>
             </Grid>
         </TabItem>
     </TabControl>
