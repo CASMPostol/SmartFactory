@@ -21,6 +21,7 @@ using Microsoft.Practices.Prism.Regions;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
+using System.Reflection;
 
 namespace CAS.SmartFactory.Shepherd.Client.Management
 {
@@ -44,6 +45,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     [ImportingConstructor]
     public ShellViewModel(IRegionManager regionManager, IEventAggregator eventAggregator, ILoggerFacade loggingService)
     {
+      AssemblyName _name = Assembly.GetExecutingAssembly().GetName();
+      this.Title = Properties.Resources.ApplicationName + " Rel " + _name.Version.ToString(3);
       if (regionManager == null)
       {
         m_LoggingService.Log(String.Format("ShellViewModel: exception {0}", "ArgumentNullException(\"watchListService\")"), Category.Debug, Priority.Low);
@@ -58,6 +61,17 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
       m_EventAggregator = eventAggregator;
       m_LoggingService = loggingService;
       m_LoggingService.Log("Entered ShellViewModel state machine context", Category.Info, Priority.Low);
+    }
+    public string Title
+    {
+      get
+      {
+        return b_Title;
+      }
+      set
+      {
+        RaiseHandler<string>(value, ref b_Title, "Title", this);
+      }
     }
     /// <summary>
     /// Is called by the event handler of the <see cref="BackgroundWorker.ProgressChanged" />.
@@ -94,5 +108,6 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     private IRegionManager m_RegionManager = null;
     private IEventAggregator m_EventAggregator = null;
     private ILoggerFacade m_LoggingService;
+    private string b_Title;   
   }
 }

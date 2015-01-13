@@ -12,7 +12,8 @@
         Width="Auto"
         Height="Auto"
         MinHeight="750"
-        MinWidth="850">
+        MinWidth="850"
+        Title="{Binding Path=Title}">
     <Window.Background>
         <ImageBrush ImageSource="Imgs/Background.jpg"  Stretch="Fill"/>
     </Window.Background>

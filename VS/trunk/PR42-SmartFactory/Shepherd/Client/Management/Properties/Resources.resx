@@ -159,4 +159,7 @@
   <data name="SetupButtonTitle" xml:space="preserve">
     <value>Setup</value>
   </data>
+  <data name="ApplicationName" xml:space="preserve">
+    <value>CAS SmartFactory Shepherd Manager</value>
+  </data>
 </root>
