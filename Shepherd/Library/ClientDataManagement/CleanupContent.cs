@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       {
         if (!_sqledc.DatabaseExists())
           throw new ArgumentException("Cannot connect to SQL database.", "SQLConnectionString");
-        using (Linq.Entities _edc = new Linq.Entities(trace, URL))
+        using (Linq.Entities _spedc = new Linq.Entities(trace, URL))
         {
           //Commodity
           //Warehouse
@@ -72,14 +72,14 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           //Market
           //DestinationMarket
           //Driver
-          //DriversTeam
-          //LoadDescription
 
           //ArchivingOperationLogs
           //ArchivingLogs
           //History
-          _breakingIssueEncountered &= DoTimeSlotsTemplate(_edc, _sqledc, reportProgress, trace);
-          _breakingIssueEncountered &= DoShippingPoint(_edc, _sqledc, reportProgress, trace);
+          //_breakingIssueEncountered &= DoTimeSlotsTemplate(_spedc, _sqledc, reportProgress, trace);
+          //_breakingIssueEncountered &= DoShippingPoint(_spedc, _sqledc, reportProgress, trace);
+          _breakingIssueEncountered &= DoLoadDescription(_spedc, _sqledc, reportProgress, trace);
+          _breakingIssueEncountered &= DoDriversTeam(_spedc, _sqledc, reportProgress, trace);
 
         }
         reportProgress(new ProgressChangedEventArgs(1, "Finished DoCleanupContent"));
@@ -87,7 +87,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           throw new ApplicationException("DoCleanupContent has encountered breaking inconsistency - review the log and remove problems to pass to next phase.");
       }
     }
-
     #region private
     /// <summary>
     /// Does the cleanup of the lists <see cref="Linq.ScheduleTemplate"/>, <see cref="Linq.TimeSlotsTemplateTimeSlotsTemplate>"/>, <see cref="Linq.TimeSlotTimeSlot"/>.
@@ -178,9 +177,41 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       trace("Finished DoTimeSlotsTemplate - cleanup of the following list TimeSlotsTemplate, ScheduleTemplate, ShippingPoint");
       return true;
     }
+    private static bool DoLoadDescription(Linq.Entities spedc, Linq2SQL.SHRARCHIVE _sqledc, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
+    {
+      bool _breakingIssueEncountered = true;
+      trace("Entering DoTimeSlotsTemplate");
+      List<Linq.LoadDescription> _LoaderOptimizationAll = spedc.LoadDescription.ToList<Linq.LoadDescription>();
+      _breakingIssueEncountered &= Assumtion<Linq.LoadDescription>(_LoaderOptimizationAll, typeof(Linq.Commodity).Name, reportProgress, x => x.LoadDescription2Commodity == null);
+      _breakingIssueEncountered &= Assumtion<Linq.LoadDescription>(_LoaderOptimizationAll, typeof(Linq.Partner).Name, reportProgress, x => x.LoadDescription2PartnerTitle == null);
+      _breakingIssueEncountered &= Assumtion<Linq.LoadDescription>(_LoaderOptimizationAll, typeof(Linq.ShippingShipping).Name, reportProgress, x => x.LoadDescription2ShippingIndex == null);
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("Finished consistency check of list ShippingDriversTeam with result {0}.", _breakingIssueEncountered? "Failed": "Success"));
+      return _breakingIssueEncountered;
+    }
+    private static bool DoDriversTeam(Linq.Entities spedc, Linq2SQL.SHRARCHIVE sqledc, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
+    {
+      bool _breakingIssueEncountered = true;
+      trace("Entering DoTimeSlotsTemplate");
+      List<Linq.ShippingDriversTeam> _LoaderOptimizationAll = spedc.DriversTeam.ToList<Linq.ShippingDriversTeam>();
+      _breakingIssueEncountered &= Assumtion<Linq.ShippingDriversTeam>(_LoaderOptimizationAll, typeof(Linq.ShippingShipping).Name, reportProgress, x => x.ShippingIndex == null);
+      _breakingIssueEncountered &= Assumtion<Linq.ShippingDriversTeam>(_LoaderOptimizationAll, typeof(Linq.Partner).Name, reportProgress, x => x.DriverTitle == null);
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("Finished consistency check of list ShippingDriversTeam with result {0}.", _breakingIssueEncountered? "Failed": "Success"));
+      return _breakingIssueEncountered;
+    }
     private static bool DoDestinationMarket(Linq.Entities edc)
     {
-      throw new NotImplementedException();
+      return true;
+    }
+    private static bool Assumtion<TEntity>(List<TEntity> entitiesList, string listName, Action<ProgressChangedEventArgs> reportProgress, Func<TEntity, bool> predicate)
+      where TEntity : Linq.Item
+    {
+      List<TEntity> _LoaderOptimizationNoComodity = entitiesList.Where<TEntity>(x => predicate(x)).ToList<TEntity>();
+      if (_LoaderOptimizationNoComodity.Count == 0)
+        return true;
+      string _tmpl = "The following entities: {0} on the list {1} do not have lookup on the list {3}";
+      string _entiyiesList = String.Join(", ", _LoaderOptimizationNoComodity.Select<TEntity, String>(x => String.Format("{0}/[{1}]", x.Title, x.Id)).ToArray());
+      reportProgress(new ProgressChangedEventArgs(1, String.Format(_tmpl, _entiyiesList, listName)));
+      return false;
     }
 
     #endregion
