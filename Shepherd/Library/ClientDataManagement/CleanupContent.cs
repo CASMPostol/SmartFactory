@@ -74,13 +74,12 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           //Driver
           //DriversTeam
           //LoadDescription
-          //ShippingPoint
-          //TimeSlot
 
           //ArchivingOperationLogs
           //ArchivingLogs
           //History
           _breakingIssueEncountered &= DoTimeSlotsTemplate(_edc, _sqledc, reportProgress, trace);
+          _breakingIssueEncountered &= DoShippingPoint(_edc, _sqledc, reportProgress, trace);
 
         }
         reportProgress(new ProgressChangedEventArgs(1, "Finished DoCleanupContent"));
@@ -88,6 +87,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           throw new ApplicationException("DoCleanupContent has encountered breaking inconsistency - review the log and remove problems to pass to next phase.");
       }
     }
+
+    #region private
     /// <summary>
     /// Does the cleanup of the lists <see cref="Linq.ScheduleTemplate"/>, <see cref="Linq.TimeSlotsTemplateTimeSlotsTemplate>"/>, <see cref="Linq.TimeSlotTimeSlot"/>.
     /// </summary>
@@ -100,6 +101,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
     {
       trace("Entering DoTimeSlotsTemplate");
       bool _ret = true;
+      reportProgress(new ProgressChangedEventArgs(1, "Starting ScheduleTemplate and TimeSlotsTemplate lists processing."));
       IEnumerable<Linq.ScheduleTemplate> _ScheduleTemplate2BeDeleted = spedc.ScheduleTemplate.ToList<Linq.ScheduleTemplate>().Where<Linq.ScheduleTemplate>(x => x.ShippingPointLookupTitle == null);
       List<Linq.TimeSlotsTemplateTimeSlotsTemplate> _TimeSlotsTemplateAll = spedc.TimeSlotsTemplate.ToList<Linq.TimeSlotsTemplateTimeSlotsTemplate>();
       List<Linq.TimeSlotsTemplateTimeSlotsTemplate> _TimeSlotsTemplate2BeDeleted = new List<Linq.TimeSlotsTemplateTimeSlotsTemplate>();
@@ -115,7 +117,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
          (_ScheduleTemplate2BeDeleted, null, x => sqledc.ScheduleTemplate.GetAt<Linq2SQL.ScheduleTemplate>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
       //TimeSlotTimeSlot
-      reportProgress(new ProgressChangedEventArgs(1, String.Format("Starting Time Slot processing.", _ScheduleTemplate2BeDeleted.Count())));
+      reportProgress(new ProgressChangedEventArgs(1, "TimeSlot processing."));
       List<Linq.TimeSlotTimeSlot> _TimeSlotAll = spedc.TimeSlot.ToList<Linq.TimeSlotTimeSlot>().Where<Linq.TimeSlotTimeSlot>(x => x.StartDate.Value < DateTime.Now).ToList<Linq.TimeSlotTimeSlot>();
       List<Linq.TimeSlotTimeSlot> _TimeSlot3BeDeleted = (from _tsx in _TimeSlotAll
                                                          let _notUsed = _tsx.TimeSlot2ShippingIndex != null && (_tsx.TimeSlot2ShippingIndex.ShippingState == Linq.ShippingState.Canceled ||
@@ -127,12 +129,55 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       spedc.TimeSlot.Delete<Linq.TimeSlotTimeSlot, Linq2SQL.History>
          (_TimeSlot3BeDeleted, null, x => sqledc.TimeSlot.GetAt<Linq2SQL.TimeSlot>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
+      reportProgress(new ProgressChangedEventArgs(1, "Starting SubmitChanges."));
       //Link2SQLExtensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
-
+      trace("Successfully finished cleanup of the following lists ScheduleTemplate, TimeSlotsTemplateTimeSlotsTemplate, TimeSlotTimeSlot");
       return _ret;
     }
-    #region private
-
+    private static bool DoShippingPoint(Linq.Entities spedc, Linq2SQL.SHRARCHIVE sqledc, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
+    {
+      trace("Entering DoTimeSlotsTemplate");
+      IEnumerable<Linq.ShippingPoint> _ShippingPointAllCandidates = spedc.ShippingPoint.ToList<Linq.ShippingPoint>().Where<Linq.ShippingPoint>(x => x.WarehouseTitle == null);
+      if (_ShippingPointAllCandidates.Count() == 0)
+      {
+        trace("Finished DoTimeSlotsTemplate - there is no shipping point entries to be deleted.");
+        return true;
+      }
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("ShippingPoint processing. There are {0} candidate entries to be deleted.", _ShippingPointAllCandidates.Count())));
+      List<Linq.TimeSlotTimeSlot> _TimeSlotAll = spedc.TimeSlot.ToList<Linq.TimeSlotTimeSlot>();
+      List<Linq.ShippingPoint> _ShippingPoint2BeDeleted = new List<Linq.ShippingPoint>();
+      foreach (Linq.ShippingPoint _item in _ShippingPointAllCandidates)
+        if (!_TimeSlotAll.Where<Linq.TimeSlotTimeSlot>(x => x.TimeSlot2ShippingPointLookup == _item).Any<Linq.TimeSlotTimeSlot>())
+          _ShippingPoint2BeDeleted.Add(_item);
+      if (_ShippingPoint2BeDeleted.Count() == 0)
+      {
+        trace("Finished DoTimeSlotsTemplate - there is no shipping point entries to be deleted.");
+        return true;
+      }
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} ShippingPoint entries to be deleted.", _ShippingPoint2BeDeleted.Count())));
+      List<Linq.ScheduleTemplate> _ScheduleTemplateAll = spedc.ScheduleTemplate.ToList<Linq.ScheduleTemplate>();
+      List<Linq.ScheduleTemplate> _ScheduleTemplate2BeDeleted = new List<Linq.ScheduleTemplate>();
+      foreach (Linq.ShippingPoint _item in _ShippingPoint2BeDeleted)
+        _ScheduleTemplate2BeDeleted.AddRange(_ScheduleTemplateAll.Where(z => z.ShippingPointLookupTitle == _item));
+      List<Linq.TimeSlotsTemplateTimeSlotsTemplate> _TimeSlotsTemplateAll = spedc.TimeSlotsTemplate.ToList<Linq.TimeSlotsTemplateTimeSlotsTemplate>();
+      List<Linq.TimeSlotsTemplateTimeSlotsTemplate> _TimeSlotsTemplate22BeDeleted = new List<Linq.TimeSlotsTemplateTimeSlotsTemplate>();
+      foreach (Linq.ScheduleTemplate _item in _ScheduleTemplate2BeDeleted)
+        _TimeSlotsTemplate22BeDeleted.AddRange(_TimeSlotsTemplateAll.Where(z => z.ScheduleTemplateTitle == _item));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} TimeSlotsTemplate entries to be deleted.", _TimeSlotsTemplate22BeDeleted.Count())));
+      spedc.TimeSlotsTemplate.Delete<Linq.TimeSlotsTemplateTimeSlotsTemplate, Linq2SQL.History>
+         (_TimeSlotsTemplate22BeDeleted, null, x => sqledc.TimeSlotsTemplate.GetAt<Linq2SQL.TimeSlotsTemplate>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+          x => sqledc.History.AddHistoryEntry(x));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} ScheduleTemplate entries to be deleted.", _ScheduleTemplate2BeDeleted.Count())));
+      spedc.ScheduleTemplate.Delete<Linq.ScheduleTemplate, Linq2SQL.History>
+         (_ScheduleTemplate2BeDeleted, null, x => sqledc.ScheduleTemplate.GetAt<Linq2SQL.ScheduleTemplate>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+          x => sqledc.History.AddHistoryEntry(x));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} ShippingPoint entries to be deleted.", _ShippingPoint2BeDeleted.Count())));
+      spedc.ShippingPoint.Delete<Linq.ShippingPoint, Linq2SQL.History>
+         (_ShippingPoint2BeDeleted, null, x => sqledc.ShippingPoint.GetAt<Linq2SQL.ShippingPoint>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+          x => sqledc.History.AddHistoryEntry(x));
+      trace("Finished DoTimeSlotsTemplate - cleanup of the following list TimeSlotsTemplate, ScheduleTemplate, ShippingPoint");
+      return true;
+    }
     private static bool DoDestinationMarket(Linq.Entities edc)
     {
       throw new NotImplementedException();
