@@ -70,17 +70,32 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           //CarrierPerformanceReport
           //_breakingIssueEncountered &= DoDestinationMarket(_edc);
           //Market
-          //DestinationMarket
 
           //ArchivingOperationLogs
           //ArchivingLogs
           //History
           _breakingIssueEncountered &= DoTimeSlotsTemplate(_spedc, _sqledc, reportProgress, trace);
           _breakingIssueEncountered &= DoShippingPoint(_spedc, _sqledc, reportProgress, trace);
+        }
+      }
+      using (Linq2SQL.SHRARCHIVE _sqledc = new Linq2SQL.SHRARCHIVE(_connection))
+      {
+        if (!_sqledc.DatabaseExists())
+          throw new ArgumentException("Cannot connect to SQL database.", "SQLConnectionString");
+        using (Linq.Entities _spedc = new Linq.Entities(trace, URL))
+        {
           _breakingIssueEncountered &= DoLoadDescription(_spedc, reportProgress, trace);
           _breakingIssueEncountered &= DoDriversTeam(_spedc, reportProgress, trace);
+        }
+      }
+      using (Linq2SQL.SHRARCHIVE _sqledc = new Linq2SQL.SHRARCHIVE(_connection))
+      {
+        if (!_sqledc.DatabaseExists())
+          throw new ArgumentException("Cannot connect to SQL database.", "SQLConnectionString");
+        using (Linq.Entities _spedc = new Linq.Entities(trace, URL))
+        {
           _breakingIssueEncountered &= DoDriver(_spedc, reportProgress, trace);
-
+          //DestinationMarket
         }
         reportProgress(new ProgressChangedEventArgs(1, "Finished DoCleanupContent"));
         if (_breakingIssueEncountered)
@@ -188,7 +203,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       _breakingIssueEncountered &= Assumtion<Linq.LoadDescription>(_LoaderOptimizationAll, typeof(Linq.Commodity).Name, reportProgress, x => x.LoadDescription2Commodity == null);
       _breakingIssueEncountered &= Assumtion<Linq.LoadDescription>(_LoaderOptimizationAll, typeof(Linq.Partner).Name, reportProgress, x => x.LoadDescription2PartnerTitle == null);
       _breakingIssueEncountered &= Assumtion<Linq.LoadDescription>(_LoaderOptimizationAll, typeof(Linq.ShippingShipping).Name, reportProgress, x => x.LoadDescription2ShippingIndex == null);
-      reportProgress(new ProgressChangedEventArgs(1, String.Format("Finished consistency check of list ShippingDriversTeam with result {0}.", _breakingIssueEncountered? "Failed": "Success")));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("Finished consistency check of list ShippingDriversTeam with result {0}.", _breakingIssueEncountered ? "Failed" : "Success")));
       return _breakingIssueEncountered;
     }
     private static bool DoDriversTeam(Linq.Entities spedc, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
@@ -198,7 +213,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       List<Linq.ShippingDriversTeam> _LoaderOptimizationAll = spedc.DriversTeam.ToList<Linq.ShippingDriversTeam>();
       _breakingIssueEncountered &= Assumtion<Linq.ShippingDriversTeam>(_LoaderOptimizationAll, typeof(Linq.ShippingShipping).Name, reportProgress, x => x.ShippingIndex == null);
       _breakingIssueEncountered &= Assumtion<Linq.ShippingDriversTeam>(_LoaderOptimizationAll, typeof(Linq.Partner).Name, reportProgress, x => x.DriverTitle == null);
-      reportProgress(new ProgressChangedEventArgs(1, String.Format("Finished consistency check of list ShippingDriversTeam with result {0}.", _breakingIssueEncountered? "Failed": "Success")));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("Finished consistency check of list ShippingDriversTeam with result {0}.", _breakingIssueEncountered ? "Failed" : "Success")));
       return _breakingIssueEncountered;
     }
     private static bool DoDriver(Linq.Entities spedc, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
@@ -207,14 +222,14 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       trace("Entering DoDriver");
       List<Linq.Driver> _LoaderOptimizationAll = spedc.Driver.ToList<Linq.Driver>();
       _breakingIssueEncountered &= Assumtion<Linq.Driver>(_LoaderOptimizationAll, typeof(Linq.Driver).Name, reportProgress, x => x.Driver2PartnerTitle == null);
-      reportProgress(new ProgressChangedEventArgs(1, String.Format("Finished consistency check of list Driver with result {0}.", _breakingIssueEncountered? "Failed": "Success")));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("Finished consistency check of list Driver with result {0}.", _breakingIssueEncountered ? "Failed" : "Success")));
       return _breakingIssueEncountered;
     }
     private static bool DoDestinationMarket(Linq.Entities edc)
     {
       return true;
     }
-    private static bool Assumtion<TEntity>(List<TEntity> entitiesList, string listName, Action<ProgressChangedEventArgs> reportProgress, Func<TEntity, bool> predicate)
+    private static bool Assumtion<TEntity>(List<TEntity> entitiesList, string targetListName, Action<ProgressChangedEventArgs> reportProgress, Func<TEntity, bool> predicate)
       where TEntity : Linq.Item
     {
       List<TEntity> _LoaderOptimizationNoComodity = entitiesList.Where<TEntity>(x => predicate(x)).ToList<TEntity>();
@@ -228,7 +243,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
         _entitiesList = _entitiesList.Remove(150);
         _sufix = ", ...";
       }
-      reportProgress(new ProgressChangedEventArgs(1, String.Format(_tmpl, _entitiesList, typeof(TEntity).Name, listName, _sufix)));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format(_tmpl, _entitiesList, typeof(TEntity).Name, targetListName, _sufix)));
       return false;
     }
 
