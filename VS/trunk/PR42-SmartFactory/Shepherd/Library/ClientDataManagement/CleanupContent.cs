@@ -130,7 +130,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
          (_TimeSlot3BeDeleted, null, x => sqledc.TimeSlot.GetAt<Linq2SQL.TimeSlot>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
       reportProgress(new ProgressChangedEventArgs(1, "Starting SubmitChanges."));
-      //Link2SQLExtensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
+      Link2SQLExtensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
       trace("Successfully finished cleanup of the following lists ScheduleTemplate, TimeSlotsTemplateTimeSlotsTemplate, TimeSlotTimeSlot");
       return _ret;
     }
@@ -175,6 +175,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       spedc.ShippingPoint.Delete<Linq.ShippingPoint, Linq2SQL.History>
          (_ShippingPoint2BeDeleted, null, x => sqledc.ShippingPoint.GetAt<Linq2SQL.ShippingPoint>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
+      reportProgress(new ProgressChangedEventArgs(1, "Starting SubmitChanges."));
+      Link2SQLExtensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
       trace("Finished DoTimeSlotsTemplate - cleanup of the following list TimeSlotsTemplate, ScheduleTemplate, ShippingPoint");
       return true;
     }
@@ -218,15 +220,15 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       List<TEntity> _LoaderOptimizationNoComodity = entitiesList.Where<TEntity>(x => predicate(x)).ToList<TEntity>();
       if (_LoaderOptimizationNoComodity.Count == 0)
         return true;
-      string _tmpl = "The following entities: {0} on the list {1} do not have lookup on the list {3}{4}.";
-      string _entiyiesList = String.Join(", ", _LoaderOptimizationNoComodity.Select<TEntity, String>(x => String.Format("{0}/[{1}]", x.Title, x.Id)).ToArray());
+      string _tmpl = "The following entities: {0} on the list {1} do not have lookup on the list {2}{3}.";
+      string _entitiesList = String.Join(", ", _LoaderOptimizationNoComodity.Select<TEntity, String>(x => String.Format("{0}/[{1}]", x.Title, x.Id)).ToArray());
       string _sufix = String.Empty;
-      if (_entiyiesList.Length > 150)
+      if (_entitiesList.Length > 150)
       {
-        _entiyiesList = _entiyiesList.Remove(150);
+        _entitiesList = _entitiesList.Remove(150);
         _sufix = ", ...";
       }
-      reportProgress(new ProgressChangedEventArgs(1, String.Format(_tmpl, _entiyiesList, listName, _sufix)));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format(_tmpl, _entitiesList, typeof(TEntity).Name, listName, _sufix)));
       return false;
     }
 
