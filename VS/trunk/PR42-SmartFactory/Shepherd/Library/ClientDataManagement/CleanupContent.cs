@@ -267,8 +267,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       List<TEntity> _LoaderOptimizationNoComodity = entitiesList.Where<TEntity>(x => predicate(x)).ToList<TEntity>();
       if (_LoaderOptimizationNoComodity.Count == 0)
         return true;
-      string _tmpl = "The following entities: {0} on the list {1} do not have lookup on the list {2}{3}.";
-      string _entitiesList = String.Join(", ", _LoaderOptimizationNoComodity.Select<TEntity, String>(x => String.Format("{0}/[{1}]", x.Title, x.Id)).ToArray());
+      string _tmpl = "The following entities: {0}{3} on the list {1} do not have lookup on the list {2}.";
+      string _entitiesList = String.Join(", ", _LoaderOptimizationNoComodity.Select<TEntity, String>(x => String.Format("[{0}]", x.Id)).ToArray());
       string _sufix = String.Empty;
       if (_entitiesList.Length > 150)
       {
