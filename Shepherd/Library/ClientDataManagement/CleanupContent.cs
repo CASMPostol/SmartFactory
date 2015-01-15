@@ -71,15 +71,15 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           //_breakingIssueEncountered &= DoDestinationMarket(_edc);
           //Market
           //DestinationMarket
-          //Driver
 
           //ArchivingOperationLogs
           //ArchivingLogs
           //History
-          //_breakingIssueEncountered &= DoTimeSlotsTemplate(_spedc, _sqledc, reportProgress, trace);
-          //_breakingIssueEncountered &= DoShippingPoint(_spedc, _sqledc, reportProgress, trace);
-          _breakingIssueEncountered &= DoLoadDescription(_spedc, _sqledc, reportProgress, trace);
-          _breakingIssueEncountered &= DoDriversTeam(_spedc, _sqledc, reportProgress, trace);
+          _breakingIssueEncountered &= DoTimeSlotsTemplate(_spedc, _sqledc, reportProgress, trace);
+          _breakingIssueEncountered &= DoShippingPoint(_spedc, _sqledc, reportProgress, trace);
+          _breakingIssueEncountered &= DoLoadDescription(_spedc, reportProgress, trace);
+          _breakingIssueEncountered &= DoDriversTeam(_spedc, reportProgress, trace);
+          _breakingIssueEncountered &= DoDriver(_spedc, reportProgress, trace);
 
         }
         reportProgress(new ProgressChangedEventArgs(1, "Finished DoCleanupContent"));
@@ -87,6 +87,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           throw new ApplicationException("DoCleanupContent has encountered breaking inconsistency - review the log and remove problems to pass to next phase.");
       }
     }
+
     #region private
     /// <summary>
     /// Does the cleanup of the lists <see cref="Linq.ScheduleTemplate"/>, <see cref="Linq.TimeSlotsTemplateTimeSlotsTemplate>"/>, <see cref="Linq.TimeSlotTimeSlot"/>.
@@ -177,7 +178,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       trace("Finished DoTimeSlotsTemplate - cleanup of the following list TimeSlotsTemplate, ScheduleTemplate, ShippingPoint");
       return true;
     }
-    private static bool DoLoadDescription(Linq.Entities spedc, Linq2SQL.SHRARCHIVE _sqledc, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
+    private static bool DoLoadDescription(Linq.Entities spedc, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
     {
       bool _breakingIssueEncountered = true;
       trace("Entering DoTimeSlotsTemplate");
@@ -185,17 +186,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       _breakingIssueEncountered &= Assumtion<Linq.LoadDescription>(_LoaderOptimizationAll, typeof(Linq.Commodity).Name, reportProgress, x => x.LoadDescription2Commodity == null);
       _breakingIssueEncountered &= Assumtion<Linq.LoadDescription>(_LoaderOptimizationAll, typeof(Linq.Partner).Name, reportProgress, x => x.LoadDescription2PartnerTitle == null);
       _breakingIssueEncountered &= Assumtion<Linq.LoadDescription>(_LoaderOptimizationAll, typeof(Linq.ShippingShipping).Name, reportProgress, x => x.LoadDescription2ShippingIndex == null);
-      reportProgress(new ProgressChangedEventArgs(1, String.Format("Finished consistency check of list ShippingDriversTeam with result {0}.", _breakingIssueEncountered? "Failed": "Success"));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("Finished consistency check of list ShippingDriversTeam with result {0}.", _breakingIssueEncountered? "Failed": "Success")));
       return _breakingIssueEncountered;
     }
-    private static bool DoDriversTeam(Linq.Entities spedc, Linq2SQL.SHRARCHIVE sqledc, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
+    private static bool DoDriversTeam(Linq.Entities spedc, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
     {
       bool _breakingIssueEncountered = true;
       trace("Entering DoTimeSlotsTemplate");
       List<Linq.ShippingDriversTeam> _LoaderOptimizationAll = spedc.DriversTeam.ToList<Linq.ShippingDriversTeam>();
       _breakingIssueEncountered &= Assumtion<Linq.ShippingDriversTeam>(_LoaderOptimizationAll, typeof(Linq.ShippingShipping).Name, reportProgress, x => x.ShippingIndex == null);
       _breakingIssueEncountered &= Assumtion<Linq.ShippingDriversTeam>(_LoaderOptimizationAll, typeof(Linq.Partner).Name, reportProgress, x => x.DriverTitle == null);
-      reportProgress(new ProgressChangedEventArgs(1, String.Format("Finished consistency check of list ShippingDriversTeam with result {0}.", _breakingIssueEncountered? "Failed": "Success"));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("Finished consistency check of list ShippingDriversTeam with result {0}.", _breakingIssueEncountered? "Failed": "Success")));
+      return _breakingIssueEncountered;
+    }
+    private static bool DoDriver(Linq.Entities spedc, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
+    {
+      bool _breakingIssueEncountered = true;
+      trace("Entering DoDriver");
+      List<Linq.Driver> _LoaderOptimizationAll = spedc.Driver.ToList<Linq.Driver>();
+      _breakingIssueEncountered &= Assumtion<Linq.Driver>(_LoaderOptimizationAll, typeof(Linq.Driver).Name, reportProgress, x => x.Driver2PartnerTitle == null);
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("Finished consistency check of list Driver with result {0}.", _breakingIssueEncountered? "Failed": "Success")));
       return _breakingIssueEncountered;
     }
     private static bool DoDestinationMarket(Linq.Entities edc)
@@ -208,9 +218,15 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       List<TEntity> _LoaderOptimizationNoComodity = entitiesList.Where<TEntity>(x => predicate(x)).ToList<TEntity>();
       if (_LoaderOptimizationNoComodity.Count == 0)
         return true;
-      string _tmpl = "The following entities: {0} on the list {1} do not have lookup on the list {3}";
+      string _tmpl = "The following entities: {0} on the list {1} do not have lookup on the list {3}{4}.";
       string _entiyiesList = String.Join(", ", _LoaderOptimizationNoComodity.Select<TEntity, String>(x => String.Format("{0}/[{1}]", x.Title, x.Id)).ToArray());
-      reportProgress(new ProgressChangedEventArgs(1, String.Format(_tmpl, _entiyiesList, listName)));
+      string _sufix = String.Empty;
+      if (_entiyiesList.Length > 150)
+      {
+        _entiyiesList = _entiyiesList.Remove(150);
+        _sufix = ", ...";
+      }
+      reportProgress(new ProgressChangedEventArgs(1, String.Format(_tmpl, _entiyiesList, listName, _sufix)));
       return false;
     }
 
