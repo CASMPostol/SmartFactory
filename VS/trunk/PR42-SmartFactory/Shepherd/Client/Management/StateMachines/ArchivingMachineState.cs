@@ -21,6 +21,7 @@ using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.Regions;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
 {
@@ -61,10 +62,11 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
     }
     protected override void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
     {
-      ReportProgress(this, new ProgressChangedEventArgs(1, "Starting archiving background process."));
+      Process _myProcesses = Process.GetCurrentProcess();
+      ReportProgress(this, new ProgressChangedEventArgs(1, String.Format("Starting archiving background process {0}.", _myProcesses.MainWindowTitle)));
       BackgroundProcessArgument _argument = (BackgroundProcessArgument)e.Argument;
       if ((_argument.Phases & Phases.CleanupContent) > 0)
-        CleanupContent.DoCleanupContent(_argument.URL, _argument.SQLConnectionString, x => ReportProgress(this, x), y => this.Log(y, Category.Debug, Priority.None));
+        CleanupContent.DoCleanupContent(_argument.URL, _argument.SQLConnectionString, x => ReportProgress(this, x), y => { MemoryUsage(_myProcesses); this.Log(y, Category.Debug, Priority.None); });
       else
         this.ReportProgress(this, new ProgressChangedEventArgs(0, "Cleanup content skipped because is not selected by the user."));
       if ((_argument.Phases & Phases.SynchronizationContent) > 0)
@@ -75,6 +77,15 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
         ArchivingContent.DoArchivingContent(_argument.URL, _argument.SQLConnectionString, _argument.ArchivalDelay, _argument.RowLimit, x => ReportProgress(this, x), y => this.Log(y, Category.Debug, Priority.None));
       else
         this.ReportProgress(this, new ProgressChangedEventArgs(0, "Archiving content skipped because is not selected by the user."));
+    }
+
+    private void MemoryUsage(Process _myProcesses)
+    {
+      _myProcesses.Refresh();
+      string _template = "Physical memory usage: {0}, PagedSystemMemorySize64: {1}, PagedMemorySize64: {2},  PrivateMemorySize64: {3}, total processor time: {4}";
+      this.Log(String.Format(_template, _myProcesses.WorkingSet64, _myProcesses.PagedSystemMemorySize64, _myProcesses.PagedMemorySize64, _myProcesses.PrivateMemorySize64, _myProcesses.TotalProcessorTime),
+               Category.Debug, 
+               Priority.None);
     }
     protected override void RunWorkerCompleted(object result)
     {

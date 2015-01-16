@@ -33,7 +33,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
     /// The created.
     /// </value>
     [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Created", Storage = "_Created", ReadOnly = true, FieldType = "DateTime")]
-    public System.Nullable<DateTime> Created
+    public virtual System.Nullable<DateTime> Created
     {
       get
       {
@@ -56,7 +56,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
     /// The author.
     /// </value>
     [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Author", Storage = "_Author", ReadOnly = true, FieldType = "SPFieldUserValue")]
-    public string Author
+    public virtual string Author
     {
       get
       {
@@ -79,7 +79,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
     /// The modified.
     /// </value>
     [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Modified", Storage = "_Modified", ReadOnly = true, FieldType = "DateTime")]
-    public System.Nullable<DateTime> Modified
+    public virtual System.Nullable<DateTime> Modified
     {
       get
       {
@@ -102,7 +102,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
     /// The editor.
     /// </value>
     [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Editor", Storage = "_Editor", ReadOnly = true, FieldType = "SPFieldUserValue")]
-    public string Editor
+    public virtual string Editor
     {
       get
       {
@@ -125,7 +125,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
     /// The version.
     /// </value>
     [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "_UIVersionString", Storage = "_version0", ReadOnly = true, FieldType = "Text")]
-    public string UIVersionString
+    public virtual string UIVersionString
     {
       get
       {
