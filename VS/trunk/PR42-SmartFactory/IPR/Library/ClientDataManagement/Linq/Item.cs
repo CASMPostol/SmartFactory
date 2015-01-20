@@ -19,6 +19,7 @@ using System.Collections.Generic;
 
 namespace CAS.SmartFactory.IPR.Client.DataManagement.Linq
 {
+  
   /// <summary>
   /// SharePoint Item Entity class
   /// </summary>

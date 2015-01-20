@@ -74,43 +74,43 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Tests
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethod]
     public void CompareStorageContent()
     {
-      ComareSelectedStoragesContent<ClinetLinqSP.JSOXLib, ClinetLinqSQL.JSOXLibrary>(ClinetLinqSP.JSOXLib.GetMappings()); //TODO Documents fields must be resolved
-      ComareSelectedStoragesContent<ClinetLinqSP.BalanceBatch, ClinetLinqSQL.BalanceBatch>(ClinetLinqSP.BalanceBatch.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.SADDocumentLib, ClinetLinqSQL.SADDocumentLibrary>(ClinetLinqSP.SADDocumentLib.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.SADDocumentType, ClinetLinqSQL.SADDocument>(ClinetLinqSP.SADDocumentType.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.SADGood, ClinetLinqSQL.SADGood>(ClinetLinqSP.SADGood.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.SADConsignment, ClinetLinqSQL.SADConsignment>(ClinetLinqSP.SADConsignment.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.Clearence, ClinetLinqSQL.Clearence>(ClinetLinqSP.Clearence.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.Consent, ClinetLinqSQL.Consent>(ClinetLinqSP.Consent.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.PCNCode, ClinetLinqSQL.PCNCode>(ClinetLinqSP.PCNCode.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.IPRLib, ClinetLinqSQL.IPRLibrary>(ClinetLinqSP.IPRLib.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.IPR, ClinetLinqSQL.IPR>(ClinetLinqSP.IPR.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.BalanceIPR, ClinetLinqSQL.BalanceIPR>(ClinetLinqSP.BalanceIPR.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.BatchLib, ClinetLinqSQL.BatchLibrary>(ClinetLinqSP.BatchLib.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.Format, ClinetLinqSQL.SPFormat>(ClinetLinqSP.Format.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.Document, ClinetLinqSQL.SKULibrary>(ClinetLinqSP.Document.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.SKUCutfiller, ClinetLinqSQL.SKU>(ClinetLinqSP.SKUCutfiller.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.SKUCigarette, ClinetLinqSQL.SKU>(ClinetLinqSP.SKUCigarette.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.Batch, ClinetLinqSQL.Batch>(ClinetLinqSP.Batch.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.CustomsUnion, ClinetLinqSQL.CustomsUnion>(ClinetLinqSP.CustomsUnion.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.CutfillerCoefficient, ClinetLinqSQL.CutfillerCoefficient>(ClinetLinqSP.CutfillerCoefficient.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.InvoiceLib, ClinetLinqSQL.InvoiceLibrary>(ClinetLinqSP.InvoiceLib.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.InvoiceContent, ClinetLinqSQL.InvoiceContent>(ClinetLinqSP.InvoiceContent.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.Material, ClinetLinqSQL.Material>(ClinetLinqSP.Material.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.JSOXCustomsSummary, ClinetLinqSQL.JSOXCustomsSummary>(ClinetLinqSP.JSOXCustomsSummary.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.Disposal, ClinetLinqSQL.Disposal>(ClinetLinqSP.Disposal.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.Dust, ClinetLinqSQL.Dust>(ClinetLinqSP.Dust.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.SADDuties, ClinetLinqSQL.SADDuties>(ClinetLinqSP.SADDuties.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.SADPackage, ClinetLinqSQL.SADPackage>(ClinetLinqSP.SADPackage.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.SADQuantity, ClinetLinqSQL.SADQuantity>(ClinetLinqSP.SADQuantity.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.SADRequiredDocuments, ClinetLinqSQL.SADRequiredDocuments>(ClinetLinqSP.SADRequiredDocuments.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.Settings, ClinetLinqSQL.Settings>(ClinetLinqSP.Settings.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.SHMenthol, ClinetLinqSQL.SHMenthol>(ClinetLinqSP.SHMenthol.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.StockLib, ClinetLinqSQL.StockLibrary>(ClinetLinqSP.StockLib.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.StockEntry, ClinetLinqSQL.StockEntry>(ClinetLinqSP.StockEntry.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.Usage, ClinetLinqSQL.Usage>(ClinetLinqSP.Usage.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.Warehouse, ClinetLinqSQL.Warehouse>(ClinetLinqSP.Warehouse.GetMappings());
-      ComareSelectedStoragesContent<ClinetLinqSP.Waste, ClinetLinqSQL.Waste>(ClinetLinqSP.Waste.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.JSOXLib, ClinetLinqSQL.JSOXLibrary>(ClinetLinqSP.JSOXLib.GetMappings()); //TODO Documents fields must be resolved
+      CompareSelectedStoragesContent<ClinetLinqSP.BalanceBatch, ClinetLinqSQL.BalanceBatch>(ClinetLinqSP.BalanceBatch.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.SADDocumentLib, ClinetLinqSQL.SADDocumentLibrary>(ClinetLinqSP.SADDocumentLib.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.SADDocumentType, ClinetLinqSQL.SADDocument>(ClinetLinqSP.SADDocumentType.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.SADGood, ClinetLinqSQL.SADGood>(ClinetLinqSP.SADGood.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.SADConsignment, ClinetLinqSQL.SADConsignment>(ClinetLinqSP.SADConsignment.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.Clearence, ClinetLinqSQL.Clearence>(ClinetLinqSP.Clearence.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.Consent, ClinetLinqSQL.Consent>(ClinetLinqSP.Consent.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.PCNCode, ClinetLinqSQL.PCNCode>(ClinetLinqSP.PCNCode.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.IPRLib, ClinetLinqSQL.IPRLibrary>(ClinetLinqSP.IPRLib.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.IPR, ClinetLinqSQL.IPR>(ClinetLinqSP.IPR.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.BalanceIPR, ClinetLinqSQL.BalanceIPR>(ClinetLinqSP.BalanceIPR.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.BatchLib, ClinetLinqSQL.BatchLibrary>(ClinetLinqSP.BatchLib.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.Format, ClinetLinqSQL.SPFormat>(ClinetLinqSP.Format.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.Document, ClinetLinqSQL.SKULibrary>(ClinetLinqSP.Document.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.SKUCutfiller, ClinetLinqSQL.SKU>(ClinetLinqSP.SKUCutfiller.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.SKUCigarette, ClinetLinqSQL.SKU>(ClinetLinqSP.SKUCigarette.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.Batch, ClinetLinqSQL.Batch>(ClinetLinqSP.Batch.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.CustomsUnion, ClinetLinqSQL.CustomsUnion>(ClinetLinqSP.CustomsUnion.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.CutfillerCoefficient, ClinetLinqSQL.CutfillerCoefficient>(ClinetLinqSP.CutfillerCoefficient.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.InvoiceLib, ClinetLinqSQL.InvoiceLibrary>(ClinetLinqSP.InvoiceLib.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.InvoiceContent, ClinetLinqSQL.InvoiceContent>(ClinetLinqSP.InvoiceContent.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.Material, ClinetLinqSQL.Material>(ClinetLinqSP.Material.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.JSOXCustomsSummary, ClinetLinqSQL.JSOXCustomsSummary>(ClinetLinqSP.JSOXCustomsSummary.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.Disposal, ClinetLinqSQL.Disposal>(ClinetLinqSP.Disposal.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.Dust, ClinetLinqSQL.Dust>(ClinetLinqSP.Dust.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.SADDuties, ClinetLinqSQL.SADDuties>(ClinetLinqSP.SADDuties.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.SADPackage, ClinetLinqSQL.SADPackage>(ClinetLinqSP.SADPackage.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.SADQuantity, ClinetLinqSQL.SADQuantity>(ClinetLinqSP.SADQuantity.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.SADRequiredDocuments, ClinetLinqSQL.SADRequiredDocuments>(ClinetLinqSP.SADRequiredDocuments.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.Settings, ClinetLinqSQL.Settings>(ClinetLinqSP.Settings.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.SHMenthol, ClinetLinqSQL.SHMenthol>(ClinetLinqSP.SHMenthol.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.StockLib, ClinetLinqSQL.StockLibrary>(ClinetLinqSP.StockLib.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.StockEntry, ClinetLinqSQL.StockEntry>(ClinetLinqSP.StockEntry.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.Usage, ClinetLinqSQL.Usage>(ClinetLinqSP.Usage.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.Warehouse, ClinetLinqSQL.Warehouse>(ClinetLinqSP.Warehouse.GetMappings());
+      CompareSelectedStoragesContent<ClinetLinqSP.Waste, ClinetLinqSQL.Waste>(ClinetLinqSP.Waste.GetMappings());
     }
     private static void TestToDictionary<TEntity>(int expectedCount)
     {
@@ -120,7 +120,7 @@ namespace CAS.SmartFactory.IPR.Client.DataManagement.Tests
       _storageDictionary = _storageList.ToDictionary<LibLibLinq2SP.StorageItem, string>(si => si.PropertyName);
       Assert.AreEqual(expectedCount, _storageDictionary.Count);
     }
-    private static void ComareSelectedStoragesContent<TSP, TSQL>(Dictionary<string, string> mapping)
+    private static void CompareSelectedStoragesContent<TSP, TSQL>(Dictionary<string, string> mapping)
     {
       //Get SP stage info
       List<LibLibLinq2SP.StorageItem> _storageListSP = LibLibLinq2SP.StorageItem.CreateStorageDescription(typeof(TSP), false);
