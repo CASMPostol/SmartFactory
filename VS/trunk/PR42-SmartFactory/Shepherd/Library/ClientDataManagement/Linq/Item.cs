@@ -118,29 +118,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
         }
       }
     }
-    /// <summary>
-    /// Gets or sets the version.
-    /// </summary>
-    /// <value>
-    /// The version.
-    /// </value>
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "_UIVersionString", Storage = "_version0", ReadOnly = true, FieldType = "Text")]
-    public virtual string UIVersionString
-    {
-      get
-      {
-        return this._version0;
-      }
-      set
-      {
-        if ((value != this._Editor))
-        {
-          this.OnPropertyChanging("UIVersionString", this._id);
-          this._version0 = value;
-          this.OnPropertyChanged("UIVersionString");
-        }
-      }
-    }
     #endregion
 
     #region internal
@@ -153,7 +130,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
       return new Dictionary<string, string>() 
       {
         {"ID", "Id"},
-        {"OnlySQL", ""} 
+        {"OnlySQL", ""}, 
       };
     }
     #endregion
@@ -163,7 +140,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
     private System.Nullable<DateTime> _Created;
     private string _Author;
     private System.Nullable<DateTime> _Modified;
-    private string _version0;
     #endregion
 
   }

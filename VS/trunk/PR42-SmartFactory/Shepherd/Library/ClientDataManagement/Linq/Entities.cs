@@ -440,8 +440,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
 
     private System.Nullable<int> _id;
 
-    private System.Nullable<int> _version;
-
     private string _path;
 
     private Microsoft.SharePoint.Linq.EntityState _entityState;
@@ -502,24 +500,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
           this.OnPropertyChanging("Id", this._id);
           this._id = value;
           this.OnPropertyChanged("Id");
-        }
-      }
-    }
-
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "owshiddenversion", Storage = "_version", ReadOnly = true, FieldType = "Integer")]
-    public System.Nullable<int> Version
-    {
-      get
-      {
-        return this._version;
-      }
-      set
-      {
-        if ((value != this._version))
-        {
-          this.OnPropertyChanging("Version", this._version);
-          this._version = value;
-          this.OnPropertyChanged("Version");
         }
       }
     }
