@@ -69,7 +69,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           Synchronizer.Synchronize<Linq2SQL.ShippingPoint, Linq.ShippingPoint>(_sqledc.ShippingPoint, _edc.ShippingPoint, (x, y) => reportProgress(y), Linq.ShippingPoint.GetMappings(), false);
           Synchronizer.Synchronize<Linq2SQL.ScheduleTemplate, Linq.ScheduleTemplate>(_sqledc.ScheduleTemplate, _edc.ScheduleTemplate, (x, y) => reportProgress(y), Linq.ScheduleTemplate.GetMappings(), false);
           Synchronizer.Synchronize<Linq2SQL.TimeSlot, Linq.TimeSlotTimeSlot>(_sqledc.TimeSlot, _edc.TimeSlot, (x, y) => reportProgress(y), Linq.TimeSlotTimeSlot.GetMappings(), false);
-          Synchronizer.Synchronize<Linq2SQL.TimeSlotsTemplate, Linq.TimeSlotsTemplate>(_sqledc.TimeSlotsTemplate, _edc.TimeSlotsTemplate, (x, y) => reportProgress(y), Linq.TimeSlotsTemplate.GetMappings(), false); //TODO MP
+          Synchronizer.Synchronize<Linq2SQL.TimeSlotsTemplate, Linq.TimeSlotsTemplateTimeSlotsTemplate>(_sqledc.TimeSlotsTemplate, _edc.TimeSlotsTemplate, (x, y) => reportProgress(y), Linq.TimeSlotsTemplateTimeSlotsTemplate.GetMappings(), false); //TODO MP
 
         }
       }
