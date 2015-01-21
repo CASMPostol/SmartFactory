@@ -111,13 +111,13 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       bool _ret = true;
       reportProgress(new ProgressChangedEventArgs(1, "Starting ScheduleTemplate and TimeSlotsTemplate lists processing."));
       IEnumerable<Linq.ScheduleTemplate> _ScheduleTemplate2BeDeleted = spedc.ScheduleTemplate.ToList<Linq.ScheduleTemplate>().Where<Linq.ScheduleTemplate>(x => x.ShippingPointLookupTitle == null);
-      List<Linq.TimeSlotsTemplateTimeSlotsTemplate> _TimeSlotsTemplateAll = spedc.TimeSlotsTemplate.ToList<Linq.TimeSlotsTemplateTimeSlotsTemplate>();
-      List<Linq.TimeSlotsTemplateTimeSlotsTemplate> _TimeSlotsTemplate2BeDeleted = new List<Linq.TimeSlotsTemplateTimeSlotsTemplate>();
+      List<Linq.TimeSlotsTemplate> _TimeSlotsTemplateAll = spedc.TimeSlotsTemplate.ToList<Linq.TimeSlotsTemplate>();
+      List<Linq.TimeSlotsTemplate> _TimeSlotsTemplate2BeDeleted = new List<Linq.TimeSlotsTemplate>();
       foreach (Linq.ScheduleTemplate _item in _ScheduleTemplate2BeDeleted)
-        _TimeSlotsTemplate2BeDeleted.AddRange(_TimeSlotsTemplateAll.Where<Linq.TimeSlotsTemplateTimeSlotsTemplate>(x => x.ScheduleTemplateTitle == _item));
-      _TimeSlotsTemplate2BeDeleted.AddRange(_TimeSlotsTemplateAll.Where<Linq.TimeSlotsTemplateTimeSlotsTemplate>(x => x.ScheduleTemplateTitle == null));
+        _TimeSlotsTemplate2BeDeleted.AddRange(_TimeSlotsTemplateAll.Where<Linq.TimeSlotsTemplate>(x => x.ScheduleTemplateTitle == _item));
+      _TimeSlotsTemplate2BeDeleted.AddRange(_TimeSlotsTemplateAll.Where<Linq.TimeSlotsTemplate>(x => x.ScheduleTemplateTitle == null));
       reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} TimeSlotsTemplate entries to be deleted.", _TimeSlotsTemplate2BeDeleted.Count)));
-      spedc.TimeSlotsTemplate.Delete<Linq.TimeSlotsTemplateTimeSlotsTemplate, Linq2SQL.History>
+      spedc.TimeSlotsTemplate.Delete<Linq.TimeSlotsTemplate, Linq2SQL.History>
          (_TimeSlotsTemplate2BeDeleted, null, x => sqledc.TimeSlotsTemplate.GetAt<Linq2SQL.TimeSlotsTemplate>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
       reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} ScheduleTemplate entries to be deleted.", _ScheduleTemplate2BeDeleted.Count())));
@@ -126,11 +126,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           x => sqledc.History.AddHistoryEntry(x));
       //TimeSlotTimeSlot
       reportProgress(new ProgressChangedEventArgs(1, "TimeSlot processing."));
-      List<Linq.TimeSlotTimeSlot> _TimeSlotAll = spedc.TimeSlot.ToList<Linq.TimeSlotTimeSlot>().Where<Linq.TimeSlotTimeSlot>(x => x.StartDate.Value < DateTime.Now).ToList<Linq.TimeSlotTimeSlot>();
+      List<Linq.TimeSlotTimeSlot> _TimeSlotAll = spedc.TimeSlot.ToList<Linq.TimeSlotTimeSlot>().Where<Linq.TimeSlotTimeSlot>(x => x.StartTime.Value < DateTime.Now).ToList<Linq.TimeSlotTimeSlot>();
       List<Linq.TimeSlotTimeSlot> _TimeSlot3BeDeleted = (from _tsx in _TimeSlotAll
                                                          let _notUsed = _tsx.TimeSlot2ShippingIndex != null && (_tsx.TimeSlot2ShippingIndex.ShippingState == Linq.ShippingState.Canceled ||
                                                                                                                 _tsx.TimeSlot2ShippingIndex.ShippingState == Linq.ShippingState.Completed)
-                                                         where _notUsed && _tsx.StartDate.Value < DateTime.Now
+                                                         where _notUsed && _tsx.StartTime.Value < DateTime.Now
                                                          select _tsx).ToList<Linq.TimeSlotTimeSlot>();
       _TimeSlot3BeDeleted.AddRange(_TimeSlotAll.Where<Linq.TimeSlotTimeSlot>(x => x.TimeSlot2ShippingIndex == null));
       reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} Time Slot entries to be deleted.", _TimeSlot3BeDeleted.Count())));
@@ -167,12 +167,12 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       List<Linq.ScheduleTemplate> _ScheduleTemplate2BeDeleted = new List<Linq.ScheduleTemplate>();
       foreach (Linq.ShippingPoint _item in _ShippingPoint2BeDeleted)
         _ScheduleTemplate2BeDeleted.AddRange(_ScheduleTemplateAll.Where(z => z.ShippingPointLookupTitle == _item));
-      List<Linq.TimeSlotsTemplateTimeSlotsTemplate> _TimeSlotsTemplateAll = spedc.TimeSlotsTemplate.ToList<Linq.TimeSlotsTemplateTimeSlotsTemplate>();
-      List<Linq.TimeSlotsTemplateTimeSlotsTemplate> _TimeSlotsTemplate22BeDeleted = new List<Linq.TimeSlotsTemplateTimeSlotsTemplate>();
+      List<Linq.TimeSlotsTemplate> _TimeSlotsTemplateAll = spedc.TimeSlotsTemplate.ToList<Linq.TimeSlotsTemplate>();
+      List<Linq.TimeSlotsTemplate> _TimeSlotsTemplate22BeDeleted = new List<Linq.TimeSlotsTemplate>();
       foreach (Linq.ScheduleTemplate _item in _ScheduleTemplate2BeDeleted)
         _TimeSlotsTemplate22BeDeleted.AddRange(_TimeSlotsTemplateAll.Where(z => z.ScheduleTemplateTitle == _item));
       reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} TimeSlotsTemplate entries to be deleted.", _TimeSlotsTemplate22BeDeleted.Count())));
-      spedc.TimeSlotsTemplate.Delete<Linq.TimeSlotsTemplateTimeSlotsTemplate, Linq2SQL.History>
+      spedc.TimeSlotsTemplate.Delete<Linq.TimeSlotsTemplate, Linq2SQL.History>
          (_TimeSlotsTemplate22BeDeleted, null, x => sqledc.TimeSlotsTemplate.GetAt<Linq2SQL.TimeSlotsTemplate>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
       reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} ScheduleTemplate entries to be deleted.", _ScheduleTemplate2BeDeleted.Count())));
@@ -196,7 +196,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       try
       {
         //_breakingIssueEncountered &= Assumption<Linq.LoadDescription>(_LoaderOptimizationAll, typeof(Linq.Partner).Name, reportProgress, x => x.LoadDescription2PartnerTitle == null);
-        _breakingIssueEncountered &= Assumption<Linq.LoadDescription>(_LoaderOptimizationAll, typeof(Linq.ShippingShipping).Name, reportProgress, x => x.LoadDescription2ShippingIndex == null);
+        _breakingIssueEncountered &= Assumption<Linq.LoadDescription>(_LoaderOptimizationAll, typeof(Linq.Shipping).Name, reportProgress, x => x.LoadDescription2ShippingIndex == null);
       }
       catch (Exception ex)
       {
@@ -211,7 +211,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
     {
       bool _breakingIssueEncountered = true;
       trace("Entering DoDriversTeam");
-      List<Linq.ShippingShipping> _ShippingShippingAll = spedc.Shipping.ToList<Linq.ShippingShipping>();
+      List<Linq.Shipping> _ShippingShippingAll = spedc.Shipping.ToList<Linq.Shipping>();
       List<Linq.ShippingDriversTeam> _ShippingDriversTeamAll = spedc.DriversTeam.ToList<Linq.ShippingDriversTeam>();
       List<Linq.ShippingDriversTeam> _ShippingDriversTeam2BeDeleted = _ShippingDriversTeamAll.Where<Linq.ShippingDriversTeam>(x => x.DriverTitle == null).ToList<Linq.ShippingDriversTeam>();
       try
