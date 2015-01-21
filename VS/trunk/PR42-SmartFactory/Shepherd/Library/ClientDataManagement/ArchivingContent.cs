@@ -35,20 +35,15 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
     /// <exception cref="System.ApplicationException">DoSynchronizationContent has encountered breaking inconsistency - review the log and remove problems to pass to next phase.</exception>
     public static void DoArchivingContent(string URL, string sqlConnectionString, int archivalDelay, int rowLimit, Action<ProgressChangedEventArgs> reportProgress, Action<String> trace)
     {
-      bool _breakingIssueEncountered = false;
       reportProgress(new ProgressChangedEventArgs(1, String.Format("Starting DoArchivingContent URL: {0}, connection string: {1}, ArchivalDelay: {2}, RowLimit: {3}", URL, sqlConnectionString, archivalDelay, rowLimit)));
       trace("Establishing connection with the SP site and SQL database.");
       using (Linq.Entities _edc = new Linq.Entities(trace, URL))
       {
         using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => trace(y)))
         {
-          if (false)
-            _breakingIssueEncountered = true;
         }
       }
       reportProgress(new ProgressChangedEventArgs(1, "Finished DoArchivingContent"));
-      if (_breakingIssueEncountered)
-        throw new ApplicationException("DoArchivingContent has encountered breaking inconsistency - review the log and remove problems to pass to next phase.");
     }
   }
 }
