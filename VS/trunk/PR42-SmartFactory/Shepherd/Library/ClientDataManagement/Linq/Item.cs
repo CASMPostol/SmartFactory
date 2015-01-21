@@ -130,7 +130,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
       return new Dictionary<string, string>() 
       {
         {"ID", "Id"},
-        {"OnlySQL", ""}, 
+        {"OnlySQL", ""},
       };
     }
     #endregion
