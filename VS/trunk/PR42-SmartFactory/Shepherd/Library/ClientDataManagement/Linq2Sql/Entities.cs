@@ -3482,7 +3482,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private string _Title;
 		
 		private bool _OnlySQL;
 		
@@ -3665,26 +3664,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					this._Modified = value;
 					this.SendPropertyChanged("Modified");
 					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
 				}
 			}
 		}
