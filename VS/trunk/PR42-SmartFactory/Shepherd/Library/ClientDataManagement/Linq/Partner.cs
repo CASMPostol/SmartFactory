@@ -13,7 +13,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
     internal new static Dictionary<string, string> GetMappings()
     {
       Dictionary<string, string> _ret = Item.GetMappings();
-      _ret.Add("ShepherdUser", "ShepherdUserId");
+      _ret.Add("ShepherdUser", "ShepherdUserTitle");
       return _ret;
     }
   }
