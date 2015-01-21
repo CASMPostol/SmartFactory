@@ -23,6 +23,7 @@ using System.ComponentModel;
 using System.Data.SqlClient;
 using NsSPLinq = CAS.SmartFactory.Shepherd.Client.DataManagement.Linq;
 
+
 /// <summary>
 /// The StateMachines namespace.
 /// </summary>
@@ -271,9 +272,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
       Context.RequestNavigate(Infrastructure.ViewNames.RouteEditorStateName, _par);
     }
     private ConnectionData m_ConnectionData = null;
-    private static void GetLastOperation(SHRARCHIVE entities, ArchivingOperationLogs.OperationName operationName, Action<string> RunBy, Action<DateTime?> RunDate)
+    private static void GetLastOperation(SHRARCHIVE entities, CAS.SharePoint.Client.Link2SQL.ArchivingOperationLogs.OperationName operationName, Action<string> RunBy, Action<DateTime?> RunDate)
     {
-      ArchivingOperationLogs _recentActions = ArchivingOperationLogs.GetRecentActions(entities, operationName);
+      ArchivingOperationLogs _recentActions = CAS.SharePoint.Client.Link2SQL.ArchivingOperationLogs.GetRecentActions<ArchivingOperationLogs>(entities, operationName);
       if (_recentActions != null)
       {
         RunBy(_recentActions.UserName);
