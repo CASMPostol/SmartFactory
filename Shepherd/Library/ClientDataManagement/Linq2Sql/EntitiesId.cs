@@ -17,9 +17,10 @@ using CAS.SharePoint.Client.Link2SQL;
 
 namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 {
+
   public partial class AlarmsAndEvents : IItem { }
   public partial class ArchivingLogs : IArchivingLogs, IId { }
-  public partial class ArchivingOperationLogs : IId { }
+  public partial class ArchivingOperationLogs : IId, IArchivingOperationLogs { }
   public partial class BusinessDescription : IItem { }
   public partial class Carrier : IItem { }
   public partial class CarrierPerformanceReport : IItem { }

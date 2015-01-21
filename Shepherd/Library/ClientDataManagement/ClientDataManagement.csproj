@@ -77,7 +77,6 @@
     <Compile Include="InputData\RoutesCatalog.xsd.cs">
       <DependentUpon>RoutesCatalog.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Linq2SQL\ArchivingOperationLogs.cs" />
     <Compile Include="Linq2SQL\Entities.cs" />
     <Compile Include="Linq2SQL\EntitiesId.cs" />
     <Compile Include="Linq2SQL\SHRARCHIVE.cs" />

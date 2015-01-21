@@ -88,9 +88,10 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           _breakingIssueEncountered &= DoRoute(_spedc, reportProgress, trace);
           _breakingIssueEncountered &= DoCity(_spedc, reportProgress, trace);
           _breakingIssueEncountered &= DoSecurityEscortRoute(_spedc, reportProgress, trace);
-
         }
       }
+      using (Linq2SQL.SHRARCHIVE _sqledc = new Linq2SQL.SHRARCHIVE(_connection))
+        CAS.SharePoint.Client.Link2SQL.ArchivingOperationLogs.UpdateActivitiesLogs<Linq2SQL.ArchivingOperationLogs>(_sqledc, CAS.SharePoint.Client.Link2SQL.ArchivingOperationLogs.OperationName.Cleanup, reportProgress);
       reportProgress(new ProgressChangedEventArgs(1, "Finished DoCleanupContent"));
       if (_breakingIssueEncountered)
         throw new ApplicationException("DoCleanupContent has encountered breaking inconsistency - review the log and remove problems to pass to next phase.");
@@ -334,5 +335,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
     }
 
     #endregion
+
   }
 }
