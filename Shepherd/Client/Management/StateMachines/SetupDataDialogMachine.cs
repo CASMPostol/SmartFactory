@@ -298,9 +298,9 @@ namespace CAS.SmartFactory.Shepherd.Client.Management.StateMachines
           if (_entities.DatabaseExists())
           {
             reportProgress(new ProgressChangedEventArgs(1, "The specified database exists."));
-            GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Cleanup, x => _cd.CleanupLastRunBy = x, y => _cd.CleanupLastRunDate = y);
-            GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Synchronization, x => _cd.SyncLastRunBy = x, y => _cd.SyncLastRunDate = y);
-            GetLastOperation(_entities, ArchivingOperationLogs.OperationName.Archiving, x => _cd.ArchivingLastRunBy = x, y => _cd.ArchivingLastRunDate = y);
+            GetLastOperation(_entities, CAS.SharePoint.Client.Link2SQL.ArchivingOperationLogs.OperationName.Cleanup, x => _cd.CleanupLastRunBy = x, y => _cd.CleanupLastRunDate = y);
+            GetLastOperation(_entities, CAS.SharePoint.Client.Link2SQL.ArchivingOperationLogs.OperationName.Synchronization, x => _cd.SyncLastRunBy = x, y => _cd.SyncLastRunDate = y);
+            GetLastOperation(_entities, CAS.SharePoint.Client.Link2SQL.ArchivingOperationLogs.OperationName.Archiving, x => _cd.ArchivingLastRunBy = x, y => _cd.ArchivingLastRunDate = y);
             _cd.SQLConnected = true;
           }
           else

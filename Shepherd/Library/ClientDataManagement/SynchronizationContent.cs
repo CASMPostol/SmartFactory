@@ -72,10 +72,10 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           Synchronizer.Synchronize<Linq2SQL.TimeSlotsTemplate, Linq.TimeSlotsTemplate>(_sqledc.TimeSlotsTemplate, _edc.TimeSlotsTemplate, (x, y) => reportProgress(y), Linq.TimeSlotsTemplate.GetMappings(), false); //TODO MP
 
         }
+        using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => trace(y)))
+          CAS.SharePoint.Client.Link2SQL.ArchivingOperationLogs.UpdateActivitiesLogs<Linq2SQL.ArchivingOperationLogs>(_sqledc, CAS.SharePoint.Client.Link2SQL.ArchivingOperationLogs.OperationName.Synchronization, reportProgress);
+        reportProgress(new ProgressChangedEventArgs(1, "Finished DoSynchronizationContent"));
       }
-      using (Linq2SQL.SHRARCHIVE _sqledc = new Linq2SQL.SHRARCHIVE(_connection))
-        CAS.SharePoint.Client.Link2SQL.ArchivingOperationLogs.UpdateActivitiesLogs<Linq2SQL.ArchivingOperationLogs>(_sqledc, CAS.SharePoint.Client.Link2SQL.ArchivingOperationLogs.OperationName.Synchronization, reportProgress);
-      reportProgress(new ProgressChangedEventArgs(1, "Finished DoSynchronizationContent"));
     }
   }
 }
