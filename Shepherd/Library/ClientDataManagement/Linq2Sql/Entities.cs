@@ -3482,7 +3482,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		
 		private bool _OnlySQL;
 		
 		private EntityRef<City> _City;
@@ -3507,8 +3506,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnMarketTitleChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
     partial void OnOnlySQLChanged();
     #endregion
@@ -4168,8 +4165,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<int> _ShippingIndex;
 		
-		private string _Title;
-		
 		private bool _OnlySQL;
 		
 		private EntityRef<Driver> _Driver;
@@ -4194,8 +4189,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnShippingIndexChanging(System.Nullable<int> value);
     partial void OnShippingIndexChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
     partial void OnOnlySQLChanged();
     #endregion
@@ -4351,26 +4344,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					this._ShippingIndex = value;
 					this.SendPropertyChanged("ShippingIndex");
 					this.OnShippingIndexChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
 				}
 			}
 		}
@@ -11380,6 +11353,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private string _ShippingState;
 		
+		private string _ShippingState2;
+		
 		private System.Nullable<System.DateTime> _StartTime;
 		
 		private string _Title;
@@ -11542,6 +11517,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnShippingSecurityCostChanged();
     partial void OnShippingStateChanging(string value);
     partial void OnShippingStateChanged();
+    partial void OnShippingState2Changing(string value);
+    partial void OnShippingState2Changed();
     partial void OnStartTimeChanging(System.Nullable<System.DateTime> value);
     partial void OnStartTimeChanged();
     partial void OnTitleChanging(string value);
@@ -12534,6 +12511,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					this._ShippingState = value;
 					this.SendPropertyChanged("ShippingState");
 					this.OnShippingStateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ShippingState2", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string ShippingState2
+		{
+			get
+			{
+				return this._ShippingState2;
+			}
+			set
+			{
+				if ((this._ShippingState2 != value))
+				{
+					this.OnShippingState2Changing(value);
+					this.SendPropertyChanging();
+					this._ShippingState2 = value;
+					this.SendPropertyChanged("ShippingState2");
+					this.OnShippingState2Changed();
 				}
 			}
 		}
@@ -13912,11 +13909,9 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private string _Editor;
 		
-		private System.DateTime _EndDate;
+		private System.DateTime _EndTime;
 		
 		private System.Nullable<System.DateTime> _EntryTime;
-		
-		private System.DateTime _EventDate;
 		
 		private System.Nullable<System.DateTime> _ExitTime;
 		
@@ -13927,6 +13922,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		private System.Nullable<System.DateTime> _Modified;
 		
 		private string _Occupied;
+		
+		private System.DateTime _StartTime;
 		
 		private System.Nullable<int> _TimeSlot2ShippingIndex;
 		
@@ -13950,12 +13947,10 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnCreatedChanged();
     partial void OnEditorChanging(string value);
     partial void OnEditorChanged();
-    partial void OnEndDateChanging(System.DateTime value);
-    partial void OnEndDateChanged();
+    partial void OnEndTimeChanging(System.DateTime value);
+    partial void OnEndTimeChanged();
     partial void OnEntryTimeChanging(System.Nullable<System.DateTime> value);
     partial void OnEntryTimeChanged();
-    partial void OnEventDateChanging(System.DateTime value);
-    partial void OnEventDateChanged();
     partial void OnExitTimeChanging(System.Nullable<System.DateTime> value);
     partial void OnExitTimeChanged();
     partial void OnIDChanging(int value);
@@ -13966,6 +13961,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnModifiedChanged();
     partial void OnOccupiedChanging(string value);
     partial void OnOccupiedChanged();
+    partial void OnStartTimeChanging(System.DateTime value);
+    partial void OnStartTimeChanged();
     partial void OnTimeSlot2ShippingIndexChanging(System.Nullable<int> value);
     partial void OnTimeSlot2ShippingIndexChanged();
     partial void OnTimeSlot2ShippingPointLookupChanging(System.Nullable<int> value);
@@ -14043,22 +14040,22 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_EndDate", DbType="DateTime NOT NULL")]
-		public System.DateTime EndDate
+		[Column(Storage="_EndTime", DbType="DateTime NOT NULL")]
+		public System.DateTime EndTime
 		{
 			get
 			{
-				return this._EndDate;
+				return this._EndTime;
 			}
 			set
 			{
-				if ((this._EndDate != value))
+				if ((this._EndTime != value))
 				{
-					this.OnEndDateChanging(value);
+					this.OnEndTimeChanging(value);
 					this.SendPropertyChanging();
-					this._EndDate = value;
-					this.SendPropertyChanged("EndDate");
-					this.OnEndDateChanged();
+					this._EndTime = value;
+					this.SendPropertyChanged("EndTime");
+					this.OnEndTimeChanged();
 				}
 			}
 		}
@@ -14079,26 +14076,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					this._EntryTime = value;
 					this.SendPropertyChanged("EntryTime");
 					this.OnEntryTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_EventDate", DbType="DateTime NOT NULL")]
-		public System.DateTime EventDate
-		{
-			get
-			{
-				return this._EventDate;
-			}
-			set
-			{
-				if ((this._EventDate != value))
-				{
-					this.OnEventDateChanging(value);
-					this.SendPropertyChanging();
-					this._EventDate = value;
-					this.SendPropertyChanged("EventDate");
-					this.OnEventDateChanged();
 				}
 			}
 		}
@@ -14199,6 +14176,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					this._Occupied = value;
 					this.SendPropertyChanged("Occupied");
 					this.OnOccupiedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_StartTime", DbType="DateTime NOT NULL")]
+		public System.DateTime StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this.OnStartTimeChanging(value);
+					this.SendPropertyChanging();
+					this._StartTime = value;
+					this.SendPropertyChanged("StartTime");
+					this.OnStartTimeChanged();
 				}
 			}
 		}
@@ -14408,8 +14405,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private string _TimeSlotsTemplateStartMinute;
 		
-		private string _Title;
-		
 		private bool _OnlySQL;
 		
 		private EntityRef<ScheduleTemplate> _ScheduleTemplate;
@@ -14440,8 +14435,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnTimeSlotsTemplateStartHourChanged();
     partial void OnTimeSlotsTemplateStartMinuteChanging(string value);
     partial void OnTimeSlotsTemplateStartMinuteChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
     partial void OnOnlySQLChanging(bool value);
     partial void OnOnlySQLChanged();
     #endregion
@@ -14672,26 +14665,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					this._TimeSlotsTemplateStartMinute = value;
 					this.SendPropertyChanged("TimeSlotsTemplateStartMinute");
 					this.OnTimeSlotsTemplateStartMinuteChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
 				}
 			}
 		}

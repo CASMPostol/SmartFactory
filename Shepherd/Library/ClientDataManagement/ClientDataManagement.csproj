@@ -86,6 +86,7 @@
     <Compile Include="Linq\Connectivity.cs" />
     <Compile Include="Linq\Entities.partial.cs" />
     <Compile Include="Linq\Item.cs" />
+    <Compile Include="Linq\Partner.cs" />
     <Compile Include="Linq\TraceLogWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>

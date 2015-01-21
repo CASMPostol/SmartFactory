@@ -463,8 +463,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
 
     private System.Nullable<int> _id;
 
-    private System.Nullable<int> _version;
-
     private string _path;
 
     private Microsoft.SharePoint.Linq.EntityState _entityState;
@@ -525,24 +523,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
           this.OnPropertyChanging("Id", this._id);
           this._id = value;
           this.OnPropertyChanged("Id");
-        }
-      }
-    }
-
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "owshiddenversion", Storage = "_version", ReadOnly = true, FieldType = "Integer")]
-    public System.Nullable<int> Version
-    {
-      get
-      {
-        return this._version;
-      }
-      set
-      {
-        if ((value != this._version))
-        {
-          this.OnPropertyChanging("Version", this._version);
-          this._version = value;
-          this.OnPropertyChanged("Version");
         }
       }
     }
@@ -4734,8 +4714,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
 
     private Microsoft.SharePoint.Linq.EntityRef<SealProtocol> _securitySealProtocolIndex;
 
-    private System.Nullable<int> _editorId;
-
     private string _editor;
 
     private Microsoft.SharePoint.Linq.EntitySet<TimeSlot> _timeSlot;
@@ -5740,24 +5718,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
       set
       {
         this._securitySealProtocolIndex.SetEntity(value);
-      }
-    }
-
-    [Microsoft.SharePoint.Linq.ColumnAttribute(Name = "Editor", Storage = "_editorId", ReadOnly = true, FieldType = "User", IsLookupId = true)]
-    public System.Nullable<int> EditorId
-    {
-      get
-      {
-        return this._editorId;
-      }
-      set
-      {
-        if ((value != this._editorId))
-        {
-          this.OnPropertyChanging("EditorId", this._editorId);
-          this._editorId = value;
-          this.OnPropertyChanged("EditorId");
-        }
       }
     }
 
