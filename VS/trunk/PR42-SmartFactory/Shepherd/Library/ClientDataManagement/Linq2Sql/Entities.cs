@@ -442,9 +442,9 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private string _AlarmPriority;
 		
-		private System.Nullable<int> _AlarmsAndEventsList2PartnerTitle;
+		private System.Nullable<int> _PartnerID;
 		
-		private System.Nullable<int> _AlarmsAndEventsList2Shipping;
+		private System.Nullable<int> _ShippingID;
 		
 		private string _Author;
 		
@@ -474,10 +474,10 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnAlarmAndEventOwnerChanged();
     partial void OnAlarmPriorityChanging(string value);
     partial void OnAlarmPriorityChanged();
-    partial void OnAlarmsAndEventsList2PartnerTitleChanging(System.Nullable<int> value);
-    partial void OnAlarmsAndEventsList2PartnerTitleChanged();
-    partial void OnAlarmsAndEventsList2ShippingChanging(System.Nullable<int> value);
-    partial void OnAlarmsAndEventsList2ShippingChanged();
+    partial void OnPartnerIDChanging(System.Nullable<int> value);
+    partial void OnPartnerIDChanged();
+    partial void OnShippingIDChanging(System.Nullable<int> value);
+    partial void OnShippingIDChanged();
     partial void OnAuthorChanging(string value);
     partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
@@ -561,50 +561,50 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_AlarmsAndEventsList2PartnerTitle", DbType="Int")]
-		public System.Nullable<int> AlarmsAndEventsList2PartnerTitle
+		[Column(Storage="_PartnerID", DbType="Int")]
+		public System.Nullable<int> PartnerID
 		{
 			get
 			{
-				return this._AlarmsAndEventsList2PartnerTitle;
+				return this._PartnerID;
 			}
 			set
 			{
-				if ((this._AlarmsAndEventsList2PartnerTitle != value))
+				if ((this._PartnerID != value))
 				{
 					if (this._Partner.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnAlarmsAndEventsList2PartnerTitleChanging(value);
+					this.OnPartnerIDChanging(value);
 					this.SendPropertyChanging();
-					this._AlarmsAndEventsList2PartnerTitle = value;
-					this.SendPropertyChanged("AlarmsAndEventsList2PartnerTitle");
-					this.OnAlarmsAndEventsList2PartnerTitleChanged();
+					this._PartnerID = value;
+					this.SendPropertyChanged("PartnerID");
+					this.OnPartnerIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_AlarmsAndEventsList2Shipping", DbType="Int")]
-		public System.Nullable<int> AlarmsAndEventsList2Shipping
+		[Column(Storage="_ShippingID", DbType="Int")]
+		public System.Nullable<int> ShippingID
 		{
 			get
 			{
-				return this._AlarmsAndEventsList2Shipping;
+				return this._ShippingID;
 			}
 			set
 			{
-				if ((this._AlarmsAndEventsList2Shipping != value))
+				if ((this._ShippingID != value))
 				{
 					if (this._Shipping.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnAlarmsAndEventsList2ShippingChanging(value);
+					this.OnShippingIDChanging(value);
 					this.SendPropertyChanging();
-					this._AlarmsAndEventsList2Shipping = value;
-					this.SendPropertyChanged("AlarmsAndEventsList2Shipping");
-					this.OnAlarmsAndEventsList2ShippingChanged();
+					this._ShippingID = value;
+					this.SendPropertyChanged("ShippingID");
+					this.OnShippingIDChanged();
 				}
 			}
 		}
@@ -749,7 +749,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_AlarmsAndEvents_Partner", Storage="_Partner", ThisKey="AlarmsAndEventsList2PartnerTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_AlarmsAndEvents_Partner", Storage="_Partner", ThisKey="PartnerID", OtherKey="ID", IsForeignKey=true)]
 		public Partner Partner
 		{
 			get
@@ -772,18 +772,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.AlarmsAndEvents.Add(this);
-						this._AlarmsAndEventsList2PartnerTitle = value.ID;
+						this._PartnerID = value.ID;
 					}
 					else
 					{
-						this._AlarmsAndEventsList2PartnerTitle = default(Nullable<int>);
+						this._PartnerID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Partner");
 				}
 			}
 		}
 		
-		[Association(Name="FK_AlarmsAndEvents_Shipping", Storage="_Shipping", ThisKey="AlarmsAndEventsList2Shipping", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_AlarmsAndEvents_Shipping", Storage="_Shipping", ThisKey="ShippingID", OtherKey="ID", IsForeignKey=true)]
 		public Shipping Shipping
 		{
 			get
@@ -806,11 +806,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.AlarmsAndEvents.Add(this);
-						this._AlarmsAndEventsList2Shipping = value.ID;
+						this._ShippingID = value.ID;
 					}
 					else
 					{
-						this._AlarmsAndEventsList2Shipping = default(Nullable<int>);
+						this._ShippingID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Shipping");
 				}
@@ -1393,7 +1393,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Route_BusinessDescription", Storage="_Route", ThisKey="ID", OtherKey="Route2BusinessDescriptionTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Route_BusinessDescription", Storage="_Route", ThisKey="ID", OtherKey="BusinessDescriptionID", DeleteRule="NO ACTION")]
 		public EntitySet<Route> Route
 		{
 			get
@@ -1406,7 +1406,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_SecurityEscortRoute_BusinessDescription", Storage="_SecurityEscortRoute", ThisKey="ID", OtherKey="SecurityEscortCatalog2BusinessDescriptionTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_SecurityEscortRoute_BusinessDescription", Storage="_SecurityEscortRoute", ThisKey="ID", OtherKey="BusinessDescriptionID", DeleteRule="NO ACTION")]
 		public EntitySet<SecurityEscortRoute> SecurityEscortRoute
 		{
 			get
@@ -1652,7 +1652,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Route_Carrier", Storage="_Route", ThisKey="ID", OtherKey="CarrierTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Route_Carrier", Storage="_Route", ThisKey="ID", OtherKey="CarrierID", DeleteRule="NO ACTION")]
 		public EntitySet<Route> Route
 		{
 			get
@@ -1706,7 +1706,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private string _Author;
 		
-		private System.Nullable<int> _CPR2PartnerTitle;
+		private System.Nullable<int> _PartnerID;
 		
 		private System.Nullable<System.DateTime> _CPRDate;
 		
@@ -1744,8 +1744,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnAuthorChanging(string value);
     partial void OnAuthorChanged();
-    partial void OnCPR2PartnerTitleChanging(System.Nullable<int> value);
-    partial void OnCPR2PartnerTitleChanged();
+    partial void OnPartnerIDChanging(System.Nullable<int> value);
+    partial void OnPartnerIDChanged();
     partial void OnCPRDateChanging(System.Nullable<System.DateTime> value);
     partial void OnCPRDateChanged();
     partial void OnCPRNumberDelayedChanging(System.Nullable<double> value);
@@ -1802,26 +1802,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CPR2PartnerTitle", DbType="Int")]
-		public System.Nullable<int> CPR2PartnerTitle
+		[Column(Storage="_PartnerID", DbType="Int")]
+		public System.Nullable<int> PartnerID
 		{
 			get
 			{
-				return this._CPR2PartnerTitle;
+				return this._PartnerID;
 			}
 			set
 			{
-				if ((this._CPR2PartnerTitle != value))
+				if ((this._PartnerID != value))
 				{
 					if (this._Partner.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnCPR2PartnerTitleChanging(value);
+					this.OnPartnerIDChanging(value);
 					this.SendPropertyChanging();
-					this._CPR2PartnerTitle = value;
-					this.SendPropertyChanged("CPR2PartnerTitle");
-					this.OnCPR2PartnerTitleChanged();
+					this._PartnerID = value;
+					this.SendPropertyChanged("PartnerID");
+					this.OnPartnerIDChanged();
 				}
 			}
 		}
@@ -2106,7 +2106,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_CarrierPerformanceReport_Partner", Storage="_Partner", ThisKey="CPR2PartnerTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_CarrierPerformanceReport_Partner", Storage="_Partner", ThisKey="PartnerID", OtherKey="ID", IsForeignKey=true)]
 		public Partner Partner
 		{
 			get
@@ -2129,11 +2129,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.CarrierPerformanceReport.Add(this);
-						this._CPR2PartnerTitle = value.ID;
+						this._PartnerID = value.ID;
 					}
 					else
 					{
-						this._CPR2PartnerTitle = default(Nullable<int>);
+						this._PartnerID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Partner");
 				}
@@ -2169,7 +2169,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private string _Author;
 		
-		private System.Nullable<int> _CountryTitle;
+		private System.Nullable<int> _CountryID;
 		
 		private System.Nullable<System.DateTime> _Created;
 		
@@ -2197,8 +2197,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnAuthorChanging(string value);
     partial void OnAuthorChanged();
-    partial void OnCountryTitleChanging(System.Nullable<int> value);
-    partial void OnCountryTitleChanged();
+    partial void OnCountryIDChanging(System.Nullable<int> value);
+    partial void OnCountryIDChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
     partial void OnEditorChanging(string value);
@@ -2242,26 +2242,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CountryTitle", DbType="Int")]
-		public System.Nullable<int> CountryTitle
+		[Column(Storage="_CountryID", DbType="Int")]
+		public System.Nullable<int> CountryID
 		{
 			get
 			{
-				return this._CountryTitle;
+				return this._CountryID;
 			}
 			set
 			{
-				if ((this._CountryTitle != value))
+				if ((this._CountryID != value))
 				{
 					if (this._Country.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnCountryTitleChanging(value);
+					this.OnCountryIDChanging(value);
 					this.SendPropertyChanging();
-					this._CountryTitle = value;
-					this.SendPropertyChanged("CountryTitle");
-					this.OnCountryTitleChanged();
+					this._CountryID = value;
+					this.SendPropertyChanged("CountryID");
+					this.OnCountryIDChanged();
 				}
 			}
 		}
@@ -2386,7 +2386,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_City_Country", Storage="_Country", ThisKey="CountryTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_City_Country", Storage="_Country", ThisKey="CountryID", OtherKey="ID", IsForeignKey=true)]
 		public Country Country
 		{
 			get
@@ -2409,18 +2409,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.City.Add(this);
-						this._CountryTitle = value.ID;
+						this._CountryID = value.ID;
 					}
 					else
 					{
-						this._CountryTitle = default(Nullable<int>);
+						this._CountryID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Country");
 				}
 			}
 		}
 		
-		[Association(Name="FK_DestinationMarket_City", Storage="_DestinationMarket", ThisKey="ID", OtherKey="DestinationMarket2CityTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_DestinationMarket_City", Storage="_DestinationMarket", ThisKey="ID", OtherKey="CityID", DeleteRule="NO ACTION")]
 		public EntitySet<DestinationMarket> DestinationMarket
 		{
 			get
@@ -2433,7 +2433,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Route_City", Storage="_Route", ThisKey="ID", OtherKey="Route2CityTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Route_City", Storage="_Route", ThisKey="ID", OtherKey="CityID", DeleteRule="NO ACTION")]
 		public EntitySet<Route> Route
 		{
 			get
@@ -2446,7 +2446,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_City", Storage="_Shipping", ThisKey="ID", OtherKey="Shipping2City", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_City", Storage="_Shipping", ThisKey="ID", OtherKey="CityID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping
 		{
 			get
@@ -2710,7 +2710,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_LoadDescription_Commodity", Storage="_LoadDescription", ThisKey="ID", OtherKey="LoadDescription2Commodity", DeleteRule="NO ACTION")]
+		[Association(Name="FK_LoadDescription_Commodity", Storage="_LoadDescription", ThisKey="ID", OtherKey="CommodityID", DeleteRule="NO ACTION")]
 		public EntitySet<LoadDescription> LoadDescription
 		{
 			get
@@ -2723,7 +2723,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Route_Commodity", Storage="_Route", ThisKey="ID", OtherKey="Route2Commodity", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Route_Commodity", Storage="_Route", ThisKey="ID", OtherKey="CommodityID", DeleteRule="NO ACTION")]
 		public EntitySet<Route> Route
 		{
 			get
@@ -2736,7 +2736,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Warehouse_Commodity", Storage="_Warehouse", ThisKey="ID", OtherKey="CommodityTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Warehouse_Commodity", Storage="_Warehouse", ThisKey="ID", OtherKey="CommodityID", DeleteRule="NO ACTION")]
 		public EntitySet<Warehouse> Warehouse
 		{
 			get
@@ -3018,7 +3018,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_City_Country", Storage="_City", ThisKey="ID", OtherKey="CountryTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_City_Country", Storage="_City", ThisKey="ID", OtherKey="CountryID", DeleteRule="NO ACTION")]
 		public EntitySet<City> City
 		{
 			get
@@ -3291,7 +3291,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Route_Currency", Storage="_Route", ThisKey="ID", OtherKey="CurrencyTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Route_Currency", Storage="_Route", ThisKey="ID", OtherKey="CurrencyID", DeleteRule="NO ACTION")]
 		public EntitySet<Route> Route
 		{
 			get
@@ -3304,7 +3304,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_SecurityEscortRoute_Currency", Storage="_SecurityEscortRoute", ThisKey="ID", OtherKey="CurrencyTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_SecurityEscortRoute_Currency", Storage="_SecurityEscortRoute", ThisKey="ID", OtherKey="CurrencyID", DeleteRule="NO ACTION")]
 		public EntitySet<SecurityEscortRoute> SecurityEscortRoute
 		{
 			get
@@ -3317,7 +3317,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Currency4AddCosts", Storage="_Shipping", ThisKey="ID", OtherKey="Shipping2Currency4AddCosts", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_Currency4AddCosts", Storage="_Shipping", ThisKey="ID", OtherKey="Currency4AddCostsID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping
 		{
 			get
@@ -3330,7 +3330,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Currency4CostsPerKU", Storage="_Shipping_Currency4CostsPerKU", ThisKey="ID", OtherKey="Shipping2Currency4CostsPerKU", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_Currency4CostsPerKU", Storage="_Shipping_Currency4CostsPerKU", ThisKey="ID", OtherKey="Currency4CostsPerKUID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping_Currency4CostsPerKU
 		{
 			get
@@ -3343,7 +3343,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_CurrencyForEscort", Storage="_Shipping_CurrencyForEscort", ThisKey="ID", OtherKey="Shipping2CurrencyForEscort", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_CurrencyForEscort", Storage="_Shipping_CurrencyForEscort", ThisKey="ID", OtherKey="CurrencyForEscortID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping_CurrencyForEscort
 		{
 			get
@@ -3356,7 +3356,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_CurrencyForFreight", Storage="_Shipping_CurrencyForFreight", ThisKey="ID", OtherKey="Shipping2CurrencyForFreight", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_CurrencyForFreight", Storage="_Shipping_CurrencyForFreight", ThisKey="ID", OtherKey="CurrencyForFreightID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping_CurrencyForFreight
 		{
 			get
@@ -3428,37 +3428,37 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		private void attach_Shipping_Currency4CostsPerKU(Shipping entity)
 		{
 			this.SendPropertyChanging();
-			entity.Shipping2Currency4CostsPerKUCurrency = this;
+			entity.Currency4CostsPerKU = this;
 		}
 		
 		private void detach_Shipping_Currency4CostsPerKU(Shipping entity)
 		{
 			this.SendPropertyChanging();
-			entity.Shipping2Currency4CostsPerKUCurrency = null;
+			entity.Currency4CostsPerKU = null;
 		}
 		
 		private void attach_Shipping_CurrencyForEscort(Shipping entity)
 		{
 			this.SendPropertyChanging();
-			entity.Shipping2CurrencyForEscortCurrency = this;
+			entity.CurrencyForEscort = this;
 		}
 		
 		private void detach_Shipping_CurrencyForEscort(Shipping entity)
 		{
 			this.SendPropertyChanging();
-			entity.Shipping2CurrencyForEscortCurrency = null;
+			entity.CurrencyForEscort = null;
 		}
 		
 		private void attach_Shipping_CurrencyForFreight(Shipping entity)
 		{
 			this.SendPropertyChanging();
-			entity.Shipping2CurrencyForFreightCurrency = this;
+			entity.CurrencyForFreight = this;
 		}
 		
 		private void detach_Shipping_CurrencyForFreight(Shipping entity)
 		{
 			this.SendPropertyChanging();
-			entity.Shipping2CurrencyForFreightCurrency = null;
+			entity.CurrencyForFreight = null;
 		}
 	}
 	
@@ -3472,13 +3472,13 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private System.Nullable<int> _DestinationMarket2CityTitle;
+		private System.Nullable<int> _CityID;
 		
 		private string _Editor;
 		
 		private int _ID;
 		
-		private System.Nullable<int> _MarketTitle;
+		private System.Nullable<int> _MarketID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
@@ -3496,14 +3496,14 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnDestinationMarket2CityTitleChanging(System.Nullable<int> value);
-    partial void OnDestinationMarket2CityTitleChanged();
+    partial void OnCityIDChanging(System.Nullable<int> value);
+    partial void OnCityIDChanged();
     partial void OnEditorChanging(string value);
     partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
-    partial void OnMarketTitleChanging(System.Nullable<int> value);
-    partial void OnMarketTitleChanged();
+    partial void OnMarketIDChanging(System.Nullable<int> value);
+    partial void OnMarketIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -3557,26 +3557,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_DestinationMarket2CityTitle", DbType="Int")]
-		public System.Nullable<int> DestinationMarket2CityTitle
+		[Column(Storage="_CityID", DbType="Int")]
+		public System.Nullable<int> CityID
 		{
 			get
 			{
-				return this._DestinationMarket2CityTitle;
+				return this._CityID;
 			}
 			set
 			{
-				if ((this._DestinationMarket2CityTitle != value))
+				if ((this._CityID != value))
 				{
 					if (this._City.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnDestinationMarket2CityTitleChanging(value);
+					this.OnCityIDChanging(value);
 					this.SendPropertyChanging();
-					this._DestinationMarket2CityTitle = value;
-					this.SendPropertyChanged("DestinationMarket2CityTitle");
-					this.OnDestinationMarket2CityTitleChanged();
+					this._CityID = value;
+					this.SendPropertyChanged("CityID");
+					this.OnCityIDChanged();
 				}
 			}
 		}
@@ -3621,26 +3621,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_MarketTitle", DbType="Int")]
-		public System.Nullable<int> MarketTitle
+		[Column(Storage="_MarketID", DbType="Int")]
+		public System.Nullable<int> MarketID
 		{
 			get
 			{
-				return this._MarketTitle;
+				return this._MarketID;
 			}
 			set
 			{
-				if ((this._MarketTitle != value))
+				if ((this._MarketID != value))
 				{
 					if (this._Market.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnMarketTitleChanging(value);
+					this.OnMarketIDChanging(value);
 					this.SendPropertyChanging();
-					this._MarketTitle = value;
-					this.SendPropertyChanged("MarketTitle");
-					this.OnMarketTitleChanged();
+					this._MarketID = value;
+					this.SendPropertyChanged("MarketID");
+					this.OnMarketIDChanged();
 				}
 			}
 		}
@@ -3685,7 +3685,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_DestinationMarket_City", Storage="_City", ThisKey="DestinationMarket2CityTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_DestinationMarket_City", Storage="_City", ThisKey="CityID", OtherKey="ID", IsForeignKey=true)]
 		public City City
 		{
 			get
@@ -3708,18 +3708,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.DestinationMarket.Add(this);
-						this._DestinationMarket2CityTitle = value.ID;
+						this._CityID = value.ID;
 					}
 					else
 					{
-						this._DestinationMarket2CityTitle = default(Nullable<int>);
+						this._CityID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("City");
 				}
 			}
 		}
 		
-		[Association(Name="FK_DestinationMarket_Market", Storage="_Market", ThisKey="MarketTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_DestinationMarket_Market", Storage="_Market", ThisKey="MarketID", OtherKey="ID", IsForeignKey=true)]
 		public Market Market
 		{
 			get
@@ -3742,11 +3742,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.DestinationMarket.Add(this);
-						this._MarketTitle = value.ID;
+						this._MarketID = value.ID;
 					}
 					else
 					{
-						this._MarketTitle = default(Nullable<int>);
+						this._MarketID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Market");
 				}
@@ -3786,7 +3786,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private System.Nullable<int> _Driver2PartnerTitle;
+		private System.Nullable<int> _PartnerID;
 		
 		private string _Editor;
 		
@@ -3816,8 +3816,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnCellPhoneChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnDriver2PartnerTitleChanging(System.Nullable<int> value);
-    partial void OnDriver2PartnerTitleChanged();
+    partial void OnPartnerIDChanging(System.Nullable<int> value);
+    partial void OnPartnerIDChanged();
     partial void OnEditorChanging(string value);
     partial void OnEditorChanged();
     partial void OnIDChanging(int value);
@@ -3901,26 +3901,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Driver2PartnerTitle", DbType="Int")]
-		public System.Nullable<int> Driver2PartnerTitle
+		[Column(Storage="_PartnerID", DbType="Int")]
+		public System.Nullable<int> PartnerID
 		{
 			get
 			{
-				return this._Driver2PartnerTitle;
+				return this._PartnerID;
 			}
 			set
 			{
-				if ((this._Driver2PartnerTitle != value))
+				if ((this._PartnerID != value))
 				{
 					if (this._Partner.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnDriver2PartnerTitleChanging(value);
+					this.OnPartnerIDChanging(value);
 					this.SendPropertyChanging();
-					this._Driver2PartnerTitle = value;
-					this.SendPropertyChanged("Driver2PartnerTitle");
-					this.OnDriver2PartnerTitleChanged();
+					this._PartnerID = value;
+					this.SendPropertyChanged("PartnerID");
+					this.OnPartnerIDChanged();
 				}
 			}
 		}
@@ -4065,7 +4065,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Driver_Partner", Storage="_Partner", ThisKey="Driver2PartnerTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Driver_Partner", Storage="_Partner", ThisKey="PartnerID", OtherKey="ID", IsForeignKey=true)]
 		public Partner Partner
 		{
 			get
@@ -4088,18 +4088,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Driver.Add(this);
-						this._Driver2PartnerTitle = value.ID;
+						this._PartnerID = value.ID;
 					}
 					else
 					{
-						this._Driver2PartnerTitle = default(Nullable<int>);
+						this._PartnerID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Partner");
 				}
 			}
 		}
 		
-		[Association(Name="FK_DriversTeam_Driver", Storage="_DriversTeam", ThisKey="ID", OtherKey="DriverTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_DriversTeam_Driver", Storage="_DriversTeam", ThisKey="ID", OtherKey="DriverID", DeleteRule="NO ACTION")]
 		public EntitySet<DriversTeam> DriversTeam
 		{
 			get
@@ -4155,7 +4155,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private System.Nullable<int> _DriverTitle;
+		private System.Nullable<int> _DriverID;
 		
 		private string _Editor;
 		
@@ -4163,7 +4163,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _ShippingIndex;
+		private System.Nullable<int> _ShippingID;
 		
 		private bool _OnlySQL;
 		
@@ -4179,16 +4179,16 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnDriverTitleChanging(System.Nullable<int> value);
-    partial void OnDriverTitleChanged();
+    partial void OnDriverIDChanging(System.Nullable<int> value);
+    partial void OnDriverIDChanged();
     partial void OnEditorChanging(string value);
     partial void OnEditorChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnShippingIndexChanging(System.Nullable<int> value);
-    partial void OnShippingIndexChanged();
+    partial void OnShippingIDChanging(System.Nullable<int> value);
+    partial void OnShippingIDChanged();
     partial void OnOnlySQLChanging(bool value);
     partial void OnOnlySQLChanged();
     #endregion
@@ -4240,26 +4240,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_DriverTitle", DbType="Int")]
-		public System.Nullable<int> DriverTitle
+		[Column(Storage="_DriverID", DbType="Int")]
+		public System.Nullable<int> DriverID
 		{
 			get
 			{
-				return this._DriverTitle;
+				return this._DriverID;
 			}
 			set
 			{
-				if ((this._DriverTitle != value))
+				if ((this._DriverID != value))
 				{
 					if (this._Driver.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnDriverTitleChanging(value);
+					this.OnDriverIDChanging(value);
 					this.SendPropertyChanging();
-					this._DriverTitle = value;
-					this.SendPropertyChanged("DriverTitle");
-					this.OnDriverTitleChanged();
+					this._DriverID = value;
+					this.SendPropertyChanged("DriverID");
+					this.OnDriverIDChanged();
 				}
 			}
 		}
@@ -4324,26 +4324,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ShippingIndex", DbType="Int")]
-		public System.Nullable<int> ShippingIndex
+		[Column(Storage="_ShippingID", DbType="Int")]
+		public System.Nullable<int> ShippingID
 		{
 			get
 			{
-				return this._ShippingIndex;
+				return this._ShippingID;
 			}
 			set
 			{
-				if ((this._ShippingIndex != value))
+				if ((this._ShippingID != value))
 				{
 					if (this._Shipping.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnShippingIndexChanging(value);
+					this.OnShippingIDChanging(value);
 					this.SendPropertyChanging();
-					this._ShippingIndex = value;
-					this.SendPropertyChanged("ShippingIndex");
-					this.OnShippingIndexChanged();
+					this._ShippingID = value;
+					this.SendPropertyChanged("ShippingID");
+					this.OnShippingIDChanged();
 				}
 			}
 		}
@@ -4368,7 +4368,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_DriversTeam_Driver", Storage="_Driver", ThisKey="DriverTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_DriversTeam_Driver", Storage="_Driver", ThisKey="DriverID", OtherKey="ID", IsForeignKey=true)]
 		public Driver Driver
 		{
 			get
@@ -4391,18 +4391,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.DriversTeam.Add(this);
-						this._DriverTitle = value.ID;
+						this._DriverID = value.ID;
 					}
 					else
 					{
-						this._DriverTitle = default(Nullable<int>);
+						this._DriverID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Driver");
 				}
 			}
 		}
 		
-		[Association(Name="FK_DriversTeam_Shipping", Storage="_Shipping", ThisKey="ShippingIndex", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_DriversTeam_Shipping", Storage="_Shipping", ThisKey="ShippingID", OtherKey="ID", IsForeignKey=true)]
 		public Shipping Shipping
 		{
 			get
@@ -4425,11 +4425,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.DriversTeam.Add(this);
-						this._ShippingIndex = value.ID;
+						this._ShippingID = value.ID;
 					}
 					else
 					{
-						this._ShippingIndex = default(Nullable<int>);
+						this._ShippingID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Shipping");
 				}
@@ -5101,7 +5101,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_EscortPOLibrary", Storage="_Shipping", ThisKey="ID", OtherKey="Shipping2EscortPOIndex", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_EscortPOLibrary", Storage="_Shipping", ThisKey="ID", OtherKey="EscortPOID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping
 		{
 			get
@@ -5506,7 +5506,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Route_FreightPayer", Storage="_Route", ThisKey="ID", OtherKey="FreightPayerTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Route_FreightPayer", Storage="_Route", ThisKey="ID", OtherKey="FreightPayerID", DeleteRule="NO ACTION")]
 		public EntitySet<Route> Route
 		{
 			get
@@ -5519,7 +5519,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_SecurityEscortRoute_FreightPayer", Storage="_SecurityEscortRoute", ThisKey="ID", OtherKey="FreightPayerTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_SecurityEscortRoute_FreightPayer", Storage="_SecurityEscortRoute", ThisKey="ID", OtherKey="FreightPayerID", DeleteRule="NO ACTION")]
 		public EntitySet<SecurityEscortRoute> SecurityEscortRoute
 		{
 			get
@@ -6269,7 +6269,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_FreightPOLibrary", Storage="_Shipping", ThisKey="ID", OtherKey="Shipping2FreightPOIndex", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_FreightPOLibrary", Storage="_Shipping", ThisKey="ID", OtherKey="FreightPOID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping
 		{
 			get
@@ -6567,13 +6567,13 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private string _InvoiceNumber;
 		
-		private System.Nullable<int> _LoadDescription2Commodity;
+		private System.Nullable<int> _CommodityID;
 		
-		private System.Nullable<int> _LoadDescription2PartnerTitle;
+		private System.Nullable<int> _PartnerID;
 		
-		private System.Nullable<int> _LoadDescription2ShippingIndex;
+		private System.Nullable<int> _ShippingID;
 		
-		private System.Nullable<int> _MarketTitle;
+		private System.Nullable<int> _MarketID;
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
@@ -6613,14 +6613,14 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnIDChanged();
     partial void OnInvoiceNumberChanging(string value);
     partial void OnInvoiceNumberChanged();
-    partial void OnLoadDescription2CommodityChanging(System.Nullable<int> value);
-    partial void OnLoadDescription2CommodityChanged();
-    partial void OnLoadDescription2PartnerTitleChanging(System.Nullable<int> value);
-    partial void OnLoadDescription2PartnerTitleChanged();
-    partial void OnLoadDescription2ShippingIndexChanging(System.Nullable<int> value);
-    partial void OnLoadDescription2ShippingIndexChanged();
-    partial void OnMarketTitleChanging(System.Nullable<int> value);
-    partial void OnMarketTitleChanged();
+    partial void OnCommodityIDChanging(System.Nullable<int> value);
+    partial void OnCommodityIDChanged();
+    partial void OnPartnerIDChanging(System.Nullable<int> value);
+    partial void OnPartnerIDChanged();
+    partial void OnShippingIDChanging(System.Nullable<int> value);
+    partial void OnShippingIDChanged();
+    partial void OnMarketIDChanging(System.Nullable<int> value);
+    partial void OnMarketIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
     partial void OnNumberOfPalletsChanging(System.Nullable<double> value);
@@ -6802,98 +6802,98 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_LoadDescription2Commodity", DbType="Int")]
-		public System.Nullable<int> LoadDescription2Commodity
+		[Column(Storage="_CommodityID", DbType="Int")]
+		public System.Nullable<int> CommodityID
 		{
 			get
 			{
-				return this._LoadDescription2Commodity;
+				return this._CommodityID;
 			}
 			set
 			{
-				if ((this._LoadDescription2Commodity != value))
+				if ((this._CommodityID != value))
 				{
 					if (this._Commodity.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnLoadDescription2CommodityChanging(value);
+					this.OnCommodityIDChanging(value);
 					this.SendPropertyChanging();
-					this._LoadDescription2Commodity = value;
-					this.SendPropertyChanged("LoadDescription2Commodity");
-					this.OnLoadDescription2CommodityChanged();
+					this._CommodityID = value;
+					this.SendPropertyChanged("CommodityID");
+					this.OnCommodityIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_LoadDescription2PartnerTitle", DbType="Int")]
-		public System.Nullable<int> LoadDescription2PartnerTitle
+		[Column(Storage="_PartnerID", DbType="Int")]
+		public System.Nullable<int> PartnerID
 		{
 			get
 			{
-				return this._LoadDescription2PartnerTitle;
+				return this._PartnerID;
 			}
 			set
 			{
-				if ((this._LoadDescription2PartnerTitle != value))
+				if ((this._PartnerID != value))
 				{
 					if (this._Partner.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnLoadDescription2PartnerTitleChanging(value);
+					this.OnPartnerIDChanging(value);
 					this.SendPropertyChanging();
-					this._LoadDescription2PartnerTitle = value;
-					this.SendPropertyChanged("LoadDescription2PartnerTitle");
-					this.OnLoadDescription2PartnerTitleChanged();
+					this._PartnerID = value;
+					this.SendPropertyChanged("PartnerID");
+					this.OnPartnerIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_LoadDescription2ShippingIndex", DbType="Int")]
-		public System.Nullable<int> LoadDescription2ShippingIndex
+		[Column(Storage="_ShippingID", DbType="Int")]
+		public System.Nullable<int> ShippingID
 		{
 			get
 			{
-				return this._LoadDescription2ShippingIndex;
+				return this._ShippingID;
 			}
 			set
 			{
-				if ((this._LoadDescription2ShippingIndex != value))
+				if ((this._ShippingID != value))
 				{
 					if (this._Shipping.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnLoadDescription2ShippingIndexChanging(value);
+					this.OnShippingIDChanging(value);
 					this.SendPropertyChanging();
-					this._LoadDescription2ShippingIndex = value;
-					this.SendPropertyChanged("LoadDescription2ShippingIndex");
-					this.OnLoadDescription2ShippingIndexChanged();
+					this._ShippingID = value;
+					this.SendPropertyChanged("ShippingID");
+					this.OnShippingIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_MarketTitle", DbType="Int")]
-		public System.Nullable<int> MarketTitle
+		[Column(Storage="_MarketID", DbType="Int")]
+		public System.Nullable<int> MarketID
 		{
 			get
 			{
-				return this._MarketTitle;
+				return this._MarketID;
 			}
 			set
 			{
-				if ((this._MarketTitle != value))
+				if ((this._MarketID != value))
 				{
 					if (this._Market.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnMarketTitleChanging(value);
+					this.OnMarketIDChanging(value);
 					this.SendPropertyChanging();
-					this._MarketTitle = value;
-					this.SendPropertyChanged("MarketTitle");
-					this.OnMarketTitleChanged();
+					this._MarketID = value;
+					this.SendPropertyChanged("MarketID");
+					this.OnMarketIDChanged();
 				}
 			}
 		}
@@ -6958,7 +6958,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_Title", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Title
 		{
 			get
@@ -6998,7 +6998,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_LoadDescription_Commodity", Storage="_Commodity", ThisKey="LoadDescription2Commodity", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_LoadDescription_Commodity", Storage="_Commodity", ThisKey="CommodityID", OtherKey="ID", IsForeignKey=true)]
 		public Commodity Commodity
 		{
 			get
@@ -7021,18 +7021,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.LoadDescription.Add(this);
-						this._LoadDescription2Commodity = value.ID;
+						this._CommodityID = value.ID;
 					}
 					else
 					{
-						this._LoadDescription2Commodity = default(Nullable<int>);
+						this._CommodityID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Commodity");
 				}
 			}
 		}
 		
-		[Association(Name="FK_LoadDescription_Market", Storage="_Market", ThisKey="MarketTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_LoadDescription_Market", Storage="_Market", ThisKey="MarketID", OtherKey="ID", IsForeignKey=true)]
 		public Market Market
 		{
 			get
@@ -7055,18 +7055,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.LoadDescription.Add(this);
-						this._MarketTitle = value.ID;
+						this._MarketID = value.ID;
 					}
 					else
 					{
-						this._MarketTitle = default(Nullable<int>);
+						this._MarketID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Market");
 				}
 			}
 		}
 		
-		[Association(Name="FK_LoadDescription_Partner", Storage="_Partner", ThisKey="LoadDescription2PartnerTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_LoadDescription_Partner", Storage="_Partner", ThisKey="PartnerID", OtherKey="ID", IsForeignKey=true)]
 		public Partner Partner
 		{
 			get
@@ -7089,18 +7089,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.LoadDescription.Add(this);
-						this._LoadDescription2PartnerTitle = value.ID;
+						this._PartnerID = value.ID;
 					}
 					else
 					{
-						this._LoadDescription2PartnerTitle = default(Nullable<int>);
+						this._PartnerID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Partner");
 				}
 			}
 		}
 		
-		[Association(Name="FK_LoadDescription_Shipping", Storage="_Shipping", ThisKey="LoadDescription2ShippingIndex", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_LoadDescription_Shipping", Storage="_Shipping", ThisKey="ShippingID", OtherKey="ID", IsForeignKey=true)]
 		public Shipping Shipping
 		{
 			get
@@ -7123,11 +7123,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.LoadDescription.Add(this);
-						this._LoadDescription2ShippingIndex = value.ID;
+						this._ShippingID = value.ID;
 					}
 					else
 					{
-						this._LoadDescription2ShippingIndex = default(Nullable<int>);
+						this._ShippingID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Shipping");
 				}
@@ -7346,7 +7346,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_DestinationMarket_Market", Storage="_DestinationMarket", ThisKey="ID", OtherKey="MarketTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_DestinationMarket_Market", Storage="_DestinationMarket", ThisKey="ID", OtherKey="MarketID", DeleteRule="NO ACTION")]
 		public EntitySet<DestinationMarket> DestinationMarket
 		{
 			get
@@ -7359,7 +7359,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_LoadDescription_Market", Storage="_LoadDescription", ThisKey="ID", OtherKey="MarketTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_LoadDescription_Market", Storage="_LoadDescription", ThisKey="ID", OtherKey="MarketID", DeleteRule="NO ACTION")]
 		public EntitySet<LoadDescription> LoadDescription
 		{
 			get
@@ -7437,7 +7437,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _Partner2WarehouseTitle;
+		private System.Nullable<int> _WarehouseID;
 		
 		private string _ServiceType;
 		
@@ -7491,8 +7491,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnPartner2WarehouseTitleChanging(System.Nullable<int> value);
-    partial void OnPartner2WarehouseTitleChanged();
+    partial void OnWarehouseIDChanging(System.Nullable<int> value);
+    partial void OnWarehouseIDChanged();
     partial void OnServiceTypeChanging(string value);
     partial void OnServiceTypeChanged();
     partial void OnShepherdUserChanging(string value);
@@ -7663,26 +7663,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Partner2WarehouseTitle", DbType="Int")]
-		public System.Nullable<int> Partner2WarehouseTitle
+		[Column(Storage="_WarehouseID", DbType="Int")]
+		public System.Nullable<int> WarehouseID
 		{
 			get
 			{
-				return this._Partner2WarehouseTitle;
+				return this._WarehouseID;
 			}
 			set
 			{
-				if ((this._Partner2WarehouseTitle != value))
+				if ((this._WarehouseID != value))
 				{
 					if (this._Warehouse.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnPartner2WarehouseTitleChanging(value);
+					this.OnWarehouseIDChanging(value);
 					this.SendPropertyChanging();
-					this._Partner2WarehouseTitle = value;
-					this.SendPropertyChanged("Partner2WarehouseTitle");
-					this.OnPartner2WarehouseTitleChanged();
+					this._WarehouseID = value;
+					this.SendPropertyChanged("WarehouseID");
+					this.OnWarehouseIDChanged();
 				}
 			}
 		}
@@ -7707,7 +7707,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ShepherdUser", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ShepherdUser", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string ShepherdUser
 		{
 			get
@@ -7807,7 +7807,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_AlarmsAndEvents_Partner", Storage="_AlarmsAndEvents", ThisKey="ID", OtherKey="AlarmsAndEventsList2PartnerTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_AlarmsAndEvents_Partner", Storage="_AlarmsAndEvents", ThisKey="ID", OtherKey="PartnerID", DeleteRule="NO ACTION")]
 		public EntitySet<AlarmsAndEvents> AlarmsAndEvents
 		{
 			get
@@ -7820,7 +7820,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_CarrierPerformanceReport_Partner", Storage="_CarrierPerformanceReport", ThisKey="ID", OtherKey="CPR2PartnerTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_CarrierPerformanceReport_Partner", Storage="_CarrierPerformanceReport", ThisKey="ID", OtherKey="PartnerID", DeleteRule="NO ACTION")]
 		public EntitySet<CarrierPerformanceReport> CarrierPerformanceReport
 		{
 			get
@@ -7833,7 +7833,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Driver_Partner", Storage="_Driver", ThisKey="ID", OtherKey="Driver2PartnerTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Driver_Partner", Storage="_Driver", ThisKey="ID", OtherKey="PartnerID", DeleteRule="NO ACTION")]
 		public EntitySet<Driver> Driver
 		{
 			get
@@ -7846,7 +7846,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_LoadDescription_Partner", Storage="_LoadDescription", ThisKey="ID", OtherKey="LoadDescription2PartnerTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_LoadDescription_Partner", Storage="_LoadDescription", ThisKey="ID", OtherKey="PartnerID", DeleteRule="NO ACTION")]
 		public EntitySet<LoadDescription> LoadDescription
 		{
 			get
@@ -7859,7 +7859,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Partner_Warehouse", Storage="_Warehouse", ThisKey="Partner2WarehouseTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Partner_Warehouse", Storage="_Warehouse", ThisKey="WarehouseID", OtherKey="ID", IsForeignKey=true)]
 		public Warehouse Warehouse
 		{
 			get
@@ -7882,18 +7882,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Partner.Add(this);
-						this._Partner2WarehouseTitle = value.ID;
+						this._WarehouseID = value.ID;
 					}
 					else
 					{
-						this._Partner2WarehouseTitle = default(Nullable<int>);
+						this._WarehouseID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Warehouse");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Route_Partner", Storage="_Route", ThisKey="ID", OtherKey="PartnerTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Route_Partner", Storage="_Route", ThisKey="ID", OtherKey="PartnerID", DeleteRule="NO ACTION")]
 		public EntitySet<Route> Route
 		{
 			get
@@ -7906,7 +7906,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_SecurityEscortRoute_Partner", Storage="_SecurityEscortRoute", ThisKey="ID", OtherKey="PartnerTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_SecurityEscortRoute_Partner", Storage="_SecurityEscortRoute", ThisKey="ID", OtherKey="PartnerID", DeleteRule="NO ACTION")]
 		public EntitySet<SecurityEscortRoute> SecurityEscortRoute
 		{
 			get
@@ -7919,7 +7919,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Partner", Storage="_Shipping", ThisKey="ID", OtherKey="PartnerTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_Partner", Storage="_Shipping", ThisKey="ID", OtherKey="PartnerID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping
 		{
 			get
@@ -7932,7 +7932,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_PartnerEscort", Storage="_Shipping_PartnerEscort", ThisKey="ID", OtherKey="Shipping2PartnerTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_PartnerEscort", Storage="_Shipping_PartnerEscort", ThisKey="ID", OtherKey="EscortPartnerID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping_PartnerEscort
 		{
 			get
@@ -7945,7 +7945,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Trailer_Partner", Storage="_Trailer", ThisKey="ID", OtherKey="Trailer2PartnerTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Trailer_Partner", Storage="_Trailer", ThisKey="ID", OtherKey="PartnerID", DeleteRule="NO ACTION")]
 		public EntitySet<Trailer> Trailer
 		{
 			get
@@ -7958,7 +7958,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Truck_Partner", Storage="_Truck", ThisKey="ID", OtherKey="Truck2PartnerTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Truck_Partner", Storage="_Truck", ThisKey="ID", OtherKey="PartnerID", DeleteRule="NO ACTION")]
 		public EntitySet<Truck> Truck
 		{
 			get
@@ -8078,13 +8078,13 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		private void attach_Shipping_PartnerEscort(Shipping entity)
 		{
 			this.SendPropertyChanging();
-			entity.Shipping2PartnerTitlePartner = this;
+			entity.EscortPartner = this;
 		}
 		
 		private void detach_Shipping_PartnerEscort(Shipping entity)
 		{
 			this.SendPropertyChanging();
-			entity.Shipping2PartnerTitlePartner = null;
+			entity.EscortPartner = null;
 		}
 		
 		private void attach_Trailer(Trailer entity)
@@ -8120,11 +8120,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private string _Author;
 		
-		private System.Nullable<int> _CarrierTitle;
+		private System.Nullable<int> _CarrierID;
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private System.Nullable<int> _CurrencyTitle;
+		private System.Nullable<int> _CurrencyID;
 		
 		private string _DepartureCity;
 		
@@ -8132,7 +8132,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private string _Editor;
 		
-		private System.Nullable<int> _FreightPayerTitle;
+		private System.Nullable<int> _FreightPayerID;
 		
 		private string _GoodsHandlingPO;
 		
@@ -8144,25 +8144,25 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _PartnerTitle;
+		private System.Nullable<int> _PartnerID;
 		
 		private string _RemarkMM;
 		
-		private System.Nullable<int> _Route2BusinessDescriptionTitle;
+		private System.Nullable<int> _BusinessDescriptionID;
 		
-		private System.Nullable<int> _Route2CityTitle;
+		private System.Nullable<int> _CityID;
 		
-		private System.Nullable<int> _Route2Commodity;
+		private System.Nullable<int> _CommodityID;
 		
-		private System.Nullable<int> _SAPDestinationPlantTitle;
+		private System.Nullable<int> _SAPDestinationPlantID;
 		
-		private System.Nullable<int> _ShipmentTypeTitle;
+		private System.Nullable<int> _ShipmentTypeID;
 		
 		private string _Title;
 		
 		private System.Nullable<double> _TransportCosts;
 		
-		private System.Nullable<int> _TransportUnitTypeTitle;
+		private System.Nullable<int> _TransportUnitTypeID;
 		
 		private bool _OnlySQL;
 		
@@ -8194,20 +8194,20 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnAuthorChanging(string value);
     partial void OnAuthorChanged();
-    partial void OnCarrierTitleChanging(System.Nullable<int> value);
-    partial void OnCarrierTitleChanged();
+    partial void OnCarrierIDChanging(System.Nullable<int> value);
+    partial void OnCarrierIDChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCurrencyTitleChanging(System.Nullable<int> value);
-    partial void OnCurrencyTitleChanged();
+    partial void OnCurrencyIDChanging(System.Nullable<int> value);
+    partial void OnCurrencyIDChanged();
     partial void OnDepartureCityChanging(string value);
     partial void OnDepartureCityChanged();
     partial void OnDeparturePortChanging(string value);
     partial void OnDeparturePortChanged();
     partial void OnEditorChanging(string value);
     partial void OnEditorChanged();
-    partial void OnFreightPayerTitleChanging(System.Nullable<int> value);
-    partial void OnFreightPayerTitleChanged();
+    partial void OnFreightPayerIDChanging(System.Nullable<int> value);
+    partial void OnFreightPayerIDChanged();
     partial void OnGoodsHandlingPOChanging(string value);
     partial void OnGoodsHandlingPOChanged();
     partial void OnIDChanging(int value);
@@ -8218,26 +8218,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnMaterialMasterChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnPartnerTitleChanging(System.Nullable<int> value);
-    partial void OnPartnerTitleChanged();
+    partial void OnPartnerIDChanging(System.Nullable<int> value);
+    partial void OnPartnerIDChanged();
     partial void OnRemarkMMChanging(string value);
     partial void OnRemarkMMChanged();
-    partial void OnRoute2BusinessDescriptionTitleChanging(System.Nullable<int> value);
-    partial void OnRoute2BusinessDescriptionTitleChanged();
-    partial void OnRoute2CityTitleChanging(System.Nullable<int> value);
-    partial void OnRoute2CityTitleChanged();
-    partial void OnRoute2CommodityChanging(System.Nullable<int> value);
-    partial void OnRoute2CommodityChanged();
-    partial void OnSAPDestinationPlantTitleChanging(System.Nullable<int> value);
-    partial void OnSAPDestinationPlantTitleChanged();
-    partial void OnShipmentTypeTitleChanging(System.Nullable<int> value);
-    partial void OnShipmentTypeTitleChanged();
+    partial void OnBusinessDescriptionIDChanging(System.Nullable<int> value);
+    partial void OnBusinessDescriptionIDChanged();
+    partial void OnCityIDChanging(System.Nullable<int> value);
+    partial void OnCityIDChanged();
+    partial void OnCommodityIDChanging(System.Nullable<int> value);
+    partial void OnCommodityIDChanged();
+    partial void OnSAPDestinationPlantIDChanging(System.Nullable<int> value);
+    partial void OnSAPDestinationPlantIDChanged();
+    partial void OnShipmentTypeIDChanging(System.Nullable<int> value);
+    partial void OnShipmentTypeIDChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnTransportCostsChanging(System.Nullable<double> value);
     partial void OnTransportCostsChanged();
-    partial void OnTransportUnitTypeTitleChanging(System.Nullable<int> value);
-    partial void OnTransportUnitTypeTitleChanged();
+    partial void OnTransportUnitTypeIDChanging(System.Nullable<int> value);
+    partial void OnTransportUnitTypeIDChanged();
     partial void OnOnlySQLChanging(bool value);
     partial void OnOnlySQLChanged();
     #endregion
@@ -8278,26 +8278,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CarrierTitle", DbType="Int")]
-		public System.Nullable<int> CarrierTitle
+		[Column(Storage="_CarrierID", DbType="Int")]
+		public System.Nullable<int> CarrierID
 		{
 			get
 			{
-				return this._CarrierTitle;
+				return this._CarrierID;
 			}
 			set
 			{
-				if ((this._CarrierTitle != value))
+				if ((this._CarrierID != value))
 				{
 					if (this._Carrier.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnCarrierTitleChanging(value);
+					this.OnCarrierIDChanging(value);
 					this.SendPropertyChanging();
-					this._CarrierTitle = value;
-					this.SendPropertyChanged("CarrierTitle");
-					this.OnCarrierTitleChanged();
+					this._CarrierID = value;
+					this.SendPropertyChanged("CarrierID");
+					this.OnCarrierIDChanged();
 				}
 			}
 		}
@@ -8322,26 +8322,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CurrencyTitle", DbType="Int")]
-		public System.Nullable<int> CurrencyTitle
+		[Column(Storage="_CurrencyID", DbType="Int")]
+		public System.Nullable<int> CurrencyID
 		{
 			get
 			{
-				return this._CurrencyTitle;
+				return this._CurrencyID;
 			}
 			set
 			{
-				if ((this._CurrencyTitle != value))
+				if ((this._CurrencyID != value))
 				{
 					if (this._Currency.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnCurrencyTitleChanging(value);
+					this.OnCurrencyIDChanging(value);
 					this.SendPropertyChanging();
-					this._CurrencyTitle = value;
-					this.SendPropertyChanged("CurrencyTitle");
-					this.OnCurrencyTitleChanged();
+					this._CurrencyID = value;
+					this.SendPropertyChanged("CurrencyID");
+					this.OnCurrencyIDChanged();
 				}
 			}
 		}
@@ -8406,26 +8406,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_FreightPayerTitle", DbType="Int")]
-		public System.Nullable<int> FreightPayerTitle
+		[Column(Storage="_FreightPayerID", DbType="Int")]
+		public System.Nullable<int> FreightPayerID
 		{
 			get
 			{
-				return this._FreightPayerTitle;
+				return this._FreightPayerID;
 			}
 			set
 			{
-				if ((this._FreightPayerTitle != value))
+				if ((this._FreightPayerID != value))
 				{
 					if (this._FreightPayer.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnFreightPayerTitleChanging(value);
+					this.OnFreightPayerIDChanging(value);
 					this.SendPropertyChanging();
-					this._FreightPayerTitle = value;
-					this.SendPropertyChanged("FreightPayerTitle");
-					this.OnFreightPayerTitleChanged();
+					this._FreightPayerID = value;
+					this.SendPropertyChanged("FreightPayerID");
+					this.OnFreightPayerIDChanged();
 				}
 			}
 		}
@@ -8530,26 +8530,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_PartnerTitle", DbType="Int")]
-		public System.Nullable<int> PartnerTitle
+		[Column(Storage="_PartnerID", DbType="Int")]
+		public System.Nullable<int> PartnerID
 		{
 			get
 			{
-				return this._PartnerTitle;
+				return this._PartnerID;
 			}
 			set
 			{
-				if ((this._PartnerTitle != value))
+				if ((this._PartnerID != value))
 				{
 					if (this._Partner.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnPartnerTitleChanging(value);
+					this.OnPartnerIDChanging(value);
 					this.SendPropertyChanging();
-					this._PartnerTitle = value;
-					this.SendPropertyChanged("PartnerTitle");
-					this.OnPartnerTitleChanged();
+					this._PartnerID = value;
+					this.SendPropertyChanged("PartnerID");
+					this.OnPartnerIDChanged();
 				}
 			}
 		}
@@ -8574,122 +8574,122 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Route2BusinessDescriptionTitle", DbType="Int")]
-		public System.Nullable<int> Route2BusinessDescriptionTitle
+		[Column(Storage="_BusinessDescriptionID", DbType="Int")]
+		public System.Nullable<int> BusinessDescriptionID
 		{
 			get
 			{
-				return this._Route2BusinessDescriptionTitle;
+				return this._BusinessDescriptionID;
 			}
 			set
 			{
-				if ((this._Route2BusinessDescriptionTitle != value))
+				if ((this._BusinessDescriptionID != value))
 				{
 					if (this._BusinessDescription.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnRoute2BusinessDescriptionTitleChanging(value);
+					this.OnBusinessDescriptionIDChanging(value);
 					this.SendPropertyChanging();
-					this._Route2BusinessDescriptionTitle = value;
-					this.SendPropertyChanged("Route2BusinessDescriptionTitle");
-					this.OnRoute2BusinessDescriptionTitleChanged();
+					this._BusinessDescriptionID = value;
+					this.SendPropertyChanged("BusinessDescriptionID");
+					this.OnBusinessDescriptionIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Route2CityTitle", DbType="Int")]
-		public System.Nullable<int> Route2CityTitle
+		[Column(Storage="_CityID", DbType="Int")]
+		public System.Nullable<int> CityID
 		{
 			get
 			{
-				return this._Route2CityTitle;
+				return this._CityID;
 			}
 			set
 			{
-				if ((this._Route2CityTitle != value))
+				if ((this._CityID != value))
 				{
 					if (this._City.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnRoute2CityTitleChanging(value);
+					this.OnCityIDChanging(value);
 					this.SendPropertyChanging();
-					this._Route2CityTitle = value;
-					this.SendPropertyChanged("Route2CityTitle");
-					this.OnRoute2CityTitleChanged();
+					this._CityID = value;
+					this.SendPropertyChanged("CityID");
+					this.OnCityIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Route2Commodity", DbType="Int")]
-		public System.Nullable<int> Route2Commodity
+		[Column(Storage="_CommodityID", DbType="Int")]
+		public System.Nullable<int> CommodityID
 		{
 			get
 			{
-				return this._Route2Commodity;
+				return this._CommodityID;
 			}
 			set
 			{
-				if ((this._Route2Commodity != value))
+				if ((this._CommodityID != value))
 				{
 					if (this._Commodity.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnRoute2CommodityChanging(value);
+					this.OnCommodityIDChanging(value);
 					this.SendPropertyChanging();
-					this._Route2Commodity = value;
-					this.SendPropertyChanged("Route2Commodity");
-					this.OnRoute2CommodityChanged();
+					this._CommodityID = value;
+					this.SendPropertyChanged("CommodityID");
+					this.OnCommodityIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_SAPDestinationPlantTitle", DbType="Int")]
-		public System.Nullable<int> SAPDestinationPlantTitle
+		[Column(Storage="_SAPDestinationPlantID", DbType="Int")]
+		public System.Nullable<int> SAPDestinationPlantID
 		{
 			get
 			{
-				return this._SAPDestinationPlantTitle;
+				return this._SAPDestinationPlantID;
 			}
 			set
 			{
-				if ((this._SAPDestinationPlantTitle != value))
+				if ((this._SAPDestinationPlantID != value))
 				{
 					if (this._SAPDestinationPlant.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnSAPDestinationPlantTitleChanging(value);
+					this.OnSAPDestinationPlantIDChanging(value);
 					this.SendPropertyChanging();
-					this._SAPDestinationPlantTitle = value;
-					this.SendPropertyChanged("SAPDestinationPlantTitle");
-					this.OnSAPDestinationPlantTitleChanged();
+					this._SAPDestinationPlantID = value;
+					this.SendPropertyChanged("SAPDestinationPlantID");
+					this.OnSAPDestinationPlantIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_ShipmentTypeTitle", DbType="Int")]
-		public System.Nullable<int> ShipmentTypeTitle
+		[Column(Storage="_ShipmentTypeID", DbType="Int")]
+		public System.Nullable<int> ShipmentTypeID
 		{
 			get
 			{
-				return this._ShipmentTypeTitle;
+				return this._ShipmentTypeID;
 			}
 			set
 			{
-				if ((this._ShipmentTypeTitle != value))
+				if ((this._ShipmentTypeID != value))
 				{
 					if (this._ShipmentType.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnShipmentTypeTitleChanging(value);
+					this.OnShipmentTypeIDChanging(value);
 					this.SendPropertyChanging();
-					this._ShipmentTypeTitle = value;
-					this.SendPropertyChanged("ShipmentTypeTitle");
-					this.OnShipmentTypeTitleChanged();
+					this._ShipmentTypeID = value;
+					this.SendPropertyChanged("ShipmentTypeID");
+					this.OnShipmentTypeIDChanged();
 				}
 			}
 		}
@@ -8734,26 +8734,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_TransportUnitTypeTitle", DbType="Int")]
-		public System.Nullable<int> TransportUnitTypeTitle
+		[Column(Storage="_TransportUnitTypeID", DbType="Int")]
+		public System.Nullable<int> TransportUnitTypeID
 		{
 			get
 			{
-				return this._TransportUnitTypeTitle;
+				return this._TransportUnitTypeID;
 			}
 			set
 			{
-				if ((this._TransportUnitTypeTitle != value))
+				if ((this._TransportUnitTypeID != value))
 				{
 					if (this._TransportUnitType.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnTransportUnitTypeTitleChanging(value);
+					this.OnTransportUnitTypeIDChanging(value);
 					this.SendPropertyChanging();
-					this._TransportUnitTypeTitle = value;
-					this.SendPropertyChanged("TransportUnitTypeTitle");
-					this.OnTransportUnitTypeTitleChanged();
+					this._TransportUnitTypeID = value;
+					this.SendPropertyChanged("TransportUnitTypeID");
+					this.OnTransportUnitTypeIDChanged();
 				}
 			}
 		}
@@ -8778,7 +8778,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Route_BusinessDescription", Storage="_BusinessDescription", ThisKey="Route2BusinessDescriptionTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Route_BusinessDescription", Storage="_BusinessDescription", ThisKey="BusinessDescriptionID", OtherKey="ID", IsForeignKey=true)]
 		public BusinessDescription BusinessDescription
 		{
 			get
@@ -8801,18 +8801,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Route.Add(this);
-						this._Route2BusinessDescriptionTitle = value.ID;
+						this._BusinessDescriptionID = value.ID;
 					}
 					else
 					{
-						this._Route2BusinessDescriptionTitle = default(Nullable<int>);
+						this._BusinessDescriptionID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("BusinessDescription");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Route_Carrier", Storage="_Carrier", ThisKey="CarrierTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Route_Carrier", Storage="_Carrier", ThisKey="CarrierID", OtherKey="ID", IsForeignKey=true)]
 		public Carrier Carrier
 		{
 			get
@@ -8835,18 +8835,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Route.Add(this);
-						this._CarrierTitle = value.ID;
+						this._CarrierID = value.ID;
 					}
 					else
 					{
-						this._CarrierTitle = default(Nullable<int>);
+						this._CarrierID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Carrier");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Route_City", Storage="_City", ThisKey="Route2CityTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Route_City", Storage="_City", ThisKey="CityID", OtherKey="ID", IsForeignKey=true)]
 		public City City
 		{
 			get
@@ -8869,18 +8869,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Route.Add(this);
-						this._Route2CityTitle = value.ID;
+						this._CityID = value.ID;
 					}
 					else
 					{
-						this._Route2CityTitle = default(Nullable<int>);
+						this._CityID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("City");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Route_Commodity", Storage="_Commodity", ThisKey="Route2Commodity", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Route_Commodity", Storage="_Commodity", ThisKey="CommodityID", OtherKey="ID", IsForeignKey=true)]
 		public Commodity Commodity
 		{
 			get
@@ -8903,18 +8903,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Route.Add(this);
-						this._Route2Commodity = value.ID;
+						this._CommodityID = value.ID;
 					}
 					else
 					{
-						this._Route2Commodity = default(Nullable<int>);
+						this._CommodityID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Commodity");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Route_Currency", Storage="_Currency", ThisKey="CurrencyTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Route_Currency", Storage="_Currency", ThisKey="CurrencyID", OtherKey="ID", IsForeignKey=true)]
 		public Currency Currency
 		{
 			get
@@ -8937,18 +8937,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Route.Add(this);
-						this._CurrencyTitle = value.ID;
+						this._CurrencyID = value.ID;
 					}
 					else
 					{
-						this._CurrencyTitle = default(Nullable<int>);
+						this._CurrencyID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Currency");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Route_FreightPayer", Storage="_FreightPayer", ThisKey="FreightPayerTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Route_FreightPayer", Storage="_FreightPayer", ThisKey="FreightPayerID", OtherKey="ID", IsForeignKey=true)]
 		public FreightPayer FreightPayer
 		{
 			get
@@ -8971,18 +8971,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Route.Add(this);
-						this._FreightPayerTitle = value.ID;
+						this._FreightPayerID = value.ID;
 					}
 					else
 					{
-						this._FreightPayerTitle = default(Nullable<int>);
+						this._FreightPayerID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("FreightPayer");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Route_Partner", Storage="_Partner", ThisKey="PartnerTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Route_Partner", Storage="_Partner", ThisKey="PartnerID", OtherKey="ID", IsForeignKey=true)]
 		public Partner Partner
 		{
 			get
@@ -9005,18 +9005,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Route.Add(this);
-						this._PartnerTitle = value.ID;
+						this._PartnerID = value.ID;
 					}
 					else
 					{
-						this._PartnerTitle = default(Nullable<int>);
+						this._PartnerID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Partner");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Route_SAPDestinationPlant", Storage="_SAPDestinationPlant", ThisKey="SAPDestinationPlantTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Route_SAPDestinationPlant", Storage="_SAPDestinationPlant", ThisKey="SAPDestinationPlantID", OtherKey="ID", IsForeignKey=true)]
 		public SAPDestinationPlant SAPDestinationPlant
 		{
 			get
@@ -9039,18 +9039,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Route.Add(this);
-						this._SAPDestinationPlantTitle = value.ID;
+						this._SAPDestinationPlantID = value.ID;
 					}
 					else
 					{
-						this._SAPDestinationPlantTitle = default(Nullable<int>);
+						this._SAPDestinationPlantID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("SAPDestinationPlant");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Route_ShipmentType", Storage="_ShipmentType", ThisKey="ShipmentTypeTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Route_ShipmentType", Storage="_ShipmentType", ThisKey="ShipmentTypeID", OtherKey="ID", IsForeignKey=true)]
 		public ShipmentType ShipmentType
 		{
 			get
@@ -9073,18 +9073,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Route.Add(this);
-						this._ShipmentTypeTitle = value.ID;
+						this._ShipmentTypeID = value.ID;
 					}
 					else
 					{
-						this._ShipmentTypeTitle = default(Nullable<int>);
+						this._ShipmentTypeID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("ShipmentType");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Route_TransportUnitType", Storage="_TransportUnitType", ThisKey="TransportUnitTypeTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Route_TransportUnitType", Storage="_TransportUnitType", ThisKey="TransportUnitTypeID", OtherKey="ID", IsForeignKey=true)]
 		public TransportUnitType TransportUnitType
 		{
 			get
@@ -9107,18 +9107,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Route.Add(this);
-						this._TransportUnitTypeTitle = value.ID;
+						this._TransportUnitTypeID = value.ID;
 					}
 					else
 					{
-						this._TransportUnitTypeTitle = default(Nullable<int>);
+						this._TransportUnitTypeID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("TransportUnitType");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Route", Storage="_Shipping", ThisKey="ID", OtherKey="Shipping2RouteTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_Route", Storage="_Shipping", ThisKey="ID", OtherKey="RouteID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping
 		{
 			get
@@ -9352,7 +9352,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Route_SAPDestinationPlant", Storage="_Route", ThisKey="ID", OtherKey="SAPDestinationPlantTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Route_SAPDestinationPlant", Storage="_Route", ThisKey="ID", OtherKey="SAPDestinationPlantID", DeleteRule="NO ACTION")]
 		public EntitySet<Route> Route
 		{
 			get
@@ -9651,7 +9651,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_TimeSlotsTemplate_ScheduleTemplate", Storage="_TimeSlotsTemplate", ThisKey="ID", OtherKey="ScheduleTemplateTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_TimeSlotsTemplate_ScheduleTemplate", Storage="_TimeSlotsTemplate", ThisKey="ID", OtherKey="ScheduleTemplateID", DeleteRule="NO ACTION")]
 		public EntitySet<TimeSlotsTemplate> TimeSlotsTemplate
 		{
 			get
@@ -10365,7 +10365,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_SealProtocolLibrary", Storage="_Shipping", ThisKey="ID", OtherKey="SecuritySealProtocolIndex", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_SealProtocolLibrary", Storage="_Shipping", ThisKey="ID", OtherKey="SecuritySealProtocolID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping
 		{
 			get
@@ -10421,13 +10421,13 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Created;
 		
-		private System.Nullable<int> _CurrencyTitle;
+		private System.Nullable<int> _CurrencyID;
 		
 		private string _Editor;
 		
 		private string _EscortDestination;
 		
-		private System.Nullable<int> _FreightPayerTitle;
+		private System.Nullable<int> _FreightPayerID;
 		
 		private int _ID;
 		
@@ -10435,13 +10435,13 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _PartnerTitle;
+		private System.Nullable<int> _PartnerID;
 		
 		private string _RemarkMM;
 		
 		private System.Nullable<double> _SecurityCost;
 		
-		private System.Nullable<int> _SecurityEscortCatalog2BusinessDescriptionTitle;
+		private System.Nullable<int> _BusinessDescriptionID;
 		
 		private string _SecurityEscrotPO;
 		
@@ -10467,28 +10467,28 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnAuthorChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
-    partial void OnCurrencyTitleChanging(System.Nullable<int> value);
-    partial void OnCurrencyTitleChanged();
+    partial void OnCurrencyIDChanging(System.Nullable<int> value);
+    partial void OnCurrencyIDChanged();
     partial void OnEditorChanging(string value);
     partial void OnEditorChanged();
     partial void OnEscortDestinationChanging(string value);
     partial void OnEscortDestinationChanged();
-    partial void OnFreightPayerTitleChanging(System.Nullable<int> value);
-    partial void OnFreightPayerTitleChanged();
+    partial void OnFreightPayerIDChanging(System.Nullable<int> value);
+    partial void OnFreightPayerIDChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     partial void OnMaterialMasterChanging(string value);
     partial void OnMaterialMasterChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnPartnerTitleChanging(System.Nullable<int> value);
-    partial void OnPartnerTitleChanged();
+    partial void OnPartnerIDChanging(System.Nullable<int> value);
+    partial void OnPartnerIDChanged();
     partial void OnRemarkMMChanging(string value);
     partial void OnRemarkMMChanged();
     partial void OnSecurityCostChanging(System.Nullable<double> value);
     partial void OnSecurityCostChanged();
-    partial void OnSecurityEscortCatalog2BusinessDescriptionTitleChanging(System.Nullable<int> value);
-    partial void OnSecurityEscortCatalog2BusinessDescriptionTitleChanged();
+    partial void OnBusinessDescriptionIDChanging(System.Nullable<int> value);
+    partial void OnBusinessDescriptionIDChanged();
     partial void OnSecurityEscrotPOChanging(string value);
     partial void OnSecurityEscrotPOChanged();
     partial void OnTitleChanging(string value);
@@ -10547,26 +10547,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CurrencyTitle", DbType="Int")]
-		public System.Nullable<int> CurrencyTitle
+		[Column(Storage="_CurrencyID", DbType="Int")]
+		public System.Nullable<int> CurrencyID
 		{
 			get
 			{
-				return this._CurrencyTitle;
+				return this._CurrencyID;
 			}
 			set
 			{
-				if ((this._CurrencyTitle != value))
+				if ((this._CurrencyID != value))
 				{
 					if (this._Currency.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnCurrencyTitleChanging(value);
+					this.OnCurrencyIDChanging(value);
 					this.SendPropertyChanging();
-					this._CurrencyTitle = value;
-					this.SendPropertyChanged("CurrencyTitle");
-					this.OnCurrencyTitleChanged();
+					this._CurrencyID = value;
+					this.SendPropertyChanged("CurrencyID");
+					this.OnCurrencyIDChanged();
 				}
 			}
 		}
@@ -10611,26 +10611,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_FreightPayerTitle", DbType="Int")]
-		public System.Nullable<int> FreightPayerTitle
+		[Column(Storage="_FreightPayerID", DbType="Int")]
+		public System.Nullable<int> FreightPayerID
 		{
 			get
 			{
-				return this._FreightPayerTitle;
+				return this._FreightPayerID;
 			}
 			set
 			{
-				if ((this._FreightPayerTitle != value))
+				if ((this._FreightPayerID != value))
 				{
 					if (this._FreightPayer.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnFreightPayerTitleChanging(value);
+					this.OnFreightPayerIDChanging(value);
 					this.SendPropertyChanging();
-					this._FreightPayerTitle = value;
-					this.SendPropertyChanged("FreightPayerTitle");
-					this.OnFreightPayerTitleChanged();
+					this._FreightPayerID = value;
+					this.SendPropertyChanged("FreightPayerID");
+					this.OnFreightPayerIDChanged();
 				}
 			}
 		}
@@ -10695,26 +10695,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_PartnerTitle", DbType="Int")]
-		public System.Nullable<int> PartnerTitle
+		[Column(Storage="_PartnerID", DbType="Int")]
+		public System.Nullable<int> PartnerID
 		{
 			get
 			{
-				return this._PartnerTitle;
+				return this._PartnerID;
 			}
 			set
 			{
-				if ((this._PartnerTitle != value))
+				if ((this._PartnerID != value))
 				{
 					if (this._Partner.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnPartnerTitleChanging(value);
+					this.OnPartnerIDChanging(value);
 					this.SendPropertyChanging();
-					this._PartnerTitle = value;
-					this.SendPropertyChanged("PartnerTitle");
-					this.OnPartnerTitleChanged();
+					this._PartnerID = value;
+					this.SendPropertyChanged("PartnerID");
+					this.OnPartnerIDChanged();
 				}
 			}
 		}
@@ -10759,26 +10759,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SecurityEscortCatalog2BusinessDescriptionTitle", DbType="Int")]
-		public System.Nullable<int> SecurityEscortCatalog2BusinessDescriptionTitle
+		[Column(Storage="_BusinessDescriptionID", DbType="Int")]
+		public System.Nullable<int> BusinessDescriptionID
 		{
 			get
 			{
-				return this._SecurityEscortCatalog2BusinessDescriptionTitle;
+				return this._BusinessDescriptionID;
 			}
 			set
 			{
-				if ((this._SecurityEscortCatalog2BusinessDescriptionTitle != value))
+				if ((this._BusinessDescriptionID != value))
 				{
 					if (this._BusinessDescription.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnSecurityEscortCatalog2BusinessDescriptionTitleChanging(value);
+					this.OnBusinessDescriptionIDChanging(value);
 					this.SendPropertyChanging();
-					this._SecurityEscortCatalog2BusinessDescriptionTitle = value;
-					this.SendPropertyChanged("SecurityEscortCatalog2BusinessDescriptionTitle");
-					this.OnSecurityEscortCatalog2BusinessDescriptionTitleChanged();
+					this._BusinessDescriptionID = value;
+					this.SendPropertyChanged("BusinessDescriptionID");
+					this.OnBusinessDescriptionIDChanged();
 				}
 			}
 		}
@@ -10843,7 +10843,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_SecurityEscortRoute_BusinessDescription", Storage="_BusinessDescription", ThisKey="SecurityEscortCatalog2BusinessDescriptionTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_SecurityEscortRoute_BusinessDescription", Storage="_BusinessDescription", ThisKey="BusinessDescriptionID", OtherKey="ID", IsForeignKey=true)]
 		public BusinessDescription BusinessDescription
 		{
 			get
@@ -10866,18 +10866,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.SecurityEscortRoute.Add(this);
-						this._SecurityEscortCatalog2BusinessDescriptionTitle = value.ID;
+						this._BusinessDescriptionID = value.ID;
 					}
 					else
 					{
-						this._SecurityEscortCatalog2BusinessDescriptionTitle = default(Nullable<int>);
+						this._BusinessDescriptionID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("BusinessDescription");
 				}
 			}
 		}
 		
-		[Association(Name="FK_SecurityEscortRoute_Currency", Storage="_Currency", ThisKey="CurrencyTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_SecurityEscortRoute_Currency", Storage="_Currency", ThisKey="CurrencyID", OtherKey="ID", IsForeignKey=true)]
 		public Currency Currency
 		{
 			get
@@ -10900,18 +10900,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.SecurityEscortRoute.Add(this);
-						this._CurrencyTitle = value.ID;
+						this._CurrencyID = value.ID;
 					}
 					else
 					{
-						this._CurrencyTitle = default(Nullable<int>);
+						this._CurrencyID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Currency");
 				}
 			}
 		}
 		
-		[Association(Name="FK_SecurityEscortRoute_FreightPayer", Storage="_FreightPayer", ThisKey="FreightPayerTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_SecurityEscortRoute_FreightPayer", Storage="_FreightPayer", ThisKey="FreightPayerID", OtherKey="ID", IsForeignKey=true)]
 		public FreightPayer FreightPayer
 		{
 			get
@@ -10934,18 +10934,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.SecurityEscortRoute.Add(this);
-						this._FreightPayerTitle = value.ID;
+						this._FreightPayerID = value.ID;
 					}
 					else
 					{
-						this._FreightPayerTitle = default(Nullable<int>);
+						this._FreightPayerID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("FreightPayer");
 				}
 			}
 		}
 		
-		[Association(Name="FK_SecurityEscortRoute_Partner", Storage="_Partner", ThisKey="PartnerTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_SecurityEscortRoute_Partner", Storage="_Partner", ThisKey="PartnerID", OtherKey="ID", IsForeignKey=true)]
 		public Partner Partner
 		{
 			get
@@ -10968,18 +10968,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.SecurityEscortRoute.Add(this);
-						this._PartnerTitle = value.ID;
+						this._PartnerID = value.ID;
 					}
 					else
 					{
-						this._PartnerTitle = default(Nullable<int>);
+						this._PartnerID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Partner");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_SecurityEscortRoute", Storage="_Shipping", ThisKey="ID", OtherKey="SecurityEscortCatalogTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_SecurityEscortRoute", Storage="_Shipping", ThisKey="ID", OtherKey="SecurityEscortCatalogID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping
 		{
 			get
@@ -11213,7 +11213,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Route_ShipmentType", Storage="_Route", ThisKey="ID", OtherKey="ShipmentTypeTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Route_ShipmentType", Storage="_Route", ThisKey="ID", OtherKey="ShipmentTypeID", DeleteRule="NO ACTION")]
 		public EntitySet<Route> Route
 		{
 			get
@@ -11273,7 +11273,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private string _BusinessDescription;
 		
-		private string _CancelationReason;
+		private string _Comments;
 		
 		private string _ContainerNo;
 		
@@ -11299,7 +11299,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _PartnerTitle;
+		private System.Nullable<int> _EscortPartnerID;
 		
 		private System.Nullable<System.DateTime> _PoLastModification;
 		
@@ -11307,33 +11307,33 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private string _ReportPeriod;
 		
-		private System.Nullable<int> _SecurityEscortCatalogTitle;
+		private System.Nullable<int> _SecurityEscortCatalogID;
 		
-		private System.Nullable<int> _SecuritySealProtocolIndex;
+		private System.Nullable<int> _SecuritySealProtocolID;
 		
-		private System.Nullable<int> _Shipping2City;
+		private System.Nullable<int> _CityID;
 		
-		private System.Nullable<int> _Shipping2Currency4AddCosts;
+		private System.Nullable<int> _Currency4AddCostsID;
 		
-		private System.Nullable<int> _Shipping2Currency4CostsPerKU;
+		private System.Nullable<int> _Currency4CostsPerKUID;
 		
-		private System.Nullable<int> _Shipping2CurrencyForEscort;
+		private System.Nullable<int> _CurrencyForEscortID;
 		
-		private System.Nullable<int> _Shipping2CurrencyForFreight;
+		private System.Nullable<int> _CurrencyForFreightID;
 		
-		private System.Nullable<int> _Shipping2EscortPOIndex;
+		private System.Nullable<int> _EscortPOID;
 		
-		private System.Nullable<int> _Shipping2FreightPOIndex;
+		private System.Nullable<int> _FreightPOID;
 		
-		private System.Nullable<int> _Shipping2PartnerTitle;
+		private System.Nullable<int> _PartnerID;
 		
-		private System.Nullable<int> _Shipping2RouteTitle;
+		private System.Nullable<int> _RouteID;
 		
-		private System.Nullable<int> _Shipping2TransportUnitType;
+		private System.Nullable<int> _TransportUnitTypeID;
 		
-		private System.Nullable<int> _Shipping2TruckTitle;
+		private System.Nullable<int> _TruckID;
 		
-		private System.Nullable<int> _Shipping2WarehouseTitle;
+		private System.Nullable<int> _WarehouseID;
 		
 		private string _ShippingCarrierTitle;
 		
@@ -11367,11 +11367,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private string _TrailerConditionComments;
 		
-		private System.Nullable<int> _TrailerTitle;
+		private System.Nullable<int> _TrailerID;
 		
 		private System.Nullable<bool> _TruckAwaiting;
 		
-		private System.Nullable<int> _TruckTitle;
+		private System.Nullable<int> _EscortCarID;
 		
 		private System.Nullable<System.DateTime> _TSEndTime;
 		
@@ -11393,11 +11393,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private EntityRef<Currency> _Currency;
 		
-		private EntityRef<Currency> _Shipping2Currency4CostsPerKUCurrency;
+		private EntityRef<Currency> _Currency4CostsPerKU;
 		
-		private EntityRef<Currency> _Shipping2CurrencyForEscortCurrency;
+		private EntityRef<Currency> _CurrencyForEscort;
 		
-		private EntityRef<Currency> _Shipping2CurrencyForFreightCurrency;
+		private EntityRef<Currency> _CurrencyForFreight;
 		
 		private EntityRef<Truck> _Truck;
 		
@@ -11407,7 +11407,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private EntityRef<Partner> _Partner;
 		
-		private EntityRef<Partner> _Shipping2PartnerTitlePartner;
+		private EntityRef<Partner> _EscortPartner;
 		
 		private EntityRef<Route> _Route;
 		
@@ -11419,7 +11419,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private EntityRef<TransportUnitType> _TransportUnitType;
 		
-		private EntityRef<Truck> _Shipping2TruckTitleTruck;
+		private EntityRef<Truck> _Shipping_Truck;
 		
 		private EntityRef<Warehouse> _Warehouse;
 		
@@ -11437,8 +11437,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnAuthorChanged();
     partial void OnBusinessDescriptionChanging(string value);
     partial void OnBusinessDescriptionChanged();
-    partial void OnCancelationReasonChanging(string value);
-    partial void OnCancelationReasonChanged();
+    partial void OnCommentsChanging(string value);
+    partial void OnCommentsChanged();
     partial void OnContainerNoChanging(string value);
     partial void OnContainerNoChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
@@ -11463,42 +11463,42 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnLoadingTypeChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnPartnerTitleChanging(System.Nullable<int> value);
-    partial void OnPartnerTitleChanged();
+    partial void OnEscortPartnerIDChanging(System.Nullable<int> value);
+    partial void OnEscortPartnerIDChanged();
     partial void OnPoLastModificationChanging(System.Nullable<System.DateTime> value);
     partial void OnPoLastModificationChanged();
     partial void OnPoNumberMultilineChanging(string value);
     partial void OnPoNumberMultilineChanged();
     partial void OnReportPeriodChanging(string value);
     partial void OnReportPeriodChanged();
-    partial void OnSecurityEscortCatalogTitleChanging(System.Nullable<int> value);
-    partial void OnSecurityEscortCatalogTitleChanged();
-    partial void OnSecuritySealProtocolIndexChanging(System.Nullable<int> value);
-    partial void OnSecuritySealProtocolIndexChanged();
-    partial void OnShipping2CityChanging(System.Nullable<int> value);
-    partial void OnShipping2CityChanged();
-    partial void OnShipping2Currency4AddCostsChanging(System.Nullable<int> value);
-    partial void OnShipping2Currency4AddCostsChanged();
-    partial void OnShipping2Currency4CostsPerKUChanging(System.Nullable<int> value);
-    partial void OnShipping2Currency4CostsPerKUChanged();
-    partial void OnShipping2CurrencyForEscortChanging(System.Nullable<int> value);
-    partial void OnShipping2CurrencyForEscortChanged();
-    partial void OnShipping2CurrencyForFreightChanging(System.Nullable<int> value);
-    partial void OnShipping2CurrencyForFreightChanged();
-    partial void OnShipping2EscortPOIndexChanging(System.Nullable<int> value);
-    partial void OnShipping2EscortPOIndexChanged();
-    partial void OnShipping2FreightPOIndexChanging(System.Nullable<int> value);
-    partial void OnShipping2FreightPOIndexChanged();
-    partial void OnShipping2PartnerTitleChanging(System.Nullable<int> value);
-    partial void OnShipping2PartnerTitleChanged();
-    partial void OnShipping2RouteTitleChanging(System.Nullable<int> value);
-    partial void OnShipping2RouteTitleChanged();
-    partial void OnShipping2TransportUnitTypeChanging(System.Nullable<int> value);
-    partial void OnShipping2TransportUnitTypeChanged();
-    partial void OnShipping2TruckTitleChanging(System.Nullable<int> value);
-    partial void OnShipping2TruckTitleChanged();
-    partial void OnShipping2WarehouseTitleChanging(System.Nullable<int> value);
-    partial void OnShipping2WarehouseTitleChanged();
+    partial void OnSecurityEscortCatalogIDChanging(System.Nullable<int> value);
+    partial void OnSecurityEscortCatalogIDChanged();
+    partial void OnSecuritySealProtocolIDChanging(System.Nullable<int> value);
+    partial void OnSecuritySealProtocolIDChanged();
+    partial void OnCityIDChanging(System.Nullable<int> value);
+    partial void OnCityIDChanged();
+    partial void OnCurrency4AddCostsIDChanging(System.Nullable<int> value);
+    partial void OnCurrency4AddCostsIDChanged();
+    partial void OnCurrency4CostsPerKUIDChanging(System.Nullable<int> value);
+    partial void OnCurrency4CostsPerKUIDChanged();
+    partial void OnCurrencyForEscortIDChanging(System.Nullable<int> value);
+    partial void OnCurrencyForEscortIDChanged();
+    partial void OnCurrencyForFreightIDChanging(System.Nullable<int> value);
+    partial void OnCurrencyForFreightIDChanged();
+    partial void OnEscortPOIDChanging(System.Nullable<int> value);
+    partial void OnEscortPOIDChanged();
+    partial void OnFreightPOIDChanging(System.Nullable<int> value);
+    partial void OnFreightPOIDChanged();
+    partial void OnPartnerIDChanging(System.Nullable<int> value);
+    partial void OnPartnerIDChanged();
+    partial void OnRouteIDChanging(System.Nullable<int> value);
+    partial void OnRouteIDChanged();
+    partial void OnTransportUnitTypeIDChanging(System.Nullable<int> value);
+    partial void OnTransportUnitTypeIDChanged();
+    partial void OnTruckIDChanging(System.Nullable<int> value);
+    partial void OnTruckIDChanged();
+    partial void OnWarehouseIDChanging(System.Nullable<int> value);
+    partial void OnWarehouseIDChanged();
     partial void OnShippingCarrierTitleChanging(string value);
     partial void OnShippingCarrierTitleChanged();
     partial void OnShippingCommodityTitleChanging(string value);
@@ -11531,12 +11531,12 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnTrailerConditionChanged();
     partial void OnTrailerConditionCommentsChanging(string value);
     partial void OnTrailerConditionCommentsChanged();
-    partial void OnTrailerTitleChanging(System.Nullable<int> value);
-    partial void OnTrailerTitleChanged();
+    partial void OnTrailerIDChanging(System.Nullable<int> value);
+    partial void OnTrailerIDChanged();
     partial void OnTruckAwaitingChanging(System.Nullable<bool> value);
     partial void OnTruckAwaitingChanged();
-    partial void OnTruckTitleChanging(System.Nullable<int> value);
-    partial void OnTruckTitleChanged();
+    partial void OnEscortCarIDChanging(System.Nullable<int> value);
+    partial void OnEscortCarIDChanged();
     partial void OnTSEndTimeChanging(System.Nullable<System.DateTime> value);
     partial void OnTSEndTimeChanged();
     partial void OnTSStartTimeChanging(System.Nullable<System.DateTime> value);
@@ -11556,20 +11556,20 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			this._LoadDescription = new EntitySet<LoadDescription>(new Action<LoadDescription>(this.attach_LoadDescription), new Action<LoadDescription>(this.detach_LoadDescription));
 			this._City = default(EntityRef<City>);
 			this._Currency = default(EntityRef<Currency>);
-			this._Shipping2Currency4CostsPerKUCurrency = default(EntityRef<Currency>);
-			this._Shipping2CurrencyForEscortCurrency = default(EntityRef<Currency>);
-			this._Shipping2CurrencyForFreightCurrency = default(EntityRef<Currency>);
+			this._Currency4CostsPerKU = default(EntityRef<Currency>);
+			this._CurrencyForEscort = default(EntityRef<Currency>);
+			this._CurrencyForFreight = default(EntityRef<Currency>);
 			this._Truck = default(EntityRef<Truck>);
 			this._EscortPOLibrary = default(EntityRef<EscortPOLibrary>);
 			this._FreightPOLibrary = default(EntityRef<FreightPOLibrary>);
 			this._Partner = default(EntityRef<Partner>);
-			this._Shipping2PartnerTitlePartner = default(EntityRef<Partner>);
+			this._EscortPartner = default(EntityRef<Partner>);
 			this._Route = default(EntityRef<Route>);
 			this._SealProtocolLibrary = default(EntityRef<SealProtocolLibrary>);
 			this._SecurityEscortRoute = default(EntityRef<SecurityEscortRoute>);
 			this._Trailer = default(EntityRef<Trailer>);
 			this._TransportUnitType = default(EntityRef<TransportUnitType>);
-			this._Shipping2TruckTitleTruck = default(EntityRef<Truck>);
+			this._Shipping_Truck = default(EntityRef<Truck>);
 			this._Warehouse = default(EntityRef<Warehouse>);
 			this._TimeSlot = new EntitySet<TimeSlot>(new Action<TimeSlot>(this.attach_TimeSlot), new Action<TimeSlot>(this.detach_TimeSlot));
 			OnCreated();
@@ -11655,22 +11655,22 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CancelationReason", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string CancelationReason
+		[Column(Storage="_Comments", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Comments
 		{
 			get
 			{
-				return this._CancelationReason;
+				return this._Comments;
 			}
 			set
 			{
-				if ((this._CancelationReason != value))
+				if ((this._Comments != value))
 				{
-					this.OnCancelationReasonChanging(value);
+					this.OnCommentsChanging(value);
 					this.SendPropertyChanging();
-					this._CancelationReason = value;
-					this.SendPropertyChanged("CancelationReason");
-					this.OnCancelationReasonChanged();
+					this._Comments = value;
+					this.SendPropertyChanged("Comments");
+					this.OnCommentsChanged();
 				}
 			}
 		}
@@ -11915,26 +11915,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_PartnerTitle", DbType="Int")]
-		public System.Nullable<int> PartnerTitle
+		[Column(Storage="_EscortPartnerID", DbType="Int")]
+		public System.Nullable<int> EscortPartnerID
 		{
 			get
 			{
-				return this._PartnerTitle;
+				return this._EscortPartnerID;
 			}
 			set
 			{
-				if ((this._PartnerTitle != value))
+				if ((this._EscortPartnerID != value))
 				{
-					if (this._Partner.HasLoadedOrAssignedValue)
+					if (this._EscortPartner.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnPartnerTitleChanging(value);
+					this.OnEscortPartnerIDChanging(value);
 					this.SendPropertyChanging();
-					this._PartnerTitle = value;
-					this.SendPropertyChanged("PartnerTitle");
-					this.OnPartnerTitleChanged();
+					this._EscortPartnerID = value;
+					this.SendPropertyChanged("EscortPartnerID");
+					this.OnEscortPartnerIDChanged();
 				}
 			}
 		}
@@ -11999,338 +11999,338 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_SecurityEscortCatalogTitle", DbType="Int")]
-		public System.Nullable<int> SecurityEscortCatalogTitle
+		[Column(Storage="_SecurityEscortCatalogID", DbType="Int")]
+		public System.Nullable<int> SecurityEscortCatalogID
 		{
 			get
 			{
-				return this._SecurityEscortCatalogTitle;
+				return this._SecurityEscortCatalogID;
 			}
 			set
 			{
-				if ((this._SecurityEscortCatalogTitle != value))
+				if ((this._SecurityEscortCatalogID != value))
 				{
 					if (this._SecurityEscortRoute.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnSecurityEscortCatalogTitleChanging(value);
+					this.OnSecurityEscortCatalogIDChanging(value);
 					this.SendPropertyChanging();
-					this._SecurityEscortCatalogTitle = value;
-					this.SendPropertyChanged("SecurityEscortCatalogTitle");
-					this.OnSecurityEscortCatalogTitleChanged();
+					this._SecurityEscortCatalogID = value;
+					this.SendPropertyChanged("SecurityEscortCatalogID");
+					this.OnSecurityEscortCatalogIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_SecuritySealProtocolIndex", DbType="Int")]
-		public System.Nullable<int> SecuritySealProtocolIndex
+		[Column(Storage="_SecuritySealProtocolID", DbType="Int")]
+		public System.Nullable<int> SecuritySealProtocolID
 		{
 			get
 			{
-				return this._SecuritySealProtocolIndex;
+				return this._SecuritySealProtocolID;
 			}
 			set
 			{
-				if ((this._SecuritySealProtocolIndex != value))
+				if ((this._SecuritySealProtocolID != value))
 				{
 					if (this._SealProtocolLibrary.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnSecuritySealProtocolIndexChanging(value);
+					this.OnSecuritySealProtocolIDChanging(value);
 					this.SendPropertyChanging();
-					this._SecuritySealProtocolIndex = value;
-					this.SendPropertyChanged("SecuritySealProtocolIndex");
-					this.OnSecuritySealProtocolIndexChanged();
+					this._SecuritySealProtocolID = value;
+					this.SendPropertyChanged("SecuritySealProtocolID");
+					this.OnSecuritySealProtocolIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Shipping2City", DbType="Int")]
-		public System.Nullable<int> Shipping2City
+		[Column(Storage="_CityID", DbType="Int")]
+		public System.Nullable<int> CityID
 		{
 			get
 			{
-				return this._Shipping2City;
+				return this._CityID;
 			}
 			set
 			{
-				if ((this._Shipping2City != value))
+				if ((this._CityID != value))
 				{
 					if (this._City.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnShipping2CityChanging(value);
+					this.OnCityIDChanging(value);
 					this.SendPropertyChanging();
-					this._Shipping2City = value;
-					this.SendPropertyChanged("Shipping2City");
-					this.OnShipping2CityChanged();
+					this._CityID = value;
+					this.SendPropertyChanged("CityID");
+					this.OnCityIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Shipping2Currency4AddCosts", DbType="Int")]
-		public System.Nullable<int> Shipping2Currency4AddCosts
+		[Column(Storage="_Currency4AddCostsID", DbType="Int")]
+		public System.Nullable<int> Currency4AddCostsID
 		{
 			get
 			{
-				return this._Shipping2Currency4AddCosts;
+				return this._Currency4AddCostsID;
 			}
 			set
 			{
-				if ((this._Shipping2Currency4AddCosts != value))
+				if ((this._Currency4AddCostsID != value))
 				{
 					if (this._Currency.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnShipping2Currency4AddCostsChanging(value);
+					this.OnCurrency4AddCostsIDChanging(value);
 					this.SendPropertyChanging();
-					this._Shipping2Currency4AddCosts = value;
-					this.SendPropertyChanged("Shipping2Currency4AddCosts");
-					this.OnShipping2Currency4AddCostsChanged();
+					this._Currency4AddCostsID = value;
+					this.SendPropertyChanged("Currency4AddCostsID");
+					this.OnCurrency4AddCostsIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Shipping2Currency4CostsPerKU", DbType="Int")]
-		public System.Nullable<int> Shipping2Currency4CostsPerKU
+		[Column(Storage="_Currency4CostsPerKUID", DbType="Int")]
+		public System.Nullable<int> Currency4CostsPerKUID
 		{
 			get
 			{
-				return this._Shipping2Currency4CostsPerKU;
+				return this._Currency4CostsPerKUID;
 			}
 			set
 			{
-				if ((this._Shipping2Currency4CostsPerKU != value))
+				if ((this._Currency4CostsPerKUID != value))
 				{
-					if (this._Shipping2Currency4CostsPerKUCurrency.HasLoadedOrAssignedValue)
+					if (this._Currency4CostsPerKU.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnShipping2Currency4CostsPerKUChanging(value);
+					this.OnCurrency4CostsPerKUIDChanging(value);
 					this.SendPropertyChanging();
-					this._Shipping2Currency4CostsPerKU = value;
-					this.SendPropertyChanged("Shipping2Currency4CostsPerKU");
-					this.OnShipping2Currency4CostsPerKUChanged();
+					this._Currency4CostsPerKUID = value;
+					this.SendPropertyChanged("Currency4CostsPerKUID");
+					this.OnCurrency4CostsPerKUIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Shipping2CurrencyForEscort", DbType="Int")]
-		public System.Nullable<int> Shipping2CurrencyForEscort
+		[Column(Storage="_CurrencyForEscortID", DbType="Int")]
+		public System.Nullable<int> CurrencyForEscortID
 		{
 			get
 			{
-				return this._Shipping2CurrencyForEscort;
+				return this._CurrencyForEscortID;
 			}
 			set
 			{
-				if ((this._Shipping2CurrencyForEscort != value))
+				if ((this._CurrencyForEscortID != value))
 				{
-					if (this._Shipping2CurrencyForEscortCurrency.HasLoadedOrAssignedValue)
+					if (this._CurrencyForEscort.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnShipping2CurrencyForEscortChanging(value);
+					this.OnCurrencyForEscortIDChanging(value);
 					this.SendPropertyChanging();
-					this._Shipping2CurrencyForEscort = value;
-					this.SendPropertyChanged("Shipping2CurrencyForEscort");
-					this.OnShipping2CurrencyForEscortChanged();
+					this._CurrencyForEscortID = value;
+					this.SendPropertyChanged("CurrencyForEscortID");
+					this.OnCurrencyForEscortIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Shipping2CurrencyForFreight", DbType="Int")]
-		public System.Nullable<int> Shipping2CurrencyForFreight
+		[Column(Storage="_CurrencyForFreightID", DbType="Int")]
+		public System.Nullable<int> CurrencyForFreightID
 		{
 			get
 			{
-				return this._Shipping2CurrencyForFreight;
+				return this._CurrencyForFreightID;
 			}
 			set
 			{
-				if ((this._Shipping2CurrencyForFreight != value))
+				if ((this._CurrencyForFreightID != value))
 				{
-					if (this._Shipping2CurrencyForFreightCurrency.HasLoadedOrAssignedValue)
+					if (this._CurrencyForFreight.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnShipping2CurrencyForFreightChanging(value);
+					this.OnCurrencyForFreightIDChanging(value);
 					this.SendPropertyChanging();
-					this._Shipping2CurrencyForFreight = value;
-					this.SendPropertyChanged("Shipping2CurrencyForFreight");
-					this.OnShipping2CurrencyForFreightChanged();
+					this._CurrencyForFreightID = value;
+					this.SendPropertyChanged("CurrencyForFreightID");
+					this.OnCurrencyForFreightIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Shipping2EscortPOIndex", DbType="Int")]
-		public System.Nullable<int> Shipping2EscortPOIndex
+		[Column(Storage="_EscortPOID", DbType="Int")]
+		public System.Nullable<int> EscortPOID
 		{
 			get
 			{
-				return this._Shipping2EscortPOIndex;
+				return this._EscortPOID;
 			}
 			set
 			{
-				if ((this._Shipping2EscortPOIndex != value))
+				if ((this._EscortPOID != value))
 				{
 					if (this._EscortPOLibrary.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnShipping2EscortPOIndexChanging(value);
+					this.OnEscortPOIDChanging(value);
 					this.SendPropertyChanging();
-					this._Shipping2EscortPOIndex = value;
-					this.SendPropertyChanged("Shipping2EscortPOIndex");
-					this.OnShipping2EscortPOIndexChanged();
+					this._EscortPOID = value;
+					this.SendPropertyChanged("EscortPOID");
+					this.OnEscortPOIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Shipping2FreightPOIndex", DbType="Int")]
-		public System.Nullable<int> Shipping2FreightPOIndex
+		[Column(Storage="_FreightPOID", DbType="Int")]
+		public System.Nullable<int> FreightPOID
 		{
 			get
 			{
-				return this._Shipping2FreightPOIndex;
+				return this._FreightPOID;
 			}
 			set
 			{
-				if ((this._Shipping2FreightPOIndex != value))
+				if ((this._FreightPOID != value))
 				{
 					if (this._FreightPOLibrary.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnShipping2FreightPOIndexChanging(value);
+					this.OnFreightPOIDChanging(value);
 					this.SendPropertyChanging();
-					this._Shipping2FreightPOIndex = value;
-					this.SendPropertyChanged("Shipping2FreightPOIndex");
-					this.OnShipping2FreightPOIndexChanged();
+					this._FreightPOID = value;
+					this.SendPropertyChanged("FreightPOID");
+					this.OnFreightPOIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Shipping2PartnerTitle", DbType="Int")]
-		public System.Nullable<int> Shipping2PartnerTitle
+		[Column(Storage="_PartnerID", DbType="Int")]
+		public System.Nullable<int> PartnerID
 		{
 			get
 			{
-				return this._Shipping2PartnerTitle;
+				return this._PartnerID;
 			}
 			set
 			{
-				if ((this._Shipping2PartnerTitle != value))
+				if ((this._PartnerID != value))
 				{
-					if (this._Shipping2PartnerTitlePartner.HasLoadedOrAssignedValue)
+					if (this._Partner.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnShipping2PartnerTitleChanging(value);
+					this.OnPartnerIDChanging(value);
 					this.SendPropertyChanging();
-					this._Shipping2PartnerTitle = value;
-					this.SendPropertyChanged("Shipping2PartnerTitle");
-					this.OnShipping2PartnerTitleChanged();
+					this._PartnerID = value;
+					this.SendPropertyChanged("PartnerID");
+					this.OnPartnerIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Shipping2RouteTitle", DbType="Int")]
-		public System.Nullable<int> Shipping2RouteTitle
+		[Column(Storage="_RouteID", DbType="Int")]
+		public System.Nullable<int> RouteID
 		{
 			get
 			{
-				return this._Shipping2RouteTitle;
+				return this._RouteID;
 			}
 			set
 			{
-				if ((this._Shipping2RouteTitle != value))
+				if ((this._RouteID != value))
 				{
 					if (this._Route.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnShipping2RouteTitleChanging(value);
+					this.OnRouteIDChanging(value);
 					this.SendPropertyChanging();
-					this._Shipping2RouteTitle = value;
-					this.SendPropertyChanged("Shipping2RouteTitle");
-					this.OnShipping2RouteTitleChanged();
+					this._RouteID = value;
+					this.SendPropertyChanged("RouteID");
+					this.OnRouteIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Shipping2TransportUnitType", DbType="Int")]
-		public System.Nullable<int> Shipping2TransportUnitType
+		[Column(Storage="_TransportUnitTypeID", DbType="Int")]
+		public System.Nullable<int> TransportUnitTypeID
 		{
 			get
 			{
-				return this._Shipping2TransportUnitType;
+				return this._TransportUnitTypeID;
 			}
 			set
 			{
-				if ((this._Shipping2TransportUnitType != value))
+				if ((this._TransportUnitTypeID != value))
 				{
 					if (this._TransportUnitType.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnShipping2TransportUnitTypeChanging(value);
+					this.OnTransportUnitTypeIDChanging(value);
 					this.SendPropertyChanging();
-					this._Shipping2TransportUnitType = value;
-					this.SendPropertyChanged("Shipping2TransportUnitType");
-					this.OnShipping2TransportUnitTypeChanged();
+					this._TransportUnitTypeID = value;
+					this.SendPropertyChanged("TransportUnitTypeID");
+					this.OnTransportUnitTypeIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Shipping2TruckTitle", DbType="Int")]
-		public System.Nullable<int> Shipping2TruckTitle
+		[Column(Storage="_TruckID", DbType="Int")]
+		public System.Nullable<int> TruckID
 		{
 			get
 			{
-				return this._Shipping2TruckTitle;
+				return this._TruckID;
 			}
 			set
 			{
-				if ((this._Shipping2TruckTitle != value))
+				if ((this._TruckID != value))
 				{
-					if (this._Shipping2TruckTitleTruck.HasLoadedOrAssignedValue)
+					if (this._Shipping_Truck.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnShipping2TruckTitleChanging(value);
+					this.OnTruckIDChanging(value);
 					this.SendPropertyChanging();
-					this._Shipping2TruckTitle = value;
-					this.SendPropertyChanged("Shipping2TruckTitle");
-					this.OnShipping2TruckTitleChanged();
+					this._TruckID = value;
+					this.SendPropertyChanged("TruckID");
+					this.OnTruckIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Shipping2WarehouseTitle", DbType="Int")]
-		public System.Nullable<int> Shipping2WarehouseTitle
+		[Column(Storage="_WarehouseID", DbType="Int")]
+		public System.Nullable<int> WarehouseID
 		{
 			get
 			{
-				return this._Shipping2WarehouseTitle;
+				return this._WarehouseID;
 			}
 			set
 			{
-				if ((this._Shipping2WarehouseTitle != value))
+				if ((this._WarehouseID != value))
 				{
 					if (this._Warehouse.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnShipping2WarehouseTitleChanging(value);
+					this.OnWarehouseIDChanging(value);
 					this.SendPropertyChanging();
-					this._Shipping2WarehouseTitle = value;
-					this.SendPropertyChanged("Shipping2WarehouseTitle");
-					this.OnShipping2WarehouseTitleChanged();
+					this._WarehouseID = value;
+					this.SendPropertyChanged("WarehouseID");
+					this.OnWarehouseIDChanged();
 				}
 			}
 		}
@@ -12655,26 +12655,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_TrailerTitle", DbType="Int")]
-		public System.Nullable<int> TrailerTitle
+		[Column(Storage="_TrailerID", DbType="Int")]
+		public System.Nullable<int> TrailerID
 		{
 			get
 			{
-				return this._TrailerTitle;
+				return this._TrailerID;
 			}
 			set
 			{
-				if ((this._TrailerTitle != value))
+				if ((this._TrailerID != value))
 				{
 					if (this._Trailer.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnTrailerTitleChanging(value);
+					this.OnTrailerIDChanging(value);
 					this.SendPropertyChanging();
-					this._TrailerTitle = value;
-					this.SendPropertyChanged("TrailerTitle");
-					this.OnTrailerTitleChanged();
+					this._TrailerID = value;
+					this.SendPropertyChanged("TrailerID");
+					this.OnTrailerIDChanged();
 				}
 			}
 		}
@@ -12699,26 +12699,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_TruckTitle", DbType="Int")]
-		public System.Nullable<int> TruckTitle
+		[Column(Storage="_EscortCarID", DbType="Int")]
+		public System.Nullable<int> EscortCarID
 		{
 			get
 			{
-				return this._TruckTitle;
+				return this._EscortCarID;
 			}
 			set
 			{
-				if ((this._TruckTitle != value))
+				if ((this._EscortCarID != value))
 				{
 					if (this._Truck.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnTruckTitleChanging(value);
+					this.OnEscortCarIDChanging(value);
 					this.SendPropertyChanging();
-					this._TruckTitle = value;
-					this.SendPropertyChanged("TruckTitle");
-					this.OnTruckTitleChanged();
+					this._EscortCarID = value;
+					this.SendPropertyChanged("EscortCarID");
+					this.OnEscortCarIDChanged();
 				}
 			}
 		}
@@ -12823,7 +12823,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_AlarmsAndEvents_Shipping", Storage="_AlarmsAndEvents", ThisKey="ID", OtherKey="AlarmsAndEventsList2Shipping", DeleteRule="NO ACTION")]
+		[Association(Name="FK_AlarmsAndEvents_Shipping", Storage="_AlarmsAndEvents", ThisKey="ID", OtherKey="ShippingID", DeleteRule="NO ACTION")]
 		public EntitySet<AlarmsAndEvents> AlarmsAndEvents
 		{
 			get
@@ -12836,7 +12836,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_DriversTeam_Shipping", Storage="_DriversTeam", ThisKey="ID", OtherKey="ShippingIndex", DeleteRule="NO ACTION")]
+		[Association(Name="FK_DriversTeam_Shipping", Storage="_DriversTeam", ThisKey="ID", OtherKey="ShippingID", DeleteRule="NO ACTION")]
 		public EntitySet<DriversTeam> DriversTeam
 		{
 			get
@@ -12849,7 +12849,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_LoadDescription_Shipping", Storage="_LoadDescription", ThisKey="ID", OtherKey="LoadDescription2ShippingIndex", DeleteRule="NO ACTION")]
+		[Association(Name="FK_LoadDescription_Shipping", Storage="_LoadDescription", ThisKey="ID", OtherKey="ShippingID", DeleteRule="NO ACTION")]
 		public EntitySet<LoadDescription> LoadDescription
 		{
 			get
@@ -12862,7 +12862,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_City", Storage="_City", ThisKey="Shipping2City", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Shipping_City", Storage="_City", ThisKey="CityID", OtherKey="ID", IsForeignKey=true)]
 		public City City
 		{
 			get
@@ -12885,18 +12885,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Shipping.Add(this);
-						this._Shipping2City = value.ID;
+						this._CityID = value.ID;
 					}
 					else
 					{
-						this._Shipping2City = default(Nullable<int>);
+						this._CityID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("City");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Currency4AddCosts", Storage="_Currency", ThisKey="Shipping2Currency4AddCosts", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Shipping_Currency4AddCosts", Storage="_Currency", ThisKey="Currency4AddCostsID", OtherKey="ID", IsForeignKey=true)]
 		public Currency Currency
 		{
 			get
@@ -12919,120 +12919,120 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Shipping.Add(this);
-						this._Shipping2Currency4AddCosts = value.ID;
+						this._Currency4AddCostsID = value.ID;
 					}
 					else
 					{
-						this._Shipping2Currency4AddCosts = default(Nullable<int>);
+						this._Currency4AddCostsID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Currency");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Currency4CostsPerKU", Storage="_Shipping2Currency4CostsPerKUCurrency", ThisKey="Shipping2Currency4CostsPerKU", OtherKey="ID", IsForeignKey=true)]
-		public Currency Shipping2Currency4CostsPerKUCurrency
+		[Association(Name="FK_Shipping_Currency4CostsPerKU", Storage="_Currency4CostsPerKU", ThisKey="Currency4CostsPerKUID", OtherKey="ID", IsForeignKey=true)]
+		public Currency Currency4CostsPerKU
 		{
 			get
 			{
-				return this._Shipping2Currency4CostsPerKUCurrency.Entity;
+				return this._Currency4CostsPerKU.Entity;
 			}
 			set
 			{
-				Currency previousValue = this._Shipping2Currency4CostsPerKUCurrency.Entity;
+				Currency previousValue = this._Currency4CostsPerKU.Entity;
 				if (((previousValue != value) 
-							|| (this._Shipping2Currency4CostsPerKUCurrency.HasLoadedOrAssignedValue == false)))
+							|| (this._Currency4CostsPerKU.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Shipping2Currency4CostsPerKUCurrency.Entity = null;
+						this._Currency4CostsPerKU.Entity = null;
 						previousValue.Shipping_Currency4CostsPerKU.Remove(this);
 					}
-					this._Shipping2Currency4CostsPerKUCurrency.Entity = value;
+					this._Currency4CostsPerKU.Entity = value;
 					if ((value != null))
 					{
 						value.Shipping_Currency4CostsPerKU.Add(this);
-						this._Shipping2Currency4CostsPerKU = value.ID;
+						this._Currency4CostsPerKUID = value.ID;
 					}
 					else
 					{
-						this._Shipping2Currency4CostsPerKU = default(Nullable<int>);
+						this._Currency4CostsPerKUID = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("Shipping2Currency4CostsPerKUCurrency");
+					this.SendPropertyChanged("Currency4CostsPerKU");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_CurrencyForEscort", Storage="_Shipping2CurrencyForEscortCurrency", ThisKey="Shipping2CurrencyForEscort", OtherKey="ID", IsForeignKey=true)]
-		public Currency Shipping2CurrencyForEscortCurrency
+		[Association(Name="FK_Shipping_CurrencyForEscort", Storage="_CurrencyForEscort", ThisKey="CurrencyForEscortID", OtherKey="ID", IsForeignKey=true)]
+		public Currency CurrencyForEscort
 		{
 			get
 			{
-				return this._Shipping2CurrencyForEscortCurrency.Entity;
+				return this._CurrencyForEscort.Entity;
 			}
 			set
 			{
-				Currency previousValue = this._Shipping2CurrencyForEscortCurrency.Entity;
+				Currency previousValue = this._CurrencyForEscort.Entity;
 				if (((previousValue != value) 
-							|| (this._Shipping2CurrencyForEscortCurrency.HasLoadedOrAssignedValue == false)))
+							|| (this._CurrencyForEscort.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Shipping2CurrencyForEscortCurrency.Entity = null;
+						this._CurrencyForEscort.Entity = null;
 						previousValue.Shipping_CurrencyForEscort.Remove(this);
 					}
-					this._Shipping2CurrencyForEscortCurrency.Entity = value;
+					this._CurrencyForEscort.Entity = value;
 					if ((value != null))
 					{
 						value.Shipping_CurrencyForEscort.Add(this);
-						this._Shipping2CurrencyForEscort = value.ID;
+						this._CurrencyForEscortID = value.ID;
 					}
 					else
 					{
-						this._Shipping2CurrencyForEscort = default(Nullable<int>);
+						this._CurrencyForEscortID = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("Shipping2CurrencyForEscortCurrency");
+					this.SendPropertyChanged("CurrencyForEscort");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_CurrencyForFreight", Storage="_Shipping2CurrencyForFreightCurrency", ThisKey="Shipping2CurrencyForFreight", OtherKey="ID", IsForeignKey=true)]
-		public Currency Shipping2CurrencyForFreightCurrency
+		[Association(Name="FK_Shipping_CurrencyForFreight", Storage="_CurrencyForFreight", ThisKey="CurrencyForFreightID", OtherKey="ID", IsForeignKey=true)]
+		public Currency CurrencyForFreight
 		{
 			get
 			{
-				return this._Shipping2CurrencyForFreightCurrency.Entity;
+				return this._CurrencyForFreight.Entity;
 			}
 			set
 			{
-				Currency previousValue = this._Shipping2CurrencyForFreightCurrency.Entity;
+				Currency previousValue = this._CurrencyForFreight.Entity;
 				if (((previousValue != value) 
-							|| (this._Shipping2CurrencyForFreightCurrency.HasLoadedOrAssignedValue == false)))
+							|| (this._CurrencyForFreight.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Shipping2CurrencyForFreightCurrency.Entity = null;
+						this._CurrencyForFreight.Entity = null;
 						previousValue.Shipping_CurrencyForFreight.Remove(this);
 					}
-					this._Shipping2CurrencyForFreightCurrency.Entity = value;
+					this._CurrencyForFreight.Entity = value;
 					if ((value != null))
 					{
 						value.Shipping_CurrencyForFreight.Add(this);
-						this._Shipping2CurrencyForFreight = value.ID;
+						this._CurrencyForFreightID = value.ID;
 					}
 					else
 					{
-						this._Shipping2CurrencyForFreight = default(Nullable<int>);
+						this._CurrencyForFreightID = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("Shipping2CurrencyForFreightCurrency");
+					this.SendPropertyChanged("CurrencyForFreight");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Escort", Storage="_Truck", ThisKey="TruckTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Shipping_Escort", Storage="_Truck", ThisKey="EscortCarID", OtherKey="ID", IsForeignKey=true)]
 		public Truck Truck
 		{
 			get
@@ -13055,18 +13055,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Shipping.Add(this);
-						this._TruckTitle = value.ID;
+						this._EscortCarID = value.ID;
 					}
 					else
 					{
-						this._TruckTitle = default(Nullable<int>);
+						this._EscortCarID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Truck");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_EscortPOLibrary", Storage="_EscortPOLibrary", ThisKey="Shipping2EscortPOIndex", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Shipping_EscortPOLibrary", Storage="_EscortPOLibrary", ThisKey="EscortPOID", OtherKey="ID", IsForeignKey=true)]
 		public EscortPOLibrary EscortPOLibrary
 		{
 			get
@@ -13089,18 +13089,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Shipping.Add(this);
-						this._Shipping2EscortPOIndex = value.ID;
+						this._EscortPOID = value.ID;
 					}
 					else
 					{
-						this._Shipping2EscortPOIndex = default(Nullable<int>);
+						this._EscortPOID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("EscortPOLibrary");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_FreightPOLibrary", Storage="_FreightPOLibrary", ThisKey="Shipping2FreightPOIndex", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Shipping_FreightPOLibrary", Storage="_FreightPOLibrary", ThisKey="FreightPOID", OtherKey="ID", IsForeignKey=true)]
 		public FreightPOLibrary FreightPOLibrary
 		{
 			get
@@ -13123,18 +13123,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Shipping.Add(this);
-						this._Shipping2FreightPOIndex = value.ID;
+						this._FreightPOID = value.ID;
 					}
 					else
 					{
-						this._Shipping2FreightPOIndex = default(Nullable<int>);
+						this._FreightPOID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("FreightPOLibrary");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Partner", Storage="_Partner", ThisKey="PartnerTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Shipping_Partner", Storage="_Partner", ThisKey="PartnerID", OtherKey="ID", IsForeignKey=true)]
 		public Partner Partner
 		{
 			get
@@ -13157,52 +13157,52 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Shipping.Add(this);
-						this._PartnerTitle = value.ID;
+						this._PartnerID = value.ID;
 					}
 					else
 					{
-						this._PartnerTitle = default(Nullable<int>);
+						this._PartnerID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Partner");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_PartnerEscort", Storage="_Shipping2PartnerTitlePartner", ThisKey="Shipping2PartnerTitle", OtherKey="ID", IsForeignKey=true)]
-		public Partner Shipping2PartnerTitlePartner
+		[Association(Name="FK_Shipping_PartnerEscort", Storage="_EscortPartner", ThisKey="EscortPartnerID", OtherKey="ID", IsForeignKey=true)]
+		public Partner EscortPartner
 		{
 			get
 			{
-				return this._Shipping2PartnerTitlePartner.Entity;
+				return this._EscortPartner.Entity;
 			}
 			set
 			{
-				Partner previousValue = this._Shipping2PartnerTitlePartner.Entity;
+				Partner previousValue = this._EscortPartner.Entity;
 				if (((previousValue != value) 
-							|| (this._Shipping2PartnerTitlePartner.HasLoadedOrAssignedValue == false)))
+							|| (this._EscortPartner.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Shipping2PartnerTitlePartner.Entity = null;
+						this._EscortPartner.Entity = null;
 						previousValue.Shipping_PartnerEscort.Remove(this);
 					}
-					this._Shipping2PartnerTitlePartner.Entity = value;
+					this._EscortPartner.Entity = value;
 					if ((value != null))
 					{
 						value.Shipping_PartnerEscort.Add(this);
-						this._Shipping2PartnerTitle = value.ID;
+						this._EscortPartnerID = value.ID;
 					}
 					else
 					{
-						this._Shipping2PartnerTitle = default(Nullable<int>);
+						this._EscortPartnerID = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("Shipping2PartnerTitlePartner");
+					this.SendPropertyChanged("EscortPartner");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Route", Storage="_Route", ThisKey="Shipping2RouteTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Shipping_Route", Storage="_Route", ThisKey="RouteID", OtherKey="ID", IsForeignKey=true)]
 		public Route Route
 		{
 			get
@@ -13225,18 +13225,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Shipping.Add(this);
-						this._Shipping2RouteTitle = value.ID;
+						this._RouteID = value.ID;
 					}
 					else
 					{
-						this._Shipping2RouteTitle = default(Nullable<int>);
+						this._RouteID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Route");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_SealProtocolLibrary", Storage="_SealProtocolLibrary", ThisKey="SecuritySealProtocolIndex", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Shipping_SealProtocolLibrary", Storage="_SealProtocolLibrary", ThisKey="SecuritySealProtocolID", OtherKey="ID", IsForeignKey=true)]
 		public SealProtocolLibrary SealProtocolLibrary
 		{
 			get
@@ -13259,18 +13259,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Shipping.Add(this);
-						this._SecuritySealProtocolIndex = value.ID;
+						this._SecuritySealProtocolID = value.ID;
 					}
 					else
 					{
-						this._SecuritySealProtocolIndex = default(Nullable<int>);
+						this._SecuritySealProtocolID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("SealProtocolLibrary");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_SecurityEscortRoute", Storage="_SecurityEscortRoute", ThisKey="SecurityEscortCatalogTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Shipping_SecurityEscortRoute", Storage="_SecurityEscortRoute", ThisKey="SecurityEscortCatalogID", OtherKey="ID", IsForeignKey=true)]
 		public SecurityEscortRoute SecurityEscortRoute
 		{
 			get
@@ -13293,18 +13293,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Shipping.Add(this);
-						this._SecurityEscortCatalogTitle = value.ID;
+						this._SecurityEscortCatalogID = value.ID;
 					}
 					else
 					{
-						this._SecurityEscortCatalogTitle = default(Nullable<int>);
+						this._SecurityEscortCatalogID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("SecurityEscortRoute");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Trailer", Storage="_Trailer", ThisKey="TrailerTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Shipping_Trailer", Storage="_Trailer", ThisKey="TrailerID", OtherKey="ID", IsForeignKey=true)]
 		public Trailer Trailer
 		{
 			get
@@ -13327,18 +13327,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Shipping.Add(this);
-						this._TrailerTitle = value.ID;
+						this._TrailerID = value.ID;
 					}
 					else
 					{
-						this._TrailerTitle = default(Nullable<int>);
+						this._TrailerID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Trailer");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_TransportUnitType", Storage="_TransportUnitType", ThisKey="Shipping2TransportUnitType", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Shipping_TransportUnitType", Storage="_TransportUnitType", ThisKey="TransportUnitTypeID", OtherKey="ID", IsForeignKey=true)]
 		public TransportUnitType TransportUnitType
 		{
 			get
@@ -13361,52 +13361,52 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Shipping.Add(this);
-						this._Shipping2TransportUnitType = value.ID;
+						this._TransportUnitTypeID = value.ID;
 					}
 					else
 					{
-						this._Shipping2TransportUnitType = default(Nullable<int>);
+						this._TransportUnitTypeID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("TransportUnitType");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Truck", Storage="_Shipping2TruckTitleTruck", ThisKey="Shipping2TruckTitle", OtherKey="ID", IsForeignKey=true)]
-		public Truck Shipping2TruckTitleTruck
+		[Association(Name="FK_Shipping_Truck", Storage="_Shipping_Truck", ThisKey="TruckID", OtherKey="ID", IsForeignKey=true)]
+		public Truck Shipping_Truck
 		{
 			get
 			{
-				return this._Shipping2TruckTitleTruck.Entity;
+				return this._Shipping_Truck.Entity;
 			}
 			set
 			{
-				Truck previousValue = this._Shipping2TruckTitleTruck.Entity;
+				Truck previousValue = this._Shipping_Truck.Entity;
 				if (((previousValue != value) 
-							|| (this._Shipping2TruckTitleTruck.HasLoadedOrAssignedValue == false)))
+							|| (this._Shipping_Truck.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Shipping2TruckTitleTruck.Entity = null;
+						this._Shipping_Truck.Entity = null;
 						previousValue.Shipping_Truck.Remove(this);
 					}
-					this._Shipping2TruckTitleTruck.Entity = value;
+					this._Shipping_Truck.Entity = value;
 					if ((value != null))
 					{
 						value.Shipping_Truck.Add(this);
-						this._Shipping2TruckTitle = value.ID;
+						this._TruckID = value.ID;
 					}
 					else
 					{
-						this._Shipping2TruckTitle = default(Nullable<int>);
+						this._TruckID = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("Shipping2TruckTitleTruck");
+					this.SendPropertyChanged("Shipping_Truck");
 				}
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Warehouse", Storage="_Warehouse", ThisKey="Shipping2WarehouseTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Shipping_Warehouse", Storage="_Warehouse", ThisKey="WarehouseID", OtherKey="ID", IsForeignKey=true)]
 		public Warehouse Warehouse
 		{
 			get
@@ -13429,18 +13429,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Shipping.Add(this);
-						this._Shipping2WarehouseTitle = value.ID;
+						this._WarehouseID = value.ID;
 					}
 					else
 					{
-						this._Shipping2WarehouseTitle = default(Nullable<int>);
+						this._WarehouseID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Warehouse");
 				}
 			}
 		}
 		
-		[Association(Name="FK_TimeSlot_Shipping", Storage="_TimeSlot", ThisKey="ID", OtherKey="TimeSlot2ShippingIndex", DeleteRule="NO ACTION")]
+		[Association(Name="FK_TimeSlot_Shipping", Storage="_TimeSlot", ThisKey="ID", OtherKey="ShippingID", DeleteRule="NO ACTION")]
 		public EntitySet<TimeSlot> TimeSlot
 		{
 			get
@@ -13544,7 +13544,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private string _Title;
 		
-		private System.Nullable<int> _WarehouseTitle;
+		private System.Nullable<int> _WarehouseID;
 		
 		private bool _OnlySQL;
 		
@@ -13574,8 +13574,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnShippingPointDescriptionChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
-    partial void OnWarehouseTitleChanging(System.Nullable<int> value);
-    partial void OnWarehouseTitleChanged();
+    partial void OnWarehouseIDChanging(System.Nullable<int> value);
+    partial void OnWarehouseIDChanged();
     partial void OnOnlySQLChanging(bool value);
     partial void OnOnlySQLChanged();
     #endregion
@@ -13748,26 +13748,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_WarehouseTitle", DbType="Int")]
-		public System.Nullable<int> WarehouseTitle
+		[Column(Storage="_WarehouseID", DbType="Int")]
+		public System.Nullable<int> WarehouseID
 		{
 			get
 			{
-				return this._WarehouseTitle;
+				return this._WarehouseID;
 			}
 			set
 			{
-				if ((this._WarehouseTitle != value))
+				if ((this._WarehouseID != value))
 				{
 					if (this._Warehouse.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnWarehouseTitleChanging(value);
+					this.OnWarehouseIDChanging(value);
 					this.SendPropertyChanging();
-					this._WarehouseTitle = value;
-					this.SendPropertyChanged("WarehouseTitle");
-					this.OnWarehouseTitleChanged();
+					this._WarehouseID = value;
+					this.SendPropertyChanged("WarehouseID");
+					this.OnWarehouseIDChanged();
 				}
 			}
 		}
@@ -13805,7 +13805,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_ShippingPoint_Warehouse", Storage="_Warehouse", ThisKey="WarehouseTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_ShippingPoint_Warehouse", Storage="_Warehouse", ThisKey="WarehouseID", OtherKey="ID", IsForeignKey=true)]
 		public Warehouse Warehouse
 		{
 			get
@@ -13828,18 +13828,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.ShippingPoint.Add(this);
-						this._WarehouseTitle = value.ID;
+						this._WarehouseID = value.ID;
 					}
 					else
 					{
-						this._WarehouseTitle = default(Nullable<int>);
+						this._WarehouseID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Warehouse");
 				}
 			}
 		}
 		
-		[Association(Name="FK_TimeSlot_ShippingPoint", Storage="_TimeSlot", ThisKey="ID", OtherKey="TimeSlot2ShippingPointLookup", DeleteRule="NO ACTION")]
+		[Association(Name="FK_TimeSlot_ShippingPoint", Storage="_TimeSlot", ThisKey="ID", OtherKey="ShippingPointID", DeleteRule="NO ACTION")]
 		public EntitySet<TimeSlot> TimeSlot
 		{
 			get
@@ -13925,9 +13925,9 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.DateTime _StartTime;
 		
-		private System.Nullable<int> _TimeSlot2ShippingIndex;
+		private System.Nullable<int> _ShippingID;
 		
-		private System.Nullable<int> _TimeSlot2ShippingPointLookup;
+		private System.Nullable<int> _ShippingPointID;
 		
 		private System.Nullable<double> _TimeSpan;
 		
@@ -13963,10 +13963,10 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnOccupiedChanged();
     partial void OnStartTimeChanging(System.DateTime value);
     partial void OnStartTimeChanged();
-    partial void OnTimeSlot2ShippingIndexChanging(System.Nullable<int> value);
-    partial void OnTimeSlot2ShippingIndexChanged();
-    partial void OnTimeSlot2ShippingPointLookupChanging(System.Nullable<int> value);
-    partial void OnTimeSlot2ShippingPointLookupChanged();
+    partial void OnShippingIDChanging(System.Nullable<int> value);
+    partial void OnShippingIDChanged();
+    partial void OnShippingPointIDChanging(System.Nullable<int> value);
+    partial void OnShippingPointIDChanged();
     partial void OnTimeSpanChanging(System.Nullable<double> value);
     partial void OnTimeSpanChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -14200,50 +14200,50 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_TimeSlot2ShippingIndex", DbType="Int")]
-		public System.Nullable<int> TimeSlot2ShippingIndex
+		[Column(Storage="_ShippingID", DbType="Int")]
+		public System.Nullable<int> ShippingID
 		{
 			get
 			{
-				return this._TimeSlot2ShippingIndex;
+				return this._ShippingID;
 			}
 			set
 			{
-				if ((this._TimeSlot2ShippingIndex != value))
+				if ((this._ShippingID != value))
 				{
 					if (this._Shipping.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnTimeSlot2ShippingIndexChanging(value);
+					this.OnShippingIDChanging(value);
 					this.SendPropertyChanging();
-					this._TimeSlot2ShippingIndex = value;
-					this.SendPropertyChanged("TimeSlot2ShippingIndex");
-					this.OnTimeSlot2ShippingIndexChanged();
+					this._ShippingID = value;
+					this.SendPropertyChanged("ShippingID");
+					this.OnShippingIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_TimeSlot2ShippingPointLookup", DbType="Int")]
-		public System.Nullable<int> TimeSlot2ShippingPointLookup
+		[Column(Storage="_ShippingPointID", DbType="Int")]
+		public System.Nullable<int> ShippingPointID
 		{
 			get
 			{
-				return this._TimeSlot2ShippingPointLookup;
+				return this._ShippingPointID;
 			}
 			set
 			{
-				if ((this._TimeSlot2ShippingPointLookup != value))
+				if ((this._ShippingPointID != value))
 				{
 					if (this._ShippingPoint.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnTimeSlot2ShippingPointLookupChanging(value);
+					this.OnShippingPointIDChanging(value);
 					this.SendPropertyChanging();
-					this._TimeSlot2ShippingPointLookup = value;
-					this.SendPropertyChanged("TimeSlot2ShippingPointLookup");
-					this.OnTimeSlot2ShippingPointLookupChanged();
+					this._ShippingPointID = value;
+					this.SendPropertyChanged("ShippingPointID");
+					this.OnShippingPointIDChanged();
 				}
 			}
 		}
@@ -14288,7 +14288,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_TimeSlot_Shipping", Storage="_Shipping", ThisKey="TimeSlot2ShippingIndex", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_TimeSlot_Shipping", Storage="_Shipping", ThisKey="ShippingID", OtherKey="ID", IsForeignKey=true)]
 		public Shipping Shipping
 		{
 			get
@@ -14311,18 +14311,18 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.TimeSlot.Add(this);
-						this._TimeSlot2ShippingIndex = value.ID;
+						this._ShippingID = value.ID;
 					}
 					else
 					{
-						this._TimeSlot2ShippingIndex = default(Nullable<int>);
+						this._ShippingID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Shipping");
 				}
 			}
 		}
 		
-		[Association(Name="FK_TimeSlot_ShippingPoint", Storage="_ShippingPoint", ThisKey="TimeSlot2ShippingPointLookup", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_TimeSlot_ShippingPoint", Storage="_ShippingPoint", ThisKey="ShippingPointID", OtherKey="ID", IsForeignKey=true)]
 		public ShippingPoint ShippingPoint
 		{
 			get
@@ -14345,11 +14345,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.TimeSlot.Add(this);
-						this._TimeSlot2ShippingPointLookup = value.ID;
+						this._ShippingPointID = value.ID;
 					}
 					else
 					{
-						this._TimeSlot2ShippingPointLookup = default(Nullable<int>);
+						this._ShippingPointID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("ShippingPoint");
 				}
@@ -14393,7 +14393,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<System.DateTime> _Modified;
 		
-		private System.Nullable<int> _ScheduleTemplateTitle;
+		private System.Nullable<int> _ScheduleTemplateID;
 		
 		private string _TimeSlotsTemplateDay;
 		
@@ -14423,8 +14423,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnIDChanged();
     partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
     partial void OnModifiedChanged();
-    partial void OnScheduleTemplateTitleChanging(System.Nullable<int> value);
-    partial void OnScheduleTemplateTitleChanged();
+    partial void OnScheduleTemplateIDChanging(System.Nullable<int> value);
+    partial void OnScheduleTemplateIDChanged();
     partial void OnTimeSlotsTemplateDayChanging(string value);
     partial void OnTimeSlotsTemplateDayChanged();
     partial void OnTimeSlotsTemplateEndHourChanging(string value);
@@ -14545,26 +14545,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_ScheduleTemplateTitle", DbType="Int")]
-		public System.Nullable<int> ScheduleTemplateTitle
+		[Column(Storage="_ScheduleTemplateID", DbType="Int")]
+		public System.Nullable<int> ScheduleTemplateID
 		{
 			get
 			{
-				return this._ScheduleTemplateTitle;
+				return this._ScheduleTemplateID;
 			}
 			set
 			{
-				if ((this._ScheduleTemplateTitle != value))
+				if ((this._ScheduleTemplateID != value))
 				{
 					if (this._ScheduleTemplate.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnScheduleTemplateTitleChanging(value);
+					this.OnScheduleTemplateIDChanging(value);
 					this.SendPropertyChanging();
-					this._ScheduleTemplateTitle = value;
-					this.SendPropertyChanged("ScheduleTemplateTitle");
-					this.OnScheduleTemplateTitleChanged();
+					this._ScheduleTemplateID = value;
+					this.SendPropertyChanged("ScheduleTemplateID");
+					this.OnScheduleTemplateIDChanged();
 				}
 			}
 		}
@@ -14689,7 +14689,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_TimeSlotsTemplate_ScheduleTemplate", Storage="_ScheduleTemplate", ThisKey="ScheduleTemplateTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_TimeSlotsTemplate_ScheduleTemplate", Storage="_ScheduleTemplate", ThisKey="ScheduleTemplateID", OtherKey="ID", IsForeignKey=true)]
 		public ScheduleTemplate ScheduleTemplate
 		{
 			get
@@ -14712,11 +14712,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.TimeSlotsTemplate.Add(this);
-						this._ScheduleTemplateTitle = value.ID;
+						this._ScheduleTemplateID = value.ID;
 					}
 					else
 					{
-						this._ScheduleTemplateTitle = default(Nullable<int>);
+						this._ScheduleTemplateID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("ScheduleTemplate");
 				}
@@ -14766,7 +14766,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _ToBeDeleted;
 		
-		private System.Nullable<int> _Trailer2PartnerTitle;
+		private System.Nullable<int> _PartnerID;
 		
 		private bool _OnlySQL;
 		
@@ -14794,8 +14794,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnToBeDeletedChanging(System.Nullable<bool> value);
     partial void OnToBeDeletedChanged();
-    partial void OnTrailer2PartnerTitleChanging(System.Nullable<int> value);
-    partial void OnTrailer2PartnerTitleChanged();
+    partial void OnPartnerIDChanging(System.Nullable<int> value);
+    partial void OnPartnerIDChanged();
     partial void OnOnlySQLChanging(bool value);
     partial void OnOnlySQLChanged();
     #endregion
@@ -14967,26 +14967,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Trailer2PartnerTitle", DbType="Int")]
-		public System.Nullable<int> Trailer2PartnerTitle
+		[Column(Storage="_PartnerID", DbType="Int")]
+		public System.Nullable<int> PartnerID
 		{
 			get
 			{
-				return this._Trailer2PartnerTitle;
+				return this._PartnerID;
 			}
 			set
 			{
-				if ((this._Trailer2PartnerTitle != value))
+				if ((this._PartnerID != value))
 				{
 					if (this._Partner.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnTrailer2PartnerTitleChanging(value);
+					this.OnPartnerIDChanging(value);
 					this.SendPropertyChanging();
-					this._Trailer2PartnerTitle = value;
-					this.SendPropertyChanged("Trailer2PartnerTitle");
-					this.OnTrailer2PartnerTitleChanged();
+					this._PartnerID = value;
+					this.SendPropertyChanged("PartnerID");
+					this.OnPartnerIDChanged();
 				}
 			}
 		}
@@ -15011,7 +15011,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Trailer", Storage="_Shipping", ThisKey="ID", OtherKey="TrailerTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_Trailer", Storage="_Shipping", ThisKey="ID", OtherKey="TrailerID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping
 		{
 			get
@@ -15024,7 +15024,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Trailer_Partner", Storage="_Partner", ThisKey="Trailer2PartnerTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Trailer_Partner", Storage="_Partner", ThisKey="PartnerID", OtherKey="ID", IsForeignKey=true)]
 		public Partner Partner
 		{
 			get
@@ -15047,11 +15047,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Trailer.Add(this);
-						this._Trailer2PartnerTitle = value.ID;
+						this._PartnerID = value.ID;
 					}
 					else
 					{
-						this._Trailer2PartnerTitle = default(Nullable<int>);
+						this._PartnerID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Partner");
 				}
@@ -15282,7 +15282,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Route_TransportUnitType", Storage="_Route", ThisKey="ID", OtherKey="TransportUnitTypeTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Route_TransportUnitType", Storage="_Route", ThisKey="ID", OtherKey="TransportUnitTypeID", DeleteRule="NO ACTION")]
 		public EntitySet<Route> Route
 		{
 			get
@@ -15295,7 +15295,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_TransportUnitType", Storage="_Shipping", ThisKey="ID", OtherKey="Shipping2TransportUnitType", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_TransportUnitType", Storage="_Shipping", ThisKey="ID", OtherKey="TransportUnitTypeID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping
 		{
 			get
@@ -15375,7 +15375,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private System.Nullable<bool> _ToBeDeleted;
 		
-		private System.Nullable<int> _Truck2PartnerTitle;
+		private System.Nullable<int> _PartnerID;
 		
 		private string _VehicleType;
 		
@@ -15407,8 +15407,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnTitleChanged();
     partial void OnToBeDeletedChanging(System.Nullable<bool> value);
     partial void OnToBeDeletedChanged();
-    partial void OnTruck2PartnerTitleChanging(System.Nullable<int> value);
-    partial void OnTruck2PartnerTitleChanged();
+    partial void OnPartnerIDChanging(System.Nullable<int> value);
+    partial void OnPartnerIDChanged();
     partial void OnVehicleTypeChanging(string value);
     partial void OnVehicleTypeChanged();
     partial void OnOnlySQLChanging(bool value);
@@ -15583,26 +15583,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_Truck2PartnerTitle", DbType="Int")]
-		public System.Nullable<int> Truck2PartnerTitle
+		[Column(Storage="_PartnerID", DbType="Int")]
+		public System.Nullable<int> PartnerID
 		{
 			get
 			{
-				return this._Truck2PartnerTitle;
+				return this._PartnerID;
 			}
 			set
 			{
-				if ((this._Truck2PartnerTitle != value))
+				if ((this._PartnerID != value))
 				{
 					if (this._Partner.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnTruck2PartnerTitleChanging(value);
+					this.OnPartnerIDChanging(value);
 					this.SendPropertyChanging();
-					this._Truck2PartnerTitle = value;
-					this.SendPropertyChanged("Truck2PartnerTitle");
-					this.OnTruck2PartnerTitleChanged();
+					this._PartnerID = value;
+					this.SendPropertyChanged("PartnerID");
+					this.OnPartnerIDChanged();
 				}
 			}
 		}
@@ -15647,7 +15647,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Escort", Storage="_Shipping", ThisKey="ID", OtherKey="TruckTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_Escort", Storage="_Shipping", ThisKey="ID", OtherKey="EscortCarID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping
 		{
 			get
@@ -15660,7 +15660,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Truck", Storage="_Shipping_Truck", ThisKey="ID", OtherKey="Shipping2TruckTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_Truck", Storage="_Shipping_Truck", ThisKey="ID", OtherKey="TruckID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping_Truck
 		{
 			get
@@ -15673,7 +15673,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Truck_Partner", Storage="_Partner", ThisKey="Truck2PartnerTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Truck_Partner", Storage="_Partner", ThisKey="PartnerID", OtherKey="ID", IsForeignKey=true)]
 		public Partner Partner
 		{
 			get
@@ -15696,11 +15696,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Truck.Add(this);
-						this._Truck2PartnerTitle = value.ID;
+						this._PartnerID = value.ID;
 					}
 					else
 					{
-						this._Truck2PartnerTitle = default(Nullable<int>);
+						this._PartnerID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Partner");
 				}
@@ -15742,13 +15742,13 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		private void attach_Shipping_Truck(Shipping entity)
 		{
 			this.SendPropertyChanging();
-			entity.Shipping2TruckTitleTruck = this;
+			entity.Shipping_Truck = this;
 		}
 		
 		private void detach_Shipping_Truck(Shipping entity)
 		{
 			this.SendPropertyChanging();
-			entity.Shipping2TruckTitleTruck = null;
+			entity.Shipping_Truck = null;
 		}
 	}
 	
@@ -15760,7 +15760,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private string _Author;
 		
-		private System.Nullable<int> _CommodityTitle;
+		private System.Nullable<int> _CommodityID;
 		
 		private System.Nullable<System.DateTime> _Created;
 		
@@ -15790,8 +15790,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void OnCreated();
     partial void OnAuthorChanging(string value);
     partial void OnAuthorChanged();
-    partial void OnCommodityTitleChanging(System.Nullable<int> value);
-    partial void OnCommodityTitleChanged();
+    partial void OnCommodityIDChanging(System.Nullable<int> value);
+    partial void OnCommodityIDChanged();
     partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedChanged();
     partial void OnEditorChanging(string value);
@@ -15837,26 +15837,26 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Column(Storage="_CommodityTitle", DbType="Int")]
-		public System.Nullable<int> CommodityTitle
+		[Column(Storage="_CommodityID", DbType="Int")]
+		public System.Nullable<int> CommodityID
 		{
 			get
 			{
-				return this._CommodityTitle;
+				return this._CommodityID;
 			}
 			set
 			{
-				if ((this._CommodityTitle != value))
+				if ((this._CommodityID != value))
 				{
 					if (this._Commodity.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnCommodityTitleChanging(value);
+					this.OnCommodityIDChanging(value);
 					this.SendPropertyChanging();
-					this._CommodityTitle = value;
-					this.SendPropertyChanged("CommodityTitle");
-					this.OnCommodityTitleChanged();
+					this._CommodityID = value;
+					this.SendPropertyChanged("CommodityID");
+					this.OnCommodityIDChanged();
 				}
 			}
 		}
@@ -16001,7 +16001,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Partner_Warehouse", Storage="_Partner", ThisKey="ID", OtherKey="Partner2WarehouseTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Partner_Warehouse", Storage="_Partner", ThisKey="ID", OtherKey="WarehouseID", DeleteRule="NO ACTION")]
 		public EntitySet<Partner> Partner
 		{
 			get
@@ -16014,7 +16014,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Shipping_Warehouse", Storage="_Shipping", ThisKey="ID", OtherKey="Shipping2WarehouseTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_Shipping_Warehouse", Storage="_Shipping", ThisKey="ID", OtherKey="WarehouseID", DeleteRule="NO ACTION")]
 		public EntitySet<Shipping> Shipping
 		{
 			get
@@ -16027,7 +16027,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_ShippingPoint_Warehouse", Storage="_ShippingPoint", ThisKey="ID", OtherKey="WarehouseTitle", DeleteRule="NO ACTION")]
+		[Association(Name="FK_ShippingPoint_Warehouse", Storage="_ShippingPoint", ThisKey="ID", OtherKey="WarehouseID", DeleteRule="NO ACTION")]
 		public EntitySet<ShippingPoint> ShippingPoint
 		{
 			get
@@ -16040,7 +16040,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_Warehouse_Commodity", Storage="_Commodity", ThisKey="CommodityTitle", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="FK_Warehouse_Commodity", Storage="_Commodity", ThisKey="CommodityID", OtherKey="ID", IsForeignKey=true)]
 		public Commodity Commodity
 		{
 			get
@@ -16063,11 +16063,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 					if ((value != null))
 					{
 						value.Warehouse.Add(this);
-						this._CommodityTitle = value.ID;
+						this._CommodityID = value.ID;
 					}
 					else
 					{
-						this._CommodityTitle = default(Nullable<int>);
+						this._CommodityID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Commodity");
 				}

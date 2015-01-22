@@ -3,9 +3,9 @@
 namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
 {
   /// <summary>
-  /// Class Partner
+  /// Class SecurityEscortCatalog
   /// </summary>
-  public partial class Partner
+  public partial class SecurityEscortCatalog
   {
     /// <summary>
     /// Gets the mappings the key is SQL property name, the value is SP property name.
@@ -13,8 +13,10 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
     internal new static Dictionary<string, string> GetMappings()
     {
       Dictionary<string, string> _ret = Item.GetMappings();
-      _ret.Add("WarehouseID", "Partner2WarehouseTitle");
-      _ret.Add("ShepherdUser", "ShepherdUserTitle");     
+      _ret.Add("CurrencyID", "CurrencyTitle");
+      _ret.Add("PartnerID", "PartnerTitle");
+      _ret.Add("FreightPayerID", "FreightPayerTitle");
+      _ret.Add("BusinessDescriptionID", "SecurityEscortCatalog2BusinessDescriptionTitle");
       return _ret;
     }
   }

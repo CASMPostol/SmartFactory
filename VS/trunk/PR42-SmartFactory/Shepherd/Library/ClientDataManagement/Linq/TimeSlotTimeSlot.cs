@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 
 namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
 {
   /// <summary>
-  /// Class Partner
+  /// Class TimeSlotTimeSlot
   /// </summary>
-  public partial class Partner
+  public partial class TimeSlotTimeSlot
   {
     /// <summary>
     /// Gets the mappings the key is SQL property name, the value is SP property name.
@@ -13,9 +14,10 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
     internal new static Dictionary<string, string> GetMappings()
     {
       Dictionary<string, string> _ret = Item.GetMappings();
-      _ret.Add("WarehouseID", "Partner2WarehouseTitle");
-      _ret.Add("ShepherdUser", "ShepherdUserTitle");     
+      _ret.Add("ShippingID", "TimeSlot2ShippingIndex");
+      _ret.Add("ShippingPointID", "TimeSlot2ShippingPointLookup");
       return _ret;
     }
   }
 }
+
