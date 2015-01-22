@@ -35,7 +35,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Tests
       Synchronizer.CompareSelectedStoragesContent<Linq.ShippingPoint, Linq2SQL.ShippingPoint>(Linq.ShippingPoint.GetMappings());
       Synchronizer.CompareSelectedStoragesContent<Linq.Shipping, Linq2SQL.Shipping>(Linq.Shipping.GetMappings());
       Synchronizer.CompareSelectedStoragesContent<Linq.TimeSlotsTemplate, Linq2SQL.TimeSlotsTemplate>(Linq.TimeSlotsTemplate.GetMappings());
-      Synchronizer.CompareSelectedStoragesContent<Linq.TimeSlotTimeSlot, Linq2SQL.TimeSlot>(Linq.TimeSlotTimeSlot.GetMappings());
       Synchronizer.CompareSelectedStoragesContent<Linq.Trailer, Linq2SQL.Trailer>(Linq.Trailer.GetMappings());
       Synchronizer.CompareSelectedStoragesContent<Linq.TranspotUnit, Linq2SQL.TransportUnitType>(Linq.TranspotUnit.GetMappings());
       Synchronizer.CompareSelectedStoragesContent<Linq.Truck, Linq2SQL.Truck>(Linq.Truck.GetMappings());

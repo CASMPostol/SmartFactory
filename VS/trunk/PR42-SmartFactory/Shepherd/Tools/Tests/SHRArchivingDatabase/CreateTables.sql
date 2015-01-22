@@ -440,25 +440,6 @@ CREATE TABLE [dbo].[Shipping] (
     CONSTRAINT [FK_Shipping_Trailer] FOREIGN KEY ([TrailerID]) REFERENCES [dbo].[Trailer] ([ID]),
     CONSTRAINT [FK_Shipping_Escort] FOREIGN KEY ([EscortCarID]) REFERENCES [dbo].[Truck] ([ID]),
 );
-if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'AlarmsAndEvents')
-  drop table  AlarmsAndEvents;
-CREATE TABLE [dbo].[AlarmsAndEvents] (
-    [AlarmAndEventDetails]   NVARCHAR(max)   NULL,
-    [AlarmAndEventOwner]     NVARCHAR(max)   NULL,
-    [AlarmPriority]          NVARCHAR(max)   NULL,
-    [PartnerID] INT             NULL,
-    [ShippingID] INT             NULL,
-    [Author]                 NVARCHAR(max)   NULL,
-    [Created]                DATETIME        NULL,
-    [Editor]                 NVARCHAR(max)   NULL,
-    [ID]                     INT             NOT NULL,
-    [Modified]               DATETIME        NULL,
-    [Title]                  NVARCHAR(max)   NOT NULL,
-    [OnlySQL]				 BIT			 NOT NULL,	
-	CONSTRAINT [PK_AlarmsAndEvents_ID] PRIMARY KEY CLUSTERED ([ID] ASC) ,
-    CONSTRAINT [FK_AlarmsAndEvents_Partner] FOREIGN KEY ([PartnerID]) REFERENCES [dbo].[Partner] ([ID]),
-    CONSTRAINT [FK_AlarmsAndEvents_Shipping] FOREIGN KEY ([ShippingID]) REFERENCES [dbo].[Shipping] ([ID]),
-);
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'CarrierPerformanceReport')
   drop table  CarrierPerformanceReport;
 CREATE TABLE [dbo].[CarrierPerformanceReport] (
@@ -595,28 +576,6 @@ CREATE TABLE [dbo].[ScheduleTemplate] (
     [OnlySQL]				 BIT			 NOT NULL,	
 	CONSTRAINT [PK_ScheduleTemplate_ID] PRIMARY KEY CLUSTERED ([ID] ASC) ,
     CONSTRAINT [FK_ScheduleTemplate_ShippingPoint] FOREIGN KEY ([ShippingPointLookupTitle]) REFERENCES [dbo].[ShippingPoint] ([ID]),
-);
-if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'TimeSlot')
-  drop table  TimeSlot;
-CREATE TABLE [dbo].[TimeSlot] (
-    [Author]                 NVARCHAR(max)   NULL,
-    [Created]                DATETIME        NULL,
-    [Editor]                 NVARCHAR(max)   NULL,
-    [EndTime]                DATETIME        NOT NULL,
-    [EntryTime]              DATETIME        NULL,
-    [ExitTime]               DATETIME        NULL,
-	[ID]                     INT             NOT NULL,
-    [IsDouble]               BIT             NULL,
-    [Modified]               DATETIME        NULL,
-    [Occupied]               NVARCHAR(max)   NULL,
-	[StartTime]              DATETIME        NOT NULL,
-    [ShippingID] INT             NULL,
-    [ShippingPointID] INT             NULL,
-    [TimeSpan]               FLOAT           NULL,
-    [OnlySQL]				 BIT			 NOT NULL,	
-	CONSTRAINT [PK_TimeSlot_ID] PRIMARY KEY CLUSTERED ([ID] ASC) ,
-    CONSTRAINT [FK_TimeSlot_Shipping] FOREIGN KEY ([ShippingID]) REFERENCES [dbo].[Shipping] ([ID]),
-    CONSTRAINT [FK_TimeSlot_ShippingPoint] FOREIGN KEY ([ShippingPointID]) REFERENCES [dbo].[ShippingPoint] ([ID]),
 );
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'TimeSlotsTemplate')
   drop table  TimeSlotsTemplate;

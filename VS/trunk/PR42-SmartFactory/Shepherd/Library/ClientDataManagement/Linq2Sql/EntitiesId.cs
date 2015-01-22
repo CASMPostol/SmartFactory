@@ -18,7 +18,6 @@ using CAS.SharePoint.Client.Link2SQL;
 namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 {
 
-  public partial class AlarmsAndEvents : IItem { }
   public partial class ArchivingLogs : IArchivingLogs, IId { }
   public partial class ArchivingOperationLogs : IId, IArchivingOperationLogs { }
   public partial class BusinessDescription : IItem { }
@@ -45,7 +44,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
   public partial class ShipmentType : IItem { }
   public partial class Shipping : IItem { }
   public partial class ShippingPoint : IItem { }
-  public partial class TimeSlot : IItem { }
   public partial class TimeSlotsTemplate : IItem { }
   public partial class Trailer : IItem { }
   public partial class TransportUnitType : IItem { }
