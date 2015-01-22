@@ -59,11 +59,15 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       List<Linq.Shipping> _Shipping2Delete = spedc.Shipping.ToList<Linq.Shipping>().Where<Linq.Shipping>(x => (x.ShippingState2 == Linq.ShippingState2.Completed ||
                                                                                                                x.ShippingState2 == Linq.ShippingState2.Canceled) &&
                                                                                                                x.TSEndTime.IsLatter(archivalDelay)).ToList<Linq.Shipping>();
-      trace("List of Shipping loaded and contains {} items.");
+      trace(String.Format("List of Shipping loaded and contains {0} items.", _Shipping2Delete.Count));
       List<Linq.TimeSlotTimeSlot> _TimeSlot2Delete = new List<Linq.TimeSlotTimeSlot>();
+      trace(String.Format("List of TimeSlotTimeSlot loaded and contains {0} items.", _Shipping2Delete.Count));
       List<Linq.AlarmsAndEvents> _AlarmsAndEvents2Delete = new List<Linq.AlarmsAndEvents>();
+      trace(String.Format("List of AlarmsAndEvents loaded and contains {0} items.", _Shipping2Delete.Count));
       List<Linq.LoadDescription> _LoadDescription2Delete = new List<Linq.LoadDescription>();
+      trace(String.Format("List of LoadDescription loaded and contains {0} items.", _Shipping2Delete.Count));
       List<Linq.ShippingDriversTeam> _ShippingDriversTeam2Delete = new List<Linq.ShippingDriversTeam>();
+      trace(String.Format("List of ShippingDriversTeam loaded and contains {0} items.", _Shipping2Delete.Count));
       foreach (Linq.Shipping _shipping in _Shipping2Delete)
       {
         _TimeSlot2Delete.AddRange(_shipping.TimeSlot.Cast<Linq.TimeSlotTimeSlot>());
@@ -93,5 +97,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           x => sqledc.History.AddHistoryEntry(x));
       reportProgress(new ProgressChangedEventArgs(1, "The lists: TimeSlot, AlarmsAndEvents, LoadDescription, DriversTeam, Shipping have been archived."));
     }
+
   }
 }
