@@ -80,13 +80,28 @@
     <Compile Include="Linq2SQL\Entities.cs" />
     <Compile Include="Linq2SQL\EntitiesId.cs" />
     <Compile Include="Linq2SQL\SHRARCHIVE.cs" />
+    <Compile Include="Linq\CarrierPerformanceReport.cs" />
+    <Compile Include="Linq\CityType.cs" />
+    <Compile Include="Linq\DestinationMarket.cs" />
     <Compile Include="Linq\Document.cs" />
+    <Compile Include="Linq\Driver.cs" />
     <Compile Include="Linq\Entities.cs" />
     <Compile Include="Linq\Connectivity.cs" />
     <Compile Include="Linq\Entities.partial.cs" />
     <Compile Include="Linq\Item.cs" />
+    <Compile Include="Linq\LoadDescription.cs" />
     <Compile Include="Linq\Partner.cs" />
+    <Compile Include="Linq\Route.cs" />
+    <Compile Include="Linq\SecurityEscortCatalog.cs" />
+    <Compile Include="Linq\Shipping.cs" />
+    <Compile Include="Linq\ShippingDriversTeam.cs" />
+    <Compile Include="Linq\ShippingPoint.cs" />
+    <Compile Include="Linq\TimeSlotsTemplate.cs" />
+    <Compile Include="Linq\TimeSlotTimeSlot.cs" />
     <Compile Include="Linq\TraceLogWriter.cs" />
+    <Compile Include="Linq\Trailer.cs" />
+    <Compile Include="Linq\Truck.cs" />
+    <Compile Include="Linq\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
