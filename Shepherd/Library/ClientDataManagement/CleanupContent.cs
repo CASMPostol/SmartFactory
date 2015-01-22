@@ -40,7 +40,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
     /// <exception cref="System.ApplicationException">DoCleanupContent has encountered breaking inconsistency - review the log and remove problems to pass to next phase.</exception>
     public static void DoCleanupContent(string URL, string sqlConnectionString, Action<ProgressChangedEventArgs> reportProgress, Action<String> trace)
     {
-      return;
       bool _breakingIssueEncountered = false;
       reportProgress(new ProgressChangedEventArgs(1, String.Format("Starting DoCleanupContent and establishing connection with the site {0}.", URL)));
       reportProgress(new ProgressChangedEventArgs(1, String.Format("Connection string {0}", sqlConnectionString)));
@@ -137,7 +136,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       _TimeSlot3BeDeleted.AddRange(_TimeSlotAll.Where<Linq.TimeSlotTimeSlot>(x => x.TimeSlot2ShippingIndex == null));
       reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} Time Slot entries to be deleted.", _TimeSlot3BeDeleted.Count())));
       spedc.TimeSlot.Delete<Linq.TimeSlotTimeSlot, Linq2SQL.History>
-         (_TimeSlot3BeDeleted, null, x => sqledc.TimeSlot.GetAt<Linq2SQL.TimeSlot>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+         (_TimeSlot3BeDeleted, null, x => null, (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
       reportProgress(new ProgressChangedEventArgs(1, "Starting SubmitChanges."));
       Link2SQLExtensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));

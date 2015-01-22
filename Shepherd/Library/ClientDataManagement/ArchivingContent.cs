@@ -136,11 +136,11 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       }
       reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} TimeSlot entries to be deleted.", _TimeSlot2Delete.Count)));
       spedc.TimeSlot.Delete<Linq.TimeSlotTimeSlot, Linq2SQL.History>
-         (_TimeSlot2Delete, null, x => sqledc.TimeSlot.GetAt<Linq2SQL.TimeSlot>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+         (_TimeSlot2Delete, null, x => null , (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
       reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} AlarmsAndEvents entries to be deleted.", _TimeSlot2Delete.Count)));
       spedc.AlarmsAndEvents.Delete<Linq.AlarmsAndEvents, Linq2SQL.History>
-         (_AlarmsAndEvents2Delete, null, x => sqledc.AlarmsAndEvents.GetAt<Linq2SQL.AlarmsAndEvents>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+         (_AlarmsAndEvents2Delete, null, x => null, (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
       reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} LoadDescription entries to be deleted.", _LoadDescription2Delete.Count)));
       spedc.LoadDescription.Delete<Linq.LoadDescription, Linq2SQL.History>

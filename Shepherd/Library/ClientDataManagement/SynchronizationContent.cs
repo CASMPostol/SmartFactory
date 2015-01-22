@@ -59,7 +59,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           Synchronizer.Synchronize<Linq2SQL.Truck, Linq.Truck>(_sqledc.Truck, _edc.Truck, (x, y) => reportProgress(y), Linq.Truck.GetMappings(), false);
           Synchronizer.Synchronize<Linq2SQL.Trailer, Linq.Trailer>(_sqledc.Trailer, _edc.Trailer, (x, y) => reportProgress(y), Linq.Trailer.GetMappings(), false);
           Synchronizer.Synchronize<Linq2SQL.Shipping, Linq.Shipping>(_sqledc.Shipping, _edc.Shipping, (x, y) => reportProgress(y), Linq.Shipping.GetMappings(), false);
-          Synchronizer.Synchronize<Linq2SQL.AlarmsAndEvents, Linq.AlarmsAndEvents>(_sqledc.AlarmsAndEvents, _edc.AlarmsAndEvents, (x, y) => reportProgress(y), Linq.AlarmsAndEvents.GetMappings(), false);
           Synchronizer.Synchronize<Linq2SQL.CarrierPerformanceReport, Linq.CarrierPerformanceReport>(_sqledc.CarrierPerformanceReport, _edc.CarrierPerformanceReport, (x, y) => reportProgress(y), Linq.CarrierPerformanceReport.GetMappings(), false);
           Synchronizer.Synchronize<Linq2SQL.Market, Linq.Market>(_sqledc.Market, _edc.Market, (x, y) => reportProgress(y), Linq.Market.GetMappings(), false);
           Synchronizer.Synchronize<Linq2SQL.DestinationMarket, Linq.DestinationMarket>(_sqledc.DestinationMarket, _edc.DestinationMarket, (x, y) => reportProgress(y), Linq.DestinationMarket.GetMappings(), false);
@@ -68,7 +67,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           Synchronizer.Synchronize<Linq2SQL.LoadDescription, Linq.LoadDescription>(_sqledc.LoadDescription, _edc.LoadDescription, (x, y) => reportProgress(y), Linq.LoadDescription.GetMappings(), false);
           Synchronizer.Synchronize<Linq2SQL.ShippingPoint, Linq.ShippingPoint>(_sqledc.ShippingPoint, _edc.ShippingPoint, (x, y) => reportProgress(y), Linq.ShippingPoint.GetMappings(), false);
           Synchronizer.Synchronize<Linq2SQL.ScheduleTemplate, Linq.ScheduleTemplate>(_sqledc.ScheduleTemplate, _edc.ScheduleTemplate, (x, y) => reportProgress(y), Linq.ScheduleTemplate.GetMappings(), false);
-          Synchronizer.Synchronize<Linq2SQL.TimeSlot, Linq.TimeSlotTimeSlot>(_sqledc.TimeSlot, _edc.TimeSlot, (x, y) => reportProgress(y), Linq.TimeSlotTimeSlot.GetMappings(), false);
           Synchronizer.Synchronize<Linq2SQL.TimeSlotsTemplate, Linq.TimeSlotsTemplate>(_sqledc.TimeSlotsTemplate, _edc.TimeSlotsTemplate, (x, y) => reportProgress(y), Linq.TimeSlotsTemplate.GetMappings(), false); //TODO MP
 
         }

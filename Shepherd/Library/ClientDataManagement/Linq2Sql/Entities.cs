@@ -29,9 +29,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertAlarmsAndEvents(AlarmsAndEvents instance);
-    partial void UpdateAlarmsAndEvents(AlarmsAndEvents instance);
-    partial void DeleteAlarmsAndEvents(AlarmsAndEvents instance);
     partial void InsertArchivingLogs(ArchivingLogs instance);
     partial void UpdateArchivingLogs(ArchivingLogs instance);
     partial void DeleteArchivingLogs(ArchivingLogs instance);
@@ -113,9 +110,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
     partial void InsertShippingPoint(ShippingPoint instance);
     partial void UpdateShippingPoint(ShippingPoint instance);
     partial void DeleteShippingPoint(ShippingPoint instance);
-    partial void InsertTimeSlot(TimeSlot instance);
-    partial void UpdateTimeSlot(TimeSlot instance);
-    partial void DeleteTimeSlot(TimeSlot instance);
     partial void InsertTimeSlotsTemplate(TimeSlotsTemplate instance);
     partial void UpdateTimeSlotsTemplate(TimeSlotsTemplate instance);
     partial void DeleteTimeSlotsTemplate(TimeSlotsTemplate instance);
@@ -155,14 +149,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<AlarmsAndEvents> AlarmsAndEvents
-		{
-			get
-			{
-				return this.GetTable<AlarmsAndEvents>();
-			}
 		}
 		
 		public System.Data.Linq.Table<ArchivingLogs> ArchivingLogs
@@ -381,14 +367,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		public System.Data.Linq.Table<TimeSlot> TimeSlot
-		{
-			get
-			{
-				return this.GetTable<TimeSlot>();
-			}
-		}
-		
 		public System.Data.Linq.Table<TimeSlotsTemplate> TimeSlotsTemplate
 		{
 			get
@@ -426,414 +404,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			get
 			{
 				return this.GetTable<Warehouse>();
-			}
-		}
-	}
-	
-	[Table(Name="dbo.AlarmsAndEvents")]
-	public partial class AlarmsAndEvents : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _AlarmAndEventDetails;
-		
-		private string _AlarmAndEventOwner;
-		
-		private string _AlarmPriority;
-		
-		private System.Nullable<int> _PartnerID;
-		
-		private System.Nullable<int> _ShippingID;
-		
-		private string _Author;
-		
-		private System.Nullable<System.DateTime> _Created;
-		
-		private string _Editor;
-		
-		private int _ID;
-		
-		private System.Nullable<System.DateTime> _Modified;
-		
-		private string _Title;
-		
-		private bool _OnlySQL;
-		
-		private EntityRef<Partner> _Partner;
-		
-		private EntityRef<Shipping> _Shipping;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAlarmAndEventDetailsChanging(string value);
-    partial void OnAlarmAndEventDetailsChanged();
-    partial void OnAlarmAndEventOwnerChanging(string value);
-    partial void OnAlarmAndEventOwnerChanged();
-    partial void OnAlarmPriorityChanging(string value);
-    partial void OnAlarmPriorityChanged();
-    partial void OnPartnerIDChanging(System.Nullable<int> value);
-    partial void OnPartnerIDChanged();
-    partial void OnShippingIDChanging(System.Nullable<int> value);
-    partial void OnShippingIDChanged();
-    partial void OnAuthorChanging(string value);
-    partial void OnAuthorChanged();
-    partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
-    partial void OnCreatedChanged();
-    partial void OnEditorChanging(string value);
-    partial void OnEditorChanged();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
-    partial void OnModifiedChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnOnlySQLChanging(bool value);
-    partial void OnOnlySQLChanged();
-    #endregion
-		
-		public AlarmsAndEvents()
-		{
-			this._Partner = default(EntityRef<Partner>);
-			this._Shipping = default(EntityRef<Shipping>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_AlarmAndEventDetails", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string AlarmAndEventDetails
-		{
-			get
-			{
-				return this._AlarmAndEventDetails;
-			}
-			set
-			{
-				if ((this._AlarmAndEventDetails != value))
-				{
-					this.OnAlarmAndEventDetailsChanging(value);
-					this.SendPropertyChanging();
-					this._AlarmAndEventDetails = value;
-					this.SendPropertyChanged("AlarmAndEventDetails");
-					this.OnAlarmAndEventDetailsChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_AlarmAndEventOwner", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string AlarmAndEventOwner
-		{
-			get
-			{
-				return this._AlarmAndEventOwner;
-			}
-			set
-			{
-				if ((this._AlarmAndEventOwner != value))
-				{
-					this.OnAlarmAndEventOwnerChanging(value);
-					this.SendPropertyChanging();
-					this._AlarmAndEventOwner = value;
-					this.SendPropertyChanged("AlarmAndEventOwner");
-					this.OnAlarmAndEventOwnerChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_AlarmPriority", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string AlarmPriority
-		{
-			get
-			{
-				return this._AlarmPriority;
-			}
-			set
-			{
-				if ((this._AlarmPriority != value))
-				{
-					this.OnAlarmPriorityChanging(value);
-					this.SendPropertyChanging();
-					this._AlarmPriority = value;
-					this.SendPropertyChanged("AlarmPriority");
-					this.OnAlarmPriorityChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_PartnerID", DbType="Int")]
-		public System.Nullable<int> PartnerID
-		{
-			get
-			{
-				return this._PartnerID;
-			}
-			set
-			{
-				if ((this._PartnerID != value))
-				{
-					if (this._Partner.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPartnerIDChanging(value);
-					this.SendPropertyChanging();
-					this._PartnerID = value;
-					this.SendPropertyChanged("PartnerID");
-					this.OnPartnerIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ShippingID", DbType="Int")]
-		public System.Nullable<int> ShippingID
-		{
-			get
-			{
-				return this._ShippingID;
-			}
-			set
-			{
-				if ((this._ShippingID != value))
-				{
-					if (this._Shipping.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnShippingIDChanging(value);
-					this.SendPropertyChanging();
-					this._ShippingID = value;
-					this.SendPropertyChanged("ShippingID");
-					this.OnShippingIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Author
-		{
-			get
-			{
-				return this._Author;
-			}
-			set
-			{
-				if ((this._Author != value))
-				{
-					this.OnAuthorChanging(value);
-					this.SendPropertyChanging();
-					this._Author = value;
-					this.SendPropertyChanged("Author");
-					this.OnAuthorChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Created", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Created
-		{
-			get
-			{
-				return this._Created;
-			}
-			set
-			{
-				if ((this._Created != value))
-				{
-					this.OnCreatedChanging(value);
-					this.SendPropertyChanging();
-					this._Created = value;
-					this.SendPropertyChanged("Created");
-					this.OnCreatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Editor
-		{
-			get
-			{
-				return this._Editor;
-			}
-			set
-			{
-				if ((this._Editor != value))
-				{
-					this.OnEditorChanging(value);
-					this.SendPropertyChanging();
-					this._Editor = value;
-					this.SendPropertyChanged("Editor");
-					this.OnEditorChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Modified", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Modified
-		{
-			get
-			{
-				return this._Modified;
-			}
-			set
-			{
-				if ((this._Modified != value))
-				{
-					this.OnModifiedChanging(value);
-					this.SendPropertyChanging();
-					this._Modified = value;
-					this.SendPropertyChanged("Modified");
-					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
-		public bool OnlySQL
-		{
-			get
-			{
-				return this._OnlySQL;
-			}
-			set
-			{
-				if ((this._OnlySQL != value))
-				{
-					this.OnOnlySQLChanging(value);
-					this.SendPropertyChanging();
-					this._OnlySQL = value;
-					this.SendPropertyChanged("OnlySQL");
-					this.OnOnlySQLChanged();
-				}
-			}
-		}
-		
-		[Association(Name="FK_AlarmsAndEvents_Partner", Storage="_Partner", ThisKey="PartnerID", OtherKey="ID", IsForeignKey=true)]
-		public Partner Partner
-		{
-			get
-			{
-				return this._Partner.Entity;
-			}
-			set
-			{
-				Partner previousValue = this._Partner.Entity;
-				if (((previousValue != value) 
-							|| (this._Partner.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Partner.Entity = null;
-						previousValue.AlarmsAndEvents.Remove(this);
-					}
-					this._Partner.Entity = value;
-					if ((value != null))
-					{
-						value.AlarmsAndEvents.Add(this);
-						this._PartnerID = value.ID;
-					}
-					else
-					{
-						this._PartnerID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Partner");
-				}
-			}
-		}
-		
-		[Association(Name="FK_AlarmsAndEvents_Shipping", Storage="_Shipping", ThisKey="ShippingID", OtherKey="ID", IsForeignKey=true)]
-		public Shipping Shipping
-		{
-			get
-			{
-				return this._Shipping.Entity;
-			}
-			set
-			{
-				Shipping previousValue = this._Shipping.Entity;
-				if (((previousValue != value) 
-							|| (this._Shipping.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Shipping.Entity = null;
-						previousValue.AlarmsAndEvents.Remove(this);
-					}
-					this._Shipping.Entity = value;
-					if ((value != null))
-					{
-						value.AlarmsAndEvents.Add(this);
-						this._ShippingID = value.ID;
-					}
-					else
-					{
-						this._ShippingID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Shipping");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -7451,8 +7021,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private bool _OnlySQL;
 		
-		private EntitySet<AlarmsAndEvents> _AlarmsAndEvents;
-		
 		private EntitySet<CarrierPerformanceReport> _CarrierPerformanceReport;
 		
 		private EntitySet<Driver> _Driver;
@@ -7509,7 +7077,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		public Partner()
 		{
-			this._AlarmsAndEvents = new EntitySet<AlarmsAndEvents>(new Action<AlarmsAndEvents>(this.attach_AlarmsAndEvents), new Action<AlarmsAndEvents>(this.detach_AlarmsAndEvents));
 			this._CarrierPerformanceReport = new EntitySet<CarrierPerformanceReport>(new Action<CarrierPerformanceReport>(this.attach_CarrierPerformanceReport), new Action<CarrierPerformanceReport>(this.detach_CarrierPerformanceReport));
 			this._Driver = new EntitySet<Driver>(new Action<Driver>(this.attach_Driver), new Action<Driver>(this.detach_Driver));
 			this._LoadDescription = new EntitySet<LoadDescription>(new Action<LoadDescription>(this.attach_LoadDescription), new Action<LoadDescription>(this.detach_LoadDescription));
@@ -7807,19 +7374,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_AlarmsAndEvents_Partner", Storage="_AlarmsAndEvents", ThisKey="ID", OtherKey="PartnerID", DeleteRule="NO ACTION")]
-		public EntitySet<AlarmsAndEvents> AlarmsAndEvents
-		{
-			get
-			{
-				return this._AlarmsAndEvents;
-			}
-			set
-			{
-				this._AlarmsAndEvents.Assign(value);
-			}
-		}
-		
 		[Association(Name="FK_CarrierPerformanceReport_Partner", Storage="_CarrierPerformanceReport", ThisKey="ID", OtherKey="PartnerID", DeleteRule="NO ACTION")]
 		public EntitySet<CarrierPerformanceReport> CarrierPerformanceReport
 		{
@@ -7989,18 +7543,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_AlarmsAndEvents(AlarmsAndEvents entity)
-		{
-			this.SendPropertyChanging();
-			entity.Partner = this;
-		}
-		
-		private void detach_AlarmsAndEvents(AlarmsAndEvents entity)
-		{
-			this.SendPropertyChanging();
-			entity.Partner = null;
 		}
 		
 		private void attach_CarrierPerformanceReport(CarrierPerformanceReport entity)
@@ -11383,8 +10925,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private bool _OnlySQL;
 		
-		private EntitySet<AlarmsAndEvents> _AlarmsAndEvents;
-		
 		private EntitySet<DriversTeam> _DriversTeam;
 		
 		private EntitySet<LoadDescription> _LoadDescription;
@@ -11422,8 +10962,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		private EntityRef<Truck> _Shipping_Truck;
 		
 		private EntityRef<Warehouse> _Warehouse;
-		
-		private EntitySet<TimeSlot> _TimeSlot;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -11551,7 +11089,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		public Shipping()
 		{
-			this._AlarmsAndEvents = new EntitySet<AlarmsAndEvents>(new Action<AlarmsAndEvents>(this.attach_AlarmsAndEvents), new Action<AlarmsAndEvents>(this.detach_AlarmsAndEvents));
 			this._DriversTeam = new EntitySet<DriversTeam>(new Action<DriversTeam>(this.attach_DriversTeam), new Action<DriversTeam>(this.detach_DriversTeam));
 			this._LoadDescription = new EntitySet<LoadDescription>(new Action<LoadDescription>(this.attach_LoadDescription), new Action<LoadDescription>(this.detach_LoadDescription));
 			this._City = default(EntityRef<City>);
@@ -11571,7 +11108,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			this._TransportUnitType = default(EntityRef<TransportUnitType>);
 			this._Shipping_Truck = default(EntityRef<Truck>);
 			this._Warehouse = default(EntityRef<Warehouse>);
-			this._TimeSlot = new EntitySet<TimeSlot>(new Action<TimeSlot>(this.attach_TimeSlot), new Action<TimeSlot>(this.detach_TimeSlot));
 			OnCreated();
 		}
 		
@@ -12823,19 +12359,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_AlarmsAndEvents_Shipping", Storage="_AlarmsAndEvents", ThisKey="ID", OtherKey="ShippingID", DeleteRule="NO ACTION")]
-		public EntitySet<AlarmsAndEvents> AlarmsAndEvents
-		{
-			get
-			{
-				return this._AlarmsAndEvents;
-			}
-			set
-			{
-				this._AlarmsAndEvents.Assign(value);
-			}
-		}
-		
 		[Association(Name="FK_DriversTeam_Shipping", Storage="_DriversTeam", ThisKey="ID", OtherKey="ShippingID", DeleteRule="NO ACTION")]
 		public EntitySet<DriversTeam> DriversTeam
 		{
@@ -13440,19 +12963,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_TimeSlot_Shipping", Storage="_TimeSlot", ThisKey="ID", OtherKey="ShippingID", DeleteRule="NO ACTION")]
-		public EntitySet<TimeSlot> TimeSlot
-		{
-			get
-			{
-				return this._TimeSlot;
-			}
-			set
-			{
-				this._TimeSlot.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -13471,18 +12981,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_AlarmsAndEvents(AlarmsAndEvents entity)
-		{
-			this.SendPropertyChanging();
-			entity.Shipping = this;
-		}
-		
-		private void detach_AlarmsAndEvents(AlarmsAndEvents entity)
-		{
-			this.SendPropertyChanging();
-			entity.Shipping = null;
 		}
 		
 		private void attach_DriversTeam(DriversTeam entity)
@@ -13504,18 +13002,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		}
 		
 		private void detach_LoadDescription(LoadDescription entity)
-		{
-			this.SendPropertyChanging();
-			entity.Shipping = null;
-		}
-		
-		private void attach_TimeSlot(TimeSlot entity)
-		{
-			this.SendPropertyChanging();
-			entity.Shipping = this;
-		}
-		
-		private void detach_TimeSlot(TimeSlot entity)
 		{
 			this.SendPropertyChanging();
 			entity.Shipping = null;
@@ -13552,8 +13038,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		
 		private EntityRef<Warehouse> _Warehouse;
 		
-		private EntitySet<TimeSlot> _TimeSlot;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -13584,7 +13068,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		{
 			this._ScheduleTemplate = new EntitySet<ScheduleTemplate>(new Action<ScheduleTemplate>(this.attach_ScheduleTemplate), new Action<ScheduleTemplate>(this.detach_ScheduleTemplate));
 			this._Warehouse = default(EntityRef<Warehouse>);
-			this._TimeSlot = new EntitySet<TimeSlot>(new Action<TimeSlot>(this.attach_TimeSlot), new Action<TimeSlot>(this.detach_TimeSlot));
 			OnCreated();
 		}
 		
@@ -13839,19 +13322,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 			}
 		}
 		
-		[Association(Name="FK_TimeSlot_ShippingPoint", Storage="_TimeSlot", ThisKey="ID", OtherKey="ShippingPointID", DeleteRule="NO ACTION")]
-		public EntitySet<TimeSlot> TimeSlot
-		{
-			get
-			{
-				return this._TimeSlot;
-			}
-			set
-			{
-				this._TimeSlot.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -13882,498 +13352,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL
 		{
 			this.SendPropertyChanging();
 			entity.ShippingPoint = null;
-		}
-		
-		private void attach_TimeSlot(TimeSlot entity)
-		{
-			this.SendPropertyChanging();
-			entity.ShippingPoint = this;
-		}
-		
-		private void detach_TimeSlot(TimeSlot entity)
-		{
-			this.SendPropertyChanging();
-			entity.ShippingPoint = null;
-		}
-	}
-	
-	[Table(Name="dbo.TimeSlot")]
-	public partial class TimeSlot : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _Author;
-		
-		private System.Nullable<System.DateTime> _Created;
-		
-		private string _Editor;
-		
-		private System.DateTime _EndTime;
-		
-		private System.Nullable<System.DateTime> _EntryTime;
-		
-		private System.Nullable<System.DateTime> _ExitTime;
-		
-		private int _ID;
-		
-		private System.Nullable<bool> _IsDouble;
-		
-		private System.Nullable<System.DateTime> _Modified;
-		
-		private string _Occupied;
-		
-		private System.DateTime _StartTime;
-		
-		private System.Nullable<int> _ShippingID;
-		
-		private System.Nullable<int> _ShippingPointID;
-		
-		private System.Nullable<double> _TimeSpan;
-		
-		private bool _OnlySQL;
-		
-		private EntityRef<Shipping> _Shipping;
-		
-		private EntityRef<ShippingPoint> _ShippingPoint;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAuthorChanging(string value);
-    partial void OnAuthorChanged();
-    partial void OnCreatedChanging(System.Nullable<System.DateTime> value);
-    partial void OnCreatedChanged();
-    partial void OnEditorChanging(string value);
-    partial void OnEditorChanged();
-    partial void OnEndTimeChanging(System.DateTime value);
-    partial void OnEndTimeChanged();
-    partial void OnEntryTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnEntryTimeChanged();
-    partial void OnExitTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnExitTimeChanged();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnIsDoubleChanging(System.Nullable<bool> value);
-    partial void OnIsDoubleChanged();
-    partial void OnModifiedChanging(System.Nullable<System.DateTime> value);
-    partial void OnModifiedChanged();
-    partial void OnOccupiedChanging(string value);
-    partial void OnOccupiedChanged();
-    partial void OnStartTimeChanging(System.DateTime value);
-    partial void OnStartTimeChanged();
-    partial void OnShippingIDChanging(System.Nullable<int> value);
-    partial void OnShippingIDChanged();
-    partial void OnShippingPointIDChanging(System.Nullable<int> value);
-    partial void OnShippingPointIDChanged();
-    partial void OnTimeSpanChanging(System.Nullable<double> value);
-    partial void OnTimeSpanChanged();
-    partial void OnOnlySQLChanging(bool value);
-    partial void OnOnlySQLChanged();
-    #endregion
-		
-		public TimeSlot()
-		{
-			this._Shipping = default(EntityRef<Shipping>);
-			this._ShippingPoint = default(EntityRef<ShippingPoint>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_Author", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Author
-		{
-			get
-			{
-				return this._Author;
-			}
-			set
-			{
-				if ((this._Author != value))
-				{
-					this.OnAuthorChanging(value);
-					this.SendPropertyChanging();
-					this._Author = value;
-					this.SendPropertyChanged("Author");
-					this.OnAuthorChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Created", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Created
-		{
-			get
-			{
-				return this._Created;
-			}
-			set
-			{
-				if ((this._Created != value))
-				{
-					this.OnCreatedChanging(value);
-					this.SendPropertyChanging();
-					this._Created = value;
-					this.SendPropertyChanged("Created");
-					this.OnCreatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Editor", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Editor
-		{
-			get
-			{
-				return this._Editor;
-			}
-			set
-			{
-				if ((this._Editor != value))
-				{
-					this.OnEditorChanging(value);
-					this.SendPropertyChanging();
-					this._Editor = value;
-					this.SendPropertyChanged("Editor");
-					this.OnEditorChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_EndTime", DbType="DateTime NOT NULL")]
-		public System.DateTime EndTime
-		{
-			get
-			{
-				return this._EndTime;
-			}
-			set
-			{
-				if ((this._EndTime != value))
-				{
-					this.OnEndTimeChanging(value);
-					this.SendPropertyChanging();
-					this._EndTime = value;
-					this.SendPropertyChanged("EndTime");
-					this.OnEndTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_EntryTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> EntryTime
-		{
-			get
-			{
-				return this._EntryTime;
-			}
-			set
-			{
-				if ((this._EntryTime != value))
-				{
-					this.OnEntryTimeChanging(value);
-					this.SendPropertyChanging();
-					this._EntryTime = value;
-					this.SendPropertyChanged("EntryTime");
-					this.OnEntryTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ExitTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ExitTime
-		{
-			get
-			{
-				return this._ExitTime;
-			}
-			set
-			{
-				if ((this._ExitTime != value))
-				{
-					this.OnExitTimeChanging(value);
-					this.SendPropertyChanging();
-					this._ExitTime = value;
-					this.SendPropertyChanged("ExitTime");
-					this.OnExitTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IsDouble", DbType="Bit")]
-		public System.Nullable<bool> IsDouble
-		{
-			get
-			{
-				return this._IsDouble;
-			}
-			set
-			{
-				if ((this._IsDouble != value))
-				{
-					this.OnIsDoubleChanging(value);
-					this.SendPropertyChanging();
-					this._IsDouble = value;
-					this.SendPropertyChanged("IsDouble");
-					this.OnIsDoubleChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Modified", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Modified
-		{
-			get
-			{
-				return this._Modified;
-			}
-			set
-			{
-				if ((this._Modified != value))
-				{
-					this.OnModifiedChanging(value);
-					this.SendPropertyChanging();
-					this._Modified = value;
-					this.SendPropertyChanged("Modified");
-					this.OnModifiedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Occupied", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Occupied
-		{
-			get
-			{
-				return this._Occupied;
-			}
-			set
-			{
-				if ((this._Occupied != value))
-				{
-					this.OnOccupiedChanging(value);
-					this.SendPropertyChanging();
-					this._Occupied = value;
-					this.SendPropertyChanged("Occupied");
-					this.OnOccupiedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_StartTime", DbType="DateTime NOT NULL")]
-		public System.DateTime StartTime
-		{
-			get
-			{
-				return this._StartTime;
-			}
-			set
-			{
-				if ((this._StartTime != value))
-				{
-					this.OnStartTimeChanging(value);
-					this.SendPropertyChanging();
-					this._StartTime = value;
-					this.SendPropertyChanged("StartTime");
-					this.OnStartTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ShippingID", DbType="Int")]
-		public System.Nullable<int> ShippingID
-		{
-			get
-			{
-				return this._ShippingID;
-			}
-			set
-			{
-				if ((this._ShippingID != value))
-				{
-					if (this._Shipping.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnShippingIDChanging(value);
-					this.SendPropertyChanging();
-					this._ShippingID = value;
-					this.SendPropertyChanged("ShippingID");
-					this.OnShippingIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ShippingPointID", DbType="Int")]
-		public System.Nullable<int> ShippingPointID
-		{
-			get
-			{
-				return this._ShippingPointID;
-			}
-			set
-			{
-				if ((this._ShippingPointID != value))
-				{
-					if (this._ShippingPoint.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnShippingPointIDChanging(value);
-					this.SendPropertyChanging();
-					this._ShippingPointID = value;
-					this.SendPropertyChanged("ShippingPointID");
-					this.OnShippingPointIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_TimeSpan", DbType="Float")]
-		public System.Nullable<double> TimeSpan
-		{
-			get
-			{
-				return this._TimeSpan;
-			}
-			set
-			{
-				if ((this._TimeSpan != value))
-				{
-					this.OnTimeSpanChanging(value);
-					this.SendPropertyChanging();
-					this._TimeSpan = value;
-					this.SendPropertyChanged("TimeSpan");
-					this.OnTimeSpanChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_OnlySQL", DbType="Bit NOT NULL")]
-		public bool OnlySQL
-		{
-			get
-			{
-				return this._OnlySQL;
-			}
-			set
-			{
-				if ((this._OnlySQL != value))
-				{
-					this.OnOnlySQLChanging(value);
-					this.SendPropertyChanging();
-					this._OnlySQL = value;
-					this.SendPropertyChanged("OnlySQL");
-					this.OnOnlySQLChanged();
-				}
-			}
-		}
-		
-		[Association(Name="FK_TimeSlot_Shipping", Storage="_Shipping", ThisKey="ShippingID", OtherKey="ID", IsForeignKey=true)]
-		public Shipping Shipping
-		{
-			get
-			{
-				return this._Shipping.Entity;
-			}
-			set
-			{
-				Shipping previousValue = this._Shipping.Entity;
-				if (((previousValue != value) 
-							|| (this._Shipping.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Shipping.Entity = null;
-						previousValue.TimeSlot.Remove(this);
-					}
-					this._Shipping.Entity = value;
-					if ((value != null))
-					{
-						value.TimeSlot.Add(this);
-						this._ShippingID = value.ID;
-					}
-					else
-					{
-						this._ShippingID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Shipping");
-				}
-			}
-		}
-		
-		[Association(Name="FK_TimeSlot_ShippingPoint", Storage="_ShippingPoint", ThisKey="ShippingPointID", OtherKey="ID", IsForeignKey=true)]
-		public ShippingPoint ShippingPoint
-		{
-			get
-			{
-				return this._ShippingPoint.Entity;
-			}
-			set
-			{
-				ShippingPoint previousValue = this._ShippingPoint.Entity;
-				if (((previousValue != value) 
-							|| (this._ShippingPoint.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ShippingPoint.Entity = null;
-						previousValue.TimeSlot.Remove(this);
-					}
-					this._ShippingPoint.Entity = value;
-					if ((value != null))
-					{
-						value.TimeSlot.Add(this);
-						this._ShippingPointID = value.ID;
-					}
-					else
-					{
-						this._ShippingPointID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ShippingPoint");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
