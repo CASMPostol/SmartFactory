@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+#pragma warning disable 1591
 namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
 {
   using System;
@@ -9248,3 +9249,4 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Linq
     Delayed = 8,
   }
 }
+#pragma warning restore 1591
