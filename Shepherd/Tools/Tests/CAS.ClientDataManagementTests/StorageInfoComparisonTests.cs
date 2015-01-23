@@ -1,6 +1,5 @@
-﻿using System;
+﻿using CAS.SharePoint.Client.SP2SQLInteroperability;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CAS.SharePoint.Client.SP2SQLInteroperability;
 
 namespace CAS.SmartFactory.Shepherd.Client.DataManagement.Tests
 {
