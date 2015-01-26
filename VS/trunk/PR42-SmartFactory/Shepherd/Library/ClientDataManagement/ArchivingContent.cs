@@ -129,7 +129,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       trace(String.Format("List of ShippingDriversTeam loaded and contains {0} items.", _Shipping2Delete.Count));
       foreach (Linq.Shipping _shipping in _Shipping2Delete)
       {
-        _TimeSlot2Delete.AddRange(_shipping.TimeSlot.Cast<Linq.TimeSlotTimeSlot>());
+        _TimeSlot2Delete.AddRange(_shipping.TimeSlot.ToList<Linq.TimeSlot>().Cast<Linq.TimeSlotTimeSlot>());
         _AlarmsAndEvents2Delete.AddRange(_shipping.AlarmsAndEvents);
         _LoadDescription2Delete.AddRange(_shipping.LoadDescription);
         _ShippingDriversTeam2Delete.AddRange(_shipping.ShippingDriversTeam);
