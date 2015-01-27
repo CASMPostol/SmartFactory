@@ -127,6 +127,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       trace(String.Format("List of LoadDescription loaded and contains {0} items.", _Shipping2Delete.Count));
       List<Linq.ShippingDriversTeam> _ShippingDriversTeam2Delete = new List<Linq.ShippingDriversTeam>();
       trace(String.Format("List of ShippingDriversTeam loaded and contains {0} items.", _Shipping2Delete.Count));
+      //TODO http://casas:11227/sites/awt/_layouts/listform.aspx?PageType=4&ListId={72C511B5-8B63-4DFA-AD34-133A97EBA469}&ID=4568&ContentTypeID=0x01005D39260836CE498D8E0D443AD5CAD3AC00456AB372ACF9DA41B8AE870CD1954927
+      //TODO workaround to avoid usage of the reverse lookup for doubled type definition.
       List<Linq.TimeSlotTimeSlot> _TimeSlotTimeSlotAll = spedc.TimeSlot.ToList<Linq.TimeSlotTimeSlot>(); ;
       foreach (Linq.Shipping _shipping in _Shipping2Delete)
       {
