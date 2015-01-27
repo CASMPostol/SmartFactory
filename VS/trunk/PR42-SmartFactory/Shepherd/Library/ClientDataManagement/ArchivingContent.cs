@@ -127,16 +127,17 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       trace(String.Format("List of LoadDescription loaded and contains {0} items.", _Shipping2Delete.Count));
       List<Linq.ShippingDriversTeam> _ShippingDriversTeam2Delete = new List<Linq.ShippingDriversTeam>();
       trace(String.Format("List of ShippingDriversTeam loaded and contains {0} items.", _Shipping2Delete.Count));
+      List<Linq.TimeSlotTimeSlot> _TimeSlotTimeSlotAll = spedc.TimeSlot.ToList<Linq.TimeSlotTimeSlot>(); ;
       foreach (Linq.Shipping _shipping in _Shipping2Delete)
       {
-        _TimeSlot2Delete.AddRange(_shipping.TimeSlot.ToList<Linq.TimeSlot>().Cast<Linq.TimeSlotTimeSlot>());
+        _TimeSlot2Delete.AddRange(_TimeSlotTimeSlotAll.Where<Linq.TimeSlotTimeSlot>(x => x.TimeSlot2ShippingIndex == _shipping));
         _AlarmsAndEvents2Delete.AddRange(_shipping.AlarmsAndEvents);
         _LoadDescription2Delete.AddRange(_shipping.LoadDescription);
         _ShippingDriversTeam2Delete.AddRange(_shipping.ShippingDriversTeam);
       }
       reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} TimeSlot entries to be deleted.", _TimeSlot2Delete.Count)));
       spedc.TimeSlot.Delete<Linq.TimeSlotTimeSlot, Linq2SQL.History>
-         (_TimeSlot2Delete, null, x => null , (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+         (_TimeSlot2Delete, null, x => null, (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
       reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} AlarmsAndEvents entries to be deleted.", _TimeSlot2Delete.Count)));
       spedc.AlarmsAndEvents.Delete<Linq.AlarmsAndEvents, Linq2SQL.History>
