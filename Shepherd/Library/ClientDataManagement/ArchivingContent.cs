@@ -73,7 +73,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
     {
       reportProgress(new ProgressChangedEventArgs(1, "Starting archive the lists: Truck, Trailer, Driver"));
       //Truck
-      List<Linq.Truck> _Truck2MarketDeleted = spedc.Truck.ToList<Linq.Truck>().Where<Linq.Truck>(x => x.ToBeDeleted.Value).ToList<Linq.Truck>();
+      List<Linq.Truck> _Truck2MarketDeleted = spedc.Truck.ToList<Linq.Truck>().Where<Linq.Truck>(x => x.ToBeDeleted.GetValueOrDefault(false)).ToList<Linq.Truck>();
       trace(String.Format("List of Truck loaded and contains {0} items.", _Truck2MarketDeleted.Count));
       List<Linq.Truck> _Truck2BeDeleted = new List<Linq.Truck>();
       foreach (Linq.Truck _TruckItem in _Truck2MarketDeleted)
@@ -86,7 +86,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       _Truck2MarketDeleted = null;
       _Truck2BeDeleted = null;
       //Trailer
-      List<Linq.Trailer> _Trailer2MarketDeleted = spedc.Trailer.ToList<Linq.Trailer>().Where<Linq.Trailer>(x => x.ToBeDeleted.Value).ToList<Linq.Trailer>();
+      List<Linq.Trailer> _Trailer2MarketDeleted = spedc.Trailer.ToList<Linq.Trailer>().Where<Linq.Trailer>(x => x.ToBeDeleted.GetValueOrDefault(false)).ToList<Linq.Trailer>();
       trace(String.Format("List of Trailer loaded and contains {0} items.", _Trailer2MarketDeleted.Count));
       List<Linq.Trailer> _Trailer2BeDeleted = new List<Linq.Trailer>();
       foreach (Linq.Trailer _TrailerItem in _Trailer2MarketDeleted)
@@ -99,13 +99,13 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       _Trailer2MarketDeleted = null;
       _Trailer2BeDeleted = null;
       //Driver
-      List<Linq.Driver> _DriverMarketDeleted = spedc.Driver.ToList<Linq.Driver>().Where<Linq.Driver>(x => x.ToBeDeleted.Value).ToList<Linq.Driver>();
+      List<Linq.Driver> _DriverMarketDeleted = spedc.Driver.ToList<Linq.Driver>().Where<Linq.Driver>(x => x.ToBeDeleted.GetValueOrDefault(false)).ToList<Linq.Driver>();
       trace(String.Format("List of Driver loaded and contains {0} items.", _DriverMarketDeleted.Count));
       List<Linq.Driver> _Driver2BeDeleted = new List<Linq.Driver>();
       foreach (Linq.Driver _DriverItem in _DriverMarketDeleted)
         if (_DriverItem.ShippingDriversTeam.Count == 0)
           _Driver2BeDeleted.Add(_DriverItem);
-      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} Driver entries to be deleted.", _Trailer2BeDeleted.Count)));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} Driver entries to be deleted.", _Driver2BeDeleted.Count)));
       spedc.Driver.Delete<Linq.Driver, Linq2SQL.History>
          (_Driver2BeDeleted, null, x => sqledc.Driver.GetAt<Linq2SQL.Driver>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));

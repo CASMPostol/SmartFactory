@@ -39,6 +39,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       {
         using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => trace(y)))
         {
+          return;
           Synchronizer.Synchronize<Linq2SQL.Commodity, Linq.Commodity>(_sqledc.Commodity, _edc.Commodity, (x, y) => reportProgress(y), Linq.Commodity.GetMappings(), false);
           Synchronizer.Synchronize<Linq2SQL.Warehouse, Linq.Warehouse>(_sqledc.Warehouse, _edc.Warehouse, (x, y) => reportProgress(y), Linq.Warehouse.GetMappings(), false);
           Synchronizer.Synchronize<Linq2SQL.Partner, Linq.Partner>(_sqledc.Partner, _edc.Partner, (x, y) => reportProgress(y), Linq.Partner.GetMappings(), false);
