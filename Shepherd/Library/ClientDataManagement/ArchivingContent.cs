@@ -118,8 +118,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
     {
       reportProgress(new ProgressChangedEventArgs(1, "Starting archive the lists: TimeSlot, AlarmsAndEvents, LoadDescription, DriversTeam, Shipping"));
       trace("Starting GoShipping");
-      List<Linq.Shipping> _Shipping2Delete = spedc.Shipping.ToList<Linq.Shipping>().Where<Linq.Shipping>(x => (x.ShippingState2 == Linq.ShippingState2.Completed ||
-                                                                                                               x.ShippingState2 == Linq.ShippingState2.Canceled) &&
+      List<Linq.Shipping> _Shipping2Delete = spedc.Shipping.ToList<Linq.Shipping>().Where<Linq.Shipping>(x => (x.ShippingState == Linq.ShippingState.Completed ||
+                                                                                                               x.ShippingState == Linq.ShippingState.Canceled) &&
                                                                                                                x.EndTime.IsLatter(archivalDelay)).ToList<Linq.Shipping>();
       trace(String.Format("List of Shipping loaded and contains {0} items.", _Shipping2Delete.Count));
       List<Linq.TimeSlotTimeSlot> _TimeSlot2Delete = new List<Linq.TimeSlotTimeSlot>();
@@ -144,7 +144,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       spedc.TimeSlot.Delete<Linq.TimeSlotTimeSlot, Linq2SQL.History>
          (_TimeSlot2Delete, null, x => null, (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
-      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} AlarmsAndEvents entries to be deleted.", _TimeSlot2Delete.Count)));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} AlarmsAndEvents entries to be deleted.", _AlarmsAndEvents2Delete.Count)));
       spedc.AlarmsAndEvents.Delete<Linq.AlarmsAndEvents, Linq2SQL.History>
          (_AlarmsAndEvents2Delete, null, x => null, (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
