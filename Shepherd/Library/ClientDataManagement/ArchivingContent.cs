@@ -120,7 +120,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       trace("Starting GoShipping");
       List<Linq.Shipping> _Shipping2Delete = spedc.Shipping.ToList<Linq.Shipping>().Where<Linq.Shipping>(x => (x.ShippingState2 == Linq.ShippingState2.Completed ||
                                                                                                                x.ShippingState2 == Linq.ShippingState2.Canceled) &&
-                                                                                                               x.TSEndTime.IsLatter(archivalDelay)).ToList<Linq.Shipping>();
+                                                                                                               x.EndTime.IsLatter(archivalDelay)).ToList<Linq.Shipping>();
       trace(String.Format("List of Shipping loaded and contains {0} items.", _Shipping2Delete.Count));
       List<Linq.TimeSlotTimeSlot> _TimeSlot2Delete = new List<Linq.TimeSlotTimeSlot>();
       trace(String.Format("List of TimeSlotTimeSlot loaded and contains {0} items.", _Shipping2Delete.Count));
@@ -156,7 +156,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       spedc.DriversTeam.Delete<Linq.ShippingDriversTeam, Linq2SQL.History>
          (_ShippingDriversTeam2Delete, null, x => sqledc.DriversTeam.GetAt<Linq2SQL.DriversTeam>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
-      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} Shipping entries to be deleted.", _ShippingDriversTeam2Delete.Count)));
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} Shipping entries to be deleted.", _Shipping2Delete.Count)));
       spedc.Shipping.Delete<Linq.Shipping, Linq2SQL.History>
          (_Shipping2Delete, null, x => sqledc.Shipping.GetAt<Linq2SQL.Shipping>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
