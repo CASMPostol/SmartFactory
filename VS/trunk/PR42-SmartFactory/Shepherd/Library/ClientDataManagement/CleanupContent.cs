@@ -100,7 +100,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
 
     #region private
     /// <summary>
-    /// Does the cleanup of the lists <see cref="Linq.ScheduleTemplate"/>, <see cref="Linq.TimeSlotsTemplateTimeSlotsTemplate"/>, <see cref="Linq.TimeSlotTimeSlot"/>.
+    /// Does the cleanup of the lists <see cref="Linq.ScheduleTemplate"/>, <see cref="Linq.TimeSlotsTemplate"/>, <see cref="Linq.TimeSlotTimeSlot"/>.
     /// </summary>
     /// <param name="spedc">The spedc.</param>
     /// <param name="sqledc">The sqledc.</param>
@@ -140,7 +140,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
          (_TimeSlot3BeDeleted, null, x => null, (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
       reportProgress(new ProgressChangedEventArgs(1, "Starting SubmitChanges."));
-      Link2SQLExtensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
+      CAS.SharePoint.Client.SP2SQLInteroperability.Extensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
       trace("Successfully finished cleanup of the following lists ScheduleTemplate, TimeSlotsTemplateTimeSlotsTemplate, TimeSlotTimeSlot");
       return _ret;
     }
@@ -186,7 +186,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
          (_ShippingPoint2BeDeleted, null, x => sqledc.ShippingPoint.GetAt<Linq2SQL.ShippingPoint>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
       reportProgress(new ProgressChangedEventArgs(1, "Starting SubmitChanges."));
-      Link2SQLExtensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
+      CAS.SharePoint.Client.SP2SQLInteroperability.Extensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
       trace("Finished DoShippingPoint - cleanup of the following list TimeSlotsTemplate, ScheduleTemplate, ShippingPoint");
       return true;
     }
@@ -230,7 +230,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
          (_ShippingDriversTeam2BeDeleted, null, x => sqledc.DriversTeam.GetAt<Linq2SQL.DriversTeam>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
       reportProgress(new ProgressChangedEventArgs(1, "Starting SubmitChanges."));
-      Link2SQLExtensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
+      CAS.SharePoint.Client.SP2SQLInteroperability.Extensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
       trace("Successfully finished cleanup of the Drivers Team list.");
       reportProgress(new ProgressChangedEventArgs(1, String.Format("Finished consistency check of list Drivers Team with result {0}.", _breakingIssueEncountered ? "Failed" : "Success")));    
       return _breakingIssueEncountered;

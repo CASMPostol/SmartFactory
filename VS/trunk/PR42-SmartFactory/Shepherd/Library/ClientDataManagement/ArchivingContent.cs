@@ -47,7 +47,6 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           _spedc.RowLimit = rowLimit;
           ArchiveShipping(_spedc, _sqledc, archivalDelay, reportProgress, trace);
         }
-        ArchivingOperationLogs.UpdateActivitiesLogs<Linq2SQL.ArchivingOperationLogs>(_sqledc, ArchivingOperationLogs.OperationName.Archiving, reportProgress);
       }
       trace("Establishing connection with the SP site and SQL database for ArchiveDictionaries .");
       using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => trace(y)))
@@ -57,8 +56,10 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           _spedc.RowLimit = rowLimit;
           ArchiveDictionaries(_spedc, _sqledc, archivalDelay, reportProgress, trace);
         }
-        ArchivingOperationLogs.UpdateActivitiesLogs<Linq2SQL.ArchivingOperationLogs>(_sqledc, ArchivingOperationLogs.OperationName.Archiving, reportProgress);
       }
+      reportProgress(new ProgressChangedEventArgs(1, "Updating Activities Logs"));
+      using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => trace(y)))
+        ArchivingOperationLogs.UpdateActivitiesLogs<Linq2SQL.ArchivingOperationLogs>(_sqledc, ArchivingOperationLogs.OperationName.Archiving, reportProgress);
       reportProgress(new ProgressChangedEventArgs(1, "Finished DoArchivingContent"));
     }
     /// <summary>
@@ -109,6 +110,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       spedc.Driver.Delete<Linq.Driver, Linq2SQL.History>
          (_Driver2BeDeleted, null, x => sqledc.Driver.GetAt<Linq2SQL.Driver>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
+      trace("SubmitChanges for the lists: Truck, Trailer, Driver have been archived.");
+      CAS.SharePoint.Client.SP2SQLInteroperability.Extensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
       reportProgress(new ProgressChangedEventArgs(1, "The lists: Truck, Trailer, Driver have been archived."));
     }
     private static void ArchiveShipping(Linq.Entities spedc, Linq2SQL.SHRARCHIVE sqledc, int archivalDelay, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
@@ -157,6 +160,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       spedc.Shipping.Delete<Linq.Shipping, Linq2SQL.History>
          (_Shipping2Delete, null, x => sqledc.Shipping.GetAt<Linq2SQL.Shipping>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
           x => sqledc.History.AddHistoryEntry(x));
+      trace("SubmitChanges for the lists: Truck, Trailer, Driver have been archived.");
+      CAS.SharePoint.Client.SP2SQLInteroperability.Extensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
       reportProgress(new ProgressChangedEventArgs(1, "The lists: TimeSlot, AlarmsAndEvents, LoadDescription, DriversTeam, Shipping have been archived."));
     }
 
