@@ -57,10 +57,42 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           ArchiveDictionaries(_spedc, _sqledc, archivalDelay, reportProgress, trace);
         }
       }
+      trace("Establishing connection with the SP site and SQL database for Routs .");
+      using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => trace(y)))
+      {
+        using (Linq.Entities _spedc = new Linq.Entities(trace, URL))
+        {
+          _spedc.RowLimit = rowLimit;
+          ArchiveRouts(_spedc, _sqledc, archivalDelay, reportProgress, trace);
+        }
+      }
       reportProgress(new ProgressChangedEventArgs(1, "Updating Activities Logs"));
       using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => trace(y)))
         ArchivingOperationLogs.UpdateActivitiesLogs<Linq2SQL.ArchivingOperationLogs>(_sqledc, ArchivingOperationLogs.OperationName.Archiving, reportProgress);
       reportProgress(new ProgressChangedEventArgs(1, "Finished DoArchivingContent"));
+    }
+    private static void ArchiveRouts(Linq.Entities spedc, Linq2SQL.SHRARCHIVE sqledc, int archivalDelay, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
+    {
+      int _year = 365;
+      reportProgress(new ProgressChangedEventArgs(1, "Starting archive the lists: Route, SecurityEscortCatalog"));
+      //Route
+      trace("Loading the List Route at ArchiveRouts");
+      List<Linq.Route> _Route2BeDeleted = spedc.Route.ToList<Linq.Route>().Where<Linq.Route>(x => x.Created.IsLatter(new TimeSpan(_year, 0, 0, 0).Days + archivalDelay)).ToList<Linq.Route>();
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} Route entries to be deleted.", _Route2BeDeleted.Count)));
+      spedc.Route.Delete<Linq.Route, Linq2SQL.History>
+         (_Route2BeDeleted, null, x => sqledc.Route.GetAt<Linq2SQL.Route>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+          x => sqledc.History.AddHistoryEntry(x));
+      //SecurityEscortCatalog
+      trace("Loading the List Route at ArchiveRouts");
+      List<Linq.SecurityEscortCatalog> _SecurityEscortCatalog2BeDeleted =
+        spedc.SecurityEscortRoute.ToList<Linq.SecurityEscortCatalog>().Where<Linq.SecurityEscortCatalog>(x => x.Created.IsLatter(new TimeSpan(_year, 0, 0, 0).Days + archivalDelay)).ToList<Linq.SecurityEscortCatalog>();
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} Route entries to be deleted.", _SecurityEscortCatalog2BeDeleted.Count)));
+      spedc.SecurityEscortRoute.Delete<Linq.SecurityEscortCatalog, Linq2SQL.History>
+         (_SecurityEscortCatalog2BeDeleted, null, x => sqledc.SecurityEscortRoute.GetAt<Linq2SQL.SecurityEscortRoute>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+          x => sqledc.History.AddHistoryEntry(x));
+      trace("SubmitChanges for the lists: Route, SecurityEscortCatalog have been archived.");
+      CAS.SharePoint.Client.SP2SQLInteroperability.Extensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
+      reportProgress(new ProgressChangedEventArgs(1, "The lists: Route, SecurityEscortCatalog have been archived."));
     }
     /// <summary>
     /// Archives the dictionaries.
