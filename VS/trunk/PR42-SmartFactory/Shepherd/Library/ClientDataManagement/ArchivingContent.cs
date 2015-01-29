@@ -39,7 +39,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
     public static void DoArchivingContent(string URL, string sqlConnectionString, int archivalDelay, int rowLimit, Action<ProgressChangedEventArgs> reportProgress, Action<String> trace)
     {
       reportProgress(new ProgressChangedEventArgs(1, String.Format("Starting DoArchivingContent URL: {0}, connection string: {1}, ArchivalDelay: {2}, RowLimit: {3}", URL, sqlConnectionString, archivalDelay, rowLimit)));
-      trace("Establishing connection with the SP site and SQL database for ArchiveShipping .");
+      trace("Establishing connection with the SP site and SQL database to execute ArchiveShipping.");
       using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => trace(y)))
       {
         using (Linq.Entities _spedc = new Linq.Entities(trace, URL))
@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           ArchiveShipping(_spedc, _sqledc, archivalDelay, reportProgress, trace);
         }
       }
-      trace("Establishing connection with the SP site and SQL database for ArchiveDictionaries .");
+      trace("Establishing connection with the SP site and SQL database to execute ArchiveDictionaries .");
       using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => trace(y)))
       {
         using (Linq.Entities _spedc = new Linq.Entities(trace, URL))
@@ -57,7 +57,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           ArchiveDictionaries(_spedc, _sqledc, archivalDelay, reportProgress, trace);
         }
       }
-      trace("Establishing connection with the SP site and SQL database for Routs .");
+      trace("Establishing connection with the SP site and SQL database to execute ArchiveRouts.");
       using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => trace(y)))
       {
         using (Linq.Entities _spedc = new Linq.Entities(trace, URL))
@@ -66,10 +66,34 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           ArchiveRouts(_spedc, _sqledc, archivalDelay, reportProgress, trace);
         }
       }
+      trace("Establishing connection with the SP site and SQL database to execute ArchiveBusinessDescription.");
+      using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => trace(y)))
+      {
+        using (Linq.Entities _spedc = new Linq.Entities(trace, URL))
+        {
+          _spedc.RowLimit = rowLimit;
+          ArchiveBusinessDescription(_spedc, _sqledc, archivalDelay, reportProgress, trace);
+        }
+      }
+      //Business Description
       reportProgress(new ProgressChangedEventArgs(1, "Updating Activities Logs"));
       using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => trace(y)))
         ArchivingOperationLogs.UpdateActivitiesLogs<Linq2SQL.ArchivingOperationLogs>(_sqledc, ArchivingOperationLogs.OperationName.Archiving, reportProgress);
       reportProgress(new ProgressChangedEventArgs(1, "Finished DoArchivingContent"));
+    }
+    private static void ArchiveBusinessDescription(Linq.Entities spedc, Linq2SQL.SHRARCHIVE sqledc, int archivalDelay, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
+    {
+      //BusienssDescription
+      trace("Loading the List BusienssDescription at ArchiveBusinessDescription");
+      List<Linq.BusienssDescription> _BusinessDescription2BeDeleted = 
+        spedc.BusinessDescription.ToList<Linq.BusienssDescription>().Where<Linq.BusienssDescription>(x => x.Route.Count == 0 && x.SecurityEscortCatalog.Count == 0).ToList<Linq.BusienssDescription>();
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} BusienssDescription entries to be deleted.", _BusinessDescription2BeDeleted.Count)));
+      spedc.BusinessDescription.Delete<Linq.BusienssDescription, Linq2SQL.History>
+         (_BusinessDescription2BeDeleted, null, x => sqledc.BusinessDescription.GetAt<Linq2SQL.BusinessDescription>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+          x => sqledc.History.AddHistoryEntry(x));
+      trace("SubmitChanges for the list: BusienssDescription have been archived.");
+      CAS.SharePoint.Client.SP2SQLInteroperability.Extensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
+      reportProgress(new ProgressChangedEventArgs(1, "The list: BusienssDescription have been archived."));
     }
     private static void ArchiveRouts(Linq.Entities spedc, Linq2SQL.SHRARCHIVE sqledc, int archivalDelay, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
     {
