@@ -54,8 +54,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           //Warehouse
           //Partner
 
-          _breakingIssueEncountered &= DoTimeSlotsTemplate(_spedc, _sqledc, reportProgress, trace);
-          _breakingIssueEncountered &= DoShippingPoint(_spedc, _sqledc, reportProgress, trace);
+          _breakingIssueEncountered |= DoTimeSlotsTemplate(_spedc, _sqledc, reportProgress, trace);
+          _breakingIssueEncountered |= DoShippingPoint(_spedc, _sqledc, reportProgress, trace);
         }
       }
       using (Linq2SQL.SHRARCHIVE _sqledc = new Linq2SQL.SHRARCHIVE(_connection))
@@ -64,7 +64,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           throw new ArgumentException("Cannot connect to SQL database.", "SQLConnectionString");
         using (Linq.Entities _spedc = new Linq.Entities(trace, URL))
         {
-          _breakingIssueEncountered &= DoLoadDescription(_spedc, reportProgress, trace);
+          _breakingIssueEncountered |= DoLoadDescription(_spedc, reportProgress, trace);
         }
       }
       using (Linq2SQL.SHRARCHIVE _sqledc = new Linq2SQL.SHRARCHIVE(_connection))
@@ -73,7 +73,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           throw new ArgumentException("Cannot connect to SQL database.", "SQLConnectionString");
         using (Linq.Entities _spedc = new Linq.Entities(trace, URL))
         {
-          _breakingIssueEncountered &= DoDriversTeam(_spedc, _sqledc, reportProgress, trace);
+          _breakingIssueEncountered |= DoDriversTeam(_spedc, _sqledc, reportProgress, trace);
         }
       }
       using (Linq2SQL.SHRARCHIVE _sqledc = new Linq2SQL.SHRARCHIVE(_connection))
@@ -82,13 +82,13 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           throw new ArgumentException("Cannot connect to SQL database.", "SQLConnectionString");
         using (Linq.Entities _spedc = new Linq.Entities(trace, URL))
         {
-          _breakingIssueEncountered &= DoDriver(_spedc, reportProgress, trace);
-          _breakingIssueEncountered &= DoTruck(_spedc, reportProgress, trace);
-          _breakingIssueEncountered &= DoDestinationMarket(_spedc, reportProgress, trace);
-          _breakingIssueEncountered &= DoCarrierPerformanceReport(_spedc, reportProgress, trace);
-          _breakingIssueEncountered &= DoRoute(_spedc, reportProgress, trace);
-          _breakingIssueEncountered &= DoCity(_spedc, reportProgress, trace);
-          _breakingIssueEncountered &= DoSecurityEscortRoute(_spedc, reportProgress, trace);
+          _breakingIssueEncountered |= DoDriver(_spedc, reportProgress, trace);
+          _breakingIssueEncountered |= DoTruck(_spedc, reportProgress, trace);
+          _breakingIssueEncountered |= DoDestinationMarket(_spedc, reportProgress, trace);
+          _breakingIssueEncountered |= DoCarrierPerformanceReport(_spedc, reportProgress, trace);
+          _breakingIssueEncountered |= DoRoute(_spedc, reportProgress, trace);
+          _breakingIssueEncountered |= DoCity(_spedc, reportProgress, trace);
+          _breakingIssueEncountered |= DoSecurityEscortRoute(_spedc, reportProgress, trace);
         }
       }
       using (Linq2SQL.SHRARCHIVE _sqledc = new Linq2SQL.SHRARCHIVE(_connection))
