@@ -75,11 +75,35 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
           ArchiveBusinessDescription(_spedc, _sqledc, archivalDelay, reportProgress, trace);
         }
       }
+      trace("Establishing connection with the SP site and SQL database to execute ArchiveCarrierPerformanceReport.");
+      using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y =>trace(y)))
+      {
+        using (Linq.Entities _spedc = new Linq.Entities(trace, URL))
+        {
+          _spedc.RowLimit = rowLimit;
+          ArchiveCarrierPerformanceReport(_spedc, _sqledc, archivalDelay, reportProgress, trace);
+        }
+      }
       //Business Description
       reportProgress(new ProgressChangedEventArgs(1, "Updating Activities Logs"));
       using (Linq2SQL.SHRARCHIVE _sqledc = Linq2SQL.SHRARCHIVE.Connect2SQL(sqlConnectionString, y => trace(y)))
         ArchivingOperationLogs.UpdateActivitiesLogs<Linq2SQL.ArchivingOperationLogs>(_sqledc, ArchivingOperationLogs.OperationName.Archiving, reportProgress);
       reportProgress(new ProgressChangedEventArgs(1, "Finished DoArchivingContent"));
+    }
+
+    private static void ArchiveCarrierPerformanceReport(Linq.Entities spedc, Linq2SQL.SHRARCHIVE sqledc, int archivalDelay, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
+    {
+      //CarrierPerformanceReport
+      trace("Loading the List CarrierPerformanceReport at ArchiveCarrierPerformanceReport");
+      List<Linq.CarrierPerformanceReport> _CarrierPerformanceReport2BeDeleted =
+        spedc.CarrierPerformanceReport.ToList<Linq.CarrierPerformanceReport>().Where<Linq.CarrierPerformanceReport>(x => x.Created.IsLatter(archivalDelay)).ToList<Linq.CarrierPerformanceReport>();
+      reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} CarrierPerformanceReport entries to be deleted.", _CarrierPerformanceReport2BeDeleted.Count)));
+      spedc.CarrierPerformanceReport.Delete<Linq.CarrierPerformanceReport, Linq2SQL.History>
+         (_CarrierPerformanceReport2BeDeleted, null, x => sqledc.CarrierPerformanceReport.GetAt<Linq2SQL.CarrierPerformanceReport>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
+          x => sqledc.History.AddHistoryEntry(x));
+      trace("SubmitChanges for the list: CarrierPerformanceReport have been archived.");
+      CAS.SharePoint.Client.SP2SQLInteroperability.Extensions.SubmitChanges(spedc, sqledc, (x, y) => reportProgress(y));
+      reportProgress(new ProgressChangedEventArgs(1, "The list: CarrierPerformanceReport have been archived."));
     }
     private static void ArchiveBusinessDescription(Linq.Entities spedc, Linq2SQL.SHRARCHIVE sqledc, int archivalDelay, Action<ProgressChangedEventArgs> reportProgress, Action<string> trace)
     {
