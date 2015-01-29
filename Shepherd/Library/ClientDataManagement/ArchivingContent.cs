@@ -125,7 +125,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       reportProgress(new ProgressChangedEventArgs(1, "Starting archive the lists: Route, SecurityEscortCatalog"));
       //Route
       trace("Loading the List Route at ArchiveRouts");
-      List<Linq.Route> _Route2BeDeleted = spedc.Route.ToList<Linq.Route>().Where<Linq.Route>(x => x.Created.IsLatter(new TimeSpan(_year, 0, 0, 0).Days + archivalDelay)).ToList<Linq.Route>();
+      List<Linq.Route> _Route2BeDeleted = spedc.Route.ToList<Linq.Route>().Where<Linq.Route>(x => x.Shipping.Count == 0 && x.Created.IsLatter(new TimeSpan(_year, 0, 0, 0).Days + archivalDelay)).ToList<Linq.Route>();
       reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} Route entries to be deleted.", _Route2BeDeleted.Count)));
       spedc.Route.Delete<Linq.Route, Linq2SQL.History>
          (_Route2BeDeleted, null, x => sqledc.Route.GetAt<Linq2SQL.Route>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
@@ -133,7 +133,7 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       //SecurityEscortCatalog
       trace("Loading the List Route at ArchiveRouts");
       List<Linq.SecurityEscortCatalog> _SecurityEscortCatalog2BeDeleted =
-        spedc.SecurityEscortRoute.ToList<Linq.SecurityEscortCatalog>().Where<Linq.SecurityEscortCatalog>(x => x.Created.IsLatter(new TimeSpan(_year, 0, 0, 0).Days + archivalDelay)).ToList<Linq.SecurityEscortCatalog>();
+        spedc.SecurityEscortRoute.ToList<Linq.SecurityEscortCatalog>().Where<Linq.SecurityEscortCatalog>(x => x.Shipping.Count == 0 && x.Created.IsLatter(new TimeSpan(_year, 0, 0, 0).Days + archivalDelay)).ToList<Linq.SecurityEscortCatalog>();
       reportProgress(new ProgressChangedEventArgs(1, String.Format("There are {0} Route entries to be deleted.", _SecurityEscortCatalog2BeDeleted.Count)));
       spedc.SecurityEscortRoute.Delete<Linq.SecurityEscortCatalog, Linq2SQL.History>
          (_SecurityEscortCatalog2BeDeleted, null, x => sqledc.SecurityEscortRoute.GetAt<Linq2SQL.SecurityEscortRoute>(x), (id, listName) => sqledc.ArchivingLogs.AddLog(id, listName, Extensions.UserName()),
