@@ -93,8 +93,8 @@ namespace CAS.SmartFactory.Shepherd.Client.DataManagement
       using (Linq2SQL.SHRARCHIVE _sqledc = new Linq2SQL.SHRARCHIVE(_connection))
         CAS.SharePoint.Client.Link2SQL.ArchivingOperationLogs.UpdateActivitiesLogs<Linq2SQL.ArchivingOperationLogs>(_sqledc, CAS.SharePoint.Client.Link2SQL.ArchivingOperationLogs.OperationName.Cleanup, reportProgress);
       reportProgress(new ProgressChangedEventArgs(1, "Finished DoCleanupContent"));
-      //TODO if (_breakingIssueEncountered)
-        //throw new ApplicationException("DoCleanupContent has encountered breaking inconsistency - review the log and remove problems to pass to next phase.");
+      if (_breakingIssueEncountered)
+      throw new ApplicationException("DoCleanupContent has encountered breaking inconsistency - review the log and remove problems to pass to next phase.");
     }
 
     #region private

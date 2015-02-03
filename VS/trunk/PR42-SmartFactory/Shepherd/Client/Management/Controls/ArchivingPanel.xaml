@@ -74,6 +74,9 @@
 									Shippings archive period:
                         </TextBlock>
                         <TextBox Text="{Binding ArchivalDelay, Mode=TwoWay}" Width="50" Margin="5" Style="{DynamicResource CASTextBox}" />
+                        <TextBlock Width="200" Style="{DynamicResource CASTextBlock}" Margin="5">
+									days
+                        </TextBlock>
                     </StackPanel>
                     <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
                         <TextBlock Width="200" Style="{DynamicResource CASTextBlock}" Margin="5">
@@ -81,7 +84,7 @@
                         </TextBlock>
                         <TextBox Text="{Binding Path=RowLimit, Mode=TwoWay}" Width="50" Margin="5" Style="{DynamicResource CASTextBox}" />
                         <TextBlock Width="200" Style="{DynamicResource CASTextBlock}" Margin="5">
-									elements.
+									elements
                         </TextBlock>
                     </StackPanel>
                     <StackPanel Background="#FF9CCC65" Orientation="Horizontal">
