@@ -59,7 +59,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
       get { return (ShellViewModel)this.DataContext; }
     }
 
-    private void Window_Loaded(object sender, RoutedEventArgs e){}
+    private void Window_Loaded(object sender, RoutedEventArgs e) { }
     private void ExceptionNotification_Raised(object sender, InteractionRequestedEventArgs<INotification> e)
     {
       MessageBox.Show((string)e.Context.Content, e.Context.Title, MessageBoxButton.OK, MessageBoxImage.Error);
@@ -87,6 +87,8 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
     {
       Properties.Settings.Default.Save();
       ViewModel.Dispose();
+      Services.NamedTraceLogger.Logger.TraceEvent(System.Diagnostics.TraceEventType.Stop, 91, "The application is closing");
+      Services.NamedTraceLogger.Logger.Flush();
       Services.NamedTraceLogger.Logger.Dispose();
       base.OnClosing(e);
     }
