@@ -29,13 +29,13 @@
     <InstallUrl>http://www.commsvr.com/COInstal/ShepherdClient/</InstallUrl>
     <SupportUrl>http://jti.cas.eu/</SupportUrl>
     <ErrorReportUrl>http://jti.cas.eu/</ErrorReportUrl>
-    <ProductName>Shepherd Client</ProductName>
+    <ProductName>CAS Shepherd Management Console</ProductName>
     <PublisherName>CAS</PublisherName>
     <SuiteName>SmartFactory</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.html</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>19</ApplicationRevision>
+    <ApplicationRevision>21</ApplicationRevision>
     <ApplicationVersion>2.60.10.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -335,11 +335,6 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
