@@ -28,6 +28,7 @@ namespace  CAS.SmartFactory.Shepherd.Client.Management
     public HelpWindow()
     {
       InitializeComponent();
+      x_Version.Content = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
     }
   }
 }

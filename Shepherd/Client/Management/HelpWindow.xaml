@@ -15,10 +15,13 @@
     <ScrollViewer>
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
-                <TextBlock Margin="5" Grid.Row="0" TextWrapping="Wrap">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="5" Grid.Row="0" TextWrapping="Wrap">
             <Bold>Shepherd Management Wizard - Help</Bold><LineBreak/>
             Here are answers to common questions about Shepherd Management Wizard
-                </TextBlock>
+                    </TextBlock>
+                    <Label Name="x_Version">Rel. x.x.x</Label>
+                </StackPanel>
                 <Expander  Header="Setup connection" Style="{DynamicResource CASExpanderBlack}">
                     <TextBlock Style="{DynamicResource CASTextBlockBlack}" Margin="5" TextWrapping="Wrap">
                     To set up connection for a Route Import enter Shepherd website url address, press Connect button and Route Edit.<LineBreak/>
