@@ -56,12 +56,6 @@
     <Compile Include="UnitTestSADGeneraion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Customs\Customs.csproj">
-      <Project>{6c705843-6387-4d2d-a7cf-a66976186ce2}</Project>
-      <Name>Customs</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

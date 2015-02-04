@@ -63,10 +63,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\SmartFactoryCommon\PR44-SharePoint\Libraries\CASCommon\CASCommon.csproj">
-      <Project>{af2434e6-fd65-43a2-be31-c8c1e5ba5acd}</Project>
-      <Name>CASCommon</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\WebsiteApplication\Silverlight\DisposalRequestWebPart_WPF\DisposalRequestWebPart_WPF.csproj">
       <Project>{1373310a-b2e5-4737-98d2-f4efdff60a76}</Project>
       <Name>DisposalRequestWebPart_WPF</Name>
