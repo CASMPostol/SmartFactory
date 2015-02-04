@@ -233,10 +233,6 @@
     <Compile Include="Webparts\InterconnectionData.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\SmartFactoryCommon\PR44-SharePoint\Libraries\CASCommon\CASCommon.350.csproj">
-      <Project>{8c0d5fea-f28c-48c7-bd99-71ac92f3ebca}</Project>
-      <Name>CASCommon.350</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CWWebsiteModel\CWWebsiteModel.csproj">
       <Project>{28191aa2-5bff-4d48-a7ad-b10c83044e3c}</Project>
       <Name>CWWebsiteModel</Name>
