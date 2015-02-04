@@ -66,6 +66,10 @@
     <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CAS.Common.SilverLight, Version=2.20.0.25744, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\packages\CAS.Common.2.20.00\lib\sl50\CAS.Common.SilverLight.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SharePoint.Client.Silverlight, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SharePoint.Client.Silverlight.Runtime, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
@@ -168,6 +172,7 @@
       <LastGenOutput>CommonDefinition.cs</LastGenOutput>
     </None>
     <None Include="Linq\Scripts\GetEntities.ps1" />
+    <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
@@ -224,12 +229,6 @@
     <DesignData Include="SampleData\DisposalRequestObservableSampleData.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </DesignData>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\PR44-SharePoint\Libraries\CASCommon\CASCommon.SilverLight.csproj">
-      <Project>{ec5bbde9-71dc-414c-ad01-8cf6d4b00f91}</Project>
-      <Name>CASCommon.SilverLight</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
