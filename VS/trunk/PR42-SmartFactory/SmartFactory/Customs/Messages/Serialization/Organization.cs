@@ -1,24 +1,21 @@
-﻿//<summary>
-//  Title   : Name of Application
-//  System  : Microsoft Visual C# .NET 2012
+﻿//_______________________________________________________________
+//  Title   : Organization
+//  System  : Microsoft VisualStudio 2013 / C#
 //  $LastChangedDate$
 //  $Rev$
 //  $LastChangedBy$
 //  $URL$
 //  $Id$
 //
-//  Copyright (C) 2013, CAS LODZ POLAND.
+//  Copyright (C) 2015, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
-//</summary>
+//_______________________________________________________________
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
+#pragma warning disable 1591
+
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.Text;
 
 namespace CAS.SmartFactory.Customs.Messages.Serialization
 {
@@ -239,3 +236,5 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
 
   }
 }
+
+#pragma warning restore 1591

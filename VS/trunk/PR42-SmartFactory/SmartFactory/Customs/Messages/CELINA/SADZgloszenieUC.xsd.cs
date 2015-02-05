@@ -13,8 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
-using System.Collections.Generic;
 using CAS.SmartFactory.Customs.Messages.Serialization;
+using System.Collections.Generic;
 
 namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
 {
@@ -24,8 +24,7 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
     /// Creates the instance of <see cref="SADZgloszenieUC" />.
     /// </summary>
     /// <param name="customsOfficeJson">The customs office.</param>
-    /// <param name="localization">The localization.</param>
-    /// <returns></returns>
+    /// <returns>Returns new object of <see cref="SADZgloszenieUC"/>.</returns>
     public static SADZgloszenieUC Create( string customsOfficeJson )
     {
       CustomsOffice _co = CustomsOffice.Deserialize( customsOfficeJson );

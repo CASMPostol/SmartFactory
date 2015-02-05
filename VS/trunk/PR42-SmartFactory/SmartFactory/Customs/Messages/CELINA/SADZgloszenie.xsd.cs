@@ -25,12 +25,13 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
   {
 
     /// <summary>
-    /// Creates the instance of <see cref="SADZgloszenie"/>.
+    /// Creates the instance of <see cref="SADZgloszenie" />.
     /// </summary>
-    /// <param name="value">The value.</param>
     /// <param name="goods">The goods.</param>
-    /// <param name="customsOffice">The .</param>
-    /// <returns></returns>
+    /// <param name="customsOffice">The Customs Office.</param>
+    /// <param name="recipientOrganizationJson">The recipient organization json.</param>
+    /// <param name="senderOrganizationJson">The sender organization json.</param>
+    /// <returns>Returns an object of <see cref="SADZgloszenie"/>.</returns>
     public static SADZgloszenie Create( SADZgloszenieTowar[] goods, SADZgloszenieUC customsOffice, string recipientOrganizationJson, Serialization.Organization senderOrganizationJson )
     {
       decimal _grossMas = 0;
@@ -91,9 +92,9 @@ namespace CAS.SmartFactory.Customs.Messages.CELINA.SAD
       };
     }
     /// <summary>
-    /// Creates the sad zgloszenie odbiorca.
+    /// Creates the <see cref="SADZgloszenieOdbiorca"/>.
     /// </summary>
-    /// <param name="stringJson">The string json.</param>
+    /// <param name="stringJson">The string containing json stream.</param>
     /// <returns></returns>
     public static SADZgloszenieOdbiorca CreateSADZgloszenieOdbiorca( string stringJson )
     {
