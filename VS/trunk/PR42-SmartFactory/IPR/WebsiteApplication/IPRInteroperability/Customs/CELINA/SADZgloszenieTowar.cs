@@ -12,9 +12,9 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
-using System;
+
 using CAS.SmartFactory.Customs;
+using System;
 
 namespace CAS.SmartFactory.xml.Customs.SAD
 {
