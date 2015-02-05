@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonAssembly", "..\CommonAssembly\CommonAssembly.csproj", "{A125A86E-1502-4ABC-B858-D167F0BD4A13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonAssembly", "SmartFactory\CommonAssembly\CommonAssembly.csproj", "{A125A86E-1502-4ABC-B858-D167F0BD4A13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customs", "..\Customs\Customs.csproj", "{6C705843-6387-4D2D-A7CF-A66976186CE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customs", "SmartFactory\Customs\Customs.csproj", "{6C705843-6387-4D2D-A7CF-A66976186CE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
