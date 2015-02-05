@@ -40,10 +40,6 @@
     <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CAS.Customs, Version=2.0.0.22658, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\CommonBinaries\PR42-SmartFactory\CAS.Customs.dll</HintPath>
-    </Reference>
     <Reference Include="CAS.SharePoint, Version=2.0.21.13087, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll</HintPath>
@@ -51,6 +47,9 @@
     <Reference Include="CAS.SharePoint.Common, Version=1.70.36.24112, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\UAModelDesigner\CommonBinaries\EX06-SharePointGuidance2010\CAS.SharePoint.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="CAS.SmartFactoryCustoms">
+      <HintPath>..\..\..\packages\CAS.SmartFactory.Customs.2.30.00\lib\net35\CAS.SmartFactoryCustoms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -71,6 +70,7 @@
       <FeatureId>{b0a3f319-857b-4a9a-bab1-68be635341f9}</FeatureId>
     </None>
     <None Include="Linq\Scripts\GetEntities.ps1" />
+    <None Include="packages.config" />
     <None Include="Package\Package.package">
       <PackageId>{f8254738-4cee-4cd4-9b32-025d0eb2b976}</PackageId>
     </None>

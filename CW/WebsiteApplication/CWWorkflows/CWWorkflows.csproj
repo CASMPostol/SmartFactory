@@ -40,13 +40,12 @@
     <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CAS.Customs, Version=2.0.0.22658, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\CommonBinaries\PR42-SmartFactory\CAS.Customs.dll</HintPath>
-    </Reference>
     <Reference Include="CAS.SharePoint, Version=2.0.21.13087, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll</HintPath>
+    </Reference>
+    <Reference Include="CAS.SmartFactoryCustoms">
+      <HintPath>..\..\..\packages\CAS.SmartFactory.Customs.2.30.00\lib\net35\CAS.SmartFactoryCustoms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
@@ -84,6 +83,7 @@
     <None Include="Features\CWWorkflows\CWWorkflows.feature">
       <FeatureId>{87f225c4-cbba-40d9-989c-d065bf53e88f}</FeatureId>
     </None>
+    <None Include="packages.config" />
     <None Include="Package\Package.package">
       <PackageId>{b6238946-9bc1-4e60-b681-3dc8731ae6cd}</PackageId>
     </None>
