@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CAS.SmartFactory.Customs</RootNamespace>
-    <AssemblyName>CAS.Customs</AssemblyName>
+    <AssemblyName>CAS.SmartFactoryCustoms</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\CAS.Customs.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\CAS.SmartFactoryCustoms.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,7 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\CAS.Customs.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\CAS.SmartFactoryCustoms.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -306,6 +306,15 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </None>
+    <None Include="Properties\CAS.SmartFactory.Customs.nuspec">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CAS.SmartFactory.Customs.tt</DependentUpon>
+    </None>
+    <None Include="Properties\CAS.SmartFactory.Customs.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CAS.SmartFactory.Customs.nuspec</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -313,10 +322,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>dir
-xcopy $(TargetName).* ..\..\..\..\CommonBinaries\PR42-SmartFactory\ /Y/V
-dir ..\..\..\..\CommonBinaries\PR42-SmartFactory\*.*
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

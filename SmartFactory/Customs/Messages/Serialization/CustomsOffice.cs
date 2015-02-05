@@ -1,24 +1,27 @@
-﻿//<summary>
-//  Title   : public class CustomsOffice
-//  System  : Microsoft Visual C# .NET 2012
+﻿//_______________________________________________________________
+//  Title   : CustomsOffice
+//  System  : Microsoft VisualStudio 2013 / C#
 //  $LastChangedDate$
 //  $Rev$
 //  $LastChangedBy$
 //  $URL$
 //  $Id$
 //
-//  Copyright (C) 2013, CAS LODZ POLAND.
+//  Copyright (C) 2015, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
-//</summary>
+//_______________________________________________________________
+
+
+#pragma warning disable 1591
 
 using System.Runtime.Serialization;
 
 namespace CAS.SmartFactory.Customs.Messages.Serialization
 {
   /// <summary>
-  /// public class CustomsOffice
+  /// public class CustomsOffice - <see cref="DataContract"/> for serializer.
   /// </summary>
   [DataContract]
   public class CustomsOffice
@@ -389,3 +392,4 @@ namespace CAS.SmartFactory.Customs.Messages.Serialization
   }
 
 }
+#pragma warning restore 1591
