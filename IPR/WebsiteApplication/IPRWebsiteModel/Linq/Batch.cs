@@ -144,10 +144,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return m_Disposal;
     }
     /// <summary>
-    /// Reverse lookup for <see cref="InvoiceContent"/>.
+    /// Reverse lookup for <see cref="InvoiceContent" />.
     /// </summary>
     /// <param name="edc">The entities context.</param>
-    /// <returns>A collection of <see cref="InvoiceContent"/> entities</returns>
+    /// <param name="emptyListIfNew">if set to <c>true</c> [empty list if new].</param>
+    /// <returns>A collection of <see cref="InvoiceContent" /> entities</returns>
     internal IEnumerable<InvoiceContent> InvoiceContent(Entities edc, bool emptyListIfNew)
     {
       if (!this.Id.HasValue)

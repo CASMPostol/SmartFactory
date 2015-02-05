@@ -1,5 +1,5 @@
-﻿using System;
-using CAS.SmartFactory.Customs;
+﻿using CAS.SmartFactory.Customs;
+using System;
 
 namespace CAS.SmartFactory.xml.Customs.IE529
 {
