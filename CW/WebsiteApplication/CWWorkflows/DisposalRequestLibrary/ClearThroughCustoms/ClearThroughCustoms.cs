@@ -52,7 +52,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
           {
             if (_cwdx.CustomsStatus.Value != CustomsStatus.NotStarted)
               continue;
-            Clearence _newClearance = Clearence.CreataClearence(_entities, "Customs Warehouse Withdraw", _Dr.ClearenceProcedure.Value);
+            Clearence _newClearance = Clearence.CreataClearence(_entities, "Customs Warehouse Withdraw", _Dr.ClearenceProcedure.Value, (x, y, z) => { });
             _cwdx.CWL_CWDisposal2ClearanceID = _newClearance;
             _cwdx.CustomsStatus = CustomsStatus.Started;
             if (_cwdx.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value > 0 ||
