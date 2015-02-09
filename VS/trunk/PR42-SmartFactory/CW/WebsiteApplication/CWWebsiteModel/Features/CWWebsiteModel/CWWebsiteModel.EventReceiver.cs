@@ -15,6 +15,7 @@
 
 using CAS.SharePoint.Common.ServiceLocation;
 using CAS.SmartFactory.Customs.Account;
+using CAS.SmartFactory.CW.WebsiteModel.Linq.Account;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
@@ -54,7 +55,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Features.CWWebsiteModel
           (String.Format("CAS.SmartFactory.CW.WebsiteModel FeatureInstalled: {0}", properties.Definition.DisplayName), 54, TraceSeverity.High, WebsiteModelExtensions.LoggingCategories.FeatureActivation);
         IServiceLocator _serviceLocator = SharePointServiceLocator.GetCurrent();
         IServiceLocatorConfig _typeMappings = _serviceLocator.GetInstance<IServiceLocatorConfig>();
-        _typeMappings.RegisterTypeMapping<CAS.SmartFactory.Customs.Account.ICWAccountFactory, CAS.SmartFactory.CW.WebsiteModel.Linq.Account.CWAccountData>();
+        _typeMappings.RegisterTypeMapping<ICWAccountFactory, CWAccountData>();
         WebsiteModelExtensions.TraceEvent("CAS.SmartFactory.CW.WebsiteModel TypeMapping registered", 59, TraceSeverity.High, WebsiteModelExtensions.LoggingCategories.FeatureActivation);
       }
       catch (Exception _ex)

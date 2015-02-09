@@ -22,6 +22,7 @@ using CAS.SharePoint;
 using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.Customs.Account;
 using Microsoft.SharePoint.Linq;
+using Microsoft.SharePoint.Administration;
 
 namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
 {
@@ -155,23 +156,27 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     /// <param name="requestedUrl">The requested URL.</param>
     void ICWAccountFactory.ClearThroughCustoms(CommonClearanceData commonClearanceData, List<Warnning> warnings, string requestedUrl)
     {
+      WebsiteModelExtensions.TraceEvent("Starting CWAccountData.ICWAccountFactory.ClearThroughCustoms at SubmitChanges", 159, TraceSeverity.Verbose, WebsiteModelExtensions.LoggingCategories.CloseAccount);
       string _at = "Beginning";
       try
       {
         using (Entities _edc = new Entities(requestedUrl))
         {
           _at = "ClearenceLookup";
-          Clearence _Clearence = Element.GetAtIndex<Clearence>(_edc.Clearence, commonClearanceData.ClearenceLookup);
-          _Clearence.FinishClearThroughCustoms(_edc, _Clearence.Clearence2SadGoodID);
+          Clearence _Clearance = Element.GetAtIndex<Clearence>(_edc.Clearence, commonClearanceData.ClearenceLookup);
+          _Clearance.FinishClearThroughCustoms(_edc, (message, eventId, severity) => WebsiteModelExtensions.TraceEvent(message, eventId, severity, WebsiteModelExtensions.LoggingCategories.CloseAccount));
+          WebsiteModelExtensions.TraceEvent("ICWAccountFactory.ClearThroughCustoms at SubmitChanges", 168, TraceSeverity.Verbose, WebsiteModelExtensions.LoggingCategories.CloseAccount);
           _edc.SubmitChanges();
         }
       }
       catch (Exception ex)
       {
         string _msg = string.Format(Properties.Resources.UnexpectedExceptionMessage, "ICWAccountFactory.CreateCWAccount", _at, ex.Message);
+        WebsiteModelExtensions.TraceEvent(_msg, 173, TraceSeverity.High, WebsiteModelExtensions.LoggingCategories.CloseAccount);
         Warnning _wrn = new Warnning(_msg, true);
         warnings.Add(_wrn);
       }
+      WebsiteModelExtensions.TraceEvent("Finishing CWAccountData.ICWAccountFactory.ClearThroughCustoms at SubmitChanges", 179, TraceSeverity.Verbose, WebsiteModelExtensions.LoggingCategories.CloseAccount);
     }
     #endregion
 
