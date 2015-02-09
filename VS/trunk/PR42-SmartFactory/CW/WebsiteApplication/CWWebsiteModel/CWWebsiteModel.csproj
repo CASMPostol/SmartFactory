@@ -70,7 +70,9 @@
       <FeatureId>{b0a3f319-857b-4a9a-bab1-68be635341f9}</FeatureId>
     </None>
     <None Include="Linq\Scripts\GetEntities.ps1" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{f8254738-4cee-4cd4-9b32-025d0eb2b976}</PackageId>
     </None>
