@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,8 +94,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       CW_SettledGrossMass = (CW_PackageToClear.Value * CWL_CWDisposal2CustomsWarehouseID.PackageWeight() + value).RoundValue();
       this.CW_AddedKg = (value - this.CW_DeclaredNetMass.Value).RoundValue();
     }
-    internal void FinishClearThroughCustoms(Entities edc, SADGood sadGood)
+    internal void FinishClearThroughCustoms(Entities edc, SADGood sadGood, WebsiteModelExtensions.TraceAction traceEvent)
     {
+      traceEvent("Starting CustomsWarehouseDisposal.FinishClearThroughCustoms for sadGood:" + sadGood.Title, 96, TraceSeverity.Verbose);
       if (this.CustomsStatus.Value == Linq.CustomsStatus.Finished)
         return;
       try
@@ -106,7 +108,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
           this.SPNo = 1;
         else
           this.SPNo = _Finished.Max<CustomsWarehouseDisposal>(dspsl => dspsl.SPNo.Value) + 1;
-        AssignSADGood(edc, sadGood);
+        AssignSADGood(edc, sadGood, traceEvent);
         decimal _balance = CalculateRemainingQuantity();
         if (_balance == 0)
         {
@@ -122,13 +124,15 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
           this.CW_RemainingTobaccoValue = this.CWL_CWDisposal2CustomsWarehouseID.Value - _value - this.TobaccoValue;
           this.ClearingType = Linq.ClearingType.PartialWindingUp;
         }
-        CheckCNCosistency();
+        CheckCNConsistency(traceEvent);
         this.CustomsStatus = Linq.CustomsStatus.Finished;
       }
-      catch (Exception)
+      catch (Exception ex)
       {
+        traceEvent("Exception at CustomsWarehouseDisposal.FinishClearThroughCustoms for sadGood:" + ex.Message, 132, TraceSeverity.High);
         throw;
       }
+      traceEvent("Finished CustomsWarehouseDisposal.FinishClearThroughCustoms", 96, TraceSeverity.Verbose);
     }
     /// <summary>
     /// Updates the title.
@@ -154,18 +158,24 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       if (e.PropertyName == "Title") return;
       UpdateTitle();
     }
-    private void CheckCNCosistency()
+    private void CheckCNConsistency(WebsiteModelExtensions.TraceAction traceEvent)
     {
+      traceEvent("Starting CustomsWarehouseDisposal.CheckCNConsistency but it is not implemented.", 163, TraceSeverity.Verbose);
       //TODO CheckCNCosistency NotImplementedException();
     }
-    private void AssignSADGood(Entities edc, SADGood sadGood)
+    private void AssignSADGood(Entities edc, SADGood sadGood, WebsiteModelExtensions.TraceAction traceEvent)
     {
+      traceEvent("Starting CustomsWarehouseDisposal.AssignSADGood", 167, TraceSeverity.Verbose);
       this.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
       this.SADDocumentNo = sadGood.SADDocumentIndex.DocumentNumber;
       //TODO check consistency and generate warning.
       this.CustomsProcedure = sadGood.SPProcedure;
       if (this.TobaccoValue != sadGood.TotalAmountInvoiced)
-        throw new ArgumentOutOfRangeException("TotalAmountInvoiced", "Total Amount Invoiced value is not equal as requested to clear through customs");
+      {
+        string _msg = "Total Amount Invoiced value is not equal as requested to clear through customs";
+        traceEvent("Finishing CustomsWarehouseDisposal.AssignSADGood: " + _msg, 167, TraceSeverity.High);
+        throw new ArgumentOutOfRangeException("TotalAmountInvoiced", _msg);
+      }
       decimal _vat = 0;
       decimal _duties = 0;
       foreach (SADDuties _sdc in sadGood.SADDuties(edc, false))
@@ -185,6 +195,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       this.DutyPerSettledAmount = _duties.DoubleValue();
       this.VATPerSettledAmount = _vat.DoubleValue();
       this.DutyAndVAT = (_vat + _duties).DoubleValue();
+      traceEvent("Finishing CustomsWarehouseDisposal.AssignSADGood", 167, TraceSeverity.Verbose);
     }
     private decimal CalculateRemainingQuantity()
     {

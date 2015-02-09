@@ -122,9 +122,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel
     }
     internal static void UnregisterLoggerSource()
     {
-      NamedTraceLogger.UnregisterLoggerSource(LoggingArea); ;
+      NamedTraceLogger.UnregisterLoggerSource(LoggingArea);
     }
-
+    public delegate void TraceAction(string message, int eventId, TraceSeverity severity);
     private static string m_LoggingArea;
 
   }
