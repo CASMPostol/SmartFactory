@@ -13,6 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Logging;
+using Microsoft.SharePoint.Administration;
 using System;
 
 namespace CAS.SmartFactory.CW.WebsiteModel
@@ -94,5 +96,36 @@ namespace CAS.SmartFactory.CW.WebsiteModel
         return new Nullable<int>();
       }
     }
+    /// <summary>
+    /// Gets the application logging area name.
+    /// </summary>
+    public static string LoggingArea
+    {
+      get
+      {
+        if (String.IsNullOrEmpty(m_LoggingArea))
+          m_LoggingArea = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+        return m_LoggingArea;
+      }
+    }
+    /// <summary>
+    /// Enum LoggingCategories - registered set of categories.
+    /// </summary>
+    public enum LoggingCategories { FeatureActivation, CloseAccount, CreateAccount }
+    public static void TraceEvent(string message, int eventId, TraceSeverity severity, LoggingCategories category)
+    {
+      NamedTraceLogger.Logger.TraceToDeveloper(message, eventId, severity, string.Format("{0}/{1}", LoggingArea, category));
+    }
+    internal static void RegisterLoggerSource()
+    {
+      NamedTraceLogger.RegisterLoggerSource(LoggingArea, Enum.GetNames(typeof(LoggingCategories)));
+    }
+    internal static void UnregisterLoggerSource()
+    {
+      NamedTraceLogger.UnregisterLoggerSource(LoggingArea); ;
+    }
+
+    private static string m_LoggingArea;
+
   }
 }
