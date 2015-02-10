@@ -112,6 +112,14 @@ namespace CAS.SmartFactory.CW.WebsiteModel
     /// Enum LoggingCategories - registered set of categories.
     /// </summary>
     public enum LoggingCategories { FeatureActivation, CloseAccount, CreateAccount }
+    /// <summary>
+    /// Writes a diagnostic message into the trace log, with specified Microsoft.SharePoint.Administration.TraceSeverity. 
+    /// Don't use in sandbox.
+    /// </summary>
+    /// <param name="message">The message to write into the log.</param>
+    /// <param name="eventId">The eventId that corresponds to the event.</param>
+    /// <param name="severity">The severity of the trace.</param>
+    /// <param name="category">The category to write the message to.</param>
     public static void TraceEvent(string message, int eventId, TraceSeverity severity, LoggingCategories category)
     {
       NamedTraceLogger.Logger.TraceToDeveloper(message, eventId, severity, string.Format("{0}/{1}", LoggingArea, category));
@@ -124,7 +132,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel
     {
       NamedTraceLogger.UnregisterLoggerSource(LoggingArea);
     }
-    public delegate void TraceAction(string message, int eventId, TraceSeverity severity);
     private static string m_LoggingArea;
 
   }

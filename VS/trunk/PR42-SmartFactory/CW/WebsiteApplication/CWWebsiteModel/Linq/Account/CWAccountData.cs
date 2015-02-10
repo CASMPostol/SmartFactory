@@ -156,7 +156,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     /// <param name="requestedUrl">The requested URL.</param>
     void ICWAccountFactory.ClearThroughCustoms(CommonClearanceData commonClearanceData, List<Warnning> warnings, string requestedUrl)
     {
-      WebsiteModelExtensions.TraceEvent("Starting CWAccountData.ICWAccountFactory.ClearThroughCustoms at SubmitChanges", 159, TraceSeverity.Verbose, WebsiteModelExtensions.LoggingCategories.CloseAccount);
+      WebsiteModelExtensions.TraceEvent("Starting CWAccountData.ICWAccountFactory.ClearThroughCustoms", 159, TraceSeverity.Verbose, WebsiteModelExtensions.LoggingCategories.CloseAccount);
       string _at = "Beginning";
       try
       {
@@ -176,7 +176,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
         Warnning _wrn = new Warnning(_msg, true);
         warnings.Add(_wrn);
       }
-      WebsiteModelExtensions.TraceEvent("Finishing CWAccountData.ICWAccountFactory.ClearThroughCustoms at SubmitChanges", 179, TraceSeverity.Verbose, WebsiteModelExtensions.LoggingCategories.CloseAccount);
+      WebsiteModelExtensions.TraceEvent("Finishing CWAccountData.ICWAccountFactory.ClearThroughCustoms", 179, TraceSeverity.Verbose, WebsiteModelExtensions.LoggingCategories.CloseAccount);
     }
     #endregion
 
@@ -276,10 +276,5 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
     }
     #endregion
 
-    #region ICWAccountFactory Members
-
-
-
-    #endregion
   }
 }

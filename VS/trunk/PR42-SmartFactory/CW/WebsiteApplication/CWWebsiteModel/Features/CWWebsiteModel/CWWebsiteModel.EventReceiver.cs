@@ -91,6 +91,6 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Features.CWWebsiteModel
     //public override void FeatureUpgrading(SPFeatureReceiverProperties properties, string upgradeActionName, System.Collections.Generic.IDictionary<string, string> parameters)
     //{
     //}
-    internal static string SourceName = "Application";
+    internal static string SourceName = "CAS.SmartFactory.CW";
   }
 }
