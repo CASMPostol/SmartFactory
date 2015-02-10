@@ -118,12 +118,12 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           BalanceCutfillerContent _bcc = new BalanceCutfillerContent()
           {
             CtfBatch = _StockEntryX.Batch,
-            CtfBatchQuantity = _StockEntryX.BatchIndex.FGQuantity.Value.Rount2Double(),
-            CtfOnStock = _StockEntryX.Quantity.Value.Rount2Double(),
+            CtfBatchQuantity = _StockEntryX.BatchIndex.FGQuantity.Value.Round2Double(),
+            CtfOnStock = _StockEntryX.Quantity.Value.Round2Double(),
             CtfSKU = _StockEntryX.SKU,
             TobaccoBatch = _MaterialX.Batch,
-            TobaccoBatchQuantity = _MaterialX.TobaccoQuantity.Value.Rount2Double(),
-            TobaccoKg = (_MaterialX.TobaccoQuantity.Value * _cfc).Rount2Double(),
+            TobaccoBatchQuantity = _MaterialX.TobaccoQuantity.Value.Round2Double(),
+            TobaccoKg = (_MaterialX.TobaccoQuantity.Value * _cfc).Round2Double(),
             TobaccoSKU = _MaterialX.SKU
           };
           _ret.Add(_bcc);
@@ -137,19 +137,19 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       JSOContent _ret = new JSOContent()
       {
         BalanceDate = list.BalanceDate.GetValueOrDefault(),
-        BalanceQuantity = list.BalanceQuantity.Rount2DecimalOrDefault(),
+        BalanceQuantity = list.BalanceQuantity.Round2DecimalOrDefault(),
         JSOXCustomsSummaryList = GetDisposalsList(factory.SummaryContentList),
         IntroducingDateEnd = list.IntroducingDateEnd.GetValueOrDefault(),
         IntroducingDateStart = list.IntroducingDateStart.GetValueOrDefault(),
-        IntroducingQuantity = list.IntroducingQuantity.Rount2DecimalOrDefault(),
+        IntroducingQuantity = list.IntroducingQuantity.Round2DecimalOrDefault(),
         OutboundDateEnd = list.OutboundDateEnd.GetValueOrDefault(),
         OutboundDateStart = list.OutboundDateStart.GetValueOrDefault(),
-        OutboundQuantity = list.OutboundQuantity.Rount2DecimalOrDefault(),
+        OutboundQuantity = list.OutboundQuantity.Round2DecimalOrDefault(),
         PreviousMonthDate = list.PreviousMonthDate.GetValueOrDefault(),
-        PreviousMonthQuantity = list.PreviousMonthQuantity.Rount2DecimalOrDefault(),
-        ReassumeQuantity = list.ReassumeQuantity.Rount2DecimalOrDefault(),
+        PreviousMonthQuantity = list.PreviousMonthQuantity.Round2DecimalOrDefault(),
+        ReassumeQuantity = list.ReassumeQuantity.Round2DecimalOrDefault(),
         SituationDate = list.SituationDate.GetValueOrDefault(),
-        SituationQuantity = list.SituationQuantity.Rount2DecimalOrDefault()
+        SituationQuantity = list.SituationQuantity.Round2DecimalOrDefault()
       };
       return _ret;
     }
@@ -211,16 +211,16 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           BalanceBatchContent _new = new BalanceBatchContent()
             {
               BalanceIPR = GetBalanceIPRContent(_bsx.BalanceIPR(edc)),
-              TotalBalance = _bsx.Balance.Rount2DecimalOrDefault(),
-              TotalDustCSNotStarted = _bsx.DustCSNotStarted.Rount2DecimalOrDefault(),
-              TotalIPRBook = _bsx.IPRBook.Rount2DecimalOrDefault(),
-              TotalSHWasteOveruseCSNotStarted = _bsx.SHWasteOveruseCSNotStarted.Rount2DecimalOrDefault(),
-              TotalTobaccoAvailable = _bsx.TobaccoAvailable.Rount2DecimalOrDefault(),
-              TotalTobaccoInCigarettesProduction = _bsx.TobaccoInCigarettesProduction.Rount2DecimalOrDefault(),
-              TotalTobaccoInCigarettesWarehouse = _bsx.TobaccoInCigarettesWarehouse.Rount2DecimalOrDefault(),
-              TotalTobaccoInCutfillerWarehouse = _bsx.TobaccoInCutfillerWarehouse.Rount2DecimalOrDefault(),
-              TotalTobaccoInWarehouse = _bsx.TobaccoInWarehouse.Rount2DecimalOrDefault(),
-              TotalTobaccoStarted = _bsx.TobaccoStarted.Rount2DecimalOrDefault()
+              TotalBalance = _bsx.Balance.Round2DecimalOrDefault(),
+              TotalDustCSNotStarted = _bsx.DustCSNotStarted.Round2DecimalOrDefault(),
+              TotalIPRBook = _bsx.IPRBook.Round2DecimalOrDefault(),
+              TotalSHWasteOveruseCSNotStarted = _bsx.SHWasteOveruseCSNotStarted.Round2DecimalOrDefault(),
+              TotalTobaccoAvailable = _bsx.TobaccoAvailable.Round2DecimalOrDefault(),
+              TotalTobaccoInCigarettesProduction = _bsx.TobaccoInCigarettesProduction.Round2DecimalOrDefault(),
+              TotalTobaccoInCigarettesWarehouse = _bsx.TobaccoInCigarettesWarehouse.Round2DecimalOrDefault(),
+              TotalTobaccoInCutfillerWarehouse = _bsx.TobaccoInCutfillerWarehouse.Round2DecimalOrDefault(),
+              TotalTobaccoInWarehouse = _bsx.TobaccoInWarehouse.Round2DecimalOrDefault(),
+              TotalTobaccoStarted = _bsx.TobaccoStarted.Round2DecimalOrDefault()
             };
           _ret.Add(_new);
         }
@@ -234,13 +234,13 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         BalanceIPRContent _new = new BalanceIPRContent()
         {
           Batch = _item.Batch,
-          DustCSNotStarted = _item.DustCSNotStarted.Rount2DecimalOrDefault(),
+          DustCSNotStarted = _item.DustCSNotStarted.Round2DecimalOrDefault(),
           EntryDocumentNo = _item.DocumentNo,
-          IPRBook = _item.IPRBook.Rount2DecimalOrDefault(),
-          SHWasteOveruseCSNotStarted = _item.SHWasteOveruseCSNotStarted.Rount2DecimalOrDefault(),
+          IPRBook = _item.IPRBook.Round2DecimalOrDefault(),
+          SHWasteOveruseCSNotStarted = _item.SHWasteOveruseCSNotStarted.Round2DecimalOrDefault(),
           SKU = _item.SKU,
-          TobaccoAvailable = _item.TobaccoAvailable.Rount2DecimalOrDefault(),
-          TobaccoStarted = _item.TobaccoStarted.Rount2DecimalOrDefault()
+          TobaccoAvailable = _item.TobaccoAvailable.Round2DecimalOrDefault(),
+          TobaccoStarted = _item.TobaccoStarted.Round2DecimalOrDefault()
         };
         _iprRows.Add(_new);
       }

@@ -464,9 +464,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if (this.TobaccoNotAllocatedDec != 0 || _disposal.Where(x => x.SettledQuantityDec > 0 && x.CustomsStatus == CustomsStatus.NotStarted).Any())
         return;
       IEnumerable<Disposal> _dspsl = Disposals(edc);
-      disposal.DutyPerSettledAmount = (disposal.DutyPerSettledAmount + this.Duty.Value - (from _dec in _dspsl where _dec.DutyPerSettledAmount.HasValue select _dec.DutyPerSettledAmount.Value).Sum(itm => itm)).Value.Rount2Decimals();
-      disposal.VATPerSettledAmount = (disposal.VATPerSettledAmount + this.VAT.Value - (from _dec in _dspsl where _dec.VATPerSettledAmount.HasValue select _dec.VATPerSettledAmount.Value).Sum(itm => itm)).Value.Rount2Decimals();
-      disposal.DutyAndVAT = (disposal.DutyPerSettledAmount + disposal.VATPerSettledAmount).Value.Rount2Decimals();
+      disposal.DutyPerSettledAmount = (disposal.DutyPerSettledAmount + this.Duty.Value - (from _dec in _dspsl where _dec.DutyPerSettledAmount.HasValue select _dec.DutyPerSettledAmount.Value).Sum(itm => itm)).Value.Round2Decimals();
+      disposal.VATPerSettledAmount = (disposal.VATPerSettledAmount + this.VAT.Value - (from _dec in _dspsl where _dec.VATPerSettledAmount.HasValue select _dec.VATPerSettledAmount.Value).Sum(itm => itm)).Value.Round2Decimals();
+      disposal.DutyAndVAT = (disposal.DutyPerSettledAmount + disposal.VATPerSettledAmount).Value.Round2Decimals();
       disposal.TobaccoValue += this.Value.Value - (from _dec in _dspsl where _dec.TobaccoValue.HasValue select _dec.TobaccoValue.Value).Sum(itm => itm); ;
     }
     #endregion

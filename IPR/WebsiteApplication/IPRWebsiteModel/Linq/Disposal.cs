@@ -61,10 +61,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </value>
     public decimal SettledQuantityDec
     {
-      get { return Convert.ToDecimal(this.SettledQuantity).Rount2Decimals(); }
+      get { return Convert.ToDecimal(this.SettledQuantity).Round2Decimals(); }
       set
       {
-        this.SettledQuantity = Convert.ToDouble(value).Rount2Decimals();
+        this.SettledQuantity = Convert.ToDouble(value).Round2Decimals();
         CalculateDutyAndVat();
       }
     }
@@ -227,10 +227,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         if (this.DisposalStatus.Value == Linq.DisposalStatus.Cartons)
           return;
         double _portion = SettledQuantity.Value / Disposal2IPRIndex.NetMass.Value;
-        DutyPerSettledAmount = (Disposal2IPRIndex.Duty.Value * _portion).Rount2Decimals();
-        VATPerSettledAmount = (Disposal2IPRIndex.VAT.Value * _portion).Rount2Decimals();
-        TobaccoValue = (Disposal2IPRIndex.Value.Value * _portion).Rount2Decimals();
-        DutyAndVAT = (DutyPerSettledAmount.Value + VATPerSettledAmount.Value).Rount2Decimals();
+        DutyPerSettledAmount = (Disposal2IPRIndex.Duty.Value * _portion).Round2Decimals();
+        VATPerSettledAmount = (Disposal2IPRIndex.VAT.Value * _portion).Round2Decimals();
+        TobaccoValue = (Disposal2IPRIndex.Value.Value * _portion).Round2Decimals();
+        DutyAndVAT = (DutyPerSettledAmount.Value + VATPerSettledAmount.Value).Round2Decimals();
       }
       catch (Exception ex)
       {
