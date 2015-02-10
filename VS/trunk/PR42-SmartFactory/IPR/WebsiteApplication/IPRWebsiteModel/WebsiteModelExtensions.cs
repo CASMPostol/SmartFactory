@@ -13,6 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Logging;
+using Microsoft.SharePoint.Administration;
 using System;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel
@@ -27,7 +29,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// </summary>
     /// <param name="value"> A  <see cref="double"/> number to be rounded.</param>
     /// <returns></returns>
-    public static decimal Rount2Double(this double value)
+    public static decimal Round2Double(this double value)
     {
       return Convert.ToDecimal(Math.Round(value, 2));
     }
@@ -36,7 +38,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// </summary>
     /// <param name="value"> A  <see cref="double"/> number to be rounded.</param>
     /// <returns></returns>
-    public static decimal Rount2DecimalOrDefault(this double? value)
+    public static decimal Round2DecimalOrDefault(this double? value)
     {
       return Convert.ToDecimal(Math.Round(value.GetValueOrDefault(), 2));
     }
@@ -45,7 +47,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// </summary>
     /// <param name="value">The value to be rounded.</param>
     /// <returns>The <paramref name="value"/> rounded; the number of fractional digits in the return value is 2.</returns>
-    public static double Rount2Decimals(this double value)
+    public static double Round2Decimals(this double value)
     {
       return Math.Round(value, 2);
     }
@@ -54,7 +56,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// </summary>
     /// <param name="value">The value to be rounded.</param>
     /// <returns>The <paramref name="value"/> rounded; the number of fractional digits in the return value is 2.</returns>
-    public static decimal Rount2Decimals(this decimal value)
+    public static decimal Round2Decimals(this decimal value)
     {
       return Math.Round(value, 2);
     }
@@ -73,7 +75,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// </summary>
     /// <param name="value">The value to be rounded.</param>
     /// <returns>The <paramref name="value"/> rounded; the number of fractional digits in the return value is 2.</returns>
-    public static double RountMassUpper(this double value)
+    public static double RoundMassUpper(this double value)
     {
       return Math.Round(value + 0.005, 2);
     }
@@ -86,7 +88,59 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     {
       return Math.Round(value, 3);
     }
+    /// <summary>
+    /// Enum LoggingCategories - registered set of categories.
+    /// </summary>
+    public enum LoggingCategories 
+    {
+      /// <summary>
+      /// The feature activation action
+      /// </summary>
+      FeatureActivation,
+      /// <summary>
+      /// The close account action
+      /// </summary>
+      CloseAccount,
+      /// <summary>
+      /// The create account action
+      /// </summary>
+      CreateAccount,
+      /// <summary>
+      /// The report creation action
+      /// </summary>
+      ReportCreation
+    }
+    /// <summary>
+    /// Writes a diagnostic message into the trace log, with specified Microsoft.SharePoint.Administration.TraceSeverity. 
+    /// Don't use in sandbox.
+    /// </summary>
+    /// <param name="message">The message to write into the log.</param>
+    /// <param name="eventId">The eventId that corresponds to the event.</param>
+    /// <param name="severity">The severity of the trace.</param>
+    /// <param name="category">The category to write the message to.</param>
+    public static void TraceEvent(string message, int eventId, TraceSeverity severity, LoggingCategories category)
+    {
+      NamedTraceLogger.Logger.TraceToDeveloper(message, eventId, severity, string.Format("{0}/{1}", LoggingArea, category));
+    }
+    internal static void RegisterLoggerSource()
+    {
+      NamedTraceLogger.RegisterLoggerSource(LoggingArea, Enum.GetNames(typeof(LoggingCategories)));
+    }
+    internal static void UnregisterLoggerSource()
+    {
+      NamedTraceLogger.UnregisterLoggerSource(LoggingArea);
+    }
 
+    private static string m_LoggingArea;
+    private static string LoggingArea
+    {
+      get
+      {
+        if (String.IsNullOrEmpty(m_LoggingArea))
+          m_LoggingArea = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+        return m_LoggingArea;
+      }
+    }
     //The number of fractional digits in the return value.
     private const int m_MassFractionalDigits = 2;
   }

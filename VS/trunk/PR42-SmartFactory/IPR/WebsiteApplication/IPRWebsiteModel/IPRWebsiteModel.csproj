@@ -90,6 +90,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ErrorsList.cs" />
+    <Compile Include="Features\CAS.IPRWebsiteModel\CAS.EventReceiver.cs">
+      <DependentUpon>CAS.IPRWebsiteModel.feature</DependentUpon>
+    </Compile>
     <Compile Include="GlobalDefinitions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="InputDataValidationException.cs" />

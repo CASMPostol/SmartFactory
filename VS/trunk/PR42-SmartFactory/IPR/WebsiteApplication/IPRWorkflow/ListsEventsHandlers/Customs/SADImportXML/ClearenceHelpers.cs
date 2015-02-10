@@ -128,7 +128,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
                 IPRClearThroughCustoms(entities, _sgx); //Procedure 4051
               else
                 throw new IPRDataConsistencyException
-                  ("SADPZCProcessing.FreeCirculation", string.Format("Unexpected previous procedure code {1}for the {0} message", messageType, _sgx.SPProcedure.PreviousProcedure()), null, _wrongProcedure);
+                  ("SADPZCProcessing.FreeCirculation", string.Format("Unexpected previous procedure code {1} for the {0} message", messageType, _sgx.SPProcedure.PreviousProcedure()), null, _wrongProcedure);
               break;
             case CustomsProcedureCodes.InwardProcessing:
               {
@@ -138,7 +138,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
                   continue;
                 }
                 if (_sgx.SPProcedure.PreviousProcedure() == CustomsProcedureCodes.CustomsWarehousingProcedure)
-                  _tasksList.Add(CWPrepareClearance(entities, _sgx)); //Procedure 5071
+                  _tasksList.Add(CWPrepareClearance(entities, _sgx)); //Procedure 5171
                 // Procedure 5100 or 5171
                 Clearence _newClearance = Clearence.CreataClearence(entities, "InwardProcessing", ClearenceProcedure._5171, _sgx);
                 CreateIPRAccount(entities, _newClearance, CustomsDocument.DocumentType.PZC, out comments, ProgressChange);
@@ -176,31 +176,31 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
     /// Creates the IPR account.
     /// </summary>
     /// <param name="entities">The entities.</param>
-    /// <param name="clearence">The clearence.</param>
+    /// <param name="clearance">The clearance.</param>
     /// <param name="messageType">Type of the _message.</param>
     /// <param name="comments">The _comments.</param>
     /// <param name="ProgressChange">Represents the method that will handle an event.</param>
-    private static void CreateIPRAccount(Entities entities, Clearence clearence, CustomsDocument.DocumentType messageType, out string comments, ProgressChangedEventHandler ProgressChange)
+    private static void CreateIPRAccount(Entities entities, Clearence clearance, CustomsDocument.DocumentType messageType, out string comments, ProgressChangedEventHandler ProgressChange)
     {
       ProgressChange(null, new ProgressChangedEventArgs(1, "CreateIPRAccount.Starting"));
       comments = "IPR account creation error";
       string _referenceNumber = String.Empty;
-      SADDocumentType declaration = clearence.Clearence2SadGoodID.SADDocumentIndex;
+      SADDocumentType declaration = clearance.Clearence2SadGoodID.SADDocumentIndex;
       _referenceNumber = declaration.ReferenceNumber;
-      if (WebsiteModel.Linq.IPR.RecordExist(entities, clearence.DocumentNo))
+      if (WebsiteModel.Linq.IPR.RecordExist(entities, clearance.DocumentNo))
       {
         string _msg = "IPR record with the same SAD document number: {0} exist";
-        throw GenericStateMachineEngine.ActionResult.NotValidated(String.Format(_msg, clearence.DocumentNo));
+        throw GenericStateMachineEngine.ActionResult.NotValidated(String.Format(_msg, clearance.DocumentNo));
       }
       ProgressChange(null, new ProgressChangedEventArgs(1, "CreateIPRAccount.newIPRData"));
       comments = "Inconsistent or incomplete data to create IPR account";
-      IPRAccountData _iprdata = new IPRAccountData(clearence.Id.Value);
-      _iprdata.GetAccountData(entities, clearence, ImportXMLCommon.Convert2MessageType(messageType), ProgressChange);
+      IPRAccountData _iprdata = new IPRAccountData(clearance.Id.Value);
+      _iprdata.GetAccountData(entities, clearance, ImportXMLCommon.Convert2MessageType(messageType), ProgressChange);
       comments = "Consent lookup filed";
       ProgressChange(null, new ProgressChangedEventArgs(1, "CreateIPRAccount.newIPRClass"));
-      IPRClass _ipr = new IPRClass(entities, _iprdata, clearence, declaration);
+      IPRClass _ipr = new IPRClass(entities, _iprdata, clearance, declaration);
       entities.IPR.InsertOnSubmit(_ipr);
-      clearence.SPStatus = true;
+      clearance.SPStatus = true;
       ProgressChange(null, new ProgressChangedEventArgs(1, "CreateIPRAccount.SubmitChanges"));
       entities.SubmitChanges();
       _ipr.UpdateTitle();

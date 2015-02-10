@@ -58,7 +58,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           InvoiceNo = _dspx.InvoiceNo,
           SADDate = _dspx.SADDate.GetValueOrDefault(),
           Quantity = _dspx.SettledQuantityDec,
-          Balance = _dspx.RemainingQuantity.Rount2DecimalOrDefault(),
+          Balance = _dspx.RemainingQuantity.Round2DecimalOrDefault(),
           Procedure = _dspx.CustomsProcedure,
           SadConsignmentNo = _dspx.SadConsignmentNo
         };

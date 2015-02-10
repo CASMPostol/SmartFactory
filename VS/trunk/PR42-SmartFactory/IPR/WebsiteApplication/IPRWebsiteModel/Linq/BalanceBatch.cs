@@ -106,7 +106,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw new SharePoint.ApplicationError("BalanceBatch.Update", "Body", ex.Message, ex);
       }
     }
-    internal decimal IPRBookDecimal { get { return this.IPRBook.Rount2DecimalOrDefault(); } }
+    internal decimal IPRBookDecimal { get { return this.IPRBook.Round2DecimalOrDefault(); } }
     /// <summary>
     /// Reverse lookup for <see cref="BalanceIPR"/>
     /// </summary>
