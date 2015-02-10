@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Logging;
 using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
@@ -94,9 +95,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       CW_SettledGrossMass = (CW_PackageToClear.Value * CWL_CWDisposal2CustomsWarehouseID.PackageWeight() + value).RoundValue();
       this.CW_AddedKg = (value - this.CW_DeclaredNetMass.Value).RoundValue();
     }
-    internal void FinishClearThroughCustoms(Entities edc, SADGood sadGood, WebsiteModelExtensions.TraceAction traceEvent)
+    internal void FinishClearThroughCustoms(Entities edc, SADGood sadGood, NamedTraceLogger.TraceAction traceEvent)
     {
-      traceEvent("Starting CustomsWarehouseDisposal.FinishClearThroughCustoms for sadGood:" + sadGood.Title, 96, TraceSeverity.Verbose);
+      traceEvent("Starting CustomsWarehouseDisposal.FinishClearThroughCustoms for sadGood:" + sadGood.Title, 100, TraceSeverity.Verbose);
       if (this.CustomsStatus.Value == Linq.CustomsStatus.Finished)
         return;
       try
@@ -129,10 +130,10 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       }
       catch (Exception ex)
       {
-        traceEvent("Exception at CustomsWarehouseDisposal.FinishClearThroughCustoms for sadGood:" + ex.Message, 132, TraceSeverity.High);
+        traceEvent("Exception at CustomsWarehouseDisposal.FinishClearThroughCustoms for sadGood:" + ex.Message, 133, TraceSeverity.High);
         throw;
       }
-      traceEvent("Finished CustomsWarehouseDisposal.FinishClearThroughCustoms", 96, TraceSeverity.Verbose);
+      traceEvent("Finished CustomsWarehouseDisposal.FinishClearThroughCustoms", 136, TraceSeverity.Verbose);
     }
     /// <summary>
     /// Updates the title.
@@ -158,12 +159,12 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       if (e.PropertyName == "Title") return;
       UpdateTitle();
     }
-    private void CheckCNConsistency(WebsiteModelExtensions.TraceAction traceEvent)
+    private void CheckCNConsistency(NamedTraceLogger.TraceAction traceEvent)
     {
       traceEvent("Starting CustomsWarehouseDisposal.CheckCNConsistency but it is not implemented.", 163, TraceSeverity.Verbose);
       //TODO CheckCNCosistency NotImplementedException();
     }
-    private void AssignSADGood(Entities edc, SADGood sadGood, WebsiteModelExtensions.TraceAction traceEvent)
+    private void AssignSADGood(Entities edc, SADGood sadGood, NamedTraceLogger.TraceAction traceEvent)
     {
       traceEvent("Starting CustomsWarehouseDisposal.AssignSADGood", 167, TraceSeverity.Verbose);
       this.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
