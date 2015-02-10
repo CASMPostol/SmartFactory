@@ -14,6 +14,7 @@
 //</summary>
 
 using CAS.SharePoint;
+using CAS.SharePoint.Logging;
 using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// <param name="procedure">The procedure.</param>
     /// <param name="procedureCode">The procedure code.</param>
     /// <returns></returns>
-    public static Clearence CreataClearence(Entities entities, string procedure, ClearenceProcedure procedureCode, WebsiteModelExtensions.TraceAction traceEvent)
+    public static Clearence CreataClearence(Entities entities, string procedure, ClearenceProcedure procedureCode, NamedTraceLogger.TraceAction traceEvent)
     {
       Clearence _newClearence = CreateClearance(procedure, procedureCode);
       entities.Clearence.InsertOnSubmit(_newClearence);
@@ -47,7 +48,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
     /// Updates the title.
     /// </summary>
     /// <param name="entities">The auto-generated <see cref="Microsoft.SharePoint.Linq.DataContext"/> object.</param>
-    public void UpdateTitle(Entities entities, WebsiteModelExtensions.TraceAction traceEvent)
+    public void UpdateTitle(Entities entities, NamedTraceLogger.TraceAction traceEvent)
     {
       string _quantity = String.Empty;
       //IQueryable<CustomsWarehouseDisposal> _Dspsls = from _Dspx in entities.CustomsWarehouseDisposal where _Dspx == this.Id select {ssss = _d.s }
@@ -62,15 +63,15 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
                              ClearenceProcedure.GetValueOrDefault(Linq.ClearenceProcedure.Invalid).Convert2String(), //1
                              ReferenceNumber.NotAvailable(), //2
                              Id.GetValueOrDefault(-999)); //3
-      traceEvent("Finished Clearence.UpdateTitle; new Title: " + Title, 57, TraceSeverity.Verbose);
+      traceEvent("Finished Clearence.UpdateTitle; new Title: " + Title, 66, TraceSeverity.Verbose);
     }
     public string SADTemplateDocumentNameFileName(Entities entities)
     {
       return Settings.SADTemplateDocumentNameFileName(entities, this.Id.Value);
     }
-    internal void FinishClearThroughCustoms(Entities entities, WebsiteModelExtensions.TraceAction traceEvent)
+    internal void FinishClearThroughCustoms(Entities entities, NamedTraceLogger.TraceAction traceEvent)
     {
-      traceEvent("Starting Clearence.FinishClearThroughCustoms", 73, TraceSeverity.Verbose);
+      traceEvent("Starting Clearence.FinishClearThroughCustoms", 74, TraceSeverity.Verbose);
       SADDocumentType _sadDocument = Clearence2SadGoodID.SADDocumentIndex;
       DocumentNo = _sadDocument.DocumentNumber;
       ReferenceNumber = _sadDocument.ReferenceNumber;
@@ -78,7 +79,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       foreach (CustomsWarehouseDisposal _cwdx in this.CustomsWarehouseDisposal(entities, false))
         _cwdx.FinishClearThroughCustoms(entities, Clearence2SadGoodID, traceEvent);
       UpdateTitle(entities, traceEvent);
-      traceEvent("Finished Clearence.FinishClearThroughCustoms", 73, TraceSeverity.Verbose);
+      traceEvent("Finished Clearence.FinishClearThroughCustoms", 82, TraceSeverity.Verbose);
     }
 
     #region private
@@ -101,7 +102,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       if (!this.Id.HasValue)
         return emptyListIfNew ? new CustomsWarehouseDisposal[] { } : null;
       if (m_CustomsWarehouseDisposal == null)
-        m_CustomsWarehouseDisposal = from _cwdx in edc.CustomsWarehouseDisposal let _id = _cwdx.CWL_CWDisposal2CustomsWarehouseID.Id.Value where _id == this.Id.Value select _cwdx;
+        m_CustomsWarehouseDisposal = from _cwdx in edc.CustomsWarehouseDisposal let _id = _cwdx.CWL_CWDisposal2ClearanceID.Id.Value where _id == this.Id.Value select _cwdx;
       return m_CustomsWarehouseDisposal;
     }
     #endregion
