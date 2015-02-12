@@ -13,7 +13,9 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Logging;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +29,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   {
 
     #region public
-    internal static void Create(Entities edc, IGrouping<string, IPR> _grpx, JSOXLib parent, StockDictionary.BalanceStock balanceStock)
+    internal static void Create(Entities edc, IGrouping<string, IPR> _grpx, JSOXLib parent, StockDictionary.BalanceStock balanceStock, NamedTraceLogger.TraceAction trace)
     {
       try
       {
@@ -41,15 +43,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           SKU = _firsTIPR == null ? "NA" : _firsTIPR.SKU,
         };
         edc.BalanceBatch.InsertOnSubmit(_newBB);
-        _newBB.Update(edc, _grpx, balanceStock);
+        _newBB.Update(edc, _grpx, balanceStock, trace);
       }
       catch (Exception ex)
       {
         throw new SharePoint.ApplicationError("BalanceBatch.Create", "Body", ex.Message, ex);
       }
     }
-    internal void Update(Entities edc, IGrouping<string, IPR> grouping, StockDictionary.BalanceStock balanceStock)
+    internal void Update(Entities edc, IGrouping<string, IPR> grouping, StockDictionary.BalanceStock balanceStock, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering BalanceBatch.Update", 54, TraceSeverity.Verbose);
       try
       {
         Dictionary<string, IPR> _iprDictionary = grouping.ToDictionary(x => x.DocumentNo);
@@ -59,7 +62,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         {
           if (_iprDictionary.ContainsKey(_blncIPRx.DocumentNo))
           {
-            IPR.Balance _newBipr = _blncIPRx.Update(edc);
+            IPR.Balance _newBipr = _blncIPRx.Update(edc, trace);
             _totals.Add(_newBipr);
           }
           else
@@ -70,7 +73,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           _iprDictionary.Remove(_dcn);
         foreach (IPR _iprx in _iprDictionary.Values)
         {
-          IPR.Balance _newBipr = Linq.BalanceIPR.Create(edc, _iprx, this, this.Balance2JSOXLibraryIndex);
+          IPR.Balance _newBipr = Linq.BalanceIPR.Create(edc, _iprx, this, this.Balance2JSOXLibraryIndex, trace);
           _totals.Add(_newBipr);
         }
         this.DustCSNotStarted = _totals[IPR.ValueKey.DustCSNotStarted];
@@ -103,8 +106,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       catch (Exception ex)
       {
+        trace("Exception at BalanceBatch.Update: " + ex.Message, 109, TraceSeverity.High);
         throw new SharePoint.ApplicationError("BalanceBatch.Update", "Body", ex.Message, ex);
       }
+      trace("Finished BalanceBatch.Update", 111, TraceSeverity.Verbose);
     }
     internal decimal IPRBookDecimal { get { return this.IPRBook.Round2DecimalOrDefault(); } }
     /// <summary>

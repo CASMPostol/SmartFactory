@@ -14,6 +14,8 @@
 //</summary>
 
 using CAS.SharePoint;
+using CAS.SharePoint.Logging;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,14 +43,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Clears through customs.
     /// </summary>
     /// <param name="entities">The entities.</param>
-    public void FinishClearingThroughCustoms(Entities entities)
+    /// <param name="trace">The trace action.</param>
+    public void FinishClearingThroughCustoms(Entities entities, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering Clearence.FinishClearingThroughCustoms", 47, TraceSeverity.Verbose);
       SADDocumentType sadDocument = Clearence2SadGoodID.SADDocumentIndex;
       DocumentNo = sadDocument.DocumentNumber;
       ReferenceNumber = sadDocument.ReferenceNumber;
       SPStatus = true;
       foreach (Disposal _disposal in this.Disposal(entities))
-        _disposal.FinishClearingThroughCustoms(entities, Clearence2SadGoodID);
+        _disposal.FinishClearingThroughCustoms(entities, Clearence2SadGoodID, trace);
       UpdateTitle(entities);
     }
     /// <summary>
@@ -56,10 +60,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="entities">The entities.</param>
     /// <param name="sadGood">The sad good.</param>
-    public void FinishClearingThroughCustoms(Entities entities, SADGood sadGood)
+    /// <param name="trace">The trace action.</param>
+    public void FinishClearingThroughCustoms(Entities entities, SADGood sadGood, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering Clearence.FinishClearingThroughCustoms", 64, TraceSeverity.Verbose);
       Clearence2SadGoodID = sadGood;
-      FinishClearingThroughCustoms(entities);
+      FinishClearingThroughCustoms(entities, trace);
     }
     /// <summary>
     /// Finishes the clearing through customs procedure.
@@ -121,11 +127,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="entities">The entities.</param>
     /// <param name="sadConsignment">The _sad consignment.</param>
-    public void ClearThroughCustom(Entities entities, SADConsignment sadConsignment)
+    /// <param name="trace">The trace action.</param>
+    public void ClearThroughCustom(Entities entities, SADConsignment sadConsignment, NamedTraceLogger.TraceAction trace)
     {
       SADConsignmentLibraryIndex = sadConsignment;
       foreach (Disposal _dspsl in this.Disposal(entities))
-        _dspsl.ClearThroughCustom(entities, this.ClearenceProcedure.Value, this.SADDocumentNumber, _disposal => _disposal.Disposal2IPRIndex.RecalculateLastStarted(entities, _disposal));
+        _dspsl.ClearThroughCustom(entities, this.ClearenceProcedure.Value, this.SADDocumentNumber, _disposal => _disposal.Disposal2IPRIndex.RecalculateLastStarted(entities, _disposal, trace) );
       UpdateTitle(entities);
     }
     /// <summary>

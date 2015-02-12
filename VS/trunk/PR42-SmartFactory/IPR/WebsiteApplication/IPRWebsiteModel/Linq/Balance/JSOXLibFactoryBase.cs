@@ -13,6 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Logging;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 
@@ -28,22 +30,24 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance
     /// <summary>
     /// Updates the JSOX report.
     /// </summary>
-    /// <param name="edc">The <see cref="Entities"/> representing data model.</param>
+    /// <param name="edc">The <see cref="Entities" /> representing data model.</param>
     /// <param name="previous">The previous report.</param>
-    /// <returns></returns>
-    public bool CreateJSOXReport( Entities edc, JSOXLib previous )
+    /// <param name="trace">The trace action.</param>
+    public bool CreateJSOXReport(Entities edc, JSOXLib previous, NamedTraceLogger.TraceAction trace)
     {
-      this.JSOXList.CreateJSOXReport( previous );
-      return UpdateBalanceReport( edc );
+      trace("Entering JSOXLibFactoryBase.CreateJSOXReport", 38, TraceSeverity.Verbose);
+      this.JSOXList.CreateJSOXReport(previous);
+      return UpdateBalanceReport(edc, trace);
     }
     /// <summary>
     /// Updates the balance report.
     /// </summary>
-    /// <param name="edc">The <see cref="Entities"/> representing data model.</param>
-    /// <returns></returns>
-    public bool UpdateBalanceReport( Entities edc )
+    /// <param name="edc">The <see cref="Entities" /> representing data model.</param>
+    /// <param name="trace">The trace action.</param>
+    public bool UpdateBalanceReport(Entities edc, NamedTraceLogger.TraceAction trace)
     {
-      return this.JSOXList.UpdateBalanceReport( edc, GetOutboundQuantity );
+      trace("Entering JSOXLibFactoryBase.UpdateBalanceReport", 49, TraceSeverity.Verbose);
+      return this.JSOXList.UpdateBalanceReport(edc, GetOutboundQuantity, trace);
     }
     /// <summary>
     /// Gets the outbound quantity.
@@ -53,7 +57,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance
     /// <param name="start">The start date.</param>
     /// <param name="end">The end date.</param>
     /// <returns></returns>
-    public abstract decimal GetOutboundQuantity( Entities entities, JSOXLib parent, out DateTime start, out DateTime end );
+    public abstract decimal GetOutboundQuantity(Entities entities, JSOXLib parent, out DateTime start, out DateTime end);
     /// <summary>
     /// Gets the JSOX list.
     /// </summary>
@@ -87,9 +91,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance
     /// </summary>
     /// <param name="edc">The <see cref="Entities"/> representing data model.</param>
     /// <param name="jsoxLibindex">The jsox library index.</param>
-    protected void GetJSOXLib( Entities edc, int jsoxLibindex )
+    protected void GetJSOXLib(Entities edc, int jsoxLibindex)
     {
-      this.JSOXList = Element.GetAtIndex<JSOXLib>( edc.JSOXLibrary, jsoxLibindex );
+      this.JSOXList = Element.GetAtIndex<JSOXLib>(edc.JSOXLibrary, jsoxLibindex);
     }
     #endregion
 

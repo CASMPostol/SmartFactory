@@ -13,7 +13,9 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Logging;
 using CAS.SmartFactory.Customs;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,7 +36,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public SummaryContentInfo(BatchStatus batchStatus)
     {
       this.BatchStatus = batchStatus;
-      AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
+      AccumulatedDisposalsAnalysis = new DisposalsAnalisis();
     }
     #endregion
 
@@ -114,37 +116,33 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       get { return Convert.ToDouble(myTotalTobacco); }
     }
     internal double CalculatedOveruse { get; private set; }
-    internal void Analyze(Entities edc, Batch parent, ProgressChangedEventHandler progressChanged, Material.Ratios materialRatios, bool newBatch)
+    internal void Analyze(Entities edc, Batch parent, Material.Ratios materialRatios, bool newBatch, NamedTraceLogger.TraceAction trace)
     {
-      progressChanged(this, new ProgressChangedEventArgs(1, "Analyze: ProcessMaterials"));
-      this.ReplaceMaterials(edc, parent, materialRatios, progressChanged, newBatch);
-      progressChanged(this, new ProgressChangedEventArgs(1, "Analyze: AdjustMaterialQuantity"));
+      trace("Entering SummaryContentInfo.Analyze", 120, TraceSeverity.Verbose);
+      this.ReplaceMaterials(edc, parent, materialRatios, newBatch, trace);
       List<Material> _tobacco = this.Values.Where<Material>(x => x.ProductType.Value == ProductType.IPRTobacco || x.ProductType.Value == ProductType.Tobacco).ToList<Material>();
-      List<Material> _IPRtobacco = _tobacco.Where<Material>(x => x.ProductType.Value == ProductType.IPRTobacco).ToList<Material>();
+      List<Material> _IPTobacco = _tobacco.Where<Material>(x => x.ProductType.Value == ProductType.IPRTobacco).ToList<Material>();
       if (this.Product.ProductType.Value == ProductType.Cigarette && this.BatchStatus == Linq.BatchStatus.Final)
-        foreach (Material _mx in _IPRtobacco)
-          _mx.AdjustTobaccoQuantity(ref myTotalTobacco, progressChanged);
-      progressChanged(this, new ProgressChangedEventArgs(1, "Analyze: GetOverusage"));
+        foreach (Material _mx in _IPTobacco)
+          _mx.AdjustTobaccoQuantity(ref myTotalTobacco, trace);
       this.GetOverusage(parent.UsageMax.Value, parent.UsageMin.Value);
       if (this.BatchStatus == Linq.BatchStatus.Progress)
         return;
-      progressChanged(this, new ProgressChangedEventArgs(1, "Analyze: CalculateOveruse"));
-      foreach (Material _mx in _IPRtobacco)
+      foreach (Material _mx in _IPTobacco)
         _mx.CalculateOveruse(edc, materialRatios, CalculatedOveruse);
-      this.AdjustOveruse(materialRatios, _IPRtobacco);
-      progressChanged(this, new ProgressChangedEventArgs(1, "Analyze: AccumulatedDisposalsAnalisis"));
+      this.AdjustOveruse(materialRatios, _IPTobacco);
       foreach (Material _mx in _tobacco)
       {
         _mx.CalculateCompensationComponents(materialRatios);
-        AccumulatedDisposalsAnalisis.Accumutate(_mx);
+        AccumulatedDisposalsAnalysis.Accumutate(_mx);
       }
       foreach (InvoiceContent _ix in parent.InvoiceContent(edc, newBatch))
-        _ix.UpdateExportedDisposals(edc);
-      this.UpdateNotStartedDisposals(edc, progressChanged);
+        _ix.UpdateExportedDisposals(edc, trace);
+      this.UpdateNotStartedDisposals(edc, trace);
     }
     internal double this[DisposalEnum index]
     {
-      get { return Convert.ToDouble(AccumulatedDisposalsAnalisis[index]); }
+      get { return Convert.ToDouble(AccumulatedDisposalsAnalysis[index]); }
     }
     #endregion
 
@@ -155,11 +153,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <value>
     /// The accumulated disposals analysis.
     /// </value>
-    private DisposalsAnalisis AccumulatedDisposalsAnalisis { get; set; }
-    private void ReplaceMaterials(Entities entities, Batch parent, Material.Ratios materialRatios, ProgressChangedEventHandler progressChanged, bool newBatch)
+    private DisposalsAnalisis AccumulatedDisposalsAnalysis { get; set; }
+    private void ReplaceMaterials(Entities entities, Batch parent, Material.Ratios materialRatios, bool newBatch, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering SummaryContentInfo.ReplaceMaterials", 159, TraceSeverity.Verbose);
       if (Product == null)
-        throw new IPRDataConsistencyException("SummaryContentInfo.ProcessMaterials", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized.");
+      {
+        trace("IPRDataConsistencyException at Entering SummaryContentInfo.ReplaceMaterials: Summary content info has unassigned Product property", 162, TraceSeverity.High);
+        throw new IPRDataConsistencyException("SummaryContentInfo.ReplaceMaterials", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized.");
+      }
       try
       {
         List<Material> _newMaterialList = new List<Material>();
@@ -167,10 +169,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         List<Material> _copyThis = new List<Material>();
         _copyThis.AddRange(this.Values);
         Dictionary<string, Material> _parentsMaterials = parent.Material(entities, newBatch).ToDictionary<Material, string>(x => x.GetKey());
-        progressChanged(this, new ProgressChangedEventArgs(1, "ProcessMaterials: ReplaceByExistingOne"));
         foreach (Material _materialX in _copyThis)
           _materialX.ReplaceByExistingOne(_oldMaterialList, _newMaterialList, _parentsMaterials, parent);
-        progressChanged(this, new ProgressChangedEventArgs(1, "ProcessMaterials: InsertAllOnSubmit"));
         if (_newMaterialList.Count > 0)
           entities.Material.InsertAllOnSubmit(_newMaterialList);
         foreach (Material _omx in _oldMaterialList)
@@ -181,14 +181,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       catch (Exception _ex)
       {
-        throw new IPRDataConsistencyException("SummaryContentInfo.ProcessMaterials", _ex.Message, _ex, "Disposal processing error");
+        trace("IPRDataConsistencyException at Entering SummaryContentInfo.ReplaceMaterials: " + _ex.Message, 184, TraceSeverity.High);
+        throw new IPRDataConsistencyException("SummaryContentInfo.ReplaceMaterials", _ex.Message, _ex, "Disposal processing error");
       }
     }
-    private void UpdateNotStartedDisposals(Entities edc, ProgressChangedEventHandler progressChanged)
+    private void UpdateNotStartedDisposals(Entities edc, NamedTraceLogger.TraceAction trace)
     {
-      progressChanged(this, new ProgressChangedEventArgs(1, "UpdateDisposals"));
+      trace("Entering SummaryContentInfo.UpdateNotStartedDisposals", 192, TraceSeverity.Verbose);
       foreach (Material _materialX in this.Values)
-        _materialX.UpdateDisposals(edc, progressChanged);
+        _materialX.UpdateDisposals(edc, trace);
     }
     private void AdjustOveruse(Material.Ratios materialRatios, List<Material> _IPRTobacco)
     {

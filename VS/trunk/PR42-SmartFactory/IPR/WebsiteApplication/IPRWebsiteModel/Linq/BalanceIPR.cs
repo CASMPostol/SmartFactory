@@ -12,7 +12,9 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
+using CAS.SharePoint.Logging;
+using Microsoft.SharePoint.Administration;
 using System;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
@@ -22,8 +24,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// </summary>
   public partial class BalanceIPR
   {
-    internal static IPR.Balance Create(Entities edc, IPR _iprAccount, BalanceBatch parent, JSOXLib masterReport)
+    internal static IPR.Balance Create(Entities edc, IPR _iprAccount, BalanceBatch parent, JSOXLib masterReport, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering BalanceIPR.Create", 453, TraceSeverity.Verbose);
       BalanceIPR _newItem = new BalanceIPR()
       {
         Archival = false,
@@ -40,13 +43,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         Title = "Creating",
       };
       edc.BalanceIPR.InsertOnSubmit(_newItem);
-      return _newItem.Update(edc);
+      return _newItem.Update(edc, trace);
     }
-    internal IPR.Balance Update(Entities edc)
+    internal IPR.Balance Update(Entities edc, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering BalanceIPR.RecalculateClearedRecords", 453, TraceSeverity.Verbose);
       if (this.IPRIndex == null)
         throw new ArgumentNullException("IPRIndex", "IPRIndex for Balance IPR cannot be null");
-      IPR.Balance _balnce = new IPR.Balance(edc, this.IPRIndex);
+      IPR.Balance _balnce = new IPR.Balance(edc, this.IPRIndex, trace);
       DustCSNotStarted = _balnce[IPR.ValueKey.DustCSNotStarted];
       DustCSStarted = _balnce[IPR.ValueKey.DustCSStarted];
       IPRBook = _balnce[IPR.ValueKey.IPRBook];

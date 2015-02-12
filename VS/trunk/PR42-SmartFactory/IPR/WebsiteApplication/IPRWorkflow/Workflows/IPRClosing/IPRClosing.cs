@@ -13,16 +13,18 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Workflow.Activities;
 using CAS.SharePoint.DocumentsFactory;
+using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.AccountClearance;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
 using Microsoft.SharePoint.Workflow;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Workflow.Activities;
 using IPRClass = CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR;
 
 namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
@@ -49,6 +51,7 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
     public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
     private void Closeing_ExecuteCode(object sender, EventArgs e)
     {
+      TraceEvent("Entering IPRClosing.Closeing_ExecuteCode", 54, TraceSeverity.Monitorable);
       string _at = "Starting";
       try
       {
@@ -64,7 +67,7 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
             _Closing = false;
           }
           _at = "bool _notFinished";
-          if (_iprItem.Disposals(_edc).Where<Disposal>(v => v.SettledQuantityDec > 0 && v.CustomsStatus.Value != CustomsStatus.Finished).Any<Disposal>())
+          if (_iprItem.Disposals(_edc, (x, y, z) => TraceEvent(x, y, z)).Where<Disposal>(v => v.SettledQuantityDec > 0 && v.CustomsStatus.Value != CustomsStatus.Finished).Any<Disposal>())
           {
             LogFinalMessageToHistory_HistoryOutcome = "Closing error";
             LogFinalMessageToHistory_HistoryOutcome = String.Format(LogWarningTemplate, "All disposals must be cleared through customs before closing account.");
@@ -72,7 +75,7 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
           }
           string _documentName = Settings.RequestForAccountClearenceDocumentName(_edc, _iprItem.Id.Value);
           _at = "CreateRequestContent";
-          List<Disposal> _Disposals = _iprItem.Disposals(_edc).Where<Disposal>(x => x.CustomsStatus == CustomsStatus.Finished).ToList<Disposal>();
+          List<Disposal> _Disposals = _iprItem.Disposals(_edc, (x, y, z) => TraceEvent(x, y, z)).Where<Disposal>(x => x.CustomsStatus == CustomsStatus.Finished).ToList<Disposal>();
           RequestContent _content = DocumentsFactory.AccountClearanceFactory.CreateRequestContent(_Disposals, _iprItem, _documentName);
           if (_iprItem.IPRLibraryIndex != null)
           {
@@ -99,9 +102,11 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
       catch (Exception ex)
       {
         LogFinalMessageToHistory_HistoryOutcome = "Closing fatal error";
-        string _patt = "Cannot close the IPR account because of fatal error {0} at {1}";
-        LogFinalMessageToHistory_HistoryDescription = String.Format(_patt, ex.Message, _at);
+        string _pat = "Cannot close the IPR account because of fatal error {0} at {1}";
+        LogFinalMessageToHistory_HistoryDescription = String.Format(_pat, ex.Message, _at);
+        TraceEvent("Exception at IPRClosing.Closeing_ExecuteCode:: " + LogFinalMessageToHistory_HistoryDescription + " Stack: " + ex.StackTrace, 54, TraceSeverity.High);
       }
+      TraceEvent("Finished IPRClosing.Closeing_ExecuteCode", 54, TraceSeverity.Monitorable);
     }
     /// <summary>
     /// The log warning message to history_ history description
@@ -115,6 +120,11 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
     /// The log final message to history_ history outcome
     /// </summary>
     public String LogFinalMessageToHistory_HistoryOutcome = "Finished successfully";
+
+    private static void TraceEvent(string message, int eventId, TraceSeverity severity)
+    {
+      WebsiteModelExtensions.TraceEvent(message, eventId, severity, WebsiteModelExtensions.LoggingCategories.IPRClosing);
+    }
 
   }
 }

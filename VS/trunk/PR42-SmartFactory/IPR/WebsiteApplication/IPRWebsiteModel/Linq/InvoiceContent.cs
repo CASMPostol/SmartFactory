@@ -13,6 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Logging;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,8 +44,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return String.Format(m_quantityIsUnavailable, _availableQuantity);
       return String.Empty;
     }
-    internal void UpdateExportedDisposals(Entities edc)
+    internal void UpdateExportedDisposals(Entities edc, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering InvoiceContent.UpdateExportedDisposals", 48, TraceSeverity.Verbose);
       IEnumerable<IGrouping<int, Disposal>> _dspslsGroups = from _dsx in this.Disposal(edc)
                                                             let _midx = _dsx.Disposal2MaterialIndex.Id.Value
                                                             group _dsx by _midx;
@@ -61,13 +64,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                                         select _dx;
         foreach (Disposal _dx in _sorted)
         {
-          _dx.Adjust(edc, ref _2Add);
+          _dx.Adjust(edc, ref _2Add, trace);
           if (_2Add <= 0)
             break;
         }
         if (_2Add <= 0)
           continue;
-        _mtrl.AddNewDisposals(edc, DisposalEnum.TobaccoInCigaretess, ref _2Add, this);
+        _mtrl.AddNewDisposals(edc, DisposalEnum.TobaccoInCigaretess, ref _2Add, this, trace);
       }
     }
 

@@ -13,7 +13,9 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Logging;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,10 +33,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Updates the balance report.
     /// </summary>
-    /// <param name="edc">The <see cref="Entities"/> representing data model.</param>
+    /// <param name="edc">The <see cref="Entities" /> representing data model.</param>
     /// <param name="getOutboundQuantity">Delegate to get outbound quantity.</param>
-    internal bool UpdateBalanceReport(Entities edc, GetOutboundQuantity getOutboundQuantity)
+    /// <param name="trace">The trace action.</param>
+    internal bool UpdateBalanceReport(Entities edc, GetOutboundQuantity getOutboundQuantity, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering JSOXLib.UpdateBalanceReport", 453, TraceSeverity.Verbose);
       bool _validated = false;
       StockDictionary _balanceStock = new StockDictionary();
       Dictionary<string, IGrouping<string, IPR>> _accountGroups = Linq.IPR.GetAllOpen4JSOXGroups(edc).ToDictionary(x => x.Key);
@@ -52,7 +56,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       foreach (BalanceBatch _bbx in _BalanceBatch)
       {
         if (_accountGroups.ContainsKey(_bbx.Batch))
-          _bbx.Update(edc, _accountGroups[_bbx.Batch], _balanceStock.GetOrDefault(_bbx.Batch));
+          _bbx.Update(edc, _accountGroups[_bbx.Batch], _balanceStock.GetOrDefault(_bbx.Batch), trace);
         else
           edc.BalanceBatch.DeleteOnSubmit(_bbx);
         _processed.Add(_bbx.Batch);
@@ -60,7 +64,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       foreach (string _btchx in _processed)
         _accountGroups.Remove(_btchx);
       foreach (var _grpx in _accountGroups)
-        Linq.BalanceBatch.Create(edc, _grpx.Value, this, _balanceStock.GetOrDefault(_grpx.Key));
+        Linq.BalanceBatch.Create(edc, _grpx.Value, this, _balanceStock.GetOrDefault(_grpx.Key), trace);
 
       //Introducing
       DateTime _thisIntroducingDateStart = LinqIPRExtensions.DateTimeMaxValue;

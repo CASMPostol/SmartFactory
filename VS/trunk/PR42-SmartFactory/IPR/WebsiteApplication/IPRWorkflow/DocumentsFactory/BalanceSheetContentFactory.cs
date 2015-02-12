@@ -14,10 +14,12 @@
 //</summary>
 
 using CAS.SharePoint;
+using CAS.SharePoint.Logging;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +29,9 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
   internal static class BalanceSheetContentFactory
   {
     #region public
-    internal static void CreateReport(SPWeb web, string webUrl, int jsoxLibItemId)
+    internal static void CreateReport(SPWeb web, string webUrl, int jsoxLibItemId, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering BalanceSheetContentFactory.CreateReport", 33, TraceSeverity.Verbose);
       SPFile _newFile = default(SPFile);
       BalanceSheetContent _content = default(BalanceSheetContent);
       using (Entities _edc = new Entities(webUrl))
@@ -42,14 +45,16 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         _newFile = SPDocumentFactory.Prepare(web, _content, _documentName);
         _newFile.DocumentLibrary.Update();
         JSOXLibFactory _current = JSOXLibFactory.ConstructJSOXLibFActory(_edc, _newFile.Item.ID);
-        bool _validated = _current.CreateJSOXReport(_edc, _old);
+        bool _validated = _current.CreateJSOXReport(_edc, _old, (x, y, z) => WebsiteModelExtensions.TraceEvent(x, y, z, WebsiteModelExtensions.LoggingCategories.ReportCreation));
         _edc.SubmitChanges();
         _content = CreateContent(_edc, _current, _documentName, !_validated);
       }
+      trace("UpdateDocument " + _newFile.Name, 51, TraceSeverity.Verbose);
       _content.UpdateDocument(_newFile);
       _newFile.DocumentLibrary.Update();
+      trace("Finished BalanceSheetContentFactory.CreateReport", 53, TraceSeverity.Verbose);
     }
-    internal static void UpdateReport(SPListItem listItem, string WebUrl, int jsoxLibItemId)
+    internal static void UpdateReport(SPListItem listItem, string WebUrl, int jsoxLibItemId, NamedTraceLogger.TraceAction trace)
     {
       BalanceSheetContent _content = null;
       using (Entities _edc = new Entities(WebUrl))
@@ -57,7 +62,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         JSOXLibFactory _jsoxLibFactory = JSOXLibFactory.ConstructJSOXLibFActory(_edc, jsoxLibItemId);
         if (_jsoxLibFactory.JSOXLibraryReadOnly)
           throw new ApplicationException("The record is read only and the report must not be updated.");
-        bool _validated = _jsoxLibFactory.UpdateBalanceReport(_edc);
+        bool _validated = _jsoxLibFactory.UpdateBalanceReport(_edc, trace);
         string _documentName = Settings.RequestForBalanceSheetDocumentName(_edc, _jsoxLibFactory.Id);
         _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent(_edc, _jsoxLibFactory, _documentName, !_validated);
         _jsoxLibFactory.JSOXLibraryReadOnly = true;

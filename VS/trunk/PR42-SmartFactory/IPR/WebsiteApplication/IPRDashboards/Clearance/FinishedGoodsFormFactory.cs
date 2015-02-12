@@ -167,7 +167,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         if (material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.IPRTobacco)
         {
           List<Disposal> _dspsls = new List<Disposal>();
-          material.Export(entities, closingBatch, invoiceContent, _dspsls, sadConsignmentNumber);
+          material.Export(entities, closingBatch, invoiceContent, _dspsls, sadConsignmentNumber, (x, y, z) => { });
           foreach (Disposal _dx in _dspsls)
             formsList.Add(GetIPRIngredient(_dx));
         }
