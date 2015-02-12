@@ -14,11 +14,12 @@
 //</summary>
 
 using CAS.SharePoint;
+using CAS.SharePoint.Logging;
 using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.Customs.Account;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
@@ -40,29 +41,26 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
     /// Initializes a new instance of the <see cref="AccountData" /> class.
     /// </summary>
     /// <param name="edc">The <see cref="Entities" /> object.</param>
-    /// <param name="clearence">The clearance.</param>
+    /// <param name="clearance">The clearance.</param>
     /// <param name="messageType">Type of the customs message.</param>
-    /// <param name="ProgressChange">The progress change.</param>
-    public virtual void GetAccountData(Entities edc, Clearence clearence, MessageType messageType, ProgressChangedEventHandler ProgressChange)
+    /// <param name="warnings">The list of warnings.</param>
+    /// <param name="trace">The trace.</param>
+    public virtual void GetAccountData(Entities edc, Clearence clearance, MessageType messageType, List<Warnning> warnings, NamedTraceLogger.TraceAction trace)
     {
-      ProgressChange(this, new ProgressChangedEventArgs(1, "AccountData.GetAccountData.starting"));
-      DocumentNo = clearence.DocumentNo;
-      DateTime _customsDebtDate = clearence.Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value;
+      trace("Entering AccountData.GetAccountData", 50, TraceSeverity.Monitorable);
+      DocumentNo = clearance.DocumentNo;
+      DateTime _customsDebtDate = clearance.Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value;
       this.CustomsDebtDate = _customsDebtDate;
-      AnalizeGood(edc, clearence.Clearence2SadGoodID, messageType);
-      ProgressChange(this, new ProgressChangedEventArgs(1, "AccountData.GetAccountData.Invoice"));
-      IEnumerable<SADRequiredDocuments> _rdoc = clearence.Clearence2SadGoodID.SADRequiredDocuments(edc);
+      AnalizeGood(edc, clearance.Clearence2SadGoodID, messageType);
+      IEnumerable<SADRequiredDocuments> _rdoc = clearance.Clearence2SadGoodID.SADRequiredDocuments(edc);
       this.Invoice = (from _dx in _rdoc
                       let CustomsProcedureCode = _dx.Code.ToUpper()
                       where CustomsProcedureCode.Contains("N380") || CustomsProcedureCode.Contains("N935")
                       select new { Number = _dx.Number }
                       ).First().Number;
-      ProgressChange(this, new ProgressChangedEventArgs(1, "AccountData.GetAccountData.FindConsentRecord"));
-      FindConsentRecord(edc, _rdoc, _customsDebtDate, ProgressChange);
-      ProgressChange(this, new ProgressChangedEventArgs(1, "AccountData.GetAccountData.AnalizeGoodsDescription"));
-      AnalizeGoodsDescription(edc, clearence.Clearence2SadGoodID.GoodsDescription); //TODO to IPR
-      ProgressChange(this, new ProgressChangedEventArgs(1, "AccountData.GetAccountData.PCNTariffCodeLookup"));
-      PCNTariffCodeLookup = PCNCode.AddOrGet(edc, clearence.Clearence2SadGoodID.PCNTariffCode, TobaccoName).Id.Value;
+      FindConsentRecord(edc, _rdoc, _customsDebtDate, warnings, trace);
+      AnalyzeGoodsDescription(edc, clearance.Clearence2SadGoodID.GoodsDescription); //TODO to IPR
+      PCNTariffCodeLookup = PCNCode.AddOrGet(edc, clearance.Clearence2SadGoodID.PCNTariffCode, TobaccoName).Id.Value;
     }
     /// <summary>
     /// Calls the remote service.
@@ -110,9 +108,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
     /// </summary>
     /// <param name="edc">The <see cref="Entities"/> instance</param>
     /// <param name="goodsDescription">The _ goods description.</param>
-    /// <exception cref="InputDataValidationException">Syntax errors in the good description.;AnalizeGoodsDescription</exception>
+    /// <exception cref="InputDataValidationException">Syntax errors in the good description. AnalyzeGoodsDescription</exception>
     /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException">Syntax errors in the good description.</exception>
-    private void AnalizeGoodsDescription(Entities edc, string goodsDescription)
+    private void AnalyzeGoodsDescription(Entities edc, string goodsDescription)
     {
       List<string> _sErrors = new List<string>();
       string _na = "Not recognized";
@@ -124,12 +122,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
       {
         ErrorsList _el = new ErrorsList();
         _el.Add(_sErrors, true);
-        throw new InputDataValidationException("Syntax errors in the good description.", "AnalizeGoodsDescription", _el);
+        throw new InputDataValidationException("Syntax errors in the good description.", "AnalyzeGoodsDescription", _el);
       }
     }
-    private void FindConsentRecord(Entities edc, IEnumerable<SADRequiredDocuments> sadRequiredDocumentsEntitySet, DateTime customsDebtDate, ProgressChangedEventHandler ProgressChange)
+    private void FindConsentRecord(Entities edc, IEnumerable<SADRequiredDocuments> sadRequiredDocumentsEntitySet, DateTime customsDebtDate, List<Customs.Warnning> warnings, NamedTraceLogger.TraceAction trace)
     {
-      ProgressChange(this, new ProgressChangedEventArgs(1, "AccountData.FindConsentRecord"));
+      trace("Entering AccountData.FindConsentRecord", 130, TraceSeverity.Verbose);
       SADRequiredDocuments _rd = (from _dx in sadRequiredDocumentsEntitySet
                                   let CustomsProcedureCode = _dx.Code.ToUpper()
                                   where CustomsProcedureCode.Contains(GlobalDefinitions.CustomsProcedureCodeC600) ||
@@ -140,24 +138,26 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
       Linq.Consent _cnst = null;
       if (_rd == null)
       {
-        ProgressChange(this, new ProgressChangedEventArgs(1, new Customs.Warnning("There is not attached any consent document with code = C600/C601/1PG1", false)));
-        _cnst = CreateDefaultConsent(edc, String.Empty.NotAvailable(), ProgressChange);
+        string _msg = "There is not attached any consent document with code = C600/C601/1PG1";
+        warnings.Add(new Customs.Warnning(_msg, false));
+        trace("Wanning ay AccountData.FindConsentRecord: " + _msg, 143, TraceSeverity.Monitorable);
+        _cnst = CreateDefaultConsent(edc, String.Empty.NotAvailable(), warnings);
       }
       else
       {
         string _nr = _rd.Number.Trim();
         _cnst = Consent.Find(edc, _nr);
         if (_cnst == null)
-          _cnst = CreateDefaultConsent(edc, _nr, ProgressChange);
+          _cnst = CreateDefaultConsent(edc, _nr, warnings);
         this.ConsentLookup = _cnst.Id.Value;
       }
       this.SetValidToDate(customsDebtDate, _cnst);
     }
-    private Linq.Consent CreateDefaultConsent(Entities edc, string _nr, ProgressChangedEventHandler ProgressChange)
+    private Linq.Consent CreateDefaultConsent(Entities edc, string _nr, List<Customs.Warnning> warnings)
     {
       Linq.Consent _ret = Consent.DefaultConsent(edc, GetCustomsProcess(Process), _nr);
       string _msg = "Created default consent document with number: {0}. The Consent period is {1} months";
-      ProgressChange(this, new ProgressChangedEventArgs(1, new Customs.Warnning(String.Format(_msg, _nr, _ret.ConsentPeriod), false)));
+      warnings.Add(new Customs.Warnning(String.Format(_msg, _nr, _ret.ConsentPeriod), false));
       return _ret;
     }
     private static Consent.CustomsProcess GetCustomsProcess(CustomsProcess process)

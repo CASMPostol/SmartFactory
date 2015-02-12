@@ -91,7 +91,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// <summary>
     /// Enum LoggingCategories - registered set of categories.
     /// </summary>
-    public enum LoggingCategories 
+    public enum LoggingCategories
     {
       /// <summary>
       /// The feature activation action
@@ -100,15 +100,19 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
       /// <summary>
       /// The close account action
       /// </summary>
-      CloseAccount,
-      /// <summary>
-      /// The create account action
-      /// </summary>
-      CreateAccount,
+      SADProcessing,
       /// <summary>
       /// The report creation action
       /// </summary>
-      ReportCreation
+      ReportCreation,
+      /// <summary>
+      /// The ipr closing action
+      /// </summary>
+      IPRClosing,
+      /// <summary>
+      /// The batch processing action
+      /// </summary>
+      BatchProcessing
     }
     /// <summary>
     /// Writes a diagnostic message into the trace log, with specified Microsoft.SharePoint.Administration.TraceSeverity. 

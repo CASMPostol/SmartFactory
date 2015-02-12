@@ -575,7 +575,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         Entities _edc = m_DataContextManagement.DataContext;
         string _masterDocumentName = CurrentClearence.FinishedGoodsExportFormFileName(_edc);
         int _sadConsignmentIdentifier = default(int);
-        Func<IEnumerable<Disposal>> _dspslLst = () => CurrentClearence.Disposal( _edc);
+        Func<IEnumerable<Disposal>> _dspslLst = () => CurrentClearence.Disposal(_edc);
         switch (ToSelectedGroup(CurrentClearence.ProcedureCode))
         {
           case Group.Tobacco:
@@ -596,7 +596,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
             break;
         }
         SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>(_edc.SADConsignment, _sadConsignmentIdentifier);
-        CurrentClearence.ClearThroughCustom(_edc, _sadConsignment);
+        CurrentClearence.ClearThroughCustom(_edc, _sadConsignment, (x, y, z) => { });
         _edc.SubmitChanges();
         Response.Redirect(Request.RawUrl);
         return GenericStateMachineEngine.ActionResult.Success;

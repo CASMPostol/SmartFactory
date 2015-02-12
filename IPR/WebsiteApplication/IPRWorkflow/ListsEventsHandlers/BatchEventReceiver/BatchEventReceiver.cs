@@ -17,11 +17,11 @@ using CAS.SmartFactory.Customs;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using BatchMaterialXml = CAS.SmartFactory.xml.erp.BatchMaterial;
 using BatchXml = CAS.SmartFactory.xml.erp.Batch;
 
@@ -186,7 +186,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       if (_newBatch)
         edc.Batch.InsertOnSubmit(_batch);
       progressChanged(null, new ProgressChangedEventArgs(1, "GetXmlContent: BatchProcessing"));
-      _batch.BatchProcessing(edc, _contentInfo, parent, progressChanged, _newBatch);
+      _batch.BatchProcessing(edc, _contentInfo, parent, _newBatch, TraceEvent);
       progressChanged(null, new ProgressChangedEventArgs(1, "GetXmlContent: SubmitChanges"));
       edc.SubmitChanges();
     }
@@ -231,6 +231,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     private string At { get; set; }
     private const string m_Title = "Batch Message Import";
     private const string m_Message = "Import of the batch message {0} starting.";
+    private static void TraceEvent(string message, int eventId, TraceSeverity severity)
+    {
+      WebsiteModelExtensions.TraceEvent(message, eventId, severity, WebsiteModelExtensions.LoggingCategories.BatchProcessing);
+    }
     #endregion
   }
 }

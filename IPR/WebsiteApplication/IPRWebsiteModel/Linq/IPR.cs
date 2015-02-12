@@ -13,6 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Logging;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -137,17 +139,22 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Return all Disposals associated with this item.
     /// </summary>
-    /// <param name="edc">The <see cref="Entities"/> object.</param>
+    /// <param name="edc">The <see cref="Entities" /> object.</param>
+    /// <param name="trace">The trace action.</param>
     /// <returns>All Disposals associated with this item</returns>
-    public IEnumerable<Disposal> Disposals(Entities edc)
+    public IEnumerable<Disposal> Disposals(Entities edc, NamedTraceLogger.TraceAction trace)
     {
       if (!this.Id.HasValue)
         return null;
       if (m_Disposals == null)
+      {
+        trace("Start IPR.Disposals reverse lookup calculation.", 149, TraceSeverity.Verbose);
         m_Disposals = from _dsx in edc.Disposal
                       let _idx = _dsx.Disposal2IPRIndex.Id.Value
                       where _idx == this.Id.Value
                       select _dsx;
+        trace(String.Format("IPR.Disposals found reverse lookups {0}.", m_Disposals.Count()), 149, TraceSeverity.Verbose);
+      }
       return m_Disposals;
     }
 
@@ -242,12 +249,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal class Balance : Dictionary<IPR.ValueKey, decimal>
     {
       #region creator
-      internal Balance(Entities edc, IPR record)
+      internal Balance(Entities edc, IPR record, NamedTraceLogger.TraceAction trace)
       {
+        trace("Entering IPR.Balance", 421, TraceSeverity.Verbose);
         foreach (ValueKey _vkx in Enum.GetValues(typeof(ValueKey)))
           base[_vkx] = 0;
         #region totals
-        foreach (Disposal _dspx in record.Disposals(edc))
+        foreach (Disposal _dspx in record.Disposals(edc, trace))
         {
           switch (_dspx.CustomsStatus.Value)
           {
@@ -410,14 +418,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       #endregion
 
     }
-    internal void AddDisposal(Entities edc, DisposalEnum kind, ref decimal toDispose, Material material, InvoiceContent invoiceContent)
+    internal void AddDisposal(Entities edc, DisposalEnum kind, ref decimal toDispose, Material material, InvoiceContent invoiceContent, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering IPR.AddDisposal", 421, TraceSeverity.Verbose);
       Disposal _dsp = AddDisposal(edc, kind, ref toDispose);
       _dsp.Material = material;
-      _dsp.ClearThroughCustom(invoiceContent, _x => this.RecalculateLastStarted(edc, _x));
+      _dsp.ClearThroughCustom(invoiceContent, _x => this.RecalculateLastStarted(edc, _x, trace));
       SADGood _sg = invoiceContent.InvoiceIndex.ClearenceIndex.Clearence2SadGoodID;
       if (_sg != null)
-        _dsp.FinishClearingThroughCustoms(edc, _sg);
+        _dsp.FinishClearingThroughCustoms(edc, _sg, trace);
     }
     internal void AddDisposal(Entities edc, DisposalEnum _kind, ref decimal _toDispose, Material material)
     {
@@ -442,11 +451,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       quantity -= _toDispose;
       return _toDispose;
     }
-    internal void RecalculateClearedRecords(Entities edc)
+    internal void RecalculateClearedRecords(Entities edc, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering IPR.RecalculateClearedRecords", 453, TraceSeverity.Verbose);
       if (this.AccountClosed.Value)
+      {
+        trace("ApplicationException at IPR.RecalculateClearedRecords - closed account", 455, TraceSeverity.High);
         throw new ApplicationException("IPR.RecalculateClearedRecords cannot be executed for closed account");
-      IEnumerable<Disposal> _2Calculate = this.Disposals(edc);
+      }
+      IEnumerable<Disposal> _2Calculate = this.Disposals(edc, trace);
       _2Calculate = (from _dx in _2Calculate where _dx.CustomsStatus.Value == Linq.CustomsStatus.Finished orderby _dx.SPNo.Value ascending select _dx).ToList<Disposal>();
       this.AccountBalance = this.NetMass;
       foreach (Disposal _dx in _2Calculate)
@@ -459,11 +472,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
              orderby _iprx.CustomsDebtDate.Value ascending
              group _iprx by _iprx.Batch;
     }
-    internal void RecalculateLastStarted(Entities edc, Linq.Disposal disposal)
+    internal void RecalculateLastStarted(Entities edc, Linq.Disposal disposal, NamedTraceLogger.TraceAction trace)
     {
       if (this.TobaccoNotAllocatedDec != 0 || _disposal.Where(x => x.SettledQuantityDec > 0 && x.CustomsStatus == CustomsStatus.NotStarted).Any())
         return;
-      IEnumerable<Disposal> _dspsl = Disposals(edc);
+      trace("Starting IPR.RecalculateLastStarted", 52, TraceSeverity.Verbose);
+      IEnumerable<Disposal> _dspsl = Disposals(edc, trace);
       disposal.DutyPerSettledAmount = (disposal.DutyPerSettledAmount + this.Duty.Value - (from _dec in _dspsl where _dec.DutyPerSettledAmount.HasValue select _dec.DutyPerSettledAmount.Value).Sum(itm => itm)).Value.Round2Decimals();
       disposal.VATPerSettledAmount = (disposal.VATPerSettledAmount + this.VAT.Value - (from _dec in _dspsl where _dec.VATPerSettledAmount.HasValue select _dec.VATPerSettledAmount.Value).Sum(itm => itm)).Value.Round2Decimals();
       disposal.DutyAndVAT = (disposal.DutyPerSettledAmount + disposal.VATPerSettledAmount).Value.Round2Decimals();

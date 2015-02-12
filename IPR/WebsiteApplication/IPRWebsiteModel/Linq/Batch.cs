@@ -15,6 +15,7 @@
 
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -63,17 +64,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Batches the processing.
     /// </summary>
-    /// <param name="edc">The <see cref="Entities"/> instance.</param>
+    /// <param name="edc">The <see cref="Entities" /> instance.</param>
     /// <param name="contentInfo">The content info.</param>
     /// <param name="parent">The parent.</param>
-    /// <param name="progressChanged">The progress changed.</param>
     /// <param name="newBatch">if set to <c>true</c> it is new batch.</param>
-    public void BatchProcessing(Entities edc, SummaryContentInfo contentInfo, BatchLib parent, ProgressChangedEventHandler progressChanged, bool newBatch)
+    /// <param name="trace">The trace action.</param>
+    public void BatchProcessing(Entities edc, SummaryContentInfo contentInfo, BatchLib parent, bool newBatch, SharePoint.Logging.NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering Batch.BatchProcessing", 73 , TraceSeverity.Verbose);
       BatchLibraryIndex = parent;
-      progressChanged(this, new ProgressChangedEventArgs(1, "BatchProcessing: GetDependences"));
       Material.Ratios _mr = GetDependences(edc, contentInfo);
-      contentInfo.Analyze(edc, this, progressChanged, _mr, newBatch);
+      contentInfo.Analyze(edc, this, _mr, newBatch, trace);
       AssignContentInfo(contentInfo, newBatch);
     }
     internal string DanglingBatchWarningMessage

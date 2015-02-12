@@ -13,7 +13,9 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Logging;
 using CAS.SmartFactory.Customs;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,7 +49,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         tobaccoQuantity, string productID)
       : this()
     {
-      Archival = false; 
+      Archival = false;
       Batch = batch;
       Material2BatchIndex = null;
       SKU = sku;
@@ -128,8 +130,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if (material < 0)
         throw new CAS.SmartFactory.IPR.WebsiteModel.IPRDataConsistencyException("Material.IncreaseOveruse", "There is not enough tobacco to correct overuse", null, "Operation has been aborted");
     }
-    internal void AdjustTobaccoQuantity(ref decimal totalQuantity, ProgressChangedEventHandler progressChanged)
+    internal void AdjustTobaccoQuantity(ref decimal totalQuantity, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering Material.AdjustTobaccoQuantity", 135, TraceSeverity.Verbose);
       decimal _available = Accounts2Dispose.Sum(y => y.TobaccoNotAllocatedDec) + Disposed;
       if (Math.Abs(_available - TobaccoQuantityDec) > Settings.MinimalOveruse)
         return;
@@ -147,7 +150,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         string _tmpl = "Cleared TobaccoQuantity of {0} for the material: batch {1} because no account to adjust found.";
         _warnning = new Warnning(String.Format(_tmpl, _startingTobaccoQuantity, this.Batch), false);
       }
-      progressChanged(this, new ProgressChangedEventArgs(1, _warnning));
+      trace("Wanning at Material.AdjustTobaccoQuantity: " + _warnning, 135, TraceSeverity.Verbose);
     }
     /// <summary>
     /// Gets the <see cref="System.Decimal" /> at the specified index.
@@ -241,16 +244,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="invoiceContent">Content of the invoice.</param>
     /// <param name="disposals">The disposals.</param>
     /// <param name="sadConsignmentNumber">The sad consignment number.</param>
+    /// <param name="trace">The trace.</param>
     /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException">internal error: it is impossible to mark as exported the material;Material export;false</exception>
-    /// <exception cref="CAS">internal error: it is impossible to mark as exported the material;Material export</exception>
-    public void Export(Entities entities, bool closingBatch, InvoiceContent invoiceContent, List<Disposal> disposals, int sadConsignmentNumber)
+    /// <exception cref="CAS">internal error: it is impossible to mark as exported the material;Material export;false</exception>
+    public void Export(Entities entities, bool closingBatch, InvoiceContent invoiceContent, List<Disposal> disposals, int sadConsignmentNumber, SharePoint.Logging.NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering Material.Export", 251, TraceSeverity.Verbose);
       decimal _quantity = this.CalculatedQuantity(invoiceContent);
       foreach (Disposal _disposalX in this.GetListOfDisposals(entities))
       {
         if (!closingBatch && _quantity == 0)
           break;
-        _disposalX.Export(entities, ref _quantity, closingBatch, invoiceContent, sadConsignmentNumber, _disposal => _disposal.Disposal2IPRIndex.RecalculateLastStarted(entities, _disposal));
+        _disposalX.Export(entities, ref _quantity, closingBatch, invoiceContent, sadConsignmentNumber, _disposal => _disposal.Disposal2IPRIndex.RecalculateLastStarted(entities, _disposal, trace));
         disposals.Add(_disposalX);
       }
       if (closingBatch || _quantity == 0)
@@ -258,6 +263,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       string _error = String.Format(
         "There are {0} kg of material {1}/Id={2} that cannot be found for invoice {3}/Content Id={4}.",
         _quantity, this.Batch, this.Id, invoiceContent.InvoiceIndex.BillDoc, invoiceContent.Id.Value);
+      trace("Exception at Material.Export: " + _error, 265, TraceSeverity.High);
       throw new CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException("internal error: it is impossible to mark as exported the material", "Material export", _error, false);
     }
     /// <summary>
@@ -345,8 +351,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       _old.TobaccoQuantity = this.TobaccoQuantity;
       _old.myVarAccounts2Dispose = this.Accounts2Dispose;
     }
-    internal void UpdateDisposals(Entities edc, ProgressChangedEventHandler progressChanged)
+    internal void UpdateDisposals(Entities edc, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering Material.UpdateDisposals", 352, TraceSeverity.Verbose);
       string _parentBatch = this.Material2BatchIndex.Batch0;
       if (this.ProductType.Value != Linq.ProductType.IPRTobacco)
         return;
@@ -364,22 +371,26 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             _toDispose -= _disposalsOfKind.Sum<Disposal>(x => x.SettledQuantityDec);
             _disposalsOfKind = _disposalsOfKind.Where(v => v.CustomsStatus.Value == CustomsStatus.NotStarted).ToList<Disposal>();
             foreach (Linq.Disposal _dx in _disposalsOfKind)
-              _dx.Adjust(edc, ref _toDispose);
+              _dx.Adjust(edc, ref _toDispose, trace);
             if (_toDispose == 0)
               continue;
             if (_toDispose <= 0)
             {
               string _toDisposeMessage = "_toDispose < 0 and is of {3} kg: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
-              throw new IPRDataConsistencyException("Material.UpdateDisposals", String.Format(_toDisposeMessage, this.Batch, _parentBatch, _kind, _toDispose), null, "IPR calculation error");
+              _toDisposeMessage = String.Format(_toDisposeMessage, this.Batch, _parentBatch, _kind, _toDispose);
+              trace("IPRDataConsistencyException at Material.UpdateDisposals: " + _toDisposeMessage, 380, TraceSeverity.High);
+              throw new IPRDataConsistencyException("Material.UpdateDisposals", _toDisposeMessage, null, "IPR calculation error");
             }
           }
-          progressChanged(this, new ProgressChangedEventArgs(1, String.Format("AddDisposal {0}, batch {1}", _kind, this.Batch)));
+          trace(String.Format("AddDisposal {0}, batch {1}", _kind, this.Batch), 384, TraceSeverity.Verbose);
           if (((_kind == DisposalEnum.SHMenthol) || (_kind == DisposalEnum.OverusageInKg)) && this[_kind] <= 0)
             continue;
           AddNewDisposals(edc, _kind, ref _toDispose);
           if (_toDispose <= 0)
             continue;
           string _mssg = "Cannot find IPR account to dispose the tobacco of {3} kg: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
+          _mssg = String.Format(_mssg, this.Batch, _parentBatch, _kind, _toDispose);
+          trace("IPRDataConsistencyException at Material.UpdateDisposals: " + _mssg, 392, TraceSeverity.High);
           throw new IPRDataConsistencyException("Material.UpdateDisposals", String.Format(_mssg, this.Batch, _parentBatch, _kind, _toDispose), null, "IPR unrecognized account");
         }
         catch (IPRDataConsistencyException _ex)
@@ -399,13 +410,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           return;
       }
     }
-    internal void AddNewDisposals(Entities edc, Linq.DisposalEnum _kind, ref decimal _toDispose, InvoiceContent invoiceContent)
+    internal void AddNewDisposals(Entities edc, Linq.DisposalEnum _kind, ref decimal _toDispose, InvoiceContent invoiceContent, SharePoint.Logging.NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering Material.AddNewDisposals", 421, TraceSeverity.Verbose);
       foreach (IPR _iprx in this.Accounts2Dispose)
       {
         if (_iprx.TobaccoNotAllocated <= 0)
           continue;
-        _iprx.AddDisposal(edc, _kind, ref _toDispose, this, invoiceContent);
+        _iprx.AddDisposal(edc, _kind, ref _toDispose, this, invoiceContent, trace);
         if (_toDispose <= 0)
           break;
       }

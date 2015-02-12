@@ -14,7 +14,9 @@
 //</summary>
 
 using CAS.SharePoint;
+using CAS.SharePoint.Logging;
 using CAS.SharePoint.Web;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -149,7 +151,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw new ApplicationError(@"CAS.SmartFactory.IPR.WebsiteModel.Linq.Disposal.Export", _at, _ex.Message, _ex);
       }
     }
-    internal void FinishClearingThroughCustoms(Entities edc, SADGood sadGood)
+    internal void FinishClearingThroughCustoms(Entities edc, SADGood sadGood, NamedTraceLogger.TraceAction trace)
     {
       string _at = "starting";
       if (this.CustomsStatus.Value == Linq.CustomsStatus.Finished)
@@ -157,7 +159,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       try
       {
         _at = "Disposal _lastOne";
-        IEnumerable<Disposal> _lastOne = from _dsp in this.Disposal2IPRIndex.Disposals(edc)
+        IEnumerable<Disposal> _lastOne = from _dsp in this.Disposal2IPRIndex.Disposals(edc, trace)
                                          where _dsp.CustomsStatus.Value == Linq.CustomsStatus.Finished
                                          select _dsp;
         if (_lastOne.Count<Disposal>() == 0)
@@ -175,7 +177,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       catch (Exception _ex)
       {
         string _template = "Cannot finish Export of disposal {0} {1} because of internal error: {2} at: {3}";
-        throw GenericStateMachineEngine.ActionResult.Exception(_ex, String.Format(_template, this.Title, this.Id.Value, _ex.Message, _at));
+        _template = String.Format(_template, this.Title, this.Id.Value, _ex.Message, _at);
+        trace("Exception at Disposal.FinishClearingThroughCustoms", 181, TraceSeverity.High);
+        throw GenericStateMachineEngine.ActionResult.Exception(_ex, _template);
       }
     }
     internal decimal CalculateRemainingQuantity()
@@ -188,11 +192,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.Disposal2IPRIndex.AccountBalance = this.RemainingQuantity = Convert.ToDouble(_balance);
       return _balance;
     }
-    internal void Adjust(Entities edc, ref decimal _toDispose)
+    internal void Adjust(Entities edc, ref decimal _toDispose, SharePoint.Logging.NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering Disposal.Adjust", 193, TraceSeverity.Verbose);
       this.SettledQuantityDec += this.Disposal2IPRIndex.Withdraw(ref _toDispose, this.SettledQuantityDec);
       if (this.CustomsStatus.Value == Linq.CustomsStatus.Finished)
-        this.Disposal2IPRIndex.RecalculateClearedRecords(edc);
+        this.Disposal2IPRIndex.RecalculateClearedRecords(edc, trace);
     }
     #endregion
 

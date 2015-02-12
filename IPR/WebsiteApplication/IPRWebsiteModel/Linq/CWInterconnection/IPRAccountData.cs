@@ -13,8 +13,10 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Logging;
+using CAS.SmartFactory.Customs;
 using System;
-using System.ComponentModel;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
@@ -54,23 +56,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
     /// Initializes a new instance of the <see cref="AccountData" /> class.
     /// </summary>
     /// <param name="edc">The <see cref="Entities" /> object.</param>
-    /// <param name="clearence">The clearance.</param>
+    /// <param name="clearance">The clearance.</param>
     /// <param name="messageType">Type of the customs message.</param>
-    /// <param name="ProgressChange">Represents the method that will handle an event.
-    /// </param>
-    public override void GetAccountData(Entities edc, Clearence clearence, Customs.Account.CommonAccountData.MessageType messageType, ProgressChangedEventHandler ProgressChange)
+    /// <param name="warnings">The list of warnings.</param>
+    /// <param name="trace">The trace.</param>
+    public override void GetAccountData(Entities edc, Clearence clearance, Customs.Account.CommonAccountData.MessageType messageType, List<Warnning> warnings, NamedTraceLogger.TraceAction trace)
     {
-      base.GetAccountData(edc, clearence, messageType, ProgressChange);
-      Value = clearence.Clearence2SadGoodID.TotalAmountInvoiced.GetValueOrDefault(0);
+      base.GetAccountData(edc, clearance, messageType, warnings, trace);
+      Value = clearance.Clearence2SadGoodID.TotalAmountInvoiced.GetValueOrDefault(0);
       UnitPrice = Value / NetMass;
-      AnalizeDutyAndVAT(edc, clearence.Clearence2SadGoodID);
+      AnalizeDutyAndVAT(edc, clearance.Clearence2SadGoodID);
     }
     /// <summary>
     /// Calls the remote service.
     /// </summary>
     /// <param name="requestUrl">The URL of a Windows SharePoint Services "14" Web site.</param>
-    /// <param name="warnningList">The warning list.</param>
-    public override void CallService(string requestUrl, System.Collections.Generic.List<Customs.Warnning> warnningList)
+    /// <param name="warningList">The warning list.</param>
+    public override void CallService(string requestUrl, System.Collections.Generic.List<Customs.Warnning> warningList)
     {
       //throw new NotImplementedException();
     }
@@ -168,5 +170,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
       ValidToDate = customsDebtDate + TimeSpan.FromDays(consent.ConsentPeriod.Value * m_DaysPerMath);
     }
     #endregion
+
   }
 }

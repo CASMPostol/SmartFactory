@@ -13,16 +13,18 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SmartFactory.IPR.WebsiteModel;
+using Microsoft.SharePoint.Administration;
+using Microsoft.SharePoint.Workflow;
 using System;
 using System.Workflow.Activities;
-using Microsoft.SharePoint.Workflow;
 
 namespace CAS.SmartFactory.IPR.Workflows.JSOXUpdateReport
 {
   /// <summary>
   /// JSOXUpdateReport - Sequential Workflow Activity
   /// </summary>
-  public sealed partial class JSOXUpdateReport: SequentialWorkflowActivity
+  public sealed partial class JSOXUpdateReport : SequentialWorkflowActivity
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="JSOXUpdateReport"/> class.
@@ -34,26 +36,11 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXUpdateReport
     /// <summary>
     /// The workflow id
     /// </summary>
-    public Guid workflowId = default( System.Guid );
+    public Guid workflowId = default(System.Guid);
     /// <summary>
     /// The workflow properties
     /// </summary>
     public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
-    private void CreateReport( object sender, EventArgs e )
-    {
-      try
-      {
-        DocumentsFactory.BalanceSheetContentFactory.UpdateReport( workflowProperties.Item, workflowProperties.WebUrl, workflowProperties.ItemId );
-        EndLogToHistory_HistoryDescription = "Report updated successfully";
-      }
-      catch ( Exception ex )
-      {
-        EndLogToHistory_HistoryOutcome = "Report fatal error";
-        string _patt = "Cannot create JSOX report sheet because of fata error {0} at {1}";
-        EndLogToHistory_HistoryDescription = String.Format( _patt, ex.Message, ex.StackTrace );
-        EndLogToHistory.EventId = SPWorkflowHistoryEventType.WorkflowError;
-      }
-    }
     /// <summary>
     /// The end log to history outcome
     /// </summary>
@@ -61,6 +48,29 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXUpdateReport
     /// <summary>
     /// The end log to history description
     /// </summary>
-    public String EndLogToHistory_HistoryDescription = default( System.String );
+    public String EndLogToHistory_HistoryDescription = default(System.String);
+
+    private void CreateReport(object sender, EventArgs e)
+    {
+      try
+      {
+        TraceEvent("Entering", 66, TraceSeverity.Monitorable);
+        DocumentsFactory.BalanceSheetContentFactory.UpdateReport(workflowProperties.Item, workflowProperties.WebUrl, workflowProperties.ItemId, TraceEvent);
+        EndLogToHistory_HistoryDescription = "Report updated successfully";
+      }
+      catch (Exception ex)
+      {
+        EndLogToHistory_HistoryOutcome = "Report fatal error";
+        string _patt = "Cannot create JSOX report sheet because of fatal error {0} at {1}";
+        EndLogToHistory_HistoryDescription = String.Format(_patt, ex.Message, ex.StackTrace);
+        EndLogToHistory.EventId = SPWorkflowHistoryEventType.WorkflowError;
+        TraceEvent(EndLogToHistory_HistoryDescription, 66, TraceSeverity.High);
+      }
+    }
+    private static void TraceEvent(string message, int eventId, TraceSeverity severity)
+    {
+      WebsiteModelExtensions.TraceEvent(message, eventId, severity, WebsiteModelExtensions.LoggingCategories.ReportCreation);
+    }
+
   }
 }
