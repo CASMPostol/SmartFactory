@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CAS.SmartFactory.IPR
+namespace CAS.SmartFactory.IPR.ListsEventsHandlers
 {
   internal class CommonDefinition
   {

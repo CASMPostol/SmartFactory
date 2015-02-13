@@ -241,5 +241,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       WebsiteModelExtensions.TraceEvent(message, eventId, severity, WebsiteModelExtensions.LoggingCategories.BatchProcessing);
     }
     #endregion
+
   }
 }
