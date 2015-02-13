@@ -44,7 +44,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CAS.SharePoint, Version=2.0.21.13087, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
@@ -118,6 +118,7 @@
     <Compile Include="Webparts\WEB\WebpartStateMachineEngine.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cas.snk" />
     <None Include="cas\cas.master" />
     <None Include="cas\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{46a2aba0-dde8-4488-84d3-d2c9c64d634a}</SharePointProjectItemId>
@@ -166,7 +167,6 @@
     <None Include="Images\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{38040ac8-3469-4de6-baee-429a7fd95c2a}</SharePointProjectItemId>
     </None>
-    <None Include="key.snk" />
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4b0d7649-dcf2-4070-a4ed-b43e33a79cfd}</SharePointProjectItemId>
     </None>

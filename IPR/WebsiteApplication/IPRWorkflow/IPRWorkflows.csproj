@@ -46,7 +46,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CAS.SharePoint, Version=2.0.21.13087, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
@@ -116,6 +116,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="cas.snk" />
     <None Include="ListsEventsHandlers\Customs\SADImportXML\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{32323fbc-d26b-4398-b3d0-963410cce328}</SharePointProjectItemId>
     </None>
@@ -125,7 +126,6 @@
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </None>
     <None Include="SKU.cd" />
-    <None Include="key.snk" />
     <None Include="ListsEventsHandlers\BatchEventReceiver\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f69844e7-ba69-4ebf-bdff-8eef85f1dd78}</SharePointProjectItemId>
     </None>
@@ -189,7 +189,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Workflows\WorkflowHistory\Elements.xml" />
-    <Content Include="Workflows\WorkflowTasks\Elements.xml" />
+    <Content Include="Workflows\WorkflowTasks\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
