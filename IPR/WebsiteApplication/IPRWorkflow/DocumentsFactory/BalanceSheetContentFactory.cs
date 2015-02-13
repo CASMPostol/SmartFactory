@@ -1,22 +1,23 @@
-﻿//<summary>
-//  Title   : class BalanceSheetContentFactory
-//  System  : Microsoft Visual C# .NET 2012
+﻿//_______________________________________________________________
+//  Title   : Name of Application
+//  System  : Microsoft VisualStudio 2013 / C#
 //  $LastChangedDate$
 //  $Rev$
 //  $LastChangedBy$
 //  $URL$
 //  $Id$
 //
-//  Copyright (C) 2014, CAS LODZ POLAND.
+//  Copyright (C) 2015, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
-//</summary>
+//_______________________________________________________________
 
 using CAS.SharePoint;
 using CAS.SharePoint.Logging;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
 using CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
@@ -31,7 +32,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     #region public
     internal static void CreateReport(SPWeb web, string webUrl, int jsoxLibItemId, NamedTraceLogger.TraceAction trace)
     {
-      trace("Entering BalanceSheetContentFactory.CreateReport", 33, TraceSeverity.Verbose);
+      trace("Entering BalanceSheetContentFactory.CreateReport", 33, TraceSeverity.Monitorable);
       SPFile _newFile = default(SPFile);
       BalanceSheetContent _content = default(BalanceSheetContent);
       using (Entities _edc = new Entities(webUrl))
@@ -45,31 +46,40 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         _newFile = SPDocumentFactory.Prepare(web, _content, _documentName);
         _newFile.DocumentLibrary.Update();
         JSOXLibFactory _current = JSOXLibFactory.ConstructJSOXLibFActory(_edc, _newFile.Item.ID);
-        bool _validated = _current.CreateJSOXReport(_edc, _old, (x, y, z) => WebsiteModelExtensions.TraceEvent(x, y, z, WebsiteModelExtensions.LoggingCategories.ReportCreation));
+        List<BalanceBatchWrapper> batches = new List<BalanceBatchWrapper>();
+        bool _validated = _current.CreateJSOXReport(_edc, _old, batches, trace);
+        trace("BalanceSheetContentFactory.CreateReport SubmitChanges", 33, TraceSeverity.Monitorable);
         _edc.SubmitChanges();
-        _content = CreateContent(_edc, _current, _documentName, !_validated);
+        _content = CreateContent(_edc, batches, _current, _documentName, !_validated);
       }
       trace("UpdateDocument " + _newFile.Name, 51, TraceSeverity.Verbose);
       _content.UpdateDocument(_newFile);
       _newFile.DocumentLibrary.Update();
-      trace("Finished BalanceSheetContentFactory.CreateReport", 53, TraceSeverity.Verbose);
+      trace("Finished BalanceSheetContentFactory.CreateReport", 53, TraceSeverity.Monitorable);
     }
     internal static void UpdateReport(SPListItem listItem, string WebUrl, int jsoxLibItemId, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering BalanceSheetContentFactory.UpdateReport", 62, TraceSeverity.Monitorable);
       BalanceSheetContent _content = null;
       using (Entities _edc = new Entities(WebUrl))
       {
         JSOXLibFactory _jsoxLibFactory = JSOXLibFactory.ConstructJSOXLibFActory(_edc, jsoxLibItemId);
         if (_jsoxLibFactory.JSOXLibraryReadOnly)
-          throw new ApplicationException("The record is read only and the report must not be updated.");
-        bool _validated = _jsoxLibFactory.UpdateBalanceReport(_edc, trace);
+        {
+          string _msg = "The record is read only and the report must not be updated.";
+          trace("ApplicationException at BalanceSheetContentFactory.UpdateReport: " + _msg, 70, TraceSeverity.Monitorable);
+          throw new ApplicationException(_msg);
+        }
+        List<BalanceBatchWrapper> batches = new List<BalanceBatchWrapper>();
+        bool _validated = _jsoxLibFactory.UpdateBalanceReport(_edc, batches, trace);
         string _documentName = Settings.RequestForBalanceSheetDocumentName(_edc, _jsoxLibFactory.Id);
-        _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent(_edc, _jsoxLibFactory, _documentName, !_validated);
+        _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent(_edc, batches, _jsoxLibFactory, _documentName, !_validated);
         _jsoxLibFactory.JSOXLibraryReadOnly = true;
         _edc.SubmitChanges();
       }
       _content.UpdateDocument(listItem.File);
       listItem.ParentList.Update();
+      trace("Finished BalanceSheetContentFactory.UpdateReport", 82, TraceSeverity.Monitorable);
     }
     #endregion
 
@@ -89,7 +99,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       };
       return _ret;
     }
-    private static BalanceSheetContent CreateContent(Entities edc, JSOXLibFactory factory, string documentName, bool preliminary)
+    private static BalanceSheetContent CreateContent(Entities edc, IEnumerable<BalanceBatchWrapper> batches, JSOXLibFactory factory, string documentName, bool preliminary)
     {
       if (preliminary)
         documentName += " " + "PRELIMINARY".GetLocalizedString();
@@ -100,7 +110,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         DocumentDate = DateTime.Today.Date,
         DocumentNo = documentName,
         EndDate = list.SituationDate.GetValueOrDefault(),
-        BalanceBatch = GetBalanceBatchContent(edc, list.BalanceBatch(edc)),
+        BalanceBatch = GetBalanceBatchContent(batches),
         JSOX = GetJSOContent(factory),
         SituationAtDate = list.SituationDate.GetValueOrDefault(),
         StartDate = list.PreviousMonthDate.GetValueOrDefault(),
@@ -207,15 +217,16 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       }
       return _ret.ToArray<JSOXCustomsSummaryContent>();
     }
-    private static BalanceBatchContent[] GetBalanceBatchContent(Entities edc, IEnumerable<BalanceBatch> collection)
+    private static BalanceBatchContent[] GetBalanceBatchContent(IEnumerable<BalanceBatchWrapper> batches)
     {
       List<BalanceBatchContent> _ret = new List<BalanceBatchContent>();
-      if (collection != null)
-        foreach (BalanceBatch _bsx in collection)
+      if (batches != null)
+        foreach (BalanceBatchWrapper _bw in batches)
         {
+          BalanceBatch _bsx = _bw.batch;
           BalanceBatchContent _new = new BalanceBatchContent()
             {
-              BalanceIPR = GetBalanceIPRContent(_bsx.BalanceIPR(edc)),
+              BalanceIPR = GetBalanceIPRContent(_bw.iprCollection),
               TotalBalance = _bsx.Balance.Round2DecimalOrDefault(),
               TotalDustCSNotStarted = _bsx.DustCSNotStarted.Round2DecimalOrDefault(),
               TotalIPRBook = _bsx.IPRBook.Round2DecimalOrDefault(),

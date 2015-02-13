@@ -29,53 +29,72 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   {
 
     #region public
-    internal static void Create(Entities edc, IGrouping<string, IPR> _grpx, JSOXLib parent, StockDictionary.BalanceStock balanceStock, NamedTraceLogger.TraceAction trace)
+    internal static BalanceBatchWrapper Create(Entities edc, IGrouping<string, IPR> iprGroups, JSOXLib parent, StockDictionary.BalanceStock balanceStock, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering BalanceBatch.Create", 34, TraceSeverity.Verbose);
+      BalanceBatchWrapper _ret;
       try
       {
-        IPR _firsTIPR = _grpx.FirstOrDefault<IPR>();
+        IPR _firsTIPR = iprGroups.FirstOrDefault<IPR>();
         BalanceBatch _newBB = new BalanceBatch()
         {
           Archival = false,
           Balance2JSOXLibraryIndex = parent,
-          Batch = _grpx.Key,
+          Batch = iprGroups.Key,
           Title = "creating",
           SKU = _firsTIPR == null ? "NA" : _firsTIPR.SKU,
         };
         edc.BalanceBatch.InsertOnSubmit(_newBB);
-        _newBB.Update(edc, _grpx, balanceStock, trace);
+        List<BalanceIPR> _is = new List<BalanceIPR>();
+        _newBB.Update(edc, iprGroups, balanceStock, _is, trace);
+        _ret = new BalanceBatchWrapper() { iprCollection = _is.ToArray<BalanceIPR>(), batch = _newBB };
+      }
+      catch (CAS.SharePoint.ApplicationError)
+      {
+        throw;
       }
       catch (Exception ex)
       {
+        trace("ApplicationError at BalanceBatch.Create", 58, TraceSeverity.High);
         throw new SharePoint.ApplicationError("BalanceBatch.Create", "Body", ex.Message, ex);
       }
+      trace("Finished BalanceBatch.Create", 61, TraceSeverity.Verbose);
+      return _ret;
     }
-    internal void Update(Entities edc, IGrouping<string, IPR> grouping, StockDictionary.BalanceStock balanceStock, NamedTraceLogger.TraceAction trace)
+    internal void Update(Entities edc, IGrouping<string, IPR> grouping, StockDictionary.BalanceStock balanceStock, List<BalanceIPR> iprCollection, NamedTraceLogger.TraceAction trace)
     {
-      trace("Entering BalanceBatch.Update", 54, TraceSeverity.Verbose);
+      trace("Entering BalanceBatch.Update", 66, TraceSeverity.Verbose);
+      if (grouping == null)
+        throw new ArgumentNullException("grouping", "grouping at BalanceBatch.Update is null.");
+      if (balanceStock == null)
+        throw new ArgumentNullException("balanceStock", "balanceStock at BalanceBatch.Update is null.");
       try
       {
         Dictionary<string, IPR> _iprDictionary = grouping.ToDictionary(x => x.DocumentNo);
         List<string> _processed = new List<string>();
         BalanceTotals _totals = new BalanceTotals();
-        foreach (BalanceIPR _blncIPRx in this.BalanceIPR(edc))
+        trace("BalanceBatch.Update at BalanceIPR", 70, TraceSeverity.Verbose);
+        foreach (BalanceIPR _balanceIPRx in this.BalanceIPR(edc))
         {
-          if (_iprDictionary.ContainsKey(_blncIPRx.DocumentNo))
+          if (_iprDictionary.ContainsKey(_balanceIPRx.DocumentNo))
           {
-            IPR.Balance _newBipr = _blncIPRx.Update(edc, trace);
-            _totals.Add(_newBipr);
+            IPR.Balance _new = _balanceIPRx.Update(edc, trace);
+            _totals.Add(_new);
+            iprCollection.Add(_balanceIPRx);
           }
           else
-            edc.BalanceIPR.DeleteOnSubmit(_blncIPRx);
-          _processed.Add(_blncIPRx.DocumentNo);
+            edc.BalanceIPR.DeleteOnSubmit(_balanceIPRx);
+          _processed.Add(_balanceIPRx.DocumentNo);
         }
         foreach (string _dcn in _processed)
           _iprDictionary.Remove(_dcn);
+        trace("BalanceBatch.Update at BalanceIPR.Create", 55, TraceSeverity.Verbose);
         foreach (IPR _iprx in _iprDictionary.Values)
         {
-          IPR.Balance _newBipr = Linq.BalanceIPR.Create(edc, _iprx, this, this.Balance2JSOXLibraryIndex, trace);
+          IPR.Balance _newBipr = Linq.BalanceIPR.Create(edc, _iprx, this, this.Balance2JSOXLibraryIndex, iprCollection, trace);
           _totals.Add(_newBipr);
         }
+        trace("BalanceBatch.Update at update this.", 90, TraceSeverity.Verbose);
         this.DustCSNotStarted = _totals[IPR.ValueKey.DustCSNotStarted];
         this.DustCSStarted = _totals[IPR.ValueKey.DustCSStarted];
         this.IPRBook = _totals[IPR.ValueKey.IPRBook];
@@ -106,29 +125,26 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       catch (Exception ex)
       {
-        trace("Exception at BalanceBatch.Update: " + ex.Message, 109, TraceSeverity.High);
+        trace("Exception at BalanceBatch.Update: " + ex.Message, 128, TraceSeverity.High);
         throw new SharePoint.ApplicationError("BalanceBatch.Update", "Body", ex.Message, ex);
       }
-      trace("Finished BalanceBatch.Update", 111, TraceSeverity.Verbose);
+      trace("Finished BalanceBatch.Update", 131, TraceSeverity.Verbose);
     }
     internal decimal IPRBookDecimal { get { return this.IPRBook.Round2DecimalOrDefault(); } }
     /// <summary>
-    /// Reverse lookup for <see cref="BalanceIPR"/>
+    /// Reverse lookup for <see cref="BalanceIPR" />
     /// </summary>
     /// <param name="edc">The entities context.</param>
-    /// <returns></returns>
+    /// <returns>Collection of <see cref="BalanceIPR" /></returns>
     public IEnumerable<BalanceIPR> BalanceIPR(Entities edc)
     {
       if (!this.Id.HasValue)
-        return null;
-      if (m_BalanceIPR == null)
-        m_BalanceIPR = from _biprx in edc.BalanceIPR let _id = _biprx.BalanceBatchIndex.Id where _id == this.Id select _biprx;
-      return m_BalanceIPR;
+        return new BalanceIPR[] { };
+      return from _biprx in edc.BalanceIPR let _id = _biprx.BalanceBatchIndex.Id where _id == this.Id select _biprx;
     }
     #endregion
 
     #region private
-    private IEnumerable<BalanceIPR> m_BalanceIPR = null;
     /// <summary>
     /// Balance Totals
     /// </summary>

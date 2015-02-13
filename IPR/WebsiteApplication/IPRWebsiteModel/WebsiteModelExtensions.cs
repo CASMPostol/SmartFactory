@@ -19,11 +19,14 @@ using System;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel
 {
+
   /// <summary>
   /// Website Model Extensions
   /// </summary>
   public static class WebsiteModelExtensions
   {
+
+    #region public
     /// <summary>
     /// Rounds a double-precision floating-point value to a specified number of fractional digits or returns the default value.
     /// </summary>
@@ -134,7 +137,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     {
       NamedTraceLogger.UnregisterLoggerSource(LoggingArea);
     }
+    #endregion
 
+    #region private
     private static string m_LoggingArea;
     private static string LoggingArea
     {
@@ -147,5 +152,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     }
     //The number of fractional digits in the return value.
     private const int m_MassFractionalDigits = 2;
+    #endregion
+
   }
 }

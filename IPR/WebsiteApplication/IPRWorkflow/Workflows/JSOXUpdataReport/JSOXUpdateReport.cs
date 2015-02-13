@@ -54,9 +54,10 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXUpdateReport
     {
       try
       {
-        TraceEvent("Entering", 66, TraceSeverity.Monitorable);
+        TraceEvent("Entering JSOXUpdateReport.CreateReport", 57, TraceSeverity.Monitorable);
         DocumentsFactory.BalanceSheetContentFactory.UpdateReport(workflowProperties.Item, workflowProperties.WebUrl, workflowProperties.ItemId, TraceEvent);
         EndLogToHistory_HistoryDescription = "Report updated successfully";
+        TraceEvent("Finishing JSOXUpdateReport.CreateReport", 60, TraceSeverity.Monitorable);
       }
       catch (Exception ex)
       {

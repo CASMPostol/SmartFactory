@@ -37,50 +37,54 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     /// <summary>
     /// An item was added.
     /// </summary>
-    /// <param name="_properties">Contains properties for asynchronous list item event handlers.</param>
-    public override void ItemAdded(SPItemEventProperties _properties)
+    /// <param name="properties">Contains properties for asynchronous list item event handlers.</param>
+    public override void ItemAdded(SPItemEventProperties properties)
     {
-      base.ItemAdded(_properties);
+      TraceEvent("Entering BatchEventReceiver.ItemAdded", 43, TraceSeverity.Monitorable);
+      base.ItemAdded(properties);
       try
       {
-        if (!_properties.ListTitle.Contains("Batch Library"))
+        if (!properties.ListTitle.Contains("Batch Library"))
         {
           //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
-          base.ItemAdded(_properties);
+          TraceEvent("BatchEventReceiver.ItemAdded ", 50, TraceSeverity.Monitorable);
+          TraceEvent(String.Format("Exiting BatchEventReceiver.ItemAdded - event called for wrong lis list name {0}.", properties.ListTitle), 51, TraceSeverity.Monitorable);
+          base.ItemAdded(properties);
           return;
           //throw new IPRDataConsistencyException(m_Title, "Wrong library name", null, "Wrong library name");
         }
         this.EventFiringEnabled = false;
-        using (Entities _edc = new Entities(_properties.WebUrl))
+        using (Entities _edc = new Entities(properties.WebUrl))
         {
-          BatchLib _entry = _entry = Element.GetAtIndex<BatchLib>(_edc.BatchLibrary, _properties.ListItemId);
+          BatchLib _entry = _entry = Element.GetAtIndex<BatchLib>(_edc.BatchLibrary, properties.ListItemId);
           At = "ImportBatchFromXml";
           BatchXml _xml = default(BatchXml);
-          using (Stream _stream = _properties.ListItem.File.OpenBinaryStream())
-            _xml = ImportBatchFromXml(_edc, _stream, _properties.ListItem.File.Name, ProgressChange);
+          using (Stream _stream = properties.ListItem.File.OpenBinaryStream())
+            _xml = ImportBatchFromXml(_edc, _stream, properties.ListItem.File.Name, ProgressChange);
           At = "Getting Data";
           GetXmlContent(_xml, _edc, _entry, ProgressChange);
           At = "ListItem assign";
           _entry.BatchLibraryOK = true;
           _entry.BatchLibraryComments = "Batch message import succeeded.";
           At = "SubmitChanges";
+          TraceEvent("BatchEventReceiver.ItemAdded at SubmitChanges", 70, TraceSeverity.Verbose);
           _edc.SubmitChanges();
           foreach (Warnning _wrnngx in m_Warnings)
             ActivityLogCT.WriteEntry(_edc, m_Title, String.Format("Import of the batch warning: {0}", _wrnngx.Message));
-          ActivityLogCT.WriteEntry(_edc, m_Title, String.Format("Import of the batch {0} message finished", _properties.ListItem.File.Name));
+          ActivityLogCT.WriteEntry(_edc, m_Title, String.Format("Import of the batch {0} message finished", properties.ListItem.File.Name));
         }
       }
       catch (InputDataValidationException _idve)
       {
-        _idve.ReportActionResult(_properties.WebUrl, _properties.ListItem.File.Name);
+        _idve.ReportActionResult(properties.WebUrl, properties.ListItem.File.Name);
       }
       catch (IPRDataConsistencyException _ex)
       {
         _ex.Source += " at " + At;
-        using (Entities _edc = new Entities(_properties.WebUrl))
+        using (Entities _edc = new Entities(properties.WebUrl))
         {
           _ex.Add2Log(_edc);
-          BatchLib _entry = _entry = Element.GetAtIndex<BatchLib>(_edc.BatchLibrary, _properties.ListItemId);
+          BatchLib _entry = _entry = Element.GetAtIndex<BatchLib>(_edc.BatchLibrary, properties.ListItemId);
           _entry.BatchLibraryOK = false;
           _entry.BatchLibraryComments = _ex.Comments;
           _edc.SubmitChanges();
@@ -88,10 +92,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       }
       catch (Exception _ex)
       {
-        using (Entities _edc = new Entities(_properties.WebUrl))
+        using (Entities _edc = new Entities(properties.WebUrl))
         {
           ActivityLogCT.WriteEntry(_edc, "BatchEventReceiver.ItemAdded" + " at " + At, _ex.Message);
-          BatchLib _entry = _entry = Element.GetAtIndex<BatchLib>(_edc.BatchLibrary, _properties.ListItemId);
+          BatchLib _entry = _entry = Element.GetAtIndex<BatchLib>(_edc.BatchLibrary, properties.ListItemId);
           _entry.BatchLibraryComments = "Batch message import error";
           _entry.BatchLibraryOK = false;
           _edc.SubmitChanges();
@@ -101,6 +105,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       {
         this.EventFiringEnabled = true;
       }
+      TraceEvent("Finishing BatchEventReceiver.ItemAdded", 107, TraceSeverity.Monitorable);
     }
     /// <summary>
     /// Imports the batch from XML.
@@ -131,12 +136,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     #endregion
 
     #region private
-    private void ProgressChange(object sender, ProgressChangedEventArgs progres)
+    private void ProgressChange(object sender, ProgressChangedEventArgs progress)
     {
-      if (progres.UserState is String)
-        At = (string)progres.UserState;
-      else if (progres.UserState is Warnning)
-        m_Warnings.Add(progres.UserState as Warnning);
+      if (progress.UserState is String)
+        At = (string)progress.UserState;
+      else if (progress.UserState is Warnning)
+        m_Warnings.Add(progress.UserState as Warnning);
       else
         throw new ArgumentException("Wrong state reported", "UserState");
     }

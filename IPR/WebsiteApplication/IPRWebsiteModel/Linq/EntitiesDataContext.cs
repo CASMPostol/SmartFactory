@@ -12,12 +12,11 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
-using System;
-using System.Collections.Generic;
+
 using CAS.SharePoint;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
+using System;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -88,9 +87,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Resolves the change conflicts.
     /// </summary>
-    /// <param name="_rsult">The _rsult.</param>
+    /// <param name="result">The <see cref="ActionResult"/>.</param>
     /// <exception cref="System.ApplicationException"></exception>
-    internal void ResolveChangeConflicts( ActionResult _rsult )
+    internal void ResolveChangeConflicts( ActionResult result )
     {
       string _cp = "Starting";
       try
@@ -115,7 +114,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           }
           else
             _tmp += "; No member details";
-          _rsult.AddMessage( "ResolveChangeConflicts at: " + _cp, _tmp );
+          result.AddMessage( "ResolveChangeConflicts at: " + _cp, _tmp );
           _cp = "AddMessage";
           _itx.Resolve( RefreshMode.KeepCurrentValues );
         } //foreach (ObjectChangeConflict

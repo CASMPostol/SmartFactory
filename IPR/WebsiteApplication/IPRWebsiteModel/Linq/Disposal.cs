@@ -100,7 +100,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal void ClearThroughCustom(InvoiceContent value, Action<Disposal> reCalculate)
     {
       if (value == null)
-        throw new ArgumentNullException("InvoicEContent", "InvoicEContent cannot be null");
+        throw new ArgumentNullException("value", "At ClearThroughCustom value cannot be null");
       this.Disposal2InvoiceContentIndex = value;
       this.Clearance = value.InvoiceIndex.ClearenceIndex;
       this.CustomsStatus = Linq.CustomsStatus.Started;
@@ -142,7 +142,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           }
           else
             quantity -= this.SettledQuantityDec;
-        _at = "InvoicEContent";
+        _at = "ClearThroughCustom";
         this.ClearThroughCustom(invoiceContent, reCalculate);
         this.SadConsignmentNo = SADConsignment.DocumentNumber(entities, sadConsignmentNumber);
       }

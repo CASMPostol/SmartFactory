@@ -32,22 +32,26 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance
     /// </summary>
     /// <param name="edc">The <see cref="Entities" /> representing data model.</param>
     /// <param name="previous">The previous report.</param>
+    /// <param name="batches">The list of <see cref="BalanceBatchWrapper"/>.</param>
     /// <param name="trace">The trace action.</param>
-    public bool CreateJSOXReport(Entities edc, JSOXLib previous, NamedTraceLogger.TraceAction trace)
+    /// <returns><c>true</c>if the report is consistent, <c>false</c> otherwise.</returns>
+    public bool CreateJSOXReport(Entities edc, JSOXLib previous, List<BalanceBatchWrapper> batches, NamedTraceLogger.TraceAction trace)
     {
-      trace("Entering JSOXLibFactoryBase.CreateJSOXReport", 38, TraceSeverity.Verbose);
+      trace("Entering JSOXLibFactoryBase.CreateJSOXReport", 40, TraceSeverity.Verbose);
       this.JSOXList.CreateJSOXReport(previous);
-      return UpdateBalanceReport(edc, trace);
+      return UpdateBalanceReport(edc, batches, trace);
     }
     /// <summary>
     /// Updates the balance report.
     /// </summary>
     /// <param name="edc">The <see cref="Entities" /> representing data model.</param>
+    /// <param name="batches">The list of <see cref="BalanceBatchWrapper"/>.</param>
     /// <param name="trace">The trace action.</param>
-    public bool UpdateBalanceReport(Entities edc, NamedTraceLogger.TraceAction trace)
+    /// <returns><c>true</c>if the report is consistent, <c>false</c> otherwise.</returns>
+    public bool UpdateBalanceReport(Entities edc, List<BalanceBatchWrapper> batches, NamedTraceLogger.TraceAction trace)
     {
       trace("Entering JSOXLibFactoryBase.UpdateBalanceReport", 49, TraceSeverity.Verbose);
-      return this.JSOXList.UpdateBalanceReport(edc, GetOutboundQuantity, trace);
+      return this.JSOXList.UpdateBalanceReport(edc, GetOutboundQuantity, batches, trace);
     }
     /// <summary>
     /// Gets the outbound quantity.
