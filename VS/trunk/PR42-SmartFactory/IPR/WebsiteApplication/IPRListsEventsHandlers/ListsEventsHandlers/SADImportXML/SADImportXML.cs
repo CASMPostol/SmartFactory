@@ -25,7 +25,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
+namespace CAS.SmartFactory.IPR.ListsEventsHandlers
 {
   /// <summary>
   /// List Item Events

@@ -4,10 +4,10 @@
     <referencedFeatureActivationDependency minimumVersion="" itemId="6157b1a8-2d62-414f-9045-48bfbcf8892e" projectPath="..\IPRWebsiteModel\IPRWebsiteModel.csproj" />
   </activationDependencies>
   <projectItems>
-    <projectItemReference itemId="b7cc2f6b-5106-4747-beda-59e5ace60912" />
-    <projectItemReference itemId="cc8d9b76-ac81-475a-ae64-edb8fa56056f" />
-    <projectItemReference itemId="12466fbf-6b0a-4d4f-a1ca-32de86e40f8c" />
-    <projectItemReference itemId="f6340c62-13ac-434c-97c0-b2697fda8d88" />
-    <projectItemReference itemId="fe4f30d1-b4e5-40e2-b2ab-81df2f4861ed" />
+    <projectItemReference itemId="a20d9cb2-5cb5-4a62-aece-27708002cd0d" />
+    <projectItemReference itemId="e518bdca-771a-40a9-9d13-c65d231871dd" />
+    <projectItemReference itemId="2e28b8d3-3720-473b-9feb-eb7878787bb7" />
+    <projectItemReference itemId="fa293534-70ec-4530-99f7-faa275db7ced" />
+    <projectItemReference itemId="dcae5701-e886-4b81-be4b-fbd642dede75" />
   </projectItems>
 </feature>

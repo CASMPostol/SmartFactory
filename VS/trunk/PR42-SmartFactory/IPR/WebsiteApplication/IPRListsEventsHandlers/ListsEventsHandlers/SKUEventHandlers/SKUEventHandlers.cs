@@ -6,7 +6,7 @@ using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using SKUXml = CAS.SmartFactory.xml.erp.SKU;
 
-namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
+namespace CAS.SmartFactory.IPR.ListsEventsHandlers
 {
   /// <summary>
   /// List Item Events

@@ -8,7 +8,7 @@ using CutfillerMaterialxML = CAS.SmartFactory.xml.erp.CutfillerMaterial;
 using MaterialXml = CAS.SmartFactory.xml.erp.Material;
 using SKUXml = CAS.SmartFactory.xml.erp.SKU;
 
-namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
+namespace CAS.SmartFactory.IPR.ListsEventsHandlers
 {
   internal static class SKUGetFromXML
   {

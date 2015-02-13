@@ -12,7 +12,7 @@ using Microsoft.SharePoint;
 using InvoiceItemXml = CAS.SmartFactory.xml.erp.InvoiceItem;
 using InvoiceXml = CAS.SmartFactory.xml.erp.Invoice;
 
-namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
+namespace CAS.SmartFactory.IPR.ListsEventsHandlers
 {
   /// <summary>
   /// List Item Events
