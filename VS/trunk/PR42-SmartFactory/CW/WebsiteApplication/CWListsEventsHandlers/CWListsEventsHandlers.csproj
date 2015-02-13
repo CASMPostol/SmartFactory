@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F337CF80-031A-43BE-88A6-6C477AD1C6C5}</ProjectGuid>
+    <ProjectGuid>{86343919-AE3A-475F-868B-8B16FEAC2E60}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CAS.SmartFactory.IPR.ListsEventsHandlers</RootNamespace>
-    <AssemblyName>CAS.IPRListsEventsHandlers</AssemblyName>
+    <RootNamespace>CAS.SmartFactory.CW.ListsEventsHandlers</RootNamespace>
+    <AssemblyName>CAS.CWListsEventsHandlers</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SandboxedSolution>False</SandboxedSolution>
-    <IncludeAssemblyInPackage>True</IncludeAssemblyInPackage>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,8 +23,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DocumentationFile>bin\Debug\CAS.IPRListsEventsHandlers.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -55,7 +52,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\CAS.SmartFactory.Customs.2.30.00\lib\net35\CAS.SmartFactoryCustoms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -65,28 +61,20 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="cas.snk" />
-    <None Include="Features\IPRListsEventsHandlers\IPRListsEventsHandlers.feature">
-      <FeatureId>{4bfdd061-cd15-4691-af88-8cbb5e559d7e}</FeatureId>
-    </None>
-    <None Include="ListsEventsHandlers\BatchEventReceiver\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{fe4f30d1-b4e5-40e2-b2ab-81df2f4861ed}</SharePointProjectItemId>
-    </None>
-    <None Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{b7cc2f6b-5106-4747-beda-59e5ace60912}</SharePointProjectItemId>
-    </None>
-    <None Include="ListsEventsHandlers\Customs\SADImportXML\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{cc8d9b76-ac81-475a-ae64-edb8fa56056f}</SharePointProjectItemId>
-    </None>
-    <None Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{12466fbf-6b0a-4d4f-a1ca-32de86e40f8c}</SharePointProjectItemId>
-    </None>
-    <None Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{f6340c62-13ac-434c-97c0-b2697fda8d88}</SharePointProjectItemId>
+    <None Include="Features\CWListsEventsHandlers\CWListsEventsHandlers.feature">
+      <FeatureId>{ce12d8ad-0c98-4966-b1a7-7781740631b5}</FeatureId>
     </None>
     <None Include="packages.config" />
     <None Include="Package\Package.package">
-      <PackageId>{f576e908-4d06-43a5-b58e-ca9520e86bd4}</PackageId>
+      <PackageId>{373edbd4-4dbd-4d01-b723-3957e8ccbc6d}</PackageId>
     </None>
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
@@ -96,46 +84,14 @@
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Features\CWListsEventsHandlers\CWListsEventsHandlers.Template.xml">
+      <DependentUpon>CWListsEventsHandlers.feature</DependentUpon>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Features\IPRListsEventsHandlers\IPRListsEventsHandlers.Template.xml">
-      <DependentUpon>IPRListsEventsHandlers.feature</DependentUpon>
-    </Content>
-    <Content Include="ListsEventsHandlers\BatchEventReceiver\Elements.xml" />
-    <Content Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\Elements.xml" />
-    <Content Include="ListsEventsHandlers\Customs\SADImportXML\Elements.xml" />
-    <Content Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\Elements.xml" />
-    <Content Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\Elements.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IPRInteroperability\IPRInteroperability.csproj">
-      <Project>{bbc177df-cd0c-4fdf-9e78-41f2ce4faf52}</Project>
-      <Name>IPRInteroperability</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IPRWebsiteModel\IPRWebsiteModel.csproj">
-      <Project>{8920f657-54a3-4376-99a5-c2d823f94038}</Project>
-      <Name>IPRWebsiteModel</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CommonDefinition.cs" />
-    <Compile Include="ListsEventsHandlers\BatchEventReceiver\BatchEventReceiver.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\InvoiceEventReceiver.cs" />
-    <Compile Include="ListsEventsHandlers\Customs\SADImportXML\ClearenceHelpers.cs" />
-    <Compile Include="ListsEventsHandlers\Customs\SADImportXML\ImportXMLCommon.cs" />
-    <Compile Include="ListsEventsHandlers\Customs\SADImportXML\SADImportXML.cs" />
-    <Compile Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SKUEventHandlers.cs" />
-    <Compile Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SKUGetFromXML.cs" />
-    <Compile Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\StockLibraryEventReceiver.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AssemblyInfo.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
