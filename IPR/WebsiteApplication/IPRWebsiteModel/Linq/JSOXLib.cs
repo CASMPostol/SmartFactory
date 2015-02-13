@@ -94,7 +94,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.BalanceQuantity = _thisBalanceQuantity.Convert2Double2Decimals();
 
       //Situation at
-      decimal _thisSituationQuantity = _existingBatches.Sum<BalanceBatch>(x => x.IPRBookDecimal);
+      decimal _thisSituationQuantity = batches.Select<BalanceBatchWrapper, BalanceBatch>(x => x.batch).Sum<BalanceBatch>(x => x.IPRBookDecimal);
       this.SituationQuantity = Convert.ToDouble(_thisSituationQuantity);
 
       //Reassign

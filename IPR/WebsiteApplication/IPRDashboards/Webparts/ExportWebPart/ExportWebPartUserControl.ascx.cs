@@ -17,9 +17,11 @@ using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.IPR.Dashboards.Clearance;
+using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -587,7 +589,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       m_ControlState.Invoice.InvoiceLibraryStatus = true;
       Clearence _newClearance = Clearence.CreataClearence(m_DataContextManagement.DataContext, "FinishedGoodsExport", ClearenceProcedure._3151);
       string _masterDocumentName = _newClearance.FinishedGoodsExportFormFileName(m_DataContextManagement.DataContext);
-      CigaretteExportFormCollection _cefc = FinishedGoodsFormFactory.GetFormContent(m_DataContextManagement.DataContext, m_ControlState.Invoice, _newClearance, _masterDocumentName, _newClearance.SADDocumentNumber);
+      CigaretteExportFormCollection _cefc = FinishedGoodsFormFactory.GetFormContent
+        (m_DataContextManagement.DataContext, m_ControlState.Invoice, _newClearance, _masterDocumentName, _newClearance.SADDocumentNumber, (x, y, z) => TraceEvent(x, y, z));
       int _sadConsignmentIdentifier = SPDocumentFactory.Prepare(SPContext.Current.Web, _cefc, _masterDocumentName);
       SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>(m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier);
       _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
@@ -620,6 +623,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     {
       m_ControlState = new ControlState(null, GetEntities);
       m_ControlState.InterfaceState = GenericStateMachineEngine.InterfaceState.ViewState;
+    }
+    private static void TraceEvent(string message, int eventId, TraceSeverity severity)
+    {
+      WebsiteModelExtensions.TraceEvent(message, eventId, severity, WebsiteModelExtensions.LoggingCategories.Export);
     }
     #endregion
 

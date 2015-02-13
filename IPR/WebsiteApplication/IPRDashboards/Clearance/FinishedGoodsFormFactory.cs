@@ -17,6 +17,7 @@ using CAS.SharePoint;
 using CAS.SharePoint.Logging;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
+using Microsoft.SharePoint.Administration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,14 +31,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
   internal static class FinishedGoodsFormFactory
   {
     #region public
-    internal static CigaretteExportFormCollection GetFormContent(Entities entities, InvoiceLib invoice, Clearence clearance, string documentName, int sadConsignmentNumber)
+    internal static CigaretteExportFormCollection GetFormContent(Entities entities, InvoiceLib invoice, Clearence clearance, string documentName, int sadConsignmentNumber, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering FinishedGoodsFormFactory.GetFormContent", 40, TraceSeverity.Verbose);
       int _position = 1;
       List<CigaretteExportForm> _consignment = new List<CigaretteExportForm>();
       invoice.ClearenceIndex = clearance;
       invoice.InvoiceLibraryReadOnly = true;
       foreach (InvoiceContent item in invoice.InvoiceContent(entities))
-        ExportInvoiceEntry(entities, item, _consignment, documentName, ref _position, sadConsignmentNumber);
+        ExportInvoiceEntry(entities, item, _consignment, documentName, ref _position, sadConsignmentNumber, trace);
       return GetCigaretteExportFormCollection(_consignment, documentName, invoice.BillDoc);
     }
     #endregion
@@ -133,8 +135,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
 
     #region private
     private static void ExportInvoiceEntry
-      (Entities entities, InvoiceContent invoice, List<CigaretteExportForm> formsList, string documentName, ref int subdocumentNo, int sadConsignmentNumber)
+      (Entities entities, InvoiceContent invoice, List<CigaretteExportForm> formsList, string documentName, ref int subdocumentNo, int sadConsignmentNumber, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering FinishedGoodsFormFactory.ExportInvoiceEntry", 138, Microsoft.SharePoint.Administration.TraceSeverity.Verbose);
       string _at = "beginning";
       Batch batch = invoice.InvoiceContent2BatchIndex;
       try
@@ -145,7 +148,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         List<Ingredient> _ingredients = new List<Ingredient>();
         _at = "foreach";
         foreach (Material _materialIdx in batch.Material(entities, false))
-          ExportMaterial(entities, _materialIdx, _ingredients, _closingBatch, invoice, sadConsignmentNumber);
+          ExportMaterial(entities, _materialIdx, _ingredients, _closingBatch, invoice, sadConsignmentNumber, trace);
         _at = "_exportConsignment";
         CigaretteExportForm _form = GetCigaretteExportForm(batch, invoice, _ingredients, documentName, ref subdocumentNo, invoice.InvoiceIndex.ClearenceIndex.ClearenceProcedure.Value);
         formsList.Add(_form);

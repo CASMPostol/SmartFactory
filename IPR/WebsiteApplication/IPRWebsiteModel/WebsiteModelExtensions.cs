@@ -115,7 +115,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
       /// <summary>
       /// The batch processing action
       /// </summary>
-      BatchProcessing
+      BatchProcessing,
+      /// <summary>
+      /// The export user action
+      /// </summary>
+      Export
     }
     /// <summary>
     /// Writes a diagnostic message into the trace log, with specified Microsoft.SharePoint.Administration.TraceSeverity. 
