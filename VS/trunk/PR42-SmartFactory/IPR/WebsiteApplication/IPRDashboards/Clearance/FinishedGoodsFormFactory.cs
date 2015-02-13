@@ -14,6 +14,7 @@
 //</summary>
 
 using CAS.SharePoint;
+using CAS.SharePoint.Logging;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using System;
@@ -159,7 +160,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         throw new ApplicationError("Batch.Export", _at, String.Format(_tmpl, batch.Batch0, _ex.Message), _ex);
       }
     }
-    private static void ExportMaterial(Entities entities, Material material, List<Ingredient> formsList, bool closingBatch, InvoiceContent invoiceContent, int sadConsignmentNumber)
+    private static void ExportMaterial(Entities entities, Material material, List<Ingredient> formsList, bool closingBatch, InvoiceContent invoiceContent, int sadConsignmentNumber, NamedTraceLogger.TraceAction trace)
     {
       string _at = "Beginning";
       try
@@ -167,7 +168,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         if (material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.IPRTobacco)
         {
           List<Disposal> _dspsls = new List<Disposal>();
-          material.Export(entities, closingBatch, invoiceContent, _dspsls, sadConsignmentNumber, (x, y, z) => { });//TODO implement tracing
+          material.Export(entities, closingBatch, invoiceContent, _dspsls, sadConsignmentNumber, trace);
           foreach (Disposal _dx in _dspsls)
             formsList.Add(GetIPRIngredient(_dx));
         }

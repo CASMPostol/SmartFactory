@@ -77,7 +77,6 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonDefinition.cs" />
     <Compile Include="DocumentsFactory\AccountClearanceFactory.cs" />
     <Compile Include="DocumentsFactory\BalanceSheetContentFactory.cs" />
     <Compile Include="DocumentsFactory\JSOXLibFactory.cs" />

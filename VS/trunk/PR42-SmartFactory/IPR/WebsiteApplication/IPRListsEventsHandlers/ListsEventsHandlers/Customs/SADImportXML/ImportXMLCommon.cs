@@ -13,11 +13,11 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection;
 using CAS.SmartFactory.xml.Customs;
+using System;
 
-namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML
+namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
 {
   internal static class ImportXMLCommon
   {

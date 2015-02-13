@@ -13,22 +13,19 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 using CAS.SharePoint;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Customs;
-using CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.SADImportXML;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
-using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.Customs;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
-namespace CAS.SmartFactory.IPR.Customs
+namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
 {
   /// <summary>
   /// List Item Events
