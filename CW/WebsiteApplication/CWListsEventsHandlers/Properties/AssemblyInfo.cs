@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CW Interoperability")]
-[assembly: AssemblyDescription("CAS Smart Factory Customs Warehousing Interoperability Library")]
+[assembly: AssemblyTitle("CWListsEventsHandlers")]
+[assembly: AssemblyDescription("Smart Factory CW Lists Events Handlers to be used by the IPR web application.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("Smart Factory")]
@@ -18,8 +18,10 @@ using System.Runtime.InteropServices;
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
+
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f0416078-82cd-4f9d-905c-1e346198759a")]
+[assembly: Guid("9f3155f3-599c-4a1c-b3fb-16e8cc305051")]
+
 [assembly: AssemblyVersion("2.40.00.*")]
 [assembly: AssemblyFileVersion("2.40.00")]
 

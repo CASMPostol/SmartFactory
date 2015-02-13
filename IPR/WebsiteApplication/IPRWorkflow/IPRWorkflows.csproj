@@ -83,14 +83,6 @@
     <Compile Include="DocumentsFactory\JSOXLibFactory.cs" />
     <Compile Include="DocumentsFactory\SPDocumentFactory.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="ListsEventsHandlers\BatchEventReceiver\BatchEventReceiver.cs" />
-    <Compile Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\InvoiceEventReceiver.cs" />
-    <Compile Include="ListsEventsHandlers\Customs\SADImportXML\ClearenceHelpers.cs" />
-    <Compile Include="ListsEventsHandlers\Customs\SADImportXML\ImportXMLCommon.cs" />
-    <Compile Include="ListsEventsHandlers\Customs\SADImportXML\SADImportXML.cs" />
-    <Compile Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SKUEventHandlers.cs" />
-    <Compile Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SKUGetFromXML.cs" />
-    <Compile Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\StockLibraryEventReceiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -117,27 +109,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
-    <None Include="ListsEventsHandlers\Customs\SADImportXML\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{32323fbc-d26b-4398-b3d0-963410cce328}</SharePointProjectItemId>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </None>
     <None Include="SKU.cd" />
-    <None Include="ListsEventsHandlers\BatchEventReceiver\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{f69844e7-ba69-4ebf-bdff-8eef85f1dd78}</SharePointProjectItemId>
-    </None>
-    <None Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{704bc3de-3679-48ae-a6ad-bb1b59ce31fa}</SharePointProjectItemId>
-    </None>
-    <None Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{f9f76688-a9ac-4d7a-895f-f67e0bb63324}</SharePointProjectItemId>
-    </None>
-    <None Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{e8d364ea-bf70-4d56-a5b2-880a07138cc4}</SharePointProjectItemId>
-    </None>
     <None Include="Workflows\IPRClosing\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a284012e-5195-447e-857d-8827927bec2f}</SharePointProjectItemId>
     </None>
@@ -170,17 +147,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ListsEventsHandlers\BatchEventReceiver\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\Elements.xml" />
-    <Content Include="ListsEventsHandlers\Customs\SADImportXML\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\Elements.xml" />
     <Content Include="Workflows\IPRClosing\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

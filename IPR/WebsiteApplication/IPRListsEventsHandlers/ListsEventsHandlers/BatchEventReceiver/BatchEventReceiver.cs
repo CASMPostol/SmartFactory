@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         {
           //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
           TraceEvent("BatchEventReceiver.ItemAdded ", 50, TraceSeverity.Monitorable);
-          TraceEvent(String.Format("Exiting BatchEventReceiver.ItemAdded - event called for wrong lis list name {0}.", properties.ListTitle), 51, TraceSeverity.Monitorable);
+          TraceEvent(String.Format("Exiting BatchEventReceiver.ItemAdded - event called for wrong list, list name {0}.", properties.ListTitle), 51, TraceSeverity.Monitorable);
           base.ItemAdded(properties);
           return;
           //throw new IPRDataConsistencyException(m_Title, "Wrong library name", null, "Wrong library name");

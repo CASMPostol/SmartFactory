@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Receivers ListUrl="Lists/InvoiceLibrary">
+    <Receiver>
+      <Name>InvoiceEventReceiverItemAdded</Name>
+      <Type>ItemAdded</Type>
+      <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
+      <Class>CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.InvoiceEventReceiver</Class>
+      <SequenceNumber>10000</SequenceNumber>
+      <Synchronization>Synchronous</Synchronization>
+    </Receiver>
+  </Receivers>
+</Elements>
