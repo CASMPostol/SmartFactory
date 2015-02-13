@@ -1,21 +1,22 @@
-﻿//<summary>
+﻿//_______________________________________________________________
 //  Title   : BalanceIPR
-//  System  : Microsoft VisulaStudio 2013 / C#
+//  System  : Microsoft VisualStudio 2013 / C#
 //  $LastChangedDate$
 //  $Rev$
 //  $LastChangedBy$
 //  $URL$
 //  $Id$
 //
-//  Copyright (C) 2014, CAS LODZ POLAND.
+//  Copyright (C) 2015, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
-//</summary>
+//_______________________________________________________________
 
 using CAS.SharePoint.Logging;
 using Microsoft.SharePoint.Administration;
 using System;
+using System.Collections.Generic;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -24,9 +25,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// </summary>
   public partial class BalanceIPR
   {
-    internal static IPR.Balance Create(Entities edc, IPR _iprAccount, BalanceBatch parent, JSOXLib masterReport, NamedTraceLogger.TraceAction trace)
+    internal static IPR.Balance Create(Entities edc, IPR _iprAccount, BalanceBatch parent, JSOXLib masterReport, List<BalanceIPR> iprCollection, NamedTraceLogger.TraceAction trace)
     {
-      trace("Entering BalanceIPR.Create", 453, TraceSeverity.Verbose);
+      trace("Entering BalanceIPR.Create", 30, TraceSeverity.Verbose);
       BalanceIPR _newItem = new BalanceIPR()
       {
         Archival = false,
@@ -43,11 +44,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         Title = "Creating",
       };
       edc.BalanceIPR.InsertOnSubmit(_newItem);
+      iprCollection.Add(_newItem);
       return _newItem.Update(edc, trace);
     }
     internal IPR.Balance Update(Entities edc, NamedTraceLogger.TraceAction trace)
     {
-      trace("Entering BalanceIPR.RecalculateClearedRecords", 453, TraceSeverity.Verbose);
+      trace("Entering BalanceIPR.Update", 453, TraceSeverity.Verbose);
       if (this.IPRIndex == null)
         throw new ArgumentNullException("IPRIndex", "IPRIndex for Balance IPR cannot be null");
       IPR.Balance _balnce = new IPR.Balance(edc, this.IPRIndex, trace);

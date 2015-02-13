@@ -596,7 +596,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
             break;
         }
         SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>(_edc.SADConsignment, _sadConsignmentIdentifier);
-        CurrentClearence.ClearThroughCustom(_edc, _sadConsignment, (x, y, z) => { });
+        CurrentClearence.ClearThroughCustom(_edc, _sadConsignment, (x, y, z) => { });  //TODO implement tracing
         _edc.SubmitChanges();
         Response.Redirect(Request.RawUrl);
         return GenericStateMachineEngine.ActionResult.Success;

@@ -21,6 +21,9 @@ using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
+  /// <summary>
+  /// Class IPR - entity representing IPR account. This class cannot be inherited.
+  /// </summary>
   public sealed partial class IPR
   {
 
@@ -109,12 +112,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="edc">The _edc.</param>
     /// <param name="quantity">The quantity.</param>
-    /// <param name="clearence">The clearance.</param>
+    /// <param name="clearance">The clearance.</param>
     /// <exception cref="CAS">CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal;_qunt > 0;null</exception>
-    public void AddDisposal(Entities edc, decimal quantity, Clearence clearence)
+    public void AddDisposal(Entities edc, decimal quantity, Clearence clearance)
     {
       Disposal _dsp = AddDisposal(edc, DisposalEnum.Tobacco, ref quantity);
-      _dsp.Clearance = clearence;
+      _dsp.Clearance = clearance;
       if (quantity > 0)
       {
         string _msg = String.Format("Cannot add Disposal to IPR  {0} because there is not material on the IPR.", this.Id.Value);
@@ -144,16 +147,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns>All Disposals associated with this item</returns>
     public IEnumerable<Disposal> Disposals(Entities edc, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering IPR.Disposals", 147, TraceSeverity.Verbose);
       if (!this.Id.HasValue)
         return null;
       if (m_Disposals == null)
       {
-        trace("Start IPR.Disposals reverse lookup calculation.", 149, TraceSeverity.Verbose);
+        trace("IPR.Disposals reverse lookup calculation.", 151, TraceSeverity.Verbose);
         m_Disposals = from _dsx in edc.Disposal
                       let _idx = _dsx.Disposal2IPRIndex.Id.Value
                       where _idx == this.Id.Value
                       select _dsx;
-        trace(String.Format("IPR.Disposals found reverse lookups {0}.", m_Disposals.Count()), 149, TraceSeverity.Verbose);
+        trace(String.Format("IPR.Disposals found reverse lookups {0}.", m_Disposals.Count()), 157, TraceSeverity.Verbose);
       }
       return m_Disposals;
     }

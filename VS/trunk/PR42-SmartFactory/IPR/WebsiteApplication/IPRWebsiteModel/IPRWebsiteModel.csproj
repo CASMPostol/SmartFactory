@@ -96,6 +96,7 @@
     <Compile Include="GlobalDefinitions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="InputDataValidationException.cs" />
+    <Compile Include="Linq\Balance\BalanceBatchWrapper.cs" />
     <Compile Include="Linq\SADDocumentType.cs" />
     <Compile Include="Linq\InvoiceLib.cs" />
     <Compile Include="IPRDataConsistencyException.cs" />
@@ -173,6 +174,7 @@
     <Content Include="Linq\Scripts\Parameters.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Linq\TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

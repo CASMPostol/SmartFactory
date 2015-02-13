@@ -74,6 +74,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
     }
 
+    //private
     private IEnumerable<Disposal> Disposal(Entities edc)
     {
       if (!this.Id.HasValue)

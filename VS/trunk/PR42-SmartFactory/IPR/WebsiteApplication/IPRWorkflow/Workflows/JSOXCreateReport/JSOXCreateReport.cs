@@ -55,10 +55,10 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXCreateReport
     {
       try
       {
-        TraceEvent("Entering JSOXCreateReport.CreateJSOXReport", 49, TraceSeverity.Monitorable);
+        TraceEvent("Entering JSOXCreateReport.CreateJSOXReport", 58, TraceSeverity.Monitorable);
         BalanceSheetContentFactory.CreateReport(workflowProperties.Web, workflowProperties.WebUrl, workflowProperties.ItemId, TraceEvent);
         CompletedLogToHistory_HistoryDescription = "JSOX report created successfully";
-        TraceEvent("Finished JSOXCreateReport.CreateJSOXReport", 51, TraceSeverity.Monitorable);
+        TraceEvent("Finished JSOXCreateReport.CreateJSOXReport", 61, TraceSeverity.Monitorable);
       }
       catch (Exception ex)
       {
@@ -66,7 +66,7 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXCreateReport
         string _patt = "Cannot create JSOX report sheet because of fatal error {0} at {1}";
         CompletedLogToHistory_HistoryDescription = String.Format(_patt, ex.Message, ex.StackTrace);
         CompletedLogToHistory.EventId = SPWorkflowHistoryEventType.WorkflowError;
-        TraceEvent(CompletedLogToHistory_HistoryDescription, 59, TraceSeverity.High);
+        TraceEvent(CompletedLogToHistory_HistoryDescription, 69, TraceSeverity.High);
       }
     }
     private static void TraceEvent(string message, int eventId, TraceSeverity severity)

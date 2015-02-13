@@ -49,7 +49,7 @@ namespace CAS.SmartFactory.IPR.Customs
       if (!properties.ListTitle.Contains(CommonDefinition.SADDocumentLibrary))
       {
         //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
-        TraceEvent(String.Format("Exiting SADImportXML.ItemAdded - event called for wrong lis list name {0}.", properties.ListTitle), 46, TraceSeverity.Monitorable);
+        TraceEvent(String.Format("Exiting SADImportXML.ItemAdded - event called for wrong lis list name {0}.", properties.ListTitle), 52, TraceSeverity.Monitorable);
         base.ItemAdded(properties);
         return;
       }
@@ -60,7 +60,7 @@ namespace CAS.SmartFactory.IPR.Customs
         this.EventFiringEnabled = false;
         if (properties.ListItem.File == null)
         {
-          TraceEvent("Exiting SADImportXML.ItemAdded - file is empty", 46, TraceSeverity.High);
+          TraceEvent("Exiting SADImportXML.ItemAdded - file is empty", 63, TraceSeverity.High);
           base.ItemAdded(properties);
           return;
           //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
@@ -149,7 +149,7 @@ namespace CAS.SmartFactory.IPR.Customs
         {
           string _pattern = "Unexpected SADDocumentLib SubmitChanges error: {0}.";
           ActivityLogCT.WriteEntry(m_Title, String.Format(_pattern, _ex.Message), properties.WebUrl);
-          TraceEvent(String.Format("Exception {0} at SADImportXML.ItemAdded/{1}, Stack: {2}", _ex.GetType().Name, _at, _ex.StackTrace), 126, TraceSeverity.High);
+          TraceEvent(String.Format("Exception {0} at SADImportXML.ItemAdded/{1}, Stack: {2}", _ex.GetType().Name, _at, _ex.StackTrace), 152, TraceSeverity.High);
         }
       }
       finally
@@ -157,7 +157,7 @@ namespace CAS.SmartFactory.IPR.Customs
         this.EventFiringEnabled = true;
       }
       base.ItemAdded(properties);
-      TraceEvent("Finished SADImportXML ItemAdded", 159, TraceSeverity.Monitorable);
+      TraceEvent("Finished SADImportXML ItemAdded", 160, TraceSeverity.Monitorable);
     }
 
     #region private
