@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="f576e908-4d06-43a5-b58e-ca9520e86bd4" solutionId="f576e908-4d06-43a5-b58e-ca9520e86bd4" resetWebServer="true" name="CASSmartFactoryIPRListsEventsHandlers" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="4bfdd061-cd15-4691-af88-8cbb5e559d7e" />
+  </features>
+</package>

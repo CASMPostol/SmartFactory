@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("IPR Interoperability")]
-[assembly: AssemblyDescription("Smart Factory IPR SAP, CELINE, WMS. Office interconnection helpers")]
+[assembly: AssemblyTitle("IPR Lists Events Handlers")]
+[assembly: AssemblyDescription("Smart Factory IPR Lists Events Handlers to be used by the IPR web application.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("Smart Factory")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3EABDD4B-227C-483A-A855-03C7628286FD")]
+[assembly: Guid("f337cf80-031a-43be-88a6-6c477ad1c6c5")]
 
 [assembly: AssemblyVersion("2.30.00.*")]
 [assembly: AssemblyFileVersion("2.30.00")]

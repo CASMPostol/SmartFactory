@@ -40,7 +40,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -148,10 +148,10 @@
     <Compile Include="WebsiteModelExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cas.snk" />
     <None Include="Features\CAS.IPRWebsiteModel\CAS.IPRWebsiteModel.feature">
       <FeatureId>{6157b1a8-2d62-414f-9045-48bfbcf8892e}</FeatureId>
     </None>
-    <None Include="key.snk" />
     <None Include="Linq\Scripts\GetEntities.ps1" />
     <None Include="Linq\Scripts\psconsole.psc1" />
     <None Include="packages.config" />

@@ -37,7 +37,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -77,6 +77,7 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cas.snk" />
     <None Include="Customs\CELINA\CLNBw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -333,7 +334,6 @@
     <None Include="Features\Interoperability\Interoperability.feature">
       <FeatureId>{bdd31d98-b40e-46d9-a58a-555715330d81}</FeatureId>
     </None>
-    <None Include="key.snk" />
     <None Include="packages.config" />
     <None Include="Package\Package.package">
       <PackageId>{398c5b16-80b8-4687-ba16-3ef945e47a86}</PackageId>
