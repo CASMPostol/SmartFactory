@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <Receivers ListUrl="Lists/SADDocumentLibrary">
+  <Receivers ListUrl="Lists/InvoiceLibrary">
     <Receiver>
-      <Name>SADImportXMLItemAdded</Name>
+      <Name>InvoiceEventReceiverItemAdded</Name>
       <Type>ItemAdded</Type>
       <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
-      <Class>CAS.SmartFactory.IPR.Customs.SADImportXML</Class>
-      <SequenceNumber>1000</SequenceNumber>
+      <Class>CAS.SmartFactory.IPR.ListsEventsHandlers.InvoiceEventReceiver</Class>
+      <SequenceNumber>10000</SequenceNumber>
       <Synchronization>Synchronous</Synchronization>
     </Receiver>
   </Receivers>

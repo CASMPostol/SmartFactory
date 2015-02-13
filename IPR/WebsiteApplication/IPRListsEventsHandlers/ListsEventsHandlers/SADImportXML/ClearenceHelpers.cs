@@ -29,7 +29,7 @@ using System.ComponentModel;
 using System.Linq;
 using IPRClass = CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR;
 
-namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
+namespace CAS.SmartFactory.IPR.ListsEventsHandlers
 {
   internal static class ClearenceHelpers
   {

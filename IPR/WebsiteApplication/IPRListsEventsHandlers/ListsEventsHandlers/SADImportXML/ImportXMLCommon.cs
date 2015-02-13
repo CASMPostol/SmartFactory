@@ -17,7 +17,7 @@ using CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection;
 using CAS.SmartFactory.xml.Customs;
 using System;
 
-namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
+namespace CAS.SmartFactory.IPR.ListsEventsHandlers
 {
   internal static class ImportXMLCommon
   {

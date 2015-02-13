@@ -5,7 +5,7 @@
         <Name>SKUEventHandlersItemAdded</Name>
         <Type>ItemAdded</Type>
         <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
-        <Class>CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries.SKUEventHandlers</Class>
+        <Class>CAS.SmartFactory.IPR.ListsEventsHandlers.SKUEventHandlers</Class>
         <SequenceNumber>10000</SequenceNumber>
         <Synchronization>Synchronous</Synchronization>
       </Receiver>
