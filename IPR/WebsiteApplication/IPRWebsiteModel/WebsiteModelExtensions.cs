@@ -119,7 +119,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
       /// <summary>
       /// The export user action
       /// </summary>
-      Export
+      Export,
+      /// <summary>
+      /// The clearance user action
+      /// </summary>
+      Clearance
     }
     /// <summary>
     /// Writes a diagnostic message into the trace log, with specified Microsoft.SharePoint.Administration.TraceSeverity. 
