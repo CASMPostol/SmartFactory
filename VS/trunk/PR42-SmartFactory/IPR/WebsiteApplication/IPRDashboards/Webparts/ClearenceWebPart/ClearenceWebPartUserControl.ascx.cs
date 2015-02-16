@@ -13,6 +13,17 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint;
+using CAS.SharePoint.Linq;
+using CAS.SharePoint.Logging;
+using CAS.SharePoint.Web;
+using CAS.SmartFactory.IPR.Dashboards.Clearance;
+using CAS.SmartFactory.IPR.WebsiteModel;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
+using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
+using Microsoft.SharePoint.WebControls;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,14 +31,6 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SharePoint;
-using CAS.SharePoint.Linq;
-using CAS.SharePoint.Web;
-using CAS.SmartFactory.IPR.Dashboards.Clearance;
-using CAS.SmartFactory.IPR.WebsiteModel.Linq;
-using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
-using Microsoft.SharePoint;
-using Microsoft.SharePoint.WebControls;
 using IPRClass = CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
@@ -286,6 +289,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         try
         {
+          Parent.TraceEvent("Entering LocalStateMachineEngine.Update", 292, TraceSeverity.Monitorable);
           Parent.Update();
           return GenericStateMachineEngine.ActionResult.Success;
         }
@@ -295,6 +299,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         }
         catch (Exception ex)
         {
+          Parent.TraceEvent(String.Format("Exception at LocalStateMachineEngine.Update: {0} StockTrace {1}", ex.Message, ex.StackTrace), 308, TraceSeverity.High);
           return GenericStateMachineEngine.ActionResult.Exception(ex, "Update");
         }
       }
@@ -302,7 +307,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         try
         {
-          Parent.Create();
+          Parent.TraceEvent("Entering LocalStateMachineEngine.Create", 309, TraceSeverity.Monitorable);
+          Parent.Create((x, y, z) => Parent.TraceEvent(x, y, z));
           return GenericStateMachineEngine.ActionResult.Success;
         }
         catch (GenericStateMachineEngine.ActionResult ex)
@@ -311,6 +317,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         }
         catch (Exception ex)
         {
+          Parent.TraceEvent(String.Format("Exception at LocalStateMachineEngine.Create: {0} StockTrace {1}", ex.Message, ex.StackTrace), 308, TraceSeverity.High);
           return GenericStateMachineEngine.ActionResult.Exception(ex, "Create");
         }
       }
@@ -506,9 +513,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       CurrentClearence.UpdateTitle(_edc);
       m_DataContextManagement.DataContext.SubmitChanges();
     }
-    private void Create()
+    private void Create(NamedTraceLogger.TraceAction trace)
     {
-      CurrentClearence = Clearence.CreateClearance(m_DataContextManagement.DataContext, m_SelectGroupRadioButtonList.SelectedValue, SelectedClearenceProcedure);
+      CurrentClearence = Clearence.CreateClearance(m_DataContextManagement.DataContext, m_SelectGroupRadioButtonList.SelectedValue, SelectedClearenceProcedure, trace);
       Update();
       Response.Redirect(Request.RawUrl);
     }
@@ -758,6 +765,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           throw new SharePoint.ApplicationError("SelectedGroup", "switch", "Internal error - wrong switch case.", null);
       };
     }
+    private void TraceEvent(string message, int eventId, TraceSeverity severity)
+    {
+      WebsiteModelExtensions.TraceEvent(message, eventId, severity, WebsiteModelExtensions.LoggingCategories.Clearance);
+    }
     #endregion
 
     #region vars
@@ -791,6 +802,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       }
     }
     #endregion
+
 
     #region Event handlers
 
