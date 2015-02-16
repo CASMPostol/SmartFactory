@@ -72,7 +72,6 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.CreateStatement
     private StatementContent CraeteStatement(Entities entities, DisposalRequestLib disposalRequestLib, string _MasterDocumentName)
     {
       List<Statement> _SADDocuments = new List<Statement>();
-      int _ix = 1;
       foreach (CustomsWarehouseDisposal _cwdx in disposalRequestLib.CustomsWarehouseDisposal(entities, false))
       {
         if (_cwdx.SADDocumentNo.IsNullOrEmpty())
@@ -81,14 +80,16 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.CreateStatement
         {
           DutyAndVAT = _cwdx.DutyAndVAT.GetValueOrDefault(),
           DutyPerSettledAmount = _cwdx.DutyPerSettledAmount.Value,
-          No = _ix++,
+          No = -1,
           SADDocumentNo = _cwdx.SADDocumentNo,
           ReferenceNumber = _cwdx.CWL_CWDisposal2ClearanceID.ReferenceNumber,
           VATPerSettledAmount = _cwdx.VATPerSettledAmount.Value,
         };
         _SADDocuments.Add(_newItem);
       }
-      _SADDocuments.Sort((Statement x, Statement y) => { return x.No.CompareTo(y.No); });
+      _SADDocuments.Sort((Statement x, Statement y) => { return x.SADDocumentNo.CompareTo(y.SADDocumentNo); });
+      for (int i = 0; i < _SADDocuments.Count; i++)
+        _SADDocuments[i].No = i + 1;
       StatementContent _NewSC = new StatementContent()
       {
         DocumentDate = DateTime.Today,
