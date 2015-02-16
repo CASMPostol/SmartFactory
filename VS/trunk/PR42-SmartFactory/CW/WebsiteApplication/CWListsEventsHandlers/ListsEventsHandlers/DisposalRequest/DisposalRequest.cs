@@ -22,7 +22,7 @@ using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using DisposalRequestXml = CAS.SmartFactory.CW.Interoperability.ERP.DisposalRequest;
 
-namespace CAS.SmartFactory.CW.Workflows.DisposalRequest
+namespace CAS.SmartFactory.CW.ListsEventsHandlers
 {
   /// <summary>
   /// DisposalRequest List Item Events

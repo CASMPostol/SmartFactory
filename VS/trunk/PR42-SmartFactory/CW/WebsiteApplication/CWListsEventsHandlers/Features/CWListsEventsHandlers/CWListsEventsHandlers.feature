@@ -3,4 +3,7 @@
   <activationDependencies>
     <referencedFeatureActivationDependency minimumVersion="" itemId="b0a3f319-857b-4a9a-bab1-68be635341f9" projectPath="..\CWWebsiteModel\CWWebsiteModel.csproj" />
   </activationDependencies>
+  <projectItems>
+    <projectItemReference itemId="303c4cf2-00a6-42e9-94aa-3bb704c6ed90" />
+  </projectItems>
 </feature>

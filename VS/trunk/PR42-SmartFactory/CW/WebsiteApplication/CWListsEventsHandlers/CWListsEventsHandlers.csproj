@@ -52,6 +52,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\CAS.SmartFactory.Customs.2.30.00\lib\net35\CAS.SmartFactoryCustoms.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -61,6 +62,7 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListsEventsHandlers\DisposalRequest\DisposalRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -71,6 +73,9 @@
     <None Include="cas.snk" />
     <None Include="Features\CWListsEventsHandlers\CWListsEventsHandlers.feature">
       <FeatureId>{ce12d8ad-0c98-4966-b1a7-7781740631b5}</FeatureId>
+    </None>
+    <None Include="ListsEventsHandlers\DisposalRequest\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{303c4cf2-00a6-42e9-94aa-3bb704c6ed90}</SharePointProjectItemId>
     </None>
     <None Include="packages.config" />
     <None Include="Package\Package.package">
@@ -84,11 +89,21 @@
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CWInteroperability\CWInteroperability.csproj">
+      <Project>{f0416078-82cd-4f9d-905c-1e346198759a}</Project>
+      <Name>CWInteroperability</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CWWebsiteModel\CWWebsiteModel.csproj">
+      <Project>{28191aa2-5bff-4d48-a7ad-b10c83044e3c}</Project>
+      <Name>CWWebsiteModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Features\CWListsEventsHandlers\CWListsEventsHandlers.Template.xml">
       <DependentUpon>CWListsEventsHandlers.feature</DependentUpon>
     </Content>
+    <Content Include="ListsEventsHandlers\DisposalRequest\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -81,9 +81,6 @@
     <None Include="DisposalRequestLibrary\CreateStatement\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1063ba20-d8b5-4fc8-9253-9693f7dc455a}</SharePointProjectItemId>
     </None>
-    <None Include="EventReceivers\DisposalRequest\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{41cff4b7-1569-42c5-862b-bfb7242f33f9}</SharePointProjectItemId>
-    </None>
     <None Include="Features\CWWorkflows\CWWorkflows.feature">
       <FeatureId>{87f225c4-cbba-40d9-989c-d065bf53e88f}</FeatureId>
     </None>
@@ -105,7 +102,6 @@
     <Content Include="CustomsWarehouseReport\DoReportWorkflow\Elements.xml" />
     <Content Include="DisposalRequestLibrary\ClearThroughCustoms\Elements.xml" />
     <Content Include="DisposalRequestLibrary\CreateStatement\Elements.xml" />
-    <Content Include="EventReceivers\DisposalRequest\Elements.xml" />
     <Content Include="Features\CWWorkflows\CWWorkflows.Template.xml">
       <DependentUpon>CWWorkflows.feature</DependentUpon>
     </Content>
@@ -146,7 +142,6 @@
     <Compile Include="DisposalRequestLibrary\CreateStatement\CreateStatement.Designer.cs">
       <DependentUpon>CreateStatement.cs</DependentUpon>
     </Compile>
-    <Compile Include="EventReceivers\DisposalRequest\DisposalRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

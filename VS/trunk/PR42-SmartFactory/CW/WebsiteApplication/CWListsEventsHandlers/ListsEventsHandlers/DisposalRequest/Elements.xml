@@ -5,7 +5,7 @@
       <Name>DisposalRequestItemAdded</Name>
       <Type>ItemAdded</Type>
       <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
-      <Class>CAS.SmartFactory.CW.Workflows.DisposalRequest.DisposalRequest</Class>
+      <Class>CAS.SmartFactory.CW.ListsEventsHandlers.DisposalRequest</Class>
       <SequenceNumber>1000</SequenceNumber>
       <Synchronization>Synchronous</Synchronization>
     </Receiver>
