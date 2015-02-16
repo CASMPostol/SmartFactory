@@ -246,8 +246,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="sadConsignmentNumber">The sad consignment number.</param>
     /// <param name="trace">The trace.</param>
     /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException">internal error: it is impossible to mark as exported the material;Material export;false</exception>
-    /// <exception cref="CAS">internal error: it is impossible to mark as exported the material;Material export;false</exception>
-    public void Export(Entities entities, bool closingBatch, InvoiceContent invoiceContent, List<Disposal> disposals, int sadConsignmentNumber, SharePoint.Logging.NamedTraceLogger.TraceAction trace)
+    /// <exception cref="CAS">internal error: it is impossible to mark as exported the material; Material export; false</exception>
+    public void Export(Entities entities, bool closingBatch, InvoiceContent invoiceContent, List<Disposal> disposals, int sadConsignmentNumber, NamedTraceLogger.TraceAction trace)
     {
       trace("Entering Material.Export", 251, TraceSeverity.Verbose);
       decimal _quantity = this.CalculatedQuantity(invoiceContent);
@@ -263,8 +263,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       string _error = String.Format(
         "There are {0} kg of material {1}/Id={2} that cannot be found for invoice {3}/Content Id={4}.",
         _quantity, this.Batch, this.Id, invoiceContent.InvoiceIndex.BillDoc, invoiceContent.Id.Value);
-      trace("Exception at Material.Export: " + _error, 265, TraceSeverity.High);
-      throw new CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException("internal error: it is impossible to mark as exported the material", "Material export", _error, false);
+      trace("InputDataValidationException at Material.Export: " + _error, 265, TraceSeverity.High);
+      throw new InputDataValidationException("internal error: it is impossible to mark as exported the material", "Material export", _error, false);
     }
     /// <summary>
     /// Returns a <see cref="System.String" /> that represents this instance.

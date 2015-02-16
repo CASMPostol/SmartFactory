@@ -40,6 +40,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       invoice.InvoiceLibraryReadOnly = true;
       foreach (InvoiceContent item in invoice.InvoiceContent(entities))
         ExportInvoiceEntry(entities, item, _consignment, documentName, ref _position, sadConsignmentNumber, trace);
+      trace("FinishedGoodsFormFactory.GetFormContent - finished processing invoice items", 40, TraceSeverity.Verbose);
       return GetCigaretteExportFormCollection(_consignment, documentName, invoice.BillDoc);
     }
     #endregion
@@ -137,7 +138,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
     private static void ExportInvoiceEntry
       (Entities entities, InvoiceContent invoice, List<CigaretteExportForm> formsList, string documentName, ref int subdocumentNo, int sadConsignmentNumber, NamedTraceLogger.TraceAction trace)
     {
-      trace("Entering FinishedGoodsFormFactory.ExportInvoiceEntry", 138, Microsoft.SharePoint.Administration.TraceSeverity.Verbose);
+      trace("Entering FinishedGoodsFormFactory.ExportInvoiceEntry", 141, Microsoft.SharePoint.Administration.TraceSeverity.Verbose);
       string _at = "beginning";
       Batch batch = invoice.InvoiceContent2BatchIndex;
       try
@@ -159,12 +160,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       }
       catch (Exception _ex)
       {
-        string _tmpl = "Cannot proceed with export of Batch: {0} because of error: {1}.";
-        throw new ApplicationError("Batch.Export", _at, String.Format(_tmpl, batch.Batch0, _ex.Message), _ex);
+        string _ms = "Cannot proceed with export of Batch: {0} because of error: {1}.";
+        _ms = String.Format(_ms, batch.Batch0, _ex.Message);
+        trace("ApplicationError at FinishedGoodsFormFactory.ExportInvoiceEntry: " + _ms + "StackTrace: " + _ex.StackTrace, 141, TraceSeverity.Verbose);
+        throw new ApplicationError("Batch.Export", _at, _ms, _ex);
       }
     }
     private static void ExportMaterial(Entities entities, Material material, List<Ingredient> formsList, bool closingBatch, InvoiceContent invoiceContent, int sadConsignmentNumber, NamedTraceLogger.TraceAction trace)
     {
+      trace("Entering FinishedGoodsFormFactory.ExportMaterial", 171, TraceSeverity.Verbose);
       string _at = "Beginning";
       try
       {
@@ -188,8 +192,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       }
       catch (Exception _ex)
       {
-        string _tmpl = "Cannot proceed with export of Material: {0} because of error: {1}.";
-        throw new ApplicationError("Material.Export", _at, String.Format(_tmpl, material.Material2BatchIndex.Title, _ex.Message), _ex);
+        string _ms = "Cannot proceed with export of Material: {0} because of error: {1}.";
+        _ms = String.Format(_ms, material.Material2BatchIndex.Title, _ex.Message);
+        trace("ApplicationError at FinishedGoodsFormFactory.ExportMaterial: " + _ms + "StackTrace: " + _ex.StackTrace, 141, TraceSeverity.Verbose);
+        throw new ApplicationError("Material.Export", _at, _ms, _ex);
       }
     }
     private static void CountExportFormTotals(List<Ingredient> ingredients, CigaretteExportForm form)

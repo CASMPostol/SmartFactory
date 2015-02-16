@@ -87,20 +87,24 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </value>
     public DateTime CustomsDebtDate { get { return Clearence2SadGoodID == null ? Extensions.SPMinimum : Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value; } }
     /// <summary>
-    /// Starts the clearance and creates an object of <see cref="Clearence"/>.
+    /// Starts the clearance and creates an object of <see cref="Clearence" />.
     /// </summary>
     /// <param name="entities">The entities.</param>
-    /// <param name="procedure">The procedure.</param>
+    /// <param name="procedure">The customs procedure.</param>
     /// <param name="procedureCode">The procedure code.</param>
-    /// <returns></returns>
-    public static Clearence CreataClearence(Entities entities, string procedure, ClearenceProcedure procedureCode)
+    /// <param name="trace">The trace action.</param>
+    /// <returns>Return new <see cref="Clearence"/> entity.</returns>
+    public static Clearence CreateClearance(Entities entities, string procedure, ClearenceProcedure procedureCode, NamedTraceLogger.TraceAction trace)
     {
-      Clearence _newClearence = CreateClearance(procedure, procedureCode);
-      entities.Clearence.InsertOnSubmit(_newClearence);
-      _newClearence.UpdateTitle(entities);
+      trace("Entering Clearence.CreateClearance", 98, TraceSeverity.Verbose);
+      Clearence _newClearance = CreateClearance(procedure, procedureCode);
+      entities.Clearence.InsertOnSubmit(_newClearance);
+      _newClearance.UpdateTitle(entities);
+      trace("Clearence.CreateClearance at SubmitChanges", 103, TraceSeverity.Verbose);
       entities.SubmitChanges();
-      _newClearence.UpdateTitle(entities);
-      return _newClearence;
+      _newClearance.UpdateTitle(entities);
+      trace("Finished Clearence.CreateClearance", 106, TraceSeverity.Verbose);
+      return _newClearance;
     }
     /// <summary>
     /// Creates the clearance.
@@ -110,17 +114,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="procedureCode">The procedure code.</param>
     /// <param name="good">The good.</param>
     /// <returns></returns>
-    public static Clearence CreataClearence(Entities entities, string procedure, ClearenceProcedure procedureCode, SADGood good)
+    public static Clearence CreataClearance(Entities entities, string procedure, ClearenceProcedure procedureCode, SADGood good)
     {
-      Clearence _newClearence = CreateClearance(procedure, procedureCode);
-      _newClearence.Clearence2SadGoodID = good;
-      _newClearence.DocumentNo = good.SADDocumentIndex.DocumentNumber;
-      _newClearence.ReferenceNumber = good.SADDocumentIndex.ReferenceNumber;
-      _newClearence.UpdateTitle(entities);
-      entities.Clearence.InsertOnSubmit(_newClearence);
+      Clearence _newClearance = CreateClearance(procedure, procedureCode);
+      _newClearance.Clearence2SadGoodID = good;
+      _newClearance.DocumentNo = good.SADDocumentIndex.DocumentNumber;
+      _newClearance.ReferenceNumber = good.SADDocumentIndex.ReferenceNumber;
+      _newClearance.UpdateTitle(entities);
+      entities.Clearence.InsertOnSubmit(_newClearance);
       entities.SubmitChanges();
-      _newClearence.UpdateTitle(entities);
-      return _newClearence;
+      _newClearance.UpdateTitle(entities);
+      return _newClearance;
     }
     /// <summary>
     /// Clears the through custom.

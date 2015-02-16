@@ -575,26 +575,36 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     }
     private GenericStateMachineEngine.ActionResult Export()
     {
+      TraceEvent("Entering ExportWebPartUserControl.Export", 578, TraceSeverity.Monitorable);
       foreach (InvoiceContent item in m_ControlState.Invoice.InvoiceContent(m_DataContextManagement.DataContext))
       {
         //TODO ExportIsPossible - improve for many invoice content with the same FG batch groups by batch must be checked against possible export
         string _checkResult = item.ExportIsPossible(m_DataContextManagement.DataContext, item.Quantity);
         if (_checkResult.IsNullOrEmpty())
+        {
+          TraceEvent(String.Format("Checked Item {0}", item.Title), 585, TraceSeverity.Verbose);
           continue;
+        }
         Controls.Add(ControlExtensions.CreateMessage(_checkResult));
         m_ControlState.InvoiceContent = item;
-        string _frmt = "CannotProceedWithExportBecauseTheInvoiceItemContainsErrors".GetLocalizedString();
-        return GenericStateMachineEngine.ActionResult.NotValidated(String.Format(_frmt, item.Title));
+        string _ms = "CannotProceedWithExportBecauseTheInvoiceItemContainsErrors".GetLocalizedString();
+        _ms = String.Format(_ms, item.Title);
+        TraceEvent(_ms, 592, TraceSeverity.Monitorable);
+        return GenericStateMachineEngine.ActionResult.NotValidated(_ms);
       }
       m_ControlState.Invoice.InvoiceLibraryStatus = true;
-      Clearence _newClearance = Clearence.CreataClearence(m_DataContextManagement.DataContext, "FinishedGoodsExport", ClearenceProcedure._3151);
+      Clearence _newClearance = Clearence.CreateClearance(m_DataContextManagement.DataContext, "FinishedGoodsExport", ClearenceProcedure._3151, (x, y, z) => TraceEvent(x, y, z));
       string _masterDocumentName = _newClearance.FinishedGoodsExportFormFileName(m_DataContextManagement.DataContext);
+      TraceEvent(String.Format("ExportWebPartUserControl.Export - generated document name: {0}", _masterDocumentName), 578, TraceSeverity.Monitorable);
       CigaretteExportFormCollection _cefc = FinishedGoodsFormFactory.GetFormContent
         (m_DataContextManagement.DataContext, m_ControlState.Invoice, _newClearance, _masterDocumentName, _newClearance.SADDocumentNumber, (x, y, z) => TraceEvent(x, y, z));
-      int _sadConsignmentIdentifier = SPDocumentFactory.Prepare(SPContext.Current.Web, _cefc, _masterDocumentName);
+      TraceEvent(String.Format("ExportWebPartUserControl.Export - at SPDocumentFactory.Prepare", _masterDocumentName), 578, TraceSeverity.Monitorable);
+      int _sadConsignmentIdentifier = SPDocumentFactory.Prepare(SPContext.Current.Web, _cefc, _masterDocumentName, (x, y, z) => TraceEvent(x, y, z));
       SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>(m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier);
       _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
+      TraceEvent("ExportWebPartUserControl.Export at SubmitChanges", 605, TraceSeverity.Monitorable);
       m_DataContextManagement.DataContext.SubmitChanges();
+      TraceEvent("Finished ExportWebPartUserControl.Export", 607, TraceSeverity.Monitorable);
       return GenericStateMachineEngine.ActionResult.Success;
     }
     private void Show(InvoiceLib invoice, InvoiceContent invoiceContent, Batch batch)
