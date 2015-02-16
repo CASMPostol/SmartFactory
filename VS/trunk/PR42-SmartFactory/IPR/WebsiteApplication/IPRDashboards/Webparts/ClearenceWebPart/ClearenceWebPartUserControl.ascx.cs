@@ -508,7 +508,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private void Create()
     {
-      CurrentClearence = Clearence.CreataClearence(m_DataContextManagement.DataContext, m_SelectGroupRadioButtonList.SelectedValue, SelectedClearenceProcedure);
+      CurrentClearence = Clearence.CreateClearance(m_DataContextManagement.DataContext, m_SelectGroupRadioButtonList.SelectedValue, SelectedClearenceProcedure);
       Update();
       Response.Redirect(Request.RawUrl);
     }
