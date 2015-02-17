@@ -18,5 +18,10 @@ namespace CAS.SmartFactory.CW.Dashboards.GenerateSadConsignmentWebPart
     {
       InitializeComponent();
     }
+
+    private void x_ButtonGenerateSad_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
   }
 }
