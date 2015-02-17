@@ -45,12 +45,20 @@
       <HintPath>..\..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll</HintPath>
     </Reference>
     <Reference Include="CAS.SharePoint.Common, Version=1.70.36.24112, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\CommonBinaries\EX06-SharePointGuidance2010\CAS.SharePoint.Common.dll</HintPath>
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\CAS.SharePoint.Common.1.70.36\lib\net35\CAS.SharePoint.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="CAS.SharePoint.Common.XmlSerializers, Version=1.70.36.24112, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\CAS.SharePoint.Common.1.70.36\lib\net35\CAS.SharePoint.Common.XmlSerializers.dll</HintPath>
     </Reference>
     <Reference Include="CAS.SmartFactoryCustoms, Version=2.30.0.24691, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\CAS.SmartFactory.Customs.2.30.00\lib\net35\CAS.SmartFactoryCustoms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\CAS.SharePoint.Common.1.70.36\lib\net35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
