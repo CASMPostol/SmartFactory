@@ -21,7 +21,7 @@ namespace CAS.SmartFactory.CW.Dashboards.WebPartPagesCW
      internal static string MenuCheckListExitSheetTitle = "CheckListExitSheetTitle".GetCWLocalizationExpression();
      internal static string MenuDisposalRequestTitle = "DisposalRequestTitle".GetCWLocalizationExpression();
      internal static string MenuDisposalsViewTitle = "DisposalsViewTitle".GetCWLocalizationExpression();
-     internal static string MenuGenerateSadConsignmentTitle = "GenerateSadConsignment".GetCWLocalizationExpression();
+     internal static string MenuGenerateSadConsignmentTitle = "GenerateSadConsignmentTitle".GetCWLocalizationExpression();
 
      // DashboardsURL
      internal const string WebPartPagesFolder = "WebPartPagesCW";

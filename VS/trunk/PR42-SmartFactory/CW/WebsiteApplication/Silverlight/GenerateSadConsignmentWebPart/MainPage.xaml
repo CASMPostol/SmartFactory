@@ -7,7 +7,6 @@
     x:Class="CAS.SmartFactory.CW.Dashboards.GenerateSadConsignmentWebPart.MainPage"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
-
     <Grid x:Name="LayoutRoot" Background="White">
         <Button x:Name="x_ButtonGenerateSad" Grid.Row="0" Grid.Column="0" Content="Generate SAD Consignment" VerticalAlignment="Top" HorizontalAlignment="Left" Click="x_ButtonGenerateSad_Click" Style="{StaticResource ButtonStyle}" />
     </Grid>
