@@ -144,4 +144,7 @@
   <data name="CAS_ASPX_CWBookCustomsOfficeDashboard" xml:space="preserve">
     <value>Customs Warehouse Book - Customs Office</value>
   </data>
+  <data name="CAS_ASPX_GenerateSadConsignmentDashboard" xml:space="preserve">
+    <value>Generate Sad Consignment</value>
+  </data>
 </root>

@@ -21,6 +21,7 @@ namespace CAS.SmartFactory.CW.Dashboards.WebPartPagesCW
      internal static string MenuCheckListExitSheetTitle = "CheckListExitSheetTitle".GetCWLocalizationExpression();
      internal static string MenuDisposalRequestTitle = "DisposalRequestTitle".GetCWLocalizationExpression();
      internal static string MenuDisposalsViewTitle = "DisposalsViewTitle".GetCWLocalizationExpression();
+     internal static string MenuGenerateSadConsignmentTitle = "GenerateSadConsignment".GetCWLocalizationExpression();
 
      // DashboardsURL
      internal const string WebPartPagesFolder = "WebPartPagesCW";
@@ -33,6 +34,7 @@ namespace CAS.SmartFactory.CW.Dashboards.WebPartPagesCW
      internal const string URLCheckListExitSheetDashboard = WebPartPagesFolder + "/CheckListExitSheetDashboard.aspx";
      internal const string URLDisposalRequestDashboard = WebPartPagesFolder + "/DisposalRequestDashboard.aspx";
      internal const string URLDisposalsViewDashboard = WebPartPagesFolder + "/DisposalsViewDashboard.aspx";
+     internal const string URLGenerateSadConsignment = WebPartPagesFolder + "/GenerateSadConsignment.aspx";
 
      internal static void RemovePages(Entities _edc, SPWeb _root)
      {
@@ -43,7 +45,7 @@ namespace CAS.SmartFactory.CW.Dashboards.WebPartPagesCW
          if (WebPartPagesFolder.Exists)
            WebPartPagesFolder.Delete();
          else
-           ActivityLogCT.WriteEntry(_edc, m_SourceClass + m_SourceRemovePages, "Failed, the folder " + WebPartPagesFolder + "dies not exist.");
+           ActivityLogCT.WriteEntry(_edc, m_SourceClass + m_SourceRemovePages, "Failed, the folder " + WebPartPagesFolder + "does not exist.");
        }
        catch (Exception ex)
        {

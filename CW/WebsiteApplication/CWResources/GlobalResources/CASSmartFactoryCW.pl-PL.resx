@@ -144,4 +144,7 @@
   <data name="CAS_ASPX_CWBookCustomsOfficeDashboard" xml:space="preserve">
     <value>Księgi Składu Celnego - Urząd Celny</value>
   </data>
+  <data name="CAS_ASPX_GenerateSadConsignmentDashboard" xml:space="preserve">
+    <value>Generuj Sad Consignment</value>
+  </data>
 </root>

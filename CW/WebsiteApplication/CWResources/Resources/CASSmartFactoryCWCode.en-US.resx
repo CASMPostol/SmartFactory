@@ -144,4 +144,7 @@
   <data name="SupplementWZNoTitle" xml:space="preserve">
     <value>Supplement WZ No</value>
   </data>
+  <data name="GenerateSadConsignmentTitle" xml:space="preserve">
+    <value>Generate Sad Consignment</value>
+  </data>
 </root>
