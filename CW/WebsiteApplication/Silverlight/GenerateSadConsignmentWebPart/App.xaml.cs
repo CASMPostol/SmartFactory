@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace GenerateSadConsignmentWebPart
+namespace CAS.SmartFactory.CW.Dashboards.GenerateSadConsignmentWebPart
 {
   public partial class App : Application
   {
@@ -22,6 +22,11 @@ namespace GenerateSadConsignmentWebPart
       this.UnhandledException += this.Application_UnhandledException;
 
       InitializeComponent();
+    }
+
+    private void InitializeComponent()
+    {
+      throw new NotImplementedException();
     }
 
     private void Application_Startup(object sender, StartupEventArgs e)
