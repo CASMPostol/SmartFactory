@@ -34,7 +34,7 @@ namespace CAS.SmartFactory.CW.Dashboards.WebPartPagesCW
      internal const string URLCheckListExitSheetDashboard = WebPartPagesFolder + "/CheckListExitSheetDashboard.aspx";
      internal const string URLDisposalRequestDashboard = WebPartPagesFolder + "/DisposalRequestDashboard.aspx";
      internal const string URLDisposalsViewDashboard = WebPartPagesFolder + "/DisposalsViewDashboard.aspx";
-     internal const string URLGenerateSadConsignment = WebPartPagesFolder + "/GenerateSadConsignment.aspx";
+     internal const string URLGenerateSadConsignmentDashboard = WebPartPagesFolder + "/GenerateSadConsignmentDashboard.aspx";
 
      internal static void RemovePages(Entities _edc, SPWeb _root)
      {
