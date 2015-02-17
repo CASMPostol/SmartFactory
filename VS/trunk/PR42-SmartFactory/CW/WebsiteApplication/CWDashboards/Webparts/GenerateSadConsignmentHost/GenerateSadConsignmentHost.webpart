@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.CW.Dashboards.Webparts.GenerateSadConsignmentHost.GenerateSadConsignmentHost, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Generate SAD Consignment</property>
+        <property name="Description" type="string">Generate Sad Consignment Web Part</property>
+        <property name="ScrollBars" type="string">Auto</property>
+        <property name="Width" type="unit">200px</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>

@@ -83,6 +83,9 @@
     <None Include="Dashboards\DisposalsViewDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{72fc666b-ec4f-4501-ba08-aff8e6440a10}</SharePointProjectItemId>
     </None>
+    <None Include="Dashboards\GenerateSadConsignmentDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6051ca70-b74a-41bf-9e06-1acfefb2cd97}</SharePointProjectItemId>
+    </None>
     <None Include="Dashboards\SupplementCWBookDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a3940adb-0499-45fa-abe6-0e546b458757}</SharePointProjectItemId>
     </None>
@@ -136,6 +139,10 @@
     <None Include="Webparts\ExitSheetHost\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e6ca536a-b7bc-464a-8e8e-f1d91614cd85}</SharePointProjectItemId>
     </None>
+    <None Include="Webparts\GenerateSadConsignmentHost\GenerateSadConsignmentHost.webpart" />
+    <None Include="Webparts\GenerateSadConsignmentHost\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0dc1b3db-6d52-4d91-8a90-ae0b0c2e4ecc}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -156,6 +163,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Dashboards\DisposalsViewDashboard\Elements.xml" />
+    <Content Include="Dashboards\GenerateSadConsignmentDashboard\Elements.xml" />
     <Content Include="Dashboards\SupplementCWBookDashboard\Elements.xml" />
     <Content Include="Dashboards\SupplementWZNoDashboard\Elements.xml">
       <SubType>Designer</SubType>
@@ -179,6 +187,7 @@
     <Content Include="WebPartPagesCW\WebPageTemplate_CWBookCustomsOffice.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_DisposalsView.aspx" />
+    <Content Include="WebPartPagesCW\WebPageTemplate_GenerateSadConsignment.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_SupplementCWBook.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_SupplementWZNo.aspx" />
     <Content Include="Webparts\CheckListHost\Elements.xml" />
@@ -188,6 +197,7 @@
     <Content Include="Webparts\ExitSheetHost\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Webparts\GenerateSadConsignmentHost\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonDefinition.tt.cs" />
@@ -230,6 +240,7 @@
     <Compile Include="Webparts\ExitSheetHost\ExitSheeDataContract.cs" />
     <Compile Include="Webparts\ExitSheetHost\ExitSheeDataContract.static.cs" />
     <Compile Include="Webparts\ExitSheetHost\ExitSheetHost.cs" />
+    <Compile Include="Webparts\GenerateSadConsignmentHost\GenerateSadConsignmentHost.cs" />
     <Compile Include="Webparts\InterconnectionData.cs" />
   </ItemGroup>
   <ItemGroup>
