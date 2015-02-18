@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.cas.eu/SmartFactory.Customs.Messages.CELINA.SAD.xsd" elementFormDefault="qualified" targetNamespace="http://www.cas.eu/SmartFactory.Customs.Messages.CELINA.SAD.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/SADw2r0.xsd" />
+  <xs:element name="SADCollection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="ListOfSAD" type="tns:ArrayOfSAD" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfSAD">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SAD" nillable="true" xmlns:q1="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/SADw2r0.xsd" type="q1:SAD" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
