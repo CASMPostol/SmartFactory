@@ -1,4 +1,10 @@
-﻿//_______________________________________________________________
+﻿using CAS.SharePoint.DocumentsFactory;
+using CAS.SmartFactory.Customs.Messages.CELINA.SAD;
+using CAS.SmartFactory.CW.Dashboards.SharePointLib;
+using CAS.SmartFactory.CW.Dashboards.Silverlight;
+using CAS.SmartFactory.CW.WebsiteModel.Linq;
+using Microsoft.SharePoint;
+//_______________________________________________________________
 //  Title   : GenerateSadConsignmentHost
 //  System  : Microsoft VisualStudio 2013 / C#
 //  $LastChangedDate:  $
@@ -12,17 +18,14 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //_______________________________________________________________
+
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Web;
+using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using Microsoft.SharePoint;
-using Microsoft.SharePoint.WebControls;
-using CAS.SmartFactory.CW.Dashboards.Silverlight;
-using CAS.SmartFactory.CW.Dashboards.SharePointLib;
-using CAS.SmartFactory.CW.WebsiteModel.Linq;
 
 namespace CAS.SmartFactory.CW.Dashboards.Webparts.GenerateSadConsignmentHost
 {
@@ -84,11 +87,29 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.GenerateSadConsignmentHost
         return;
       EnsureChildControls();
       m_SelectedItemTitle.Text = e.Title;
-      using (Entities _edx = new Entities())
+      using (Entities _entities = new Entities())
       {
-        DisposalRequestLib _drl = Element.GetAtIndex<DisposalRequestLib>(_edx.DisposalRequestLibrary, e.ID);
-        CheckListWebPartDataContract _dc = CheckListWebPartDataContract.GetCheckListWebPartDataContract(_edx, _drl);
-        m_HiddenFieldData.Value = _dc.Serialize();
+        DisposalRequestLib _drl = Element.GetAtIndex<DisposalRequestLib>(_entities.DisposalRequestLibrary, e.ID);
+        List<SAD> _cns = new List<SAD>();
+        SPWeb _wb = SPContext.Current.Web;
+        foreach (CustomsWarehouseDisposal _cwd in _drl.CustomsWarehouseDisposal(_entities, false))
+        {
+          if (_cwd.CWL_CWDisposal2ClearanceID == null)
+            continue;
+          if (_cwd.CWL_CWDisposal2ClearanceID.SADConsignmentLibraryIndex == null)
+            continue;
+          SPDocumentLibrary _lib = (SPDocumentLibrary)_wb.Lists[SADConsignment.IPRSADConsignmentLibraryTitle];
+          SAD _sad = CAS.SharePoint.DocumentsFactory.File.ReadXmlFile<SAD>(_lib, _cwd.Id.Value);
+          _cns.Add(_sad);
+        }
+        SADCollection _sc = new SADCollection() { ListOfSAD = _cns.ToArray() };
+        //CheckListWebPartDataContract _dc = CheckListWebPartDataContract.GetCheckListWebPartDataContract(_entities, _drl);
+        using (MemoryStream _docStream = new MemoryStream())
+        {
+          XmlFile.WriteXmlFile<SADCollection>(_sc, _docStream, "SADCollection");
+          //using (TextReader _tr = new StringReader())
+          //m_HiddenFieldData.Value = System.Web.HttpUtility.HtmlEncode( _docStream.)
+        }
       }
     }
     private IWebPartRow m_ProvidersDictionary = null;
