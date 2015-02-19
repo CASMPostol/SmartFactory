@@ -13,6 +13,33 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts {
     public partial class CloseManyAccountsForm {
         
         /// <summary>
+        /// CssRegistration1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.SharePoint.WebControls.CssRegistration CssRegistration1;
+        
+        /// <summary>
+        /// CssRegistration2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.SharePoint.WebControls.CssRegistration CssRegistration2;
+        
+        /// <summary>
+        /// AvailableAccounts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl AvailableAccounts;
+        
+        /// <summary>
         /// m_AvailableGridView control.
         /// </summary>
         /// <remarks>
@@ -31,6 +58,15 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts {
         protected global::Microsoft.SharePoint.WebControls.SPGridViewPager m_AvailableGridViewPager;
         
         /// <summary>
+        /// SelectedAccounts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl SelectedAccounts;
+        
+        /// <summary>
         /// m_SelectedGridView control.
         /// </summary>
         /// <remarks>
@@ -47,6 +83,15 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Microsoft.SharePoint.WebControls.SPGridViewPager m_SelectedGridViewPager;
+        
+        /// <summary>
+        /// ButtonSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl ButtonSection;
         
         /// <summary>
         /// PlaceHolder1 control.

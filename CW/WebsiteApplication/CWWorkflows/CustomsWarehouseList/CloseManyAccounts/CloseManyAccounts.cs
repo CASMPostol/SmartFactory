@@ -26,5 +26,10 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
 
     public Guid workflowId = default(System.Guid);
     public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
+
+    private void onWorkflowActivated1_Invoked(object sender, ExternalDataEventArgs e)
+    {
+
+    }
   }
 }
