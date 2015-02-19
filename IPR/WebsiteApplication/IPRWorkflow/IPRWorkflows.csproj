@@ -57,8 +57,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\CAS.SharePoint.Common.1.70.36\lib\net35\CAS.SharePoint.Common.dll</HintPath>
     </Reference>
-    <Reference Include="CAS.SmartFactoryCustoms">
-      <HintPath>..\..\..\packages\CAS.SmartFactory.Customs.2.30.00\lib\net35\CAS.SmartFactoryCustoms.dll</HintPath>
+    <Reference Include="CAS.SmartFactoryCustoms, Version=2.30.2.19080, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\CAS.SmartFactory.Customs.2.30.02\lib\net35\CAS.SmartFactoryCustoms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
@@ -108,7 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>

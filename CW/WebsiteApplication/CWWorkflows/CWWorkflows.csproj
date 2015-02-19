@@ -52,8 +52,9 @@
       <Private>True</Private>
       <HintPath>..\..\..\packages\CAS.SharePoint.Common.1.70.36\lib\net35\CAS.SharePoint.Common.XmlSerializers.dll</HintPath>
     </Reference>
-    <Reference Include="CAS.SmartFactoryCustoms">
-      <HintPath>..\..\..\packages\CAS.SmartFactory.Customs.2.30.00\lib\net35\CAS.SmartFactoryCustoms.dll</HintPath>
+    <Reference Include="CAS.SmartFactoryCustoms, Version=2.30.2.19080, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\CAS.SmartFactory.Customs.2.30.02\lib\net35\CAS.SmartFactoryCustoms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -66,6 +67,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Workflow.Activities" />
     <Reference Include="System.Workflow.ComponentModel" />
     <Reference Include="System.Workflow.Runtime" />
@@ -79,6 +81,9 @@
     </None>
     <None Include="CustomsWarehouseList\CloseAccount\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{9b9235c5-7768-48bf-bc59-abef6847465f}</SharePointProjectItemId>
+    </None>
+    <None Include="CustomsWarehouseList\CloseManyAccounts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9b34b0f7-2bd8-4f0a-97f2-24c1ca3200cb}</SharePointProjectItemId>
     </None>
     <None Include="CustomsWarehouseReport\DoReportWorkflow\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6bfd3e0d-d457-4235-91f6-ecf15ae3e250}</SharePointProjectItemId>
@@ -107,6 +112,8 @@
   <ItemGroup>
     <Content Include="CustomsWarehouseList\BinCard\Elements.xml" />
     <Content Include="CustomsWarehouseList\CloseAccount\Elements.xml" />
+    <Content Include="CustomsWarehouseList\CloseManyAccounts\CloseManyAccountsForm.aspx" />
+    <Content Include="CustomsWarehouseList\CloseManyAccounts\Elements.xml" />
     <Content Include="CustomsWarehouseReport\DoReportWorkflow\Elements.xml" />
     <Content Include="DisposalRequestLibrary\ClearThroughCustoms\Elements.xml" />
     <Content Include="DisposalRequestLibrary\CreateStatement\Elements.xml" />
@@ -130,6 +137,19 @@
     </Compile>
     <Compile Include="CustomsWarehouseList\CloseAccount\CloseAccount.Designer.cs">
       <DependentUpon>CloseAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomsWarehouseList\CloseManyAccounts\CloseManyAccounts.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomsWarehouseList\CloseManyAccounts\CloseManyAccounts.Designer.cs">
+      <DependentUpon>CloseManyAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomsWarehouseList\CloseManyAccounts\CloseManyAccountsForm.aspx.cs">
+      <DependentUpon>CloseManyAccountsForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomsWarehouseList\CloseManyAccounts\CloseManyAccountsForm.aspx.designer.cs">
+      <DependentUpon>CloseManyAccountsForm.aspx.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomsWarehouseReport\AccountsReportContentWithStylesheet.cs" />
     <Compile Include="CustomsWarehouseReport\DoReportWorkflow\DoReportWorkflow.cs">
