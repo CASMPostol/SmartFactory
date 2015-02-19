@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.CW.Dashboards.SharePointLib
     /// <summary>
     /// Initializes a new instance of the <see cref="ExceptionMessage"/> class.
     /// </summary>
-    /// <param name="exception">The exception to be reendered as the <see cref="LiteralControl"/>.</param>
+    /// <param name="exception">The exception to be rendered as the <see cref="LiteralControl"/>.</param>
     public ExceptionMessage( Exception exception )
     {
       Message = Convert2ErrorMessageFormat( exception );

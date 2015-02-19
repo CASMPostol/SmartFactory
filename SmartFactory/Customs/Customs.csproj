@@ -137,6 +137,9 @@
     <None Include="Messages\CELINA\PZCw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Messages\CELINA\SADCollection.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Messages\CELINA\SADw2r0.xsd">
       <SubType>Designer</SubType>
     </None>

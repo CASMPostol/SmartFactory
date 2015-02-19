@@ -19,6 +19,7 @@ using CAS.SmartFactory.Customs.Messages.CELINA.SAD;
 using CAS.SmartFactory.CW.WebsiteModel;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
 using Microsoft.SharePoint.Workflow;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
 
     private void onCreateMessageTemplates(object sender, EventArgs e)
     {
+      TraceEvent("Entering ClearThroughCustoms.onCreateMessageTemplates", 46, TraceSeverity.Monitorable);
       try
       {
         string _MasterDocumentName = String.Empty;
@@ -52,7 +54,7 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
           {
             if (_cwdx.CustomsStatus.Value != CustomsStatus.NotStarted)
               continue;
-            Clearence _newClearance = Clearence.CreataClearence(_entities, "Customs Warehouse Withdraw", _Dr.ClearenceProcedure.Value, (x, y, z) => { });
+            Clearence _newClearance = Clearence.CreataClearence(_entities, "Customs Warehouse Withdraw", _Dr.ClearenceProcedure.Value, TraceEvent);
             _cwdx.CWL_CWDisposal2ClearanceID = _newClearance;
             _cwdx.CustomsStatus = CustomsStatus.Started;
             if (_cwdx.CWL_CWDisposal2CustomsWarehouseID.TobaccoNotAllocated.Value > 0 ||
@@ -70,10 +72,12 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
             }
             _MasterDocumentName = _newClearance.SADTemplateDocumentNameFileName(_entities);
             SAD _sad = CraeteSAD(_entities, _cwdx, _MasterDocumentName);
+            TraceEvent(" ClearThroughCustoms.onCreateMessageTemplates at File.CreateXmlFile", 4756, TraceSeverity.Monitorable);
             SPFile _newFile = File.CreateXmlFile<SAD>(workflowProperties.Web, _sad, _MasterDocumentName, SADConsignment.IPRSADConsignmentLibraryTitle, SAD.StylesheetNmane);
             SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>(_entities.SADConsignment, _newFile.Item.ID);
             _sadConsignment.Archival = true;
             _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
+            TraceEvent(" ClearThroughCustoms.onCreateMessageTemplates at SubmitChanges", 80, TraceSeverity.Monitorable);
             _entities.SubmitChanges();
           }
         }
@@ -84,7 +88,9 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
       {
         logToHistoryListActivity_HistoryOutcome = "Exception";
         logToHistoryListActivity_HistoryDescription = _ex.Message;
+        TraceEvent(String.Format("Exception {0} at ClearThroughCustoms.onCreateMessageTemplates: {1}; StackTrace: {2}", _ex.GetType().Name, _ex.Message, _ex.StackTrace), 46, TraceSeverity.High);
       }
+      TraceEvent("Finishing ClearThroughCustoms.onCreateMessageTemplates", 98, TraceSeverity.Monitorable);
     }
     private static SAD CraeteSAD(Entities entities, CustomsWarehouseDisposal disposal, string masterDocumentName)
     {
@@ -126,5 +132,9 @@ namespace CAS.SmartFactory.CW.Workflows.DisposalRequestLibrary.ClearThroughCusto
 
     public String logToHistoryListActivity_HistoryDescription = default(System.String);
     public String logToHistoryListActivity_HistoryOutcome = default(System.String);
+    private void TraceEvent(string message, int eventId, TraceSeverity severity)
+    {
+      WebsiteModelExtensions.TraceEvent(message, eventId, severity, WebsiteModelExtensions.LoggingCategories.ClearThroughCustoms);
+    }
   }
 }
