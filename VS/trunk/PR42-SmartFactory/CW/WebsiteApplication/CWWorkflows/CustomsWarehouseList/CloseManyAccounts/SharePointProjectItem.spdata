@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Workflow" DefaultFile="CloseManyAccounts.cs" SupportedTrustLevels="FullTrust" SupportedDeploymentScopes="Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="CloseManyAccounts\" Type="ElementManifest" />
+    <ProjectItemFile Source="CloseManyAccountsForm.aspx" Target="LAYOUTS\CWWorkflows\CustomsWarehouseList\CloseManyAccounts\" Type="TemplateFile" />
+  </Files>
+  <ExtensionData>
+    <ExtensionDataItem Key="WorkflowType" Value="List" />
+  </ExtensionData>
+</ProjectItem>
