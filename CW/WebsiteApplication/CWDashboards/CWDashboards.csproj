@@ -44,6 +44,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll</HintPath>
     </Reference>
+    <Reference Include="CAS.SmartFactoryCustoms, Version=2.30.2.19080, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\CAS.SmartFactory.Customs.2.30.02\lib\net35\CAS.SmartFactoryCustoms.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -92,6 +96,7 @@
     <None Include="Dashboards\SupplementWZNoDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{24bb22d6-4e2c-47c6-b2da-6b673affb080}</SharePointProjectItemId>
     </None>
+    <None Include="packages.config" />
     <None Include="Silverlight\HTMLHostinCode.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>HTMLHostinCode.cs</LastGenOutput>
