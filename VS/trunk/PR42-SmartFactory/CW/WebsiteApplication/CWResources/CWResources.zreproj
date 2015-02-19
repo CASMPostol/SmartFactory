@@ -26,17 +26,17 @@
     </description>
   </configuration>
   <fileGroups>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="b5b66a5d-2feb-4c19-b270-1441ea0edf6a">
-      <file filePath="GlobalResources\CASSmartFactoryCW.resx" absoluteFilePath="C:\CWResources\GlobalResources\CASSmartFactoryCW.resx" uniqueID="bc6b2bff-870d-428d-bc0b-29ff749fc026" />
-      <file filePath="GlobalResources\CASSmartFactoryCW.en-US.resx" absoluteFilePath="C:\CWResources\GlobalResources\CASSmartFactoryCW.en-US.resx" uniqueID="bd4b27e9-934f-40a1-995c-635d2d2c32f5" />
-      <file filePath="GlobalResources\CASSmartFactoryCW.pl-PL.resx" absoluteFilePath="C:\CWResources\GlobalResources\CASSmartFactoryCW.pl-PL.resx" uniqueID="a3cb3a48-d942-4f42-898d-e3b725710bc4" />
+    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="8ab05bba-9dcb-43b2-b7c0-60727ce94333">
+      <file filePath="Resources\CASSmartFactoryCW.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\CW\WebsiteApplication\CWResources\Resources\CASSmartFactoryCW.resx" uniqueID="87456537-e2d7-4a6b-a629-e362bc505613" />
+      <file filePath="Resources\CASSmartFactoryCW.en-US.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\CW\WebsiteApplication\CWResources\Resources\CASSmartFactoryCW.en-US.resx" uniqueID="3614079d-329a-4338-a27e-a83d0ba11e2c" />
+      <file filePath="Resources\CASSmartFactoryCW.pl-PL.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\CW\WebsiteApplication\CWResources\Resources\CASSmartFactoryCW.pl-PL.resx" uniqueID="01e4a2c8-ea73-4c24-97d4-f4a4078fd61b" />
       <remarks>
       </remarks>
     </fileGroup>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="8ab05bba-9dcb-43b2-b7c0-60727ce94333">
-      <file filePath="Resources\CASSmartFactoryCW.resx" absoluteFilePath="C:\CWResources\Resources\CASSmartFactoryCW.resx" uniqueID="87456537-e2d7-4a6b-a629-e362bc505613" />
-      <file filePath="Resources\CASSmartFactoryCW.en-US.resx" absoluteFilePath="C:\CWResources\Resources\CASSmartFactoryCW.en-US.resx" uniqueID="3614079d-329a-4338-a27e-a83d0ba11e2c" />
-      <file filePath="Resources\CASSmartFactoryCW.pl-PL.resx" absoluteFilePath="C:\CWResources\Resources\CASSmartFactoryCW.pl-PL.resx" uniqueID="01e4a2c8-ea73-4c24-97d4-f4a4078fd61b" />
+    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="b5b66a5d-2feb-4c19-b270-1441ea0edf6a">
+      <file filePath="GlobalResources\CASSmartFactoryCW.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\CW\WebsiteApplication\CWResources\GlobalResources\CASSmartFactoryCW.resx" uniqueID="bc6b2bff-870d-428d-bc0b-29ff749fc026" />
+      <file filePath="GlobalResources\CASSmartFactoryCW.en-US.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\CW\WebsiteApplication\CWResources\GlobalResources\CASSmartFactoryCW.en-US.resx" uniqueID="bd4b27e9-934f-40a1-995c-635d2d2c32f5" />
+      <file filePath="GlobalResources\CASSmartFactoryCW.pl-PL.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\CW\WebsiteApplication\CWResources\GlobalResources\CASSmartFactoryCW.pl-PL.resx" uniqueID="a3cb3a48-d942-4f42-898d-e3b725710bc4" />
       <remarks>
       </remarks>
     </fileGroup>
