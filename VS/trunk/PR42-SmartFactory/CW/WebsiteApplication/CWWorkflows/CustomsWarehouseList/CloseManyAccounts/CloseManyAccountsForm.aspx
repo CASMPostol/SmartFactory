@@ -6,11 +6,26 @@
 <%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register Tagprefix="asp" Namespace="System.Web.UI" Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" %>
 
+<%@ Register TagPrefix="wssuc" TagName="LinksTable" Src="/_controltemplates/LinksTable.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="InputFormSection" Src="/_controltemplates/InputFormSection.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="InputFormControl" Src="/_controltemplates/InputFormControl.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="LinkSection" Src="/_controltemplates/LinkSection.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="ButtonSection" Src="/_controltemplates/ButtonSection.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="ActionBar" Src="/_controltemplates/ActionBar.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="ToolBar" Src="/_controltemplates/ToolBar.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="ToolBarButton" Src="/_controltemplates/ToolBarButton.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="Welcome" Src="/_controltemplates/Welcome.ascx" %>
+
 <%@ Page Language="C#" 
     DynamicMasterPageFile="~masterurl/default.master" 
     AutoEventWireup="true" 
     Inherits="CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts.CloseManyAccountsForm" 
     CodeBehind="CloseManyAccountsForm.aspx.cs" %>
+
+<asp:Content ID="PageHead" ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
+<SharePoint:CssRegistration ID="CssRegistration1" Name="forms.css" runat="server" />
+<SharePoint:CssRegistration ID="CssRegistration2" Name="layouts.css" runat="server" />
+</asp:Content>
 
 <asp:Content ID="Main" ContentPlaceHolderID="PlaceHolderMain" runat="server">
     <table border="0" cellspacing="0" cellpadding="0" class="ms-propertysheet">
@@ -56,7 +71,7 @@
 				<tr valign="top">
 					<td class="ms-authoringcontrols" width="10">&#160;</td>
 					<td class="ms-authoringcontrols" colspan="2">
-					     	<!--Selected accounts grid view -->
+					    <!-- SPDataGrid with CW selected accounts -->
                         <SharePoint:SPGridView ID="m_SelectedGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" AllowFiltering="true" 
                             FilterDataFields="CustomsDebtDate,DocumentNo,Grade,SKU,Batch,NetMass,AccountBalance,ValidToDate,ClosingDate">
                             <Columns>
@@ -99,9 +114,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-    Workflow Initiation Form
+    <asp:Literal ID="m_PageTitle" runat="server" Text="<%$Resources:CASSmartFactoryCW,CAS_ASPX_CloseManyAccountsForm%>" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" runat="server" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea">
-    Workflow Initiation Form
+    <asp:Literal ID="Literal1" runat="server" Text="<%$Resources:CASSmartFactoryCW,CAS_ASPX_CloseManyAccountsForm%>" />
 </asp:Content>
