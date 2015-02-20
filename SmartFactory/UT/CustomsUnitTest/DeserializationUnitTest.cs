@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.Customs.UnitTest
     {
       SAD _sad = XmlFile.ReadXmlFile<SAD>(@"TestData\TestSAD.xml");
       Assert.IsNotNull(_sad);
-      SADCollection _sc = new SADCollection() { ListOfSAD = new SAD[] {_sad}};
+      SADCollection _sc = new SADCollection() { ListOfSAD = new SAD[] {_sad, _sad}};
       XmlFile.WriteXmlFile<SADCollection>(_sc, @"TestData\TestSADCollection.xml", System.IO.FileMode.Create, "SADCollection.xls");
       SADCollection _new = XmlFile.ReadXmlFile<SADCollection>(@"TestData\TestSADCollection.xml");
       Assert.IsNotNull(_new);

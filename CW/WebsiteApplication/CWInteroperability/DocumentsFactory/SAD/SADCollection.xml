@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="SADCollectionStylesheet.xslt"?>
+<SADCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cas.eu/SmartFactory.Customs.Messages.CELINA.SAD.xsd">
+  <ListOfSAD>
+    <SAD EmailPodmiotu="gstmaan@jti.com">
+      <Zgloszenie NrWlasny="13SXX0000" P1a="XX" P1b="X" LiczbaPozycji="1" KrajWysylki="XX" KrajPrzeznaczenia="XX" RodzajTransakcji="11" MasaBrutto="970" xmlns="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/SADw2r0.xsd">
+        <Rodzaj Typ="H" Podtyp="A" Powiadomienie="false" />
+        <UC UCZgloszenia="PL362010" UCGraniczny="PL362010">
+          <Lokalizacja Miejsce="PL360000SC0002" />
+          <SkladCelny Typ="C" Miejsce="PL360000SC0002" Kraj="PL" />
+        </UC>
+        <Nadawca PozId="1" Nazwa="JT International SA" UlicaNumer="A Member of the JTI Group of Companies&#xD;&#xA;1,rue de la Gabelle" KodPocztowy="1211" Miejscowosc="Genewa 26" Kraj="Switzerland" TIN="" Regon="" Pesel="JT International SA" CRP="" EORI="" />
+        <Odbiorca PozId="1" Nazwa="JTI POLSKA SP. Z O.O." UlicaNumer="GOSTKOW STARY 42" KodPocztowy="99-220" Miejscowosc="WARTKOWICE" Kraj="PL" TIN="PL8280001819" Regon="00130199100000" Pesel="JTI POLSKA SP. Z O.O." EORI="PL828000181900000" />
+        <WarunkiDostawy Kod="XXX" Miejsce="XXX" MiejsceKod="X" />
+        <WartoscTowarow SzczegolyWartosci="" Waluta="PLN" Wartosc="27459" KursWaluty="1.0" />
+        <Towar PozId="1" OpisTowaru="TYTON ODZYŁOWANY USA AIR CURED BURLEY STRIPS GRADE:3USBCS3S SKU:13392238 Batch:0004566237 CZESCIOWA LIKWIDACJA OGL/362010/00/020317/2014" KodTowarowy="24012035" KodTaric="10" MasaBrutto="970" Procedura="4071" MasaNetto="900">
+          <IloscTowaru PozId="1" Jm="KGM" Ilosc="900" />
+          <Opakowanie PozId="1" Rodzaj="" Znaki="." LiczbaOpakowan="5" />
+          <DokumentPoprzedni PozId="1" Kategoria="Z" Kod="" Nr="OGL/362010/00/020317/2014" NrCelina="OGL/362010/00/020317/2014" />
+          <DokumentWymagany PozId="1" Kod="9DK8" Nr="CW Wyprowadzenie 0004552" Uwagi="" />
+          <DokumentWymagany PozId="2" Kod="N935" Nr="82229439" Uwagi="N935: 82229439" />
+          <DokumentWymagany PozId="3" Kod="A004" Nr="92-26/08.05.2014" Uwagi="A004: 92-26/08.05.2014" />
+          <WartoscTowaru WartoscPozycji="27459" MetodaWartosciowania="1" WartoscStatystyczna="27459">
+            <SzczegolyWartosci PozId="1" Kod="B00PL" />
+          </WartoscTowaru>
+        </Towar>
+        <MiejsceData Miejsce="LODZ" Data="2015-01-30" />
+      </Zgloszenie>
+    </SAD>
+    <SAD EmailPodmiotu="gstmaan@jti.com">
+      <Zgloszenie NrWlasny="13SXX0000" P1a="XX" P1b="X" LiczbaPozycji="1" KrajWysylki="XX" KrajPrzeznaczenia="XX" RodzajTransakcji="11" MasaBrutto="970" xmlns="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/SADw2r0.xsd">
+        <Rodzaj Typ="H" Podtyp="A" Powiadomienie="false" />
+        <UC UCZgloszenia="PL362010" UCGraniczny="PL362010">
+          <Lokalizacja Miejsce="PL360000SC0002" />
+          <SkladCelny Typ="C" Miejsce="PL360000SC0002" Kraj="PL" />
+        </UC>
+        <Nadawca PozId="1" Nazwa="JT International SA" UlicaNumer="A Member of the JTI Group of Companies&#xD;&#xA;1,rue de la Gabelle" KodPocztowy="1211" Miejscowosc="Genewa 26" Kraj="Switzerland" TIN="" Regon="" Pesel="JT International SA" CRP="" EORI="" />
+        <Odbiorca PozId="1" Nazwa="JTI POLSKA SP. Z O.O." UlicaNumer="GOSTKOW STARY 42" KodPocztowy="99-220" Miejscowosc="WARTKOWICE" Kraj="PL" TIN="PL8280001819" Regon="00130199100000" Pesel="JTI POLSKA SP. Z O.O." EORI="PL828000181900000" />
+        <WarunkiDostawy Kod="XXX" Miejsce="XXX" MiejsceKod="X" />
+        <WartoscTowarow SzczegolyWartosci="" Waluta="PLN" Wartosc="27459" KursWaluty="1.0" />
+        <Towar PozId="1" OpisTowaru="TYTON ODZYŁOWANY USA AIR CURED BURLEY STRIPS GRADE:3USBCS3S SKU:13392238 Batch:0004566237 CZESCIOWA LIKWIDACJA OGL/362010/00/020317/2014" KodTowarowy="24012035" KodTaric="10" MasaBrutto="970" Procedura="4071" MasaNetto="900">
+          <IloscTowaru PozId="1" Jm="KGM" Ilosc="900" />
+          <Opakowanie PozId="1" Rodzaj="" Znaki="." LiczbaOpakowan="5" />
+          <DokumentPoprzedni PozId="1" Kategoria="Z" Kod="" Nr="OGL/362010/00/020317/2014" NrCelina="OGL/362010/00/020317/2014" />
+          <DokumentWymagany PozId="1" Kod="9DK8" Nr="CW Wyprowadzenie 0004552" Uwagi="" />
+          <DokumentWymagany PozId="2" Kod="N935" Nr="82229439" Uwagi="N935: 82229439" />
+          <DokumentWymagany PozId="3" Kod="A004" Nr="92-26/08.05.2014" Uwagi="A004: 92-26/08.05.2014" />
+          <WartoscTowaru WartoscPozycji="27459" MetodaWartosciowania="1" WartoscStatystyczna="27459">
+            <SzczegolyWartosci PozId="1" Kod="B00PL" />
+          </WartoscTowaru>
+        </Towar>
+        <MiejsceData Miejsce="LODZ" Data="2015-01-30" />
+      </Zgloszenie>
+    </SAD>
+  </ListOfSAD>
+</SADCollection>
