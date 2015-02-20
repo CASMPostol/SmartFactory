@@ -109,6 +109,8 @@
     <Content Include="DocumentsFactory\SAD\SAD.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DocumentsFactory\SAD\SADCollection.xml" />
+    <Content Include="DocumentsFactory\SAD\SADCollectionStylesheet.xslt" />
     <Content Include="DocumentsFactory\SAD\SADStylesheet.xslt">
       <SubType>Designer</SubType>
     </Content>
