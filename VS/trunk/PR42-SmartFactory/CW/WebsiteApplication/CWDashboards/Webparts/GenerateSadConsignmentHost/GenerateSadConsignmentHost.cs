@@ -102,7 +102,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.GenerateSadConsignmentHost
           if (_cwd.CWL_CWDisposal2ClearanceID.SADConsignmentLibraryIndex == null)
             continue;
           SPDocumentLibrary _lib = (SPDocumentLibrary)_wb.Lists[SADConsignment.IPRSADConsignmentLibraryTitle];
-          SAD _sad = CAS.SharePoint.DocumentsFactory.File.ReadXmlFile<SAD>(_lib, _cwd.Id.Value);
+          SAD _sad = CAS.SharePoint.DocumentsFactory.File.ReadXmlFile<SAD>(_lib, _cwd.CWL_CWDisposal2ClearanceID.SADConsignmentLibraryIndex.Id.Value);
           _cns.Add(_sad);
         }
         SADCollection _sc = new SADCollection() { ListOfSAD = _cns.ToArray() };

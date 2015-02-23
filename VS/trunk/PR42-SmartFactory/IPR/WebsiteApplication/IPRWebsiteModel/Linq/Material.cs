@@ -147,7 +147,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       else
       {
-        string _tmpl = "Cleared TobaccoQuantity of {0} for the material: batch {1} because no account to adjust found.";
+        string _tmpl = "Cleared TobaccoQuantity of {0}kg for the material: batch {1} because no account to adjust found.";
         _warnning = new Warnning(String.Format(_tmpl, _startingTobaccoQuantity, this.Batch), false);
       }
       trace("Wanning at Material.AdjustTobaccoQuantity: " + _warnning, 135, TraceSeverity.Verbose);
