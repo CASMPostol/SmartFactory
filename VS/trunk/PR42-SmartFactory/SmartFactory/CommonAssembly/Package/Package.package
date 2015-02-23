@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="53d26add-8444-44ef-affa-1be15aa9c3d1" solutionId="53d26add-8444-44ef-affa-1be15aa9c3d1" resetWebServer="false" description="CAS SmartFactory libraries loader." name="CASSmartFactoryCommonAssembly" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <assemblies>
-    <customAssembly location="CAS.SmartFactoryCustoms.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="bin\Release\CAS.SmartFactoryCustoms.dll" />
+    <customAssembly location="CAS.SmartFactoryCustoms.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\packages\CAS.SmartFactory.Customs.2.30.02\lib\net35\CAS.SmartFactoryCustoms.dll" />
   </assemblies>
   <features>
     <featureReference itemId="8673d23d-845c-4311-9c4f-e40428cd31de" />
