@@ -29,6 +29,9 @@ using System.Web.UI.WebControls.WebParts;
 
 namespace CAS.SmartFactory.CW.Dashboards.Webparts.GenerateSadConsignmentHost
 {
+  /// <summary>
+  /// Class GenerateSadConsignmentHost.
+  /// </summary>
   [ToolboxItemAttribute(false)]
   public class GenerateSadConsignmentHost : WebPart
   {
@@ -103,13 +106,7 @@ namespace CAS.SmartFactory.CW.Dashboards.Webparts.GenerateSadConsignmentHost
           _cns.Add(_sad);
         }
         SADCollection _sc = new SADCollection() { ListOfSAD = _cns.ToArray() };
-        //CheckListWebPartDataContract _dc = CheckListWebPartDataContract.GetCheckListWebPartDataContract(_entities, _drl);
-        using (MemoryStream _docStream = new MemoryStream())
-        {
-          XmlFile.WriteXmlFile<SADCollection>(_sc, _docStream, "SADCollection");
-          //using (TextReader _tr = new StringReader())
-          //m_HiddenFieldData.Value = System.Web.HttpUtility.HtmlEncode( _docStream.)
-        }
+        m_HiddenFieldData.Value = System.Web.HttpUtility.HtmlEncode(CAS.SharePoint.Serialization.XmlSerializer.Serialize<SADCollection>(_sc, Settings.SADCollectionStylesheetName));
       }
     }
     private IWebPartRow m_ProvidersDictionary = null;

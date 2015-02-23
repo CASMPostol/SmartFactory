@@ -24,6 +24,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel
   /// </summary>
   public static class WebsiteModelExtensions
   {
+
     /// <summary>
     /// Rounds the currency.
     /// </summary>
@@ -132,6 +133,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel
     {
       NamedTraceLogger.UnregisterLoggerSource(LoggingArea);
     }
+    //private
     private static string m_LoggingArea;
 
   }
