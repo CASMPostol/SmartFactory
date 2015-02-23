@@ -29,6 +29,5 @@ namespace CAS.SmartFactory.CW.Dashboards
     internal const string SilverlightExitSheetWebPartPath = "_catalogs/masterpage/SilverLightModule/CAS.ExitSheetWebPart.xap";
     internal const string SilverlightCheckListWebPartPath = "_catalogs/masterpage/SilverLightModule/CAS.CheckListWebPart.xap";
     internal const string SilverlightGenerateSadConsignmentHost = "_catalogs/masterpage/SilverLightModule/CAS.GenerateSadConsignmentWebPart.xap";
-    internal const string SilverlightGenerateSadConsignmentWebPart = "_catalogs/masterpage/SilverLightModule/CAS.GenerateSadConsignmentWebPart.xap";
   }
 }

@@ -4,5 +4,6 @@
     <File Path="SilverLightModule\CAS.DisposalRequestWebPart.xap" Url="SilverLightModule/CAS.DisposalRequestWebPart.xap" Type="GhostableInLibrary" />
     <File Path="SilverLightModule\CAS.ExitSheetWebPart.xap" Url="SilverLightModule/CAS.ExitSheetWebPart.xap" Type="GhostableInLibrary"/>
     <File Path="SilverLightModule\CAS.CheckListWebPart.xap" Url="SilverLightModule/CAS.CheckListWebPart.xap" Type="GhostableInLibrary"/>
+    <File Path="SilverLightModule\CAS.GenerateSadConsignmentWebPart.xap" Url="SilverLightModule/CAS.GenerateSadConsignmentWebPart.xap" Type="GhostableInLibrary"/>
   </Module>
 </Elements>
