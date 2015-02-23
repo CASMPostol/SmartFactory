@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="GenerateSadConsignmentDashboard">
     <File Path="WebPartPagesCW\WebPageTemplate_GenerateSadConsignment.aspx" Url="WebPartPagesCW/GenerateSadConsignmentDashboard.aspx">
-      <View List="Lists/DisposalRequestLibrary" BaseViewID="14" WebPartZoneID="DisposalRequests" WebPartOrder="0">
+      <View List="Lists/DisposalRequestLibrary" BaseViewID="14" WebPartZoneID="DisposalRequests" WebPartOrder="0" RowLimit="20">
         <![CDATA[
          <webParts>
          <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -34,7 +34,7 @@
         <property name="Title" type="string">Generate SAD Consignment</property>
         <property name="Description" type="string">Generate Sad Consignment Web Part</property>
         <property name="ScrollBars" type="string">Auto</property>
-        <property name="Width" type="unit">400px</property>
+        <property name="Width" type="unit">230px</property>
       </properties>
     </data>
   </webPart>

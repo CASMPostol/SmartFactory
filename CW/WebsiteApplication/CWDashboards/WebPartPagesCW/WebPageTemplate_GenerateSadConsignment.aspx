@@ -19,18 +19,16 @@
   <div id="Body" >
     <table border="0" width="100%">
         <tr>
-            <td valign="top">
-                        <WebPartPages:WebpartZone
-                        ID="DisposalRequests" runat="server"
-                        Title="Disposal Requests Web Part Zone"
-                        FrameType="TitleBarOnly" />
-            </td>
-        </tr>
-        <tr>
-            <td valign="top">
+            <td valign="top" width="250">
                         <WebPartPages:WebpartZone
                         ID="GenerateSadConsignment" runat="server"
                         Title="Generate Sad Consignment Web Part Zone"
+                        FrameType="TitleBarOnly" />
+            </td>
+            <td valign="top" align="left">
+                        <WebPartPages:WebpartZone
+                        ID="DisposalRequests" runat="server"
+                        Title="Disposal Requests Web Part Zone"
                         FrameType="TitleBarOnly" />
             </td>
         </tr>
