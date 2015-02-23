@@ -5,5 +5,6 @@
     <ProjectOutputFile ProjectId="99fc1b00-0242-4e8e-a431-5d8930458be7" ProjectPath="..\Silverlight\DisposalRequestWebPart\DisposalRequestWebPart.csproj" Target="SilverLightModule\" Type="ElementFile" />
     <ProjectOutputFile ProjectId="22ac8bd1-c6d3-4368-a15d-898cef4661ad" ProjectPath="..\Silverlight\ExitSheetWebPart\ExitSheetWebPart.csproj" Target="SilverLightModule\" Type="ElementFile" />
     <ProjectOutputFile ProjectId="62fcc1f2-a711-451a-b1d2-a958341cbd09" ProjectPath="..\Silverlight\CheckListWebPart\CheckListWebPart.csproj" Target="SilverLightModule\" Type="ElementFile" />
+    <ProjectOutputFile ProjectId="9A661289-0540-4CD6-8EBF-9AEB71F2A84C" ProjectPath="..\Silverlight\GenerateSadConsignmentWebPart\GenerateSadConsignmentWebPart.csproj" Target="SilverLightModule\" Type="ElementFile" /> 
   </Files>
 </ProjectItem>
