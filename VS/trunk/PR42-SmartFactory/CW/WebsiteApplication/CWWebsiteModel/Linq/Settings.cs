@@ -119,6 +119,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq
       }
       return String.Format(GetParameter(entities, SettingsEntry.GoodsDescription_Format), tobaccoName, grade, sku, batch, _ctText, documentNo);
     }
+    public static string SADCollectionStylesheetName = "SADCollectionStylesheet";
     #endregion
 
     #region private
