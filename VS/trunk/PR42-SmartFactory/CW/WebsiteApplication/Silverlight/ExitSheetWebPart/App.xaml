@@ -4,7 +4,6 @@
              x:Class="CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart.App"
              >
     <Application.Resources>
-
     	<ResourceDictionary>
     		<ResourceDictionary.MergedDictionaries>
     			<ResourceDictionary Source="ResourceDictionary.xaml"/>

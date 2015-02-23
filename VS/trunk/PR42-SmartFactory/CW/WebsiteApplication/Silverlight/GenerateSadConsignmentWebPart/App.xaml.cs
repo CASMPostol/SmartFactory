@@ -1,17 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿//_______________________________________________________________
+//  Title   : App
+//  System  : Microsoft VisualStudio 2013 / C#
+//  $LastChangedDate:  $
+//  $Rev: $
+//  $LastChangedBy: $
+//  $URL: $
+//  $Id:  $
+//
+//  Copyright (C) 2015, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//_______________________________________________________________
+
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
 namespace CAS.SmartFactory.CW.Dashboards.GenerateSadConsignmentWebPart
 {
+  /// <summary>
+  /// Class App.
+  /// </summary>
   public partial class App : Application
   {
 
@@ -20,25 +29,22 @@ namespace CAS.SmartFactory.CW.Dashboards.GenerateSadConsignmentWebPart
       this.Startup += this.Application_Startup;
       this.Exit += this.Application_Exit;
       this.UnhandledException += this.Application_UnhandledException;
-
       InitializeComponent();
     }
-
-    private void InitializeComponent()
-    {
-      throw new NotImplementedException();
-    }
-
     private void Application_Startup(object sender, StartupEventArgs e)
     {
-      this.RootVisual = new MainPage();
+      if (!e.InitParams.ContainsKey((CommonDefinition.HiddenFieldDataParameterName)))
+        this.RootVisual = new MainPage();
+      else
+      {
+        string _HiddenFieldDataName = e.InitParams[CommonDefinition.HiddenFieldDataParameterName];
+        this.RootVisual = new MainPage(_HiddenFieldDataName);
+      }
     }
-
     private void Application_Exit(object sender, EventArgs e)
     {
 
     }
-
     private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
     {
       // If the app is running outside of the debugger then report the exception using
@@ -55,14 +61,12 @@ namespace CAS.SmartFactory.CW.Dashboards.GenerateSadConsignmentWebPart
         Deployment.Current.Dispatcher.BeginInvoke(delegate { ReportErrorToDOM(e); });
       }
     }
-
     private void ReportErrorToDOM(ApplicationUnhandledExceptionEventArgs e)
     {
       try
       {
         string errorMsg = e.ExceptionObject.Message + e.ExceptionObject.StackTrace;
         errorMsg = errorMsg.Replace('"', '\'').Replace("\r\n", @"\n");
-
         System.Windows.Browser.HtmlPage.Window.Eval("throw new Error(\"Unhandled Error in Silverlight Application " + errorMsg + "\");");
       }
       catch (Exception)
