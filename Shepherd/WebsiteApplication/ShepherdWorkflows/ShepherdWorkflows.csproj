@@ -250,7 +250,6 @@
     </None>
     <None Include="key.snk" />
     <None Include="Model.T4" />
-    <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
