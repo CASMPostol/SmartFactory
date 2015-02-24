@@ -1,17 +1,11 @@
-﻿using CAS.SharePoint.DocumentsFactory;
-using CAS.SmartFactory.Customs.Messages.CELINA.SAD;
-using CAS.SmartFactory.CW.Dashboards.SharePointLib;
-using CAS.SmartFactory.CW.Dashboards.Silverlight;
-using CAS.SmartFactory.CW.WebsiteModel.Linq;
-using Microsoft.SharePoint;
-//_______________________________________________________________
+﻿//_______________________________________________________________
 //  Title   : GenerateSadConsignmentHost
 //  System  : Microsoft VisualStudio 2013 / C#
-//  $LastChangedDate:  $
-//  $Rev: $
-//  $LastChangedBy: $
-//  $URL: $
-//  $Id:  $
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
 //
 //  Copyright (C) 2015, CAS LODZ POLAND.
 //  TEL: +48 (42) 686 25 47
@@ -19,10 +13,14 @@ using Microsoft.SharePoint;
 //  http://www.cas.eu
 //_______________________________________________________________
 
+using CAS.SmartFactory.Customs.Messages.CELINA.SAD;
+using CAS.SmartFactory.CW.Dashboards.SharePointLib;
+using CAS.SmartFactory.CW.Dashboards.Silverlight;
+using CAS.SmartFactory.CW.WebsiteModel.Linq;
+using Microsoft.SharePoint;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;

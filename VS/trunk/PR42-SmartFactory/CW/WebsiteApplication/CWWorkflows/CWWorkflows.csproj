@@ -67,6 +67,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Workflow.Activities" />
     <Reference Include="System.Workflow.ComponentModel" />
@@ -151,6 +152,7 @@
     <Compile Include="CustomsWarehouseList\CloseManyAccounts\CloseManyAccountsForm.aspx.designer.cs">
       <DependentUpon>CloseManyAccountsForm.aspx.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomsWarehouseList\CloseManyAccounts\InitializationFormData.cs" />
     <Compile Include="CustomsWarehouseReport\AccountsReportContentWithStylesheet.cs" />
     <Compile Include="CustomsWarehouseReport\DoReportWorkflow\DoReportWorkflow.cs">
       <SubType>Component</SubType>
