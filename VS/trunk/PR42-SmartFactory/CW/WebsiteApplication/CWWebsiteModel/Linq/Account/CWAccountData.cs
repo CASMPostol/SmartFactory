@@ -162,7 +162,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
       {
         using (Entities _edc = new Entities(requestedUrl))
         {
-          _at = "ClearenceLookup";
+          _at = "ClearanceLookup";
           Clearence _Clearance = Element.GetAtIndex<Clearence>(_edc.Clearence, commonClearanceData.ClearenceLookup);
           _Clearance.FinishClearThroughCustoms(_edc, (message, eventId, severity) => WebsiteModelExtensions.TraceEvent(message, eventId, severity, WebsiteModelExtensions.LoggingCategories.CloseAccount));
           WebsiteModelExtensions.TraceEvent("ICWAccountFactory.ClearThroughCustoms at SubmitChanges", 168, TraceSeverity.Verbose, WebsiteModelExtensions.LoggingCategories.CloseAccount);

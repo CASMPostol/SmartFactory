@@ -45,42 +45,16 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
     #endregion
 
     #region private
+    /// <summary>
+    /// Closes the account activity_ execute code.
+    /// </summary>
+    /// <param name="sender">The sender.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     private void CloseAccountActivity_ExecuteCode(object sender, EventArgs e)
     {
       try
       {
-        using (Entities _entities = new Entities(workflowProperties.WebUrl))
-        {
-          CustomsWarehouse _cw = Element.GetAtIndex<CustomsWarehouse>(_entities.CustomsWarehouse, workflowProperties.ItemId);
-          RequestContent _newRequestContent = CreateContent(_entities, _cw);
-          if (_cw.AccountClosed.GetValueOrDefault(false))
-          {
-            this.CompletedLogToHistory_HistoryDescription = "Aborted";
-            this.CompletedLogToHistory_HistoryOutcome = "The account has been already closed.";
-            return;
-          }
-          if (_cw.AccountBalance.GetValueOrDefault(-1) == 0)
-          {
-            //TODO check packages and value on last disposal.
-            _cw.AccountClosed = true;
-            _cw.ClosingDate = DateTime.Today;
-            _entities.SubmitChanges();
-          }
-          int? _requestId = _cw.CWL_CW2CWLibraryID.GetTargetId<CustomsWarehouseLib>();
-          if (_requestId.HasValue)
-          {
-            File.WriteXmlFile<RequestContent>(workflowProperties.Web, _requestId.Value, Entities.CustomsWarehouseLibName, _newRequestContent, RequestContent.StylesheetName);
-          }
-          else
-          {
-            string _documentName = Settings.ClearanceRequestFileName(_entities, workflowProperties.ItemId);
-            SPFile _newFile = File.CreateXmlFile<RequestContent>(workflowProperties.Web, _newRequestContent, _documentName, Entities.CustomsWarehouseLibName, RequestContent.StylesheetName);
-            CustomsWarehouseLib _CustomsWarehouseLibEntry = Element.GetAtIndex<CustomsWarehouseLib>(_entities.CustomsWarehouseLibrary, _newFile.Item.ID);
-            _CustomsWarehouseLibEntry.Archival = false;
-            _cw.CWL_CW2CWLibraryID = _CustomsWarehouseLibEntry;
-            _entities.SubmitChanges();
-          }
-        }
+        Close(workflowProperties.Web, workflowProperties.WebUrl, workflowProperties.ItemId);
       }
       catch (CAS.SharePoint.ApplicationError _ap)
       {
@@ -93,46 +67,84 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         CompletedLogToHistory_HistoryDescription = _ex.Message;
       }
     }
-    private RequestContent CreateContent(Entities edc, CustomsWarehouse customsWarehouse)
+    /// <summary>
+    /// Closes the specified web.
+    /// </summary>
+    /// <param name="Web">The SharePoint site on which the workflow instance is located.</param>
+    /// <param name="WebUrl">The URL of the SharePoint site on which the workflow instance is located.</param>
+    /// <param name="ItemId">The ID of the list item on which the workflow instance is running.</param>
+    /// <exception cref="CAS.SharePoint.ApplicationError">The account has been already closed.</exception>
+    internal static void Close(SPWeb Web, string WebUrl, int ItemId)
     {
-      string _WithdrawalSADDcoumentNo = String.Empty;
-      DateTime _WithdrawalSADDocumentDate = default(DateTime);
+      using (Entities _entities = new Entities(WebUrl))
+      {
+        CustomsWarehouse _cw = Element.GetAtIndex<CustomsWarehouse>(_entities.CustomsWarehouse, ItemId);
+        RequestContent _newRequestContent = CreateContent(_entities, _cw);
+        if (_cw.AccountClosed.GetValueOrDefault(false))
+          throw new CAS.SharePoint.ApplicationError("CloseAccount", "AccountClosed", "The account has been already closed.", null);
+        if (_cw.AccountBalance.GetValueOrDefault(-1) == 0)
+        {
+          //TODO check packages and value on last disposal.
+          _cw.AccountClosed = true;
+          _cw.ClosingDate = DateTime.Today;
+          _entities.SubmitChanges();
+        }
+        int? _requestId = _cw.CWL_CW2CWLibraryID.GetTargetId<CustomsWarehouseLib>();
+        if (_requestId.HasValue)
+        {
+          File.WriteXmlFile<RequestContent>(Web, _requestId.Value, Entities.CustomsWarehouseLibName, _newRequestContent, RequestContent.StylesheetName);
+        }
+        else
+        {
+          string _documentName = Settings.ClearanceRequestFileName(_entities, ItemId);
+          SPFile _newFile = File.CreateXmlFile<RequestContent>(Web, _newRequestContent, _documentName, Entities.CustomsWarehouseLibName, RequestContent.StylesheetName);
+          CustomsWarehouseLib _CustomsWarehouseLibEntry = Element.GetAtIndex<CustomsWarehouseLib>(_entities.CustomsWarehouseLibrary, _newFile.Item.ID);
+          _CustomsWarehouseLibEntry.Archival = false;
+          _cw.CWL_CW2CWLibraryID = _CustomsWarehouseLibEntry;
+          _entities.SubmitChanges();
+        }
+      }
+    }
+    private static RequestContent CreateContent(Entities edc, CustomsWarehouse customsWarehouse)
+    {
+      string _withdrawalSADDocumentNo = String.Empty;
+      DateTime _withdrawalSADDocumentDate = default(DateTime);
       List<ArrayOfDisposalDisposalsArray> _listOfDisposals = new List<ArrayOfDisposalDisposalsArray>();
-      foreach (CustomsWarehouseDisposal _cwdx in customsWarehouse.CustomsWarehouseDisposal(edc, false))
+      foreach (CustomsWarehouseDisposal _document in customsWarehouse.CustomsWarehouseDisposal(edc, false))
       {
         List<string> _wz = new List<string>();
-        if (!_cwdx.CW_Wz1.IsNullOrEmpty())
-          _wz.Add(_cwdx.CW_Wz1);
-        if (!_cwdx.CW_Wz2.IsNullOrEmpty())
-          _wz.Add(_cwdx.CW_Wz2);
-        if (!_cwdx.CW_Wz3.IsNullOrEmpty())
-          _wz.Add(_cwdx.CW_Wz3);
+        if (!_document.CW_Wz1.IsNullOrEmpty())
+          _wz.Add(_document.CW_Wz1);
+        if (!_document.CW_Wz2.IsNullOrEmpty())
+          _wz.Add(_document.CW_Wz2);
+        if (!_document.CW_Wz3.IsNullOrEmpty())
+          _wz.Add(_document.CW_Wz3);
         ArrayOfDisposalDisposalsArray _newItem = new ArrayOfDisposalDisposalsArray()
         {
-          CNTarrifCode = _cwdx.CWL_CWDisposal2PCNTID.ProductCodeNumber,
-          Currency = _cwdx.CWL_CWDisposal2CustomsWarehouseID.Currency,
-          No = _cwdx.SPNo.GetValueOrDefault().Convert2Int(),
-          PackageToClear = _cwdx.CW_PackageToClear.GetValueOrDefault().Convert2Int(),
-          RemainingPackage = _cwdx.CW_RemainingPackage.GetValueOrDefault(-1).Convert2Int(),
-          RemainingQuantity = _cwdx.RemainingQuantity.GetValueOrDefault(-1).Convert2Int(),
-          SADDate = _cwdx.SADDate.GetValueOrNull(),
-          SADDocumentNo = _cwdx.SADDocumentNo,
-          SettledGrossMass = _cwdx.CW_SettledGrossMass.GetValueOrDefault(),
-          SettledNetMass = _cwdx.CW_SettledNetMass.GetValueOrDefault(),
-          TobaccoValue = _cwdx.TobaccoValue.GetValueOrDefault(),
+          CNTarrifCode = _document.CWL_CWDisposal2PCNTID.ProductCodeNumber,
+          Currency = _document.CWL_CWDisposal2CustomsWarehouseID.Currency,
+          No = _document.SPNo.GetValueOrDefault().Convert2Int(),
+          PackageToClear = _document.CW_PackageToClear.GetValueOrDefault().Convert2Int(),
+          RemainingPackage = _document.CW_RemainingPackage.GetValueOrDefault(-1).Convert2Int(),
+          RemainingQuantity = _document.RemainingQuantity.GetValueOrDefault(-1).Convert2Int(),
+          SADDate = _document.SADDate.GetValueOrNull(),
+          SADDocumentNo = _document.SADDocumentNo,
+          SettledGrossMass = _document.CW_SettledGrossMass.GetValueOrDefault(),
+          SettledNetMass = _document.CW_SettledNetMass.GetValueOrDefault(),
+          TobaccoValue = _document.TobaccoValue.GetValueOrDefault(),
           WZ = String.Join(",", _wz.ToArray())
         };
         _listOfDisposals.Add(_newItem);
-        if (_cwdx.ClearingType.Value == ClearingType.TotalWindingUp)
+        if (_document.ClearingType.Value == ClearingType.TotalWindingUp)
         {
-          _WithdrawalSADDcoumentNo = _cwdx.SADDocumentNo;
-          _WithdrawalSADDocumentDate = _cwdx.SADDate.GetValueOrDefault(Extensions.SPMinimum);
+          _withdrawalSADDocumentNo = _document.SADDocumentNo;
+          _withdrawalSADDocumentDate = _document.SADDate.GetValueOrDefault(Extensions.SPMinimum);
         }
       }
       if (customsWarehouse.AccountBalance.Value > 0)
       {
-        _WithdrawalSADDcoumentNo = String.Empty.NotAvailable();
-        _WithdrawalSADDocumentDate = Extensions.SPMinimum;
+        _withdrawalSADDocumentNo = String.Empty.NotAvailable();
+        _withdrawalSADDocumentDate = Extensions.SPMinimum;
       }
       _listOfDisposals.Sort((x, y) => {
                                         int _yNo = y.No == 0 ? 9999 : y.No;
@@ -154,7 +166,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         IntroducingSADDocumentDate = customsWarehouse.CustomsDebtDate.GetValueOrNull(),
         IntroducingSADDocumentNo = customsWarehouse.DocumentNo,
         InvoiceNo = customsWarehouse.InvoiceNo,
-        NetMass = customsWarehouse.NetMass.GetValueOrDefault(-1), //TODO Clossing the account
+        NetMass = customsWarehouse.NetMass.GetValueOrDefault(-1),
         PackageUnits = customsWarehouse.CW_PackageUnits.GetValueOrDefault(-1),
         PzNo = customsWarehouse.CW_PzNo,
         Quantity = customsWarehouse.CW_Quantity.GetValueOrDefault(-1),
@@ -162,8 +174,8 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseAccount
         TobaccoName = customsWarehouse.TobaccoName,
         UnitPrice = customsWarehouse.CW_UnitPrice.GetValueOrDefault(-1),
         Value = customsWarehouse.Value.GetValueOrDefault(-1),
-        WithdrawalSADDcoumentNo = _WithdrawalSADDcoumentNo,
-        WithdrawalSADDocumentDate = _WithdrawalSADDocumentDate
+        WithdrawalSADDcoumentNo = _withdrawalSADDocumentNo,
+        WithdrawalSADDocumentDate = _withdrawalSADDocumentDate
       };
       return _new;
     }
