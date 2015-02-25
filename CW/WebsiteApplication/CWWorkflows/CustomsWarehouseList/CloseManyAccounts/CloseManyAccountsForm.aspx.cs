@@ -1,36 +1,67 @@
-﻿using System;
-using System.Collections;
-using System.Configuration;
-using System.Data;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
+﻿//_______________________________________________________________
+//  Title   : Name of Application
+//  System  : Microsoft VisualStudio 2013 / C#
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2015, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//_______________________________________________________________
+
+using CAS.SharePoint.Linq;
+using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
 using Microsoft.SharePoint.Workflow;
-using Microsoft.SharePoint.Utilities;
+using System;
+using System.Web;
+using System.Web.UI;
+using System.Linq;
 
 namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
 {
-  public partial class CloseManyAccountsForm : LayoutsPageBase
+  public partial class CloseManyAccountsForm : LayoutsPageBase, CAS.SharePoint.Linq.IPreRender
   {
+    public CloseManyAccountsForm()
+    {
+      m_DataContextManagement = new DataContextManagement<Entities>(this);
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
       InitializeParams();
-
+      m_AvailableGridView.DataSource = m_DataContextManagement.DataContext.CustomsWarehouse.
+        Where<CustomsWarehouse>(x => !x.AccountClosed.Value && x.AccountBalance == 0).
+        Select(y => new
+        {
+          Title = y.Title,
+          CustomsDebtDate = y.CustomsDebtDate.GetValueOrDefault(CAS.SharePoint.Extensions.SPMinimum),
+          DocumentNo = y.DocumentNo,
+          Grade = y.Grade,
+          SKU = y.SKU,
+          Batch = y.Batch,
+          NetMass = y.NetMass.Value,
+          AccountBalance = y.AccountBalance,
+          ValidToDate = y.ValidToDate,
+          ClosingDate = y.ClosingDate,
+          ID = y.Id.Value
+        });
       // Optionally, add code here to pre-populate your form fields.
     }
-
-    // This method is called when the user clicks the button to start the workflow.
+    /// <summary>
+    /// Gets the initiation data. This method is called when the user clicks the button to start the workflow.
+    /// </summary>
+    /// <returns>System.String.</returns>
     private string GetInitiationData()
     {
-      // TODO: Return a string that contains the initiation data that will be passed to the workflow. Typically, this is in XML format.
-      return string.Empty;
+      InitializationFormData _initializationFormData = new InitializationFormData() { AccountsArray = new int[] { } };
+      return CAS.SharePoint.Serialization.JsonSerializer.Serialize<InitializationFormData>(_initializationFormData);
     }
-
     protected void StartWorkflow_Click(object sender, EventArgs e)
     {
       // Optionally, add code here to perform additional steps before starting your workflow
@@ -43,24 +74,22 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
         SPUtility.TransferToErrorPage(SPHttpUtility.UrlKeyValueEncode("Failed to Start Workflow"));
       }
     }
-
     protected void Cancel_Click(object sender, EventArgs e)
     {
       SPUtility.Redirect("Workflow.aspx", SPRedirectFlags.RelativeToLayoutsPage, HttpContext.Current, Page.ClientQueryString);
     }
+    private DataContextManagement<Entities> m_DataContextManagement = null;
 
     #region Workflow Initiation Code - Typically, the following code should not be changed
 
     private string associationGuid;
     private SPList workflowList;
     private SPListItem workflowListItem;
-
     private void InitializeParams()
     {
       try
       {
         this.associationGuid = Request.Params["TemplateID"];
-
         // Parameters 'List' and 'ID' will be null for site workflows.
         if (!String.IsNullOrEmpty(Request.Params["List"]) && !String.IsNullOrEmpty(Request.Params["ID"]))
         {
