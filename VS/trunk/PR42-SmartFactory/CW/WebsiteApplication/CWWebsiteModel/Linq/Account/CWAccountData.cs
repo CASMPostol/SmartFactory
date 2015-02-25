@@ -109,7 +109,7 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
           }
           _at = "CommonAccountData";
           this.CommonAccountData = accountData;
-          _at = "ClearenceLookup";
+          _at = "ClearanceLookup";
           this.ClearenceLookup = Element.GetAtIndex<Clearence>(_edc.Clearence, accountData.ClearenceLookup);
           _at = "ConsentLookup";
           this.ConsentLookup = Element.GetAtIndex<Consent>(_edc.Consent, CommonAccountData.ConsentLookup);
@@ -117,9 +117,9 @@ namespace CAS.SmartFactory.CW.WebsiteModel.Linq.Account
           VendorLookup = Vendor.FirstOrDefault(_edc);
           _at = "PCNTariffCodeLookup";
           PCNTariffCodeLookup = Element.GetAtIndex<PCNCode>(_edc.PCNCode, accountData.PCNTariffCodeLookup);
-          _at = "AnalizeGoodsDescription";
+          _at = "AnalyzeGoodsDescription";
           AnalizeGoodsDescription(_edc, ClearenceLookup.Clearence2SadGoodID.GoodsDescription, warnings);
-          _at = "AnalizeGoodsDescription";
+          _at = "AnalyzeGoodsDescription";
           AnalyzeCertificates(_edc, ClearenceLookup.Clearence2SadGoodID.SADRequiredDocuments(_edc, false), warnings);
           this.EntryDate = DateTime.Today;
           bool _fatal = (from _wx in warnings where _wx.Fatal select _wx).Any<Warnning>();

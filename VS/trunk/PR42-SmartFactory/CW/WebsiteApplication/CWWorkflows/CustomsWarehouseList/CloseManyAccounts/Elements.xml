@@ -7,7 +7,7 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Workflow
      Name="CloseManyAccounts"
-     Description="My SharePoint Workflow"
+     Description="Close Many Accounts"
      Id="fd268f48-35a2-4a23-b0ad-7f2b855b4d72"
      CodeBesideClass="CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts.CloseManyAccounts"
      CodeBesideAssembly="$assemblyname$" InstantiationUrl="_layouts/CWWorkflows/CustomsWarehouseList/CloseManyAccounts/CloseManyAccountsForm.aspx">

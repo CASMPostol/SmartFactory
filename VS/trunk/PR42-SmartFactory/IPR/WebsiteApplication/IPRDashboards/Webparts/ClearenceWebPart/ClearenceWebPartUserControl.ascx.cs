@@ -130,7 +130,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         if (!IsPostBack)
         {
-          at = "InitMahine";
+          at = "InitMachine";
           m_StateMachineEngine.InitMahine();
         }
         at = "Event handlers";
@@ -195,8 +195,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       }
       catch (Exception _ex)
       {
-        LocalStateMachineEngine.ActionResult _errr = LocalStateMachineEngine.ActionResult.Exception(_ex, _ex.Message);
-        this.ShowActionResult(_errr);
+        LocalStateMachineEngine.ActionResult _er = LocalStateMachineEngine.ActionResult.Exception(_ex, _ex.Message);
+        this.ShowActionResult(_er);
       }
       base.OnPreRender(e);
     }
@@ -437,7 +437,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       try
       {
         m_ControlState.ClearanceID = e.ID;
-        ListItem _cs = m_SelectGroupRadioButtonList.Items.FindByValue(CurrentClearence.ProcedureCode);
+        ListItem _cs = m_SelectGroupRadioButtonList.Items.FindByValue(CurrentClearance.ProcedureCode);
         if (_cs == null)
         {
           this.ShowActionResult(GenericStateMachineEngine.ActionResult.NotValidated("ThisClearanceCannotBeEditedItIsNotCompensationGoodClearance".GetLocalizedString()));
@@ -455,7 +455,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         m_ControlState.ReadOnly = false;
         QueryAssigned();
         string _export = "3151";
-        switch (CurrentClearence.ClearenceProcedure.Value)
+        switch (CurrentClearance.ClearenceProcedure.Value)
         {
           case ClearenceProcedure._3151:
           case ClearenceProcedure._3171:
@@ -486,10 +486,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     #region business logic
     private void Update()
     {
-      if (CurrentClearence == null)
+      if (CurrentClearance == null)
         throw GenericStateMachineEngine.ActionResult.Exception(null, "Internal error - ClearanceID is null or empty at Update");
       Entities _edc = m_DataContextManagement.DataContext;
-      CurrentClearence.UpdateClerance(_edc, m_SelectGroupRadioButtonList.SelectedValue, SelectedClearenceProcedure);
+      CurrentClearance.UpdateClerance(_edc, m_SelectGroupRadioButtonList.SelectedValue, SelectedClearenceProcedure);
       //remove from clearance
       foreach (Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyAdded)
       {
@@ -502,30 +502,30 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         if (_row.Disposal)
         {
           Disposal _dspsl = Element.GetAtIndex<Disposal>(_edc.Disposal, _row.Id);
-          _dspsl.Disposal2ClearenceIndex = CurrentClearence;
+          _dspsl.Disposal2ClearenceIndex = CurrentClearance;
         }
         else
         {
           IPRClass _ipr = Element.GetAtIndex<IPRClass>(_edc.IPR, _row.Id);
-          _ipr.AddDisposal(_edc, Convert.ToDecimal(_row.Quantity), CurrentClearence);
+          _ipr.AddDisposal(_edc, Convert.ToDecimal(_row.Quantity), CurrentClearance);
         }
       }
-      CurrentClearence.UpdateTitle(_edc);
+      CurrentClearance.UpdateTitle(_edc);
       m_DataContextManagement.DataContext.SubmitChanges();
     }
     private void Create(NamedTraceLogger.TraceAction trace)
     {
-      CurrentClearence = Clearence.CreateClearance(m_DataContextManagement.DataContext, m_SelectGroupRadioButtonList.SelectedValue, SelectedClearenceProcedure, trace);
+      CurrentClearance = Clearence.CreateClearance(m_DataContextManagement.DataContext, m_SelectGroupRadioButtonList.SelectedValue, SelectedClearenceProcedure, trace);
       Update();
       Response.Redirect(Request.RawUrl);
     }
     private void Delete()
     {
       Entities _edc = m_DataContextManagement.DataContext;
-      foreach (Disposal _dx in CurrentClearence.Disposal(_edc))
+      foreach (Disposal _dx in CurrentClearance.Disposal(_edc))
         RemoveDisposalFromClearance(_edc, _dx);
       m_DataContextManagement.DataContext.SubmitChanges();
-      m_DataContextManagement.DataContext.Clearence.DeleteOnSubmit(CurrentClearence);
+      m_DataContextManagement.DataContext.Clearence.DeleteOnSubmit(CurrentClearance);
       ClearAssigned();
       _edc.SubmitChanges();
     }
@@ -580,30 +580,30 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       try
       {
         Entities _edc = m_DataContextManagement.DataContext;
-        string _masterDocumentName = CurrentClearence.FinishedGoodsExportFormFileName(_edc);
+        string _masterDocumentName = CurrentClearance.FinishedGoodsExportFormFileName(_edc);
         int _sadConsignmentIdentifier = default(int);
-        Func<IEnumerable<Disposal>> _dspslLst = () => CurrentClearence.Disposal(_edc);
-        switch (ToSelectedGroup(CurrentClearence.ProcedureCode))
+        Func<IEnumerable<Disposal>> _dspslLst = () => CurrentClearance.Disposal(_edc);
+        switch (ToSelectedGroup(CurrentClearance.ProcedureCode))
         {
           case Group.Tobacco:
           case Group.TobaccoNotAllocated:
             DocumentContent _newTobaccoDoc =
-              DisposalsFormFactory.GetTobaccoFreeCirculationFormContent(_dspslLst(), CurrentClearence.ClearenceProcedure.Value, _masterDocumentName);
+              DisposalsFormFactory.GetTobaccoFreeCirculationFormContent(_dspslLst(), CurrentClearance.ClearenceProcedure.Value, _masterDocumentName);
             _sadConsignmentIdentifier = SPDocumentFactory.Prepare(SPContext.Current.Web, _newTobaccoDoc, _masterDocumentName, CompensatiionGood.Tobacco);
             break;
           case Group.Waste:
           case Group.Dust:
-            DocumentContent _newDustWasteDoc = DisposalsFormFactory.GetDustWasteFormContent(_dspslLst(), CurrentClearence.ClearenceProcedure.Value, _masterDocumentName);
+            DocumentContent _newDustWasteDoc = DisposalsFormFactory.GetDustWasteFormContent(_dspslLst(), CurrentClearance.ClearenceProcedure.Value, _masterDocumentName);
             CompensatiionGood _compensatiionGood = SelectedGroup == Group.Waste ? CompensatiionGood.Waste : CompensatiionGood.Dust;
             _sadConsignmentIdentifier = SPDocumentFactory.Prepare(SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, _compensatiionGood);
             break;
           case Group.Cartons:
-            DocumentContent _newBoxFormContent = DisposalsFormFactory.GetBoxFormContent(_dspslLst(), CurrentClearence.ClearenceProcedure.Value, _masterDocumentName);
+            DocumentContent _newBoxFormContent = DisposalsFormFactory.GetBoxFormContent(_dspslLst(), CurrentClearance.ClearenceProcedure.Value, _masterDocumentName);
             _sadConsignmentIdentifier = SPDocumentFactory.Prepare(SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, CompensatiionGood.Cartons);
             break;
         }
         SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>(_edc.SADConsignment, _sadConsignmentIdentifier);
-        CurrentClearence.ClearThroughCustom(_edc, _sadConsignment, (x, y, z) => { });  //TODO implement tracing
+        CurrentClearance.ClearThroughCustom(_edc, _sadConsignment, (x, y, z) => { });  //TODO implement tracing
         _edc.SubmitChanges();
         Response.Redirect(Request.RawUrl);
         return GenericStateMachineEngine.ActionResult.Success;
@@ -638,10 +638,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private void QueryAssigned()
     {
-      if (CurrentClearence == null)
+      if (CurrentClearance == null)
         return;
       m_ControlState.AssignedItems.SelectionTable.Clear();
-      List<Selection.SelectionTableRowWraper> _dsposals = (from _dsx in CurrentClearence.Disposal(m_DataContextManagement.DataContext)
+      List<Selection.SelectionTableRowWraper> _dsposals = (from _dsx in CurrentClearance.Disposal(m_DataContextManagement.DataContext)
                                                            select new Selection.SelectionTableRowWraper(_dsx)).ToList();
       m_ControlState.AssignedItems.SelectionTable.Add(_dsposals);
     }
@@ -781,22 +781,22 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     private const string m_QuantityNewValue = "QuantityNewValue";
     private ObjectDataSource m_AvailableGridViewDataSource;
     private ObjectDataSource m_AssignedGridViewDataSource;
-    private Clearence _clearence = default(Clearence);
-    private Clearence CurrentClearence
+    private Clearence _clearance = default(Clearence);
+    private Clearence CurrentClearance
     {
       get
       {
-        if (_clearence != null)
-          return _clearence;
+        if (_clearance != null)
+          return _clearance;
         if (m_ControlState.ClearanceID.IsNullOrEmpty())
           return null;
-        _clearence = Element.GetAtIndex<Clearence>(m_DataContextManagement.DataContext.Clearence, m_ControlState.ClearanceID);
-        return _clearence;
+        _clearance = Element.GetAtIndex<Clearence>(m_DataContextManagement.DataContext.Clearence, m_ControlState.ClearanceID);
+        return _clearance;
         ;
       }
       set
       {
-        _clearence = value;
+        _clearance = value;
         m_ControlState.ClearanceID = value.Id.Value.ToString();
         m_ControlState.ClearanceTitle = value.Title;
       }
@@ -843,7 +843,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         m_AvailablePanel.Controls.Add(ControlExtensions.CreateMessage(_msg));
         return;
       }
-      _sender.EditIndex = e.NewEditIndex;  //NewEditIndex is index of the selectet item in filtering mode, but unfortunately entering editing mode the filter is not active.
+      _sender.EditIndex = e.NewEditIndex;  //NewEditIndex is index of the selected item in filtering mode, but unfortunately entering editing mode the filter is not active.
       m_AvailableGridViewSkipBinding = true;
     }
     /// <summary>
