@@ -36,8 +36,7 @@
 					<td class="ms-authoringcontrols" width="10">&#160;</td>
 					<td class="ms-authoringcontrols" colspan="2">
 					    <!-- SPDataGrid with CW all accounts -->
-                        <SharePoint:SPGridView ID="m_AvailableGridView" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ID" AllowFiltering="true" 
-                            FilterDataFields="Title,CustomsDebtDate,DocumentNo,Grade,SKU,Batch,NetMass,AccountBalance,ValidToDate,ClosingDate" >
+                        <SharePoint:SPGridView ID="m_AvailableGridView" runat="server" AllowSorting="False" AutoGenerateColumns="False" DataKeyNames="ID" AllowFiltering="False">
                             <Columns>
                                 <asp:CheckBoxField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_Select%>" DataField="IsSelected" ReadOnly="false" ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_Title%>" DataField="Title" SortExpression="Title" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
