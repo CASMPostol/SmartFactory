@@ -38,7 +38,11 @@
 					    <!-- SPDataGrid with CW all accounts -->
                         <SharePoint:SPGridView ID="m_AvailableGridView" runat="server" AllowSorting="False" AutoGenerateColumns="False" DataKeyNames="ID" AllowFiltering="False">
                             <Columns>
-                                <asp:CheckBoxField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_Select%>" DataField="IsSelected" ReadOnly="false" ItemStyle-HorizontalAlign="Center" />
+                                <asp:TemplateField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_Select%>" ItemStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:CheckBox ID="x_CheckBox" runat="server" Checked="true" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_Title%>" DataField="Title" SortExpression="Title" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_CustomsDebtDate%>" DataField="CustomsDebtDate" SortExpression="CustomsDebtDate" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_DocumentNo%>" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
