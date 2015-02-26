@@ -139,6 +139,7 @@
     <Compile Include="CustomsWarehouseList\CloseAccount\CloseAccount.Designer.cs">
       <DependentUpon>CloseAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomsWarehouseList\CloseManyAccounts\CustomsWarehouseDataSource.cs" />
     <Compile Include="CustomsWarehouseList\CloseManyAccounts\CloseManyAccounts.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -215,7 +215,6 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
 
     #endregion
 
-    private WhileActivity WhileActivity;
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity ApplicationErrorLogToHistory;
     private FaultHandlerActivity ApplicationErrorfaultHandlerActivity;
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity WhileLogToHistory;
@@ -228,22 +227,6 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
     private CodeActivity CloseManyAccountCodeActivity;
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity StartingHistoryListActivity;
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated WorkflowActivated;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   }

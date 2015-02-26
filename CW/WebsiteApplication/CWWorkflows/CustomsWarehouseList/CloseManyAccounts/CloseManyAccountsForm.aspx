@@ -37,9 +37,9 @@
 					<td class="ms-authoringcontrols" colspan="2">
 					    <!-- SPDataGrid with CW all accounts -->
                         <SharePoint:SPGridView ID="m_AvailableGridView" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ID" AllowFiltering="true" 
-                            FilterDataFields="Title,CustomsDebtDate,DocumentNo,Grade,SKU,Batch,NetMass,AccountBalance,ValidToDate,ClosingDate">
+                            FilterDataFields="Title,CustomsDebtDate,DocumentNo,Grade,SKU,Batch,NetMass,AccountBalance,ValidToDate,ClosingDate" >
                             <Columns>
-                                <asp:CheckBoxField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_Select%>" ItemStyle-HorizontalAlign="Center" />
+                                <asp:CheckBoxField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_Select%>" DataField="IsSelected" ReadOnly="false" ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_Title%>" DataField="Title" SortExpression="Title" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_CustomsDebtDate%>" DataField="CustomsDebtDate" SortExpression="CustomsDebtDate" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_DocumentNo%>" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
