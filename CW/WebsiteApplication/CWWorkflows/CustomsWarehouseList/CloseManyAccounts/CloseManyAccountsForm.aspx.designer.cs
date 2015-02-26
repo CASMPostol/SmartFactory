@@ -49,42 +49,6 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts {
         protected global::Microsoft.SharePoint.WebControls.SPGridView m_AvailableGridView;
         
         /// <summary>
-        /// m_AvailableGridViewPager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.SPGridViewPager m_AvailableGridViewPager;
-        
-        /// <summary>
-        /// SelectedAccounts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UserControl SelectedAccounts;
-        
-        /// <summary>
-        /// m_SelectedGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.SPGridView m_SelectedGridView;
-        
-        /// <summary>
-        /// m_SelectedGridViewPager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.SPGridViewPager m_SelectedGridViewPager;
-        
-        /// <summary>
         /// ButtonSection control.
         /// </summary>
         /// <remarks>
