@@ -2,6 +2,26 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="DisposalsViewDashboard">
     <File Path="WebPartPagesCW\WebPageTemplate_DisposalsView.aspx" Url="WebPartPagesCW/DisposalsViewDashboard.aspx">
+      <AllUsersWebPart WebPartZoneID="GenerateSadConsignment" WebPartOrder="0">
+        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.CW.Dashboards.Webparts.GenerateSadConsignmentHost.GenerateSadConsignmentHost, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Generate SAD Consignment</property>
+        <property name="Description" type="string">Generate Sad Consignment Web Part</property>
+        <property name="ScrollBars" type="string">Auto</property>
+        <property name="Width" type="unit">230px</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>
+]]>
+      </AllUsersWebPart>
       <View List="Lists/DisposalRequestLibrary" BaseViewID="14" WebPartZoneID="DisposalRequestLibrary" WebPartOrder="0">
         <![CDATA[
          <webParts>

@@ -21,7 +21,6 @@ namespace CAS.SmartFactory.CW.Dashboards.WebPartPagesCW
      internal static string MenuCheckListExitSheetTitle = "CheckListExitSheetTitle".GetCWLocalizationExpression();
      internal static string MenuDisposalRequestTitle = "DisposalRequestTitle".GetCWLocalizationExpression();
      internal static string MenuDisposalsViewTitle = "DisposalsViewTitle".GetCWLocalizationExpression();
-     internal static string MenuGenerateSadConsignmentTitle = "GenerateSadConsignmentTitle".GetCWLocalizationExpression();
 
      // DashboardsURL
      internal const string WebPartPagesFolder = "WebPartPagesCW";
@@ -34,7 +33,6 @@ namespace CAS.SmartFactory.CW.Dashboards.WebPartPagesCW
      internal const string URLCheckListExitSheetDashboard = WebPartPagesFolder + "/CheckListExitSheetDashboard.aspx";
      internal const string URLDisposalRequestDashboard = WebPartPagesFolder + "/DisposalRequestDashboard.aspx";
      internal const string URLDisposalsViewDashboard = WebPartPagesFolder + "/DisposalsViewDashboard.aspx";
-     internal const string URLGenerateSadConsignmentDashboard = WebPartPagesFolder + "/GenerateSadConsignmentDashboard.aspx";
 
      internal static void RemovePages(Entities _edc, SPWeb _root)
      {

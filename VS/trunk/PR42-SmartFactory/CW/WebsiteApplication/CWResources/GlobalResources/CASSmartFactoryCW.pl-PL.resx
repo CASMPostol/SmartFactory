@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,140 +59,137 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<data name="CAS_ASPX_CWBookDashboard" xml:space="preserve">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CAS_ASPX_CWBookDashboard" xml:space="preserve">
     <value>Księgi Składu Celnego</value>
   </data>
-	<data name="CAS_ASPX_DisposalRequestDashboard" xml:space="preserve">
+  <data name="CAS_ASPX_DisposalRequestDashboard" xml:space="preserve">
     <value>Dyspozycje</value>
   </data>
-	<data name="CAS_ASPX_DisposalsViewDashboard" xml:space="preserve">
+  <data name="CAS_ASPX_DisposalsViewDashboard" xml:space="preserve">
     <value>Dyspozycje podgląd</value>
   </data>
-	<data name="CAS_ASPX_PrintCheckListAndExitSheetDashboard" xml:space="preserve">
+  <data name="CAS_ASPX_PrintCheckListAndExitSheetDashboard" xml:space="preserve">
     <value>Karta wyprowadzenia i lista kontrolna</value>
   </data>
-	<data name="CAS_ASPX_SupplementCWBookDashboard" xml:space="preserve">
+  <data name="CAS_ASPX_SupplementCWBookDashboard" xml:space="preserve">
     <value>Uzupełnienie Księgi Składu Celnego</value>
   </data>
-	<data name="CAS_ASPX_SupplementWZNoDashboard" xml:space="preserve">
+  <data name="CAS_ASPX_SupplementWZNoDashboard" xml:space="preserve">
     <value>Uzupełnienie WZ nr</value>
   </data>
-	<data name="CAS_ASPX_CWBookClosedDashboard" xml:space="preserve">
+  <data name="CAS_ASPX_CWBookClosedDashboard" xml:space="preserve">
     <value>Księgi Składu Celnego - zamknięte</value>
   </data>
-	<data name="CAS_ASPX_CWBookClosedCustomsOfficeDashboard" xml:space="preserve">
+  <data name="CAS_ASPX_CWBookClosedCustomsOfficeDashboard" xml:space="preserve">
     <value>Księgi Składu Celnego - zamknięte - Urząd Celny</value>
   </data>
-	<data name="CAS_ASPX_CWBookCustomsOfficeDashboard" xml:space="preserve">
+  <data name="CAS_ASPX_CWBookCustomsOfficeDashboard" xml:space="preserve">
     <value>Księgi Składu Celnego - Urząd Celny</value>
   </data>
-	<data name="CAS_ASPX_GenerateSadConsignmentDashboard" xml:space="preserve">
-    <value>Generuj Sad Consignment</value>
+  <data name="CAS_ASPX_Select" xml:space="preserve">
+    <value>Wybierz</value>
   </data>
-	<data name="CAS_ASPX_Select" xml:space="preserve">
-		<value>Wybierz</value>
-	</data>
-	<data name="CAS_ASPX_Title" xml:space="preserve">
-		<value>Nazwa</value>
-	</data>
-	<data name="CAS_ASPX_CustomsDebtDate" xml:space="preserve">
-		<value>Data długu celnego</value>
-	</data>
-	<data name="CAS_ASPX_DocumentNo" xml:space="preserve">
-		<value>SAD wprowadzenia nr</value>
-	</data>
-	<data name="CAS_ASPX_Grade" xml:space="preserve">
-		<value>Typ tytoniu</value>
-	</data>
-	<data name="CAS_ASPX_SKU" xml:space="preserve">
-		<value>SKU</value>
-	</data>
-	<data name="CAS_ASPX_Batch" xml:space="preserve">
-		<value>Batch</value>
-	</data>
-	<data name="CAS_ASPX_NetMass" xml:space="preserve">
-		<value>Masa netto [kg]</value>
-	</data>
-	<data name="CAS_ASPX_AccountBalance" xml:space="preserve">
-		<value>Stan na dzień [kg]</value>
-	</data>
-	<data name="CAS_ASPX_ValidToDate" xml:space="preserve">
-		<value>Dok. ważny do dnia</value>
-	</data>
-	<data name="CAS_ASPX_ClosingDate" xml:space="preserve">
-		<value>Data zamknięcia</value>
-	</data>
-	<data name="CAS_ASPX_AvailableAccounts" xml:space="preserve">
-		<value>Dostępne konta</value>
-	</data>
-	<data name="CAS_ASPX_CloseAccountsButton" xml:space="preserve">
-		<value>Zamknij konta</value>
-	</data>
-	<data name="CAS_ASPX_CancelButton" xml:space="preserve">
-		<value>Anuluj</value>
-	</data>
-	<data name="CAS_ASPX_SelectedAccounts" xml:space="preserve">
-		<value>Wybrane konta</value>
-	</data>
-	<data name="CAS_ASPX_CloseManyAccountsForm" xml:space="preserve">
-		<value>Zamykanie wielu kont</value>
-	</data>
+  <data name="CAS_ASPX_Title" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="CAS_ASPX_CustomsDebtDate" xml:space="preserve">
+    <value>Data długu celnego</value>
+  </data>
+  <data name="CAS_ASPX_DocumentNo" xml:space="preserve">
+    <value>SAD wprowadzenia nr</value>
+  </data>
+  <data name="CAS_ASPX_Grade" xml:space="preserve">
+    <value>Typ tytoniu</value>
+  </data>
+  <data name="CAS_ASPX_SKU" xml:space="preserve">
+    <value>SKU</value>
+  </data>
+  <data name="CAS_ASPX_Batch" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="CAS_ASPX_NetMass" xml:space="preserve">
+    <value>Masa netto [kg]</value>
+  </data>
+  <data name="CAS_ASPX_AccountBalance" xml:space="preserve">
+    <value>Stan na dzień [kg]</value>
+  </data>
+  <data name="CAS_ASPX_ValidToDate" xml:space="preserve">
+    <value>Dok. ważny do dnia</value>
+  </data>
+  <data name="CAS_ASPX_ClosingDate" xml:space="preserve">
+    <value>Data zamknięcia</value>
+  </data>
+  <data name="CAS_ASPX_AvailableAccounts" xml:space="preserve">
+    <value>Dostępne konta</value>
+  </data>
+  <data name="CAS_ASPX_CloseAccountsButton" xml:space="preserve">
+    <value>Zamknij konta</value>
+  </data>
+  <data name="CAS_ASPX_CancelButton" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="CAS_ASPX_SelectedAccounts" xml:space="preserve">
+    <value>Wybrane konta</value>
+  </data>
+  <data name="CAS_ASPX_CloseManyAccountsForm" xml:space="preserve">
+    <value>Zamykanie wielu kont</value>
+  </data>
 </root>

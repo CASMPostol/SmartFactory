@@ -11,6 +11,5 @@
     <ProjectItemFile Source="WebPageTemplate_CWBook.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_CWBookClosedCustomsOffice.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_CWBookClosed.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
-    <ProjectItemFile Source="WebPageTemplate_GenerateSadConsignment.aspx" Target="WebPartPagesCW\" Type="ElementFile" />
   </Files>
 </ProjectItem>

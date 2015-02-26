@@ -43,7 +43,6 @@ namespace CAS.SmartFactory.CW.Dashboards.Features.CWDashboards
           _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSupplementWZNoTitle, ProjectElementManagement.URLSupplementWZNoDashboard));
           _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuDisposalRequestTitle, ProjectElementManagement.URLDisposalRequestDashboard));
           _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuDisposalsViewTitle, ProjectElementManagement.URLDisposalsViewDashboard));
-          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuGenerateSadConsignmentTitle, ProjectElementManagement.URLGenerateSadConsignmentDashboard));
           foreach (SPNavigationNode item in _topNav)
             item.Update();
           //WebPartPages.ProjectElementManagement.SetupConnections(_edc, _root);

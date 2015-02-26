@@ -61,6 +61,78 @@ namespace CAS.SmartFactory.CW.Resources.GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account balance [kg].
+        /// </summary>
+        internal static string CAS_ASPX_AccountBalance {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_AccountBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available accounts.
+        /// </summary>
+        internal static string CAS_ASPX_AvailableAccounts {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_AvailableAccounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Batch.
+        /// </summary>
+        internal static string CAS_ASPX_Batch {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_Batch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string CAS_ASPX_CancelButton {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_CancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close accounts.
+        /// </summary>
+        internal static string CAS_ASPX_CloseAccountsButton {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_CloseAccountsButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close many accounts.
+        /// </summary>
+        internal static string CAS_ASPX_CloseManyAccountsForm {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_CloseManyAccountsForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Closing date.
+        /// </summary>
+        internal static string CAS_ASPX_ClosingDate {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_ClosingDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customs debt date.
+        /// </summary>
+        internal static string CAS_ASPX_CustomsDebtDate {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_CustomsDebtDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customs Warehouse Book  - closed accounts - Customs Office.
         /// </summary>
         internal static string CAS_ASPX_CWBookClosedCustomsOfficeDashboard {
@@ -115,11 +187,29 @@ namespace CAS.SmartFactory.CW.Resources.GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generate Sad Consignment.
+        ///   Looks up a localized string similar to Introducing SAD No.
         /// </summary>
-        internal static string CAS_ASPX_GenerateSadConsignmentDashboard {
+        internal static string CAS_ASPX_DocumentNo {
             get {
-                return ResourceManager.GetString("CAS_ASPX_GenerateSadConsignmentDashboard", resourceCulture);
+                return ResourceManager.GetString("CAS_ASPX_DocumentNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grade.
+        /// </summary>
+        internal static string CAS_ASPX_Grade {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_Grade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Net mass [kg].
+        /// </summary>
+        internal static string CAS_ASPX_NetMass {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_NetMass", resourceCulture);
             }
         }
         
@@ -129,6 +219,33 @@ namespace CAS.SmartFactory.CW.Resources.GlobalResources {
         internal static string CAS_ASPX_PrintCheckListAndExitSheetDashboard {
             get {
                 return ResourceManager.GetString("CAS_ASPX_PrintCheckListAndExitSheetDashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        internal static string CAS_ASPX_Select {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Accounts.
+        /// </summary>
+        internal static string CAS_ASPX_SelectedAccounts {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_SelectedAccounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SKU.
+        /// </summary>
+        internal static string CAS_ASPX_SKU {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_SKU", resourceCulture);
             }
         }
         
@@ -147,6 +264,24 @@ namespace CAS.SmartFactory.CW.Resources.GlobalResources {
         internal static string CAS_ASPX_SupplementWZNoDashboard {
             get {
                 return ResourceManager.GetString("CAS_ASPX_SupplementWZNoDashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        internal static string CAS_ASPX_Title {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid to date.
+        /// </summary>
+        internal static string CAS_ASPX_ValidToDate {
+            get {
+                return ResourceManager.GetString("CAS_ASPX_ValidToDate", resourceCulture);
             }
         }
     }
