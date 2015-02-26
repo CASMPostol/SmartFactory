@@ -20,9 +20,10 @@ using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
 using Microsoft.SharePoint.Workflow;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Linq;
 
 namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
 {
@@ -35,23 +36,25 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
     protected void Page_Load(object sender, EventArgs e)
     {
       InitializeParams();
-      m_AvailableGridView.DataSource = m_DataContextManagement.DataContext.CustomsWarehouse.
+      m_DataSource = m_DataContextManagement.DataContext.CustomsWarehouse.
         Where<CustomsWarehouse>(x => !x.AccountClosed.Value && x.AccountBalance == 0).
-        Select(y => new
+        Select(y => new CustomsWarehouseDataSource
         {
-          Title = y.Title,
+          Batch = y.Batch,
+          ClosingDate = y.ClosingDate.GetValueOrDefault(CAS.SharePoint.Extensions.SPMinimum),
           CustomsDebtDate = y.CustomsDebtDate.GetValueOrDefault(CAS.SharePoint.Extensions.SPMinimum),
           DocumentNo = y.DocumentNo,
           Grade = y.Grade,
+          Title = y.Title,
           SKU = y.SKU,
-          Batch = y.Batch,
-          NetMass = y.NetMass.Value,
-          AccountBalance = y.AccountBalance,
-          ValidToDate = y.ValidToDate,
-          ClosingDate = y.ClosingDate,
-          ID = y.Id.Value
-        });
-      // Optionally, add code here to pre-populate your form fields.
+          NetMass = y.NetMass.GetValueOrDefault(-1),
+          AccountBalance = y.AccountBalance.GetValueOrDefault(-1),
+          ValidToDate = y.ValidToDate.GetValueOrDefault(CAS.SharePoint.Extensions.SPMinimum),
+          Id = y.Id.Value,
+          IsSelected = true
+        }).ToList<CustomsWarehouseDataSource>();
+      m_AvailableGridView.DataSource = m_DataSource;
+      m_AvailableGridView.DataBind();
     }
     /// <summary>
     /// Gets the initiation data. This method is called when the user clicks the button to start the workflow.
@@ -59,9 +62,13 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
     /// <returns>System.String.</returns>
     private string GetInitiationData()
     {
-      InitializationFormData _initializationFormData = new InitializationFormData() { AccountsArray = new int[] { } };
+      InitializationFormData _initializationFormData = new InitializationFormData() 
+        { AccountsArray = m_DataSource.Where<CustomsWarehouseDataSource>(x => x.IsSelected).
+                                       Select<CustomsWarehouseDataSource, int>(y=> y.Id).
+                                       ToArray<int>() };
       return CAS.SharePoint.Serialization.JsonSerializer.Serialize<InitializationFormData>(_initializationFormData);
     }
+    private List<CustomsWarehouseDataSource> m_DataSource = null;
     protected void StartWorkflow_Click(object sender, EventArgs e)
     {
       // Optionally, add code here to perform additional steps before starting your workflow
