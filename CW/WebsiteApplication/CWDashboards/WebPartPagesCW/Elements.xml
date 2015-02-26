@@ -10,6 +10,5 @@
 <File Path="WebPartPagesCW\WebPageTemplate_CWBook.aspx" Url="WebPartPagesCW/WebPageTemplate_CWBook.aspx" />
 <File Path="WebPartPagesCW\WebPageTemplate_CWBookClosedCustomsOffice.aspx" Url="WebPartPagesCW/WebPageTemplate_CWBookClosedCustomsOffice.aspx" />
 <File Path="WebPartPagesCW\WebPageTemplate_CWBookClosed.aspx" Url="WebPartPagesCW/WebPageTemplate_CWBookClosed.aspx" />
-    <File Path="WebPartPagesCW\WebPageTemplate_GenerateSadConsignment.aspx" Url="WebPartPagesCW/WebPageTemplate_GenerateSadConsignment.aspx" />
   </Module>
 </Elements>

@@ -21,6 +21,12 @@
     <div id="Body">
         <table border="0" width="100%">
             <tr>
+                <td valign="top" width="250">
+                        <WebPartPages:WebpartZone
+                        ID="GenerateSadConsignment" runat="server"
+                        Title="Generate Sad Consignment Web Part Zone"
+                        FrameType="TitleBarOnly" />
+                </td>
                 <td valign="top">
                     <WebPartPages:WebPartZone
                         ID="DisposalRequestLibrary" runat="server"
@@ -29,7 +35,7 @@
                 </td>
             </tr>
             <tr>
-                <td valign="top">
+                <td valign="top" colspan="2">
                     <WebPartPages:WebPartZone
                         ID="StatementLibrary" runat="server"
                         Title="Statement Library Web Part Zone"
@@ -37,7 +43,7 @@
                 </td>
             </tr>
             <tr>
-                <td valign="top">
+                <td valign="top" colspan="2">
                     <WebPartPages:WebPartZone
                         ID="DisposalsListWebPart" runat="server"
                         Title="Disposals List Web Part Zone"

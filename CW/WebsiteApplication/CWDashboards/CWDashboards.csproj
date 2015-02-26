@@ -87,9 +87,6 @@
     <None Include="Dashboards\DisposalsViewDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{72fc666b-ec4f-4501-ba08-aff8e6440a10}</SharePointProjectItemId>
     </None>
-    <None Include="Dashboards\GenerateSadConsignmentDashboard\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{6051ca70-b74a-41bf-9e06-1acfefb2cd97}</SharePointProjectItemId>
-    </None>
     <None Include="Dashboards\SupplementCWBookDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a3940adb-0499-45fa-abe6-0e546b458757}</SharePointProjectItemId>
     </None>
@@ -168,7 +165,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Dashboards\DisposalsViewDashboard\Elements.xml" />
-    <Content Include="Dashboards\GenerateSadConsignmentDashboard\Elements.xml" />
     <Content Include="Dashboards\SupplementCWBookDashboard\Elements.xml" />
     <Content Include="Dashboards\SupplementWZNoDashboard\Elements.xml">
       <SubType>Designer</SubType>
@@ -192,7 +188,6 @@
     <Content Include="WebPartPagesCW\WebPageTemplate_CWBookCustomsOffice.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_DisposalRequest.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_DisposalsView.aspx" />
-    <Content Include="WebPartPagesCW\WebPageTemplate_GenerateSadConsignment.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_SupplementCWBook.aspx" />
     <Content Include="WebPartPagesCW\WebPageTemplate_SupplementWZNo.aspx" />
     <Content Include="Webparts\CheckListHost\Elements.xml" />
