@@ -40,9 +40,14 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+      if (this.IsPostBack)
+      {
+        TraceEvent("IsPostBack of CloseManyAccountsForm.Page_Load", 45, TraceSeverity.Monitorable);
+        return;
+      }
       try
       {
-        TraceEvent("Entering CloseManyAccountsForm.Page_Load", 42, TraceSeverity.Monitorable);
+        TraceEvent("Entering CloseManyAccountsForm.Page_Load", 45, TraceSeverity.Monitorable);
         InitializeParams();
         m_DataSource = m_DataContextManagement.DataContext.CustomsWarehouse.
           Where<CustomsWarehouse>(x => !x.AccountClosed.Value && x.AccountBalance == 0).
