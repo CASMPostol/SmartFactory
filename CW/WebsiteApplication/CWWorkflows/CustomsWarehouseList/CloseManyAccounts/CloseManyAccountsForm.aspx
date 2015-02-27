@@ -53,14 +53,7 @@
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_AccountBalance%>" DataField="AccountBalance" SortExpression="AccountBalance" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_ValidToDate%>" DataField="ValidToDate" DataFormatString="{0:d}" SortExpression="ValidToDate" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_ClosingDate%>" DataField="ClosingDate" DataFormatString="{0:d}" SortExpression="ClosingDate" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
-                                <asp:TemplateField HeaderText="ID" SortExpression="ID" Visible="False">
-                                                <EditItemTemplate>
-                                                    <asp:Label ID="IDEditLabel" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
-                                                </EditItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="IDItemLabel" runat="server" Text='<%# Bind("ID") %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                <asp:BoundField HeaderText="Id" DataField="Id" Visible="False" SortExpression="Id" ReadOnly="true" ItemStyle-HorizontalAlign="Right"/>
                             </Columns>
                         </SharePoint:SPGridView>			
 					</td>
