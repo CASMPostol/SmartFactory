@@ -68,15 +68,15 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
     private void WhileActivityCondition(object sender, ConditionalEventArgs e)
     {
       e.Result = m_LoopCounter < m_InitializationData.AccountsArray.Length;
-      TraceEvent(String.Format("CloseManyAccounts.WhileActivityCondition: Item: {0}/{1}", m_LoopCounter + 1, m_InitializationData.AccountsArray.Length), 70, TraceSeverity.Verbose);
     }
     private void onWhileLogToHistory(object sender, EventArgs e)
     {
+      TraceEvent("Entering CloseManyAccounts.onWhileLogToHistory", 74, TraceSeverity.Verbose);
       WhileLogToHistory_HistoryOutcome = "Closing account";
       using (Entities _entities = new Entities(workflowProperties.WebUrl))
       {
         CustomsWarehouse _cw = Element.GetAtIndex<CustomsWarehouse>(_entities.CustomsWarehouse, m_InitializationData.AccountsArray[m_LoopCounter]);
-        WhileLogToHistory_HistoryDescription = String.Format("Closing account: {0}", _cw.Title);
+        WhileLogToHistory_HistoryDescription = String.Format("Closing account: {0} - Item: {1}/{2}", _cw.Title, m_LoopCounter + 1, m_InitializationData.AccountsArray.Length);
         TraceEvent("CloseManyAccounts.onWhileLogToHistory: " + WhileLogToHistory_HistoryDescription, 79, TraceSeverity.Verbose);
       }
     }
