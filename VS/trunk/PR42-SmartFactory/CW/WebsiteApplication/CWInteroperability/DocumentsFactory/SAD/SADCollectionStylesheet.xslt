@@ -29,7 +29,7 @@
     <xsl:apply-templates select="cas:ListOfSAD" />
   </xsl:template>
   <xsl:template match="cas:ListOfSAD">
-    <xsl:apply-templates select="cas:SAD" />
+    <xsl:apply-templates select="cas:SAD" />   
   </xsl:template>
   <xsl:template match="cas:SAD">
     <xsl:apply-templates select="sad:Zgloszenie" />
@@ -69,7 +69,9 @@
     <p>
       <xsl:apply-templates select="sad:Towar" />
     </p>
-  </xsl:template>
+    <br/>
+    <br/>
+  </xsl:template> 
   <xsl:template match="sad:Nadawca">
     <table width="35%" cellspaing="10" cellpadding="10" border="1">
       <tr>
