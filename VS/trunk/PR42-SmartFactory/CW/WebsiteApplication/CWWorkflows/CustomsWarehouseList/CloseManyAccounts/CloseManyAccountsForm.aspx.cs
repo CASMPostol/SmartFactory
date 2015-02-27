@@ -14,6 +14,7 @@
 //_______________________________________________________________
 
 using CAS.SharePoint.Linq;
+using CAS.SharePoint.Serialization;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Utilities;
@@ -24,6 +25,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
 {
@@ -62,11 +64,15 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
     /// <returns>System.String.</returns>
     private string GetInitiationData()
     {
-      InitializationFormData _initializationFormData = new InitializationFormData() 
-        { AccountsArray = m_DataSource.Where<CustomsWarehouseDataSource>(x => x.IsSelected).
-                                       Select<CustomsWarehouseDataSource, int>(y=> y.Id).
-                                       ToArray<int>() };
-      return CAS.SharePoint.Serialization.JsonSerializer.Serialize<InitializationFormData>(_initializationFormData);
+      List<int> _selected = new List<int>();
+      foreach (GridViewRow _row in m_AvailableGridView.Rows)
+      {
+        CheckBox _cb = (CheckBox)_row.FindControl("x_IsSelected");
+        if (_cb.Checked)
+          _selected.Add(((CustomsWarehouseDataSource)_row.DataItem).Id);
+      }
+      InitializationFormData _initializationFormData = new InitializationFormData() { AccountsArray = _selected.ToArray() };
+      return JsonSerializer.Serialize<InitializationFormData>(_initializationFormData);
     }
     private List<CustomsWarehouseDataSource> m_DataSource = null;
     protected void StartWorkflow_Click(object sender, EventArgs e)
