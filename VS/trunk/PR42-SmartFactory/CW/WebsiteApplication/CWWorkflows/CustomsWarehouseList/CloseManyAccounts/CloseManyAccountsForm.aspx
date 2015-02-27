@@ -51,8 +51,8 @@
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_Batch%>" DataField="Batch" SortExpression="Batch" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_NetMass%>" DataField="NetMass" SortExpression="NetMass" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_AccountBalance%>" DataField="AccountBalance" SortExpression="AccountBalance" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
-                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_ValidToDate%>" DataField="ValidToDate" SortExpression="ValidToDate" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
-                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_ClosingDate%>" DataField="ClosingDate" SortExpression="ClosingDate" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_ValidToDate%>" DataField="ValidToDate" DataFormatString="{0:d}" SortExpression="ValidToDate" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_ClosingDate%>" DataField="ClosingDate" DataFormatString="{0:d}" SortExpression="ClosingDate" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                                 <asp:TemplateField HeaderText="ID" SortExpression="ID" Visible="False">
                                                 <EditItemTemplate>
                                                     <asp:Label ID="IDEditLabel" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
