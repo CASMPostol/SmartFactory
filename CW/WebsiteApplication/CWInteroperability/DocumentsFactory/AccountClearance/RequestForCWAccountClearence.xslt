@@ -190,31 +190,31 @@
           4
         </td>
         <td valign="middle" align="center">
-          x
-        </td>
-        <td valign="middle" align="center">
           5
         </td>
         <td valign="middle" align="center">
           6
         </td>
-        <td>
-          &#160;
-        </td>
         <td valign="middle" align="center">
           7
         </td>
-        <td valign="middle" align="center">
-          x
-        </td>
-        <td valign="middle" align="center">
+        <td>
           8
         </td>
         <td valign="middle" align="center">
-          x
+          9
         </td>
         <td valign="middle" align="center">
           10
+        </td>
+        <td valign="middle" align="center">
+          11
+        </td>
+        <td valign="middle" align="center">
+          12
+        </td>
+        <td valign="middle" align="center">
+          13
         </td>
       </tr>
       <tr>
@@ -348,33 +348,27 @@
       </tr>
       <tr>
         <td valign="middle" align="center">
-          12
-        </td>
-        <td valign="middle" align="center">
           14
         </td>
         <td valign="middle" align="center">
           15
         </td>
         <td valign="middle" align="center">
-          x
+          16
         </td>
         <td valign="middle" align="center">
           17
         </td>
         <td valign="middle" align="center">
-          x
-        </td>
-        <td valign="middle" align="center">
           18
         </td>
-        <td>
-          &#160;
+        <td valign="middle" align="center">
+          19
         </td>
         <td valign="middle" align="center">
           20
         </td>
-        <td valign="middle" align="center">
+        <td>
           21
         </td>
         <td valign="middle" align="center">
@@ -387,7 +381,13 @@
           24
         </td>
         <td valign="middle" align="center">
+          25
+        </td>
+        <td valign="middle" align="center">
           26
+        </td>
+        <td valign="middle" align="center">
+          27
         </td>
       </tr>
       <xsl:apply-templates select="cas:DisposalsColection"/>
