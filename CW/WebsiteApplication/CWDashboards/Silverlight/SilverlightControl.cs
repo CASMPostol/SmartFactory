@@ -18,8 +18,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.ComponentModel;
 using Microsoft.SharePoint;
-using CAS.SmartFactory.CW.Dashboards.SharePointLib;
 using System.Collections.Generic;
+using CAS.SharePoint.Web;
 
 namespace CAS.SmartFactory.CW.Dashboards.Silverlight
 {

@@ -18,9 +18,9 @@ using System.ComponentModel;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SmartFactory.CW.Dashboards.SharePointLib;
 using CAS.SmartFactory.CW.Dashboards.Silverlight;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
+using CAS.SharePoint.Web;
 
 namespace CAS.SmartFactory.CW.Dashboards.Webparts.ExitSheetHost
 {
