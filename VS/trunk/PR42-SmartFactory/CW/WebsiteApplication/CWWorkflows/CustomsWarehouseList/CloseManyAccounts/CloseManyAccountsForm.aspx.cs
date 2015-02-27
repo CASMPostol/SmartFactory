@@ -13,10 +13,13 @@
 //  http://www.cas.eu
 //_______________________________________________________________
 
+using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Serialization;
+using CAS.SmartFactory.CW.WebsiteModel;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
 using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
 using Microsoft.SharePoint.Workflow;
@@ -37,26 +40,38 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-      InitializeParams();
-      m_DataSource = m_DataContextManagement.DataContext.CustomsWarehouse.
-        Where<CustomsWarehouse>(x => !x.AccountClosed.Value && x.AccountBalance == 0).
-        Select(y => new CustomsWarehouseDataSource
-        {
-          Batch = y.Batch,
-          ClosingDate = y.ClosingDate.GetValueOrDefault(CAS.SharePoint.Extensions.SPMinimum),
-          CustomsDebtDate = y.CustomsDebtDate.GetValueOrDefault(CAS.SharePoint.Extensions.SPMinimum),
-          DocumentNo = y.DocumentNo,
-          Grade = y.Grade,
-          Title = y.Title,
-          SKU = y.SKU,
-          NetMass = y.NetMass.GetValueOrDefault(-1),
-          AccountBalance = y.AccountBalance.GetValueOrDefault(-1),
-          ValidToDate = y.ValidToDate.GetValueOrDefault(CAS.SharePoint.Extensions.SPMinimum),
-          Id = y.Id.Value,
-          IsSelected = true
-        }).ToList<CustomsWarehouseDataSource>();
-      m_AvailableGridView.DataSource = m_DataSource;
-      m_AvailableGridView.DataBind();
+      try
+      {
+        TraceEvent("Entering CloseManyAccountsForm.Page_Load", 42, TraceSeverity.Monitorable);
+        InitializeParams();
+        m_DataSource = m_DataContextManagement.DataContext.CustomsWarehouse.
+          Where<CustomsWarehouse>(x => !x.AccountClosed.Value && x.AccountBalance == 0).
+          Select(y => new CustomsWarehouseDataSource
+          {
+            Batch = y.Batch,
+            ClosingDate = y.ClosingDate.GetValueOrDefault(CAS.SharePoint.Extensions.SPMinimum),
+            CustomsDebtDate = y.CustomsDebtDate.GetValueOrDefault(CAS.SharePoint.Extensions.SPMinimum),
+            DocumentNo = y.DocumentNo,
+            Grade = y.Grade,
+            Title = y.Title,
+            SKU = y.SKU,
+            NetMass = y.NetMass.GetValueOrDefault(-1),
+            AccountBalance = y.AccountBalance.GetValueOrDefault(-1),
+            ValidToDate = y.ValidToDate.GetValueOrDefault(CAS.SharePoint.Extensions.SPMinimum),
+            Id = y.Id.Value,
+            IsSelected = true
+          }).ToList<CustomsWarehouseDataSource>();
+        TraceEvent(String.Format("CloseManyAccountsForm: found {0} accounts ready to be closed", String.Join(",", m_DataSource.Select<CustomsWarehouseDataSource, string>(x => x.Title).ToArray<string>())), 61, TraceSeverity.Verbose);
+        m_AvailableGridView.DataSource = m_DataSource;
+        m_AvailableGridView.DataBind();
+        TraceEvent("Finished CloseManyAccountsForm.Page_Load", 42, TraceSeverity.Monitorable);
+
+      }
+      catch (Exception _ex)
+      {
+        this.Controls.Add(new CAS.SharePoint.Web.ExceptionMessage(_ex));
+        TraceEvent(_ex.ExceptionDiagnosticMessage("CloseManyAccountsForm.Page_Load"), 42, TraceSeverity.High);
+      }
     }
     /// <summary>
     /// Gets the initiation data. This method is called when the user clicks the button to start the workflow.
@@ -65,9 +80,12 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
     private string GetInitiationData()
     {
       List<int> _selected = new List<int>();
+      
       foreach (GridViewRow _row in m_AvailableGridView.Rows)
       {
-        CheckBox _cb = (CheckBox)_row.FindControl("x_IsSelected");
+        CheckBox _cb = FindControlRecursive(_row, "x_IsSelected") as CheckBox;
+        if (_cb == null)
+          throw new ArgumentException("Cannot find CheckBox on the page");
         if (_cb.Checked)
           _selected.Add(((CustomsWarehouseDataSource)_row.DataItem).Id);
       }
@@ -75,6 +93,17 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
       return JsonSerializer.Serialize<InitializationFormData>(_initializationFormData);
     }
     private List<CustomsWarehouseDataSource> m_DataSource = null;
+    private Control FindControlRecursive(Control rootControl, string controlID)
+    {
+      if (rootControl.ID == controlID) return rootControl;
+      foreach (Control controlToSearch in rootControl.Controls)
+      {
+        Control controlToReturn =
+            FindControlRecursive(controlToSearch, controlID);
+        if (controlToReturn != null) return controlToReturn;
+      }
+      return null;
+    }
     protected void StartWorkflow_Click(object sender, EventArgs e)
     {
       // Optionally, add code here to perform additional steps before starting your workflow
@@ -82,9 +111,10 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
       {
         HandleStartWorkflow();
       }
-      catch (Exception)
+      catch (Exception _ex)
       {
-        SPUtility.TransferToErrorPage(SPHttpUtility.UrlKeyValueEncode("Failed to Start Workflow"));
+        this.Controls.Add(new CAS.SharePoint.Web.ExceptionMessage(_ex));
+        TraceEvent(_ex.ExceptionDiagnosticMessage("CloseManyAccountsForm.Page_Load"), 42, TraceSeverity.High);
       }
     }
     protected void Cancel_Click(object sender, EventArgs e)
@@ -92,9 +122,12 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
       SPUtility.Redirect("Workflow.aspx", SPRedirectFlags.RelativeToLayoutsPage, HttpContext.Current, Page.ClientQueryString);
     }
     private DataContextManagement<Entities> m_DataContextManagement = null;
+    private void TraceEvent(string message, int eventId, TraceSeverity severity)
+    {
+      WebsiteModelExtensions.TraceEvent(message, eventId, severity, WebsiteModelExtensions.LoggingCategories.CloseManyAccounts);
+    }
 
     #region Workflow Initiation Code - Typically, the following code should not be changed
-
     private string associationGuid;
     private SPList workflowList;
     private SPListItem workflowListItem;
@@ -115,7 +148,6 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
         SPUtility.TransferToErrorPage(SPHttpUtility.UrlKeyValueEncode("Failed to read Request Parameters"));
       }
     }
-
     private void HandleStartWorkflow()
     {
       if (this.workflowList != null && this.workflowListItem != null)
@@ -142,5 +174,6 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
       SPUtility.Redirect(this.workflowList.DefaultViewUrl, SPRedirectFlags.UseSource, HttpContext.Current);
     }
     #endregion
+
   }
 }

@@ -13,14 +13,14 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SharePoint.Web;
+using CAS.SmartFactory.CW.Dashboards.Silverlight;
+using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using System;
 using System.ComponentModel;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SmartFactory.CW.Dashboards.SharePointLib;
-using CAS.SmartFactory.CW.Dashboards.Silverlight;
-using CAS.SmartFactory.CW.WebsiteModel.Linq;
 
 namespace CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost
 {

@@ -13,8 +13,8 @@
 //  http://www.cas.eu
 //_______________________________________________________________
 
+using CAS.SharePoint.Web;
 using CAS.SmartFactory.Customs.Messages.CELINA.SAD;
-using CAS.SmartFactory.CW.Dashboards.SharePointLib;
 using CAS.SmartFactory.CW.Dashboards.Silverlight;
 using CAS.SmartFactory.CW.WebsiteModel.Linq;
 using Microsoft.SharePoint;

@@ -112,7 +112,29 @@ namespace CAS.SmartFactory.CW.WebsiteModel
     /// <summary>
     /// Enum LoggingCategories - registered set of categories.
     /// </summary>
-    public enum LoggingCategories { FeatureActivation, CloseAccount, CreateAccount, ClearThroughCustoms }
+    public enum LoggingCategories
+    {
+      /// <summary>
+      /// The feature activation
+      /// </summary>
+      FeatureActivation,
+      /// <summary>
+      /// The close account
+      /// </summary>
+      CloseAccount,
+      /// <summary>
+      /// The create account
+      /// </summary>
+      CreateAccount,
+      /// <summary>
+      /// The clear through customs
+      /// </summary>
+      ClearThroughCustoms,
+      /// <summary>
+      /// The close many accounts
+      /// </summary>
+      CloseManyAccounts
+    }
     /// <summary>
     /// Writes a diagnostic message into the trace log, with specified Microsoft.SharePoint.Administration.TraceSeverity. 
     /// Don't use in sandbox.
