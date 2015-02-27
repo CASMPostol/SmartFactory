@@ -68,7 +68,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
     private void WhileActivityCondition(object sender, ConditionalEventArgs e)
     {
       e.Result = m_LoopCounter < m_InitializationData.AccountsArray.Length;
-      TraceEvent(String.Format("CloseManyAccounts.WhileActivityCondition: Item: {0}/{1}", m_LoopCounter, m_InitializationData.AccountsArray.Length), 70, TraceSeverity.Verbose);
+      TraceEvent(String.Format("CloseManyAccounts.WhileActivityCondition: Item: {0}/{1}", m_LoopCounter + 1, m_InitializationData.AccountsArray.Length), 70, TraceSeverity.Verbose);
     }
     private void onWhileLogToHistory(object sender, EventArgs e)
     {
@@ -87,7 +87,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
       try
       {
         TraceEvent("Entering CloseManyAccounts.DoCloseManyAccount: ", 88, TraceSeverity.Verbose);
-        CloseAccount.CloseAccount.Close(workflowProperties.Web, workflowProperties.WebUrl, m_InitializationData.AccountsArray[m_LoopCounter]);
+        CloseAccount.CloseAccount.Close(workflowProperties.Web, workflowProperties.WebUrl, m_InitializationData.AccountsArray[m_LoopCounter++]);
       }
       catch (Exception _ex)
       {
