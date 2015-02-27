@@ -40,7 +40,7 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_Select%>" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:CheckBox ID="x_CheckBox" runat="server" Checked="true" />
+                                        <asp:CheckBox ID="x_IsSelected" runat="server" Checked="true" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryCW,CAS_ASPX_Title%>" DataField="Title" SortExpression="Title" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
