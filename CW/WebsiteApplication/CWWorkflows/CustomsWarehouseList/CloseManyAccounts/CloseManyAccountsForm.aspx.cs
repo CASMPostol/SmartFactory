@@ -85,9 +85,8 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
         CheckBox _cb = FindControlRecursive(_row, "x_IsSelected") as CheckBox;
         if (_cb == null)
           throw new ArgumentException("Cannot find CheckBox on the page");
-        if (!_cb.Checked)
-          continue;
-        _selected.Add(m_DataSource[i].Id);
+        if (_cb.Checked)
+          _selected.Add(m_DataSource[i].Id);
       }
       InitializationFormData _initializationFormData = new InitializationFormData() { AccountsArray = _selected.ToArray() };
       return JsonSerializer.Serialize<InitializationFormData>(_initializationFormData);
