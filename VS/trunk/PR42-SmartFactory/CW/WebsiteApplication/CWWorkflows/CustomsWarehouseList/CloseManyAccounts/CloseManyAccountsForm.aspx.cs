@@ -65,7 +65,6 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
         m_AvailableGridView.DataSource = m_DataSource;
         m_AvailableGridView.DataBind();
         TraceEvent("Finished CloseManyAccountsForm.Page_Load", 42, TraceSeverity.Monitorable);
-
       }
       catch (Exception _ex)
       {
@@ -80,14 +79,15 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
     private string GetInitiationData()
     {
       List<int> _selected = new List<int>();
-      
-      foreach (GridViewRow _row in m_AvailableGridView.Rows)
+      for (int i = 0; i < m_AvailableGridView.Rows.Count; i++)
       {
+        GridViewRow _row = m_AvailableGridView.Rows[i];
         CheckBox _cb = FindControlRecursive(_row, "x_IsSelected") as CheckBox;
         if (_cb == null)
           throw new ArgumentException("Cannot find CheckBox on the page");
-        if (_cb.Checked)
-          _selected.Add(((CustomsWarehouseDataSource)_row.DataItem).Id);
+        if (!_cb.Checked)
+          continue;
+        _selected.Add(m_DataSource[i].Id);
       }
       InitializationFormData _initializationFormData = new InitializationFormData() { AccountsArray = _selected.ToArray() };
       return JsonSerializer.Serialize<InitializationFormData>(_initializationFormData);
@@ -95,12 +95,13 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
     private List<CustomsWarehouseDataSource> m_DataSource = null;
     private Control FindControlRecursive(Control rootControl, string controlID)
     {
-      if (rootControl.ID == controlID) return rootControl;
+      if (rootControl.ID == controlID)
+        return rootControl;
       foreach (Control controlToSearch in rootControl.Controls)
       {
-        Control controlToReturn =
-            FindControlRecursive(controlToSearch, controlID);
-        if (controlToReturn != null) return controlToReturn;
+        Control controlToReturn = FindControlRecursive(controlToSearch, controlID);
+        if (controlToReturn != null)
+          return controlToReturn;
       }
       return null;
     }
@@ -114,7 +115,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
       catch (Exception _ex)
       {
         this.Controls.Add(new CAS.SharePoint.Web.ExceptionMessage(_ex));
-        TraceEvent(_ex.ExceptionDiagnosticMessage("CloseManyAccountsForm.Page_Load"), 42, TraceSeverity.High);
+        TraceEvent(_ex.ExceptionDiagnosticMessage("CloseManyAccountsForm.StartWorkflow_Click"), 116, TraceSeverity.High);
       }
     }
     protected void Cancel_Click(object sender, EventArgs e)
