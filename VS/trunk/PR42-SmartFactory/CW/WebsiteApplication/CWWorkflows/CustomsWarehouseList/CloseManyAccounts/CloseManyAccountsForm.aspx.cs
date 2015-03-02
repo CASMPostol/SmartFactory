@@ -42,11 +42,6 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
     {
       TraceEvent("Entering CloseManyAccountsForm.Page_Load", 43, TraceSeverity.Monitorable);
       InitializeParams();
-      if (this.IsPostBack)
-      {
-        TraceEvent("CloseManyAccountsForm.Page_Load - IsPostBack do nothing.", 47, TraceSeverity.Monitorable);
-        return;
-      }
       try
       {
         m_DataSource = m_DataContextManagement.DataContext.CustomsWarehouse.
@@ -66,6 +61,11 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
             Id = y.Id.Value,
             IsSelected = true
           }).ToList<CustomsWarehouseDataSource>();
+        if (this.IsPostBack)
+        {
+          TraceEvent("CloseManyAccountsForm.Page_Load - IsPostBack do nothing.", 47, TraceSeverity.Monitorable);
+          return;
+        }
         TraceEvent(String.Format("CloseManyAccountsForm: found {0} accounts ready to be closed", String.Join(",", m_DataSource.Select<CustomsWarehouseDataSource, string>(x => x.Title).ToArray<string>())), 69, TraceSeverity.Verbose);
         m_AvailableGridView.DataSource = m_DataSource;
         m_AvailableGridView.DataBind();
