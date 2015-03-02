@@ -40,15 +40,15 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+      TraceEvent("Entering CloseManyAccountsForm.Page_Load", 43, TraceSeverity.Monitorable);
+      InitializeParams();
       if (this.IsPostBack)
       {
-        TraceEvent("IsPostBack of CloseManyAccountsForm.Page_Load", 45, TraceSeverity.Monitorable);
+        TraceEvent("CloseManyAccountsForm.Page_Load - IsPostBack do nothing.", 47, TraceSeverity.Monitorable);
         return;
       }
       try
       {
-        TraceEvent("Entering CloseManyAccountsForm.Page_Load", 45, TraceSeverity.Monitorable);
-        InitializeParams();
         m_DataSource = m_DataContextManagement.DataContext.CustomsWarehouse.
           Where<CustomsWarehouse>(x => !x.AccountClosed.Value && x.AccountBalance == 0).
           Select(y => new CustomsWarehouseDataSource
@@ -66,15 +66,15 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
             Id = y.Id.Value,
             IsSelected = true
           }).ToList<CustomsWarehouseDataSource>();
-        TraceEvent(String.Format("CloseManyAccountsForm: found {0} accounts ready to be closed", String.Join(",", m_DataSource.Select<CustomsWarehouseDataSource, string>(x => x.Title).ToArray<string>())), 61, TraceSeverity.Verbose);
+        TraceEvent(String.Format("CloseManyAccountsForm: found {0} accounts ready to be closed", String.Join(",", m_DataSource.Select<CustomsWarehouseDataSource, string>(x => x.Title).ToArray<string>())), 69, TraceSeverity.Verbose);
         m_AvailableGridView.DataSource = m_DataSource;
         m_AvailableGridView.DataBind();
-        TraceEvent("Finished CloseManyAccountsForm.Page_Load", 42, TraceSeverity.Monitorable);
+        TraceEvent("Finished CloseManyAccountsForm.Page_Load", 72, TraceSeverity.Monitorable);
       }
       catch (Exception _ex)
       {
         this.Controls.Add(new CAS.SharePoint.Web.ExceptionMessage(_ex));
-        TraceEvent(_ex.ExceptionDiagnosticMessage("CloseManyAccountsForm.Page_Load"), 42, TraceSeverity.High);
+        TraceEvent(_ex.ExceptionDiagnosticMessage("CloseManyAccountsForm.Page_Load"), 77, TraceSeverity.High);
       }
     }
     /// <summary>
@@ -119,7 +119,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
       catch (Exception _ex)
       {
         this.Controls.Add(new CAS.SharePoint.Web.ExceptionMessage(_ex));
-        TraceEvent(_ex.ExceptionDiagnosticMessage("CloseManyAccountsForm.StartWorkflow_Click"), 116, TraceSeverity.High);
+        TraceEvent(_ex.ExceptionDiagnosticMessage("CloseManyAccountsForm.StartWorkflow_Click"), 122, TraceSeverity.High);
       }
     }
     protected void Cancel_Click(object sender, EventArgs e)
