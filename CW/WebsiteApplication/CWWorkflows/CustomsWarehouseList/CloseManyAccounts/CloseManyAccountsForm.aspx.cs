@@ -171,12 +171,14 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
       this.Web.Site.WorkflowManager.StartWorkflow((object)null, association, GetInitiationData(), SPWorkflowRunOptions.Synchronous);
       SPUtility.Redirect(this.Web.Url, SPRedirectFlags.UseSource, HttpContext.Current);
     }
-
     private void StartListWorkflow()
     {
+      TraceEvent("Entering CloseManyAccountsForm.StartListWorkflow", 177, TraceSeverity.Monitorable);
       SPWorkflowAssociation association = this.workflowList.WorkflowAssociations[new Guid(this.associationGuid)];
       this.Web.Site.WorkflowManager.StartWorkflow(workflowListItem, association, GetInitiationData());
-      SPUtility.Redirect(this.workflowList.DefaultViewUrl, SPRedirectFlags.UseSource, HttpContext.Current);
+      TraceEvent(" CloseManyAccountsForm.StartListWorkflow Redirect to: " + this.workflowList.DefaultViewUrl, 177, TraceSeverity.Monitorable);
+      bool _redirectResult = SPUtility.Redirect(this.workflowList.DefaultViewUrl, SPRedirectFlags.UseSource, HttpContext.Current);
+      TraceEvent(String.Format("CloseManyAccountsForm.StartListWorkflow Redirect result: {0}", _redirectResult), 177, TraceSeverity.Monitorable);
     }
     #endregion
 
