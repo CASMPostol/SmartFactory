@@ -120,6 +120,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
       {
         this.Controls.Add(new CAS.SharePoint.Web.ExceptionMessage(_ex));
         TraceEvent(_ex.ExceptionDiagnosticMessage("CloseManyAccountsForm.StartWorkflow_Click"), 122, TraceSeverity.High);
+        throw;
       }
     }
     protected void Cancel_Click(object sender, EventArgs e)
