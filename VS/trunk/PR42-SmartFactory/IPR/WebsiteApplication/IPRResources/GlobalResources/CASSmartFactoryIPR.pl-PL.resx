@@ -154,7 +154,7 @@
     <value>Anuluj</value>
   </data>
 	<data name="CAS_ASPX_Cartons" xml:space="preserve">
-    <value>Kartony</value>
+    <value> Kartony [kg]</value>
   </data>
 	<data name="CAS_ASPX_ChangeBatch" xml:space="preserve">
     <value>Zmień batch</value>
@@ -336,5 +336,26 @@
 	</data>
 	<data name="CAS_ASPX_ReportsDashboard" xml:space="preserve">
 		<value>Pulpit - raporty</value>
+	</data>
+	<data name="CAS_ASPX_AvailableAccounts" xml:space="preserve">
+		<value>Dostępne konta</value>
+	</data>
+	<data name="CAS_ASPX_Grade" xml:space="preserve">
+		<value>Typ tytoniu</value>
+	</data>
+	<data name="CAS_ASPX_NetMass" xml:space="preserve">
+		<value>Masa netto [kg]</value>
+	</data>
+	<data name="CAS_ASPX_AccountBalance" xml:space="preserve">
+		<value>Stan na dzień [kg]</value>
+	</data>
+	<data name="CAS_ASPX_OGLValidTo" xml:space="preserve">
+		<value>OGL ważny do</value>
+	</data>
+	<data name="CAS_ASPX_CloseAccountsButton" xml:space="preserve">
+		<value>Zamknij konta</value>
+	</data>
+	<data name="CAS_ASPX_CloseManyAccountsForm" xml:space="preserve">
+		<value>Zamykanie wielu kont</value>
 	</data>
 </root>

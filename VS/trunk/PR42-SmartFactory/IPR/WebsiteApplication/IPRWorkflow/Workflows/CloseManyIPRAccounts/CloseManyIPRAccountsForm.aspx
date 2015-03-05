@@ -1,0 +1,81 @@
+﻿<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
+<%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Import Namespace="Microsoft.SharePoint" %>
+<%@ Import Namespace="Microsoft.SharePoint.ApplicationPages" %>
+<%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register Tagprefix="asp" Namespace="System.Web.UI" Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" %>
+
+<%@ Register TagPrefix="wssuc" TagName="LinksTable" Src="/_controltemplates/LinksTable.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="InputFormSection" Src="/_controltemplates/InputFormSection.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="InputFormControl" Src="/_controltemplates/InputFormControl.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="LinkSection" Src="/_controltemplates/LinkSection.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="ButtonSection" Src="/_controltemplates/ButtonSection.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="ActionBar" Src="/_controltemplates/ActionBar.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="ToolBar" Src="/_controltemplates/ToolBar.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="ToolBarButton" Src="/_controltemplates/ToolBarButton.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="Welcome" Src="/_controltemplates/Welcome.ascx" %>
+
+<%@ Page Language="C#" 
+    DynamicMasterPageFile="~masterurl/default.master" 
+    AutoEventWireup="true" 
+    Inherits="CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts.CloseManyIPRAccountsForm" 
+    CodeBehind="CloseManyIPRAccountsForm.aspx.cs" %>
+
+<asp:Content ID="PageHead" ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
+<SharePoint:CssRegistration ID="CssRegistration1" Name="forms.css" runat="server" />
+<SharePoint:CssRegistration ID="CssRegistration2" Name="layouts.css" runat="server" />
+</asp:Content>
+
+<asp:Content ID="Main" ContentPlaceHolderID="PlaceHolderMain" runat="server">
+    <table border="0" cellspacing="0" cellpadding="0" class="ms-propertysheet">
+    <wssuc:InputFormSection ID="AvailableAccounts" Title="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_AvailableAccounts%>" runat="server">
+      <template_description><asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_AvailableAccounts%>" /></template_description>
+      <template_inputformcontrols>
+				<tr valign="top">
+					<td class="ms-authoringcontrols" width="10">&#160;</td>
+					<td class="ms-authoringcontrols" colspan="2">
+					    <!-- SPDataGrid with IPR all accounts -->
+                        <SharePoint:SPGridView ID="m_AvailableGridView" runat="server" AllowSorting="False" AutoGenerateColumns="False" DataKeyNames="ID" AllowFiltering="False">
+                            <Columns>
+                                <asp:TemplateField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Select%>" ItemStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:CheckBox ID="x_IsSelected" runat="server" Checked="true" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_%>" DataField="Title" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_DebtDate%>" DataField="CustomsDebtDate" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_DocumentNo%>" DataField="DocumentNo" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Grade%>" DataField="Grade" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_SKU%>" DataField="SKU" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Batch%>" DataField="Batch" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_NetMass%>" DataField="NetMass" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_AccountBalance%>" DataField="AccountBalance" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Cartons%>" DataField="Cartons" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_OGLValidTo%>" DataField="OGLValidTo" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="Id" DataField="Id" Visible="False" SortExpression="Id" ReadOnly="true" ItemStyle-HorizontalAlign="Right"/>
+                            </Columns>
+                        </SharePoint:SPGridView>			
+					</td>
+				</tr>
+			</template_inputformcontrols>
+    </wssuc:InputFormSection>    
+    <wssuc:ButtonSection ID="ButtonSection" runat="server" ShowStandardCancelButton="false">
+      <template_buttons>
+      <asp:PlaceHolder ID="PlaceHolder1" runat="server">                
+        <asp:Button OnClick="StartWorkflow_Click" class="ms-ButtonHeightWidth" runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_CloseAccountsButton%>" ID="StartWorkflow" />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button OnClick="Cancel_Click" class="ms-ButtonHeightWidth" runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Cancel%>" ID="Cancel"  />
+      </asp:PlaceHolder>
+      </template_buttons>
+    </wssuc:ButtonSection>
+  </table>
+</asp:Content>
+
+<asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
+    <asp:Literal ID="m_PageTitle" runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_CloseManyAccountsForm%>" />
+</asp:Content>
+
+<asp:Content ID="PageTitleInTitleArea" runat="server" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea">
+    <asp:Literal ID="m_PageTitleInTitleArea" runat="server" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_CloseManyAccountsForm%>" />
+</asp:Content>
