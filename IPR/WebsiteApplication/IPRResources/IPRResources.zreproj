@@ -57,24 +57,24 @@ Kind regards</globalSetting>
     </description>
   </configuration>
   <fileGroups>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="8eeec01c-6e0d-49e4-aac1-ad0c395ffe49">
-      <file filePath="Resources\CASSmartFactoryIPR.resx" absoluteFilePath="C:\Users\bwojciechowski\Repozytorium\VS\PR42-SmartFactory\IPR\IPRResources\Resources\CASSmartFactoryIPR.resx" uniqueID="5df00050-35fc-40bb-b12b-653012e18cf1" />
-      <file filePath="Resources\CASSmartFactoryIPR.en-US.resx" absoluteFilePath="C:\Users\bwojciechowski\Repozytorium\VS\PR42-SmartFactory\IPR\IPRResources\Resources\CASSmartFactoryIPR.en-US.resx" uniqueID="2df56819-3a99-4f52-92b0-a0cee4058b1b" />
-      <file filePath="Resources\CASSmartFactoryIPR.pl-PL.resx" absoluteFilePath="C:\Users\bwojciechowski\Repozytorium\VS\PR42-SmartFactory\IPR\IPRResources\Resources\CASSmartFactoryIPR.pl-PL.resx" uniqueID="7d9afe92-0f6b-40e3-896f-f2c62d9d23ec" />
+    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="6f14c9c1-bbb8-4a64-b0f9-ced1c05f5c19">
+      <file filePath="GlobalResources\CASSmartFactoryIPR.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\IPR\WebsiteApplication\IPRResources\GlobalResources\CASSmartFactoryIPR.resx" uniqueID="7112f67e-c9b4-4f09-9a45-cb93559d04e2" />
+      <file filePath="GlobalResources\CASSmartFactoryIPR.en-US.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\IPR\WebsiteApplication\IPRResources\GlobalResources\CASSmartFactoryIPR.en-US.resx" uniqueID="1cdb01d5-82c3-4d99-b21b-461153bdbc91" />
+      <file filePath="GlobalResources\CASSmartFactoryIPR.pl-PL.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\IPR\WebsiteApplication\IPRResources\GlobalResources\CASSmartFactoryIPR.pl-PL.resx" uniqueID="1ab5de5e-b504-47c6-be90-42974a46038d" />
       <remarks>
       </remarks>
     </fileGroup>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="6f14c9c1-bbb8-4a64-b0f9-ced1c05f5c19">
-      <file filePath="GlobalResources\CASSmartFactoryIPR.resx" absoluteFilePath="C:\Users\bwojciechowski\Repozytorium\VS\PR42-SmartFactory\IPR\IPRResources\GlobalResources\CASSmartFactoryIPR.resx" uniqueID="7112f67e-c9b4-4f09-9a45-cb93559d04e2" />
-      <file filePath="GlobalResources\CASSmartFactoryIPR.en-US.resx" absoluteFilePath="C:\Users\bwojciechowski\Repozytorium\VS\PR42-SmartFactory\IPR\IPRResources\GlobalResources\CASSmartFactoryIPR.en-US.resx" uniqueID="1cdb01d5-82c3-4d99-b21b-461153bdbc91" />
-      <file filePath="GlobalResources\CASSmartFactoryIPR.pl-PL.resx" absoluteFilePath="C:\Users\bwojciechowski\Repozytorium\VS\PR42-SmartFactory\IPR\IPRResources\GlobalResources\CASSmartFactoryIPR.pl-PL.resx" uniqueID="1ab5de5e-b504-47c6-be90-42974a46038d" />
+    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="8eeec01c-6e0d-49e4-aac1-ad0c395ffe49">
+      <file filePath="Resources\CASSmartFactoryIPR.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\IPR\WebsiteApplication\IPRResources\Resources\CASSmartFactoryIPR.resx" uniqueID="5df00050-35fc-40bb-b12b-653012e18cf1" />
+      <file filePath="Resources\CASSmartFactoryIPR.en-US.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\IPR\WebsiteApplication\IPRResources\Resources\CASSmartFactoryIPR.en-US.resx" uniqueID="2df56819-3a99-4f52-92b0-a0cee4058b1b" />
+      <file filePath="Resources\CASSmartFactoryIPR.pl-PL.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\IPR\WebsiteApplication\IPRResources\Resources\CASSmartFactoryIPR.pl-PL.resx" uniqueID="7d9afe92-0f6b-40e3-896f-f2c62d9d23ec" />
       <remarks>
       </remarks>
     </fileGroup>
     <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="9d9627dd-aceb-461b-a7fe-43240ed3d49f">
-      <file filePath="Resources\CASSmartFactoryIPRCode.resx" absoluteFilePath="C:\Users\bwojciechowski\Repozytorium\VS\PR42-SmartFactory\IPR\IPRResources\Resources\CASSmartFactoryIPRCode.resx" uniqueID="3f40236d-0bf8-4428-b094-86ff5e9be665" />
-      <file filePath="Resources\CASSmartFactoryIPRCode.en-US.resx" absoluteFilePath="C:\Users\bwojciechowski\Repozytorium\VS\PR42-SmartFactory\IPR\IPRResources\Resources\CASSmartFactoryIPRCode.en-US.resx" uniqueID="c9b411a8-68bd-4ec1-91e7-4fae3d293612" />
-      <file filePath="Resources\CASSmartFactoryIPRCode.pl-PL.resx" absoluteFilePath="C:\Users\bwojciechowski\Repozytorium\VS\PR42-SmartFactory\IPR\IPRResources\Resources\CASSmartFactoryIPRCode.pl-PL.resx" uniqueID="dee9573c-7dbe-4d0d-a405-1788c0c909cf" />
+      <file filePath="Resources\CASSmartFactoryIPRCode.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\IPR\WebsiteApplication\IPRResources\Resources\CASSmartFactoryIPRCode.resx" uniqueID="3f40236d-0bf8-4428-b094-86ff5e9be665" />
+      <file filePath="Resources\CASSmartFactoryIPRCode.en-US.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\IPR\WebsiteApplication\IPRResources\Resources\CASSmartFactoryIPRCode.en-US.resx" uniqueID="c9b411a8-68bd-4ec1-91e7-4fae3d293612" />
+      <file filePath="Resources\CASSmartFactoryIPRCode.pl-PL.resx" absoluteFilePath="E:\Products\SmartFactory\PR42-SmartFactory\IPR\WebsiteApplication\IPRResources\Resources\CASSmartFactoryIPRCode.pl-PL.resx" uniqueID="dee9573c-7dbe-4d0d-a405-1788c0c909cf" />
       <remarks>
       </remarks>
     </fileGroup>

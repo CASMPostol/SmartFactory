@@ -88,6 +88,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Workflows\CloseManyIPRAccounts\CloseManyIPRAccounts.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Workflows\CloseManyIPRAccounts\CloseManyIPRAccounts.Designer.cs">
+      <DependentUpon>CloseManyIPRAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Workflows\CloseManyIPRAccounts\CloseManyIPRAccountsForm.aspx.cs">
+      <DependentUpon>CloseManyIPRAccountsForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Workflows\CloseManyIPRAccounts\CloseManyIPRAccountsForm.aspx.designer.cs">
+      <DependentUpon>CloseManyIPRAccountsForm.aspx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Workflows\IPRClosing\IPRClosing.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -117,6 +130,9 @@
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </None>
     <None Include="SKU.cd" />
+    <None Include="Workflows\CloseManyIPRAccounts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2bd4ff8f-6e7b-42ab-9f03-fb8f2369d9ea}</SharePointProjectItemId>
+    </None>
     <None Include="Workflows\IPRClosing\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a284012e-5195-447e-857d-8827927bec2f}</SharePointProjectItemId>
     </None>
@@ -149,6 +165,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Workflows\CloseManyIPRAccounts\CloseManyIPRAccountsForm.aspx" />
+    <Content Include="Workflows\CloseManyIPRAccounts\Elements.xml" />
     <Content Include="Workflows\IPRClosing\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

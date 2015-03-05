@@ -11,7 +11,7 @@ using System.Security;
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("Smart Factory")]
-[assembly: AssemblyCopyright("Copyright (c) 2000-2014 CAS LODZ POLAND")]
+[assembly: AssemblyCopyright("Copyright (c) 2000-2015 CAS LODZ POLAND")]
 [assembly: AssemblyTrademark("Smart Factory")]
 [assembly: AssemblyCulture("")]
 

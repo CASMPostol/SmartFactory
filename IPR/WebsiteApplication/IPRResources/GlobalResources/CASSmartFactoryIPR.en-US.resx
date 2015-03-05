@@ -154,7 +154,7 @@
     <value>Cancel</value>
   </data>
 	<data name="CAS_ASPX_Cartons" xml:space="preserve">
-    <value>Cartons</value>
+    <value>Cartons [kg]</value>
   </data>
 	<data name="CAS_ASPX_ChangeBatch" xml:space="preserve">
     <value>Change batch</value>
@@ -336,5 +336,26 @@
 	</data>
 	<data name="CAS_ASPX_ReportsDashboard" xml:space="preserve">
 		<value>Reports dashboard</value>
+	</data>
+	<data name="CAS_ASPX_AvailableAccounts" xml:space="preserve">
+		<value>Available accounts</value>
+	</data>
+	<data name="CAS_ASPX_Grade" xml:space="preserve">
+		<value>Grade</value>
+	</data>
+	<data name="CAS_ASPX_NetMass" xml:space="preserve">
+		<value>Net mass [kg]</value>
+	</data>
+	<data name="CAS_ASPX_AccountBalance" xml:space="preserve">
+		<value>Account balance [kg]</value>
+	</data>
+	<data name="CAS_ASPX_OGLValidTo" xml:space="preserve">
+		<value>OGL valid to</value>
+	</data>
+	<data name="CAS_ASPX_CloseAccountsButton" xml:space="preserve">
+		<value>Close accounts</value>
+	</data>
+	<data name="CAS_ASPX_CloseManyAccountsForm" xml:space="preserve">
+		<value>Close many accounts</value>
 	</data>
 </root>

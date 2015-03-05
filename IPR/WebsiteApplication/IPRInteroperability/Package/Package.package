@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="398c5b16-80b8-4687-ba16-3ef945e47a86" solutionId="398c5b16-80b8-4687-ba16-3ef945e47a86" resetWebServer="true" title="CAS SmartFactory IPR Iteroperability Solution" description="The library helping to interconnect with SAP, CELINE, etc.." name="CASSmartFactoryIPRInteroperability" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="398c5b16-80b8-4687-ba16-3ef945e47a86" solutionId="398c5b16-80b8-4687-ba16-3ef945e47a86" resetWebServer="true" title="CAS SmartFactory IPR Interoperability Solution" description="The library helping to interconnect with SAP, CELINE, etc.." name="CASSmartFactoryIPRInteroperability" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
     <featureReference itemId="bdd31d98-b40e-46d9-a58a-555715330d81" />
   </features>
