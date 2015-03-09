@@ -1,36 +1,136 @@
-﻿using System;
-using System.Collections;
-using System.Configuration;
-using System.Data;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
+﻿//_______________________________________________________________
+//  Title   : Name of Application
+//  System  : Microsoft VisualStudio 2013 / C#
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C) 2015, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//_______________________________________________________________
+
+using CAS.SharePoint;
+using CAS.SharePoint.Linq;
+using CAS.SharePoint.Serialization;
+using CAS.SmartFactory.IPR.WebsiteModel;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
+using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
 using Microsoft.SharePoint.Workflow;
-using Microsoft.SharePoint.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using IPRLinq = CAS.SmartFactory.IPR.WebsiteModel.Linq;
 
 namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
 {
-  public partial class CloseManyIPRAccountsForm : LayoutsPageBase
+
+  /// <summary>
+  /// Class CloseManyIPRAccountsForm - UI to get list of IPR accounts to be closed.
+  /// </summary>
+  public partial class CloseManyIPRAccountsForm : LayoutsPageBase, IPreRender
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CloseManyIPRAccountsForm"/> class.
+    /// </summary>
+    public CloseManyIPRAccountsForm()
+    {
+      m_DataContextManagement = new DataContextManagement<IPRLinq.Entities>(this);
+    }
+    /// <summary>
+    /// Handles the Load event of the Page control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     protected void Page_Load(object sender, EventArgs e)
     {
+      TraceEvent("Entering CloseManyIPRAccountsForm.Page_Load", 55, TraceSeverity.Monitorable);
       InitializeParams();
-
-      // Optionally, add code here to pre-populate your form fields.
+      try
+      {
+        m_DataSource = m_DataContextManagement.DataContext.IPR.
+          Where<IPRLinq.IPR>(x => !x.AccountClosed.Value && x.AccountBalance == 0).
+          ToList<IPRLinq.IPR>().
+          Where<IPRLinq.IPR>(x => x.AllEntriesClosed(m_DataContextManagement.DataContext, (a, b, c) => TraceEvent(a, b, c))).
+          Select<IPRLinq.IPR, IPRAccountDataSource>(y => new IPRAccountDataSource
+          {
+            Batch = y.Batch,
+            ClosingDate = y.ClosingDate.GetValueOrDefault(CAS.SharePoint.Extensions.SPMinimum),
+            CustomsDebtDate = y.CustomsDebtDate.GetValueOrDefault(CAS.SharePoint.Extensions.SPMinimum),
+            DocumentNo = y.DocumentNo,
+            Grade = y.Grade,
+            Title = y.Title,
+            SKU = y.SKU,
+            NetMass = y.NetMass.GetValueOrDefault(-1),
+            AccountBalance = y.AccountBalance.GetValueOrDefault(-1),
+            ValidToDate = y.ValidToDate.GetValueOrDefault(CAS.SharePoint.Extensions.SPMinimum),
+            Id = y.Id.Value,
+            IsSelected = true
+          }).ToList<IPRAccountDataSource>();
+        if (this.IsPostBack)
+        {
+          TraceEvent("CloseManyIPRAccountsForm.Page_Load - IsPostBack do nothing.", 78, TraceSeverity.Monitorable);
+          return;
+        }
+        TraceEvent(
+          String.Format("CloseManyIPRAccountsForm: found {0} accounts ready to be closed", String.Join(",", m_DataSource.Select<IPRAccountDataSource, string>(x => x.Title).ToArray<string>())), 
+          83, 
+          TraceSeverity.Verbose);
+        m_AvailableGridView.DataSource = m_DataSource;
+        m_AvailableGridView.DataBind();
+        TraceEvent("Finished CloseManyIPRAccountsForm.Page_Load", 87, TraceSeverity.Monitorable);
+      }
+      catch (Exception _ex)
+      {
+        this.Controls.Add(new CAS.SharePoint.Web.ExceptionMessage(_ex));
+        TraceEvent(_ex.ExceptionDiagnosticMessage("CloseManyIPRAccountsForm.Page_Load"), 92, TraceSeverity.High);
+      }
     }
-
-    // This method is called when the user clicks the button to start the workflow.
+    /// <summary>
+    /// Gets the initiation data. This method is called when the user clicks the button to start the workflow.
+    /// </summary>
+    /// <returns>System.String.</returns>
     private string GetInitiationData()
     {
-      // TODO: Return a string that contains the initiation data that will be passed to the workflow. Typically, this is in XML format.
-      return string.Empty;
+      List<int> _selected = new List<int>();
+      for (int i = 0; i < m_AvailableGridView.Rows.Count; i++)
+      {
+        GridViewRow _row = m_AvailableGridView.Rows[i];
+        CheckBox _cb = FindControlRecursive(_row, "x_IsSelected") as CheckBox;
+        if (_cb == null)
+          throw new ArgumentException("Cannot find CheckBox on the page");
+        if (_cb.Checked)
+          _selected.Add(m_DataSource[i].Id);
+      }
+      InitializationFormData _initializationFormData = new InitializationFormData() { AccountsArray = _selected.ToArray() };
+      return JsonSerializer.Serialize<InitializationFormData>(_initializationFormData);
     }
-
+    private List<IPRAccountDataSource> m_DataSource = null;
+    private Control FindControlRecursive(Control rootControl, string controlID)
+    {
+      if (rootControl.ID == controlID)
+        return rootControl;
+      foreach (Control controlToSearch in rootControl.Controls)
+      {
+        Control controlToReturn = FindControlRecursive(controlToSearch, controlID);
+        if (controlToReturn != null)
+          return controlToReturn;
+      }
+      return null;
+    }
+    /// <summary>
+    /// Handles the Click event of the StartWorkflow control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     protected void StartWorkflow_Click(object sender, EventArgs e)
     {
       // Optionally, add code here to perform additional steps before starting your workflow
@@ -38,15 +138,26 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
       {
         HandleStartWorkflow();
       }
-      catch (Exception)
+      catch (Exception _ex)
       {
-        SPUtility.TransferToErrorPage(SPHttpUtility.UrlKeyValueEncode("Failed to Start Workflow"));
+        this.Controls.Add(new CAS.SharePoint.Web.ExceptionMessage(_ex));
+        TraceEvent(_ex.ExceptionDiagnosticMessage("CloseManyIPRAccountsForm.StartWorkflow_Click"), 142, TraceSeverity.High);
+        throw;
       }
     }
-
+    /// <summary>
+    /// Handles the Click event of the Cancel control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     protected void Cancel_Click(object sender, EventArgs e)
     {
       SPUtility.Redirect("Workflow.aspx", SPRedirectFlags.RelativeToLayoutsPage, HttpContext.Current, Page.ClientQueryString);
+    }
+    private DataContextManagement<IPRLinq.Entities> m_DataContextManagement = null;
+    private void TraceEvent(string message, int eventId, TraceSeverity severity)
+    {
+      WebsiteModelExtensions.TraceEvent(message, eventId, severity, WebsiteModelExtensions.LoggingCategories.CloseManyAccounts);
     }
 
     #region Workflow Initiation Code - Typically, the following code should not be changed
@@ -95,10 +206,14 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
 
     private void StartListWorkflow()
     {
+      TraceEvent("Entering CloseManyIPRAccountsForm.StartListWorkflow", 207, TraceSeverity.Monitorable);
       SPWorkflowAssociation association = this.workflowList.WorkflowAssociations[new Guid(this.associationGuid)];
       this.Web.Site.WorkflowManager.StartWorkflow(workflowListItem, association, GetInitiationData());
-      SPUtility.Redirect(this.workflowList.DefaultViewUrl, SPRedirectFlags.UseSource, HttpContext.Current);
+      TraceEvent(" CloseManyIPRAccountsForm.StartListWorkflow Redirect to: " + this.workflowList.DefaultViewUrl, 210, TraceSeverity.Monitorable);
+      bool _redirectResult = SPUtility.Redirect(this.workflowList.DefaultViewUrl, SPRedirectFlags.UseSource, HttpContext.Current);
+      TraceEvent(String.Format("CloseManyIPRAccountsForm.StartListWorkflow Redirect result: {0}", _redirectResult), 212, TraceSeverity.Monitorable);
     }
     #endregion
+
   }
 }

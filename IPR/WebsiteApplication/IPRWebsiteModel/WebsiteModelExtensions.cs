@@ -123,7 +123,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
       /// <summary>
       /// The clearance user action
       /// </summary>
-      Clearance
+      Clearance,
+      /// <summary>
+      /// The close many accounts action
+      /// </summary>
+      CloseManyAccounts
     }
     /// <summary>
     /// Writes a diagnostic message into the trace log, with specified Microsoft.SharePoint.Administration.TraceSeverity. 
