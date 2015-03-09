@@ -67,7 +67,7 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
             _Closing = false;
           }
           _at = "bool _notFinished";
-          if (_iprItem.Disposals(_edc, (x, y, z) => TraceEvent(x, y, z)).Where<Disposal>(v => v.SettledQuantityDec > 0 && v.CustomsStatus.Value != CustomsStatus.Finished).Any<Disposal>())
+          if (_iprItem.AllEntriesClosed(_edc, (x, y, z) => TraceEvent(x, y, z)))
           {
             LogFinalMessageToHistory_HistoryOutcome = "Closing error";
             LogFinalMessageToHistory_HistoryOutcome = String.Format(LogWarningTemplate, "All disposals must be cleared through customs before closing account.");
