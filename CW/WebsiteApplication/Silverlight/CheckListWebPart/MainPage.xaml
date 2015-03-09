@@ -10,14 +10,16 @@
     d:DesignHeight="400" d:DesignWidth="400" Loaded="UserControl_Loaded">
     <Grid x:Name="x_LayoutRoot"  Background="White" HorizontalAlignment="Stretch" Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="200" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="160" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Button x:Name="x_ButtonPrint" Style="{StaticResource ButtonStyle}" Content="Print Check List" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Click="x_ButtonPrint_Click"/>
-        <Grid x:Name="x_GridToBePrinted" Grid.Row="1" Grid.Column="0" Margin="20">
+        <Button x:Name="x_ButtonExport" Style="{StaticResource ButtonStyle}" Content="Export Check List" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Click="x_ButtonExport_Click"/>
+        <Grid x:Name="x_GridToBePrinted" Grid.Row="2" Grid.Column="0" Margin="20">
             <Grid.DataContext>
                 <CheckListHost:CheckListWebPartDataContract/>
             </Grid.DataContext>
