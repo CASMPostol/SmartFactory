@@ -64,6 +64,9 @@
     </None>
     <None Include="DocumentsFactory\BinCard\GoCS.ps1" />
     <None Include="DocumentsFactory\BinCard\GoXSD.ps1" />
+    <None Include="DocumentsFactory\CheckList\CheckList.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="DocumentsFactory\SAD\SADw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
