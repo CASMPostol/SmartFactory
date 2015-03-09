@@ -169,7 +169,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns><c>true</c> if all accounts are in state finished or the <see cref="IPR.SettledQuantityDec"/> is equal 0, <c>false</c> otherwise.</returns>
     public bool AllEntriesClosed(Entities edc, NamedTraceLogger.TraceAction trace)
     {
-      return Disposals(edc, (x, y, z) => trace(x, y, z)).Where<Disposal>(v => v.SettledQuantityDec > 0 && v.CustomsStatus.Value != CustomsStatus.Finished).Any<Disposal>();
+      return ! Disposals(edc, (x, y, z) => trace(x, y, z)).Where<Disposal>(v => v.SettledQuantityDec > 0 && v.CustomsStatus.Value != CustomsStatus.Finished).Any<Disposal>();
     }
 
     #region static
