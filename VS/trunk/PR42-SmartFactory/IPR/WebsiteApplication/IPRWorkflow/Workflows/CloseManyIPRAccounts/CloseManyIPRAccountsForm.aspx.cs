@@ -73,11 +73,13 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
             AccountBalance = y.AccountBalance.GetValueOrDefault(-1),
             ValidToDate = y.ValidToDate.GetValueOrDefault(CAS.SharePoint.Extensions.SPMinimum),
             Id = y.Id.Value,
-            IsSelected = true
+            IsSelected = true,
+            Cartons = y.Cartons.GetValueOrDefault(-1),
+            OGLValidTo = y.OGLValidTo.GetValueOrDefault(Extensions.SPMinimum)
           }).ToList<IPRAccountDataSource>();
         if (this.IsPostBack)
         {
-          TraceEvent("CloseManyIPRAccountsForm.Page_Load - IsPostBack do nothing.", 78, TraceSeverity.Monitorable);
+          TraceEvent("CloseManyIPRAccountsForm.Page_Load - IsPostBack do nothing.", 82, TraceSeverity.Monitorable);
           return;
         }
         TraceEvent(
@@ -86,12 +88,12 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
           TraceSeverity.Verbose);
         m_AvailableGridView.DataSource = m_DataSource;
         m_AvailableGridView.DataBind();
-        TraceEvent("Finished CloseManyIPRAccountsForm.Page_Load", 87, TraceSeverity.Monitorable);
+        TraceEvent("Finished CloseManyIPRAccountsForm.Page_Load", 91, TraceSeverity.Monitorable);
       }
       catch (Exception _ex)
       {
         this.Controls.Add(new CAS.SharePoint.Web.ExceptionMessage(_ex));
-        TraceEvent(_ex.ExceptionDiagnosticMessage("CloseManyIPRAccountsForm.Page_Load"), 92, TraceSeverity.High);
+        TraceEvent(_ex.ExceptionDiagnosticMessage("CloseManyIPRAccountsForm.Page_Load"), 96, TraceSeverity.High);
       }
     }
     /// <summary>

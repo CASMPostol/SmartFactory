@@ -132,6 +132,24 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
       get { return this._closingDate; }
       set { this._closingDate = value; }
     }
+    /// <summary>
+    /// Gets or sets the cartons.
+    /// </summary>
+    /// <value>The cartons.</value>
+    public double Cartons
+    {
+      get { return m_Cartons; }
+      set { m_Cartons = value; }
+    }
+    /// <summary>
+    /// Gets or sets the ogl valid to.
+    /// </summary>
+    /// <value>The ogl valid to.</value>
+    public DateTime OGLValidTo
+    {
+      get { return m_OGLValidTo; }
+      set { m_OGLValidTo = value; }
+    }
     #endregion
 
     #region private
@@ -147,6 +165,8 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
     private double _accountBalance;
     private DateTime _validToDate;
     private DateTime _closingDate;
+    private double m_Cartons;
+    private DateTime m_OGLValidTo;
     #endregion
 
   }
