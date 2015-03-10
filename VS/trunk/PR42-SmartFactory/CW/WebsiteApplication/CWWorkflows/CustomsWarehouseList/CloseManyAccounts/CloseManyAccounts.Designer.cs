@@ -52,6 +52,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
       this.GeneralFaultHandlerActivity = new System.Workflow.ComponentModel.FaultHandlerActivity();
       this.ApplicationErrorfaultHandlerActivity = new System.Workflow.ComponentModel.FaultHandlerActivity();
       this.WhileSequenceActivity = new System.Workflow.Activities.SequenceActivity();
+      this.cancellationHandlerActivity1 = new System.Workflow.ComponentModel.CancellationHandlerActivity();
       this.faultHandlersActivity1 = new System.Workflow.ComponentModel.FaultHandlersActivity();
       this.FinishedHistoryListActivity = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.whileActivity1 = new System.Workflow.Activities.WhileActivity();
@@ -61,7 +62,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
       // ExceptionHandlerHistoryListActivity
       // 
       this.ExceptionHandlerHistoryListActivity.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
-      this.ExceptionHandlerHistoryListActivity.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+      this.ExceptionHandlerHistoryListActivity.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowError;
       activitybind1.Name = "CloseManyAccounts";
       activitybind1.Path = "ExceptionHandlerHistoryListActivity_HistoryDescription";
       activitybind2.Name = "CloseManyAccounts";
@@ -77,9 +78,9 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
       // 
       // ApplicationErrorLogToHistory
       // 
-      this.ApplicationErrorLogToHistory.Description = "ApplicationError Log To History";
+      this.ApplicationErrorLogToHistory.Description = "ApplicationErrorLogToHistory";
       this.ApplicationErrorLogToHistory.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
-      this.ApplicationErrorLogToHistory.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+      this.ApplicationErrorLogToHistory.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowError;
       activitybind4.Name = "CloseManyAccounts";
       activitybind4.Path = "ApplicationErrorLogToHistory_HistoryDescription1";
       activitybind5.Name = "CloseManyAccounts";
@@ -136,6 +137,10 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
       this.WhileSequenceActivity.Activities.Add(this.CloseManyAccountCodeActivity);
       this.WhileSequenceActivity.Description = "Content of the while loop";
       this.WhileSequenceActivity.Name = "WhileSequenceActivity";
+      // 
+      // cancellationHandlerActivity1
+      // 
+      this.cancellationHandlerActivity1.Name = "cancellationHandlerActivity1";
       // 
       // faultHandlersActivity1
       // 
@@ -207,6 +212,7 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
       this.Activities.Add(this.whileActivity1);
       this.Activities.Add(this.FinishedHistoryListActivity);
       this.Activities.Add(this.faultHandlersActivity1);
+      this.Activities.Add(this.cancellationHandlerActivity1);
       this.Description = "Close Many Accounts";
       this.Name = "CloseManyAccounts";
       this.CanModifyActivities = false;
@@ -215,18 +221,32 @@ namespace CAS.SmartFactory.CW.Workflows.CustomsWarehouseList.CloseManyAccounts
 
     #endregion
 
+    private CancellationHandlerActivity cancellationHandlerActivity1;
+
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity ApplicationErrorLogToHistory;
+
     private FaultHandlerActivity ApplicationErrorfaultHandlerActivity;
+
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity WhileLogToHistory;
+
     private SequenceActivity WhileSequenceActivity;
+
     private WhileActivity whileActivity1;
+
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity ExceptionHandlerHistoryListActivity;
+
     private FaultHandlerActivity GeneralFaultHandlerActivity;
+
     private FaultHandlersActivity faultHandlersActivity1;
+
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity FinishedHistoryListActivity;
+
     private CodeActivity CloseManyAccountCodeActivity;
+
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity StartingHistoryListActivity;
+
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated WorkflowActivated;
+
 
 
   }
