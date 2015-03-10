@@ -58,7 +58,7 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
       // 
       this.Closeing.Description = "Closing IPR record procedure";
       this.Closeing.Name = "Closeing";
-      this.Closeing.ExecuteCode += new System.EventHandler(this.Closeing_ExecuteCode);
+      this.Closeing.ExecuteCode += new System.EventHandler(this.ClosingExecuteCode);
       // 
       // LogClosingMessageToHistory
       // 
