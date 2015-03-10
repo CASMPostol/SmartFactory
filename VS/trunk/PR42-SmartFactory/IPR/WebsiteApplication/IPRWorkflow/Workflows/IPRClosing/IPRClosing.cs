@@ -49,69 +49,75 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
     /// The workflow properties
     /// </summary>
     public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
-    private void Closeing_ExecuteCode(object sender, EventArgs e)
+    private void ClosingExecuteCode(object sender, EventArgs e)
     {
-      TraceEvent("Entering IPRClosing.Closeing_ExecuteCode", 54, TraceSeverity.Monitorable);
-      string _at = "Starting";
+      TraceEvent("Entering IPRClosing.v", 54, TraceSeverity.Monitorable);
       try
       {
-        bool _Closing = true;
-        using (Entities _edc = new Entities(workflowProperties.WebUrl))
+        switch (CloseAccount(workflowProperties.Web, workflowProperties.WebUrl, workflowProperties.ItemId))
         {
-          IPRClass _iprItem = Element.GetAtIndex<WebsiteModel.Linq.IPR>(_edc.IPR, workflowProperties.ItemId);
-          _at = "if (_record.AccountBalance != 0)";
-          if (_iprItem.AccountBalance != 0)
-          {
+          case CloseAccountResult.Closed:
+            break;
+          case CloseAccountResult.AccountBalanceError:
             LogFinalMessageToHistory_HistoryOutcome = "Closing error";
             LogFinalMessageToHistory_HistoryOutcome = String.Format(LogWarningTemplate, "AccountBalance must be equal 0");
-            _Closing = false;
-          }
-          _at = "bool _notFinished";
-          if (_iprItem.AllEntriesClosed(_edc, (x, y, z) => TraceEvent(x, y, z)))
-          {
+            break;
+          case CloseAccountResult.DisposalError:
             LogFinalMessageToHistory_HistoryOutcome = "Closing error";
             LogFinalMessageToHistory_HistoryOutcome = String.Format(LogWarningTemplate, "All disposals must be cleared through customs before closing account.");
-            _Closing = false;
-          }
-          string _documentName = Settings.RequestForAccountClearenceDocumentName(_edc, _iprItem.Id.Value);
-          _at = "CreateRequestContent";
-          List<Disposal> _Disposals = _iprItem.Disposals(_edc, (x, y, z) => TraceEvent(x, y, z)).Where<Disposal>(x => x.CustomsStatus == CustomsStatus.Finished).ToList<Disposal>();
-          RequestContent _content = DocumentsFactory.AccountClearanceFactory.CreateRequestContent(_Disposals, _iprItem, _documentName);
-          if (_iprItem.IPRLibraryIndex != null)
-          {
-            _at = "File.WriteXmlFile";
-            File.WriteXmlFile<RequestContent>(this.workflowProperties.Web, _iprItem.IPRLibraryIndex.Id.Value, Entities.IPRLibraryName, _content, DocumentNames.RequestForAccountClearenceName);
-          }
-          else
-          {
-            _at = "File.CreateXmlFile";
-            SPFile _docFile = File.CreateXmlFile<RequestContent>(this.workflowProperties.Web, _content, _documentName, Entities.IPRLibraryName, DocumentNames.RequestForAccountClearenceName);
-            WebsiteModel.Linq.IPRLib _document = Element.GetAtIndex<WebsiteModel.Linq.IPRLib>(_edc.IPRLibrary, _docFile.Item.ID);
-            _document.DocumentNo = _iprItem.Title;
-            _iprItem.IPRLibraryIndex = _document;
-          }
-          if (_Closing)
-          {
-            _iprItem.AccountClosed = true;
-            _iprItem.ClosingDate = DateTime.Today.Date;
-          }
-          _at = "SubmitChanges";
-          _edc.SubmitChanges();
+            break;
+          default:
+            break;
         }
       }
       catch (Exception ex)
       {
         LogFinalMessageToHistory_HistoryOutcome = "Closing fatal error";
-        string _pat = "Cannot close the IPR account because of fatal error {0} at {1}";
-        LogFinalMessageToHistory_HistoryDescription = String.Format(_pat, ex.Message, _at);
-        TraceEvent("Exception at IPRClosing.Closeing_ExecuteCode:: " + LogFinalMessageToHistory_HistoryDescription + " Stack: " + ex.StackTrace, 54, TraceSeverity.High);
+        string _pat = "Cannot close the IPR account because of fatal error {0}";
+        LogFinalMessageToHistory_HistoryDescription = String.Format(_pat, ex.Message);
+        TraceEvent("Exception at IPRClosing.ClosingExecuteCode: " + LogFinalMessageToHistory_HistoryDescription + " Stack: " + ex.StackTrace, 54, TraceSeverity.High);
       }
-      TraceEvent("Finished IPRClosing.Closeing_ExecuteCode", 54, TraceSeverity.Monitorable);
+      TraceEvent("Finished IPRClosing.ClosingExecuteCode", 54, TraceSeverity.Monitorable);
+    }
+    internal enum CloseAccountResult { Closed, AccountBalanceError, DisposalError }
+    internal static CloseAccountResult CloseAccount(SPWeb Web, string WebUrl, int ItemId)
+    {
+      CloseAccountResult _ret = CloseAccountResult.Closed;
+      using (Entities _edc = new Entities(WebUrl))
+      {
+
+        IPRClass _iprItem = Element.GetAtIndex<WebsiteModel.Linq.IPR>(_edc.IPR, ItemId);
+        if (_iprItem.AccountClosed.GetValueOrDefault(false))
+          throw new CAS.SharePoint.ApplicationError("CloseAccount", "AccountClosed", "The account has been already closed.", null);
+        if (_iprItem.AccountBalance != 0)
+          _ret = CloseAccountResult.AccountBalanceError;
+        else if (!_iprItem.AllEntriesClosed(_edc, (x, y, z) => TraceEvent(x, y, z)))
+          _ret = CloseAccountResult.AccountBalanceError;
+        string _documentName = Settings.RequestForAccountClearenceDocumentName(_edc, _iprItem.Id.Value);
+        List<Disposal> _Disposals = _iprItem.Disposals(_edc, (x, y, z) => TraceEvent(x, y, z)).Where<Disposal>(x => x.CustomsStatus == CustomsStatus.Finished).ToList<Disposal>();
+        RequestContent _content = DocumentsFactory.AccountClearanceFactory.CreateRequestContent(_Disposals, _iprItem, _documentName);
+        if (_iprItem.IPRLibraryIndex != null)
+          File.WriteXmlFile<RequestContent>(Web, _iprItem.IPRLibraryIndex.Id.Value, Entities.IPRLibraryName, _content, DocumentNames.RequestForAccountClearenceName);
+        else
+        {
+          SPFile _docFile = File.CreateXmlFile<RequestContent>(Web, _content, _documentName, Entities.IPRLibraryName, DocumentNames.RequestForAccountClearenceName);
+          WebsiteModel.Linq.IPRLib _document = Element.GetAtIndex<WebsiteModel.Linq.IPRLib>(_edc.IPRLibrary, _docFile.Item.ID);
+          _document.DocumentNo = _iprItem.Title;
+          _iprItem.IPRLibraryIndex = _document;
+        }
+        if (_ret == CloseAccountResult.Closed)
+        {
+          _iprItem.AccountClosed = true;
+          _iprItem.ClosingDate = DateTime.Today.Date;
+        }
+        _edc.SubmitChanges();
+      }
+      return _ret;
     }
     /// <summary>
     /// The log warning message to history_ history description
     /// </summary>
-    public String LogWarningTemplate = "Cannot close the IPR account because {0}, correct the content and try again.";
+    public static String LogWarningTemplate = "Cannot close the IPR account because {0}, correct the content and try again.";
     /// <summary>
     /// The log final message to history_ history description
     /// </summary>

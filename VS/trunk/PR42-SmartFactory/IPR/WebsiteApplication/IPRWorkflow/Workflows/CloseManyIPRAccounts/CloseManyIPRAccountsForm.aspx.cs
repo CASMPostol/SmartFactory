@@ -81,8 +81,8 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
           return;
         }
         TraceEvent(
-          String.Format("CloseManyIPRAccountsForm: found {0} accounts ready to be closed", String.Join(",", m_DataSource.Select<IPRAccountDataSource, string>(x => x.Title).ToArray<string>())), 
-          83, 
+          String.Format("CloseManyIPRAccountsForm: found {0} accounts ready to be closed", String.Join(",", m_DataSource.Select<IPRAccountDataSource, string>(x => x.Title).ToArray<string>())),
+          83,
           TraceSeverity.Verbose);
         m_AvailableGridView.DataSource = m_DataSource;
         m_AvailableGridView.DataBind();
