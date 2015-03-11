@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.SmartFactory.CW.Dashboards.Webparts.CheckListHost;
 using System;
 using System.Windows;
 using System.Windows.Browser;
@@ -61,7 +62,7 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
           return;
         string message = m_HiddenField.GetAttribute( "value" );
         if ( !String.IsNullOrEmpty( message ) )
-          x_GridToBePrinted.DataContext = Webparts.CheckListHost.CheckListWebPartDataContract.Deserialize( message );
+          x_GridToBePrinted.DataContext = CAS.Common.Serialization.JsonSerialization.Deserialize<CheckListWebPartDataContract>( message );
       }
       catch ( Exception ex )
       {
@@ -88,6 +89,22 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
         MessageBox.Show( ex.Message, "Print Exception", MessageBoxButton.OK );
       }
     }
+    private void x_ButtonExport_Click(object sender, RoutedEventArgs e)
+    {
+      SaveFileDialog _textDialog = new SaveFileDialog() { Filter = "XML Files | *.xml", DefaultExt = "xml" };
+      bool? result = _textDialog.ShowDialog();
+      if (!result.GetValueOrDefault(false))
+        return;
+      System.IO.Stream fileStream = _textDialog.OpenFile();
+      
+      string _content = "bbbbbbbbbb "; //TOBD
+      using (System.IO.StreamWriter sw = new System.IO.StreamWriter(fileStream))
+      {
+        sw.Write(_content);
+        sw.Flush();
+        sw.Close();
+      }
+    }
     #endregion
 
     private void ExceptionHandling( Exception ex )
@@ -100,5 +117,6 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
       set { x_GridToBePrinted.DataContext = value; this.UpdateLayout(); }
     }
     #endregion
+
   }
 }
