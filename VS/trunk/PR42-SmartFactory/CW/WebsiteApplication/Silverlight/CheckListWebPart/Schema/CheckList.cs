@@ -20,22 +20,22 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart.Schema {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/CheckList" +
-        ".xsd")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/CheckList" +
-        ".xsd", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/SmartFactory/CW/Dashboards/CheckListWebPart/Schema/CheckLis" +
+        "t.xsd")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://cas.eu/schemas/SmartFactory/CW/Dashboards/CheckListWebPart/Schema/CheckLis" +
+        "t.xsd", IsNullable=false)]
     public partial class CheckList {
         
-        private ArrayOfContentsContentArray[] checkListContentArayField;
+        private CheckListItemContentArray[] itemsField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("ContentArray", IsNullable=false)]
-        public ArrayOfContentsContentArray[] CheckListContentAray {
+        public CheckListItemContentArray[] Items {
             get {
-                return this.checkListContentArayField;
+                return this.itemsField;
             }
             set {
-                this.checkListContentArayField = value;
+                this.itemsField = value;
             }
         }
     }
@@ -45,15 +45,15 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart.Schema {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/CheckList" +
-        ".xsd")]
-    public partial class ArrayOfContentsContentArray {
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/SmartFactory/CW/Dashboards/CheckListWebPart/Schema/CheckLis" +
+        "t.xsd")]
+    public partial class CheckListItemContentArray {
         
         private string oGLNumberField;
         
         private System.DateTime oGLDateField;
         
-        private double packageToClearField;
+        private string packageToClearField;
         
         /// <remarks/>
         public string OGLNumber {
@@ -77,7 +77,8 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart.Schema {
         }
         
         /// <remarks/>
-        public double PackageToClear {
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+        public string PackageToClear {
             get {
                 return this.packageToClearField;
             }

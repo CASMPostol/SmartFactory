@@ -4,7 +4,8 @@ $env:path += "; C:\Program Files (x86)\Microsoft SDKs\Windows\v8.1A\bin\NETFX 4.
 #$cpath = get-location
 
 Write-host XSD processing
-xsd.exe CheckList.xsd /N:CAS.SmartFactory.CW.Dashboards.CheckListWebPart.Schema /c  |write-host
+# xsd.exe CheckList.xsd /N:CAS.SmartFactory.CW.Dashboards.CheckListWebPart.Schema /c  |write-host
+svcutil /dconly CheckList.xsd /language:C#
 
 #set-location $cpath
 Write-host Done...
