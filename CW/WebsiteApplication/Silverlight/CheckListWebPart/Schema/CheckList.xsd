@@ -1,20 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/CheckList.xsd" elementFormDefault="qualified" targetNamespace="http://cas.eu/schemas/SmartFactory/CW/Interoperability/DocumentsFactory/CheckList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="http://cas.eu/schemas/SmartFactory/CW/Dashboards/CheckListWebPart/Schema/CheckList.xsd" 
+           elementFormDefault="qualified" 
+           targetNamespace="http://cas.eu/schemas/SmartFactory/CW/Dashboards/CheckListWebPart/Schema/CheckList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="CheckList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="1" name="CheckListContentAray" type="tns:ArrayOfContents" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Items" type="tns:CheckListItem" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-    <xs:complexType name="ArrayOfContents">
+    <xs:complexType name="CheckListItem">
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="unbounded" name="ContentArray">
           <xs:complexType>
             <xs:sequence>
               <xs:element minOccurs="0" maxOccurs="1" name="OGLNumber" type="xs:string" />
               <xs:element minOccurs="1" maxOccurs="1" name="OGLDate" type="xs:date" />
-              <xs:element minOccurs="1" maxOccurs="1" name="PackageToClear" type="xs:double" />
+              <xs:element minOccurs="1" maxOccurs="1" name="PackageToClear" type="xs:integer" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
