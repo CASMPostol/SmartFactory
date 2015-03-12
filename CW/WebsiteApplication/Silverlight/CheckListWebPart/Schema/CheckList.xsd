@@ -15,8 +15,8 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element minOccurs="0" maxOccurs="1" name="OGLNumber" type="xs:string" />
-              <xs:element minOccurs="1" maxOccurs="1" name="OGLDate" type="xs:date" />
-              <xs:element minOccurs="1" maxOccurs="1" name="PackageToClear" type="xs:integer" />
+              <xs:element minOccurs="1" maxOccurs="1" name="OGLDate" type="xs:dateTime" />
+              <xs:element minOccurs="1" maxOccurs="1" name="PackageToClear" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
