@@ -358,4 +358,7 @@
 	<data name="CAS_ASPX_CloseManyAccountsForm" xml:space="preserve">
 		<value>Close many accounts</value>
 	</data>
+	<data name="CAS_ASPX_IPRAccount" xml:space="preserve">
+		<value>IPR account</value>
+	</data>
 </root>
