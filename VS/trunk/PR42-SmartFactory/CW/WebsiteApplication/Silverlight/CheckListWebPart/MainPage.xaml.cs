@@ -108,10 +108,12 @@ namespace CAS.SmartFactory.CW.Dashboards.CheckListWebPart
         CheckListWebPartDataContract _contract = x_GridToBePrinted.DataContext as CheckListWebPartDataContract;
         if (_contract == null)
           throw new ArgumentNullException("CheckListWebPartDataContract", "The data is not available.");
+        CheckListItem _cli = new CheckListItem();
+        _cli.AddRange( _contract.DisposalsList.Select<DisposalDescription, ContentArray>(x => new ContentArray() 
+                                 { OGLDate = x.OGLDate, OGLNumber = x.OGLNumber, PackageToClear = x.PackageToClear }));
         CheckList _newDocument = new CheckList()
         {
-          CheckListContentAray = _contract.DisposalsList.Select<DisposalDescription, ArrayOfContentsContentArray>
-            (x => new ArrayOfContentsContentArray() { OGLDate = x.OGLDate, OGLNumber = x.OGLNumber, PackageToClear = x.PackageToClear }).ToArray<ArrayOfContentsContentArray>()
+          Items = _cli
         };
         XmlSerialization.WriteXmlFile<CheckList>(_newDocument, fileStream, "CheckList");
       }
