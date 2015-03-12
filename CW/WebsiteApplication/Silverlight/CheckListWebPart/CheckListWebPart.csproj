@@ -64,6 +64,9 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CAS.CommonSerialization">
+      <HintPath>..\..\..\..\packages\CAS.Common.Serialization.1.00.00\lib\portable-net45+sl5\CAS.CommonSerialization.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System.ComponentModel.DataAnnotations, Version=5.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
@@ -124,6 +127,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CommonDefinition.cs</LastGenOutput>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -136,12 +140,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\PR44-SharePoint\Libraries\CASCommonSerialization\CASCommonSerialization.csproj">
-      <Project>{c6c80d00-c45a-4e38-8fbc-11288f279389}</Project>
-      <Name>CASCommonSerialization</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
