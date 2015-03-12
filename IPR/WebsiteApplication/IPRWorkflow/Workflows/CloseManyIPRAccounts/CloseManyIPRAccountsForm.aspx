@@ -43,8 +43,8 @@
                                         <asp:CheckBox ID="x_IsSelected" runat="server" Checked="true" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_%>" DataField="Title" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
-                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_DebtDate%>" DataField="CustomsDebtDate" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_IPRAccount%>" DataField="Title" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_DebtDate%>" DataField="CustomsDebtDate" DataFormatString="{0:d}" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_DocumentNo%>" DataField="DocumentNo" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Grade%>" DataField="Grade" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_SKU%>" DataField="SKU" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
@@ -52,7 +52,7 @@
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_NetMass%>" DataField="NetMass" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_AccountBalance%>" DataField="AccountBalance" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Cartons%>" DataField="Cartons" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
-                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_OGLValidTo%>" DataField="OGLValidTo" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                                <asp:BoundField HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_OGLValidTo%>" DataField="OGLValidTo" ReadOnly="true" DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField HeaderText="Id" DataField="Id" Visible="False" SortExpression="Id" ReadOnly="true" ItemStyle-HorizontalAlign="Right"/>
                             </Columns>
                         </SharePoint:SPGridView>			
