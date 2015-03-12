@@ -133,9 +133,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Serialization\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\PR44-SharePoint\Libraries\CASCommonSerialization\CASCommonSerialization.csproj">
       <Project>{c6c80d00-c45a-4e38-8fbc-11288f279389}</Project>

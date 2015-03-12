@@ -58,7 +58,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
       this.WhileSequenceActivity = new System.Workflow.Activities.SequenceActivity();
       this.faultHandlersActivity1 = new System.Workflow.ComponentModel.FaultHandlersActivity();
       this.FinishedHistoryListActivity = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
-      this.WhileActivity = new System.Workflow.Activities.WhileActivity();
+      this.whileActivity1 = new System.Workflow.Activities.WhileActivity();
       this.StartingHistoryListActivity = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.WorkflowActivated = new Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated();
       // 
@@ -125,7 +125,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
       this.WhileLogToHistory.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
       this.WhileLogToHistory.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
       activitybind10.Name = "CloseManyIPRAccounts";
-      activitybind10.Path = "StartingHistoryListActivity_HistoryDescription";
+      activitybind10.Path = "WhileLogToHistory_HistoryDescription";
       activitybind11.Name = "CloseManyIPRAccounts";
       activitybind11.Path = "WhileLogToHistory_HistoryOutcome";
       this.WhileLogToHistory.Name = "WhileLogToHistory";
@@ -182,13 +182,13 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
       this.FinishedHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind14)));
       this.FinishedHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind15)));
       // 
-      // WhileActivity
+      // whileActivity1
       // 
-      this.WhileActivity.Activities.Add(this.WhileSequenceActivity);
+      this.whileActivity1.Activities.Add(this.WhileSequenceActivity);
       codecondition1.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.WhileActivityCondition);
-      this.WhileActivity.Condition = codecondition1;
-      this.WhileActivity.Description = "Iretase closing operation for all selected accounts.";
-      this.WhileActivity.Name = "WhileActivity";
+      this.whileActivity1.Condition = codecondition1;
+      this.whileActivity1.Description = "Iretase closing operation for all selected accounts.";
+      this.whileActivity1.Name = "whileActivity1";
       // 
       // StartingHistoryListActivity
       // 
@@ -227,7 +227,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
       // 
       this.Activities.Add(this.WorkflowActivated);
       this.Activities.Add(this.StartingHistoryListActivity);
-      this.Activities.Add(this.WhileActivity);
+      this.Activities.Add(this.whileActivity1);
       this.Activities.Add(this.FinishedHistoryListActivity);
       this.Activities.Add(this.faultHandlersActivity1);
       this.Name = "CloseManyIPRAccounts";
@@ -237,30 +237,20 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
 
     #endregion
 
-    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity FinishedHistoryListActivity;
-
-    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity ExceptionHandlerHistoryListActivity;
-
-    private FaultHandlerActivity GeneralFaultHandlerActivity;
-
-    private FaultHandlerActivity ApplicationErrorfaultHandlerActivity;
-
-    private FaultHandlersActivity faultHandlersActivity1;
-
-    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity ApplicationErrorLogToHistory;
-
-    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity StartingHistoryListActivity;
-
-    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity WhileLogToHistory;
-
-    private SequenceActivity WhileSequenceActivity;
 
     private WhileActivity WhileActivity;
-
+    private WhileActivity whileActivity1;
+    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity FinishedHistoryListActivity;
+    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity ExceptionHandlerHistoryListActivity;
+    private FaultHandlerActivity GeneralFaultHandlerActivity;
+    private FaultHandlerActivity ApplicationErrorfaultHandlerActivity;
+    private FaultHandlersActivity faultHandlersActivity1;
+    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity ApplicationErrorLogToHistory;
+    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity StartingHistoryListActivity;
+    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity WhileLogToHistory;
+    private SequenceActivity WhileSequenceActivity;
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity lLgClosingResult;
-
     private CodeActivity CloseManyAccountCodeActivity;
-
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated WorkflowActivated;
 
 
