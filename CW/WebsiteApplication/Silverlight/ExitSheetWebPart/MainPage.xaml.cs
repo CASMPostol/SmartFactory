@@ -62,7 +62,7 @@ namespace CAS.SmartFactory.CW.Dashboards.ExitSheetWebPart
           return;
         string message = m_HiddenField.GetAttribute( "value" );
         if ( ! String.IsNullOrEmpty( message ) )
-         MainPageData = ExitSheeDataContract.Deserialize( message );
+         MainPageData = CAS.Common.Serialization.JsonSerialization.Deserialize<ExitSheeDataContract>( message );
       }
       catch ( Exception ex )
       {
