@@ -198,7 +198,7 @@
         <td valign="middle" align="center">
           7
         </td>
-        <td>
+        <td valign="middle" align="center">
           8
         </td>
         <td valign="middle" align="center">
@@ -368,7 +368,7 @@
         <td valign="middle" align="center">
           20
         </td>
-        <td>
+        <td valign="middle" align="center">
           21
         </td>
         <td valign="middle" align="center">
