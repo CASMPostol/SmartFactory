@@ -109,6 +109,10 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CAS.Common, Version=2.60.10.20895, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=AMD64">
+      <HintPath>..\..\..\packages\CAS.Common64.2.60.10\lib\net40\CAS.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -352,10 +356,6 @@
     <ProjectReference Include="..\..\..\..\EX07-PrismV5SourcePrismLibrary\Desktop\Prism\Prism.Composition.Desktop.csproj">
       <Project>{77138947-1d13-4e22-aee0-5d0dd046ca34}</Project>
       <Name>Prism.Composition.Desktop</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\PR44-SharePoint\Libraries\CASCommon\CASCommon.csproj">
-      <Project>{af2434e6-fd65-43a2-be31-c8c1e5ba5acd}</Project>
-      <Name>CASCommon</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\PR44-SharePoint\Libraries\SharePointLinqClient\SharePointClient.csproj">
       <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
