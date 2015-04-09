@@ -70,6 +70,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientDataManagement", "She
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientDataManagementTests", "Shepherd\Tools\Tests\CAS.ClientDataManagementTests\ClientDataManagementTests.csproj", "{BF663DDF-A665-41F7-A52C-C478581DFA03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CASCommon64", "..\PR44-SharePoint\Libraries\CASCommon\CASCommon64.csproj", "{73C8607F-7F59-4BF2-8783-7EEA98B0EDDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -317,6 +319,16 @@ Global
 		{BF663DDF-A665-41F7-A52C-C478581DFA03}.Release|x64.ActiveCfg = Release|x64
 		{BF663DDF-A665-41F7-A52C-C478581DFA03}.Release|x64.Build.0 = Release|x64
 		{BF663DDF-A665-41F7-A52C-C478581DFA03}.Release|x86.ActiveCfg = Release|Any CPU
+		{73C8607F-7F59-4BF2-8783-7EEA98B0EDDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73C8607F-7F59-4BF2-8783-7EEA98B0EDDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73C8607F-7F59-4BF2-8783-7EEA98B0EDDB}.Debug|x64.ActiveCfg = Debug|x64
+		{73C8607F-7F59-4BF2-8783-7EEA98B0EDDB}.Debug|x64.Build.0 = Debug|x64
+		{73C8607F-7F59-4BF2-8783-7EEA98B0EDDB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{73C8607F-7F59-4BF2-8783-7EEA98B0EDDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73C8607F-7F59-4BF2-8783-7EEA98B0EDDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73C8607F-7F59-4BF2-8783-7EEA98B0EDDB}.Release|x64.ActiveCfg = Release|x64
+		{73C8607F-7F59-4BF2-8783-7EEA98B0EDDB}.Release|x64.Build.0 = Release|x64
+		{73C8607F-7F59-4BF2-8783-7EEA98B0EDDB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -349,6 +361,7 @@ Global
 		{B8B8CD4A-5AEA-48EF-90BA-EC86281237B2} = {FAD0A6A7-1B51-4C7B-86B6-D4E21B9C0C43}
 		{E6B7F891-BA8C-4791-8978-1A09F6B46E33} = {B8B8CD4A-5AEA-48EF-90BA-EC86281237B2}
 		{BF663DDF-A665-41F7-A52C-C478581DFA03} = {D00B2712-AFF7-45F9-9315-12AD239440FB}
+		{73C8607F-7F59-4BF2-8783-7EEA98B0EDDB} = {F0F76A46-E3AC-4A6A-BA42-5D1205D52861}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45
