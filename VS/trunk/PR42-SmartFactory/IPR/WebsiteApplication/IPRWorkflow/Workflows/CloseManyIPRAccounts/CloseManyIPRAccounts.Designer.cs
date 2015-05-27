@@ -16,6 +16,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
 {
   public sealed partial class CloseManyIPRAccounts
   {
+
     #region Designer generated code
 
     /// <summary> 
@@ -237,8 +238,6 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
 
     #endregion
 
-
-    private WhileActivity WhileActivity;
     private WhileActivity whileActivity1;
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity FinishedHistoryListActivity;
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity ExceptionHandlerHistoryListActivity;
@@ -252,27 +251,6 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity lLgClosingResult;
     private CodeActivity CloseManyAccountCodeActivity;
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated WorkflowActivated;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   }
 }
