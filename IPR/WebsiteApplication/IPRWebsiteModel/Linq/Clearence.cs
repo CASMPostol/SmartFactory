@@ -135,8 +135,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public void ClearThroughCustom(Entities entities, SADConsignment sadConsignment, NamedTraceLogger.TraceAction trace)
     {
       SADConsignmentLibraryIndex = sadConsignment;
-      foreach (Disposal _dspsl in this.Disposal(entities))
-        _dspsl.ClearThroughCustom(entities, this.ClearenceProcedure.Value, this.SADDocumentNumber, _disposal => _disposal.Disposal2IPRIndex.RecalculateLastStarted(entities, _disposal, trace) );
+      foreach (Disposal _Disposal in this.Disposal(entities))
+        _Disposal.ClearThroughCustom(entities, this.ClearenceProcedure.Value, this.SADDocumentNumber, _disposal => _disposal.Disposal2IPRIndex.RecalculateLastStarted(entities, _disposal, trace) );
       UpdateTitle(entities);
     }
     /// <summary>
@@ -144,11 +144,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="entities">The entities.</param>
     /// <param name="procedureDescription">The procedure description.</param>
-    /// <param name="clearenceProcedure">The clearance procedure.</param>
-    public void UpdateClerance(Entities entities, string procedureDescription, ClearenceProcedure clearenceProcedure)
+    /// <param name="clearanceProcedure">The clearance procedure.</param>
+    public void UpdateClerance(Entities entities, string procedureDescription, ClearenceProcedure clearanceProcedure)
     {
       ProcedureCode = procedureDescription;
-      ClearenceProcedure = clearenceProcedure;
+      ClearenceProcedure = clearanceProcedure;
       UpdateTitle(entities);
     }
     /// <summary>

@@ -439,7 +439,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       trace("Entering IPR.AddDisposal", 421, TraceSeverity.Verbose);
       Disposal _dsp = AddDisposal(edc, kind, ref toDispose);
       _dsp.Material = material;
-      _dsp.ClearThroughCustom(invoiceContent, _x => this.RecalculateLastStarted(edc, _x, trace));
+      _dsp.ClearThroughCustom(invoiceContent, _x => { });
       SADGood _sg = invoiceContent.InvoiceIndex.ClearenceIndex.Clearence2SadGoodID;
       if (_sg != null)
         _dsp.FinishClearingThroughCustoms(edc, _sg, trace);
