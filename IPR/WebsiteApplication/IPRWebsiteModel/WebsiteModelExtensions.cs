@@ -14,6 +14,7 @@
 //</summary>
 
 using CAS.SharePoint.Logging;
+using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
 using System;
 
@@ -139,6 +140,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// <param name="category">The category to write the message to.</param>
     public static void TraceEvent(string message, int eventId, TraceSeverity severity, LoggingCategories category)
     {
+      if (severity >= TraceSeverity.Monitorable && SPContext.Current != null)
+        Linq.ActivityLogCT.WriteEntry(category.ToString(), message);
       NamedTraceLogger.Logger.TraceToDeveloper(message, eventId, severity, string.Format("{0}/{1}", LoggingArea, category));
     }
     internal static void RegisterLoggerSource()
