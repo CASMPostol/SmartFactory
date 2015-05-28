@@ -67,7 +67,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Features
       {
         // Get the ServiceLocatorConfig service from the service locator.
         WebsiteModelExtensions.TraceEvent
-          (String.Format("CAS.SmartFactory.IPR.WebsiteModel FeatureUninstalling: {0}", properties.Definition.DisplayName), 63, TraceSeverity.Monitorable, WebsiteModelExtensions.LoggingCategories.FeatureActivation);
+          (String.Format("CAS.SmartFactory.IPR.WebsiteModel FeatureUninstalling: {0}", properties.Definition.DisplayName), 63, TraceSeverity.High, WebsiteModelExtensions.LoggingCategories.FeatureActivation);
         WebsiteModelExtensions.UnregisterLoggerSource();
       }
       catch (Exception _ex)

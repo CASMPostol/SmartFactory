@@ -147,9 +147,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns>All Disposals associated with this item</returns>
     public IEnumerable<Disposal> Disposals(Entities edc, NamedTraceLogger.TraceAction trace)
     {
-      trace("Entering IPR.Disposals", 147, TraceSeverity.Verbose);
       if (!this.Id.HasValue)
-        return null;
+      {
+        trace("IPR.Disposals - ArgumentOutOfRangeException: Reverse lookup cannot be evaluated for new entities.", 147, TraceSeverity.High);
+        throw new ArgumentOutOfRangeException("IPR.Id", "Reverse lookup cannot be evaluated for new entities.");
+      }
       if (m_Disposals == null)
       {
         trace("IPR.Disposals reverse lookup calculation.", 151, TraceSeverity.Verbose);
@@ -169,7 +171,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns><c>true</c> if all accounts are in state finished or the <see cref="Disposal.SettledQuantityDec"/> is equal 0, <c>false</c> otherwise.</returns>
     public bool AllEntriesClosed(Entities edc, NamedTraceLogger.TraceAction trace)
     {
-      return ! Disposals(edc, (x, y, z) => trace(x, y, z)).Where<Disposal>(v => v.SettledQuantityDec > 0 && v.CustomsStatus.Value != CustomsStatus.Finished).Any<Disposal>();
+      return !Disposals(edc, (x, y, z) => trace(x, y, z)).Where<Disposal>(v => v.SettledQuantityDec > 0 && v.CustomsStatus.Value != CustomsStatus.Finished).Any<Disposal>();
     }
 
     #region static
@@ -488,19 +490,38 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void RecalculateLastStarted(Entities edc, Linq.Disposal disposal, NamedTraceLogger.TraceAction trace)
     {
-      if (this.TobaccoNotAllocatedDec != 0 || _disposal.Where(x => x.SettledQuantityDec > 0 && x.CustomsStatus == CustomsStatus.NotStarted).Any())
+      IEnumerable<Disposal> _ds = Disposals(edc, trace);
+      if (this.TobaccoNotAllocatedDec != 0 || _ds.Where(x => x.SettledQuantityDec > 0 && x.CustomsStatus == CustomsStatus.NotStarted).Any())
         return;
       trace("Starting IPR.RecalculateLastStarted", 52, TraceSeverity.Verbose);
-      IEnumerable<Disposal> _dspsl = Disposals(edc, trace);
-      disposal.DutyPerSettledAmount = (disposal.DutyPerSettledAmount + this.Duty.Value - (from _dec in _dspsl where _dec.DutyPerSettledAmount.HasValue select _dec.DutyPerSettledAmount.Value).Sum(itm => itm)).Value.Round2Decimals();
-      disposal.VATPerSettledAmount = (disposal.VATPerSettledAmount + this.VAT.Value - (from _dec in _dspsl where _dec.VATPerSettledAmount.HasValue select _dec.VATPerSettledAmount.Value).Sum(itm => itm)).Value.Round2Decimals();
+      //DutyPerSettledAmount
+      double _dif = this.Duty.Value - (from _dec in _ds where _dec.DutyPerSettledAmount.HasValue select _dec.DutyPerSettledAmount.Value).Sum<double>(itm => itm);
+      TraceRecalculationDiff("DutyPerSettledAmount", trace, _dif, correction => disposal.DutyPerSettledAmount = (disposal.DutyPerSettledAmount.Value + correction).Round2Decimals());
+      //VATPerSettledAmount
+      _dif = this.VAT.Value - (from _dec in _ds where _dec.VATPerSettledAmount.HasValue select _dec.VATPerSettledAmount.Value).Sum<double>(itm => itm);
+      TraceRecalculationDiff("VATPerSettledAmount", trace, _dif, correction => disposal.VATPerSettledAmount = (disposal.VATPerSettledAmount.Value + correction).Round2Decimals());
+      //VATPerSettledAmount
+      _dif = this.Value.Value - (from _dec in _ds where _dec.TobaccoValue.HasValue select _dec.TobaccoValue.Value).Sum<double>(itm => itm);
+      TraceRecalculationDiff("TobaccoValue", trace, _dif, correction => disposal.TobaccoValue = (disposal.TobaccoValue.Value + correction).Round2Decimals());
+      //DutyAndVAT
       disposal.DutyAndVAT = (disposal.DutyPerSettledAmount + disposal.VATPerSettledAmount).Value.Round2Decimals();
-      disposal.TobaccoValue += this.Value.Value - (from _dec in _dspsl where _dec.TobaccoValue.HasValue select _dec.TobaccoValue.Value).Sum(itm => itm); ;
     }
     #endregion
 
     #region private
     IEnumerable<Disposal> m_Disposals = null;
+    private void TraceRecalculationDiff(string name, NamedTraceLogger.TraceAction trace, double dif, Action<double> correct)
+    {
+      TraceSeverity _severity = TraceSeverity.Verbose;
+      if (Math.Abs(dif) > 1.0)
+        _severity = TraceSeverity.High;
+      else if (Math.Abs(dif) > 0.10)
+        _severity = TraceSeverity.Monitorable;
+      string _msg = String.Format("Correction {3} value = {0} for IPR: {1} {2}", dif.Round2Decimals(), this.Title, _severity == TraceSeverity.High ? "has not been applied because is out of range" : "has been applied", name);
+      trace(_msg, 513, _severity);
+      if (_severity != TraceSeverity.High)
+        correct(dif);
+    }
     /// <summary>
     /// Contains calculated data required to create IPR account
     /// </summary>

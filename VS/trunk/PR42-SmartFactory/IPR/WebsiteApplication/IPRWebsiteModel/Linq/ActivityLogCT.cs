@@ -72,7 +72,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       if ( entities == null )
       {
-        EventLog.WriteEntry( "CAS.SmartFActory", "Cannot open \"Event Log List\" list", EventLogEntryType.Error, 114 );
+        EventLog.WriteEntry( "CAS.SmartFactory", "Cannot open \"Event Log List\" list", EventLogEntryType.Error, 114 );
         return;
       }
       ActivityLogCT log = new ActivityLogCT( source, message, TraceLevel.Error, "ActivityLogCT" );

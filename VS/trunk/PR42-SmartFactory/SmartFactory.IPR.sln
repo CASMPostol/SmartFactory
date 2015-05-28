@@ -20,7 +20,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F6BF3B41-D310-49FD-B761-EB30E2D0BB44}"
 	ProjectSection(SolutionItems) = preProject
 		..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4 = ..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4
-		\\hq.cas.com.pl\cas_dfs\cas\Projekty\Produkty\PR42-SmartFactory\PR4204-Problemy\rel_2_10_08\Event log 20141014\Event log 20141014.xml = \\hq.cas.com.pl\cas_dfs\cas\Projekty\Produkty\PR42-SmartFactory\PR4204-Problemy\rel_2_10_08\Event log 20141014\Event log 20141014.xml
 		..\PR44-SharePoint\Tools\SPExplorer\bin\Debug\SQLScriptFileName.sql = ..\PR44-SharePoint\Tools\SPExplorer\bin\Debug\SQLScriptFileName.sql
 	EndProjectSection
 EndProject
