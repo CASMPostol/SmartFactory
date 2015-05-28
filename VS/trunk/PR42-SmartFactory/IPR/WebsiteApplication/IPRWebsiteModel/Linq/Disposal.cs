@@ -139,6 +139,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             quantity = 0;
             _at = "InsertOnSubmit";
             entities.Disposal.InsertOnSubmit(_newDisposal);
+            reCalculate = x => { };
           }
           else
             quantity -= this.SettledQuantityDec;
