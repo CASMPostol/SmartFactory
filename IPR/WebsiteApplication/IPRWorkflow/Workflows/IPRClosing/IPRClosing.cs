@@ -77,7 +77,7 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
         LogFinalMessageToHistory_HistoryDescription = String.Format(_pat, ex.Message);
         TraceEvent("Exception at IPRClosing.ClosingExecuteCode: " + LogFinalMessageToHistory_HistoryDescription + " Stack: " + ex.StackTrace, 54, TraceSeverity.High);
       }
-      TraceEvent("Finished IPRClosing.ClosingExecuteCode", 54, TraceSeverity.Monitorable);
+      TraceEvent("Finished IPRClosing.ClosingExecuteCode", 54, TraceSeverity.Verbose);
     }
     internal enum CloseAccountResult { Closed, AccountBalanceError, DisposalError }
     internal static CloseAccountResult CloseAccount(SPWeb Web, string WebUrl, int ItemId)

@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         if (!properties.ListTitle.Contains("Batch Library"))
         {
           //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
-          TraceEvent("BatchEventReceiver.ItemAdded ", 50, TraceSeverity.Monitorable);
+          TraceEvent("BatchEventReceiver.ItemAdded ", 50, TraceSeverity.Verbose);
           TraceEvent(String.Format("Exiting BatchEventReceiver.ItemAdded - event called for wrong list, list name {0}.", properties.ListTitle), 51, TraceSeverity.Monitorable);
           base.ItemAdded(properties);
           return;
@@ -105,7 +105,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       {
         this.EventFiringEnabled = true;
       }
-      TraceEvent("Finishing BatchEventReceiver.ItemAdded", 107, TraceSeverity.Monitorable);
+      TraceEvent("Finishing BatchEventReceiver.ItemAdded", 107, TraceSeverity.Verbose);
     }
     /// <summary>
     /// Imports the batch from XML.

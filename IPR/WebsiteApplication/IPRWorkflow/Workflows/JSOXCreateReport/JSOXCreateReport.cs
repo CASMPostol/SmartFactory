@@ -58,7 +58,7 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXCreateReport
         TraceEvent("Entering JSOXCreateReport.CreateJSOXReport", 58, TraceSeverity.Monitorable);
         BalanceSheetContentFactory.CreateReport(workflowProperties.Web, workflowProperties.WebUrl, workflowProperties.ItemId, TraceEvent);
         CompletedLogToHistory_HistoryDescription = "JSOX report created successfully";
-        TraceEvent("Finished JSOXCreateReport.CreateJSOXReport", 61, TraceSeverity.Monitorable);
+        TraceEvent("Finished JSOXCreateReport.CreateJSOXReport", 61, TraceSeverity.Verbose);
       }
       catch (Exception ex)
       {

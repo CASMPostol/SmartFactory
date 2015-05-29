@@ -589,22 +589,22 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         m_ControlState.InvoiceContent = item;
         string _ms = "CannotProceedWithExportBecauseTheInvoiceItemContainsErrors".GetLocalizedString();
         _ms = String.Format(_ms, item.Title);
-        TraceEvent(_ms, 592, TraceSeverity.Monitorable);
+        TraceEvent(_ms, 592, TraceSeverity.Verbose);
         return GenericStateMachineEngine.ActionResult.NotValidated(_ms);
       }
       m_ControlState.Invoice.InvoiceLibraryStatus = true;
       Clearence _newClearance = Clearence.CreateClearance(m_DataContextManagement.DataContext, "FinishedGoodsExport", ClearenceProcedure._3151, (x, y, z) => TraceEvent(x, y, z));
       string _masterDocumentName = _newClearance.FinishedGoodsExportFormFileName(m_DataContextManagement.DataContext);
-      TraceEvent(String.Format("ExportWebPartUserControl.Export - generated document name: {0}", _masterDocumentName), 578, TraceSeverity.Monitorable);
+      TraceEvent(String.Format("ExportWebPartUserControl.Export - generated document name: {0}", _masterDocumentName), 578, TraceSeverity.Verbose);
       CigaretteExportFormCollection _cefc = FinishedGoodsFormFactory.GetFormContent
         (m_DataContextManagement.DataContext, m_ControlState.Invoice, _newClearance, _masterDocumentName, _newClearance.SADDocumentNumber, (x, y, z) => TraceEvent(x, y, z));
-      TraceEvent(String.Format("ExportWebPartUserControl.Export - at SPDocumentFactory.Prepare", _masterDocumentName), 578, TraceSeverity.Monitorable);
+      TraceEvent(String.Format("ExportWebPartUserControl.Export - at SPDocumentFactory.Prepare", _masterDocumentName), 578, TraceSeverity.Verbose);
       int _sadConsignmentIdentifier = SPDocumentFactory.Prepare(SPContext.Current.Web, _cefc, _masterDocumentName, (x, y, z) => TraceEvent(x, y, z));
       SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>(m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier);
       _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
-      TraceEvent("ExportWebPartUserControl.Export at SubmitChanges", 605, TraceSeverity.Monitorable);
+      TraceEvent("ExportWebPartUserControl.Export at SubmitChanges", 605, TraceSeverity.Verbose);
       m_DataContextManagement.DataContext.SubmitChanges();
-      TraceEvent("Finished ExportWebPartUserControl.Export", 607, TraceSeverity.Monitorable);
+      TraceEvent("Finished ExportWebPartUserControl.Export", 607, TraceSeverity.Verbose);
       return GenericStateMachineEngine.ActionResult.Success;
     }
     private void Show(InvoiceLib invoice, InvoiceContent invoiceContent, Batch batch)

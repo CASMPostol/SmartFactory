@@ -32,7 +32,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     #region public
     internal static void CreateReport(SPWeb web, string webUrl, int jsoxLibItemId, NamedTraceLogger.TraceAction trace)
     {
-      trace("Entering BalanceSheetContentFactory.CreateReport", 33, TraceSeverity.Monitorable);
+      trace("Entering BalanceSheetContentFactory.CreateReport", 33, TraceSeverity.Verbose);
       SPFile _newFile = default(SPFile);
       BalanceSheetContent _content = default(BalanceSheetContent);
       using (Entities _edc = new Entities(webUrl))
@@ -48,18 +48,18 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         JSOXLibFactory _current = JSOXLibFactory.ConstructJSOXLibFActory(_edc, _newFile.Item.ID);
         List<BalanceBatchWrapper> batches = new List<BalanceBatchWrapper>();
         bool _validated = _current.CreateJSOXReport(_edc, _old, batches, trace);
-        trace("BalanceSheetContentFactory.CreateReport SubmitChanges", 33, TraceSeverity.Monitorable);
+        trace("BalanceSheetContentFactory.CreateReport SubmitChanges", 33, TraceSeverity.Verbose);
         _edc.SubmitChanges();
         _content = CreateContent(_edc, batches, _current, _documentName, !_validated);
       }
       trace("UpdateDocument " + _newFile.Name, 51, TraceSeverity.Verbose);
       _content.UpdateDocument(_newFile);
       _newFile.DocumentLibrary.Update();
-      trace("Finished BalanceSheetContentFactory.CreateReport", 53, TraceSeverity.Monitorable);
+      trace("Finished BalanceSheetContentFactory.CreateReport", 53, TraceSeverity.Verbose);
     }
     internal static void UpdateReport(SPListItem listItem, string WebUrl, int jsoxLibItemId, NamedTraceLogger.TraceAction trace)
     {
-      trace("Entering BalanceSheetContentFactory.UpdateReport", 62, TraceSeverity.Monitorable);
+      trace("Entering BalanceSheetContentFactory.UpdateReport", 62, TraceSeverity.Verbose);
       BalanceSheetContent _content = null;
       using (Entities _edc = new Entities(WebUrl))
       {
@@ -79,7 +79,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       }
       _content.UpdateDocument(listItem.File);
       listItem.ParentList.Update();
-      trace("Finished BalanceSheetContentFactory.UpdateReport", 82, TraceSeverity.Monitorable);
+      trace("Finished BalanceSheetContentFactory.UpdateReport", 82, TraceSeverity.Verbose);
     }
     #endregion
 

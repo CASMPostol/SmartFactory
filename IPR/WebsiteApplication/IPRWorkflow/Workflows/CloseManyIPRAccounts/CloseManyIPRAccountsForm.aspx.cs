@@ -52,7 +52,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
     /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     protected void Page_Load(object sender, EventArgs e)
     {
-      TraceEvent("Entering CloseManyIPRAccountsForm.Page_Load", 55, TraceSeverity.Monitorable);
+      TraceEvent("Entering CloseManyIPRAccountsForm.Page_Load", 55, TraceSeverity.Verbose);
       InitializeParams();
       try
       {
@@ -79,7 +79,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
           }).ToList<IPRAccountDataSource>();
         if (this.IsPostBack)
         {
-          TraceEvent("CloseManyIPRAccountsForm.Page_Load - IsPostBack do nothing.", 82, TraceSeverity.Monitorable);
+          TraceEvent("CloseManyIPRAccountsForm.Page_Load - IsPostBack do nothing.", 82, TraceSeverity.Verbose);
           return;
         }
         TraceEvent(
@@ -88,7 +88,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
           TraceSeverity.Verbose);
         m_AvailableGridView.DataSource = m_DataSource;
         m_AvailableGridView.DataBind();
-        TraceEvent("Finished CloseManyIPRAccountsForm.Page_Load", 91, TraceSeverity.Monitorable);
+        TraceEvent("Finished CloseManyIPRAccountsForm.Page_Load", 91, TraceSeverity.Verbose);
       }
       catch (Exception _ex)
       {
@@ -135,7 +135,6 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
     /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     protected void StartWorkflow_Click(object sender, EventArgs e)
     {
-      // Optionally, add code here to perform additional steps before starting your workflow
       try
       {
         HandleStartWorkflow();
@@ -211,9 +210,9 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
       TraceEvent("Entering CloseManyIPRAccountsForm.StartListWorkflow", 207, TraceSeverity.Monitorable);
       SPWorkflowAssociation association = this.workflowList.WorkflowAssociations[new Guid(this.associationGuid)];
       this.Web.Site.WorkflowManager.StartWorkflow(workflowListItem, association, GetInitiationData());
-      TraceEvent(" CloseManyIPRAccountsForm.StartListWorkflow Redirect to: " + this.workflowList.DefaultViewUrl, 210, TraceSeverity.Monitorable);
+      TraceEvent(" CloseManyIPRAccountsForm.StartListWorkflow Redirect to: " + this.workflowList.DefaultViewUrl, 210, TraceSeverity.Verbose);
       bool _redirectResult = SPUtility.Redirect(this.workflowList.DefaultViewUrl, SPRedirectFlags.UseSource, HttpContext.Current);
-      TraceEvent(String.Format("CloseManyIPRAccountsForm.StartListWorkflow Redirect result: {0}", _redirectResult), 212, TraceSeverity.Monitorable);
+      TraceEvent(String.Format("CloseManyIPRAccountsForm.StartListWorkflow Redirect result: {0}", _redirectResult), 212, TraceSeverity.Verbose);
     }
     #endregion
 
