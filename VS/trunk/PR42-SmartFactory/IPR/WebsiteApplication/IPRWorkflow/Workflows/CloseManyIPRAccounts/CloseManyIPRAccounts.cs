@@ -148,7 +148,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CloseManyIPRAccounts
     {
       FinishedHistoryListActivity_HistoryDescription = "Finished";
       FinishedHistoryListActivity_HistoryOutcome = "Finished closing the accounts";
-      TraceEvent("Finished CloseManyIPRAccounts.onFinishedHistoryListActivity: ", 104, TraceSeverity.Monitorable);
+      TraceEvent("Finished CloseManyIPRAccounts.onFinishedHistoryListActivity: ", 104, TraceSeverity.Verbose);
     }
     /// <summary>
     /// The finished log to history list - history description

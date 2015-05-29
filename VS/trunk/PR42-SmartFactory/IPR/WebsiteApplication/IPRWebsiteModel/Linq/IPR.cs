@@ -513,9 +513,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private void TraceRecalculationDiff(string name, NamedTraceLogger.TraceAction trace, double dif, Action<double> correct)
     {
       TraceSeverity _severity = TraceSeverity.Verbose;
-      if (Math.Abs(dif) > 1.0)
+      if (Math.Abs(dif) > 10)
         _severity = TraceSeverity.High;
-      else if (Math.Abs(dif) > 0.10)
+      else if (Math.Abs(dif) > 1)
         _severity = TraceSeverity.Monitorable;
       string _msg = String.Format("Correction {3} value = {0} for IPR: {1} {2}", dif.Round2Decimals(), this.Title, _severity == TraceSeverity.High ? "has not been applied because is out of range" : "has been applied", name);
       trace(_msg, 513, _severity);

@@ -86,7 +86,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         }
         catch (InputDataValidationException _ie)
         {
-          TraceEvent(String.Format("Exception {0} at SADImportXML.ItemAdded file={1}", _ie.GetType().Name, properties.ListItem.File.Name), 92, TraceSeverity.Monitorable);
+          TraceEvent(String.Format("Exception {0} at SADImportXML.ItemAdded file={1}", _ie.GetType().Name, properties.ListItem.File.Name), 92, TraceSeverity.High);
           _ie.ReportActionResult(properties.WebUrl, properties.ListItem.File.Name);
         }
         catch (Exception _ex)
@@ -154,7 +154,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         this.EventFiringEnabled = true;
       }
       base.ItemAdded(properties);
-      TraceEvent("Finished SADImportXML ItemAdded", 160, TraceSeverity.Monitorable);
+      TraceEvent("Finished SADImportXML ItemAdded", 160, TraceSeverity.Verbose);
     }
 
     #region private

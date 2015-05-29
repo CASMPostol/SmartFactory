@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.CWInterconnection
     /// <param name="trace">The trace.</param>
     public virtual void GetAccountData(Entities edc, Clearence clearance, MessageType messageType, List<Warnning> warnings, NamedTraceLogger.TraceAction trace)
     {
-      trace("Entering AccountData.GetAccountData", 50, TraceSeverity.Monitorable);
+      trace("Entering AccountData.GetAccountData", 50, TraceSeverity.Verbose);
       DocumentNo = clearance.DocumentNo;
       DateTime _customsDebtDate = clearance.Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value;
       this.CustomsDebtDate = _customsDebtDate;
