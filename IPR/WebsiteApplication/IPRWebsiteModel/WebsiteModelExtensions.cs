@@ -142,6 +142,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     {
       if (severity <= TraceSeverity.Monitorable && SPContext.Current != null)
         Linq.ActivityLogCT.WriteEntry(String.Format("{0}:{1}", category, severity), message);
+      else
+        NamedTraceLogger.Logger.TraceToDeveloper("Cannot write to ActivityLog because the SPContext.Current == null", eventId, severity, string.Format("{0}/{1}", LoggingArea, category));
       NamedTraceLogger.Logger.TraceToDeveloper(message, eventId, severity, string.Format("{0}/{1}", LoggingArea, category));
     }
     internal static void RegisterLoggerSource()

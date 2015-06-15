@@ -150,7 +150,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         string _tmpl = "Cleared TobaccoQuantity of {0}kg for the material: batch {1} because no account to adjust found.";
         _warnning = new Warnning(String.Format(_tmpl, _startingTobaccoQuantity, this.Batch), false);
       }
-      trace("Wanning at Material.AdjustTobaccoQuantity: " + _warnning, 135, TraceSeverity.Monitorable);
+      trace("Wanning at Material.AdjustTobaccoQuantity: " + _warnning.Message, 135, TraceSeverity.Monitorable);
     }
     /// <summary>
     /// Gets the <see cref="System.Decimal" /> at the specified index.
