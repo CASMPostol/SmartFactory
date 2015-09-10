@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CW", "CW", "{9FFAC044-7B6D-45C5-937F-70D14078D0A3}"
 EndProject
@@ -10,7 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{E5B3C924-7BC6-495C-B50F-0617E2CF29F9}"
 	ProjectSection(SolutionItems) = preProject
 		CW\CWModel.t4 = CW\CWModel.t4
-		..\CommonBinaries\take_recent_binaries.cmd = ..\CommonBinaries\take_recent_binaries.cmd
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{8BA48226-1040-4FA2-941D-11A82B11FE78}"
