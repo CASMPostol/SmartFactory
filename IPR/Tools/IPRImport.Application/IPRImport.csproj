@@ -139,6 +139,10 @@
       <Project>{bbc177df-cd0c-4fdf-9e78-41f2ce4faf52}</Project>
       <Name>IPRInteroperability</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\WebsiteApplication\IPRListsEventsHandlers\IPRListsEventsHandlers.csproj">
+      <Project>{f337cf80-031a-43be-88a6-6c477ad1c6c5}</Project>
+      <Name>IPRListsEventsHandlers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\WebsiteApplication\IPRWebsiteModel\IPRWebsiteModel.csproj">
       <Project>{8920f657-54a3-4376-99a5-c2d823f94038}</Project>
       <Name>IPRWebsiteModel</Name>

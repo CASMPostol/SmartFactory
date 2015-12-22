@@ -144,7 +144,7 @@ namespace CAS.SmartFactory.Management
         m_ToolStripStatusLabel.Text = "Reading Data";
         m_ToolStripProgressBar.Value = 0;
         this.Refresh();
-        CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.InvoiceEventReceiver.IportInvoiceFromXml( strm, m_URLTextBox.Text.Trim(), 0, m_OpenFileDialog.FileName, UpdateToolStrip );
+        CAS.SmartFactory.IPR.ListsEventsHandlers.InvoiceEventReceiver.IportInvoiceFromXml( strm, m_URLTextBox.Text.Trim(), 0, m_OpenFileDialog.FileName, UpdateToolStrip );
         SetDone();
       }
       catch ( Exception ex )
