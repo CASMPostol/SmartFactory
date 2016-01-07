@@ -106,6 +106,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\CommonBinaries\PR44-SharePoint\2.20.00\CAS.Common.dll</HintPath>
     </Reference>
+    <Reference Include="CAS.SharePointClient">
+      <HintPath>..\..\..\packages\CAS.SharePointClient.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -200,10 +203,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\PR44-SharePoint\Libraries\SharePointLinqClient\SharePointClient.csproj">
-      <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
-      <Name>SharePointClient</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Library\ClientDataManagement\ClientDataManagement.csproj">
       <Project>{7ff92139-ea5d-469d-aa7c-a309b2e2fa29}</Project>
       <Name>ClientDataManagement</Name>
