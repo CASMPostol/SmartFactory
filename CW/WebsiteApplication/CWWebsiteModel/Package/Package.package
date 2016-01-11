@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="f8254738-4cee-4cd4-9b32-025d0eb2b976" solutionId="f8254738-4cee-4cd4-9b32-025d0eb2b976" resetWebServer="true" title="CAS SmartFactory CW Website Model" description="Package containing CAS SmartFactory CW Website Model" name="CASSmartFactoryCWModel" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
-  <assemblies>
-    <customAssembly location="CAS.SharePoint.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\..\..\CommonBinaries\PR44-SharePoint\CAS.SharePoint.dll" />
-  </assemblies>
   <features>
     <featureReference itemId="b0a3f319-857b-4a9a-bab1-68be635341f9" />
   </features>
