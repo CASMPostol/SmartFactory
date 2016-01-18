@@ -13,8 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
-using Microsoft.Practices.Prism.Logging;
-using Microsoft.Practices.Prism.MefExtensions;
+using Prism.Logging;
 
 namespace CAS.SmartFactory.Shepherd.Client.Management
 {

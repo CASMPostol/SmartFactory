@@ -15,8 +15,8 @@
 //</summary>
 
 using CAS.Common.ComponentModel;
-using Microsoft.Practices.Prism.Logging;
-using Microsoft.Practices.Prism.PubSubEvents;
+using Prism.Events;
+using Prism.Logging;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;

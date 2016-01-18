@@ -15,9 +15,9 @@
 
 using CAS.Common.ViewModel.Wizard;
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
-using Microsoft.Practices.Prism.Logging;
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Events;
+using Prism.Logging;
+using Prism.Regions;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition;

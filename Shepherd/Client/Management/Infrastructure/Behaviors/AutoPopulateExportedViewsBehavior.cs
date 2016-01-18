@@ -13,7 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
-using Microsoft.Practices.Prism.Regions;
+using Prism.Regions;
 using System;
 using System.ComponentModel.Composition;
 

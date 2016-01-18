@@ -14,8 +14,8 @@
 //</summary>
 
 using CAS.Common.ViewModel.Wizard;
-using Microsoft.Practices.Prism.Logging;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Logging;
+using Prism.Regions;
 using System.ComponentModel.Composition;
 
 namespace CAS.SmartFactory.Shepherd.Client.Management.Controls

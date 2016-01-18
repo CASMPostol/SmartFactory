@@ -17,7 +17,7 @@ using CAS.Common.ViewModel.Wizard;
 using CAS.Common.ViewModel.Wizard.ButtonsPanelStateTemplates;
 using CAS.SmartFactory.Shepherd.Client.DataManagement.Linq2SQL;
 using CAS.SmartFactory.Shepherd.Client.Management.Properties;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Regions;
 using System;
 using System.ComponentModel;
 using System.Data.SqlClient;

@@ -14,8 +14,8 @@
 //</summary>
 
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors;
-using Microsoft.Practices.Prism.MefExtensions;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Mef;
+using Prism.Regions;
 using System.ComponentModel.Composition.Hosting;
 using System.Windows;
 
@@ -41,7 +41,7 @@ namespace CAS.SmartFactory.Shepherd.Client.Management
       Application.Current.MainWindow.Show();
     }
 
-    protected override Microsoft.Practices.Prism.Regions.IRegionBehaviorFactory ConfigureDefaultRegionBehaviors()
+    protected override Prism.Regions.IRegionBehaviorFactory ConfigureDefaultRegionBehaviors()
     {
       IRegionBehaviorFactory factory = base.ConfigureDefaultRegionBehaviors();
       factory.AddIfMissing("AutoPopulateExportedViewsBehavior", typeof(AutoPopulateExportedViewsBehavior));
