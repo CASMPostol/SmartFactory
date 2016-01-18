@@ -18,8 +18,8 @@ using CAS.Common.ViewModel.Wizard.ButtonsPanelStateTemplates;
 using CAS.SmartFactory.Shepherd.Client.DataManagement;
 using CAS.SmartFactory.Shepherd.Client.DataManagement.InputData;
 using CAS.SmartFactory.Shepherd.Client.Management.Properties;
-using Microsoft.Practices.Prism.Logging;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Logging;
+using Prism.Regions;
 using System;
 using System.ComponentModel;
 

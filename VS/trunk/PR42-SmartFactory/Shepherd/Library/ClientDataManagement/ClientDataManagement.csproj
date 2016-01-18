@@ -59,6 +59,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CAS.SharePointClient, Version=2.60.10.29114, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=AMD64">
+      <HintPath>..\..\..\packages\CAS.SharePoint.Client.2.60.10\lib\net35\CAS.SharePointClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -123,6 +127,9 @@
     <None Include="InputData\Scripts\CreateCS.ps1" />
     <None Include="Linq2SQL\Scripts\GetEntities.ps1" />
     <None Include="Linq\Scripts\GetEntities.ps1" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
@@ -131,12 +138,6 @@
   <ItemGroup>
     <Content Include="InputData\RoutesCatalog.XML" />
     <Content Include="Linq\Scripts\Parameters.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\PR44-SharePoint\Libraries\SharePointLinqClient\SharePointClient.csproj">
-      <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
-      <Name>SharePointClient</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

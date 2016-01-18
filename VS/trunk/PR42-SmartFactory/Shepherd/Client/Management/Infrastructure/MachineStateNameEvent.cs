@@ -13,11 +13,11 @@
 //  http://www.cas.eu
 //</summary>
 
-using Microsoft.Practices.Prism.PubSubEvents;
 
 /// <summary>
 /// The Infrastructure namespace.
 /// </summary>
+using Prism.Events;
 namespace CAS.SmartFactory.Shepherd.Client.Management.Infrastructure
 {
   

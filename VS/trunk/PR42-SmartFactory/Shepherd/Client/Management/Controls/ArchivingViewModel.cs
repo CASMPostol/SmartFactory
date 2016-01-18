@@ -15,8 +15,8 @@
 
 using CAS.SmartFactory.Shepherd.Client.Management.Properties;
 using CAS.SmartFactory.Shepherd.Client.Management.StateMachines;
-using Microsoft.Practices.Prism.Logging;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Logging;
+using Prism.Regions;
 using System;
 using System.ComponentModel.Composition;
 using System.Diagnostics;

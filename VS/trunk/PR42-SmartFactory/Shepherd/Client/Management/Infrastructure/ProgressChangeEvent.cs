@@ -12,8 +12,8 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
-using Microsoft.Practices.Prism.PubSubEvents;
+
+using Prism.Events;
 using System.ComponentModel;
 
 /// <summary>

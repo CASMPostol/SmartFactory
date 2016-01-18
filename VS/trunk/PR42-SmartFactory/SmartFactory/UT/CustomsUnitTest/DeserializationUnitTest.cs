@@ -8,6 +8,7 @@ namespace CAS.SmartFactory.Customs.UnitTest
   public class DeserializationUnitTest
   {
     [TestMethod]
+    //TODO this doesn't pass if executed as "Run All" - the test data must be copied to the working directory. 
     public void DeserializationTestMethod()
     {
       SAD _sad = XmlFile.ReadXmlFile<SAD>(@"TestData\TestSAD.xml");
