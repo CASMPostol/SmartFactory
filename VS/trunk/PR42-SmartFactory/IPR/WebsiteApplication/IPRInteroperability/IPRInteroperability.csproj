@@ -478,8 +478,6 @@
     <Content Include="DocumentsFactory\Disposals\CartonsFormStylesheet.xslt" />
     <Content Include="DocumentsFactory\Disposals\DocumentContent.xml" />
     <Content Include="DocumentsFactory\Disposals\DustFormStylesheet.xslt" />
-    <Content Include="DocumentsFactory\Disposals\TestData\Proces technologiczny 0000688.xml" />
-    <Content Include="DocumentsFactory\Disposals\TestData\Proces technologiczny 0000696.xml" />
     <Content Include="DocumentsFactory\Disposals\TobaccoFormStylesheet.xslt" />
     <Content Include="DocumentsFactory\Disposals\WasteFormStylesheet.xslt">
       <SubType>Designer</SubType>
