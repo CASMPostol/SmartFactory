@@ -103,9 +103,6 @@
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="IPRArchivinglDtabase.dbmdl" />
-  </ItemGroup>
-  <ItemGroup>
     <Build Include="dbo\Tables\ArchivingOperationLogs.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
