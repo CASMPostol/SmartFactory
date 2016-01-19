@@ -102,14 +102,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CAS.Common, Version=2.20.0.27533, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\CommonBinaries\PR44-SharePoint\2.20.00\CAS.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="CAS.SharePointClient, Version=2.0.20.21937, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\CAS.SharePoint.Client.2.0.20\lib\net35\CAS.SharePointClient.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -190,7 +182,6 @@
     <None Include="app.config" />
     <None Include="app.manifest" />
     <None Include="cas.snk" />
-    <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
