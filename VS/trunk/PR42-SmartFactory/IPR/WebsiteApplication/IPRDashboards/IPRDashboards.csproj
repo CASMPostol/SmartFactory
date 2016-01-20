@@ -107,7 +107,6 @@
     </Compile>
     <Compile Include="Webparts\ClearenceWebPart\Selection.cs">
       <DependentUpon>Selection.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Webparts\ClearenceWebPart\Selection.Designer.cs">
       <AutoGen>True</AutoGen>

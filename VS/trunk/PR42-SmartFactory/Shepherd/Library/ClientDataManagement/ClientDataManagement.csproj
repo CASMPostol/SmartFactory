@@ -127,9 +127,7 @@
     <None Include="InputData\Scripts\CreateCS.ps1" />
     <None Include="Linq2SQL\Scripts\GetEntities.ps1" />
     <None Include="Linq\Scripts\GetEntities.ps1" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
