@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>CAS.SmartFactory.Customs</id>
-    <version>2.30.02</version>
+    <version>2.30.03</version>
     <title>CAS SmartFactory Customs common library.</title>
     <authors>CAS</authors>
     <owners>CAS</owners>
@@ -23,7 +23,7 @@
       $URL$
       $Id$
     </releaseNotes>
-    <copyright>Copyright (c) 2000-2015 CAS LODZ POLAND</copyright>
+    <copyright>Copyright (c) 2000-2016 CAS LODZ POLAND</copyright>
     <tags>SmartFactory, IPR, CW, Service.</tags>
   </metadata>
   <files>

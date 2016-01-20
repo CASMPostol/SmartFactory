@@ -1,0 +1,11 @@
+<#+
+string IPRAssemblyVersion = "1.60.41.*";
+string IPRAssemblyFileVersion = "1.60.41";
+string SHRAssemblyVersion = "1.70.00.*";
+string SHRAssemblyFileVersion = "1.70.00";
+string AssemblyTrademark = "Smart Factory";
+string AssemblyCopyright = "Copyright (c) CAS 2014";
+string AssemblyProduct = "Smart Factory";
+string AssemblyCompany = "CAS";
+string IPRSADConsignmentLibraryTitle = "SAD Consignment";
+#>
