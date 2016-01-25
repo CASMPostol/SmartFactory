@@ -4,7 +4,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>CAS.SmartFactory.Customs</id>
-    <version><#= CASSmartFactoryFileVersion #></version>
+    <version><#= CASSmartFactoryCustomsVersion #></version>
     <title>CAS SmartFactory Customs common library.</title>
     <authors><#=AssemblyCompany#></authors>
     <owners><#=AssemblyCompany#></owners>
