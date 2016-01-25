@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("519191f7-7957-43b8-94a8-5f89473dfe47")]
-[assembly: AssemblyVersion("<#= CASSmartFactoryFileVersion #>.*")]
-[assembly: AssemblyFileVersion("<#= CASSmartFactoryFileVersion #>")]
+[assembly: AssemblyVersion("<#= CASSmartFactoryCustomsVersion #>.*")]
+[assembly: AssemblyFileVersion("<#= CASSmartFactoryCustomsVersion #>")]
 
 <#@ include file = "..\..\..\..\PR39-CommonResources\T4Definitions\AssemblyInfo.t4" #>
