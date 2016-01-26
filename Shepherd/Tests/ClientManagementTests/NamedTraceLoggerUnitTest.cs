@@ -1,6 +1,7 @@
-﻿using CAS.SmartFactory.Shepherd.Client.Management.Services;
-using Microsoft.Practices.Prism.Logging;
+﻿
+using CAS.SmartFactory.Shepherd.Client.Management.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Prism.Logging;
 using System.ComponentModel;
 using System.Diagnostics;
 

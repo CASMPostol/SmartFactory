@@ -13,7 +13,7 @@
   <SiteTemplate>BLANKINTERNETCONTAINER#0</SiteTemplate>
   <LCID>1033</LCID>
   <Title>Shepherd</Title>
-  <Description>Shepherd - Optimal Management of Inbound and Outbound Deliveries Minimize</Description>
+  <Description>Shepherd - Optimal Management of Inbound and Outbound Deliveries</Description>
   <Solutions>
     <Solution>
       <Activated>true</Activated>
@@ -54,24 +54,6 @@
     <Solution>
       <Activated>true</Activated>
       <Deployed>true</Deployed>
-      <FileName>CASShepherdWorkflows.wsp</FileName>
-      <Fetures>
-        <Feature>
-          <DisplayName></DisplayName>
-          <DefinitionId>{6473649e-0532-41e9-bd87-e9882dd16c76}</DefinitionId>
-          <Version></Version>
-          <Scope>Site</Scope>
-          <AutoActivate>false</AutoActivate>
-        </Feature>
-      </Fetures>
-      <FeatureDefinitionScope>Farm</FeatureDefinitionScope>
-      <Priority>50</Priority>
-      <SolutionID></SolutionID>
-      <Global>true</Global>
-    </Solution>
-    <Solution>
-      <Activated>true</Activated>
-      <Deployed>true</Deployed>
       <FileName>CASShepherdDashboards.wsp</FileName>
       <Fetures>
         <Feature>
@@ -86,6 +68,24 @@
       <Priority>40</Priority>
       <SolutionID></SolutionID>
       <Global>false</Global>
+    </Solution>
+    <Solution>
+      <Activated>true</Activated>
+      <Deployed>true</Deployed>
+      <FileName>CASShepherdWorkflows.wsp</FileName>
+      <Fetures>
+        <Feature>
+          <DisplayName></DisplayName>
+          <DefinitionId>{6473649e-0532-41e9-bd87-e9882dd16c76}</DefinitionId>
+          <Version></Version>
+          <Scope>Site</Scope>
+          <AutoActivate>false</AutoActivate>
+        </Feature>
+      </Fetures>
+      <FeatureDefinitionScope>Farm</FeatureDefinitionScope>
+      <Priority>50</Priority>
+      <SolutionID></SolutionID>
+      <Global>true</Global>
     </Solution>
   </Solutions>
 </InstallationStateData>
