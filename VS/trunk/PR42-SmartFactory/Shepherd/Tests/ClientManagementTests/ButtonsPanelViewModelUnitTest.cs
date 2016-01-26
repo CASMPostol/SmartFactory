@@ -1,6 +1,6 @@
-﻿using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.Prism.Regions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Prism.Events;
+using Prism.Regions;
 using System;
 
 namespace CAS.SmartFactory.Shepherd.Client.Management.Tests

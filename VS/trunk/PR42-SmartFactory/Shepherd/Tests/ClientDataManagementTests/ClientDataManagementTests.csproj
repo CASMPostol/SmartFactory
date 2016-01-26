@@ -60,6 +60,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CAS.SharePointClient, Version=2.60.10.29114, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=AMD64">
+      <HintPath>..\..\..\packages\CAS.SharePoint.Client.2.60.10\lib\net35\CAS.SharePointClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
   </ItemGroup>
@@ -76,17 +80,14 @@
     <Compile Include="StorageInfoComparisonTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\PR44-SharePoint\Libraries\SharePointLinqClient\SharePointClient.csproj">
-      <Project>{70dd8abc-b012-427a-8163-64e63304bd42}</Project>
-      <Name>SharePointClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\ClientDataManagement\ClientDataManagement.csproj">
+    <ProjectReference Include="..\..\Library\ClientDataManagement\ClientDataManagement.csproj">
       <Project>{e6b7f891-ba8c-4791-8978-1a09f6b46e33}</Project>
       <Name>ClientDataManagement</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

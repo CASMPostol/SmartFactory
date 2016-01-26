@@ -14,10 +14,9 @@
 //</summary>
 
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Regions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;

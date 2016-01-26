@@ -1,7 +1,7 @@
 ﻿using CAS.SmartFactory.Shepherd.Client.Management.Controls;
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure;
 using CAS.SmartFactory.Shepherd.Client.Management.Infrastructure.Behaviors;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Regions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;

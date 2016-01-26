@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CAS.SmartFactory.Shepherd.ImportExport</RootNamespace>
-    <AssemblyName>CAS.ShepherdImportExport</AssemblyName>
+    <AssemblyName>CAS.SmartFactory.Shepherd.ImportExport</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
