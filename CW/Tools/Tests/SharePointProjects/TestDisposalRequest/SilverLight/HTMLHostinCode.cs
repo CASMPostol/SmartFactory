@@ -18,7 +18,7 @@ namespace TestDisposalRequest.SilverLight
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\MPVS\SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
+    #line 1 "D:\MPVS\CAS.SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class HTMLHostinCode : HTMLHostinCodeBase
     {
@@ -30,14 +30,14 @@ namespace TestDisposalRequest.SilverLight
         {
             this.Write("\r\n<div style=\"overflow-x: hidden; position: relative; width: ");
             
-            #line 7 "D:\MPVS\SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
+            #line 7 "D:\MPVS\CAS.SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Width));
             
             #line default
             #line hidden
             this.Write("; height: ");
             
-            #line 7 "D:\MPVS\SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
+            #line 7 "D:\MPVS\CAS.SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Height));
             
             #line default
@@ -45,28 +45,28 @@ namespace TestDisposalRequest.SilverLight
             this.Write(";\">\r\n    <object data=\"data:application/x-silverlight-2,\" type=\"application/x-sil" +
                     "verlight-2\" width=\"");
             
-            #line 8 "D:\MPVS\SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
+            #line 8 "D:\MPVS\CAS.SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Width));
             
             #line default
             #line hidden
             this.Write("\" height=\"");
             
-            #line 8 "D:\MPVS\SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
+            #line 8 "D:\MPVS\CAS.SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Height));
             
             #line default
             #line hidden
             this.Write("\">\r\n        <param name=\"source\" value=\"");
             
-            #line 9 "D:\MPVS\SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
+            #line 9 "D:\MPVS\CAS.SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Source));
             
             #line default
             #line hidden
             this.Write("\" />\r\n        <param name=\"onError\" value=\"");
             
-            #line 10 "D:\MPVS\SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
+            #line 10 "D:\MPVS\CAS.SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ErrorScript));
             
             #line default
@@ -75,7 +75,7 @@ namespace TestDisposalRequest.SilverLight
                     "=\"minRuntimeVersion\" value=\"4.0.50401.0\" />\r\n        <param name=\"initparams\" va" +
                     "lue=\"");
             
-            #line 13 "D:\MPVS\SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
+            #line 13 "D:\MPVS\CAS.SmartFactory\PR42-SmartFactory\CW\Tools\Tests\SharePointProjects\TestDisposalRequest\SilverLight\HTMLHostinCode.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Initparams));
             
             #line default
