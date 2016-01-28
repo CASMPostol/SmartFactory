@@ -42,8 +42,8 @@
     <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CAS.SmartFactoryCustoms, Version=2.30.3.18869, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CAS.SmartFactory.Customs.2.30.03\lib\net35\CAS.SmartFactoryCustoms.dll</HintPath>
+    <Reference Include="CAS.SmartFactoryCustoms, Version=2.30.3.24924, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CAS.SmartFactory.Customs.2.30.05\lib\net35\CAS.SmartFactoryCustoms.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
