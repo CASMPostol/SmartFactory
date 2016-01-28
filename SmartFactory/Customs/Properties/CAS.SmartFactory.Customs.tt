@@ -5,7 +5,7 @@
   <metadata>
     <id>CAS.SmartFactory.Customs</id>
     <version><#= CASSmartFactoryCustomsVersion #></version>
-    <title>CAS SmartFactory Customs common library.</title>
+    <title>CAS SmartFactory Customs Common Library.</title>
     <authors><#=AssemblyCompany#></authors>
     <owners><#=AssemblyCompany#></owners>
     <projectUrl>svn://svnserver.hq.cas.com.pl/VS/trunk/PR42-SmartFactory/SmartFactory/Customs</projectUrl>
@@ -29,6 +29,9 @@
     <tags>SmartFactory, IPR, CW, Service.</tags>
   </metadata>
   <files>
+     <file src="..\bin\Release\CAS.SmartFactoryCustoms.dll" target="lib\net35\CAS.SmartFactoryCustoms.dll" />
+     <file src="..\bin\Release\CAS.SmartFactoryCustoms.pdb" target="lib\net35\CAS.SmartFactoryCustoms.pdb" />
+     <file src="..\bin\Release\CAS.SmartFactoryCustoms.xml" target="lib\net35\CAS.SmartFactoryCustoms.xml" />
   </files>
 </package>
 

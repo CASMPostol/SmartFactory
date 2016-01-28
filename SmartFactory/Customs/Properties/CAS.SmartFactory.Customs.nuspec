@@ -1,28 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-    <metadata>
-        <id>CAS.SmartFactory.Customs</id>
-        <version>2.30.03</version>
-        <title>CAS SmartFactory Customs common library.</title>
-        <authors>CAS</authors>
-        <owners>CAS</owners>
-        <projectUrl>svn://svnserver.hq.cas.com.pl/VS/trunk/PR42-SmartFactory/SmartFactory/Customs</projectUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <developmentDependency>true</developmentDependency>
-        <description>Package contain shared services between IPR as the client and CW as the server.</description>
-        <summary>Package contain shared services between IPR as the client and CW as the server.</summary>
-        <releaseNotes>Deployed for IPR.2.30.00
+  <metadata>
+    <id>CAS.SmartFactory.Customs</id>
+    <version>2.30.03</version>
+    <title>CAS SmartFactory Customs Common Library.</title>
+    <authors>CAS</authors>
+    <owners>CAS</owners>
+    <projectUrl>svn://svnserver.hq.cas.com.pl/VS/trunk/PR42-SmartFactory/SmartFactory/Customs</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>true</developmentDependency>
+    <description>
+      Package contain shared services between IPR as the client and CW as the server.
+    </description>
+    <summary>
+      Package contain shared services between IPR as the client and CW as the server.
+    </summary>
+    <releaseNotes>
+      Deployed for IPR.2.30.00
       $LastChangedDate$
       $Rev$
       $LastChangedBy$
       $URL$
-      $Id$</releaseNotes>
-        <copyright>Copyright (c) 2000-2016 CAS LODZ POLAND</copyright>
-        <tags>SmartFactory, IPR, CW, Service.</tags>
-    </metadata>
-    <files>
-        <file src="..\bin\Release\CAS.SmartFactoryCustoms.dll" target="lib\net35\CAS.SmartFactoryCustoms.dll" />
-        <file src="..\bin\Release\CAS.SmartFactoryCustoms.pdb" target="lib\net35\CAS.SmartFactoryCustoms.pdb" />
-        <file src="..\bin\Release\CAS.SmartFactoryCustoms.xml" target="lib\net35\CAS.SmartFactoryCustoms.xml" />
-    </files>
+      $Id$
+    </releaseNotes>
+    <copyright>Copyright (c) 2000-2016 CAS LODZ POLAND</copyright>
+    <tags>SmartFactory, IPR, CW, Service.</tags>
+  </metadata>
+  <files>
+     <file src="..\bin\Release\CAS.SmartFactoryCustoms.dll" target="lib\net35\CAS.SmartFactoryCustoms.dll" />
+     <file src="..\bin\Release\CAS.SmartFactoryCustoms.pdb" target="lib\net35\CAS.SmartFactoryCustoms.pdb" />
+     <file src="..\bin\Release\CAS.SmartFactoryCustoms.xml" target="lib\net35\CAS.SmartFactoryCustoms.xml" />
+  </files>
 </package>
+
