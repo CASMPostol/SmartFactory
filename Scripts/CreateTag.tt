@@ -1,27 +1,28 @@
 <#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cmd" #>
 
-rem//  $LastChangedDate$
-rem//  $Rev$
-rem//  $LastChangedBy$
-rem//  $URL$
-rem//  $Id$
+rem//  $LastChangedDate:  $
+rem//  $Rev:  $
+rem//  $LastChangedBy:  $
+rem//  $URL:  $
+rem//  $Id:  $
 
 <#
   string _rel =  SFTagVersion.Replace(".", "_");
 #>
 
+pause "You are about to create tag; press ctrl + c to break or any key to continue"
+
 set branchtype=tags
 set TagFolder=Rel_<#=_rel#>
-set TagPath=svn://svnserver.hq.cas.com.pl/VS/%branchtype%/SmartFactory/rel_<#=_rel#>
+set TagPath=svn://svnserver.hq.cas.com.pl/VS/%branchtype%/CAS.SmartFactory.rel_<#=_rel#>
 set trunkPath=svn://svnserver.hq.cas.com.pl/VS/trunk
 
 svn mkdir %TagPath%  -m "created new %TagPath% (in %branchtype% folder)"
 
-svn copy %trunkPath%/PR42-SmartFactory %TagPath%/PR42-SmartFactory -m "created copy in %TagPath% of the project PR42-SmartFactory"
 svn copy %trunkPath%/PR39-CommonResources %TagPath%/PR39-CommonResources -m "created copy in %TagPath% of the project PR39-CommonResources"
 svn copy %trunkPath%/ImageLibrary %TagPath%/ImageLibrary -m "created copy in %TagPath% of the project ImageLibrary"
-svn copy %trunkPath%/PR44-SharePoint %TagPath%/PR44-SharePoint -m "created copy in %TagPath% of the project PR44-SharePoint"
+svn copy %trunkPath%/PR42-SmartFactory %TagPath%/PR42-SmartFactory -m "created copy in %TagPath% of the project PR42-SmartFactory"
 
 pause ....
 

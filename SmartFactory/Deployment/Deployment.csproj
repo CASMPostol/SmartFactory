@@ -56,10 +56,13 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="CASSmartFactoryIPR.2.60.20.cas.xml" />
-    <Content Include="InstallationPackage\InstallationPackage.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <None Include="Shepherd\Shepherd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CommonAssembly\CASSmartFactoryCommon.cas.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Customs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
