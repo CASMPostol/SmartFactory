@@ -15,7 +15,7 @@ namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\CanceledShippingVendorTemplate.tt"
+    #line 1 "D:\MPVS\CAS.SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\CanceledShippingVendorTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class CanceledShippingVendorTemplate : CanceledShippingVendorTemplateBase
     {
@@ -29,21 +29,21 @@ namespace CAS.SmartFactory.Shepherd.Workflows.WorkflowData
                     "t and received before this notification are no longer valid.</b></p>\r\n<p><b>Part" +
                     "ner:</b> ");
             
-            #line 2 "D:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\CanceledShippingVendorTemplate.tt"
+            #line 2 "D:\MPVS\CAS.SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\CanceledShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PartnerTitle));
             
             #line default
             #line hidden
             this.Write("</p>\r\n<p><b>Shipping:</b> ");
             
-            #line 3 "D:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\CanceledShippingVendorTemplate.tt"
+            #line 3 "D:\MPVS\CAS.SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\CanceledShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ShippingTitle));
             
             #line default
             #line hidden
             this.Write("</p>\r\n<p><b>Time Slot:</b> ");
             
-            #line 4 "D:\MPVS\SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\CanceledShippingVendorTemplate.tt"
+            #line 4 "D:\MPVS\CAS.SmartFactory\PR42-SmartFactory\Shepherd\WebsiteApplication\ShepherdWorkflows\WorkflowData\CanceledShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(StartTime));
             
             #line default
