@@ -78,8 +78,8 @@
       <HintPath>..\..\..\packages\CAS.SharePoint.Common.1.70.39\lib\net35\CAS.SharePoint.Common.XmlSerializers.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.SmartFactoryCustoms, Version=2.30.5.14204, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\CAS.SmartFactory.Customs.2.30.05\lib\net35\CAS.SmartFactoryCustoms.dll</HintPath>
+    <Reference Include="CAS.SmartFactoryCustoms, Version=2.30.7.16241, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\CAS.SmartFactory.Customs.2.30.07\lib\net35\CAS.SmartFactoryCustoms.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
