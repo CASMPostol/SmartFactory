@@ -56,10 +56,8 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Shepherd\Shepherd.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="CommonAssembly\CASSmartFactoryCommon.cas.xml" />
+    <Content Include="Shepherd\CAS.SmartFactory.Shepherd.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Customs\" />

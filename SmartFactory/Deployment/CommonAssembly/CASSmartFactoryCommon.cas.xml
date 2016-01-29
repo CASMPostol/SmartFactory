@@ -13,10 +13,12 @@
   <SiteTemplate></SiteTemplate>
   <LCID>1033</LCID>
   <Title>IPR</Title>
-  <Description>Inward Processing Relief is a method of obtaining relief from customs duties and VAT charges. The relief applies to goods imported from outside the EU, processed and exported to countries outside the EU.</Description>
+  <Description>
+    Package contain shared services between IPR as the client and CW as the server.
+  </Description>
   <Solutions>
     <Solution>
-      <Activated>true</Activated>
+      <Activated>false</Activated>
       <Deployed>true</Deployed>
       <FileName>CASSmartFactoryCommonAssembly.wsp</FileName>
       <Fetures>
@@ -25,7 +27,7 @@
           <DefinitionId>{c9c0878e-4397-4fc6-a902-47e213658cae}</DefinitionId>
           <Version></Version>
           <Scope>Farm</Scope>
-          <AutoActivate>true</AutoActivate>
+          <AutoActivate>false</AutoActivate>
         </Feature>
       </Fetures>
       <FeatureDefinitionScope>Farm</FeatureDefinitionScope>
