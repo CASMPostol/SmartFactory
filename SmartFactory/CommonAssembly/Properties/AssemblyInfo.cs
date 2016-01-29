@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Common Assembly")]
+[assembly: AssemblyTitle("CAS.SmartFactory.CommonAssembly")]
 [assembly: AssemblyDescription("Smart Factory IPR and CW Common Assembly")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
