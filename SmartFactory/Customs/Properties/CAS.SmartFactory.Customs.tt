@@ -10,7 +10,7 @@
     <owners><#=AssemblyCompany#></owners>
     <projectUrl>svn://svnserver.hq.cas.com.pl/VS/trunk/PR42-SmartFactory/SmartFactory/Customs</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <developmentDependency>true</developmentDependency>
+    <developmentDependency>false</developmentDependency>
     <description>
       Package contain shared services between IPR as the client and CW as the server.
     </description>
