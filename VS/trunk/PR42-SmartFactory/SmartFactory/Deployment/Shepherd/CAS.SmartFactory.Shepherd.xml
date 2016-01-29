@@ -3,7 +3,7 @@
   <OwnerLogin></OwnerLogin>
   <OwnerEmail>someone@example.com</OwnerEmail>
   <SiteCollectionURL>sites/shepherd</SiteCollectionURL>
-  <SiteCollectionCreated>true</SiteCollectionCreated>
+  <SiteCollectionCreated>false</SiteCollectionCreated>
   <WebApplicationURL></WebApplicationURL>
   <!--
   STS#1 = Blank Site (1033)
