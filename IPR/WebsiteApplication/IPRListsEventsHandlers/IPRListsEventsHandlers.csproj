@@ -44,8 +44,8 @@
     <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CAS.SharePoint, Version=2.61.5.20947, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\CAS.SharePoint.2.61.5\lib\net35\CAS.SharePoint.dll</HintPath>
+    <Reference Include="CAS.SharePoint, Version=2.61.7.30856, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\CAS.SharePoint.2.61.7\lib\net35\CAS.SharePoint.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CAS.SharePoint.Common, Version=1.70.39.27524, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
