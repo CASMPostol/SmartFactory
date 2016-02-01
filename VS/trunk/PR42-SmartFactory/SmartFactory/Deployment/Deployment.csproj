@@ -57,10 +57,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="CommonAssembly\CASSmartFactoryCommon.cas.xml" />
+    <None Include="ReadMe.old.txt" />
+    <None Include="ReadMe.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ReadMe.txt</LastGenOutput>
+    </None>
+    <None Include="ReadMe.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReadMe.tt</DependentUpon>
+    </None>
     <Content Include="Shepherd\CAS.SmartFactory.Shepherd.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Customs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
